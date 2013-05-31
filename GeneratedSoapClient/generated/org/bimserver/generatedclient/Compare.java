@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="roid1" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="roid2" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="sCompareType" type="{org.buildingsmart.bimsie}sCompareType" minOccurs="0"/>
+ *         &lt;element name="sCompareType" type="{org.bimserver}sCompareType" minOccurs="0"/>
  *         &lt;element name="mcid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>

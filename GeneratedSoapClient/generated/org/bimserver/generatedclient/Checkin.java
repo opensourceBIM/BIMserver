@@ -23,8 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="deserializerOid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="fileName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="ifcFile" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
- *         &lt;element name="merge" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="data" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         &lt;element name="sync" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -41,8 +40,7 @@ import javax.xml.bind.annotation.XmlType;
     "deserializerOid",
     "fileSize",
     "fileName",
-    "ifcFile",
-    "merge",
+    "data",
     "sync"
 })
 public class Checkin {
@@ -53,8 +51,7 @@ public class Checkin {
     protected Long fileSize;
     protected String fileName;
     @XmlMimeType("application/octet-stream")
-    protected DataHandler ifcFile;
-    protected Boolean merge;
+    protected DataHandler data;
     protected Boolean sync;
 
     /**
@@ -178,51 +175,27 @@ public class Checkin {
     }
 
     /**
-     * Gets the value of the ifcFile property.
+     * Gets the value of the data property.
      * 
      * @return
      *     possible object is
      *     {@link DataHandler }
      *     
      */
-    public DataHandler getIfcFile() {
-        return ifcFile;
+    public DataHandler getData() {
+        return data;
     }
 
     /**
-     * Sets the value of the ifcFile property.
+     * Sets the value of the data property.
      * 
      * @param value
      *     allowed object is
      *     {@link DataHandler }
      *     
      */
-    public void setIfcFile(DataHandler value) {
-        this.ifcFile = value;
-    }
-
-    /**
-     * Gets the value of the merge property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isMerge() {
-        return merge;
-    }
-
-    /**
-     * Sets the value of the merge property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setMerge(Boolean value) {
-        this.merge = value;
+    public void setData(DataHandler value) {
+        this.data = value;
     }
 
     /**

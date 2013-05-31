@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="poid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element ref="{org.buildingsmart.bimsie}sService" minOccurs="0"/>
+ *         &lt;element ref="{org.bimserver}sService" minOccurs="0"/>
  *         &lt;element name="internalServiceOid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlType;
 public class AddLocalServiceToProject {
 
     protected Long poid;
-    @XmlElement(namespace = "org.buildingsmart.bimsie")
+    @XmlElement(namespace = "org.bimserver")
     protected SService sService;
     protected Long internalServiceOid;
 

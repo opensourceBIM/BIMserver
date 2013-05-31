@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="internalServiceId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="notificationProtocol" type="{org.buildingsmart.bimsie}sAccessMethod" minOccurs="0"/>
+ *         &lt;element name="notificationProtocol" type="{org.bimserver}sAccessMethod" minOccurs="0"/>
  *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="profileDescription" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="profileIdentifier" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="serviceIdentifier" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="serviceName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="token" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="trigger" type="{org.buildingsmart.bimsie}sTrigger" minOccurs="0"/>
+ *         &lt;element name="trigger" type="{org.bimserver}sTrigger" minOccurs="0"/>
  *         &lt;element name="url" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="writeExtendedDataId" type="{http://www.w3.org/2001/XMLSchema}long"/>

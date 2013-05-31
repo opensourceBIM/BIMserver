@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="list" type="{org.buildingsmart.bimsie}sRevisionSummaryContainer" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="list" type="{org.bimserver}sRevisionSummaryContainer" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="rid" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>

@@ -17,9 +17,9 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="sListDataValue">
  *   &lt;complexContent>
- *     &lt;extension base="{org.buildingsmart.bimsie}sDataValue">
+ *     &lt;extension base="{org.buildingsmart.bimsie1}sDataValue">
  *       &lt;sequence>
- *         &lt;element name="values" type="{org.buildingsmart.bimsie}sDataValue" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="values" type="{org.buildingsmart.bimsie1}sDataValue" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>

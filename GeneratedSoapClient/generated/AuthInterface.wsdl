@@ -1,47 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="AuthInterfaceService" targetNamespace="org.buildingsmart.bimsie" xmlns:ns1="bimserver" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="org.buildingsmart.bimsie" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="AuthInterfaceService" targetNamespace="org.bimserver" xmlns:ns1="bimserver" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="org.bimserver" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="org.buildingsmart.bimsie" elementFormDefault="unqualified" targetNamespace="org.buildingsmart.bimsie" version="1.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="org.bimserver" elementFormDefault="unqualified" targetNamespace="org.bimserver" version="1.0">
 <xs:element name="changePassword" type="tns:changePassword"/>
 <xs:element name="changePasswordResponse" type="tns:changePasswordResponse"/>
-<xs:element name="getAccessMethod" type="tns:getAccessMethod"/>
-<xs:element name="getAccessMethodResponse" type="tns:getAccessMethodResponse"/>
-<xs:element name="getCurrentUser" type="tns:getCurrentUser"/>
-<xs:element name="getCurrentUserResponse" type="tns:getCurrentUserResponse"/>
 <xs:element name="getLoggedInUser" type="tns:getLoggedInUser"/>
 <xs:element name="getLoggedInUserResponse" type="tns:getLoggedInUserResponse"/>
-<xs:element name="isLoggedIn" type="tns:isLoggedIn"/>
-<xs:element name="isLoggedInResponse" type="tns:isLoggedInResponse"/>
-<xs:element name="login" type="tns:login"/>
-<xs:element name="loginResponse" type="tns:loginResponse"/>
-<xs:element name="logout" type="tns:logout"/>
-<xs:element name="logoutResponse" type="tns:logoutResponse"/>
 <xs:element name="requestPasswordChange" type="tns:requestPasswordChange"/>
 <xs:element name="requestPasswordChangeResponse" type="tns:requestPasswordChangeResponse"/>
 <xs:element name="sUser" type="tns:sUser"/>
 <xs:element name="validateAccount" type="tns:validateAccount"/>
 <xs:element name="validateAccountResponse" type="tns:validateAccountResponse"/>
-<xs:complexType name="logout">
-    <xs:sequence/>
-  </xs:complexType>
-<xs:complexType name="logoutResponse">
-    <xs:sequence/>
-  </xs:complexType>
-<xs:complexType name="login">
+<xs:complexType name="validateAccount">
     <xs:sequence>
-      <xs:element minOccurs="0" name="username" type="xs:string"/>
+      <xs:element minOccurs="0" name="uoid" type="xs:long"/>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
       <xs:element minOccurs="0" name="password" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="loginResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-<xs:complexType name="getLoggedInUser">
-    <xs:sequence/>
-  </xs:complexType>
-<xs:complexType name="getLoggedInUserResponse">
+<xs:complexType name="validateAccountResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:sUser"/>
     </xs:sequence>
@@ -71,13 +48,14 @@
       <xs:element minOccurs="0" name="validationTokenCreated" type="xs:dateTime"/>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="isLoggedIn">
-    <xs:sequence/>
-  </xs:complexType>
-<xs:complexType name="isLoggedInResponse">
+<xs:complexType name="requestPasswordChange">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="username" type="xs:string"/>
+      <xs:element minOccurs="0" name="resetUrl" type="xs:string"/>
     </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="requestPasswordChangeResponse">
+    <xs:sequence/>
   </xs:complexType>
 <xs:complexType name="changePassword">
     <xs:sequence>
@@ -91,48 +69,14 @@
       <xs:element minOccurs="0" name="return" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="requestPasswordChange">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="username" type="xs:string"/>
-      <xs:element minOccurs="0" name="resetUrl" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-<xs:complexType name="requestPasswordChangeResponse">
+<xs:complexType name="getLoggedInUser">
     <xs:sequence/>
   </xs:complexType>
-<xs:complexType name="getAccessMethod">
-    <xs:sequence/>
-  </xs:complexType>
-<xs:complexType name="getAccessMethodResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:sAccessMethod"/>
-    </xs:sequence>
-  </xs:complexType>
-<xs:complexType name="getCurrentUser">
-    <xs:sequence/>
-  </xs:complexType>
-<xs:complexType name="getCurrentUserResponse">
+<xs:complexType name="getLoggedInUserResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:sUser"/>
     </xs:sequence>
   </xs:complexType>
-<xs:complexType name="validateAccount">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="uoid" type="xs:long"/>
-      <xs:element minOccurs="0" name="token" type="xs:string"/>
-      <xs:element minOccurs="0" name="password" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-<xs:complexType name="validateAccountResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:sUser"/>
-    </xs:sequence>
-  </xs:complexType>
-<xs:simpleType name="errorCode">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET"/>
-    </xs:restriction>
-  </xs:simpleType>
 <xs:simpleType name="sObjectState">
     <xs:restriction base="xs:string">
       <xs:enumeration value="ACTIVE"/>
@@ -147,20 +91,14 @@
       <xs:enumeration value="READ_ONLY"/>
     </xs:restriction>
   </xs:simpleType>
-<xs:simpleType name="sAccessMethod">
+<xs:simpleType name="errorCode">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="SOAP"/>
-      <xs:enumeration value="WEB_INTERFACE"/>
-      <xs:enumeration value="INTERNAL"/>
-      <xs:enumeration value="REST"/>
-      <xs:enumeration value="SYNDICATION"/>
-      <xs:enumeration value="JSON"/>
-      <xs:enumeration value="PROTOCOL_BUFFERS"/>
+      <xs:enumeration value="SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns0="org.buildingsmart.bimsie" xmlns:tns="bimserver" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="bimserver">
-  <xsd:import namespace="org.buildingsmart.bimsie"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns0="org.bimserver" xmlns:tns="bimserver" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="bimserver">
+  <xsd:import namespace="org.bimserver"/>
   <xsd:element name="UserException" type="tns:UserException"/>
   <xsd:complexType name="UserException">
     <xsd:sequence>
@@ -179,48 +117,20 @@
   </xsd:complexType>
 </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="getLoggedInUserResponse">
-    <wsdl:part name="parameters" element="tns:getLoggedInUserResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getCurrentUser">
-    <wsdl:part name="parameters" element="tns:getCurrentUser">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="loginResponse">
-    <wsdl:part name="parameters" element="tns:loginResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="UserException">
-    <wsdl:part name="UserException" element="ns1:UserException">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="ServerException">
-    <wsdl:part name="ServerException" element="ns1:ServerException">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="isLoggedInResponse">
-    <wsdl:part name="parameters" element="tns:isLoggedInResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="isLoggedIn">
-    <wsdl:part name="parameters" element="tns:isLoggedIn">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="validateAccountResponse">
     <wsdl:part name="parameters" element="tns:validateAccountResponse">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getCurrentUserResponse">
-    <wsdl:part name="parameters" element="tns:getCurrentUserResponse">
+  <wsdl:message name="changePasswordResponse">
+    <wsdl:part name="parameters" element="tns:changePasswordResponse">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="validateAccount">
-    <wsdl:part name="parameters" element="tns:validateAccount">
+  <wsdl:message name="requestPasswordChange">
+    <wsdl:part name="parameters" element="tns:requestPasswordChange">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="logout">
-    <wsdl:part name="parameters" element="tns:logout">
+  <wsdl:message name="requestPasswordChangeResponse">
+    <wsdl:part name="parameters" element="tns:requestPasswordChangeResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getLoggedInUser">
@@ -231,79 +141,27 @@
     <wsdl:part name="parameters" element="tns:changePassword">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="requestPasswordChangeResponse">
-    <wsdl:part name="parameters" element="tns:requestPasswordChangeResponse">
+  <wsdl:message name="ServerException">
+    <wsdl:part name="ServerException" element="ns1:ServerException">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="logoutResponse">
-    <wsdl:part name="parameters" element="tns:logoutResponse">
+  <wsdl:message name="validateAccount">
+    <wsdl:part name="parameters" element="tns:validateAccount">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="requestPasswordChange">
-    <wsdl:part name="parameters" element="tns:requestPasswordChange">
+  <wsdl:message name="UserException">
+    <wsdl:part name="UserException" element="ns1:UserException">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getAccessMethod">
-    <wsdl:part name="parameters" element="tns:getAccessMethod">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="login">
-    <wsdl:part name="parameters" element="tns:login">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="changePasswordResponse">
-    <wsdl:part name="parameters" element="tns:changePasswordResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getAccessMethodResponse">
-    <wsdl:part name="parameters" element="tns:getAccessMethodResponse">
+  <wsdl:message name="getLoggedInUserResponse">
+    <wsdl:part name="parameters" element="tns:getLoggedInUserResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="AuthInterface">
-    <wsdl:operation name="logout">
-      <wsdl:input name="logout" message="tns:logout">
+    <wsdl:operation name="validateAccount">
+      <wsdl:input name="validateAccount" message="tns:validateAccount">
     </wsdl:input>
-      <wsdl:output name="logoutResponse" message="tns:logoutResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServerException" message="tns:ServerException">
-    </wsdl:fault>
-      <wsdl:fault name="UserException" message="tns:UserException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="login">
-      <wsdl:input name="login" message="tns:login">
-    </wsdl:input>
-      <wsdl:output name="loginResponse" message="tns:loginResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServerException" message="tns:ServerException">
-    </wsdl:fault>
-      <wsdl:fault name="UserException" message="tns:UserException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getLoggedInUser">
-      <wsdl:input name="getLoggedInUser" message="tns:getLoggedInUser">
-    </wsdl:input>
-      <wsdl:output name="getLoggedInUserResponse" message="tns:getLoggedInUserResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServerException" message="tns:ServerException">
-    </wsdl:fault>
-      <wsdl:fault name="UserException" message="tns:UserException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="isLoggedIn">
-      <wsdl:input name="isLoggedIn" message="tns:isLoggedIn">
-    </wsdl:input>
-      <wsdl:output name="isLoggedInResponse" message="tns:isLoggedInResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServerException" message="tns:ServerException">
-    </wsdl:fault>
-      <wsdl:fault name="UserException" message="tns:UserException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="changePassword">
-      <wsdl:input name="changePassword" message="tns:changePassword">
-    </wsdl:input>
-      <wsdl:output name="changePasswordResponse" message="tns:changePasswordResponse">
+      <wsdl:output name="validateAccountResponse" message="tns:validateAccountResponse">
     </wsdl:output>
       <wsdl:fault name="ServerException" message="tns:ServerException">
     </wsdl:fault>
@@ -320,30 +178,20 @@
       <wsdl:fault name="UserException" message="tns:UserException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="getAccessMethod">
-      <wsdl:input name="getAccessMethod" message="tns:getAccessMethod">
+    <wsdl:operation name="changePassword">
+      <wsdl:input name="changePassword" message="tns:changePassword">
     </wsdl:input>
-      <wsdl:output name="getAccessMethodResponse" message="tns:getAccessMethodResponse">
+      <wsdl:output name="changePasswordResponse" message="tns:changePasswordResponse">
     </wsdl:output>
       <wsdl:fault name="ServerException" message="tns:ServerException">
     </wsdl:fault>
       <wsdl:fault name="UserException" message="tns:UserException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="getCurrentUser">
-      <wsdl:input name="getCurrentUser" message="tns:getCurrentUser">
+    <wsdl:operation name="getLoggedInUser">
+      <wsdl:input name="getLoggedInUser" message="tns:getLoggedInUser">
     </wsdl:input>
-      <wsdl:output name="getCurrentUserResponse" message="tns:getCurrentUserResponse">
-    </wsdl:output>
-      <wsdl:fault name="ServerException" message="tns:ServerException">
-    </wsdl:fault>
-      <wsdl:fault name="UserException" message="tns:UserException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="validateAccount">
-      <wsdl:input name="validateAccount" message="tns:validateAccount">
-    </wsdl:input>
-      <wsdl:output name="validateAccountResponse" message="tns:validateAccountResponse">
+      <wsdl:output name="getLoggedInUserResponse" message="tns:getLoggedInUserResponse">
     </wsdl:output>
       <wsdl:fault name="ServerException" message="tns:ServerException">
     </wsdl:fault>
@@ -353,87 +201,12 @@
   </wsdl:portType>
   <wsdl:binding name="AuthInterfaceServiceSoapBinding" type="tns:AuthInterface">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="login">
-      <soap:operation soapAction="login" style="document"/>
-      <wsdl:input name="login">
+    <wsdl:operation name="validateAccount">
+      <soap:operation soapAction="validateAccount" style="document"/>
+      <wsdl:input name="validateAccount">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="loginResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServerException">
-        <soap:fault name="ServerException" use="literal"/>
-      </wsdl:fault>
-      <wsdl:fault name="UserException">
-        <soap:fault name="UserException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="logout">
-      <soap:operation soapAction="logout" style="document"/>
-      <wsdl:input name="logout">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="logoutResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServerException">
-        <soap:fault name="ServerException" use="literal"/>
-      </wsdl:fault>
-      <wsdl:fault name="UserException">
-        <soap:fault name="UserException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getLoggedInUser">
-      <soap:operation soapAction="getLoggedInUser" style="document"/>
-      <wsdl:input name="getLoggedInUser">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getLoggedInUserResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServerException">
-        <soap:fault name="ServerException" use="literal"/>
-      </wsdl:fault>
-      <wsdl:fault name="UserException">
-        <soap:fault name="UserException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="isLoggedIn">
-      <soap:operation soapAction="isLoggedIn" style="document"/>
-      <wsdl:input name="isLoggedIn">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="isLoggedInResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServerException">
-        <soap:fault name="ServerException" use="literal"/>
-      </wsdl:fault>
-      <wsdl:fault name="UserException">
-        <soap:fault name="UserException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="changePassword">
-      <soap:operation soapAction="changePassword" style="document"/>
-      <wsdl:input name="changePassword">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="changePasswordResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ServerException">
-        <soap:fault name="ServerException" use="literal"/>
-      </wsdl:fault>
-      <wsdl:fault name="UserException">
-        <soap:fault name="UserException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getAccessMethod">
-      <soap:operation soapAction="getAccessMethod" style="document"/>
-      <wsdl:input name="getAccessMethod">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getAccessMethodResponse">
+      <wsdl:output name="validateAccountResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="ServerException">
@@ -458,12 +231,12 @@
         <soap:fault name="UserException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="getCurrentUser">
-      <soap:operation soapAction="getCurrentUser" style="document"/>
-      <wsdl:input name="getCurrentUser">
+    <wsdl:operation name="changePassword">
+      <soap:operation soapAction="changePassword" style="document"/>
+      <wsdl:input name="changePassword">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="getCurrentUserResponse">
+      <wsdl:output name="changePasswordResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="ServerException">
@@ -473,12 +246,12 @@
         <soap:fault name="UserException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="validateAccount">
-      <soap:operation soapAction="validateAccount" style="document"/>
-      <wsdl:input name="validateAccount">
+    <wsdl:operation name="getLoggedInUser">
+      <soap:operation soapAction="getLoggedInUser" style="document"/>
+      <wsdl:input name="getLoggedInUser">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="validateAccountResponse">
+      <wsdl:output name="getLoggedInUserResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="ServerException">

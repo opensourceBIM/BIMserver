@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="sReferenceDataValue">
  *   &lt;complexContent>
- *     &lt;extension base="{org.buildingsmart.bimsie}sDataValue">
+ *     &lt;extension base="{org.buildingsmart.bimsie1}sDataValue">
  *       &lt;sequence>
  *         &lt;element name="guid" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="typeName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>

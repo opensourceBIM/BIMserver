@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="rid" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="types" type="{org.buildingsmart.bimsie}sRevisionSummaryType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="types" type="{org.bimserver}sRevisionSummaryType" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

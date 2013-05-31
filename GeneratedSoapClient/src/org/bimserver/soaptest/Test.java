@@ -28,10 +28,12 @@ import javax.xml.ws.BindingProvider;
 
 import org.apache.cxf.headers.Header;
 import org.apache.cxf.jaxb.JAXBDataBinding;
-import org.bimserver.generatedclient.AuthInterface;
-import org.bimserver.generatedclient.AuthInterfaceService;
-import org.bimserver.generatedclient.LowLevelInterface;
-import org.bimserver.generatedclient.LowLevelInterfaceService;
+import org.bimserver.generatedclient.Bimsie1AuthInterface;
+import org.bimserver.generatedclient.Bimsie1AuthInterfaceService;
+import org.bimserver.generatedclient.Bimsie1LowLevelInterface;
+import org.bimserver.generatedclient.Bimsie1LowLevelInterfaceService;
+import org.bimserver.generatedclient.Bimsie1ServiceInterface;
+import org.bimserver.generatedclient.Bimsie1ServiceInterfaceService;
 import org.bimserver.generatedclient.SDataObject;
 import org.bimserver.generatedclient.SDataValue;
 import org.bimserver.generatedclient.SListDataValue;
@@ -54,19 +56,23 @@ public class Test {
 	private void start() {
 		try {
 			URL serviceInterfaceUrl = new URL("http://localhost:8080/soap12/ServiceInterface?wsdl");
-			URL authInterfaceUrl = new URL("http://localhost:8080/soap12/AuthInterface?wsdl");
-			URL lowLevelInterfaceUrl = new URL("http://localhost:8080/soap12/LowLevelInterface?wsdl");
+			URL bimsie1ServiceInterfaceUrl = new URL("http://localhost:8080/soap12/Bimsie1ServiceInterface?wsdl");
+			URL bimsie1AuthInterfaceUrl = new URL("http://localhost:8080/soap12/Bimsie1AuthInterface?wsdl");
+			URL bimsie1LowLevelInterfaceUrl = new URL("http://localhost:8080/soap12/Bimsie1LowLevelInterface?wsdl");
 
 			ServiceInterfaceService serviceInterfaceService = new ServiceInterfaceService(serviceInterfaceUrl);
 			ServiceInterface serviceInterface = serviceInterfaceService.getServiceInterfacePort();
 
-			AuthInterfaceService authInterfaceService = new AuthInterfaceService(authInterfaceUrl);
-			AuthInterface authInterface = authInterfaceService.getAuthInterfacePort();
+			Bimsie1ServiceInterfaceService bimsie1ServiceInterfaceService = new Bimsie1ServiceInterfaceService(bimsie1ServiceInterfaceUrl);
+			Bimsie1ServiceInterface bimsie1ServiceInterface = bimsie1ServiceInterfaceService.getBimsie1ServiceInterfacePort();
+
+			Bimsie1AuthInterfaceService bimsie1AuthInterfaceService = new Bimsie1AuthInterfaceService(bimsie1AuthInterfaceUrl);
+			Bimsie1AuthInterface bimsie1AuthInterface = bimsie1AuthInterfaceService.getBimsie1AuthInterfacePort();
 			
-			LowLevelInterfaceService lowLevelInterfaceService = new LowLevelInterfaceService(lowLevelInterfaceUrl);
-			LowLevelInterface lowLevelInterface = lowLevelInterfaceService.getLowLevelInterfacePort();
+			Bimsie1LowLevelInterfaceService bimsie1LowLevelInterfaceService = new Bimsie1LowLevelInterfaceService(bimsie1LowLevelInterfaceUrl);
+			Bimsie1LowLevelInterface bimsie1LowLevelInterface = bimsie1LowLevelInterfaceService.getBimsie1LowLevelInterfacePort();
 			
-			String token = authInterface.login("admin@bimserver.org", "admin");
+			String token = bimsie1AuthInterface.login("admin@bimserver.org", "admin");
 			try {
 				List<Header> headers = new ArrayList<Header>();
 				Token tokenObject = new Token();
@@ -74,16 +80,17 @@ public class Test {
 				Header sessionHeader = new Header(new QName("uri:org.bimserver.shared", "token"), tokenObject, new JAXBDataBinding(Token.class));
 				headers.add(sessionHeader);
 				((BindingProvider) serviceInterface).getRequestContext().put(Header.HEADER_LIST, headers);
-				((BindingProvider) authInterface).getRequestContext().put(Header.HEADER_LIST, headers);
-				((BindingProvider) lowLevelInterface).getRequestContext().put(Header.HEADER_LIST, headers);
+				((BindingProvider) bimsie1ServiceInterface).getRequestContext().put(Header.HEADER_LIST, headers);
+				((BindingProvider) bimsie1AuthInterface).getRequestContext().put(Header.HEADER_LIST, headers);
+				((BindingProvider) bimsie1LowLevelInterface).getRequestContext().put(Header.HEADER_LIST, headers);
 			} catch (JAXBException e) {
 				LOGGER.error("", e);
 			}
-				for (SProject sProject : serviceInterface.getAllProjects(true)) {
+				for (SProject sProject : bimsie1ServiceInterface.getAllProjects(true)) {
 					System.out.println(sProject.getName());
 					long roid = sProject.getLastRevisionId();
 					if (roid != -1) {
-						List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(roid, "IfcWindow");
+						List<SDataObject> dataObjectsByType = bimsie1LowLevelInterface.getDataObjectsByType(roid, "IfcWindow");
 						for (SDataObject sDataObject : dataObjectsByType) {
 							for (SDataValue sDataValue : sDataObject.getValues()) {
 								System.out.print(sDataValue.getFieldName() + ": ");

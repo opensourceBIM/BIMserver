@@ -1,0 +1,1912 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="Bimsie1ServiceInterfaceService" targetNamespace="org.buildingsmart.bimsie1" xmlns:ns1="bimserver" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="org.buildingsmart.bimsie1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="org.buildingsmart.bimsie1" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" elementFormDefault="unqualified" targetNamespace="org.buildingsmart.bimsie1" version="1.0">
+<xs:import namespace="http://www.w3.org/2005/05/xmlmime"/>
+  <xs:element name="addExtendedDataToRevision" type="tns:addExtendedDataToRevision"/>
+<xs:element name="addExtendedDataToRevisionResponse" type="tns:addExtendedDataToRevisionResponse"/>
+<xs:element name="addProject" type="tns:addProject"/>
+<xs:element name="addProjectAsSubProject" type="tns:addProjectAsSubProject"/>
+<xs:element name="addProjectAsSubProjectResponse" type="tns:addProjectAsSubProjectResponse"/>
+<xs:element name="addProjectResponse" type="tns:addProjectResponse"/>
+<xs:element name="branchToExistingProject" type="tns:branchToExistingProject"/>
+<xs:element name="branchToExistingProjectResponse" type="tns:branchToExistingProjectResponse"/>
+<xs:element name="branchToNewProject" type="tns:branchToNewProject"/>
+<xs:element name="branchToNewProjectResponse" type="tns:branchToNewProjectResponse"/>
+<xs:element name="checkin" type="tns:checkin"/>
+<xs:element name="checkinFromUrl" type="tns:checkinFromUrl"/>
+<xs:element name="checkinFromUrlResponse" type="tns:checkinFromUrlResponse"/>
+<xs:element name="checkinResponse" type="tns:checkinResponse"/>
+<xs:element name="checkout" type="tns:checkout"/>
+<xs:element name="checkoutResponse" type="tns:checkoutResponse"/>
+<xs:element name="deleteProject" type="tns:deleteProject"/>
+<xs:element name="deleteProjectResponse" type="tns:deleteProjectResponse"/>
+<xs:element name="download" type="tns:download"/>
+<xs:element name="downloadByGuids" type="tns:downloadByGuids"/>
+<xs:element name="downloadByGuidsResponse" type="tns:downloadByGuidsResponse"/>
+<xs:element name="downloadByNames" type="tns:downloadByNames"/>
+<xs:element name="downloadByNamesResponse" type="tns:downloadByNamesResponse"/>
+<xs:element name="downloadByOids" type="tns:downloadByOids"/>
+<xs:element name="downloadByOidsResponse" type="tns:downloadByOidsResponse"/>
+<xs:element name="downloadByTypes" type="tns:downloadByTypes"/>
+<xs:element name="downloadByTypesResponse" type="tns:downloadByTypesResponse"/>
+<xs:element name="downloadQuery" type="tns:downloadQuery"/>
+<xs:element name="downloadQueryResponse" type="tns:downloadQueryResponse"/>
+<xs:element name="downloadResponse" type="tns:downloadResponse"/>
+<xs:element name="downloadRevisions" type="tns:downloadRevisions"/>
+<xs:element name="downloadRevisionsResponse" type="tns:downloadRevisionsResponse"/>
+<xs:element name="getAllExtendedDataOfRevision" type="tns:getAllExtendedDataOfRevision"/>
+<xs:element name="getAllExtendedDataOfRevisionResponse" type="tns:getAllExtendedDataOfRevisionResponse"/>
+<xs:element name="getAllProjects" type="tns:getAllProjects"/>
+<xs:element name="getAllProjectsResponse" type="tns:getAllProjectsResponse"/>
+<xs:element name="getAllRevisionsOfProject" type="tns:getAllRevisionsOfProject"/>
+<xs:element name="getAllRevisionsOfProjectResponse" type="tns:getAllRevisionsOfProjectResponse"/>
+<xs:element name="getDeserializerById" type="tns:getDeserializerById"/>
+<xs:element name="getDeserializerByIdResponse" type="tns:getDeserializerByIdResponse"/>
+<xs:element name="getDeserializerByName" type="tns:getDeserializerByName"/>
+<xs:element name="getDeserializerByNameResponse" type="tns:getDeserializerByNameResponse"/>
+<xs:element name="getDownloadData" type="tns:getDownloadData"/>
+<xs:element name="getDownloadDataResponse" type="tns:getDownloadDataResponse"/>
+<xs:element name="getExtendedData" type="tns:getExtendedData"/>
+<xs:element name="getExtendedDataResponse" type="tns:getExtendedDataResponse"/>
+<xs:element name="getExtendedDataSchemaById" type="tns:getExtendedDataSchemaById"/>
+<xs:element name="getExtendedDataSchemaByIdResponse" type="tns:getExtendedDataSchemaByIdResponse"/>
+<xs:element name="getProjectByPoid" type="tns:getProjectByPoid"/>
+<xs:element name="getProjectByPoidResponse" type="tns:getProjectByPoidResponse"/>
+<xs:element name="getProjectsByName" type="tns:getProjectsByName"/>
+<xs:element name="getProjectsByNameResponse" type="tns:getProjectsByNameResponse"/>
+<xs:element name="getQueryEngineById" type="tns:getQueryEngineById"/>
+<xs:element name="getQueryEngineByIdResponse" type="tns:getQueryEngineByIdResponse"/>
+<xs:element name="getQueryEngineByName" type="tns:getQueryEngineByName"/>
+<xs:element name="getQueryEngineByNameResponse" type="tns:getQueryEngineByNameResponse"/>
+<xs:element name="getRevision" type="tns:getRevision"/>
+<xs:element name="getRevisionResponse" type="tns:getRevisionResponse"/>
+<xs:element name="getSerializerByContentType" type="tns:getSerializerByContentType"/>
+<xs:element name="getSerializerByContentTypeResponse" type="tns:getSerializerByContentTypeResponse"/>
+<xs:element name="getSerializerById" type="tns:getSerializerById"/>
+<xs:element name="getSerializerByIdResponse" type="tns:getSerializerByIdResponse"/>
+<xs:element name="getSerializerByName" type="tns:getSerializerByName"/>
+<xs:element name="getSerializerByNameResponse" type="tns:getSerializerByNameResponse"/>
+<xs:element name="getSubProjects" type="tns:getSubProjects"/>
+<xs:element name="getSubProjectsResponse" type="tns:getSubProjectsResponse"/>
+<xs:element name="getSuggestedDeserializerForExtension" type="tns:getSuggestedDeserializerForExtension"/>
+<xs:element name="getSuggestedDeserializerForExtensionResponse" type="tns:getSuggestedDeserializerForExtensionResponse"/>
+<xs:element name="sCheckoutResult" type="tns:sCheckoutResult"/>
+<xs:element name="sDeserializerPluginConfiguration" type="tns:sDeserializerPluginConfiguration"/>
+<xs:element name="sDownloadResult" type="tns:sDownloadResult"/>
+<xs:element name="sExtendedData" type="tns:sExtendedData"/>
+<xs:element name="sExtendedDataSchema" type="tns:sExtendedDataSchema"/>
+<xs:element name="sInternalServicePluginConfiguration" type="tns:sInternalServicePluginConfiguration"/>
+<xs:element name="sModelComparePluginConfiguration" type="tns:sModelComparePluginConfiguration"/>
+<xs:element name="sModelMergerPluginConfiguration" type="tns:sModelMergerPluginConfiguration"/>
+<xs:element name="sObjectIDMPluginConfiguration" type="tns:sObjectIDMPluginConfiguration"/>
+<xs:element name="sPluginConfiguration" type="tns:sPluginConfiguration"/>
+<xs:element name="sProject" type="tns:sProject"/>
+<xs:element name="sQueryEnginePluginConfiguration" type="tns:sQueryEnginePluginConfiguration"/>
+<xs:element name="sRenderEnginePluginConfiguration" type="tns:sRenderEnginePluginConfiguration"/>
+<xs:element name="sRevision" type="tns:sRevision"/>
+<xs:element name="sSerializerPluginConfiguration" type="tns:sSerializerPluginConfiguration"/>
+<xs:element name="sWebModulePluginConfiguration" type="tns:sWebModulePluginConfiguration"/>
+<xs:element name="undeleteProject" type="tns:undeleteProject"/>
+<xs:element name="undeleteProjectResponse" type="tns:undeleteProjectResponse"/>
+<xs:complexType name="addProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="projectName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addProjectResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sProject"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sProject">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="checkouts" nillable="true" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="concreteRevisions" nillable="true" type="xs:long"/>
+      <xs:element name="createdById" type="xs:long"/>
+      <xs:element minOccurs="0" name="createdDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="exportLengthMeasurePrefix" type="tns:ssiPrefix"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="extendedData" nillable="true" type="xs:long"/>
+      <xs:element name="geoTagId" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="hasAuthorizedUsers" nillable="true" type="xs:long"/>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element name="lastConcreteRevisionId" type="xs:long"/>
+      <xs:element name="lastRevisionId" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="logs" nillable="true" type="xs:long"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element name="oid" type="xs:long"/>
+      <xs:element name="parentId" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="revisions" nillable="true" type="xs:long"/>
+      <xs:element name="rid" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="services" nillable="true" type="xs:long"/>
+      <xs:element minOccurs="0" name="state" type="tns:sObjectState"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="subProjects" nillable="true" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDeserializerById">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDeserializerByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sDeserializerPluginConfiguration"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sDeserializerPluginConfiguration">
+    <xs:complexContent>
+      <xs:extension base="tns:sPluginConfiguration">
+        <xs:sequence>
+          <xs:element name="userSettingsId" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="sPluginConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="className" type="xs:string"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="enabled" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element name="oid" type="xs:long"/>
+      <xs:element name="rid" type="xs:int"/>
+      <xs:element name="settingsId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sObjectIDMPluginConfiguration">
+    <xs:complexContent>
+      <xs:extension base="tns:sPluginConfiguration">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="serializers" nillable="true" type="xs:long"/>
+          <xs:element name="userSettingsId" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="sSerializerPluginConfiguration">
+    <xs:complexContent>
+      <xs:extension base="tns:sPluginConfiguration">
+        <xs:sequence>
+          <xs:element name="objectIDMId" type="xs:long"/>
+          <xs:element name="renderEngineId" type="xs:long"/>
+          <xs:element name="userSettingsId" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="sModelMergerPluginConfiguration">
+    <xs:complexContent>
+      <xs:extension base="tns:sPluginConfiguration">
+        <xs:sequence>
+          <xs:element name="userSettingsId" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="sQueryEnginePluginConfiguration">
+    <xs:complexContent>
+      <xs:extension base="tns:sPluginConfiguration">
+        <xs:sequence>
+          <xs:element name="userSettingsId" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="sRenderEnginePluginConfiguration">
+    <xs:complexContent>
+      <xs:extension base="tns:sPluginConfiguration">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="serializers" nillable="true" type="xs:long"/>
+          <xs:element name="userSettingsId" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="sInternalServicePluginConfiguration">
+    <xs:complexContent>
+      <xs:extension base="tns:sPluginConfiguration">
+        <xs:sequence>
+          <xs:element name="remoteAccessible" type="xs:boolean"/>
+          <xs:element name="userSettingsId" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="sModelComparePluginConfiguration">
+    <xs:complexContent>
+      <xs:extension base="tns:sPluginConfiguration">
+        <xs:sequence>
+          <xs:element name="userSettingsId" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="sWebModulePluginConfiguration">
+    <xs:complexContent>
+      <xs:extension base="tns:sPluginConfiguration">
+        <xs:sequence>
+          <xs:element name="serverSettingsId" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="getProjectByPoid">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="poid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getProjectByPoidResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sProject"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="branchToNewProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+      <xs:element minOccurs="0" name="projectName" type="xs:string"/>
+      <xs:element minOccurs="0" name="comment" type="xs:string"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="branchToNewProjectResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadRevisions">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roids" type="xs:long"/>
+      <xs:element minOccurs="0" name="serializerOid" type="xs:long"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadRevisionsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addExtendedDataToRevision">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+      <xs:element minOccurs="0" name="extendedData" type="tns:sExtendedData"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sExtendedData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="added" type="xs:dateTime"/>
+      <xs:element name="fileId" type="xs:long"/>
+      <xs:element name="oid" type="xs:long"/>
+      <xs:element name="projectId" type="xs:long"/>
+      <xs:element name="revisionId" type="xs:long"/>
+      <xs:element name="rid" type="xs:int"/>
+      <xs:element name="schemaId" type="xs:long"/>
+      <xs:element name="size" type="xs:long"/>
+      <xs:element minOccurs="0" name="title" type="xs:string"/>
+      <xs:element minOccurs="0" name="url" type="xs:string"/>
+      <xs:element name="userId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addExtendedDataToRevisionResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getSubProjects">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="poid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSubProjectsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:sProject"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getExtendedData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getExtendedDataResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sExtendedData"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+      <xs:element minOccurs="0" name="qeid" type="xs:long"/>
+      <xs:element minOccurs="0" name="code" type="xs:string"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="serializerOid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadQueryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="checkin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="poid" type="xs:long"/>
+      <xs:element minOccurs="0" name="comment" type="xs:string"/>
+      <xs:element minOccurs="0" name="deserializerOid" type="xs:long"/>
+      <xs:element minOccurs="0" name="fileSize" type="xs:long"/>
+      <xs:element minOccurs="0" name="fileName" type="xs:string"/>
+      <xs:element minOccurs="0" name="data" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="checkinResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllProjects">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="onlyTopLevel" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllProjectsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:sProject"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getQueryEngineByName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getQueryEngineByNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sQueryEnginePluginConfiguration"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getRevision">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getRevisionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sRevision"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sRevision">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bmi" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="checkouts" nillable="true" type="xs:long"/>
+      <xs:element minOccurs="0" name="comment" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="concreteRevisions" nillable="true" type="xs:long"/>
+      <xs:element minOccurs="0" name="date" type="xs:dateTime"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="extendedData" nillable="true" type="xs:long"/>
+      <xs:element name="hasGeometry" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element name="lastConcreteRevisionId" type="xs:long"/>
+      <xs:element minOccurs="0" name="lastError" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="logs" nillable="true" type="xs:long"/>
+      <xs:element name="oid" type="xs:long"/>
+      <xs:element name="projectId" type="xs:long"/>
+      <xs:element name="rid" type="xs:int"/>
+      <xs:element name="serviceId" type="xs:long"/>
+      <xs:element minOccurs="0" name="size" type="xs:long"/>
+      <xs:element minOccurs="0" name="tag" type="xs:string"/>
+      <xs:element name="userId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="poid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteProjectResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadByNames">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roids" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="names" type="xs:string"/>
+      <xs:element minOccurs="0" name="serializerOid" type="xs:long"/>
+      <xs:element minOccurs="0" name="deep" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadByNamesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadByOids">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roids" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="oids" type="xs:long"/>
+      <xs:element minOccurs="0" name="serializerOid" type="xs:long"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="deep" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadByOidsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="checkout">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+      <xs:element minOccurs="0" name="serializerOid" type="xs:long"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="checkoutResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSuggestedDeserializerForExtension">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="extension" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSuggestedDeserializerForExtensionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sDeserializerPluginConfiguration"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDownloadData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="actionId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDownloadDataResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sDownloadResult"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sDownloadResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="file" type="xs:base64Binary"/>
+      <xs:element name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="projectName" type="xs:string"/>
+      <xs:element minOccurs="0" name="revisionNr" type="xs:int"/>
+      <xs:element name="rid" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sCheckoutResult">
+    <xs:complexContent>
+      <xs:extension base="tns:sDownloadResult">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="getDeserializerByName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="deserializerName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDeserializerByNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sDeserializerPluginConfiguration"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="checkinFromUrl">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="poid" type="xs:long"/>
+      <xs:element minOccurs="0" name="comment" type="xs:string"/>
+      <xs:element minOccurs="0" name="deserializerOid" type="xs:long"/>
+      <xs:element minOccurs="0" name="fileName" type="xs:string"/>
+      <xs:element minOccurs="0" name="url" type="xs:string"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="checkinFromUrlResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadByTypes">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roids" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="classNames" type="xs:string"/>
+      <xs:element minOccurs="0" name="serializerOid" type="xs:long"/>
+      <xs:element minOccurs="0" name="includeAllSubtypes" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="useObjectIDM" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="deep" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadByTypesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSerializerById">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSerializerByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sSerializerPluginConfiguration"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="branchToExistingProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+      <xs:element minOccurs="0" name="destPoid" type="xs:long"/>
+      <xs:element minOccurs="0" name="comment" type="xs:string"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="branchToExistingProjectResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addProjectAsSubProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="projectName" type="xs:string"/>
+      <xs:element minOccurs="0" name="parentPoid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addProjectAsSubProjectResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sProject"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllRevisionsOfProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="poid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllRevisionsOfProjectResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:sRevision"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="download">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+      <xs:element minOccurs="0" name="serializerOid" type="xs:long"/>
+      <xs:element minOccurs="0" name="showOwn" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadByGuids">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roids" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="guids" type="xs:string"/>
+      <xs:element minOccurs="0" name="serializerOid" type="xs:long"/>
+      <xs:element minOccurs="0" name="deep" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="sync" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="downloadByGuidsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="undeleteProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="poid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="undeleteProjectResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getProjectsByName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getProjectsByNameResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:sProject"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getQueryEngineById">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getQueryEngineByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sQueryEnginePluginConfiguration"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSerializerByName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="serializerName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSerializerByNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sSerializerPluginConfiguration"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSerializerByContentType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="contentType" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSerializerByContentTypeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sSerializerPluginConfiguration"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getExtendedDataSchemaById">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getExtendedDataSchemaByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sExtendedDataSchema"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sExtendedDataSchema">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="extendedData" nillable="true" type="xs:long"/>
+      <xs:element name="fileId" type="xs:long"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="namespace" type="xs:string"/>
+      <xs:element name="oid" type="xs:long"/>
+      <xs:element name="rid" type="xs:int"/>
+      <xs:element name="size" type="xs:long"/>
+      <xs:element minOccurs="0" name="type" type="tns:sExtendedDataSchemaType"/>
+      <xs:element minOccurs="0" name="url" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="users" nillable="true" type="xs:long"/>
+      <xs:element name="validate" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllExtendedDataOfRevision">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllExtendedDataOfRevisionResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:sExtendedData"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:simpleType name="ssiPrefix">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="meter"/>
+      <xs:enumeration value="attometer"/>
+      <xs:enumeration value="femtometer"/>
+      <xs:enumeration value="picometer"/>
+      <xs:enumeration value="nanometer"/>
+      <xs:enumeration value="micrometer"/>
+      <xs:enumeration value="millimeter"/>
+      <xs:enumeration value="centimeter"/>
+      <xs:enumeration value="decimeter"/>
+      <xs:enumeration value="decameter"/>
+      <xs:enumeration value="hectometer"/>
+      <xs:enumeration value="kilometer"/>
+      <xs:enumeration value="megameter"/>
+      <xs:enumeration value="gigameter"/>
+      <xs:enumeration value="terameter"/>
+      <xs:enumeration value="petameter"/>
+      <xs:enumeration value="exameter"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="sObjectState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ACTIVE"/>
+      <xs:enumeration value="DELETED"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="errorCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="sExtendedDataSchemaType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="XSD"/>
+      <xs:enumeration value="PDF"/>
+      <xs:enumeration value="TXT"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns0="org.buildingsmart.bimsie1" xmlns:tns="bimserver" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="bimserver">
+  <xsd:import namespace="org.buildingsmart.bimsie1"/>
+  <xsd:element name="UserException" type="tns:UserException"/>
+  <xsd:complexType name="UserException">
+    <xsd:sequence>
+      <xsd:element name="errorCode" nillable="true" type="ns0:errorCode"/>
+      <xsd:element name="userMessage" nillable="true" type="xsd:string"/>
+      <xsd:element name="fullMessage" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ServerException" type="tns:ServerException"/>
+  <xsd:complexType name="ServerException">
+    <xsd:sequence>
+      <xsd:element name="errorCode" nillable="true" type="ns0:errorCode"/>
+      <xsd:element name="userMessage" nillable="true" type="xsd:string"/>
+      <xsd:element name="fullMessage" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="checkout">
+    <wsdl:part name="parameters" element="tns:checkout">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadQueryResponse">
+    <wsdl:part name="parameters" element="tns:downloadQueryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExtendedDataSchemaByIdResponse">
+    <wsdl:part name="parameters" element="tns:getExtendedDataSchemaByIdResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExtendedDataResponse">
+    <wsdl:part name="parameters" element="tns:getExtendedDataResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSerializerByContentType">
+    <wsdl:part name="parameters" element="tns:getSerializerByContentType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllRevisionsOfProjectResponse">
+    <wsdl:part name="parameters" element="tns:getAllRevisionsOfProjectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadByTypesResponse">
+    <wsdl:part name="parameters" element="tns:downloadByTypesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllExtendedDataOfRevision">
+    <wsdl:part name="parameters" element="tns:getAllExtendedDataOfRevision">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkin">
+    <wsdl:part name="parameters" element="tns:checkin">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadByOids">
+    <wsdl:part name="parameters" element="tns:downloadByOids">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSubProjects">
+    <wsdl:part name="parameters" element="tns:getSubProjects">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadByTypes">
+    <wsdl:part name="parameters" element="tns:downloadByTypes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSerializerByIdResponse">
+    <wsdl:part name="parameters" element="tns:getSerializerByIdResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSerializerByContentTypeResponse">
+    <wsdl:part name="parameters" element="tns:getSerializerByContentTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProjectByPoidResponse">
+    <wsdl:part name="parameters" element="tns:getProjectByPoidResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSuggestedDeserializerForExtensionResponse">
+    <wsdl:part name="parameters" element="tns:getSuggestedDeserializerForExtensionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExtendedDataSchemaById">
+    <wsdl:part name="parameters" element="tns:getExtendedDataSchemaById">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadRevisionsResponse">
+    <wsdl:part name="parameters" element="tns:downloadRevisionsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="branchToExistingProject">
+    <wsdl:part name="parameters" element="tns:branchToExistingProject">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ServerException">
+    <wsdl:part name="ServerException" element="ns1:ServerException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteProjectResponse">
+    <wsdl:part name="parameters" element="tns:deleteProjectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addExtendedDataToRevision">
+    <wsdl:part name="parameters" element="tns:addExtendedDataToRevision">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadQuery">
+    <wsdl:part name="parameters" element="tns:downloadQuery">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSerializerByName">
+    <wsdl:part name="parameters" element="tns:getSerializerByName">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadByGuidsResponse">
+    <wsdl:part name="parameters" element="tns:downloadByGuidsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadByNames">
+    <wsdl:part name="parameters" element="tns:downloadByNames">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDeserializerByNameResponse">
+    <wsdl:part name="parameters" element="tns:getDeserializerByNameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllProjects">
+    <wsdl:part name="parameters" element="tns:getAllProjects">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addProject">
+    <wsdl:part name="parameters" element="tns:addProject">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDownloadData">
+    <wsdl:part name="parameters" element="tns:getDownloadData">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllRevisionsOfProject">
+    <wsdl:part name="parameters" element="tns:getAllRevisionsOfProject">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="download">
+    <wsdl:part name="parameters" element="tns:download">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllProjectsResponse">
+    <wsdl:part name="parameters" element="tns:getAllProjectsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserException">
+    <wsdl:part name="UserException" element="ns1:UserException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkoutResponse">
+    <wsdl:part name="parameters" element="tns:checkoutResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadByOidsResponse">
+    <wsdl:part name="parameters" element="tns:downloadByOidsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSuggestedDeserializerForExtension">
+    <wsdl:part name="parameters" element="tns:getSuggestedDeserializerForExtension">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSerializerById">
+    <wsdl:part name="parameters" element="tns:getSerializerById">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDownloadDataResponse">
+    <wsdl:part name="parameters" element="tns:getDownloadDataResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addExtendedDataToRevisionResponse">
+    <wsdl:part name="parameters" element="tns:addExtendedDataToRevisionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDeserializerById">
+    <wsdl:part name="parameters" element="tns:getDeserializerById">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkinFromUrlResponse">
+    <wsdl:part name="parameters" element="tns:checkinFromUrlResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getQueryEngineByName">
+    <wsdl:part name="parameters" element="tns:getQueryEngineByName">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadRevisions">
+    <wsdl:part name="parameters" element="tns:downloadRevisions">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDeserializerByName">
+    <wsdl:part name="parameters" element="tns:getDeserializerByName">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkinFromUrl">
+    <wsdl:part name="parameters" element="tns:checkinFromUrl">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllExtendedDataOfRevisionResponse">
+    <wsdl:part name="parameters" element="tns:getAllExtendedDataOfRevisionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProjectsByName">
+    <wsdl:part name="parameters" element="tns:getProjectsByName">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSerializerByNameResponse">
+    <wsdl:part name="parameters" element="tns:getSerializerByNameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadResponse">
+    <wsdl:part name="parameters" element="tns:downloadResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRevisionResponse">
+    <wsdl:part name="parameters" element="tns:getRevisionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadByNamesResponse">
+    <wsdl:part name="parameters" element="tns:downloadByNamesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSubProjectsResponse">
+    <wsdl:part name="parameters" element="tns:getSubProjectsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkinResponse">
+    <wsdl:part name="parameters" element="tns:checkinResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProjectByPoid">
+    <wsdl:part name="parameters" element="tns:getProjectByPoid">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRevision">
+    <wsdl:part name="parameters" element="tns:getRevision">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadByGuids">
+    <wsdl:part name="parameters" element="tns:downloadByGuids">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getQueryEngineByIdResponse">
+    <wsdl:part name="parameters" element="tns:getQueryEngineByIdResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addProjectAsSubProject">
+    <wsdl:part name="parameters" element="tns:addProjectAsSubProject">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExtendedData">
+    <wsdl:part name="parameters" element="tns:getExtendedData">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="undeleteProject">
+    <wsdl:part name="parameters" element="tns:undeleteProject">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="branchToNewProject">
+    <wsdl:part name="parameters" element="tns:branchToNewProject">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getQueryEngineByNameResponse">
+    <wsdl:part name="parameters" element="tns:getQueryEngineByNameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteProject">
+    <wsdl:part name="parameters" element="tns:deleteProject">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDeserializerByIdResponse">
+    <wsdl:part name="parameters" element="tns:getDeserializerByIdResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getQueryEngineById">
+    <wsdl:part name="parameters" element="tns:getQueryEngineById">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="undeleteProjectResponse">
+    <wsdl:part name="parameters" element="tns:undeleteProjectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="branchToNewProjectResponse">
+    <wsdl:part name="parameters" element="tns:branchToNewProjectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addProjectResponse">
+    <wsdl:part name="parameters" element="tns:addProjectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="branchToExistingProjectResponse">
+    <wsdl:part name="parameters" element="tns:branchToExistingProjectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addProjectAsSubProjectResponse">
+    <wsdl:part name="parameters" element="tns:addProjectAsSubProjectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProjectsByNameResponse">
+    <wsdl:part name="parameters" element="tns:getProjectsByNameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Bimsie1ServiceInterface">
+    <wsdl:operation name="addProject">
+      <wsdl:input name="addProject" message="tns:addProject">
+    </wsdl:input>
+      <wsdl:output name="addProjectResponse" message="tns:addProjectResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeserializerById">
+      <wsdl:input name="getDeserializerById" message="tns:getDeserializerById">
+    </wsdl:input>
+      <wsdl:output name="getDeserializerByIdResponse" message="tns:getDeserializerByIdResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProjectByPoid">
+      <wsdl:input name="getProjectByPoid" message="tns:getProjectByPoid">
+    </wsdl:input>
+      <wsdl:output name="getProjectByPoidResponse" message="tns:getProjectByPoidResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="branchToNewProject">
+      <wsdl:input name="branchToNewProject" message="tns:branchToNewProject">
+    </wsdl:input>
+      <wsdl:output name="branchToNewProjectResponse" message="tns:branchToNewProjectResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadRevisions">
+      <wsdl:input name="downloadRevisions" message="tns:downloadRevisions">
+    </wsdl:input>
+      <wsdl:output name="downloadRevisionsResponse" message="tns:downloadRevisionsResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addExtendedDataToRevision">
+      <wsdl:input name="addExtendedDataToRevision" message="tns:addExtendedDataToRevision">
+    </wsdl:input>
+      <wsdl:output name="addExtendedDataToRevisionResponse" message="tns:addExtendedDataToRevisionResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSubProjects">
+      <wsdl:input name="getSubProjects" message="tns:getSubProjects">
+    </wsdl:input>
+      <wsdl:output name="getSubProjectsResponse" message="tns:getSubProjectsResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExtendedData">
+      <wsdl:input name="getExtendedData" message="tns:getExtendedData">
+    </wsdl:input>
+      <wsdl:output name="getExtendedDataResponse" message="tns:getExtendedDataResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadQuery">
+      <wsdl:input name="downloadQuery" message="tns:downloadQuery">
+    </wsdl:input>
+      <wsdl:output name="downloadQueryResponse" message="tns:downloadQueryResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkin">
+      <wsdl:input name="checkin" message="tns:checkin">
+    </wsdl:input>
+      <wsdl:output name="checkinResponse" message="tns:checkinResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllProjects">
+      <wsdl:input name="getAllProjects" message="tns:getAllProjects">
+    </wsdl:input>
+      <wsdl:output name="getAllProjectsResponse" message="tns:getAllProjectsResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getQueryEngineByName">
+      <wsdl:input name="getQueryEngineByName" message="tns:getQueryEngineByName">
+    </wsdl:input>
+      <wsdl:output name="getQueryEngineByNameResponse" message="tns:getQueryEngineByNameResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRevision">
+      <wsdl:input name="getRevision" message="tns:getRevision">
+    </wsdl:input>
+      <wsdl:output name="getRevisionResponse" message="tns:getRevisionResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProject">
+      <wsdl:input name="deleteProject" message="tns:deleteProject">
+    </wsdl:input>
+      <wsdl:output name="deleteProjectResponse" message="tns:deleteProjectResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadByNames">
+      <wsdl:input name="downloadByNames" message="tns:downloadByNames">
+    </wsdl:input>
+      <wsdl:output name="downloadByNamesResponse" message="tns:downloadByNamesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadByOids">
+      <wsdl:input name="downloadByOids" message="tns:downloadByOids">
+    </wsdl:input>
+      <wsdl:output name="downloadByOidsResponse" message="tns:downloadByOidsResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkout">
+      <wsdl:input name="checkout" message="tns:checkout">
+    </wsdl:input>
+      <wsdl:output name="checkoutResponse" message="tns:checkoutResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSuggestedDeserializerForExtension">
+      <wsdl:input name="getSuggestedDeserializerForExtension" message="tns:getSuggestedDeserializerForExtension">
+    </wsdl:input>
+      <wsdl:output name="getSuggestedDeserializerForExtensionResponse" message="tns:getSuggestedDeserializerForExtensionResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDownloadData">
+      <wsdl:input name="getDownloadData" message="tns:getDownloadData">
+    </wsdl:input>
+      <wsdl:output name="getDownloadDataResponse" message="tns:getDownloadDataResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeserializerByName">
+      <wsdl:input name="getDeserializerByName" message="tns:getDeserializerByName">
+    </wsdl:input>
+      <wsdl:output name="getDeserializerByNameResponse" message="tns:getDeserializerByNameResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkinFromUrl">
+      <wsdl:input name="checkinFromUrl" message="tns:checkinFromUrl">
+    </wsdl:input>
+      <wsdl:output name="checkinFromUrlResponse" message="tns:checkinFromUrlResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadByTypes">
+      <wsdl:input name="downloadByTypes" message="tns:downloadByTypes">
+    </wsdl:input>
+      <wsdl:output name="downloadByTypesResponse" message="tns:downloadByTypesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSerializerById">
+      <wsdl:input name="getSerializerById" message="tns:getSerializerById">
+    </wsdl:input>
+      <wsdl:output name="getSerializerByIdResponse" message="tns:getSerializerByIdResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="branchToExistingProject">
+      <wsdl:input name="branchToExistingProject" message="tns:branchToExistingProject">
+    </wsdl:input>
+      <wsdl:output name="branchToExistingProjectResponse" message="tns:branchToExistingProjectResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addProjectAsSubProject">
+      <wsdl:input name="addProjectAsSubProject" message="tns:addProjectAsSubProject">
+    </wsdl:input>
+      <wsdl:output name="addProjectAsSubProjectResponse" message="tns:addProjectAsSubProjectResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllRevisionsOfProject">
+      <wsdl:input name="getAllRevisionsOfProject" message="tns:getAllRevisionsOfProject">
+    </wsdl:input>
+      <wsdl:output name="getAllRevisionsOfProjectResponse" message="tns:getAllRevisionsOfProjectResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="download">
+      <wsdl:input name="download" message="tns:download">
+    </wsdl:input>
+      <wsdl:output name="downloadResponse" message="tns:downloadResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadByGuids">
+      <wsdl:input name="downloadByGuids" message="tns:downloadByGuids">
+    </wsdl:input>
+      <wsdl:output name="downloadByGuidsResponse" message="tns:downloadByGuidsResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="undeleteProject">
+      <wsdl:input name="undeleteProject" message="tns:undeleteProject">
+    </wsdl:input>
+      <wsdl:output name="undeleteProjectResponse" message="tns:undeleteProjectResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProjectsByName">
+      <wsdl:input name="getProjectsByName" message="tns:getProjectsByName">
+    </wsdl:input>
+      <wsdl:output name="getProjectsByNameResponse" message="tns:getProjectsByNameResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getQueryEngineById">
+      <wsdl:input name="getQueryEngineById" message="tns:getQueryEngineById">
+    </wsdl:input>
+      <wsdl:output name="getQueryEngineByIdResponse" message="tns:getQueryEngineByIdResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSerializerByName">
+      <wsdl:input name="getSerializerByName" message="tns:getSerializerByName">
+    </wsdl:input>
+      <wsdl:output name="getSerializerByNameResponse" message="tns:getSerializerByNameResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSerializerByContentType">
+      <wsdl:input name="getSerializerByContentType" message="tns:getSerializerByContentType">
+    </wsdl:input>
+      <wsdl:output name="getSerializerByContentTypeResponse" message="tns:getSerializerByContentTypeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExtendedDataSchemaById">
+      <wsdl:input name="getExtendedDataSchemaById" message="tns:getExtendedDataSchemaById">
+    </wsdl:input>
+      <wsdl:output name="getExtendedDataSchemaByIdResponse" message="tns:getExtendedDataSchemaByIdResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllExtendedDataOfRevision">
+      <wsdl:input name="getAllExtendedDataOfRevision" message="tns:getAllExtendedDataOfRevision">
+    </wsdl:input>
+      <wsdl:output name="getAllExtendedDataOfRevisionResponse" message="tns:getAllExtendedDataOfRevisionResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Bimsie1ServiceInterfaceServiceSoapBinding" type="tns:Bimsie1ServiceInterface">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addProject">
+      <soap:operation soapAction="addProject" style="document"/>
+      <wsdl:input name="addProject">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addProjectResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeserializerById">
+      <soap:operation soapAction="getDeserializerById" style="document"/>
+      <wsdl:input name="getDeserializerById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDeserializerByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProjectByPoid">
+      <soap:operation soapAction="getProjectByPoid" style="document"/>
+      <wsdl:input name="getProjectByPoid">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getProjectByPoidResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="branchToNewProject">
+      <soap:operation soapAction="branchToNewProject" style="document"/>
+      <wsdl:input name="branchToNewProject">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="branchToNewProjectResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addExtendedDataToRevision">
+      <soap:operation soapAction="addExtendedDataToRevision" style="document"/>
+      <wsdl:input name="addExtendedDataToRevision">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addExtendedDataToRevisionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadRevisions">
+      <soap:operation soapAction="downloadRevisions" style="document"/>
+      <wsdl:input name="downloadRevisions">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="downloadRevisionsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSubProjects">
+      <soap:operation soapAction="getSubProjects" style="document"/>
+      <wsdl:input name="getSubProjects">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSubProjectsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExtendedData">
+      <soap:operation soapAction="getExtendedData" style="document"/>
+      <wsdl:input name="getExtendedData">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getExtendedDataResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadQuery">
+      <soap:operation soapAction="downloadQuery" style="document"/>
+      <wsdl:input name="downloadQuery">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="downloadQueryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkin">
+      <soap:operation soapAction="checkin" style="document"/>
+      <wsdl:input name="checkin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkinResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllProjects">
+      <soap:operation soapAction="getAllProjects" style="document"/>
+      <wsdl:input name="getAllProjects">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllProjectsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getQueryEngineByName">
+      <soap:operation soapAction="getQueryEngineByName" style="document"/>
+      <wsdl:input name="getQueryEngineByName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getQueryEngineByNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProject">
+      <soap:operation soapAction="deleteProject" style="document"/>
+      <wsdl:input name="deleteProject">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteProjectResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRevision">
+      <soap:operation soapAction="getRevision" style="document"/>
+      <wsdl:input name="getRevision">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRevisionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadByOids">
+      <soap:operation soapAction="downloadByOids" style="document"/>
+      <wsdl:input name="downloadByOids">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="downloadByOidsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadByNames">
+      <soap:operation soapAction="downloadByNames" style="document"/>
+      <wsdl:input name="downloadByNames">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="downloadByNamesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkout">
+      <soap:operation soapAction="checkout" style="document"/>
+      <wsdl:input name="checkout">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkoutResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSuggestedDeserializerForExtension">
+      <soap:operation soapAction="getSuggestedDeserializerForExtension" style="document"/>
+      <wsdl:input name="getSuggestedDeserializerForExtension">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSuggestedDeserializerForExtensionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDownloadData">
+      <soap:operation soapAction="getDownloadData" style="document"/>
+      <wsdl:input name="getDownloadData">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDownloadDataResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeserializerByName">
+      <soap:operation soapAction="getDeserializerByName" style="document"/>
+      <wsdl:input name="getDeserializerByName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDeserializerByNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkinFromUrl">
+      <soap:operation soapAction="checkinFromUrl" style="document"/>
+      <wsdl:input name="checkinFromUrl">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkinFromUrlResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadByTypes">
+      <soap:operation soapAction="downloadByTypes" style="document"/>
+      <wsdl:input name="downloadByTypes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="downloadByTypesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSerializerById">
+      <soap:operation soapAction="getSerializerById" style="document"/>
+      <wsdl:input name="getSerializerById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSerializerByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="branchToExistingProject">
+      <soap:operation soapAction="branchToExistingProject" style="document"/>
+      <wsdl:input name="branchToExistingProject">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="branchToExistingProjectResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addProjectAsSubProject">
+      <soap:operation soapAction="addProjectAsSubProject" style="document"/>
+      <wsdl:input name="addProjectAsSubProject">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addProjectAsSubProjectResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllRevisionsOfProject">
+      <soap:operation soapAction="getAllRevisionsOfProject" style="document"/>
+      <wsdl:input name="getAllRevisionsOfProject">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllRevisionsOfProjectResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="download">
+      <soap:operation soapAction="download" style="document"/>
+      <wsdl:input name="download">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="downloadResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadByGuids">
+      <soap:operation soapAction="downloadByGuids" style="document"/>
+      <wsdl:input name="downloadByGuids">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="downloadByGuidsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="undeleteProject">
+      <soap:operation soapAction="undeleteProject" style="document"/>
+      <wsdl:input name="undeleteProject">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="undeleteProjectResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProjectsByName">
+      <soap:operation soapAction="getProjectsByName" style="document"/>
+      <wsdl:input name="getProjectsByName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getProjectsByNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getQueryEngineById">
+      <soap:operation soapAction="getQueryEngineById" style="document"/>
+      <wsdl:input name="getQueryEngineById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getQueryEngineByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSerializerByName">
+      <soap:operation soapAction="getSerializerByName" style="document"/>
+      <wsdl:input name="getSerializerByName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSerializerByNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSerializerByContentType">
+      <soap:operation soapAction="getSerializerByContentType" style="document"/>
+      <wsdl:input name="getSerializerByContentType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSerializerByContentTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExtendedDataSchemaById">
+      <soap:operation soapAction="getExtendedDataSchemaById" style="document"/>
+      <wsdl:input name="getExtendedDataSchemaById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getExtendedDataSchemaByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllExtendedDataOfRevision">
+      <soap:operation soapAction="getAllExtendedDataOfRevision" style="document"/>
+      <wsdl:input name="getAllExtendedDataOfRevision">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllExtendedDataOfRevisionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Bimsie1ServiceInterfaceService">
+    <wsdl:port name="Bimsie1ServiceInterfacePort" binding="tns:Bimsie1ServiceInterfaceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/Bimsie1ServiceInterfacePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

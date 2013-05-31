@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="Bimsie1AuthInterfaceService" targetNamespace="org.buildingsmart.bimsie1" xmlns:ns1="bimserver" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="org.buildingsmart.bimsie1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="org.buildingsmart.bimsie1" elementFormDefault="unqualified" targetNamespace="org.buildingsmart.bimsie1" version="1.0">
+<xs:element name="getAccessMethod" type="tns:getAccessMethod"/>
+<xs:element name="getAccessMethodResponse" type="tns:getAccessMethodResponse"/>
+<xs:element name="isLoggedIn" type="tns:isLoggedIn"/>
+<xs:element name="isLoggedInResponse" type="tns:isLoggedInResponse"/>
+<xs:element name="login" type="tns:login"/>
+<xs:element name="loginResponse" type="tns:loginResponse"/>
+<xs:element name="logout" type="tns:logout"/>
+<xs:element name="logoutResponse" type="tns:logoutResponse"/>
+<xs:complexType name="login">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="username" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="loginResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="isLoggedIn">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="isLoggedInResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="logout">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="logoutResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getAccessMethod">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getAccessMethodResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sAccessMethod"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:simpleType name="errorCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="sAccessMethod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SOAP"/>
+      <xs:enumeration value="WEB_INTERFACE"/>
+      <xs:enumeration value="INTERNAL"/>
+      <xs:enumeration value="REST"/>
+      <xs:enumeration value="SYNDICATION"/>
+      <xs:enumeration value="JSON"/>
+      <xs:enumeration value="PROTOCOL_BUFFERS"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns0="org.buildingsmart.bimsie1" xmlns:tns="bimserver" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="bimserver">
+  <xsd:import namespace="org.buildingsmart.bimsie1"/>
+  <xsd:element name="UserException" type="tns:UserException"/>
+  <xsd:complexType name="UserException">
+    <xsd:sequence>
+      <xsd:element name="errorCode" nillable="true" type="ns0:errorCode"/>
+      <xsd:element name="userMessage" nillable="true" type="xsd:string"/>
+      <xsd:element name="fullMessage" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ServerException" type="tns:ServerException"/>
+  <xsd:complexType name="ServerException">
+    <xsd:sequence>
+      <xsd:element name="errorCode" nillable="true" type="ns0:errorCode"/>
+      <xsd:element name="userMessage" nillable="true" type="xsd:string"/>
+      <xsd:element name="fullMessage" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="logoutResponse">
+    <wsdl:part name="parameters" element="tns:logoutResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAccessMethodResponse">
+    <wsdl:part name="parameters" element="tns:getAccessMethodResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="login">
+    <wsdl:part name="parameters" element="tns:login">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAccessMethod">
+    <wsdl:part name="parameters" element="tns:getAccessMethod">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isLoggedIn">
+    <wsdl:part name="parameters" element="tns:isLoggedIn">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserException">
+    <wsdl:part name="UserException" element="ns1:UserException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part name="parameters" element="tns:loginResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="logout">
+    <wsdl:part name="parameters" element="tns:logout">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isLoggedInResponse">
+    <wsdl:part name="parameters" element="tns:isLoggedInResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ServerException">
+    <wsdl:part name="ServerException" element="ns1:ServerException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Bimsie1AuthInterface">
+    <wsdl:operation name="login">
+      <wsdl:input name="login" message="tns:login">
+    </wsdl:input>
+      <wsdl:output name="loginResponse" message="tns:loginResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isLoggedIn">
+      <wsdl:input name="isLoggedIn" message="tns:isLoggedIn">
+    </wsdl:input>
+      <wsdl:output name="isLoggedInResponse" message="tns:isLoggedInResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <wsdl:input name="logout" message="tns:logout">
+    </wsdl:input>
+      <wsdl:output name="logoutResponse" message="tns:logoutResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAccessMethod">
+      <wsdl:input name="getAccessMethod" message="tns:getAccessMethod">
+    </wsdl:input>
+      <wsdl:output name="getAccessMethodResponse" message="tns:getAccessMethodResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Bimsie1AuthInterfaceServiceSoapBinding" type="tns:Bimsie1AuthInterface">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="isLoggedIn">
+      <soap:operation soapAction="isLoggedIn" style="document"/>
+      <wsdl:input name="isLoggedIn">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isLoggedInResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="login" style="document"/>
+      <wsdl:input name="login">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="loginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="logout" style="document"/>
+      <wsdl:input name="logout">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="logoutResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAccessMethod">
+      <soap:operation soapAction="getAccessMethod" style="document"/>
+      <wsdl:input name="getAccessMethod">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAccessMethodResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Bimsie1AuthInterfaceService">
+    <wsdl:port name="Bimsie1AuthInterfacePort" binding="tns:Bimsie1AuthInterfaceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/Bimsie1AuthInterfacePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

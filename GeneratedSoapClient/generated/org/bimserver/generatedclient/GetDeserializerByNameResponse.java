@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://shared.bimserver.org/}sDeserializer" minOccurs="0"/>
+ *         &lt;element name="return" type="{org.buildingsmart.bimsie1}sDeserializerPluginConfiguration" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,17 +33,17 @@ import javax.xml.bind.annotation.XmlType;
 public class GetDeserializerByNameResponse {
 
     @XmlElement(name = "return")
-    protected SDeserializer _return;
+    protected SDeserializerPluginConfiguration _return;
 
     /**
      * Gets the value of the return property.
      * 
      * @return
      *     possible object is
-     *     {@link SDeserializer }
+     *     {@link SDeserializerPluginConfiguration }
      *     
      */
-    public SDeserializer getReturn() {
+    public SDeserializerPluginConfiguration getReturn() {
         return _return;
     }
 
@@ -52,10 +52,10 @@ public class GetDeserializerByNameResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link SDeserializer }
+     *     {@link SDeserializerPluginConfiguration }
      *     
      */
-    public void setReturn(SDeserializer value) {
+    public void setReturn(SDeserializerPluginConfiguration value) {
         this._return = value;
     }
 

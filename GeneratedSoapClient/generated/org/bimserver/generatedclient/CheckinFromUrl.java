@@ -21,7 +21,6 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="deserializerOid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="fileName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="url" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="merge" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="sync" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -38,7 +37,6 @@ import javax.xml.bind.annotation.XmlType;
     "deserializerOid",
     "fileName",
     "url",
-    "merge",
     "sync"
 })
 public class CheckinFromUrl {
@@ -48,7 +46,6 @@ public class CheckinFromUrl {
     protected Long deserializerOid;
     protected String fileName;
     protected String url;
-    protected Boolean merge;
     protected Boolean sync;
 
     /**
@@ -169,30 +166,6 @@ public class CheckinFromUrl {
      */
     public void setUrl(String value) {
         this.url = value;
-    }
-
-    /**
-     * Gets the value of the merge property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isMerge() {
-        return merge;
-    }
-
-    /**
-     * Sets the value of the merge property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setMerge(Boolean value) {
-        this.merge = value;
     }
 
     /**

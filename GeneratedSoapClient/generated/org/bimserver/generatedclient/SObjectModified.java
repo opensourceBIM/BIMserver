@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="sObjectModified">
  *   &lt;complexContent>
- *     &lt;extension base="{org.buildingsmart.bimsie}sCompareItem">
+ *     &lt;extension base="{org.bimserver}sCompareItem">
  *       &lt;sequence>
  *         &lt;element name="fieldName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="newValue" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
