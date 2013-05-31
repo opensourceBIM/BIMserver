@@ -18,6 +18,7 @@ package org.bimserver.webservices.impl;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -76,6 +77,7 @@ import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
+import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
@@ -100,6 +102,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PluginInterface;
@@ -1076,5 +1079,18 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		} finally {
 			session.close();
 		}
+	}
+
+	@Override
+	public List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws UserException {
+		requireRealUserAuthentication();
+		Collection<ObjectIDMPlugin> allObjectIDMs = getBimServer().getPluginManager().getAllObjectIDMPlugins(true);
+		List<SObjectIDMPluginDescriptor> descriptors = new ArrayList<SObjectIDMPluginDescriptor>();
+		for (ObjectIDMPlugin ObjectIDMPlugin : allObjectIDMs) {
+			SObjectIDMPluginDescriptor descriptor = new SObjectIDMPluginDescriptor();
+			descriptor.setClassName(ObjectIDMPlugin.getClass().getName());
+			descriptors.add(descriptor);
+		}
+		return descriptors;
 	}
 }

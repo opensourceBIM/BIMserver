@@ -22,6 +22,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -33,6 +34,9 @@ import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.json.ReflectorException;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -217,5 +221,18 @@ public class SMethod {
 	
 	public SService getService() {
 		return service;
+	}
+
+	public JSONObject toJson() throws JSONException {
+		JSONObject methodJson = new JSONObject();
+		methodJson.put("name", getName());
+		methodJson.put("doc", getDoc());
+		methodJson.put("returnDoc", getReturnDoc());
+		JSONArray parametersJson = new JSONArray();
+		methodJson.put("parameters", parametersJson);
+		for (SParameter parameter : parameters) {
+			parametersJson.put(parameter.toJson());
+		}
+		return methodJson;
 	}
 }

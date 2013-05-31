@@ -43,6 +43,10 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 		return null;
 	}
 	
+	public java.lang.Integer count(java.lang.Long roid, java.lang.String className) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.Long createObject(java.lang.Long tid, java.lang.String className) throws UserException, ServerException {
 		return null;
 	}

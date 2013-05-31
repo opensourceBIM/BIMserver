@@ -22,6 +22,9 @@ import java.io.FileFilter;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
+import org.bimserver.shared.InterfaceList;
+import org.bimserver.shared.meta.SServicesMap;
+import org.codehaus.jettison.json.JSONException;
 
 public class CopyAdminAndBIMsieInterface {
 	public static void main(String[] args) {
@@ -33,8 +36,16 @@ public class CopyAdminAndBIMsieInterface {
 	private void copyBimsieInterface() {
 		File bootstrap = new File("C:\\Users\\Ruben\\git\\BootstrapBIM");
 		File bimsie = new File("D:\\Software\\Workspaces\\BIMserver\\BIMsie");
+		SServicesMap servicesMap = InterfaceList.createBimsie1SServicesMap();
 		try {
-			FileUtils.copyFileToDirectory(new File(bootstrap, "console.html"), bimsie);
+			FileUtils.writeStringToFile(new File(bimsie, "js/services.json"), servicesMap.toJson().toString(2));
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			FileUtils.copyFile(new File(bootstrap, "console.html"), new File(bimsie, "index.html"));
 
 			FileUtils.copyDirectory(new File(bootstrap, "js"), new File(bimsie, "js"), new FileFilter() {
 				@Override
@@ -62,7 +73,7 @@ public class CopyAdminAndBIMsieInterface {
 
 	private void copyAdminInterface() {
 		File bootstrap = new File("C:\\Users\\Ruben\\git\\BootstrapBIM");
-		File www = new File("www");
+		File www = new File("../AdminGui");
 		try {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "setup.html"), www);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "index.html"), www);
@@ -91,7 +102,15 @@ public class CopyAdminAndBIMsieInterface {
 				}
 			});
 			FileUtils.copyDirectory(new File(bootstrap, "img"), new File(www, "img"));
-			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(www, "css"));
+			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(www, "css"), new FileFilter() {
+				@Override
+				public boolean accept(File pathname) {
+					if (pathname.getName().equals("bootstrap.min.css")) {
+						return false;
+					}
+					return true;
+				}
+			});
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

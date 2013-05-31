@@ -144,6 +144,11 @@ public class AsyncPluginInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetAllObjectIDMPluginDescriptorsCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor> result);
+		void error(Exception e);
+	}
+	
 	public interface GetAllObjectIDMsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration> result);
 		void error(Exception e);
@@ -676,6 +681,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllModelMergers(onlyEnabled));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllObjectIDMPluginDescriptors(final GetAllObjectIDMPluginDescriptorsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllObjectIDMPluginDescriptors());
 				} catch (Exception e) {
 					callback.error(e);
 				}

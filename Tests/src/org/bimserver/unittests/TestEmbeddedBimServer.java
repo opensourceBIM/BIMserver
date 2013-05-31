@@ -46,6 +46,7 @@ import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
 import org.bimserver.tests.TestFile;
+import org.bimserver.webservices.ServiceMap;
 import org.bimserver.webservices.impl.ServiceImpl;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -128,9 +129,10 @@ public class TestEmbeddedBimServer {
 	@Test
 	public void testUpload() {
 		try {
-			ServiceInterface service = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(ServiceInterface.class);
-			bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(Bimsie1AuthInterface.class).login(username, password);
-			SProject project = service.addProject("test " + new Random().nextInt());
+			ServiceMap serviceMap = bimServer.getServiceFactory().get(AccessMethod.INTERNAL);
+			ServiceInterface service = serviceMap.get(ServiceInterface.class);
+			serviceMap.get(Bimsie1AuthInterface.class).login(username, password);
+			SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test " + new Random().nextInt());
 			File sourceFile = TestFile.AC11.getFile();
 			service.checkin(project.getOid(), "test", -1L, sourceFile.length(), "test", new DataHandler(new FileDataSource(sourceFile)), false, true); // TODO
 		} catch (ServiceException e) {
@@ -146,13 +148,14 @@ public class TestEmbeddedBimServer {
 	@Test
 	public void testDump() {
 		try {
-			ServiceInterface service = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(ServiceInterface.class);
-			String token = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(Bimsie1AuthInterface.class).login(username, password);
+			ServiceMap serviceMap = bimServer.getServiceFactory().get(AccessMethod.INTERNAL);
+			ServiceInterface service = serviceMap.get(ServiceInterface.class);
+			String token = serviceMap.get(Bimsie1AuthInterface.class).login(username, password);
 			service = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 			BimDatabase database = bimServer.getDatabase();
 			DatabaseSession session = database.createSession();
 			SProject firstProjectWithRevisions = null;
-			for (SProject project : service.getAllProjects(false)) {
+			for (SProject project : serviceMap.getBimsie1ServiceInterface().getAllProjects(false)) {
 				System.out.println(project.getName());
 				if (!project.getRevisions().isEmpty() && firstProjectWithRevisions == null) {
 					firstProjectWithRevisions = project;

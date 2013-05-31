@@ -39,7 +39,7 @@ public class UpdateRevisionAction extends Action {
 		List<Long> revisions = project.getRevisions();
 		if (!revisions.isEmpty()) {
 			Long revisionId = revisions.get(nextInt(revisions.size()));
-			SRevision revision = virtualUser.getBimServerClient().getServiceInterface().getRevision(revisionId);
+			SRevision revision = virtualUser.getBimServerClient().getBimsie1ServiceInterface().getRevision(revisionId);
 			revision.setTag(randomString());
 			virtualUser.getLogger().info("Updating revision " + revision.getOid());
 			virtualUser.getBimServerClient().getServiceInterface().updateRevision(revision);

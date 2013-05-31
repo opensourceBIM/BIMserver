@@ -29,6 +29,11 @@ public class AsyncMetaInterface {
 		this.syncService = syncService;
 	}
 
+	public interface GetAllAsJsonCallback {
+		void success(java.lang.String result);
+		void error(Exception e);
+	}
+	
 	public interface GetEnumLiteralsCallback {
 		void success(java.util.List<java.lang.String> result);
 		void error(Exception e);
@@ -66,6 +71,18 @@ public class AsyncMetaInterface {
 	
 
 
+	public void getAllAsJson(final GetAllAsJsonCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllAsJson());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getEnumLiterals(final java.lang.String enumName, final GetEnumLiteralsCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){

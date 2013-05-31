@@ -80,6 +80,7 @@ public class InterfaceList {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(InterfaceList.class);
 	private static final Set<Class<? extends PublicInterface>> interfaces = new LinkedHashSet<Class<? extends PublicInterface>>();
+	private static final Set<Class<? extends PublicInterface>> bimsie1Interfaces = new LinkedHashSet<Class<? extends PublicInterface>>();
 	
 	static {
 		interfaces.add(ServiceInterface.class);
@@ -94,6 +95,13 @@ public class InterfaceList {
 		interfaces.add(Bimsie1AuthInterface.class);
 		interfaces.add(Bimsie1LowLevelInterface.class);
 		interfaces.add(Bimsie1NotificationRegistryInterface.class);
+
+		bimsie1Interfaces.add(Bimsie1ServiceInterface.class);
+		bimsie1Interfaces.add(Bimsie1NotificationInterface.class);
+		bimsie1Interfaces.add(Bimsie1RemoteServiceInterface.class);
+		bimsie1Interfaces.add(Bimsie1AuthInterface.class);
+		bimsie1Interfaces.add(Bimsie1LowLevelInterface.class);
+		bimsie1Interfaces.add(Bimsie1NotificationRegistryInterface.class);
 	}
 
 	public static SServicesMap createSServicesMap() {
@@ -106,6 +114,17 @@ public class InterfaceList {
 			if (clazz != ServiceInterface.class) {
 				servicesMap.add(new SService(sourceCodeFetcher, clazz, singletonList));
 			}
+		}
+		return servicesMap;
+	}
+
+	public static SServicesMap createBimsie1SServicesMap() {
+		SServicesMap servicesMap = new SServicesMap();
+		CodeFetcher sourceCodeFetcher = new CodeFetcher();
+		SService serviceInterface = new SServiceInterfaceService(sourceCodeFetcher, ServiceInterface.class);
+		List<SService> singletonList = Collections.singletonList(serviceInterface);
+		for (Class<? extends PublicInterface> clazz : bimsie1Interfaces) {
+			servicesMap.add(new SService(sourceCodeFetcher, clazz, singletonList));
 		}
 		return servicesMap;
 	}

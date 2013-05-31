@@ -68,11 +68,12 @@ import org.junit.Test;
 public class TestLowLevelChanges {
 
 	private static BimServer bimServer;
-	private static ServiceInterface serviceInterface;
+	private static Bimsie1ServiceInterface bimsie1ServiceInterface;
 	private static Bimsie1LowLevelInterface bimsie1LowLevelInterface;
 	private static Bimsie1ServiceInterface bimsie1Interface;
 	private static PluginManager pluginManager;
 	private static AuthInterface authInterface;
+	private static ServiceInterface serviceInterface;
 
 	@BeforeClass
 	public static void setup() {
@@ -115,6 +116,7 @@ public class TestLowLevelChanges {
 			e.printStackTrace();
 		}
 
+		bimsie1ServiceInterface = bimServer.getService(Bimsie1ServiceInterface.class);
 		serviceInterface = bimServer.getService(ServiceInterface.class);
 		bimsie1LowLevelInterface = bimServer.getService(Bimsie1LowLevelInterface.class);
 		bimsie1Interface = bimServer.getService(Bimsie1ServiceInterface.class);
@@ -144,7 +146,7 @@ public class TestLowLevelChanges {
 
 	private long createProject() {
 		try {
-			SProject project = serviceInterface.addProject("Project " + new Random().nextInt());
+			SProject project = bimsie1ServiceInterface.addProject("Project " + new Random().nextInt());
 			return project.getOid();
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -321,7 +323,7 @@ public class TestLowLevelChanges {
 	}
 	
 	private IfcModelInterface getSingleRevision(long roid) throws ServiceException, DeserializeException, IOException {
-		SRevision revision = serviceInterface.getRevision(roid);
+		SRevision revision = bimsie1ServiceInterface.getRevision(roid);
 		SSerializerPluginConfiguration serializerByContentType = bimsie1Interface.getSerializerByContentType("application/ifc");
 		long downloadId = bimsie1Interface.download(revision.getOid(), serializerByContentType.getOid(), true, true);
 		SDownloadResult downloadData = bimsie1Interface.getDownloadData(downloadId);

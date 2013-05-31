@@ -39,23 +39,8 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
-	public interface AddExtendedDataToRevisionCallback {
-		void success();
-		void error(Exception e);
-	}
-	
 	public interface AddLocalServiceToProjectCallback {
 		void success();
-		void error(Exception e);
-	}
-	
-	public interface AddProjectCallback {
-		void success(org.bimserver.interfaces.objects.SProject result);
-		void error(Exception e);
-	}
-	
-	public interface AddProjectAsSubProjectCallback {
-		void success(org.bimserver.interfaces.objects.SProject result);
 		void error(Exception e);
 	}
 	
@@ -76,16 +61,6 @@ public class AsyncServiceInterface {
 	
 	public interface AddUserToProjectCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
-	}
-	
-	public interface BranchToExistingProjectCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
-	public interface BranchToNewProjectCallback {
-		void success(java.lang.Long result);
 		void error(Exception e);
 	}
 	
@@ -111,16 +86,6 @@ public class AsyncServiceInterface {
 	
 	public interface CompareCallback {
 		void success(org.bimserver.interfaces.objects.SCompareResult result);
-		void error(Exception e);
-	}
-	
-	public interface CountCallback {
-		void success(java.lang.Integer result);
-		void error(Exception e);
-	}
-	
-	public interface DeleteProjectCallback {
-		void success(java.lang.Boolean result);
 		void error(Exception e);
 	}
 	
@@ -164,11 +129,6 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
-	public interface GetAllExtendedDataOfRevisionCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SExtendedData> result);
-		void error(Exception e);
-	}
-	
 	public interface GetAllExtendedDataSchemasCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> result);
 		void error(Exception e);
@@ -194,18 +154,8 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
-	public interface GetAllObjectIDMPluginDescriptorsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor> result);
-		void error(Exception e);
-	}
-	
 	public interface GetAllPrivateProfilesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> result);
-		void error(Exception e);
-	}
-	
-	public interface GetAllProjectsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
 		void error(Exception e);
 	}
 	
@@ -230,11 +180,6 @@ public class AsyncServiceInterface {
 	}
 	
 	public interface GetAllRevisionsByUserCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SRevision> result);
-		void error(Exception e);
-	}
-	
-	public interface GetAllRevisionsOfProjectCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SRevision> result);
 		void error(Exception e);
 	}
@@ -274,16 +219,6 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
-	public interface GetExtendedDataCallback {
-		void success(org.bimserver.interfaces.objects.SExtendedData result);
-		void error(Exception e);
-	}
-	
-	public interface GetExtendedDataSchemaByIdCallback {
-		void success(org.bimserver.interfaces.objects.SExtendedDataSchema result);
-		void error(Exception e);
-	}
-	
 	public interface GetExtendedDataSchemaByNamespaceCallback {
 		void success(org.bimserver.interfaces.objects.SExtendedDataSchema result);
 		void error(Exception e);
@@ -309,16 +244,6 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
-	public interface GetProjectByPoidCallback {
-		void success(org.bimserver.interfaces.objects.SProject result);
-		void error(Exception e);
-	}
-	
-	public interface GetProjectsByNameCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
-		void error(Exception e);
-	}
-	
 	public interface GetQueryEngineExampleCallback {
 		void success(java.lang.String result);
 		void error(Exception e);
@@ -326,11 +251,6 @@ public class AsyncServiceInterface {
 	
 	public interface GetQueryEngineExampleKeysCallback {
 		void success(java.util.List<java.lang.String> result);
-		void error(Exception e);
-	}
-	
-	public interface GetRevisionCallback {
-		void success(org.bimserver.interfaces.objects.SRevision result);
 		void error(Exception e);
 	}
 	
@@ -346,11 +266,6 @@ public class AsyncServiceInterface {
 	
 	public interface GetServiceDescriptorCallback {
 		void success(org.bimserver.interfaces.objects.SServiceDescriptor result);
-		void error(Exception e);
-	}
-	
-	public interface GetSubProjectsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
 		void error(Exception e);
 	}
 	
@@ -406,11 +321,6 @@ public class AsyncServiceInterface {
 	
 	public interface TriggerNewRevisionCallback {
 		void success();
-		void error(Exception e);
-	}
-	
-	public interface UndeleteProjectCallback {
-		void success(java.lang.Boolean result);
 		void error(Exception e);
 	}
 	
@@ -477,49 +387,12 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void addExtendedDataToRevision(final java.lang.Long roid, final org.bimserver.interfaces.objects.SExtendedData extendedData, final AddExtendedDataToRevisionCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					syncService.addExtendedDataToRevision(roid, extendedData);
-					callback.success();
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void addLocalServiceToProject(final java.lang.Long poid, final org.bimserver.interfaces.objects.SService sService, final java.lang.Long internalServiceOid, final AddLocalServiceToProjectCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
 					syncService.addLocalServiceToProject(poid, sService, internalServiceOid);
 					callback.success();
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void addProject(final java.lang.String projectName, final AddProjectCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.addProject(projectName));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void addProjectAsSubProject(final java.lang.String projectName, final java.lang.Long parentPoid, final AddProjectAsSubProjectCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.addProjectAsSubProject(projectName, parentPoid));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -570,30 +443,6 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.addUserToProject(uoid, poid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void branchToExistingProject(final java.lang.Long roid, final java.lang.Long destPoid, final java.lang.String comment, final java.lang.Boolean sync, final BranchToExistingProjectCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.branchToExistingProject(roid, destPoid, comment, sync));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void branchToNewProject(final java.lang.Long roid, final java.lang.String projectName, final java.lang.String comment, final java.lang.Boolean sync, final BranchToNewProjectCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.branchToNewProject(roid, projectName, comment, sync));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -656,30 +505,6 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.compare(roid1, roid2, sCompareType, mcid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void count(final java.lang.Long roid, final java.lang.String className, final CountCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.count(roid, className));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void deleteProject(final java.lang.Long poid, final DeleteProjectCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.deleteProject(poid));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -784,18 +609,6 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getAllExtendedDataOfRevision(final java.lang.Long roid, final GetAllExtendedDataOfRevisionCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getAllExtendedDataOfRevision(roid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getAllExtendedDataSchemas(final GetAllExtendedDataSchemasCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -856,35 +669,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getAllObjectIDMPluginDescriptors(final GetAllObjectIDMPluginDescriptorsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getAllObjectIDMPluginDescriptors());
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getAllPrivateProfiles(final java.lang.String notificationsUrl, final java.lang.String serviceIdentifier, final java.lang.String token, final GetAllPrivateProfilesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
 					callback.success(syncService.getAllPrivateProfiles(notificationsUrl, serviceIdentifier, token));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getAllProjects(final java.lang.Boolean onlyTopLevel, final GetAllProjectsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getAllProjects(onlyTopLevel));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -945,18 +734,6 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllRevisionsByUser(uoid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getAllRevisionsOfProject(final java.lang.Long poid, final GetAllRevisionsOfProjectCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getAllRevisionsOfProject(poid));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -1048,30 +825,6 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getExtendedData(final java.lang.Long oid, final GetExtendedDataCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getExtendedData(oid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getExtendedDataSchemaById(final java.lang.Long oid, final GetExtendedDataSchemaByIdCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getExtendedDataSchemaById(oid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getExtendedDataSchemaByNamespace(final java.lang.String namespace, final GetExtendedDataSchemaByNamespaceCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1132,30 +885,6 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getProjectByPoid(final java.lang.Long poid, final GetProjectByPoidCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getProjectByPoid(poid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getProjectsByName(final java.lang.String name, final GetProjectsByNameCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getProjectsByName(name));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getQueryEngineExample(final java.lang.Long qeid, final java.lang.String key, final GetQueryEngineExampleCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1173,18 +902,6 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getQueryEngineExampleKeys(qeid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getRevision(final java.lang.Long roid, final GetRevisionCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getRevision(roid));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -1221,18 +938,6 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServiceDescriptor(url));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getSubProjects(final java.lang.Long poid, final GetSubProjectsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getSubProjects(poid));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -1370,18 +1075,6 @@ public class AsyncServiceInterface {
 				try {
 					syncService.triggerNewRevision(roid, soid);
 					callback.success();
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void undeleteProject(final java.lang.Long poid, final UndeleteProjectCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.undeleteProject(poid));
 				} catch (Exception e) {
 					callback.error(e);
 				}

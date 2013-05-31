@@ -27,13 +27,7 @@ service ServiceInterface {
 
 	rpc addExtendedDataToProject (AddExtendedDataToProjectRequest) returns (VoidResponse);
 
-	rpc addExtendedDataToRevision (AddExtendedDataToRevisionRequest) returns (VoidResponse);
-
 	rpc addLocalServiceToProject (AddLocalServiceToProjectRequest) returns (VoidResponse);
-
-	rpc addProject (AddProjectRequest) returns (AddProjectResponse);
-
-	rpc addProjectAsSubProject (AddProjectAsSubProjectRequest) returns (AddProjectAsSubProjectResponse);
 
 	rpc addServiceToProject (AddServiceToProjectRequest) returns (VoidResponse);
 
@@ -42,10 +36,6 @@ service ServiceInterface {
 	rpc addUserToExtendedDataSchema (AddUserToExtendedDataSchemaRequest) returns (VoidResponse);
 
 	rpc addUserToProject (AddUserToProjectRequest) returns (AddUserToProjectResponse);
-
-	rpc branchToExistingProject (BranchToExistingProjectRequest) returns (BranchToExistingProjectResponse);
-
-	rpc branchToNewProject (BranchToNewProjectRequest) returns (BranchToNewProjectResponse);
 
 	rpc changeUserType (ChangeUserTypeRequest) returns (VoidResponse);
 
@@ -56,10 +46,6 @@ service ServiceInterface {
 	rpc cleanupLongAction (CleanupLongActionRequest) returns (VoidResponse);
 
 	rpc compare (CompareRequest) returns (CompareResponse);
-
-	rpc count (CountRequest) returns (CountResponse);
-
-	rpc deleteProject (DeleteProjectRequest) returns (DeleteProjectResponse);
 
 	rpc deleteService (DeleteServiceRequest) returns (VoidResponse);
 
@@ -77,8 +63,6 @@ service ServiceInterface {
 
 	rpc getAllCheckoutsOfRevision (GetAllCheckoutsOfRevisionRequest) returns (GetAllCheckoutsOfRevisionResponse);
 
-	rpc getAllExtendedDataOfRevision (GetAllExtendedDataOfRevisionRequest) returns (GetAllExtendedDataOfRevisionResponse);
-
 	rpc getAllExtendedDataSchemas (GetAllExtendedDataSchemasRequest) returns (GetAllExtendedDataSchemasResponse);
 
 	rpc getAllLocalProfiles (GetAllLocalProfilesRequest) returns (GetAllLocalProfilesResponse);
@@ -89,11 +73,7 @@ service ServiceInterface {
 
 	rpc getAllNonAuthorizedUsersOfProject (GetAllNonAuthorizedUsersOfProjectRequest) returns (GetAllNonAuthorizedUsersOfProjectResponse);
 
-	rpc getAllObjectIDMPluginDescriptors (GetAllObjectIDMPluginDescriptorsRequest) returns (GetAllObjectIDMPluginDescriptorsResponse);
-
 	rpc getAllPrivateProfiles (GetAllPrivateProfilesRequest) returns (GetAllPrivateProfilesResponse);
-
-	rpc getAllProjects (GetAllProjectsRequest) returns (GetAllProjectsResponse);
 
 	rpc getAllPublicProfiles (GetAllPublicProfilesRequest) returns (GetAllPublicProfilesResponse);
 
@@ -104,8 +84,6 @@ service ServiceInterface {
 	rpc getAllRepositoryExtendedDataSchemas (GetAllRepositoryExtendedDataSchemasRequest) returns (GetAllRepositoryExtendedDataSchemasResponse);
 
 	rpc getAllRevisionsByUser (GetAllRevisionsByUserRequest) returns (GetAllRevisionsByUserResponse);
-
-	rpc getAllRevisionsOfProject (GetAllRevisionsOfProjectRequest) returns (GetAllRevisionsOfProjectResponse);
 
 	rpc getAllServiceDescriptors (GetAllServiceDescriptorsRequest) returns (GetAllServiceDescriptorsResponse);
 
@@ -121,10 +99,6 @@ service ServiceInterface {
 
 	rpc getCheckoutWarnings (GetCheckoutWarningsRequest) returns (GetCheckoutWarningsResponse);
 
-	rpc getExtendedData (GetExtendedDataRequest) returns (GetExtendedDataResponse);
-
-	rpc getExtendedDataSchemaById (GetExtendedDataSchemaByIdRequest) returns (GetExtendedDataSchemaByIdResponse);
-
 	rpc getExtendedDataSchemaByNamespace (GetExtendedDataSchemaByNamespaceRequest) returns (GetExtendedDataSchemaByNamespaceResponse);
 
 	rpc getExtendedDataSchemaFromRepository (GetExtendedDataSchemaFromRepositoryRequest) returns (GetExtendedDataSchemaFromRepositoryResponse);
@@ -135,23 +109,15 @@ service ServiceInterface {
 
 	rpc getOidByGuid (GetOidByGuidRequest) returns (GetOidByGuidResponse);
 
-	rpc getProjectByPoid (GetProjectByPoidRequest) returns (GetProjectByPoidResponse);
-
-	rpc getProjectsByName (GetProjectsByNameRequest) returns (GetProjectsByNameResponse);
-
 	rpc getQueryEngineExample (GetQueryEngineExampleRequest) returns (GetQueryEngineExampleResponse);
 
 	rpc getQueryEngineExampleKeys (GetQueryEngineExampleKeysRequest) returns (GetQueryEngineExampleKeysResponse);
-
-	rpc getRevision (GetRevisionRequest) returns (GetRevisionResponse);
 
 	rpc getRevisionSummary (GetRevisionSummaryRequest) returns (GetRevisionSummaryResponse);
 
 	rpc getService (GetServiceRequest) returns (GetServiceResponse);
 
 	rpc getServiceDescriptor (GetServiceDescriptorRequest) returns (GetServiceDescriptorResponse);
-
-	rpc getSubProjects (GetSubProjectsRequest) returns (GetSubProjectsResponse);
 
 	rpc getUserByUoid (GetUserByUoidRequest) returns (GetUserByUoidResponse);
 
@@ -174,8 +140,6 @@ service ServiceInterface {
 	rpc triggerNewExtendedData (TriggerNewExtendedDataRequest) returns (VoidResponse);
 
 	rpc triggerNewRevision (TriggerNewRevisionRequest) returns (VoidResponse);
-
-	rpc undeleteProject (UndeleteProjectRequest) returns (UndeleteProjectResponse);
 
 	rpc undeleteUser (UndeleteUserRequest) returns (UndeleteUserResponse);
 
@@ -242,11 +206,6 @@ message AddExtendedDataToProjectRequest {
 	optional SExtendedData extendedData = 2;
 }
 
-message AddExtendedDataToRevisionRequest {
-	optional int64 roid = 1;
-	optional SExtendedData extendedData = 2;
-}
-
 enum STrigger{
 	STrigger_NEW_REVISION = 0;
 	STrigger_NEW_PROJECT = 1;
@@ -294,74 +253,6 @@ message AddLocalServiceToProjectRequest {
 	optional int64 internalServiceOid = 3;
 }
 
-message AddProjectRequest {
-	optional string projectName = 1;
-}
-
-enum SObjectState{
-	SObjectState_ACTIVE = 0;
-	SObjectState_DELETED = 1;
-}
-
-enum SSIPrefix{
-	SSIPrefix_meter = 0;
-	SSIPrefix_attometer = 1;
-	SSIPrefix_femtometer = 2;
-	SSIPrefix_picometer = 3;
-	SSIPrefix_nanometer = 4;
-	SSIPrefix_micrometer = 5;
-	SSIPrefix_millimeter = 6;
-	SSIPrefix_centimeter = 7;
-	SSIPrefix_decimeter = 8;
-	SSIPrefix_decameter = 9;
-	SSIPrefix_hectometer = 10;
-	SSIPrefix_kilometer = 11;
-	SSIPrefix_megameter = 12;
-	SSIPrefix_gigameter = 13;
-	SSIPrefix_terameter = 14;
-	SSIPrefix_petameter = 15;
-	SSIPrefix_exameter = 16;
-}
-
-message SProject {
-	optional int64 lastConcreteRevisionId = 1;
-	repeated int64 services = 2;
-	optional int64 createdById = 3;
-	repeated int64 logs = 4;
-	optional SObjectState state = 5;
-	repeated int64 concreteRevisions = 6;
-	optional int32 id = 7;
-	optional int64 parentId = 8;
-	repeated int64 extendedData = 9;
-	repeated int64 hasAuthorizedUsers = 10;
-	optional int32 rid = 11;
-	optional int64 geoTagId = 12;
-	optional SSIPrefix exportLengthMeasurePrefix = 13;
-	optional string description = 14;
-	optional int64 oid = 15;
-	optional string name = 16;
-	repeated int64 subProjects = 17;
-	optional int64 lastRevisionId = 18;
-	optional int64 createdDate = 19;
-	repeated int64 revisions = 20;
-	repeated int64 checkouts = 21;
-}
-
-message AddProjectResponse {
-	optional string errorMessage = 1;
-	optional SProject value = 2;
-}
-
-message AddProjectAsSubProjectRequest {
-	optional string projectName = 1;
-	optional int64 parentPoid = 2;
-}
-
-message AddProjectAsSubProjectResponse {
-	optional string errorMessage = 1;
-	optional SProject value = 2;
-}
-
 message AddServiceToProjectRequest {
 	optional int64 poid = 1;
 	optional SService sService = 2;
@@ -379,6 +270,11 @@ message AddUserRequest {
 	optional string name = 2;
 	optional SUserType type = 3;
 	optional bool selfRegistration = 4;
+}
+
+enum SObjectState{
+	SObjectState_ACTIVE = 0;
+	SObjectState_DELETED = 1;
 }
 
 message SUser {
@@ -423,30 +319,6 @@ message AddUserToProjectRequest {
 message AddUserToProjectResponse {
 	optional string errorMessage = 1;
 	optional bool value = 2;
-}
-
-message BranchToExistingProjectRequest {
-	optional int64 roid = 1;
-	optional int64 destPoid = 2;
-	optional string comment = 3;
-	optional bool sync = 4;
-}
-
-message BranchToExistingProjectResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message BranchToNewProjectRequest {
-	optional int64 roid = 1;
-	optional string projectName = 2;
-	optional string comment = 3;
-	optional bool sync = 4;
-}
-
-message BranchToNewProjectResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
 }
 
 message ChangeUserTypeRequest {
@@ -503,6 +375,11 @@ message CompareRequest {
 	optional int64 mcid = 4;
 }
 
+message SObjectRemoved {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
 message SObjectModified {
 	optional string newValue = 1;
 	optional int32 rid = 2;
@@ -516,15 +393,11 @@ message SObjectAdded {
 	optional int64 oid = 2;
 }
 
-message SObjectRemoved {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SListDataValue {
-	repeated SDataValue values = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
+message SReferenceDataValue {
+	optional string guid = 1;
+	optional string typeName = 2;
+	optional int32 rid = 3;
+	optional int64 oid = 4;
 }
 
 message SSimpleDataValue {
@@ -533,18 +406,17 @@ message SSimpleDataValue {
 	optional string stringValue = 3;
 }
 
-message SReferenceDataValue {
-	optional string guid = 1;
-	optional string typeName = 2;
-	optional int32 rid = 3;
-	optional int64 oid = 4;
+message SListDataValue {
+	repeated SDataValue values = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
 }
 
 message SDataValue {
 	required string __actual_type = 1;
-	optional SListDataValue __SListDataValue = 2;
+	optional SReferenceDataValue __SReferenceDataValue = 2;
 	optional SSimpleDataValue __SSimpleDataValue = 3;
-	optional SReferenceDataValue __SReferenceDataValue = 4;
+	optional SListDataValue __SListDataValue = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional string fieldName = 7;
@@ -561,9 +433,9 @@ message SDataObject {
 
 message SCompareItem {
 	required string __actual_type = 1;
-	optional SObjectModified __SObjectModified = 2;
-	optional SObjectAdded __SObjectAdded = 3;
-	optional SObjectRemoved __SObjectRemoved = 4;
+	optional SObjectRemoved __SObjectRemoved = 2;
+	optional SObjectModified __SObjectModified = 3;
+	optional SObjectAdded __SObjectAdded = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional SDataObject dataObject = 7;
@@ -585,25 +457,6 @@ message SCompareResult {
 message CompareResponse {
 	optional string errorMessage = 1;
 	optional SCompareResult value = 2;
-}
-
-message CountRequest {
-	optional int64 roid = 1;
-	optional string className = 2;
-}
-
-message CountResponse {
-	optional string errorMessage = 1;
-	optional int32 value = 2;
-}
-
-message DeleteProjectRequest {
-	optional int64 poid = 1;
-}
-
-message DeleteProjectResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
 }
 
 message DeleteServiceRequest {
@@ -711,15 +564,6 @@ message GetAllCheckoutsOfRevisionResponse {
 	repeated SCheckout value = 2;
 }
 
-message GetAllExtendedDataOfRevisionRequest {
-	optional int64 roid = 1;
-}
-
-message GetAllExtendedDataOfRevisionResponse {
-	optional string errorMessage = 1;
-	repeated SExtendedData value = 2;
-}
-
 message GetAllExtendedDataSchemasRequest {
 }
 
@@ -771,6 +615,50 @@ message GetAllNonAuthorizedProjectsOfUserRequest {
 	optional int64 uoid = 1;
 }
 
+enum SSIPrefix{
+	SSIPrefix_meter = 0;
+	SSIPrefix_attometer = 1;
+	SSIPrefix_femtometer = 2;
+	SSIPrefix_picometer = 3;
+	SSIPrefix_nanometer = 4;
+	SSIPrefix_micrometer = 5;
+	SSIPrefix_millimeter = 6;
+	SSIPrefix_centimeter = 7;
+	SSIPrefix_decimeter = 8;
+	SSIPrefix_decameter = 9;
+	SSIPrefix_hectometer = 10;
+	SSIPrefix_kilometer = 11;
+	SSIPrefix_megameter = 12;
+	SSIPrefix_gigameter = 13;
+	SSIPrefix_terameter = 14;
+	SSIPrefix_petameter = 15;
+	SSIPrefix_exameter = 16;
+}
+
+message SProject {
+	optional int64 lastConcreteRevisionId = 1;
+	repeated int64 services = 2;
+	optional int64 createdById = 3;
+	repeated int64 logs = 4;
+	optional SObjectState state = 5;
+	repeated int64 concreteRevisions = 6;
+	optional int32 id = 7;
+	optional int64 parentId = 8;
+	repeated int64 extendedData = 9;
+	repeated int64 hasAuthorizedUsers = 10;
+	optional int32 rid = 11;
+	optional int64 geoTagId = 12;
+	optional SSIPrefix exportLengthMeasurePrefix = 13;
+	optional string description = 14;
+	optional int64 oid = 15;
+	optional string name = 16;
+	repeated int64 subProjects = 17;
+	optional int64 lastRevisionId = 18;
+	repeated int64 revisions = 19;
+	optional int64 createdDate = 20;
+	repeated int64 checkouts = 21;
+}
+
 message GetAllNonAuthorizedProjectsOfUserResponse {
 	optional string errorMessage = 1;
 	repeated SProject value = 2;
@@ -785,20 +673,6 @@ message GetAllNonAuthorizedUsersOfProjectResponse {
 	repeated SUser value = 2;
 }
 
-message GetAllObjectIDMPluginDescriptorsRequest {
-}
-
-message SObjectIDMPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional string className = 3;
-}
-
-message GetAllObjectIDMPluginDescriptorsResponse {
-	optional string errorMessage = 1;
-	repeated SObjectIDMPluginDescriptor value = 2;
-}
-
 message GetAllPrivateProfilesRequest {
 	optional string notificationsUrl = 1;
 	optional string serviceIdentifier = 2;
@@ -808,15 +682,6 @@ message GetAllPrivateProfilesRequest {
 message GetAllPrivateProfilesResponse {
 	optional string errorMessage = 1;
 	repeated SProfileDescriptor value = 2;
-}
-
-message GetAllProjectsRequest {
-	optional bool onlyTopLevel = 1;
-}
-
-message GetAllProjectsResponse {
-	optional string errorMessage = 1;
-	repeated SProject value = 2;
 }
 
 message GetAllPublicProfilesRequest {
@@ -866,15 +731,6 @@ message GetAllRevisionsByUserRequest {
 }
 
 message GetAllRevisionsByUserResponse {
-	optional string errorMessage = 1;
-	repeated SRevision value = 2;
-}
-
-message GetAllRevisionsOfProjectRequest {
-	optional int64 poid = 1;
-}
-
-message GetAllRevisionsOfProjectResponse {
 	optional string errorMessage = 1;
 	repeated SRevision value = 2;
 }
@@ -937,24 +793,6 @@ message GetCheckoutWarningsRequest {
 message GetCheckoutWarningsResponse {
 	optional string errorMessage = 1;
 	repeated string value = 2;
-}
-
-message GetExtendedDataRequest {
-	optional int64 oid = 1;
-}
-
-message GetExtendedDataResponse {
-	optional string errorMessage = 1;
-	optional SExtendedData value = 2;
-}
-
-message GetExtendedDataSchemaByIdRequest {
-	optional int64 oid = 1;
-}
-
-message GetExtendedDataSchemaByIdResponse {
-	optional string errorMessage = 1;
-	optional SExtendedDataSchema value = 2;
 }
 
 message GetExtendedDataSchemaByNamespaceRequest {
@@ -1023,24 +861,6 @@ message GetOidByGuidResponse {
 	optional int64 value = 2;
 }
 
-message GetProjectByPoidRequest {
-	optional int64 poid = 1;
-}
-
-message GetProjectByPoidResponse {
-	optional string errorMessage = 1;
-	optional SProject value = 2;
-}
-
-message GetProjectsByNameRequest {
-	optional string name = 1;
-}
-
-message GetProjectsByNameResponse {
-	optional string errorMessage = 1;
-	repeated SProject value = 2;
-}
-
 message GetQueryEngineExampleRequest {
 	optional int64 qeid = 1;
 	optional string key = 2;
@@ -1058,15 +878,6 @@ message GetQueryEngineExampleKeysRequest {
 message GetQueryEngineExampleKeysResponse {
 	optional string errorMessage = 1;
 	repeated string value = 2;
-}
-
-message GetRevisionRequest {
-	optional int64 roid = 1;
-}
-
-message GetRevisionResponse {
-	optional string errorMessage = 1;
-	optional SRevision value = 2;
 }
 
 message GetRevisionSummaryRequest {
@@ -1114,15 +925,6 @@ message GetServiceDescriptorRequest {
 message GetServiceDescriptorResponse {
 	optional string errorMessage = 1;
 	optional SServiceDescriptor value = 2;
-}
-
-message GetSubProjectsRequest {
-	optional int64 poid = 1;
-}
-
-message GetSubProjectsResponse {
-	optional string errorMessage = 1;
-	repeated SProject value = 2;
 }
 
 message GetUserByUoidRequest {
@@ -1224,15 +1026,6 @@ message TriggerNewExtendedDataRequest {
 message TriggerNewRevisionRequest {
 	optional int64 roid = 1;
 	optional int64 soid = 2;
-}
-
-message UndeleteProjectRequest {
-	optional int64 poid = 1;
-}
-
-message UndeleteProjectResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
 }
 
 message UndeleteUserRequest {

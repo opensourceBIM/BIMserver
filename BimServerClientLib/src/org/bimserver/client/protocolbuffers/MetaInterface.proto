@@ -25,6 +25,8 @@ option java_outer_classname = "MetaInterfaceImpl";
 option optimize_for = SPEED;
 
 service MetaInterface {
+	rpc getAllAsJson (GetAllAsJsonRequest) returns (GetAllAsJsonResponse);
+
 	rpc getEnumLiterals (GetEnumLiteralsRequest) returns (GetEnumLiteralsResponse);
 
 	rpc getServiceInterface (GetServiceInterfaceRequest) returns (GetServiceInterfaceResponse);
@@ -39,6 +41,14 @@ service MetaInterface {
 
 	rpc getServiceTypes (GetServiceTypesRequest) returns (GetServiceTypesResponse);
 
+}
+
+message GetAllAsJsonRequest {
+}
+
+message GetAllAsJsonResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
 }
 
 message GetEnumLiteralsRequest {

@@ -92,7 +92,7 @@ public class TestNotifications {
 			bimServerClient.getBimsie1AuthInterface().login("admin@bimserver.org", "admin");
 			//TODO
 //			bimServerClient.getServiceInterface().setHttpCallback(bimServerClient.getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
-			bimServerClient.getServiceInterface().addProject("test12345");
+			bimServerClient.getBimsie1ServiceInterface().addProject("test12345");
 		} catch (ServiceException e) {
 			fail(e.getMessage());
 		} catch (ChannelConnectionException e) {

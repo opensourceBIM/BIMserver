@@ -26,7 +26,7 @@ public class ContainedInStructure extends TestWithEmbeddedServer {
 			bimServerClient.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
 			
 			// Get the appropriate deserializer
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
@@ -35,7 +35,7 @@ public class ContainedInStructure extends TestWithEmbeddedServer {
 			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
 
 			// Refresh project info
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 
 			ClientIfcModel model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAllWithSubTypes(IfcFurnishingElement.class)) {

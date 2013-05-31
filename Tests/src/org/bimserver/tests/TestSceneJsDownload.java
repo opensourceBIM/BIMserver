@@ -55,7 +55,7 @@ public class TestSceneJsDownload {
 			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			bimServerClient.getBimsie1AuthInterface().login("admin@bimserver.org", "admin");
 			SSerializerPluginConfiguration serializerByContentType = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/json");
-			List<SProject> projects = bimServerClient.getServiceInterface().getProjectsByName("test");
+			List<SProject> projects = bimServerClient.getBimsie1ServiceInterface().getProjectsByName("test");
 			if (!projects.isEmpty()) {
 				SProject project = projects.get(0);
 				if (project.getLastRevisionId() != -1) {

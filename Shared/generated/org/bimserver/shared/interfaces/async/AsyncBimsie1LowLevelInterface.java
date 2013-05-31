@@ -64,6 +64,11 @@ public class AsyncBimsie1LowLevelInterface {
 		void error(Exception e);
 	}
 	
+	public interface CountCallback {
+		void success(java.lang.Integer result);
+		void error(Exception e);
+	}
+	
 	public interface CreateObjectCallback {
 		void success(java.lang.Long result);
 		void error(Exception e);
@@ -384,6 +389,18 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.commitTransaction(tid, comment));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void count(final java.lang.Long roid, final java.lang.String className, final CountCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.count(roid, className));
 				} catch (Exception e) {
 					callback.error(e);
 				}

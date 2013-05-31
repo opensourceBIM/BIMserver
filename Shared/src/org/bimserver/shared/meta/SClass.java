@@ -34,6 +34,9 @@ import java.util.Set;
 import javax.activation.DataHandler;
 
 import org.bimserver.utils.StringUtils;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -297,5 +300,16 @@ public class SClass {
 	
 	public SimpleType getSimpleType() {
 		return simpleType;
+	}
+
+	public JSONObject toJson() throws JSONException {
+		JSONObject result = new JSONObject();
+		result.put("name", getName());
+		JSONArray fieldsJson = new JSONArray();
+		for (SField field : fields.values()) {
+			fieldsJson.put(field.toJson());
+		}
+		result.put("fields", fieldsJson);
+		return result;
 	}
 }

@@ -37,6 +37,7 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.webservices.ServiceMap;
+import org.codehaus.jettison.json.JSONException;
 
 public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface {
 	public MetaServiceImpl(ServiceMap serviceMap) {
@@ -167,5 +168,15 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
 		}
 		return convertMethod(sService.getMethod(methodName));
+	}
+
+	@Override
+	public String getAllAsJson() {
+		try {
+			return getBimServer().getServicesMap().toJson().toString(2);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

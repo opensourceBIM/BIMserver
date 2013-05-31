@@ -1,5 +1,5 @@
 
-
+ž 
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"T
  SDeserializerPluginConfiguration
 userSettingsId (
@@ -102,7 +102,15 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 onlyEnabled ("t
 GetAllModelMergersResponse
 errorMessage (	@
-value (21.org.bimserver.pb.SModelMergerPluginConfiguration".
+value (21.org.bimserver.pb.SModelMergerPluginConfiguration")
+'GetAllObjectIDMPluginDescriptorsRequest"I
+SObjectIDMPluginDescriptor
+rid (
+oid (
+	className (	"}
+(GetAllObjectIDMPluginDescriptorsResponse
+errorMessage (	;
+value (2,.org.bimserver.pb.SObjectIDMPluginDescriptor".
 GetAllObjectIDMsRequest
 onlyEnabled ("p
 GetAllObjectIDMsResponse
@@ -216,16 +224,16 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 errorMessage (	>
 value (2/.org.bimserver.pb.SObjectIDMPluginConfiguration"5
  GetPluginObjectDefinitionRequest
-	className (	"C
-SArrayDefinition/
-type (2!.org.bimserver.pb.STypeDefinition"F
+	className (	"F
 SPrimitiveDefinition.
-type (2 .org.bimserver.pb.SPrimitiveEnum"ò
+type (2 .org.bimserver.pb.SPrimitiveEnum"C
+SArrayDefinition/
+type (2!.org.bimserver.pb.STypeDefinition"ò
 STypeDefinition
-__actual_type (	>
-__SArrayDefinition (2".org.bimserver.pb.SArrayDefinition@
-__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinitionF
-__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition"”
+__actual_type (	F
+__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition@
+__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition>
+__SArrayDefinition (2".org.bimserver.pb.SArrayDefinition"”
 SParameterDefinition
 description (	
 name (	
@@ -239,34 +247,34 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 errorMessage (	2
 value (2#.org.bimserver.pb.SObjectDefinition"(
 GetPluginSettingsRequest
-poid ("7
-SBooleanType
-rid (
-oid (
-value ("6
+poid ("6
 SStringType
 rid (
 oid (
-value (	"4
-	SLongType
+value (	"7
+SBooleanType
 rid (
 oid (
-value ("6
-SDoubleType
-rid (
-oid (
-value ("9
+value ("9
 SByteArrayType
 rid (
 oid (
-value ("Ó
+value ("6
+SDoubleType
+rid (
+oid (
+value ("4
+	SLongType
+rid (
+oid (
+value ("Ó
 SPrimitiveType
-__actual_type (	6
-__SBooleanType (2.org.bimserver.pb.SBooleanType4
-__SStringType (2.org.bimserver.pb.SStringType0
-__SLongType (2.org.bimserver.pb.SLongType4
-__SDoubleType (2.org.bimserver.pb.SDoubleType:
-__SByteArrayType (2 .org.bimserver.pb.SByteArrayType
+__actual_type (	4
+__SStringType (2.org.bimserver.pb.SStringType6
+__SBooleanType (2.org.bimserver.pb.SBooleanType:
+__SByteArrayType (2 .org.bimserver.pb.SByteArrayType4
+__SDoubleType (2.org.bimserver.pb.SDoubleType0
+__SLongType (2.org.bimserver.pb.SLongType
 rid (
 oid ("O
 
@@ -276,9 +284,9 @@ SArrayType'
 oid ("Þ
 SType
 __actual_type (	:
-__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType4
-__SObjectType (2.org.bimserver.pb.SObjectType2
-__SArrayType (2.org.bimserver.pb.SArrayType
+__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType2
+__SArrayType (2.org.bimserver.pb.SArrayType4
+__SObjectType (2.org.bimserver.pb.SObjectType
 rid (
 oid ("\
 
@@ -370,7 +378,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*š
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2¦@
+SPrimitiveEnum_BYTE_ARRAY2ÂA
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -394,7 +402,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*š
 #getAllModelComparePluginDescriptors<.org.bimserver.pb.GetAllModelComparePluginDescriptorsRequest=.org.bimserver.pb.GetAllModelComparePluginDescriptorsResponser
 getAllModelCompares,.org.bimserver.pb.GetAllModelComparesRequest-.org.bimserver.pb.GetAllModelComparesResponseŸ
 "getAllModelMergerPluginDescriptors;.org.bimserver.pb.GetAllModelMergerPluginDescriptorsRequest<.org.bimserver.pb.GetAllModelMergerPluginDescriptorsResponseo
-getAllModelMergers+.org.bimserver.pb.GetAllModelMergersRequest,.org.bimserver.pb.GetAllModelMergersResponsei
+getAllModelMergers+.org.bimserver.pb.GetAllModelMergersRequest,.org.bimserver.pb.GetAllModelMergersResponse™
+ getAllObjectIDMPluginDescriptors9.org.bimserver.pb.GetAllObjectIDMPluginDescriptorsRequest:.org.bimserver.pb.GetAllObjectIDMPluginDescriptorsResponsei
 getAllObjectIDMs).org.bimserver.pb.GetAllObjectIDMsRequest*.org.bimserver.pb.GetAllObjectIDMsResponseŸ
 "getAllQueryEnginePluginDescriptors;.org.bimserver.pb.GetAllQueryEnginePluginDescriptorsRequest<.org.bimserver.pb.GetAllQueryEnginePluginDescriptorsResponseo
 getAllQueryEngines+.org.bimserver.pb.GetAllQueryEnginesRequest,.org.bimserver.pb.GetAllQueryEnginesResponse¢

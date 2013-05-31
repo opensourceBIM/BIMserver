@@ -10,27 +10,11 @@ var ConsoleSettings = {
 		var request = {
 			request: {
 				interface: "org.bimserver.MetaInterface",
-				method: "getServiceInterfaces"
+				method: "getAllAsJson"
 			}
 		};
 		consoleObject.call(request, function(data){
-			callback(data.response.result);
-		});
-	}, getServiceMethods: function(consoleObject, serviceInterfaces, callback){
-		console.log(serviceInterfaces);
-		var request = {
-			requests: [
-			]
-		}
-		serviceInterfaces.forEach(function(serviceInterface){
-			request.requests.push({
-				interface: "org.bimserver.MetaInterface",
-				method: "getServiceMethods",
-				parameters: serviceInterface
-			});
-		});
-		consoleObject.call(request, function(data){
-			callback(data.responses);
+			callback(JSON.parse(data.response.result).services);
 		});
 	}
 }
