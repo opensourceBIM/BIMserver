@@ -11,7 +11,6 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
@@ -23,11 +22,8 @@ public class CreateGuid extends TestWithEmbeddedServer {
 			// Create a new BimServerClient with authentication
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
-			// Get the service interface
-			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
-			
 			// Create a new project
-			SProject newProject = serviceInterface.addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
 			
 			ClientIfcModel model = bimServerClient.newModel(newProject);
 			IfcFurnishingElement furnishing = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement());

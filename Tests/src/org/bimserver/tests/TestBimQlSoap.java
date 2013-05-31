@@ -47,12 +47,12 @@ public class TestBimQlSoap {
 		try {
 			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
-			List<SProject> projects = bimServerClient.getServiceInterface().getAllProjects(true);
+			List<SProject> projects = bimServerClient.getBimsie1ServiceInterface().getAllProjects(true);
 			if (projects.isEmpty()) {
 				throw new RuntimeException("No projects");
 			}
 			for (SProject project : projects) {
-				List<SRevision> revisionsOfProject = bimServerClient.getServiceInterface().getAllRevisionsOfProject(project.getOid());
+				List<SRevision> revisionsOfProject = bimServerClient.getBimsie1ServiceInterface().getAllRevisionsOfProject(project.getOid());
 				if (!revisionsOfProject.isEmpty()) {
 					SRevision revision = revisionsOfProject.get(0);
 					SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");

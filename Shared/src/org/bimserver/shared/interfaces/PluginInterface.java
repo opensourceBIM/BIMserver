@@ -36,6 +36,7 @@ import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
+import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
@@ -546,4 +547,11 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action="getAllInternalServices")
 	List<SInternalServicePluginConfiguration> getAllInternalServices(
 		@WebParam(name = "onlyEnabled", partName = "getAllInternalServices.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
+	
+	/**
+	 * @return A list of available IDMPlugins
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllObjectIDMPluginDescriptors")
+	List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws ServerException, UserException;
 }

@@ -764,4 +764,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	@WebMethod(action = "getDataObjects")
 	List<SDataObject> getDataObjects(
 		@WebParam(name = "roid", partName = "getDataObjects.roid") Long roid) throws ServerException, UserException;
+	
+	@WebMethod(action = "count")
+	Integer count(
+		@WebParam(name = "roid", partName = "count.roid") Long roid,
+		@WebParam(name = "className", partName = "count.className") String className) throws UserException, ServerException;
 }

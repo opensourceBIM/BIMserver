@@ -100,4 +100,7 @@ public interface MetaInterface extends PublicInterface {
 	@WebMethod(action="getEnumLiterals")
 	List<String> getEnumLiterals(
 		@WebParam(name = "enumName", partName = "getEnumLiterals.enumName") String enumName) throws UserException, ServerException;
+	
+	@WebMethod(action="getAllAsJson")
+	String getAllAsJson() throws UserException, ServerException;
 }

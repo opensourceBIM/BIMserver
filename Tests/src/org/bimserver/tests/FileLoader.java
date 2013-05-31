@@ -53,7 +53,7 @@ public class FileLoader {
 						System.out.println(file.getName());
 						SProject project;
 						try {
-							project = client.getServiceInterface().addProject(file.getName());
+							project = client.getBimsie1ServiceInterface().addProject(file.getName());
 							SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
 							client.checkin(project.getOid(), file.getName(), deserializer.getOid(), false, true, file);
 						} catch (ServerException e) {

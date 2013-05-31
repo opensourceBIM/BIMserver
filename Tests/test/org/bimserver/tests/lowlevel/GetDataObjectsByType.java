@@ -24,7 +24,7 @@ public class GetDataObjectsByType extends TestWithEmbeddedServer{
 			Bimsie1LowLevelInterface lowLevelInterface = bimServerClient.getBimsie1LowLevelInterface();
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
 			
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
@@ -36,7 +36,7 @@ public class GetDataObjectsByType extends TestWithEmbeddedServer{
 			
 			// Commit the transaction
 			lowLevelInterface.commitTransaction(tid, "test");
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 
 			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcRelContainedInSpatialStructure");
 			for (SDataObject sDataObject : dataObjectsByType) {

@@ -24,12 +24,15 @@ import java.util.Set;
 
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.reflector.ReflectorFactory;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 public class SServicesMap {
 	private final Map<String, SService> servicesByName = new LinkedHashMap<String, SService>();
 	private final Map<String, SService> servicesBySimpleName = new LinkedHashMap<String, SService>();
 	private ReflectorFactory reflectorFactory;
-	
+
 	public void add(SService sService) {
 		servicesByName.put(sService.getName(), sService);
 		servicesBySimpleName.put(sService.getSimpleName(), sService);
@@ -43,7 +46,7 @@ public class SServicesMap {
 	public SService getBySimpleName(String name) {
 		return servicesBySimpleName.get(name);
 	}
-	
+
 	public SClass getType(String name) {
 		for (SService sService : servicesByName.values()) {
 			SClass type = sService.getSType(name);
@@ -69,17 +72,18 @@ public class SServicesMap {
 		}
 		return result;
 	}
-	
+
 	public void setReflectorFactory(ReflectorFactory reflectorFactory) {
 		this.reflectorFactory = reflectorFactory;
 	}
-	
+
 	public ReflectorFactory getReflectorFactory() {
 		return reflectorFactory;
 	}
 
 	/**
 	 * Inefficient method of getting a SMethod
+	 * 
 	 * @param methodName
 	 * @return
 	 */
@@ -89,6 +93,29 @@ public class SServicesMap {
 			if (method != null) {
 				return method;
 			}
+		}
+		return null;
+	}
+
+	public JSONObject toJson() {
+		try {
+			JSONObject result = new JSONObject();
+			JSONArray servicesJson = new JSONArray();
+			result.put("services", servicesJson);
+			for (SService sService : servicesByName.values()) {
+				JSONObject serviceJson = new JSONObject();
+				serviceJson.put("name", sService.getName());
+				serviceJson.put("simpleName", sService.getSimpleName());
+				servicesJson.put(serviceJson);
+				JSONArray methodsJson = new JSONArray();
+				serviceJson.put("methods", methodsJson);
+				for (SMethod method : sService.getMethods()) {
+					methodsJson.put(method.toJson());
+				}
+			}
+			return result;
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

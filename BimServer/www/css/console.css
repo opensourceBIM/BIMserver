@@ -88,3 +88,7 @@ pre.prettyprint {
 .logo {
 	margin-top: 5px;
 }
+
+.pagination .selected {
+	font-weight: bold;
+}

@@ -86,14 +86,25 @@
 			</div>
 		</div>	
 	</div>
-	<div class="scenarios page initialhide">
-		<ul class="nav nav-tabs nav-stacked scenarioNav">
-			<li><a><i class="icon-chevron-right"></i>Checkin IFC</a></li>
-			<li><a><i class="icon-chevron-right"></i>Modify model</a></li>
-			<li><a><i class="icon-chevron-right"></i>Download IFC</a></li>
-		</ul>
-		<div class="checkinifcscenario">
-			
+	<div class="scenarios page initialhide container-fluid">
+		<div class="row-fluid">
+			<div class="span2">
+				<ul class="nav nav-tabs nav-stacked scenarioNav">
+				</ul>
+			</div>
+			<div class="span10">
+				<div class="scenarioDetails initialhide">
+					<h1 class="title"></h1>
+					<div class="pagination">
+						<ul>
+							<li class="disabled backButton"><a href="#">&laquo;</a></li>
+							<li class="disabled forwardButton"><a href="#">&raquo;</a></li>
+						</ul>
+					</div>
+					<div class="scenarioMethod">
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 <script>
@@ -152,6 +163,34 @@ LazyLoad.js([
 		$(".subtitle").html(ConsoleSettings.subtitle);
 		$(".version").html("Version: " + ConsoleSettings.getVersion());
 
+		var scenarios = [
+			{
+				name: "Checkin IFC",
+				calls: [
+					{
+						name: "Login",
+						interface: "Bimsie1AuthInterface",
+						method: "login"
+					},
+					{
+						name: "Create project",
+						interface: "Bimsie1ServiceInterface",
+						method: "addProject"
+					},
+					{
+						name: "Find deserializer",
+						interface: "Bimsie1ServiceInterface",
+						method: "getSuggestedDeserializerForExtension"
+					},
+					{
+						name: "Checkin",
+						interface: "Bimsie1ServiceInterface",
+						method: "checkin"
+					}
+				]
+			}
+		];
+		
 		var token = $.cookie("token");
 		if (token != null) {
 			$(".loginButton").html("Logout");
@@ -178,7 +217,7 @@ LazyLoad.js([
 			$.getScript(Global.baseDir + "soap11/" + key + "?js");
 		}
 
-		var lastCall = {};
+		othis.lastCall = {};
 
 		this.call = function(requestObject, callback) {
 			$.ajax({
@@ -211,7 +250,7 @@ LazyLoad.js([
 					$(".output").val(textStatus);
 				}
 			});
-		}
+		};
 
 		this.makeExampleFromType = function(fieldName, type, genericType, doc) {
 			if (doc == "") {
@@ -230,7 +269,7 @@ LazyLoad.js([
 				} else {
 					example += "{\n";
 					type.fields.forEach(function(field, index){
-						example += "    \"" + field.name + "\": " + makeExampleFromType("", field.type, field.genericType, field.doc);
+						example += "    \"" + field.name + "\": " + othis.makeExampleFromType("", field.type, field.genericType, field.doc);
 						if (index != type.fields.length - 1) {
 							example += ",";
 						}
@@ -244,7 +283,7 @@ LazyLoad.js([
 				example += "\"" + $(".__field" + fieldName).val() + "\"";
 			}
 			return example;
-		}
+		};
 
 		this.getJsonText = function() {
 			var request = "{\n";
@@ -252,13 +291,14 @@ LazyLoad.js([
 				request += "  \"token\": \"" + token + "\",\n";
 			}
 			request += "  \"request\": {\n";
-			request += "    \"interface\": \"" + lastCall.interfaceSimpleName + "\", \n";
-			request += "    \"method\": \"" + lastCall.methodName + "\", \n";
+			console.log(othis.lastCall);
+			request += "    \"interface\": \"" + othis.lastCall.serviceInterface.simpleName + "\", \n";
+			request += "    \"method\": \"" + othis.lastCall.method.name + "\", \n";
 			request += "    \"parameters\": {\n";
-			lastCall.parameters.forEach(function(parameter, index){
+			othis.lastCall.method.parameters.forEach(function(parameter, index){
 				request += "      \"" + parameter.name + "\": ";
-				request += makeExampleFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc);
-				if (index != lastCall.parameters.length - 1) {
+				request += othis.makeExampleFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc);
+				if (index != othis.lastCall.method.parameters.length - 1) {
 					request += ",\n";
 				} else {
 					request += "\n";
@@ -268,7 +308,7 @@ LazyLoad.js([
 			request += "  }\n";
 			request += "}";
 			return request;	
-		}
+		};
 
 		// http://stackoverflow.com/questions/3362471/how-can-i-call-a-javascript-constructor-using-call-or-apply
 		this.conthunktor = function(Constructor) {
@@ -292,50 +332,50 @@ LazyLoad.js([
 		         // (consistent with behaviour of the new operator)
 		         return Object(ret) === ret ? ret : inst;
 		    }
-		}
+		};
 
 		this.getSoapArgs = function() {
 			var params = [];
-			lastCall.parameters.forEach(function(parameter, index){
+			othis.lastCall.method.parameters.forEach(function(parameter, index){
 				params.push($(".__field" + parameter.name).val());
 			});
 			return params;
-		}
+		};
 
 		this.getSoapText = function() {
-			var params = getSoapArgs();	
+			var params = othis.getSoapArgs();	
 			var global = (function () {
 			    return this;
 			}());
 
-			var interfaceConstructor = global[namespaceMapping[lastCall.interfaceSimpleName]];
-			var interfaceObject = conthunktor(interfaceConstructor)();
-			var inputSerializer = interfaceObject[lastCall.methodName + "_serializeInput"];
+			var interfaceConstructor = global[namespaceMapping[othis.lastCall.serviceInterface.simpleName]];
+			var interfaceObject = othis.conthunktor(interfaceConstructor)();
+			var inputSerializer = interfaceObject[othis.lastCall.method.name + "_serializeInput"];
 			var code = inputSerializer(new CxfApacheOrgUtil(), params);
 			return vkbeautify.xml(code);
-		}
+		};
 
 		this.inputChange = function() {
 			$(".requestdiv pre").removeClass("prettyprinted");
 			if (protocol == "json") {
-				$(".requestdiv pre").text(getJsonText());
+				$(".requestdiv pre").text(othis.getJsonText());
 			} else if (protocol == "soap") {
-				$(".requestdiv pre").text(getSoapText());
+				$(".requestdiv pre").text(othis.getSoapText());
 			}
 			prettyPrint();
-		}
+		};
 
 		this.makeFieldFromType = function(fieldName, type, genericType, doc) {
 			if (type.simpleName == "String") {
 				var input = $("<input type=\"text\"/>");
 				input.addClass("__field" + fieldName);
-				input.keyup(inputChange);
+				input.keyup(othis.inputChange);
 				input.enterpress(othis.send);
 				return input;
 			} else if (type.simpleType == "ENUM") {
 				var select = $("<select></select>");
 				select.addClass("__field" + fieldName);
-				select.change(inputChange);
+				select.change(othis.inputChange);
 				var request = {
 					request: {
 						interface: "MetaInterface",
@@ -362,7 +402,7 @@ LazyLoad.js([
 					var data = event.target.result;
 					var encoded = data.substr(data.indexOf(",") + 1);
 					input.data("base64", encoded);
-					inputChange();
+					othis.inputChange();
 				};
 
 				input.change(function(){
@@ -378,119 +418,87 @@ LazyLoad.js([
 			} else if (type.simpleName == "Boolean") {
 				var input = $("<input type=\"checkbox\" value=\"true\"/>");
 				input.addClass("__field" + fieldName);
-				input.change(inputChange);
+				input.change(othis.inputChange);
 				return input;
 			} else if (type.simpleName == "List") {
 				
 			} else {
 				var input = $("<input type=\"text\"/>");
-				input.keyup(inputChange);
+				input.keyup(othis.inputChange);
 				input.enterpress(othis.send);
 				input.addClass("__field" + fieldName);
 				return input;
 			}
-		}
+		};
 
-		this.loadExampleJson = function(interfaceName, interfaceSimpleName, methodName, doc, returnDoc) {
+		this.loadExampleJson = function(serviceInterface, method, container) {
 			if ($(".hero-unit").is(":visible")) {
 				$(".hero-unit").hide();
 			}
-			lastCall.interfaceName = interfaceName;
-			lastCall.interfaceSimpleName = interfaceSimpleName;
-			lastCall.methodName = methodName;
-			lastCall.doc = doc;
-			var request = {
-				request: {
-					interface: "org.bimserver.MetaInterface",
-					method: "getServiceMethodParameters",
-					parameters: {
-						serviceInterfaceName: interfaceName,
-						serviceMethodName: methodName				
-					}
-				}
-			};
-			$(".method .name").html(interfaceSimpleName + "." + methodName);
-			if (doc == null || doc == "") {
-				$(".method .doc").html("No documentation for this method yet");
+			othis.lastCall.serviceInterface = serviceInterface;
+			othis.lastCall.method = method;
+			container.find(".name").html(serviceInterface.simpleName + "." + method.name);
+			if (method.doc == null || method.doc == "") {
+				container.find(".doc").html("No documentation for this method yet");
 			} else {
-				$(".method .doc").html(doc);
+				container.find(".doc").html(method.doc);
 			}
-			if (returnDoc == null || returnDoc == "") {
-				$(".method .docreturn").parent().hide();
+			if (method.returnDoc == null || method.returnDoc == "") {
+				container.find(".docreturn").parent().hide();
 			} else {
-				$(".method .docreturn").html(returnDoc).parent().show();
+				container.find(".docreturn").html(method.returnDoc).parent().show();
 			}
-			$(".method .parametersForm *").remove();
-			othis.call(request, function(data){
-				lastCall.parameters = data.response.result;
-				if (data.response.result.length == 0) {
-					$(".method .noparameters").show();
-					$(".method .parameters").hide();
-				} else {
-					$(".method .noparameters").hide();
-					$(".method .parameters").show();
-					data.response.result.forEach(function(parameter, index){
-						var div = $("<div class=\"control-group\">");
-						var label = $("<label class=\"control-label\"><a>" + parameter.name + "</a></label>");
-						label.find("a").attr("title", parameter.doc);
-						label.find("a").tooltip();
-						var controls = $("<div class=\"controls\">");
-						div.append(label);
-						div.append(controls);
-						var input = makeFieldFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc);
-						controls.append(input);
-						$(".method .parametersForm").append(div);
-					});
-				}
-				$(".method").show();
-				$(".method .parameters input:first").focus();
-				$(".responsediv").hide();
-				inputChange();
+			container.find(".parametersForm *").remove();
+			container.find(".noparameters").hide();
+			container.find(".parameters").show();
+			method.parameters.forEach(function(parameter, index){
+				var div = $("<div class=\"control-group\">");
+				var label = $("<label class=\"control-label\"><a>" + parameter.name + "</a></label>");
+				label.find("a").attr("title", parameter.doc);
+				label.find("a").tooltip();
+				var controls = $("<div class=\"controls\">");
+				div.append(label);
+				div.append(controls);
+				var input = othis.makeFieldFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc);
+				controls.append(input);
+				container.find(".parametersForm").append(div);
 			});
-		}
+			container.show();
+			container.find(".parameters input:first").focus();
+			container.find(".responsediv").hide();
+			othis.inputChange();
+		};
 
 		this.loadMethods = function(event) {
 			if (event != null) {
 				event.preventDefault();
 			}
-			ConsoleSettings.getServiceInterfaces(othis, function(initialServiceInterfaces){
+			ConsoleSettings.getServiceInterfaces(othis, function(serviceInterfaces){
 				$(".innerMethodList").empty();
-				var list = [];
-				initialServiceInterfaces.forEach(function(serviceInterface){
-					list.push({
-						serviceInterfaceName: serviceInterface.name,
-						serviceInterfaceSimpleName: serviceInterface.simpleName
-					});
-				});
-				ConsoleSettings.getServiceMethods(othis, list, function(serviceInterfaces){
-					serviceInterfaces.forEach(function(serviceInterface, index){
-						var headerLi = $("<li class=\"nav-header\">" + initialServiceInterfaces[index].simpleName + "</li>");
-						$(".innerMethodList").append(headerLi);
-						serviceInterface.result.forEach(function(serviceMethod){
-							var li = $("<li></li>");
-							var a = $("<a>" + serviceMethod.name + "</a>");
-							a.data("serviceInterfaceName", initialServiceInterfaces[index].serviceInterfaceName);
-							a.data("serviceInterfaceSimpleName", initialServiceInterfaces[index].serviceInterfaceSimpleName);
-							a.data("serviceMethodName", serviceMethod.name);
-							a.data("doc", serviceMethod.doc);
-							a.data("returndoc", serviceMethod.returnDoc);
-							a.click(function(){
-								$(this).parent().parent().find("li").removeClass("active");
-								$(this).parent().addClass("active");
-								othis.loadExampleJson($(this).data("serviceInterfaceName"), $(this).data("serviceInterfaceSimpleName"), $(this).data("serviceMethodName"), $(this).data("doc"), $(this).data("returndoc"));
-							});
-							li.append(a);
-							$(".innerMethodList").append(li);
+				serviceInterfaces.forEach(function(serviceInterface, index){
+					var headerLi = $("<li class=\"nav-header\">" + serviceInterface.simpleName + "</li>");
+					$(".innerMethodList").append(headerLi);
+					serviceInterface.methods.forEach(function(serviceMethod){
+						var li = $("<li></li>");
+						var a = $("<a>" + serviceMethod.name + "</a>");
+						a.data("method", serviceMethod);
+						a.data("serviceInterface", serviceInterface);
+						a.click(function(){
+							$(this).parent().parent().find("li").removeClass("active");
+							$(this).parent().addClass("active");
+							othis.loadExampleJson($(this).data("serviceInterface"), $(this).data("method"), $(".method"));
 						});
+						li.append(a);
+						$(".innerMethodList").append(li);
 					});
 				});
 			});
-		}
+		};
 
 		this.send = function() {
 			$(".responsediv pre").val("");
 			if (protocol == "json") {
-				var input = getJsonText();
+				var input = othis.getJsonText();
 				try {
 					input = JSON.parse(input);
 					othis.call(input, function(data){
@@ -509,16 +517,16 @@ LazyLoad.js([
 				var global = (function () {
 				    return this;
 				}());
-				var interfaceConstructor = global[namespaceMapping[lastCall.interfaceSimpleName]];
-				var interfaceObject = conthunktor(interfaceConstructor)();
-				var callMethod = interfaceObject[lastCall.methodName];
+				var interfaceConstructor = global[namespaceMapping[othis.lastCall.serviceInterface.simpleName]];
+				var interfaceObject = othis.conthunktor(interfaceConstructor)();
+				var callMethod = interfaceObject[othis.lastCall.method.name];
 				var allArguments = [];
 				allArguments.push(function(response){
-					if (lastCall.methodName == "login") {
+					if (othis.lastCall.method.name == "login") {
 						token = response.getReturn();
 						$.cookie("token", token);
 						$(".loginButton").html("Logout");
-					} else if (lastCall.methodName == "logout") {
+					} else if (othis.lastCall.method.name == "logout") {
 						token = null;
 						$.cookie("token", null);
 						$(".loginButton").html("Login");
@@ -527,12 +535,12 @@ LazyLoad.js([
 				allArguments.push(function(){
 					console.log(arguments);
 				});
-				var otherArgs = getSoapArgs();
+				var otherArgs = othis.getSoapArgs();
 				otherArgs.forEach(function(arg){
 					allArguments.push(arg);
 				});
 				
-				var existingSuccessMethod = interfaceObject[lastCall.methodName + "_onsuccess"];
+				var existingSuccessMethod = interfaceObject[othis.lastCall.method.name + "_onsuccess"];
 				var newSuccessMethod = function(client, responseXml){
 					$(".responsediv pre").removeClass("error").addClass("success");
 					$(".responsediv pre").removeClass("prettyprinted");
@@ -542,9 +550,9 @@ LazyLoad.js([
 					$(".responsediv").show();
 					existingSuccessMethod.apply(this, arguments);
 				};
-				interfaceObject[lastCall.methodName + "_onsuccess"] = newSuccessMethod;
+				interfaceObject[othis.lastCall.method.name + "_onsuccess"] = newSuccessMethod;
 
-				var existingErrorMethod = interfaceObject[lastCall.methodName + "_onerror"];
+				var existingErrorMethod = interfaceObject[othis.lastCall.method.name + "_onerror"];
 				var newErrorMethod = function(client, responseXml){
 					$(".responsediv pre").addClass("error").removeClass("success");
 					$(".responsediv pre").removeClass("prettyprinted");
@@ -554,11 +562,11 @@ LazyLoad.js([
 					$(".responsediv").show();
 					existingErrorMethod.apply(this, arguments);
 				};
-				interfaceObject[lastCall.methodName + "_onerror"] = newErrorMethod;
+				interfaceObject[othis.lastCall.method.name + "_onerror"] = newErrorMethod;
 				
 				callMethod.apply(interfaceObject, allArguments);
 			}
-		}
+		};
 
 		this.loadServiceInterfaceMethod = function(interfaceName, interfaceSimpleName, methodName) {
 			var request = {
@@ -572,25 +580,93 @@ LazyLoad.js([
 				}
 			};
 			othis.call(request, function(data){
-				loadExampleJson(interfaceName, interfaceSimpleName, data.response.result.name, data.response.result.doc, data.response.result.returnDoc);
+				othis.loadExampleJson(interfaceName, interfaceSimpleName, data.response.result.name, data.response.result.doc, data.response.result.returnDoc);
 			});
-		}
+		};
+		
+		this.loadScenarioCall = function(){
+			var call = $(this).data("call");
+			var methodDiv = $(".scenarioMethod");
+			$(this).parent().parent().find("li").removeClass("selected");
+			$(this).parent().addClass("selected");
+			othis.findServiceInterfaceAndMethod(call.interface, call.method, function(serviceInterface, method){
+				othis.loadExampleJson(serviceInterface, method, methodDiv);
+			});
+		};
+		
+		this.loadScenario = function(){
+			var scenario = $(this).data("scenario");
+			var clone = $(".method").clone();
+			$(".scenarioDetails .scenarioMethod").append(clone.show());
+			$(".scenarioDetails .title").html(scenario.name + " Scenario");
+			scenario.calls.forEach(function(call, index){
+				var li = $("<li>");
+				var a = $("<a>");
+				a.data("call", call);
+				a.click(othis.loadScenarioCall);
+				a.html(call.name);
+				li.append(a);
+				$(".scenarioDetails .pagination .forwardButton").before(li);
+				if (index == 0) {
+					othis.loadScenarioCall.call(a);
+				}
+			});
+			$(".scenarioDetails").show();
+		};
 
+		this.findServiceInterface = function(simpleName, callback){
+			ConsoleSettings.getServiceInterfaces(othis, function(serviceInterfaces){
+				serviceInterfaces.forEach(function(serviceInterface){
+					if (serviceInterface.simpleName == simpleName) {
+						callback(serviceInterface);
+					}
+				});
+			});
+		};
+
+		this.findServiceInterfaceAndMethod = function(simpleName, methodName, callback){
+			ConsoleSettings.getServiceInterfaces(othis, function(serviceInterfaces){
+				serviceInterfaces.forEach(function(serviceInterface){
+					if (serviceInterface.simpleName == simpleName) {
+						serviceInterface.methods.forEach(function(method){
+							if (method.name == methodName) {
+								callback(serviceInterface, method);
+							}
+						});
+					}
+				});
+			});
+		};
+		
 		$(".loginButton").click(function(){
-			if (token == null) {
-				loadServiceInterfaceMethod("org.buildingsmart.bimsie1.Bimsie1AuthInterface", "Bimsie1AuthInterface", "login");
-			} else {
-				loadServiceInterfaceMethod("org.buildingsmart.bimsie1.Bimsie1AuthInterface", "Bimsie1AuthInterface", "logout");
-			}
+			othis.findServiceInterface("Bimsie1AuthInterface", function(serviceInterface){
+				serviceInterface.methods.forEach(function(method){
+					if (token == null && method.name == "login") {
+						othis.loadExampleJson(serviceInterface, method, $(".method"));
+					} else if (token != null && method.name == "logout") {
+						othis.loadExampleJson(serviceInterface, method, $(".method"));
+					}
+				});
+			});
 		});
 
+		scenarios.forEach(function(scenario){
+			var a = $("<a>");
+			var li = $("<li>");
+			a.append(scenario.name);
+			a.data("scenario", scenario);
+			a.click(othis.loadScenario);
+			li.append(a);
+			$(".scenarioNav").append(li);
+		});
+		
 		$(".soapRadio, .jsonRadio").click(function(){
 			if ($(this).hasClass("jsonRadio")) {
 				protocol = "json";
 			} else if ($(this).hasClass("soapRadio")) {
 				protocol = "soap";
 			}
-			inputChange();
+			othis.inputChange();
 		});
 		$(".sendButton").click(othis.send);
 		$(".homeLink").click(function(){

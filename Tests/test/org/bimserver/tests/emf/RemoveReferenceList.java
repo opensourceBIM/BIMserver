@@ -8,7 +8,6 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
@@ -21,11 +20,10 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the service interface
-			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
 			bimServerClient.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 
 			// Create a new project
-			SProject newProject = serviceInterface.addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
 			
 			ClientIfcModel model = bimServerClient.newModel(newProject);
 			
@@ -50,7 +48,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			model.commit("initial");
 			
 			// refresh
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 			
 			model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
@@ -63,7 +61,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			model.commit("removed middle link");
 			
 			// refresh
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
 				if (ifcFurnishingElement.getContainedInStructure().size() != 2) {
 					fail("Size should be 2");

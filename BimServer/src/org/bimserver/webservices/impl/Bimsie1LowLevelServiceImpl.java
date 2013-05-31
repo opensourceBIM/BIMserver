@@ -38,6 +38,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.CommitTransactionDatabaseAction;
+import org.bimserver.database.actions.CountDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectByGuidDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectByOidDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectsByTypeDatabaseAction;
@@ -650,6 +651,19 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 			BimDatabaseAction<DataObject> action = new GetDataObjectByOidDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, oid, getAuthorization());
 			SDataObject dataObject = getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
 			return dataObject;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	public Integer count(Long roid, String className) throws UserException ,ServerException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			CountDatabaseAction action = new CountDatabaseAction(session, getInternalAccessMethod(), roid, className, getAuthorization());
+			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

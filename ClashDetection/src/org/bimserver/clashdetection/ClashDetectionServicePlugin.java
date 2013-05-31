@@ -215,7 +215,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						long fileId = bimServerClientInterface.getServiceInterface().uploadFile(file);
 						extendedData.setFileId(fileId);
 
-						bimServerClientInterface.getServiceInterface().addExtendedDataToRevision(roid, extendedData);
+						bimServerClientInterface.getBimsie1ServiceInterface().addExtendedDataToRevision(roid, extendedData);
 					} catch (Exception e) {
 						LOGGER.error("", e);
 					}

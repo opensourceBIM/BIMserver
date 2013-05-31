@@ -22,7 +22,7 @@ public class ListWalls extends TestWithEmbeddedServer {
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
 			
 			// Get the appropriate deserializer
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
@@ -31,7 +31,7 @@ public class ListWalls extends TestWithEmbeddedServer {
 			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/Jesse.1.ifc"));
 
 			// Refresh project info
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 
 			ClientIfcModel model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
 			model.getAllWithSubTypes(IfcWallStandardCase.class);

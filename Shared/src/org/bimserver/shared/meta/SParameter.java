@@ -17,8 +17,12 @@ package org.bimserver.shared.meta;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 public class SParameter {
 
@@ -76,5 +80,13 @@ public class SParameter {
 	
 	public String getDoc() {
 		return doc;
+	}
+
+	public JSONObject toJson() throws JSONException {
+		JSONObject parameterJson = new JSONObject();
+		parameterJson.put("name", getName());
+		parameterJson.put("doc", getDoc());
+		parameterJson.put("type", getType().toJson());
+		return parameterJson;
 	}
 }

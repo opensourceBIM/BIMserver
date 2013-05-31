@@ -1,5 +1,10 @@
 package org.bimserver.shared.meta;
 
+import java.util.Collection;
+
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
  * 
@@ -60,5 +65,12 @@ public class SField {
 
 	public String getDoc() {
 		return doc;
+	}
+
+	public JSONObject toJson() throws JSONException {
+		JSONObject json = new JSONObject();
+		json.put("name", name);
+		json.put("type", getType().toJson());
+		return json;
 	}
 }

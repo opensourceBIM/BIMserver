@@ -29,6 +29,31 @@ public class AsyncBimsie1ServiceInterface {
 		this.syncService = syncService;
 	}
 
+	public interface AddExtendedDataToRevisionCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface AddProjectCallback {
+		void success(org.bimserver.interfaces.objects.SProject result);
+		void error(Exception e);
+	}
+	
+	public interface AddProjectAsSubProjectCallback {
+		void success(org.bimserver.interfaces.objects.SProject result);
+		void error(Exception e);
+	}
+	
+	public interface BranchToExistingProjectCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface BranchToNewProjectCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
 	public interface CheckinCallback {
 		void success(java.lang.Long result);
 		void error(Exception e);
@@ -41,6 +66,11 @@ public class AsyncBimsie1ServiceInterface {
 	
 	public interface CheckoutCallback {
 		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface DeleteProjectCallback {
+		void success(java.lang.Boolean result);
 		void error(Exception e);
 	}
 	
@@ -79,6 +109,21 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetAllExtendedDataOfRevisionCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SExtendedData> result);
+		void error(Exception e);
+	}
+	
+	public interface GetAllProjectsCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
+		void error(Exception e);
+	}
+	
+	public interface GetAllRevisionsOfProjectCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SRevision> result);
+		void error(Exception e);
+	}
+	
 	public interface GetDeserializerByIdCallback {
 		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
 		void error(Exception e);
@@ -94,6 +139,26 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetExtendedDataCallback {
+		void success(org.bimserver.interfaces.objects.SExtendedData result);
+		void error(Exception e);
+	}
+	
+	public interface GetExtendedDataSchemaByIdCallback {
+		void success(org.bimserver.interfaces.objects.SExtendedDataSchema result);
+		void error(Exception e);
+	}
+	
+	public interface GetProjectByPoidCallback {
+		void success(org.bimserver.interfaces.objects.SProject result);
+		void error(Exception e);
+	}
+	
+	public interface GetProjectsByNameCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
+		void error(Exception e);
+	}
+	
 	public interface GetQueryEngineByIdCallback {
 		void success(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration result);
 		void error(Exception e);
@@ -101,6 +166,11 @@ public class AsyncBimsie1ServiceInterface {
 	
 	public interface GetQueryEngineByNameCallback {
 		void success(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration result);
+		void error(Exception e);
+	}
+	
+	public interface GetRevisionCallback {
+		void success(org.bimserver.interfaces.objects.SRevision result);
 		void error(Exception e);
 	}
 	
@@ -119,13 +189,84 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetSubProjectsCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
+		void error(Exception e);
+	}
+	
 	public interface GetSuggestedDeserializerForExtensionCallback {
 		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
 		void error(Exception e);
 	}
 	
+	public interface UndeleteProjectCallback {
+		void success(java.lang.Boolean result);
+		void error(Exception e);
+	}
+	
 
 
+	public void addExtendedDataToRevision(final java.lang.Long roid, final org.bimserver.interfaces.objects.SExtendedData extendedData, final AddExtendedDataToRevisionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.addExtendedDataToRevision(roid, extendedData);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void addProject(final java.lang.String projectName, final AddProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.addProject(projectName));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void addProjectAsSubProject(final java.lang.String projectName, final java.lang.Long parentPoid, final AddProjectAsSubProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.addProjectAsSubProject(projectName, parentPoid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void branchToExistingProject(final java.lang.Long roid, final java.lang.Long destPoid, final java.lang.String comment, final java.lang.Boolean sync, final BranchToExistingProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.branchToExistingProject(roid, destPoid, comment, sync));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void branchToNewProject(final java.lang.Long roid, final java.lang.String projectName, final java.lang.String comment, final java.lang.Boolean sync, final BranchToNewProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.branchToNewProject(roid, projectName, comment, sync));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void checkin(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.Long fileSize, final java.lang.String fileName, final javax.activation.DataHandler data, final java.lang.Boolean sync, final CheckinCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -155,6 +296,18 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.checkout(roid, serializerOid, sync));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void deleteProject(final java.lang.Long poid, final DeleteProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.deleteProject(poid));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -246,6 +399,42 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
+	public void getAllExtendedDataOfRevision(final java.lang.Long roid, final GetAllExtendedDataOfRevisionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllExtendedDataOfRevision(roid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllProjects(final java.lang.Boolean onlyTopLevel, final GetAllProjectsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllProjects(onlyTopLevel));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllRevisionsOfProject(final java.lang.Long poid, final GetAllRevisionsOfProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllRevisionsOfProject(poid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getDeserializerById(final java.lang.Long oid, final GetDeserializerByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -282,6 +471,54 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
+	public void getExtendedData(final java.lang.Long oid, final GetExtendedDataCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getExtendedData(oid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getExtendedDataSchemaById(final java.lang.Long oid, final GetExtendedDataSchemaByIdCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getExtendedDataSchemaById(oid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getProjectByPoid(final java.lang.Long poid, final GetProjectByPoidCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getProjectByPoid(poid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getProjectsByName(final java.lang.String name, final GetProjectsByNameCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getProjectsByName(name));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getQueryEngineById(final java.lang.Long oid, final GetQueryEngineByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -299,6 +536,18 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getQueryEngineByName(name));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getRevision(final java.lang.Long roid, final GetRevisionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getRevision(roid));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -342,11 +591,35 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
+	public void getSubProjects(final java.lang.Long poid, final GetSubProjectsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getSubProjects(poid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getSuggestedDeserializerForExtension(final java.lang.String extension, final GetSuggestedDeserializerForExtensionCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
 					callback.success(syncService.getSuggestedDeserializerForExtension(extension));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void undeleteProject(final java.lang.Long poid, final UndeleteProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.undeleteProject(poid));
 				} catch (Exception e) {
 					callback.error(e);
 				}

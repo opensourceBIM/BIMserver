@@ -102,7 +102,7 @@ public class TestIfcEngineEmbedded {
 			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
 						
 			// Create a project
-			SProject project = client.getServiceInterface().addProject("test" + Math.random());
+			SProject project = client.getBimsie1ServiceInterface().addProject("test" + Math.random());
 
 			// This is the test file
 			File testIfcFile = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
@@ -111,7 +111,7 @@ public class TestIfcEngineEmbedded {
 			client.checkin(project.getOid(), "testing ifc engine", deserializer.getOid(), false, true, testIfcFile);
 
 			// Update local project
-			project = client.getServiceInterface().getProjectByPoid(project.getOid());
+			project = client.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
 
 			// Find collada serializer
 			SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/collada");

@@ -27,7 +27,7 @@ public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
 			long s = System.nanoTime();
 			for (int i=0; i<3; i++) {
 				// Create a new project
-				SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random());
+				SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
 				
 				// This is the file we will be checking in
 				File ifcFile = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
@@ -45,7 +45,7 @@ public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
 					SSerializerPluginConfiguration serializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
 					
 					// Get the project details
-					newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+					newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 					
 					// Download the latest revision  (the one we just checked in)
 					Long downloadId = bimServerClient.getBimsie1ServiceInterface().download(newProject.getLastRevisionId(), serializer.getOid(), true, true);

@@ -37,7 +37,6 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
-import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SProjectSmall;
@@ -147,28 +146,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "userType", partName = "changeUserType.userType") SUserType userType) throws ServerException, UserException;
 
 	/**
-	 * Add a new project
-	 * @param projectName Name of the project, must be a unique name within all root-projects
-	 * @return The created Project
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addProject")
-	SProject addProject(
-		@WebParam(name = "projectName", partName = "addProject.projectName") String projectName) throws ServerException, UserException;
-
-	/**
-	 * Add a new project as a subproject of another project
-	 * @param projectName Name of the project, must be a unique name within the parent project
-	 * @param parentPoid The ObjectID of the parent project
-	 * @return The created Project
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addProjectAsSubProject")
-	SProject addProjectAsSubProject(
-		@WebParam(name = "projectName", partName = "addProjectAsSubProject.projectName") String projectName,
-		@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid) throws ServerException, UserException;
-
-	/**
 	 * Update project properties, the only three properties that can be updated with this call are "name", "description" and "exportLengthMeasurePrefix"
 	 * @param sProject A Project object containing the new properties
 	 * @throws ServerException, UserException
@@ -211,16 +188,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "poid", partName = "removeUserFromProject.poid") Long poid) throws ServerException, UserException;
 
 	/**
-	 * Delete a Project, Projects can be undeleted with the undeleteProject method
-	 * @param poid ObjectID of the Project to delete
-	 * @return Whether the Project has been deleted
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "deleteProject")
-	Boolean deleteProject(
-		@WebParam(name = "poid", partName = "deleteProject.poid") Long poid) throws ServerException, UserException;
-
-	/**
 	 * Delete a User, Users van be undeleted with the undeleteUser method
 	 * @param uoid ObjectID of the User
 	 * @return Whether the User has been deleted
@@ -229,16 +196,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "deleteUser")
 	Boolean deleteUser(
 		@WebParam(name = "uoid", partName = "deleteUser.uoid") Long uoid) throws ServerException, UserException;
-
-	/**
-	 * Get a list of all Projects the user is authorized for
-	 * 
-	 * @return A list of Projects
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllProjects")
-	List<SProject> getAllProjects(
-		@WebParam(name = "onlyTopLevel", partName = "getAllProjects.onlyTopLevel") Boolean onlyTopLevel) throws ServerException, UserException;
 
 	/**
 	 * 
@@ -251,17 +208,6 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action = "getAllUsers")
 	List<SUser> getAllUsers() throws ServerException, UserException;
-
-	/**
-	 * Get a list of all Revisions of a Project
-	 * 
-	 * @param poid ObjectID of the Project
-	 * @return A list of all Revisions
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllRevisionsOfProject")
-	List<SRevision> getAllRevisionsOfProject(
-		@WebParam(name = "poid", partName = "getAllRevisionsOfProject.poid") Long poid) throws ServerException, UserException;
 
 	@WebMethod(action = "getAllServicesOfProject")
 	List<SService> getAllServicesOfProject(
@@ -304,24 +250,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "roid", partName = "getAllCheckoutsOfRevision.roid") Long roid) throws ServerException, UserException;
 
 	/**
-	 * @param poid ObjectID of the Project
-	 * @return The Project
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getProjectByPoid")
-	SProject getProjectByPoid(
-		@WebParam(name = "poid", partName = "getProjectByPoid.poid") Long poid) throws ServerException, UserException;
-
-	/**
-	 * @param roid ObjectID of the Revision
-	 * @return The Revision
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getRevision")
-	SRevision getRevision(
-		@WebParam(name = "roid", partName = "getRevision.roid") Long roid) throws ServerException, UserException;
-
-	/**
 	 * @return A list of available classes in the BIMserver, only classes from the IFC model will be returned
 	 * @throws ServerException, UserException
 	 */
@@ -356,16 +284,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getUserByUserName")
 	SUser getUserByUserName(
 		@WebParam(name = "username", partName = "getUserByUserName.username") String username) throws ServerException, UserException;
-
-	/**
-	 * Undelete a previously deleted Project, Projets can be deleted with the deleteProject method
-	 * @param poid The ObjectID of the Project to undelete
-	 * @return Whether the Project was successfully undeleted
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "undeleteProject")
-	Boolean undeleteProject(
-		@WebParam(name = "poid", partName = "undeleteProject.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * Undelete a previously deleted User, Users can be deleted with the deleteUser method
@@ -432,36 +350,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "poid", partName = "userHasRights.poid") Long poid) throws ServerException, UserException;
 
 	/**
-	 * Branch a given Revision as a new Revision on a new Project, branching is always synchronous
-	 * @param roid ObjectID of the Revision to branch
-	 * @param projectName Name of the to be created Project
-	 * @param comment A comment describing the new Revision
-	 * @return The result of this branch, you can use getCheckinState with this ID
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "branchToNewProject")
-	Long branchToNewProject(
-		@WebParam(name = "roid", partName = "branchToNewProject.roid") Long roid,
-		@WebParam(name = "projectName", partName = "branchToNewProject.projectName") String projectName,
-		@WebParam(name = "comment", partName = "branchToNewProject.comment") String comment,
-		@WebParam(name = "sync", partName = "branchToNewProject.sync") Boolean sync) throws ServerException, UserException;
-
-	/**
-	 * Branch a given Revision as a new Revision in the given Project, branching is always synchronous
-	 * @param roid ObjectID of the Revision to branch
-	 * @param destPoid ObjectID of the Project to which a branch should be made
-	 * @param comment A comment describing the new Revision
-	 * @return The result of this branch, you can use getCheckinState with this ID
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "branchToExistingProject")
-	Long branchToExistingProject(
-		@WebParam(name = "roid", partName = "branchToExistingProject.roid") Long roid,
-		@WebParam(name = "destPoid", partName = "branchToExistingProject.destPoid") Long destPoid,
-		@WebParam(name = "comment", partName = "branchToExistingProject.comment") String comment,
-		@WebParam(name = "sync", partName = "branchToNewProject.sync") Boolean sync) throws ServerException, UserException;
-
-	/**
 	 * @param goid The ObjectID of the GeoTag
 	 * @return The GeoTag object
 	 * @throws ServerException, UserException
@@ -516,15 +404,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "uoid", partName = "getUsersProjects.uoid") Long uoid) throws ServerException, UserException;
 
 	/**
-	 * @param name
-	 * @return A list of projects with the given name (can be multiple because subprojects are also returned)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getProjectsByName")
-	List<SProject> getProjectsByName(
-		@WebParam(name = "name", partName = "getProjectsByName.name") String name) throws ServerException, UserException;
-
-	/**
 	 * @param roid
 	 * @param tag
 	 * @throws ServerException, UserException
@@ -533,15 +412,6 @@ public interface ServiceInterface extends PublicInterface {
 	void setRevisionTag(
 		@WebParam(name = "roid", partName = "setRevisionTag.roid") Long roid,
 		@WebParam(name = "tag", partName = "setRevisionTag.tag") String tag) throws ServerException, UserException;
-
-	/**
-	 * @param poid
-	 * @return A list of all subprojects of the given project
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSubProjects")
-	List<SProject> getSubProjects(
-		@WebParam(name = "poid", partName = "getSubProjects.poid") Long poid) throws ServerException, UserException;
 
 	@WebMethod(action = "getAllCheckoutsOfProjectAndSubProjects")
 	List<SCheckout> getAllCheckoutsOfProjectAndSubProjects(
@@ -586,33 +456,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "key", partName = "getQueryEngineExample.key") String key) throws ServerException, UserException;
 
 	/**
-	 * @param oid ObjectID of the ExtendedDataSchema
-	 * @return ExtendedDataSchema
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getExtendedDataSchemaById")
-	SExtendedDataSchema getExtendedDataSchemaById(
-		@WebParam(name = "oid", partName = "getExtendedDataSchemaById.oid") Long oid) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the ExtendedData
-	 * @return ExtendedData
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getExtendedData")
-	SExtendedData getExtendedData(
-		@WebParam(name = "oid", partName = "getExtendedData.oid") Long oid) throws ServerException, UserException;
-
-	/**
-	 * @param roid ObjectID of the Revision
-	 * @return ExtendedData
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllExtendedDataOfRevision")
-	List<SExtendedData> getAllExtendedDataOfRevision(
-		@WebParam(name = "roid", partName = "getAllExtendedDataOfRevision.roid") Long roid) throws ServerException, UserException;
-
-	/**
 	 * @param extendedDataSchema ExtendedDataSchema to add
 	 * @throws ServerException, UserException
 	 */
@@ -642,16 +485,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "uoid", partName = "removeUserFromExtendedDataSchema.uoid") Long uoid,
 		@WebParam(name = "edsid", partName = "removeUserFromExtendedDataSchema.edsid") Long edsid) throws ServerException, UserException;
 	
-	/**
-	 * @param roid ObjectID of the Revision
-	 * @param extendedData ExtendedData to add
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addExtendedDataToRevision")
-	void addExtendedDataToRevision(
-		@WebParam(name = "roid", partName = "addExtendedDataToRevision.roid") Long roid,
-		@WebParam(name = "extendedData", partName = "addExtendedDataToRevision.extendedData") SExtendedData extendedData) throws ServerException, UserException;
-
 	@WebMethod(action = "getExtendedDataSchemaByNamespace")
 	SExtendedDataSchema getExtendedDataSchemaByNamespace(
 		@WebParam(name = "namespace", partName = "getExtendedDataSchemaByNamespace.namespace") String namespace) throws UserException, ServerException;
@@ -669,13 +502,6 @@ public interface ServiceInterface extends PublicInterface {
 	void addExtendedDataToProject(
 		@WebParam(name = "poid", partName = "addExtendedDataToProject.poid") Long poid,
 		@WebParam(name = "extendedData", partName = "addExtendedDataToProject.extendedData") SExtendedData extendedData) throws ServerException, UserException;
-	
-	/**
-	 * @return A list of available IDMPlugins
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllObjectIDMPluginDescriptors")
-	List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws ServerException, UserException;
 
 	/**
 	 * Checkin warnings are given to users
@@ -770,11 +596,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "cleanupLongAction")
 	void cleanupLongAction(
 		@WebParam(name = "actionId", partName = "cleanupLongAction.actionId") Long actionId) throws UserException, ServerException;
-	
-	@WebMethod(action = "count")
-	Integer count(
-		@WebParam(name = "roid", partName = "count.roid") Long roid,
-		@WebParam(name = "className", partName = "count.className") String className) throws UserException, ServerException;
 	
 	@WebMethod(action = "getUserSettings")
 	SUserSettings getUserSettings() throws ServerException, UserException;

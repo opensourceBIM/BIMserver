@@ -35,11 +35,11 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.comparators.SRevisionIdComparator;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
+import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,30 +79,27 @@ public class SyndicationServlet extends SubServlet {
 			String username = split[0];
 			String password = split[1];
 			String token = (String) getServletContext().getAttribute("token");
-			ServiceInterface service = null;
-			Bimsie1AuthInterface authInterface = null;
+			ServiceMap serviceMap = null;
 			try {
 				if (token == null) {
-					service = getBimServer().getServiceFactory().get(AccessMethod.SYNDICATION).get(ServiceInterface.class);
-					authInterface = getBimServer().getServiceFactory().get(AccessMethod.SYNDICATION).get(Bimsie1AuthInterface.class);
+					serviceMap = getBimServer().getServiceFactory().get(AccessMethod.SYNDICATION);
 				} else {
-					service = getBimServer().getServiceFactory().get(token, AccessMethod.SYNDICATION).get(ServiceInterface.class);
-					authInterface = getBimServer().getServiceFactory().get(token, AccessMethod.SYNDICATION).get(Bimsie1AuthInterface.class);
+					serviceMap = getBimServer().getServiceFactory().get(token, AccessMethod.SYNDICATION);
 				}
 			} catch (UserException e) {
 				LOGGER.error("", e);
 			}
 			try {
-				if (authInterface.login(username, password) != null) {
+				if (serviceMap.getBimsie1AuthInterface().login(username, password) != null) {
 					String requestURI = request.getRequestURI();
 					response.setContentType("application/atom+xml");
 					try {
 						if (requestURI.endsWith("/projects")) {
-							writeProjectsFeed(request, response, service);
+							writeProjectsFeed(request, response, serviceMap);
 						} else if (requestURI.contains("/revisions")) {
-							writeRevisionsFeed(request, response, service);
+							writeRevisionsFeed(request, response, serviceMap);
 						} else if (requestURI.contains("/checkouts")) {
-							writeCheckoutsFeed(request, response, service);
+							writeCheckoutsFeed(request, response, serviceMap);
 						}
 					} catch (ServiceException e) {
 						response.setContentType("text/html");
@@ -116,6 +113,8 @@ public class SyndicationServlet extends SubServlet {
 				}
 			} catch (ServiceException e) {
 				LOGGER.error("", e);
+			} catch (PublicInterfaceNotFoundException e) {
+				LOGGER.error("", e);
 			}
 		} else {
 			response.setStatus(401);
@@ -123,7 +122,7 @@ public class SyndicationServlet extends SubServlet {
 		}
 	}
 
-	private void writeProjectsFeed(HttpServletRequest request, HttpServletResponse response, ServiceInterface service) throws UserException, IOException, FeedException {
+	private void writeProjectsFeed(HttpServletRequest request, HttpServletResponse response, ServiceMap serviceMap) throws UserException, IOException, FeedException, PublicInterfaceNotFoundException {
 		SyndFeed feed = new SyndFeedImpl();
 		feed.setFeedType(FEED_TYPE);
 
@@ -133,10 +132,10 @@ public class SyndicationServlet extends SubServlet {
 
 		List<SyndEntry> entries = new ArrayList<SyndEntry>();
 		try {
-			List<SProject> allProjects = service.getAllProjects(false);
+			List<SProject> allProjects = serviceMap.getBimsie1ServiceInterface().getAllProjects(false);
 			for (SProject sProject : allProjects) {
 				SyndEntry entry = new SyndEntryImpl();
-				entry.setAuthor(service.getUserByUoid(sProject.getCreatedById()).getName());
+				entry.setAuthor(serviceMap.getServiceInterface().getUserByUoid(sProject.getCreatedById()).getName());
 				entry.setTitle(sProject.getName());
 				entry.setLink(request.getContextPath() + "/project.jsp?poid=" + sProject.getOid());
 				entry.setPublishedDate(sProject.getCreatedDate());
@@ -165,9 +164,9 @@ public class SyndicationServlet extends SubServlet {
 		output.output(feed, response.getWriter());
 	}
 
-	private void writeRevisionsFeed(HttpServletRequest request, HttpServletResponse response, ServiceInterface service) throws IOException, FeedException, ServiceException {
+	private void writeRevisionsFeed(HttpServletRequest request, HttpServletResponse response, ServiceMap serviceMap) throws IOException, FeedException, ServiceException, PublicInterfaceNotFoundException {
 		long poid = Long.parseLong(request.getParameter("poid"));
-		SProject sProject = service.getProjectByPoid(poid);
+		SProject sProject = serviceMap.getBimsie1ServiceInterface().getProjectByPoid(poid);
 
 		SyndFeed feed = new SyndFeedImpl();
 		feed.setFeedType(FEED_TYPE);
@@ -178,10 +177,10 @@ public class SyndicationServlet extends SubServlet {
 
 		List<SyndEntry> entries = new ArrayList<SyndEntry>();
 		try {
-			List<SRevision> allRevisionsOfProject = service.getAllRevisionsOfProject(poid);
+			List<SRevision> allRevisionsOfProject = serviceMap.getBimsie1ServiceInterface().getAllRevisionsOfProject(poid);
 			Collections.sort(allRevisionsOfProject, new SRevisionIdComparator(false));
 			for (SRevision sVirtualRevision : allRevisionsOfProject) {
-				SUser user = service.getUserByUoid(sVirtualRevision.getUserId());
+				SUser user = serviceMap.getServiceInterface().getUserByUoid(sVirtualRevision.getUserId());
 				SyndEntry entry = new SyndEntryImpl();
 				entry.setTitle("Revision " + sVirtualRevision.getOid());
 				entry.setLink(request.getContextPath() + "/revision.jsp?poid=" + sVirtualRevision.getOid() + "&roid=" + sVirtualRevision.getOid());
@@ -201,9 +200,9 @@ public class SyndicationServlet extends SubServlet {
 		output.output(feed, response.getWriter());
 	}
 
-	private void writeCheckoutsFeed(HttpServletRequest request, HttpServletResponse response, ServiceInterface service) throws ServiceException, IOException, FeedException {
+	private void writeCheckoutsFeed(HttpServletRequest request, HttpServletResponse response, ServiceMap serviceMap) throws ServiceException, IOException, FeedException, PublicInterfaceNotFoundException {
 		long poid = Long.parseLong(request.getParameter("poid"));
-		SProject sProject = service.getProjectByPoid(poid);
+		SProject sProject = serviceMap.getBimsie1ServiceInterface().getProjectByPoid(poid);
 
 		SyndFeed feed = new SyndFeedImpl();
 		feed.setFeedType(FEED_TYPE);
@@ -214,11 +213,11 @@ public class SyndicationServlet extends SubServlet {
 
 		List<SyndEntry> entries = new ArrayList<SyndEntry>();
 		try {
-			List<SCheckout> allCheckoutsOfProject = service.getAllCheckoutsOfProjectAndSubProjects(poid);
+			List<SCheckout> allCheckoutsOfProject = serviceMap.getServiceInterface().getAllCheckoutsOfProjectAndSubProjects(poid);
 			for (SCheckout sCheckout : allCheckoutsOfProject) {
-				SRevision revision = service.getRevision(sCheckout.getRevision().getOid());
-				SProject project = service.getProjectByPoid(sCheckout.getProjectId());
-				SUser user = service.getUserByUoid(sCheckout.getUserId());
+				SRevision revision = serviceMap.getBimsie1ServiceInterface().getRevision(sCheckout.getRevision().getOid());
+				SProject project = serviceMap.getBimsie1ServiceInterface().getProjectByPoid(sCheckout.getProjectId());
+				SUser user = serviceMap.getServiceInterface().getUserByUoid(sCheckout.getUserId());
 				SyndEntry entry = new SyndEntryImpl();
 				entry.setTitle("Checkout on " + project.getName() + ", revision " + revision.getId());
 				entry.setLink(request.getContextPath() + "/project.jsp?poid=" + sProject.getOid());

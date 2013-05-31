@@ -90,7 +90,7 @@ public class DownloadServlet extends SubServlet {
 			String action = request.getParameter("action");
 			if (action != null) {
 				if (action.equals("extendeddata")) {
-					SExtendedData sExtendedData = serviceMap.getServiceInterface().getExtendedData(Long.parseLong(request.getParameter("edid")));
+					SExtendedData sExtendedData = serviceMap.getBimsie1ServiceInterface().getExtendedData(Long.parseLong(request.getParameter("edid")));
 					SFile file = serviceMap.getServiceInterface().getFile(sExtendedData.getFileId());
 					if (file.getMime() != null) {
 						response.setContentType(file.getMime());
@@ -158,7 +158,7 @@ public class DownloadServlet extends SubServlet {
 					if (request.getParameter("roid") == null) {
 						if (request.getParameter("poid") != null) {
 							long poid = Long.parseLong(request.getParameter("poid"));
-							SProject projectByPoid = serviceMap.getServiceInterface().getProjectByPoid(poid);
+							SProject projectByPoid = serviceMap.getBimsie1ServiceInterface().getProjectByPoid(poid);
 							if (projectByPoid == null) {
 								throw new UserException("Project with oid " + poid + " not found");
 							}
