@@ -27,6 +27,7 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/protocolbuffers2.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/servlet-api-3.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="genclasses"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.4.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.4.3-src.zip"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.7.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.7.3-src.zip"/>
