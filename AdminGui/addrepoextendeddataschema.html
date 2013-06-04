@@ -1,0 +1,114 @@
+<div class="addrepoextendeddata">
+	<div class="well well-small noschemas initialhide">
+		No (unused) extended data schemas available
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Namespace</th>
+				<th>Description</th>
+				<th>Add</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<div class="well well-small">
+		<button class="btn cancelButton">Cancel</button>
+		<button class="btn addAllButton">Add all</button>
+	</div>
+</div>
+<script>
+function AddRepoExtendedDataSchema(main, serversettings) {
+	var othis = this;
+
+	this.close = function() {
+	};
+	
+	this.addButtonClick = function() {
+		serversettings.showAddNewExtendedDataSchema($(this).parents("tr").data("extendeddataschema"));
+	};
+	
+	this.addExtendedDataSchema = function(extendedDataSchema) {
+		var tr = $("<tr>");
+		var td = $("<td>");
+		var link = $("<a>");
+		link.html(extendedDataSchema.name);
+		link.attr("href", extendedDataSchema.url);
+		td.append(link);
+		tr.data("extendeddataschema", extendedDataSchema);
+		tr.append(td);
+		tr.append("<td>" + extendedDataSchema.namespace + "</td>");
+		tr.append("<td>" + extendedDataSchema.description + "</td>");
+		
+		td = $("<td>");
+		var addButton = $("<button class=\"btn\">Add</button>");
+		addButton.click(othis.addButtonClick);
+		td.append(addButton);
+		tr.append(td);
+		
+		$(".addrepoextendeddata table tbody").append(tr);
+	};
+
+	this.loadExtendedDataSchemas = function() {
+		var schemas = {};
+		Global.bimServerApi.call("ServiceInterface", "getAllExtendedDataSchemas", {}, function(extendedDataSchemas){
+			extendedDataSchemas.forEach(function(extendedDataSchema){
+				schemas[extendedDataSchema.namespace] = extendedDataSchema;
+			});
+		});
+		Global.bimServerApi.call("ServiceInterface", "getAllRepositoryExtendedDataSchemas", {}, function(data){
+			$("addrepoextendeddata table tbody tr").remove();
+			data.forEach(function(extendedDataSchema){
+				if (schemas[extendedDataSchema.namespace] == null) {
+					othis.addExtendedDataSchema(extendedDataSchema);
+				}
+			});
+			if ($(".addrepoextendeddata .table tbody tr").length == 0) {
+				$(".addrepoextendeddata .noschemas").show();
+				$(".addrepoextendeddata .table").hide();
+			} else {
+				$(".addrepoextendeddata .noschemas").hide();
+				$(".addrepoextendeddata .table").show();
+			}
+		});
+	};
+	
+	this.cancelClick = function(event) {
+		event.preventDefault();
+		main.showServerSettings(null, function(){
+			main.current.showExtendedDataSchemas();
+		});
+	};
+	
+	this.addAllClick = function(){
+		var schemas = {};
+		Global.bimServerApi.call("ServiceInterface", "getAllExtendedDataSchemas", {}, function(extendedDataSchemas){
+			extendedDataSchemas.forEach(function(extendedDataSchema){
+				schemas[extendedDataSchema.namespace] = extendedDataSchema;
+			});
+		});
+		Global.bimServerApi.call("ServiceInterface", "getAllRepositoryExtendedDataSchemas", {}, function(data){
+			var requests = [];
+			$("addrepoextendeddata table tbody tr").remove();
+			data.forEach(function(extendedDataSchema){
+				if (schemas[extendedDataSchema.namespace] == null) {
+					var request = [
+						"ServiceInterface", "addExtendedDataSchema", {extendedDataSchema: extendedDataSchema}
+					];
+					requests.push(request);
+				}
+			});
+			Global.bimServerApi.multiCall(requests, function(){
+				serversettings.showExtendedDataSchemas();
+			});
+		});
+	};
+	
+	$(".addrepoextendeddata .cancelButton").click(othis.cancelClick);
+	$(".addrepoextendeddata .addAllButton").click(othis.addAllClick);
+	
+	this.loadExtendedDataSchemas();
+}
+</script>

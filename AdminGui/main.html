@@ -1,0 +1,266 @@
+<div class="main">
+	<div class="pull-left">
+		<ul class="nav nav-pills">
+			<li class="dashboardLink active initialhide"><a>Dashboard</a></li>
+			<li class="projectsLink initialhide"><a>Projects</a></li>
+			<li class="usersLink initialhide"><a>Users</a></li>
+			<li class="usersettingsLink initialhide"><a>User Settings</a></li>
+			<li class="serversettingsLink initialhide"><a>Server Settings</a></li>
+			<li class="serverinfoLink initialhide"><a>Server Info</a></li>
+			<li class="testingLink initialhide"><a>Testing</a></li>
+		</ul>
+	</div>
+	<div class="btn-group pull-right">
+		<a class="btn btn-primary userButton"><i class="icon-user icon-white"></i> <span style="color: white" class="userLabel">User</span></a> <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span
+			class="caret"></span></a>
+		<ul class="dropdown-menu">
+			<li><a class="logoutLink"><i></i>Logout</a></li>
+			<li><a><span class="addressLabel"></span></a></li>
+		</ul>
+	</div>
+	<div class="clearfix"></div>
+	<div class="maincontainer"></div>
+</div>
+<script>
+function Main(address, username) {
+	var othis = this;
+	othis.pageChanger = new PageChanger($(".main .nav"), $(".main .maincontainer"));
+
+	$(".main .nav li").hide();
+	Settings.getMenuItems().forEach(function(menuItem){
+		$("." + menuItem).show();
+	});
+	
+	History.Adapter.bind(window, "statechange", function(){
+		if (!pushing) {
+	        othis.show(false);
+		}
+    });
+	
+	$(".main .userLabel").html(username);
+	$(".main .addressLabel").html(address);
+	
+	this.show = function(alterState) {
+		var history = History.getState().data;
+		if (history.page == "Dashboard") {
+			othis.showDashboard(null, alterState);
+		} else if (history.page == "Projects") {
+			othis.showProjects(null, alterState);
+		} else if (history.page == "Project") {
+			othis.showProject(history.poid, null, alterState);
+		} else if (history.page == "Revision") {
+			othis.showRevision(history.roid, null, alterState);
+		} else if (history.page == "User") {
+			othis.showUser(history.uoid, null, alterState);
+		} else if (history.page == "Users") {
+			othis.showUsers(null, alterState);
+		} else if (history.page == "UserSettings") {
+			othis.showUserSettings(null, alterState);
+		} else if (history.page == "ServerSettings") {
+			othis.showServerSettings(null, alterState);
+		} else if (history.page == "ServerInfo") {
+			othis.showServerInfo(null, alterState);
+		} else if (history.page == "Testing") {
+			othis.showTesting(null, alterState);
+		} else {
+			if ($(".dashboardLink").is(":visible")) {
+				othis.showDashboard(null, alterState);
+			} else {
+				othis.showServerSettings(null, alterState);
+			}
+		}
+	};
+
+	this.logout = function() {
+		Global.bimServerApi.logout(function(){
+			$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+				new Login(Global.bimServerApi.baseUrl);
+			});
+		});
+	};
+
+	this.showDashboard = function(callback, alterState) {
+		othis.pageChanger.changePage($(".dashboardLink"), "dashboard.html", function(){
+			if (alterState) {
+				pushHistory({page: "Dashboard"});
+			}
+			return new Dashboard(othis);
+		}, callback);
+	};
+
+	this.showProjects = function(callback, alterState) {
+		othis.pageChanger.changePage($(".projectsLink"), "projects.html", function(){
+			if (alterState) {
+				pushHistory({page: "Projects"});
+			}
+			return new Projects($(this), othis);
+		}, callback);
+	};
+
+	this.showAddProject = function(callback, parentProject, alterState) {
+		othis.pageChanger.changePage($(".projectsLink"), "addproject.html", function(){
+			if (alterState) {
+				pushHistory({page: "AddProject"});
+			}
+			return new AddProject(othis, parentProject);
+		}, callback);
+	};
+
+	this.showAddUser = function(callback, alterState) {
+		othis.pageChanger.changePage($(".usersLink"), "adduser.html", function(){
+			if (alterState) {
+				pushHistory({page: "AddUser"});
+			}
+			return new AddUser(othis);
+		}, callback);
+	};
+
+	this.showUser = function(user, callback, alterState) {
+		othis.pageChanger.changePage($(".usersLink"), "user.html", function(){
+			if (alterState) {
+				pushHistory({page: "User", uoid: user.oid});
+			}
+			return new User(othis, user);
+		}, callback);
+	};
+
+	this.showAddService = function(project, callback, alterState) {
+		othis.pageChanger.changePage($(".projectsLink"), "addservice.html", function(){
+			if (alterState) {
+				pushHistory({page: "AddService"});
+			}
+			return new AddService(othis, project);
+		}, callback);
+	};
+	
+	this.showAddService2 = function(project, serviceDescriptor, isLocal, callback, alterState) {
+		othis.pageChanger.changePage($(".projectsLink"), "addservice2.html", function(){
+			if (alterState) {
+				pushHistory({page: "AddService2"});
+			}
+			return new AddService2(othis, project, serviceDescriptor, isLocal);
+		}, callback);
+	};
+	
+	this.showProject = function(project, callback, alterState) {
+		othis.pageChanger.changePage($(".projectsLink"), "project.html", function(){
+			if (alterState) {
+				pushHistory({page: "Project", "poid": typeof project == "object" ? project.oid : project});
+			}
+			return new Project($(this), othis, project);
+		}, callback);
+	};
+
+	this.showRevision = function(revision, callback, alterState) {
+		othis.pageChanger.changePage($(".projectsLink"), "revision.html", function(){
+			if (alterState) {
+				pushHistory({page: "Revision", "roid": typeof revision == "object" ? revision.oid : revision});
+			}
+			return new Revision(othis, revision);
+		}, callback);
+	};
+	
+	this.showUsers = function(callback, alterState) {
+		othis.pageChanger.changePage($(".usersLink"), "users.html", function(){
+			if (alterState) {
+				pushHistory({page: "Users"});
+			}
+			return new Users(othis);
+		}, callback);
+	};
+	
+	this.showUserSettings = function(callback, alterState) {
+		othis.pageChanger.changePage($(".usersettingsLink"), "usersettings.html", function(){
+			if (alterState) {
+				pushHistory({page: "UserSettings"});
+			}
+			return new UserSettings(othis);
+		}, callback);
+	};
+
+	this.showExtendedDataSchema = function(extendedDataSchema, callback, alterState) {
+		this.showServerSettings(function(){
+			othis.current.showExtendedDataSchema(extendedDataSchema);
+		});
+	};
+
+	this.makeSchemaLink = function(soid){
+		if (soid == -1) {
+			return "No schema";			
+		} else {
+			var link = $("<a>Loading...</a>");
+			link.attr("soid", soid);
+			link.click(othis.schemaLinkClick);
+			loadExtendedDataSchema(link);
+			return link;
+		}
+	};
+	
+	this.schemaLinkClick = function(event) {
+	};
+	
+	this.showService = function(project, service, callback, alterState) {
+		this.showProject(project, function(){
+			othis.current.showService(service);
+		}, alterState);
+	};
+	
+	this.showServerSettings = function(callback, alterState) {
+		if (othis.current != null && othis.current.getName != null && othis.current.getName() == "ServerSettings") {
+			callback();
+		} else {
+			othis.pageChanger.changePage($(".serversettingsLink"), "serversettings.html", function(){
+				if (alterState) {
+					pushHistory({page: "ServerSettings"});
+				}
+				return new ServerSettings(othis);
+			}, callback);
+		}
+	};
+
+	this.showServerInfo = function(callback, alterState) {
+		othis.pageChanger.changePage($(".serverinfoLink"), "serverinfo.html", function(){
+			if (alterState) {
+				pushHistory({page: "ServerInfo"});
+			}
+			return new ServerInfo($(this), othis);
+		}, callback);
+	};
+
+	this.showTesting = function(callback, alterState) {
+		othis.pageChanger.changePage($(".testingLink"), "testing.html", function(){
+			if (alterState) {
+				pushHistory({page: "Testing"});
+			}
+			return new Testing(othis);
+		}, callback);
+	};
+
+	this.extendedDataSchemaClick = function(event){
+		event.preventDefault();
+		othis.showExtendedDataSchema($(this).data("extendeddataschema"));
+	};
+	
+	this.createExtendedDataSchemaLink = function(extendedDataSchema) {
+		var link = $("<a>" + extendedDataSchema.name + "</a>");
+		link.data("extendeddataschema", extendedDataSchema);
+		link.click(othis.extendedDataSchemaClick);
+		return link;
+	};
+
+	$(".dashboardLink").click(function(){othis.showDashboard(null, true)});
+	$(".projectsLink").click(function(event){othis.showProjects(null, true)});
+	$(".usersLink").click(function(event){othis.showUsers(null, true)});
+	$(".usersettingsLink").click(function(event){othis.showUserSettings(null, true)});
+	$(".serverinfoLink").click(function(event){othis.showServerInfo(null, true)});
+	$(".serversettingsLink").click(function(event){othis.showServerSettings(null, true)});
+	$(".testingLink").click(function(event){othis.showTesting(null, true)});
+	$(".logoutLink").click(othis.logout);
+	
+	$(".userButton").click(function(){
+		Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(user){
+			othis.showUser(user);
+		});
+	});
+}
+</script>
