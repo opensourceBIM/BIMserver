@@ -32,6 +32,7 @@ import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SourceCodeFetcher;
+import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.tools.generators.AdaptorGeneratorWrapper;
 import org.bimserver.tools.generators.AsyncServiceGeneratorWrapper;
 import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
@@ -103,6 +104,10 @@ public class CodeMigrator {
 		sPackageGeneratorWrapper.generate(ePackages);
 
 		LOGGER.info("Protocol buffers file and classes generated");
+
+		RealtimeReflectorFactoryBuilder reflectorBuilder = new RealtimeReflectorFactoryBuilder(InterfaceList.createSServicesMap(), new File("../Shared/genclasses"));
+		reflectorBuilder.newReflectorFactory();
+		
 		LOGGER.info("");
 		LOGGER.info("Migration successfull");
 	}

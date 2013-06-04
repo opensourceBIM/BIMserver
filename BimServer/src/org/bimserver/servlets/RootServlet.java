@@ -19,6 +19,7 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -89,9 +90,9 @@ public class RootServlet extends HttpServlet {
 					pathInfo = "/index.html";
 				}
 				if (bimServer.getWebModules() != null) {
-					for (WebModulePlugin webModulePlugin : bimServer.getWebModules()) {
-						if (pathInfo != null && webModulePlugin != null && pathInfo.startsWith(webModulePlugin.getContextPath())) {
-							if (webModulePlugin.service(request, response)) {
+					for (Entry<String, WebModulePlugin> entry : bimServer.getWebModules().entrySet()) {
+						if (pathInfo != null && entry.getValue() != null && pathInfo.startsWith(entry.getKey())) {
+							if (entry.getValue().service(request, response)) {
 								return;
 							}
 						}

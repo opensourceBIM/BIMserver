@@ -1,11 +1,10 @@
-package org.bimserver.admin;
-
+package org.bimserver;
 
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.web.AbstractWebModulePlugin;
 
-public class AdminWebModulePlugin extends AbstractWebModulePlugin {
+public class DefaultWebModulePlugin extends AbstractWebModulePlugin {
 
 	private boolean initialized;
 
@@ -14,15 +13,15 @@ public class AdminWebModulePlugin extends AbstractWebModulePlugin {
 		super.init(pluginManager);
 		initialized = true;
 	}
-
+	
 	@Override
 	public String getDescription() {
-		return "Bootstrap based Admin WEB GUI";
+		return "Default Web GUI";
 	}
 
 	@Override
 	public String getDefaultName() {
-		return "BootstrapBIMAdmin";
+		return "Default Web GUI";
 	}
 
 	@Override
@@ -34,9 +33,14 @@ public class AdminWebModulePlugin extends AbstractWebModulePlugin {
 	public boolean isInitialized() {
 		return initialized;
 	}
-
+	
+	@Override
+	public String getSubDir() {
+		return "www/";
+	}
+	
 	@Override
 	public String getDefaultContextPath() {
-		return "/admin";
+		return "";
 	}
 }

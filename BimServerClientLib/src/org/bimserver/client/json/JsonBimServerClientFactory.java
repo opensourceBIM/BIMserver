@@ -23,7 +23,7 @@ import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
-import org.bimserver.shared.reflector.ReflectorBuilder;
+import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 
 public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
@@ -43,7 +43,7 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 		super();
 		this.address = address;
 		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(getServicesMap());
-		ReflectorBuilder reflectorBuilder = new ReflectorBuilder(getServicesMap());
+		RealtimeReflectorFactoryBuilder reflectorBuilder = new RealtimeReflectorFactoryBuilder(getServicesMap());
 		reflectorFactory = reflectorBuilder.newReflectorFactory();
 	}
 

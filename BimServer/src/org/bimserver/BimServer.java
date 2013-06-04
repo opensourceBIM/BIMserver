@@ -21,11 +21,11 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -115,12 +115,14 @@ import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.serializers.SerializerFactory;
 import org.bimserver.shared.InterfaceList;
+import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
-import org.bimserver.shared.reflector.ReflectorBuilder;
+import org.bimserver.shared.reflector.FileBasedReflectorFactoryBuilder;
+import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
@@ -170,7 +172,7 @@ public class BimServer {
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private SecretKeySpec encryptionkey;
 	private BimServerClientFactory bimServerClientFactory;
-	private List<WebModulePlugin> webModules;
+	private Map<String, WebModulePlugin> webModules;
 	private WebModulePlugin defaultWebModule;
 	private ExecutorService executorService = Executors.newFixedThreadPool(50);
 	private InternalServicesManager internalServicesManager;
@@ -243,7 +245,7 @@ public class BimServer {
 		}
 	}
 
-	public List<WebModulePlugin> getWebModules() {
+	public Map<String, WebModulePlugin> getWebModules() {
 		return webModules;
 	}
 	
@@ -296,6 +298,7 @@ public class BimServer {
 					}
 				});
 				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
+				pluginManager.loadPlugin(WebModulePlugin.class, "Internal", "Internal", new DefaultWebModulePlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
@@ -379,12 +382,18 @@ public class BimServer {
 
 			mailSystem = new MailSystem(this);
 
-			webModules = new ArrayList<WebModulePlugin>();
+			webModules = new HashMap<String, WebModulePlugin>();
 			DatabaseSession ses = bimDatabase.createSession();
 			try {
 				List<WebModulePluginConfiguration> webModuleConfigurations = serverSettingsCache.getServerSettings().getWebModules();
 				for (WebModulePluginConfiguration webModulePluginConfiguration : webModuleConfigurations) {
-					webModules.add((WebModulePlugin) pluginManager.getPlugin(webModulePluginConfiguration.getClassName(), true));
+					String contextPath = "";
+					for (Parameter parameter : webModulePluginConfiguration.getSettings().getParameters()) {
+						if (parameter.getName().equals("contextPath")) {
+							contextPath = ((StringType)parameter.getValue()).getValue();
+						}
+					}
+					webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(webModulePluginConfiguration.getClassName(), true));
 				}
 				if (serverSettingsCache.getServerSettings().getWebModule() != null) {
 					defaultWebModule = (WebModulePlugin) pluginManager.getPlugin(serverSettingsCache.getServerSettings().getWebModule().getClassName(), true);
@@ -397,8 +406,13 @@ public class BimServer {
 
 			mergerFactory = new MergerFactory(this);
 
-			ReflectorBuilder reflectorBuilder = new ReflectorBuilder(servicesMap);
-			reflectorFactory = reflectorBuilder.newReflectorFactory();
+			if (getResourceFetcher() instanceof LocalDevelopmentResourceFetcher) {
+				RealtimeReflectorFactoryBuilder reflectorBuilder = new RealtimeReflectorFactoryBuilder(servicesMap);
+				reflectorFactory = reflectorBuilder.newReflectorFactory();
+			} else {
+				FileBasedReflectorFactoryBuilder factoryBuilder = new FileBasedReflectorFactoryBuilder();
+				reflectorFactory = factoryBuilder.newReflectorFactory();
+			}
 			if (reflectorFactory == null) {
 				throw new RuntimeException("No reflector factory!");
 			}

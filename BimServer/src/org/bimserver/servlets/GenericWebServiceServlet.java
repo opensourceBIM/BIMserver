@@ -74,256 +74,245 @@ public class GenericWebServiceServlet extends SubServlet {
 	public void setBindingId(String bindingId) {
 		this.bindingId = bindingId;
 	}
-	
-    private static final String REDIRECTS_PARAMETER = "redirects-list";
-    private static final String REDIRECT_SERVLET_NAME_PARAMETER = "redirect-servlet-name";
-    private static final String REDIRECT_SERVLET_PATH_PARAMETER = "redirect-servlet-path";
-    private static final String REDIRECT_QUERY_CHECK_PARAMETER = "redirect-query-check";
-    
-    private static final Map<String, String> STATIC_CONTENT_TYPES;
-    
-    static {
-        STATIC_CONTENT_TYPES = new HashMap<String, String>();
-        STATIC_CONTENT_TYPES.put("html", "text/html");
-        STATIC_CONTENT_TYPES.put("txt", "text/plain");
-        STATIC_CONTENT_TYPES.put("css", "text/css");
-        STATIC_CONTENT_TYPES.put("pdf", "application/pdf");
-        // TODO : add more types if needed
-    }
-    
-    private List<String> redirectList; 
-    private String dispatcherServletPath;
-    private String dispatcherServletName;
-    private boolean redirectQueryCheck;
-    private DestinationRegistry destinationRegistry;
-    private Bus bus;
-    private ServletController controller;
-    private ClassLoader loader;
-    
-    public void init(ServletConfig sc) throws ServletException {
-        if (this.bus == null) {
-            loadBus(sc);
-        }
-        loader = bus.getExtension(ClassLoader.class);
-        ResourceManager resourceManager = bus.getExtension(ResourceManager.class);
-        resourceManager.addResourceResolver(new ServletContextResourceResolver(
-                                               sc.getServletContext()));
 
-        if (destinationRegistry == null) {
-            this.destinationRegistry = getDestinationRegistryFromBus(this.bus);
-        }
-        this.controller = createServletController(sc);
+	private static final String REDIRECTS_PARAMETER = "redirects-list";
+	private static final String REDIRECT_SERVLET_NAME_PARAMETER = "redirect-servlet-name";
+	private static final String REDIRECT_SERVLET_PATH_PARAMETER = "redirect-servlet-path";
+	private static final String REDIRECT_QUERY_CHECK_PARAMETER = "redirect-query-check";
 
-        redirectList = parseListSequence(sc.getInitParameter(REDIRECTS_PARAMETER));
-        redirectQueryCheck = Boolean.valueOf(sc.getInitParameter(REDIRECT_QUERY_CHECK_PARAMETER));
-        dispatcherServletName = sc.getInitParameter(REDIRECT_SERVLET_NAME_PARAMETER);
-        dispatcherServletPath = sc.getInitParameter(REDIRECT_SERVLET_PATH_PARAMETER);
-    }
-    
-    private static DestinationRegistry getDestinationRegistryFromBus(Bus bus) {
-        DestinationFactoryManager dfm = bus.getExtension(DestinationFactoryManager.class);
-        try {
-            DestinationFactory df = dfm
-                .getDestinationFactory("http://cxf.apache.org/transports/http/configuration");
-            if (df instanceof HTTPTransportFactory) {
-                HTTPTransportFactory transportFactory = (HTTPTransportFactory)df;
-                return transportFactory.getRegistry();
-            }
-        } catch (BusException e) {
-            // why are we throwing a busexception if the DF isn't found?
-        }
-        return null;
-    }
+	private static final Map<String, String> STATIC_CONTENT_TYPES;
 
-    private ServletController createServletController(ServletConfig servletConfig) {
-        HttpServlet serviceListGeneratorServlet = 
-            new ServiceListGeneratorServlet(destinationRegistry, bus);
-        ServletController newController =
-            new ServletController(destinationRegistry,
-                                  servletConfig,
-                                  serviceListGeneratorServlet);        
-        return newController;
-    }
+	static {
+		STATIC_CONTENT_TYPES = new HashMap<String, String>();
+		STATIC_CONTENT_TYPES.put("html", "text/html");
+		STATIC_CONTENT_TYPES.put("txt", "text/plain");
+		STATIC_CONTENT_TYPES.put("css", "text/css");
+		STATIC_CONTENT_TYPES.put("pdf", "application/pdf");
+		// TODO : add more types if needed
+	}
 
-    public Bus getBus() {
-        return bus;
-    }
+	private List<String> redirectList;
+	private String dispatcherServletPath;
+	private String dispatcherServletName;
+	private boolean redirectQueryCheck;
+	private DestinationRegistry destinationRegistry;
+	private Bus bus;
+	private ServletController controller;
+	private ClassLoader loader;
 
-    public void setBus(Bus bus) {
-        this.bus = bus;
-    }
+	public void init(ServletConfig sc) throws ServletException {
+		// Setting this property because otherwise a file named
+		// "wsdl.properties" will be read from the JRE, which is not possible
+		// due to restrictive permissions
+		System.setProperty("javax.wsdl.factory.WSDLFactory", "com.ibm.wsdl.factory.WSDLFactoryImpl");
 
-    protected void invoke(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        ClassLoader origLoader = Thread.currentThread().getContextClassLoader();
-        try {
-            if (loader != null) {
-                Thread.currentThread().setContextClassLoader(loader);
-            }
-            BusFactory.setThreadDefaultBus(bus);
-            controller.invoke(request, response);
-        } finally {
-            BusFactory.setThreadDefaultBus(null);
-            Thread.currentThread().setContextClassLoader(origLoader);
-        }
-    }
+		if (this.bus == null) {
+			loadBus(sc);
+		}
+		loader = bus.getExtension(ClassLoader.class);
+		ResourceManager resourceManager = bus.getExtension(ResourceManager.class);
+		resourceManager.addResourceResolver(new ServletContextResourceResolver(sc.getServletContext()));
 
-    public void destroy() {
-        for (String path : destinationRegistry.getDestinationsPaths()) {
-            // clean up the destination in case the destination itself can no longer access the registry later
-            AbstractHTTPDestination dest = destinationRegistry.getDestinationForPath(path);
-            synchronized (dest) {
-                destinationRegistry.removeDestination(path);
-                dest.releaseRegistry();
-            }
-        }
-        destinationRegistry = null;
-        destroyBus();
-    }
-    
-    public void destroyBus() {
-        bus.shutdown(true);
-    }
-    
-    private static List<String> parseListSequence(String values) {
-        if (values != null) {
-            List<String> list = new LinkedList<String>();
-            String[] pathValues = values.split(" ");
-            for (String value : pathValues) {
-                String theValue = value.trim();
-                if (theValue.length() > 0) {
-                    list.add(theValue);
-                }
-            }
-            return list;
-        } else {
-            return null;
-        }
-    }
-    
-    @Override
-    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	invoke(request, response);
-    }
-    
-    protected void handleRequest(HttpServletRequest request, HttpServletResponse response) 
-        throws ServletException {
-        if ((dispatcherServletPath != null || dispatcherServletName != null)
-            && (redirectList != null && matchPath(redirectList, request)
-                || redirectList == null)) {
-            // if no redirectList is provided then this servlet is redirecting only
-            redirect(request, response, request.getPathInfo());
-            return;
-        }
-        
-        invoke(request, response);
-    }
-    
-    private boolean matchPath(List<String> values, HttpServletRequest request) {
-        String path = request.getPathInfo();
-        if (redirectQueryCheck) {
-            String queryString = request.getQueryString();
-            if (queryString != null && queryString.length() > 0) {
-                path += "?" + queryString; 
-            }
-        }
-        for (String value : values) {
-            if (path.matches(value)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    protected void serveStaticContent(HttpServletRequest request, 
-                                      HttpServletResponse response,
-                                      String pathInfo) throws ServletException {
-        InputStream is = super.getServletContext().getResourceAsStream(pathInfo);
-        if (is == null) {
-            throw new ServletException("Static resource " + pathInfo + " is not available");
-        }
-        try {
-            int ind = pathInfo.lastIndexOf(".");
-            if (ind != -1 && ind < pathInfo.length()) {
-                String type = STATIC_CONTENT_TYPES.get(pathInfo.substring(ind + 1));
-                if (type != null) {
-                    response.setContentType(type);
-                }
-            }
-            
-            ServletOutputStream os = response.getOutputStream();
-            IOUtils.copy(is, os);
-            os.flush();
-        } catch (IOException ex) {
-            throw new ServletException("Static resource " + pathInfo 
-                                       + " can not be written to the output stream");
-        }
-        
-    }
-    
-    protected void redirect(HttpServletRequest request, HttpServletResponse response, String pathInfo) 
-        throws ServletException {
-        
-        String theServletPath = dispatcherServletPath == null ? "/" : dispatcherServletPath;
-        
-        ServletContext sc = super.getServletContext();
-        RequestDispatcher rd = dispatcherServletName != null 
-            ? sc.getNamedDispatcher(dispatcherServletName) 
-            : sc.getRequestDispatcher(theServletPath + pathInfo);
-        if (rd == null) {
-            throw new ServletException("No RequestDispatcher can be created for path " + pathInfo);
-        }
-        try {
-            HttpServletRequestFilter servletRequest = 
-                new HttpServletRequestFilter(request, pathInfo, theServletPath);
-            rd.forward(servletRequest, response);
-        } catch (Throwable ex) {
-            throw new ServletException("RequestDispatcher for path " + pathInfo + " has failed");
-        }   
-    }
-    
-    private static class HttpServletRequestFilter extends HttpServletRequestWrapper {
-        
-        private String pathInfo;
-        private String servletPath;
-        
-        public HttpServletRequestFilter(HttpServletRequest request, 
-                                        String pathInfo,
-                                        String servletPath) {
-            super(request);
-            this.pathInfo = pathInfo;
-            this.servletPath = servletPath;
-        }
-        
-        @Override
-        public String getServletPath() {
-            return servletPath;
-        }
-        
-        @Override
-        public String getPathInfo() {
-            return pathInfo; 
-        }
-        
-        @Override
-        public String getRequestURI() {
-            String contextPath = getContextPath();
-            if ("/".equals(contextPath)) {
-                contextPath = "";
-            }
-            return contextPath + servletPath + pathInfo;
-        }
-        
-        @Override
-        public String getParameter(String name) {
-            if (AbstractHTTPDestination.SERVICE_REDIRECTION.equals(name)) {
-                return "true";
-            }
-            return super.getParameter(name);
-        }
-    }
+		if (destinationRegistry == null) {
+			this.destinationRegistry = getDestinationRegistryFromBus(this.bus);
+		}
+		this.controller = createServletController(sc);
+
+		redirectList = parseListSequence(sc.getInitParameter(REDIRECTS_PARAMETER));
+		redirectQueryCheck = Boolean.valueOf(sc.getInitParameter(REDIRECT_QUERY_CHECK_PARAMETER));
+		dispatcherServletName = sc.getInitParameter(REDIRECT_SERVLET_NAME_PARAMETER);
+		dispatcherServletPath = sc.getInitParameter(REDIRECT_SERVLET_PATH_PARAMETER);
+	}
+
+	private static DestinationRegistry getDestinationRegistryFromBus(Bus bus) {
+		DestinationFactoryManager dfm = bus.getExtension(DestinationFactoryManager.class);
+		try {
+			DestinationFactory df = dfm.getDestinationFactory("http://cxf.apache.org/transports/http/configuration");
+			if (df instanceof HTTPTransportFactory) {
+				HTTPTransportFactory transportFactory = (HTTPTransportFactory) df;
+				return transportFactory.getRegistry();
+			}
+		} catch (BusException e) {
+			// why are we throwing a busexception if the DF isn't found?
+		}
+		return null;
+	}
+
+	private ServletController createServletController(ServletConfig servletConfig) {
+		HttpServlet serviceListGeneratorServlet = new ServiceListGeneratorServlet(destinationRegistry, bus);
+		ServletController newController = new ServletController(destinationRegistry, servletConfig, serviceListGeneratorServlet);
+		return newController;
+	}
+
+	public Bus getBus() {
+		return bus;
+	}
+
+	public void setBus(Bus bus) {
+		this.bus = bus;
+	}
+
+	protected void invoke(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		ClassLoader origLoader = Thread.currentThread().getContextClassLoader();
+		try {
+			if (loader != null) {
+				Thread.currentThread().setContextClassLoader(loader);
+			}
+			BusFactory.setThreadDefaultBus(bus);
+			controller.invoke(request, response);
+		} finally {
+			BusFactory.setThreadDefaultBus(null);
+			Thread.currentThread().setContextClassLoader(origLoader);
+		}
+	}
+
+	public void destroy() {
+		for (String path : destinationRegistry.getDestinationsPaths()) {
+			// clean up the destination in case the destination itself can no
+			// longer access the registry later
+			AbstractHTTPDestination dest = destinationRegistry.getDestinationForPath(path);
+			synchronized (dest) {
+				destinationRegistry.removeDestination(path);
+				dest.releaseRegistry();
+			}
+		}
+		destinationRegistry = null;
+		destroyBus();
+	}
+
+	public void destroyBus() {
+		bus.shutdown(true);
+	}
+
+	private static List<String> parseListSequence(String values) {
+		if (values != null) {
+			List<String> list = new LinkedList<String>();
+			String[] pathValues = values.split(" ");
+			for (String value : pathValues) {
+				String theValue = value.trim();
+				if (theValue.length() > 0) {
+					list.add(theValue);
+				}
+			}
+			return list;
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		invoke(request, response);
+	}
+
+	protected void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		if ((dispatcherServletPath != null || dispatcherServletName != null) && (redirectList != null && matchPath(redirectList, request) || redirectList == null)) {
+			// if no redirectList is provided then this servlet is redirecting
+			// only
+			redirect(request, response, request.getPathInfo());
+			return;
+		}
+
+		invoke(request, response);
+	}
+
+	private boolean matchPath(List<String> values, HttpServletRequest request) {
+		String path = request.getPathInfo();
+		if (redirectQueryCheck) {
+			String queryString = request.getQueryString();
+			if (queryString != null && queryString.length() > 0) {
+				path += "?" + queryString;
+			}
+		}
+		for (String value : values) {
+			if (path.matches(value)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	protected void serveStaticContent(HttpServletRequest request, HttpServletResponse response, String pathInfo) throws ServletException {
+		InputStream is = super.getServletContext().getResourceAsStream(pathInfo);
+		if (is == null) {
+			throw new ServletException("Static resource " + pathInfo + " is not available");
+		}
+		try {
+			int ind = pathInfo.lastIndexOf(".");
+			if (ind != -1 && ind < pathInfo.length()) {
+				String type = STATIC_CONTENT_TYPES.get(pathInfo.substring(ind + 1));
+				if (type != null) {
+					response.setContentType(type);
+				}
+			}
+
+			ServletOutputStream os = response.getOutputStream();
+			IOUtils.copy(is, os);
+			os.flush();
+		} catch (IOException ex) {
+			throw new ServletException("Static resource " + pathInfo + " can not be written to the output stream");
+		}
+
+	}
+
+	protected void redirect(HttpServletRequest request, HttpServletResponse response, String pathInfo) throws ServletException {
+
+		String theServletPath = dispatcherServletPath == null ? "/" : dispatcherServletPath;
+
+		ServletContext sc = super.getServletContext();
+		RequestDispatcher rd = dispatcherServletName != null ? sc.getNamedDispatcher(dispatcherServletName) : sc.getRequestDispatcher(theServletPath + pathInfo);
+		if (rd == null) {
+			throw new ServletException("No RequestDispatcher can be created for path " + pathInfo);
+		}
+		try {
+			HttpServletRequestFilter servletRequest = new HttpServletRequestFilter(request, pathInfo, theServletPath);
+			rd.forward(servletRequest, response);
+		} catch (Throwable ex) {
+			throw new ServletException("RequestDispatcher for path " + pathInfo + " has failed");
+		}
+	}
+
+	private static class HttpServletRequestFilter extends HttpServletRequestWrapper {
+
+		private String pathInfo;
+		private String servletPath;
+
+		public HttpServletRequestFilter(HttpServletRequest request, String pathInfo, String servletPath) {
+			super(request);
+			this.pathInfo = pathInfo;
+			this.servletPath = servletPath;
+		}
+
+		@Override
+		public String getServletPath() {
+			return servletPath;
+		}
+
+		@Override
+		public String getPathInfo() {
+			return pathInfo;
+		}
+
+		@Override
+		public String getRequestURI() {
+			String contextPath = getContextPath();
+			if ("/".equals(contextPath)) {
+				contextPath = "";
+			}
+			return contextPath + servletPath + pathInfo;
+		}
+
+		@Override
+		public String getParameter(String name) {
+			if (AbstractHTTPDestination.SERVICE_REDIRECTION.equals(name)) {
+				return "true";
+			}
+			return super.getParameter(name);
+		}
+	}
 
 	public void loadBus(ServletConfig servletConfig) {
-        this.bus = BusFactory.newInstance().createBus();
+		this.bus = BusFactory.newInstance().createBus();
 		Bus bus = getBus();
 		HeaderManager headerManager = bus.getExtension(HeaderManager.class);
 		headerManager.registerHeaderProcessor(new HeaderProcessor() {
@@ -331,12 +320,12 @@ public class GenericWebServiceServlet extends SubServlet {
 			public String getNamespace() {
 				return "uri:org.bimserver.shared";
 			}
-			
+
 			@Override
 			public InterceptorProvider getInterceptorProvider() {
 				return null;
 			}
-			
+
 			@Override
 			public DataBinding getDataBinding() {
 				try {
@@ -348,10 +337,10 @@ public class GenericWebServiceServlet extends SubServlet {
 			}
 		});
 		BusFactory.setDefaultBus(bus);
-		
+
 		for (Class<? extends PublicInterface> clazz : getBimServer().getServicesMap().getInterfaceClasses()) {
 			JaxWsServerFactoryBean serverFactoryBean = new JaxWsServerFactoryBean();
-			Map<String,Object> properties = new HashMap<String, Object>();
+			Map<String, Object> properties = new HashMap<String, Object>();
 			properties.put("mtom-enabled", Boolean.TRUE);
 			serverFactoryBean.setBindingId(bindingId);
 			serverFactoryBean.setProperties(properties);

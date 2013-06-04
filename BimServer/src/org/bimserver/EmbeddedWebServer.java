@@ -17,6 +17,7 @@ package org.bimserver;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
 import java.util.Random;
 
 import org.eclipse.jetty.server.Server;
@@ -39,6 +40,7 @@ public class EmbeddedWebServer {
 		socketConnector.setPort(bimServer.getConfig().getPort());
 		server.addConnector(socketConnector);
 		context = new WebAppContext(server, "", "/");
+		context.setTempDirectory(new File(bimServer.getHomeDir(), "jettytmp"));
 		if (localDev) {
 			context.setDefaultsDescriptor("www/WEB-INF/webdefault.xml");
 		}
