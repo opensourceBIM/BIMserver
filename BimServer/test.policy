@@ -1,3 +1,5 @@
+// This should grant all required permissions, but not more than that
+
 grant {
 	// Read only file permissions on eclipse workspace
 	permission java.io.FilePermission "..", "read";
