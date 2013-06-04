@@ -1,0 +1,35 @@
+<div class="migrations">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Number</th>
+				<th>Description</th>
+				<th>Executed</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</div>
+<script>
+function Migrations(main, serversettings) {
+	var othis = this;
+	
+	this.loadMigrations = function(){
+		Global.bimServerApi.call("AdminInterface", "getMigrations", {}, function(data){
+			$(".migrations table tbody tr").remove();
+			data.forEach(function(migration){
+				var tr = $("<tr>");
+				tr.append("<td>" + migration.number + "</td>");
+				tr.append("<td>" + migration.description + "</td>");
+				tr.append("<td>" + migration.executed + "</td>");
+				$(".migrations table tbody").append(tr);
+			});
+		});
+	};
+	
+	this.close = function(){
+	};
+	
+	this.loadMigrations();
+}
+</script>

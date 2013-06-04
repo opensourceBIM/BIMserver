@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BIMserver Demo</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<base href="/"></base>
+  </head>
+  <body>
+	<div class="alert fade in genericErrors" id="login-error" style="display:none;">
+		<span class="text"></span>
+		<button type="button" class="close">×</button>
+	</div>
+	<div class="statusholder">
+		<div class="status well well-small"></div>
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="sidespan span2">
+			</div>
+			<div class="indexcontainer span10"></div>
+		</div>
+	</div>
+	<script>
+		Global = {};
+		
+		LazyLoad=function(k){function p(b,a){var g=k.createElement(b),c;for(c in a)a.hasOwnProperty(c)&&g.setAttribute(c,a[c]);return g}function l(b){var a=m[b],c,f;if(a)c=a.callback,f=a.urls,f.shift(),h=0,f.length||(c&&c.call(a.context,a.obj),m[b]=null,n[b].length&&j(b))}function w(){var b=navigator.userAgent;c={async:k.createElement("script").async===!0};(c.webkit=/AppleWebKit\//.test(b))||(c.ie=/MSIE/.test(b))||(c.opera=/Opera/.test(b))||(c.gecko=/Gecko\//.test(b))||(c.unknown=!0)}function j(b,a,g,f,h){var j=
+			function(){l(b)},o=b==="css",q=[],d,i,e,r;c||w();if(a)if(a=typeof a==="string"?[a]:a.concat(),o||c.async||c.gecko||c.opera)n[b].push({urls:a,callback:g,obj:f,context:h});else{d=0;for(i=a.length;d<i;++d)n[b].push({urls:[a[d]],callback:d===i-1?g:null,obj:f,context:h})}if(!m[b]&&(r=m[b]=n[b].shift())){s||(s=k.head||k.getElementsByTagName("head")[0]);a=r.urls;d=0;for(i=a.length;d<i;++d)g=a[d],o?e=c.gecko?p("style"):p("link",{href:g,rel:"stylesheet"}):(e=p("script",{src:g}),e.async=!1),e.className="lazyload",
+			e.setAttribute("charset","utf-8"),c.ie&&!o?e.onreadystatechange=function(){if(/loaded|complete/.test(e.readyState))e.onreadystatechange=null,j()}:o&&(c.gecko||c.webkit)?c.webkit?(r.urls[d]=e.href,t()):(e.innerHTML='@import "'+g+'";',u(e)):e.onload=e.onerror=j,q.push(e);d=0;for(i=q.length;d<i;++d)s.appendChild(q[d])}}function u(b){var a;try{a=!!b.sheet.cssRules}catch(c){h+=1;h<200?setTimeout(function(){u(b)},50):a&&l("css");return}l("css")}function t(){var b=m.css,a;if(b){for(a=v.length;--a>=0;)if(v[a].href===
+			b.urls[0]){l("css");break}h+=1;b&&(h<200?setTimeout(t,50):l("css"))}}var c,s,m={},h=0,n={css:[],js:[]},v=k.styleSheets;return{css:function(b,a,c,f){j("css",b,a,c,f)},js:function(b,a,c,f){j("js",b,a,c,f)}}}(this.document);
+		
+		Global.baseDir = new String(document.location.protocol + "//" + document.location.host + document.location.pathname);
+		if (Global.baseDir.substring(Global.baseDir.length - 5) == ".html") {
+			Global.baseDir = Global.baseDir.substring(0, Global.baseDir.lastIndexOf("/"));
+		}
+		if (Global.baseDir.substring(Global.baseDir.length - 1) != "/") {
+			Global.baseDir = Global.baseDir + "/";
+		}
+		var baseJsDir = Global.baseDir + "js/";
+		var baseCssDir = Global.baseDir + "css/";
+		
+		var base = document.getElementsByTagName("base");
+		base[0].href = Global.baseDir;
+		
+		(function() {
+		    var link = document.createElement('link');
+		    link.type = 'image/x-icon';
+		    link.rel = 'shortcut icon';
+		    link.href = Global.baseDir + 'img/logo_small.png';
+		    document.getElementsByTagName('head')[0].appendChild(link);
+		}());
+		
+		LazyLoad.css([
+		    baseCssDir + "main.css", 
+		    baseCssDir + "bootstrap.min.css",
+		    baseCssDir + "glyph.css"
+		], function(){});
+		
+		LazyLoad.js([
+		    baseJsDir + "jquery-1.8.2.min.js", 
+		    baseJsDir + "main.js", 
+		    baseJsDir + "jquery.history.js", 
+		    baseJsDir + "jquery.cookie.js", 
+		    baseJsDir + "jquery.numeric.js", 
+		    baseJsDir + "jquery.enterpress.js", 
+		    baseJsDir + "jquery.ui.widget.js", 
+		    baseJsDir + "String.js", 
+		    baseJsDir + "bimserverapibootstrap.js", 
+		    baseJsDir + "bootstrap.min.js", 
+		    baseJsDir + "sha256.js", 
+		    baseJsDir + "utils.js", 
+		    baseJsDir + "formatters.js", 
+		    baseJsDir + "settings.js", 
+		    baseJsDir + "jquery.fileupload.js", 
+		    baseJsDir + "pagechanger.js"
+		], function () {
+			
+			pushInitialState();
+
+			Global.bimServerApi = null;
+			Global.objectcache = {};
+			Global.timeoutId;
+			
+			$(".status").hide();
+			
+			Global.notifier = {
+				error: function(message){
+					$(".genericErrors .text").html(message).parent().show();
+				},
+				info: function(message) {
+					$(".genericErrors .text").html(message).parent().show();						
+				},
+				clear: function() {
+					$(".genericErrors .text").html("").parent().hide();
+				},
+				resetStatus: function(){
+					$(".status").stop(true, true);
+					$(".status").fadeOut(1000);
+				},
+				resetStatusQuick: function(){
+					$(".status").hide();
+				},
+				setStatus: function(status, timeToShow) {
+					if (timeToShow == null) {
+						timeToShow = 5000;
+					}
+					$(".status").stop(true, true);
+					if (this.lastTimeOut != null) {
+						clearTimeout(this.lastTimeOut);
+						this.lastTimeOut = null;
+					}
+					$(".status").show().html(status).removeClass("error");
+					var notifier = this;
+					if (timeToShow != -1) {
+						this.lastTimeOut = setTimeout(function(){
+							notifier.resetStatus();
+						}, timeToShow);
+					}
+				},
+				setError: function(error) {
+					$(".status").html(error).addClass("error").show();
+				}
+			};
+
+			function loadError() {
+				window.clearTimeout(Global.timeoutId);
+				Global.notifier.error("Could not connect");
+				$.removeCookie("username");
+				$.removeCookie("autologin");
+				$.removeCookie("address");
+				$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+					new Login();
+				});
+			}
+			
+			this.showResetPassword = function() {
+				$(".indexcontainer").load(Global.baseDir + "resetpassword.html", function(){
+					new ResetPassword();
+				});
+			};
+			
+			this.tryAutoLogin = function(){
+				$(function(){
+					if ($.cookie("address") != null || (!Settings.allowBimServerAddress())) {
+						loadBimServerApi($.cookie("address") != null ? $.cookie("address") : Global.baseDir, Global.notifier, function(serverInfo){
+							if (serverInfo.serverState == "NOT_SETUP") {
+								$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
+									new Setup($.cookie("address") == null ? stripHttp(stripLastSlash(Global.baseDir)) : $.cookie("address"));
+								});
+							} else if (serverInfo.serverState == "UNDEFINED") {
+							} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
+							} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
+							} else if (serverInfo.serverState == "FATAL_ERROR") {
+							} else if (serverInfo.serverState == "RUNNING") {
+								if ($.cookie("autologin") != null) {
+									Global.bimServerApi.token = $.cookie("autologin");
+									Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
+										$(".indexcontainer").load(Global.baseDir + "main.html", function(){
+											new Main(Global.bimServerApi.baseUrl, data.name).show(false);
+										});
+									}, function(){
+										$.removeCookie("autologin");
+										$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+											new Login(Global.bimServerApi.baseUrl);
+										});
+									});
+								} else {
+									$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+										new Login(Global.baseDir);
+									});
+								}
+							}
+						}, function(){
+							$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+								new Login(Global.baseDir);
+							});
+						});
+					} else {
+						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+							new Login(Global.baseDir);
+						});
+					}
+				});
+			};
+			setInterval(function() {
+				var now = new Date().getTime();
+				$(".timespan").each(function() {
+					$(this).html(formatTimeSpan(now - $(this).attr("datetime"), false));
+				});
+				$(".duration").each(function() {
+					var start = new Date(parseInt($(this).attr("start")));
+					var end = $(this).attr("end") == null ? new Date() : new Date(parseInt($(this).attr("end")));
+					var diff = end.getTime() - start.getTime();
+					$(this).html(formatDuration(diff, true));
+				});
+			}, 1000);
+			
+			var history = History.getState().data;
+			if (history.page == "ResetPassword") {
+				showResetPassword();
+			} else {
+				tryAutoLogin();
+			}
+		}, function (err) {
+			console.log(err);
+		});
+	</script>
+  </body>
+</html>

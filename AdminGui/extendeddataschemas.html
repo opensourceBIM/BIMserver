@@ -1,0 +1,60 @@
+<div class="extendeddataschemas">
+	<div class="well well-small">
+		<button class="btn addNewExtendedDataSchemaButton">Add new</button>
+		<button class="btn addRepoExtendedDataSchemaButton">Add from repository</button>
+	</div>
+	<div class="well well-small noextendeddataschemas">
+		No extended data schemas
+	</div>
+	<table class="table initialhide table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Namespace</th>
+				<th>Validate</th>
+				<th>Type</th>
+				<th>Used</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+<script>
+function ExtendedDataSchemas(main, serversettings) {
+	var othis = this;
+
+	this.close = function(){
+	};
+
+	this.addExtendedDataSchema = function(extendedDataSchema) {
+		$(".extendeddataschemas .noextendeddataschemas").hide();
+		$(".extendeddataschemas table").show();
+		
+		var tr = $("<tr>");
+		tr.data("extendeddataschema", extendedDataSchema);
+		tr.click(function(){
+			main.showExtendedDataSchema($(this).data("extendeddataschema"));
+		});
+		
+		tr.append("<td>" + extendedDataSchema.name + "</td>");
+		tr.append("<td>" + extendedDataSchema.namespace + "</td>");
+		tr.append("<td>" + extendedDataSchema.validate + "</td>");
+		tr.append("<td>" + extendedDataSchema.type + "</td>");
+		tr.append("<td>" + extendedDataSchema.extendedData.length + "</td>");
+		$(".extendeddataschemas table tbody").append(tr);
+	};
+
+	this.loadExtendedDataSchemas = function() {
+		Global.bimServerApi.call("ServiceInterface", "getAllExtendedDataSchemas", {}, function(data){
+			data.forEach(function(extendedDataSchema){
+				othis.addExtendedDataSchema(extendedDataSchema);
+			});
+		});
+	};
+
+	othis.loadExtendedDataSchemas();
+	$(".extendeddataschemas .addNewExtendedDataSchemaButton").click(serversettings.showAddNewExtendedDataSchema);
+	$(".extendeddataschemas .addRepoExtendedDataSchemaButton").click(serversettings.showAddRepoExtendedDataSchema);
+}
+</script>
