@@ -239,7 +239,7 @@ public class PluginManager {
 				}
 			}
 		}
-		return null;
+		throw new RuntimeException("No plugin context found for " + plugin);
 	}
 
 	public void loadPluginsFromCurrentClassloader() {

@@ -31,9 +31,4 @@ public interface WebModulePlugin extends Plugin {
 	 * @param response The HTTP response
 	 */
 	boolean service(HttpServletRequest request, HttpServletResponse response);
-
-	/**
-	 * @return The context path on which to serve this webmodule
-	 */
-	String getContextPath();
 }

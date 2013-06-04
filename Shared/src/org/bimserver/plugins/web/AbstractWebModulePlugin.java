@@ -25,6 +25,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
+import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PrimitiveDefinition;
+import org.bimserver.models.store.PrimitiveEnum;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StringType;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -44,18 +50,18 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	public boolean service(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String path = request.getPathInfo();
-			if (path.startsWith(getContextPath())) {
-				path = path.substring(getContextPath().length());
+			if (path.startsWith(getDefaultContextPath())) {
+				path = path.substring(getDefaultContextPath().length());
 			}
 			if (path == null || path.equals("")) {
-				response.sendRedirect(getContextPath() + "/");
+				response.sendRedirect(getDefaultContextPath() + "/");
 			} else if (path.equals("/")) {
 				path = "index.html";
 			}
 			if (path.startsWith("/")) {
 				path = path.substring(1);
 			}
-			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(path);
+			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(getSubDir() + path);
 			if (resourceAsInputStream != null) {
 				IOUtils.copy(resourceAsInputStream, response.getOutputStream());
 				return true;
@@ -68,6 +74,34 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 			LOGGER.error("", e);
 		}
 		return false;
+	}
+
+	public String getSubDir() {
+		return "";
+	}
+	
+	/**
+	 * @return The context path on which to serve this webmodule
+	 */
+	public abstract String getDefaultContextPath();
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		ObjectDefinition objectDefinition = StoreFactory.eINSTANCE.createObjectDefinition();
+
+		PrimitiveDefinition stringDefinition = StoreFactory.eINSTANCE.createPrimitiveDefinition();
+		stringDefinition.setType(PrimitiveEnum.STRING);
+		
+		ParameterDefinition contextPathParameter = StoreFactory.eINSTANCE.createParameterDefinition();
+		contextPathParameter.setName("contextPath");
+		contextPathParameter.setDescription("Context Path to run this Web Module on");
+		StringType defaultValue = StoreFactory.eINSTANCE.createStringType();
+		defaultValue.setValue(getDefaultContextPath());
+		contextPathParameter.setDefaultValue(defaultValue);
+		contextPathParameter.setType(stringDefinition);
+		objectDefinition.getParameters().add(contextPathParameter);
+		
+		return objectDefinition;
 	}
 	
 	public PluginContext getPluginContext() {
