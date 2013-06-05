@@ -120,7 +120,9 @@ function Login(address, username) {
 			} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
 			} else if (serverInfo.serverState == "FATAL_ERROR") {
 			} else if (serverInfo.serverState == "RUNNING") {
-				Global.bimServerApi.callWithFullIndication("AuthInterface", "requestPasswordChange", {username: $(".username").val(), resetUrl: getBaseURL() + "?page=ResetPassword"}, function(){});
+				Global.bimServerApi.callWithFullIndication("AuthInterface", "requestPasswordChange", {username: $(".username").val(), resetUrl: Global.baseDir + "?page=ResetPassword"}, function(){
+					
+				});
 			}
 		});
 	};

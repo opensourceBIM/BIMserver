@@ -129,6 +129,35 @@ Global.baseCssDir = Global.baseDir + "css/";
 var base = document.getElementsByTagName("base");
 base[0].href = Global.baseDir;
 
+var global = (function () {
+    return this;
+}());
+
+
+// http://stackoverflow.com/questions/3362471/how-can-i-call-a-javascript-constructor-using-call-or-apply
+function conthunktor(Constructor) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    return function() {
+         var Temp = function(){}, // temporary constructor
+             inst, ret; // other vars
+
+         // Give the Temp constructor the Constructor's prototype
+         Temp.prototype = Constructor.prototype;
+
+         // Create a new instance
+         inst = new Temp;
+
+         // Call the original Constructor with the temp
+         // instance as its context (i.e. its 'this' value)
+         ret = Constructor.apply(inst, args);
+
+         // If an object has been returned then return it otherwise
+         // return the original instance.
+         // (consistent with behaviour of the new operator)
+         return Object(ret) === ret ? ret : inst;
+    }
+};
+
 (function() {
     var link = document.createElement('link');
     link.type = 'image/x-icon';
@@ -157,6 +186,8 @@ LazyLoad.js([
 	function Console() {
 		var othis = this;
 		
+		othis.currentScenarioContext = null;
+		
 		$(".logo").attr("src", Global.baseDir + "img/consolelogo.png");
 		$(".largeLogo").attr("src", Global.baseDir + "img/consolelogolarge.png");
 		$(".title").html(ConsoleSettings.title);
@@ -175,17 +206,27 @@ LazyLoad.js([
 					{
 						name: "Create project",
 						interface: "Bimsie1ServiceInterface",
-						method: "addProject"
+						method: "addProject",
+						post: function(data, context){
+							context.poid = data.oid;
+						}
 					},
 					{
 						name: "Find deserializer",
 						interface: "Bimsie1ServiceInterface",
-						method: "getSuggestedDeserializerForExtension"
+						method: "getSuggestedDeserializerForExtension",
+						post: function(data, context) {
+							context.serializerOid = data.oid;
+						}
 					},
 					{
 						name: "Checkin",
 						interface: "Bimsie1ServiceInterface",
-						method: "checkin"
+						method: "checkin",
+						pre: function(context, form){
+							form.setFieldValue("poid", context.poid);
+							form.setFieldValue("serializerOid", context.serializerOid);
+						}
 					}
 				]
 			}
@@ -198,7 +239,7 @@ LazyLoad.js([
 
 		var protocol = "json";
 
-		var namespaceMapping = {
+		othis.namespaceMapping = {
 			"AuthInterface": "org_bimserver_AuthInterface",
 			"ServiceInterface": "org_bimserver_ServiceInterface",
 			"AdminInterface": "org_bimserver_AdminInterface",
@@ -213,15 +254,20 @@ LazyLoad.js([
 			"Bimsie1NotificationInterface": "org_buildingsmart_bimsie_Bimsie1NotificationInterface"
 		};
 
-		for (var key in namespaceMapping) {
+		for (var key in othis.namespaceMapping) {
 			$.getScript(Global.baseDir + "soap11/" + key + "?js");
 		}
 
 		othis.lastCall = {};
 
+		ConsoleSettings.getStaticServerAddress(function(address){
+			Global.address = address;
+			othis.loadMethods();
+		});
+
 		this.call = function(requestObject, callback) {
 			$.ajax({
-				url: Global.baseDir + "json",
+				url: Global.address + "/json",
 				data: JSON.stringify(requestObject),
 				contentType: "application/json",
 				type: "POST",
@@ -310,30 +356,6 @@ LazyLoad.js([
 			return request;	
 		};
 
-		// http://stackoverflow.com/questions/3362471/how-can-i-call-a-javascript-constructor-using-call-or-apply
-		this.conthunktor = function(Constructor) {
-		    var args = Array.prototype.slice.call(arguments, 1);
-		    return function() {
-		         var Temp = function(){}, // temporary constructor
-		             inst, ret; // other vars
-
-		         // Give the Temp constructor the Constructor's prototype
-		         Temp.prototype = Constructor.prototype;
-
-		         // Create a new instance
-		         inst = new Temp;
-
-		         // Call the original Constructor with the temp
-		         // instance as its context (i.e. its 'this' value)
-		         ret = Constructor.apply(inst, args);
-
-		         // If an object has been returned then return it otherwise
-		         // return the original instance.
-		         // (consistent with behaviour of the new operator)
-		         return Object(ret) === ret ? ret : inst;
-		    }
-		};
-
 		this.getSoapArgs = function() {
 			var params = [];
 			othis.lastCall.method.parameters.forEach(function(parameter, index){
@@ -348,8 +370,8 @@ LazyLoad.js([
 			    return this;
 			}());
 
-			var interfaceConstructor = global[namespaceMapping[othis.lastCall.serviceInterface.simpleName]];
-			var interfaceObject = othis.conthunktor(interfaceConstructor)();
+			var interfaceConstructor = global[othis.namespaceMapping[othis.lastCall.serviceInterface.simpleName]];
+			var interfaceObject = conthunktor(interfaceConstructor)();
 			var inputSerializer = interfaceObject[othis.lastCall.method.name + "_serializeInput"];
 			var code = inputSerializer(new CxfApacheOrgUtil(), params);
 			return vkbeautify.xml(code);
@@ -507,6 +529,14 @@ LazyLoad.js([
 						$(".responsediv pre").text(JSON.stringify(data, null, '  '));
 						prettyPrint();
 						$(".responsediv").show();
+						
+						if (othis.currentScenarioContext != null) {
+							if (othis.currentScenarioContext.call != null) {
+								if (othis.currentScenarioContext.call.post != null) {
+									othis.currentScenarioContext.call.post(data.response.result, othis.currentScenarioContext);
+								}
+							}
+						}
 					});
 				} catch (e) {
 					$(".responsediv pre").removeClass("success").addClass("error");
@@ -514,11 +544,8 @@ LazyLoad.js([
 					$(".responsediv").show();
 				}
 			} else if (protocol == "soap") {
-				var global = (function () {
-				    return this;
-				}());
-				var interfaceConstructor = global[namespaceMapping[othis.lastCall.serviceInterface.simpleName]];
-				var interfaceObject = othis.conthunktor(interfaceConstructor)();
+				var interfaceConstructor = global[othis.namespaceMapping[othis.lastCall.serviceInterface.simpleName]];
+				var interfaceObject = conthunktor(interfaceConstructor)();
 				var callMethod = interfaceObject[othis.lastCall.method.name];
 				var allArguments = [];
 				allArguments.push(function(response){
@@ -549,6 +576,13 @@ LazyLoad.js([
 					prettyPrint();
 					$(".responsediv").show();
 					existingSuccessMethod.apply(this, arguments);
+					if (othis.currentScenarioContext != null) {
+						if (othis.currentScenarioContext.call != null) {
+							if (othis.currentScenarioContext.call.post != null) {
+								othis.currentScenarioContext.call.post(responseXml.response.result, othis.currentScenarioContext);
+							}
+						}
+					}
 				};
 				interfaceObject[othis.lastCall.method.name + "_onsuccess"] = newSuccessMethod;
 
@@ -586,6 +620,14 @@ LazyLoad.js([
 		
 		this.loadScenarioCall = function(){
 			var call = $(this).data("call");
+			othis.currentScenarioContext.call = call;
+			if (call.pre != null) {
+				call.pre(othis.currentScenarioContext, {
+					setFieldValue: function(fieldName, newValue){
+						console.log("Setting", fieldName, newValue);
+					}
+				});
+			}
 			var methodDiv = $(".scenarioMethod");
 			$(this).parent().parent().find("li").removeClass("selected");
 			$(this).parent().addClass("selected");
@@ -596,6 +638,9 @@ LazyLoad.js([
 		
 		this.loadScenario = function(){
 			var scenario = $(this).data("scenario");
+			othis.currentScenarioContext = {
+				scenario: scenario
+			};
 			var clone = $(".method").clone();
 			$(".scenarioDetails .scenarioMethod").append(clone.show());
 			$(".scenarioDetails .title").html(scenario.name + " Scenario");
@@ -687,8 +732,6 @@ LazyLoad.js([
 			$(".scenariosLink").parent().addClass("active");
 			$(".scenarios").show();
 		});
-		
-		othis.loadMethods();
 	}
 	new Console();
 });

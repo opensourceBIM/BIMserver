@@ -4,6 +4,11 @@ var ConsoleSettings = {
 	getBaseUrl: function(){
 		return "http://sandbox.bimserver.org"
 	},
+	getStaticServerAddress: function(callback){
+		$.getJSON("getbimserveraddress", function(data){
+			callback(data.address);
+		});
+	},
 	getVersion: function(){
 		return "1.2";
 	}, getServiceInterfaces: function(consoleObject, callback){

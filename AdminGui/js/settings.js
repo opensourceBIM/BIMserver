@@ -4,6 +4,11 @@ var Settings = {
 			callback(data.servers);
 		}).error(function(error) {console.log(error); });
 	},
+	getStaticServerAddress: function(callback){
+		$.getJSON("getbimserveraddress", function(data){
+			callback(data.address);
+		});
+	},
 	getMenuItems: function(){
 		return [
 		        "serversettingsLink",
