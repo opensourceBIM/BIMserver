@@ -17,6 +17,7 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.bimserver.Authenticator;
@@ -46,22 +47,21 @@ public class ValidateUserDatabaseAction extends BimDatabaseAction<User> {
 	public User execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(uoid);
 		if (user.getValidationToken() == null) {
-			throw new UserException("This account is already validated");
+			throw new UserException("This account is already validated and no password reset has been requested");
 		}
 		if (user.getValidationTokenCreated().getTime() + VALIDATION_TOKEN_EXPIRE_MILLIS < new Date().getTime()) {
-			throw new UserException("The validation period of this account has been expired, please contact your administrator");
+			throw new UserException("The validation period of this validation token has expired, please contact your administrator or request the password reset again");
 		}
-		if (!user.getValidationToken().equals(Hashers.getSha256Hash(token))) {
+		if (!Arrays.equals(user.getValidationToken(), Hashers.getSha256Hash(token))) {
 			throw new UserException("The given token is not correct");
 		}
 		if (password == null || password.trim().equals("")) {
-			throw new UserException("Invalid password");
+			throw new UserException("Invalid new password");
 		}
 		byte[] salt = new byte[32];
 		new java.security.SecureRandom().nextBytes(salt);
 		user.setPasswordHash(new Authenticator().createHash(password, salt));
 		user.setPasswordSalt(salt);
-		
 		user.setValidationToken(null);
 		user.setValidationTokenCreated(null);
 		getDatabaseSession().store(user);

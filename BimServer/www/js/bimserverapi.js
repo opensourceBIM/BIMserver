@@ -903,7 +903,7 @@ function Model(bimServerApi, poid, roid) {
 	};
 	
 	this.size = function(callback){
-		bimServerApi.call("ServiceInterface", "getRevision", {roid: roid}, function(revision){
+		bimServerApi.call("Bimsie1ServiceInterface", "getRevision", {roid: roid}, function(revision){
 			callback(revision.size);
 		});
 	};
@@ -911,7 +911,7 @@ function Model(bimServerApi, poid, roid) {
 	this.count = function(type, includeAllSubTypes, callback) {
 		// TODO use includeAllSubTypes
 		othis.incrementRunningCalls("count (" + type + ")");
-		bimServerApi.call("ServiceInterface", "count", {roid: roid, className: type}, function(size){
+		bimServerApi.call("Bimsie1LowLevelInterface", "count", {roid: roid, className: type}, function(size){
 			callback(size);
 			othis.decrementRunningCalls("count (" + type + ")");
 		});		
