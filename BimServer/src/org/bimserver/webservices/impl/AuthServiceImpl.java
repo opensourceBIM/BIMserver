@@ -1,17 +1,23 @@
 package org.bimserver.webservices.impl;
 
+import java.util.concurrent.TimeUnit;
+
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.ChangePasswordDatabaseAction;
 import org.bimserver.database.actions.RequestPasswordChangeDatabaseAction;
 import org.bimserver.database.actions.ValidateUserDatabaseAction;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.webservices.ServiceMap;
+import org.bimserver.webservices.authorization.AdminAuthorization;
+import org.bimserver.webservices.authorization.Authorization;
+import org.bimserver.webservices.authorization.UserAuthorization;
 
 public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface {
 
@@ -66,4 +72,18 @@ public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface
 		}
 		return null;
 	}
+//
+//	@Override
+//	public String createToken(Integer validitySeconds) throws UserException, ServerException {
+//		Authorization authorization = null;
+//		SUser currentUser = getCurrentUser();
+//		if (currentUser.getUserType() == SUserType.ADMIN) {
+//			authorization = new AdminAuthorization(validitySeconds, TimeUnit.SECONDS);
+//		} else {
+//			authorization = new UserAuthorization(validitySeconds, TimeUnit.SECONDS);
+//		}
+//		authorization.setUoid(currentUser.getOid());
+//		String asHexToken = authorization.asHexToken(getBimServer().getEncryptionKey());
+//		return asHexToken;
+//	}
 }
