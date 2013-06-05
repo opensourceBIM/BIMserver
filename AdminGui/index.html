@@ -74,7 +74,6 @@
 		    baseJsDir + "jquery.fileupload.js", 
 		    baseJsDir + "pagechanger.js"
 		], function () {
-			
 			pushInitialState();
 
 			Global.bimServerApi = null;
@@ -142,37 +141,39 @@
 			this.tryAutoLogin = function(){
 				$(function(){
 					if ($.cookie("address") != null || (!Settings.allowBimServerAddress())) {
-						loadBimServerApi($.cookie("address") != null ? $.cookie("address") : Global.baseDir, Global.notifier, function(serverInfo){
-							if (serverInfo.serverState == "NOT_SETUP") {
-								$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
-									new Setup($.cookie("address") == null ? stripHttp(stripLastSlash(Global.baseDir)) : $.cookie("address"));
-								});
-							} else if (serverInfo.serverState == "UNDEFINED") {
-							} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
-							} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
-							} else if (serverInfo.serverState == "FATAL_ERROR") {
-							} else if (serverInfo.serverState == "RUNNING") {
-								if ($.cookie("autologin") != null) {
-									Global.bimServerApi.token = $.cookie("autologin");
-									Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
-										$(".indexcontainer").load(Global.baseDir + "main.html", function(){
-											new Main(Global.bimServerApi.baseUrl, data.name).show(false);
+						Settings.getStaticServerAddress(function(address){
+							loadBimServerApi(address, Global.notifier, function(serverInfo){
+								if (serverInfo.serverState == "NOT_SETUP") {
+									$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
+										new Setup($.cookie("address") == null ? stripHttp(stripLastSlash(Global.baseDir)) : $.cookie("address"));
+									});
+								} else if (serverInfo.serverState == "UNDEFINED") {
+								} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
+								} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
+								} else if (serverInfo.serverState == "FATAL_ERROR") {
+								} else if (serverInfo.serverState == "RUNNING") {
+									if ($.cookie("autologin") != null) {
+										Global.bimServerApi.token = $.cookie("autologin");
+										Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
+											$(".indexcontainer").load(Global.baseDir + "main.html", function(){
+												new Main(Global.bimServerApi.baseUrl, data.name).show(false);
+											});
+										}, function(){
+											$.removeCookie("autologin");
+											$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+												new Login(Global.bimServerApi.baseUrl);
+											});
 										});
-									}, function(){
-										$.removeCookie("autologin");
+									} else {
 										$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-											new Login(Global.bimServerApi.baseUrl);
+											new Login(Global.baseDir);
 										});
-									});
-								} else {
-									$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-										new Login(Global.baseDir);
-									});
+									}
 								}
-							}
-						}, function(){
-							$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-								new Login(Global.baseDir);
+							}, function(){
+								$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+									new Login(Global.baseDir);
+								});
 							});
 						});
 					} else {

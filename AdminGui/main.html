@@ -41,6 +41,7 @@ function Main(address, username) {
 	$(".main .addressLabel").html(address);
 	
 	this.show = function(alterState) {
+		console.log(History.getState());
 		var history = History.getState().data;
 		if (history.page == "Dashboard") {
 			othis.showDashboard(null, alterState);
@@ -62,6 +63,8 @@ function Main(address, username) {
 			othis.showServerInfo(null, alterState);
 		} else if (history.page == "Testing") {
 			othis.showTesting(null, alterState);
+		} else if (history.page == "ResetPassword") {
+			othis.showResetPassword(null, alterState);
 		} else {
 			if ($(".dashboardLink").is(":visible")) {
 				othis.showDashboard(null, alterState);
@@ -85,6 +88,15 @@ function Main(address, username) {
 				pushHistory({page: "Dashboard"});
 			}
 			return new Dashboard(othis);
+		}, callback);
+	};
+	
+	this.showResetPassword = function(callback, alterState) {
+		othis.pageChanger.changePage($(".projectsLink"), "resetpassword.html", function(){
+			if (alterState) {
+				pushHistory({page: "ResetPassword"});
+			}
+			return new ResetPassword($(this), othis);
 		}, callback);
 	};
 

@@ -93,9 +93,7 @@ function pushHistory(obj) {
 	if (str.endsWith("&")) {
 		str = str.substring(0, str.length - 1);
 	}
-	if (!current.cleanUrl.endsWith(str)) {
-		History.pushState(obj, null, str);
-	}
+	History.pushState(obj, null, str);
 	pushing = false;
 }
 
@@ -109,6 +107,7 @@ function pushInitialState() {
 			var s = splitted[i];
 			obj[s.substring(0, s.indexOf("="))] = s.substring(s.indexOf("=") + 1);
 		}
+		console.log("pushInitialState", obj);
 		pushHistory(obj);
 	}
 }

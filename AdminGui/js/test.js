@@ -334,7 +334,7 @@ var Project = function(main, project) {
 		$(".project .revisionsLink a").html("Revisions" + (othis.project.revisions.length == 0 ? "" : (" (" + othis.project.revisions.length + ")")));
 		$(".project .servicesLink a").html("Services" + (othis.project.services.length == 0 ? "" : (" (" + othis.project.services.length + ")")));
 		if (othis.project.lastRevisionId != -1) {
-			Global.bimServerApi.call("ServiceInterface", "getRevision", {roid: othis.project.lastRevisionId}, function(data){
+			Global.bimServerApi.call("Bimsie1ServiceInterface", "getRevision", {roid: othis.project.lastRevisionId}, function(data){
 				othis.lastRevision = data;
 			});
 			$(".project .browserLink").show();
@@ -451,7 +451,7 @@ var Project = function(main, project) {
 
 	this.newLogAction = function(uuid, logAction, serviceIdentifier, profileIdentifier, token, apiUrl){
 		if (logAction.__type == "SNewRevisionAdded") {
-			Global.bimServerApi.call("ServiceInterface", "getRevision", {roid: logAction.revisionId}, function(data){
+			Global.bimServerApi.call("Bimsie1ServiceInterface", "getRevision", {roid: logAction.revisionId}, function(data){
 				othis.reloadProject(logAction.projectId);
 				othis.addRevision(data);
 			});
