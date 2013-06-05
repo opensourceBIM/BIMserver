@@ -63,7 +63,11 @@ public class RootServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			if (request.getRequestURI().endsWith(".js")) {
+			if (request.getRequestURI().endsWith("getbimserveraddress")) {
+				response.setContentType("application/json");
+				response.getWriter().print("{\"address\":\"" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress() + "\"}");
+				return;
+			} else if (request.getRequestURI().endsWith(".js")) {
 				response.setContentType("application/javascript");
 			} else if (request.getRequestURI().endsWith(".css")) {
 				response.setContentType("text/css");
