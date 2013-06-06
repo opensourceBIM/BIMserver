@@ -411,6 +411,7 @@
 				<path>
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
+					<fileset dir="../../Shared/genclasses"></fileset>
 				</path>
 			</classpath>
 		</javac>
