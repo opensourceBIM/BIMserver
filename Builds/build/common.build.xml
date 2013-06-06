@@ -408,10 +408,10 @@
 			<src path="../../Shared/src" />
 			<src path="../../Shared/generated" />
 			<classpath>
+				<pathelement location="../../Shared/genclasses"/>
 				<path>
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
-					<fileset dir="../../Shared/genclasses"></fileset>
 				</path>
 			</classpath>
 		</javac>
