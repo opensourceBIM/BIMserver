@@ -77,7 +77,7 @@ public class LodToExcel {
 		    createHeader(noFurnitureSheet);
 		    createHeader(noProxySheet);
 
-			List<SProject> projects = bimServerClient.getBimsie1ServiceInterface().getAllProjects(true);
+			List<SProject> projects = bimServerClient.getBimsie1ServiceInterface().getAllProjects(true, true);
 			int row = 2;
 			for (SProject project : projects) {
 				long roid = project.getLastRevisionId();
