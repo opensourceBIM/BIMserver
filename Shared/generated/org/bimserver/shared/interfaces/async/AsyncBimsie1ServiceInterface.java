@@ -411,11 +411,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void getAllProjects(final java.lang.Boolean onlyTopLevel, final GetAllProjectsCallback callback) {
+	public void getAllProjects(final java.lang.Boolean onlyTopLevel, final java.lang.Boolean onlyActive, final GetAllProjectsCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getAllProjects(onlyTopLevel));
+					callback.success(syncService.getAllProjects(onlyTopLevel, onlyActive));
 				} catch (Exception e) {
 					callback.error(e);
 				}

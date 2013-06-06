@@ -423,7 +423,8 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllProjects")
 	List<SProject> getAllProjects(
-		@WebParam(name = "onlyTopLevel", partName = "getAllProjects.onlyTopLevel") Boolean onlyTopLevel) throws ServerException, UserException;
+		@WebParam(name = "onlyTopLevel", partName = "getAllProjects.onlyTopLevel") Boolean onlyTopLevel,
+		@WebParam(name = "onlyActive", partName = "getAllProjects.onlyActive") Boolean onlyActive) throws ServerException, UserException;
 
 	/**
 	 * Add a new project

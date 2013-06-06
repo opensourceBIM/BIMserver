@@ -137,12 +137,12 @@ public class VirtualUser extends Thread {
 
 	public SProject getRandomProject() throws UserException, PublicInterfaceNotFoundException {
 		try {
-			List<SProject> allProjects = bimServerClient.getBimsie1ServiceInterface().getAllProjects(false);
+			List<SProject> allProjects = bimServerClient.getBimsie1ServiceInterface().getAllProjects(false, true);
 			if (allProjects == null || allProjects.isEmpty()) {
 				CreateProjectAction createProjectAction = new CreateProjectAction(testFramework);
 				createProjectAction.execute(this);
 			}
-			allProjects = bimServerClient.getBimsie1ServiceInterface().getAllProjects(false);
+			allProjects = bimServerClient.getBimsie1ServiceInterface().getAllProjects(false, true);
 			if (!allProjects.isEmpty()) {
 				return allProjects.get(random.nextInt(allProjects.size()));
 			}

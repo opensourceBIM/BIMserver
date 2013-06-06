@@ -132,7 +132,7 @@ public class SyndicationServlet extends SubServlet {
 
 		List<SyndEntry> entries = new ArrayList<SyndEntry>();
 		try {
-			List<SProject> allProjects = serviceMap.getBimsie1ServiceInterface().getAllProjects(false);
+			List<SProject> allProjects = serviceMap.getBimsie1ServiceInterface().getAllProjects(false, true);
 			for (SProject sProject : allProjects) {
 				SyndEntry entry = new SyndEntryImpl();
 				entry.setAuthor(serviceMap.getServiceInterface().getUserByUoid(sProject.getCreatedById()).getName());

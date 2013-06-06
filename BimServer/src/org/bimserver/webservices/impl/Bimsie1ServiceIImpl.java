@@ -543,11 +543,11 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 	
 
 	@Override
-	public List<SProject> getAllProjects(Boolean onlyTopLevel) throws ServerException, UserException {
+	public List<SProject> getAllProjects(Boolean onlyTopLevel, Boolean onlyActive) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<Set<Project>> action = new GetAllProjectsDatabaseAction(session, getInternalAccessMethod(), onlyTopLevel, getAuthorization());
+			BimDatabaseAction<Set<Project>> action = new GetAllProjectsDatabaseAction(session, getInternalAccessMethod(), onlyTopLevel, onlyActive, getAuthorization());
 			List<SProject> convertToSListProject = getBimServer().getSConverter().convertToSListProject(session.executeAndCommitAction(action));
 			Collections.sort(convertToSListProject, new SProjectComparator());
 			return convertToSListProject;

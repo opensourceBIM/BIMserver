@@ -29,7 +29,7 @@ public class TestProtocolBuffers {
 		SoapBimServerClientFactory factory = new SoapBimServerClientFactory("http://localhost:8080");
 		try {
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			System.out.println(client.getBimsie1ServiceInterface().getAllProjects(true));
+			System.out.println(client.getBimsie1ServiceInterface().getAllProjects(true, true));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {

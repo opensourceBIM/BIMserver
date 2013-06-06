@@ -215,6 +215,8 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	private boolean processLine(String line) throws DeserializeException {
 		switch (mode) {
 		case HEADER:
+			// WORK IN PROGRESS
+//			processHeader(line);
 			if (line.equals("DATA;")) {
 				mode = Mode.DATA;
 			}
@@ -243,6 +245,48 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		case DONE:
 		}
 		return true;
+	}
+
+	private String readNextQuotedHeader(String line) {
+		return line;
+	}
+	
+	private void processHeader(String line) throws DeserializeException {
+		if (line.startsWith("FILE_DESCRIPTION")) {
+		} else if (line.startsWith("FILE_NAME")) {
+			int firstOpenParen = line.indexOf("(");
+			if (firstOpenParen != -1) {
+				int lastCloseParen = line.lastIndexOf(")", firstOpenParen);
+				if (lastCloseParen != -1) {
+					String rest = line.substring(firstOpenParen, lastCloseParen);
+					String x = readNextQuotedHeader(line);
+					while (x != null) {
+						x = readNextQuotedHeader(line);
+					}
+				}
+			}
+			throw new DeserializeException("Error reading FILE_NAME header data");
+		} else if (line.startsWith("FILE_SCHEMA")) {
+			int firstOpenParen = line.indexOf("(");
+			if (firstOpenParen != -1) {
+				int secondOpenParen = line.indexOf("(", firstOpenParen);
+				if (secondOpenParen != -1) {
+					String rest = line.substring(secondOpenParen);
+					int secondLastCloseParen = rest.indexOf(")");
+					if (secondLastCloseParen != -1) {
+						int lastCloseParen = rest.lastIndexOf(")", secondLastCloseParen);
+						if (lastCloseParen != -1) {
+							String schemaVersion = rest.substring(0, lastCloseParen);
+							model.getModelMetaData().setSchemaVersion(schemaVersion);
+							return;
+						}
+					}
+				}
+			}
+			throw new DeserializeException("Error reading FILE_SCHEMA header data");
+		} else if (line.startsWith("ENDSEC;")) {
+			// Do nothing
+		}
 	}
 
 	public void processRecord(String line) throws DeserializeException {

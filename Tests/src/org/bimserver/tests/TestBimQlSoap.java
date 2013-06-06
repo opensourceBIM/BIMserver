@@ -47,7 +47,7 @@ public class TestBimQlSoap {
 		try {
 			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
-			List<SProject> projects = bimServerClient.getBimsie1ServiceInterface().getAllProjects(true);
+			List<SProject> projects = bimServerClient.getBimsie1ServiceInterface().getAllProjects(true, true);
 			if (projects.isEmpty()) {
 				throw new RuntimeException("No projects");
 			}

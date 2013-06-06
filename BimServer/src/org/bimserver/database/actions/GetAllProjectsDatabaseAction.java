@@ -47,10 +47,12 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 
 	private Authorization authorization;
 	private boolean onlyTopLevel;
+	private Boolean onlyActive;
 
-	public GetAllProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, boolean onlyTopLevel, Authorization authorization) {
+	public GetAllProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, boolean onlyTopLevel, Boolean onlyActive, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.onlyTopLevel = onlyTopLevel;
+		this.onlyActive = onlyActive;
 		this.authorization = authorization;
 	}
 
@@ -62,6 +64,9 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getProject()).and(notStoreProject);
 		if (onlyTopLevel) {
 			condition = new AndCondition(condition, new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_Parent(), null));
+		}
+		if (onlyActive) {
+			condition = new AndCondition(condition, new AttributeCondition(StorePackage.eINSTANCE.getProject_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
 		if (user.getUserType() != UserType.ADMIN && user.getUserType() != UserType.SYSTEM) {
 			condition = condition.and(authorized);
