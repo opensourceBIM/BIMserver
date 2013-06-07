@@ -11,7 +11,6 @@
 		<mkdir dir="builds/lib" />
 		<mkdir dir="builds/pluginlibs" />
 		<antcall target="Utils" />
-		<antcall target="Emf" />
 		<antcall target="Shared" />
 		<antcall target="Ifc" />
 		<antcall target="BimServerClientLib" />
@@ -383,25 +382,6 @@
 			<fileset dir="builds/ifc"/>
 		</jar>
 	</target>
-	<target name="Emf">
-		<mkdir dir="builds/emf" />
-		<javac destdir="builds/emf" debug="on" includeantruntime="false">
-			<src path="../../Emf/src" />
-			<src path="../../Emf/generated" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<copy file="../../Emf/generated/org/bimserver/models/ifc2x3tc1/impl/ifc2x3tc1.ecore" todir="builds/emf/org/bimserver/models/ifc2x3tc1/impl" />
-		<copy file="../../Emf/generated/org/bimserver/models/store/impl/store.ecore" todir="builds/emf/org/bimserver/models/store/impl" />
-		<copy file="../../Emf/generated/org/bimserver/models/log/impl/log.ecore" todir="builds/emf/org/bimserver/models/log/impl" />
-		<jar destfile="builds/lib/bimserver-${version}-emf.jar">
-			<fileset dir="builds/emf"/>
-		</jar>
-	</target>
 	<target name="Shared">
 		<mkdir dir="builds/shared" />
 		<javac destdir="builds/shared" debug="on" includeantruntime="false">
@@ -420,6 +400,12 @@
 				<include name="*.java"/>
 			</fileset>
 		</copy>
+		<copy todir="builds/shared">
+			<fileset dir="../../Shared/genclasses"></fileset>
+		</copy>
+		<copy file="../../Shared/generated/org/bimserver/models/ifc2x3tc1/impl/ifc2x3tc1.ecore" todir="builds/shared/org/bimserver/models/ifc2x3tc1/impl" />
+		<copy file="../../Shared/generated/org/bimserver/models/store/impl/store.ecore" todir="builds/shared/org/bimserver/models/store/impl" />
+		<copy file="../../Shared/generated/org/bimserver/models/log/impl/log.ecore" todir="builds/shared/org/bimserver/models/log/impl" />
 		<copy todir="builds/shared/org/bimserver/shared/interfaces/bimsie1">
 			<fileset dir="../../Shared/src/org/bimserver/shared/interfaces/bimsie1">
 				<include name="*.java"/>
