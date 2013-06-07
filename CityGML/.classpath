@@ -12,7 +12,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Emf"/>
 	<classpathentry kind="lib" path="lib/activation.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
 	<classpathentry kind="output" path="bin"/>

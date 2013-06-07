@@ -31,6 +31,7 @@ import java.util.List;
 import org.apache.geronimo.mail.util.Hex;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
+import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.PluginConfiguration;
@@ -75,20 +76,10 @@ public class IfcStepSerializer extends IfcSerializer {
 	private static final String DOLLAR = "$";
 	private static final String WRAPPED_VALUE = "wrappedValue";
 	
-	private String fileDescription = "";
-	private String name = "";
-	private String author = "";
-	private String originatingSystem = "BIMserver";
-	private String authorization = "";
-	private String preProcessorVersion = "";
-	private Date date = new Date();
-
 	private Iterator<IdEObject> iterator;
 	private UTF8PrintWriter out;
-	private PluginConfiguration pluginConfiguration;
 
 	public IfcStepSerializer(PluginConfiguration pluginConfiguration) {
-		this.pluginConfiguration = pluginConfiguration;
 	}
 
 	@Override
@@ -127,34 +118,6 @@ public class IfcStepSerializer extends IfcSerializer {
 		return false;
 	}
 
-	public void setFileDescription(String fileDescription) {
-		this.fileDescription = fileDescription;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public void setOriginatingSystem(String originatingSystem) {
-		this.originatingSystem = originatingSystem;
-	}
-
-	public void setAuthorization(String authorization) {
-		this.authorization = authorization;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public void setPreProcessorVersion(String preProcessorVersion) {
-		this.preProcessorVersion = preProcessorVersion;
-	}
-
 	private void writeFooter(UTF8PrintWriter out) {
 		out.println("ENDSEC;");
 		out.println("END-ISO-10303-21;");
@@ -162,13 +125,19 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private void writeHeader(UTF8PrintWriter out) {
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss");
-		String dateString = dateFormatter.format(date);
-
 		out.println("ISO-10303-21;");
 		out.println("HEADER;");
-		out.println("FILE_DESCRIPTION (('" + fileDescription + "'), '2;1');");
-		out.println("FILE_NAME ('" + name + "', '" + dateString + "', ('" + author + "'), ('" + pluginConfiguration.getString("organization") + "'), '" + preProcessorVersion + "', '" + originatingSystem + "', '"	+ authorization + "');");
-		out.println("FILE_SCHEMA (('IFC2X3'));");
+		SIfcHeader ifcHeader = getModel().getModelMetaData().getIfcHeader();
+		if (ifcHeader == null) {
+			Date date = new Date();
+			out.println("FILE_DESCRIPTION ((''), '2;1');");
+			out.println("FILE_NAME ('', '" + dateFormatter.format(date) + "', (''), (''), '', 'BIMserver', '');");
+			out.println("FILE_SCHEMA (('Ifc2x3'));");
+		} else {
+			out.println("FILE_DESCRIPTION ((" + ifcHeader.getDescription() + "), '" + ifcHeader.getImplementationLevel() + "');");
+			out.println("FILE_NAME ('" + ifcHeader.getFilename() + "', '" + dateFormatter.format(ifcHeader.getTimeStamp()) + "', ('" + ifcHeader.getAuthor() + "'), ('" + ifcHeader.getOrganization() + "'), '" + ifcHeader.getPreProcessorVersion() + "', '" + ifcHeader.getOriginatingSystem() + "', '"	+ ifcHeader.getAuthorization() + "');");
+			out.println("FILE_SCHEMA (('" + ifcHeader.getIfcSchemaVersion() + "'));");
+		}
 		out.println("ENDSEC;");
 		out.println("DATA;");
 		// out.println("//This program comes with ABSOLUTELY NO WARRANTY.");
