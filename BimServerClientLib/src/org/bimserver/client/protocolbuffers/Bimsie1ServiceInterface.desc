@@ -1,5 +1,5 @@
 
-ÅI
+ÙI
 Bimsie1ServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"g
  AddExtendedDataToRevisionRequest
 roid (5
@@ -111,9 +111,11 @@ classNames (	
 roid ("l
 $GetAllExtendedDataOfRevisionResponse
 errorMessage (	.
-value (2.org.bimserver.pb.SExtendedData"-
+value (2.org.bimserver.pb.SExtendedData"A
 GetAllProjectsRequest
-onlyTopLevel ("Y
+onlyTopLevel (
+
+onlyActive ("Y
 GetAllProjectsResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"/

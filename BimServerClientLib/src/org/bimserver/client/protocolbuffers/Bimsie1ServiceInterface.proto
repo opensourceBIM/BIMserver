@@ -270,6 +270,7 @@ message GetAllExtendedDataOfRevisionResponse {
 
 message GetAllProjectsRequest {
 	optional bool onlyTopLevel = 1;
+	optional bool onlyActive = 2;
 }
 
 message GetAllProjectsResponse {
