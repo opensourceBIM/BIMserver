@@ -50,7 +50,6 @@ import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
 import org.bimserver.plugins.serializers.Serializer;
-import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -186,7 +185,7 @@ public class GeometryGenerator {
 					LOGGER.error("", e);
 				}
 			}
-		} catch (SerializerException e) {
+		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 	}

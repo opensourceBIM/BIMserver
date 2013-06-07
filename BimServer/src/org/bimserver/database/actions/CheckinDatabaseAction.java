@@ -34,12 +34,13 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.RevisionMerger;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
@@ -110,6 +111,12 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			
 			CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), size, project, user, comment.trim());
 			concreteRevision = result.getConcreteRevision();
+			SIfcHeader ifcHeader = getModel().getModelMetaData().getIfcHeader();
+			if (ifcHeader != null) {
+				IfcHeader convertFromSObject = bimServer.getSConverter().convertFromSObject(ifcHeader, getDatabaseSession());
+				getDatabaseSession().store(convertFromSObject);
+				concreteRevision.setIfcHeader(convertFromSObject);
+			}
 			project.getConcreteRevisions().add(concreteRevision);
 			if (getModel() != null) {
 				concreteRevision.setChecksum(getModel().getModelMetaData().getChecksum());

@@ -50,7 +50,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/stax2-api-3.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xsdlib-2010.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jna.jar"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
