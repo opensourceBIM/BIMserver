@@ -30,6 +30,8 @@ import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +45,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcBoolean;
@@ -65,6 +68,8 @@ import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.StringUtils;
+import org.bimserver.utils.TokenizeException;
+import org.bimserver.utils.Tokenizer;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -85,13 +90,14 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	private static final EPackage ePackage = Ifc2x3tc1Package.eINSTANCE;
 	private static final String WRAPPED_VALUE = "wrappedValue";
 	private static final Map<String, EClassifier> classes = initClasses();
-	
+
 	/*
 	 * The following hacks are present
 	 * 
-	 *   - For every feature of type double there is an extra feature (name appended with "AsString") of type String to keep the original String version
-	 *   	this is also done for aggregate features
-	 *   - WrappedValues for all for derived primitive types and enums that are used in a "select"
+	 * - For every feature of type double there is an extra feature (name
+	 * appended with "AsString") of type String to keep the original String
+	 * version this is also done for aggregate features - WrappedValues for all
+	 * for derived primitive types and enums that are used in a "select"
 	 */
 
 	private final WaitingList<Integer> waitingList = new WaitingList<Integer>();
@@ -215,8 +221,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	private boolean processLine(String line) throws DeserializeException {
 		switch (mode) {
 		case HEADER:
-			// WORK IN PROGRESS
-//			processHeader(line);
+			processHeader(line);
 			if (line.equals("DATA;")) {
 				mode = Mode.DATA;
 			}
@@ -247,45 +252,46 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		return true;
 	}
 
-	private String readNextQuotedHeader(String line) {
-		return line;
-	}
-	
 	private void processHeader(String line) throws DeserializeException {
-		if (line.startsWith("FILE_DESCRIPTION")) {
-		} else if (line.startsWith("FILE_NAME")) {
-			int firstOpenParen = line.indexOf("(");
-			if (firstOpenParen != -1) {
-				int lastCloseParen = line.lastIndexOf(")", firstOpenParen);
-				if (lastCloseParen != -1) {
-					String rest = line.substring(firstOpenParen, lastCloseParen);
-					String x = readNextQuotedHeader(line);
-					while (x != null) {
-						x = readNextQuotedHeader(line);
-					}
-				}
+		try {
+			if (model.getModelMetaData().getIfcHeader() == null) {
+				model.getModelMetaData().setIfcHeader(new SIfcHeader());
 			}
-			throw new DeserializeException("Error reading FILE_NAME header data");
-		} else if (line.startsWith("FILE_SCHEMA")) {
-			int firstOpenParen = line.indexOf("(");
-			if (firstOpenParen != -1) {
-				int secondOpenParen = line.indexOf("(", firstOpenParen);
-				if (secondOpenParen != -1) {
-					String rest = line.substring(secondOpenParen);
-					int secondLastCloseParen = rest.indexOf(")");
-					if (secondLastCloseParen != -1) {
-						int lastCloseParen = rest.lastIndexOf(")", secondLastCloseParen);
-						if (lastCloseParen != -1) {
-							String schemaVersion = rest.substring(0, lastCloseParen);
-							model.getModelMetaData().setSchemaVersion(schemaVersion);
-							return;
-						}
-					}
-				}
+			if (line.startsWith("FILE_DESCRIPTION")) {
+				Tokenizer tokenizer = new Tokenizer(line.substring(line.indexOf("(")));
+				tokenizer.zoomIn("(", ")");
+				tokenizer.zoomIn("(", ")");
+				model.getModelMetaData().getIfcHeader().setDescription(tokenizer.readAll());
+				tokenizer.zoomOut();
+				tokenizer.readComma();
+				model.getModelMetaData().getIfcHeader().setImplementationLevel(tokenizer.readSingleQuoted());
+				tokenizer.zoomOut();
+				tokenizer.shouldBeFinished();
+			} else if (line.startsWith("FILE_NAME")) {
+				Tokenizer tokenizer = new Tokenizer(line.substring(line.indexOf("(")));
+				tokenizer.zoomIn("(", ")");
+				model.getModelMetaData().getIfcHeader().setFilename(tokenizer.readSingleQuoted());
+				SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss");
+				model.getModelMetaData().getIfcHeader().setTimeStamp(dateFormatter.parse(tokenizer.readComma().readSingleQuoted()));
+				model.getModelMetaData().getIfcHeader().setAuthor(tokenizer.readComma().zoomIn("(", ")").readSingleQuoted());
+				tokenizer.zoomOut();
+				model.getModelMetaData().getIfcHeader().setOrganization(tokenizer.readComma().zoomIn("(", ")").readSingleQuoted());
+				tokenizer.zoomOut();
+				model.getModelMetaData().getIfcHeader().setPreProcessorVersion(tokenizer.readComma().readSingleQuoted());
+				model.getModelMetaData().getIfcHeader().setOriginatingSystem(tokenizer.readComma().readSingleQuoted());
+				model.getModelMetaData().getIfcHeader().setAuthorization(tokenizer.readComma().readSingleQuoted());
+				tokenizer.zoomOut();
+				tokenizer.shouldBeFinished();
+			} else if (line.startsWith("FILE_SCHEMA")) {
+				Tokenizer tokenizer = new Tokenizer(line.substring(line.indexOf("(")));
+				model.getModelMetaData().getIfcHeader().setIfcSchemaVersion(tokenizer.zoomIn("(", ")").zoomIn("(", ")").readSingleQuoted());
+			} else if (line.startsWith("ENDSEC;")) {
+				// Do nothing
 			}
-			throw new DeserializeException("Error reading FILE_SCHEMA header data");
-		} else if (line.startsWith("ENDSEC;")) {
-			// Do nothing
+		} catch (TokenizeException e) {
+			throw new DeserializeException(e);
+		} catch (ParseException e) {
+			throw new DeserializeException(e);
 		}
 	}
 
@@ -296,7 +302,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			throw new DeserializeException("No semicolon found in line");
 		}
 		int indexOfFirstParen = line.indexOf("(", equalSignLocation);
-		if  (indexOfFirstParen == -1) {
+		if (indexOfFirstParen == -1) {
 			throw new DeserializeException("No left parenthesis found in line");
 		}
 		int indexOfLastParen = line.lastIndexOf(")", lastIndexOfSemiColon);
@@ -313,7 +319,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			} catch (IfcModelInterfaceException e) {
 				throw new DeserializeException(e);
 			}
-			((IdEObjectImpl)object).setExpressId(recordNumber);
+			((IdEObjectImpl) object).setExpressId(recordNumber);
 			String realData = line.substring(indexOfFirstParen + 1, indexOfLastParen);
 			int lastIndex = 0;
 			EntityDefinition entityBN = schema.getEntityBN(name);
@@ -363,7 +369,8 @@ public class IfcStepDeserializer extends EmfDeserializer {
 									object.eSet(doubleStringFeature, val);
 								}
 							} else {
-								// It's not a list in the file, but it is in the schema??
+								// It's not a list in the file, but it is in the
+								// schema??
 							}
 						}
 					} else {
@@ -393,7 +400,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			if (doubleStringFeature == null) {
 				throw new DeserializeException("Field not found: " + structuralFeature.getName() + "AsString");
 			}
-			doubleStringList = (AbstractEList)object.eGet(doubleStringFeature);
+			doubleStringList = (AbstractEList) object.eGet(doubleStringFeature);
 		}
 		String realData = val.substring(1, val.length() - 1);
 		int lastIndex = 0;
@@ -470,19 +477,19 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		// Replace all '' with '
 		while (result.contains("''")) {
 			int index = result.indexOf("''");
-			result = result.substring(0, index)  + "'" + result.substring(index + 2);
+			result = result.substring(0, index) + "'" + result.substring(index + 2);
 		}
 		while (result.contains("\\S\\")) {
 			int index = result.indexOf("\\S\\");
 			char x = result.charAt(index + 3);
-			ByteBuffer b = ByteBuffer.wrap(new byte[]{(byte) (x + 128)});
+			ByteBuffer b = ByteBuffer.wrap(new byte[] { (byte) (x + 128) });
 			CharBuffer decode = Charsets.ISO_8859_1.decode(b);
 			result = result.substring(0, index) + decode.get() + result.substring(index + 4);
 		}
 		while (result.contains("\\X\\")) {
 			int index = result.indexOf("\\X\\");
 			int code = Integer.parseInt(result.substring(index + 3, index + 5), 16);
-			ByteBuffer b = ByteBuffer.wrap(new byte[]{(byte) (code)});
+			ByteBuffer b = ByteBuffer.wrap(new byte[] { (byte) (code) });
 			CharBuffer decode = Charsets.ISO_8859_1.decode(b);
 			result = result.substring(0, index) + decode.get() + result.substring(index + 5);
 		}
@@ -519,7 +526,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			} catch (DecoderException e) {
 				throw new DeserializeException(e);
 			} catch (UnsupportedCharsetException e) {
-				throw new DeserializeException("UTF-32 is not supported on your system" , e);
+				throw new DeserializeException("UTF-32 is not supported on your system", e);
 			}
 		}
 		// Replace all \\ with \

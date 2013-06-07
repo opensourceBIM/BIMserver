@@ -7,7 +7,6 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
 	<classpathentry kind="output" path="bin"/>
