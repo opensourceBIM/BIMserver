@@ -30,6 +30,7 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SerializerPluginConfiguration;
@@ -84,9 +85,11 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		}
 		final long totalSize = incrSize;
 		final AtomicLong total = new AtomicLong();
+		IfcHeader ifcHeader = null;
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
 			if (subRevision.getUser().getOid() != ignoreUoid) {
 				IfcModel subModel = new IfcModel();
+				ifcHeader = subRevision.getIfcHeader();
 				int highestStopId = findHighestStopRid(project, subRevision);
 				Query query = new Query(subRevision.getProject().getId(), subRevision.getId(), objectIDM, Deep.YES, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
@@ -116,6 +119,9 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			}
 		} else {
 			ifcModel = ifcModelSet.iterator().next();
+		}
+		if (ifcHeader != null) {
+			ifcModel.getModelMetaData().setIfcHeader(bimServer.getSConverter().convertToSObject(ifcHeader));
 		}
 		ifcModel.getModelMetaData().setName(project.getName() + "." + revision.getId());
 		ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(revision) + 1);

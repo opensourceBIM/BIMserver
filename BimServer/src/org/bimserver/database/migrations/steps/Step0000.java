@@ -809,6 +809,20 @@ public class Step0000 extends Migration {
 		EClass projectSmall = schema.createEClass("store", "ProjectSmall");
 		schema.createEAttribute(projectSmall, "name", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(projectSmall, "parentId", EcorePackage.eINSTANCE.getELong());
+		
+		EClass ifcHeader = schema.createEClass("store", "IfcHeader");
+		schema.createEAttribute(ifcHeader, "description", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(ifcHeader, "implementationLevel", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(ifcHeader, "filename", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(ifcHeader, "timeStamp", EcorePackage.eINSTANCE.getEDate());
+		schema.createEAttribute(ifcHeader, "author", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(ifcHeader, "organization", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(ifcHeader, "preProcessorVersion", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(ifcHeader, "originatingSystem", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(ifcHeader, "ifcSchemaVersion", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(ifcHeader, "authorization", EcorePackage.eINSTANCE.getEString());
+		
+		schema.createEReference(concreteRevisionClass, "ifcHeader", ifcHeader, Multiplicity.SINGLE);
 	}
 
 	private void createSIPrefixEnum() {

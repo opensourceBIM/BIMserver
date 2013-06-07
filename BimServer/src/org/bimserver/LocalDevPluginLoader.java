@@ -41,13 +41,6 @@ public class LocalDevPluginLoader {
 //		pluginManager.loadPluginsFromJar(new File("../Builds/plugins/jqe.jar"));
 	}
 	
-	public static void loadIfExists(PluginManager pluginManager, File file) {
-		try {
-			pluginManager.loadPluginsFromEclipseProject(file);
-		} catch (PluginException e) {
-		}
-	}
-	
 	public static PluginManager createPluginManager(File home) throws PluginException {
 		if (!home.exists()) {
 			home.mkdir();

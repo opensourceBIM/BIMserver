@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (C) 2009-2013 BIMserver.org&#xD;&#xA;&#xD;&#xA;This program is free software: you can redistribute it and/or modify&#xD;&#xA;it under the terms of the GNU Affero General Public License as&#xD;&#xA;published by the Free Software Foundation, either version 3 of the&#xD;&#xA;License, or (at your option) any later version.&#xD;&#xA;&#xD;&#xA;This program is distributed in the hope that it will be useful,&#xD;&#xA;but WITHOUT ANY WARRANTY; without even the implied warranty of&#xD;&#xA;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xD;&#xA;GNU Affero General Public License for more details.&#xD;&#xA;&#xD;&#xA;You should have received a copy of the GNU Affero General Public License&#xD;&#xA;along with this program.  If not, see &lt;http://www.gnu.org/licenses/>."
-    modelDirectory="/Emf/generated" modelPluginID="BimServer" dynamicTemplates="true"
-    forceOverwrite="true" modelName="Models" modelPluginClass="" updateClasspath="false"
-    rootExtendsInterface="org.bimserver.emf.IdEObject" rootExtendsClass="org.bimserver.emf.IdEObjectImpl"
-    featureMapWrapperClass="" reflectiveDelegation="true" codeFormatting="true" booleanFlagsField=""
-    importerID="org.eclipse.emf.importer.ecore" featureDelegation="Reflective" minimalReflectiveMethods="false"
-    suppressContainment="true" complianceLevel="6.0" copyrightFields="false" language=""
-    classNamePattern="">
+    modelDirectory="/Shared/generated" modelPluginID="BimServer" forceOverwrite="true"
+    modelName="Models" modelPluginClass="" updateClasspath="false" rootExtendsInterface="org.bimserver.emf.IdEObject"
+    rootExtendsClass="org.bimserver.emf.IdEObjectImpl" featureMapWrapperClass="" reflectiveDelegation="true"
+    codeFormatting="true" booleanFlagsField="" importerID="org.eclipse.emf.importer.ecore"
+    featureDelegation="Reflective" minimalReflectiveMethods="false" suppressContainment="true"
+    complianceLevel="6.0" copyrightFields="false" language="" classNamePattern="">
   <foreignModel>models.ecore</foreignModel>
   <genPackages prefix="Ifc2x3tc1" basePackage="org.bimserver.models" disposableProviderFactory="true"
       loadInitialization="true" ecorePackage="models.ecore#/0">
@@ -1817,378 +1816,6 @@
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/IfcWorkControlTypeEnum/USERDEFINED"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/IfcWorkControlTypeEnum/ACTUAL"/>
     </genEnums>
-    <genClasses image="false" ecoreClass="models.ecore#/0/WrappedValue"/>
-    <genClasses ecoreClass="models.ecore#/0/IfcAbsorbedDoseMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAbsorbedDoseMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAbsorbedDoseMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcAccelerationMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAccelerationMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAccelerationMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcAmountOfSubstanceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAmountOfSubstanceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAmountOfSubstanceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcAngularVelocityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAngularVelocityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAngularVelocityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcAreaMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAreaMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAreaMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcBoolean">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcBoolean/wrappedValue"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcContextDependentMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcContextDependentMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcContextDependentMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcCountMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcCountMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcCountMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcCurvatureMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcCurvatureMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcCurvatureMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcDescriptiveMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDescriptiveMeasure/wrappedValue"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcDoseEquivalentMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDoseEquivalentMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDoseEquivalentMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcDynamicViscosityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDynamicViscosityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDynamicViscosityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcElectricCapacitanceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricCapacitanceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricCapacitanceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcElectricChargeMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricChargeMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricChargeMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcElectricConductanceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricConductanceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricConductanceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcElectricCurrentMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricCurrentMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricCurrentMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcElectricResistanceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricResistanceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricResistanceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcElectricVoltageMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricVoltageMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricVoltageMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcEnergyMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEnergyMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEnergyMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcForceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcForceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcForceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcFrequencyMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcFrequencyMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcFrequencyMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcGloballyUniqueId">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcGloballyUniqueId/wrappedValue"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcGloballyUniqueId/ifcRoot"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcHeatFluxDensityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcHeatFluxDensityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcHeatFluxDensityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcHeatingValueMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcHeatingValueMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcHeatingValueMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcIdentifier">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIdentifier/wrappedValue"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcIlluminanceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIlluminanceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIlluminanceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcInductanceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcInductanceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcInductanceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcInteger">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcInteger/wrappedValue"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcIntegerCountRateMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIntegerCountRateMeasure/wrappedValue"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcIonConcentrationMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIonConcentrationMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIonConcentrationMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcIsothermalMoistureCapacityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIsothermalMoistureCapacityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIsothermalMoistureCapacityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcKinematicViscosityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcKinematicViscosityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcKinematicViscosityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcLabel">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLabel/wrappedValue"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcLengthMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLengthMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLengthMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcLinearForceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearForceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearForceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcLinearMomentMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearMomentMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearMomentMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcLinearStiffnessMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearStiffnessMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearStiffnessMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcLinearVelocityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearVelocityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearVelocityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcLogical">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLogical/wrappedValue"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcLuminousFluxMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousFluxMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousFluxMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcLuminousIntensityDistributionMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousIntensityDistributionMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousIntensityDistributionMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcLuminousIntensityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousIntensityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousIntensityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcMagneticFluxDensityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMagneticFluxDensityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMagneticFluxDensityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcMagneticFluxMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMagneticFluxMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMagneticFluxMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcMassDensityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassDensityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassDensityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcMassFlowRateMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassFlowRateMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassFlowRateMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcMassMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcMassPerLengthMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassPerLengthMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassPerLengthMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcModulusOfElasticityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfElasticityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfElasticityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcModulusOfLinearSubgradeReactionMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfLinearSubgradeReactionMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfLinearSubgradeReactionMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcModulusOfRotationalSubgradeReactionMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfRotationalSubgradeReactionMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfRotationalSubgradeReactionMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcModulusOfSubgradeReactionMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfSubgradeReactionMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfSubgradeReactionMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcMoistureDiffusivityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMoistureDiffusivityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMoistureDiffusivityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcMolecularWeightMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMolecularWeightMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMolecularWeightMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcMomentOfInertiaMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMomentOfInertiaMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMomentOfInertiaMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcMonetaryMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMonetaryMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMonetaryMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcNumericMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcNumericMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcNumericMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcPHMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPHMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPHMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcParameterValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcParameterValue/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcParameterValue/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcPlanarForceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPlanarForceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPlanarForceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcPlaneAngleMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPlaneAngleMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPlaneAngleMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcPowerMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPowerMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPowerMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcPressureMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPressureMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPressureMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcRadioActivityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRadioActivityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRadioActivityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcRatioMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRatioMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRatioMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcReal">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcReal/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcReal/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcRotationalFrequencyMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalFrequencyMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalFrequencyMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcRotationalMassMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalMassMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalMassMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcRotationalStiffnessMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalStiffnessMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalStiffnessMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcSectionModulusMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSectionModulusMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSectionModulusMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcSectionalAreaIntegralMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSectionalAreaIntegralMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSectionalAreaIntegralMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcShearModulusMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcShearModulusMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcShearModulusMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcSolidAngleMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSolidAngleMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSolidAngleMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcSoundPowerMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSoundPowerMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSoundPowerMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcSoundPressureMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSoundPressureMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSoundPressureMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcSpecificHeatCapacityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecificHeatCapacityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecificHeatCapacityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcSpecularExponent">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecularExponent/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecularExponent/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcSpecularRoughness">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecularRoughness/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecularRoughness/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcTemperatureGradientMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTemperatureGradientMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTemperatureGradientMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcText">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcText/wrappedValue"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcThermalAdmittanceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalAdmittanceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalAdmittanceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcThermalConductivityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalConductivityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalConductivityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcThermalExpansionCoefficientMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalExpansionCoefficientMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalExpansionCoefficientMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcThermalResistanceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalResistanceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalResistanceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcThermalTransmittanceMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalTransmittanceMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalTransmittanceMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcThermodynamicTemperatureMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermodynamicTemperatureMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermodynamicTemperatureMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcTimeMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTimeMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTimeMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcTimeStamp">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTimeStamp/wrappedValue"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcTorqueMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTorqueMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTorqueMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcVaporPermeabilityMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVaporPermeabilityMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVaporPermeabilityMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcVolumeMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVolumeMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVolumeMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcVolumetricFlowRateMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVolumetricFlowRateMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVolumetricFlowRateMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcWarpingConstantMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcWarpingConstantMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcWarpingConstantMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcWarpingMomentMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcWarpingMomentMeasure/wrappedValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcWarpingMomentMeasure/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcNormalisedRatioMeasure"/>
-    <genClasses ecoreClass="models.ecore#/0/IfcPositiveLengthMeasure"/>
-    <genClasses ecoreClass="models.ecore#/0/IfcPositivePlaneAngleMeasure"/>
-    <genClasses ecoreClass="models.ecore#/0/IfcPositiveRatioMeasure"/>
     <genClasses ecoreClass="models.ecore#/0/Ifc2DCompositeCurve"/>
     <genClasses ecoreClass="models.ecore#/0/IfcActionRequest">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcActionRequest/RequestID"/>
@@ -3878,8 +3505,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcProduct/ObjectPlacement"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcProduct/Representation"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcProduct/ReferencedBy"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcProduct/geometryInstance"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcProduct/bounds"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcProduct/geometry"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/IfcProductDefinitionShape">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcProductDefinitionShape/ShapeOfProduct"/>
@@ -4381,7 +4007,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRoof/ShapeType"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/IfcRoot">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcRoot/GlobalId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRoot/GlobalId"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcRoot/OwnerHistory"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRoot/Name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRoot/Description"/>
@@ -5240,12 +4866,432 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcZShapeProfileDef/EdgeRadiusAsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/IfcZone"/>
+    <genClasses ecoreClass="models.ecore#/0/IfcAbsorbedDoseMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAbsorbedDoseMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAbsorbedDoseMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcAccelerationMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAccelerationMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAccelerationMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcAmountOfSubstanceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAmountOfSubstanceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAmountOfSubstanceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcAngularVelocityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAngularVelocityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAngularVelocityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcAreaMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAreaMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcAreaMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcBoolean">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcBoolean/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcContextDependentMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcContextDependentMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcContextDependentMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcCountMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcCountMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcCountMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcCurvatureMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcCurvatureMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcCurvatureMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcDayInMonthNumber">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDayInMonthNumber/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcDaylightSavingHour">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDaylightSavingHour/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcDescriptiveMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDescriptiveMeasure/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcDimensionCount">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDimensionCount/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcDoseEquivalentMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDoseEquivalentMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDoseEquivalentMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcDynamicViscosityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDynamicViscosityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcDynamicViscosityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcElectricCapacitanceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricCapacitanceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricCapacitanceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcElectricChargeMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricChargeMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricChargeMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcElectricConductanceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricConductanceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricConductanceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcElectricCurrentMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricCurrentMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricCurrentMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcElectricResistanceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricResistanceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricResistanceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcElectricVoltageMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricVoltageMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcElectricVoltageMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcEnergyMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEnergyMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEnergyMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcFontStyle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcFontStyle/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcFontVariant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcFontVariant/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcFontWeight">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcFontWeight/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcForceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcForceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcForceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcFrequencyMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcFrequencyMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcFrequencyMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcGloballyUniqueId">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcGloballyUniqueId/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcHeatFluxDensityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcHeatFluxDensityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcHeatFluxDensityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcHeatingValueMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcHeatingValueMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcHeatingValueMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcHourInDay">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcHourInDay/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcIdentifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIdentifier/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcIlluminanceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIlluminanceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIlluminanceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcInductanceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcInductanceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcInductanceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcInteger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcInteger/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcIntegerCountRateMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIntegerCountRateMeasure/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcIonConcentrationMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIonConcentrationMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIonConcentrationMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcIsothermalMoistureCapacityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIsothermalMoistureCapacityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcIsothermalMoistureCapacityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcKinematicViscosityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcKinematicViscosityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcKinematicViscosityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcLabel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLabel/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcLengthMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLengthMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLengthMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcLinearForceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearForceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearForceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcLinearMomentMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearMomentMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearMomentMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcLinearStiffnessMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearStiffnessMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearStiffnessMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcLinearVelocityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearVelocityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLinearVelocityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcLogical">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLogical/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcLuminousFluxMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousFluxMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousFluxMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcLuminousIntensityDistributionMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousIntensityDistributionMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousIntensityDistributionMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcLuminousIntensityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousIntensityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcLuminousIntensityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMagneticFluxDensityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMagneticFluxDensityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMagneticFluxDensityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMagneticFluxMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMagneticFluxMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMagneticFluxMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMassDensityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassDensityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassDensityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMassFlowRateMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassFlowRateMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassFlowRateMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMassMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMassPerLengthMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassPerLengthMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMassPerLengthMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMinuteInHour">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMinuteInHour/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcModulusOfElasticityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfElasticityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfElasticityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcModulusOfLinearSubgradeReactionMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfLinearSubgradeReactionMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfLinearSubgradeReactionMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcModulusOfRotationalSubgradeReactionMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfRotationalSubgradeReactionMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfRotationalSubgradeReactionMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcModulusOfSubgradeReactionMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfSubgradeReactionMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcModulusOfSubgradeReactionMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMoistureDiffusivityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMoistureDiffusivityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMoistureDiffusivityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMolecularWeightMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMolecularWeightMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMolecularWeightMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMomentOfInertiaMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMomentOfInertiaMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMomentOfInertiaMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMonetaryMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMonetaryMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMonetaryMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcMonthInYearNumber">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcMonthInYearNumber/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcNumericMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcNumericMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcNumericMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcPHMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPHMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPHMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcParameterValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcParameterValue/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcParameterValue/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcPlanarForceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPlanarForceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPlanarForceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcPlaneAngleMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPlaneAngleMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPlaneAngleMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcPowerMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPowerMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPowerMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcPresentableText">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPresentableText/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcPressureMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPressureMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcPressureMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcRadioActivityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRadioActivityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRadioActivityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcRatioMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRatioMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRatioMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcReal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcReal/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcReal/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcRotationalFrequencyMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalFrequencyMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalFrequencyMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcRotationalMassMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalMassMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalMassMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcRotationalStiffnessMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalStiffnessMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcRotationalStiffnessMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcSecondInMinute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSecondInMinute/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSecondInMinute/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcSectionModulusMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSectionModulusMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSectionModulusMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcSectionalAreaIntegralMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSectionalAreaIntegralMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSectionalAreaIntegralMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcShearModulusMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcShearModulusMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcShearModulusMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcSolidAngleMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSolidAngleMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSolidAngleMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcSoundPowerMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSoundPowerMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSoundPowerMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcSoundPressureMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSoundPressureMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSoundPressureMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcSpecificHeatCapacityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecificHeatCapacityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecificHeatCapacityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcSpecularExponent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecularExponent/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecularExponent/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcSpecularRoughness">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecularRoughness/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcSpecularRoughness/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcTemperatureGradientMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTemperatureGradientMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTemperatureGradientMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcText">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcText/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcTextAlignment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTextAlignment/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcTextDecoration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTextDecoration/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcTextFontName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTextFontName/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcTextTransformation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTextTransformation/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcThermalAdmittanceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalAdmittanceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalAdmittanceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcThermalConductivityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalConductivityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalConductivityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcThermalExpansionCoefficientMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalExpansionCoefficientMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalExpansionCoefficientMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcThermalResistanceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalResistanceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalResistanceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcThermalTransmittanceMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalTransmittanceMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermalTransmittanceMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcThermodynamicTemperatureMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermodynamicTemperatureMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcThermodynamicTemperatureMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcTimeMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTimeMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTimeMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcTimeStamp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTimeStamp/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcTorqueMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTorqueMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcTorqueMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcVaporPermeabilityMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVaporPermeabilityMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVaporPermeabilityMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcVolumeMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVolumeMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVolumeMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcVolumetricFlowRateMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVolumetricFlowRateMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcVolumetricFlowRateMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcWarpingConstantMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcWarpingConstantMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcWarpingConstantMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcWarpingMomentMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcWarpingMomentMeasure/wrappedValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcWarpingMomentMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcYearNumber">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcYearNumber/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcBoxAlignment"/>
+    <genClasses ecoreClass="models.ecore#/0/IfcCompoundPlaneAngleMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcCompoundPlaneAngleMeasure/wrappedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcNormalisedRatioMeasure"/>
+    <genClasses ecoreClass="models.ecore#/0/IfcPositiveLengthMeasure"/>
+    <genClasses ecoreClass="models.ecore#/0/IfcPositivePlaneAngleMeasure"/>
+    <genClasses ecoreClass="models.ecore#/0/IfcPositiveRatioMeasure"/>
     <genClasses ecoreClass="models.ecore#/0/IfcComplexNumber">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcComplexNumber/wrappedValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcComplexNumber/wrappedValueAsString"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcCompoundPlaneAngleMeasure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcCompoundPlaneAngleMeasure/wrappedValue"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/IfcNullStyle">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcNullStyle/wrappedValue"/>
@@ -5296,22 +5342,23 @@
     <genClasses image="false" ecoreClass="models.ecore#/0/IfcUnit"/>
     <genClasses image="false" ecoreClass="models.ecore#/0/IfcValue"/>
     <genClasses image="false" ecoreClass="models.ecore#/0/IfcVectorOrDirection"/>
-    <genClasses ecoreClass="models.ecore#/0/Bounds">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Bounds/min"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Bounds/max"/>
+    <genClasses ecoreClass="models.ecore#/0/GeometryInfo">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/minBounds"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/maxBounds"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/startVertex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/startIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/primitiveCount"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/data"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/Vector3f">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/x"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/y"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/z"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/GeometryInstance">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInstance/startVertex"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInstance/startIndex"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInstance/primitiveCount"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInstance/indices"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInstance/vertices"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInstance/normals"/>
+    <genClasses ecoreClass="models.ecore#/0/GeometryData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/indices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/vertices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/normals"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Log" basePackage="org.bimserver.models" disposableProviderFactory="true"
@@ -5405,13 +5452,13 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/ExtendedDataAddedToProject/project"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/ExtendedDataAddedToProject/extendedData"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/1/ExternalServiceCalled">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/ExternalServiceCalled/service"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/ExternalServiceCalled/state"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/ExternalServiceCalled/percentage"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/ExternalServiceCalled/infos"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/ExternalServiceCalled/warnings"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/ExternalServiceCalled/errors"/>
+    <genClasses ecoreClass="models.ecore#/1/RemoteServiceCalled">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/RemoteServiceCalled/service"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/RemoteServiceCalled/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/RemoteServiceCalled/percentage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/RemoteServiceCalled/infos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/RemoteServiceCalled/warnings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/RemoteServiceCalled/errors"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Store" basePackage="org.bimserver.models" disposableProviderFactory="true"
@@ -5475,6 +5522,23 @@
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/Trigger/NEW_PROJECT"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/Trigger/NEW_EXTENDED_DATA"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/2/ServiceSimpleType">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/ENUM"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/INT"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/FLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/DATE"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/CLASS"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/DATAHANDLER"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/BYTEARRAY"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/LIST"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/SET"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/VOID"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ServiceSimpleType/UNKNOWN"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/2/PrimitiveEnum">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/PrimitiveEnum/LONG"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/PrimitiveEnum/DOUBLE"/>
@@ -5487,6 +5551,12 @@
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/NotifictionResultEnum/SUCCESS"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/NotifictionResultEnum/PROGRESS_UNKNOWN"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/NotifictionResultEnum/PROGRESS_PERCENTAGE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/2/ProgressTopicType">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ProgressTopicType/DOWNLOAD"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ProgressTopicType/UPLOAD"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ProgressTopicType/RUNNING_SERVICE"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/ProgressTopicType/BRANCH"/>
     </genEnums>
     <genDataTypes ecoreDataType="models.ecore#/2/DataHandler"/>
     <genClasses ecoreClass="models.ecore#/2/Project">
@@ -5512,7 +5582,8 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/User">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/User/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/User/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/User/passwordHash"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/User/passwordSalt"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/User/hasRightsOn"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/User/revisions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/User/state"/>
@@ -5529,7 +5600,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/User/extendedData"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/User/services"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/User/logs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/User/test"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/Revision">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/Revision/id"/>
@@ -5546,6 +5616,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/Revision/bmi"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/Revision/extendedData"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/Revision/logs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/Revision/service"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/Revision/ifcHeader"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/Revision/hasGeometry"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/ConcreteRevision">
@@ -5593,12 +5665,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ServerSettings/hideUserListForNonAdmin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ServerSettings/protocolBuffersPort"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ServerSettings/cacheOutputFiles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ServerSettings/webModules"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ServerSettings/webModule"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ServerSettings/serviceRepositoryUrl"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/UserSettings">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/serializers"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/objectIDMs"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/ifcEngines"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/renderEngines"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/deserializers"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/queryengines"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/modelmergers"/>
@@ -5606,7 +5680,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/defaultModelMerger"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/defaultModelCompare"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/defaultQueryEngine"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/defaultIfcEngine"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/defaultRenderEngine"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/defaultSerializer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/defaultObjectIDM"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserSettings/services"/>
@@ -5619,20 +5693,17 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/PluginConfiguration/settings"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/SerializerPluginConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/SerializerPluginConfiguration/needsGeometry"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/SerializerPluginConfiguration/extension"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/SerializerPluginConfiguration/contentType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/SerializerPluginConfiguration/objectIDM"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/SerializerPluginConfiguration/userSettings"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/SerializerPluginConfiguration/ifcEngine"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/SerializerPluginConfiguration/renderEngine"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/ObjectIDMPluginConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ObjectIDMPluginConfiguration/serializers"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ObjectIDMPluginConfiguration/userSettings"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/2/IfcEnginePluginConfiguration">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcEnginePluginConfiguration/serializers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcEnginePluginConfiguration/userSettings"/>
+    <genClasses ecoreClass="models.ecore#/2/RenderEnginePluginConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/RenderEnginePluginConfiguration/serializers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/RenderEnginePluginConfiguration/userSettings"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/DeserializerPluginConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/DeserializerPluginConfiguration/userSettings"/>
@@ -5704,11 +5775,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/PluginDescriptor/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/PluginDescriptor/location"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/PluginDescriptor/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/PluginDescriptor/pluginInterfaceClassName"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/2/SerializerPluginDescriptor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/SerializerPluginDescriptor/defaultExtension"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/SerializerPluginDescriptor/defaultContentType"/>
-    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/SerializerPluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/2/DeserializerPluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/2/RevisionSummaryType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/RevisionSummaryType/name"/>
@@ -5749,6 +5818,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/CompareResult/items"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/LongActionState">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/LongActionState/start"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/LongActionState/end"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/LongActionState/progress"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/LongActionState/state"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/LongActionState/title"/>
@@ -5770,7 +5841,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/Version/supportUrl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/Version/supportEmail"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/2/IfcEnginePluginDescriptor"/>
+    <genClasses ecoreClass="models.ecore#/2/RenderEnginePluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/2/File">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/File/data"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/File/filename"/>
@@ -5802,6 +5873,10 @@
     <genClasses ecoreClass="models.ecore#/2/QueryEnginePluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/2/QueryEnginePluginConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/QueryEnginePluginConfiguration/userSettings"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/WebModulePluginDescriptor"/>
+    <genClasses ecoreClass="models.ecore#/2/WebModulePluginConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/WebModulePluginConfiguration/serverSettings"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/ModelMergerPluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/2/ModelMergerPluginConfiguration">
@@ -5864,6 +5939,7 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/ServiceInterface">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ServiceInterface/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ServiceInterface/simpleName"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/ServiceMethod">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ServiceMethod/name"/>
@@ -5880,6 +5956,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ServiceType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ServiceType/simpleName"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ServiceType/fields"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ServiceType/simpleType"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/ServiceParameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ServiceParameter/name"/>
@@ -5900,6 +5977,7 @@
     <genClasses ecoreClass="models.ecore#/2/ParameterDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ParameterDefinition/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ParameterDefinition/required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ParameterDefinition/description"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ParameterDefinition/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ParameterDefinition/defaultValue"/>
     </genClasses>
@@ -5935,7 +6013,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ImmediateNotificationResult/result"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ImmediateNotificationResult/description"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/2/ExternalServiceUpdate"/>
+    <genClasses ecoreClass="models.ecore#/2/RemoteServiceUpdate"/>
     <genClasses ecoreClass="models.ecore#/2/PercentageChange">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/PercentageChange/percentage"/>
     </genClasses>
@@ -5968,7 +6046,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/JavaInfo/javaClasspath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/JavaInfo/javaLibrarypath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/JavaInfo/javaIoTmp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/JavaInfo/javaCompiler"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/JavaInfo/javaExtdir"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/JavaInfo/javaFileSeparator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/JavaInfo/javaPathSeparator"/>
@@ -5986,7 +6063,22 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/BimServerInfo/checkouts"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/BimServerInfo/serverLogUrl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/BimServerInfo/started"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/BimServerInfo/uptime"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/ProjectSmall">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ProjectSmall/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ProjectSmall/parentId"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcHeader">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcHeader/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcHeader/implementationLevel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcHeader/filename"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcHeader/timeStamp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcHeader/author"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcHeader/organization"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcHeader/preProcessorVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcHeader/originatingSystem"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcHeader/ifcSchemaVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcHeader/authorization"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
