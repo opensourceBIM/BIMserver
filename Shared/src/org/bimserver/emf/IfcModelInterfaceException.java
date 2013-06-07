@@ -1,4 +1,4 @@
-package org.bimserver.plugins;
+package org.bimserver.emf;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,26 +17,10 @@ package org.bimserver.plugins;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.ArrayList;
-import java.util.List;
+public class IfcModelInterfaceException extends Exception {
+	private static final long serialVersionUID = -2230831482236508693L;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="PluginDescriptor")
-@XmlAccessorType(XmlAccessType.NONE)
-public class PluginDescriptor {
-	
-	@XmlElement(name="PluginImplementation")
-	private List<PluginImplementation> implementations = new ArrayList<PluginImplementation>();
-
-	public void setImplementations(List<PluginImplementation> implementations) {
-		this.implementations = implementations;
-	}
-
-	public List<PluginImplementation> getImplementations() {
-		return implementations;
+	public IfcModelInterfaceException(String message) {
+		super(message);
 	}
 }

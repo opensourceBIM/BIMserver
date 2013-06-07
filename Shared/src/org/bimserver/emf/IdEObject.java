@@ -1,4 +1,4 @@
-package org.bimserver.plugins;
+package org.bimserver.emf;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,26 +17,14 @@ package org.bimserver.plugins;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.ArrayList;
-import java.util.List;
+import org.eclipse.emf.ecore.EObject;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="PluginDescriptor")
-@XmlAccessorType(XmlAccessType.NONE)
-public class PluginDescriptor {
-	
-	@XmlElement(name="PluginImplementation")
-	private List<PluginImplementation> implementations = new ArrayList<PluginImplementation>();
-
-	public void setImplementations(List<PluginImplementation> implementations) {
-		this.implementations = implementations;
-	}
-
-	public List<PluginImplementation> getImplementations() {
-		return implementations;
-	}
+public interface IdEObject extends EObject {
+	int getExpressId();
+	long getOid();
+	int getRid();
+	int getPid();
+	void load();
+	void loadExplicit();
+	void remove();
 }
