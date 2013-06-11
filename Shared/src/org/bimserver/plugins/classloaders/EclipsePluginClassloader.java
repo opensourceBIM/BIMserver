@@ -33,7 +33,7 @@ public class EclipsePluginClassloader extends ClassLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EclipsePluginClassloader.class);
 	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
 	private final File projectFolder;
-	private File classFolder;
+	private final File classFolder;
 
 	public EclipsePluginClassloader(ClassLoader parentClassloader, File projectFolder) {
 		super(parentClassloader);
