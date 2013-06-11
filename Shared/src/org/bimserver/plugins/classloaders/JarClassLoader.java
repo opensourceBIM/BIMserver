@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
 public class JarClassLoader extends ClassLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JarClassLoader.class);
 	private File jarFile;
-	private Map<String, byte[]> map;
+	private final Map<String, byte[]> map = new HashMap<String, byte[]>();
 	private Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
 
 	public JarClassLoader(ClassLoader parentClassLoader, File jarFile) {
@@ -49,7 +49,6 @@ public class JarClassLoader extends ClassLoader {
 		try {
 			JarInputStream jarInputStream = new JarInputStream(new FileInputStream(jarFile));
 			JarEntry entry = jarInputStream.getNextJarEntry();
-			map = new HashMap<String, byte[]>();
 			while (entry != null) {
 				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 				IOUtils.copy(jarInputStream, byteArrayOutputStream);
@@ -134,6 +133,10 @@ public class JarClassLoader extends ClassLoader {
 					}
 				}
 			}
+			
+			// The original class file cannot be loaded for other purposes after this (would be strange), this saves memory
+			map.remove(fileName);
+			
 			return defineClass;
 		}
 		throw new ClassNotFoundException(name);
