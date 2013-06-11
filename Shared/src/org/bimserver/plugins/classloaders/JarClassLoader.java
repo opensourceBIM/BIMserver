@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
+import java.util.zip.DeflaterInputStream;
+import java.util.zip.DeflaterOutputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
@@ -50,14 +52,25 @@ public class JarClassLoader extends ClassLoader {
 		JarEntry entry = jarInputStream.getNextJarEntry();
 		while (entry != null) {
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-			IOUtils.copy(jarInputStream, byteArrayOutputStream);
-			map.put(entry.getName(), byteArrayOutputStream.toByteArray());
 			if (entry.getName().endsWith(".jar")) {
+				IOUtils.copy(jarInputStream, byteArrayOutputStream);
+
+				// Not storing the original JAR, so future code will be unable to read the original
 				loadSubJars(byteArrayOutputStream.toByteArray());
+			} else {
+				// Files are being stored deflated in memory because most of the time a lot of files are not being used (or the complete plugin is not being used)
+				addDataToMap(jarInputStream, entry, byteArrayOutputStream);
 			}
 			entry = jarInputStream.getNextJarEntry();
 		}
 		jarInputStream.close();
+	}
+
+	private void addDataToMap(JarInputStream jarInputStream, JarEntry entry, ByteArrayOutputStream byteArrayOutputStream) throws IOException {
+		DeflaterOutputStream deflaterOutputStream = new DeflaterOutputStream(byteArrayOutputStream);
+		IOUtils.copy(jarInputStream, deflaterOutputStream);
+		deflaterOutputStream.finish();
+		map.put(entry.getName(), byteArrayOutputStream.toByteArray());
 	}
 
 	private void loadSubJars(byte[] byteArray) {
@@ -66,8 +79,7 @@ public class JarClassLoader extends ClassLoader {
 			JarEntry entry = jarInputStream.getNextJarEntry();
 			while (entry != null) {
 				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-				IOUtils.copy(jarInputStream, byteArrayOutputStream);
-				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
+				addDataToMap(jarInputStream, entry, byteArrayOutputStream);
 				entry = jarInputStream.getNextJarEntry();
 			}
 			jarInputStream.close();
@@ -90,7 +102,7 @@ public class JarClassLoader extends ClassLoader {
 
 							@Override
 							public InputStream getInputStream() throws IOException {
-								return new ByteArrayInputStream(map.get(name));
+								return new DeflaterInputStream(new ByteArrayInputStream(map.get(name)));
 							}
 						};
 					}
@@ -110,7 +122,15 @@ public class JarClassLoader extends ClassLoader {
 		}
 		if (map.containsKey(fileName)) {
 			byte[] bs = map.get(fileName);
-			Class<?> defineClass = defineClass(name, bs, 0, bs.length);
+			DeflaterInputStream deflaterInputStream = new DeflaterInputStream(new ByteArrayInputStream(bs));
+			ByteArrayOutputStream uncompressed = new ByteArrayOutputStream();
+			try {
+				IOUtils.copy(deflaterInputStream, uncompressed);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			byte[] byteArray = uncompressed.toByteArray();
+			Class<?> defineClass = defineClass(name, byteArray, 0, byteArray.length);
 			loadedClasses.put(fileName, defineClass);
 
 			/*
