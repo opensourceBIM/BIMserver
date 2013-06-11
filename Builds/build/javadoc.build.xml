@@ -6,8 +6,6 @@
 			<fileset dir="../../BimServer/src"/>
 			<fileset dir="../../BimServer/generated"/>
 			<fileset dir="../../BimServerClientLib/src"/>
-			<fileset dir="../../Emf/src"/>
-			<fileset dir="../../Emf/generated"/>
 			<fileset dir="../../Ifc/src"/>
 			<fileset dir="../../Shared/src"/>
 			<fileset dir="../../Shared/generated"/>
