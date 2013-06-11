@@ -13,7 +13,6 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/logging/log4j-1.2.16.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-io-1.4.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.core.contenttype_3.4.200.v20120523-2004.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.core.jobs_3.5.200.v20120521-2346.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.core.resources_3.8.0.v20120522-2034.jar"/>
@@ -27,7 +26,13 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/protocolbuffers2.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/servlet-api-3.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/gson-2.2.4.jar"/>
-	<classpathentry kind="lib" path="genclasses"/>
+	<classpathentry exported="true" kind="lib" path="genclasses"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf_2.6.0.v20130125-0826.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen_2.8.0.v20130125-0826.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen.ecore_2.8.2.v20130125-0826.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.common_2.8.0.v20130125-0546.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.8.3.v20130125-0546.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.8.1.v20130125-0546.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.4.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.4.3-src.zip"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.7.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.7.3-src.zip"/>

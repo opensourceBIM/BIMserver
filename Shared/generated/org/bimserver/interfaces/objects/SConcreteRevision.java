@@ -42,6 +42,7 @@ public class SConcreteRevision implements SDataBase
 	private boolean clear;
 	private long summaryId = -1;
 	private long userId = -1;
+	private long ifcHeaderId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -99,6 +100,9 @@ public class SConcreteRevision implements SDataBase
 		if (sField.getName().equals("userId")) {
 			return getUserId();
 		}
+		if (sField.getName().equals("ifcHeaderId")) {
+			return getIfcHeaderId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -148,6 +152,10 @@ public class SConcreteRevision implements SDataBase
 		}
 		if (sField.getName().equals("userId")) {
 			setUserId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("ifcHeaderId")) {
+			setIfcHeaderId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -239,6 +247,14 @@ public class SConcreteRevision implements SDataBase
 
 	public void setUserId(long userId) {
 		this.userId = userId;
+	}
+	
+	public long getIfcHeaderId() {
+		return ifcHeaderId;
+	}
+
+	public void setIfcHeaderId(long ifcHeaderId) {
+		this.ifcHeaderId = ifcHeaderId;
 	}
 	
 	@Override

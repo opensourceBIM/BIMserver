@@ -480,6 +480,11 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SProjectSmall();
 					}
 				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SIfcHeader"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SIfcHeader();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
