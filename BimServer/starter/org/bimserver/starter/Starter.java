@@ -346,7 +346,7 @@ public class Starter extends JFrame {
 					command += " -Xbootclasspath:\"";
 					for (File file : jreLib.listFiles()) {
 						if (file.getName().endsWith(".jar")) {
-							if (file.getName().contains(" ")) {
+							if (file.getAbsolutePath().contains(" ")) {
 								command += "\"" + file.getAbsolutePath() + File.pathSeparator + "\"";
 							} else {
 								command += file.getAbsolutePath() + File.pathSeparator;
