@@ -19,9 +19,6 @@
 		<copy todir="builds/BuildSource/BIMserver/Collada">
 			<fileset dir="../../Collada" />
 		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Emf">
-			<fileset dir="../../Emf" />
-		</copy>
 		<copy todir="builds/BuildSource/BIMserver/FileBasedObjectIDM">
 			<fileset dir="../../FileBasedObjectIDM" />
 		</copy>
