@@ -347,7 +347,7 @@ public class Starter extends JFrame {
 					for (File file : jreLib.listFiles()) {
 						if (file.getName().endsWith(".jar")) {
 							if (file.getAbsolutePath().contains(" ")) {
-								command += "\"" + file.getAbsolutePath() + File.pathSeparator + "\"";
+								command += "\"" + file.getAbsolutePath() + "\"" + File.pathSeparator;
 							} else {
 								command += file.getAbsolutePath() + File.pathSeparator;
 							}
@@ -371,7 +371,11 @@ public class Starter extends JFrame {
 			File dir = new File(destDir + File.separator + "lib");
 			for (File lib : dir.listFiles()) {
 				if (lib.isFile()) {
-					command += "lib" + File.separator + lib.getName() + File.pathSeparator;
+					if (lib.getName().contains(" ")) {
+						command += "\"lib" + File.separator + lib.getName() + "\"" + File.pathSeparator;
+					} else {
+						command += "lib" + File.separator + lib.getName() + File.pathSeparator;
+					}
 				}
 			}
 			if (command.endsWith(File.pathSeparator)) {
