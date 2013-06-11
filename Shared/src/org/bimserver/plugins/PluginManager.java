@@ -125,6 +125,8 @@ public class PluginManager {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
 			throw new PluginException(e);
+		} catch (IOException e) {
+			throw new PluginException(e);
 		}
 	}
 
@@ -184,6 +186,10 @@ public class PluginManager {
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(pluginStream);
 			loadPlugins(jarClassLoader, file.getAbsolutePath(), file.getAbsolutePath(), pluginDescriptor, PluginSourceType.JAR_FILE);
 		} catch (JAXBException e) {
+			throw new PluginException(e);
+		} catch (FileNotFoundException e) {
+			throw new PluginException(e);
+		} catch (IOException e) {
 			throw new PluginException(e);
 		}
 	}

@@ -39,29 +39,25 @@ import org.slf4j.LoggerFactory;
 
 public class JarClassLoader extends ClassLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JarClassLoader.class);
-	private File jarFile;
+	private final File jarFile;
 	private final Map<String, byte[]> map = new HashMap<String, byte[]>();
-	private Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
+	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
 
-	public JarClassLoader(ClassLoader parentClassLoader, File jarFile) {
+	public JarClassLoader(ClassLoader parentClassLoader, File jarFile) throws FileNotFoundException, IOException {
 		super(parentClassLoader);
 		this.jarFile = jarFile;
-		try {
-			JarInputStream jarInputStream = new JarInputStream(new FileInputStream(jarFile));
-			JarEntry entry = jarInputStream.getNextJarEntry();
-			while (entry != null) {
-				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-				IOUtils.copy(jarInputStream, byteArrayOutputStream);
-				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
-				if (entry.getName().endsWith(".jar")) {
-					loadSubJars(byteArrayOutputStream.toByteArray());
-				}
-				entry = jarInputStream.getNextJarEntry();
+		JarInputStream jarInputStream = new JarInputStream(new FileInputStream(jarFile));
+		JarEntry entry = jarInputStream.getNextJarEntry();
+		while (entry != null) {
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			IOUtils.copy(jarInputStream, byteArrayOutputStream);
+			map.put(entry.getName(), byteArrayOutputStream.toByteArray());
+			if (entry.getName().endsWith(".jar")) {
+				loadSubJars(byteArrayOutputStream.toByteArray());
 			}
-			jarInputStream.close();
-		} catch (FileNotFoundException e) {
-		} catch (IOException e) {
+			entry = jarInputStream.getNextJarEntry();
 		}
+		jarInputStream.close();
 	}
 
 	private void loadSubJars(byte[] byteArray) {
