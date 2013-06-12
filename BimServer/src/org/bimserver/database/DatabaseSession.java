@@ -48,7 +48,6 @@ import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.models.store.Checkout;

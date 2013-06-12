@@ -18,7 +18,6 @@ package org.bimserver.emf;
  *****************************************************************************/
 
 import java.util.Date;
-import java.util.Set;
 
 import org.bimserver.interfaces.objects.SIfcHeader;
 

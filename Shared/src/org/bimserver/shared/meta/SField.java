@@ -1,7 +1,5 @@
 package org.bimserver.shared.meta;
 
-import java.util.Collection;
-
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 

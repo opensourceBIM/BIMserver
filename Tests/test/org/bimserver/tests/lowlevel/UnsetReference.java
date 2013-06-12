@@ -5,7 +5,6 @@ import static org.junit.Assert.fail;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;

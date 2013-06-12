@@ -32,7 +32,6 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 
