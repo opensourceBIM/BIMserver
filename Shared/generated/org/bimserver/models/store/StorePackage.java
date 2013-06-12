@@ -5875,7 +5875,7 @@ public interface StorePackage extends EPackage {
 	int IFC_HEADER = 87;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5911,7 +5911,7 @@ public interface StorePackage extends EPackage {
 	int IFC_HEADER__TIME_STAMP = 3;
 
 	/**
-	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * The feature id for the '<em><b>Author</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5920,7 +5920,7 @@ public interface StorePackage extends EPackage {
 	int IFC_HEADER__AUTHOR = 4;
 
 	/**
-	 * The feature id for the '<em><b>Organization</b></em>' attribute.
+	 * The feature id for the '<em><b>Organization</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -10834,10 +10834,10 @@ public interface StorePackage extends EPackage {
 	EClass getIfcHeader();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcHeader#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.IfcHeader#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @return the meta object for the attribute list '<em>Description</em>'.
 	 * @see org.bimserver.models.store.IfcHeader#getDescription()
 	 * @see #getIfcHeader()
 	 * @generated
@@ -10878,10 +10878,10 @@ public interface StorePackage extends EPackage {
 	EAttribute getIfcHeader_TimeStamp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcHeader#getAuthor <em>Author</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.IfcHeader#getAuthor <em>Author</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Author</em>'.
+	 * @return the meta object for the attribute list '<em>Author</em>'.
 	 * @see org.bimserver.models.store.IfcHeader#getAuthor()
 	 * @see #getIfcHeader()
 	 * @generated
@@ -10889,10 +10889,10 @@ public interface StorePackage extends EPackage {
 	EAttribute getIfcHeader_Author();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcHeader#getOrganization <em>Organization</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.IfcHeader#getOrganization <em>Organization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Organization</em>'.
+	 * @return the meta object for the attribute list '<em>Organization</em>'.
 	 * @see org.bimserver.models.store.IfcHeader#getOrganization()
 	 * @see #getIfcHeader()
 	 * @generated
@@ -14777,7 +14777,7 @@ public interface StorePackage extends EPackage {
 		EClass IFC_HEADER = eINSTANCE.getIfcHeader();
 
 		/**
-		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -14809,7 +14809,7 @@ public interface StorePackage extends EPackage {
 		EAttribute IFC_HEADER__TIME_STAMP = eINSTANCE.getIfcHeader_TimeStamp();
 
 		/**
-		 * The meta object literal for the '<em><b>Author</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Author</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -14817,7 +14817,7 @@ public interface StorePackage extends EPackage {
 		EAttribute IFC_HEADER__AUTHOR = eINSTANCE.getIfcHeader_Author();
 
 		/**
-		 * The meta object literal for the '<em><b>Organization</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Organization</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

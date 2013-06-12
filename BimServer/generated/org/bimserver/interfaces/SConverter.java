@@ -8683,12 +8683,12 @@ public class SConverter {
 		SIfcHeader result = new SIfcHeader();
 		result.setOid(input.getOid());
 		result.setRid(input.getRid());
-		result.setDescription(input.getDescription());
+		result.getDescription().addAll(input.getDescription());
 		result.setImplementationLevel(input.getImplementationLevel());
 		result.setFilename(input.getFilename());
 		result.setTimeStamp(input.getTimeStamp());
-		result.setAuthor(input.getAuthor());
-		result.setOrganization(input.getOrganization());
+		result.getAuthor().addAll(input.getAuthor());
+		result.getOrganization().addAll(input.getOrganization());
 		result.setPreProcessorVersion(input.getPreProcessorVersion());
 		result.setOriginatingSystem(input.getOriginatingSystem());
 		result.setIfcSchemaVersion(input.getIfcSchemaVersion());
@@ -8708,12 +8708,12 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		result.setDescription(input.getDescription());
+		result.getDescription().addAll(input.getDescription());
 		result.setImplementationLevel(input.getImplementationLevel());
 		result.setFilename(input.getFilename());
 		result.setTimeStamp(input.getTimeStamp());
-		result.setAuthor(input.getAuthor());
-		result.setOrganization(input.getOrganization());
+		result.getAuthor().addAll(input.getAuthor());
+		result.getOrganization().addAll(input.getOrganization());
 		result.setPreProcessorVersion(input.getPreProcessorVersion());
 		result.setOriginatingSystem(input.getOriginatingSystem());
 		result.setIfcSchemaVersion(input.getIfcSchemaVersion());

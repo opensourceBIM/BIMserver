@@ -18,6 +18,7 @@ package org.bimserver.models.store;
 
 import java.util.Date;
 import org.bimserver.emf.IdEObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,30 +48,20 @@ import org.bimserver.emf.IdEObject;
  */
 public interface IfcHeader extends IdEObject {
 	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * Returns the value of the '<em><b>Description</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Description</em>' attribute.
-	 * @see #setDescription(String)
+	 * @return the value of the '<em>Description</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getIfcHeader_Description()
 	 * @model
 	 * @generated
 	 */
-	String getDescription();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.IfcHeader#getDescription <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Description</em>' attribute.
-	 * @see #getDescription()
-	 * @generated
-	 */
-	void setDescription(String value);
+	EList<String> getDescription();
 
 	/**
 	 * Returns the value of the '<em><b>Implementation Level</b></em>' attribute.
@@ -151,56 +142,36 @@ public interface IfcHeader extends IdEObject {
 	void setTimeStamp(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Author</b></em>' attribute.
+	 * Returns the value of the '<em><b>Author</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Author</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Author</em>' attribute.
-	 * @see #setAuthor(String)
+	 * @return the value of the '<em>Author</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getIfcHeader_Author()
 	 * @model
 	 * @generated
 	 */
-	String getAuthor();
+	EList<String> getAuthor();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.IfcHeader#getAuthor <em>Author</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Author</em>' attribute.
-	 * @see #getAuthor()
-	 * @generated
-	 */
-	void setAuthor(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Organization</b></em>' attribute.
+	 * Returns the value of the '<em><b>Organization</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Organization</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Organization</em>' attribute.
-	 * @see #setOrganization(String)
+	 * @return the value of the '<em>Organization</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getIfcHeader_Organization()
 	 * @model
 	 * @generated
 	 */
-	String getOrganization();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.IfcHeader#getOrganization <em>Organization</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Organization</em>' attribute.
-	 * @see #getOrganization()
-	 * @generated
-	 */
-	void setOrganization(String value);
+	EList<String> getOrganization();
 
 	/**
 	 * Returns the value of the '<em><b>Pre Processor Version</b></em>' attribute.

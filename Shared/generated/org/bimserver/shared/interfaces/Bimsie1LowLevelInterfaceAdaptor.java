@@ -55,6 +55,10 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 		return null;
 	}
 	
+	public java.lang.Boolean getBooleanAttributeAtIndex(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer index) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<java.lang.Boolean> getBooleanAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
 	}
@@ -87,6 +91,10 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 		return null;
 	}
 	
+	public java.lang.Double getDoubleAttributeAtIndex(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer index) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<java.lang.Double> getDoubleAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
 	}
@@ -99,11 +107,19 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 		return null;
 	}
 	
+	public java.lang.Integer getIntegerAttributeAtIndex(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer index) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<java.lang.Integer> getIntegerAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
 	}
 	
 	public java.lang.Long getLongAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.lang.Long getLongAttributeAtIndex(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer index) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -136,6 +152,9 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 	}
 	
 	public void setBooleanAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Boolean value) throws UserException, ServerException {
+	}
+	
+	public void setBooleanAttributeAtIndex(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer index, java.lang.Boolean value) throws UserException, ServerException {
 	}
 	
 	public void setBooleanAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Boolean> values) throws UserException, ServerException {

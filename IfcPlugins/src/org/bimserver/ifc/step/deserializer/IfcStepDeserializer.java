@@ -148,6 +148,14 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		}
 	}
 
+	private void filterComments(Tokenizer tokenizer) throws TokenizeException {
+		if (tokenizer.startsWith("/*")) {
+			tokenizer.zoomIn("/*", "*/");
+			tokenizer.readAll();
+			tokenizer.zoomOut();
+		}
+	}
+	
 	private IfcModelInterface read(InputStream inputStream, long fileSize) throws DeserializeException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
@@ -221,7 +229,13 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	private boolean processLine(String line) throws DeserializeException {
 		switch (mode) {
 		case HEADER:
-			processHeader(line);
+			if (line.length() > 0) {
+				if (line.endsWith(";")) {
+					processHeader(line);
+				} else {
+					return false;
+				}
+			}
 			if (line.equals("DATA;")) {
 				mode = Mode.DATA;
 			}
@@ -254,37 +268,70 @@ public class IfcStepDeserializer extends EmfDeserializer {
 
 	private void processHeader(String line) throws DeserializeException {
 		try {
-			if (model.getModelMetaData().getIfcHeader() == null) {
+			SIfcHeader ifcHeader = model.getModelMetaData().getIfcHeader();
+			if (ifcHeader == null) {
 				model.getModelMetaData().setIfcHeader(new SIfcHeader());
 			}
 			if (line.startsWith("FILE_DESCRIPTION")) {
 				Tokenizer tokenizer = new Tokenizer(line.substring(line.indexOf("(")));
 				tokenizer.zoomIn("(", ")");
 				tokenizer.zoomIn("(", ")");
-				model.getModelMetaData().getIfcHeader().setDescription(tokenizer.readAll());
+				filterComments(tokenizer);
+				while (!tokenizer.isEmpty()) {
+					ifcHeader.getDescription().add(tokenizer.readSingleQuoted());
+					if (tokenizer.nextIsAComma()) {
+						tokenizer.readComma();
+					}
+				}
 				tokenizer.zoomOut();
 				tokenizer.readComma();
-				model.getModelMetaData().getIfcHeader().setImplementationLevel(tokenizer.readSingleQuoted());
+				filterComments(tokenizer);
+				ifcHeader.setImplementationLevel(tokenizer.readSingleQuoted());
 				tokenizer.zoomOut();
 				tokenizer.shouldBeFinished();
 			} else if (line.startsWith("FILE_NAME")) {
 				Tokenizer tokenizer = new Tokenizer(line.substring(line.indexOf("(")));
 				tokenizer.zoomIn("(", ")");
-				model.getModelMetaData().getIfcHeader().setFilename(tokenizer.readSingleQuoted());
+				filterComments(tokenizer);
+				ifcHeader.setFilename(tokenizer.readSingleQuoted());
 				SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss");
-				model.getModelMetaData().getIfcHeader().setTimeStamp(dateFormatter.parse(tokenizer.readComma().readSingleQuoted()));
-				model.getModelMetaData().getIfcHeader().setAuthor(tokenizer.readComma().zoomIn("(", ")").readSingleQuoted());
+				tokenizer.readComma();
+				filterComments(tokenizer);
+				ifcHeader.setTimeStamp(dateFormatter.parse(tokenizer.readSingleQuoted()));
+				tokenizer.readComma();
+				filterComments(tokenizer);
+				tokenizer.zoomIn("(", ")");
+				while (!tokenizer.isEmpty()) {
+					ifcHeader.getAuthor().add(tokenizer.readSingleQuoted());
+					if (tokenizer.nextIsAComma()) {
+						tokenizer.readComma();
+					}
+				}
 				tokenizer.zoomOut();
-				model.getModelMetaData().getIfcHeader().setOrganization(tokenizer.readComma().zoomIn("(", ")").readSingleQuoted());
+				tokenizer.readComma();
+				filterComments(tokenizer);
+				tokenizer.zoomIn("(", ")");
+				while (!tokenizer.isEmpty()) {
+					ifcHeader.getOrganization().add(tokenizer.readSingleQuoted());
+					if (tokenizer.nextIsAComma()) {
+						tokenizer.readComma();
+					}
+				}
 				tokenizer.zoomOut();
-				model.getModelMetaData().getIfcHeader().setPreProcessorVersion(tokenizer.readComma().readSingleQuoted());
-				model.getModelMetaData().getIfcHeader().setOriginatingSystem(tokenizer.readComma().readSingleQuoted());
-				model.getModelMetaData().getIfcHeader().setAuthorization(tokenizer.readComma().readSingleQuoted());
+				tokenizer.readComma();
+				filterComments(tokenizer);
+				ifcHeader.setPreProcessorVersion(tokenizer.readSingleQuoted());
+				tokenizer.readComma();
+				filterComments(tokenizer);
+				ifcHeader.setOriginatingSystem(tokenizer.readSingleQuoted());
+				tokenizer.readComma();
+				filterComments(tokenizer);
+				ifcHeader.setAuthorization(tokenizer.readSingleQuoted());
 				tokenizer.zoomOut();
 				tokenizer.shouldBeFinished();
 			} else if (line.startsWith("FILE_SCHEMA")) {
 				Tokenizer tokenizer = new Tokenizer(line.substring(line.indexOf("(")));
-				model.getModelMetaData().getIfcHeader().setIfcSchemaVersion(tokenizer.zoomIn("(", ")").zoomIn("(", ")").readSingleQuoted());
+				ifcHeader.setIfcSchemaVersion(tokenizer.zoomIn("(", ")").zoomIn("(", ")").readSingleQuoted());
 			} else if (line.startsWith("ENDSEC;")) {
 				// Do nothing
 			}

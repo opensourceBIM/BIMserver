@@ -39,6 +39,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.utils.StringUtils;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
@@ -134,8 +135,10 @@ public class IfcStepSerializer extends IfcSerializer {
 			out.println("FILE_NAME ('', '" + dateFormatter.format(date) + "', (''), (''), '', 'BIMserver', '');");
 			out.println("FILE_SCHEMA (('Ifc2x3'));");
 		} else {
-			out.println("FILE_DESCRIPTION ((" + ifcHeader.getDescription() + "), '" + ifcHeader.getImplementationLevel() + "');");
-			out.println("FILE_NAME ('" + ifcHeader.getFilename() + "', '" + dateFormatter.format(ifcHeader.getTimeStamp()) + "', ('" + ifcHeader.getAuthor() + "'), ('" + ifcHeader.getOrganization() + "'), '" + ifcHeader.getPreProcessorVersion() + "', '" + ifcHeader.getOriginatingSystem() + "', '"	+ ifcHeader.getAuthorization() + "');");
+			out.print("FILE_DESCRIPTION ((");
+			out.print(StringUtils.concat(ifcHeader.getDescription(), "'", ", "));
+			out.println("), '" + ifcHeader.getImplementationLevel() + "');");
+			out.println("FILE_NAME ('" + ifcHeader.getFilename() + "', '" + dateFormatter.format(ifcHeader.getTimeStamp()) + "', (" + StringUtils.concat(ifcHeader.getAuthor(), "'", ", ") + "), (" + StringUtils.concat(ifcHeader.getOrganization(), "'", ", ") + "), '" + ifcHeader.getPreProcessorVersion() + "', '" + ifcHeader.getOriginatingSystem() + "', '"	+ ifcHeader.getAuthorization() + "');");
 			out.println("FILE_SCHEMA (('" + ifcHeader.getIfcSchemaVersion() + "'));");
 		}
 		out.println("ENDSEC;");
