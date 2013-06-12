@@ -149,6 +149,11 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetExtendedDataSchemaByNamespaceCallback {
+		void success(org.bimserver.interfaces.objects.SExtendedDataSchema result);
+		void error(Exception e);
+	}
+	
 	public interface GetProjectByPoidCallback {
 		void success(org.bimserver.interfaces.objects.SProject result);
 		void error(Exception e);
@@ -488,6 +493,18 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getExtendedDataSchemaById(oid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getExtendedDataSchemaByNamespace(final java.lang.String namespace, final GetExtendedDataSchemaByNamespaceCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getExtendedDataSchemaByNamespace(namespace));
 				} catch (Exception e) {
 					callback.error(e);
 				}

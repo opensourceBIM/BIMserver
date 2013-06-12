@@ -219,11 +219,6 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
-	public interface GetExtendedDataSchemaByNamespaceCallback {
-		void success(org.bimserver.interfaces.objects.SExtendedDataSchema result);
-		void error(Exception e);
-	}
-	
 	public interface GetExtendedDataSchemaFromRepositoryCallback {
 		void success(org.bimserver.interfaces.objects.SExtendedDataSchema result);
 		void error(Exception e);
@@ -818,18 +813,6 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getCheckoutWarnings(poid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getExtendedDataSchemaByNamespace(final java.lang.String namespace, final GetExtendedDataSchemaByNamespaceCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getExtendedDataSchemaByNamespace(namespace));
 				} catch (Exception e) {
 					callback.error(e);
 				}

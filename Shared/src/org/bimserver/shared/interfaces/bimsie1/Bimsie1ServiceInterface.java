@@ -458,4 +458,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	Boolean deleteProject(
 		@WebParam(name = "poid", partName = "deleteProject.poid") Long poid) throws ServerException, UserException;
 
+	@WebMethod(action = "getExtendedDataSchemaByNamespace")
+	SExtendedDataSchema getExtendedDataSchemaByNamespace(
+		@WebParam(name = "namespace", partName = "getExtendedDataSchemaByNamespace.namespace") String namespace) throws UserException, ServerException;
 }
