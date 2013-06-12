@@ -485,10 +485,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "uoid", partName = "removeUserFromExtendedDataSchema.uoid") Long uoid,
 		@WebParam(name = "edsid", partName = "removeUserFromExtendedDataSchema.edsid") Long edsid) throws ServerException, UserException;
 	
-	@WebMethod(action = "getExtendedDataSchemaByNamespace")
-	SExtendedDataSchema getExtendedDataSchemaByNamespace(
-		@WebParam(name = "namespace", partName = "getExtendedDataSchemaByNamespace.namespace") String namespace) throws UserException, ServerException;
-
 	@WebMethod(action = "getExtendedDataSchemaFromRepository")
 	SExtendedDataSchema getExtendedDataSchemaFromRepository(
 		@WebParam(name = "namespace", partName = "getExtendedDataSchemaFromRepository.namespace") String namespace) throws UserException, ServerException;
