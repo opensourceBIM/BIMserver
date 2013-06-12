@@ -25,7 +25,6 @@ import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 
 public class CreateBaseProjectDatabaseAction extends BimDatabaseAction<Project>{

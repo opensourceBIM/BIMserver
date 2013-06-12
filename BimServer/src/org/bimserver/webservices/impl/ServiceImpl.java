@@ -77,7 +77,6 @@ import org.bimserver.database.actions.GetAvailableClassesDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesInRevisionDatabaseAction;
 import org.bimserver.database.actions.GetCheckinWarningsDatabaseAction;
 import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
-import org.bimserver.database.actions.GetExtendedDataSchemaByNamespaceDatabaseAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
 import org.bimserver.database.actions.GetOidByGuidDatabaseAction;
 import org.bimserver.database.actions.GetProjectsOfUserDatabaseAction;
