@@ -21,6 +21,7 @@ import org.bimserver.database.actions.GetDeserializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetExtendedDataByIdDatabaseAction;
 import org.bimserver.database.actions.GetExtendedDataSchemaByIdDatabaseAction;
+import org.bimserver.database.actions.GetExtendedDataSchemaByNamespaceDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
 import org.bimserver.database.actions.GetProjectsByNameDatabaseAction;
 import org.bimserver.database.actions.GetQueryEngineByIdDatabaseAction;
@@ -566,6 +567,19 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 		try {
 			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(getBimServer(), session, getInternalAccessMethod(), projectName, getAuthorization());
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	public SExtendedDataSchema getExtendedDataSchemaByNamespace(String nameSpace) throws UserException, ServerException {
+		// Not checking for real authentication here because a remote service should be able to use an exs
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetExtendedDataSchemaByNamespaceDatabaseAction(session, getInternalAccessMethod(), nameSpace)));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

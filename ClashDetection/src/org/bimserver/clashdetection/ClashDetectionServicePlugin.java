@@ -198,7 +198,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						LOGGER.error("", e);
 					}
 
-					SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByNamespace(
+					SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getBimsie1ServiceInterface().getExtendedDataSchemaByNamespace(
 							"http://www.buildingsmart-tech.org/specifications/bcf-releases");
 
 					SFile file = new SFile();

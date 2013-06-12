@@ -1132,19 +1132,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 	}
 
-	public SExtendedDataSchema getExtendedDataSchemaByNamespace(String nameSpace) throws UserException, ServerException {
-		// Not checking for real authentication here because a remote service should be able to use an exs
-		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetExtendedDataSchemaByNamespaceDatabaseAction(session, getInternalAccessMethod(), nameSpace)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-	
 	@Override
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
