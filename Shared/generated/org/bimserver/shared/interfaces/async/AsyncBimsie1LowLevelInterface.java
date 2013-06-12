@@ -79,6 +79,11 @@ public class AsyncBimsie1LowLevelInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetBooleanAttributeAtIndexCallback {
+		void success(java.lang.Boolean result);
+		void error(Exception e);
+	}
+	
 	public interface GetBooleanAttributesCallback {
 		void success(java.util.List<java.lang.Boolean> result);
 		void error(Exception e);
@@ -119,6 +124,11 @@ public class AsyncBimsie1LowLevelInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetDoubleAttributeAtIndexCallback {
+		void success(java.lang.Double result);
+		void error(Exception e);
+	}
+	
 	public interface GetDoubleAttributesCallback {
 		void success(java.util.List<java.lang.Double> result);
 		void error(Exception e);
@@ -134,12 +144,22 @@ public class AsyncBimsie1LowLevelInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetIntegerAttributeAtIndexCallback {
+		void success(java.lang.Integer result);
+		void error(Exception e);
+	}
+	
 	public interface GetIntegerAttributesCallback {
 		void success(java.util.List<java.lang.Integer> result);
 		void error(Exception e);
 	}
 	
 	public interface GetLongAttributeCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface GetLongAttributeAtIndexCallback {
 		void success(java.lang.Long result);
 		void error(Exception e);
 	}
@@ -185,6 +205,11 @@ public class AsyncBimsie1LowLevelInterface {
 	}
 	
 	public interface SetBooleanAttributeCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetBooleanAttributeAtIndexCallback {
 		void success();
 		void error(Exception e);
 	}
@@ -432,6 +457,18 @@ public class AsyncBimsie1LowLevelInterface {
 		});
 	}
 	
+	public void getBooleanAttributeAtIndex(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final java.lang.Integer index, final GetBooleanAttributeAtIndexCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getBooleanAttributeAtIndex(tid, oid, attributeName, index));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getBooleanAttributes(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final GetBooleanAttributesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -528,6 +565,18 @@ public class AsyncBimsie1LowLevelInterface {
 		});
 	}
 	
+	public void getDoubleAttributeAtIndex(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final java.lang.Integer index, final GetDoubleAttributeAtIndexCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getDoubleAttributeAtIndex(tid, oid, attributeName, index));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getDoubleAttributes(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final GetDoubleAttributesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -564,6 +613,18 @@ public class AsyncBimsie1LowLevelInterface {
 		});
 	}
 	
+	public void getIntegerAttributeAtIndex(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final java.lang.Integer index, final GetIntegerAttributeAtIndexCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getIntegerAttributeAtIndex(tid, oid, attributeName, index));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getIntegerAttributes(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final GetIntegerAttributesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -581,6 +642,18 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getLongAttribute(tid, oid, attributeName));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getLongAttributeAtIndex(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final java.lang.Integer index, final GetLongAttributeAtIndexCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getLongAttributeAtIndex(tid, oid, attributeName, index));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -693,6 +766,19 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					syncService.setBooleanAttribute(tid, oid, attributeName, value);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setBooleanAttributeAtIndex(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final java.lang.Integer index, final java.lang.Boolean value, final SetBooleanAttributeAtIndexCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setBooleanAttributeAtIndex(tid, oid, attributeName, index, value);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);

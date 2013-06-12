@@ -1,5 +1,5 @@
 
-Ú`
+”l
 Bimsie1LowLevelInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoBimsie1ServiceInterface.proto"Bimsie1NotificationInterface.proto#Bimsie1RemoteServiceInterface.protoBimsie1AuthInterface.proto"&
 AbortTransactionRequest
 tid ("\
@@ -52,6 +52,14 @@
 attributeName (	"B
 GetBooleanAttributeResponse
 errorMessage (	
+value ("c
+!GetBooleanAttributeAtIndexRequest
+tid (
+oid (
+attributeName (	
+index ("I
+"GetBooleanAttributeAtIndexResponse
+errorMessage (	
 value ("N
 GetBooleanAttributesRequest
 tid (
@@ -103,6 +111,14 @@
 attributeName (	"A
 GetDoubleAttributeResponse
 errorMessage (	
+value ("b
+ GetDoubleAttributeAtIndexRequest
+tid (
+oid (
+attributeName (	
+index ("H
+!GetDoubleAttributeAtIndexResponse
+errorMessage (	
 value ("M
 GetDoubleAttributesRequest
 tid (
@@ -124,6 +140,14 @@
 attributeName (	"B
 GetIntegerAttributeResponse
 errorMessage (	
+value ("c
+!GetIntegerAttributeAtIndexRequest
+tid (
+oid (
+attributeName (	
+index ("I
+"GetIntegerAttributeAtIndexResponse
+errorMessage (	
 value ("N
 GetIntegerAttributesRequest
 tid (
@@ -137,6 +161,14 @@
 oid (
 attributeName (	"?
 GetLongAttributeResponse
+errorMessage (	
+value ("`
+GetLongAttributeAtIndexRequest
+tid (
+oid (
+attributeName (	
+index ("F
+GetLongAttributeAtIndexResponse
 errorMessage (	
 value ("F
 GetReferenceRequest
@@ -188,7 +220,13 @@
 tid (
 oid (
 attributeName (	
-value ("^
+value ("r
+!SetBooleanAttributeAtIndexRequest
+tid (
+oid (
+attributeName (	
+index (
+value ("^
 SetBooleanAttributesRequest
 tid (
 oid (
@@ -310,7 +348,7 @@
 UnsetReferenceRequest
 tid (
 oid (
-referenceName (	2–-
+referenceName (	2¤2
 Bimsie1LowLevelInterface]
 abortTransaction).org.bimserver.pb.AbortTransactionRequest.org.bimserver.pb.VoidResponsec
 addBooleanAttribute,.org.bimserver.pb.AddBooleanAttributeRequest.org.bimserver.pb.VoidResponsea
@@ -321,7 +359,8 @@
 commitTransaction*.org.bimserver.pb.CommitTransactionRequest+.org.bimserver.pb.CommitTransactionResponseH
 count.org.bimserver.pb.CountRequest.org.bimserver.pb.CountResponse]
 createObject%.org.bimserver.pb.CreateObjectRequest&.org.bimserver.pb.CreateObjectResponser
-getBooleanAttribute,.org.bimserver.pb.GetBooleanAttributeRequest-.org.bimserver.pb.GetBooleanAttributeResponseu
+getBooleanAttribute,.org.bimserver.pb.GetBooleanAttributeRequest-.org.bimserver.pb.GetBooleanAttributeResponse‡
+getBooleanAttributeAtIndex3.org.bimserver.pb.GetBooleanAttributeAtIndexRequest4.org.bimserver.pb.GetBooleanAttributeAtIndexResponseu
 getBooleanAttributes-.org.bimserver.pb.GetBooleanAttributesRequest..org.bimserver.pb.GetBooleanAttributesResponsex
 getByteArrayAttribute..org.bimserver.pb.GetByteArrayAttributeRequest/.org.bimserver.pb.GetByteArrayAttributeResponse{
 getByteArrayAttributes/.org.bimserver.pb.GetByteArrayAttributesRequest0.org.bimserver.pb.GetByteArrayAttributesResponser
@@ -329,12 +368,15 @@
 getDataObjectByOid+.org.bimserver.pb.GetDataObjectByOidRequest,.org.bimserver.pb.GetDataObjectByOidResponsec
 getDataObjects'.org.bimserver.pb.GetDataObjectsRequest(.org.bimserver.pb.GetDataObjectsResponseu
 getDataObjectsByType-.org.bimserver.pb.GetDataObjectsByTypeRequest..org.bimserver.pb.GetDataObjectsByTypeResponseo
-getDoubleAttribute+.org.bimserver.pb.GetDoubleAttributeRequest,.org.bimserver.pb.GetDoubleAttributeResponser
+getDoubleAttribute+.org.bimserver.pb.GetDoubleAttributeRequest,.org.bimserver.pb.GetDoubleAttributeResponse„
+getDoubleAttributeAtIndex2.org.bimserver.pb.GetDoubleAttributeAtIndexRequest3.org.bimserver.pb.GetDoubleAttributeAtIndexResponser
 getDoubleAttributes,.org.bimserver.pb.GetDoubleAttributesRequest-.org.bimserver.pb.GetDoubleAttributesResponsei
 getEnumAttribute).org.bimserver.pb.GetEnumAttributeRequest*.org.bimserver.pb.GetEnumAttributeResponser
-getIntegerAttribute,.org.bimserver.pb.GetIntegerAttributeRequest-.org.bimserver.pb.GetIntegerAttributeResponseu
+getIntegerAttribute,.org.bimserver.pb.GetIntegerAttributeRequest-.org.bimserver.pb.GetIntegerAttributeResponse‡
+getIntegerAttributeAtIndex3.org.bimserver.pb.GetIntegerAttributeAtIndexRequest4.org.bimserver.pb.GetIntegerAttributeAtIndexResponseu
 getIntegerAttributes-.org.bimserver.pb.GetIntegerAttributesRequest..org.bimserver.pb.GetIntegerAttributesResponsei
-getLongAttribute).org.bimserver.pb.GetLongAttributeRequest*.org.bimserver.pb.GetLongAttributeResponse]
+getLongAttribute).org.bimserver.pb.GetLongAttributeRequest*.org.bimserver.pb.GetLongAttributeResponse~
+getLongAttributeAtIndex0.org.bimserver.pb.GetLongAttributeAtIndexRequest1.org.bimserver.pb.GetLongAttributeAtIndexResponse]
 getReference%.org.bimserver.pb.GetReferenceRequest&.org.bimserver.pb.GetReferenceResponse`
 getReferences&.org.bimserver.pb.GetReferencesRequest'.org.bimserver.pb.GetReferencesResponseo
 getStringAttribute+.org.bimserver.pb.GetStringAttributeRequest,.org.bimserver.pb.GetStringAttributeResponser
@@ -343,7 +385,8 @@
 removeAttribute(.org.bimserver.pb.RemoveAttributeRequest.org.bimserver.pb.VoidResponseU
 removeObject%.org.bimserver.pb.RemoveObjectRequest.org.bimserver.pb.VoidResponse[
 removeReference(.org.bimserver.pb.RemoveReferenceRequest.org.bimserver.pb.VoidResponsec
-setBooleanAttribute,.org.bimserver.pb.SetBooleanAttributeRequest.org.bimserver.pb.VoidResponsee
+setBooleanAttribute,.org.bimserver.pb.SetBooleanAttributeRequest.org.bimserver.pb.VoidResponseq
+setBooleanAttributeAtIndex3.org.bimserver.pb.SetBooleanAttributeAtIndexRequest.org.bimserver.pb.VoidResponsee
 setBooleanAttributes-.org.bimserver.pb.SetBooleanAttributesRequest.org.bimserver.pb.VoidResponseg
 setByteArrayAttribute..org.bimserver.pb.SetByteArrayAttributeRequest.org.bimserver.pb.VoidResponsea
 setDoubleAttribute+.org.bimserver.pb.SetDoubleAttributeRequest.org.bimserver.pb.VoidResponseo

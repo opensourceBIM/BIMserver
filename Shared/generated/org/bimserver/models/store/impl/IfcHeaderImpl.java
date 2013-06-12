@@ -22,6 +22,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.StorePackage;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -81,17 +82,9 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDescription() {
-		return (String) eGet(StorePackage.Literals.IFC_HEADER__DESCRIPTION, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.IFC_HEADER__DESCRIPTION, newDescription);
+	@SuppressWarnings("unchecked")
+	public EList<String> getDescription() {
+		return (EList<String>) eGet(StorePackage.Literals.IFC_HEADER__DESCRIPTION, true);
 	}
 
 	/**
@@ -153,8 +146,9 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAuthor() {
-		return (String) eGet(StorePackage.Literals.IFC_HEADER__AUTHOR, true);
+	@SuppressWarnings("unchecked")
+	public EList<String> getAuthor() {
+		return (EList<String>) eGet(StorePackage.Literals.IFC_HEADER__AUTHOR, true);
 	}
 
 	/**
@@ -162,26 +156,9 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAuthor(String newAuthor) {
-		eSet(StorePackage.Literals.IFC_HEADER__AUTHOR, newAuthor);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getOrganization() {
-		return (String) eGet(StorePackage.Literals.IFC_HEADER__ORGANIZATION, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOrganization(String newOrganization) {
-		eSet(StorePackage.Literals.IFC_HEADER__ORGANIZATION, newOrganization);
+	@SuppressWarnings("unchecked")
+	public EList<String> getOrganization() {
+		return (EList<String>) eGet(StorePackage.Literals.IFC_HEADER__ORGANIZATION, true);
 	}
 
 	/**

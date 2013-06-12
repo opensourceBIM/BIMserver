@@ -56,6 +56,7 @@ import org.bimserver.webservices.LongTransaction;
 import org.bimserver.webservices.NoTransactionException;
 import org.bimserver.webservices.ServiceMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -176,6 +177,16 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 		}
 	}
 
+	@Override
+	public void setBooleanAttributeAtIndex(Long tid, Long oid, String attributeName, Integer index, Boolean value) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChangeAtIndex(oid, attributeName, index, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+	
 	@Override
 	public void setIntegerAttributes(Long tid, Long oid, String attributeName, List<Integer> values) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
@@ -398,10 +409,18 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 		return (Integer)getAttribute(tid, oid, attributeName);
 	}
 
+	public Integer getIntegerAttributeAtIndex(Long tid, Long oid, String attributeName, Integer index) throws ServerException ,UserException {
+		return (Integer)getAttributeAtIndex(tid, oid, attributeName, index);
+	}
+
 	public Long getLongAttribute(Long tid, Long oid, String attributeName) throws ServerException ,UserException {
 		return (Long)getAttribute(tid, oid, attributeName);
 	}
 
+	public Long getLongAttributeAtIndex(Long tid, Long oid, String attributeName, Integer index) throws ServerException ,UserException {
+		return (Long)getAttributeAtIndex(tid, oid, attributeName, index);
+	}
+	
 	@Override
 	public void setBooleanAttribute(Long tid, Long oid, String attributeName, Boolean value) throws UserException, ServerException {
 		try {
@@ -426,6 +445,11 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 	}
 
 	@Override
+	public Boolean getBooleanAttributeAtIndex(Long tid, Long oid, String attributeName, Integer index) throws ServerException, UserException {
+		return (Boolean)getAttributeAtIndex(tid, oid, attributeName, index);
+	}
+
+	@Override
 	public void setDoubleAttribute(Long tid, Long oid, String attributeName, Double value) throws UserException, ServerException {
 		try {
 			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
@@ -446,6 +470,11 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 	@Override
 	public Double getDoubleAttribute(Long tid, Long oid, String attributeName) throws ServerException, UserException {
 		return (Double)getAttribute(tid, oid, attributeName);
+	}
+	
+	@Override
+	public Double getDoubleAttributeAtIndex(Long tid, Long oid, String attributeName, Integer index) throws ServerException, UserException {
+		return (Double)getAttributeAtIndex(tid, oid, attributeName, index);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -505,6 +534,29 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 		}
 	}
 
+	private Object getAttributeAtIndex(Long tid, Long oid, String attributeName, int index) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			LongTransaction transaction = getBimServer().getLongTransactionManager().get(tid);
+			EClass eClass = session.getEClassForOid(oid);
+			IdEObject object = session.get(eClass, oid, new Query(transaction.getPid(), transaction.getRid(), null, Deep.NO));
+			if (object == null) {
+				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
+			}
+			Object eGet = object.eGet(object.eClass().getEStructuralFeature(attributeName));
+			if (eGet instanceof List) {
+				List<?> list = (List<?>)eGet;
+				return list.get(index);
+			}
+			return eGet;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public void setEnumAttribute(Long tid, Long oid, String attributeName, String value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
@@ -541,7 +593,11 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 			if (object == null) {
 				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
 			}
-			IdEObject ref = (IdEObject) object.eGet(object.eClass().getEStructuralFeature(referenceName));
+			EStructuralFeature eStructuralFeature = object.eClass().getEStructuralFeature(referenceName);
+			if (eStructuralFeature == null) {
+				throw new UserException("No feature with name " + referenceName + " found on class " + object.eClass().getName());
+			}
+			IdEObject ref = (IdEObject) object.eGet(eStructuralFeature);
 			if (ref == null) {
 				return -1L;
 			}

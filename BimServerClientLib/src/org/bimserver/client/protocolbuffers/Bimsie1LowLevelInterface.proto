@@ -53,6 +53,8 @@ service Bimsie1LowLevelInterface {
 
 	rpc getBooleanAttribute (GetBooleanAttributeRequest) returns (GetBooleanAttributeResponse);
 
+	rpc getBooleanAttributeAtIndex (GetBooleanAttributeAtIndexRequest) returns (GetBooleanAttributeAtIndexResponse);
+
 	rpc getBooleanAttributes (GetBooleanAttributesRequest) returns (GetBooleanAttributesResponse);
 
 	rpc getByteArrayAttribute (GetByteArrayAttributeRequest) returns (GetByteArrayAttributeResponse);
@@ -69,15 +71,21 @@ service Bimsie1LowLevelInterface {
 
 	rpc getDoubleAttribute (GetDoubleAttributeRequest) returns (GetDoubleAttributeResponse);
 
+	rpc getDoubleAttributeAtIndex (GetDoubleAttributeAtIndexRequest) returns (GetDoubleAttributeAtIndexResponse);
+
 	rpc getDoubleAttributes (GetDoubleAttributesRequest) returns (GetDoubleAttributesResponse);
 
 	rpc getEnumAttribute (GetEnumAttributeRequest) returns (GetEnumAttributeResponse);
 
 	rpc getIntegerAttribute (GetIntegerAttributeRequest) returns (GetIntegerAttributeResponse);
 
+	rpc getIntegerAttributeAtIndex (GetIntegerAttributeAtIndexRequest) returns (GetIntegerAttributeAtIndexResponse);
+
 	rpc getIntegerAttributes (GetIntegerAttributesRequest) returns (GetIntegerAttributesResponse);
 
 	rpc getLongAttribute (GetLongAttributeRequest) returns (GetLongAttributeResponse);
+
+	rpc getLongAttributeAtIndex (GetLongAttributeAtIndexRequest) returns (GetLongAttributeAtIndexResponse);
 
 	rpc getReference (GetReferenceRequest) returns (GetReferenceResponse);
 
@@ -96,6 +104,8 @@ service Bimsie1LowLevelInterface {
 	rpc removeReference (RemoveReferenceRequest) returns (VoidResponse);
 
 	rpc setBooleanAttribute (SetBooleanAttributeRequest) returns (VoidResponse);
+
+	rpc setBooleanAttributeAtIndex (SetBooleanAttributeAtIndexRequest) returns (VoidResponse);
 
 	rpc setBooleanAttributes (SetBooleanAttributesRequest) returns (VoidResponse);
 
@@ -225,6 +235,18 @@ message GetBooleanAttributeResponse {
 	optional bool value = 2;
 }
 
+message GetBooleanAttributeAtIndexRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional int32 index = 4;
+}
+
+message GetBooleanAttributeAtIndexResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
 message GetBooleanAttributesRequest {
 	optional int64 tid = 1;
 	optional int64 oid = 2;
@@ -308,6 +330,18 @@ message GetDoubleAttributeResponse {
 	optional double value = 2;
 }
 
+message GetDoubleAttributeAtIndexRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional int32 index = 4;
+}
+
+message GetDoubleAttributeAtIndexResponse {
+	optional string errorMessage = 1;
+	optional double value = 2;
+}
+
 message GetDoubleAttributesRequest {
 	optional int64 tid = 1;
 	optional int64 oid = 2;
@@ -341,6 +375,18 @@ message GetIntegerAttributeResponse {
 	optional int32 value = 2;
 }
 
+message GetIntegerAttributeAtIndexRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional int32 index = 4;
+}
+
+message GetIntegerAttributeAtIndexResponse {
+	optional string errorMessage = 1;
+	optional int32 value = 2;
+}
+
 message GetIntegerAttributesRequest {
 	optional int64 tid = 1;
 	optional int64 oid = 2;
@@ -359,6 +405,18 @@ message GetLongAttributeRequest {
 }
 
 message GetLongAttributeResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message GetLongAttributeAtIndexRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional int32 index = 4;
+}
+
+message GetLongAttributeAtIndexResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
 }
@@ -437,6 +495,14 @@ message SetBooleanAttributeRequest {
 	optional int64 oid = 2;
 	optional string attributeName = 3;
 	optional bool value = 4;
+}
+
+message SetBooleanAttributeAtIndexRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional int32 index = 4;
+	optional bool value = 5;
 }
 
 message SetBooleanAttributesRequest {

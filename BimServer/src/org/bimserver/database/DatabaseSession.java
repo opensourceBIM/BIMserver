@@ -206,7 +206,23 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		RecordIdentifier recordIdentifier = new RecordIdentifier(query.getPid(), oid, rid);
 		if (objectCache.contains(recordIdentifier.getOid())) {
-			return objectCache.get(recordIdentifier.getOid());
+			IdEObject idEObject = objectCache.get(recordIdentifier.getOid());
+			if (!model.contains(oid)) {
+				if (idEObject.eClass().getEAnnotation("wrapped") == null) {
+					try {
+						model.addAllowMultiModel(oid, idEObject);
+					} catch (IfcModelInterfaceException e) {
+						throw new BimserverDatabaseException(e);
+					}
+				} else {
+					try {
+						model.add(oid, idEObject);
+					} catch (IfcModelInterfaceException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return idEObject;
 		}
 
 		IdEObjectImpl object = createInternal(eClass, query);

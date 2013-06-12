@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -151,5 +152,16 @@ public class StringUtils {
 			LOGGER.error("", e);
 		}
 		return null;
+	}
+	
+	public static String concat(List<String> items, String quotation, String separation) {
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<items.size(); i++) {
+			sb.append(quotation + items.get(i) + quotation);
+			if (i < items.size() - 1) {
+				sb.append(separation);
+			}
+		}
+		return sb.toString();
 	}
 }

@@ -55,8 +55,32 @@ public class EDelegatingList<E> extends AbstractEList<E> {
 	}
 
 	@Override
-	public E setUnique(int index, E object) {
-		return delegate.setUnique(index, object);
+	public E setUnique(int index, E newValue) {
+		if (model.getModelState() != ModelState.LOADING) {
+			try {
+				if (newValue instanceof String) {
+					model.getBimServerClient().getBimsie1LowLevelInterface().setStringAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (String) newValue);
+				} else if (newValue instanceof Double) {
+					model.getBimServerClient().getBimsie1LowLevelInterface().setDoubleAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (Double) newValue);
+				} else if (newValue instanceof Boolean) {
+					model.getBimServerClient().getBimsie1LowLevelInterface().setBooleanAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (Boolean) newValue);
+				} else if (newValue instanceof Integer) {
+					model.getBimServerClient().getBimsie1LowLevelInterface().setIntegerAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (Integer) newValue);
+				} else if (newValue instanceof IdEObject) {
+					model.getBimServerClient().getBimsie1LowLevelInterface()
+							.addReference(model.getTransactionId(), subject.getOid(), feature.getName(), ((IdEObject) newValue).getOid());
+				} else {
+					throw new RuntimeException("Unimplemented " + feature.getEType().getName() + " " + newValue);
+				}
+			} catch (ServerException e) {
+				e.printStackTrace();
+			} catch (UserException e) {
+				e.printStackTrace();
+			} catch (PublicInterfaceNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		return delegate.setUnique(index, newValue);
 	}
 
 	@Override
