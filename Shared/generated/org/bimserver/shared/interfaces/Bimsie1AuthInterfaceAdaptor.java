@@ -33,7 +33,15 @@ public class Bimsie1AuthInterfaceAdaptor implements org.bimserver.shared.interfa
 		return null;
 	}
 	
+	public java.lang.String loginOpenId(java.lang.String op, java.lang.String returnUrl) throws UserException, ServerException {
+		return null;
+	}
+	
 	public void logout() throws UserException, ServerException {
+	}
+	
+	public java.lang.String validateOpenId(java.lang.String queryString) throws UserException, ServerException {
+		return null;
 	}
 	
 }

@@ -96,6 +96,7 @@ import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.notifications.InternalServicesManager;
 import org.bimserver.notifications.NotificationsManager;
+import org.bimserver.openid.OpenIdManager;
 import org.bimserver.pb.server.ProtocolBuffersServer;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginChangeListener;
@@ -176,6 +177,7 @@ public class BimServer {
 	private WebModulePlugin defaultWebModule;
 	private ExecutorService executorService = Executors.newFixedThreadPool(50);
 	private InternalServicesManager internalServicesManager;
+	private OpenIdManager openIdManager;
 
 	/**
 	 * Create a new BIMserver
@@ -359,6 +361,8 @@ public class BimServer {
 			serverInfoManager.update();
 
 			jsonHandler = new JsonHandler(this);
+			
+			openIdManager = new OpenIdManager(this);
 			
 			serializerFactory = new SerializerFactory();
 			deserializerFactory = new DeserializerFactory();
@@ -910,5 +914,9 @@ public class BimServer {
 	
 	public ExecutorService getExecutorService() {
 		return executorService;
+	}
+	
+	public OpenIdManager getOpenIdManager() {
+		return openIdManager;
 	}
 }

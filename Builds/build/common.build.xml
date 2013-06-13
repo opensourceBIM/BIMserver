@@ -28,22 +28,6 @@
 		<antcall target="FileBasedObjectIDM" />
 		<antcall target="Report1Serializer" />
 	</target>
-	<target name="SatelliteServer">
-		<mkdir dir="builds/satelliteserver" />
-		<javac destdir="builds/satelliteserver" debug="on" includeantruntime="false">
-			<src path="../../SatelliteServer/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<copy file="../../SatelliteServer/src/org/bimserver/satellite/gui/logo_small.png" todir="builds/satelliteserver/org/bimserver/satellite/gui" />
-		<jar destfile="builds/lib/bimserver-${version}-satellite.jar">
-			<fileset dir="builds/satelliteserver"/>
-		</jar>
-	</target>
 	<target name="Tests">
 		<mkdir dir="builds/tests" />
 		<javac destdir="builds/tests" debug="on" includeantruntime="false">

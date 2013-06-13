@@ -44,8 +44,18 @@ public class AsyncBimsie1AuthInterface {
 		void error(Exception e);
 	}
 	
+	public interface LoginOpenIdCallback {
+		void success(java.lang.String result);
+		void error(Exception e);
+	}
+	
 	public interface LogoutCallback {
 		void success();
+		void error(Exception e);
+	}
+	
+	public interface ValidateOpenIdCallback {
+		void success(java.lang.String result);
 		void error(Exception e);
 	}
 	
@@ -87,12 +97,36 @@ public class AsyncBimsie1AuthInterface {
 		});
 	}
 	
+	public void loginOpenId(final java.lang.String op, final java.lang.String returnUrl, final LoginOpenIdCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.loginOpenId(op, returnUrl));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void logout(final LogoutCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
 					syncService.logout();
 					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void validateOpenId(final java.lang.String queryString, final ValidateOpenIdCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.validateOpenId(queryString));
 				} catch (Exception e) {
 					callback.error(e);
 				}

@@ -16,6 +16,11 @@
 	<classpathentry exported="true" kind="lib" path="lib/je-5.0.73.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/httpmime-4.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/gson-2.2.4.jar" sourcepath="libsrc/gson-2.2.4-sources.jar"/>
+	<classpathentry kind="lib" path="lib/openid4java-0.9.8.jar"/>
+	<classpathentry kind="lib" path="lib/openid/guice-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/openid/nekohtml-1.9.14.jar"/>
+	<classpathentry kind="lib" path="lib/openid/xercesImpl-2.8.1.jar"/>
+	<classpathentry kind="lib" path="lib/JOpenId-1.08.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>
