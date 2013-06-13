@@ -77,6 +77,8 @@ service Bimsie1ServiceInterface {
 
 	rpc getExtendedDataSchemaById (GetExtendedDataSchemaByIdRequest) returns (GetExtendedDataSchemaByIdResponse);
 
+	rpc getExtendedDataSchemaByNamespace (GetExtendedDataSchemaByNamespaceRequest) returns (GetExtendedDataSchemaByNamespaceResponse);
+
 	rpc getProjectByPoid (GetProjectByPoidRequest) returns (GetProjectByPoidResponse);
 
 	rpc getProjectsByName (GetProjectsByNameRequest) returns (GetProjectsByNameResponse);
@@ -343,6 +345,15 @@ message GetExtendedDataSchemaByIdRequest {
 }
 
 message GetExtendedDataSchemaByIdResponse {
+	optional string errorMessage = 1;
+	optional SExtendedDataSchema value = 2;
+}
+
+message GetExtendedDataSchemaByNamespaceRequest {
+	optional string namespace = 1;
+}
+
+message GetExtendedDataSchemaByNamespaceResponse {
 	optional string errorMessage = 1;
 	optional SExtendedDataSchema value = 2;
 }
