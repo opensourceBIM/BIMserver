@@ -17,6 +17,11 @@ package org.bimserver.webservices.impl;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.IOException;
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.LoginDatabaseAction;
 import org.bimserver.interfaces.objects.SAccessMethod;
@@ -57,5 +62,19 @@ public class Bimsie1AuthServiceImpl extends GenericServiceImpl implements Bimsie
 	@Override
 	public SAccessMethod getAccessMethod() {
 		return SAccessMethod.valueOf(getInternalAccessMethod().getName());
+	}
+
+	@Override
+	public String loginOpenId(String op, String returnUrl) throws ServerException, UserException {
+		try {
+			return getBimServer().getOpenIdManager().authRequest(op, returnUrl);
+		} catch (IOException e) {
+			throw new UserException(e);
+		}
+	}
+
+	@Override
+	public String validateOpenId(String queryString) throws ServerException, UserException {
+		return null;
 	}
 }

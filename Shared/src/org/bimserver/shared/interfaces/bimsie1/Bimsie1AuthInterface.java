@@ -47,6 +47,15 @@ public interface Bimsie1AuthInterface extends PublicInterface {
 		@WebParam(name = "username", partName = "login.username") String username,
 		@WebParam(name = "password", partName = "login.password") String password) throws ServerException, UserException;
 
+	@WebMethod(action = "loginOpenId")
+	String loginOpenId(
+		@WebParam(name = "op", partName = "loginOpenId.op") String op,
+		@WebParam(name = "returnUrl", partName = "loginOpenId.returnUrl") String returnUrl) throws ServerException, UserException;
+
+	@WebMethod(action = "validateOpenId")
+	String validateOpenId(
+		@WebParam(name = "queryString", partName = "validateOpenId.queryString") String queryString) throws ServerException, UserException;
+	
 	/**
 	 * Logout
 	 * @throws ServerException, UserException

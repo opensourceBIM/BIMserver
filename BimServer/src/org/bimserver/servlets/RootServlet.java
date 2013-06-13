@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.plugins.web.WebModulePlugin;
+import org.openid4java.discovery.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,6 +68,8 @@ public class RootServlet extends HttpServlet {
 				response.setContentType("application/json");
 				response.getWriter().print("{\"address\":\"" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress() + "\"}");
 				return;
+			} else if (request.getRequestURI().startsWith("/openid")) {
+				Identifier identifier = bimServer.getOpenIdManager().verifyResponse(request, response);
 			} else if (request.getRequestURI().endsWith(".js")) {
 				response.setContentType("application/javascript");
 			} else if (request.getRequestURI().endsWith(".css")) {
