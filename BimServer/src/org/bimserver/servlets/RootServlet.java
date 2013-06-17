@@ -66,7 +66,12 @@ public class RootServlet extends HttpServlet {
 		try {
 			if (request.getRequestURI().endsWith("getbimserveraddress")) {
 				response.setContentType("application/json");
-				response.getWriter().print("{\"address\":\"" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress() + "\"}");
+				String siteAddress = bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
+				if (siteAddress == null || siteAddress.trim().isEmpty()) {
+					// Only when in setup-mode
+					siteAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getServletPath();
+				}
+				response.getWriter().print("{\"address\":\"" + siteAddress + "\"}");
 				return;
 			} else if (request.getRequestURI().startsWith("/openid")) {
 				Identifier identifier = bimServer.getOpenIdManager().verifyResponse(request, response);
