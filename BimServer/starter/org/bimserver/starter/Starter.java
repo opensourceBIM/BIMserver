@@ -354,7 +354,12 @@ public class Starter extends JFrame {
 						}
 					}
 					if (jre != jvm) {
-						command += new File(jvm, "lib" + File.separator + "tools.jar");
+						File toolsFile = new File(jvm, "lib" + File.separator + "tools.jar");
+						if (toolsFile.getAbsolutePath().contains(" ")) {
+							command += "\"" + toolsFile.getAbsolutePath() + "\"";
+						} else {
+							command += toolsFile.getAbsolutePath();
+						}
 					}
 				} else {
 					System.out.println("Not using selected JVM (directory not found), using default JVM");
