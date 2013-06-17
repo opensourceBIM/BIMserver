@@ -230,6 +230,12 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	public void setup(String siteAddress, String smtpServer, String smtpSender, String adminName, String adminUsername, String adminPassword) throws ServerException, UserException {
 		SettingsInterface settingsInterface = getServiceMap().get(SettingsInterface.class);
 		settingsInterface.setSmtpServer(smtpServer);
+		if (!siteAddress.startsWith("http://") && !siteAddress.startsWith("https://")) {
+			throw new UserException("Site address should start with \"http://\" or \"https://\"");
+		}
+		if (siteAddress.startsWith("http://http://") || siteAddress.startsWith("https://https://")) {
+			throw new UserException("Site address should not have duplicate protocols");
+		}
 		settingsInterface.setSiteAddress(siteAddress);
 		settingsInterface.setEmailSenderAddress(smtpSender);
 

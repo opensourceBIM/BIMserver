@@ -40,9 +40,6 @@
 		<copy todir="builds/BuildSource/BIMserver/MiscSerializers">
 			<fileset dir="../../MiscSerializers" />
 		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Report1Serializer">
-			<fileset dir="../../Report1Serializer" />
-		</copy>
 		<copy todir="builds/BuildSource/BIMserver/SceneJS">
 			<fileset dir="../../SceneJS" />
 		</copy>
