@@ -305,6 +305,8 @@ public class SClass {
 	public JSONObject toJson() throws JSONException {
 		JSONObject result = new JSONObject();
 		result.put("name", getName());
+		result.put("simpleName", getSimpleName());
+		result.put("simpleType", getSimpleType().name());
 		JSONArray fieldsJson = new JSONArray();
 		for (SField field : fields.values()) {
 			fieldsJson.put(field.toJson());
