@@ -373,17 +373,17 @@ message CompareRequest {
 	optional int64 mcid = 4;
 }
 
+message SObjectAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
 message SObjectModified {
 	optional string newValue = 1;
 	optional int32 rid = 2;
 	optional int64 oid = 3;
 	optional string oldValue = 4;
 	optional string fieldName = 5;
-}
-
-message SObjectAdded {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
 }
 
 message SObjectRemoved {
@@ -431,8 +431,8 @@ message SDataObject {
 
 message SCompareItem {
 	required string __actual_type = 1;
-	optional SObjectModified __SObjectModified = 2;
-	optional SObjectAdded __SObjectAdded = 3;
+	optional SObjectAdded __SObjectAdded = 2;
+	optional SObjectModified __SObjectModified = 3;
 	optional SObjectRemoved __SObjectRemoved = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
