@@ -343,7 +343,7 @@ public class Starter extends JFrame {
 					}
 					command = new File(jre, "bin" + File.separator + "java").getAbsolutePath();
 					File jreLib = new File(jre, "lib");
-					command += " -Xbootclasspath:\"";
+					command += " -Xbootclasspath:";
 					for (File file : jreLib.listFiles()) {
 						if (file.getName().endsWith(".jar")) {
 							if (file.getAbsolutePath().contains(" ")) {
@@ -356,7 +356,8 @@ public class Starter extends JFrame {
 					if (jre != jvm) {
 						command += new File(jvm, "lib" + File.separator + "tools.jar");
 					}
-					command += "\"";
+				} else {
+					System.out.println("Not using selected JVM (directory not found), using default JVM");
 				}
 			}
 			command += " -Xmx" + heapsize;
