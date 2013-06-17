@@ -88,6 +88,9 @@
 	</div>
 	<div class="scenarios page initialhide container-fluid">
 		<div class="row-fluid">
+			<div class="alert alert-error">Scenarios are in development</div>
+		</div>
+		<div class="row-fluid">
 			<div class="span2">
 				<ul class="nav nav-tabs nav-stacked scenarioNav">
 				</ul>
@@ -177,7 +180,7 @@ LazyLoad.js([
     Global.baseJsDir + "vkbeautify.0.99.00.beta.js", 
     Global.baseJsDir + "prettify.js", 
     Global.baseJsDir + "consolesettings.js", 
-    Global.baseJsDir + "jquery-1.8.2.min.js", 
+    Global.baseJsDir + "jquery-2.0.2.min.js", 
     Global.baseJsDir + "jquery.cookie.js", 
     Global.baseJsDir + "jquery.enterpress.js", 
     Global.baseJsDir + "bootstrap.min.js", 
@@ -315,8 +318,8 @@ LazyLoad.js([
 				} else {
 					example += "{\n";
 					type.fields.forEach(function(field, index){
-						example += "    \"" + field.name + "\": " + othis.makeExampleFromType("", field.type, field.genericType, field.doc);
 						if (index != type.fields.length - 1) {
+						example += "    \"" + field.name + "\": " + othis.makeExampleFromType("", field.type, field.genericType, field.doc);
 							example += ",";
 						}
 						example += "\n";
@@ -415,6 +418,7 @@ LazyLoad.js([
 				});
 				return select;
 			} else if (type.name.contains("org.bimserver")) {
+				return $("<div>Unimplemented</div>");
 			} else if (type.name.contains("javax.activation.DataHandler")) {
 				var input = $("<input type=\"file\"/>");
 				input.addClass("__field" + fieldName);
@@ -481,6 +485,7 @@ LazyLoad.js([
 				var controls = $("<div class=\"controls\">");
 				div.append(label);
 				div.append(controls);
+				console.log(parameter.type);
 				var input = othis.makeFieldFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc);
 				controls.append(input);
 				container.find(".parametersForm").append(div);

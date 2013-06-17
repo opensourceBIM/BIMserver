@@ -69,6 +69,8 @@ public class SField {
 		JSONObject json = new JSONObject();
 		json.put("name", name);
 		json.put("type", getType().toJson());
+		json.put("genericType", getGenericType().toJson());
+		json.put("doc", getDoc());
 		return json;
 	}
 }
