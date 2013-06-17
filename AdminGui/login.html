@@ -91,7 +91,6 @@ function Login(address, username) {
 	}
 	if (username != null) {
 		$("#inputEmail").val(username);
-		$("#inputPassword").focus();
 	}
 	
 	$("#serverDropdown").click(function(event){
@@ -143,7 +142,11 @@ function Login(address, username) {
 	if (Settings.allowBimServerAddress()) {
 		$("#inputServer").focus();
 	} else {
-		$("#inputEmail").focus();
+		if (username == null) {
+			$("#inputEmail").focus();
+		} else {
+			$("#inputPassword").focus();
+		}
 	}
 	
 	$(".googleLink").click(function(){

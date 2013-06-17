@@ -37,10 +37,16 @@ public class JarSettings {
 	@XmlElement
 	private String stacksize = "1024k";
 
+	public JarSettings() {
+		com.sun.management.OperatingSystemMXBean os = (com.sun.management.OperatingSystemMXBean) java.lang.management.ManagementFactory.getOperatingSystemMXBean();
+		long physicalMemorySize = os.getTotalPhysicalMemorySize();
+		heapsize = Math.min(1024 * 1024 * 1024, physicalMemorySize / 2000000) + "m";
+	}
+
 	public static JarSettings readFromFile() {
 		return readFromFile(new File("settings.xml"));
 	}
-	
+
 	public static JarSettings readFromFile(File file) {
 		if (file.exists()) {
 			try {
