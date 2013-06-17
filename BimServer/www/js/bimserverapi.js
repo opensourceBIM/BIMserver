@@ -79,11 +79,11 @@ function BimServerApi(baseUrl, notifier) {
 		othis.call("Bimsie1AuthInterface", "login", request, function(data){
 			othis.token = data;
 			if (rememberme) {
-				$.cookie("autologin", othis.token, { expires: 31 });
-				$.cookie("address", othis.baseUrl, { expires: 31 });
+				$.cookie("autologin", othis.token, { expires: 31, path: "/"});
+				$.cookie("address", othis.baseUrl, { expires: 31, path: "/" });
 			} else {
-				$.cookie("autologin", othis.token, { });
-				$.cookie("address", othis.baseUrl, { });
+				$.cookie("autologin", othis.token, { path: "/" });
+				$.cookie("address", othis.baseUrl, { path: "/"});
 			}
 			othis.notifier.info("Login successful");
 			othis.resolveUser();
@@ -117,8 +117,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.logout = function(callback) {
-		$.removeCookie("autologin");
-		$.removeCookie("address");
+		$.removeCookie("autologin", {path: "/"});
 		othis.call("Bimsie1AuthInterface", "logout", {}, function(){
 			othis.notifier.info("Logout successful");
 			callback();

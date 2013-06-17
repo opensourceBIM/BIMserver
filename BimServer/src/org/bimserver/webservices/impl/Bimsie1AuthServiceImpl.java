@@ -19,9 +19,6 @@ package org.bimserver.webservices.impl;
 
 import java.io.IOException;
 
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
-
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.LoginDatabaseAction;
 import org.bimserver.interfaces.objects.SAccessMethod;
