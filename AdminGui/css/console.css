@@ -92,3 +92,14 @@ pre.prettyprint {
 .pagination .selected {
 	font-weight: bold;
 }
+
+.addressLabel input {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.addressLabel {
+	color: white;
+	margin-top: 5px;
+	margin-bottom: 0px;	
+}

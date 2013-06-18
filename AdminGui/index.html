@@ -128,9 +128,9 @@
 			function loadError() {
 				window.clearTimeout(Global.timeoutId);
 				Global.notifier.error("Could not connect");
-				$.removeCookie("username");
-				$.removeCookie("autologin");
-				$.removeCookie("address");
+				$.removeCookie("username", {path: "/"});
+				$.removeCookie("autologin", {path: "/"});
+				$.removeCookie("address", {path: "/"});
 				$(".indexcontainer").load(Global.baseDir + "login.html", function(){
 					new Login();
 				});

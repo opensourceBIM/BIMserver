@@ -69,7 +69,7 @@ public class RootServlet extends HttpServlet {
 				String siteAddress = bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
 				if (siteAddress == null || siteAddress.trim().isEmpty()) {
 					// Only when in setup-mode
-					siteAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getServletPath();
+					siteAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 				}
 				response.getWriter().print("{\"address\":\"" + siteAddress + "\"}");
 				return;
