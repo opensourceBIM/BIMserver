@@ -67,6 +67,9 @@
 <script>
 function Setup(address) {
 	var othis = this;
+	if (address.startsWith("http://")) {
+		address = address.substring(7);
+	}
 	$(".setup .siteAddressInput").val(address);
 	
 	this.setup = function(event){

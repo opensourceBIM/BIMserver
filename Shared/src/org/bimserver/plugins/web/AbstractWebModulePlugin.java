@@ -54,7 +54,7 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 				path = path.substring(getDefaultContextPath().length());
 			}
 			if (path == null || path.equals("")) {
-				response.sendRedirect(getDefaultContextPath() + "/");
+				response.sendRedirect(request.getContextPath() + getDefaultContextPath() + "/");
 			} else if (path.equals("/")) {
 				path = "index.html";
 			}

@@ -17,7 +17,8 @@
 					<li class="active"><a class="pageLink apiLink">API</a></li>
 					<li><a class="pageLink scenariosLink">Common scenarios</a></li>
 				</ul>
-				<button class="btn loginButton menuLoginButton">Login</button>
+				<button class="btn loginButton menuLoginButton pull-right">Login</button>
+				<label class="addressLabel pull-right">Address <input type="text" class="input-xlarge addressInput"/></label>
 			</div>
 		</div>
 	</div>
@@ -100,10 +101,11 @@
 					<h1 class="title"></h1>
 					<div class="pagination">
 						<ul>
-							<li class="disabled backButton"><a href="#">&laquo;</a></li>
-							<li class="disabled forwardButton"><a href="#">&raquo;</a></li>
+							<li class="disabled backButton"><a>&laquo;</a></li>
+							<li class="disabled forwardButton"><a>&raquo;</a></li>
 						</ul>
 					</div>
+					<div class="scenarioDescription well well-small"></div>
 					<div class="scenarioMethod">
 					</div>
 				</div>
@@ -191,6 +193,13 @@ LazyLoad.js([
 		
 		othis.currentScenarioContext = null;
 		
+		if ($.cookie("address") != null) {
+			$(".addressInput").val($.cookie("address"));
+		}
+		
+		$(".addressInput").change(function(){
+			$.cookie(".address", $(".addressInput").val(), { expires: 31, path: '/' });
+		});
 		$(".logo").attr("src", Global.baseDir + "img/consolelogo.png");
 		$(".largeLogo").attr("src", Global.baseDir + "img/consolelogolarge.png");
 		$(".title").html(ConsoleSettings.title);
@@ -202,12 +211,16 @@ LazyLoad.js([
 				name: "Checkin IFC",
 				calls: [
 					{
+						id: "login",
 						name: "Login",
+						description: "First you will have to login, if you are already logged-in, you can skip this step",
 						interface: "Bimsie1AuthInterface",
 						method: "login"
 					},
 					{
+						id: "createproject",
 						name: "Create project",
+						description: "Create a project, if the call is successful, the Object-ID of the project will be stored for you, so it can be used in the actual checkin call",
 						interface: "Bimsie1ServiceInterface",
 						method: "addProject",
 						post: function(data, context){
@@ -215,27 +228,37 @@ LazyLoad.js([
 						}
 					},
 					{
+						id: "finddeserializer",
 						name: "Find deserializer",
+						description: "To checkin a file, we have to define a deserializer. If you are uploading an IFC file, use \"ifc\" here",
 						interface: "Bimsie1ServiceInterface",
 						method: "getSuggestedDeserializerForExtension",
 						post: function(data, context) {
-							context.serializerOid = data.oid;
+							context.deserializerOid = data.oid;
 						}
 					},
 					{
+						id: "checkin",
 						name: "Checkin",
+						description: "This call will checkin the actual file, poid and deserializerOid should be prefilled if you successfully executed the previous steps",
 						interface: "Bimsie1ServiceInterface",
 						method: "checkin",
+						fieldChange: function(fieldName, data, form){
+							if (fieldName == "data") {
+								form.setFieldValue("fileSize", data.length);
+								form.setFieldValue("fileName", data.name);
+							}
+						},
 						pre: function(context, form){
 							form.setFieldValue("poid", context.poid);
-							form.setFieldValue("serializerOid", context.serializerOid);
+							form.setFieldValue("deserializerOid", context.deserializerOid);
 						}
 					}
 				]
 			}
 		];
 		
-		var token = $.cookie("token");
+		var token = $.cookie("autologin");
 		if (token != null) {
 			$(".loginButton").html("Logout");
 		}
@@ -263,14 +286,9 @@ LazyLoad.js([
 
 		othis.lastCall = {};
 
-		ConsoleSettings.getStaticServerAddress(function(address){
-			Global.address = address;
-			othis.loadMethods();
-		});
-
 		this.call = function(requestObject, callback) {
 			$.ajax({
-				url: Global.address + "/json",
+				url: $(".addressInput").val() + "/json",
 				data: JSON.stringify(requestObject),
 				contentType: "application/json",
 				type: "POST",
@@ -279,11 +297,11 @@ LazyLoad.js([
 					if (data.exception == null) {
 						if (requestObject.request != null && requestObject.request.method == "login") {
 							token = data.response.result;
-							$.cookie("token", token);
+							$.cookie("autologin", token);
 							$(".loginButton").html("Logout");
 						} else if (requestObject.request != null && requestObject.request.method == "logout") {
 							token = null;
-							$.cookie("token", null);
+							$.cookie("autologin", null);
 							$(".loginButton").html("Login");
 						}
 						callback(data);
@@ -301,7 +319,7 @@ LazyLoad.js([
 			});
 		};
 
-		this.makeExampleFromType = function(fieldName, type, genericType, doc) {
+		this.makeExampleFromType = function(fieldName, type, genericType, doc, indent) {
 			if (doc == "") {
 				doc = null;
 			}
@@ -318,13 +336,13 @@ LazyLoad.js([
 				} else {
 					example += "{\n";
 					type.fields.forEach(function(field, index){
+						example += othis.indent(indent) + "\"" + field.name + "\": " + othis.makeExampleFromType("", field.type, field.genericType, field.doc, indent + 1);
 						if (index != type.fields.length - 1) {
-						example += "    \"" + field.name + "\": " + othis.makeExampleFromType("", field.type, field.genericType, field.doc);
 							example += ",";
 						}
 						example += "\n";
 					});
-					example += "    }";
+					example += othis.indent(indent - 1) + "}";
 				}
 			} else if (type.simpleName == "List") {
 				example += "[<<" + genericType.simpleName.toLowerCase() + (doc == null ? "" : (", " + doc)) + ">>]";
@@ -334,29 +352,39 @@ LazyLoad.js([
 			return example;
 		};
 
-		this.getJsonText = function() {
+		this.getJsonText = function(indent) {
+			if (indent == undefined) {
+				indent = 1;
+			}
 			var request = "{\n";
 			if (token != null) {
-				request += "  \"token\": \"" + token + "\",\n";
+				request += othis.indent(indent) + "\"token\": \"" + token + "\",\n";
 			}
-			request += "  \"request\": {\n";
-			console.log(othis.lastCall);
-			request += "    \"interface\": \"" + othis.lastCall.serviceInterface.simpleName + "\", \n";
-			request += "    \"method\": \"" + othis.lastCall.method.name + "\", \n";
-			request += "    \"parameters\": {\n";
+			request += othis.indent(indent) + "\"request\": {\n";
+			request += othis.indent(indent + 1) + "\"interface\": \"" + othis.lastCall.serviceInterface.simpleName + "\", \n";
+			request += othis.indent(indent + 1) + "\"method\": \"" + othis.lastCall.method.name + "\", \n";
+			request += othis.indent(indent + 1) + "\"parameters\": {\n";
 			othis.lastCall.method.parameters.forEach(function(parameter, index){
-				request += "      \"" + parameter.name + "\": ";
-				request += othis.makeExampleFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc);
+				request += othis.indent(indent + 2) + "\"" + parameter.name + "\": ";
+				request += othis.makeExampleFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc, indent + 3);
 				if (index != othis.lastCall.method.parameters.length - 1) {
 					request += ",\n";
 				} else {
 					request += "\n";
 				}
 			});
-			request += "    }\n";
-			request += "  }\n";
+			request += othis.indent(indent + 1) + "}\n";
+			request += othis.indent(indent) + "}\n";
 			request += "}";
 			return request;	
+		};
+		
+		this.indent = function(indentation) {
+			var str = "";
+			for (var i=0; i<indentation; i++) {
+				str += "  ";
+			}
+			return str;
 		};
 
 		this.getSoapArgs = function() {
@@ -556,11 +584,11 @@ LazyLoad.js([
 				allArguments.push(function(response){
 					if (othis.lastCall.method.name == "login") {
 						token = response.getReturn();
-						$.cookie("token", token);
+						$.cookie("autologin", token);
 						$(".loginButton").html("Logout");
 					} else if (othis.lastCall.method.name == "logout") {
 						token = null;
-						$.cookie("token", null);
+						$.cookie("autologin", null);
 						$(".loginButton").html("Login");
 					}
 				});
@@ -623,21 +651,23 @@ LazyLoad.js([
 			});
 		};
 		
-		this.loadScenarioCall = function(){
-			var call = $(this).data("call");
+		this.loadScenarioCall = function(call){
 			othis.currentScenarioContext.call = call;
-			if (call.pre != null) {
-				call.pre(othis.currentScenarioContext, {
-					setFieldValue: function(fieldName, newValue){
-						console.log("Setting", fieldName, newValue);
-					}
-				});
-			}
 			var methodDiv = $(".scenarioMethod");
-			$(this).parent().parent().find("li").removeClass("selected");
-			$(this).parent().addClass("selected");
+			
+			methodDiv.parent().find(".scenarioDescription").html(call.description);
+			$(".callLink" + call.id).parent().find("li").removeClass("selected");
+			$(".callLink" + call.id).addClass("selected");
+
 			othis.findServiceInterfaceAndMethod(call.interface, call.method, function(serviceInterface, method){
 				othis.loadExampleJson(serviceInterface, method, methodDiv);
+				if (call.pre != null) {
+					call.pre(othis.currentScenarioContext, {
+						setFieldValue: function(fieldName, newValue){
+							methodDiv.find(".__field" + fieldName).val(newValue);
+						}
+					});
+				}
 			});
 		};
 		
@@ -649,16 +679,21 @@ LazyLoad.js([
 			var clone = $(".method").clone();
 			$(".scenarioDetails .scenarioMethod").append(clone.show());
 			$(".scenarioDetails .title").html(scenario.name + " Scenario");
+			$(".scenarioDetails .sendButton").click(othis.send);
 			scenario.calls.forEach(function(call, index){
 				var li = $("<li>");
+				li.addClass("callLink" + call.id);
 				var a = $("<a>");
 				a.data("call", call);
-				a.click(othis.loadScenarioCall);
+				a.click(function(){
+					var call = $(this).data("call");
+					othis.loadScenarioCall(call);
+				});
 				a.html(call.name);
 				li.append(a);
 				$(".scenarioDetails .pagination .forwardButton").before(li);
 				if (index == 0) {
-					othis.loadScenarioCall.call(a);
+					othis.loadScenarioCall(call);
 				}
 			});
 			$(".scenarioDetails").show();
@@ -736,6 +771,25 @@ LazyLoad.js([
 			$(".pageLink").parent().removeClass("active");
 			$(".scenariosLink").parent().addClass("active");
 			$(".scenarios").show();
+		});
+		$(".backButton").click(function(){
+			var currentIndex = othis.currentScenarioContext.scenario.calls.indexOf(othis.currentScenarioContext.call);
+			if (currentIndex > 0) {
+				var call = othis.currentScenarioContext.scenario.calls[currentIndex - 1];
+				othis.loadScenarioCall(call);
+			}
+		});
+		$(".forwardButton").click(function(){
+			var currentIndex = othis.currentScenarioContext.scenario.calls.indexOf(othis.currentScenarioContext.call);
+			if (currentIndex < othis.currentScenarioContext.scenario.calls.length - 1) {
+				var call = othis.currentScenarioContext.scenario.calls[currentIndex + 1];
+				othis.loadScenarioCall(call);
+			}
+		});
+		
+		ConsoleSettings.getStaticServerAddress(function(address){
+			Global.address = address;
+			othis.loadMethods();
 		});
 	}
 	new Console();
