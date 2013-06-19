@@ -138,9 +138,6 @@ public class GeometryGenerator {
 						try {
 							RenderEngineSurfaceProperties initializeModelling = renderEngineModel.initializeModelling();
 							RenderEngineGeometry renderEngineGeometry = renderEngineModel.finalizeModelling(initializeModelling);
-							if (renderEngineGeometry == null) {
-								throw new RenderException("Unknown error generating geometry");
-							}
 							List<IfcProduct> products = model.getAllWithSubTypes(IfcProduct.class);
 							for (IfcProduct ifcProduct : products) {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
