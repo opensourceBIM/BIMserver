@@ -108,7 +108,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		newRevisionAdded.setAccessMethod(getAccessMethod());
 
 		IfcModelInterface ifcModel = new IfcModel();
-		getDatabaseSession().getMap(ifcModel, new Query(project.getId(), oldLastRevision.getId()));
+		if (oldLastRevision != null) {
+			getDatabaseSession().getMap(ifcModel, new Query(project.getId(), oldLastRevision.getId()));
+		}
 		
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
