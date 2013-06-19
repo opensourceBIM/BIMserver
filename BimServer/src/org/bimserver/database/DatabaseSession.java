@@ -600,6 +600,15 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return (T) idEObject;
 	}
 
+	@SuppressWarnings("unchecked")
+	public <T extends IdEObject> T get(IfcModelInterface model, long oid, QueryInterface query) throws BimserverDatabaseException {
+		checkOpen();
+		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
+		IdEObject idEObject = get(model, null, oid, query, todoList);
+		processTodoList(model, todoList, query);
+		return (T) idEObject;
+	}
+	
 	public <T extends IdEObject> T get(EClass eClass, long oid, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
 		if (oid == -1) {

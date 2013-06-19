@@ -22,6 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.BimServer;
+import org.bimserver.GeometryGenerator;
+import org.bimserver.GeometryGenerator.GeometryCache;
+import org.bimserver.RenderException;
 import org.bimserver.SummaryMap;
 import org.bimserver.changes.Change;
 import org.bimserver.changes.CreateObjectChange;
@@ -30,7 +33,10 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
+import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -44,6 +50,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.LongTransaction;
 import org.bimserver.webservices.NoTransactionException;
 import org.bimserver.webservices.authorization.Authorization;
+import org.slf4j.LoggerFactory;
 
 public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseAction {
 
@@ -52,6 +59,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 	private Revision revision;
 	private Authorization authorization;
 	private BimServer bimServer;
+	private final GeometryCache geometryCache = new GeometryCache();
 
 	public CommitTransactionDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, LongTransaction longTransaction, String comment) {
 		super(databaseSession, accessMethod, null);
@@ -99,6 +107,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		newRevisionAdded.setProject(project);
 		newRevisionAdded.setAccessMethod(getAccessMethod());
 
+		IfcModelInterface ifcModel = new IfcModel();
+		getDatabaseSession().getMap(ifcModel, new Query(project.getId(), oldLastRevision.getId()));
+		
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
@@ -123,7 +134,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		Map<Long, IdEObject> deleted = new HashMap<Long, IdEObject>();
 		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
-				change.execute(project, concreteRevision, getDatabaseSession(), created, deleted);
+				change.execute(ifcModel, project, concreteRevision, getDatabaseSession(), created, deleted);
 				summaryMap.add(((CreateObjectChange)change).geteClass(), 1);
 			}
 		}
@@ -133,8 +144,19 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				if (change instanceof RemoveObjectChange) {
 					summaryMap.remove(((RemoveObjectChange)change).geteClass(), 1);
 				}
-				change.execute(project, concreteRevision, getDatabaseSession(), created, deleted);
+				change.execute(ifcModel, project, concreteRevision, getDatabaseSession(), created, deleted);
 			}
+		}
+		
+		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
+			setProgress("Generating Geometry...", -1);
+			LoggerFactory.getLogger(CommitTransactionDatabaseAction.class).info("Size: " + ifcModel.size());
+			try {
+				new GeometryGenerator().generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), revision, true, geometryCache);
+			} catch (RenderException e) {
+				throw new UserException(e);
+			}
+			revision.setHasGeometry(true);
 		}
 		
 		concreteRevision.setSummary(summaryMap.toRevisionSummary(getDatabaseSession()));

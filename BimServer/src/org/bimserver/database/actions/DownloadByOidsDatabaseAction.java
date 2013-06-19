@@ -22,6 +22,7 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
+import org.bimserver.RenderException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -94,7 +95,11 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 				getDatabaseSession().getMapWithOids(subModel, oids, query);
 				subModel.getModelMetaData().setDate(concreteRevision.getDate());
 				
-				checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
+				try {
+					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
+				} catch (RenderException e) {
+					throw new UserException(e);
+				}
 				
 				ifcModelSet.add(subModel);
 				// for (Long oid : oids) {

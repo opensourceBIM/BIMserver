@@ -22,6 +22,7 @@ import java.util.HashMap;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.slf4j.LoggerFactory;
 
 public abstract class AbstractGeometrySerializer extends EmfSerializer {
 	private Extends sceneExtends = new Extends();
@@ -29,7 +30,11 @@ public abstract class AbstractGeometrySerializer extends EmfSerializer {
 	
 	protected void calculateGeometryExtents() throws RenderEngineException, SerializerException {
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-			calculateExtents(ifcProduct.getGlobalId(), ifcProduct);
+			try {
+				calculateExtents(ifcProduct.getGlobalId(), ifcProduct);
+			} catch (Exception e) {
+				LoggerFactory.getLogger(AbstractGeometrySerializer.class).error("", e);
+			}
 		}
 	}
 	
