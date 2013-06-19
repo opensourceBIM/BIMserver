@@ -24,7 +24,8 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.AbstractEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -81,8 +82,8 @@ public class ModelHelper {
 					if (get == null) {
 					} else {
 						if (eStructuralFeature.isMany()) {
-							BasicEList<EObject> list = (BasicEList<EObject>) get;
-							BasicEList<EObject> toList = (BasicEList<EObject>) newObject.eGet(eStructuralFeature);
+							EList<EObject> list = (EList<EObject>) get;
+							AbstractEList<EObject> toList = (AbstractEList<EObject>) newObject.eGet(eStructuralFeature);
 							for (Object o : list) {
 								if (converted.containsKey(o)) {
 									toList.addUnique(converted.get(o));
