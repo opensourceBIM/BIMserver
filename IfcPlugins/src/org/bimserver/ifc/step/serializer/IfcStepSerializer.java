@@ -133,7 +133,7 @@ public class IfcStepSerializer extends IfcSerializer {
 			Date date = new Date();
 			out.println("FILE_DESCRIPTION ((''), '2;1');");
 			out.println("FILE_NAME ('', '" + dateFormatter.format(date) + "', (''), (''), '', 'BIMserver', '');");
-			out.println("FILE_SCHEMA (('Ifc2x3'));");
+			out.println("FILE_SCHEMA (('IFC2x3'));");
 		} else {
 			out.print("FILE_DESCRIPTION ((");
 			out.print(StringUtils.concat(ifcHeader.getDescription(), "'", ", "));

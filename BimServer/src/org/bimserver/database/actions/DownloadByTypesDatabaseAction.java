@@ -23,6 +23,7 @@ import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.HideAllInversesObjectIDM;
+import org.bimserver.RenderException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -116,7 +117,9 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 					ifcModelSet.add(subModel);
 				} catch (PluginException e) {
-					LOGGER.error("", e);
+					throw new UserException(e);
+				} catch (RenderException e) {
+					throw new UserException(e);
 				}
 			}
 			IfcModelInterface ifcModel;

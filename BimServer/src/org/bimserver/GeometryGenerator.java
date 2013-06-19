@@ -19,10 +19,13 @@ package org.bimserver;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
@@ -49,6 +52,7 @@ import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationPrope
 import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
+import org.bimserver.plugins.renderengine.RenderEngineSurfaceProperties;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.slf4j.Logger;
@@ -98,7 +102,7 @@ public class GeometryGenerator {
 	}
 
 	public void generateGeometry(long uoid, PluginManager pluginManager, DatabaseSession databaseSession, IfcModelInterface model, int pid, int rid, Revision revision,
-			boolean store, GeometryCache geometryCache) throws BimserverDatabaseException {
+			boolean store, GeometryCache geometryCache) throws BimserverDatabaseException, RenderException {
 		if (geometryCache != null && !geometryCache.isEmpty()) {
 			returnCachedData(model, geometryCache, databaseSession, pid, rid);
 			return;
@@ -113,6 +117,8 @@ public class GeometryGenerator {
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			serializer.writeToOutputStream(outputStream);
 
+//			FileUtils.writeByteArrayToFile(new File("blaat.ifc"), outputStream.toByteArray());
+			
 			User user = (User) databaseSession.get(uoid, Query.getDefault());
 			UserSettings userSettings = user.getUserSettings();
 			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
@@ -132,8 +138,13 @@ public class GeometryGenerator {
 						settings.setGenerateWireFrame(false);
 						renderEngineModel.setSettings(settings);
 						try {
-							RenderEngineGeometry renderEngineGeometry = renderEngineModel.finalizeModelling(renderEngineModel.initializeModelling());
-							for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
+							RenderEngineSurfaceProperties initializeModelling = renderEngineModel.initializeModelling();
+							RenderEngineGeometry renderEngineGeometry = renderEngineModel.finalizeModelling(initializeModelling);
+							if (renderEngineGeometry == null) {
+								throw new RenderException("Unknown error generating geometry");
+							}
+							List<IfcProduct> products = model.getAllWithSubTypes(IfcProduct.class);
+							for (IfcProduct ifcProduct : products) {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
 								RenderEngineInstanceVisualisationProperties visualisationProperties = renderEngineInstance.getVisualisationProperties();
 								if (visualisationProperties.getPrimitiveCount() > 0) {
@@ -187,6 +198,7 @@ public class GeometryGenerator {
 			}
 		} catch (Exception e) {
 			LOGGER.error("", e);
+			throw new RenderException(e);
 		}
 	}
 
