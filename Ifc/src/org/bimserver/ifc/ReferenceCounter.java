@@ -25,6 +25,7 @@ import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,6 +104,7 @@ public class ReferenceCounter {
 
 		@Override
 		public Reference reAttach(IdEObject mainObject) {
+//			System.out.println("Re-attaching S " + getReferredObject() + " to " + mainObject + " on " + getIdEObject() + "." + geteReference().getName());
 			getIdEObject().eSet(geteReference(), mainObject);
 			return new SingleReference(getIdEObject(), mainObject, geteReference());
 		}
@@ -117,10 +119,16 @@ public class ReferenceCounter {
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		@Override
 		public Reference reAttach(IdEObject mainObject) {
-			List list = (List) getIdEObject().eGet(geteReference());
-			list.remove(getReferredObject());
-			list.add(mainObject);
-			return new SingleReference(getIdEObject(), mainObject, geteReference());
+//			System.out.println("Re-attaching M " + getReferredObject() + " to " + mainObject + " on " + getIdEObject() + "." + geteReference().getName());
+			AbstractEList list = (AbstractEList) getIdEObject().eGet(geteReference());
+			int index = list.indexOf(getReferredObject());
+			list.set(index, mainObject);
+
+			// TODO if the old object really does exist multiple times, the new object should also exist multiple times... but it's probably a bug that it's there multiple times in the first place...
+			while (list.contains(getReferredObject())) {
+				list.remove(getReferredObject());
+			}
+			return new MultiReference(getIdEObject(), mainObject, geteReference());
 		}
 	}
 
