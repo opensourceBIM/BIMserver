@@ -33,6 +33,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -380,6 +381,11 @@ public class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void writeList(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
+		if (object instanceof IfcRoot) {
+			if (((IfcRoot)object).getGlobalId().equals("3Ry4NVNcP3Wx_paW2p50gO")) {
+				System.out.println();
+			}
+		}
 		List<?> list = (List<?>) object.eGet(feature);
 		List<?> doubleStingList = null;
 		if (feature.getEType() == EcorePackage.eINSTANCE.getEDouble() && model.isUseDoubleStrings()) {
@@ -443,6 +449,8 @@ public class IfcStepSerializer extends IfcSerializer {
 									writePrimitive(out, realVal);
 								}
 								out.print(CLOSE_PAREN);
+							} else {
+								LOGGER.info("Unfollowable reference found from " + object + "." + feature.getName() + " to " + eObject);
 							}
 						} else {
 							if (doubleStingList != null) {

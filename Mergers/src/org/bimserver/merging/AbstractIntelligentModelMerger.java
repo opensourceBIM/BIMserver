@@ -23,19 +23,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class AbstractIntelligentModelMerger extends AbstractModelMerger {
-	private final Logger LOGGER = LoggerFactory.getLogger(IntelligentNameBasedModelMerger.class);
+	private final Logger LOGGER = LoggerFactory.getLogger(AbstractIntelligentModelMerger.class);
 	private ReferenceCounter referenceCounter;
-	private IfcModelSet modelSet;
 	private IfcModelInterface model;
-	private Set<String> processedIdentifiers = new HashSet<String>();
 
 	public abstract String getIdentifier(IdEObject idEObject);
-	
+
 	/*
 	 * ifcModels MUST be ordered by date already
 	 */
 	public IfcModelInterface merge(Project project, IfcModelSet modelSet, ModelHelper modelHelper) throws MergeException {
-		this.modelSet = modelSet;
 		if (modelSet.size() == 1) {
 			// Do no merging on only 1 model, same in - same out principle of
 			// Leon :)
@@ -57,29 +54,25 @@ public abstract class AbstractIntelligentModelMerger extends AbstractModelMerger
 
 	private Map<String, List<IdEObject>> buildIdentifierMap() {
 		Map<String, List<IdEObject>> map = new HashMap<String, List<IdEObject>>();
-		for (IfcModelInterface model : modelSet) {
-			for (IdEObject idEObject : model.getValues()) {
-				if (idEObject instanceof IfcRoot) {
-					IfcRoot ifcRoot = (IfcRoot) idEObject;
-					String identifier = getIdentifier(idEObject);
-					if (identifier != null) {
-						if (!processedIdentifiers.contains(identifier)) {
-							if (map.containsKey(identifier)) {
-								if (map.get(identifier).get(0).eClass() != ifcRoot.eClass()) {
-									LOGGER.info("Not merging " + identifier + " because different types are found: " + map.get(identifier).get(0).eClass().getName() + " and "
-											+ ifcRoot.eClass().getName());
-								} else {
-									if (model.contains(ifcRoot)) {
-										map.get(identifier).add(ifcRoot);
-									}
-								}
-							} else {
-								if (model.contains(ifcRoot)) {
-									List<IdEObject> list = new ArrayList<IdEObject>();
-									list.add(ifcRoot);
-									map.put(identifier, list);
-								}
+		for (IdEObject idEObject : model.getValues()) {
+			if (idEObject instanceof IfcRoot) {
+				IfcRoot ifcRoot = (IfcRoot) idEObject;
+				String identifier = getIdentifier(idEObject);
+				if (identifier != null) {
+					if (map.containsKey(identifier)) {
+						if (map.get(identifier).get(0).eClass() != ifcRoot.eClass()) {
+							LOGGER.info("Not merging " + identifier + " because different types are found: " + map.get(identifier).get(0).eClass().getName() + " and "
+									+ ifcRoot.eClass().getName());
+						} else {
+							if (model.contains(ifcRoot)) {
+								map.get(identifier).add(ifcRoot);
 							}
+						}
+					} else {
+						if (model.contains(ifcRoot)) {
+							List<IdEObject> list = new ArrayList<IdEObject>();
+							list.add(ifcRoot);
+							map.put(identifier, list);
 						}
 					}
 				}
@@ -88,6 +81,7 @@ public abstract class AbstractIntelligentModelMerger extends AbstractModelMerger
 		return map;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void cleanIdentifierMap(Map<String, List<IdEObject>> identifierMap) {
 		for (String identifier : identifierMap.keySet()) {
 			List<IdEObject> list = identifierMap.get(identifier);
@@ -112,7 +106,19 @@ public abstract class AbstractIntelligentModelMerger extends AbstractModelMerger
 				// Change all references FROM this object
 				for (EReference eReference : newestObject.eClass().getEAllReferences()) {
 					if (eReference.isMany()) {
-						// Do not merge lists
+						if (!newestObject.eIsSet(eReference)) {
+							for (int i = list.size() - 2; i >= 0; i--) {
+								IdEObject olderObject = list.get(i);
+								if (olderObject.eIsSet(eReference)) {
+									List<?> l = (List<?>)newestObject.eGet(eReference);
+									List a = (List)olderObject.eGet(eReference);
+									l.addAll(a);
+									a.clear();
+									referenceCounter.addReference(new ReferenceCounter.MultiReference(newestObject, (IdEObject) olderObject.eGet(eReference), eReference));
+									break;
+								}
+							}
+						}
 					} else {
 						if (!newestObject.eIsSet(eReference)) {
 							for (int i = list.size() - 2; i >= 0; i--) {
@@ -133,7 +139,6 @@ public abstract class AbstractIntelligentModelMerger extends AbstractModelMerger
 					}
 				}
 			}
-			processedIdentifiers.add(identifier);
 		}
 	}
 
@@ -154,6 +159,8 @@ public abstract class AbstractIntelligentModelMerger extends AbstractModelMerger
 				referenceCounter.addReference(reference);
 			}
 		}
+		LOGGER.info("Removing " + objectToRemove);
+		referenceCounter.remove(objectToRemove);
 		model.remove(objectToRemove);
 	}
 }

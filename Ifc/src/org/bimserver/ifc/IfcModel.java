@@ -512,6 +512,12 @@ public class IfcModel implements IfcModelInterface {
 	public void remove(IdEObject idEObject) {
 		unidentifiedObjects.remove(idEObject);
 		objects.inverse().remove(idEObject);
+		if (indexPerClass != null) {
+			indexPerClass.get(idEObject.eClass()).remove(idEObject);
+		}
+		if (indexPerClassWithSubTypes != null) {
+			indexPerClassWithSubTypes.get(idEObject.eClass()).remove(idEObject);
+		}
 	}
 
 	public void setOid(IdEObject object, Long oid) {
