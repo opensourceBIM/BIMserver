@@ -322,6 +322,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			sPluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
 			Class<?> pluginInterfaceClass = getPluginInterfaceClass(plugin);
 			sPluginDescriptor.setPluginInterfaceClassName(pluginInterfaceClass.getName());
+			sPluginDescriptor.setPluginClassName(plugin.getClass().getName());
 			sPluginDescriptor.setDefaultName(plugin.getClass().getName());
 			PluginContext pluginContext = getBimServer().getPluginManager().getPluginContext(plugin);
 			sPluginDescriptor.setLocation(pluginContext.getLocation());
@@ -343,6 +344,13 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			for (Class<?> pluginInterface : plugin.getClass().getSuperclass().getInterfaces()) {
 				if (pluginInterface != Plugin.class && Plugin.class.isAssignableFrom(pluginInterface)) {
 					return pluginInterface;
+				}
+			}
+			if (plugin.getClass().getSuperclass().getSuperclass() != Object.class) {
+				for (Class<?> pluginInterface : plugin.getClass().getSuperclass().getSuperclass().getInterfaces()) {
+					if (pluginInterface != Plugin.class && Plugin.class.isAssignableFrom(pluginInterface)) {
+						return pluginInterface;
+					}
 				}
 			}
 			return plugin.getClass().getSuperclass();

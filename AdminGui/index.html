@@ -83,6 +83,22 @@
 			Global.bimServerApi = null;
 			Global.objectcache = {};
 			Global.timeoutId;
+
+			Global.lastKey = null;
+
+			$("body").on("keyup", function (e) {
+				if (e.target.nodeName == "BODY") {
+					if (e.keyCode == 67 && Global.lastKey == 67) {
+						console.log("Clearing cookies");
+						$.removeCookie("address", {path: "/"});
+						$.removeCookie("username", {path: "/"});
+						$.removeCookie("autologin", {path: "/"});
+						Global.lastKey = null;
+					} else {
+						Global.lastKey = e.keyCode;
+					}
+				}
+			});
 			
 			$(".status").hide();
 			

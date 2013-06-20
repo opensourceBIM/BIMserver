@@ -14,11 +14,26 @@
 function Plugins(main, serversettings) {
 	var othis = this;
 
+	this.changeEnabled = function(){
+		var name = $(this).attr("name");
+		if ($(this).attr("checked") == "checked") {
+			Global.bimServerApi.callWithFullIndication("AdminInterface", "disablePlugin", {name: name}, function(){});
+		} else {
+			Global.bimServerApi.callWithFullIndication("AdminInterface", "enablePlugin", {name: name}, function(){});
+		}
+	};
+	
 	this.addPlugin = function(plugin){
 		var tr = $("<tr>");
+		console.log(plugin);
 		tr.append("<td>" + plugin.simpleName + "</td>");
 		tr.append("<td>" + plugin.description + "</td>");
-		tr.append("<td>" + plugin.enabled + "</td>");
+		tr.append("<td><input type=\"checkbox\"/></td>");
+		if (plugin.enabled) {
+			tr.find("input").attr("checked", "checked");
+		}
+		tr.find("input").attr("name", plugin.pluginClassName);
+		tr.find("input").change(othis.changeEnabled);
 		$(".plugins table tbody").append(tr);
 	};
 

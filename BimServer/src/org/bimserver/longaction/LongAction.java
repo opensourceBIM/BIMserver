@@ -120,8 +120,8 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	}
 
 	protected void done() {
-		latch.countDown();
 		bimServer.getNotificationsManager().notify(new ProgressNotification(bimServer, progressTopic, getState()));
+		latch.countDown();
 	}
 
 	public void waitForCompletion() {
