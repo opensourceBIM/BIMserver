@@ -95,7 +95,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		} finally {
 			session.close();
 		}
-		
+
 		session = getBimServer().getDatabase().createSession();
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD_REVISION:

@@ -245,7 +245,7 @@ LazyLoad.js([
 						method: "checkin",
 						fieldChange: function(fieldName, data, form){
 							if (fieldName == "data") {
-								form.setFieldValue("fileSize", data.length);
+								form.setFieldValue("fileSize", data.size);
 								form.setFieldValue("fileName", data.name);
 							}
 						},
@@ -418,7 +418,7 @@ LazyLoad.js([
 			prettyPrint();
 		};
 
-		this.makeFieldFromType = function(fieldName, type, genericType, doc) {
+		this.makeFieldFromType = function(call, fieldName, type, genericType, doc) {
 			if (type.simpleName == "String") {
 				var input = $("<input type=\"text\"/>");
 				input.addClass("__field" + fieldName);
@@ -464,6 +464,16 @@ LazyLoad.js([
 					var files = get.files;
 					if (files != null && files.length == 1) {
 						var oFile = files[0];
+						if (call != null) {
+							if (call.fieldChange != null) {
+								call.fieldChange(fieldName, oFile, {
+									setFieldValue: function(fieldName, newValue){
+										var methodDiv = $(".scenarioMethod");
+										methodDiv.find(".__field" + fieldName).val(newValue);
+									}
+								});
+							}
+						}
 						reader.readAsDataURL(oFile);
 					}
 				});
@@ -485,7 +495,7 @@ LazyLoad.js([
 			}
 		};
 
-		this.loadExampleJson = function(serviceInterface, method, container) {
+		this.loadExampleJson = function(call, serviceInterface, method, container) {
 			if ($(".hero-unit").is(":visible")) {
 				$(".hero-unit").hide();
 			}
@@ -514,7 +524,7 @@ LazyLoad.js([
 				div.append(label);
 				div.append(controls);
 				console.log(parameter.type);
-				var input = othis.makeFieldFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc);
+				var input = othis.makeFieldFromType(call, parameter.name, parameter.type, parameter.genericType, parameter.doc);
 				controls.append(input);
 				container.find(".parametersForm").append(div);
 			});
@@ -541,7 +551,7 @@ LazyLoad.js([
 						a.click(function(){
 							$(this).parent().parent().find("li").removeClass("active");
 							$(this).parent().addClass("active");
-							othis.loadExampleJson($(this).data("serviceInterface"), $(this).data("method"), $(".method"));
+							othis.loadExampleJson(null, $(this).data("serviceInterface"), $(this).data("method"), $(".method"));
 						});
 						li.append(a);
 						$(".innerMethodList").append(li);
@@ -647,7 +657,7 @@ LazyLoad.js([
 				}
 			};
 			othis.call(request, function(data){
-				othis.loadExampleJson(interfaceName, interfaceSimpleName, data.response.result.name, data.response.result.doc, data.response.result.returnDoc);
+				othis.loadExampleJson(null, interfaceName, interfaceSimpleName, data.response.result.name, data.response.result.doc, data.response.result.returnDoc);
 			});
 		};
 		
@@ -660,7 +670,7 @@ LazyLoad.js([
 			$(".callLink" + call.id).addClass("selected");
 
 			othis.findServiceInterfaceAndMethod(call.interface, call.method, function(serviceInterface, method){
-				othis.loadExampleJson(serviceInterface, method, methodDiv);
+				othis.loadExampleJson(call, serviceInterface, method, methodDiv);
 				if (call.pre != null) {
 					call.pre(othis.currentScenarioContext, {
 						setFieldValue: function(fieldName, newValue){
@@ -727,9 +737,9 @@ LazyLoad.js([
 			othis.findServiceInterface("Bimsie1AuthInterface", function(serviceInterface){
 				serviceInterface.methods.forEach(function(method){
 					if (token == null && method.name == "login") {
-						othis.loadExampleJson(serviceInterface, method, $(".method"));
+						othis.loadExampleJson(null, serviceInterface, method, $(".method"));
 					} else if (token != null && method.name == "logout") {
-						othis.loadExampleJson(serviceInterface, method, $(".method"));
+						othis.loadExampleJson(null, serviceInterface, method, $(".method"));
 					}
 				});
 			});

@@ -24,16 +24,24 @@ import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import org.bimserver.longaction.DownloadParameters;
+
 public class DiskCacheOutputStream extends FileOutputStream {
 
 	private DiskCacheManager diskCacheManager;
 	private File file;
 	private final CountDownLatch latch = new CountDownLatch(1);
+	private DownloadParameters downloadParameters;
 
-	public DiskCacheOutputStream(DiskCacheManager diskCacheManager, File file) throws FileNotFoundException {
+	public DiskCacheOutputStream(DiskCacheManager diskCacheManager, File file, DownloadParameters downloadParameters) throws FileNotFoundException {
 		super(file);
 		this.diskCacheManager = diskCacheManager;
 		this.file = file;
+		this.downloadParameters = downloadParameters;
+	}
+	
+	public DownloadParameters getDownloadParameters() {
+		return downloadParameters;
 	}
 	
 	public void waitForFinish() throws InterruptedException {

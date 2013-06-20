@@ -37,6 +37,11 @@
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
 	</logger>
+	<logger name="org.openid4java">
+		<level value="error" />
+		<appender-ref ref="ErrorConsole" />
+		<appender-ref ref="OutConsole" />
+	</logger>
 	<logger name="org.springframework">
 		<level value="error" />
 		<appender-ref ref="ErrorConsole" />

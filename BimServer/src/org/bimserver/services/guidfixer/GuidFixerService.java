@@ -27,6 +27,7 @@ import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.slf4j.LoggerFactory;
 
 public class GuidFixerService extends ServicePlugin {
 
@@ -132,8 +133,10 @@ public class GuidFixerService extends ServicePlugin {
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
 					bimServerClientInterface.getRegistry().unregisterProgressTopic(topicId);
-				} catch (PublicInterfaceNotFoundException | BimServerClientException e1) {
-					e1.printStackTrace();
+				} catch (PublicInterfaceNotFoundException e) {
+					LoggerFactory.getLogger(GuidFixerService.class).error("", e);
+				} catch (BimServerClientException e) {
+					LoggerFactory.getLogger(GuidFixerService.class).error("", e);
 				}
 			}
 		});

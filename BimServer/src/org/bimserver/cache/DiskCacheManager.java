@@ -79,21 +79,29 @@ public class DiskCacheManager {
 			}
 			if (diskCacheOutputStream != null) {
 				try {
+					LOGGER.info("Waiting for " + downloadParameters.getFileName());
 					diskCacheOutputStream.waitForFinish();
 				} catch (InterruptedException e) {
 					LOGGER.error("", e);
 				}
 			}
-			FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(new File(cacheDir, downloadParameters.getId()));
-			fileInputStreamDataSource.setName(downloadParameters.getFileName());
-			return fileInputStreamDataSource;
+			File file = new File(cacheDir, downloadParameters.getId());
+			if (!file.exists()) {
+				LOGGER.error("File " + file.getName() + " not found in cache");
+			} else {
+				LOGGER.info("Reading from cache " + downloadParameters.getFileName());
+				FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(file);
+				fileInputStreamDataSource.setName(downloadParameters.getFileName());
+				return fileInputStreamDataSource;
+			}
 		}
 		return null;
 	}
 
 	public OutputStream startCaching(DownloadParameters downloadParameters) {
 		try {
-			DiskCacheOutputStream out = new DiskCacheOutputStream(this, new File(cacheDir, downloadParameters.getId()));
+			LOGGER.info("Start caching " + downloadParameters.getFileName());
+			DiskCacheOutputStream out = new DiskCacheOutputStream(this, new File(cacheDir, downloadParameters.getId()), downloadParameters);
 			synchronized (busyCaching) {
 				busyCaching.put(downloadParameters, out);
 			}
@@ -117,8 +125,9 @@ public class DiskCacheManager {
 
 	public void doneGenerating(DiskCacheOutputStream diskCacheOutputStream) {
 		synchronized (busyCaching) {
-			busyCaching.remove(diskCacheOutputStream.getName());
-			cachedFileNames.add(diskCacheOutputStream.getName());
+			LOGGER.info("Done caching " + diskCacheOutputStream.getDownloadParameters().getFileName());
+			busyCaching.remove(diskCacheOutputStream.getDownloadParameters());
+			cachedFileNames.add(diskCacheOutputStream.getDownloadParameters().getId());
 		}
 	}
 }

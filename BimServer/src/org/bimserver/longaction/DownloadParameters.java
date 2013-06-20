@@ -149,7 +149,7 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public String getId() {
-		return String.valueOf(((long) hashCode()) + Integer.MAX_VALUE);
+		return String.valueOf(((long) hashCode()) + (long) Integer.MAX_VALUE);
 	}
 
 	public Set<Long> getRoids() {

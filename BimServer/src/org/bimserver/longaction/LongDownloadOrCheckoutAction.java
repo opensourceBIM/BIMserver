@@ -37,6 +37,7 @@ import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -67,7 +68,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			checkoutResult.setProjectName(project.getName());
 			checkoutResult.setRevisionNr(model.getModelMetaData().getRevisionId());
 			try {
-				org.bimserver.plugins.serializers.Serializer serializer = getBimServer().getSerializerFactory().create(project, username, model, renderEnginePlugin, downloadParameters);
+				Serializer serializer = getBimServer().getSerializerFactory().create(project, username, model, renderEnginePlugin, downloadParameters);
 				if (serializer == null) {
 					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerOid());
 				}
