@@ -6,7 +6,16 @@ import java.util.List;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
+import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
+import org.bimserver.models.ifc2x3tc1.IfcStyleModel;
+import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
+import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
+import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
 import org.bimserver.shared.ModelColorizer;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
@@ -41,7 +50,7 @@ public class ValidationReport {
 	}
 
 	public void applyToModel(IfcModelInterface model) throws IfcModelInterfaceException {
-		ModelColorizer modelColorizer = new ModelColorizer(model);
+//		ModelColorizer modelColorizer = new ModelColorizer(model);
 		for (Item item : items) {
 			if (item instanceof Line) {
 				Line line = (Line)item;
@@ -49,12 +58,45 @@ public class ValidationReport {
 					// This is about a specific object
 					IdEObject idEObject = model.get(line.getOid());
 					if (idEObject instanceof IfcProduct) {
-						IfcProduct ifcProduct = (IfcProduct)idEObject;
+						IfcProduct product = (IfcProduct)idEObject;
+						double[] colors;
+						float transparency;
 						if (line.getType() == Type.SUCCESS) {
 							// Make it transparent
-							modelColorizer.makeTransparent(ifcProduct);
+							colors = new double[]{0.2, 0.2, 0.2};
+							transparency = 0.98f;
+//							modelColorizer.setColor(ifcProduct, new double[]{0.2, 0.2, 0.2}, 0.98f);
 						} else {
 							// Do nothing
+							colors = new double[]{1.0, 0.0, 0.0};
+							transparency = 0f;
+//							modelColorizer.setColor(ifcProduct, new double[]{1.0, 0.0, 0.0}, 0f);
+						}
+						
+						IfcProductRepresentation productRepresentation = product.getRepresentation();
+						if (productRepresentation != null) {
+							for (IfcRepresentation representation : productRepresentation.getRepresentations()) {
+								IfcStyledItem styledItem = model.create(IfcStyledItem.class);
+								if (!representation.getItems().isEmpty()) {
+									representation.getItems().set(0, styledItem);
+									IfcPresentationStyleAssignment presentationStyleAssignment = model.create(IfcPresentationStyleAssignment.class);
+									styledItem.getStyles().add(presentationStyleAssignment);
+									IfcSurfaceStyle surfaceStyle = model.create(IfcSurfaceStyle.class);
+									presentationStyleAssignment.getStyles().add(surfaceStyle);
+									IfcSurfaceStyleRendering surfaceStyleRendering = model.create(IfcSurfaceStyleRendering.class);
+									surfaceStyle.getStyles().add(surfaceStyleRendering);
+									IfcColourRgb colourRgb = model.create(IfcColourRgb.class);
+									colourRgb.setRed(colors[0]);
+									colourRgb.setGreen(colors[1]);
+									colourRgb.setBlue(colors[2]);
+									surfaceStyleRendering.setDiffuseColour(colourRgb);
+									surfaceStyleRendering.setReflectionColour(colourRgb);
+									surfaceStyleRendering.setSpecularColour(colourRgb);
+									surfaceStyleRendering.setSurfaceColour(colourRgb);
+									surfaceStyleRendering.setTransmissionColour(colourRgb);
+									surfaceStyleRendering.setTransparency(transparency);
+								}
+							}
 						}
 					}
 				}
