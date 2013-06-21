@@ -159,7 +159,7 @@ public abstract class AbstractIntelligentModelMerger extends AbstractModelMerger
 				referenceCounter.addReference(reference);
 			}
 		}
-		LOGGER.info("Removing " + objectToRemove);
+//		LOGGER.info("Removing " + objectToRemove);
 		referenceCounter.remove(objectToRemove);
 		model.remove(objectToRemove);
 	}
