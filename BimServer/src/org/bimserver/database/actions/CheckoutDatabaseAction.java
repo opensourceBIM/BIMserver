@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
-import org.bimserver.RenderException;
+import org.bimserver.GeometryGeneratingException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -124,7 +124,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			getDatabaseSession().getMap(subModel, query);
 			try {
 				checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, subRevision, revision);
-			} catch (RenderException e) {
+			} catch (GeometryGeneratingException e) {
 				throw new UserException(e);
 			}
 			subModel.getModelMetaData().setDate(subRevision.getDate());

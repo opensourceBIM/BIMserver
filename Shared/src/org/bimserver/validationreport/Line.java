@@ -8,7 +8,7 @@ public class Line extends Item {
 	private String value;
 	private String shouldBe;
 	private Type type;
-	private long oid;
+	private long oid = -1;
 
 	public Line(Type type, long oid, String fieldOrClass, String value, String shouldBe) {
 		this.type = type;
@@ -42,5 +42,13 @@ public class Line extends Item {
 		result.put("value", value);
 		result.put("shouldBe", shouldBe);
 		return result;
+	}
+	
+	public long getOid() {
+		return oid;
+	}
+	
+	public Type getType() {
+		return type;
 	}
 }

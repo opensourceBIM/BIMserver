@@ -38,13 +38,11 @@ import org.bimserver.models.ifc2x3tc1.IfcMaterialSelect;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
 import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
-import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSlab;
 import org.bimserver.models.ifc2x3tc1.IfcSlabTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
@@ -68,7 +66,7 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonGeometrySerializer.class);
 
 	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
-	private final List<String> surfaceStyleIds = new ArrayList<String>();
+	private final List<Long> surfaceStyleIds = new ArrayList<Long>();
 	private boolean isFirst = true;
 
 	@Override
@@ -110,6 +108,9 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 	}
 
 	private void writeGeometricObject(PrintWriter writer, IfcProduct ifcProduct) throws RenderEngineException, SerializerException, IOException {
+		if (ifcProduct.getGlobalId().equals("2udBPbKibCZ8zbfpJmtDTM")) {
+			System.out.println();
+		}
 		boolean materialFound = false;
 		String material = ifcProduct.eClass().getName();
 		if (ifcProduct instanceof IfcSlab && ((IfcSlab)ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
@@ -135,10 +136,10 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 					if (ifcMaterial != null) {
 						String name = ifcMaterial.getName();
 						String filterSpaces = fitNameForQualifiedName(name);
-						materialFound = surfaceStyleIds.contains(filterSpaces);
-						if (materialFound) {
+//						materialFound = surfaceStyleIds.contains(filterSpaces);
+//						if (materialFound) {
 							material = filterSpaces;
-						}
+//						}
 					}
 				}
 			}
@@ -146,41 +147,25 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 			IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
 			String name = ifcMaterial.getName();
 			String filterSpaces = fitNameForQualifiedName(name);
-			materialFound = surfaceStyleIds.contains(filterSpaces);
-			if (materialFound) {
+//			materialFound = surfaceStyleIds.contains(filterSpaces);
+//			if (materialFound) {
 				material = filterSpaces;
-			}
+//			}
 		}
 
 		// If no material was found then derive one from the presentation style
 		if (!materialFound) {
 			IfcProductRepresentation representation = ifcProduct.getRepresentation();
-			if (representation instanceof IfcProductDefinitionShape) {
-				IfcProductDefinitionShape pds = (IfcProductDefinitionShape) representation;
-				EList<IfcRepresentation> representations = pds.getRepresentations();
-				for (IfcRepresentation rep : representations) {
-					if (rep instanceof IfcShapeRepresentation) {
-						IfcShapeRepresentation sRep = (IfcShapeRepresentation) rep;
-						EList<IfcRepresentationItem> items = sRep.getItems();
-						for (IfcRepresentationItem item : items) {
-							EList<IfcStyledItem> styledByItem = item.getStyledByItem();
-							for (IfcStyledItem sItem : styledByItem) {
-								EList<IfcPresentationStyleAssignment> styles = sItem.getStyles();
-								for (IfcPresentationStyleAssignment sa : styles) {
-									EList<IfcPresentationStyleSelect> styles2 = sa.getStyles();
-									for (IfcPresentationStyleSelect pss : styles2) {
-										if (pss instanceof IfcSurfaceStyle) {
-											IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
-											String name = ss.getName();
-											String filterSpaces = fitNameForQualifiedName(name);
-											materialFound = surfaceStyleIds.contains(filterSpaces);
-											if (materialFound) {
-												material = filterSpaces;
-											}
-										}
-									}
-								}
-							}
+			EList<IfcRepresentation> representations = representation.getRepresentations();
+			for (IfcRepresentation rep : representations) {
+				EList<IfcRepresentationItem> items = rep.getItems();
+				for (IfcRepresentationItem item : items) {
+					if (item instanceof IfcStyledItem) {
+						material = processStyledItem(material, (IfcStyledItem) item);
+					} else {
+						EList<IfcStyledItem> styledByItem = item.getStyledByItem();
+						for (IfcStyledItem sItem : styledByItem) {
+							material = processStyledItem(material, sItem);
 						}
 					}
 				}
@@ -209,6 +194,24 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 		writeGeometryFromInstancesGeometryObject(writer, ifcProduct, material);
 		
 		writer.print("}");
+	}
+
+	private String processStyledItem(String material, IfcStyledItem sItem) {
+		for (IfcStyledItem ifc : sItem.getStyledByItem()) {
+			processStyledItem(material, ifc);
+		}
+		EList<IfcPresentationStyleAssignment> styles = sItem.getStyles();
+		for (IfcPresentationStyleAssignment sa : styles) {
+			EList<IfcPresentationStyleSelect> styles2 = sa.getStyles();
+			for (IfcPresentationStyleSelect pss : styles2) {
+				if (pss instanceof IfcSurfaceStyle) {
+					IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
+					material = "" + ss.getOid();
+					System.out.println(material);
+				}
+			}
+		}
+		return material;
 	}
 
 	private void writeGeometryFromInstancesGeometryObject(PrintWriter writer, IfcProduct ifcObject, String material) throws IOException {

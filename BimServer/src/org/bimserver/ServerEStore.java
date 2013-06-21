@@ -1,6 +1,7 @@
 package org.bimserver;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -34,13 +35,25 @@ public class ServerEStore implements BimServerEStore {
 	}
 	
 	@SuppressWarnings({ "unchecked" })
-	protected EList<Object> getList(Entry entry) {
+	protected EList<Object> getList(final Entry entry) {
 		EList<Object> result = (EList<Object>) map.get(entry);
 		if (result == null) {
 			if (entry.eStructuralFeature.isUnique()) {
-				result = new UniqueEList<Object>();
+				result = new UniqueEList<Object>(){
+					@Override
+					public Iterator<Object> iterator() {
+						((IdEObject) entry.eObject).load();
+						return super.iterator();
+					}
+				};
 			} else {
-				result = new BasicEList<Object>();
+				result = new BasicEList<Object>(){
+					@Override
+					public Iterator<Object> iterator() {
+						((IdEObject) entry.eObject).load();
+						return super.iterator();
+					}
+				};
 			}
 			map.put(entry, result);
 		}
@@ -58,6 +71,7 @@ public class ServerEStore implements BimServerEStore {
 	}
 
 	public Object set(InternalEObject eObject, EStructuralFeature feature, int index, Object value) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		if (index == NO_INDEX) {
 			return map.put(entry, value);
@@ -68,6 +82,7 @@ public class ServerEStore implements BimServerEStore {
 	}
 
 	public void add(InternalEObject eObject, EStructuralFeature feature, int index, Object value) {
+		((IdEObject) eObject).load();
 		try {
 			Entry entry = new Entry(eObject, feature);
 			getList(entry).add(index, value);
@@ -77,27 +92,32 @@ public class ServerEStore implements BimServerEStore {
 	}
 
 	public Object remove(InternalEObject eObject, EStructuralFeature feature, int index) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		return getList(entry).remove(index);
 	}
 
 	public Object move(InternalEObject eObject, EStructuralFeature feature, int targetIndex, int sourceIndex) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		return getList(entry).move(targetIndex, sourceIndex);
 	}
 
 	public void clear(InternalEObject eObject, EStructuralFeature feature) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		map.remove(entry);
 		// getList(entry).clear();
 	}
 
 	public boolean isSet(InternalEObject eObject, EStructuralFeature feature) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		return map.containsKey(entry);
 	}
 
 	public void unset(InternalEObject eObject, EStructuralFeature feature) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		map.remove(entry);
 	}
@@ -109,21 +129,25 @@ public class ServerEStore implements BimServerEStore {
 	}
 
 	public int indexOf(InternalEObject eObject, EStructuralFeature feature, Object value) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		return getList(entry).indexOf(value);
 	}
 
 	public int lastIndexOf(InternalEObject eObject, EStructuralFeature feature, Object value) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		return getList(entry).lastIndexOf(value);
 	}
 
 	public Object[] toArray(InternalEObject eObject, EStructuralFeature feature) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		return getList(entry).toArray();
 	}
 
 	public <T> T[] toArray(InternalEObject eObject, EStructuralFeature feature, T[] array) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		return getList(entry).toArray(array);
 	}
@@ -135,11 +159,13 @@ public class ServerEStore implements BimServerEStore {
 	}
 
 	public boolean contains(InternalEObject eObject, EStructuralFeature feature, Object value) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		return getList(entry).contains(value);
 	}
 
 	public int hashCode(InternalEObject eObject, EStructuralFeature feature) {
+		((IdEObject) eObject).load();
 		Entry entry = new Entry(eObject, feature);
 		return getList(entry).hashCode();
 	}

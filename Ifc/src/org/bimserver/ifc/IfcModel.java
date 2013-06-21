@@ -42,6 +42,9 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -847,6 +850,11 @@ public class IfcModel implements IfcModelInterface {
 
 	@Override
 	public IfcModelInterface branch(long poid) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		throw new UnsupportedOperationException();
 	}
 }

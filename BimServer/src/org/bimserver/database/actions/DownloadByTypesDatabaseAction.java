@@ -22,8 +22,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.BimServer;
+import org.bimserver.GeometryGeneratingException;
 import org.bimserver.HideAllInversesObjectIDM;
-import org.bimserver.RenderException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -43,17 +43,15 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.plugins.objectidms.StructuralFeatureIdentifier;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(DownloadByTypesDatabaseAction.class);
 	private final Set<String> classNames;
 	private final Set<Long> roids;
 	private int progress;
@@ -111,6 +109,11 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 				try {
 					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), bimServer.getPluginManager().requireSchemaDefinition());
+					
+					// This hack makes sure the JsonGeometrySerializer can look at the styles, probably more subtypes of getIfcRepresentationItem should be added (not ignored), also this code should not be here at all...
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(new StructuralFeatureIdentifier(Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem().getName(), Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_StyledByItem().getName()));
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(new StructuralFeatureIdentifier(Ifc2x3tc1Package.eINSTANCE.getIfcExtrudedAreaSolid().getName(), Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_StyledByItem().getName()));
+					
 					int highestStopId = findHighestStopRid(project, concreteRevision);
 					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, deep, highestStopId));
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());
@@ -118,7 +121,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					ifcModelSet.add(subModel);
 				} catch (PluginException e) {
 					throw new UserException(e);
-				} catch (RenderException e) {
+				} catch (GeometryGeneratingException e) {
 					throw new UserException(e);
 				}
 			}

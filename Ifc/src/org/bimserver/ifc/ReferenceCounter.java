@@ -165,7 +165,7 @@ public class ReferenceCounter {
 
 	public void remove(IdEObject idEObject) {
 		int totalRemoved = removeInternal(idEObject);
-		LOGGER.info("Removing " + idEObject + " (" + totalRemoved + ")");
+//		LOGGER.info("Removing " + idEObject + " (" + totalRemoved + ")");
 	}
 
 	@SuppressWarnings("rawtypes")

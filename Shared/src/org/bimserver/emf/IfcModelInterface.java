@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 
 import com.google.common.collect.BiMap;
@@ -195,4 +198,6 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	void resetExpressIds();
 
 	IfcModelInterface branch(long poid);
+
+	long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException;
 }

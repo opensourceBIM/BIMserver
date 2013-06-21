@@ -75,13 +75,17 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 			IfcModel subModel = new IfcModel();
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 			Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
+			long s = System.nanoTime();
 			eObject = getDatabaseSession().get(null, oid, subModel, query);
+			long et = System.nanoTime();
+			System.out.println((((et - s) / 1000000) + " ms"));
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 			if (eObject != null) {
 				break;
 			}
 		}
+
 		IfcModelInterface ifcModel;
 		try {
 			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper());

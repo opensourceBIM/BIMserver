@@ -34,6 +34,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
@@ -42,7 +43,7 @@ public abstract class BimDatabaseAction<T> {
 	private DatabaseSession databaseSession;
 	private final AccessMethod accessMethod;
 
-	public abstract T execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException;
+	public abstract T execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException;
 
 	public BimDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod) {
 		this.databaseSession = databaseSession;

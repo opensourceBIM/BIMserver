@@ -21,7 +21,7 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
-import org.bimserver.RenderException;
+import org.bimserver.GeometryGeneratingException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -99,7 +99,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 
 					try {
 						checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, revision);
-					} catch (RenderException e) {
+					} catch (GeometryGeneratingException e) {
 						throw new UserException(e);
 					}
 					

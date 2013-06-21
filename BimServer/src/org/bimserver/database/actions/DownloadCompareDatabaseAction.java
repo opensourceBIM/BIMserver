@@ -67,6 +67,7 @@ import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.modelmerger.ModelMerger;
 import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.common.util.EList;
@@ -107,7 +108,7 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		try {
 			Revision revision1 = getRevisionByRoid(roid1);
 			Revision revision2 = getRevisionByRoid(roid2);

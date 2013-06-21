@@ -18,7 +18,7 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.GeometryGenerator;
-import org.bimserver.RenderException;
+import org.bimserver.GeometryGeneratingException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
@@ -42,7 +42,7 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 		this.authorization = authorization;
 	}
 	
-	protected void checkGeometry(SerializerPluginConfiguration serializerPluginConfiguration, PluginManager pluginManager, IfcModelInterface model, Project project, ConcreteRevision concreteRevision, Revision revision) throws BimserverDatabaseException, RenderException {
+	protected void checkGeometry(SerializerPluginConfiguration serializerPluginConfiguration, PluginManager pluginManager, IfcModelInterface model, Project project, ConcreteRevision concreteRevision, Revision revision) throws BimserverDatabaseException, GeometryGeneratingException {
 		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getClassName(), true);
 		if (serializerPlugin.needsGeometry()) {
 			if (!revision.isHasGeometry()) {
@@ -66,7 +66,7 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 	public static int findHighestStopRid(Project project, ConcreteRevision subRevision) {
 		int highestStopId = Integer.MIN_VALUE;
 		for (ConcreteRevision concreteRevision : project.getConcreteRevisions()) {
-			// The id must at least be lower or te same as the version we are querying
+			// The id must at least be lower or the same as the version we are querying
 			if (concreteRevision.getId() <= subRevision.getId()) {
 				if (concreteRevision.isClear() && concreteRevision.getId() > highestStopId) {
 					highestStopId = concreteRevision.getId();

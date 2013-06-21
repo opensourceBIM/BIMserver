@@ -262,7 +262,7 @@ public class ClientIfcModel extends IfcModel {
 										add(oid, object);
 									}
 									if (state.equals("NOT_LOADED")) {
-										((IdEObjectImpl) object).setState(State.TO_BE_LOADED);
+										((IdEObjectImpl) object).setLoadingState(State.TO_BE_LOADED);
 									} else {
 										while (jsonReader.hasNext()) {
 											String featureName = jsonReader.nextName();
