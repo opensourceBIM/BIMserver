@@ -31,6 +31,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
@@ -72,7 +73,7 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	}
 
 	@Override
-	public CompareResult execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public CompareResult execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1,
 											// roid2, sCompareType,
 											// sCompareIdentifier);

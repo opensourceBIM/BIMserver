@@ -94,7 +94,7 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 	}
 
 	@Override
-	public Long commitTransaction(Long tid, String comment) throws UserException {
+	public Long commitTransaction(Long tid, String comment) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {

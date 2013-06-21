@@ -20,7 +20,7 @@ package org.bimserver.database.actions;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
-import org.bimserver.RenderException;
+import org.bimserver.GeometryGeneratingException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -41,8 +41,10 @@ import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
+import org.eclipse.emf.common.util.EList;
 
 public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
@@ -63,7 +65,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		Revision revision = getRevisionByRoid(roid);
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		getAuthorization().canDownload(roid);
@@ -81,13 +83,17 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		long incrSize = 0;
-		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
+		EList<ConcreteRevision> concreteRevisions = revision.getConcreteRevisions();
+		if (concreteRevisions.size() == 0) {
+			throw new ServerException("No concrete revisions in revision");
+		}
+		for (ConcreteRevision subRevision : concreteRevisions) {
 			incrSize += subRevision.getSize();
 		}
 		final long totalSize = incrSize;
 		final AtomicLong total = new AtomicLong();
 		IfcHeader ifcHeader = null;
-		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
+		for (ConcreteRevision subRevision : concreteRevisions) {
 			if (subRevision.getUser().getOid() != ignoreUoid) {
 				IfcModel subModel = new IfcModel();
 				ifcHeader = subRevision.getIfcHeader();
@@ -107,7 +113,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				getDatabaseSession().getMap(subModel, query);
 				try {
 					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, subRevision, revision);
-				} catch (RenderException e) {
+				} catch (GeometryGeneratingException e) {
 					throw new UserException(e);
 				}
 				subModel.getModelMetaData().setDate(subRevision.getDate());

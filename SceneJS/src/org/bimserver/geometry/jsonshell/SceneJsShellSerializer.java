@@ -105,7 +105,7 @@ import com.google.gson.stream.JsonWriter;
 public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SceneJsShellSerializer.class);
 	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
-	private final List<String> surfaceStyleIds = new ArrayList<String>();
+	private final List<Long> surfaceStyleIds = new ArrayList<Long>();
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids)
@@ -207,11 +207,15 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 					if (surfaceColour instanceof IfcColourRgb) {
 						colour = (IfcColourRgb) surfaceColour;
 					}
-					String name = fitNameForQualifiedName(ss.getName());
-					if (!surfaceStyleIds.contains(name)) {
-						surfaceStyleIds.add(name);
-						writeMaterial(jsonWriter, name, new double[] { colour.getRed(), colour.getGreen(), colour.getBlue() }, ssr.isSetTransparency()
-								&& ssr.getTransparency() < 1.0f ? 1.0f - ssr.getTransparency() : 1.0f);
+					if (!surfaceStyleIds.contains(ss.getOid())) {
+						surfaceStyleIds.add(ss.getOid());
+						double[] colors;
+						if (colour != null) {
+							colors = new double[] { colour.getRed(), colour.getGreen(), colour.getBlue() };
+						} else {
+							colors = new double[] { 0.5, 0.5, 0.5};
+						}
+						writeMaterial(jsonWriter, "" + ss.getOid(), colors, ssr.isSetTransparency()	&& ssr.getTransparency() < 1.0f ? 1.0f - ssr.getTransparency() : 1.0f);
 						break;
 					}
 				}
@@ -219,10 +223,10 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		}
 	}
 
-	private void writeMaterial(JsonWriter jsonWriter, String name, double[] colors, double opacity) throws IOException {
+	private void writeMaterial(JsonWriter jsonWriter, String materialName, double[] colors, double opacity) throws IOException {
 		jsonWriter.beginObject();
 		jsonWriter.name("type").value("material");
-		jsonWriter.name("coreId").value(name + "Material");
+		jsonWriter.name("coreId").value(materialName + "Material");
 		jsonWriter.name("baseColor").beginObject().name("r").value(colors[0]).name("g").value(colors[1]).name("b").value(colors[2]).endObject();
 		jsonWriter.name("alpha").value(opacity);
 		jsonWriter.name("emit").value(0.0);
@@ -292,10 +296,10 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 					if (ifcMaterial != null) {
 						String name = ifcMaterial.getName();
 						String filterSpaces = fitNameForQualifiedName(name);
-						materialFound = surfaceStyleIds.contains(filterSpaces);
-						if (materialFound) {
+//						materialFound = surfaceStyleIds.contains(filterSpaces);
+//						if (materialFound) {
 							material = filterSpaces;
-						}
+//						}
 					}
 				}
 			}
@@ -303,10 +307,10 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
 			String name = ifcMaterial.getName();
 			String filterSpaces = fitNameForQualifiedName(name);
-			materialFound = surfaceStyleIds.contains(filterSpaces);
-			if (materialFound) {
+//			materialFound = surfaceStyleIds.contains(filterSpaces);
+//			if (materialFound) {
 				material = filterSpaces;
-			}
+//			}
 		}
 
 		// If no material was found then derive one from the presentation style

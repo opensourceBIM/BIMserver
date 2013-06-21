@@ -59,6 +59,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.common.util.AbstractEList;
@@ -262,7 +263,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			LOGGER.info("Read: " + idEObject.eClass().getName() + " pid=" + query.getPid() + " oid=" + oid + " rid=" + rid);
 		}
 
-		((IdEObjectImpl) idEObject).setState(State.LOADING);
+		((IdEObjectImpl) idEObject).setLoadingState(State.LOADING);
 
 		objectCache.put(new RecordIdentifier(query.getPid(), oid, rid), idEObject);
 		
@@ -283,7 +284,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					if (feature.isMany()) {
 						if (feature.getEType() instanceof EEnum) {
 						} else if (feature.getEType() instanceof EClass) {
-//							EReference eReference = (EReference) feature;
+							EReference eReference = (EReference) feature;
 							if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 								buffer.position(buffer.position() + 1);
 							} else {
@@ -375,7 +376,18 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 						}
 					}
 					if (newValue != null) {
-						idEObject.eSet(feature, newValue);
+						if (newValue instanceof IdEObject) {
+							State oldState = ((IdEObjectImpl)newValue).getLoadingState();
+							if (oldState == State.TO_BE_LOADED && ((EReference)feature).getEOpposite() != null) {
+								((IdEObjectImpl)newValue).setLoadingState(State.OPPOSITE_SETTING);
+								idEObject.eSet(feature, newValue);
+								((IdEObjectImpl)newValue).setLoadingState(oldState);
+							} else {
+								idEObject.eSet(feature, newValue);
+							}
+						} else {
+							idEObject.eSet(feature, newValue);
+						}
 					}
 				}
 			}
@@ -383,7 +395,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		((IdEObjectImpl) idEObject).setLoaded();
 		if (idEObject.getRid() > 100000 || idEObject.getRid() < -100000) {
-			throw new RuntimeException("Unprobably rid " + idEObject.getRid() + " - " + idEObject);
+			throw new RuntimeException("Improbable rid " + idEObject.getRid() + " - " + idEObject);
 		}
 		return idEObject;
 	}
@@ -513,17 +525,17 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		// }
 	}
 
-	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, ProgressHandler progressHandler) throws BimserverDatabaseException, UserException {
+	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, ProgressHandler progressHandler) throws BimserverDatabaseException, UserException, ServerException {
 		checkOpen();
 		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, progressHandler);
 	}
 
-	public <T> T executeAndCommitAction(BimDatabaseAction<T> action) throws BimserverDatabaseException, UserException {
+	public <T> T executeAndCommitAction(BimDatabaseAction<T> action) throws BimserverDatabaseException, UserException, ServerException {
 		checkOpen();
 		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, null);
 	}
 
-	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries, ProgressHandler progressHandler) throws BimserverDatabaseException, UserException {
+	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries, ProgressHandler progressHandler) throws BimserverDatabaseException, UserException, ServerException {
 		checkOpen();
 		for (int i = 0; i < retries; i++) {
 			try {

@@ -17,6 +17,8 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Iterator;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EStoreEObjectImpl;
@@ -24,7 +26,7 @@ import org.eclipse.emf.ecore.impl.EStoreEObjectImpl;
 public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 
 	public static enum State {
-		NO_LAZY_LOADING, TO_BE_LOADED, LOADING, LOADED
+		NO_LAZY_LOADING, TO_BE_LOADED, LOADING, LOADED, OPPOSITE_SETTING
 	}
 
 	private long oid = -1;
@@ -46,8 +48,15 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 	
 	@Override
 	protected EList<?> createList(EStructuralFeature eStructuralFeature) {
-		load();
-		return super.createList(eStructuralFeature);
+		return new BasicEStoreEList<Object>(this, eStructuralFeature){
+			private static final long serialVersionUID = 6865419120828460240L;
+
+			@Override
+			public Iterator<Object> iterator() {
+				load();
+				return super.iterator();
+			}
+		};
 	}
 	
 	public void setOid(long oid) {
@@ -78,10 +87,8 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 	}
 
 	public void load() {
-		if (!isLoadedOrLoading() && oid != -1) {
-			loadingState = State.LOADING;
-			internalLoad();
-			loadingState = State.LOADED;
+		if (loadingState == State.TO_BE_LOADED && oid != -1) {
+			loadExplicit();
 		}
 	}
 
@@ -95,18 +102,8 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 		((BimServerEStore)eStore).load(this);
 	}
 
-	public void loadForEdit() {
-		// if (getDelegate() != null) {
-		// getDelegate().loadForEdit();
-		// }
-	}
-
 	public void setLoaded() {
-		setState(State.LOADED);
-	}
-
-	public State getLoadingState() {
-		return loadingState;
+		setLoadingState(State.LOADED);
 	}
 
 	public IfcModelInterface getModel() {
@@ -136,9 +133,9 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 	public void setQueryInterface(QueryInterface queryInterface) {
 		this.queryInterface = queryInterface;
 		if (queryInterface == null || queryInterface.isDeep()) {
-			setState(State.NO_LAZY_LOADING);
+			setLoadingState(State.NO_LAZY_LOADING);
 		} else {
-			setState(State.TO_BE_LOADED);
+			setLoadingState(State.TO_BE_LOADED);
 		}
 	}
 
@@ -150,7 +147,11 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 		((BimServerEStore)eStore).remove(this);
 	}
 
-	public void setState(State state) {
+	public void setLoadingState(State state) {
 		this.loadingState = state;
+	}
+
+	public State getLoadingState() {
+		return loadingState;
 	}
 }

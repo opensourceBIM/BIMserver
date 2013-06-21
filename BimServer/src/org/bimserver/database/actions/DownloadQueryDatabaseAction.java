@@ -33,6 +33,7 @@ import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.queryengine.QueryEngineException;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
@@ -56,7 +57,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 	}
 
 	@Override
-	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());

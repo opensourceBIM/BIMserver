@@ -38,7 +38,7 @@ public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 		for (EntityDefinition entity : entities) {
 			for (Attribute attribute : entity.getAttributes(true)) {
 				if (attribute instanceof InverseAttribute) {
-					if (attribute.getName().equals("HasOpenings") || attribute.getName().equals("ContainsElements") || attribute.getName().equals("IsDecomposedBy")) {
+					if (attribute.getName().equals("HasOpenings") || attribute.getName().equals("ContainsElements") || attribute.getName().equals("IsDecomposedBy") || attribute.getName().equals("StyledByItem")) {
 						// || attribute.getName().equals("IsDecomposedBy") || attribute.getName().equals("ContainedInStructure") || attribute.getName().equals("FillsVoids") || attribute.getName().equals("VoidsElements")
 						// Exception: http://code.google.com/p/bimserver/issues/detail?id=303
 						// Addition: Leon says this should be done for all types

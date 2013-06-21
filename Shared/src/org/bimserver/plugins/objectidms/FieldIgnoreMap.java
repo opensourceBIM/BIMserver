@@ -58,6 +58,10 @@ public class FieldIgnoreMap implements ObjectIDM {
 		return null;
 	}
 	
+	public void removeFromGeneralIgnoreSet(StructuralFeatureIdentifier structuralFeatureIdentifier) {
+		generalIgnoreSet.remove(structuralFeatureIdentifier);
+	}
+	
 	protected EStructuralFeature getEStructuralFeature(String className, String fieldName) {
 		for (EPackage ePackage : packages) {
 			if (ePackage.getEClassifier(className) != null) {

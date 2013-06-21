@@ -29,6 +29,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.ServiceMap;
 import org.bimserver.webservices.authorization.AdminAuthorization;
@@ -55,7 +56,7 @@ public class LoginDatabaseAction extends BimDatabaseAction<String> {
 	}
 
 	@Override
-	public String execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public String execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(getDatabaseSession(), getAccessMethod(), username);
 		User user = action.execute();
 		if (user != null) {

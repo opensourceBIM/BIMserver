@@ -39,6 +39,7 @@ import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
@@ -89,7 +90,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 	}
 
 	protected void executeAction(BimDatabaseAction<? extends IfcModelInterface> action, DownloadParameters downloadParameters, DatabaseSession session, boolean commit)
-			throws BimserverDatabaseException, UserException, NoSerializerFoundException {
+			throws BimserverDatabaseException, UserException, NoSerializerFoundException, ServerException {
 		try {
 			if (action == null) {
 				checkoutResult = new SCheckoutResult();

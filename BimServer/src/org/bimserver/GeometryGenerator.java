@@ -100,7 +100,7 @@ public class GeometryGenerator {
 	}
 
 	public void generateGeometry(long uoid, PluginManager pluginManager, DatabaseSession databaseSession, IfcModelInterface model, int pid, int rid, Revision revision,
-			boolean store, GeometryCache geometryCache) throws BimserverDatabaseException, RenderException {
+			boolean store, GeometryCache geometryCache) throws BimserverDatabaseException, GeometryGeneratingException {
 		if (geometryCache != null && !geometryCache.isEmpty()) {
 			returnCachedData(model, geometryCache, databaseSession, pid, rid);
 			return;
@@ -193,7 +193,7 @@ public class GeometryGenerator {
 			}
 		} catch (Exception e) {
 			LOGGER.error("", e);
-			throw new RenderException(e);
+			throw new GeometryGeneratingException(e);
 		}
 	}
 
