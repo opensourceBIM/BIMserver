@@ -22,9 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.BimServer;
+import org.bimserver.GeometryGeneratingException;
 import org.bimserver.GeometryGenerator;
 import org.bimserver.GeometryGenerator.GeometryCache;
-import org.bimserver.GeometryGeneratingException;
 import org.bimserver.SummaryMap;
 import org.bimserver.changes.Change;
 import org.bimserver.changes.CreateObjectChange;
@@ -151,7 +151,6 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		}
 		
 		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
-			long s = System.nanoTime();
 			setProgress("Generating Geometry...", -1);
 			LoggerFactory.getLogger(CommitTransactionDatabaseAction.class).info("Size: " + ifcModel.size());
 			try {
@@ -160,8 +159,6 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				throw new UserException(e);
 			}
 			revision.setHasGeometry(true);
-			long e = System.nanoTime();
-			System.out.println("GM: " + ((e - s) / 1000000) + " ms");
 		}
 		
 		concreteRevision.setSummary(summaryMap.toRevisionSummary(getDatabaseSession()));
