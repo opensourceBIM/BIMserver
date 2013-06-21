@@ -98,18 +98,25 @@ public class JsonSerializer extends IfcSerializer {
 												} else {
 													out.write(",");
 												}
-												boolean isWrapped = false;
+												int wrapped = 0;
+												int referred = 0;
 												for (Object o : list) {
 													if (((IdEObject)o).eClass().getEAnnotation("wrapped") != null) {
 														// A little tricky, can we assume if one object in this list is embedded, they all are?
-														isWrapped = true;
-														break;
+														wrapped++;
+													} else {
+														referred++;
 													}
 												}
-												if (isWrapped) {
-													out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
-												} else {
+												if (wrapped == 0 && referred != 0) {
 													out.write("\"__ref" + eStructuralFeature.getName() + "\":[");
+												} else if (wrapped != 0 && referred == 0) {
+													out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
+												} else if (wrapped == 0 && referred == 0) {
+													// should not happen
+												} else {
+													// both, this can occur, for example IfcTrimmedCurve.Trim1
+													out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
 												}
 												boolean f = true;
 												for (Object o : list) {
@@ -122,7 +129,15 @@ public class JsonSerializer extends IfcSerializer {
 													if (ref.getOid() == -1) {
 														writeObject(out, ref);
 													} else {
-														out.write("" + ref.getOid());
+														if (wrapped != 0 && referred != 0) {
+															// Special situation, where we have to construct an object around the OID to make in distinguishable from embedded objects
+															out.write("{");
+															out.write("\"oid\":");
+															out.write("" + ref.getOid());
+															out.write("}");
+														} else {
+															out.write("" + ref.getOid());
+														}
 													}
 												}
 												out.write("]");

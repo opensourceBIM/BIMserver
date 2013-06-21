@@ -211,7 +211,7 @@ public class ClientIfcModel extends IfcModel {
 		WaitingList<Long> waitingList = new WaitingList<Long>();
 		try {
 			InputStream downloadData = bimServerClient.getDownloadData(download, getIfcSerializerOid());
-			boolean log = false;
+			boolean log = true;
 			// TODO Make this streaming again, make sure the EmfSerializer getInputStream method is working properly
 			if (log) {
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -303,7 +303,8 @@ public class ClientIfcModel extends IfcModel {
 														if (embedded) {
 															List list = (List)object.eGet(eStructuralFeature);
 															jsonReader.beginObject();
-															if (jsonReader.nextName().equals("__type")) {
+															String n = jsonReader.nextName();
+															if (n.equals("__type")) {
 																String t = jsonReader.nextString();
 																IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
 																if (jsonReader.nextName().equals("value")) {
@@ -312,6 +313,19 @@ public class ClientIfcModel extends IfcModel {
 																	list.add(wrappedObject);
 																} else {
 																	// error
+																}
+															} else if (n.equals("oid")) {
+																// Sometimes embedded is true, bot also referenced are included, those are always embdedded in an object
+																long refOid = jsonReader.nextLong();
+																if (containsNoFetch(refOid)) {
+																	IdEObject refObj = getNoFetch(refOid);
+																	AbstractEList l = (AbstractEList)object.eGet(eStructuralFeature);
+																	while (l.size() <= index) {
+																		l.addUnique(refObj.eClass().getEPackage().getEFactoryInstance().create(refObj.eClass()));
+																	}
+																	l.setUnique(index, refObj);
+																} else {
+																	waitingList.add(refOid, new ListWaitingObject(object, eStructuralFeature, index));
 																}
 															}
 															jsonReader.endObject();
