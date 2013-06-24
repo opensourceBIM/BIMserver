@@ -134,7 +134,7 @@ public class TestLowLevelChanges {
 		int nextInt = new Random().nextInt();
 		try {
 			String username = "test" + nextInt + "@bimserver.org";
-			long addUser = serviceInterface.addUser(username, "User " + nextInt, SUserType.USER, false).getOid();
+			long addUser = serviceInterface.addUser(username, "User " + nextInt, SUserType.USER, false, "").getOid();
 			authInterface.changePassword(addUser, null, "test");
 			bimServer.getService(Bimsie1AuthInterface.class).login(username, "test");
 			return addUser;

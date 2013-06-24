@@ -116,7 +116,7 @@ public class TestEmbeddedBimServer {
 		try {
 			username = "test" + new Random().nextInt() + "@bimserver.org";
 			password = "test";
-			long userId = bimServer.getService(ServiceInterface.class).addUser(username, "Test", SUserType.USER, false).getOid();
+			long userId = bimServer.getService(ServiceInterface.class).addUser(username, "Test", SUserType.USER, false, "").getOid();
 			bimServer.getService(AuthInterface.class).changePassword(userId, null, password);
 		} catch (ServiceException e) {
 			e.printStackTrace();
