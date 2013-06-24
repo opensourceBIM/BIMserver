@@ -305,7 +305,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
-	public SUser addUser(String username, String name, SUserType type, Boolean selfRegistration) throws ServerException, UserException {
+	public SUser addUser(String username, String name, SUserType type, Boolean selfRegistration, String resetUrl) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			if (!selfRegistration) {
@@ -314,7 +314,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				requireSelfregistrationAllowed();
 			}
 			BimDatabaseAction<User> action = new AddUserDatabaseAction(getBimServer(), session, getInternalAccessMethod(), username, name, getBimServer().getSConverter().convertFromSObject(type), getAuthorization(),
-					selfRegistration);
+					selfRegistration, resetUrl);
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
 			return handleException(e);

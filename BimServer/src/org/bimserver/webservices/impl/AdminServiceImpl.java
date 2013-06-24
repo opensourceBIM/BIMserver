@@ -249,7 +249,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(getBimServer(), session, AccessMethod.INTERNAL, adminUsername, adminPassword, adminName, UserType.ADMIN, getAuthorization(), false);
+			AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(getBimServer(), session, AccessMethod.INTERNAL, adminUsername, adminPassword, adminName, UserType.ADMIN, getAuthorization(), false, "");
 			session.executeAndCommitAction(addUserDatabaseAction);
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);

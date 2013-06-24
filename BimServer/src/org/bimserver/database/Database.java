@@ -147,7 +147,7 @@ public class Database implements BimDatabase {
 				databaseSession.store(settings);
 				
 				new CreateBaseProjectDatabaseAction(databaseSession, AccessMethod.INTERNAL).execute();
-				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, new SystemAuthorization(1, TimeUnit.HOURS), false);
+				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, new SystemAuthorization(1, TimeUnit.HOURS), false, null);
 				addUserDatabaseAction.setCreateSystemUser();
 				User systemUser = addUserDatabaseAction.execute();
 				systemUser.setCreatedBy(systemUser);
