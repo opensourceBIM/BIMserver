@@ -28,7 +28,10 @@ function BimServerApi(baseUrl, notifier) {
 	});
 	
 	othis.translations = {
-		GETDATAOBJECTSBYTYPE_BUSY: "Loading objects"
+		GETDATAOBJECTSBYTYPE_BUSY: "Loading objects",
+		REQUESTPASSWORDCHANGE_BUSY: "Busy sending password reset e-mail",
+		REQUESTPASSWORDCHANGE_DONE: "A password reset e-mail has been sent",
+		SETSERVERSETTINGS_DONE: "Server settings successfully updated"
 	}
 	
 	othis.token = null;

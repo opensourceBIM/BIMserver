@@ -387,6 +387,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public List<SUser> getAllUsers() throws ServerException, UserException {
+		if (getBimServer().getServerSettingsCache().getServerSettings().getHideUserListForNonAdmin()) {
+			if (getCurrentUser().getUserType() != SUserType.ADMIN) {
+				throw new UserException("Admin rights required to list users");
+			}
+		}
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -718,6 +723,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	public List<SUser> getAllNonAuthorizedUsersOfProject(Long poid) throws ServerException, UserException {
 		requireRealUserAuthentication();
+		if (getBimServer().getServerSettingsCache().getServerSettings().getHideUserListForNonAdmin()) {
+			if (getCurrentUser().getUserType() != SUserType.ADMIN) {
+				throw new UserException("Admin rights required to list users");
+			}
+		}
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllNonAuthorizedUsersOfProjectDatabaseAction(session, getInternalAccessMethod(), poid);

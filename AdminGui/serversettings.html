@@ -32,75 +32,59 @@
 			});
 		};
 		
-		this.showAddNewExtendedDataSchema = function(extendedDataSchema, callback, alterState) {
+		this.showAddNewExtendedDataSchema = function(extendedDataSchema, callback) {
 			othis.changePage($(".extendedDataSchemasLink"), "addnewextendeddataschema.html", function(){
 				othis.current = new AddExtendedDataSchema(main, othis, extendedDataSchema);
-				if (alterState) {
-					pushHistory({page: "ServerSettings", subpage: "AddNewExtendedDataSchema"});
-				}
+				pushHistory({page: "ServerSettings", subpage: "AddNewExtendedDataSchema"}, "Server Settings");
 			}, callback);
 		};
 
-		this.showAddRepoExtendedDataSchema = function(callback, alterState) {
+		this.showAddRepoExtendedDataSchema = function(callback) {
 			othis.changePage($(".extendedDataSchemasLink"), "addrepoextendeddataschema.html", function(){
 				othis.current = new AddRepoExtendedDataSchema(main, othis);
-				if (alterState) {
-					pushHistory({page: "ServerSettings", subpage: "AddRepoExtendedDataSchema"});
-				}
+				pushHistory({page: "ServerSettings", subpage: "AddRepoExtendedDataSchema"}, "Server Settings");
 			}, callback);
 		};
 		
-		this.showExtendedDataSchema = function(extendedDataSchema, callback, alterState) {
+		this.showExtendedDataSchema = function(extendedDataSchema, callback) {
 			othis.changePage($(".extendedDataSchemasLink"), "extendeddataschema.html", function(){
 				othis.current = new ExtendedDataSchema(main, extendedDataSchema);
-				if (alterState) {
-					pushHistory({page: "ServerSettings", subpage: "ExtendedDataSchema"});
-				}
+				pushHistory({page: "ServerSettings", subpage: "ExtendedDataSchema"}, "Server Settings");
 			}, callback);
 		};
 
-		this.showBasicServerSettings = function(callback, alterState) {
+		this.showBasicServerSettings = function(callback) {
 			othis.changePage($(".basicServerSettingsLink"), "basicserversettings.html", function(){
 				othis.current = new BasicServerSettings(main, othis);
-				if (alterState) {
-					pushHistory({page: "ServerSettings", subpage: "BasicServerSettings"});
-				}
+				pushHistory({page: "ServerSettings", subpage: "BasicServerSettings"}, "Server Settings");
 			}, callback);
 		};
 
-		this.showMigrations = function(callback, alterState) {
+		this.showMigrations = function(callback) {
 			othis.changePage($(".migrationsLink"), "migrations.html", function(){
 				othis.current = new Migrations(main, othis);
-				if (alterState) {
-					pushHistory({page: "ServerSettings", subpage: "Migrations"});
-				}
+				pushHistory({page: "ServerSettings", subpage: "Migrations"}, "Server Settings");
 			}, callback);
 		};
 
-		this.showPlugins = function(callback, alterState) {
+		this.showPlugins = function(callback) {
 			othis.changePage($(".pluginsLink"), "plugins.html", function(){
 				othis.current = new Plugins(main, othis);
-				if (alterState) {
-					pushHistory({page: "ServerSettings", subpage: "Plugins"});
-				}
+				pushHistory({page: "ServerSettings", subpage: "Plugins"}, "Server Settings");
 			}, callback);
 		};
 
-		this.showWebModules = function(callback, alterState) {
+		this.showWebModules = function(callback) {
 			othis.changePage($(".webModulesLink"), "webmodules.html", function(){
 				othis.current = new WebModules(main, othis);
-				if (alterState) {
-					pushHistory({page: "ServerSettings", subpage: "WebModules"});
-				}
+				pushHistory({page: "ServerSettings", subpage: "WebModules"}, "Server Settings");
 			}, callback);
 		};
 
-		this.showExtendedDataSchemas = function(callback, alterState) {
+		this.showExtendedDataSchemas = function(callback) {
 			othis.changePage($(".extendedDataSchemasLink"), "extendeddataschemas.html", function(){
 				othis.current = new ExtendedDataSchemas(main, othis);
-				if (alterState) {
-					pushHistory({page: "ServerSettings", subpage: "ExtendedDataSchemas"});
-				}
+				pushHistory({page: "ServerSettings", subpage: "ExtendedDataSchemas"}, "Server Settings");
 			}, callback);
 		};
 		

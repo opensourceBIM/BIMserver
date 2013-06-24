@@ -17,6 +17,7 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -40,7 +41,6 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.utils.CollectionUtils;
 import org.bimserver.webservices.authorization.Authorization;
 
 public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>> {
@@ -62,9 +62,9 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 		Not notStoreProject = new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME)));
 		HasReferenceToCondition authorized = new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), user);
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getProject()).and(notStoreProject);
-		if (onlyTopLevel) {
-			condition = new AndCondition(condition, new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_Parent(), null));
-		}
+//		if (onlyTopLevel) {
+//			condition = new AndCondition(condition, new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_Parent(), null));
+//		}
 		if (onlyActive) {
 			condition = new AndCondition(condition, new AttributeCondition(StorePackage.eINSTANCE.getProject_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
@@ -73,7 +73,12 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 			condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getProject_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
 		Map<Long, Project> results = (Map<Long, Project>) getDatabaseSession().query(condition, Project.class, Query.getDefault());
-		Set<Project> resultSet = CollectionUtils.mapToSet(results);
+		Set<Project> resultSet = new HashSet<Project>();
+		for (Project p : results.values()) {
+			if (p.getParent() == null || !onlyTopLevel) {
+				resultSet.add(p);
+			}
+		}
 		for (Project project : results.values()) {
 			addParentProjects(resultSet, project);
 		}
@@ -83,7 +88,9 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 	private void addParentProjects(Set<Project> resultSet, Project project) {
 		if (project.getParent() != null) {
 			if (!resultSet.contains(project.getParent())) {
-				resultSet.add(project.getParent());
+				if ((project.getParent() != null && project.getParent().getParent() == null) || !onlyTopLevel) {
+					resultSet.add(project.getParent());
+				}
 			}
 			addParentProjects(resultSet, project.getParent());
 		}

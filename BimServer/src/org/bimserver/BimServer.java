@@ -119,6 +119,7 @@ import org.bimserver.services.guidfixer.GuidFixerService;
 import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SServicesMap;
@@ -294,6 +295,8 @@ public class BimServer {
 							}
 							session.commit();
 						} catch (BimserverDatabaseException e) {
+							LOGGER.error("", e);
+						} catch (ServiceException e) {
 							LOGGER.error("", e);
 						} finally {
 							session.close();
@@ -695,6 +698,8 @@ public class BimServer {
 				session.store(serverStarted);
 				session.commit();
 			} catch (BimserverLockConflictException e) {
+				throw new BimserverDatabaseException(e);
+			} catch (ServiceException e) {
 				throw new BimserverDatabaseException(e);
 			} finally {
 				session.close();

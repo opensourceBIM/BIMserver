@@ -57,7 +57,7 @@ RegExp.escape = function(str) {
   return str.replace(/[[\]\\$().{},?*+|^-]/g, "\\$&");
 };
 
-function pushHistoryAppend(obj) {
+function pushHistoryAppend(obj, title) {
 	var current = History.getState();
 	for (var k in current.data) {
 		if (obj[k] == null) {
@@ -78,12 +78,12 @@ function pushHistoryAppend(obj) {
 		str = str.substring(0, str.length - 1);
 	}
 	if (!current.cleanUrl.endsWith(str)) {
-		History.pushState(obj, null, str);
+		History.pushState(obj, "Bootstrap BIM" + (title == null ? "" : " - " + title), str);
 	}
 	pushing = false;
 }
 
-function pushHistory(obj) {
+function pushHistory(obj, title) {
 	var current = History.getState();
 	pushing = true;
 	var str = "?";
@@ -93,7 +93,18 @@ function pushHistory(obj) {
 	if (str.endsWith("&")) {
 		str = str.substring(0, str.length - 1);
 	}
-	History.pushState(obj, null, str);
+	if (title != null) {
+		if (!title.startsWith("Bootstrap BIM")) {
+			title = "Boostrap BIM - " + title;
+		}
+	} else {
+		title = current.title;
+	}
+	if (!current.cleanUrl.endsWith(str)) {
+		History.pushState(obj, title, str);
+	} else {
+		document.title = title;
+	}
 	pushing = false;
 }
 
@@ -107,8 +118,7 @@ function pushInitialState() {
 			var s = splitted[i];
 			obj[s.substring(0, s.indexOf("="))] = s.substring(s.indexOf("=") + 1);
 		}
-		console.log("pushInitialState", obj);
-		pushHistory(obj);
+		pushHistory(obj, $("title").text());
 	}
 }
 
