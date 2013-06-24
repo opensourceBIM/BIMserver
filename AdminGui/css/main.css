@@ -19,7 +19,7 @@ a {
 	padding: 10px;
 }
 
-.initialhide {
+.initialhide, .btn.initialhide {
 	display: none
 }
 

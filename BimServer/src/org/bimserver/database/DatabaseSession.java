@@ -60,6 +60,7 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.common.util.AbstractEList;
@@ -141,7 +142,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 	}
 
-	public void commit(ProgressHandler progressHandler) throws BimserverDatabaseException {
+	public void commit(ProgressHandler progressHandler) throws BimserverDatabaseException, ServiceException {
 		checkOpen();
 		try {
 			if (progressHandler != null) {
@@ -183,8 +184,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			}
 		} catch (BimserverDatabaseException e) {
 			throw e;
-		} catch (UserException e) {
-			LOGGER.error("", e);
+		} catch (ServiceException e) {
+			throw e;
 		}
 	}
 
@@ -525,7 +526,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		// }
 	}
 
-	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, ProgressHandler progressHandler) throws BimserverDatabaseException, UserException, ServerException {
+	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, ProgressHandler progressHandler) throws BimserverDatabaseException, ServiceException {
 		checkOpen();
 		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, progressHandler);
 	}
@@ -583,6 +584,14 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);
 				throw e;
+			} catch (ServiceException e) {
+				if (e instanceof UserException) {
+					throw ((UserException)e);
+				} else if (e instanceof ServerException) {
+					throw ((ServerException)e);
+				} else {
+					LOGGER.error("", e);
+				}
 			}
 			if (i < retries - 1) {
 				try {
@@ -1672,8 +1681,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	 * altering/using the same data. Basically only when the server is starting
 	 * 
 	 * @throws BimserverDatabaseException
+	 * @throws ServiceException 
 	 */
-	public void commit() throws BimserverDatabaseException {
+	public void commit() throws BimserverDatabaseException, ServiceException {
 		commit(null);
 	}
 

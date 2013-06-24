@@ -50,7 +50,6 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.LongTransaction;
 import org.bimserver.webservices.NoTransactionException;
 import org.bimserver.webservices.authorization.Authorization;
-import org.slf4j.LoggerFactory;
 
 public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseAction {
 
@@ -152,7 +151,6 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		
 		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
 			setProgress("Generating Geometry...", -1);
-			LoggerFactory.getLogger(CommitTransactionDatabaseAction.class).info("Size: " + ifcModel.size());
 			try {
 				new GeometryGenerator().generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), revision, true, geometryCache);
 			} catch (GeometryGeneratingException e) {

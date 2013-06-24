@@ -42,6 +42,16 @@ function ServerInfo(containerDiv, main) {
 	var othis = this;
 
 	this.show = function(){
+		var history = History.getState().data;
+		if (history.page == "ServerInfo" && history.subpage != null) {
+			$(".serverinfo .link[href=\"#" + history.subpage + "\"]").click();
+			if (history.subpage == "log") {
+				othis.loadLog();
+			}
+		} else {
+			$(".serverinfo .systemLink").click();
+		}
+		this.loadData();
 	};
 	
 	this.close = function(){
@@ -161,7 +171,7 @@ function ServerInfo(containerDiv, main) {
 	}
 	
 	$(".serverinfo .link").click(function(){
-		pushHistory({page: "ServerInfo", subpage: $(this).attr("href").substring(1)});
+		pushHistory({page: "ServerInfo", subpage: $(this).attr("href").substring(1)}, "Server Info");
 	});
 	
 	this.progressHandler = function(topicId, state){
@@ -217,16 +227,5 @@ function ServerInfo(containerDiv, main) {
 	};
 
 	containerDiv.find(".logLink").click(othis.loadLog);
-	
-	var history = History.getState().data;
-	if (history.subpage != null) {
-		$(".serverinfo .link[href=\"#" + history.subpage + "\"]").click();
-		if (history.subpage == "log") {
-			othis.loadLog();
-		}
-	} else {
-		$(".serverinfo .systemLink").click();
-	}
-	this.loadData();
 }
 </script>

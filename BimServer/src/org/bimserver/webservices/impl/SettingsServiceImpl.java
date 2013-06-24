@@ -50,7 +50,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 
 	@Override
 	public String getServiceRepositoryUrl() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		requireRealUserAuthentication();
 		return getBimServer().getServerSettingsCache().getServerSettings().getServiceRepositoryUrl();
 	}
 
@@ -384,6 +384,9 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	
 	@Override
 	public void setServerSettings(SServerSettings serverSettings) throws ServerException, UserException {
+		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
+			requireAdminAuthentication();
+		}
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			SetServerSettingsDatabaseAction action = new SetServerSettingsDatabaseAction(session, getInternalAccessMethod(), serverSettings);

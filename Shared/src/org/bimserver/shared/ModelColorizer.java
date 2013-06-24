@@ -138,6 +138,7 @@ public class ModelColorizer {
 				representationItem = representation.getItems().get(0);
 			}
 			IfcStyledItem styledItem = model.create(IfcStyledItem.class);
+			representationItem.getStyledByItem().clear();
 			representationItem.getStyledByItem().add(styledItem);
 			createStyle(color, transparency, styledItem);
 		} else if (productToStyledItem.get(product).size() == 1) {

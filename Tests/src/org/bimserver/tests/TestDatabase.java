@@ -37,6 +37,7 @@ import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.utils.CollectionUtils;
 
 public class TestDatabase {
@@ -90,6 +91,8 @@ public class TestDatabase {
 			session.commit();
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
+		} catch (ServiceException e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 			session = database.createSession();
@@ -123,6 +126,8 @@ public class TestDatabase {
 			session.commit();
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
+		} catch (ServiceException e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 			session = database.createSession();
@@ -155,6 +160,8 @@ public class TestDatabase {
 			session.commit();
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
+		} catch (ServiceException e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 			session = database.createSession();
@@ -183,6 +190,8 @@ public class TestDatabase {
 			session.store(p);
 			session.commit();
 		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -214,6 +223,8 @@ public class TestDatabase {
 			session.commit();
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
+		} catch (ServiceException e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -237,6 +248,8 @@ public class TestDatabase {
 			session.commit();
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
+		} catch (ServiceException e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -254,6 +267,8 @@ public class TestDatabase {
 			project.getHasAuthorizedUsers().add(user);
 			session.commit();
 		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} finally {
 			session.close();

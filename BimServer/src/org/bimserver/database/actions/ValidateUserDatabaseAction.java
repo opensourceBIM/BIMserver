@@ -46,7 +46,7 @@ public class ValidateUserDatabaseAction extends BimDatabaseAction<User> {
 	@Override
 	public User execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(uoid);
-		if (user.getValidationToken() == null) {
+		if (user.getValidationToken() == null || user.getValidationTokenCreated() == null) {
 			throw new UserException("This account is already validated and no password reset has been requested");
 		}
 		if (user.getValidationTokenCreated().getTime() + VALIDATION_TOKEN_EXPIRE_MILLIS < new Date().getTime()) {

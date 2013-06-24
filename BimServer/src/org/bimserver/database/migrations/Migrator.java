@@ -29,6 +29,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.shared.exceptions.ServiceException;
 
 public class Migrator {
 	private final Database database;
@@ -91,6 +92,8 @@ public class Migrator {
 			session.commit();
 			return schema;
 		} catch (BimserverDatabaseException e) {
+			throw new MigrationException(e);
+		} catch (ServiceException e) {
 			throw new MigrationException(e);
 		} finally {
 			session.close();
