@@ -35,7 +35,7 @@ public class CreateUserAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		String username = randomString() + "@bimserver.org";
 		virtualUser.getActionResults().setText("Creating new user: " + username);
-		SUser user = virtualUser.getBimServerClient().getServiceInterface().addUser(username, randomString(), SUserType.values()[nextInt(SUserType.values().length)], nextBoolean());
+		SUser user = virtualUser.getBimServerClient().getServiceInterface().addUser(username, randomString(), SUserType.values()[nextInt(SUserType.values().length)], nextBoolean(), "");
 		virtualUser.getBimServerClient().getBimServerAuthInterface().changePassword(user.getOid(), "", "test");
 		virtualUser.addUsername(username);
 	}
