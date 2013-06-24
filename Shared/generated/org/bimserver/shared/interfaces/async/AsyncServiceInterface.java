@@ -408,11 +408,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void addUser(final java.lang.String username, final java.lang.String name, final org.bimserver.interfaces.objects.SUserType type, final java.lang.Boolean selfRegistration, final AddUserCallback callback) {
+	public void addUser(final java.lang.String username, final java.lang.String name, final org.bimserver.interfaces.objects.SUserType type, final java.lang.Boolean selfRegistration, final java.lang.String resetUrl, final AddUserCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.addUser(username, name, type, selfRegistration));
+					callback.success(syncService.addUser(username, name, type, selfRegistration, resetUrl));
 				} catch (Exception e) {
 					callback.error(e);
 				}

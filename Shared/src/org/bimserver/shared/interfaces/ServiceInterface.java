@@ -132,7 +132,8 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "username", partName = "addUser.username") String username,
 		@WebParam(name = "name", partName = "addUser.name") String name,
 		@WebParam(name = "type", partName = "addUser.type") SUserType type,
-		@WebParam(name = "selfRegistration", partName = "addUser.selfRegistration") Boolean selfRegistration) throws ServerException, UserException;
+		@WebParam(name = "selfRegistration", partName = "addUser.selfRegistration") Boolean selfRegistration,
+		@WebParam(name = "resetUrl", partName = "addUser.resetUrl") String resetUrl) throws ServerException, UserException;
 
 	/**
 	 * Change the type of a user

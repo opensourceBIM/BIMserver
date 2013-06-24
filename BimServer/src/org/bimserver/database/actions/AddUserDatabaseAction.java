@@ -59,9 +59,10 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 	private boolean createSystemUser = false;
 	private final BimServer bimServer;
 	private Authorization authorization;
+	private String resetUrl;
 
 	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String name, UserType userType,
-			Authorization authorization, boolean selfRegistration) {
+			Authorization authorization, boolean selfRegistration, String resetUrl) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.name = name;
@@ -69,11 +70,12 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		this.userType = userType;
 		this.authorization = authorization;
 		this.selfRegistration = selfRegistration;
+		this.resetUrl = resetUrl;
 		this.password = null;
 	}
 
 	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String password, String name, UserType userType,
-			Authorization authorization, boolean selfRegistration) {
+			Authorization authorization, boolean selfRegistration, String resetUrl) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.password = password;
@@ -82,6 +84,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		this.userType = userType;
 		this.authorization = authorization;
 		this.selfRegistration = selfRegistration;
+		this.resetUrl = resetUrl;
 	}
 
 	public User execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
@@ -155,6 +158,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 				getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 					@Override
 					public void execute() throws UserException {
+						String body = null;
 						try {
 							if (MailSystem.isValidEmailAddress(user.getUsername())) {
 								Session mailSession = bimServer.getMailSystem().createMailSession();
@@ -172,10 +176,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 								context.put("name", user.getName());
 								context.put("username", user.getUsername());
 								context.put("siteaddress", serverSettings.getSiteAddress());
-								String validationLink = serverSettings.getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token="
-										+ token;
-								context.put("validationlink", validationLink);
-								String body = null;
+								context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token + "&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
 								String subject = null;
 								if (selfRegistration) {
 									body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_BODY);
@@ -192,6 +193,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 								Transport.send(msg);
 							}
 						} catch (Exception e) {
+							LOGGER.error(body);
 							LOGGER.error("", e);
 						}
 					}

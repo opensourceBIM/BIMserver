@@ -33,7 +33,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	public void addServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SService sService) throws UserException, ServerException {
 	}
 	
-	public org.bimserver.interfaces.objects.SUser addUser(java.lang.String username, java.lang.String name, org.bimserver.interfaces.objects.SUserType type, java.lang.Boolean selfRegistration) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SUser addUser(java.lang.String username, java.lang.String name, org.bimserver.interfaces.objects.SUserType type, java.lang.Boolean selfRegistration, java.lang.String resetUrl) throws UserException, ServerException {
 		return null;
 	}
 	
