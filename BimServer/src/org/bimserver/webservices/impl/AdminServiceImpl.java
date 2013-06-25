@@ -131,9 +131,9 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 		SBimServerInfo bimServerInfo = new SBimServerInfo();
 		SVersion version = getBimServer().getVersionChecker().getLocalVersion();
 		SVersion latestVersion = getBimServer().getVersionChecker().getOnlineVersion();
-		
+
 		SDatabaseInformation databaseInformation = getDatabaseInformation();
-		
+
 		bimServerInfo.setCurrentVersion(version.getMajor() + "." + version.getMinor() + "." + version.getRevision());
 		bimServerInfo.setCurrentDate(version.getDate());
 		bimServerInfo.setLatestVersion(latestVersion.getMajor() + "." + latestVersion.getMinor() + "." + latestVersion.getRevision());
@@ -143,7 +143,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 		bimServerInfo.setUsers(databaseInformation.getNumberOfUsers());
 		bimServerInfo.setProjects(databaseInformation.getNumberOfProjects());
 		bimServerInfo.setSchemaVersion(databaseInformation.getSchemaVersion());
-		bimServerInfo.setServerLogUrl(getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/download?action=getfile&file=serverlog");
+		bimServerInfo.setServerLogUrl(getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/download?token=" + getServiceMap().getAuthorization().asHexToken(getBimServer().getEncryptionKey()) + "&action=getfile&type=serverlog");
 		bimServerInfo.setStarted(getServerStartTime());
 		
 		return bimServerInfo;
