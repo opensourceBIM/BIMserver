@@ -1,5 +1,5 @@
 
-ˆ®
+›®
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -67,12 +67,13 @@ revisionId	 (
 internalServiceOid ("X
 AddServiceToProjectRequest
 poid (,
-sService (2.org.bimserver.pb.SService"u
+sService (2.org.bimserver.pb.SService"‡
 AddUserRequest
 username (	
 name (	)
 type (2.org.bimserver.pb.SUserType
-selfRegistration ("Ô
+selfRegistration (
+resetUrl (	"Ô
 SUser
 userSettingsId (
 lastSeen (
@@ -140,7 +141,10 @@ revisionId	 (
 roid1 (
 roid2 (4
 sCompareType (2.org.bimserver.pb.SCompareType
-mcid ("(
+mcid ("*
+SObjectRemoved
+rid (
+oid ("(
 SObjectAdded
 rid (
 oid ("b
@@ -149,29 +153,26 @@ revisionId	 (
 rid (
 oid (
 oldValue (	
-	fieldName (	"*
-SObjectRemoved
-rid (
-oid ("X
+	fieldName (	"X
 SListDataValue,
 values (2.org.bimserver.pb.SDataValue
 rid (
-oid ("A
-SSimpleDataValue
-rid (
-oid (
-stringValue (	"O
+oid ("O
 SReferenceDataValue
 guid (	
 typeName (	
 rid (
-oid ("’
+oid ("A
+SSimpleDataValue
+rid (
+oid (
+stringValue (	"’
 
 SDataValue
 __actual_type (	:
-__SListDataValue (2 .org.bimserver.pb.SListDataValue>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue
+__SListDataValue (2 .org.bimserver.pb.SListDataValueD
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue
 rid (
 oid (
 	fieldName (	"
@@ -183,10 +184,10 @@ SDataValue
 name (	
 type (	"¤
 SCompareItem
-__actual_type (	6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved
+__actual_type (	:
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified
 rid (
 oid (1
 

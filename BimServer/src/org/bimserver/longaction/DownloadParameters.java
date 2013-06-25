@@ -39,7 +39,7 @@ public class DownloadParameters extends LongActionKey {
 	private Set<String> names;
 	private Set<String> classNames;
 	private DownloadType downloadType;
-	private BimServer bimServer;
+	private final BimServer bimServer;
 	private long modelCompareIdentifier;
 	private CompareType compareType;
 	private long ignoreUoid = -1;
@@ -49,14 +49,10 @@ public class DownloadParameters extends LongActionKey {
 	private Boolean useObjectIDM;
 	private Deep deep;
 
-	public DownloadParameters(BimServer bimServer, long roid, long serializerOid, long ignoreUoid) {
+	public DownloadParameters(BimServer bimServer) {
 		this.bimServer = bimServer;
-		this.ignoreUoid = ignoreUoid;
-		setRoid(roid);
-		setDownloadType(DownloadType.DOWNLOAD_REVISION);
-		setSerializerOid(serializerOid);
 	}
-
+	
 	public void setSerializerOid(long serializerOid) {
 		this.serializerOid = serializerOid;
 	}
@@ -65,15 +61,12 @@ public class DownloadParameters extends LongActionKey {
 		return serializerOid;
 	}
 
-	public DownloadParameters() {
-	}
-
 	public long getIgnoreUoid() {
 		return ignoreUoid;
 	}
 
-	public static DownloadParameters fromCompare(long roid1, long roid2, CompareType type, long modelCompareIdentifier, long serializerOid) {
-		DownloadParameters downloadParameters = new DownloadParameters();
+	public static DownloadParameters fromCompare(BimServer bimServer, long roid1, long roid2, CompareType type, long modelCompareIdentifier, long serializerOid) {
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_COMPARE);
 		downloadParameters.setRoids(Sets.newHashSet(roid1, roid2));
 		downloadParameters.setCompareType(type);
@@ -87,8 +80,7 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public static DownloadParameters fromGuids(BimServer bimServer, Set<Long> roids, Set<String> guids, long serializerOid, Boolean deep) {
-		DownloadParameters downloadParameters = new DownloadParameters();
-		downloadParameters.setBimServer(bimServer);
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer);
 		downloadParameters.setRoids(roids);
 		downloadParameters.setGuids(guids);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_BY_GUIDS);
@@ -98,8 +90,7 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public static DownloadParameters fromNames(BimServer bimServer, Set<Long> roids, Set<String> names, Long serializerOid, Boolean deep) {
-		DownloadParameters downloadParameters = new DownloadParameters();
-		downloadParameters.setBimServer(bimServer);
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer);
 		downloadParameters.setRoids(roids);
 		downloadParameters.setNames(names);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_BY_NAMES);
@@ -112,13 +103,8 @@ public class DownloadParameters extends LongActionKey {
 		this.names = names;
 	}
 
-	private void setBimServer(BimServer bimServer) {
-		this.bimServer = bimServer;
-	}
-
 	public static DownloadParameters fromOids(BimServer bimServer, long serializerOid, Set<Long> roids, Set<Long> oids, Boolean deep) {
-		DownloadParameters downloadParameters = new DownloadParameters();
-		downloadParameters.bimServer = bimServer;
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer);
 		downloadParameters.setRoids(roids);
 		downloadParameters.setOids(oids);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_BY_OIDS);
@@ -128,9 +114,8 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public static DownloadParameters fromClassNames(BimServer bimServer, Set<Long> roids, Set<String> classNames, Boolean includeAllSubtypes, long serializerOid, Boolean deep) {
-		DownloadParameters downloadParameters = new DownloadParameters();
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer);
 		downloadParameters.setIncludeAllSubtypes(includeAllSubtypes);
-		downloadParameters.setBimServer(bimServer);
 		downloadParameters.setRoids(roids);
 		downloadParameters.setClassNames(classNames);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_OF_TYPE);
@@ -140,8 +125,7 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public static DownloadParameters fromRoids(BimServer bimServer, Set<Long> roids, long serializerOid) {
-		DownloadParameters downloadParameters = new DownloadParameters();
-		downloadParameters.setBimServer(bimServer);
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer);
 		downloadParameters.setRoids(roids);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_PROJECTS);
 		downloadParameters.setSerializerOid(serializerOid);
@@ -413,8 +397,8 @@ public class DownloadParameters extends LongActionKey {
 		this.qeid = qeid;
 	}
 
-	public static DownloadParameters fromQuery(Long roid, Long qeid, String code, long serializerOid) {
-		DownloadParameters downloadParameters = new DownloadParameters();
+	public static DownloadParameters fromQuery(BimServer bimServer, Long roid, Long qeid, String code, long serializerOid) {
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer);
 		downloadParameters.setRoid(roid);
 		downloadParameters.setQeid(qeid);
 		downloadParameters.setCode(code);

@@ -93,7 +93,7 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 			if (!serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin") && !serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin")) {
 				throw new UserException("Only IFC or IFCXML allowed when checking out");
 			}
-			DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), roid, serializerOid, -1);
+			DownloadParameters downloadParameters = DownloadParameters.fromRoids(getBimServer(), Collections.singleton(roid), serializerOid);
 			user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
 			LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(getBimServer(), user.getName(), user.getUsername(), downloadParameters, getAuthorization(), getInternalAccessMethod());
 			try {
@@ -156,7 +156,7 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 	
 	public Long download(Long roid, Long serializerOid, Boolean showOwn, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(getBimServer(), roid, serializerOid, showOwn ? -1 : getAuthorization().getUoid()), sync);
+		return download(DownloadParameters.fromRoids(getBimServer(), Collections.singleton(roid), serializerOid), sync);
 	}
 
 	@Override
@@ -194,7 +194,7 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 	@Override
 	public Long downloadQuery(Long roid, Long qeid, String code, Boolean sync, Long serializerOid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromQuery(roid, qeid, code, serializerOid), sync);
+		return download(DownloadParameters.fromQuery(getBimServer(), roid, qeid, code, serializerOid), sync);
 	}
 	
 	@Override

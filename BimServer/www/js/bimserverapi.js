@@ -31,7 +31,10 @@ function BimServerApi(baseUrl, notifier) {
 		GETDATAOBJECTSBYTYPE_BUSY: "Loading objects",
 		REQUESTPASSWORDCHANGE_BUSY: "Busy sending password reset e-mail",
 		REQUESTPASSWORDCHANGE_DONE: "A password reset e-mail has been sent",
-		SETSERVERSETTINGS_DONE: "Server settings successfully updated"
+		SETSERVERSETTINGS_DONE: "Server settings successfully updated",
+		ENABLEPLUGIN_DONE: "Plugin successfully enabled",
+		DISABLEPLUGIN_DONE: "Plugin successfully disabled",
+		SETDEFAULTWEBMODULE_DONE: "Default webmodule changed, a restart of the BIMserver is required for the changes to take effect"
 	}
 	
 	othis.token = null;

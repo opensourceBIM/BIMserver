@@ -58,6 +58,7 @@ RegExp.escape = function(str) {
 };
 
 function pushHistoryAppend(obj, title) {
+	pushing = true;
 	var current = History.getState();
 	for (var k in current.data) {
 		if (obj[k] == null) {
@@ -69,7 +70,6 @@ function pushHistoryAppend(obj, title) {
 			delete obj[k];
 		}
 	}
-	pushing = true;
 	var str = "?";
 	for (var i in obj) {
 		str += i + "=" + obj[i] + "&";
@@ -83,9 +83,9 @@ function pushHistoryAppend(obj, title) {
 	pushing = false;
 }
 
-function pushHistory(obj, title) {
-	var current = History.getState();
+function pushHistory(obj, title, force) {
 	pushing = true;
+	var current = History.getState();
 	var str = "?";
 	for (var i in obj) {
 		str += i + "=" + obj[i] + "&";
@@ -100,7 +100,7 @@ function pushHistory(obj, title) {
 	} else {
 		title = current.title;
 	}
-	if (!current.cleanUrl.endsWith(str)) {
+	if (force || !current.cleanUrl.endsWith(str)) {
 		History.pushState(obj, title, str);
 	} else {
 		document.title = title;
@@ -118,7 +118,7 @@ function pushInitialState() {
 			var s = splitted[i];
 			obj[s.substring(0, s.indexOf("="))] = s.substring(s.indexOf("=") + 1);
 		}
-		pushHistory(obj, $("title").text());
+		pushHistory(obj, $("title").text(), true);
 	}
 }
 
