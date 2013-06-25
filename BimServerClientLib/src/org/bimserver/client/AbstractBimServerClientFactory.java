@@ -23,6 +23,7 @@ import java.util.List;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -51,7 +52,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		List<SService> serviceInterfaceDep = Collections.singletonList(serviceInterface);
 		addService(new SService(null, MetaInterface.class, serviceInterfaceDep));
 		addService(new SService(null, AdminInterface.class, serviceInterfaceDep));
-		addService(new SService(null, MetaInterface.class, serviceInterfaceDep));
+		addService(new SService(null, AuthInterface.class, serviceInterfaceDep));
 		addService(new SService(null, SettingsInterface.class, serviceInterfaceDep));
 		addService(new SService(null, PluginInterface.class, serviceInterfaceDep));
 		addService(new SService(null, Bimsie1NotificationInterface.class, serviceInterfaceDep));
