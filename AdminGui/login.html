@@ -1,51 +1,53 @@
 <div class="login container">
     <div class="span7">
     	<img src="img/logo.gif"/>
-    	<form class="loginForm form-horizontal">
-	    	<legend>Login</legend>
-			<div class="serverAddressDiv control-group">
-				<label class="control-label" for="inputServer">Server</label>
-				<div class="controls">
-					<div class="btn-group input-append">
-						<div class="input-prepend input-append">
-	  						<span class="add-on">http://</span>
-							<input type="text" id="inputServer" class="address" placeholder="BIMserver">
+    	<div class="form">
+	    	<form class="loginForm form-horizontal">
+		    	<legend>Login</legend>
+				<div class="serverAddressDiv control-group">
+					<label class="control-label" for="inputServer">Server</label>
+					<div class="controls">
+						<div class="btn-group input-append">
+							<div class="input-prepend input-append">
+		  						<span class="add-on">http://</span>
+								<input type="text" id="inputServer" class="address" placeholder="BIMserver">
+							</div>
+							<a class="btn dropdown-toggle btn" title="Suggestions" data-toggle="dropdown"><i class="icon-star"></i></a>
+							<ul id="serverDropdown" class="dropdown-menu">
+							</ul>
 						</div>
-						<a class="btn dropdown-toggle btn" title="Suggestions" data-toggle="dropdown"><i class="icon-star"></i></a>
-						<ul id="serverDropdown" class="dropdown-menu">
-						</ul>
 					</div>
 				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="inputEmail">Username</label>
-				<div class="controls">
-					<div class="input-prepend">
-	  					<span class="add-on">@</span>
-						<input type="email" class="username" id="inputEmail" placeholder="Username (e-mail address)">
+				<div class="control-group">
+					<label class="control-label" for="inputEmail">Username</label>
+					<div class="controls">
+						<div class="input-prepend">
+		  					<span class="add-on">@</span>
+							<input type="email" class="username" id="inputEmail" placeholder="Username (e-mail address)">
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="inputPassword">Password</label>
-				<div class="controls">
-					<div class="input-prepend">
-		 				<span class="add-on"><i class="glyphicon-lock"></i></span>
-						<input type="password" class="password" id="inputPassword" placeholder="Password">
+				<div class="control-group">
+					<label class="control-label" for="inputPassword">Password</label>
+					<div class="controls">
+						<div class="input-prepend">
+			 				<span class="add-on"><i class="glyphicon-lock"></i></span>
+							<input type="password" class="password" id="inputPassword" placeholder="Password">
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<label class="checkbox"> <input type="checkbox" class="rememberme" id="rememberMe"> Remember me
-					</label>
-					<button type="button" class="btn loginButton btn-primary">Sign in</button>
-					<button type="button" class="btn resetPasswordButton">Reset password</button>
-					<button type="button" class="btn registerButton initialhide">Register</button>
-					<!-- <button type="button" class="btn openIdButton">OpenID (beta)</button> -->
+				<div class="control-group">
+					<div class="controls">
+						<label class="checkbox"> <input type="checkbox" class="rememberme" id="rememberMe"> Remember me
+						</label>
+						<button type="button" class="btn loginButton btn-primary">Sign in</button>
+						<button type="button" class="btn resetPasswordButton">Reset password</button>
+						<button type="button" class="btn registerButton initialhide">Register</button>
+						<!-- <button type="button" class="btn openIdButton">OpenID (beta)</button> -->
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 		<div class="openidDiv initialhide">
 			<a class="googleLink"><img src="images.large/google.gif"/></a>
 		</div>
@@ -136,8 +138,20 @@ function Login(address, username) {
 		$(".loginForm").hide();
 	};
 	
+	this.registerClick = function(){
+		$(".form").load("register.html", function(){
+			new Register($(this));
+		});
+	};
+	
+	$(".registerButton").click(othis.registerClick);;
+	
 	$(".resetPasswordButton").click(function(){
 		othis.resetPassword("http://" + $("#inputServer").val());
+	});
+	
+	Global.bimServerApi.call("SettingsInterface", "isAllowSelfRegistration", {}, function(enabled){
+		$(".registerButton").show();
 	});
 	
 	if (Settings.allowBimServerAddress()) {
@@ -149,6 +163,8 @@ function Login(address, username) {
 			$("#inputPassword").focus();
 		}
 	}
+	
+	pushHistory({page: "Login"}, "Login");
 	
 	$(".googleLink").click(function(){
 		$.cookie("address", Global.bimServerApi.baseUrl);

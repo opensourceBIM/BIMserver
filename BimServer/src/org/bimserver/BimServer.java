@@ -486,7 +486,7 @@ public class BimServer {
 
 	private <T extends PluginConfiguration> T find(List<T> list, String name) {
 		for (T t : list) {
-			if (t.getName().equals(name)) {
+			if (t.getClassName().equals(name)) {
 				return t;
 			}
 		}
@@ -509,8 +509,7 @@ public class BimServer {
 			session.store(user);
 		}
 		for (ObjectIDMPlugin objectIDMPlugin : pluginManager.getAllObjectIDMPlugins(true)) {
-			String name = objectIDMPlugin.getDefaultName();
-			ObjectIDMPluginConfiguration objectIdmPluginConfiguration = find(userSettings.getObjectIDMs(), name);
+			ObjectIDMPluginConfiguration objectIdmPluginConfiguration = find(userSettings.getObjectIDMs(), objectIDMPlugin.getClass().getName());
 			if (objectIdmPluginConfiguration == null) {
 				objectIdmPluginConfiguration = session.create(ObjectIDMPluginConfiguration.class);
 				userSettings.getObjectIDMs().add(objectIdmPluginConfiguration);
@@ -524,8 +523,7 @@ public class BimServer {
 			userSettings.setDefaultObjectIDM(userSettings.getObjectIDMs().get(0));
 		}
 		for (RenderEnginePlugin ifcEnginePlugin : pluginManager.getAllRenderEnginePlugins(true)) {
-			String name = ifcEnginePlugin.getDefaultName();
-			RenderEnginePluginConfiguration ifcEnginePluginConfiguration = find(userSettings.getRenderEngines(), name);
+			RenderEnginePluginConfiguration ifcEnginePluginConfiguration = find(userSettings.getRenderEngines(), ifcEnginePlugin.getClass().getName());
 			if (ifcEnginePluginConfiguration == null) {
 				ifcEnginePluginConfiguration = session.create(RenderEnginePluginConfiguration.class);
 				userSettings.getRenderEngines().add(ifcEnginePluginConfiguration);
@@ -539,8 +537,7 @@ public class BimServer {
 			userSettings.setDefaultRenderEngine(userSettings.getRenderEngines().get(0));
 		}
 		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
-			String name = queryEnginePlugin.getDefaultName();
-			QueryEnginePluginConfiguration queryEnginePluginConfiguration = find(userSettings.getQueryengines(), name);
+			QueryEnginePluginConfiguration queryEnginePluginConfiguration = find(userSettings.getQueryengines(), queryEnginePlugin.getClass().getName());
 			if (queryEnginePluginConfiguration == null) {
 				queryEnginePluginConfiguration = session.create(QueryEnginePluginConfiguration.class);
 				userSettings.getQueryengines().add(queryEnginePluginConfiguration);
@@ -554,8 +551,7 @@ public class BimServer {
 			userSettings.setDefaultQueryEngine(userSettings.getQueryengines().get(0));
 		}
 		for (ModelMergerPlugin modelMergerPlugin : pluginManager.getAllModelMergerPlugins(true)) {
-			String name = modelMergerPlugin.getDefaultName();
-			ModelMergerPluginConfiguration modelMergerPluginConfiguration = find(userSettings.getModelmergers(), name);
+			ModelMergerPluginConfiguration modelMergerPluginConfiguration = find(userSettings.getModelmergers(), modelMergerPlugin.getClass().getName());
 			if (modelMergerPluginConfiguration == null) {
 				modelMergerPluginConfiguration = session.create(ModelMergerPluginConfiguration.class);
 				userSettings.getModelmergers().add(modelMergerPluginConfiguration);
@@ -569,8 +565,7 @@ public class BimServer {
 			userSettings.setDefaultModelMerger(userSettings.getModelmergers().get(0));
 		}
 		for (ModelComparePlugin modelComparePlugin : pluginManager.getAllModelComparePlugins(true)) {
-			String name = modelComparePlugin.getDefaultName();
-			ModelComparePluginConfiguration modelComparePluginConfiguration = find(userSettings.getModelcompares(), name);
+			ModelComparePluginConfiguration modelComparePluginConfiguration = find(userSettings.getModelcompares(), modelComparePlugin.getClass().getName());
 			if (modelComparePluginConfiguration == null) {
 				modelComparePluginConfiguration = session.create(ModelComparePluginConfiguration.class);
 				userSettings.getModelcompares().add(modelComparePluginConfiguration);
@@ -584,8 +579,7 @@ public class BimServer {
 			userSettings.setDefaultModelCompare(userSettings.getModelcompares().get(0));
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
-			String name = serializerPlugin.getDefaultName();
-			SerializerPluginConfiguration serializerPluginConfiguration = find(userSettings.getSerializers(), name);
+			SerializerPluginConfiguration serializerPluginConfiguration = find(userSettings.getSerializers(), serializerPlugin.getClass().getName());
 			if (serializerPluginConfiguration == null) {
 				serializerPluginConfiguration = session.create(SerializerPluginConfiguration.class);
 				userSettings.getSerializers().add(serializerPluginConfiguration);
@@ -601,8 +595,7 @@ public class BimServer {
 			userSettings.setDefaultSerializer(userSettings.getSerializers().get(0));
 		}
 		for (ServicePlugin servicePlugin : pluginManager.getAllServicePlugins(true)) {
-			String name = servicePlugin.getTitle();
-			InternalServicePluginConfiguration internalServicePluginConfiguration = find(userSettings.getServices(), name);
+			InternalServicePluginConfiguration internalServicePluginConfiguration = find(userSettings.getServices(), servicePlugin.getClass().getName());
 			if (internalServicePluginConfiguration == null) {
 				internalServicePluginConfiguration = session.create(InternalServicePluginConfiguration.class);
 				userSettings.getServices().add(internalServicePluginConfiguration);
@@ -610,8 +603,7 @@ public class BimServer {
 			}
 		}
 		for (DeserializerPlugin deserializerPlugin : pluginManager.getAllDeserializerPlugins(true)) {
-			String name = deserializerPlugin.getDefaultName();
-			DeserializerPluginConfiguration deserializerPluginConfiguration = find(userSettings.getDeserializers(), name);
+			DeserializerPluginConfiguration deserializerPluginConfiguration = find(userSettings.getDeserializers(), deserializerPlugin.getClass().getName());
 			if (deserializerPluginConfiguration == null) {
 				deserializerPluginConfiguration = session.create(DeserializerPluginConfiguration.class);
 				userSettings.getDeserializers().add(deserializerPluginConfiguration);
@@ -674,8 +666,7 @@ public class BimServer {
 			
 			ServerSettings serverSettings = serverSettingsCache.getServerSettings();
 			for (WebModulePlugin webModulePlugin : pluginManager.getAllWebPlugins(true)) {
-				String name = webModulePlugin.getDefaultName();
-				WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), name);
+				WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), webModulePlugin.getClass().getName());
 				if (webPluginConfiguration == null) {
 					webPluginConfiguration = session.create(WebModulePluginConfiguration.class);
 					serverSettings.getWebModules().add(webPluginConfiguration);

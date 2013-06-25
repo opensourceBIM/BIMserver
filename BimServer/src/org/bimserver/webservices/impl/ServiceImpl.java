@@ -308,10 +308,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public SUser addUser(String username, String name, SUserType type, Boolean selfRegistration, String resetUrl) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			if (!selfRegistration) {
-				requireRealUserAuthentication();
-			} else if (!getBimServer().getServerSettingsCache().getServerSettings().getAllowSelfRegistration()) {
+			if (selfRegistration) {
 				requireSelfregistrationAllowed();
+			} else if (!getBimServer().getServerSettingsCache().getServerSettings().getAllowSelfRegistration()) {
+				requireRealUserAuthentication();
 			}
 			BimDatabaseAction<User> action = new AddUserDatabaseAction(getBimServer(), session, getInternalAccessMethod(), username, name, getBimServer().getSConverter().convertFromSObject(type), getAuthorization(),
 					selfRegistration, resetUrl);
@@ -461,7 +461,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public Long downloadCompareResults(Long serializerOid, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return ((Bimsie1ServiceIImpl)getServiceMap().getBimsie1ServiceInterface()).download(DownloadParameters.fromCompare(roid1, roid2, getBimServer().getSConverter().convertFromSObject(type), mcid, serializerOid), sync);
+		return ((Bimsie1ServiceIImpl)getServiceMap().getBimsie1ServiceInterface()).download(DownloadParameters.fromCompare(getBimServer(), roid1, roid2, getBimServer().getSConverter().convertFromSObject(type), mcid, serializerOid), sync);
 	}
 
 	@Override

@@ -211,7 +211,7 @@ public class ClientIfcModel extends IfcModel {
 		WaitingList<Long> waitingList = new WaitingList<Long>();
 		try {
 			InputStream downloadData = bimServerClient.getDownloadData(download, getIfcSerializerOid());
-			boolean log = true;
+			boolean log = false;
 			// TODO Make this streaming again, make sure the EmfSerializer getInputStream method is working properly
 			if (log) {
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();

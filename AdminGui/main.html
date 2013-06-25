@@ -29,7 +29,7 @@ function Main(address, username) {
 
 	History.Adapter.bind(window, "statechange", function(){
 		if (!pushing) {
-	        othis.show(false);
+	        othis.show();
 		}
     });
 	
@@ -99,7 +99,6 @@ function Main(address, username) {
 	
 	this.showResetPassword = function(callback) {
 		othis.pageChanger.changePage($(".projectsLink"), "resetpassword.html", function(){
-			pushHistory({page: "ResetPassword"}, "Reset Password");
 			return new ResetPassword($(this), othis);
 		}, callback);
 	};
@@ -138,35 +137,33 @@ function Main(address, username) {
 			return new AddService(othis, project);
 		}, callback);
 	};
-	
+
 	this.showAddService2 = function(project, serviceDescriptor, isLocal, callback) {
 		othis.pageChanger.changePage($(".projectsLink"), "addservice2.html", function(){
 			pushHistory({page: "AddService2"}, "Add Service");
 			return new AddService2(othis, project, serviceDescriptor, isLocal);
 		}, callback);
 	};
-	
+
 	this.showProject = function(project, callback) {
 		othis.pageChanger.changePage($(".projectsLink"), "project.html", function(){
-			pushHistory({page: "Project", "poid": typeof project == "object" ? project.oid : project}, "Project");
 			return new Project($(this), othis, project);
 		}, callback);
 	};
 
 	this.showRevision = function(revision, callback) {
 		othis.pageChanger.changePage($(".projectsLink"), "revision.html", function(){
-			pushHistory({page: "Revision", "roid": typeof revision == "object" ? revision.oid : revision}, "Revision");
 			return new Revision(othis, revision);
 		}, callback);
 	};
-	
+
 	this.showUsers = function(callback) {
 		othis.pageChanger.changePage($(".usersLink"), "users.html", function(){
 			pushHistory({page: "Users"}, "Users");
 			return new Users(othis);
 		}, callback);
 	};
-	
+
 	this.showUserSettings = function(callback) {
 		othis.pageChanger.changePage($(".usersettingsLink"), "usersettings.html", function(){
 			return new UserSettings(othis);

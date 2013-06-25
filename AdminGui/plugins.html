@@ -16,10 +16,10 @@ function Plugins(main, serversettings) {
 
 	this.changeEnabled = function(){
 		var name = $(this).attr("name");
-		if ($(this).attr("checked") == "checked") {
-			Global.bimServerApi.callWithFullIndication("AdminInterface", "disablePlugin", {name: name}, function(){});
-		} else {
+		if ($(this).is(":checked")) {
 			Global.bimServerApi.callWithFullIndication("AdminInterface", "enablePlugin", {name: name}, function(){});
+		} else {
+			Global.bimServerApi.callWithFullIndication("AdminInterface", "disablePlugin", {name: name}, function(){});
 		}
 	};
 	
