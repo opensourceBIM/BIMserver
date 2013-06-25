@@ -53,6 +53,12 @@
 		<appender-ref ref="OutConsole" />
 		<appender-ref ref="File" />
 	</logger>
+	<logger name="org.openid4java">
+		<level value="ERROR" />
+		<appender-ref ref="ErrorConsole" />
+		<appender-ref ref="OutConsole" />
+		<appender-ref ref="File" />
+	</logger>
 	<logger name="org.bimserver.ifcengine">
 		<level value="DEBUG" />
 		<appender-ref ref="ErrorConsole" />
