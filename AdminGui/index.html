@@ -3,7 +3,7 @@
   <head>
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
-	<base href="/"></base>
+	<base href="/"/>
   </head>
   <body>
 	<div class="alert fade in genericErrors" id="login-error" style="display:none;">
@@ -154,7 +154,7 @@
 			
 			this.showResetPassword = function() {
 				$(".indexcontainer").load(Global.baseDir + "resetpassword.html", function(){
-					new ResetPassword();
+					new ResetPassword($(this), null);
 				});
 			};
 			

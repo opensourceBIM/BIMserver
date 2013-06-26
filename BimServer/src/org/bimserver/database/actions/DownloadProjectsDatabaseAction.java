@@ -47,7 +47,6 @@ import org.bimserver.webservices.authorization.Authorization;
 public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
 	private final Set<Long> roids;
-	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private long serializerOid;
@@ -90,7 +89,11 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 						@Override
 						public void objectAdded() {
 							total.incrementAndGet();
-							progress = Math.round(100L * total.get() / totalSize);
+							if (totalSize == 0) {
+								setProgress("Preparing download...", 0);
+							} else {
+								setProgress("Preparing download...", Math.round(100L * total.get() / totalSize));
+							}
 						}
 					});
 					getDatabaseSession().getMap(subModel, query);
@@ -121,9 +124,4 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 		ifcModel.getModelMetaData().setName(projectName);
 		return ifcModel;
 	}
-
-	public int getProgress() {
-		return progress;
-	}
-
 }

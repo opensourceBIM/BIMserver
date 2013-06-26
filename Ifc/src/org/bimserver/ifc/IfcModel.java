@@ -367,10 +367,8 @@ public class IfcModel implements IfcModelInterface {
 					indexGuid(eObject);
 				}
 			}
-			if (!changeListeners.isEmpty()) {
-				for (IfcModelChangeListener ifcModelChangeListener : changeListeners) {
-					ifcModelChangeListener.objectAdded();
-				}
+			for (IfcModelChangeListener ifcModelChangeListener : changeListeners) {
+				ifcModelChangeListener.objectAdded();
 			}
 		}
 	}

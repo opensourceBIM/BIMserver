@@ -18,7 +18,7 @@ public class IntelligentGuidBasedModelMergerPlugin implements ModelMergerPlugin 
 
 	@Override
 	public String getDescription() {
-		return "Intelligent GUID Based Merger";
+		return "Intelligent GUID Based Fusion";
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class IntelligentGuidBasedModelMergerPlugin implements ModelMergerPlugin 
 
 	@Override
 	public String getDefaultName() {
-		return "Intelligent GUID Based Merger";
+		return "Intelligent GUID Based Fusion";
 	}
 
 	@Override

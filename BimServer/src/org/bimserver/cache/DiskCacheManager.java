@@ -17,10 +17,8 @@ package org.bimserver.cache;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -98,14 +96,14 @@ public class DiskCacheManager {
 		return null;
 	}
 
-	public OutputStream startCaching(DownloadParameters downloadParameters) {
+	public DiskCacheOutputStream startCaching(DownloadParameters downloadParameters) {
 		try {
 			LOGGER.info("Start caching " + downloadParameters.getFileName());
 			DiskCacheOutputStream out = new DiskCacheOutputStream(this, new File(cacheDir, downloadParameters.getId()), downloadParameters);
 			synchronized (busyCaching) {
 				busyCaching.put(downloadParameters, out);
 			}
-			return new BufferedOutputStream(out);
+			return out;
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);
 		}
@@ -129,5 +127,9 @@ public class DiskCacheManager {
 			busyCaching.remove(diskCacheOutputStream.getDownloadParameters());
 			cachedFileNames.add(diskCacheOutputStream.getDownloadParameters().getId());
 		}
+	}
+
+	public void remove(DiskCacheOutputStream diskCacheOutputStream) {
+		cachedFileNames.remove(diskCacheOutputStream.getDownloadParameters().getId());
 	}
 }

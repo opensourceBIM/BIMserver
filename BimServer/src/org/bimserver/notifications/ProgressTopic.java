@@ -25,9 +25,12 @@ import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProgressTopic extends Topic {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProgressTopic.class);
 	private static final int RATE_LIMIT_NANO_SECONDS = 400000000; // 400ms
 	private long uoid;
 	private SProgressTopicType type;
@@ -56,19 +59,13 @@ public class ProgressTopic extends Topic {
 					public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
 						try {
 							endPoint.getNotificationInterface().progress(key.getId(), new SConverter().convertToSObject(state));
-						} catch (UserException e) {
-							e.printStackTrace();
-						} catch (ServerException e) {
-							e.printStackTrace();
+						} catch (Exception e) {
+							LOGGER.error("", e);
 						}
 					}
 				});
-			} catch (UserException e) {
-				e.printStackTrace();
-			} catch (ServerException e) {
-				e.printStackTrace();
-			} catch (BimserverDatabaseException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				LOGGER.error("", e);
 			}
 			lastSent = System.nanoTime();
 		}
@@ -88,9 +85,10 @@ public class ProgressTopic extends Topic {
 	
 	@Override
 	public void register(EndPoint endPoint) throws TopicRegisterException {
-		if (endPoint.getUoid() != uoid) {
-			throw new TopicRegisterException("This user cannot register for updates on this Topic");
-		}
+		// TODO A more sophisticated rights checkin algorithm is needed here, for example, a user with rights on project X should be able to see all progress, also by other users
+//		if (endPoint.getUoid() != uoid) {
+//			throw new TopicRegisterException("This user cannot register for updates on this Topic");
+//		}
 		super.register(endPoint);
 	}
 

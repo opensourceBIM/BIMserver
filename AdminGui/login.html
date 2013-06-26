@@ -151,7 +151,9 @@ function Login(address, username) {
 	});
 	
 	Global.bimServerApi.call("SettingsInterface", "isAllowSelfRegistration", {}, function(enabled){
-		$(".registerButton").show();
+		if (enabled) {
+			$(".registerButton").show();
+		}
 	});
 	
 	if (Settings.allowBimServerAddress()) {

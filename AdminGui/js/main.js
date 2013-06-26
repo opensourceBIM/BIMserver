@@ -238,3 +238,15 @@ function getParameterByName(name)
   else
     return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+
+function formatLogState(state) {
+	if (state == "STARTED") {
+		return "Running";
+	} else if (state == "AS_ERROR") {
+		return "Error";
+	} else if (state == "UNKNOWN") {
+		return "Unknown";
+	} else if (state == "FINISHED") {
+		return "Done";
+	}
+}

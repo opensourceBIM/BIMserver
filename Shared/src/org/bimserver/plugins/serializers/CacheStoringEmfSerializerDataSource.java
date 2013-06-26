@@ -24,15 +24,19 @@ import org.bimserver.utils.MultiplexingOutputStream;
 
 public class CacheStoringEmfSerializerDataSource extends EmfSerializerDataSource {
 
-	private OutputStream diskCacheOutputStream;
+	private RemovableFileOutputStream diskCacheOutputStream;
 
-	public CacheStoringEmfSerializerDataSource(Serializer serializer, OutputStream diskCacheOutputStream) {
+	public CacheStoringEmfSerializerDataSource(Serializer serializer, RemovableFileOutputStream diskCacheOutputStream) {
 		super(serializer);
 		this.diskCacheOutputStream = diskCacheOutputStream;
 	}
 	
 	@Override
 	public void writeToOutputStream(OutputStream outputStream) throws SerializerException, IOException {
-		super.writeToOutputStream(new MultiplexingOutputStream(outputStream, diskCacheOutputStream));
+		try {
+			super.writeToOutputStream(new MultiplexingOutputStream(outputStream, diskCacheOutputStream));
+		} catch (Exception e) {
+			diskCacheOutputStream.remove();
+		}
 	}
 }
