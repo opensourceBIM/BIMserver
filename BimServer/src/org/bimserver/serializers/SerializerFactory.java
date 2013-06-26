@@ -111,6 +111,9 @@ public class SerializerFactory {
 								projectInfo.setY(geoTag.getY());
 								projectInfo.setZ(geoTag.getZ());
 								projectInfo.setDirectionAngle(geoTag.getDirectionAngle());
+							} else {
+								projectInfo.setX(4.8900);
+								projectInfo.setY(52.3700);
 							}
 							projectInfo.setAuthorName(username);
 							serializer.init(model, projectInfo, pluginManager, renderEnginePlugin, true);

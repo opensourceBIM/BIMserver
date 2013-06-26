@@ -34,7 +34,7 @@ function ExtendedDataSchemas(main, serversettings) {
 		var tr = $("<tr>");
 		tr.data("extendeddataschema", extendedDataSchema);
 		tr.click(function(){
-			main.showExtendedDataSchema($(this).data("extendeddataschema"));
+			main.showExtendedDataSchema($(this).data("extendeddataschema").oid);
 		});
 		
 		tr.append("<td>" + extendedDataSchema.name + "</td>");

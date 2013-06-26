@@ -82,7 +82,7 @@ public class KmzSerializer extends EmfSerializer {
 	private void writeKmlFile(OutputStream out) {
 		PrintWriter writer = new UTF8PrintWriter(out);
 		writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		writer.println("<kml xmlns=\"http://earth.google.com/kml/2.2\">");
+		writer.println("<kml xmlns=\"http://www.opengis.net/kml/2.2\">");
 		writer.println("<Placemark>");
 		writer.println("	<name>" + (getProjectInfo() != null ? getProjectInfo().getName() : "") + "</name>");
 		writer.println("	<description>" + (getProjectInfo() != null ? getProjectInfo().getDescription() : "") + "</description>");
@@ -97,9 +97,9 @@ public class KmzSerializer extends EmfSerializer {
 		writer.println("	<Model id=\"model_4\">");
 		writer.println("		<altitudeMode>relativeToGround</altitudeMode>");
 		writer.println("		<Location>");
-		writer.println("			<longitude>" + (getProjectInfo() != null ? getProjectInfo().getX() : "") + "</longitude>");
-		writer.println("			<latitude>" + (getProjectInfo() != null ? getProjectInfo().getY() : "") + "</latitude>");
-		writer.println("			<altitude>" + (getProjectInfo() != null ? getProjectInfo().getZ() : "") + "</altitude>");
+		writer.println("			<longitude>" + (getProjectInfo() != null ? getProjectInfo().getX() : "0") + "</longitude>");
+		writer.println("			<latitude>" + (getProjectInfo() != null ? getProjectInfo().getY() : "0") + "</latitude>");
+		writer.println("			<altitude>" + (getProjectInfo() != null ? getProjectInfo().getZ() : "0") + "</altitude>");
 		writer.println("		</Location>");
 		writer.println("		<Orientation>");
 		writer.println("			<heading>" + (getProjectInfo() != null ? getProjectInfo().getDirectionAngle() : "") + "</heading>");
@@ -112,8 +112,14 @@ public class KmzSerializer extends EmfSerializer {
 		writer.println("			<z>1</z>");
 		writer.println("		</Scale>");
 		writer.println("		<Link>");
-		writer.println("			<href>files/collada.dae</href>");
+		writer.println("			<href>vxvxcvcx (15).kmz/files/collada.dae</href>");
 		writer.println("		</Link>");
+		writer.println("		<ResourceMap>");
+//		writer.println("			<Alias>");
+//		writer.println("				<targetHref>../files/collada.dae</targetHref>");
+//		writer.println("				<sourceHref>../files/collada.dae</sourceHref>");
+//		writer.println("			</Alias>");
+		writer.println("		</ResourceMap>");
 		writer.println("	</Model>");
 		writer.println("</Placemark>");
 		writer.println("</kml>");

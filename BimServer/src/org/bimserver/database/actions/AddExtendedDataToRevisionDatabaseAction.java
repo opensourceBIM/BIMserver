@@ -64,6 +64,10 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 		getDatabaseSession().store(revision);
 		getIdEObject().setProject(revision.getProject());
 		
+		if (getIdEObject().getSchema() != null) {
+			getDatabaseSession().store(getIdEObject().getSchema());
+		}
+
 		final ExtendedDataAddedToRevision extendedDataAddedToRevision = LogFactory.eINSTANCE.createExtendedDataAddedToRevision();
 		extendedDataAddedToRevision.setAccessMethod(getAccessMethod());
 		extendedDataAddedToRevision.setDate(new Date());

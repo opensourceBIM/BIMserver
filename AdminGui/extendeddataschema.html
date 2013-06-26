@@ -4,13 +4,13 @@
 		<div class="control-group">
 			<label class="control-label" for="inputName">Name</label>
 			<div class="controls">
-				<input type="text" class="inputName input-xxlarge" id="inputName" placeholder="Name">
+				<input type="text" class="inputName input-xxlarge uneditable-input" id="inputName" placeholder="Name">
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputNamespace">Namespace</label>
 			<div class="controls">
-				<input type="text" class="inputNamespace input-xxlarge" id="inputNamespace" placeholder="Namespace">
+				<input type="text" class="inputNamespace input-xxlarge uneditable-input" id="inputNamespace" placeholder="Namespace">
 			</div>
 		</div>
 		<div class="control-group">
@@ -23,7 +23,7 @@
 		</div>
 		<div class="control-group">
 			<div class="controls">
-				<label class="validateInput checkbox"> <input type="checkbox"> Validate
+				<label class="validateInput checkbox"> <input type="checkbox" class="uneditable-input"> Validate
 				</label>
 			</div>
 		</div>
@@ -43,17 +43,21 @@
 	</form>
 </div>
 <script>
-function ExtendedDataSchema(main, extendedDataSchema) {
+function ExtendedDataSchema(main, oid) {
 	var othis = this;
 	
 	this.close = function(){
 	};
 	
-	$(".extendeddataschema .inputName").val(extendedDataSchema.name);
-	$(".extendeddataschema .inputNamespace").val(extendedDataSchema.namespace);
-	$(".extendeddataschema .inputUrl").val(extendedDataSchema.url);
-	$(".extendeddataschema .validateInput").val(extendedDataSchema.validate);
-	$(".extendeddataschema .typeSelect").val(extendedDataSchema.type);
+	Global.bimServerApi.call("Bimsie1ServiceInterface", "getExtendedDataSchemaById", {oid: oid}, function(extendedDataSchema){
+		othis.extendedDataSchema = extendedDataSchema;
+		pushHistory({page: "ServerSettings", subpage: "ExtendedDataSchema", edsid: othis.extendedDataSchema.oid}, "Server Settings - Extended Data Schema");
+		$(".extendeddataschema .inputName").val(othis.extendedDataSchema.name);
+		$(".extendeddataschema .inputNamespace").val(othis.extendedDataSchema.namespace);
+		$(".extendeddataschema .inputUrl").val(othis.extendedDataSchema.url);
+		$(".extendeddataschema .validateInput").val(othis.extendedDataSchema.validate);
+		$(".extendeddataschema .typeSelect").val(othis.extendedDataSchema.type);
+	});
 	
 	this.saveClick = function(event) {
 		
@@ -62,7 +66,7 @@ function ExtendedDataSchema(main, extendedDataSchema) {
 	this.cancelClick = function(event) {
 		event.preventDefault();
 		main.showServerSettings(function(){
-			main.current.showExtendedDataSchemas();
+			this.showExtendedDataSchemas();
 		});
 	};
 	

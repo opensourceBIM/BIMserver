@@ -12,6 +12,20 @@ function stripLastSlash(str) {
     return str;
 }
 
+function createUserLink(main, uoid) {
+	if (uoid == -1) {
+		return "";			
+	} else {
+		var link = $("<a>Loading...</a>");
+		link.attr("uoid", uoid);
+		link.click(function(){
+			main.showUser(uoid, null, true);
+		});
+		loadUser(link);
+		return link;
+	}
+};
+
 function getBaseURL () {
 	var loc = document.location;
 	if (loc.endsWith(".html")) {

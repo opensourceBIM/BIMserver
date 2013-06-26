@@ -34,7 +34,13 @@ function BimServerApi(baseUrl, notifier) {
 		SETSERVERSETTINGS_DONE: "Server settings successfully updated",
 		ENABLEPLUGIN_DONE: "Plugin successfully enabled",
 		DISABLEPLUGIN_DONE: "Plugin successfully disabled",
-		SETDEFAULTWEBMODULE_DONE: "Default webmodule changed, a restart of the BIMserver is required for the changes to take effect"
+		SETDEFAULTWEBMODULE_DONE: "Default webmodule changed, a restart of the BIMserver is required for the changes to take effect",
+		SETDEFAULTQUERYENGINE_DONE: "Default Query Engine successfully changed",
+		SETDEFAULTMODELMERGER_DONE: "Default Model Merger successfully changed",
+		SETDEFAULTSERIALIZER_DONE: "Default Serializer successfully changed",
+		SETDEFAULTOBJECTIDM_DONE: "Default ObjectIDM successfully changed",
+		SETDEFAULTRENDERENGINE_DONE: "Default Render Engine successfully changed",
+		SETDEFAULTMODELCOMPARE_DONE: "Default Model Compare successfully changed"
 	}
 	
 	othis.token = null;
