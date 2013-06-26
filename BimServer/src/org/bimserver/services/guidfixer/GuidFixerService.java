@@ -123,7 +123,7 @@ public class GuidFixerService extends ServicePlugin {
 					if (fixed > 0) {
 						model.commit("Fixed " + fixed + " GUIDs");
 					}
-					
+
 					state = new SLongActionState();
 					state.setProgress(100);
 					state.setTitle("GUID fixer");

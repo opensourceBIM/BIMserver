@@ -18,7 +18,7 @@ public class IntelligentNameBasedModelMergerPlugin implements ModelMergerPlugin 
 
 	@Override
 	public String getDescription() {
-		return "Intelligent Name Based Merger";
+		return "Intelligent Name Based Fusion";
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class IntelligentNameBasedModelMergerPlugin implements ModelMergerPlugin 
 
 	@Override
 	public String getDefaultName() {
-		return "Intelligent Name Based Merger";
+		return "Intelligent Name Based Fusion";
 	}
 
 	@Override

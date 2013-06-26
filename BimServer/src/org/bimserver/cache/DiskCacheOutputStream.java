@@ -19,14 +19,14 @@ package org.bimserver.cache;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.plugins.serializers.RemovableFileOutputStream;
 
-public class DiskCacheOutputStream extends FileOutputStream {
+public class DiskCacheOutputStream extends RemovableFileOutputStream {
 
 	private DiskCacheManager diskCacheManager;
 	private File file;
@@ -53,6 +53,12 @@ public class DiskCacheOutputStream extends FileOutputStream {
 		super.close();
 		diskCacheManager.doneGenerating(this);
 		latch.countDown();
+	}
+	
+	@Override
+	public void remove() {
+		super.remove();
+		diskCacheManager.remove(this);
 	}
 
 	public String getName() {

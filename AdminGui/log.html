@@ -31,7 +31,9 @@ function Log(containerDiv, settings, main) {
 		containerDiv.find("table").show();
 		containerDiv.find(".nologs").hide();
 		var tr = containerDiv.find("table tr[tid=\"" + topicId + "\"]");
+		var created = false;
 		if (tr.length == 0) {
+			created = true;
 			tr = $("<tr>");
 			tr.attr("tid", topicId);
 			tr.append("<td class=\"start\"></td>");
@@ -39,6 +41,33 @@ function Log(containerDiv, settings, main) {
 			tr.append("<td class=\"title\"></td>");
 			tr.append("<td class=\"state\"></td>");
 			tr.append("<td class=\"progresstd\" width=\"200px\"><div class=\"progress\"><div class=\"bar\"></div></div></td>");
+		}
+		tr.find(".start").html(formatDateTimeShortest(new Date(state.start)));
+		var diff = (state.end != null ? new Date(state.end) : new Date()).getTime() - new Date(state.start).getTime();
+		tr.find(".duration").attr("start", state.start);
+		tr.find(".duration").attr("end", state.end);
+		tr.find(".duration").html(formatDuration(diff, true));
+		if (state.end == null) {
+			tr.find(".duration").css("color", "red");
+		} else {
+			tr.find(".duration").css("color", "black");	
+		}
+		tr.find(".title").html(state.title);
+		tr.find(".state").html(formatLogState(state.state));
+		if (state.progress == -1 || state.progress == 0) {
+			if (state.state == "FINISHED" || state.state == "AS_ERROR") {
+				tr.find(".progress").hide();
+			} else {
+				tr.find(".progress").addClass("progress-striped").addClass("active");
+				tr.find(".progress .bar").css("width", "100%");
+			}
+		} else if (state.progress == 100) {
+			tr.find(".progress").hide();
+		} else {
+			tr.find(".progress .bar").css("width", state.progress + "%");
+			tr.find(".progress").removeClass("progress-striped").removeClass("active");
+		}
+		if (created) {
 			if (containerDiv.find("table tbody tr").length > 0) {
 				var foundElement = null;
 				containerDiv.find("table tbody tr").each(function(){
@@ -55,31 +84,6 @@ function Log(containerDiv, settings, main) {
 			} else {
 				containerDiv.find("table tbody").append(tr);
 			}
-		}
-		tr.find(".start").html(formatDateTimeShortest(new Date(state.start)));
-		var diff = (state.end != null ? new Date(state.end) : new Date()).getTime() - new Date(state.start).getTime();
-		tr.find(".duration").attr("start", state.start);
-		tr.find(".duration").attr("end", state.end);
-		tr.find(".duration").html(formatDuration(diff, true));
-		if (state.end == null) {
-			tr.find(".duration").css("color", "red");	
-		} else {
-			tr.find(".duration").css("color", "black");	
-		}
-		tr.find(".title").html(state.title);
-		tr.find(".state").html(state.state);
-		if (state.progress == -1) {
-			if (state.state != "FINISHED") {
-				tr.find(".progress").addClass("progress-striped").addClass("active");
-				tr.find(".progress .bar").css("width", "100%");
-			} else {
-				tr.find(".progress").hide();
-			}
-		} else if (state.progress == 100) {
-			tr.find(".progress").hide();
-		} else {
-			tr.find(".progress .bar").css("width", state.progress + "%");
-			tr.find(".progress").removeClass("progress-striped").removeClass("active");
 		}
 	};
 

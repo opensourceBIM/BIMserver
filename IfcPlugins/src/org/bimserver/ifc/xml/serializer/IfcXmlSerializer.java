@@ -46,7 +46,7 @@ import org.bimserver.plugins.schema.StringType;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -203,7 +203,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 							printLine("</" + structuralFeature.getName() + ">");
 						}
 					} else {
-						BasicEList<?> list = (BasicEList<?>) value;
+						AbstractEList<?> list = (AbstractEList<?>) value;
 						String type = "set";
 						if (attributeBN instanceof ExplicitAttribute) {
 							ExplicitAttribute explicitAttribute = (ExplicitAttribute) attributeBN;

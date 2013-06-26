@@ -20,7 +20,11 @@ package org.bimserver.webservices;
 import java.util.concurrent.TimeUnit;
 
 import org.bimserver.BimServer;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ObjectState;
+import org.bimserver.models.store.User;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.AnonymousAuthorization;
@@ -46,6 +50,18 @@ public class PublicInterfaceFactory implements ServiceFactory {
 	public synchronized ServiceMap get(String token, AccessMethod accessMethod) throws UserException {
 		try {
 			Authorization authorization = Authorization.fromToken(bimServer.getEncryptionKey(), token);
+			DatabaseSession session = bimServer.getDatabase().createSession();
+			try {
+				User user = session.get(authorization.getUoid(), Query.getDefault());
+				if (user == null) {
+					throw new UserException("No user found with uoid " + authorization.getUoid());
+				}
+				if (user.getState() == ObjectState.DELETED) {
+					throw new UserException("User has been deleted");
+				}
+			} finally {
+				session.close();
+			}
 			return get(authorization, accessMethod);
 		} catch (Exception e) {
 			throw new UserException(e);
