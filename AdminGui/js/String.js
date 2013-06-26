@@ -12,7 +12,7 @@ if (typeof String.prototype.firstUpper != 'function') {
 
 if (typeof String.prototype.endsWith != 'function') {
 	String.prototype.endsWith = function(str) {
-		return this.lastIndexOf(str) == this.length - str.length;
+		return this.length > str.length && this.lastIndexOf(str) == this.length - str.length;
 	};
 }
 
@@ -47,3 +47,13 @@ if (typeof String.prototype.contains != 'function') {
 		return this.indexOf(needle) != -1;
 	};
 }
+
+String.prototype.replaceAll = function(search, replace)
+{
+    //if replace is null, return original string otherwise it will
+    //replace search string with 'undefined'.
+    if(!replace) 
+        return this;
+
+    return this.replace(new RegExp('[' + search + ']', 'g'), replace);
+};

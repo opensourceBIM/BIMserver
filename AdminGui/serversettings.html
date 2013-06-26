@@ -46,10 +46,9 @@
 			}, callback);
 		};
 		
-		this.showExtendedDataSchema = function(extendedDataSchema, callback) {
+		this.showExtendedDataSchema = function(oid, callback) {
 			othis.changePage($(".extendedDataSchemasLink"), "extendeddataschema.html", function(){
-				othis.current = new ExtendedDataSchema(main, extendedDataSchema);
-				pushHistory({page: "ServerSettings", subpage: "ExtendedDataSchema"}, "Server Settings");
+				othis.current = new ExtendedDataSchema(main, oid);
 			}, callback);
 		};
 
@@ -106,6 +105,8 @@
 			othis.showWebModules();
 		} else if (history.subpage == "ExtendedDataSchemas") {
 			othis.showExtendedDataSchemas();
+		} else if (history.subpage == "ExtendedDataSchema") {
+			othis.showExtendedDataSchema(history.edsid);
 		} else {
 			othis.showBasicServerSettings();
 		}

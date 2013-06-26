@@ -16,7 +16,7 @@ public class DefaultWebModulePlugin extends AbstractWebModulePlugin {
 	
 	@Override
 	public String getDescription() {
-		return "Default Web GUI";
+		return "Default Web GUI (only shows server version/status)";
 	}
 
 	@Override

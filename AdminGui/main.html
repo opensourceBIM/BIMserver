@@ -126,8 +126,7 @@ function Main(address, username) {
 
 	this.showUser = function(user, callback) {
 		othis.pageChanger.changePage($(".usersLink"), "user.html", function(){
-			pushHistory({page: "User", uoid: user.oid}, "User " + user.name);
-			return new User(othis, user);
+			return new User($(this), othis, user);
 		}, callback);
 	};
 
@@ -160,7 +159,7 @@ function Main(address, username) {
 	this.showUsers = function(callback) {
 		othis.pageChanger.changePage($(".usersLink"), "users.html", function(){
 			pushHistory({page: "Users"}, "Users");
-			return new Users(othis);
+			return new Users($(this), othis);
 		}, callback);
 	};
 
@@ -170,9 +169,9 @@ function Main(address, username) {
 		}, callback);
 	};
 
-	this.showExtendedDataSchema = function(extendedDataSchema, callback) {
+	this.showExtendedDataSchema = function(oid, callback) {
 		this.showServerSettings(function(){
-			othis.current.showExtendedDataSchema(extendedDataSchema);
+			this.showExtendedDataSchema(oid);
 		});
 	};
 
@@ -189,6 +188,7 @@ function Main(address, username) {
 	};
 	
 	this.schemaLinkClick = function(event) {
+		othis.showExtendedDataSchema($(this).attr("soid"));
 	};
 	
 	this.showService = function(project, service, callback) {
@@ -199,7 +199,7 @@ function Main(address, username) {
 	
 	this.showServerSettings = function(callback) {
 		if (othis.current != null && othis.current.getName != null && othis.current.getName() == "ServerSettings") {
-			callback();
+			callback.call(othis.current);
 		} else {
 			othis.pageChanger.changePage($(".serversettingsLink"), "serversettings.html", function(){
 				return new ServerSettings(othis);
@@ -222,7 +222,7 @@ function Main(address, username) {
 
 	this.extendedDataSchemaClick = function(event){
 		event.preventDefault();
-		othis.showExtendedDataSchema($(this).data("extendeddataschema"));
+		othis.showExtendedDataSchema($(this).data("extendeddataschema").oid);
 	};
 	
 	this.createExtendedDataSchemaLink = function(extendedDataSchema) {
