@@ -26,6 +26,7 @@ import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
+import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -86,7 +87,8 @@ public class TestIfcEngineEmbedded {
 			// Iterate over the IfcEngines and see if there is one matching the classname specified above
 			boolean ifcEngineFound = false;
 			for (SRenderEnginePluginConfiguration conf : client.getPluginInterface().getAllRenderEngines(false)) {
-				if (ifcEngineToUse.equals(conf.getClassName())) {
+				SPluginDescriptor pluginDescriptor = client.getPluginInterface().getPluginDescriptor(conf.getPluginDescriptorId());
+				if (ifcEngineToUse.equals(pluginDescriptor.getPluginClassName())) {
 					client.getPluginInterface().setDefaultRenderEngine(conf.getOid());
 					ifcEngineFound = true;
 					LOGGER.info("Using " + conf.getName());

@@ -54,7 +54,7 @@ public class GetAllModelComparesDatabaseAction extends GetAllDatabaseAction<Mode
 			Iterator<ModelComparePluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
 				ModelComparePluginConfiguration modelCompare = iterator.next();
-				if (!bimServer.getPluginManager().isEnabled(modelCompare.getClassName()) || !modelCompare.getEnabled()) {
+				if (!bimServer.getPluginManager().isEnabled(modelCompare.getPluginDescriptor().getPluginClassName()) || !modelCompare.getEnabled()) {
 					iterator.remove();
 				}
 			}

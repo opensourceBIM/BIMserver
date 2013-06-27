@@ -20,6 +20,7 @@ import org.bimserver.emf.IdEObjectImpl;
 
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.PluginConfiguration;
+import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.StorePackage;
 
 import org.eclipse.emf.ecore.EClass;
@@ -34,7 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getPluginDescriptor <em>Plugin Descriptor</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
@@ -130,8 +131,8 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getClassName() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__CLASS_NAME, true);
+	public PluginDescriptor getPluginDescriptor() {
+		return (PluginDescriptor) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR, true);
 	}
 
 	/**
@@ -139,8 +140,8 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClassName(String newClassName) {
-		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__CLASS_NAME, newClassName);
+	public void setPluginDescriptor(PluginDescriptor newPluginDescriptor) {
+		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR, newPluginDescriptor);
 	}
 
 	/**

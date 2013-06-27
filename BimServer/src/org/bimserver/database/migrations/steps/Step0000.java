@@ -211,8 +211,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(pluginConfiguration, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(pluginConfiguration, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(pluginConfiguration, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(pluginConfiguration, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		
+
 		EClass serializerPluginConfiguration = schema.createEClass(storePackage, "SerializerPluginConfiguration", pluginConfiguration);
 		EClass objectIDMPluginConfiguration = schema.createEClass(storePackage, "ObjectIDMPluginConfiguration", pluginConfiguration);
 
@@ -333,6 +332,12 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(pluginDescriptor, "enabled", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(pluginDescriptor, "pluginInterfaceClassName", ecorePackage.getEString(), Multiplicity.SINGLE);
 
+		EReference pluginConfigurationPluginDescriptor = schema.createEReference(pluginConfiguration, "pluginDescriptor", pluginDescriptor, Multiplicity.SINGLE);
+		EReference pluginDescriptorPluginConfiguration = schema.createEReference(pluginDescriptor, "configurations", pluginConfiguration, Multiplicity.MANY);
+		
+		pluginDescriptorPluginConfiguration.setEOpposite(pluginConfigurationPluginDescriptor);
+		pluginConfigurationPluginDescriptor.setEOpposite(pluginDescriptorPluginConfiguration);
+		
 		schema.createEClass(storePackage, "SerializerPluginDescriptor", pluginDescriptor);
 		schema.createEClass(storePackage, "DeserializerPluginDescriptor", pluginDescriptor);
 

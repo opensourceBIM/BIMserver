@@ -66,8 +66,8 @@ public class SDeserializerPluginConfiguration extends SPluginConfiguration imple
 		if (sField.getName().equals("description")) {
 			return getDescription();
 		}
-		if (sField.getName().equals("className")) {
-			return getClassName();
+		if (sField.getName().equals("pluginDescriptorId")) {
+			return getPluginDescriptorId();
 		}
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
@@ -97,8 +97,8 @@ public class SDeserializerPluginConfiguration extends SPluginConfiguration imple
 			setDescription((String)val);
 			return;
 		}
-		if (sField.getName().equals("className")) {
-			setClassName((String)val);
+		if (sField.getName().equals("pluginDescriptorId")) {
+			setPluginDescriptorId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("settingsId")) {

@@ -79,6 +79,7 @@ import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
+import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
@@ -94,6 +95,7 @@ import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.PluginConfiguration;
+import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
@@ -650,8 +652,19 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 	
 	@Override
-	public SObjectDefinition getPluginObjectDefinition(String className) throws ServerException, UserException {
-		return getBimServer().getSConverter().convertToSObject(getBimServer().getPluginManager().getPlugin(className, false).getSettingsDefinition());
+	public SObjectDefinition getPluginObjectDefinition(Long oid) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			PluginDescriptor pluginDescriptor = session.get(oid, Query.getDefault());
+			if (pluginDescriptor == null) {
+				throw new UserException("No PluginDescriptor found with oid " + oid);
+			}
+			return getBimServer().getSConverter().convertToSObject(getBimServer().getPluginManager().getPlugin(pluginDescriptor.getPluginClassName(), false).getSettingsDefinition());
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 	
 	@Override
@@ -674,9 +687,14 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			UserSettings userSettings = getUserSettings(session);
-			List<SSerializerPluginConfiguration> serializers = getBimServer().getSConverter().convertToSListSerializerPluginConfiguration(userSettings.getSerializers());
-			Collections.sort(serializers, new SPluginConfigurationComparator());
-			return serializers;
+			List<SSerializerPluginConfiguration> sSerializers = new ArrayList<SSerializerPluginConfiguration>();
+			for (SerializerPluginConfiguration serializerPluginConfiguration : userSettings.getSerializers()) {
+				if (!onlyEnabled || (serializerPluginConfiguration.getEnabled() && serializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
+					sSerializers.add(getBimServer().getSConverter().convertToSObject(serializerPluginConfiguration));
+				}
+			}
+			Collections.sort(sSerializers, new SPluginConfigurationComparator());
+			return sSerializers;
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -948,9 +966,15 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			UserSettings userSettings = getUserSettings(session);
-			List<SDeserializerPluginConfiguration> deserializers = getBimServer().getSConverter().convertToSListDeserializerPluginConfiguration(userSettings.getDeserializers());
-			Collections.sort(deserializers, new SPluginConfigurationComparator());
-			return deserializers;
+			EList<DeserializerPluginConfiguration> deserializers = userSettings.getDeserializers();
+			List<SDeserializerPluginConfiguration> sDeserializers = new ArrayList<SDeserializerPluginConfiguration>();
+			for (DeserializerPluginConfiguration deserializerPluginConfiguration : deserializers) {
+				if (!onlyEnabled || (deserializerPluginConfiguration.getEnabled() && deserializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
+					sDeserializers.add(getBimServer().getSConverter().convertToSObject(deserializerPluginConfiguration));
+				}
+			}
+			Collections.sort(sDeserializers, new SPluginConfigurationComparator());
+			return sDeserializers;
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -979,7 +1003,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByPluginClassNameDatabaseAction(session, getInternalAccessMethod(), pluginClassName)));
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -995,7 +1019,10 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			SSerializerPluginConfiguration serializer = getServiceMap().getBimsie1ServiceInterface().getSerializerByContentType(contentType);
 			if (serializer != null) {
 				if (serializer.getEnabled()) {
-					return getBimServer().getPluginManager().isEnabled(serializer.getClassName());
+					SPluginDescriptor pluginDescriptor = getServiceMap().getPluginInterface().getPluginDescriptor(serializer.getPluginDescriptorId());
+					if (pluginDescriptor.getEnabled()) {
+						return getBimServer().getPluginManager().isEnabled(pluginDescriptor.getPluginClassName());
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -1092,5 +1119,18 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			descriptors.add(descriptor);
 		}
 		return descriptors;
+	}
+	
+	@Override
+	public SPluginDescriptor getPluginDescriptor(Long oid) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			PluginDescriptor pluginDescriptor = session.get(oid, Query.getDefault());
+			return getBimServer().getSConverter().convertToSObject(pluginDescriptor);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

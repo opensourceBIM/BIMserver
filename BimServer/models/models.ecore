@@ -9802,7 +9802,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pluginDescriptor" eType="#/2/PluginDescriptor"
+          eOpposite="#/2/PluginDescriptor/configurations"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/2/ObjectType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SerializerPluginConfiguration" eSuperTypes="#/2/PluginConfiguration">
@@ -9912,6 +9913,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginInterfaceClassName"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="configurations" upperBound="-1"
+          eType="#/2/PluginConfiguration" eOpposite="#/2/PluginConfiguration/pluginDescriptor"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SerializerPluginDescriptor" eSuperTypes="#/2/PluginDescriptor"/>
     <eClassifiers xsi:type="ecore:EClass" name="DeserializerPluginDescriptor" eSuperTypes="#/2/PluginDescriptor"/>

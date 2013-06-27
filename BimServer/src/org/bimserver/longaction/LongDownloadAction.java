@@ -84,7 +84,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			if (serializerPluginConfiguration != null) {
 				ObjectIDMPluginConfiguration objectIdm = serializerPluginConfiguration.getObjectIDM();
 				if (objectIdm != null) {
-					ObjectIDMPlugin objectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getClassName(), true);
+					ObjectIDMPlugin objectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getPluginDescriptor().getPluginClassName(), true);
 					if (objectIDMPlugin != null) {
 						objectIDM = objectIDMPlugin.getObjectIDM(new PluginConfiguration());
 					}

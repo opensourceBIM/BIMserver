@@ -90,7 +90,7 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 			if (serializerPluginConfiguration == null) {
 				throw new UserException("No serializer with id " + serializerOid + " could be found");
 			}
-			if (!serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin") && !serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin")) {
+			if (!serializerPluginConfiguration.getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin") && !serializerPluginConfiguration.getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin")) {
 				throw new UserException("Only IFC or IFCXML allowed when checking out");
 			}
 			DownloadParameters downloadParameters = DownloadParameters.fromRoids(getBimServer(), Collections.singleton(roid), serializerOid);
@@ -309,7 +309,7 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 					try {
 						UserSettings userSettings = getUserSettings(session);
 						for (DeserializerPluginConfiguration deserializer : userSettings.getDeserializers()) {
-							if (deserializer.getClassName().equals(deserializerPlugin.getClass().getName())) {
+							if (deserializer.getPluginDescriptor().getPluginClassName().equals(deserializerPlugin.getClass().getName())) {
 								return getBimServer().getSConverter().convertToSObject(deserializer);
 							}
 						}

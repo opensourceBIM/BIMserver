@@ -383,9 +383,9 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		float[] bounds = { (sceneExtends.max[0] + sceneExtends.min[0]) * 0.5f, (sceneExtends.max[1] + sceneExtends.min[1]) * 0.5f,
 				(sceneExtends.max[2] + sceneExtends.min[2]) * 0.5f };
 		jsonWriter.beginArray();
-		jsonWriter.value(Float.isInfinite(bounds[0]) ? 50.0f : bounds[0]);
-		jsonWriter.value(Float.isInfinite(bounds[1]) ? 50.0f : bounds[1]);
-		jsonWriter.value(Float.isInfinite(bounds[2]) ? 50.0f : bounds[2]);
+		jsonWriter.value(Float.isInfinite(bounds[0]) || Float.isNaN(bounds[0]) ? 50.0f : bounds[0]);
+		jsonWriter.value(Float.isInfinite(bounds[1]) || Float.isNaN(bounds[1]) ? 50.0f : bounds[1]);
+		jsonWriter.value(Float.isInfinite(bounds[2]) || Float.isNaN(bounds[2]) ? 50.0f : bounds[2]);
 		jsonWriter.endArray();
 	}
 

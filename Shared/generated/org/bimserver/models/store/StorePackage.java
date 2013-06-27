@@ -1251,13 +1251,13 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_CONFIGURATION__DESCRIPTION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_CONFIGURATION__CLASS_NAME = 3;
+	int PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = 3;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -1315,13 +1315,13 @@ public interface StorePackage extends EPackage {
 	int SERIALIZER_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_PLUGIN_CONFIGURATION__CLASS_NAME = PLUGIN_CONFIGURATION__CLASS_NAME;
+	int SERIALIZER_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -1406,13 +1406,13 @@ public interface StorePackage extends EPackage {
 	int OBJECT_IDM_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_IDM_PLUGIN_CONFIGURATION__CLASS_NAME = PLUGIN_CONFIGURATION__CLASS_NAME;
+	int OBJECT_IDM_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -1488,13 +1488,13 @@ public interface StorePackage extends EPackage {
 	int RENDER_ENGINE_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDER_ENGINE_PLUGIN_CONFIGURATION__CLASS_NAME = PLUGIN_CONFIGURATION__CLASS_NAME;
+	int RENDER_ENGINE_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -1570,13 +1570,13 @@ public interface StorePackage extends EPackage {
 	int DESERIALIZER_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DESERIALIZER_PLUGIN_CONFIGURATION__CLASS_NAME = PLUGIN_CONFIGURATION__CLASS_NAME;
+	int DESERIALIZER_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -2294,13 +2294,22 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = 6;
 
 	/**
+	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_DESCRIPTOR__CONFIGURATIONS = 7;
+
+	/**
 	 * The number of structural features of the '<em>Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 7;
+	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.
@@ -2374,6 +2383,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Serializer Plugin Descriptor</em>' class.
@@ -2456,6 +2474,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int DESERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Deserializer Plugin Descriptor</em>' class.
@@ -3157,6 +3184,15 @@ public interface StorePackage extends EPackage {
 	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
 	 * The number of structural features of the '<em>Render Engine Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3494,6 +3530,15 @@ public interface StorePackage extends EPackage {
 	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
 	 * The number of structural features of the '<em>Query Engine Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3540,13 +3585,13 @@ public interface StorePackage extends EPackage {
 	int QUERY_ENGINE_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_ENGINE_PLUGIN_CONFIGURATION__CLASS_NAME = PLUGIN_CONFIGURATION__CLASS_NAME;
+	int QUERY_ENGINE_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -3649,6 +3694,15 @@ public interface StorePackage extends EPackage {
 	int WEB_MODULE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEB_MODULE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
 	 * The number of structural features of the '<em>Web Module Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3695,13 +3749,13 @@ public interface StorePackage extends EPackage {
 	int WEB_MODULE_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WEB_MODULE_PLUGIN_CONFIGURATION__CLASS_NAME = PLUGIN_CONFIGURATION__CLASS_NAME;
+	int WEB_MODULE_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -3804,6 +3858,15 @@ public interface StorePackage extends EPackage {
 	int MODEL_MERGER_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_MERGER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
 	 * The number of structural features of the '<em>Model Merger Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3850,13 +3913,13 @@ public interface StorePackage extends EPackage {
 	int MODEL_MERGER_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_MERGER_PLUGIN_CONFIGURATION__CLASS_NAME = PLUGIN_CONFIGURATION__CLASS_NAME;
+	int MODEL_MERGER_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -3959,6 +4022,15 @@ public interface StorePackage extends EPackage {
 	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
 	 * The number of structural features of the '<em>Model Compare Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4005,13 +4077,13 @@ public interface StorePackage extends EPackage {
 	int MODEL_COMPARE_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_COMPARE_PLUGIN_CONFIGURATION__CLASS_NAME = PLUGIN_CONFIGURATION__CLASS_NAME;
+	int MODEL_COMPARE_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -4532,6 +4604,15 @@ public interface StorePackage extends EPackage {
 	int SERVICE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
 	 * The number of structural features of the '<em>Service Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4578,13 +4659,13 @@ public interface StorePackage extends EPackage {
 	int INTERNAL_SERVICE_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERNAL_SERVICE_PLUGIN_CONFIGURATION__CLASS_NAME = PLUGIN_CONFIGURATION__CLASS_NAME;
+	int INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -7437,15 +7518,15 @@ public interface StorePackage extends EPackage {
 	EAttribute getPluginConfiguration_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginConfiguration#getClassName <em>Class Name</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.PluginConfiguration#getPluginDescriptor <em>Plugin Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Class Name</em>'.
-	 * @see org.bimserver.models.store.PluginConfiguration#getClassName()
+	 * @return the meta object for the reference '<em>Plugin Descriptor</em>'.
+	 * @see org.bimserver.models.store.PluginConfiguration#getPluginDescriptor()
 	 * @see #getPluginConfiguration()
 	 * @generated
 	 */
-	EAttribute getPluginConfiguration_ClassName();
+	EReference getPluginConfiguration_PluginDescriptor();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.store.PluginConfiguration#getSettings <em>Settings</em>}'.
@@ -8199,6 +8280,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPluginDescriptor_PluginInterfaceClassName();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.PluginDescriptor#getConfigurations <em>Configurations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Configurations</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor#getConfigurations()
+	 * @see #getPluginDescriptor()
+	 * @generated
+	 */
+	EReference getPluginDescriptor_Configurations();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.SerializerPluginDescriptor <em>Serializer Plugin Descriptor</em>}'.
@@ -12091,12 +12183,12 @@ public interface StorePackage extends EPackage {
 		EAttribute PLUGIN_CONFIGURATION__DESCRIPTION = eINSTANCE.getPluginConfiguration_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Plugin Descriptor</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN_CONFIGURATION__CLASS_NAME = eINSTANCE.getPluginConfiguration_ClassName();
+		EReference PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = eINSTANCE.getPluginConfiguration_PluginDescriptor();
 
 		/**
 		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
@@ -12691,6 +12783,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = eINSTANCE.getPluginDescriptor_PluginInterfaceClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Configurations</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PLUGIN_DESCRIPTOR__CONFIGURATIONS = eINSTANCE.getPluginDescriptor_Configurations();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.

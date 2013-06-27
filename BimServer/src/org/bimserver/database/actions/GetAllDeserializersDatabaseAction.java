@@ -54,7 +54,7 @@ public class GetAllDeserializersDatabaseAction extends GetAllDatabaseAction<Dese
 			Iterator<DeserializerPluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
 				DeserializerPluginConfiguration deserializer = iterator.next();
-				if (!bimServer.getPluginManager().isEnabled(deserializer.getClassName()) || !deserializer.getEnabled()) {
+				if (!bimServer.getPluginManager().isEnabled(deserializer.getPluginDescriptor().getPluginClassName()) || !deserializer.getEnabled()) {
 					iterator.remove();
 				}
 			}

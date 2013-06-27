@@ -95,12 +95,12 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException, BimserverDatabaseException {
 		ModelComparePluginConfiguration modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), mcid, Query.getDefault());
 		if (modelCompareObject != null) {
-			ModelComparePlugin modelComparePlugin = bimServer.getPluginManager().getModelComparePlugin(modelCompareObject.getClassName(), true);
+			ModelComparePlugin modelComparePlugin = bimServer.getPluginManager().getModelComparePlugin(modelCompareObject.getPluginDescriptor().getPluginClassName(), true);
 			if (modelComparePlugin != null) {
 				org.bimserver.plugins.modelcompare.ModelCompare modelCompare = modelComparePlugin.createModelCompare(new PluginConfiguration(modelCompareObject.getSettings()));
 				return modelCompare;
 			} else {
-				throw new ModelCompareException("No Model Compare found " + modelCompareObject.getClassName());
+				throw new ModelCompareException("No Model Compare found " + modelCompareObject.getPluginDescriptor().getPluginClassName());
 			}
 		} else {
 			throw new ModelCompareException("No configured Model Compare found");

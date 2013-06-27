@@ -65,7 +65,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
 			QueryEnginePluginConfiguration queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), qeid, Query.getDefault());
 			if (queryEngineObject != null) {
-				QueryEnginePlugin queryEnginePlugin = bimServer.getPluginManager().getQueryEngine(queryEngineObject.getClassName(), true);
+				QueryEnginePlugin queryEnginePlugin = bimServer.getPluginManager().getQueryEngine(queryEngineObject.getPluginDescriptor().getPluginClassName(), true);
 				if (queryEnginePlugin != null) {
 					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(new PluginConfiguration(queryEngineObject.getSettings()));
 					return queryEngine.query(ifcModel, code, new Reporter(){
@@ -82,7 +82,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 						public void info(String info) {
 						}}, new ModelHelper(objectIDM));
 				} else {
-					throw new UserException("No Query Engine found " + queryEngineObject.getClassName());
+					throw new UserException("No Query Engine found " + queryEngineObject.getPluginDescriptor().getPluginClassName());
 				}
 			} else {
 				throw new UserException("No configured query engine found with qeid " + qeid);

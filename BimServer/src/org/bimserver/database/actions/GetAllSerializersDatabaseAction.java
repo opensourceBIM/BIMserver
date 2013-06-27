@@ -54,7 +54,7 @@ public class GetAllSerializersDatabaseAction extends GetAllDatabaseAction<Serial
 			Iterator<SerializerPluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
 				SerializerPluginConfiguration serializer = iterator.next();
-				if (!bimServer.getPluginManager().isEnabled(serializer.getClassName()) || !serializer.getEnabled()) {
+				if (!bimServer.getPluginManager().isEnabled(serializer.getPluginDescriptor().getPluginClassName()) || !serializer.getEnabled()) {
 					iterator.remove();
 				}
 			}

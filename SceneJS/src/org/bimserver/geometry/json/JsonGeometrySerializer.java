@@ -108,9 +108,6 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 	}
 
 	private void writeGeometricObject(PrintWriter writer, IfcProduct ifcProduct) throws RenderEngineException, SerializerException, IOException {
-		if (ifcProduct.getGlobalId().equals("2udBPbKibCZ8zbfpJmtDTM")) {
-			System.out.println();
-		}
 		boolean materialFound = false;
 		String material = ifcProduct.eClass().getName();
 		if (ifcProduct instanceof IfcSlab && ((IfcSlab)ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
@@ -156,16 +153,18 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 		// If no material was found then derive one from the presentation style
 		if (!materialFound) {
 			IfcProductRepresentation representation = ifcProduct.getRepresentation();
-			EList<IfcRepresentation> representations = representation.getRepresentations();
-			for (IfcRepresentation rep : representations) {
-				EList<IfcRepresentationItem> items = rep.getItems();
-				for (IfcRepresentationItem item : items) {
-					if (item instanceof IfcStyledItem) {
-						material = processStyledItem(material, (IfcStyledItem) item);
-					} else {
-						EList<IfcStyledItem> styledByItem = item.getStyledByItem();
-						for (IfcStyledItem sItem : styledByItem) {
-							material = processStyledItem(material, sItem);
+			if (representation != null) {
+				EList<IfcRepresentation> representations = representation.getRepresentations();
+				for (IfcRepresentation rep : representations) {
+					EList<IfcRepresentationItem> items = rep.getItems();
+					for (IfcRepresentationItem item : items) {
+						if (item instanceof IfcStyledItem) {
+							material = processStyledItem(material, (IfcStyledItem) item);
+						} else {
+							EList<IfcStyledItem> styledByItem = item.getStyledByItem();
+							for (IfcStyledItem sItem : styledByItem) {
+								material = processStyledItem(material, sItem);
+							}
 						}
 					}
 				}
@@ -207,7 +206,6 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 				if (pss instanceof IfcSurfaceStyle) {
 					IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
 					material = "" + ss.getOid();
-					System.out.println(material);
 				}
 			}
 		}

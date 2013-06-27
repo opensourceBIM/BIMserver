@@ -38,6 +38,7 @@ import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
+import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
@@ -109,6 +110,10 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getAllSerializerPluginDescriptors")
 	List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws ServerException, UserException;
 
+	@WebMethod(action = "getPluginDescriptor")
+	SPluginDescriptor getPluginDescriptor(
+		@WebParam(name = "oid", partName = "getPluginDescriptor.oid") Long oid) throws ServerException, UserException;
+	
 	/**
 	 * @return List of all SerializerPluginDescriptors
 	 * @throws ServerException, UserException
@@ -481,7 +486,7 @@ public interface PluginInterface extends PublicInterface {
 
 	@WebMethod(action = "getPluginObjectDefinition")
 	SObjectDefinition getPluginObjectDefinition(
-		@WebParam(name = "className", partName = "getPluginObjectDefinition.className") String className) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getPluginObjectDefinition.oid") Long oid) throws ServerException, UserException;
 
 	@WebMethod(action = "setPluginSettings")
 	void setPluginSettings(

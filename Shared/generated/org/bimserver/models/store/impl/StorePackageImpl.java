@@ -1969,8 +1969,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginConfiguration_ClassName() {
-		return (EAttribute) getPluginConfiguration().getEStructuralFeatures().get(3);
+	public EReference getPluginConfiguration_PluginDescriptor() {
+		return (EReference) getPluginConfiguration().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -2652,6 +2652,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getPluginDescriptor_PluginInterfaceClassName() {
 		return (EAttribute) getPluginDescriptor().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPluginDescriptor_Configurations() {
+		return (EReference) getPluginDescriptor().getEStructuralFeatures().get(7);
 	}
 
 	/**

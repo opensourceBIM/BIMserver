@@ -54,7 +54,7 @@ public class GetAllQueryEnginesDatabaseAction extends GetAllDatabaseAction<Query
 			Iterator<QueryEnginePluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
 				QueryEnginePluginConfiguration queryEngine = iterator.next();
-				if (!bimServer.getPluginManager().isEnabled(queryEngine.getClassName()) || !queryEngine.getEnabled()) {
+				if (!bimServer.getPluginManager().isEnabled(queryEngine.getPluginDescriptor().getPluginClassName()) || !queryEngine.getEnabled()) {
 					iterator.remove();
 				}
 			}
