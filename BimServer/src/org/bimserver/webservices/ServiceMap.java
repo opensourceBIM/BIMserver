@@ -182,7 +182,7 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 	}
 	
 	@Override
-	public PluginInterface getPluginInterface() throws PublicInterfaceNotFoundException {
+	public PluginInterface getPluginInterface() {
 		return get(PluginInterface.class);
 	}
 	

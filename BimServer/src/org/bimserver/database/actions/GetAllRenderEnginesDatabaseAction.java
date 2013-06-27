@@ -54,7 +54,7 @@ public class GetAllRenderEnginesDatabaseAction extends GetAllDatabaseAction<Rend
 			Iterator<RenderEnginePluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
 				RenderEnginePluginConfiguration renderEngine = iterator.next();
-				if (!bimServer.getPluginManager().isEnabled(renderEngine.getClassName()) || !renderEngine.getEnabled()) {
+				if (!bimServer.getPluginManager().isEnabled(renderEngine.getPluginDescriptor().getPluginClassName()) || !renderEngine.getEnabled()) {
 					iterator.remove();
 				}
 			}

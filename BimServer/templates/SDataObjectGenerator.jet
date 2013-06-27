@@ -185,7 +185,10 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 <% } %>
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
-<% if (hasLists) { %>
+<% if (hasLists) { 
+	importManager.getImport("java.util.List");
+	importManager.getImport("java.util.ArrayList");
+%>
 	@SuppressWarnings("unchecked")
 <% } %>
 

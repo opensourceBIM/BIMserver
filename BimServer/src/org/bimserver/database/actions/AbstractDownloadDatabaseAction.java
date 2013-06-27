@@ -43,7 +43,7 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 	}
 	
 	protected void checkGeometry(SerializerPluginConfiguration serializerPluginConfiguration, PluginManager pluginManager, IfcModelInterface model, Project project, ConcreteRevision concreteRevision, Revision revision) throws BimserverDatabaseException, GeometryGeneratingException {
-		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getClassName(), true);
+		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 		if (serializerPlugin.needsGeometry()) {
 			if (!revision.isHasGeometry()) {
 				setProgress("Generating geometry...", -1);

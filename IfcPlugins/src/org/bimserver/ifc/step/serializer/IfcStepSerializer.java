@@ -139,7 +139,10 @@ public class IfcStepSerializer extends IfcSerializer {
 			out.print(StringUtils.concat(ifcHeader.getDescription(), "'", ", "));
 			out.println("), '" + ifcHeader.getImplementationLevel() + "');");
 			out.println("FILE_NAME ('" + ifcHeader.getFilename() + "', '" + dateFormatter.format(ifcHeader.getTimeStamp()) + "', (" + StringUtils.concat(ifcHeader.getAuthor(), "'", ", ") + "), (" + StringUtils.concat(ifcHeader.getOrganization(), "'", ", ") + "), '" + ifcHeader.getPreProcessorVersion() + "', '" + ifcHeader.getOriginatingSystem() + "', '"	+ ifcHeader.getAuthorization() + "');");
-			out.println("FILE_SCHEMA (('" + ifcHeader.getIfcSchemaVersion() + "'));");
+
+			// TODO For now forcing IFC2x3, maybe make this a setting?
+			//	out.println("FILE_SCHEMA (('" + ifcHeader.getIfcSchemaVersion() + "'));");
+			out.println("FILE_SCHEMA (('IFC2x3'));");
 		}
 		out.println("ENDSEC;");
 		out.println("DATA;");

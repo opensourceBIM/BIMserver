@@ -16,6 +16,8 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -77,6 +79,9 @@ public class SQueryEnginePluginDescriptor extends SPluginDescriptor implements S
 		if (sField.getName().equals("pluginInterfaceClassName")) {
 			return getPluginInterfaceClassName();
 		}
+		if (sField.getName().equals("configurations")) {
+			return getConfigurations();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -85,6 +90,7 @@ public class SQueryEnginePluginDescriptor extends SPluginDescriptor implements S
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("simpleName")) {
@@ -113,6 +119,10 @@ public class SQueryEnginePluginDescriptor extends SPluginDescriptor implements S
 		}
 		if (sField.getName().equals("pluginInterfaceClassName")) {
 			setPluginInterfaceClassName((String)val);
+			return;
+		}
+		if (sField.getName().equals("configurations")) {
+			setConfigurations((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {

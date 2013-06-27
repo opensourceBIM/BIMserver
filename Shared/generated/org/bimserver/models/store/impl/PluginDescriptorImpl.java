@@ -18,9 +18,11 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.StorePackage;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -37,6 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getPluginInterfaceClassName <em>Plugin Interface Class Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getConfigurations <em>Configurations</em>}</li>
  * </ul>
  * </p>
  *
@@ -196,6 +199,16 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 */
 	public void setPluginInterfaceClassName(String newPluginInterfaceClassName) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME, newPluginInterfaceClassName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<PluginConfiguration> getConfigurations() {
+		return (EList<PluginConfiguration>) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__CONFIGURATIONS, true);
 	}
 
 } //PluginDescriptorImpl

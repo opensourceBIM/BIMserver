@@ -17,6 +17,7 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +34,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getLocation <em>Location</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getPluginInterfaceClassName <em>Plugin Interface Class Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginDescriptor#getConfigurations <em>Configurations</em>}</li>
  * </ul>
  * </p>
  *
@@ -223,5 +225,23 @@ public interface PluginDescriptor extends IdEObject {
 	 * @generated
 	 */
 	void setPluginInterfaceClassName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Configurations</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.PluginConfiguration}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.PluginConfiguration#getPluginDescriptor <em>Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Configurations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Configurations</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getPluginDescriptor_Configurations()
+	 * @see org.bimserver.models.store.PluginConfiguration#getPluginDescriptor
+	 * @model opposite="pluginDescriptor"
+	 * @generated
+	 */
+	EList<PluginConfiguration> getConfigurations();
 
 } // PluginDescriptor

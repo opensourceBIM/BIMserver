@@ -197,7 +197,11 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SObjectDefinition getPluginObjectDefinition(java.lang.String className) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SPluginDescriptor getPluginDescriptor(java.lang.Long oid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SObjectDefinition getPluginObjectDefinition(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
 	

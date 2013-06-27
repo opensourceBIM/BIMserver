@@ -25,22 +25,40 @@ import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.PluginConfiguration;
+import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSettings;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class GetSerializerByPluginClassNameDatabaseAction extends BimDatabaseAction<SerializerPluginConfiguration> {
 
 	private String pluginClassName;
+	private Authorization authorization;
 
-	public GetSerializerByPluginClassNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String pluginClassName) {
+	public GetSerializerByPluginClassNameDatabaseAction(DatabaseSession databaseSession, Authorization authorization, AccessMethod accessMethod, String pluginClassName) {
 		super(databaseSession, accessMethod);
+		this.authorization = authorization;
 		this.pluginClassName = pluginClassName;
 	}
 
 	@Override
 	public SerializerPluginConfiguration execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPluginConfiguration_ClassName(), new StringLiteral(pluginClassName));
-		return getDatabaseSession().querySingle(condition, SerializerPluginConfiguration.class, Query.getDefault());
+		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(pluginClassName));
+		PluginDescriptor pluginDescriptor = getDatabaseSession().querySingle(condition, PluginDescriptor.class, Query.getDefault());
+		if (pluginDescriptor == null) {
+			throw new UserException("No plugin found with classname " + pluginClassName);
+		}
+		User user = getUserByUoid(authorization.getUoid());
+		UserSettings userSettings = user.getUserSettings();
+		for (PluginConfiguration pluginConfiguration : pluginDescriptor.getConfigurations()) {
+			if (userSettings.getSerializers().contains(pluginConfiguration)) {
+				return (SerializerPluginConfiguration) pluginConfiguration;
+			}
+		}
+		return null;
 	}
 }

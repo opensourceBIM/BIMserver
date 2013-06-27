@@ -59,7 +59,7 @@ public class Bimsie1RemoteServiceImpl extends Bimsie1RemoteServiceInterfaceAdapt
 			User user = session.querySingle(condition, User.class, Query.getDefault());
 			if (user != null) {
 				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
-					if (internalServicePluginConfiguration.getClassName().equals(serviceIdentifier)) {
+					if (internalServicePluginConfiguration.getPluginDescriptor().getPluginClassName().equals(serviceIdentifier)) {
 						SProfileDescriptor sProfileDescriptor = new SProfileDescriptor();
 						descriptors.add(sProfileDescriptor);
 						

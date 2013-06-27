@@ -54,7 +54,7 @@ public class GetAllModelMergersDatabaseAction extends GetAllDatabaseAction<Model
 			Iterator<ModelMergerPluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
 				ModelMergerPluginConfiguration modelMerger = iterator.next();
-				if (!bimServer.getPluginManager().isEnabled(modelMerger.getClassName()) || !modelMerger.getEnabled()) {
+				if (!bimServer.getPluginManager().isEnabled(modelMerger.getPluginDescriptor().getPluginClassName()) || !modelMerger.getEnabled()) {
 					iterator.remove();
 				}
 			}

@@ -16,6 +16,8 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
@@ -23,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SWebModulePluginDescriptor.class, SQueryEnginePluginDescriptor.class, SDeserializerPluginDescriptor.class, SModelComparePluginDescriptor.class, SRenderEnginePluginDescriptor.class, SModelMergerPluginDescriptor.class, SSerializerPluginDescriptor.class, SServicePluginDescriptor.class})
+@XmlSeeAlso(value={SSerializerPluginDescriptor.class, SRenderEnginePluginDescriptor.class, SServicePluginDescriptor.class, SModelMergerPluginDescriptor.class, SDeserializerPluginDescriptor.class, SModelComparePluginDescriptor.class, SWebModulePluginDescriptor.class, SQueryEnginePluginDescriptor.class})
 public class SPluginDescriptor implements SDataBase
 {
 	private long oid = -1;
@@ -38,6 +40,7 @@ public class SPluginDescriptor implements SDataBase
 	private java.lang.String location;
 	private java.lang.Boolean enabled;
 	private java.lang.String pluginInterfaceClassName;
+	private List<Long> configurations = new ArrayList<Long>();
 
 	public long getOid() {
 		return this.oid;
@@ -86,6 +89,9 @@ public class SPluginDescriptor implements SDataBase
 		if (sField.getName().equals("pluginInterfaceClassName")) {
 			return getPluginInterfaceClassName();
 		}
+		if (sField.getName().equals("configurations")) {
+			return getConfigurations();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -94,6 +100,7 @@ public class SPluginDescriptor implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("simpleName")) {
@@ -122,6 +129,10 @@ public class SPluginDescriptor implements SDataBase
 		}
 		if (sField.getName().equals("pluginInterfaceClassName")) {
 			setPluginInterfaceClassName((String)val);
+			return;
+		}
+		if (sField.getName().equals("configurations")) {
+			setConfigurations((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -189,6 +200,14 @@ public class SPluginDescriptor implements SDataBase
 
 	public void setPluginInterfaceClassName(java.lang.String pluginInterfaceClassName) {
 		this.pluginInterfaceClassName = pluginInterfaceClassName;
+	}
+	
+	public List<Long> getConfigurations() {
+		return configurations;
+	}
+
+	public void setConfigurations(List<Long> configurations) {
+		this.configurations = configurations;
 	}
 	
 	@Override

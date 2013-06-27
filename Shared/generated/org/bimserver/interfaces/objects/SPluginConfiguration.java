@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SInternalServicePluginConfiguration.class, SDeserializerPluginConfiguration.class, SObjectIDMPluginConfiguration.class, SSerializerPluginConfiguration.class, SQueryEnginePluginConfiguration.class, SModelComparePluginConfiguration.class, SModelMergerPluginConfiguration.class, SRenderEnginePluginConfiguration.class, SWebModulePluginConfiguration.class})
+@XmlSeeAlso(value={SInternalServicePluginConfiguration.class, SDeserializerPluginConfiguration.class, SModelMergerPluginConfiguration.class, SModelComparePluginConfiguration.class, SQueryEnginePluginConfiguration.class, SObjectIDMPluginConfiguration.class, SSerializerPluginConfiguration.class, SWebModulePluginConfiguration.class, SRenderEnginePluginConfiguration.class})
 public class SPluginConfiguration implements SDataBase
 {
 	private long oid = -1;
@@ -34,7 +34,7 @@ public class SPluginConfiguration implements SDataBase
 	private java.lang.String name;
 	private java.lang.Boolean enabled;
 	private java.lang.String description;
-	private java.lang.String className;
+	private long pluginDescriptorId = -1;
 	private long settingsId = -1;
 
 	public long getOid() {
@@ -72,8 +72,8 @@ public class SPluginConfiguration implements SDataBase
 		if (sField.getName().equals("description")) {
 			return getDescription();
 		}
-		if (sField.getName().equals("className")) {
-			return getClassName();
+		if (sField.getName().equals("pluginDescriptorId")) {
+			return getPluginDescriptorId();
 		}
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
@@ -100,8 +100,8 @@ public class SPluginConfiguration implements SDataBase
 			setDescription((String)val);
 			return;
 		}
-		if (sField.getName().equals("className")) {
-			setClassName((String)val);
+		if (sField.getName().equals("pluginDescriptorId")) {
+			setPluginDescriptorId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("settingsId")) {
@@ -143,12 +143,12 @@ public class SPluginConfiguration implements SDataBase
 		this.description = description;
 	}
 	
-	public java.lang.String getClassName() {
-		return className;
+	public long getPluginDescriptorId() {
+		return pluginDescriptorId;
 	}
 
-	public void setClassName(java.lang.String className) {
-		this.className = className;
+	public void setPluginDescriptorId(long pluginDescriptorId) {
+		this.pluginDescriptorId = pluginDescriptorId;
 	}
 	
 	public long getSettingsId() {

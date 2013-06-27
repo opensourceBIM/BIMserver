@@ -29,7 +29,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.PluginConfiguration#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginConfiguration#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginConfiguration#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.store.PluginConfiguration#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginConfiguration#getPluginDescriptor <em>Plugin Descriptor</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginConfiguration#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
@@ -119,30 +119,32 @@ public interface PluginConfiguration extends IdEObject {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Class Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Plugin Descriptor</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.PluginDescriptor#getConfigurations <em>Configurations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Class Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Plugin Descriptor</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class Name</em>' attribute.
-	 * @see #setClassName(String)
-	 * @see org.bimserver.models.store.StorePackage#getPluginConfiguration_ClassName()
-	 * @model
+	 * @return the value of the '<em>Plugin Descriptor</em>' reference.
+	 * @see #setPluginDescriptor(PluginDescriptor)
+	 * @see org.bimserver.models.store.StorePackage#getPluginConfiguration_PluginDescriptor()
+	 * @see org.bimserver.models.store.PluginDescriptor#getConfigurations
+	 * @model opposite="configurations"
 	 * @generated
 	 */
-	String getClassName();
+	PluginDescriptor getPluginDescriptor();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.PluginConfiguration#getClassName <em>Class Name</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginConfiguration#getPluginDescriptor <em>Plugin Descriptor</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class Name</em>' attribute.
-	 * @see #getClassName()
+	 * @param value the new value of the '<em>Plugin Descriptor</em>' reference.
+	 * @see #getPluginDescriptor()
 	 * @generated
 	 */
-	void setClassName(String value);
+	void setPluginDescriptor(PluginDescriptor value);
 
 	/**
 	 * Returns the value of the '<em><b>Settings</b></em>' reference.

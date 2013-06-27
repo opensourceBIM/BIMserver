@@ -107,6 +107,7 @@ import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SProjectSmall;
@@ -958,7 +959,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public String getQueryEngineExample(Long qeid, String key) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		SQueryEnginePluginConfiguration queryEngineById = getServiceMap().getBimsie1ServiceInterface().getQueryEngineById(qeid);
-		QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
+		SPluginDescriptor pluginDescriptor = getServiceMap().getPluginInterface().getPluginDescriptor(queryEngineById.getPluginDescriptorId());
+		QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(pluginDescriptor.getPluginClassName(), true);
 		return queryEngine.getExample(key);
 	}
 
@@ -966,7 +968,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public List<String> getQueryEngineExampleKeys(Long qeid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		SQueryEnginePluginConfiguration queryEngineById = getServiceMap().getBimsie1ServiceInterface().getQueryEngineById(qeid);
-		QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
+		SPluginDescriptor pluginDescriptor = getServiceMap().getPluginInterface().getPluginDescriptor(queryEngineById.getPluginDescriptorId());
+		QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(pluginDescriptor.getPluginClassName(), true);
 		return new ArrayList<String>(queryEngine.getExampleKeys());
 	}
 
@@ -1176,7 +1179,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			User user = session.querySingle(condition, User.class, Query.getDefault());
 			if (user != null) {
 				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
-					if (internalServicePluginConfiguration.getClassName().equals(serviceIdentifier)) {
+					if (internalServicePluginConfiguration.getPluginDescriptor().getPluginClassName().equals(serviceIdentifier)) {
 						SProfileDescriptor sProfileDescriptor = new SProfileDescriptor();
 						descriptors.add(sProfileDescriptor);
 						

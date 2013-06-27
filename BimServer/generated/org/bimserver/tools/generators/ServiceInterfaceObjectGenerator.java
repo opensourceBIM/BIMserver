@@ -360,6 +360,9 @@ if (eClass.getEAnnotation("nodatabase") == null) {
      } 
     stringBuffer.append(TEXT_48);
      if (hasLists) { 
+	importManager.getImport("java.util.List");
+	importManager.getImport("java.util.ArrayList");
+
     stringBuffer.append(TEXT_49);
      } 
     stringBuffer.append(TEXT_50);

@@ -96,7 +96,7 @@ public class SerializerFactory {
 		try {
 			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
 			if (serializerPluginConfiguration != null) {
-				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getClassName(), true);
+				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 				if (serializerPlugin != null) {
 					ObjectType settings = serializerPluginConfiguration.getSettings();
 					org.bimserver.plugins.serializers.Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration(settings));

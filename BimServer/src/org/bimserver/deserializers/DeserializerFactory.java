@@ -29,6 +29,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,15 +43,17 @@ public class DeserializerFactory {
 		this.bimDatabase = bimDatabase;
 	}
 
-	public Deserializer createDeserializer(long deserializerOid) throws PluginException {
+	public Deserializer createDeserializer(long deserializerOid) throws PluginException, UserException {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
 			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
 			if (deserializerPluginConfiguration != null) {
-				DeserializerPlugin deserializerPlugin = (DeserializerPlugin) pluginManager.getPlugin(deserializerPluginConfiguration.getClassName(), true);
+				DeserializerPlugin deserializerPlugin = (DeserializerPlugin) pluginManager.getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 				if (deserializerPlugin != null) {
 					ObjectType settings = deserializerPluginConfiguration.getSettings();
 					return deserializerPlugin.createDeserializer(new PluginConfiguration(settings));
+				} else {
+					throw new UserException("No (enabled) deserializer found with oid " + deserializerOid);
 				}
 			}
 		} catch (BimserverDatabaseException e) {

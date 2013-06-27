@@ -33,6 +33,7 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
@@ -52,9 +53,10 @@ import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserType;
 import org.bimserver.plugins.Plugin;
-import org.bimserver.plugins.PluginContext;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
@@ -313,48 +315,32 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	}
 	
 	@Override
-	public List<SPluginDescriptor> getAllPlugins() throws UserException {
+	public List<SPluginDescriptor> getAllPlugins() throws UserException, ServerException {
 		requireRealUserAuthentication();
 		List<SPluginDescriptor> result = new ArrayList<SPluginDescriptor>();
-		Collection<Plugin> plugins = getBimServer().getPluginManager().getAllPlugins(false);
-		for (Plugin plugin : plugins) {
-			SPluginDescriptor sPluginDescriptor = new SPluginDescriptor();
-			sPluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
-			Class<?> pluginInterfaceClass = getPluginInterfaceClass(plugin);
-			sPluginDescriptor.setPluginInterfaceClassName(pluginInterfaceClass.getName());
-			sPluginDescriptor.setPluginClassName(plugin.getClass().getName());
-			sPluginDescriptor.setDefaultName(plugin.getClass().getName());
-			PluginContext pluginContext = getBimServer().getPluginManager().getPluginContext(plugin);
-			sPluginDescriptor.setLocation(pluginContext.getLocation());
-			sPluginDescriptor.setDescription(plugin.getDescription());
-			sPluginDescriptor.setEnabled(pluginContext.isEnabled());
-			result.add(sPluginDescriptor);
+//		Collection<Plugin> plugins = getBimServer().getPluginManager().getAllPlugins(false);
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			List<SPluginDescriptor> convertToSListPluginDescriptor = getBimServer().getSConverter().convertToSListPluginDescriptor(session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), PluginDescriptor.class, Query.getDefault()));
+			Collections.sort(convertToSListPluginDescriptor, new SPluginDescriptorComparator());
+			return convertToSListPluginDescriptor;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
 		}
-		Collections.sort(result, new SPluginDescriptorComparator());
-		return result;
-	}
-
-	private Class<?> getPluginInterfaceClass(Plugin plugin) {
-		for (Class<?> pluginInterface : plugin.getClass().getInterfaces()) {
-			if (pluginInterface != Plugin.class && Plugin.class.isAssignableFrom(pluginInterface)) {
-				return pluginInterface;
-			}
-		}
-		if (plugin.getClass().getSuperclass() != Object.class) {
-			for (Class<?> pluginInterface : plugin.getClass().getSuperclass().getInterfaces()) {
-				if (pluginInterface != Plugin.class && Plugin.class.isAssignableFrom(pluginInterface)) {
-					return pluginInterface;
-				}
-			}
-			if (plugin.getClass().getSuperclass().getSuperclass() != Object.class) {
-				for (Class<?> pluginInterface : plugin.getClass().getSuperclass().getSuperclass().getInterfaces()) {
-					if (pluginInterface != Plugin.class && Plugin.class.isAssignableFrom(pluginInterface)) {
-						return pluginInterface;
-					}
-				}
-			}
-			return plugin.getClass().getSuperclass();
-		}
-		return plugin.getClass();
+//		for (Plugin plugin : plugins) {
+//			SPluginDescriptor sPluginDescriptor = new SPluginDescriptor();
+//			sPluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
+//			Class<?> pluginInterfaceClass = getPluginInterfaceClass(plugin);
+//			sPluginDescriptor.setPluginInterfaceClassName(pluginInterfaceClass.getName());
+//			sPluginDescriptor.setPluginClassName(plugin.getClass().getName());
+//			sPluginDescriptor.setDefaultName(plugin.getClass().getName());
+//			PluginContext pluginContext = getBimServer().getPluginManager().getPluginContext(plugin);
+//			sPluginDescriptor.setLocation(pluginContext.getLocation());
+//			sPluginDescriptor.setDescription(plugin.getDescription());
+//			sPluginDescriptor.setEnabled(pluginContext.isEnabled());
+//			result.add(sPluginDescriptor);
+//		}
 	}
 }

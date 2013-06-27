@@ -51,8 +51,8 @@ public abstract class AbstractGeometrySerializer extends EmfSerializer {
 		GeometryInfo geometryInfo = ifcObject.getGeometry();
 		if (geometryInfo != null) {
 			extents.integrate(geometryInfo);
+			sceneExtends.addToMinExtents(extents.min);
+			sceneExtends.addToMaxExtents(extents.max);
 		}
-		sceneExtends.addToMinExtents(extents.min);
-		sceneExtends.addToMaxExtents(extents.max);
 	}
 }

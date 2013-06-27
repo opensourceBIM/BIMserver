@@ -151,7 +151,7 @@ public class Topic {
 	
 	public synchronized void register(EndPoint endPoint) throws TopicRegisterException {
 		endPoints.add(endPoint);
-		fakeEndPoint.replay(endPoint);
+//		fakeEndPoint.replay(endPoint);
 	}
 
 	public synchronized void unregister(EndPoint endPoint) throws TopicRegisterException {

@@ -269,6 +269,11 @@ public class AsyncPluginInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetPluginDescriptorCallback {
+		void success(org.bimserver.interfaces.objects.SPluginDescriptor result);
+		void error(Exception e);
+	}
+	
 	public interface GetPluginObjectDefinitionCallback {
 		void success(org.bimserver.interfaces.objects.SObjectDefinition result);
 		void error(Exception e);
@@ -988,11 +993,23 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void getPluginObjectDefinition(final java.lang.String className, final GetPluginObjectDefinitionCallback callback) {
+	public void getPluginDescriptor(final java.lang.Long oid, final GetPluginDescriptorCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getPluginObjectDefinition(className));
+					callback.success(syncService.getPluginDescriptor(oid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getPluginObjectDefinition(final java.lang.Long oid, final GetPluginObjectDefinitionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getPluginObjectDefinition(oid));
 				} catch (Exception e) {
 					callback.error(e);
 				}

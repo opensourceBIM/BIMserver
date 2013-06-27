@@ -28,6 +28,7 @@ import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
@@ -64,6 +65,10 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 		}
 		try {
 			progressTopic.register(endPoint);
+			if (progressTopic.getLastProgress() != null && progressTopic.getLastProgress().getState() == ActionState.FINISHED) {
+				System.out.println("HACKDEHACK");
+				progressTopic.updateProgress(progressTopic.getLastProgress());
+			}
 		} catch (TopicRegisterException e) {
 			throw new UserException(e);
 		}
