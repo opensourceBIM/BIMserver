@@ -71,7 +71,7 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);
 		} catch (IOException e) {
-			LOGGER.error("", e);
+			// Skip those, they make the log file look like there are many things wrong, probably just a browser disconnect
 		}
 		return false;
 	}
