@@ -62,8 +62,10 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	private SServiceInterface convertServiceInterface(String name) {
 		SServiceInterface sServiceInterface = new SServiceInterface();
+		SService byName = getBimServer().getServicesMap().getByName(name);
 		sServiceInterface.setName(name);
-		sServiceInterface.setSimpleName(getBimServer().getServicesMap().getByName(name).getSimpleName());
+		sServiceInterface.setNameSpace(byName.getNameSpace());
+		sServiceInterface.setSimpleName(byName.getSimpleName());
 		return sServiceInterface;
 	}
 
