@@ -133,6 +133,10 @@ div.setup form.form-horizontal label {
 	text-align: left;
 }
 
+.uploadStatus {
+	word-wrap: break-word;
+}
+
 .fullwidth input {
 	width: 100%;
 }
