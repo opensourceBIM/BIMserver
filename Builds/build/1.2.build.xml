@@ -9,7 +9,7 @@
 	<property name="minorversion" value="2"/>
 	<property name="revisionversion" value="0"/>
 	<property name="revisiondate" value="${builddate}"/>
-	<property name="version" value="${majorversion}.${minorversion}.RC9-${builddate}"/>
+	<property name="version" value="${majorversion}.${minorversion}.RC10-${builddate}"/>
 
 	<target name="1.2">
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/${majorversion}.${minorversion}/${version}" />
