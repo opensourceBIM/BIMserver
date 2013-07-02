@@ -326,7 +326,11 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				ifcHeader.setOriginatingSystem(tokenizer.readSingleQuoted());
 				tokenizer.readComma();
 				filterComments(tokenizer);
-				ifcHeader.setAuthorization(tokenizer.readSingleQuoted());
+				if (tokenizer.nextIsDollar()) {
+					tokenizer.readDollar();
+				} else {
+					ifcHeader.setAuthorization(tokenizer.readSingleQuoted());
+				}
 				tokenizer.zoomOut();
 				tokenizer.shouldBeFinished();
 			} else if (line.startsWith("FILE_SCHEMA")) {
