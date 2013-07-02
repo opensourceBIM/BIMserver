@@ -28,6 +28,7 @@ public class SServiceInterface implements SBase
 	@XmlTransient
 	private static SClass sClass;
 	private java.lang.String name;
+	private java.lang.String nameSpace;
 	private java.lang.String simpleName;
 	
 	@XmlTransient
@@ -43,6 +44,9 @@ public class SServiceInterface implements SBase
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
+		if (sField.getName().equals("nameSpace")) {
+			return getNameSpace();
+		}
 		if (sField.getName().equals("simpleName")) {
 			return getSimpleName();
 		}
@@ -52,6 +56,10 @@ public class SServiceInterface implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
+			return;
+		}
+		if (sField.getName().equals("nameSpace")) {
+			setNameSpace((String)val);
 			return;
 		}
 		if (sField.getName().equals("simpleName")) {
@@ -67,6 +75,14 @@ public class SServiceInterface implements SBase
 
 	public void setName(java.lang.String name) {
 		this.name = name;
+	}
+	
+	public java.lang.String getNameSpace() {
+		return nameSpace;
+	}
+
+	public void setNameSpace(java.lang.String nameSpace) {
+		this.nameSpace = nameSpace;
 	}
 	
 	public java.lang.String getSimpleName() {

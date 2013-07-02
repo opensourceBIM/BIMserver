@@ -60,6 +60,7 @@ public class SService {
 	private SServicesMap servicesMap;
 	private String simpleName;
 	private SourceCodeFetcher sourceCodeFetcher;
+	private String nameSpace;
 
 	public SService(SourceCodeFetcher sourceCodeFetcher, Class<? extends PublicInterface> clazz) {
 		this(sourceCodeFetcher, clazz, new ArrayList<SService>());
@@ -70,6 +71,7 @@ public class SService {
 		this.sourceCodeFetcher = sourceCodeFetcher;
 		this.interfaceClass = interfaceClass;
 		this.others = others;
+		this.nameSpace = interfaceClass.getAnnotation(WebService.class).targetNamespace();
 		this.fullName = interfaceClass.getAnnotation(WebService.class).targetNamespace() + "." + interfaceClass.getAnnotation(WebService.class).name();
 		this.simpleName = interfaceClass.getAnnotation(WebService.class).name();
 		init();
@@ -324,5 +326,9 @@ public class SService {
 
 	public SMethod getMethod(String methodName) {
 		return methods.get(methodName);
+	}
+
+	public String getNameSpace() {
+		return nameSpace;
 	}
 }

@@ -4723,13 +4723,22 @@ public interface StorePackage extends EPackage {
 	int SERVICE_INTERFACE__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name Space</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_INTERFACE__NAME_SPACE = 1;
+
+	/**
 	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE__SIMPLE_NAME = 1;
+	int SERVICE_INTERFACE__SIMPLE_NAME = 2;
 
 	/**
 	 * The number of structural features of the '<em>Service Interface</em>' class.
@@ -4738,7 +4747,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE_FEATURE_COUNT = 2;
+	int SERVICE_INTERFACE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceMethodImpl <em>Service Method</em>}' class.
@@ -9776,6 +9785,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServiceInterface_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceInterface#getNameSpace <em>Name Space</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name Space</em>'.
+	 * @see org.bimserver.models.store.ServiceInterface#getNameSpace()
+	 * @see #getServiceInterface()
+	 * @generated
+	 */
+	EAttribute getServiceInterface_NameSpace();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceInterface#getSimpleName <em>Simple Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13965,6 +13985,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVICE_INTERFACE__NAME = eINSTANCE.getServiceInterface_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Name Space</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_INTERFACE__NAME_SPACE = eINSTANCE.getServiceInterface_NameSpace();
 
 		/**
 		 * The meta object literal for the '<em><b>Simple Name</b></em>' attribute feature.

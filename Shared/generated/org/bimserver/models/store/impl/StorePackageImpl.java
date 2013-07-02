@@ -4015,8 +4015,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServiceInterface_SimpleName() {
+	public EAttribute getServiceInterface_NameSpace() {
 		return (EAttribute) getServiceInterface().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServiceInterface_SimpleName() {
+		return (EAttribute) getServiceInterface().getEStructuralFeatures().get(2);
 	}
 
 	/**

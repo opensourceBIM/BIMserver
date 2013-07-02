@@ -44,7 +44,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 */
 	public static StoreFactory init() {
 		try {
-			StoreFactory theStoreFactory = (StoreFactory) EPackage.Registry.INSTANCE.getEFactory("store");
+			StoreFactory theStoreFactory = (StoreFactory) EPackage.Registry.INSTANCE.getEFactory(StorePackage.eNS_URI);
 			if (theStoreFactory != null) {
 				return theStoreFactory;
 			}

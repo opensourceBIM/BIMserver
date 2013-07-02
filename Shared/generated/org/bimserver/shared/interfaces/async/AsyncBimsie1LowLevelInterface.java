@@ -95,7 +95,7 @@ public class AsyncBimsie1LowLevelInterface {
 	}
 	
 	public interface GetByteArrayAttributesCallback {
-		void success(java.util.List<?> result);
+		void success(java.util.List<byte[]> result);
 		void error(Exception e);
 	}
 	
