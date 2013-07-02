@@ -179,6 +179,12 @@ public class SService {
 			ParameterizedType parameterizedTypeImpl = (ParameterizedType) genericReturnType;
 			if (parameterizedTypeImpl.getActualTypeArguments()[0] instanceof Class) {
 				return (Class<?>) parameterizedTypeImpl.getActualTypeArguments()[0];
+			} else if (parameterizedTypeImpl.getActualTypeArguments()[0] instanceof GenericArrayType) {
+//				GenericArrayType genericArrayType = (GenericArrayType)parameterizedTypeImpl.getActualTypeArguments()[0];
+//				Type genericComponentType = genericArrayType.getGenericComponentType();
+//				if (genericComponentType instanceof Class) {
+//					return (Class<?>)genericComponentType;
+//				}
 			}
 		} else if (method.getGenericReturnType() instanceof TypeVariable) {
 		} else if (method.getGenericReturnType() instanceof GenericArrayType) {

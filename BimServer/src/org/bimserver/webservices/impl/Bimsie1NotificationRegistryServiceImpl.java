@@ -27,7 +27,6 @@ import org.bimserver.database.Query;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProgressTopicType;
-import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -66,7 +65,6 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 		try {
 			progressTopic.register(endPoint);
 			if (progressTopic.getLastProgress() != null && progressTopic.getLastProgress().getState() == ActionState.FINISHED) {
-				System.out.println("HACKDEHACK");
 				progressTopic.updateProgress(progressTopic.getLastProgress());
 			}
 		} catch (TopicRegisterException e) {
@@ -152,13 +150,12 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 
 	@Override
 	public Long registerProgressTopic(SProgressTopicType type, String description) throws UserException, ServerException {
-		return getBimServer().getNotificationsManager().createProgressTopic(getCurrentUser().getOid(), type, description).getKey().getId();
+		return getBimServer().getNotificationsManager().createProgressTopic(type, description).getKey().getId();
 	}
 
 	@Override
 	public Long registerProgressOnRevisionTopic(SProgressTopicType type, Long poid, Long roid, String description) throws UserException, ServerException {
-		SUser currentUser = getCurrentUser();
-		return getBimServer().getNotificationsManager().createProgressOnRevisionTopic(currentUser.getOid(), poid, roid, type, description).getKey().getId();
+		return getBimServer().getNotificationsManager().createProgressOnRevisionTopic(poid, roid, type, description).getKey().getId();
 	}
 
 	@Override

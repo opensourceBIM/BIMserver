@@ -89,7 +89,6 @@ public class ModelColorizer {
 		} else if (representation instanceof IfcShapeModel) {
 			
 		} else if (representation instanceof IfcTopologyRepresentation) {
-			IfcTopologyRepresentation topologyRepresentation = (IfcTopologyRepresentation)representation;
 		}
 		for (IfcRepresentationMap representationMap : representation.getRepresentationMap()) {
 			for (IfcMappedItem mappedItem : representationMap.getMapUsage()) {
@@ -288,54 +287,54 @@ public class ModelColorizer {
 //		}
 //	}
 
-	private IfcColourRgb createColor(double[] color) throws IfcModelInterfaceException {
-		IfcColourRgb colourRgb = model.create(IfcColourRgb.class);
-		colourRgb.setRed(color[0]);
-		colourRgb.setGreen(color[1]);
-		colourRgb.setBlue(color[2]);
-		return colourRgb;
-	}
+//	private IfcColourRgb createColor(double[] color) throws IfcModelInterfaceException {
+//		IfcColourRgb colourRgb = model.create(IfcColourRgb.class);
+//		colourRgb.setRed(color[0]);
+//		colourRgb.setGreen(color[1]);
+//		colourRgb.setBlue(color[2]);
+//		return colourRgb;
+//	}
+//	
+//	private void createSurfaceStyleStyles(IfcModelInterface model, String representationIdentifier, IfcSurfaceStyle ifcSurfaceStyle, double[] color, float transparency) throws IfcModelInterfaceException {
+//		IfcSurfaceStyleRendering ifcSurfaceStyleRendering = model.create(IfcSurfaceStyleRendering.class);
+//		ifcSurfaceStyle.getStyles().add(ifcSurfaceStyleRendering);
+//		if (color != null) {
+//			IfcColourRgb colourRgb = model.create(IfcColourRgb.class);
+//			colourRgb.setRed(color[0]);
+//			colourRgb.setGreen(color[1]);
+//			colourRgb.setBlue(color[2]);
+//			ifcSurfaceStyleRendering.setDiffuseColour(colourRgb);
+//			ifcSurfaceStyleRendering.setReflectionColour(colourRgb);
+//			ifcSurfaceStyleRendering.setSpecularColour(colourRgb);
+//			ifcSurfaceStyleRendering.setSurfaceColour(colourRgb);
+//			ifcSurfaceStyleRendering.setTransmissionColour(colourRgb);
+//		}
+//		ifcSurfaceStyleRendering.setTransparency(transparency);
+//	}
 	
-	private void createSurfaceStyleStyles(IfcModelInterface model, String representationIdentifier, IfcSurfaceStyle ifcSurfaceStyle, double[] color, float transparency) throws IfcModelInterfaceException {
-		IfcSurfaceStyleRendering ifcSurfaceStyleRendering = model.create(IfcSurfaceStyleRendering.class);
-		ifcSurfaceStyle.getStyles().add(ifcSurfaceStyleRendering);
-		if (color != null) {
-			IfcColourRgb colourRgb = model.create(IfcColourRgb.class);
-			colourRgb.setRed(color[0]);
-			colourRgb.setGreen(color[1]);
-			colourRgb.setBlue(color[2]);
-			ifcSurfaceStyleRendering.setDiffuseColour(colourRgb);
-			ifcSurfaceStyleRendering.setReflectionColour(colourRgb);
-			ifcSurfaceStyleRendering.setSpecularColour(colourRgb);
-			ifcSurfaceStyleRendering.setSurfaceColour(colourRgb);
-			ifcSurfaceStyleRendering.setTransmissionColour(colourRgb);
-		}
-		ifcSurfaceStyleRendering.setTransparency(transparency);
-	}
-	
-	private void createPresentationStyleAssignmentStyles(IfcModelInterface model, String representationIdentifier,
-			IfcPresentationStyleAssignment ifcPresentationStyleAssignment, double[] color, float transparency) throws IfcModelInterfaceException {
-		if (representationIdentifier.equals("Body")) {
-			IfcSurfaceStyle ifcPresentationStyleSelect = model.create(IfcSurfaceStyle.class);
-			ifcPresentationStyleAssignment.getStyles().add(ifcPresentationStyleSelect);
-			createSurfaceStyleStyles(model, representationIdentifier, ifcPresentationStyleSelect, color, transparency);
-		} else {
-			// Unimplemented
-		}
-	}
+//	private void createPresentationStyleAssignmentStyles(IfcModelInterface model, String representationIdentifier,
+//			IfcPresentationStyleAssignment ifcPresentationStyleAssignment, double[] color, float transparency) throws IfcModelInterfaceException {
+//		if (representationIdentifier.equals("Body")) {
+//			IfcSurfaceStyle ifcPresentationStyleSelect = model.create(IfcSurfaceStyle.class);
+//			ifcPresentationStyleAssignment.getStyles().add(ifcPresentationStyleSelect);
+//			createSurfaceStyleStyles(model, representationIdentifier, ifcPresentationStyleSelect, color, transparency);
+//		} else {
+//			// Unimplemented
+//		}
+//	}
 
-	private void createStyledByItems(IfcModelInterface model, IfcRepresentationItem ifcRepresentationItem, String representationIdentifier,
-			double[] color, float transparency) throws IfcModelInterfaceException {
-		IfcStyledItem ifcStyledItem = model.create(IfcStyledItem.class);
-		ifcRepresentationItem.getStyledByItem().add(ifcStyledItem);
-		createStyledItemStyles(model, representationIdentifier, ifcStyledItem, color, transparency);
-	}
+//	private void createStyledByItems(IfcModelInterface model, IfcRepresentationItem ifcRepresentationItem, String representationIdentifier,
+//			double[] color, float transparency) throws IfcModelInterfaceException {
+//		IfcStyledItem ifcStyledItem = model.create(IfcStyledItem.class);
+//		ifcRepresentationItem.getStyledByItem().add(ifcStyledItem);
+//		createStyledItemStyles(model, representationIdentifier, ifcStyledItem, color, transparency);
+//	}
 
-	private void createStyledItemStyles(IfcModelInterface model, String representationIdentifier, IfcStyledItem ifcStyledItem, double[] color, float transparency) throws IfcModelInterfaceException {
-		IfcPresentationStyleAssignment ifcPresentationStyleAssignment = model.create(IfcPresentationStyleAssignment.class);
-		ifcStyledItem.getStyles().add(ifcPresentationStyleAssignment);
-		createPresentationStyleAssignmentStyles(model, representationIdentifier, ifcPresentationStyleAssignment, color, transparency);
-	}
+//	private void createStyledItemStyles(IfcModelInterface model, String representationIdentifier, IfcStyledItem ifcStyledItem, double[] color, float transparency) throws IfcModelInterfaceException {
+//		IfcPresentationStyleAssignment ifcPresentationStyleAssignment = model.create(IfcPresentationStyleAssignment.class);
+//		ifcStyledItem.getStyles().add(ifcPresentationStyleAssignment);
+//		createPresentationStyleAssignmentStyles(model, representationIdentifier, ifcPresentationStyleAssignment, color, transparency);
+//	}
 
 	public void makeTransparent(IfcProduct ifcProduct) throws IfcModelInterfaceException {
 		setColor(ifcProduct, null, TRANSPARENCY);

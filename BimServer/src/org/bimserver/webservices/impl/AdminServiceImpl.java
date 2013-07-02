@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -56,7 +55,6 @@ import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserType;
-import org.bimserver.plugins.Plugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
@@ -317,8 +315,6 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	@Override
 	public List<SPluginDescriptor> getAllPlugins() throws UserException, ServerException {
 		requireRealUserAuthentication();
-		List<SPluginDescriptor> result = new ArrayList<SPluginDescriptor>();
-//		Collection<Plugin> plugins = getBimServer().getPluginManager().getAllPlugins(false);
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			List<SPluginDescriptor> convertToSListPluginDescriptor = getBimServer().getSConverter().convertToSListPluginDescriptor(session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), PluginDescriptor.class, Query.getDefault()));
@@ -329,18 +325,5 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 		} finally {
 			session.close();
 		}
-//		for (Plugin plugin : plugins) {
-//			SPluginDescriptor sPluginDescriptor = new SPluginDescriptor();
-//			sPluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
-//			Class<?> pluginInterfaceClass = getPluginInterfaceClass(plugin);
-//			sPluginDescriptor.setPluginInterfaceClassName(pluginInterfaceClass.getName());
-//			sPluginDescriptor.setPluginClassName(plugin.getClass().getName());
-//			sPluginDescriptor.setDefaultName(plugin.getClass().getName());
-//			PluginContext pluginContext = getBimServer().getPluginManager().getPluginContext(plugin);
-//			sPluginDescriptor.setLocation(pluginContext.getLocation());
-//			sPluginDescriptor.setDescription(plugin.getDescription());
-//			sPluginDescriptor.setEnabled(pluginContext.isEnabled());
-//			result.add(sPluginDescriptor);
-//		}
 	}
 }

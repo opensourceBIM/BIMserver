@@ -27,11 +27,8 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ReferenceCounter {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReferenceCounter.class);
 
 	public static abstract class Reference {
 		private final IdEObject idEObject;
@@ -164,7 +161,7 @@ public class ReferenceCounter {
 	}
 
 	public void remove(IdEObject idEObject) {
-		int totalRemoved = removeInternal(idEObject);
+		removeInternal(idEObject);
 //		LOGGER.info("Removing " + idEObject + " (" + totalRemoved + ")");
 	}
 

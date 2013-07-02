@@ -23,8 +23,8 @@ public class ProgressOnRevisionTopic extends ProgressTopic {
 	private long poid;
 	private long roid;
 
-	public ProgressOnRevisionTopic(ProgressOnRevisionTopicKey key, long uoid, long poid, long roid, SProgressTopicType type, String description) {
-		super(key, uoid, type, description);
+	public ProgressOnRevisionTopic(ProgressOnRevisionTopicKey key, long poid, long roid, SProgressTopicType type, String description) {
+		super(key, type, description);
 		this.poid = poid;
 		this.roid = roid;
 	}

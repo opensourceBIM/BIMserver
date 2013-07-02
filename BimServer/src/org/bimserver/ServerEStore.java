@@ -40,6 +40,8 @@ public class ServerEStore implements BimServerEStore {
 		if (result == null) {
 			if (entry.eStructuralFeature.isUnique()) {
 				result = new UniqueEList<Object>(){
+					private static final long serialVersionUID = -1331649607984463166L;
+
 					@Override
 					public Iterator<Object> iterator() {
 						((IdEObject) entry.eObject).load();
@@ -48,6 +50,8 @@ public class ServerEStore implements BimServerEStore {
 				};
 			} else {
 				result = new BasicEList<Object>(){
+					private static final long serialVersionUID = -2646843411311359243L;
+
 					@Override
 					public Iterator<Object> iterator() {
 						((IdEObject) entry.eObject).load();

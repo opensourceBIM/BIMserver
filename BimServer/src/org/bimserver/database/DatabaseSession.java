@@ -285,7 +285,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					if (feature.isMany()) {
 						if (feature.getEType() instanceof EEnum) {
 						} else if (feature.getEType() instanceof EClass) {
-							EReference eReference = (EReference) feature;
 							if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 								buffer.position(buffer.position() + 1);
 							} else {

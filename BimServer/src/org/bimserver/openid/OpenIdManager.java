@@ -62,7 +62,7 @@ public class OpenIdManager {
 			// HttpClientFactory.setProxyProperties(proxyProps);
 
 			// perform discovery on the user-supplied identifier
-			List discoveries = manager.discover(userSuppliedString);
+			List<?> discoveries = manager.discover(userSuppliedString);
 
 			// attempt to associate with the OpenID provider
 			// and retrieve one service endpoint for authentication
