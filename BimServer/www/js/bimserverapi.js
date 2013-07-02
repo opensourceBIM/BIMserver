@@ -40,7 +40,8 @@ function BimServerApi(baseUrl, notifier) {
 		SETDEFAULTSERIALIZER_DONE: "Default Serializer successfully changed",
 		SETDEFAULTOBJECTIDM_DONE: "Default ObjectIDM successfully changed",
 		SETDEFAULTRENDERENGINE_DONE: "Default Render Engine successfully changed",
-		SETDEFAULTMODELCOMPARE_DONE: "Default Model Compare successfully changed"
+		SETDEFAULTMODELCOMPARE_DONE: "Default Model Compare successfully changed",
+		LOGIN_BUSY: "Trying to login"
 	}
 	
 	othis.token = null;
