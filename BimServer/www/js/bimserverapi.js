@@ -148,7 +148,7 @@ function BimServerApi(baseUrl, notifier) {
 		if (othis.server.connected) {
 			callback();
 		} else {
-			othis.server.connect(callback);			
+			othis.server.connect(callback);
 		}
 	};
 	
