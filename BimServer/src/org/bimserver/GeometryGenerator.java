@@ -19,13 +19,11 @@ package org.bimserver;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
@@ -114,11 +112,12 @@ public class GeometryGenerator {
 			model.generateMinimalExpressIds();
 
 			serializer.init(model, null, pluginManager, null, false);
+			
+			// TODO This is not streaming. SerializerInputstream has to be fixed first, then the IfcEngine wrapper should be able to handle streams without knowing the size in advance
+			
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			serializer.writeToOutputStream(outputStream);
 
-			FileUtils.writeByteArrayToFile(new File("blaat.ifc"), outputStream.toByteArray());
-			
 			User user = (User) databaseSession.get(uoid, Query.getDefault());
 			UserSettings userSettings = user.getUserSettings();
 			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
