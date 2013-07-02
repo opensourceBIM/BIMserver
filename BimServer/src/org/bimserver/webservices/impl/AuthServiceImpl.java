@@ -66,6 +66,7 @@ public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface
 		}
 		return null;
 	}
+	
 //
 //	@Override
 //	public String createToken(Integer validitySeconds) throws UserException, ServerException {
