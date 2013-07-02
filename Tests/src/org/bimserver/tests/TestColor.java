@@ -17,7 +17,6 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.bimserver.shared.ModelColorizer;
 
 public class TestColor {
 	public static void main(String[] args) {

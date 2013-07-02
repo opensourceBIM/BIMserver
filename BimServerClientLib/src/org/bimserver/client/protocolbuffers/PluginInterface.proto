@@ -592,10 +592,6 @@ message GetPluginObjectDefinitionRequest {
 	optional int64 oid = 1;
 }
 
-message SArrayDefinition {
-	optional STypeDefinition type = 1;
-}
-
 enum SPrimitiveEnum{
 	SPrimitiveEnum_LONG = 0;
 	SPrimitiveEnum_DOUBLE = 1;
@@ -608,11 +604,15 @@ message SPrimitiveDefinition {
 	optional SPrimitiveEnum type = 1;
 }
 
+message SArrayDefinition {
+	optional STypeDefinition type = 1;
+}
+
 message STypeDefinition {
 	required string __actual_type = 1;
-	optional SObjectDefinition __SObjectDefinition = 2;
-	optional SArrayDefinition __SArrayDefinition = 3;
-	optional SPrimitiveDefinition __SPrimitiveDefinition = 4;
+	optional SPrimitiveDefinition __SPrimitiveDefinition = 2;
+	optional SObjectDefinition __SObjectDefinition = 3;
+	optional SArrayDefinition __SArrayDefinition = 4;
 }
 
 message SParameterDefinition {
@@ -642,16 +642,10 @@ message SArrayType {
 	optional int64 oid = 3;
 }
 
-message SBooleanType {
+message SLongType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional bool value = 3;
-}
-
-message SDoubleType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional double value = 3;
+	optional int64 value = 3;
 }
 
 message SStringType {
@@ -666,19 +660,25 @@ message SByteArrayType {
 	optional bytes value = 3;
 }
 
-message SLongType {
+message SDoubleType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional int64 value = 3;
+	optional double value = 3;
+}
+
+message SBooleanType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional bool value = 3;
 }
 
 message SPrimitiveType {
 	required string __actual_type = 1;
-	optional SBooleanType __SBooleanType = 2;
-	optional SDoubleType __SDoubleType = 3;
-	optional SStringType __SStringType = 4;
-	optional SByteArrayType __SByteArrayType = 5;
-	optional SLongType __SLongType = 6;
+	optional SLongType __SLongType = 2;
+	optional SStringType __SStringType = 3;
+	optional SByteArrayType __SByteArrayType = 4;
+	optional SDoubleType __SDoubleType = 5;
+	optional SBooleanType __SBooleanType = 6;
 	optional int32 rid = 7;
 	optional int64 oid = 8;
 }

@@ -32,16 +32,14 @@ public class ProgressTopic extends Topic {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProgressTopic.class);
 	private static final int RATE_LIMIT_NANO_SECONDS = 400000000; // 400ms
-	private long uoid;
 	private SProgressTopicType type;
 	private String description;
 	private ProgressTopicKey key;
 	private LongActionState lastProgress;
 	private long lastSent = -1;
 
-	public ProgressTopic(ProgressTopicKey key, long uoid, SProgressTopicType type, String description) {
+	public ProgressTopic(ProgressTopicKey key, SProgressTopicType type, String description) {
 		this.key = key;
-		this.uoid = uoid;
 		this.type = type;
 		this.description = description;
 	}

@@ -167,9 +167,9 @@ public class NotificationsManager {
 		return url;
 	}
 
-	public ProgressTopic createProgressTopic(long uoid, SProgressTopicType type, String description) {
+	public ProgressTopic createProgressTopic(SProgressTopicType type, String description) {
 		ProgressTopicKey key = new ProgressTopicKey();
-		ProgressTopic topic = new ProgressTopic(key, uoid, type, description);
+		ProgressTopic topic = new ProgressTopic(key, type, description);
 		progressTopicsById.put(key.getId(), topic);
 		addToQueue(new NewProgressTopicOnServerNotification(bimServer, key.getId()));
 		return topic;
@@ -184,14 +184,14 @@ public class NotificationsManager {
 			topics = new HashSet<ProgressOnProjectTopic>();
 			progressOnProjectTopics.put(key, topics);
 		}
-		ProgressOnProjectTopic topic = new ProgressOnProjectTopic(key, uoid, poid, type, description);
+		ProgressOnProjectTopic topic = new ProgressOnProjectTopic(key, poid, type, description);
 		progressTopicsById.put(key.getId(), topic);
 		topics.add(topic);
 		addToQueue(new NewProgressTopicOnProjectNotification(bimServer, poid, key.getId()));
 		return topic;
 	}
 
-	public ProgressOnRevisionTopic createProgressOnRevisionTopic(long uoid, long poid, long roid, SProgressTopicType type, String description) {
+	public ProgressOnRevisionTopic createProgressOnRevisionTopic(long poid, long roid, SProgressTopicType type, String description) {
 		ProgressOnRevisionTopicKey key = new ProgressOnRevisionTopicKey(poid, roid);
 		Set<ProgressOnRevisionTopic> topics = null;
 		if (progressOnRevisionTopics.containsKey(key)) {
@@ -200,7 +200,7 @@ public class NotificationsManager {
 			topics = new HashSet<ProgressOnRevisionTopic>();
 			progressOnRevisionTopics.put(key, topics);
 		}
-		ProgressOnRevisionTopic topic = new ProgressOnRevisionTopic(key, uoid, poid, roid, type, description);
+		ProgressOnRevisionTopic topic = new ProgressOnRevisionTopic(key, poid, roid, type, description);
 		progressTopicsById.put(key.getId(), topic);
 		topics.add(topic);
 		addToQueue(new NewProgressTopicOnRevisionNotification(bimServer, poid, roid, key.getId()));

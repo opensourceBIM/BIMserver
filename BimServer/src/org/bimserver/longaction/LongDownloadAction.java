@@ -53,7 +53,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		super(bimServer, username, userUsername, downloadParameters, accessMethod, authorization);
 
 		// TODO it is hard to determine on which project/revision this download is occurring, could be a list of...
-		setProgressTopic(bimServer.getNotificationsManager().createProgressTopic(authorization.getUoid(), SProgressTopicType.DOWNLOAD, "Download"));
+		setProgressTopic(bimServer.getNotificationsManager().createProgressTopic(SProgressTopicType.DOWNLOAD, "Download"));
 	}
 
 	public void execute() {

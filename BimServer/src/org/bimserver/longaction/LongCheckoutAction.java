@@ -33,7 +33,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	public LongCheckoutAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, Authorization authorization, AccessMethod accessMethod) {
 		super(bimServer, username, userUsername, downloadParameters, accessMethod, authorization);
-		setProgressTopic(bimServer.getNotificationsManager().createProgressTopic(authorization.getUoid(), SProgressTopicType.DOWNLOAD, "Download"));
+		setProgressTopic(bimServer.getNotificationsManager().createProgressTopic(SProgressTopicType.DOWNLOAD, "Download"));
 	}
 
 	@Override
