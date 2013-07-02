@@ -123,4 +123,21 @@ public class Tokenizer {
 	public boolean startsWith(String string) {
 		return toString().trim().startsWith(string);
 	}
+
+	public boolean nextIsDollar() {
+		String toString = toString();
+		String x = toString.trim();
+		return x.startsWith("$");
+	}
+
+	public Tokenizer readDollar() throws TokenizeException {
+		String toString = toString();
+		String x = toString.trim();
+		if (!x.startsWith("$")) {
+			throw new TokenizeException("No dollar at starting index in " + x);
+		}
+		int offset = toString.indexOf("$");
+		this.leftPositionInclude += offset + 1;
+		return this;
+	}
 }
