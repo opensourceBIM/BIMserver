@@ -18,9 +18,6 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.ProjectUpdated;
-
-import org.bimserver.models.store.Project;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -28,15 +25,11 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Project Updated</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.bimserver.models.log.impl.ProjectUpdatedImpl#getProject <em>Project</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
  */
-public class ProjectUpdatedImpl extends LogActionImpl implements ProjectUpdated {
+public class ProjectUpdatedImpl extends ProjectRelatedImpl implements ProjectUpdated {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,24 +47,6 @@ public class ProjectUpdatedImpl extends LogActionImpl implements ProjectUpdated 
 	@Override
 	protected EClass eStaticClass() {
 		return LogPackage.Literals.PROJECT_UPDATED;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Project getProject() {
-		return (Project) eGet(LogPackage.Literals.PROJECT_UPDATED__PROJECT, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setProject(Project newProject) {
-		eSet(LogPackage.Literals.PROJECT_UPDATED__PROJECT, newProject);
 	}
 
 } //ProjectUpdatedImpl

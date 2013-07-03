@@ -16,8 +16,8 @@ package org.bimserver.shared.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface {
 
@@ -67,7 +67,7 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 		return null;
 	}
 	
-	public java.util.List<byte[]> getByteArrayAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
+	public java.util.List getByteArrayAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
 	}
 	

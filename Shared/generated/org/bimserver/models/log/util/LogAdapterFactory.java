@@ -16,13 +16,41 @@
  */
 package org.bimserver.models.log.util;
 
-import org.bimserver.models.log.*;
-
+import org.bimserver.models.log.CheckoutRelated;
+import org.bimserver.models.log.DatabaseCreated;
+import org.bimserver.models.log.Download;
+import org.bimserver.models.log.ExtendedDataAddedToProject;
+import org.bimserver.models.log.ExtendedDataAddedToRevision;
+import org.bimserver.models.log.GeoTagUpdated;
+import org.bimserver.models.log.LogAction;
+import org.bimserver.models.log.LogPackage;
+import org.bimserver.models.log.NewCheckoutAdded;
+import org.bimserver.models.log.NewObjectIDMUploaded;
+import org.bimserver.models.log.NewProjectAdded;
+import org.bimserver.models.log.NewRevisionAdded;
+import org.bimserver.models.log.NewUserAdded;
+import org.bimserver.models.log.PasswordChanged;
+import org.bimserver.models.log.PasswordReset;
+import org.bimserver.models.log.ProjectDeleted;
+import org.bimserver.models.log.ProjectRelated;
+import org.bimserver.models.log.ProjectUndeleted;
+import org.bimserver.models.log.ProjectUpdated;
+import org.bimserver.models.log.RemoteServiceCalled;
+import org.bimserver.models.log.RevisionBranched;
+import org.bimserver.models.log.RevisionRelated;
+import org.bimserver.models.log.RevisionUpdated;
+import org.bimserver.models.log.ServerLog;
+import org.bimserver.models.log.ServerStarted;
+import org.bimserver.models.log.SettingsSaved;
+import org.bimserver.models.log.UserAddedToProject;
+import org.bimserver.models.log.UserChanged;
+import org.bimserver.models.log.UserDeleted;
+import org.bimserver.models.log.UserRelated;
+import org.bimserver.models.log.UserRemovedFromProject;
+import org.bimserver.models.log.UserUndeleted;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -88,6 +116,26 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseServerLog(ServerLog object) {
 			return createServerLogAdapter();
+		}
+
+		@Override
+		public Adapter caseProjectRelated(ProjectRelated object) {
+			return createProjectRelatedAdapter();
+		}
+
+		@Override
+		public Adapter caseCheckoutRelated(CheckoutRelated object) {
+			return createCheckoutRelatedAdapter();
+		}
+
+		@Override
+		public Adapter caseRevisionRelated(RevisionRelated object) {
+			return createRevisionRelatedAdapter();
+		}
+
+		@Override
+		public Adapter caseUserRelated(UserRelated object) {
+			return createUserRelatedAdapter();
 		}
 
 		@Override
@@ -259,6 +307,62 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createServerLogAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.ProjectRelated <em>Project Related</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.log.ProjectRelated
+	 * @generated
+	 */
+	public Adapter createProjectRelatedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.CheckoutRelated <em>Checkout Related</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.log.CheckoutRelated
+	 * @generated
+	 */
+	public Adapter createCheckoutRelatedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.RevisionRelated <em>Revision Related</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.log.RevisionRelated
+	 * @generated
+	 */
+	public Adapter createRevisionRelatedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.UserRelated <em>User Related</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.log.UserRelated
+	 * @generated
+	 */
+	public Adapter createUserRelatedAdapter() {
 		return null;
 	}
 

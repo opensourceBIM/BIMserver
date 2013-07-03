@@ -17,34 +17,24 @@
 package org.bimserver.models.log.impl;
 
 import java.io.IOException;
-
 import java.net.URL;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-
 import org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1PackageImpl;
-
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.LogPackage;
-
 import org.bimserver.models.store.StorePackage;
-
 import org.bimserver.models.store.impl.StorePackageImpl;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 
 /**
@@ -74,6 +64,34 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * @generated
 	 */
 	private EClass serverLogEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass projectRelatedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass checkoutRelatedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass revisionRelatedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass userRelatedEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -392,9 +410,93 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getProjectRelated() {
+		if (projectRelatedEClass == null) {
+			projectRelatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(3);
+		}
+		return projectRelatedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProjectRelated_Project() {
+		return (EReference) getProjectRelated().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCheckoutRelated() {
+		if (checkoutRelatedEClass == null) {
+			checkoutRelatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(4);
+		}
+		return checkoutRelatedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCheckoutRelated_Checkout() {
+		return (EReference) getCheckoutRelated().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRevisionRelated() {
+		if (revisionRelatedEClass == null) {
+			revisionRelatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(5);
+		}
+		return revisionRelatedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRevisionRelated_Revision() {
+		return (EReference) getRevisionRelated().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUserRelated() {
+		if (userRelatedEClass == null) {
+			userRelatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(6);
+		}
+		return userRelatedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUserRelated_User() {
+		return (EReference) getUserRelated().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNewUserAdded() {
 		if (newUserAddedEClass == null) {
-			newUserAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(3);
+			newUserAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(7);
 		}
 		return newUserAddedEClass;
 	}
@@ -404,18 +506,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNewUserAdded_User() {
-		return (EReference) getNewUserAdded().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getNewProjectAdded() {
 		if (newProjectAddedEClass == null) {
-			newProjectAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(4);
+			newProjectAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(8);
 		}
 		return newProjectAddedEClass;
 	}
@@ -425,17 +518,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNewProjectAdded_Project() {
-		return (EReference) getNewProjectAdded().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getNewProjectAdded_ParentProject() {
-		return (EReference) getNewProjectAdded().getEStructuralFeatures().get(1);
+		return (EReference) getNewProjectAdded().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -445,7 +529,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getRevisionBranched() {
 		if (revisionBranchedEClass == null) {
-			revisionBranchedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(5);
+			revisionBranchedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(9);
 		}
 		return revisionBranchedEClass;
 	}
@@ -475,7 +559,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getNewRevisionAdded() {
 		if (newRevisionAddedEClass == null) {
-			newRevisionAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(6);
+			newRevisionAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(10);
 		}
 		return newRevisionAddedEClass;
 	}
@@ -485,17 +569,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNewRevisionAdded_Revision() {
-		return (EReference) getNewRevisionAdded().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getNewRevisionAdded_Project() {
-		return (EReference) getNewRevisionAdded().getEStructuralFeatures().get(1);
+		return (EReference) getNewRevisionAdded().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -505,7 +580,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getNewCheckoutAdded() {
 		if (newCheckoutAddedEClass == null) {
-			newCheckoutAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(7);
+			newCheckoutAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(11);
 		}
 		return newCheckoutAddedEClass;
 	}
@@ -515,18 +590,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNewCheckoutAdded_Checkout() {
-		return (EReference) getNewCheckoutAdded().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSettingsSaved() {
 		if (settingsSavedEClass == null) {
-			settingsSavedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(8);
+			settingsSavedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(12);
 		}
 		return settingsSavedEClass;
 	}
@@ -538,7 +604,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getUserAddedToProject() {
 		if (userAddedToProjectEClass == null) {
-			userAddedToProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(9);
+			userAddedToProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(13);
 		}
 		return userAddedToProjectEClass;
 	}
@@ -548,17 +614,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUserAddedToProject_User() {
-		return (EReference) getUserAddedToProject().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getUserAddedToProject_Project() {
-		return (EReference) getUserAddedToProject().getEStructuralFeatures().get(1);
+		return (EReference) getUserAddedToProject().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -568,7 +625,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getNewObjectIDMUploaded() {
 		if (newObjectIDMUploadedEClass == null) {
-			newObjectIDMUploadedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(10);
+			newObjectIDMUploadedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(14);
 		}
 		return newObjectIDMUploadedEClass;
 	}
@@ -580,7 +637,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getDownload() {
 		if (downloadEClass == null) {
-			downloadEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(11);
+			downloadEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(15);
 		}
 		return downloadEClass;
 	}
@@ -592,7 +649,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getUserRemovedFromProject() {
 		if (userRemovedFromProjectEClass == null) {
-			userRemovedFromProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(12);
+			userRemovedFromProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(16);
 		}
 		return userRemovedFromProjectEClass;
 	}
@@ -602,17 +659,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUserRemovedFromProject_User() {
-		return (EReference) getUserRemovedFromProject().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getUserRemovedFromProject_Project() {
-		return (EReference) getUserRemovedFromProject().getEStructuralFeatures().get(1);
+		return (EReference) getUserRemovedFromProject().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -622,7 +670,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getProjectDeleted() {
 		if (projectDeletedEClass == null) {
-			projectDeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(13);
+			projectDeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(17);
 		}
 		return projectDeletedEClass;
 	}
@@ -632,18 +680,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectDeleted_Project() {
-		return (EReference) getProjectDeleted().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getUserDeleted() {
 		if (userDeletedEClass == null) {
-			userDeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(14);
+			userDeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(18);
 		}
 		return userDeletedEClass;
 	}
@@ -653,18 +692,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUserDeleted_User() {
-		return (EReference) getUserDeleted().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPasswordReset() {
 		if (passwordResetEClass == null) {
-			passwordResetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(15);
+			passwordResetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(19);
 		}
 		return passwordResetEClass;
 	}
@@ -674,18 +704,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPasswordReset_User() {
-		return (EReference) getPasswordReset().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getDatabaseCreated() {
 		if (databaseCreatedEClass == null) {
-			databaseCreatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(16);
+			databaseCreatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(20);
 		}
 		return databaseCreatedEClass;
 	}
@@ -715,7 +736,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getServerStarted() {
 		if (serverStartedEClass == null) {
-			serverStartedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(17);
+			serverStartedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(21);
 		}
 		return serverStartedEClass;
 	}
@@ -727,7 +748,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getProjectUpdated() {
 		if (projectUpdatedEClass == null) {
-			projectUpdatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(18);
+			projectUpdatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(22);
 		}
 		return projectUpdatedEClass;
 	}
@@ -737,18 +758,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectUpdated_Project() {
-		return (EReference) getProjectUpdated().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getUserUndeleted() {
 		if (userUndeletedEClass == null) {
-			userUndeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(19);
+			userUndeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(23);
 		}
 		return userUndeletedEClass;
 	}
@@ -758,18 +770,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUserUndeleted_User() {
-		return (EReference) getUserUndeleted().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getProjectUndeleted() {
 		if (projectUndeletedEClass == null) {
-			projectUndeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(20);
+			projectUndeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(24);
 		}
 		return projectUndeletedEClass;
 	}
@@ -779,18 +782,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectUndeleted_Project() {
-		return (EReference) getProjectUndeleted().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getRevisionUpdated() {
 		if (revisionUpdatedEClass == null) {
-			revisionUpdatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(21);
+			revisionUpdatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(25);
 		}
 		return revisionUpdatedEClass;
 	}
@@ -800,18 +794,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevisionUpdated_Revision() {
-		return (EReference) getRevisionUpdated().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getGeoTagUpdated() {
 		if (geoTagUpdatedEClass == null) {
-			geoTagUpdatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(22);
+			geoTagUpdatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(26);
 		}
 		return geoTagUpdatedEClass;
 	}
@@ -832,7 +817,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getPasswordChanged() {
 		if (passwordChangedEClass == null) {
-			passwordChangedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(23);
+			passwordChangedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(27);
 		}
 		return passwordChangedEClass;
 	}
@@ -842,18 +827,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPasswordChanged_User() {
-		return (EReference) getPasswordChanged().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getUserChanged() {
 		if (userChangedEClass == null) {
-			userChangedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(24);
+			userChangedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(28);
 		}
 		return userChangedEClass;
 	}
@@ -863,18 +839,9 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUserChanged_User() {
-		return (EReference) getUserChanged().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getExtendedDataAddedToRevision() {
 		if (extendedDataAddedToRevisionEClass == null) {
-			extendedDataAddedToRevisionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(25);
+			extendedDataAddedToRevisionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(29);
 		}
 		return extendedDataAddedToRevisionEClass;
 	}
@@ -904,7 +871,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getExtendedDataAddedToProject() {
 		if (extendedDataAddedToProjectEClass == null) {
-			extendedDataAddedToProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(26);
+			extendedDataAddedToProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(30);
 		}
 		return extendedDataAddedToProjectEClass;
 	}
@@ -934,7 +901,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getRemoteServiceCalled() {
 		if (remoteServiceCalledEClass == null) {
-			remoteServiceCalledEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(27);
+			remoteServiceCalledEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(31);
 		}
 		return remoteServiceCalledEClass;
 	}

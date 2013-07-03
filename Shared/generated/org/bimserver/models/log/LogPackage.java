@@ -145,14 +145,14 @@ public interface LogPackage extends EPackage {
 	int SERVER_LOG_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.log.impl.NewUserAddedImpl <em>New User Added</em>}' class.
+	 * The meta object id for the '{@link org.bimserver.models.log.impl.ProjectRelatedImpl <em>Project Related</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.log.impl.NewUserAddedImpl
-	 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewUserAdded()
+	 * @see org.bimserver.models.log.impl.ProjectRelatedImpl
+	 * @see org.bimserver.models.log.impl.LogPackageImpl#getProjectRelated()
 	 * @generated
 	 */
-	int NEW_USER_ADDED = 2;
+	int PROJECT_RELATED = 2;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -161,7 +161,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_USER_ADDED__DATE = LOG_ACTION__DATE;
+	int PROJECT_RELATED__DATE = LOG_ACTION__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -170,7 +170,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_USER_ADDED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int PROJECT_RELATED__EXECUTOR = LOG_ACTION__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -179,7 +179,172 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_USER_ADDED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int PROJECT_RELATED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>Project</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_RELATED__PROJECT = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Project Related</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_RELATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.log.impl.CheckoutRelatedImpl <em>Checkout Related</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.log.impl.CheckoutRelatedImpl
+	 * @see org.bimserver.models.log.impl.LogPackageImpl#getCheckoutRelated()
+	 * @generated
+	 */
+	int CHECKOUT_RELATED = 3;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKOUT_RELATED__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKOUT_RELATED__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKOUT_RELATED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>Checkout</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKOUT_RELATED__CHECKOUT = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Checkout Related</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKOUT_RELATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.log.impl.RevisionRelatedImpl <em>Revision Related</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.log.impl.RevisionRelatedImpl
+	 * @see org.bimserver.models.log.impl.LogPackageImpl#getRevisionRelated()
+	 * @generated
+	 */
+	int REVISION_RELATED = 4;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_RELATED__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_RELATED__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_RELATED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>Revision</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_RELATED__REVISION = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Revision Related</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_RELATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.log.impl.UserRelatedImpl <em>User Related</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.log.impl.UserRelatedImpl
+	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserRelated()
+	 * @generated
+	 */
+	int USER_RELATED = 5;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_RELATED__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_RELATED__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_RELATED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -188,7 +353,62 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_USER_ADDED__USER = LOG_ACTION_FEATURE_COUNT + 0;
+	int USER_RELATED__USER = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>User Related</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_RELATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.log.impl.NewUserAddedImpl <em>New User Added</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.log.impl.NewUserAddedImpl
+	 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewUserAdded()
+	 * @generated
+	 */
+	int NEW_USER_ADDED = 6;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_USER_ADDED__DATE = USER_RELATED__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_USER_ADDED__EXECUTOR = USER_RELATED__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_USER_ADDED__ACCESS_METHOD = USER_RELATED__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>User</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_USER_ADDED__USER = USER_RELATED__USER;
 
 	/**
 	 * The number of structural features of the '<em>New User Added</em>' class.
@@ -197,7 +417,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_USER_ADDED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int NEW_USER_ADDED_FEATURE_COUNT = USER_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.NewProjectAddedImpl <em>New Project Added</em>}' class.
@@ -207,7 +427,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewProjectAdded()
 	 * @generated
 	 */
-	int NEW_PROJECT_ADDED = 3;
+	int NEW_PROJECT_ADDED = 7;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -216,7 +436,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_PROJECT_ADDED__DATE = LOG_ACTION__DATE;
+	int NEW_PROJECT_ADDED__DATE = PROJECT_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -225,7 +445,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_PROJECT_ADDED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int NEW_PROJECT_ADDED__EXECUTOR = PROJECT_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -234,7 +454,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_PROJECT_ADDED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int NEW_PROJECT_ADDED__ACCESS_METHOD = PROJECT_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' reference.
@@ -243,7 +463,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_PROJECT_ADDED__PROJECT = LOG_ACTION_FEATURE_COUNT + 0;
+	int NEW_PROJECT_ADDED__PROJECT = PROJECT_RELATED__PROJECT;
 
 	/**
 	 * The feature id for the '<em><b>Parent Project</b></em>' reference.
@@ -252,7 +472,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_PROJECT_ADDED__PARENT_PROJECT = LOG_ACTION_FEATURE_COUNT + 1;
+	int NEW_PROJECT_ADDED__PARENT_PROJECT = PROJECT_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>New Project Added</em>' class.
@@ -261,7 +481,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_PROJECT_ADDED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
+	int NEW_PROJECT_ADDED_FEATURE_COUNT = PROJECT_RELATED_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.RevisionBranchedImpl <em>Revision Branched</em>}' class.
@@ -271,7 +491,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getRevisionBranched()
 	 * @generated
 	 */
-	int REVISION_BRANCHED = 4;
+	int REVISION_BRANCHED = 8;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -335,7 +555,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewRevisionAdded()
 	 * @generated
 	 */
-	int NEW_REVISION_ADDED = 5;
+	int NEW_REVISION_ADDED = 9;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -344,7 +564,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_REVISION_ADDED__DATE = LOG_ACTION__DATE;
+	int NEW_REVISION_ADDED__DATE = REVISION_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -353,7 +573,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_REVISION_ADDED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int NEW_REVISION_ADDED__EXECUTOR = REVISION_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -362,7 +582,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_REVISION_ADDED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int NEW_REVISION_ADDED__ACCESS_METHOD = REVISION_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>Revision</b></em>' reference.
@@ -371,7 +591,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_REVISION_ADDED__REVISION = LOG_ACTION_FEATURE_COUNT + 0;
+	int NEW_REVISION_ADDED__REVISION = REVISION_RELATED__REVISION;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' reference.
@@ -380,7 +600,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_REVISION_ADDED__PROJECT = LOG_ACTION_FEATURE_COUNT + 1;
+	int NEW_REVISION_ADDED__PROJECT = REVISION_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>New Revision Added</em>' class.
@@ -389,7 +609,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_REVISION_ADDED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
+	int NEW_REVISION_ADDED_FEATURE_COUNT = REVISION_RELATED_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.NewCheckoutAddedImpl <em>New Checkout Added</em>}' class.
@@ -399,7 +619,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewCheckoutAdded()
 	 * @generated
 	 */
-	int NEW_CHECKOUT_ADDED = 6;
+	int NEW_CHECKOUT_ADDED = 10;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -408,7 +628,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_CHECKOUT_ADDED__DATE = LOG_ACTION__DATE;
+	int NEW_CHECKOUT_ADDED__DATE = CHECKOUT_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -417,7 +637,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_CHECKOUT_ADDED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int NEW_CHECKOUT_ADDED__EXECUTOR = CHECKOUT_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -426,7 +646,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_CHECKOUT_ADDED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int NEW_CHECKOUT_ADDED__ACCESS_METHOD = CHECKOUT_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>Checkout</b></em>' reference.
@@ -435,7 +655,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_CHECKOUT_ADDED__CHECKOUT = LOG_ACTION_FEATURE_COUNT + 0;
+	int NEW_CHECKOUT_ADDED__CHECKOUT = CHECKOUT_RELATED__CHECKOUT;
 
 	/**
 	 * The number of structural features of the '<em>New Checkout Added</em>' class.
@@ -444,7 +664,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_CHECKOUT_ADDED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int NEW_CHECKOUT_ADDED_FEATURE_COUNT = CHECKOUT_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.SettingsSavedImpl <em>Settings Saved</em>}' class.
@@ -454,7 +674,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getSettingsSaved()
 	 * @generated
 	 */
-	int SETTINGS_SAVED = 7;
+	int SETTINGS_SAVED = 11;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -500,7 +720,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserAddedToProject()
 	 * @generated
 	 */
-	int USER_ADDED_TO_PROJECT = 8;
+	int USER_ADDED_TO_PROJECT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -509,7 +729,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ADDED_TO_PROJECT__DATE = LOG_ACTION__DATE;
+	int USER_ADDED_TO_PROJECT__DATE = USER_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -518,7 +738,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ADDED_TO_PROJECT__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int USER_ADDED_TO_PROJECT__EXECUTOR = USER_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -527,7 +747,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ADDED_TO_PROJECT__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int USER_ADDED_TO_PROJECT__ACCESS_METHOD = USER_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -536,7 +756,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ADDED_TO_PROJECT__USER = LOG_ACTION_FEATURE_COUNT + 0;
+	int USER_ADDED_TO_PROJECT__USER = USER_RELATED__USER;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' reference.
@@ -545,7 +765,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ADDED_TO_PROJECT__PROJECT = LOG_ACTION_FEATURE_COUNT + 1;
+	int USER_ADDED_TO_PROJECT__PROJECT = USER_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>User Added To Project</em>' class.
@@ -554,7 +774,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ADDED_TO_PROJECT_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
+	int USER_ADDED_TO_PROJECT_FEATURE_COUNT = USER_RELATED_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.NewObjectIDMUploadedImpl <em>New Object IDM Uploaded</em>}' class.
@@ -564,7 +784,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getNewObjectIDMUploaded()
 	 * @generated
 	 */
-	int NEW_OBJECT_IDM_UPLOADED = 9;
+	int NEW_OBJECT_IDM_UPLOADED = 13;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -610,7 +830,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getDownload()
 	 * @generated
 	 */
-	int DOWNLOAD = 10;
+	int DOWNLOAD = 14;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -656,7 +876,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserRemovedFromProject()
 	 * @generated
 	 */
-	int USER_REMOVED_FROM_PROJECT = 11;
+	int USER_REMOVED_FROM_PROJECT = 15;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -665,7 +885,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_REMOVED_FROM_PROJECT__DATE = LOG_ACTION__DATE;
+	int USER_REMOVED_FROM_PROJECT__DATE = USER_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -674,7 +894,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_REMOVED_FROM_PROJECT__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int USER_REMOVED_FROM_PROJECT__EXECUTOR = USER_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -683,7 +903,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_REMOVED_FROM_PROJECT__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int USER_REMOVED_FROM_PROJECT__ACCESS_METHOD = USER_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -692,7 +912,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_REMOVED_FROM_PROJECT__USER = LOG_ACTION_FEATURE_COUNT + 0;
+	int USER_REMOVED_FROM_PROJECT__USER = USER_RELATED__USER;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' reference.
@@ -701,7 +921,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_REMOVED_FROM_PROJECT__PROJECT = LOG_ACTION_FEATURE_COUNT + 1;
+	int USER_REMOVED_FROM_PROJECT__PROJECT = USER_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>User Removed From Project</em>' class.
@@ -710,7 +930,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_REMOVED_FROM_PROJECT_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
+	int USER_REMOVED_FROM_PROJECT_FEATURE_COUNT = USER_RELATED_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.ProjectDeletedImpl <em>Project Deleted</em>}' class.
@@ -720,7 +940,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getProjectDeleted()
 	 * @generated
 	 */
-	int PROJECT_DELETED = 12;
+	int PROJECT_DELETED = 16;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -729,7 +949,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_DELETED__DATE = LOG_ACTION__DATE;
+	int PROJECT_DELETED__DATE = PROJECT_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -738,7 +958,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_DELETED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int PROJECT_DELETED__EXECUTOR = PROJECT_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -747,7 +967,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_DELETED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int PROJECT_DELETED__ACCESS_METHOD = PROJECT_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' reference.
@@ -756,7 +976,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_DELETED__PROJECT = LOG_ACTION_FEATURE_COUNT + 0;
+	int PROJECT_DELETED__PROJECT = PROJECT_RELATED__PROJECT;
 
 	/**
 	 * The number of structural features of the '<em>Project Deleted</em>' class.
@@ -765,7 +985,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_DELETED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int PROJECT_DELETED_FEATURE_COUNT = PROJECT_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.UserDeletedImpl <em>User Deleted</em>}' class.
@@ -775,7 +995,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserDeleted()
 	 * @generated
 	 */
-	int USER_DELETED = 13;
+	int USER_DELETED = 17;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -784,7 +1004,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_DELETED__DATE = LOG_ACTION__DATE;
+	int USER_DELETED__DATE = USER_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -793,7 +1013,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_DELETED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int USER_DELETED__EXECUTOR = USER_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -802,7 +1022,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_DELETED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int USER_DELETED__ACCESS_METHOD = USER_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -811,7 +1031,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_DELETED__USER = LOG_ACTION_FEATURE_COUNT + 0;
+	int USER_DELETED__USER = USER_RELATED__USER;
 
 	/**
 	 * The number of structural features of the '<em>User Deleted</em>' class.
@@ -820,7 +1040,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_DELETED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int USER_DELETED_FEATURE_COUNT = USER_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.PasswordResetImpl <em>Password Reset</em>}' class.
@@ -830,7 +1050,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getPasswordReset()
 	 * @generated
 	 */
-	int PASSWORD_RESET = 14;
+	int PASSWORD_RESET = 18;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -839,7 +1059,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSWORD_RESET__DATE = LOG_ACTION__DATE;
+	int PASSWORD_RESET__DATE = USER_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -848,7 +1068,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSWORD_RESET__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int PASSWORD_RESET__EXECUTOR = USER_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -857,7 +1077,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSWORD_RESET__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int PASSWORD_RESET__ACCESS_METHOD = USER_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -866,7 +1086,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSWORD_RESET__USER = LOG_ACTION_FEATURE_COUNT + 0;
+	int PASSWORD_RESET__USER = USER_RELATED__USER;
 
 	/**
 	 * The number of structural features of the '<em>Password Reset</em>' class.
@@ -875,7 +1095,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSWORD_RESET_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int PASSWORD_RESET_FEATURE_COUNT = USER_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.DatabaseCreatedImpl <em>Database Created</em>}' class.
@@ -885,7 +1105,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getDatabaseCreated()
 	 * @generated
 	 */
-	int DATABASE_CREATED = 15;
+	int DATABASE_CREATED = 19;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -949,7 +1169,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getServerStarted()
 	 * @generated
 	 */
-	int SERVER_STARTED = 16;
+	int SERVER_STARTED = 20;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -995,7 +1215,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getProjectUpdated()
 	 * @generated
 	 */
-	int PROJECT_UPDATED = 17;
+	int PROJECT_UPDATED = 21;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1004,7 +1224,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UPDATED__DATE = LOG_ACTION__DATE;
+	int PROJECT_UPDATED__DATE = PROJECT_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -1013,7 +1233,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UPDATED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int PROJECT_UPDATED__EXECUTOR = PROJECT_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -1022,7 +1242,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UPDATED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int PROJECT_UPDATED__ACCESS_METHOD = PROJECT_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' reference.
@@ -1031,7 +1251,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UPDATED__PROJECT = LOG_ACTION_FEATURE_COUNT + 0;
+	int PROJECT_UPDATED__PROJECT = PROJECT_RELATED__PROJECT;
 
 	/**
 	 * The number of structural features of the '<em>Project Updated</em>' class.
@@ -1040,7 +1260,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UPDATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int PROJECT_UPDATED_FEATURE_COUNT = PROJECT_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.UserUndeletedImpl <em>User Undeleted</em>}' class.
@@ -1050,7 +1270,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserUndeleted()
 	 * @generated
 	 */
-	int USER_UNDELETED = 18;
+	int USER_UNDELETED = 22;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1059,7 +1279,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_UNDELETED__DATE = LOG_ACTION__DATE;
+	int USER_UNDELETED__DATE = USER_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -1068,7 +1288,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_UNDELETED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int USER_UNDELETED__EXECUTOR = USER_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -1077,7 +1297,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_UNDELETED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int USER_UNDELETED__ACCESS_METHOD = USER_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -1086,7 +1306,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_UNDELETED__USER = LOG_ACTION_FEATURE_COUNT + 0;
+	int USER_UNDELETED__USER = USER_RELATED__USER;
 
 	/**
 	 * The number of structural features of the '<em>User Undeleted</em>' class.
@@ -1095,7 +1315,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_UNDELETED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int USER_UNDELETED_FEATURE_COUNT = USER_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.ProjectUndeletedImpl <em>Project Undeleted</em>}' class.
@@ -1105,7 +1325,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getProjectUndeleted()
 	 * @generated
 	 */
-	int PROJECT_UNDELETED = 19;
+	int PROJECT_UNDELETED = 23;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1114,7 +1334,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UNDELETED__DATE = LOG_ACTION__DATE;
+	int PROJECT_UNDELETED__DATE = PROJECT_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -1123,7 +1343,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UNDELETED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int PROJECT_UNDELETED__EXECUTOR = PROJECT_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -1132,7 +1352,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UNDELETED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int PROJECT_UNDELETED__ACCESS_METHOD = PROJECT_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' reference.
@@ -1141,7 +1361,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UNDELETED__PROJECT = LOG_ACTION_FEATURE_COUNT + 0;
+	int PROJECT_UNDELETED__PROJECT = PROJECT_RELATED__PROJECT;
 
 	/**
 	 * The number of structural features of the '<em>Project Undeleted</em>' class.
@@ -1150,7 +1370,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UNDELETED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int PROJECT_UNDELETED_FEATURE_COUNT = PROJECT_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.RevisionUpdatedImpl <em>Revision Updated</em>}' class.
@@ -1160,7 +1380,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getRevisionUpdated()
 	 * @generated
 	 */
-	int REVISION_UPDATED = 20;
+	int REVISION_UPDATED = 24;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1169,7 +1389,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_UPDATED__DATE = LOG_ACTION__DATE;
+	int REVISION_UPDATED__DATE = REVISION_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -1178,7 +1398,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_UPDATED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int REVISION_UPDATED__EXECUTOR = REVISION_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -1187,7 +1407,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_UPDATED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int REVISION_UPDATED__ACCESS_METHOD = REVISION_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>Revision</b></em>' reference.
@@ -1196,7 +1416,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_UPDATED__REVISION = LOG_ACTION_FEATURE_COUNT + 0;
+	int REVISION_UPDATED__REVISION = REVISION_RELATED__REVISION;
 
 	/**
 	 * The number of structural features of the '<em>Revision Updated</em>' class.
@@ -1205,7 +1425,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_UPDATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int REVISION_UPDATED_FEATURE_COUNT = REVISION_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.GeoTagUpdatedImpl <em>Geo Tag Updated</em>}' class.
@@ -1215,7 +1435,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getGeoTagUpdated()
 	 * @generated
 	 */
-	int GEO_TAG_UPDATED = 21;
+	int GEO_TAG_UPDATED = 25;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1270,7 +1490,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getPasswordChanged()
 	 * @generated
 	 */
-	int PASSWORD_CHANGED = 22;
+	int PASSWORD_CHANGED = 26;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1279,7 +1499,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSWORD_CHANGED__DATE = LOG_ACTION__DATE;
+	int PASSWORD_CHANGED__DATE = USER_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -1288,7 +1508,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSWORD_CHANGED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int PASSWORD_CHANGED__EXECUTOR = USER_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -1297,7 +1517,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSWORD_CHANGED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int PASSWORD_CHANGED__ACCESS_METHOD = USER_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -1306,7 +1526,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSWORD_CHANGED__USER = LOG_ACTION_FEATURE_COUNT + 0;
+	int PASSWORD_CHANGED__USER = USER_RELATED__USER;
 
 	/**
 	 * The number of structural features of the '<em>Password Changed</em>' class.
@@ -1315,7 +1535,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSWORD_CHANGED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int PASSWORD_CHANGED_FEATURE_COUNT = USER_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.UserChangedImpl <em>User Changed</em>}' class.
@@ -1325,7 +1545,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserChanged()
 	 * @generated
 	 */
-	int USER_CHANGED = 23;
+	int USER_CHANGED = 27;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1334,7 +1554,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_CHANGED__DATE = LOG_ACTION__DATE;
+	int USER_CHANGED__DATE = USER_RELATED__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -1343,7 +1563,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_CHANGED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int USER_CHANGED__EXECUTOR = USER_RELATED__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -1352,7 +1572,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_CHANGED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int USER_CHANGED__ACCESS_METHOD = USER_RELATED__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -1361,7 +1581,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_CHANGED__USER = LOG_ACTION_FEATURE_COUNT + 0;
+	int USER_CHANGED__USER = USER_RELATED__USER;
 
 	/**
 	 * The number of structural features of the '<em>User Changed</em>' class.
@@ -1370,7 +1590,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_CHANGED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int USER_CHANGED_FEATURE_COUNT = USER_RELATED_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.impl.ExtendedDataAddedToRevisionImpl <em>Extended Data Added To Revision</em>}' class.
@@ -1380,7 +1600,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getExtendedDataAddedToRevision()
 	 * @generated
 	 */
-	int EXTENDED_DATA_ADDED_TO_REVISION = 24;
+	int EXTENDED_DATA_ADDED_TO_REVISION = 28;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1444,7 +1664,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getExtendedDataAddedToProject()
 	 * @generated
 	 */
-	int EXTENDED_DATA_ADDED_TO_PROJECT = 25;
+	int EXTENDED_DATA_ADDED_TO_PROJECT = 29;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1508,7 +1728,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getRemoteServiceCalled()
 	 * @generated
 	 */
-	int REMOTE_SERVICE_CALLED = 26;
+	int REMOTE_SERVICE_CALLED = 30;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1608,7 +1828,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getAccessMethod()
 	 * @generated
 	 */
-	int ACCESS_METHOD = 27;
+	int ACCESS_METHOD = 31;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.LogAction <em>Action</em>}'.
@@ -1675,6 +1895,90 @@ public interface LogPackage extends EPackage {
 	EReference getServerLog_Actions();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.log.ProjectRelated <em>Project Related</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Project Related</em>'.
+	 * @see org.bimserver.models.log.ProjectRelated
+	 * @generated
+	 */
+	EClass getProjectRelated();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.ProjectRelated#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project</em>'.
+	 * @see org.bimserver.models.log.ProjectRelated#getProject()
+	 * @see #getProjectRelated()
+	 * @generated
+	 */
+	EReference getProjectRelated_Project();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.log.CheckoutRelated <em>Checkout Related</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Checkout Related</em>'.
+	 * @see org.bimserver.models.log.CheckoutRelated
+	 * @generated
+	 */
+	EClass getCheckoutRelated();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.CheckoutRelated#getCheckout <em>Checkout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Checkout</em>'.
+	 * @see org.bimserver.models.log.CheckoutRelated#getCheckout()
+	 * @see #getCheckoutRelated()
+	 * @generated
+	 */
+	EReference getCheckoutRelated_Checkout();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.log.RevisionRelated <em>Revision Related</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Revision Related</em>'.
+	 * @see org.bimserver.models.log.RevisionRelated
+	 * @generated
+	 */
+	EClass getRevisionRelated();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.RevisionRelated#getRevision <em>Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Revision</em>'.
+	 * @see org.bimserver.models.log.RevisionRelated#getRevision()
+	 * @see #getRevisionRelated()
+	 * @generated
+	 */
+	EReference getRevisionRelated_Revision();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.log.UserRelated <em>User Related</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Related</em>'.
+	 * @see org.bimserver.models.log.UserRelated
+	 * @generated
+	 */
+	EClass getUserRelated();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.UserRelated#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>User</em>'.
+	 * @see org.bimserver.models.log.UserRelated#getUser()
+	 * @see #getUserRelated()
+	 * @generated
+	 */
+	EReference getUserRelated_User();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.NewUserAdded <em>New User Added</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1685,17 +1989,6 @@ public interface LogPackage extends EPackage {
 	EClass getNewUserAdded();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.NewUserAdded#getUser <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User</em>'.
-	 * @see org.bimserver.models.log.NewUserAdded#getUser()
-	 * @see #getNewUserAdded()
-	 * @generated
-	 */
-	EReference getNewUserAdded_User();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.NewProjectAdded <em>New Project Added</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1704,17 +1997,6 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getNewProjectAdded();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.NewProjectAdded#getProject <em>Project</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Project</em>'.
-	 * @see org.bimserver.models.log.NewProjectAdded#getProject()
-	 * @see #getNewProjectAdded()
-	 * @generated
-	 */
-	EReference getNewProjectAdded_Project();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.log.NewProjectAdded#getParentProject <em>Parent Project</em>}'.
@@ -1770,17 +2052,6 @@ public interface LogPackage extends EPackage {
 	EClass getNewRevisionAdded();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.NewRevisionAdded#getRevision <em>Revision</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Revision</em>'.
-	 * @see org.bimserver.models.log.NewRevisionAdded#getRevision()
-	 * @see #getNewRevisionAdded()
-	 * @generated
-	 */
-	EReference getNewRevisionAdded_Revision();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.log.NewRevisionAdded#getProject <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1802,17 +2073,6 @@ public interface LogPackage extends EPackage {
 	EClass getNewCheckoutAdded();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.NewCheckoutAdded#getCheckout <em>Checkout</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Checkout</em>'.
-	 * @see org.bimserver.models.log.NewCheckoutAdded#getCheckout()
-	 * @see #getNewCheckoutAdded()
-	 * @generated
-	 */
-	EReference getNewCheckoutAdded_Checkout();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.SettingsSaved <em>Settings Saved</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1831,17 +2091,6 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUserAddedToProject();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.UserAddedToProject#getUser <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User</em>'.
-	 * @see org.bimserver.models.log.UserAddedToProject#getUser()
-	 * @see #getUserAddedToProject()
-	 * @generated
-	 */
-	EReference getUserAddedToProject_User();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.log.UserAddedToProject#getProject <em>Project</em>}'.
@@ -1885,17 +2134,6 @@ public interface LogPackage extends EPackage {
 	EClass getUserRemovedFromProject();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.UserRemovedFromProject#getUser <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User</em>'.
-	 * @see org.bimserver.models.log.UserRemovedFromProject#getUser()
-	 * @see #getUserRemovedFromProject()
-	 * @generated
-	 */
-	EReference getUserRemovedFromProject_User();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.log.UserRemovedFromProject#getProject <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1917,17 +2155,6 @@ public interface LogPackage extends EPackage {
 	EClass getProjectDeleted();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.ProjectDeleted#getProject <em>Project</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Project</em>'.
-	 * @see org.bimserver.models.log.ProjectDeleted#getProject()
-	 * @see #getProjectDeleted()
-	 * @generated
-	 */
-	EReference getProjectDeleted_Project();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.UserDeleted <em>User Deleted</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1938,17 +2165,6 @@ public interface LogPackage extends EPackage {
 	EClass getUserDeleted();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.UserDeleted#getUser <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User</em>'.
-	 * @see org.bimserver.models.log.UserDeleted#getUser()
-	 * @see #getUserDeleted()
-	 * @generated
-	 */
-	EReference getUserDeleted_User();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.PasswordReset <em>Password Reset</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1957,17 +2173,6 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPasswordReset();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.PasswordReset#getUser <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User</em>'.
-	 * @see org.bimserver.models.log.PasswordReset#getUser()
-	 * @see #getPasswordReset()
-	 * @generated
-	 */
-	EReference getPasswordReset_User();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.DatabaseCreated <em>Database Created</em>}'.
@@ -2022,17 +2227,6 @@ public interface LogPackage extends EPackage {
 	EClass getProjectUpdated();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.ProjectUpdated#getProject <em>Project</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Project</em>'.
-	 * @see org.bimserver.models.log.ProjectUpdated#getProject()
-	 * @see #getProjectUpdated()
-	 * @generated
-	 */
-	EReference getProjectUpdated_Project();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.UserUndeleted <em>User Undeleted</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2041,17 +2235,6 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUserUndeleted();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.UserUndeleted#getUser <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User</em>'.
-	 * @see org.bimserver.models.log.UserUndeleted#getUser()
-	 * @see #getUserUndeleted()
-	 * @generated
-	 */
-	EReference getUserUndeleted_User();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.ProjectUndeleted <em>Project Undeleted</em>}'.
@@ -2064,17 +2247,6 @@ public interface LogPackage extends EPackage {
 	EClass getProjectUndeleted();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.ProjectUndeleted#getProject <em>Project</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Project</em>'.
-	 * @see org.bimserver.models.log.ProjectUndeleted#getProject()
-	 * @see #getProjectUndeleted()
-	 * @generated
-	 */
-	EReference getProjectUndeleted_Project();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.RevisionUpdated <em>Revision Updated</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2083,17 +2255,6 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRevisionUpdated();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.RevisionUpdated#getRevision <em>Revision</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Revision</em>'.
-	 * @see org.bimserver.models.log.RevisionUpdated#getRevision()
-	 * @see #getRevisionUpdated()
-	 * @generated
-	 */
-	EReference getRevisionUpdated_Revision();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.GeoTagUpdated <em>Geo Tag Updated</em>}'.
@@ -2127,17 +2288,6 @@ public interface LogPackage extends EPackage {
 	EClass getPasswordChanged();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.PasswordChanged#getUser <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User</em>'.
-	 * @see org.bimserver.models.log.PasswordChanged#getUser()
-	 * @see #getPasswordChanged()
-	 * @generated
-	 */
-	EReference getPasswordChanged_User();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.UserChanged <em>User Changed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2146,17 +2296,6 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUserChanged();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.UserChanged#getUser <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User</em>'.
-	 * @see org.bimserver.models.log.UserChanged#getUser()
-	 * @see #getUserChanged()
-	 * @generated
-	 */
-	EReference getUserChanged_User();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.ExtendedDataAddedToRevision <em>Extended Data Added To Revision</em>}'.
@@ -2383,6 +2522,78 @@ public interface LogPackage extends EPackage {
 		EReference SERVER_LOG__ACTIONS = eINSTANCE.getServerLog_Actions();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ProjectRelatedImpl <em>Project Related</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.log.impl.ProjectRelatedImpl
+		 * @see org.bimserver.models.log.impl.LogPackageImpl#getProjectRelated()
+		 * @generated
+		 */
+		EClass PROJECT_RELATED = eINSTANCE.getProjectRelated();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT_RELATED__PROJECT = eINSTANCE.getProjectRelated_Project();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.log.impl.CheckoutRelatedImpl <em>Checkout Related</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.log.impl.CheckoutRelatedImpl
+		 * @see org.bimserver.models.log.impl.LogPackageImpl#getCheckoutRelated()
+		 * @generated
+		 */
+		EClass CHECKOUT_RELATED = eINSTANCE.getCheckoutRelated();
+
+		/**
+		 * The meta object literal for the '<em><b>Checkout</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHECKOUT_RELATED__CHECKOUT = eINSTANCE.getCheckoutRelated_Checkout();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.log.impl.RevisionRelatedImpl <em>Revision Related</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.log.impl.RevisionRelatedImpl
+		 * @see org.bimserver.models.log.impl.LogPackageImpl#getRevisionRelated()
+		 * @generated
+		 */
+		EClass REVISION_RELATED = eINSTANCE.getRevisionRelated();
+
+		/**
+		 * The meta object literal for the '<em><b>Revision</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION_RELATED__REVISION = eINSTANCE.getRevisionRelated_Revision();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.log.impl.UserRelatedImpl <em>User Related</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.log.impl.UserRelatedImpl
+		 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserRelated()
+		 * @generated
+		 */
+		EClass USER_RELATED = eINSTANCE.getUserRelated();
+
+		/**
+		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_RELATED__USER = eINSTANCE.getUserRelated_User();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.NewUserAddedImpl <em>New User Added</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2393,14 +2604,6 @@ public interface LogPackage extends EPackage {
 		EClass NEW_USER_ADDED = eINSTANCE.getNewUserAdded();
 
 		/**
-		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NEW_USER_ADDED__USER = eINSTANCE.getNewUserAdded_User();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.NewProjectAddedImpl <em>New Project Added</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2409,14 +2612,6 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NEW_PROJECT_ADDED = eINSTANCE.getNewProjectAdded();
-
-		/**
-		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NEW_PROJECT_ADDED__PROJECT = eINSTANCE.getNewProjectAdded_Project();
 
 		/**
 		 * The meta object literal for the '<em><b>Parent Project</b></em>' reference feature.
@@ -2463,14 +2658,6 @@ public interface LogPackage extends EPackage {
 		EClass NEW_REVISION_ADDED = eINSTANCE.getNewRevisionAdded();
 
 		/**
-		 * The meta object literal for the '<em><b>Revision</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NEW_REVISION_ADDED__REVISION = eINSTANCE.getNewRevisionAdded_Revision();
-
-		/**
 		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2487,14 +2674,6 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NEW_CHECKOUT_ADDED = eINSTANCE.getNewCheckoutAdded();
-
-		/**
-		 * The meta object literal for the '<em><b>Checkout</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NEW_CHECKOUT_ADDED__CHECKOUT = eINSTANCE.getNewCheckoutAdded_Checkout();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.SettingsSavedImpl <em>Settings Saved</em>}' class.
@@ -2515,14 +2694,6 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EClass USER_ADDED_TO_PROJECT = eINSTANCE.getUserAddedToProject();
-
-		/**
-		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USER_ADDED_TO_PROJECT__USER = eINSTANCE.getUserAddedToProject_User();
 
 		/**
 		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
@@ -2563,14 +2734,6 @@ public interface LogPackage extends EPackage {
 		EClass USER_REMOVED_FROM_PROJECT = eINSTANCE.getUserRemovedFromProject();
 
 		/**
-		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USER_REMOVED_FROM_PROJECT__USER = eINSTANCE.getUserRemovedFromProject_User();
-
-		/**
 		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2589,14 +2752,6 @@ public interface LogPackage extends EPackage {
 		EClass PROJECT_DELETED = eINSTANCE.getProjectDeleted();
 
 		/**
-		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROJECT_DELETED__PROJECT = eINSTANCE.getProjectDeleted_Project();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.UserDeletedImpl <em>User Deleted</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2607,14 +2762,6 @@ public interface LogPackage extends EPackage {
 		EClass USER_DELETED = eINSTANCE.getUserDeleted();
 
 		/**
-		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USER_DELETED__USER = eINSTANCE.getUserDeleted_User();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.PasswordResetImpl <em>Password Reset</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2623,14 +2770,6 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PASSWORD_RESET = eINSTANCE.getPasswordReset();
-
-		/**
-		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PASSWORD_RESET__USER = eINSTANCE.getPasswordReset_User();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.DatabaseCreatedImpl <em>Database Created</em>}' class.
@@ -2679,14 +2818,6 @@ public interface LogPackage extends EPackage {
 		EClass PROJECT_UPDATED = eINSTANCE.getProjectUpdated();
 
 		/**
-		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROJECT_UPDATED__PROJECT = eINSTANCE.getProjectUpdated_Project();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.UserUndeletedImpl <em>User Undeleted</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2695,14 +2826,6 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EClass USER_UNDELETED = eINSTANCE.getUserUndeleted();
-
-		/**
-		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USER_UNDELETED__USER = eINSTANCE.getUserUndeleted_User();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ProjectUndeletedImpl <em>Project Undeleted</em>}' class.
@@ -2715,14 +2838,6 @@ public interface LogPackage extends EPackage {
 		EClass PROJECT_UNDELETED = eINSTANCE.getProjectUndeleted();
 
 		/**
-		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROJECT_UNDELETED__PROJECT = eINSTANCE.getProjectUndeleted_Project();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.RevisionUpdatedImpl <em>Revision Updated</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2731,14 +2846,6 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EClass REVISION_UPDATED = eINSTANCE.getRevisionUpdated();
-
-		/**
-		 * The meta object literal for the '<em><b>Revision</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REVISION_UPDATED__REVISION = eINSTANCE.getRevisionUpdated_Revision();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.GeoTagUpdatedImpl <em>Geo Tag Updated</em>}' class.
@@ -2769,14 +2876,6 @@ public interface LogPackage extends EPackage {
 		EClass PASSWORD_CHANGED = eINSTANCE.getPasswordChanged();
 
 		/**
-		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PASSWORD_CHANGED__USER = eINSTANCE.getPasswordChanged_User();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.UserChangedImpl <em>User Changed</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2785,14 +2884,6 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EClass USER_CHANGED = eINSTANCE.getUserChanged();
-
-		/**
-		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USER_CHANGED__USER = eINSTANCE.getUserChanged_User();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ExtendedDataAddedToRevisionImpl <em>Extended Data Added To Revision</em>}' class.

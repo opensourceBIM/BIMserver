@@ -17,10 +17,8 @@
 package org.bimserver.models.ifc2x3tc1.util;
 
 import org.bimserver.models.ifc2x3tc1.*;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**

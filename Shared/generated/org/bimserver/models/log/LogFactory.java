@@ -54,6 +54,42 @@ public interface LogFactory extends EFactory {
 	ServerLog createServerLog();
 
 	/**
+	 * Returns a new object of class '<em>Project Related</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Project Related</em>'.
+	 * @generated
+	 */
+	ProjectRelated createProjectRelated();
+
+	/**
+	 * Returns a new object of class '<em>Checkout Related</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Checkout Related</em>'.
+	 * @generated
+	 */
+	CheckoutRelated createCheckoutRelated();
+
+	/**
+	 * Returns a new object of class '<em>Revision Related</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Revision Related</em>'.
+	 * @generated
+	 */
+	RevisionRelated createRevisionRelated();
+
+	/**
+	 * Returns a new object of class '<em>User Related</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>User Related</em>'.
+	 * @generated
+	 */
+	UserRelated createUserRelated();
+
+	/**
 	 * Returns a new object of class '<em>New User Added</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

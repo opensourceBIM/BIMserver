@@ -19,9 +19,7 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
-
-import org.bimserver.models.log.LogAction;
-
+import org.bimserver.models.log.UserRelated;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.ObjectState;
@@ -32,9 +30,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -388,8 +384,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<LogAction> getLogs() {
-		return (EList<LogAction>) eGet(StorePackage.Literals.USER__LOGS, true);
+	public EList<UserRelated> getLogs() {
+		return (EList<UserRelated>) eGet(StorePackage.Literals.USER__LOGS, true);
 	}
 
 } //UserImpl

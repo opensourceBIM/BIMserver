@@ -17,14 +17,18 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.Date;
+
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
-import org.bimserver.shared.meta.*;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SDataBase;
+import org.bimserver.shared.meta.SField;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SUserChanged.class, SNewUserAdded.class, SServerStarted.class, SRevisionUpdated.class, SProjectDeleted.class, SRemoteServiceCalled.class, SNewCheckoutAdded.class, SDownload.class, SPasswordReset.class, SUserUndeleted.class, SUserDeleted.class, SProjectUpdated.class, SProjectUndeleted.class, SGeoTagUpdated.class, SExtendedDataAddedToProject.class, SDatabaseCreated.class, SNewRevisionAdded.class, SRevisionBranched.class, SNewObjectIDMUploaded.class, SExtendedDataAddedToRevision.class, SNewProjectAdded.class, SPasswordChanged.class, SUserAddedToProject.class, SUserRemovedFromProject.class, SSettingsSaved.class})
+@XmlSeeAlso(value={SServerStarted.class, SDownload.class, SDatabaseCreated.class, SCheckoutRelated.class, SRevisionRelated.class, SSettingsSaved.class, SRevisionBranched.class, SGeoTagUpdated.class, SUserRelated.class, SProjectRelated.class, SNewObjectIDMUploaded.class, SRemoteServiceCalled.class, SExtendedDataAddedToRevision.class, SExtendedDataAddedToProject.class})
 public class SLogAction implements SDataBase
 {
 	private long oid = -1;

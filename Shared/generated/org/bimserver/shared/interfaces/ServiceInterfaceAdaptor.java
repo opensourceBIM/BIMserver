@@ -16,8 +16,8 @@ package org.bimserver.shared.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.ServiceInterface {
 
@@ -149,6 +149,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllWritableProjects() throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<java.lang.String> getAvailableClasses() throws UserException, ServerException {
 		return null;
 	}
@@ -206,6 +210,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	}
 	
 	public org.bimserver.interfaces.objects.SUser getUserByUserName(java.lang.String username) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SLogAction> getUserRelatedLogs(java.lang.Long uoid) throws UserException, ServerException {
 		return null;
 	}
 	

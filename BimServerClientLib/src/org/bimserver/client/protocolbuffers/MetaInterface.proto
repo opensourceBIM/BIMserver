@@ -66,7 +66,8 @@ message GetServiceInterfaceRequest {
 
 message SServiceInterface {
 	optional string simpleName = 1;
-	optional string name = 2;
+	optional string nameSpace = 2;
+	optional string name = 3;
 }
 
 message GetServiceInterfaceResponse {

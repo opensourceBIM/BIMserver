@@ -73,6 +73,7 @@ import org.bimserver.database.actions.GetAllRelatedProjectsDatabaseAction;
 import org.bimserver.database.actions.GetAllRevisionsByUserDatabaseAction;
 import org.bimserver.database.actions.GetAllServicesOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllUsersDatabaseAction;
+import org.bimserver.database.actions.GetAllWritableProjectsDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesInRevisionDatabaseAction;
 import org.bimserver.database.actions.GetCheckinWarningsDatabaseAction;
@@ -96,6 +97,7 @@ import org.bimserver.database.actions.UserHasRightsDatabaseAction;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
@@ -107,6 +109,7 @@ import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
@@ -121,6 +124,7 @@ import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.longaction.LongCheckinAction;
+import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
@@ -128,11 +132,13 @@ import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.bimserver.notifications.NewExtendedDataOnRevisionNotification;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.PluginException;
@@ -870,6 +876,21 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
+	public List<SProject> getAllWritableProjects() throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Set<Project>> action = new GetAllWritableProjectsDatabaseAction(session, getInternalAccessMethod(), getAuthorization());
+			return getBimServer().getSConverter().convertToSListProject(session.executeAndCommitAction(action));
+		} catch (Exception e) {
+			handleException(e);
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
 	public List<String> getAvailableClassesInRevision(Long roid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1296,6 +1317,35 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		try {
 			GetAllRelatedProjectsDatabaseAction action = new GetAllRelatedProjectsDatabaseAction(session, getInternalAccessMethod(), poid);
 			return action.execute();
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public List<SLogAction> getUserRelatedLogs(Long uoid) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			List<LogAction> logActions = new ArrayList<LogAction>();
+			User user = session.get(getAuthorization().getUoid(), Query.getDefault());
+			IfcModelInterface projectsModel = session.getAllOfType(StorePackage.eINSTANCE.getProject(), Query.getDefault());
+			logActions.addAll(user.getLogs());
+			for (IdEObject idEObject : projectsModel.getValues()) {
+				if (idEObject instanceof Project) {
+					Project project = (Project)idEObject;
+					if ((user.getUserType() == UserType.ADMIN || (project.getState() == ObjectState.ACTIVE) && getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project))) {
+						logActions.addAll(project.getLogs());
+					}
+				}
+			}
+			Collections.sort(logActions, new Comparator<LogAction>(){
+				@Override
+				public int compare(LogAction o1, LogAction o2) {
+					return o1.getDate().compareTo(o2.getDate());
+				}});
+			return getBimServer().getSConverter().convertToSListLogAction(logActions);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

@@ -17,8 +17,9 @@ package org.bimserver.shared.meta;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.*;
-import org.bimserver.shared.meta.SClass;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,6 +39,10 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
 		Class.forName("org.bimserver.interfaces.objects.SLogAction");
 		Class.forName("org.bimserver.interfaces.objects.SServerLog");
+		Class.forName("org.bimserver.interfaces.objects.SProjectRelated");
+		Class.forName("org.bimserver.interfaces.objects.SCheckoutRelated");
+		Class.forName("org.bimserver.interfaces.objects.SRevisionRelated");
+		Class.forName("org.bimserver.interfaces.objects.SUserRelated");
 		Class.forName("org.bimserver.interfaces.objects.SNewUserAdded");
 		Class.forName("org.bimserver.interfaces.objects.SNewProjectAdded");
 		Class.forName("org.bimserver.interfaces.objects.SRevisionBranched");

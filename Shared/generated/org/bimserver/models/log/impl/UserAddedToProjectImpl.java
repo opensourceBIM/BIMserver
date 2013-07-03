@@ -18,10 +18,7 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.UserAddedToProject;
-
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.User;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -31,14 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.log.impl.UserAddedToProjectImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.log.impl.UserAddedToProjectImpl#getProject <em>Project</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class UserAddedToProjectImpl extends LogActionImpl implements UserAddedToProject {
+public class UserAddedToProjectImpl extends UserRelatedImpl implements UserAddedToProject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,24 +52,6 @@ public class UserAddedToProjectImpl extends LogActionImpl implements UserAddedTo
 	@Override
 	protected EClass eStaticClass() {
 		return LogPackage.Literals.USER_ADDED_TO_PROJECT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public User getUser() {
-		return (User) eGet(LogPackage.Literals.USER_ADDED_TO_PROJECT__USER, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUser(User newUser) {
-		eSet(LogPackage.Literals.USER_ADDED_TO_PROJECT__USER, newUser);
 	}
 
 	/**

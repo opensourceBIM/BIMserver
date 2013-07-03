@@ -17,20 +17,23 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.Date;
-import javax.xml.bind.annotation.XmlTransient;
-import org.bimserver.shared.meta.*;
+
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SDataBase;
+import org.bimserver.shared.meta.SField;
 
 
 @XmlRootElement
-public class SNewProjectAdded extends SLogAction implements SDataBase
+public class SNewProjectAdded extends SProjectRelated implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private long projectId = -1;
 	private long parentProjectId = -1;
 
 	public long getOid() {
@@ -113,14 +116,6 @@ public class SNewProjectAdded extends SLogAction implements SDataBase
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
-	}
-	
-	public long getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(long projectId) {
-		this.projectId = projectId;
 	}
 	
 	public long getParentProjectId() {

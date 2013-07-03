@@ -111,10 +111,12 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 					}
 				});
 				getDatabaseSession().getMap(subModel, query);
-				try {
-					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, subRevision, revision);
-				} catch (GeometryGeneratingException e) {
-					throw new UserException(e);
+				if (serializerPluginConfiguration != null) {
+					try {
+						checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, subRevision, revision);
+					} catch (GeometryGeneratingException e) {
+						throw new UserException(e);
+					}
 				}
 				subModel.getModelMetaData().setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);

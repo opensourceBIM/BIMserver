@@ -18,10 +18,7 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.UserRemovedFromProject;
-
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.User;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -31,14 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.log.impl.UserRemovedFromProjectImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.log.impl.UserRemovedFromProjectImpl#getProject <em>Project</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRemovedFromProject {
+public class UserRemovedFromProjectImpl extends UserRelatedImpl implements UserRemovedFromProject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,24 +52,6 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 	@Override
 	protected EClass eStaticClass() {
 		return LogPackage.Literals.USER_REMOVED_FROM_PROJECT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public User getUser() {
-		return (User) eGet(LogPackage.Literals.USER_REMOVED_FROM_PROJECT__USER, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUser(User newUser) {
-		eSet(LogPackage.Literals.USER_REMOVED_FROM_PROJECT__USER, newUser);
 	}
 
 	/**

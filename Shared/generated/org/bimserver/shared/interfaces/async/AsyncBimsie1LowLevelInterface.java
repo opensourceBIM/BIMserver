@@ -17,6 +17,7 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
+
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 
 public class AsyncBimsie1LowLevelInterface {
@@ -95,7 +96,7 @@ public class AsyncBimsie1LowLevelInterface {
 	}
 	
 	public interface GetByteArrayAttributesCallback {
-		void success(java.util.List<byte[]> result);
+		void success(java.util.List result);
 		void error(Exception e);
 	}
 	

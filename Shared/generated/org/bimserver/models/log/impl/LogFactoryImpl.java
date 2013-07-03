@@ -16,15 +16,45 @@
  */
 package org.bimserver.models.log.impl;
 
-import org.bimserver.models.log.*;
-
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.log.CheckoutRelated;
+import org.bimserver.models.log.DatabaseCreated;
+import org.bimserver.models.log.Download;
+import org.bimserver.models.log.ExtendedDataAddedToProject;
+import org.bimserver.models.log.ExtendedDataAddedToRevision;
+import org.bimserver.models.log.GeoTagUpdated;
+import org.bimserver.models.log.LogAction;
+import org.bimserver.models.log.LogFactory;
+import org.bimserver.models.log.LogPackage;
+import org.bimserver.models.log.NewCheckoutAdded;
+import org.bimserver.models.log.NewObjectIDMUploaded;
+import org.bimserver.models.log.NewProjectAdded;
+import org.bimserver.models.log.NewRevisionAdded;
+import org.bimserver.models.log.NewUserAdded;
+import org.bimserver.models.log.PasswordChanged;
+import org.bimserver.models.log.PasswordReset;
+import org.bimserver.models.log.ProjectDeleted;
+import org.bimserver.models.log.ProjectRelated;
+import org.bimserver.models.log.ProjectUndeleted;
+import org.bimserver.models.log.ProjectUpdated;
+import org.bimserver.models.log.RemoteServiceCalled;
+import org.bimserver.models.log.RevisionBranched;
+import org.bimserver.models.log.RevisionRelated;
+import org.bimserver.models.log.RevisionUpdated;
+import org.bimserver.models.log.ServerLog;
+import org.bimserver.models.log.ServerStarted;
+import org.bimserver.models.log.SettingsSaved;
+import org.bimserver.models.log.UserAddedToProject;
+import org.bimserver.models.log.UserChanged;
+import org.bimserver.models.log.UserDeleted;
+import org.bimserver.models.log.UserRelated;
+import org.bimserver.models.log.UserRemovedFromProject;
+import org.bimserver.models.log.UserUndeleted;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -42,7 +72,7 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 */
 	public static LogFactory init() {
 		try {
-			LogFactory theLogFactory = (LogFactory) EPackage.Registry.INSTANCE.getEFactory("log");
+			LogFactory theLogFactory = (LogFactory) EPackage.Registry.INSTANCE.getEFactory(LogPackage.eNS_URI);
 			if (theLogFactory != null) {
 				return theLogFactory;
 			}
@@ -74,6 +104,14 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 			return (EObject) createLogAction();
 		case LogPackage.SERVER_LOG:
 			return (EObject) createServerLog();
+		case LogPackage.PROJECT_RELATED:
+			return (EObject) createProjectRelated();
+		case LogPackage.CHECKOUT_RELATED:
+			return (EObject) createCheckoutRelated();
+		case LogPackage.REVISION_RELATED:
+			return (EObject) createRevisionRelated();
+		case LogPackage.USER_RELATED:
+			return (EObject) createUserRelated();
 		case LogPackage.NEW_USER_ADDED:
 			return (EObject) createNewUserAdded();
 		case LogPackage.NEW_PROJECT_ADDED:
@@ -177,6 +215,46 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	public ServerLog createServerLog() {
 		ServerLogImpl serverLog = new ServerLogImpl();
 		return serverLog;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectRelated createProjectRelated() {
+		ProjectRelatedImpl projectRelated = new ProjectRelatedImpl();
+		return projectRelated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CheckoutRelated createCheckoutRelated() {
+		CheckoutRelatedImpl checkoutRelated = new CheckoutRelatedImpl();
+		return checkoutRelated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RevisionRelated createRevisionRelated() {
+		RevisionRelatedImpl revisionRelated = new RevisionRelatedImpl();
+		return revisionRelated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UserRelated createUserRelated() {
+		UserRelatedImpl userRelated = new UserRelatedImpl();
+		return userRelated;
 	}
 
 	/**
