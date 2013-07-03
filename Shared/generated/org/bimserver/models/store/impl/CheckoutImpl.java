@@ -19,17 +19,13 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
-
-import org.bimserver.models.log.LogAction;
-
+import org.bimserver.models.log.CheckoutRelated;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -195,8 +191,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<LogAction> getLogs() {
-		return (EList<LogAction>) eGet(StorePackage.Literals.CHECKOUT__LOGS, true);
+	public EList<CheckoutRelated> getLogs() {
+		return (EList<CheckoutRelated>) eGet(StorePackage.Literals.CHECKOUT__LOGS, true);
 	}
 
 } //CheckoutImpl

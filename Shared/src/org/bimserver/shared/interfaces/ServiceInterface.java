@@ -37,6 +37,7 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SProjectSmall;
@@ -206,6 +207,15 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllReadableProjects")
 	List<SProject> getAllReadableProjects() throws ServerException, UserException;
+
+	/**
+	 * 
+	 * Get a list of all Projects the user is authorized for to write to
+	 * @return A list of all projects that are writeable for the current user
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllWritableProjects")
+	List<SProject> getAllWritableProjects() throws ServerException, UserException;
 
 	@WebMethod(action = "getAllUsers")
 	List<SUser> getAllUsers() throws ServerException, UserException;
@@ -596,7 +606,11 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "getUserSettings")
 	SUserSettings getUserSettings() throws ServerException, UserException;
-	
+
+	@WebMethod(action = "getUserRelatedLogs")
+	List<SLogAction> getUserRelatedLogs(
+		@WebParam(name = "uoid", partName = "getUserRelatedLogs.uoid") Long uoid) throws ServerException, UserException;
+
 	@WebMethod(action = "getAllRelatedProjects")
 	List<SProjectSmall> getAllRelatedProjects(
 		@WebParam(name = "poid", partName = "getAllRelatedProjects.poid") Long poid) throws ServerException, UserException;

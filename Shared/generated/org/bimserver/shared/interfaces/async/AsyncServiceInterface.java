@@ -17,6 +17,7 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
+
 import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class AsyncServiceInterface {
@@ -199,6 +200,11 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetAllWritableProjectsCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
+		void error(Exception e);
+	}
+	
 	public interface GetAvailableClassesCallback {
 		void success(java.util.List<java.lang.String> result);
 		void error(Exception e);
@@ -271,6 +277,11 @@ public class AsyncServiceInterface {
 	
 	public interface GetUserByUserNameCallback {
 		void success(org.bimserver.interfaces.objects.SUser result);
+		void error(Exception e);
+	}
+	
+	public interface GetUserRelatedLogsCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SLogAction> result);
 		void error(Exception e);
 	}
 	
@@ -772,6 +783,18 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void getAllWritableProjects(final GetAllWritableProjectsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllWritableProjects());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getAvailableClasses(final GetAvailableClassesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -945,6 +968,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getUserByUserName(username));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getUserRelatedLogs(final java.lang.Long uoid, final GetUserRelatedLogsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getUserRelatedLogs(uoid));
 				} catch (Exception e) {
 					callback.error(e);
 				}

@@ -19,9 +19,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.log.LogAction;
-
+import org.bimserver.models.log.CheckoutRelated;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -210,7 +208,8 @@ public interface Checkout extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Logs</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.log.LogAction}.
+	 * The list contents are of type {@link org.bimserver.models.log.CheckoutRelated}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.log.CheckoutRelated#getCheckout <em>Checkout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Logs</em>' reference list isn't clear,
@@ -219,9 +218,10 @@ public interface Checkout extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Logs</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getCheckout_Logs()
-	 * @model
+	 * @see org.bimserver.models.log.CheckoutRelated#getCheckout
+	 * @model opposite="checkout"
 	 * @generated
 	 */
-	EList<LogAction> getLogs();
+	EList<CheckoutRelated> getLogs();
 
 } // Checkout

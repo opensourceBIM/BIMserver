@@ -16,11 +16,40 @@
  */
 package org.bimserver.models.log.util;
 
-import org.bimserver.models.log.*;
-
+import org.bimserver.models.log.CheckoutRelated;
+import org.bimserver.models.log.DatabaseCreated;
+import org.bimserver.models.log.Download;
+import org.bimserver.models.log.ExtendedDataAddedToProject;
+import org.bimserver.models.log.ExtendedDataAddedToRevision;
+import org.bimserver.models.log.GeoTagUpdated;
+import org.bimserver.models.log.LogAction;
+import org.bimserver.models.log.LogPackage;
+import org.bimserver.models.log.NewCheckoutAdded;
+import org.bimserver.models.log.NewObjectIDMUploaded;
+import org.bimserver.models.log.NewProjectAdded;
+import org.bimserver.models.log.NewRevisionAdded;
+import org.bimserver.models.log.NewUserAdded;
+import org.bimserver.models.log.PasswordChanged;
+import org.bimserver.models.log.PasswordReset;
+import org.bimserver.models.log.ProjectDeleted;
+import org.bimserver.models.log.ProjectRelated;
+import org.bimserver.models.log.ProjectUndeleted;
+import org.bimserver.models.log.ProjectUpdated;
+import org.bimserver.models.log.RemoteServiceCalled;
+import org.bimserver.models.log.RevisionBranched;
+import org.bimserver.models.log.RevisionRelated;
+import org.bimserver.models.log.RevisionUpdated;
+import org.bimserver.models.log.ServerLog;
+import org.bimserver.models.log.ServerStarted;
+import org.bimserver.models.log.SettingsSaved;
+import org.bimserver.models.log.UserAddedToProject;
+import org.bimserver.models.log.UserChanged;
+import org.bimserver.models.log.UserDeleted;
+import org.bimserver.models.log.UserRelated;
+import org.bimserver.models.log.UserRemovedFromProject;
+import org.bimserver.models.log.UserUndeleted;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -94,9 +123,47 @@ public class LogSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case LogPackage.PROJECT_RELATED: {
+			ProjectRelated projectRelated = (ProjectRelated) theEObject;
+			T result = caseProjectRelated(projectRelated);
+			if (result == null)
+				result = caseLogAction(projectRelated);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.CHECKOUT_RELATED: {
+			CheckoutRelated checkoutRelated = (CheckoutRelated) theEObject;
+			T result = caseCheckoutRelated(checkoutRelated);
+			if (result == null)
+				result = caseLogAction(checkoutRelated);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.REVISION_RELATED: {
+			RevisionRelated revisionRelated = (RevisionRelated) theEObject;
+			T result = caseRevisionRelated(revisionRelated);
+			if (result == null)
+				result = caseLogAction(revisionRelated);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.USER_RELATED: {
+			UserRelated userRelated = (UserRelated) theEObject;
+			T result = caseUserRelated(userRelated);
+			if (result == null)
+				result = caseLogAction(userRelated);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case LogPackage.NEW_USER_ADDED: {
 			NewUserAdded newUserAdded = (NewUserAdded) theEObject;
 			T result = caseNewUserAdded(newUserAdded);
+			if (result == null)
+				result = caseUserRelated(newUserAdded);
 			if (result == null)
 				result = caseLogAction(newUserAdded);
 			if (result == null)
@@ -106,6 +173,8 @@ public class LogSwitch<T> extends Switch<T> {
 		case LogPackage.NEW_PROJECT_ADDED: {
 			NewProjectAdded newProjectAdded = (NewProjectAdded) theEObject;
 			T result = caseNewProjectAdded(newProjectAdded);
+			if (result == null)
+				result = caseProjectRelated(newProjectAdded);
 			if (result == null)
 				result = caseLogAction(newProjectAdded);
 			if (result == null)
@@ -125,6 +194,8 @@ public class LogSwitch<T> extends Switch<T> {
 			NewRevisionAdded newRevisionAdded = (NewRevisionAdded) theEObject;
 			T result = caseNewRevisionAdded(newRevisionAdded);
 			if (result == null)
+				result = caseRevisionRelated(newRevisionAdded);
+			if (result == null)
 				result = caseLogAction(newRevisionAdded);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -133,6 +204,8 @@ public class LogSwitch<T> extends Switch<T> {
 		case LogPackage.NEW_CHECKOUT_ADDED: {
 			NewCheckoutAdded newCheckoutAdded = (NewCheckoutAdded) theEObject;
 			T result = caseNewCheckoutAdded(newCheckoutAdded);
+			if (result == null)
+				result = caseCheckoutRelated(newCheckoutAdded);
 			if (result == null)
 				result = caseLogAction(newCheckoutAdded);
 			if (result == null)
@@ -151,6 +224,8 @@ public class LogSwitch<T> extends Switch<T> {
 		case LogPackage.USER_ADDED_TO_PROJECT: {
 			UserAddedToProject userAddedToProject = (UserAddedToProject) theEObject;
 			T result = caseUserAddedToProject(userAddedToProject);
+			if (result == null)
+				result = caseUserRelated(userAddedToProject);
 			if (result == null)
 				result = caseLogAction(userAddedToProject);
 			if (result == null)
@@ -179,6 +254,8 @@ public class LogSwitch<T> extends Switch<T> {
 			UserRemovedFromProject userRemovedFromProject = (UserRemovedFromProject) theEObject;
 			T result = caseUserRemovedFromProject(userRemovedFromProject);
 			if (result == null)
+				result = caseUserRelated(userRemovedFromProject);
+			if (result == null)
 				result = caseLogAction(userRemovedFromProject);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -187,6 +264,8 @@ public class LogSwitch<T> extends Switch<T> {
 		case LogPackage.PROJECT_DELETED: {
 			ProjectDeleted projectDeleted = (ProjectDeleted) theEObject;
 			T result = caseProjectDeleted(projectDeleted);
+			if (result == null)
+				result = caseProjectRelated(projectDeleted);
 			if (result == null)
 				result = caseLogAction(projectDeleted);
 			if (result == null)
@@ -197,6 +276,8 @@ public class LogSwitch<T> extends Switch<T> {
 			UserDeleted userDeleted = (UserDeleted) theEObject;
 			T result = caseUserDeleted(userDeleted);
 			if (result == null)
+				result = caseUserRelated(userDeleted);
+			if (result == null)
 				result = caseLogAction(userDeleted);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -205,6 +286,8 @@ public class LogSwitch<T> extends Switch<T> {
 		case LogPackage.PASSWORD_RESET: {
 			PasswordReset passwordReset = (PasswordReset) theEObject;
 			T result = casePasswordReset(passwordReset);
+			if (result == null)
+				result = caseUserRelated(passwordReset);
 			if (result == null)
 				result = caseLogAction(passwordReset);
 			if (result == null)
@@ -233,6 +316,8 @@ public class LogSwitch<T> extends Switch<T> {
 			ProjectUpdated projectUpdated = (ProjectUpdated) theEObject;
 			T result = caseProjectUpdated(projectUpdated);
 			if (result == null)
+				result = caseProjectRelated(projectUpdated);
+			if (result == null)
 				result = caseLogAction(projectUpdated);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -241,6 +326,8 @@ public class LogSwitch<T> extends Switch<T> {
 		case LogPackage.USER_UNDELETED: {
 			UserUndeleted userUndeleted = (UserUndeleted) theEObject;
 			T result = caseUserUndeleted(userUndeleted);
+			if (result == null)
+				result = caseUserRelated(userUndeleted);
 			if (result == null)
 				result = caseLogAction(userUndeleted);
 			if (result == null)
@@ -251,6 +338,8 @@ public class LogSwitch<T> extends Switch<T> {
 			ProjectUndeleted projectUndeleted = (ProjectUndeleted) theEObject;
 			T result = caseProjectUndeleted(projectUndeleted);
 			if (result == null)
+				result = caseProjectRelated(projectUndeleted);
+			if (result == null)
 				result = caseLogAction(projectUndeleted);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -259,6 +348,8 @@ public class LogSwitch<T> extends Switch<T> {
 		case LogPackage.REVISION_UPDATED: {
 			RevisionUpdated revisionUpdated = (RevisionUpdated) theEObject;
 			T result = caseRevisionUpdated(revisionUpdated);
+			if (result == null)
+				result = caseRevisionRelated(revisionUpdated);
 			if (result == null)
 				result = caseLogAction(revisionUpdated);
 			if (result == null)
@@ -278,6 +369,8 @@ public class LogSwitch<T> extends Switch<T> {
 			PasswordChanged passwordChanged = (PasswordChanged) theEObject;
 			T result = casePasswordChanged(passwordChanged);
 			if (result == null)
+				result = caseUserRelated(passwordChanged);
+			if (result == null)
 				result = caseLogAction(passwordChanged);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -286,6 +379,8 @@ public class LogSwitch<T> extends Switch<T> {
 		case LogPackage.USER_CHANGED: {
 			UserChanged userChanged = (UserChanged) theEObject;
 			T result = caseUserChanged(userChanged);
+			if (result == null)
+				result = caseUserRelated(userChanged);
 			if (result == null)
 				result = caseLogAction(userChanged);
 			if (result == null)
@@ -351,6 +446,66 @@ public class LogSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseServerLog(ServerLog object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Project Related</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Project Related</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProjectRelated(ProjectRelated object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Checkout Related</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Checkout Related</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckoutRelated(CheckoutRelated object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Revision Related</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Revision Related</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRevisionRelated(RevisionRelated object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>User Related</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User Related</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUserRelated(UserRelated object) {
 		return null;
 	}
 

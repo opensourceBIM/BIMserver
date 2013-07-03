@@ -19,9 +19,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.log.LogAction;
-
+import org.bimserver.models.log.RevisionRelated;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -377,7 +375,8 @@ public interface Revision extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Logs</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.log.LogAction}.
+	 * The list contents are of type {@link org.bimserver.models.log.RevisionRelated}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.log.RevisionRelated#getRevision <em>Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Logs</em>' reference list isn't clear,
@@ -386,10 +385,11 @@ public interface Revision extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Logs</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getRevision_Logs()
-	 * @model
+	 * @see org.bimserver.models.log.RevisionRelated#getRevision
+	 * @model opposite="revision"
 	 * @generated
 	 */
-	EList<LogAction> getLogs();
+	EList<RevisionRelated> getLogs();
 
 	/**
 	 * Returns the value of the '<em><b>Service</b></em>' reference.

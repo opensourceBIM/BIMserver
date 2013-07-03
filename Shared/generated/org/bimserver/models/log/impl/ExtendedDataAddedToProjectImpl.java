@@ -18,10 +18,8 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.ExtendedDataAddedToProject;
 import org.bimserver.models.log.LogPackage;
-
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Project;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

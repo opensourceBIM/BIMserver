@@ -139,73 +139,61 @@ public class Step0000 extends Migration {
 		EClass serverLogClass = schema.createEClass(logPackage, "ServerLog");
 		schema.createEReference(serverLogClass, "actions", logAction, Multiplicity.MANY);
 		
-		EClass newUserAddedClass = schema.createEClass(logPackage, "NewUserAdded", logAction);
-		schema.createEReference(newUserAddedClass, "user", user, Multiplicity.SINGLE);
-		
-		EClass newProjectAddedClass = schema.createEClass(logPackage, "NewProjectAdded", logAction);
-		schema.createEReference(newProjectAddedClass, "project", project, Multiplicity.SINGLE);
+		EClass projectRelated = schema.createEClass(logPackage, "ProjectRelated", logAction);
+		EReference projectRelatedProject = schema.createEReference(projectRelated, "project", project, Multiplicity.SINGLE);
+
+		EClass checkoutRelated = schema.createEClass(logPackage, "CheckoutRelated", logAction);
+		EReference checkoutRelatedCheckout = schema.createEReference(checkoutRelated, "checkout", checkoutClass, Multiplicity.SINGLE);
+
+		EClass revisionRelated = schema.createEClass(logPackage, "RevisionRelated", logAction);
+		EReference revisionRelatedRevision = schema.createEReference(revisionRelated, "revision", revisionClass, Multiplicity.SINGLE);
+
+		EClass userRelated = schema.createEClass(logPackage, "UserRelated", logAction);
+		EReference userRelatedUser = schema.createEReference(userRelated, "user", user, Multiplicity.SINGLE);
+
+		schema.createEClass(logPackage, "NewUserAdded", userRelated);
+
+		EClass newProjectAddedClass = schema.createEClass(logPackage, "NewProjectAdded", projectRelated);
 		schema.createEReference(newProjectAddedClass, "parentProject", project, Multiplicity.SINGLE);
 
 		EClass revisionBrancedClass = schema.createEClass(logPackage, "RevisionBranched", logAction);
 		schema.createEReference(revisionBrancedClass, "oldrevision", revisionClass, Multiplicity.SINGLE);
 		schema.createEReference(revisionBrancedClass, "newrevision", revisionClass, Multiplicity.SINGLE);
+	
+		EClass newRevisionAdded = schema.createEClass(logPackage, "NewRevisionAdded", revisionRelated);
+		schema.createEReference(newRevisionAdded, "project", project, Multiplicity.SINGLE);
 		
-		EClass newRevisionAddedClass = schema.createEClass(logPackage, "NewRevisionAdded", logAction);
-		schema.createEReference(newRevisionAddedClass, "revision", revisionClass, Multiplicity.SINGLE);
-		schema.createEReference(newRevisionAddedClass, "project", project, Multiplicity.SINGLE);
-
-		EClass newCheckoutAddedClass = schema.createEClass(logPackage, "NewCheckoutAdded", logAction);
-		schema.createEReference(newCheckoutAddedClass, "checkout", checkoutClass, Multiplicity.SINGLE);
-
+		schema.createEClass(logPackage, "NewCheckoutAdded", checkoutRelated);
 		schema.createEClass(logPackage, "SettingsSaved", logAction);
 		
-		EClass userAddedToProjectClass = schema.createEClass(logPackage, "UserAddedToProject", logAction);
-		schema.createEReference(userAddedToProjectClass, "user", user, Multiplicity.SINGLE);
-		schema.createEReference(userAddedToProjectClass, "project", project, Multiplicity.SINGLE);
+		EClass userAddedToProject = schema.createEClass(logPackage, "UserAddedToProject", userRelated); // and actually also projectRelated
+		schema.createEReference(userAddedToProject, "project", project, Multiplicity.SINGLE);
 		
 		schema.createEClass(logPackage, "NewObjectIDMUploaded", logAction);
-		
 		schema.createEClass(logPackage, "Download", logAction);
+
+		EClass userRemovedFromProject = schema.createEClass(logPackage, "UserRemovedFromProject", userRelated); // and actually also projectRelated
+		schema.createEReference(userRemovedFromProject, "project", project, Multiplicity.SINGLE);
 		
-		EClass userRemovedFromProjectClass = schema.createEClass(logPackage, "UserRemovedFromProject", logAction);
-		schema.createEReference(userRemovedFromProjectClass, "user", user, Multiplicity.SINGLE);
-		schema.createEReference(userRemovedFromProjectClass, "project", project, Multiplicity.SINGLE);
-		
-		EClass projectDeletedClass = schema.createEClass(logPackage, "ProjectDeleted", logAction);
-		schema.createEReference(projectDeletedClass, "project", project, Multiplicity.SINGLE);
-		
-		EClass userDeletedClass = schema.createEClass(logPackage, "UserDeleted", logAction);
-		schema.createEReference(userDeletedClass, "user", user, Multiplicity.SINGLE);
-		
-		EClass passwordResetClass = schema.createEClass(logPackage, "PasswordReset", logAction);
-		schema.createEReference(passwordResetClass, "user", user, Multiplicity.SINGLE);
+		schema.createEClass(logPackage, "ProjectDeleted", projectRelated);
+		schema.createEClass(logPackage, "UserDeleted", userRelated);
+		schema.createEClass(logPackage, "PasswordReset", userRelated);
 		
 		EClass databaseCreatedClass = schema.createEClass(logPackage, "DatabaseCreated", logAction);
 		schema.createEAttribute(databaseCreatedClass, "path", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(databaseCreatedClass, "version", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		
 		schema.createEClass(logPackage, "ServerStarted", logAction);
-		
-		EClass projectUpdatedClass = schema.createEClass(logPackage, "ProjectUpdated", logAction);
-		schema.createEReference(projectUpdatedClass, "project", project, Multiplicity.SINGLE);
-		
-		EClass userUndeletedClass = schema.createEClass(logPackage, "UserUndeleted", logAction);
-		schema.createEReference(userUndeletedClass, "user", user, Multiplicity.SINGLE);
-		
-		EClass projectUndeletedClass = schema.createEClass(logPackage, "ProjectUndeleted", logAction);
-		schema.createEReference(projectUndeletedClass, "project", project, Multiplicity.SINGLE);
-		
-		EClass revisionUpdatedClass = schema.createEClass(logPackage, "RevisionUpdated", logAction);
-		schema.createEReference(revisionUpdatedClass, "revision", revisionClass, Multiplicity.SINGLE);
+		schema.createEClass(logPackage, "ProjectUpdated", projectRelated);
+		schema.createEClass(logPackage, "UserUndeleted", userRelated);
+		schema.createEClass(logPackage, "ProjectUndeleted", projectRelated);
+		schema.createEClass(logPackage, "RevisionUpdated", revisionRelated);
 		
 		EClass geoTagUpdatedClass = schema.createEClass(logPackage, "GeoTagUpdated", logAction);
 		schema.createEReference(geoTagUpdatedClass, "geoTag", geoTagClass, Multiplicity.SINGLE);
 		
-		EClass passwordChangedClass = schema.createEClass(logPackage, "PasswordChanged", logAction);
-		schema.createEReference(passwordChangedClass, "user", user, Multiplicity.SINGLE);
-	
-		EClass userChangedClass = schema.createEClass(logPackage, "UserChanged", logAction);
-		schema.createEReference(userChangedClass, "user", user, Multiplicity.SINGLE);
+		schema.createEClass(logPackage, "PasswordChanged", userRelated);
+		schema.createEClass(logPackage, "UserChanged", userRelated);
 		
 		EClass pluginConfiguration = schema.createEClass(storePackage, "PluginConfiguration");
 		schema.createEAttribute(pluginConfiguration, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
@@ -744,10 +732,22 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(remoteServiceCalled, "warnings", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(remoteServiceCalled, "errors", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
 		
-		schema.createEReference(project, "logs", logAction, Multiplicity.MANY);
-		schema.createEReference(revisionClass, "logs", logAction, Multiplicity.MANY);
-		schema.createEReference(user, "logs", logAction, Multiplicity.MANY);
-		schema.createEReference(checkoutClass, "logs", logAction, Multiplicity.MANY);
+		EReference projectLogs = schema.createEReference(project, "logs", projectRelated, Multiplicity.MANY);
+		EReference revisionLogs = schema.createEReference(revisionClass, "logs", revisionRelated, Multiplicity.MANY);
+		EReference userLogs = schema.createEReference(user, "logs", userRelated, Multiplicity.MANY);
+		EReference checkoutLogs = schema.createEReference(checkoutClass, "logs", checkoutRelated, Multiplicity.MANY);
+		
+		projectRelatedProject.setEOpposite(projectLogs);
+		projectLogs.setEOpposite(projectRelatedProject);
+		
+		revisionRelatedRevision.setEOpposite(revisionLogs);
+		revisionLogs.setEOpposite(revisionRelatedRevision);
+		
+		userRelatedUser.setEOpposite(userLogs);
+		userLogs.setEOpposite(userRelatedUser);
+		
+		checkoutRelatedCheckout.setEOpposite(checkoutLogs);
+		checkoutLogs.setEOpposite(checkoutRelatedCheckout);
 		
 		EClass remoteServiceUpdate = schema.createEClass("store", "RemoteServiceUpdate");
 		EClass percentageChange = schema.createEClass("store", "PercentageChange", remoteServiceUpdate);

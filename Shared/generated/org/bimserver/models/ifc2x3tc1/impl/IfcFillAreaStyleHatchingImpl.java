@@ -21,7 +21,6 @@ import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcCurveStyle;
 import org.bimserver.models.ifc2x3tc1.IfcFillAreaStyleHatching;
 import org.bimserver.models.ifc2x3tc1.IfcHatchLineDistanceSelect;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

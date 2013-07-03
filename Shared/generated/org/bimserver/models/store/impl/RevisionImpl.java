@@ -19,7 +19,7 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
-import org.bimserver.models.log.LogAction;
+import org.bimserver.models.log.RevisionRelated;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
@@ -305,8 +305,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<LogAction> getLogs() {
-		return (EList<LogAction>) eGet(StorePackage.Literals.REVISION__LOGS, true);
+	public EList<RevisionRelated> getLogs() {
+		return (EList<RevisionRelated>) eGet(StorePackage.Literals.REVISION__LOGS, true);
 	}
 
 	/**

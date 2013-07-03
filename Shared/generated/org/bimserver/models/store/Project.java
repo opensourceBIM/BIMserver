@@ -19,9 +19,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.log.LogAction;
-
+import org.bimserver.models.log.ProjectRelated;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -484,7 +482,8 @@ public interface Project extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Logs</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.log.LogAction}.
+	 * The list contents are of type {@link org.bimserver.models.log.ProjectRelated}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.log.ProjectRelated#getProject <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Logs</em>' reference list isn't clear,
@@ -493,9 +492,10 @@ public interface Project extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Logs</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getProject_Logs()
-	 * @model
+	 * @see org.bimserver.models.log.ProjectRelated#getProject
+	 * @model opposite="project"
 	 * @generated
 	 */
-	EList<LogAction> getLogs();
+	EList<ProjectRelated> getLogs();
 
 } // Project
