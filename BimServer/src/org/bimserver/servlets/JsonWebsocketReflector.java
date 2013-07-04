@@ -20,6 +20,7 @@ package org.bimserver.servlets;
 import org.bimserver.shared.json.JsonReflector;
 import org.bimserver.shared.meta.SServicesMap;
 import org.codehaus.jettison.json.JSONException;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonObject;
 
@@ -34,6 +35,7 @@ public class JsonWebsocketReflector extends JsonReflector {
 
 	@Override
 	public JsonObject call(JsonObject request) throws JSONException {
+		LoggerFactory.getLogger(JsonWebsocketReflector.class).info("WS: " + request);
 		streamingSocket.send(request);
 		return new JsonObject();
 	}
