@@ -16,7 +16,6 @@
  */
 package org.bimserver.models.log;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Project Updated</b></em>'.

@@ -17,7 +17,6 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
-
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
 
 public class AsyncBimsie1NotificationRegistryInterface {

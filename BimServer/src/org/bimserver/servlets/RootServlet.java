@@ -121,7 +121,11 @@ public class RootServlet extends HttpServlet {
 				}
 			}
 		} catch (Throwable e) {
-			LOGGER.error("", e);
+			if (e instanceof IOException) {
+				// Ignore
+			} else {
+				LOGGER.error("", e);
+			}
 		}
 	}
 }

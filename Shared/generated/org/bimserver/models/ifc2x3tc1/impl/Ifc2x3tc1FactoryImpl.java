@@ -39,7 +39,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 */
 	public static Ifc2x3tc1Factory init() {
 		try {
-			Ifc2x3tc1Factory theIfc2x3tc1Factory = (Ifc2x3tc1Factory) EPackage.Registry.INSTANCE.getEFactory("http:///buildingsmart.ifc.ecore");
+			Ifc2x3tc1Factory theIfc2x3tc1Factory = (Ifc2x3tc1Factory) EPackage.Registry.INSTANCE.getEFactory(Ifc2x3tc1Package.eNS_URI);
 			if (theIfc2x3tc1Factory != null) {
 				return theIfc2x3tc1Factory;
 			}

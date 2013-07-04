@@ -49,9 +49,10 @@ public class Step0002 extends Migration {
 		schema.createEAttribute(geometryData, "indices", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryData, "vertices", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryData, "normals", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
+		geometryData.getEAnnotations().add(createNoLazyLoadAnnotation());
 		geometryData.getEAnnotations().add(createHiddenAnnotation());
 
-		schema.createEReference(geometry, "data", geometryData, Multiplicity.SINGLE);
+		schema.createEReference(geometry, "data", geometryData, Multiplicity.SINGLE).getEAnnotations().add(createNoLazyLoadAnnotation());
 
 		EClass revision = schema.getEClass("store", "Revision");
 		schema.createEAttribute(revision, "hasGeometry", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);

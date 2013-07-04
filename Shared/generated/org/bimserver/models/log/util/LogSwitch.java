@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.log.util;
 
+import org.bimserver.models.log.*;
 import org.bimserver.models.log.CheckoutRelated;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.Download;

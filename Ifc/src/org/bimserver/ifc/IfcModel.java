@@ -40,6 +40,7 @@ import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
@@ -81,7 +82,7 @@ public class IfcModel implements IfcModelInterface {
 
 	private static BiMap<EClass, Class<?>> initEClassClassMap() {
 		BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
-		for (EPackage ePackage : new EPackage[] { Ifc2x3tc1Package.eINSTANCE, StorePackage.eINSTANCE }) {
+		for (EPackage ePackage : new EPackage[] { Ifc2x3tc1Package.eINSTANCE, StorePackage.eINSTANCE, LogPackage.eINSTANCE }) {
 			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass) eClassifier;
@@ -103,13 +104,15 @@ public class IfcModel implements IfcModelInterface {
 	@SuppressWarnings("unchecked")
 	private void buildIndex() {
 		indexPerClass = new HashMap<EClass, List<? extends IdEObject>>();
-		for (EClass eClass : eClassClassMap.keySet()) {
-			indexPerClass.put((EClass) eClass, new ArrayList<IdEObject>());
-		}
 		for (Long key : objects.keySet()) {
 			IdEObject value = objects.get((Long) key);
 			if (value != null) {
-				((List<IdEObject>) indexPerClass.get(value.eClass())).add(value);
+				List<? extends IdEObject> list = indexPerClass.get(value.eClass());
+				if (list == null) {
+					list = new ArrayList<IdEObject>();
+					indexPerClass.put(value.eClass(), list);
+				}
+				((List<IdEObject>) list).add(value);
 			}
 		}
 	}

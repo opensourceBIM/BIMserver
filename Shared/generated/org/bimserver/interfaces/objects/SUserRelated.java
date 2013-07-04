@@ -17,18 +17,14 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.Date;
-
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
-
-import org.bimserver.shared.meta.SClass;
-import org.bimserver.shared.meta.SDataBase;
-import org.bimserver.shared.meta.SField;
+import org.bimserver.shared.meta.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SUserDeleted.class, SPasswordChanged.class, SUserUndeleted.class, SUserAddedToProject.class, SPasswordReset.class, SUserRemovedFromProject.class, SNewUserAdded.class, SUserChanged.class})
+@XmlSeeAlso(value={SUserChanged.class, SPasswordReset.class, SUserUndeleted.class, SUserDeleted.class, SPasswordChanged.class, SUserRemovedFromProject.class, SUserAddedToProject.class, SNewUserAdded.class})
 public class SUserRelated extends SLogAction implements SDataBase
 {
 	private long oid = -1;
