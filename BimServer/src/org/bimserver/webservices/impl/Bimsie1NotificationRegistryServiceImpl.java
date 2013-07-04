@@ -46,6 +46,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
 import org.bimserver.webservices.ServiceMap;
+import org.slf4j.LoggerFactory;
 
 public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl implements Bimsie1NotificationRegistryInterface {
 	public Bimsie1NotificationRegistryServiceImpl(ServiceMap serviceMap) {
@@ -65,6 +66,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 		try {
 			progressTopic.register(endPoint);
 			if (progressTopic.getLastProgress() != null && progressTopic.getLastProgress().getState() == ActionState.FINISHED) {
+				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).info("Sending update directly for topic " + progressTopic.getKey().getId());
 				progressTopic.updateProgress(progressTopic.getLastProgress());
 			}
 		} catch (TopicRegisterException e) {
