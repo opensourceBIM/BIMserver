@@ -24,10 +24,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
@@ -164,7 +162,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				if (DEVELOPER_DEBUG) {
 					LOGGER.info("Write: " + object.eClass().getName() + " " + "pid=" + object.getPid() + " oid=" + object.getOid() + " rid=" + object.getRid());
 				}
-				if (object.eClass().getEAnnotation("hidden") == null) {
+				if (object.eClass().getEAnnotation("nolazyload") == null) {
 					database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
 							convertObjectToByteArray(object).array(), this);
 				} else {
@@ -201,7 +199,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int rid, QueryInterface query,
-			Queue<IdEObject> todoList) throws BimserverDatabaseException {
+			TodoList todoList) throws BimserverDatabaseException {
 		if (model.contains(oid)) {
 			return model.get(oid);
 		}
@@ -249,7 +247,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	@SuppressWarnings("unchecked")
 	private IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int rid,
-			QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+			QueryInterface query, TodoList todoList) throws BimserverDatabaseException {
 		if (idEObject == null) {
 			idEObject = createInternal(eClass, query);
 			((IdEObjectImpl) idEObject).setOid(oid);
@@ -604,7 +602,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends IdEObject> T get(EClass eClass, IfcModelInterface model, IdEObject idEObject, long oid, QueryInterface query, Queue<IdEObject> todoList)
+	public <T extends IdEObject> T get(EClass eClass, IfcModelInterface model, IdEObject idEObject, long oid, QueryInterface query, TodoList todoList)
 			throws BimserverDatabaseException {
 		checkOpen();
 		return (T) get(idEObject, oid, model, query, todoList);
@@ -613,7 +611,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	@SuppressWarnings("unchecked")
 	public <T extends IdEObject> T get(long oid, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
-		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
+		TodoList todoList = new TodoList();
 		IfcModelInterface model = createModel();
 		IdEObject idEObject = get(model, null, oid, query, todoList);
 		processTodoList(model, todoList, query);
@@ -623,7 +621,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	@SuppressWarnings("unchecked")
 	public <T extends IdEObject> T get(IfcModelInterface model, long oid, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
-		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
+		TodoList todoList = new TodoList();
 		IdEObject idEObject = get(model, null, oid, query, todoList);
 		processTodoList(model, todoList, query);
 		return (T) idEObject;
@@ -634,7 +632,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		if (oid == -1) {
 			return null;
 		}
-		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
+		TodoList todoList = new TodoList();
 		IfcModelInterface model = createModel();
 		T t = get(model, null, oid, query, todoList);
 		processTodoList(model, todoList, query);
@@ -648,21 +646,21 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends IdEObject> T get(IfcModelInterface model, IdEObject idEObject, long oid, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+	public <T extends IdEObject> T get(IfcModelInterface model, IdEObject idEObject, long oid, QueryInterface query, TodoList todoList) throws BimserverDatabaseException {
 		checkOpen();
 		return (T) get(idEObject, oid, model, query, todoList);
 	}
 
 	public <T extends IdEObject> T get(IdEObject idEObject, long oid, IfcModelInterface model, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
-		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
+		TodoList todoList = new TodoList();
 		T result = get(idEObject, oid, model, query, todoList);
 		processTodoList(model, todoList, query);
 		return result;
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends IdEObject> T get(IdEObject idEObject, long oid, IfcModelInterface model, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+	public <T extends IdEObject> T get(IdEObject idEObject, long oid, IfcModelInterface model, QueryInterface query, TodoList todoList) throws BimserverDatabaseException {
 		checkOpen();
 		if (oid == -1) {
 			throw new BimserverDatabaseException("Cannot get object for oid " + oid);
@@ -732,7 +730,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public IfcModelInterface getAllOfType(EClass eClass, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
 		IfcModelInterface model = createModel();
-		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
+		TodoList todoList = new TodoList();
 		getMap(eClass, model, query, todoList);
 		processTodoList(model, todoList, query);
 		return model;
@@ -741,7 +739,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public IfcModelInterface getAllOfTypes(Set<EClass> eClasses, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
 		IfcModelInterface model = createModel();
-		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
+		TodoList todoList = new TodoList();
 		for (EClass eClass : eClasses) {
 			getMap(eClass, model, query, todoList);
 		}
@@ -922,7 +920,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private GetResult getMap(EClass originalQueryClass, EClass eClass, IfcModelInterface model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, QueryInterface query,
-			Queue<IdEObject> todoList) throws BimserverDatabaseException {
+			TodoList todoList) throws BimserverDatabaseException {
 		checkOpen();
 		if (keyPid == query.getPid()) {
 			if (keyRid <= query.getRid() && keyRid >= query.getStopRid()) {
@@ -965,7 +963,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return GetResult.STOP;
 	}
 
-	public void getMap(EClass eClass, IfcModelInterface ifcModel, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+	public void getMap(EClass eClass, IfcModelInterface ifcModel, QueryInterface query, TodoList todoList) throws BimserverDatabaseException {
 		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(),
 				BinUtils.intToByteArray(query.getPid()), BinUtils.intToByteArray(query.getPid()), this);
 		checkOpen();
@@ -996,9 +994,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	public void getMap(IfcModelInterface ifcModel, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
-		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
+		TodoList todoList = new TodoList();
 		for (EClass eClass : database.getClasses()) {
-			if (eClass.getEAnnotation("hidden") == null && eClass.getEAnnotation("nodatabase") == null) {
+			if (eClass.getEAnnotation("nolazyload") == null && eClass.getEAnnotation("nodatabase") == null) {
 				if (query.shouldIncludeClass(eClass)) {
 					getMap(eClass, ifcModel, query, todoList);
 				}
@@ -1025,7 +1023,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		// TODO check why clearCache??
 		objectCache.clear();
 
-		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
+		TodoList todoList = new TodoList();
 		ByteBuffer mustStartWith = createKeyBuffer(query.getPid(), oid);
 		ByteBuffer key = createKeyBuffer(query.getPid(), oid, -query.getStopRid());
 		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), mustStartWith.array(),
@@ -1059,7 +1057,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return model;
 	}
 
-	private void processTodoList(IfcModelInterface model, Queue<IdEObject> todoList, QueryInterface query) throws BimserverDatabaseException {
+	private void processTodoList(IfcModelInterface model, TodoList todoList, QueryInterface query) throws BimserverDatabaseException {
 		IdEObject idEObject = todoList.poll();
 		while (idEObject != null) {
 			IdEObject result = get(model, idEObject, idEObject.getOid(), query, todoList);
@@ -1248,7 +1246,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			LOGGER.info("Lazy loading " + idEObject.eClass().getName() + " " + idEObject.getOid());
 		}
 		IfcModelInterface model = createModel();
-		idEObject = get(model, idEObject, idEObject.getOid(), ((IdEObjectImpl) idEObject).getQueryInterface(), new LinkedList<IdEObject>());
+		idEObject = get(model, idEObject, idEObject.getOid(), ((IdEObjectImpl) idEObject).getQueryInterface(), new TodoList());
 		if (idEObject != null) {
 			if (idEObject.getRid() > 100000 || idEObject.getRid() < -100000) {
 				throw new RuntimeException("Improbable rid " + idEObject.getRid() + " - " + idEObject);
@@ -1283,7 +1281,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		Set<EClass> eClasses = new HashSet<EClass>();
 		condition.getEClassRequirements(eClasses);
 		IfcModelInterface model = createModel();
-		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
+		TodoList todoList = new TodoList();
 		for (EClass eClass : eClasses) {
 			getMap(eClass, model, query, todoList);
 			for (Long oid : model.keySet()) {
@@ -1418,7 +1416,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private IdEObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModelInterface model, IdEObject object, EStructuralFeature feature, EClass eClass,
-			QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+			QueryInterface query, TodoList todoList) throws BimserverDatabaseException {
 		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 			buffer.position(buffer.position() + 1);
 			return null;
@@ -1441,8 +1439,10 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		newObject.setRid(query.getRid());
 		objectCache.put(recordIdentifier, newObject);
-		if (query.isDeep() && feature.getEAnnotation("hidden") == null && object.eClass().getEAnnotation("wrapped") == null) {
-			todoList.add(newObject);
+		if (query.isDeep() && object.eClass().getEAnnotation("wrapped") == null) {
+			if (feature.getEAnnotation("nolazyload") == null) {
+				todoList.add(newObject);
+			}
 		} else {
 			if (object.eClass().getEAnnotation("wrapped") == null) {
 				try {

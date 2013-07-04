@@ -19,6 +19,7 @@ package org.bimserver.emf;
 
 import java.util.Iterator;
 
+import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EStoreEObjectImpl;

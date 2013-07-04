@@ -45,7 +45,7 @@ public class SceneJsShellSerializerPlugin extends AbstractSerializerPlugin {
 	
 	@Override
 	public boolean needsGeometry() {
-		return true;
+		return false;
 	}
 
 	@Override

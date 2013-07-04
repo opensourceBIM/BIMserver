@@ -48,6 +48,12 @@ public abstract class Migration {
 		hidden.setSource("hidden");
 		return hidden;
 	}
+
+	protected EAnnotation createNoLazyLoadAnnotation() {
+		EAnnotation hidden = EcoreFactory.eINSTANCE.createEAnnotation();
+		hidden.setSource("nolazyload");
+		return hidden;
+	}
 	
 	protected EAnnotation createUniqueAnnotation() {
 		EAnnotation unique = EcoreFactory.eINSTANCE.createEAnnotation();
