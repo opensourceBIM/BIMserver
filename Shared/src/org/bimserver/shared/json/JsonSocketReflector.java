@@ -65,8 +65,8 @@ public class JsonSocketReflector extends JsonReflector {
 			httppost.setEntity(new StringEntity(request.toString(), Charsets.UTF_8));
 
 			if (LOGGER.isDebugEnabled()) {
-				LOGGER.debug(request.toString());
 			}
+			LOGGER.info(request.toString());
 			
 			HttpResponse response = httpclient.execute(httppost, context);
 			try {

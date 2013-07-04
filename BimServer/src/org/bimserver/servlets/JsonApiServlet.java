@@ -88,7 +88,7 @@ public class JsonApiServlet extends SubServlet {
 				response.setHeader("Content-Type", "application/json");
 				bimServer.getJsonHandler().execute(request, httpRequest, response.getWriter());
 			} else {
-				LOGGER.info("Invalid JSON request: " + new String(bytes, Charsets.UTF_8));
+				LOGGER.error("Invalid JSON request: " + new String(bytes, Charsets.UTF_8));
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
