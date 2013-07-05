@@ -1,6 +1,6 @@
 <project name="BIMserver Nightly Build">
 	<tstamp>
-		<format property="builddate" pattern="yyyy-MM-dd HH-mm-ss" />
+		<format property="builddate" pattern="yyyy-MM-dd.HH-mm-ss" />
 	</tstamp>
 
 	<property name="majorversion" value="1"/>
