@@ -373,7 +373,8 @@ public class Starter extends JFrame {
 //				command += " -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y";
 //			}
 			command += " -classpath ";
-			boolean escapeCompletePath = System.getProperty("os.name").contains("mac");
+			System.out.println(System.getProperty("os.name"));
+			boolean escapeCompletePath = System.getProperty("os.name").toLowerCase().contains("mac");
 			if (escapeCompletePath) {
 				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
 				command += "\"";
