@@ -372,12 +372,17 @@ public class Starter extends JFrame {
 //			if (debug ) {
 //				command += " -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y";
 //			}
-			command += " -classpath";
-			command += " lib" + File.pathSeparator;
+			command += " -classpath ";
+			boolean escapeCompletePath = System.getProperty("os.name").contains("mac");
+			if (escapeCompletePath) {
+				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
+				command += "\"";
+			}
+			command += "lib" + File.pathSeparator;
 			File dir = new File(destDir + File.separator + "lib");
 			for (File lib : dir.listFiles()) {
 				if (lib.isFile()) {
-					if (lib.getName().contains(" ")) {
+					if (lib.getName().contains(" ") && !escapeCompletePath) {
 						command += "\"lib" + File.separator + lib.getName() + "\"" + File.pathSeparator;
 					} else {
 						command += "lib" + File.separator + lib.getName() + File.pathSeparator;
@@ -386,6 +391,10 @@ public class Starter extends JFrame {
 			}
 			if (command.endsWith(File.pathSeparator)) {
 				command = command.substring(0, command.length()-1);
+			}
+			if (escapeCompletePath) {
+				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
+				command += "\"";
 			}
 			Enumeration<URL> resources = getClass().getClassLoader().getResources("META-INF/MANIFEST.MF");
 			String realMainClass = "";
