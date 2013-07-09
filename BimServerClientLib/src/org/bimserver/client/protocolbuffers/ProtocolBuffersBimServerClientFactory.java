@@ -23,7 +23,7 @@ import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
-import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
+import org.bimserver.shared.reflector.FileBasedReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 
 public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClientFactory {
@@ -40,7 +40,8 @@ public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClie
 		this.address = address;
 		this.port = port;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
-		this.reflectorFactory = new RealtimeReflectorFactoryBuilder(getServicesMap()).newReflectorFactory();
+		FileBasedReflectorFactoryBuilder factoryBuilder = new FileBasedReflectorFactoryBuilder();
+		this.reflectorFactory = factoryBuilder.newReflectorFactory();
 	}
 
 	@Override

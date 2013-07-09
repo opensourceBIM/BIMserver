@@ -407,9 +407,7 @@ public class ClientIfcModel extends IfcModel {
 		} catch (SerializerException e) {
 			LOGGER.error("", e);
 		} finally {
-			if (waitingList.size() > 0) {
-				LOGGER.error("Waitinglist not empty!");
-			}
+			waitingList.dumpIfNotEmpty();
 			bimServerClient.getServiceInterface().cleanupLongAction(download);
 		}
 	}

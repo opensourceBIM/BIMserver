@@ -21,13 +21,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.services.BimServerClientException;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WaitingList<T> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(WaitingList.class);
 	private final Map<T, List<WaitingObject>> waitingObjects = new HashMap<T, List<WaitingObject>>();
 
 	public boolean containsKey(T recordNumber) {
@@ -78,5 +83,18 @@ public class WaitingList<T> {
 
 	public int size() {
 		return waitingObjects.size();
+	}
+	
+	public void dumpIfNotEmpty() throws BimServerClientException {
+		if (size() > 0) {
+			for (Entry<T, List<WaitingObject>> entry : waitingObjects.entrySet()) {
+				StringBuilder sb = new StringBuilder("" + entry.getKey());
+				for (WaitingObject waitingObject : entry.getValue()) {
+					sb.append(waitingObject.toString() + " ");
+				}
+				LOGGER.info(sb.toString());
+			}
+			throw new BimServerClientException("Waitinglist not empty, this usually means some objects were referred, but not included in the download");
+		}
 	}
 }

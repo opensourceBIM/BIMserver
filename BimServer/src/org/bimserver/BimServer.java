@@ -413,13 +413,8 @@ public class BimServer {
 
 			mergerFactory = new MergerFactory(this);
 
-//			if (getResourceFetcher() instanceof LocalDevelopmentResourceFetcher) {
-//				RealtimeReflectorFactoryBuilder reflectorBuilder = new RealtimeReflectorFactoryBuilder(servicesMap);
-//				reflectorFactory = reflectorBuilder.newReflectorFactory();
-//			} else {
-				FileBasedReflectorFactoryBuilder factoryBuilder = new FileBasedReflectorFactoryBuilder();
-				reflectorFactory = factoryBuilder.newReflectorFactory();
-//			}
+			FileBasedReflectorFactoryBuilder factoryBuilder = new FileBasedReflectorFactoryBuilder();
+			reflectorFactory = factoryBuilder.newReflectorFactory();
 			if (reflectorFactory == null) {
 				throw new RuntimeException("No reflector factory!");
 			}

@@ -86,7 +86,7 @@ public class JsonSerializer extends IfcSerializer {
 						out.write("\"__state\":\"LOADED\",");
 						boolean firstF = true;
 						for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-		//						if (eStructuralFeature.getEAnnotation("hidden") == null) {
+							if (eStructuralFeature.getEAnnotation("nolazyload") == null) {
 								if (eStructuralFeature instanceof EReference) {
 									Object value = object.eGet(eStructuralFeature);
 									if (value != null) {
@@ -194,7 +194,7 @@ public class JsonSerializer extends IfcSerializer {
 										}
 									}
 								}
-		//						}
+							}
 						}
 						out.write("}\n");
 					}

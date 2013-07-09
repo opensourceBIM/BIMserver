@@ -39,4 +39,9 @@ public class WaitingObject {
 	public EStructuralFeature getStructuralFeature() {
 		return structuralFeature;
 	}
+	
+	@Override
+	public String toString() {
+		return getObject() + " " + getStructuralFeature().getName();
+	}
 }

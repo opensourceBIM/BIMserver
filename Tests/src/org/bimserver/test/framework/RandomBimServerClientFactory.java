@@ -31,7 +31,7 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
-import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
+import org.bimserver.shared.reflector.FileBasedReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,7 +62,8 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		
 		SServicesMap servicesMap = InterfaceList.createSServicesMap();
 		
-		ReflectorFactory reflectorFactory = new RealtimeReflectorFactoryBuilder(servicesMap).newReflectorFactory();
+		FileBasedReflectorFactoryBuilder factoryBuilder = new FileBasedReflectorFactoryBuilder();
+		ReflectorFactory reflectorFactory = factoryBuilder.newReflectorFactory();
 		
 		jsonBimServerClientFactory = new JsonBimServerClientFactory("http://localhost:8080", servicesMap, new JsonSocketReflectorFactory(servicesMap), reflectorFactory);
 		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
