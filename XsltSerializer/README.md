@@ -1,0 +1,1 @@
+This projects contains a base serializer for XSLT. Other serializer plugins can use this project by simply extending XsltSerializer and providing a an XSLT to transform IFC XML to something else.

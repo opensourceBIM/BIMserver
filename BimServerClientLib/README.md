@@ -1,0 +1,1 @@
+This project provides a Java API for BIMserver. It can use a direct (in-JVM) connection to BIMserver, or SOAP, Protocol Buffers or JSON.

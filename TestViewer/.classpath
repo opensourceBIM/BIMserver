@@ -13,7 +13,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/IfcPlugins"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/buildingSMARTLibrary"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BuildingSMARTLibrary"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BimServer"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
