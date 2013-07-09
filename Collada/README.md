@@ -1,0 +1,1 @@
+This projects contains a serializer for Collada and for KMZ.
