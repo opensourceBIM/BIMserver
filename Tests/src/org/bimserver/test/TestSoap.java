@@ -20,6 +20,7 @@ package org.bimserver.test;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.soap.SoapBimServerClientFactory;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -29,7 +30,9 @@ public class TestSoap {
 		SoapBimServerClientFactory factory = new SoapBimServerClientFactory("http://localhost:8080");
 		try {
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			client.getBimsie1ServiceInterface().getAllProjects(true, true);
+			for (SProject project : client.getBimsie1ServiceInterface().getAllProjects(true, true)) {
+				System.out.println(project.getName());
+			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
