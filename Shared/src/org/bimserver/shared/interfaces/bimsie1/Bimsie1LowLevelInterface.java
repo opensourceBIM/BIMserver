@@ -36,7 +36,10 @@ import org.bimserver.shared.interfaces.PublicInterface;
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface Bimsie1LowLevelInterface extends PublicInterface {
 	/**
+	 * Start a new transaction. You can commit the transaction with commitTransaction
+	 * 
 	 * @param poid ObjectID of the Project to start a transaction on
+	 * @return A TransactionID (tid) that should be used for subsequent calls
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "startTransaction")
@@ -44,10 +47,11 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "poid", partName = "startTransaction.poid") Long poid) throws ServerException, UserException;
 
 	/**
-	 * Commit the current transaction, changes will be saved, a transaction must be started by startTransaction first
-	 * @param tid The transaction id
+	 * Commit a transaction, changes will be saved, a transaction must be started by startTransaction first
+     *
+	 * @param tid The TransactionID
 	 * @param comment Comment describing what has changed
-	 * @return ObjectID of the Revision
+	 * @return ObjectID of the newly created Revision
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "commitTransaction")
@@ -56,8 +60,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "comment", partName = "commitTransaction.comment") String comment) throws ServerException, UserException;
 	
 	/**
-	 * Abort the current transaction, changes will not be saved
-	 * @param tid The transaction id
+	 * Abort a transaction, changes will not be saved
+	 * 
+	 * @param tid The TransactionID
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "abortTransaction")
@@ -66,7 +71,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	
 	/**
 	 * Create a new Object
-	 * @param tid The transaction id
+	 * 
+	 * @param tid The TransactionID
 	 * @param className The type of the new object
 	 * @return The ObjectID of the newly created object
 	 * @throws ServerException, UserException
@@ -78,7 +84,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	
 	/**
 	 * Remove an object
-	 * @param tid The transaction id
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to remove
 	 * @throws ServerException, UserException
 	 */
@@ -89,7 +96,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	
 	/**
 	 * Set the String value of an attribute
-	 * @param tid The transaction id
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New String value
@@ -103,8 +111,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws ServerException, UserException;
 
 	/**
-	 * Set the String value of an attribute
-	 * @param tid The transaction id
+	 * Set the String value at a certain index in a list of an attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New String value
@@ -120,7 +129,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	
 	/**
 	 * Set the wrapped value of a String attribute
-	 * @param tid The transaction id
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New String value
@@ -136,7 +146,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 
 	/**
 	 * Get the String value of an attribute
-	 * @param tid The transaction id
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New String value
@@ -151,7 +162,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	
 	/**
 	 * Get a list of attributes of type String
-	 * @param tid The transaction id
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New String value
@@ -166,7 +178,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	
 	/**
 	 * Set a double attribute
-	 * @param tid The transaction id
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Double value
@@ -181,7 +194,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 
 	/**
 	 * Set a double attribute at a specific index
-	 * @param tid The transaction id
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Double value
@@ -196,9 +210,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setDoubleAttributeAtIndex.value") Double value) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Set a wrapped attribute's double value
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
+	 * @param type Type of the wrapped value
 	 * @param value New Double value
 	 * @throws ServerException, UserException
 	 */
@@ -211,10 +228,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setWrappedDoubleAttribute.value") Double value) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Set a list of double values (for example Coordinates of IfcCartesianPoint)
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value New Double value
+	 * @param values List of double values
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "setDoubleAttributes")
@@ -225,10 +244,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "values", partName = "setDoubleAttributes.values") List<Double> values) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Get a list of double values (for example Coordinates of IfcCartesianPoint)
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value New Double value
+	 * @return List of double values
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getDoubleAttribute")
@@ -238,10 +259,13 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getDoubleAttribute.attributeName") String attributeName) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Get a double value of an attribute at a given index
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value New Double value
+	 * @param index Index within the list
+	 * @return Double value of this attribute
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getDoubleAttributeAtIndex")
@@ -252,10 +276,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "index", partName = "getDoubleAttributeAtIndex.index") Integer index) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
-	 * @param oid ObjectID of the object to change
+	 * Get a list of double values
+	 * 
+	 * @param tid The TransactionID
+	 * @param oid ObjectID of the object
 	 * @param attributeName Name of the attribute
-	 * @param value New Double value
+	 * @return A list of double values
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getDoubleAttributes")
@@ -265,7 +291,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getDoubleAttributes.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Set an enum attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Enum value (name of the enum item)
@@ -279,10 +307,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setEnumAttribute.value") String value) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Get an enum attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value New Enum value (name of the enum item)
+	 * @return Enum value (as String)
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getEnumAttribute")
@@ -292,7 +322,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getEnumAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Set an integer attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -306,9 +338,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Set an integer attribute at a given index
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
+	 * @param index Index within the list
 	 * @param value new Integer value
 	 * @throws ServerException, UserException
 	 */
@@ -321,9 +356,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setIntegerAttributeAtIndex.value") Integer value) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Set a warpped integer attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
+	 * @param type Type of the wrapped object
 	 * @param value new Integer value
 	 * @throws ServerException, UserException
 	 */
@@ -336,7 +374,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setWrappedIntegerAttribute.value") Integer value) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Set a byte[] attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new ByteArray value
@@ -350,10 +390,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setByteArrayAttribute.value") Byte[] value) throws UserException, ServerException;
 
 	/**
-	 * @param tid The transaction id
+	 * Set a list of integer attributes
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
+	 * @param values A list of integer values
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "setIntegerAttributes")
@@ -364,7 +406,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "values", partName = "setIntegerAttributes.value") List<Integer> values) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Set a long attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -378,9 +422,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setLongAttribute.value") Long value) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Set a long attribute at a given index
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
+	 * @param index Index within the list
 	 * @param value new Integer value
 	 * @throws ServerException, UserException
 	 */
@@ -393,9 +440,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setLongAttributeAtIndex.value") Long value) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Set a wrapped long value
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
+	 * @param type Type of the wrapped object
 	 * @param value new Integer value
 	 * @throws ServerException, UserException
 	 */
@@ -408,10 +458,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setWrappedLongAttribute.value") Long value) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Set a list of long attributes
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
+	 * @param values List of long values
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "setLongAttributes")
@@ -422,10 +474,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "values", partName = "setLongAttributes.value") List<Long> values) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Get an integer attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
+	 * @return Integer value of attribute
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getIntegerAttribute")
@@ -435,7 +489,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getIntegerAttribute.attributeName") String attributeName) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Get an integer attribute at the given index
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -449,10 +505,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "index", partName = "getIntegerAttributeAtIndex.index") Integer index) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Get a byte[] attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
+	 * @return byte[] value
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getByteArrayAttribute")
@@ -462,10 +520,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getByteArrayAttribute.attributeName") String attributeName) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Get a list of byte[] values
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
+	 * @return List of byte[] values
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getByteArrayAttributes")
@@ -475,10 +535,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getByteArrayAttributes.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Get a list of integer attributes
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
+	 * @return List of integer attributes
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getIntegerAttributes")
@@ -488,10 +550,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getIntegerAttributes.attributeName") String attributeName) throws ServerException, UserException;
 		
 	/**
-	 * @param tid The transaction id
+	 * Get a long value of an attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
+	 * @return Long value of attribute
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getLongAttribute")
@@ -501,10 +565,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getLongAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Get a long attribute at a given index
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
+	 * @return Long value at index
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getLongAttributeAtIndex")
@@ -515,7 +581,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "index", partName = "getLongAttributeAtIndex.index") Integer index) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Set a boolean attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Boolean value
@@ -529,9 +597,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setBooleanAttribute.value") Boolean value) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Set a boolean attribute at the given index
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
+	 * @param index Index within the list
 	 * @param value New Boolean value
 	 * @throws ServerException, UserException
 	 */
@@ -544,9 +615,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setBooleanAttributeAtIndex.value") Boolean value) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Set a wrapped boolean attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
+	 * @param type Type of the wrapped object
 	 * @param value New Boolean value
 	 * @throws ServerException, UserException
 	 */
@@ -559,10 +633,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setWrappedBooleanAttribute.value") Boolean value) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Set a list of boolean attributes
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value New Boolean value
+	 * @param values A list of boolean values
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "setBooleanAttributes")
@@ -573,10 +649,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "values", partName = "setBooleanAttributes.values") List<Boolean> values) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
-	 * @param oid ObjectID of the object to change
+	 * Get a boolean value of an attribute
+	 * 
+	 * @param tid The TransactionID
+	 * @param oid ObjectID of the object
 	 * @param attributeName Name of the attribute
-	 * @param value New Boolean value
+	 * @return Boolean value of attribute
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getBooleanAttribute")
@@ -586,10 +664,13 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getBooleanAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Retrieve a boolean attribute at the given index
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value New Boolean value
+	 * @param index Index of the attribute
+	 * @return A Boolean value of the given index
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getBooleanAttributeAtIndex")
@@ -600,10 +681,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "index", partName = "getBooleanAttributeAtIndex.index") Integer index) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Retrieve a list of boolean attributes
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value New Boolean value
+	 * @return A list of boolean values
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getBooleanAttributes")
@@ -614,7 +697,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 
 	/**
 	 * Set a reference
-	 * @param tid The transaction id
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference
 	 * @param referenceOid ObjectID of the newly referred object
@@ -628,10 +712,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "referenceOid", partName = "setReference.referenceOid") Long referenceOid) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Get a reference
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference
-	 * @param referenceOid ObjectID of the newly referred object
+	 * @return ObjectID of the referred object
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getReference")
@@ -641,10 +727,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "referenceName", partName = "getReference.referenceName") String referenceName) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Get a list of references
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference
-	 * @param referenceOid ObjectID of the newly referred object
+	 * @return A list of ObjectID's
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getReferences")
@@ -654,7 +742,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "referenceName", partName = "getReferences.referenceName") String referenceName) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Unset an attribute
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute to unset
 	 * @throws ServerException, UserException
@@ -666,7 +756,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Unset a reference
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference to unset (null)
 	 * @throws ServerException, UserException
@@ -678,7 +770,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName) throws ServerException, UserException;
 	
 	/**
-	 * @param tid The transaction id
+	 * Add a String attribute. Will be added at the end of the list
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New String value
@@ -692,7 +786,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "addStringAttribute.value") String value) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Add a double attribute. Will be added at the end of the list
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New Double value
@@ -706,7 +802,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "addDoubleAttribute.value") Double value) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Add an integer attribute. Will be added at the end of the list
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New Integer value
@@ -720,7 +818,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "addIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
 	/**
-	 * @param tid The transaction id
+	 * Add a boolean attribute. Will be added at the end of the list
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New Boolean value
@@ -734,11 +834,12 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "addBooleanAttribute.value") Boolean value) throws ServerException, UserException;
 
 	/**
-	 * Add a reference
-	 * @param tid The transaction id
+	 * Add a reference to a list. Will be added at the end of the list
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference to add a reference to
-	 * @param referenceOid ObjectID of the newly referenced Object
+	 * @param referenceOid ObjectID of the referenced Object
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addReference")
@@ -749,8 +850,9 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "referenceOid", partName = "addReference.referenceOid") Long referenceOid) throws ServerException, UserException;
 	
 	/**
-	 * Remove an attribute from a list
-	 * @param tid The transaction id
+	 * Remove an attribute from a list at a certain index
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute from which to remove an item
 	 * @param index Index of the item to remove
@@ -765,7 +867,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	
 	/**
 	 * Remove a single reference by it's index in the list
-	 * @param tid The transaction id
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference from which to remove an item
 	 * @param index Index of the item to remove
@@ -780,7 +883,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 
 	/**
 	 * Remove all references (clear the list of references) of the given object + reference
-	 * @param tid The transaction id
+	 * 
+	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object
 	 * @param referenceName Name of the reference from which to remove all references
 	 * @throws ServerException, UserException
@@ -792,9 +896,11 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "referenceName", partName = "removeAllReferences.referenceName") String referenceName) throws ServerException, UserException;
 	
 	/**
-	 * Get an object from the given revision as a Data Object 
+	 * Get an object from the given revision as a Data Object
+	 * 
 	 * @param roid ObjectID of the Revision
 	 * @param oid ObjectID of the object to get
+	 * @return An SDataObject
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getDataObjectByOid")
@@ -804,6 +910,7 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 
 	/**
 	 * Get all the objects matching the given GUIDs as Data Objects
+	 * 
 	 * @param roid ObjectID of the Revision
 	 * @param guid An IFC GUID
 	 * @return The object with the given GUID in the given Revision, of null if not found
@@ -816,6 +923,7 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 
 	/**
 	 * Get all the objects of a certain type in Data Objects
+	 * 
 	 * @param roid ObjectID of the Revision
 	 * @param className Name of the class to query (e.g. "IfcWindow")
 	 * @return A list of DataObjects from the given Revision matching the given class
@@ -828,6 +936,7 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 
 	/**
 	 * Get all the objects of a certain revision in Data Objects
+	 * 
 	 * @param roid ObjectID of the Revision
 	 * @return A list of DataObjects from the given Revision
 	 * @throws ServerException, UserException
@@ -836,6 +945,14 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	List<SDataObject> getDataObjects(
 		@WebParam(name = "roid", partName = "getDataObjects.roid") Long roid) throws ServerException, UserException;
 	
+	/**
+	 * Count the amount of object a certain revision has of the given type
+	 * 
+	 * @param roid ObjectID of the Revision
+	 * @param className Name of the type to query
+	 * @return The amount of objects found
+	 * @throws UserException, ServerException
+	 */
 	@WebMethod(action = "count")
 	Integer count(
 		@WebParam(name = "roid", partName = "count.roid") Long roid,

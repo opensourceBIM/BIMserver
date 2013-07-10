@@ -33,5 +33,11 @@ public interface Serializer {
 	IfcModelInterface getModel();
 	InputStream getInputStream() throws IOException;
 	void writeToOutputStream(OutputStream outputStream) throws SerializerException;
+
+	/*
+	 * The serializer must implement this method, but in most cases won't have
+	 * to do anything. Only when reusing a serializer, this method can be used
+	 * to cleanup/setup
+	 */
 	void reset();
 }
