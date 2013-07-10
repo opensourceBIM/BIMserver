@@ -100,13 +100,6 @@ public abstract class EmfSerializer implements Serializer {
 	}
 
 	/*
-	 * The serializer must implement this method, but in most cases won't have
-	 * to do anything. Only when reusing a serializer, this method can be used
-	 * to cleanup/setup
-	 */
-	public abstract void reset();
-
-	/*
 	 * The serializer must implement this method and write data to the
 	 * outputstream. This call can be called multiple times by the BIMserver.
 	 * The implementation must return true when data has been written, or false
