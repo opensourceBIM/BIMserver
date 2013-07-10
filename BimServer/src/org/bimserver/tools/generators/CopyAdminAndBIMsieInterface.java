@@ -35,7 +35,7 @@ public class CopyAdminAndBIMsieInterface {
 
 	private void copyBimsieInterface() {
 		File bootstrap = new File("C:\\Users\\Ruben\\git\\BootstrapBIM");
-		File bimsie = new File("D:\\Software\\Workspaces\\BIMserver\\BIMsie");
+		File bimsie = new File("BIMsie");
 		SServicesMap servicesMap = InterfaceList.createBimsie1SServicesMap();
 		try {
 			FileUtils.writeStringToFile(new File(bimsie, "js/services.json"), servicesMap.toJson().toString(2));
@@ -72,7 +72,7 @@ public class CopyAdminAndBIMsieInterface {
 	}
 
 	private void copyAdminInterface() {
-		File bootstrap = new File("C:\\Users\\Ruben\\git\\BootstrapBIM");
+		File bootstrap = new File("BootstrapBIM");
 		File www = new File("../AdminGui");
 		try {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "setup.html"), www);

@@ -280,10 +280,6 @@ LazyLoad.js([
 			"Bimsie1NotificationInterface": "org_buildingsmart_bimsie_Bimsie1NotificationInterface"
 		};
 
-		for (var key in othis.namespaceMapping) {
-			$.getScript(Global.baseDir + "soap11/" + key + "?js");
-		}
-
 		othis.lastCall = {};
 
 		this.call = function(requestObject, callback) {
@@ -799,6 +795,9 @@ LazyLoad.js([
 		
 		ConsoleSettings.getStaticServerAddress(function(address){
 			Global.address = address;
+			for (var key in othis.namespaceMapping) {
+				$.getScript(Global.address + "/soap11/" + key + "?js");
+			}
 			othis.loadMethods();
 		});
 	}
