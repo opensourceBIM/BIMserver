@@ -40,7 +40,7 @@
 		<appender-ref ref="Console" />
 	</logger>
 	<root>
-		<priority value="info" />
+		<priority value="debug" />
 		<appender-ref ref="Console" />
 	</root>
 </log4j:configuration>

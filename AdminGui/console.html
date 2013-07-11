@@ -284,7 +284,7 @@ LazyLoad.js([
 
 		this.call = function(requestObject, callback) {
 			$.ajax({
-				url: $(".addressInput").val() + "/json",
+				url: Global.address + "/json",
 				data: JSON.stringify(requestObject),
 				contentType: "application/json",
 				type: "POST",
@@ -795,6 +795,7 @@ LazyLoad.js([
 		
 		ConsoleSettings.getStaticServerAddress(function(address){
 			Global.address = address;
+			$(".addressInput").val(address);
 			for (var key in othis.namespaceMapping) {
 				$.getScript(Global.address + "/soap11/" + key + "?js");
 			}
