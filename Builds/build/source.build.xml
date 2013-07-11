@@ -10,8 +10,8 @@
 		<copy todir="builds/BuildSource/BIMserver/BimServerClientLib">
 			<fileset dir="../../BimServerClientLib" />
 		</copy>
-		<copy todir="builds/BuildSource/BIMserver/buildingSMARTLibrary">
-			<fileset dir="../../buildingSMARTLibrary" />
+		<copy todir="builds/BuildSource/BIMserver/BuildingSMARTLibrary">
+			<fileset dir="../../BuildingSMARTLibrary" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/CityGML">
 			<fileset dir="../../CityGML" />
