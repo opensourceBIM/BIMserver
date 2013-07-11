@@ -17,7 +17,7 @@
 		<copy file="README.txt" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 
 		<ant antfile="javadoc.build.xml" target="Build JavaDoc"/>
-		<copy file="builds/bimserver-javadoc-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/$version"/>
+		<copy file="builds/bimserver-javadoc-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 
 		<copy todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}/javadoc">
 			<fileset dir="builds/bimserver-javadoc-${version}"/>
