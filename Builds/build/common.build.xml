@@ -24,7 +24,7 @@
 		<antcall target="JavaQueryEngine" />
 		<antcall target="IfcPlugins" />
 		<antcall target="MiscSerializers" />
-		<antcall target="buildingSMARTLibrary" />
+		<antcall target="BuildingSMARTLibrary" />
 		<antcall target="FileBasedObjectIDM" />
 	</target>
 	<target name="Tests">
@@ -127,10 +127,10 @@
 			<fileset dir="builds/filebasedobjectidm"/>
 		</jar>
 	</target>
-	<target name="buildingSMARTLibrary">
-		<mkdir dir="builds/buildingSMARTLibrary" />
-		<javac destdir="builds/buildingSMARTLibrary" debug="on" includeantruntime="false">
-			<src path="../../buildingSMARTLibrary/src" />
+	<target name="BuildingSMARTLibrary">
+		<mkdir dir="builds/BuildingSMARTLibrary" />
+		<javac destdir="builds/BuildingSMARTLibrary" debug="on" includeantruntime="false">
+			<src path="../../BuildingSMARTLibrary/src" />
 			<classpath>
 				<path>
 					<fileset refid="lib" />
@@ -138,16 +138,16 @@
 				</path>
 			</classpath>
 		</javac>
-		<mkdir dir="builds/buildingSMARTLibrary/plugin"/>
-		<mkdir dir="builds/buildingSMARTLibrary/schema"/>
-		<copy todir="builds/buildingSMARTLibrary/schema">
-			<fileset dir="../../buildingSMARTLibrary/schema"/>
+		<mkdir dir="builds/BuildingSMARTLibrary/plugin"/>
+		<mkdir dir="builds/BuildingSMARTLibrary/schema"/>
+		<copy todir="builds/BuildingSMARTLibrary/schema">
+			<fileset dir="../../BuildingSMARTLibrary/schema"/>
 		</copy>
-		<copy todir="builds/buildingSMARTLibrary/plugin">
-			<fileset dir="../../buildingSMARTLibrary/plugin"></fileset>
+		<copy todir="builds/BuildingSMARTLibrary/plugin">
+			<fileset dir="../../BuildingSMARTLibrary/plugin"></fileset>
 		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-buildingSMARTLibrary.jar">
-			<fileset dir="builds/buildingSMARTLibrary"/>
+			<fileset dir="builds/BuildingSMARTLibrary"/>
 		</jar>
 	</target>
 	<target name="IfcEngine">
