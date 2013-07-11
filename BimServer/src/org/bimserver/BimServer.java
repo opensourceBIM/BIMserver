@@ -222,22 +222,37 @@ public class BimServer {
 			}
 
 			servicesMap = InterfaceList.createSServicesMap();
+			LOGGER.debug("SServiceMap Created");
 
 			jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
+			LOGGER.debug("JsonSocketReflectorFactory created");
 
 			serverInfoManager = new ServerInfoManager();
+			LOGGER.debug("ServerInfoManager created");
+			
 			notificationsManager = new NotificationsManager(this, jsonSocketReflectorFactory);
+			LOGGER.debug("NotificationsManager created");
+			
 			internalServicesManager = new InternalServicesManager(this, notificationsManager.getSiteAddress());
+			LOGGER.debug("InternalServicesManager created");
+			
 			serviceFactory = new PublicInterfaceFactory(this);
+			LOGGER.debug("PublicInterfaceFactory created");
 			
 			pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath(), serviceFactory, internalServicesManager, servicesMap);
-
+			LOGGER.debug("PluginManager created");
+			
 			versionChecker = new VersionChecker(config.getResourceFetcher());
+			LOGGER.debug("Version Checker created");
 
 			compareCache = new CompareCache();
+			LOGGER.debug("Compare cache created");
 			if (config.isStartEmbeddedWebServer()) {
 				embeddedWebServer = new EmbeddedWebServer(this, config.isLocalDev());
+				LOGGER.debug("Embedded webserver created");
 			}
+			
+			LOGGER.debug("Done with initial setup");
 		} catch (Throwable e) {
 			if (LOGGER == null) {
 				e.printStackTrace();
