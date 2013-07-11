@@ -171,7 +171,6 @@ function Login(address, username) {
 	$(".googleLink").click(function(){
 		$.cookie("address", Global.bimServerApi.baseUrl);
 		Global.bimServerApi.call("Bimsie1AuthInterface", "loginOpenId", {op: "https://www.google.com/accounts/o8/id", returnUrl: Global.baseDir + "openid.html"}, function(url){
-			console.log(url);
 			document.location = url;
 		});
 	}); 

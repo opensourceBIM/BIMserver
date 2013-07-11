@@ -19,12 +19,7 @@ package org.bimserver;
 
 import java.io.File;
 
-import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseRestartRequiredException;
-import org.bimserver.database.berkeley.DatabaseInitException;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.resources.JarResourceFetcher;
-import org.bimserver.shared.exceptions.ServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -82,19 +77,13 @@ public class JarBimServer {
 		bimServerConfig.setClassPath(System.getProperty("java.class.path"));
 		bimServer = new BimServer(bimServerConfig);
 	 	try {
+	 		LOGGER.debug("Settings resourcebase to www");
 	 		bimServer.getEmbeddedWebServer().getContext().setResourceBase("www");
+	 		LOGGER.debug("Loading plugins");
 	 		bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 			bimServer.start();
 			LOGGER.info("Server started successfully");
-		} catch (PluginException e) {
-			LOGGER.error("", e);
-		} catch (ServerException e) {
-			LOGGER.error("", e);
-		} catch (DatabaseInitException e) {
-			LOGGER.error("", e);
-		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
-		} catch (DatabaseRestartRequiredException e) {
+		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 	}

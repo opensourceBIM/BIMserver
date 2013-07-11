@@ -20,6 +20,10 @@
 		</ul>
 	</div>
 	<div class="clearfix"></div>
+	<div class="alert status initialhide">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<div class="message"></div>
+	</div>
 	<div class="maincontainer"></div>
 </div>
 <script>
@@ -37,6 +41,7 @@ function Main(address, username) {
 	$(".main .addressLabel").html(address);
 	
 	this.show = function() {
+		Global.notifier.selector = ".main .status";
 		Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(user){
 			$(".main .nav li").hide();
 			othis.user = user;
@@ -72,6 +77,14 @@ function Main(address, username) {
 				othis.showTesting(null);
 			} else if (history.page == "ResetPassword") {
 				othis.showResetPassword(null);
+			} else if (history.page == "AddService") {
+				Global.bimServerApi.call("Bimsie1ServiceInterface", "getProjectByPoid", {poid: history.poid}, function(project){
+					othis.showAddService(project, null, true);
+				});
+			} else if (history.page == "AddService2") {
+				Global.bimServerApi.call("Bimsie1ServiceInterface", "getProjectByPoid", {poid: history.poid}, function(project){
+					othis.showAddService(project, null, true);
+				});
 			} else {
 				if ($(".dashboardLink").is(":visible")) {
 					othis.showDashboard(null);
@@ -86,6 +99,7 @@ function Main(address, username) {
 		$(".sidespan").empty();
 		Global.bimServerApi.logout(function(){
 			$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+				$(".indexStatus").show();
 				new Login(Global.bimServerApi.baseUrl);
 			});
 		});
@@ -133,14 +147,12 @@ function Main(address, username) {
 
 	this.showAddService = function(project, callback) {
 		othis.pageChanger.changePage($(".projectsLink"), "addservice.html", function(){
-			pushHistory({page: "AddService"}, "Add Service");
 			return new AddService(othis, project);
 		}, callback);
 	};
 
 	this.showAddService2 = function(project, serviceDescriptor, isLocal, callback) {
 		othis.pageChanger.changePage($(".projectsLink"), "addservice2.html", function(){
-			pushHistory({page: "AddService2"}, "Add Service");
 			return new AddService2(othis, project, serviceDescriptor, isLocal);
 		}, callback);
 	};

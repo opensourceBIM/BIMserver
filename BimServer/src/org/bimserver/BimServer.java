@@ -280,6 +280,7 @@ public class BimServer {
 
 	public void start() throws DatabaseInitException, BimserverDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
 		try {
+			LOGGER.debug("Starting BIMserver");
 			SVersion localVersion = versionChecker.getLocalVersion();
 			if (localVersion != null) {
 				LOGGER.info("Version: " + localVersion.getMajor() + "." + localVersion.getMinor() + "." + localVersion.getRevision() + " - " + localVersion.getDate());

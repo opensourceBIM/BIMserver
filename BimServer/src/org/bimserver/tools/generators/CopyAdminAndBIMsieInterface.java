@@ -27,6 +27,10 @@ import org.bimserver.shared.meta.SServicesMap;
 import org.codehaus.jettison.json.JSONException;
 
 public class CopyAdminAndBIMsieInterface {
+	private static final File bootstrap = new File("C:\\Users\\Ruben\\git\\BootstrapBIM");
+	private static final File bimsie = new File("D:\\Software\\Workspaces\\BIMserverGit\\BIMsie");
+	private static final File admin = new File("C:\\Users\\Ruben\\git\\BIMserver\\AdminGui");;
+
 	public static void main(String[] args) {
 		CopyAdminAndBIMsieInterface copyAdminAndBIMsieInterface = new CopyAdminAndBIMsieInterface();
 		copyAdminAndBIMsieInterface.copyAdminInterface();
@@ -34,8 +38,6 @@ public class CopyAdminAndBIMsieInterface {
 	}
 
 	private void copyBimsieInterface() {
-		File bootstrap = new File("C:\\Users\\Ruben\\git\\BootstrapBIM");
-		File bimsie = new File("BIMsie");
 		SServicesMap servicesMap = InterfaceList.createBimsie1SServicesMap();
 		try {
 			FileUtils.writeStringToFile(new File(bimsie, "js/services.json"), servicesMap.toJson().toString(2));
@@ -72,27 +74,25 @@ public class CopyAdminAndBIMsieInterface {
 	}
 
 	private void copyAdminInterface() {
-		File bootstrap = new File("BootstrapBIM");
-		File www = new File("../AdminGui");
 		try {
-			FileUtils.copyFileToDirectory(new File(bootstrap, "setup.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "index.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "login.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "basicserversettings.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "serversettings.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "serverinfo.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "plugins.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "console.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "extendeddataschemas.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "extendeddataschema.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "addnewextendeddataschema.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "addrepoextendeddataschema.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "main.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "migrations.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "webmodules.html"), www);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "log.html"), www);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "setup.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "index.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "login.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "basicserversettings.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "serversettings.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "serverinfo.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "plugins.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "console.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "extendeddataschemas.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "extendeddataschema.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "addnewextendeddataschema.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "addrepoextendeddataschema.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "main.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "migrations.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "webmodules.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "log.html"), admin);
 			
-			FileUtils.copyDirectory(new File(bootstrap, "js"), new File(www, "js"), new FileFilter() {
+			FileUtils.copyDirectory(new File(bootstrap, "js"), new File(admin, "js"), new FileFilter() {
 				@Override
 				public boolean accept(File pathname) {
 					if (pathname.getName().equals("settings.js")) {
@@ -101,8 +101,8 @@ public class CopyAdminAndBIMsieInterface {
 					return true;
 				}
 			});
-			FileUtils.copyDirectory(new File(bootstrap, "img"), new File(www, "img"));
-			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(www, "css"), new FileFilter() {
+			FileUtils.copyDirectory(new File(bootstrap, "img"), new File(admin, "img"));
+			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(admin, "css"), new FileFilter() {
 				@Override
 				public boolean accept(File pathname) {
 					if (pathname.getName().equals("bootstrap.min.css")) {
