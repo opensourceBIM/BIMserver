@@ -29,6 +29,6 @@
 		<copy file="builds/bimserver-source-${version}.zip" todir="/var/www/BIMserver/nightly builds"/>
 
 		<ant antfile="javadoc.build.xml" target="Build JavaDoc"/>
-		<copy file="builds/bimserver-javadoc-${version}" todir="/var/www/BIMserver/nightly build javadoc"/>
+		<copy dir="builds/bimserver-javadoc-${version}" todir="/var/www/BIMserver/nightly build javadoc"/>
 	</target>
 </project>
