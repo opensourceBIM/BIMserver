@@ -162,6 +162,7 @@ public class PluginManager {
 	}
 
 	public void loadAllPluginsFromDirectoryOfJars(File directory) throws PluginException {
+		LOGGER.debug("Loading all plugins from " + directory.getAbsolutePath());
 		if (!directory.isDirectory()) {
 			throw new PluginException("No directory: " + directory.getAbsolutePath());
 		}
@@ -177,13 +178,20 @@ public class PluginManager {
 	}
 
 	public void loadPluginsFromJar(File file) throws PluginException {
+		LOGGER.debug("Loading plugins from " + file.getAbsolutePath());
 		if (!file.isFile()) {
 			throw new PluginException("Not a file: " + file.getAbsolutePath());
 		}
 		try {
 			JarClassLoader jarClassLoader = new JarClassLoader(getClass().getClassLoader(), file);
 			InputStream pluginStream = jarClassLoader.getResourceAsStream("plugin/plugin.xml");
+			if (pluginStream == null) {
+				throw new PluginException("No plugin/plugin.xml found");
+			}
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(pluginStream);
+			if (pluginDescriptor == null) {
+				throw new PluginException("No plugin descriptor could be created");
+			}
 			loadPlugins(jarClassLoader, file.getAbsolutePath(), file.getAbsolutePath(), pluginDescriptor, PluginSourceType.JAR_FILE);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
@@ -375,6 +383,7 @@ public class PluginManager {
 	}
 
 	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType) throws PluginException {
+		LOGGER.debug("Loading plugin " + plugin.getClass().getSimpleName() + " of type " + interfaceClass.getSimpleName());
 		if (!Plugin.class.isAssignableFrom(interfaceClass)) {
 			throw new PluginException("Given interface class (" + interfaceClass.getName() + ") must be a subclass of " + Plugin.class.getName());
 		}
@@ -393,6 +402,7 @@ public class PluginManager {
 	}
 	
 	public void initAllLoadedPlugins() {
+		LOGGER.debug("Initializig all loaded plugins");
 		for (Class<? extends Plugin> pluginClass : implementations.keySet()) {
 			Set<PluginContext> set = implementations.get(pluginClass);
 			for (PluginContext pluginContext : set) {
