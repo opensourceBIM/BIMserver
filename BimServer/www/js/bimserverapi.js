@@ -408,7 +408,7 @@ function BimServerApi(baseUrl, notifier) {
 			contentType: 'application/json',
 			data: JSON.stringify(request),
 			dataType: "json",
-			async: othis.AJAXaSync.
+			async: othis.AJAXaSync,
 			success: function(data) {
 				console.log("response", data);
 				var errorsToReport = [];
