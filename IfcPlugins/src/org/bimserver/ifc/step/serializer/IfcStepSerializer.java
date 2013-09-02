@@ -125,7 +125,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void writeHeader(UTF8PrintWriter out) {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 		out.println("ISO-10303-21;");
 		out.println("HEADER;");
 		SIfcHeader ifcHeader = getModel().getModelMetaData().getIfcHeader();
