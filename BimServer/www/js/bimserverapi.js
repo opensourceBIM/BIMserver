@@ -914,7 +914,9 @@ function Model(bimServerApi, poid, roid) {
 			throw "Type " + object.__type + " not found";
 		}
 		othis.resolveType(othis.bimServerApi.schema, object, realType);
-		callback();
+		if (callback != null) {
+			callback();
+		}
 	};
 
 	this.size = function(callback){
