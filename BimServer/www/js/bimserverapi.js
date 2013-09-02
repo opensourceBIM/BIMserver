@@ -1046,7 +1046,7 @@ function Model(bimServerApi, poid, roid) {
 						});
 						$.getJSON(url, function(data, textStatus, jqXHR){
 							data.objects.forEach(function(object){
-								othis.objects[object.oid] = object;
+								othis.objects[object.__oid] = object;
 							});
 							for (var oid in othis.objects) {
 								var object = othis.objects[oid];
