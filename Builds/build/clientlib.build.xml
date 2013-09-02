@@ -29,6 +29,7 @@
 			<fileset file="../../BimServer/lib/cxf/httpclient-4.2.1.jar"/>
 			<fileset file="../../BimServer/lib/cxf/httpcore-4.2.2.jar"/>
 			<fileset file="../../BimServer/lib/cxf/httpmime-4.2.2.jar"/>
+			<fileset file="../../BimServer/lib/cxf/jettison-1.3.3.jar"/>
 			<fileset file="../../BimServer/lib/javassist.jar"/>
 			<fileset file="../../BimServer/lib/mail.jar"/>
 			<fileset file="../../BimServer/lib/jdt/org.eclipse.core.contenttype_3.4.200.v20120523-2004.jar"/>
