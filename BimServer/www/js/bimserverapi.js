@@ -606,7 +606,7 @@ function Model(bimServerApi, poid, roid) {
 			othis.loading = true;
 			othis.incrementRunningCalls("load");
 			othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
-				bimServerApi.call("ServiceInterface", "download", {
+				bimServerApi.call("Bimsie1ServiceInterface", "download", {
 					roid: roid,
 					serializerOid: jsonSerializerOid,
 					showOwn: true,
