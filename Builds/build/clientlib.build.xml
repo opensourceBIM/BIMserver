@@ -49,10 +49,10 @@
 			<fileset file="../../BimServer/lib/logging/log4j-1.2.16.jar"/>
 			<fileset file="../../BimServer/lib/logging/slf4j-api-1.6.2.jar"/>
 			<fileset file="../../BimServer/lib/logging/slf4j-log4j12-1.6.2.jar"/>
-			<fileset file="../../BimServer/emf/org.eclipse.emf_2.6.0.v20130125-0826.jar"/>
-			<fileset file="../../BimServer/emf/org.eclipse.emf.ecore.xmi_2.8.1.v20130125-0546.jar"/>
-			<fileset file="../../BimServer/emf/org.eclipse.emf.common_2.8.0.v20130125-0546.jar"/>
-			<fileset file="../../BimServer/emf/org.eclipse.emf.ecore_2.8.3.v20130125-0546.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf_2.6.0.v20130125-0826.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.8.1.v20130125-0546.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.common_2.8.0.v20130125-0546.jar"/>
+			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.ecore_2.8.3.v20130125-0546.jar"/>
 		</copy>
 		<copy todir="builds/BuildLib">
 			<fileset file="${buildtargets}/shared/license.txt" />
