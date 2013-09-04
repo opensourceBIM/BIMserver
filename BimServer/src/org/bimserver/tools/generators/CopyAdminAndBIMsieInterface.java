@@ -27,9 +27,9 @@ import org.bimserver.shared.meta.SServicesMap;
 import org.codehaus.jettison.json.JSONException;
 
 public class CopyAdminAndBIMsieInterface {
-	private static final File bootstrap = new File("C:\\Users\\Ruben\\git\\BootstrapBIM");
-	private static final File bimsie = new File("D:\\Software\\Workspaces\\BIMserverGit\\BIMsie");
-	private static final File admin = new File("C:\\Users\\Ruben\\git\\BIMserver\\AdminGui");;
+	private static final File bootstrap = new File("D:\\git\\BootstrapBIM");
+	private static final File bimsie = new File("D:\\git\\BIMsie\\BIMsie\\BIMsie");
+	private static final File admin = new File("D:\\git\\BIMserver\\AdminGui");;
 
 	public static void main(String[] args) {
 		CopyAdminAndBIMsieInterface copyAdminAndBIMsieInterface = new CopyAdminAndBIMsieInterface();
@@ -76,6 +76,7 @@ public class CopyAdminAndBIMsieInterface {
 	private void copyAdminInterface() {
 		try {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "setup.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "header.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "index.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "login.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "basicserversettings.html"), admin);
