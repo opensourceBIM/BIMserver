@@ -68,135 +68,137 @@ public class JsonSerializer extends IfcSerializer {
 			} else if (mode == Mode.BODY) {
 				if (iterator.hasNext()) {
 					IdEObject object = iterator.next();
-					if (!firstObject) {
-						out.write(",");
-					} else {
-						firstObject = false;
-					}
-					if (((IdEObjectImpl) object).getLoadingState() != State.LOADED) {
-						out.write("{");
-						out.write("\"__oid\":" + object.getOid() + ",");
-						out.write("\"__type\":\"" + object.eClass().getName() + "\",");
-						out.write("\"__state\":\"NOT_LOADED\"");
-						out.write("}\n");
-					} else {
-						out.write("{");
-						out.write("\"__oid\":" + object.getOid() + ",");
-						out.write("\"__type\":\"" + object.eClass().getName() + "\",");
-						out.write("\"__state\":\"LOADED\",");
-						boolean firstF = true;
-						for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-							if (eStructuralFeature.getEAnnotation("nolazyload") == null) {
-								if (eStructuralFeature instanceof EReference) {
-									Object value = object.eGet(eStructuralFeature);
-									if (value != null) {
-										if (eStructuralFeature.isMany()) {
-											List<?> list = (List<?>) value;
-											if (serializerEmptyLists || !list.isEmpty()) {
-												if (firstF) {
-													firstF = false;
-												} else {
-													out.write(",");
-												}
-												int wrapped = 0;
-												int referred = 0;
-												for (Object o : list) {
-													if (((IdEObject)o).eClass().getEAnnotation("wrapped") != null) {
-														// A little tricky, can we assume if one object in this list is embedded, they all are?
-														wrapped++;
+					if (object.eClass().getEAnnotation("hidden") == null) {
+						if (!firstObject) {
+							out.write(",");
+						} else {
+							firstObject = false;
+						}
+						if (((IdEObjectImpl) object).getLoadingState() != State.LOADED) {
+							out.write("{");
+							out.write("\"__oid\":" + object.getOid() + ",");
+							out.write("\"__type\":\"" + object.eClass().getName() + "\",");
+							out.write("\"__state\":\"NOT_LOADED\"");
+							out.write("}\n");
+						} else {
+							out.write("{");
+							out.write("\"__oid\":" + object.getOid() + ",");
+							out.write("\"__type\":\"" + object.eClass().getName() + "\",");
+							out.write("\"__state\":\"LOADED\",");
+							boolean firstF = true;
+							for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
+								if (eStructuralFeature.getEAnnotation("nolazyload") == null) {
+									if (eStructuralFeature instanceof EReference) {
+										Object value = object.eGet(eStructuralFeature);
+										if (value != null) {
+											if (eStructuralFeature.isMany()) {
+												List<?> list = (List<?>) value;
+												if (serializerEmptyLists || !list.isEmpty()) {
+													if (firstF) {
+														firstF = false;
 													} else {
-														referred++;
-													}
-												}
-												if (wrapped == 0 && referred != 0) {
-													out.write("\"__ref" + eStructuralFeature.getName() + "\":[");
-												} else if (wrapped != 0 && referred == 0) {
-													out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
-												} else if (wrapped == 0 && referred == 0) {
-													// should not happen
-												} else {
-													// both, this can occur, for example IfcTrimmedCurve.Trim1
-													out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
-												}
-												boolean f = true;
-												for (Object o : list) {
-													if (!f) {
 														out.write(",");
-													} else {
-														f = false;
 													}
-													IdEObject ref = (IdEObject) o;
-													if (ref.getOid() == -1) {
-														writeObject(out, ref);
-													} else {
-														if (wrapped != 0 && referred != 0) {
-															// Special situation, where we have to construct an object around the OID to make in distinguishable from embedded objects
-															out.write("{");
-															out.write("\"oid\":");
-															out.write("" + ref.getOid());
-															out.write("}");
+													int wrapped = 0;
+													int referred = 0;
+													for (Object o : list) {
+														if (((IdEObject)o).eClass().getEAnnotation("wrapped") != null) {
+															// A little tricky, can we assume if one object in this list is embedded, they all are?
+															wrapped++;
 														} else {
-															out.write("" + ref.getOid());
+															referred++;
 														}
 													}
+													if (wrapped == 0 && referred != 0) {
+														out.write("\"__ref" + eStructuralFeature.getName() + "\":[");
+													} else if (wrapped != 0 && referred == 0) {
+														out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
+													} else if (wrapped == 0 && referred == 0) {
+														// should not happen
+													} else {
+														// both, this can occur, for example IfcTrimmedCurve.Trim1
+														out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
+													}
+													boolean f = true;
+													for (Object o : list) {
+														if (!f) {
+															out.write(",");
+														} else {
+															f = false;
+														}
+														IdEObject ref = (IdEObject) o;
+														if (ref.getOid() == -1) {
+															writeObject(out, ref);
+														} else {
+															if (wrapped != 0 && referred != 0) {
+																// Special situation, where we have to construct an object around the OID to make it distinguishable from embedded objects
+																out.write("{");
+																out.write("\"oid\":");
+																out.write("" + ref.getOid());
+																out.write("}");
+															} else {
+																out.write("" + ref.getOid());
+															}
+														}
+													}
+													out.write("]");
 												}
-												out.write("]");
-											}
-										} else {
-											if (firstF) {
-												firstF = false;
 											} else {
-												out.write(",");
-											}
-											IdEObject ref = (IdEObject) value;
-											if (ref instanceof IfcGloballyUniqueId) {
-												out.write("\"" + eStructuralFeature.getName() + "\":");
-												writePrimitive(out, eStructuralFeature, ((IfcGloballyUniqueId)ref).getWrappedValue());
-											} else if (((IdEObject)ref).eClass().getEAnnotation("wrapped") != null) {
-												out.write("\"__emb" + eStructuralFeature.getName() + "\":");
-												writeObject(out, ref);
-											} else {
-												out.write("\"__ref" + eStructuralFeature.getName() + "\":" + ref.getOid());
-											}
-										}
-									}
-								} else {
-									Object value = object.eGet(eStructuralFeature);
-									if (value != null) {
-										if (eStructuralFeature.isMany()) {
-											List<?> list = (List<?>) value;
-											if (serializerEmptyLists || !list.isEmpty()) {
 												if (firstF) {
 													firstF = false;
 												} else {
 													out.write(",");
 												}
-												out.write("\"" + eStructuralFeature.getName() + "\":[");
-												boolean f = true;
-												for (Object o : list) {
-													if (!f) {
-														out.write(",");
-													} else {
-														f = false;
-													}
-													writePrimitive(out, eStructuralFeature, o);
+												IdEObject ref = (IdEObject) value;
+												if (ref instanceof IfcGloballyUniqueId) {
+													out.write("\"" + eStructuralFeature.getName() + "\":");
+													writePrimitive(out, eStructuralFeature, ((IfcGloballyUniqueId)ref).getWrappedValue());
+												} else if (((IdEObject)ref).eClass().getEAnnotation("wrapped") != null) {
+													out.write("\"__emb" + eStructuralFeature.getName() + "\":");
+													writeObject(out, ref);
+												} else {
+													out.write("\"__ref" + eStructuralFeature.getName() + "\":" + ref.getOid());
 												}
-												out.write("]");
 											}
-										} else {
-											if (firstF) {
-												firstF = false;
+										}
+									} else {
+										Object value = object.eGet(eStructuralFeature);
+										if (value != null) {
+											if (eStructuralFeature.isMany()) {
+												List<?> list = (List<?>) value;
+												if (serializerEmptyLists || !list.isEmpty()) {
+													if (firstF) {
+														firstF = false;
+													} else {
+														out.write(",");
+													}
+													out.write("\"" + eStructuralFeature.getName() + "\":[");
+													boolean f = true;
+													for (Object o : list) {
+														if (!f) {
+															out.write(",");
+														} else {
+															f = false;
+														}
+														writePrimitive(out, eStructuralFeature, o);
+													}
+													out.write("]");
+												}
 											} else {
-												out.write(",");
+												if (firstF) {
+													firstF = false;
+												} else {
+													out.write(",");
+												}
+												out.write("\"" + eStructuralFeature.getName() + "\":");
+												writePrimitive(out, eStructuralFeature, value);
 											}
-											out.write("\"" + eStructuralFeature.getName() + "\":");
-											writePrimitive(out, eStructuralFeature, value);
 										}
 									}
 								}
 							}
+							out.write("}\n");
 						}
-						out.write("}\n");
 					}
 					return true;
 				} else {
