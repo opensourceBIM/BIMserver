@@ -118,6 +118,9 @@ public class RootServlet extends HttpServlet {
 				InputStream resourceAsStream = getServletContext().getResourceAsStream(pathInfo);
 				if (resourceAsStream != null) {
 					IOUtils.copy(resourceAsStream, response.getOutputStream());
+				} else {
+					response.setStatus(404);
+					response.getWriter().println("404 - Not Found");
 				}
 			}
 		} catch (Throwable e) {
