@@ -9,12 +9,18 @@ function loadBimServerApi(address, notifier, callback, errorCallback) {
 			notifier.error("Could not connect");
 			errorCallback();
 		} else {
-			Global.bimServerApi = new BimServerApi(address, notifier);
-			Global.bimServerApi.init(function(){
-				Global.bimServerApi.call("AdminInterface", "getServerInfo", {}, function(serverInfo){
-					callback(serverInfo);
+			if (BimServerApi != null) {
+				Global.bimServerApi = new BimServerApi(address, notifier);
+				Global.bimServerApi.init(function(){
+					Global.bimServerApi.call("AdminInterface", "getServerInfo", {}, function(serverInfo){
+						callback(serverInfo);
+					});
 				});
-			});
+			} else {
+				window.clearTimeout(timeoutId);
+				notifier.error("Could not connect");
+				errorCallback();
+			}				
 		}
 	}).fail(function(jqxhr, settings, exception){
 		window.clearTimeout(timeoutId);
