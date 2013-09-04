@@ -41,7 +41,9 @@ function BimServerApi(baseUrl, notifier) {
 		SETDEFAULTOBJECTIDM_DONE: "Default ObjectIDM successfully changed",
 		SETDEFAULTRENDERENGINE_DONE: "Default Render Engine successfully changed",
 		SETDEFAULTMODELCOMPARE_DONE: "Default Model Compare successfully changed",
-		LOGIN_BUSY: "Trying to login"
+		LOGIN_BUSY: "Trying to login",
+		CHANGEUSERTYPE_DONE: "Type of user successfully changed",
+		ADDUSER_DONE: "User successfully added"
 	}
 
 	othis.token = null;
@@ -630,7 +632,9 @@ function Model(bimServerApi, poid, roid) {
 						});
 						othis.waiters = [];
 						bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
-							modelLoadCallback(othis);
+							if (modelLoadCallback != null) {
+								modelLoadCallback(othis);
+							}
 							othis.decrementRunningCalls("load");
 						});
 					});
@@ -638,7 +642,9 @@ function Model(bimServerApi, poid, roid) {
 			});
 		} else {
 			othis.loaded = true;
-			modelLoadCallback(othis);
+			if (modelLoadCallback != null) {
+				modelLoadCallback(othis);
+			}
 		}
 	};
 
