@@ -35,7 +35,7 @@ public class JsonWebsocketReflector extends JsonReflector {
 
 	@Override
 	public JsonObject call(JsonObject request) throws JSONException {
-		LoggerFactory.getLogger(JsonWebsocketReflector.class).info("WS: " + request);
+		LoggerFactory.getLogger(JsonWebsocketReflector.class).debug("WS: " + request);
 		streamingSocket.send(request);
 		return new JsonObject();
 	}

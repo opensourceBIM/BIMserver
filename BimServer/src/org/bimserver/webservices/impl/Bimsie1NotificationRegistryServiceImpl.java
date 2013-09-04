@@ -66,10 +66,10 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 		try {
 			progressTopic.register(endPoint);
 			if (progressTopic.getLastProgress() != null && progressTopic.getLastProgress().getState() == ActionState.FINISHED) {
-				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).info("Sending update directly for topic " + progressTopic.getKey().getId());
+				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("Sending update directly for topic " + progressTopic.getKey().getId());
 				progressTopic.updateProgress(progressTopic.getLastProgress());
 			} else {
-				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).info("NOT Sending update directly for topic " + progressTopic.getKey().getId());
+				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("NOT Sending update directly for topic " + progressTopic.getKey().getId());
 			}
 		} catch (TopicRegisterException e) {
 			throw new UserException(e);
