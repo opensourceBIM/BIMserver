@@ -95,6 +95,31 @@
 			
 			pushInitialState();
 
+			function load() {
+				var history = History.getState().data;
+				if (history.page == "Login") {
+					tryAutoLogin();
+				} else if (history.page == "SelectServer") {
+					$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+						othis.current = new SelectServer(null);
+					});
+				} else if (history.page == "Register") {
+					$(".indexcontainer").load(Global.baseDir + "register.html", function(){
+						othis.current = new Register($(this));
+					});
+				} else if (history.page == "ResetPassword") {
+					showResetPassword();
+				} else {
+					tryAutoLogin();
+				}
+			}
+			
+			History.Adapter.bind(window, "statechange", function(){
+				if (!pushing) {
+					load();
+				}
+		    });
+
 			Global.bimServerApi = null;
 			Global.objectcache = {};
 			Global.timeoutId;
@@ -204,23 +229,23 @@
 							Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
 								$(".indexcontainer").load(Global.baseDir + "main.html", function(){
 									$(".indexStatus").hide();
-									new Main(Global.bimServerApi.baseUrl, data.name).show(false);
+									othis.current = new Main(Global.bimServerApi.baseUrl, data.name).show(false);
 								});
 							}, function(){
 								$.removeCookie("autologin");
 								$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-									new Login(address);
+									othis.current = new Login(address);
 								});
 							});
 						} else {
 							$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-								new Login(address);
+								othis.current = new Login(address);
 							});
 						}
 					}
 				}, function(){
-					$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-						new Login(address);
+					$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+						othis.current = new SelectServer(address);
 					});
 				});				
 			};
@@ -234,12 +259,13 @@
 							othis.loadBimServerApiFromAddress(address);
 						});
 					} else {
-						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-							new Login();
+						$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+							new SelectServer();
 						});
 					}
 				});
 			};
+
 			setInterval(function() {
 				var now = new Date().getTime();
 				$(".timespan").each(function() {
@@ -253,13 +279,7 @@
 				});
 			}, 1000);
 
-			var history = History.getState().data;
-			console.log(history);
-			if (history.page == "ResetPassword") {
-				showResetPassword();
-			} else {
-				tryAutoLogin();
-			}
+			load();
 		}, function (err) {
 			console.log(err);
 		});

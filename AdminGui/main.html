@@ -31,12 +31,6 @@ function Main(address, username) {
 	var othis = this;
 	othis.pageChanger = new PageChanger($(".main .nav"), $(".main .maincontainer"));
 
-	History.Adapter.bind(window, "statechange", function(){
-		if (!pushing) {
-	        othis.show();
-		}
-    });
-	
 	$(".main .userLabel").html(username);
 	$(".main .addressLabel").html(address);
 	
