@@ -1,21 +1,14 @@
 <div class="login container">
     <div class="span7">
-    	<img src="img/logo.gif"/>
+    	<div class="header"></div>
     	<div class="form">
 	    	<form class="loginForm form-horizontal">
 		    	<legend>Login</legend>
-				<div class="serverAddressDiv control-group">
-					<label class="control-label" for="inputServer">Server</label>
-					<div class="controls">
-						<div class="btn-group input-append">
-							<div class="input-prepend input-append">
-		  						<span class="add-on">http://</span>
-								<input type="text" id="inputServer" class="address" placeholder="BIMserver">
-							</div>
-							<a class="btn dropdown-toggle btn" title="Suggestions" data-toggle="dropdown"><i class="icon-star"></i></a>
-							<ul id="serverDropdown" class="dropdown-menu">
-							</ul>
-						</div>
+				<div class="control-group serverDiv">
+					<label class="control-label">Server</label>
+					<div class="controls" style="padding-top: 5px">
+						<span class="serverAddress"></span>
+						<a class="otherServerLink">Other server</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -60,55 +53,34 @@ function Login(address, username) {
 		address = address.substring(7);
 	}
 	
-	if (!Settings.allowBimServerAddress()) {
-		$(".serverAddressDiv").hide();
-	}
+	this.show = function(){};
 	
 	this.login = function(address) {
-		loadBimServerApi("http://" + address, Global.notifier, function(serverInfo){
-			if (serverInfo.serverState == "NOT_SETUP") {
-				$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
-					new Setup(address);
+		Global.bimServerApi.login($(".username").val(), $("#inputPassword").val(), $("#rememberMe").is(":checked"), function(data){
+			Global.bimServerApi.resolveUser(function(user){
+				$(".indexcontainer").load(Global.baseDir + "main.html", function(){
+					new Main(address, user.name).show(false);
 				});
-			} else if (serverInfo.serverState == "UNDEFINED") {
-			} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
-			} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
-			} else if (serverInfo.serverState == "FATAL_ERROR") {
-			} else if (serverInfo.serverState == "RUNNING") {
-				var username = $("#inputEmail").val()
-				Global.bimServerApi.login(username, $("#inputPassword").val(), $("#rememberMe").is(":checked"), function(data){
-					Global.bimServerApi.resolveUser(function(user){
-						$(".indexcontainer").load(Global.baseDir + "main.html", function(){
-							new Main(address, user.name).show(false);
-						});
-					});
-				});
-			}
-		}, function(){
-			
+			});
 		});
 	}
 
 	if (address != null) {
-		$("#inputServer").val(address);
+		$(".serverAddress").html(address);
 	}
+	
+	if (!Settings.allowBimServerAddress()) {
+		$(".serverDiv").hide();
+	}
+	
 	if (username != null) {
 		$("#inputEmail").val(username);
 	}
+
+	$(".header").load(Global.baseDir + "header.html");
 	
-	$("#serverDropdown").click(function(event){
-		event.preventDefault();
-		$("#inputServer").val($(event.target).attr("address"));
-	});
 	$(".loginButton").click(function(){
 		othis.login($("#inputServer").val());
-	});
-	
-	Settings.getServerList(function(servers){
-		$("#serverDropdown li").remove();
-		servers.forEach(function(server){
-			$("#serverDropdown").append("<li><a address=\"" + stripHttp(server.address) + "\">" + server.name + "</a></li>");
-		});
 	});
 	
 	$(".login .username, .login .address, .login .password, .login .rememberme").enterpress(function(){
@@ -147,7 +119,7 @@ function Login(address, username) {
 	$(".registerButton").click(othis.registerClick);;
 	
 	$(".resetPasswordButton").click(function(){
-		othis.resetPassword("http://" + $("#inputServer").val());
+		othis.resetPassword("http://" + $(".serverAddress").html());
 	});
 	
 	Global.bimServerApi.call("SettingsInterface", "isAllowSelfRegistration", {}, function(enabled){
@@ -156,17 +128,19 @@ function Login(address, username) {
 		}
 	});
 	
-	if (Settings.allowBimServerAddress()) {
-		$("#inputServer").focus();
+	if (username == null) {
+		$("#inputEmail").focus();
 	} else {
-		if (username == null) {
-			$("#inputEmail").focus();
-		} else {
-			$("#inputPassword").focus();
-		}
+		$("#inputPassword").focus();
 	}
 	
 	pushHistory({page: "Login"}, "Login");
+	
+	$(".otherServerLink").click(function(){
+		$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+			new SelectServer();
+		});
+	});
 	
 	$(".googleLink").click(function(){
 		$.cookie("address", Global.bimServerApi.baseUrl);
