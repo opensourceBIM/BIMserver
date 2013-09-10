@@ -40,7 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConfiguration {
+public class PluginConfigurationImpl extends IdEObjectImpl implements
+		PluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,7 +77,8 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__NAME, true);
+		return (String) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__NAME,
+				true);
 	}
 
 	/**
@@ -94,7 +96,8 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * @generated
 	 */
 	public Boolean getEnabled() {
-		return (Boolean) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__ENABLED, true);
+		return (Boolean) eGet(
+				StorePackage.Literals.PLUGIN_CONFIGURATION__ENABLED, true);
 	}
 
 	/**
@@ -112,7 +115,8 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__DESCRIPTION, true);
+		return (String) eGet(
+				StorePackage.Literals.PLUGIN_CONFIGURATION__DESCRIPTION, true);
 	}
 
 	/**
@@ -121,7 +125,8 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__DESCRIPTION, newDescription);
+		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__DESCRIPTION,
+				newDescription);
 	}
 
 	/**
@@ -130,7 +135,9 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * @generated
 	 */
 	public PluginDescriptor getPluginDescriptor() {
-		return (PluginDescriptor) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR, true);
+		return (PluginDescriptor) eGet(
+				StorePackage.Literals.PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR,
+				true);
 	}
 
 	/**
@@ -139,7 +146,8 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * @generated
 	 */
 	public void setPluginDescriptor(PluginDescriptor newPluginDescriptor) {
-		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR, newPluginDescriptor);
+		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR,
+				newPluginDescriptor);
 	}
 
 	/**
@@ -148,7 +156,8 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * @generated
 	 */
 	public ObjectType getSettings() {
-		return (ObjectType) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__SETTINGS, true);
+		return (ObjectType) eGet(
+				StorePackage.Literals.PLUGIN_CONFIGURATION__SETTINGS, true);
 	}
 
 	/**

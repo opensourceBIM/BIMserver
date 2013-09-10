@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ObjectDefinitionImpl extends TypeDefinitionImpl implements ObjectDefinition {
+public class ObjectDefinitionImpl extends TypeDefinitionImpl implements
+		ObjectDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,8 @@ public class ObjectDefinitionImpl extends TypeDefinitionImpl implements ObjectDe
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ParameterDefinition> getParameters() {
-		return (EList<ParameterDefinition>) eGet(StorePackage.Literals.OBJECT_DEFINITION__PARAMETERS, true);
+		return (EList<ParameterDefinition>) eGet(
+				StorePackage.Literals.OBJECT_DEFINITION__PARAMETERS, true);
 	}
 
 } //ObjectDefinitionImpl

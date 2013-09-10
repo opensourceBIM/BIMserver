@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelMergerPluginDescriptorImpl extends PluginDescriptorImpl implements ModelMergerPluginDescriptor {
+public class ModelMergerPluginDescriptorImpl extends PluginDescriptorImpl
+		implements ModelMergerPluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

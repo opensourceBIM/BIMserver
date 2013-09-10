@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ObjectIDMPluginDescriptorImpl extends IdEObjectImpl implements ObjectIDMPluginDescriptor {
+public class ObjectIDMPluginDescriptorImpl extends IdEObjectImpl implements
+		ObjectIDMPluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +71,9 @@ public class ObjectIDMPluginDescriptorImpl extends IdEObjectImpl implements Obje
 	 * @generated
 	 */
 	public String getClassName() {
-		return (String) eGet(StorePackage.Literals.OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME, true);
+		return (String) eGet(
+				StorePackage.Literals.OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME,
+				true);
 	}
 
 	/**
@@ -79,7 +82,8 @@ public class ObjectIDMPluginDescriptorImpl extends IdEObjectImpl implements Obje
 	 * @generated
 	 */
 	public void setClassName(String newClassName) {
-		eSet(StorePackage.Literals.OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME, newClassName);
+		eSet(StorePackage.Literals.OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME,
+				newClassName);
 	}
 
 } //ObjectIDMPluginDescriptorImpl

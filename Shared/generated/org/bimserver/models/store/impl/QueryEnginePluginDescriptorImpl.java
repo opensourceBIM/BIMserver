@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class QueryEnginePluginDescriptorImpl extends PluginDescriptorImpl implements QueryEnginePluginDescriptor {
+public class QueryEnginePluginDescriptorImpl extends PluginDescriptorImpl
+		implements QueryEnginePluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

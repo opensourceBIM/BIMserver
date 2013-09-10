@@ -30,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RemoteServiceUpdateImpl extends IdEObjectImpl implements RemoteServiceUpdate {
+public class RemoteServiceUpdateImpl extends IdEObjectImpl implements
+		RemoteServiceUpdate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

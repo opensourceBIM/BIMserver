@@ -138,7 +138,8 @@ public enum ProgressTopicType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ProgressTopicType[] VALUES_ARRAY = new ProgressTopicType[] { DOWNLOAD, UPLOAD, RUNNING_SERVICE, BRANCH, };
+	private static final ProgressTopicType[] VALUES_ARRAY = new ProgressTopicType[] {
+			DOWNLOAD, UPLOAD, RUNNING_SERVICE, BRANCH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Progress Topic Type</b></em>' enumerators.
@@ -146,7 +147,8 @@ public enum ProgressTopicType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ProgressTopicType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ProgressTopicType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Progress Topic Type</b></em>' literal with the specified literal value.

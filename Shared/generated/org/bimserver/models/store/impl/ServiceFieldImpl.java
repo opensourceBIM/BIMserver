@@ -92,7 +92,8 @@ public class ServiceFieldImpl extends IdEObjectImpl implements ServiceField {
 	 * @generated
 	 */
 	public ServiceType getType() {
-		return (ServiceType) eGet(StorePackage.Literals.SERVICE_FIELD__TYPE, true);
+		return (ServiceType) eGet(StorePackage.Literals.SERVICE_FIELD__TYPE,
+				true);
 	}
 
 	/**
@@ -110,7 +111,8 @@ public class ServiceFieldImpl extends IdEObjectImpl implements ServiceField {
 	 * @generated
 	 */
 	public ServiceType getGenericType() {
-		return (ServiceType) eGet(StorePackage.Literals.SERVICE_FIELD__GENERIC_TYPE, true);
+		return (ServiceType) eGet(
+				StorePackage.Literals.SERVICE_FIELD__GENERIC_TYPE, true);
 	}
 
 	/**

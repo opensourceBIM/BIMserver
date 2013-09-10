@@ -85,17 +85,7 @@ message EnablePluginRequest {
 message GetAllPluginsRequest {
 }
 
-message SSerializerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SQueryEnginePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SDeserializerPluginDescriptor {
+message SModelMergerPluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -110,12 +100,22 @@ message SWebModulePluginDescriptor {
 	optional int64 oid = 2;
 }
 
+message SQueryEnginePluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SDeserializerPluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
 message SRenderEnginePluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
 
-message SModelMergerPluginDescriptor {
+message SSerializerPluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -127,13 +127,13 @@ message SModelComparePluginDescriptor {
 
 message SPluginDescriptor {
 	required string __actual_type = 1;
-	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 2;
-	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 3;
-	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 4;
-	optional SServicePluginDescriptor __SServicePluginDescriptor = 5;
-	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 6;
+	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 2;
+	optional SServicePluginDescriptor __SServicePluginDescriptor = 3;
+	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 4;
+	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 5;
+	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 6;
 	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 7;
-	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 8;
+	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 8;
 	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 9;
 	optional string defaultName = 10;
 	optional bool enabled = 11;

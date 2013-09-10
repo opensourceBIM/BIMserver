@@ -47,7 +47,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescriptor {
+public class ServiceDescriptorImpl extends IdEObjectImpl implements
+		ServiceDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,7 +84,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__NAME, true);
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__NAME,
+				true);
 	}
 
 	/**
@@ -101,7 +103,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public String getUrl() {
-		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__URL, true);
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__URL,
+				true);
 	}
 
 	/**
@@ -119,7 +122,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public String getToken() {
-		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__TOKEN, true);
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__TOKEN,
+				true);
 	}
 
 	/**
@@ -137,7 +141,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public String getIdentifier() {
-		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__IDENTIFIER, true);
+		return (String) eGet(
+				StorePackage.Literals.SERVICE_DESCRIPTOR__IDENTIFIER, true);
 	}
 
 	/**
@@ -146,7 +151,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public void setIdentifier(String newIdentifier) {
-		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__IDENTIFIER, newIdentifier);
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__IDENTIFIER,
+				newIdentifier);
 	}
 
 	/**
@@ -155,7 +161,9 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public AccessMethod getNotificationProtocol() {
-		return (AccessMethod) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__NOTIFICATION_PROTOCOL, true);
+		return (AccessMethod) eGet(
+				StorePackage.Literals.SERVICE_DESCRIPTOR__NOTIFICATION_PROTOCOL,
+				true);
 	}
 
 	/**
@@ -164,7 +172,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public void setNotificationProtocol(AccessMethod newNotificationProtocol) {
-		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__NOTIFICATION_PROTOCOL, newNotificationProtocol);
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__NOTIFICATION_PROTOCOL,
+				newNotificationProtocol);
 	}
 
 	/**
@@ -173,7 +182,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__DESCRIPTION, true);
+		return (String) eGet(
+				StorePackage.Literals.SERVICE_DESCRIPTOR__DESCRIPTION, true);
 	}
 
 	/**
@@ -182,7 +192,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__DESCRIPTION, newDescription);
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__DESCRIPTION,
+				newDescription);
 	}
 
 	/**
@@ -191,7 +202,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public Trigger getTrigger() {
-		return (Trigger) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__TRIGGER, true);
+		return (Trigger) eGet(
+				StorePackage.Literals.SERVICE_DESCRIPTOR__TRIGGER, true);
 	}
 
 	/**
@@ -209,7 +221,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public boolean isReadRevision() {
-		return (Boolean) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__READ_REVISION, true);
+		return (Boolean) eGet(
+				StorePackage.Literals.SERVICE_DESCRIPTOR__READ_REVISION, true);
 	}
 
 	/**
@@ -218,7 +231,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public void setReadRevision(boolean newReadRevision) {
-		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__READ_REVISION, newReadRevision);
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__READ_REVISION,
+				newReadRevision);
 	}
 
 	/**
@@ -227,7 +241,9 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public String getReadExtendedData() {
-		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__READ_EXTENDED_DATA, true);
+		return (String) eGet(
+				StorePackage.Literals.SERVICE_DESCRIPTOR__READ_EXTENDED_DATA,
+				true);
 	}
 
 	/**
@@ -236,7 +252,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public void setReadExtendedData(String newReadExtendedData) {
-		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__READ_EXTENDED_DATA, newReadExtendedData);
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__READ_EXTENDED_DATA,
+				newReadExtendedData);
 	}
 
 	/**
@@ -245,7 +262,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public boolean isWriteRevision() {
-		return (Boolean) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__WRITE_REVISION, true);
+		return (Boolean) eGet(
+				StorePackage.Literals.SERVICE_DESCRIPTOR__WRITE_REVISION, true);
 	}
 
 	/**
@@ -254,7 +272,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public void setWriteRevision(boolean newWriteRevision) {
-		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__WRITE_REVISION, newWriteRevision);
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__WRITE_REVISION,
+				newWriteRevision);
 	}
 
 	/**
@@ -263,7 +282,9 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public String getWriteExtendedData() {
-		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__WRITE_EXTENDED_DATA, true);
+		return (String) eGet(
+				StorePackage.Literals.SERVICE_DESCRIPTOR__WRITE_EXTENDED_DATA,
+				true);
 	}
 
 	/**
@@ -272,7 +293,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public void setWriteExtendedData(String newWriteExtendedData) {
-		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__WRITE_EXTENDED_DATA, newWriteExtendedData);
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__WRITE_EXTENDED_DATA,
+				newWriteExtendedData);
 	}
 
 	/**
@@ -281,7 +303,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public String getProviderName() {
-		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__PROVIDER_NAME, true);
+		return (String) eGet(
+				StorePackage.Literals.SERVICE_DESCRIPTOR__PROVIDER_NAME, true);
 	}
 
 	/**
@@ -290,7 +313,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * @generated
 	 */
 	public void setProviderName(String newProviderName) {
-		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__PROVIDER_NAME, newProviderName);
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__PROVIDER_NAME,
+				newProviderName);
 	}
 
 } //ServiceDescriptorImpl

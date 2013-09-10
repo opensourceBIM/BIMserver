@@ -56,7 +56,7 @@
 		], function(){});
 		
 		LazyLoad.js([
-		    baseJsDir + "jquery-2.0.2.min.js", 
+		    baseJsDir + "jquery-2.0.3.min.js", 
 		    baseJsDir + "main.js", 
 		    baseJsDir + "jquery.history.js", 
 		    baseJsDir + "jquery.cookie.js", 
@@ -95,22 +95,88 @@
 			
 			pushInitialState();
 
+			othis.loadBimServerApiFromAddress = function(address, successFunction, errorFunction){
+				loadBimServerApi(address, Global.notifier, function(serverInfo){
+					if (serverInfo.serverState == "NOT_SETUP") {
+						$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
+							new Setup(address);
+						});
+					} else if (serverInfo.serverState == "UNDEFINED") {
+					} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
+					} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
+					} else if (serverInfo.serverState == "FATAL_ERROR") {
+					} else if (serverInfo.serverState == "RUNNING") {
+						successFunction();
+					}
+				}, function(){
+					errorFunction();
+				});				
+			};
+			
 			function load() {
-				var history = History.getState().data;
-				if (history.page == "Login") {
-					tryAutoLogin();
-				} else if (history.page == "SelectServer") {
-					$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
-						othis.current = new SelectServer(null);
+				var notLoggedInFunction = function(){
+					var history = History.getState().data;
+					if (history.page == "Login") {
+						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+							othis.current = new Login(null);
+						});
+					} else if (history.page == "SelectServer") {
+						$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+							othis.current = new SelectServer(null);
+						});
+					} else if (history.page == "Register") {
+						$(".indexcontainer").load(Global.baseDir + "register.html", function(){
+							othis.current = new Register($(this));
+						});
+					} else if (history.page == "ResetPassword") {
+						$(".indexcontainer").load(Global.baseDir + "resetpassword.html", function(){
+							othis.current = new ResetPassword($(this), null);
+						});
+					} else {
+						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+							othis.current = new Login(null);
+						});
+					}
+				};
+				
+				var successFunction = function(){
+					// We do have an API
+					if ($.cookie("autologin") != null) {
+						Global.bimServerApi.token = $.cookie("autologin");
+						Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
+							$(".indexcontainer").load(Global.baseDir + "main.html", function(){
+								$(".indexStatus").hide();
+								othis.current = new Main(Global.bimServerApi.baseUrl, data.name).show(false);
+							});
+						}, function(){
+							$.removeCookie("autologin");
+							notLoggedInFunction();
+						});
+					} else {
+						notLoggedInFunction();
+					}
+				};
+				
+				var errorFunction = function(){
+					
+				};
+				
+				if ($.cookie("address") != null) {
+					othis.loadBimServerApiFromAddress($.cookie("address"), successFunction, errorFunction);
+				} else if (!Settings.allowBimServerAddress()) {
+					Settings.getStaticServerAddress(function(address){
+						if (address != null) {
+							othis.loadBimServerApiFromAddress(address, successFunction, errorFunction);
+						} else {
+							$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+								new SelectServer();
+							});
+						}
 					});
-				} else if (history.page == "Register") {
-					$(".indexcontainer").load(Global.baseDir + "register.html", function(){
-						othis.current = new Register($(this));
-					});
-				} else if (history.page == "ResetPassword") {
-					showResetPassword();
 				} else {
-					tryAutoLogin();
+					$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+						new SelectServer();
+					});
 				}
 			}
 			
@@ -207,65 +273,6 @@
 				});
 			}
 			
-			this.showResetPassword = function() {
-				$(".indexcontainer").load(Global.baseDir + "resetpassword.html", function(){
-					new ResetPassword($(this), null);
-				});
-			};
-			
-			this.loadBimServerApiFromAddress = function(address){
-				loadBimServerApi(address, Global.notifier, function(serverInfo){
-					if (serverInfo.serverState == "NOT_SETUP") {
-						$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
-							new Setup(address);
-						});
-					} else if (serverInfo.serverState == "UNDEFINED") {
-					} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
-					} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
-					} else if (serverInfo.serverState == "FATAL_ERROR") {
-					} else if (serverInfo.serverState == "RUNNING") {
-						if ($.cookie("autologin") != null) {
-							Global.bimServerApi.token = $.cookie("autologin");
-							Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
-								$(".indexcontainer").load(Global.baseDir + "main.html", function(){
-									$(".indexStatus").hide();
-									othis.current = new Main(Global.bimServerApi.baseUrl, data.name).show(false);
-								});
-							}, function(){
-								$.removeCookie("autologin");
-								$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-									othis.current = new Login(address);
-								});
-							});
-						} else {
-							$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-								othis.current = new Login(address);
-							});
-						}
-					}
-				}, function(){
-					$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
-						othis.current = new SelectServer(address);
-					});
-				});				
-			};
-			
-			this.tryAutoLogin = function(){
-				$(function(){
-					if ($.cookie("address") != null) {
-						othis.loadBimServerApiFromAddress($.cookie("address"));
-					} else if (!Settings.allowBimServerAddress()) {
-						Settings.getStaticServerAddress(function(address){
-							othis.loadBimServerApiFromAddress(address);
-						});
-					} else {
-						$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
-							new SelectServer();
-						});
-					}
-				});
-			};
-
 			setInterval(function() {
 				var now = new Date().getTime();
 				$(".timespan").each(function() {
