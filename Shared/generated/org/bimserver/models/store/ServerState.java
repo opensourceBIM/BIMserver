@@ -188,7 +188,9 @@ public enum ServerState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ServerState[] VALUES_ARRAY = new ServerState[] { UNDEFINED, NOT_SETUP, MIGRATION_REQUIRED, MIGRATION_IMPOSSIBLE, FATAL_ERROR, RUNNING, };
+	private static final ServerState[] VALUES_ARRAY = new ServerState[] {
+			UNDEFINED, NOT_SETUP, MIGRATION_REQUIRED, MIGRATION_IMPOSSIBLE,
+			FATAL_ERROR, RUNNING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Server State</b></em>' enumerators.
@@ -196,7 +198,8 @@ public enum ServerState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ServerState> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ServerState> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Server State</b></em>' literal with the specified literal value.

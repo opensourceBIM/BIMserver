@@ -485,6 +485,27 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SIfcHeader();
 					}
 				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SModelCheckerResultItem"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SModelCheckerResultItem();
+					}
+				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SModelCheckerResultHeader"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SModelCheckerResultHeader();
+					}
+				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SModelCheckerResultType"), null));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SModelCheckerResultLine"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SModelCheckerResultLine();
+					}
+				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SModelCheckerResult"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SModelCheckerResult();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);

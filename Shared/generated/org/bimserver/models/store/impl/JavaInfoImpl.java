@@ -201,7 +201,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public String getJavaVersion() {
-		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_VERSION, true);
+		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_VERSION,
+				true);
 	}
 
 	/**
@@ -237,7 +238,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public String getJavaVendorurl() {
-		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_VENDORURL, true);
+		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_VENDORURL,
+				true);
 	}
 
 	/**
@@ -255,7 +257,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public String getJavavmVersion() {
-		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVAVM_VERSION, true);
+		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVAVM_VERSION,
+				true);
 	}
 
 	/**
@@ -273,7 +276,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public String getJavavmVendor() {
-		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVAVM_VENDOR, true);
+		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVAVM_VENDOR,
+				true);
 	}
 
 	/**
@@ -309,7 +313,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public String getJavaspecVersion() {
-		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VERSION, true);
+		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VERSION,
+				true);
 	}
 
 	/**
@@ -318,7 +323,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public void setJavaspecVersion(String newJavaspecVersion) {
-		eSet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VERSION, newJavaspecVersion);
+		eSet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VERSION,
+				newJavaspecVersion);
 	}
 
 	/**
@@ -327,7 +333,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public String getJavaspecVendor() {
-		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VENDOR, true);
+		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VENDOR,
+				true);
 	}
 
 	/**
@@ -336,7 +343,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public void setJavaspecVendor(String newJavaspecVendor) {
-		eSet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VENDOR, newJavaspecVendor);
+		eSet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VENDOR,
+				newJavaspecVendor);
 	}
 
 	/**
@@ -345,7 +353,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public String getJavaspecName() {
-		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVASPEC_NAME, true);
+		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVASPEC_NAME,
+				true);
 	}
 
 	/**
@@ -363,7 +372,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public String getJavaClassVersion() {
-		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_CLASS_VERSION, true);
+		return (String) eGet(
+				StorePackage.Literals.JAVA_INFO__JAVA_CLASS_VERSION, true);
 	}
 
 	/**
@@ -372,7 +382,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public void setJavaClassVersion(String newJavaClassVersion) {
-		eSet(StorePackage.Literals.JAVA_INFO__JAVA_CLASS_VERSION, newJavaClassVersion);
+		eSet(StorePackage.Literals.JAVA_INFO__JAVA_CLASS_VERSION,
+				newJavaClassVersion);
 	}
 
 	/**
@@ -382,7 +393,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getJavaClasspath() {
-		return (EList<String>) eGet(StorePackage.Literals.JAVA_INFO__JAVA_CLASSPATH, true);
+		return (EList<String>) eGet(
+				StorePackage.Literals.JAVA_INFO__JAVA_CLASSPATH, true);
 	}
 
 	/**
@@ -392,7 +404,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getJavaLibrarypath() {
-		return (EList<String>) eGet(StorePackage.Literals.JAVA_INFO__JAVA_LIBRARYPATH, true);
+		return (EList<String>) eGet(
+				StorePackage.Literals.JAVA_INFO__JAVA_LIBRARYPATH, true);
 	}
 
 	/**
@@ -437,7 +450,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public String getJavaFileSeparator() {
-		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_FILE_SEPARATOR, true);
+		return (String) eGet(
+				StorePackage.Literals.JAVA_INFO__JAVA_FILE_SEPARATOR, true);
 	}
 
 	/**
@@ -446,7 +460,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public void setJavaFileSeparator(String newJavaFileSeparator) {
-		eSet(StorePackage.Literals.JAVA_INFO__JAVA_FILE_SEPARATOR, newJavaFileSeparator);
+		eSet(StorePackage.Literals.JAVA_INFO__JAVA_FILE_SEPARATOR,
+				newJavaFileSeparator);
 	}
 
 	/**
@@ -455,7 +470,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public String getJavaPathSeparator() {
-		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_PATH_SEPARATOR, true);
+		return (String) eGet(
+				StorePackage.Literals.JAVA_INFO__JAVA_PATH_SEPARATOR, true);
 	}
 
 	/**
@@ -464,7 +480,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public void setJavaPathSeparator(String newJavaPathSeparator) {
-		eSet(StorePackage.Literals.JAVA_INFO__JAVA_PATH_SEPARATOR, newJavaPathSeparator);
+		eSet(StorePackage.Literals.JAVA_INFO__JAVA_PATH_SEPARATOR,
+				newJavaPathSeparator);
 	}
 
 	/**
@@ -473,7 +490,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public String getJavaLineSeparator() {
-		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_LINE_SEPARATOR, true);
+		return (String) eGet(
+				StorePackage.Literals.JAVA_INFO__JAVA_LINE_SEPARATOR, true);
 	}
 
 	/**
@@ -482,7 +500,8 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	public void setJavaLineSeparator(String newJavaLineSeparator) {
-		eSet(StorePackage.Literals.JAVA_INFO__JAVA_LINE_SEPARATOR, newJavaLineSeparator);
+		eSet(StorePackage.Literals.JAVA_INFO__JAVA_LINE_SEPARATOR,
+				newJavaLineSeparator);
 	}
 
 } //JavaInfoImpl

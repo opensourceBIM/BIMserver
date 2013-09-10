@@ -97,7 +97,8 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Project> getProjects() {
-		return (EList<Project>) eGet(StorePackage.Literals.GEO_TAG__PROJECTS, true);
+		return (EList<Project>) eGet(StorePackage.Literals.GEO_TAG__PROJECTS,
+				true);
 	}
 
 	/**
@@ -178,7 +179,8 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public Double getDirectionAngle() {
-		return (Double) eGet(StorePackage.Literals.GEO_TAG__DIRECTION_ANGLE, true);
+		return (Double) eGet(StorePackage.Literals.GEO_TAG__DIRECTION_ANGLE,
+				true);
 	}
 
 	/**

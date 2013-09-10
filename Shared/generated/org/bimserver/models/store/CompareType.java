@@ -138,7 +138,8 @@ public enum CompareType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final CompareType[] VALUES_ARRAY = new CompareType[] { ALL, ADD, MODIFY, DELETE, };
+	private static final CompareType[] VALUES_ARRAY = new CompareType[] { ALL,
+			ADD, MODIFY, DELETE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Compare Type</b></em>' enumerators.
@@ -146,7 +147,8 @@ public enum CompareType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<CompareType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<CompareType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Compare Type</b></em>' literal with the specified literal value.

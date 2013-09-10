@@ -33,7 +33,8 @@ public interface StoreFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	StoreFactory eINSTANCE = org.bimserver.models.store.impl.StoreFactoryImpl.init();
+	StoreFactory eINSTANCE = org.bimserver.models.store.impl.StoreFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Project</em>'.
@@ -826,6 +827,42 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	IfcHeader createIfcHeader();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Result Item</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Result Item</em>'.
+	 * @generated
+	 */
+	ModelCheckerResultItem createModelCheckerResultItem();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Result Header</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Result Header</em>'.
+	 * @generated
+	 */
+	ModelCheckerResultHeader createModelCheckerResultHeader();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Result Line</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Result Line</em>'.
+	 * @generated
+	 */
+	ModelCheckerResultLine createModelCheckerResultLine();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Result</em>'.
+	 * @generated
+	 */
+	ModelCheckerResult createModelCheckerResult();
 
 	/**
 	 * Returns the package supported by this factory.

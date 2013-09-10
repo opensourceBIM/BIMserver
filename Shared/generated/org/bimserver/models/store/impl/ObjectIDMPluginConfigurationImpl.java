@@ -37,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ObjectIDMPluginConfigurationImpl extends PluginConfigurationImpl implements ObjectIDMPluginConfiguration {
+public class ObjectIDMPluginConfigurationImpl extends PluginConfigurationImpl
+		implements ObjectIDMPluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,9 @@ public class ObjectIDMPluginConfigurationImpl extends PluginConfigurationImpl im
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<SerializerPluginConfiguration> getSerializers() {
-		return (EList<SerializerPluginConfiguration>) eGet(StorePackage.Literals.OBJECT_IDM_PLUGIN_CONFIGURATION__SERIALIZERS, true);
+		return (EList<SerializerPluginConfiguration>) eGet(
+				StorePackage.Literals.OBJECT_IDM_PLUGIN_CONFIGURATION__SERIALIZERS,
+				true);
 	}
 
 	/**
@@ -73,7 +76,9 @@ public class ObjectIDMPluginConfigurationImpl extends PluginConfigurationImpl im
 	 * @generated
 	 */
 	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(StorePackage.Literals.OBJECT_IDM_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
+		return (UserSettings) eGet(
+				StorePackage.Literals.OBJECT_IDM_PLUGIN_CONFIGURATION__USER_SETTINGS,
+				true);
 	}
 
 	/**
@@ -82,7 +87,8 @@ public class ObjectIDMPluginConfigurationImpl extends PluginConfigurationImpl im
 	 * @generated
 	 */
 	public void setUserSettings(UserSettings newUserSettings) {
-		eSet(StorePackage.Literals.OBJECT_IDM_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
+		eSet(StorePackage.Literals.OBJECT_IDM_PLUGIN_CONFIGURATION__USER_SETTINGS,
+				newUserSettings);
 	}
 
 } //ObjectIDMPluginConfigurationImpl

@@ -81,7 +81,8 @@ public class ObjectTypeImpl extends TypeImpl implements ObjectType {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Parameter> getParameters() {
-		return (EList<Parameter>) eGet(StorePackage.Literals.OBJECT_TYPE__PARAMETERS, true);
+		return (EList<Parameter>) eGet(
+				StorePackage.Literals.OBJECT_TYPE__PARAMETERS, true);
 	}
 
 } //ObjectTypeImpl

@@ -130,7 +130,8 @@ public class DataObjectImpl extends IdEObjectImpl implements DataObject {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<DataValue> getValues() {
-		return (EList<DataValue>) eGet(StorePackage.Literals.DATA_OBJECT__VALUES, true);
+		return (EList<DataValue>) eGet(
+				StorePackage.Literals.DATA_OBJECT__VALUES, true);
 	}
 
 } //DataObjectImpl

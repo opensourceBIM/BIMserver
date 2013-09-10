@@ -87,21 +87,9 @@ function Login(address, username) {
 		othis.login($("#inputServer").val());
 	});
 	
-	this.resetPassword = function(address){
-		loadBimServerApi(address, Global.notifier, function(serverInfo){
-			if (serverInfo.serverState == "NOT_SETUP") {
-				$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
-					new Setup(address);
-				});
-			} else if (serverInfo.serverState == "UNDEFINED") {
-			} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
-			} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
-			} else if (serverInfo.serverState == "FATAL_ERROR") {
-			} else if (serverInfo.serverState == "RUNNING") {
-				Global.bimServerApi.callWithFullIndication("AuthInterface", "requestPasswordChange", {username: $(".username").val(), resetUrl: Global.baseDir + "?page=ResetPassword"}, function(){
-					
-				});
-			}
+	this.resetPassword = function(){
+		Global.bimServerApi.callWithFullIndication("AuthInterface", "requestPasswordChange", {username: $(".username").val(), resetUrl: Global.baseDir + "?page=ResetPassword"}, function(){
+			
 		});
 	};
 	
@@ -111,7 +99,7 @@ function Login(address, username) {
 	};
 	
 	this.registerClick = function(){
-		$(".form").load("register.html", function(){
+		$(".indexcontainer").load(Global.baseDir + "register.html", function(){
 			new Register($(this));
 		});
 	};
@@ -119,7 +107,7 @@ function Login(address, username) {
 	$(".registerButton").click(othis.registerClick);;
 	
 	$(".resetPasswordButton").click(function(){
-		othis.resetPassword("http://" + $(".serverAddress").html());
+		othis.resetPassword();
 	});
 	
 	Global.bimServerApi.call("SettingsInterface", "isAllowSelfRegistration", {}, function(enabled){

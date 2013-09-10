@@ -62,7 +62,8 @@ public class ListDataValueImpl extends DataValueImpl implements ListDataValue {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<DataValue> getValues() {
-		return (EList<DataValue>) eGet(StorePackage.Literals.LIST_DATA_VALUE__VALUES, true);
+		return (EList<DataValue>) eGet(
+				StorePackage.Literals.LIST_DATA_VALUE__VALUES, true);
 	}
 
 } //ListDataValueImpl

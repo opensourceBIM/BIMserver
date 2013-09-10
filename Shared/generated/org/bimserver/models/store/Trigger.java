@@ -113,7 +113,8 @@ public enum Trigger implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final Trigger[] VALUES_ARRAY = new Trigger[] { NEW_REVISION, NEW_PROJECT, NEW_EXTENDED_DATA, };
+	private static final Trigger[] VALUES_ARRAY = new Trigger[] { NEW_REVISION,
+			NEW_PROJECT, NEW_EXTENDED_DATA, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Trigger</b></em>' enumerators.
@@ -121,7 +122,8 @@ public enum Trigger implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<Trigger> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<Trigger> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Trigger</b></em>' literal with the specified literal value.

@@ -43,7 +43,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescriptor {
+public class PluginDescriptorImpl extends IdEObjectImpl implements
+		PluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,7 +80,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public String getSimpleName() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__SIMPLE_NAME, true);
+		return (String) eGet(
+				StorePackage.Literals.PLUGIN_DESCRIPTOR__SIMPLE_NAME, true);
 	}
 
 	/**
@@ -88,7 +90,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public void setSimpleName(String newSimpleName) {
-		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__SIMPLE_NAME, newSimpleName);
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__SIMPLE_NAME,
+				newSimpleName);
 	}
 
 	/**
@@ -97,7 +100,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public String getDefaultName() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DEFAULT_NAME, true);
+		return (String) eGet(
+				StorePackage.Literals.PLUGIN_DESCRIPTOR__DEFAULT_NAME, true);
 	}
 
 	/**
@@ -106,7 +110,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public void setDefaultName(String newDefaultName) {
-		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DEFAULT_NAME, newDefaultName);
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DEFAULT_NAME,
+				newDefaultName);
 	}
 
 	/**
@@ -115,7 +120,9 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public String getPluginClassName() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, true);
+		return (String) eGet(
+				StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME,
+				true);
 	}
 
 	/**
@@ -124,7 +131,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public void setPluginClassName(String newPluginClassName) {
-		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, newPluginClassName);
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME,
+				newPluginClassName);
 	}
 
 	/**
@@ -133,7 +141,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DESCRIPTION, true);
+		return (String) eGet(
+				StorePackage.Literals.PLUGIN_DESCRIPTOR__DESCRIPTION, true);
 	}
 
 	/**
@@ -142,7 +151,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DESCRIPTION, newDescription);
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DESCRIPTION,
+				newDescription);
 	}
 
 	/**
@@ -151,7 +161,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public String getLocation() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__LOCATION, true);
+		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__LOCATION,
+				true);
 	}
 
 	/**
@@ -169,7 +180,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public Boolean getEnabled() {
-		return (Boolean) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__ENABLED, true);
+		return (Boolean) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__ENABLED,
+				true);
 	}
 
 	/**
@@ -187,7 +199,9 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public String getPluginInterfaceClassName() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME, true);
+		return (String) eGet(
+				StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME,
+				true);
 	}
 
 	/**
@@ -196,7 +210,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	public void setPluginInterfaceClassName(String newPluginInterfaceClassName) {
-		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME, newPluginInterfaceClassName);
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME,
+				newPluginInterfaceClassName);
 	}
 
 	/**
@@ -206,7 +221,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<PluginConfiguration> getConfigurations() {
-		return (EList<PluginConfiguration>) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__CONFIGURATIONS, true);
+		return (EList<PluginConfiguration>) eGet(
+				StorePackage.Literals.PLUGIN_DESCRIPTOR__CONFIGURATIONS, true);
 	}
 
 } //PluginDescriptorImpl
