@@ -16,6 +16,8 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -49,6 +51,7 @@ public class SService implements SDataBase
 	private long projectId = -1;
 	private long userId = -1;
 	private long internalServiceId = -1;
+	private List<Long> modelCheckers = new ArrayList<Long>();
 
 	public long getOid() {
 		return this.oid;
@@ -136,6 +139,9 @@ public class SService implements SDataBase
 		if (sField.getName().equals("internalServiceId")) {
 			return getInternalServiceId();
 		}
+		if (sField.getName().equals("modelCheckers")) {
+			return getModelCheckers();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -144,6 +150,7 @@ public class SService implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
@@ -224,6 +231,10 @@ public class SService implements SDataBase
 		}
 		if (sField.getName().equals("internalServiceId")) {
 			setInternalServiceId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("modelCheckers")) {
+			setModelCheckers((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -395,6 +406,14 @@ public class SService implements SDataBase
 
 	public void setInternalServiceId(long internalServiceId) {
 		this.internalServiceId = internalServiceId;
+	}
+	
+	public List<Long> getModelCheckers() {
+		return modelCheckers;
+	}
+
+	public void setModelCheckers(List<Long> modelCheckers) {
+		this.modelCheckers = modelCheckers;
 	}
 	
 	@Override

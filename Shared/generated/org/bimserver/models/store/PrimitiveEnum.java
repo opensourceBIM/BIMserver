@@ -80,7 +80,15 @@ public enum PrimitiveEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BYTE_ARRAY(4, "BYTE_ARRAY", "BYTE_ARRAY");
+	BYTE_ARRAY(4, "BYTE_ARRAY", "BYTE_ARRAY"), /**
+												 * The '<em><b>CODE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CODE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CODE(5, "CODE", "CODE");
 
 	/**
 	 * The '<em><b>LONG</b></em>' literal value.
@@ -158,13 +166,27 @@ public enum PrimitiveEnum implements Enumerator {
 	public static final int BYTE_ARRAY_VALUE = 4;
 
 	/**
+	 * The '<em><b>CODE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CODE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CODE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CODE_VALUE = 5;
+
+	/**
 	 * An array of all the '<em><b>Primitive Enum</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PrimitiveEnum[] VALUES_ARRAY = new PrimitiveEnum[] {
-			LONG, DOUBLE, BOOLEAN, STRING, BYTE_ARRAY, };
+	private static final PrimitiveEnum[] VALUES_ARRAY = new PrimitiveEnum[] { LONG, DOUBLE, BOOLEAN, STRING, BYTE_ARRAY, CODE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Primitive Enum</b></em>' enumerators.
@@ -172,8 +194,7 @@ public enum PrimitiveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<PrimitiveEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<PrimitiveEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Primitive Enum</b></em>' literal with the specified literal value.
@@ -225,6 +246,8 @@ public enum PrimitiveEnum implements Enumerator {
 			return STRING;
 		case BYTE_ARRAY_VALUE:
 			return BYTE_ARRAY;
+		case CODE_VALUE:
+			return CODE;
 		}
 		return null;
 	}

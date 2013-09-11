@@ -33,8 +33,7 @@ public interface StoreFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	StoreFactory eINSTANCE = org.bimserver.models.store.impl.StoreFactoryImpl
-			.init();
+	StoreFactory eINSTANCE = org.bimserver.models.store.impl.StoreFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Project</em>'.
@@ -863,6 +862,33 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	ModelCheckerResult createModelCheckerResult();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Plugin Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Plugin Configuration</em>'.
+	 * @generated
+	 */
+	ModelCheckerPluginConfiguration createModelCheckerPluginConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Instance</em>'.
+	 * @generated
+	 */
+	ModelCheckerInstance createModelCheckerInstance();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	ModelCheckerPluginDescriptor createModelCheckerPluginDescriptor();
 
 	/**
 	 * Returns the package supported by this factory.

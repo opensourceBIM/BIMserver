@@ -85,17 +85,7 @@ message EnablePluginRequest {
 message GetAllPluginsRequest {
 }
 
-message SModelMergerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SServicePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SWebModulePluginDescriptor {
+message SModelComparePluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -110,41 +100,57 @@ message SDeserializerPluginDescriptor {
 	optional int64 oid = 2;
 }
 
-message SRenderEnginePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
 message SSerializerPluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
 
-message SModelComparePluginDescriptor {
+message SWebModulePluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SModelCheckerPluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SServicePluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SModelMergerPluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SRenderEnginePluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
 
 message SPluginDescriptor {
 	required string __actual_type = 1;
-	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 2;
-	optional SServicePluginDescriptor __SServicePluginDescriptor = 3;
-	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 4;
-	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 5;
-	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 6;
-	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 7;
-	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 8;
-	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 9;
-	optional string defaultName = 10;
-	optional bool enabled = 11;
-	optional string simpleName = 12;
-	optional string pluginInterfaceClassName = 13;
-	optional int32 rid = 14;
-	optional string location = 15;
-	optional int64 oid = 16;
-	optional string description = 17;
-	repeated int64 configurations = 18;
+	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 2;
+	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 3;
+	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 4;
+	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 5;
+	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 6;
+	optional SModelCheckerPluginDescriptor __SModelCheckerPluginDescriptor = 7;
+	optional SServicePluginDescriptor __SServicePluginDescriptor = 8;
+	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 9;
+	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 10;
+	optional string defaultName = 11;
+	optional bool enabled = 12;
+	optional string simpleName = 13;
+	optional string pluginInterfaceClassName = 14;
+	optional int32 rid = 15;
+	optional string location = 16;
+	optional int64 oid = 17;
+	optional string description = 18;
 	optional string pluginClassName = 19;
+	repeated int64 configurations = 20;
 }
 
 message GetAllPluginsResponse {
@@ -156,18 +162,18 @@ message GetBimServerInfoRequest {
 }
 
 message SBimServerInfo {
-	optional int32 users = 1;
-	optional int64 latestDate = 2;
-	optional string latestVersion = 3;
-	optional int32 projects = 4;
-	optional string serverLogUrl = 5;
-	optional int32 rid = 6;
-	optional int64 currentDate = 7;
+	optional int32 projects = 1;
+	optional string latestVersion = 2;
+	optional int32 users = 3;
+	optional string serverLogUrl = 4;
+	optional int64 latestDate = 5;
+	optional int64 currentDate = 6;
+	optional int32 rid = 7;
 	optional int64 oid = 8;
 	optional string currentVersion = 9;
 	optional int64 started = 10;
-	optional int32 revisions = 11;
-	optional int32 schemaVersion = 12;
+	optional int32 schemaVersion = 11;
+	optional int32 revisions = 12;
 	optional int32 checkouts = 13;
 }
 
@@ -194,8 +200,8 @@ message SDatabaseInformationCategory {
 }
 
 message SDatabaseInformation {
-	optional int64 created = 1;
-	optional int32 numberOfProjects = 2;
+	optional int32 numberOfProjects = 1;
+	optional int64 created = 2;
 	optional int32 rid = 3;
 	optional string location = 4;
 	optional int64 oid = 5;
@@ -219,8 +225,8 @@ message GetJavaInfoRequest {
 message SJavaInfo {
 	optional string javaFileSeparator = 1;
 	optional string javaVendor = 2;
-	optional string javavmVersion = 3;
-	optional string javaIoTmp = 4;
+	optional string javaIoTmp = 3;
+	optional string javavmVersion = 4;
 	optional string javaspecVendor = 5;
 	optional int32 threads = 6;
 	optional string javaVendorurl = 7;

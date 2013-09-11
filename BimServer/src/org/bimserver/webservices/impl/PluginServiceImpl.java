@@ -27,6 +27,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.actions.AddDeserializerDatabaseAction;
 import org.bimserver.database.actions.AddInternalServiceDatabaseAction;
+import org.bimserver.database.actions.AddModelCheckerDatabaseAction;
 import org.bimserver.database.actions.AddModelCompareDatabaseAction;
 import org.bimserver.database.actions.AddModelMergerDatabaseAction;
 import org.bimserver.database.actions.AddObjectIDMDatabaseAction;
@@ -43,6 +44,8 @@ import org.bimserver.database.actions.DeleteQueryEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteRenderEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
 import org.bimserver.database.actions.GetByIdDatabaseAction;
+import org.bimserver.database.actions.GetModelCheckerByIdDatabaseAction;
+import org.bimserver.database.actions.GetModelCheckerByNameDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByIdDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByNameDatabaseAction;
 import org.bimserver.database.actions.GetModelMergerByIdDatabaseAction;
@@ -60,6 +63,7 @@ import org.bimserver.database.actions.SetServerSettingDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
 import org.bimserver.database.actions.UpdateDatabaseAction;
 import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
+import org.bimserver.database.actions.UpdateModelCheckerDatabaseAction;
 import org.bimserver.database.actions.UpdateModelCompareDatabaseAction;
 import org.bimserver.database.actions.UpdateModelMergerDatabaseAction;
 import org.bimserver.database.actions.UpdateObjectIDMDatabaseAction;
@@ -71,6 +75,8 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
+import org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration;
+import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
@@ -91,6 +97,7 @@ import org.bimserver.interfaces.objects.SWebModulePluginConfiguration;
 import org.bimserver.interfaces.objects.SWebModulePluginDescriptor;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.ModelCheckerPluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.ObjectType;
@@ -336,6 +343,12 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
+	public List<SModelCheckerPluginDescriptor> getAllModelCheckerPluginDescriptors() throws ServerException, UserException {
+		requireRealUserAuthentication();
+		return getBimServer().getSerializerFactory().getAllModelCheckerPluginDescriptors();
+	}
+
+	@Override
 	public List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getAllModelMergerPluginDescriptors();
@@ -382,6 +395,22 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			List<SModelComparePluginConfiguration> modelCompares = getBimServer().getSConverter().convertToSListModelComparePluginConfiguration(userSettings.getModelcompares());
 			Collections.sort(modelCompares, new SPluginConfigurationComparator());
 			return modelCompares;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public List<SModelCheckerPluginConfiguration> getAllModelCheckers(Boolean onlyEnabled) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			UserSettings userSettings = getUserSettings(session);
+			List<SModelCheckerPluginConfiguration> modelCheckers = getBimServer().getSConverter().convertToSListModelCheckerPluginConfiguration(userSettings.getModelCheckers());
+			Collections.sort(modelCheckers, new SPluginConfigurationComparator());
+			return modelCheckers;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -448,6 +477,20 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
+	public void updateModelChecker(SModelCheckerPluginConfiguration modelChecker) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			ModelCheckerPluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(modelChecker, session);
+			session.executeAndCommitAction(new UpdateModelCheckerDatabaseAction(session, getInternalAccessMethod(), convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
 	public void updateModelMerger(SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -488,9 +531,23 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-
+	
 	@Override
 	public void deleteModelCompare(Long iid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Void> action = new DeleteModelCompareDatabaseAction(session, getInternalAccessMethod(), iid);
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void deleteModelChecker(Long iid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -557,6 +614,19 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
+	public SModelCheckerPluginConfiguration getModelCheckerById(Long oid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetModelCheckerByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
 	public SModelComparePluginConfiguration getModelCompareByName(String name) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -569,6 +639,19 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 	}
 
+	@Override
+	public SModelCheckerPluginConfiguration getModelCheckerByName(String name) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetModelCheckerByNameDatabaseAction(session, getInternalAccessMethod(), name)));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public SModelMergerPluginConfiguration getModelMergerByName(String name) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -637,6 +720,20 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 	}
 
+	@Override
+	public void addModelChecker(SModelCheckerPluginConfiguration modelChecker) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			ModelCheckerPluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(modelChecker, session);
+			session.executeAndCommitAction(new AddModelCheckerDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public void addModelMerger(SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException {
 		requireRealUserAuthentication();

@@ -27,10 +27,11 @@ public class LocalDevPluginLoader {
 		pluginManager.loadAllPluginsFromEclipseWorkspace(new File(".."));
 		
 		// Change this to wherever your GIT base dir is
-		File gitDirectory = new File("D:\\git");
+//		File gitDirectory = new File("D:\\git");
+		File gitDirectory = new File("C:\\Users\\Ruben de Laat\\git");
 		
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimql\\BimQL"));
-		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BootstrapBIM"));
+		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimvie.ws"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMsurfer"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "RGDChecker"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "WebGL-threeJS\\ServerPlugin"));

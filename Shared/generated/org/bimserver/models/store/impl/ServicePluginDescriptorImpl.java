@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ServicePluginDescriptorImpl extends PluginDescriptorImpl implements
-		ServicePluginDescriptor {
+public class ServicePluginDescriptorImpl extends PluginDescriptorImpl implements ServicePluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

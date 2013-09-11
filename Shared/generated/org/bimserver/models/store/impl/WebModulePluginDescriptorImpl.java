@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class WebModulePluginDescriptorImpl extends PluginDescriptorImpl
-		implements WebModulePluginDescriptor {
+public class WebModulePluginDescriptorImpl extends PluginDescriptorImpl implements WebModulePluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -48,8 +48,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
-		ExtendedDataSchema {
+public class ExtendedDataSchemaImpl extends IdEObjectImpl implements ExtendedDataSchema {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -85,8 +84,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__NAME,
-				true);
+		return (String) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__NAME, true);
 	}
 
 	/**
@@ -104,8 +102,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getUrl() {
-		return (String) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__URL,
-				true);
+		return (String) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__URL, true);
 	}
 
 	/**
@@ -123,8 +120,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getNamespace() {
-		return (String) eGet(
-				StorePackage.Literals.EXTENDED_DATA_SCHEMA__NAMESPACE, true);
+		return (String) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__NAMESPACE, true);
 	}
 
 	/**
@@ -133,8 +129,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setNamespace(String newNamespace) {
-		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__NAMESPACE,
-				newNamespace);
+		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__NAMESPACE, newNamespace);
 	}
 
 	/**
@@ -143,8 +138,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				StorePackage.Literals.EXTENDED_DATA_SCHEMA__DESCRIPTION, true);
+		return (String) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__DESCRIPTION, true);
 	}
 
 	/**
@@ -153,8 +147,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__DESCRIPTION,
-				newDescription);
+		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -163,8 +156,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public File getFile() {
-		return (File) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__FILE,
-				true);
+		return (File) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__FILE, true);
 	}
 
 	/**
@@ -182,8 +174,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public long getSize() {
-		return (Long) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__SIZE,
-				true);
+		return (Long) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__SIZE, true);
 	}
 
 	/**
@@ -201,8 +192,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public boolean isValidate() {
-		return (Boolean) eGet(
-				StorePackage.Literals.EXTENDED_DATA_SCHEMA__VALIDATE, true);
+		return (Boolean) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__VALIDATE, true);
 	}
 
 	/**
@@ -220,8 +210,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public ExtendedDataSchemaType getType() {
-		return (ExtendedDataSchemaType) eGet(
-				StorePackage.Literals.EXTENDED_DATA_SCHEMA__TYPE, true);
+		return (ExtendedDataSchemaType) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__TYPE, true);
 	}
 
 	/**
@@ -240,8 +229,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<User> getUsers() {
-		return (EList<User>) eGet(
-				StorePackage.Literals.EXTENDED_DATA_SCHEMA__USERS, true);
+		return (EList<User>) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__USERS, true);
 	}
 
 	/**
@@ -251,8 +239,7 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ExtendedData> getExtendedData() {
-		return (EList<ExtendedData>) eGet(
-				StorePackage.Literals.EXTENDED_DATA_SCHEMA__EXTENDED_DATA, true);
+		return (EList<ExtendedData>) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__EXTENDED_DATA, true);
 	}
 
 } //ExtendedDataSchemaImpl

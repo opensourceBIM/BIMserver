@@ -47,8 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class DatabaseInformationImpl extends IdEObjectImpl implements
-		DatabaseInformation {
+public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseInformation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,9 +83,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Integer getNumberOfProjects() {
-		return (Integer) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_PROJECTS,
-				true);
+		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_PROJECTS, true);
 	}
 
 	/**
@@ -95,8 +92,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setNumberOfProjects(Integer newNumberOfProjects) {
-		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_PROJECTS,
-				newNumberOfProjects);
+		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_PROJECTS, newNumberOfProjects);
 	}
 
 	/**
@@ -105,9 +101,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Integer getNumberOfUsers() {
-		return (Integer) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_USERS,
-				true);
+		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_USERS, true);
 	}
 
 	/**
@@ -116,8 +110,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setNumberOfUsers(Integer newNumberOfUsers) {
-		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_USERS,
-				newNumberOfUsers);
+		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_USERS, newNumberOfUsers);
 	}
 
 	/**
@@ -126,9 +119,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Integer getNumberOfRevisions() {
-		return (Integer) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_REVISIONS,
-				true);
+		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_REVISIONS, true);
 	}
 
 	/**
@@ -137,8 +128,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setNumberOfRevisions(Integer newNumberOfRevisions) {
-		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_REVISIONS,
-				newNumberOfRevisions);
+		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_REVISIONS, newNumberOfRevisions);
 	}
 
 	/**
@@ -147,9 +137,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Integer getNumberOfCheckouts() {
-		return (Integer) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_CHECKOUTS,
-				true);
+		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_CHECKOUTS, true);
 	}
 
 	/**
@@ -158,8 +146,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setNumberOfCheckouts(Integer newNumberOfCheckouts) {
-		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_CHECKOUTS,
-				newNumberOfCheckouts);
+		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_CHECKOUTS, newNumberOfCheckouts);
 	}
 
 	/**
@@ -168,9 +155,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Long getDatabaseSizeInBytes() {
-		return (Long) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES,
-				true);
+		return (Long) eGet(StorePackage.Literals.DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES, true);
 	}
 
 	/**
@@ -179,8 +164,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDatabaseSizeInBytes(Long newDatabaseSizeInBytes) {
-		eSet(StorePackage.Literals.DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES,
-				newDatabaseSizeInBytes);
+		eSet(StorePackage.Literals.DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES, newDatabaseSizeInBytes);
 	}
 
 	/**
@@ -189,8 +173,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getType() {
-		return (String) eGet(StorePackage.Literals.DATABASE_INFORMATION__TYPE,
-				true);
+		return (String) eGet(StorePackage.Literals.DATABASE_INFORMATION__TYPE, true);
 	}
 
 	/**
@@ -208,8 +191,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Date getCreated() {
-		return (Date) eGet(StorePackage.Literals.DATABASE_INFORMATION__CREATED,
-				true);
+		return (Date) eGet(StorePackage.Literals.DATABASE_INFORMATION__CREATED, true);
 	}
 
 	/**
@@ -227,8 +209,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getLocation() {
-		return (String) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION__LOCATION, true);
+		return (String) eGet(StorePackage.Literals.DATABASE_INFORMATION__LOCATION, true);
 	}
 
 	/**
@@ -246,9 +227,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Integer getSchemaVersion() {
-		return (Integer) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION__SCHEMA_VERSION,
-				true);
+		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__SCHEMA_VERSION, true);
 	}
 
 	/**
@@ -257,8 +236,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setSchemaVersion(Integer newSchemaVersion) {
-		eSet(StorePackage.Literals.DATABASE_INFORMATION__SCHEMA_VERSION,
-				newSchemaVersion);
+		eSet(StorePackage.Literals.DATABASE_INFORMATION__SCHEMA_VERSION, newSchemaVersion);
 	}
 
 	/**
@@ -268,8 +246,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<DatabaseInformationCategory> getCategories() {
-		return (EList<DatabaseInformationCategory>) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION__CATEGORIES, true);
+		return (EList<DatabaseInformationCategory>) eGet(StorePackage.Literals.DATABASE_INFORMATION__CATEGORIES, true);
 	}
 
 } //DatabaseInformationImpl

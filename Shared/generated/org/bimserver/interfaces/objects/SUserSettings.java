@@ -45,6 +45,7 @@ public class SUserSettings implements SDataBase
 	private long defaultSerializerId = -1;
 	private long defaultObjectIDMId = -1;
 	private List<Long> services = new ArrayList<Long>();
+	private List<Long> modelCheckers = new ArrayList<Long>();
 
 	public long getOid() {
 		return this.oid;
@@ -114,6 +115,9 @@ public class SUserSettings implements SDataBase
 		if (sField.getName().equals("services")) {
 			return getServices();
 		}
+		if (sField.getName().equals("modelCheckers")) {
+			return getModelCheckers();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -179,6 +183,10 @@ public class SUserSettings implements SDataBase
 		}
 		if (sField.getName().equals("services")) {
 			setServices((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("modelCheckers")) {
+			setModelCheckers((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -302,6 +310,14 @@ public class SUserSettings implements SDataBase
 
 	public void setServices(List<Long> services) {
 		this.services = services;
+	}
+	
+	public List<Long> getModelCheckers() {
+		return modelCheckers;
+	}
+
+	public void setModelCheckers(List<Long> modelCheckers) {
+		this.modelCheckers = modelCheckers;
 	}
 	
 	@Override
