@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ParameterDefinitionImpl extends IdEObjectImpl implements
-		ParameterDefinition {
+public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,8 +76,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(StorePackage.Literals.PARAMETER_DEFINITION__NAME,
-				true);
+		return (String) eGet(StorePackage.Literals.PARAMETER_DEFINITION__NAME, true);
 	}
 
 	/**
@@ -96,8 +94,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public boolean isRequired() {
-		return (Boolean) eGet(
-				StorePackage.Literals.PARAMETER_DEFINITION__REQUIRED, true);
+		return (Boolean) eGet(StorePackage.Literals.PARAMETER_DEFINITION__REQUIRED, true);
 	}
 
 	/**
@@ -115,8 +112,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				StorePackage.Literals.PARAMETER_DEFINITION__DESCRIPTION, true);
+		return (String) eGet(StorePackage.Literals.PARAMETER_DEFINITION__DESCRIPTION, true);
 	}
 
 	/**
@@ -125,8 +121,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.PARAMETER_DEFINITION__DESCRIPTION,
-				newDescription);
+		eSet(StorePackage.Literals.PARAMETER_DEFINITION__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -135,8 +130,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public TypeDefinition getType() {
-		return (TypeDefinition) eGet(
-				StorePackage.Literals.PARAMETER_DEFINITION__TYPE, true);
+		return (TypeDefinition) eGet(StorePackage.Literals.PARAMETER_DEFINITION__TYPE, true);
 	}
 
 	/**
@@ -154,8 +148,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Type getDefaultValue() {
-		return (Type) eGet(
-				StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE, true);
+		return (Type) eGet(StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE, true);
 	}
 
 	/**
@@ -164,8 +157,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDefaultValue(Type newDefaultValue) {
-		eSet(StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE,
-				newDefaultValue);
+		eSet(StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE, newDefaultValue);
 	}
 
 } //ParameterDefinitionImpl

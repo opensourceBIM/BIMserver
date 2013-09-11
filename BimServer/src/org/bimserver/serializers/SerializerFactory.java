@@ -25,6 +25,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
@@ -40,6 +41,7 @@ import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
@@ -207,6 +209,17 @@ public class SerializerFactory {
 		List<SModelComparePluginDescriptor> descriptors = new ArrayList<SModelComparePluginDescriptor>();
 		for (ModelComparePlugin queryEnginePlugin : pluginManager.getAllModelComparePlugins(true)) {
 			SModelComparePluginDescriptor descriptor = new SModelComparePluginDescriptor();
+			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
+			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
+			descriptors.add(descriptor);
+		}
+		return descriptors;
+	}
+
+	public List<SModelCheckerPluginDescriptor> getAllModelCheckerPluginDescriptors() {
+		List<SModelCheckerPluginDescriptor> descriptors = new ArrayList<SModelCheckerPluginDescriptor>();
+		for (ModelCheckerPlugin queryEnginePlugin : pluginManager.getAllModelCheckerPlugins(true)) {
+			SModelCheckerPluginDescriptor descriptor = new SModelCheckerPluginDescriptor();
 			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
 			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);

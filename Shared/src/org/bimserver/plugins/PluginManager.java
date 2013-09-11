@@ -44,6 +44,7 @@ import org.bimserver.plugins.classloaders.EclipsePluginClassloader;
 import org.bimserver.plugins.classloaders.JarClassLoader;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDM;
@@ -550,5 +551,9 @@ public class PluginManager {
 
 	public Collection<WebModulePlugin> getAllWebPlugins(boolean onlyEnabled) {
 		return getPlugins(WebModulePlugin.class, onlyEnabled);
+	}
+
+	public Collection<ModelCheckerPlugin> getAllModelCheckerPlugins(boolean onlyEnabled) {
+		return getPlugins(ModelCheckerPlugin.class, onlyEnabled);
 	}
 }

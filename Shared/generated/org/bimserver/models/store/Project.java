@@ -49,6 +49,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Project#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getLogs <em>Logs</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Project#getModelCheckers <em>Model Checkers</em>}</li>
  * </ul>
  * </p>
  *
@@ -497,5 +498,21 @@ public interface Project extends IdEObject {
 	 * @generated
 	 */
 	EList<ProjectRelated> getLogs();
+
+	/**
+	 * Returns the value of the '<em><b>Model Checkers</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.ModelCheckerInstance}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model Checkers</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model Checkers</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getProject_ModelCheckers()
+	 * @model
+	 * @generated
+	 */
+	EList<ModelCheckerInstance> getModelCheckers();
 
 } // Project

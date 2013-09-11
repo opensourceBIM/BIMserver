@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RenderEnginePluginDescriptorImpl extends PluginDescriptorImpl
-		implements RenderEnginePluginDescriptor {
+public class RenderEnginePluginDescriptorImpl extends PluginDescriptorImpl implements RenderEnginePluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

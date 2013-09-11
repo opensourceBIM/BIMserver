@@ -9638,6 +9638,8 @@
           eType="#/2/Service" eOpposite="#/2/Service/project"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1"
           eType="#/1/ProjectRelated" eOpposite="#/1/ProjectRelated/project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelCheckers" upperBound="-1"
+          eType="#/2/ModelCheckerInstance"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="User">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -9790,6 +9792,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#/2/ObjectIDMPluginConfiguration"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
           eType="#/2/InternalServicePluginConfiguration" eOpposite="#/2/InternalServicePluginConfiguration/userSettings"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelCheckers" upperBound="-1"
+          eType="#/2/ModelCheckerPluginConfiguration" eOpposite="#/2/ModelCheckerPluginConfiguration/userSettings"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -10122,6 +10126,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/2/User"
           eOpposite="#/2/User/services"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="internalService" eType="#/2/InternalServicePluginConfiguration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelCheckers" upperBound="-1"
+          eType="#/2/ModelCheckerInstance"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Token">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="tokenString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -10200,6 +10206,7 @@
       <eLiterals name="BOOLEAN" value="2"/>
       <eLiterals name="STRING" value="3"/>
       <eLiterals name="BYTE_ARRAY" value="4"/>
+      <eLiterals name="CODE" value="5"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition">
       <eAnnotations source="nodatabase"/>
@@ -10377,5 +10384,14 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
           eType="#/2/ModelCheckerResultItem"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerPluginConfiguration" eSuperTypes="#/2/PluginConfiguration">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#/2/UserSettings"
+          eOpposite="#/2/UserSettings/modelCheckers"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerInstance">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelChecker" eType="#/2/ModelCheckerPluginConfiguration"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerPluginDescriptor" eSuperTypes="#/2/PluginDescriptor"/>
   </ecore:EPackage>
 </xmi:XMI>

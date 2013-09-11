@@ -506,6 +506,16 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SModelCheckerResult();
 					}
 				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration();
+					}
+				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);

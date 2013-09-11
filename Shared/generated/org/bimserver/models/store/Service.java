@@ -18,6 +18,7 @@ package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.log.AccessMethod;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,6 +48,7 @@ import org.bimserver.models.log.AccessMethod;
  *   <li>{@link org.bimserver.models.store.Service#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getInternalService <em>Internal Service</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getModelCheckers <em>Model Checkers</em>}</li>
  * </ul>
  * </p>
  *
@@ -585,5 +587,21 @@ public interface Service extends IdEObject {
 	 * @generated
 	 */
 	void setInternalService(InternalServicePluginConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Model Checkers</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.ModelCheckerInstance}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model Checkers</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model Checkers</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getService_ModelCheckers()
+	 * @model
+	 * @generated
+	 */
+	EList<ModelCheckerInstance> getModelCheckers();
 
 } // Service

@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ReferenceDataValueImpl extends DataValueImpl implements
-		ReferenceDataValue {
+public class ReferenceDataValueImpl extends DataValueImpl implements ReferenceDataValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class ReferenceDataValueImpl extends DataValueImpl implements
 	 * @generated
 	 */
 	public String getTypeName() {
-		return (String) eGet(
-				StorePackage.Literals.REFERENCE_DATA_VALUE__TYPE_NAME, true);
+		return (String) eGet(StorePackage.Literals.REFERENCE_DATA_VALUE__TYPE_NAME, true);
 	}
 
 	/**
@@ -80,8 +78,7 @@ public class ReferenceDataValueImpl extends DataValueImpl implements
 	 * @generated
 	 */
 	public String getGuid() {
-		return (String) eGet(StorePackage.Literals.REFERENCE_DATA_VALUE__GUID,
-				true);
+		return (String) eGet(StorePackage.Literals.REFERENCE_DATA_VALUE__GUID, true);
 	}
 
 	/**

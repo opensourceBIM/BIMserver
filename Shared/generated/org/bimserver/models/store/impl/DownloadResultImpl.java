@@ -74,8 +74,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * @generated
 	 */
 	public String getProjectName() {
-		return (String) eGet(
-				StorePackage.Literals.DOWNLOAD_RESULT__PROJECT_NAME, true);
+		return (String) eGet(StorePackage.Literals.DOWNLOAD_RESULT__PROJECT_NAME, true);
 	}
 
 	/**
@@ -84,8 +83,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * @generated
 	 */
 	public void setProjectName(String newProjectName) {
-		eSet(StorePackage.Literals.DOWNLOAD_RESULT__PROJECT_NAME,
-				newProjectName);
+		eSet(StorePackage.Literals.DOWNLOAD_RESULT__PROJECT_NAME, newProjectName);
 	}
 
 	/**
@@ -94,8 +92,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * @generated
 	 */
 	public Integer getRevisionNr() {
-		return (Integer) eGet(
-				StorePackage.Literals.DOWNLOAD_RESULT__REVISION_NR, true);
+		return (Integer) eGet(StorePackage.Literals.DOWNLOAD_RESULT__REVISION_NR, true);
 	}
 
 	/**
@@ -113,8 +110,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * @generated
 	 */
 	public DataHandler getFile() {
-		return (DataHandler) eGet(StorePackage.Literals.DOWNLOAD_RESULT__FILE,
-				true);
+		return (DataHandler) eGet(StorePackage.Literals.DOWNLOAD_RESULT__FILE, true);
 	}
 
 	/**

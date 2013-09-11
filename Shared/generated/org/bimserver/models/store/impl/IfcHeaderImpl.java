@@ -83,8 +83,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getDescription() {
-		return (EList<String>) eGet(
-				StorePackage.Literals.IFC_HEADER__DESCRIPTION, true);
+		return (EList<String>) eGet(StorePackage.Literals.IFC_HEADER__DESCRIPTION, true);
 	}
 
 	/**
@@ -93,8 +92,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	public String getImplementationLevel() {
-		return (String) eGet(
-				StorePackage.Literals.IFC_HEADER__IMPLEMENTATION_LEVEL, true);
+		return (String) eGet(StorePackage.Literals.IFC_HEADER__IMPLEMENTATION_LEVEL, true);
 	}
 
 	/**
@@ -103,8 +101,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	public void setImplementationLevel(String newImplementationLevel) {
-		eSet(StorePackage.Literals.IFC_HEADER__IMPLEMENTATION_LEVEL,
-				newImplementationLevel);
+		eSet(StorePackage.Literals.IFC_HEADER__IMPLEMENTATION_LEVEL, newImplementationLevel);
 	}
 
 	/**
@@ -150,8 +147,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getAuthor() {
-		return (EList<String>) eGet(StorePackage.Literals.IFC_HEADER__AUTHOR,
-				true);
+		return (EList<String>) eGet(StorePackage.Literals.IFC_HEADER__AUTHOR, true);
 	}
 
 	/**
@@ -161,8 +157,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getOrganization() {
-		return (EList<String>) eGet(
-				StorePackage.Literals.IFC_HEADER__ORGANIZATION, true);
+		return (EList<String>) eGet(StorePackage.Literals.IFC_HEADER__ORGANIZATION, true);
 	}
 
 	/**
@@ -171,8 +166,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	public String getPreProcessorVersion() {
-		return (String) eGet(
-				StorePackage.Literals.IFC_HEADER__PRE_PROCESSOR_VERSION, true);
+		return (String) eGet(StorePackage.Literals.IFC_HEADER__PRE_PROCESSOR_VERSION, true);
 	}
 
 	/**
@@ -181,8 +175,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	public void setPreProcessorVersion(String newPreProcessorVersion) {
-		eSet(StorePackage.Literals.IFC_HEADER__PRE_PROCESSOR_VERSION,
-				newPreProcessorVersion);
+		eSet(StorePackage.Literals.IFC_HEADER__PRE_PROCESSOR_VERSION, newPreProcessorVersion);
 	}
 
 	/**
@@ -191,8 +184,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	public String getOriginatingSystem() {
-		return (String) eGet(
-				StorePackage.Literals.IFC_HEADER__ORIGINATING_SYSTEM, true);
+		return (String) eGet(StorePackage.Literals.IFC_HEADER__ORIGINATING_SYSTEM, true);
 	}
 
 	/**
@@ -201,8 +193,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	public void setOriginatingSystem(String newOriginatingSystem) {
-		eSet(StorePackage.Literals.IFC_HEADER__ORIGINATING_SYSTEM,
-				newOriginatingSystem);
+		eSet(StorePackage.Literals.IFC_HEADER__ORIGINATING_SYSTEM, newOriginatingSystem);
 	}
 
 	/**
@@ -211,8 +202,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	public String getIfcSchemaVersion() {
-		return (String) eGet(
-				StorePackage.Literals.IFC_HEADER__IFC_SCHEMA_VERSION, true);
+		return (String) eGet(StorePackage.Literals.IFC_HEADER__IFC_SCHEMA_VERSION, true);
 	}
 
 	/**
@@ -221,8 +211,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	public void setIfcSchemaVersion(String newIfcSchemaVersion) {
-		eSet(StorePackage.Literals.IFC_HEADER__IFC_SCHEMA_VERSION,
-				newIfcSchemaVersion);
+		eSet(StorePackage.Literals.IFC_HEADER__IFC_SCHEMA_VERSION, newIfcSchemaVersion);
 	}
 
 	/**
@@ -231,8 +220,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	public String getAuthorization() {
-		return (String) eGet(StorePackage.Literals.IFC_HEADER__AUTHORIZATION,
-				true);
+		return (String) eGet(StorePackage.Literals.IFC_HEADER__AUTHORIZATION, true);
 	}
 
 	/**

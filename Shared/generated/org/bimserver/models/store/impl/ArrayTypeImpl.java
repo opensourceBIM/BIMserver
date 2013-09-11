@@ -62,8 +62,7 @@ public class ArrayTypeImpl extends TypeImpl implements ArrayType {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Type> getValues() {
-		return (EList<Type>) eGet(StorePackage.Literals.ARRAY_TYPE__VALUES,
-				true);
+		return (EList<Type>) eGet(StorePackage.Literals.ARRAY_TYPE__VALUES, true);
 	}
 
 } //ArrayTypeImpl
