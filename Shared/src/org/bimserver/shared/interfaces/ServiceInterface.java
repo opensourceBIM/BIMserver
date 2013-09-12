@@ -38,6 +38,7 @@ import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SModelCheckerInstance;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SProjectSmall;
@@ -614,4 +615,10 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getAllRelatedProjects")
 	List<SProjectSmall> getAllRelatedProjects(
 		@WebParam(name = "poid", partName = "getAllRelatedProjects.poid") Long poid) throws ServerException, UserException;
+	
+	@WebMethod(action = "addModelChecker")
+	void addModelChecker(SModelCheckerInstance modelCheckerInstance);
+	
+	@WebMethod(action = "getModelCheckerInstance")
+	SModelCheckerInstance getModelCheckerInstance(long mcioid);
 }
