@@ -64,6 +64,9 @@ public class JsonApiServlet extends SubServlet {
 		}
 		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+		if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+			return;
+		}
 		try {
 			if (request.getParameter("doc") != null) {
 				writeDocumentation(request, response, getBimServer());
@@ -89,9 +92,11 @@ public class JsonApiServlet extends SubServlet {
 				bimServer.getJsonHandler().execute(request, httpRequest, response.getWriter());
 			} else {
 				LOGGER.error("Invalid JSON request: " + new String(bytes, Charsets.UTF_8));
+				response.setStatus(500);
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
+			response.setStatus(500);
 		}
 	}
 
