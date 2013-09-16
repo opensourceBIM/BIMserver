@@ -701,13 +701,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modelCheckerPluginConfigurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass modelCheckerInstanceEClass = null;
 
 	/**
@@ -1978,15 +1971,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getUserSettings_Services() {
 		return (EReference) getUserSettings().getEStructuralFeatures().get(13);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getUserSettings_ModelCheckers() {
-		return (EReference) getUserSettings().getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -5351,30 +5335,9 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelCheckerPluginConfiguration() {
-		if (modelCheckerPluginConfigurationEClass == null) {
-			modelCheckerPluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(106);
-		}
-		return modelCheckerPluginConfigurationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getModelCheckerPluginConfiguration_UserSettings() {
-		return (EReference) getModelCheckerPluginConfiguration().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getModelCheckerInstance() {
 		if (modelCheckerInstanceEClass == null) {
-			modelCheckerInstanceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(107);
+			modelCheckerInstanceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(106);
 		}
 		return modelCheckerInstanceEClass;
 	}
@@ -5384,7 +5347,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getModelCheckerInstance_Code() {
+	public EAttribute getModelCheckerInstance_Name() {
 		return (EAttribute) getModelCheckerInstance().getEStructuralFeatures().get(0);
 	}
 
@@ -5393,8 +5356,44 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelCheckerInstance_ModelChecker() {
-		return (EReference) getModelCheckerInstance().getEStructuralFeatures().get(1);
+	public EAttribute getModelCheckerInstance_Description() {
+		return (EAttribute) getModelCheckerInstance().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelCheckerInstance_Code() {
+		return (EAttribute) getModelCheckerInstance().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelCheckerInstance_Compiled() {
+		return (EAttribute) getModelCheckerInstance().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelCheckerInstance_Valid() {
+		return (EAttribute) getModelCheckerInstance().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelCheckerInstance_ModelCheckerPluginClassName() {
+		return (EAttribute) getModelCheckerInstance().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -5404,7 +5403,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EClass getModelCheckerPluginDescriptor() {
 		if (modelCheckerPluginDescriptorEClass == null) {
-			modelCheckerPluginDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(108);
+			modelCheckerPluginDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(107);
 		}
 		return modelCheckerPluginDescriptorEClass;
 	}

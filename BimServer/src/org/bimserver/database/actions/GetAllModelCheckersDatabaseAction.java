@@ -19,12 +19,12 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelCheckerPluginConfiguration;
+import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.StorePackage;
 
-public class GetModelCheckerByIdDatabaseAction extends GetByIdDatabaseAction<ModelCheckerPluginConfiguration> {
+public class GetAllModelCheckersDatabaseAction extends GetAllDatabaseAction<ModelCheckerInstance> {
 
-	public GetModelCheckerByIdDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long oid) {
-		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getModelCheckerPluginConfiguration());
+	public GetAllModelCheckersDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod) {
+		super(databaseSession, accessMethod, ModelCheckerInstance.class, StorePackage.eINSTANCE.getModelCheckerInstance());
 	}
 }

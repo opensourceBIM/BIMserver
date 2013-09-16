@@ -52,7 +52,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultObjectIDM <em>Default Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getServices <em>Services</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getModelCheckers <em>Model Checkers</em>}</li>
  * </ul>
  * </p>
  *
@@ -274,16 +273,6 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	@SuppressWarnings("unchecked")
 	public EList<InternalServicePluginConfiguration> getServices() {
 		return (EList<InternalServicePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__SERVICES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<ModelCheckerPluginConfiguration> getModelCheckers() {
-		return (EList<ModelCheckerPluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__MODEL_CHECKERS, true);
 	}
 
 } //UserSettingsImpl

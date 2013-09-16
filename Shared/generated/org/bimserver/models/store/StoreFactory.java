@@ -864,15 +864,6 @@ public interface StoreFactory extends EFactory {
 	ModelCheckerResult createModelCheckerResult();
 
 	/**
-	 * Returns a new object of class '<em>Model Checker Plugin Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Checker Plugin Configuration</em>'.
-	 * @generated
-	 */
-	ModelCheckerPluginConfiguration createModelCheckerPluginConfiguration();
-
-	/**
 	 * Returns a new object of class '<em>Model Checker Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

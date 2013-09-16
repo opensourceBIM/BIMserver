@@ -31,8 +31,12 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getCode <em>Code</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getModelChecker <em>Model Checker</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getCompiled <em>Compiled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#isValid <em>Valid</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getModelCheckerPluginClassName <em>Model Checker Plugin Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,6 +77,42 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements ModelChec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDescription() {
+		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__DESCRIPTION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__DESCRIPTION, newDescription);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getCode() {
 		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__CODE, true);
 	}
@@ -91,8 +131,8 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements ModelChec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelCheckerPluginConfiguration getModelChecker() {
-		return (ModelCheckerPluginConfiguration) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER, true);
+	public byte[] getCompiled() {
+		return (byte[]) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__COMPILED, true);
 	}
 
 	/**
@@ -100,8 +140,44 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements ModelChec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModelChecker(ModelCheckerPluginConfiguration newModelChecker) {
-		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER, newModelChecker);
+	public void setCompiled(byte[] newCompiled) {
+		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__COMPILED, newCompiled);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isValid() {
+		return (Boolean) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__VALID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValid(boolean newValid) {
+		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__VALID, newValid);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getModelCheckerPluginClassName() {
+		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModelCheckerPluginClassName(String newModelCheckerPluginClassName) {
+		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME, newModelCheckerPluginClassName);
 	}
 
 } //ModelCheckerInstanceImpl

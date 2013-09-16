@@ -73,7 +73,6 @@ import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.LongType;
-import org.bimserver.models.store.ModelCheckerPluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.ObjectDefinition;
@@ -559,6 +558,9 @@ public class BimServer {
 		if (userSettings.getDefaultRenderEngine() == null && !userSettings.getRenderEngines().isEmpty()) {
 			userSettings.setDefaultRenderEngine(userSettings.getRenderEngines().get(0));
 		}
+		for (ModelCheckerPlugin modelCheckerPlugin : pluginManager.getAllModelCheckerPlugins(true)) {
+			// Attempt to load this crap
+		}
 		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
 			QueryEnginePluginConfiguration queryEnginePluginConfiguration = find(userSettings.getQueryengines(), queryEnginePlugin.getClass().getName());
 			if (queryEnginePluginConfiguration == null) {
@@ -600,14 +602,6 @@ public class BimServer {
 		}
 		if (userSettings.getDefaultModelCompare() == null && !userSettings.getModelcompares().isEmpty()) {
 			userSettings.setDefaultModelCompare(userSettings.getModelcompares().get(0));
-		}
-		for (ModelCheckerPlugin modelCheckerPlugin : pluginManager.getAllModelCheckerPlugins(true)) {
-			ModelCheckerPluginConfiguration modelCheckerPluginConfiguration = find(userSettings.getModelCheckers(), modelCheckerPlugin.getClass().getName());
-			if (modelCheckerPluginConfiguration == null) {
-				modelCheckerPluginConfiguration = session.create(ModelCheckerPluginConfiguration.class);
-				userSettings.getModelCheckers().add(modelCheckerPluginConfiguration);
-				genericPluginConversion(session, modelCheckerPlugin, modelCheckerPluginConfiguration, getPluginDescriptor(session, modelCheckerPlugin.getClass().getName()));
-			}
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			SerializerPluginConfiguration serializerPluginConfiguration = find(userSettings.getSerializers(), serializerPlugin.getClass().getName());

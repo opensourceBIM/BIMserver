@@ -210,8 +210,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#//ObjectIDMPluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
         eType="#//InternalServicePluginConfiguration" eOpposite="#//InternalServicePluginConfiguration/userSettings"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modelCheckers" upperBound="-1"
-        eType="#//ModelCheckerPluginConfiguration" eOpposite="#//ModelCheckerPluginConfiguration/userSettings"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -618,7 +616,6 @@
     <eLiterals name="BOOLEAN" value="2"/>
     <eLiterals name="STRING" value="3"/>
     <eLiterals name="BYTE_ARRAY" value="4"/>
-    <eLiterals name="CODE" value="5"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition">
     <eAnnotations source="nodatabase"/>
@@ -794,13 +791,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
         eType="#//ModelCheckerResultItem"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerPluginConfiguration" eSuperTypes="#//PluginConfiguration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
-        eOpposite="#//UserSettings/modelCheckers"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modelChecker" eType="#//ModelCheckerPluginConfiguration"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="compiled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelCheckerPluginClassName"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerPluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
 </ecore:EPackage>

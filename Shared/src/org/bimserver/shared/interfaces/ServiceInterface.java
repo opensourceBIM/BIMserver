@@ -224,6 +224,10 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getAllServicesOfProject")
 	List<SService> getAllServicesOfProject(
 		@WebParam(name = "poid", partName = "getAllServicesOfProject.poid") Long poid) throws ServerException, UserException;
+
+	@WebMethod(action = "getAllModelCheckersOfProject")
+	List<SModelCheckerInstance> getAllModelCheckersOfProject(
+			@WebParam(name = "poid", partName = "getAllModelCheckersOfProject.poid") Long poid) throws ServerException, UserException;
 	
 	/**
 	 * @param poid The ObjectID of the Project
@@ -615,10 +619,16 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getAllRelatedProjects")
 	List<SProjectSmall> getAllRelatedProjects(
 		@WebParam(name = "poid", partName = "getAllRelatedProjects.poid") Long poid) throws ServerException, UserException;
+
+	@WebMethod(action = "getAllModelCheckers")
+	List<SModelCheckerInstance> getAllModelCheckers() throws UserException, ServerException;
 	
 	@WebMethod(action = "addModelChecker")
-	void addModelChecker(SModelCheckerInstance modelCheckerInstance);
+	void addModelChecker(@WebParam(name = "modelCheckerInstance", partName = "addModelChecker.modelCheckerInstance") SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException;
+
+	@WebMethod(action = "updateModelChecker")
+	void updateModelChecker(@WebParam(name = "modelCheckerInstance", partName = "updateModelChecker.modelCheckerInstance") SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException;
 	
 	@WebMethod(action = "getModelCheckerInstance")
-	SModelCheckerInstance getModelCheckerInstance(long mcioid);
+	SModelCheckerInstance getModelCheckerInstance(@WebParam(name = "mcioid", partName = "getModelCheckerInstance.mcioid") Long mcioid) throws UserException, ServerException;
 }

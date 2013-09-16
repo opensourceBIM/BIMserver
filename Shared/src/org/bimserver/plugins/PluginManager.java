@@ -110,8 +110,8 @@ public class PluginManager {
 		}
 		try {
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(new FileInputStream(pluginFile));
-			File libFolder = new File(projectRoot, "lib");
 			DelegatingClassLoader delegatingClassLoader = new DelegatingClassLoader(getClass().getClassLoader());
+			File libFolder = new File(projectRoot, "lib");
 			if (libFolder.isDirectory()) {
 				for (File libFile : libFolder.listFiles()) {
 					if (libFile.getName().toLowerCase().endsWith(".jar")) {
@@ -555,5 +555,9 @@ public class PluginManager {
 
 	public Collection<ModelCheckerPlugin> getAllModelCheckerPlugins(boolean onlyEnabled) {
 		return getPlugins(ModelCheckerPlugin.class, onlyEnabled);
+	}
+
+	public ModelCheckerPlugin getModelCheckerPlugin(String className, boolean onlyEnabled) {
+		return getPluginByClassName(ModelCheckerPlugin.class, className, onlyEnabled);
 	}
 }
