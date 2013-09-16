@@ -627,11 +627,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseModelCheckerPluginConfiguration(ModelCheckerPluginConfiguration object) {
-			return createModelCheckerPluginConfigurationAdapter();
-		}
-
-		@Override
 		public Adapter caseModelCheckerInstance(ModelCheckerInstance object) {
 			return createModelCheckerInstanceAdapter();
 		}
@@ -1945,20 +1940,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelCheckerResultAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelCheckerPluginConfiguration <em>Model Checker Plugin Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ModelCheckerPluginConfiguration
-	 * @generated
-	 */
-	public Adapter createModelCheckerPluginConfigurationAdapter() {
 		return null;
 	}
 

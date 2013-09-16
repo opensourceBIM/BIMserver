@@ -44,6 +44,11 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface AddModelCheckerCallback {
+		void success();
+		void error(Exception e);
+	}
+	
 	public interface AddServiceToProjectCallback {
 		void success();
 		void error(Exception e);
@@ -144,6 +149,16 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetAllModelCheckersCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SModelCheckerInstance> result);
+		void error(Exception e);
+	}
+	
+	public interface GetAllModelCheckersOfProjectCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SModelCheckerInstance> result);
+		void error(Exception e);
+	}
+	
 	public interface GetAllNonAuthorizedProjectsOfUserCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
 		void error(Exception e);
@@ -236,6 +251,11 @@ public class AsyncServiceInterface {
 	
 	public interface GetGeoTagCallback {
 		void success(org.bimserver.interfaces.objects.SGeoTag result);
+		void error(Exception e);
+	}
+	
+	public interface GetModelCheckerInstanceCallback {
+		void success(org.bimserver.interfaces.objects.SModelCheckerInstance result);
 		void error(Exception e);
 	}
 	
@@ -339,6 +359,11 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface UpdateModelCheckerCallback {
+		void success();
+		void error(Exception e);
+	}
+	
 	public interface UpdateProjectCallback {
 		void success();
 		void error(Exception e);
@@ -397,6 +422,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					syncService.addLocalServiceToProject(poid, sService, internalServiceOid);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void addModelChecker(final org.bimserver.interfaces.objects.SModelCheckerInstance modelCheckerInstance, final AddModelCheckerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.addModelChecker(modelCheckerInstance);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);
@@ -650,6 +688,30 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void getAllModelCheckers(final GetAllModelCheckersCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllModelCheckers());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllModelCheckersOfProject(final java.lang.Long poid, final GetAllModelCheckersOfProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllModelCheckersOfProject(poid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getAllNonAuthorizedProjectsOfUser(final java.lang.Long uoid, final GetAllNonAuthorizedProjectsOfUserCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -871,6 +933,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getGeoTag(goid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getModelCheckerInstance(final java.lang.Long mcioid, final GetModelCheckerInstanceCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getModelCheckerInstance(mcioid));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -1116,6 +1190,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					syncService.updateGeoTag(sGeoTag);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void updateModelChecker(final org.bimserver.interfaces.objects.SModelCheckerInstance modelCheckerInstance, final UpdateModelCheckerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.updateModelChecker(modelCheckerInstance);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);

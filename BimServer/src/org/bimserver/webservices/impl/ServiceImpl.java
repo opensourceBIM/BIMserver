@@ -51,6 +51,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.actions.AddExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.AddExtendedDataToProjectDatabaseAction;
 import org.bimserver.database.actions.AddLocalServiceToProjectDatabaseAction;
+import org.bimserver.database.actions.AddModelCheckerDatabaseAction;
 import org.bimserver.database.actions.AddServiceToProjectDatabaseAction;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.AddUserToExtendedDataSchemaDatabaseAction;
@@ -66,6 +67,7 @@ import org.bimserver.database.actions.GetAllCheckoutsByUserDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfRevisionDatabaseAction;
 import org.bimserver.database.actions.GetAllExtendedDataSchemasDatabaseAction;
+import org.bimserver.database.actions.GetAllModelCheckersDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedUsersOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllReadableProjectsDatabaseAction;
@@ -79,6 +81,7 @@ import org.bimserver.database.actions.GetAvailableClassesInRevisionDatabaseActio
 import org.bimserver.database.actions.GetCheckinWarningsDatabaseAction;
 import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
+import org.bimserver.database.actions.GetModelCheckerOidDatabaseAction;
 import org.bimserver.database.actions.GetOidByGuidDatabaseAction;
 import org.bimserver.database.actions.GetProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
@@ -89,6 +92,7 @@ import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
 import org.bimserver.database.actions.SetRevisionTagDatabaseAction;
 import org.bimserver.database.actions.UndeleteUserDatabaseAction;
 import org.bimserver.database.actions.UpdateGeoTagDatabaseAction;
+import org.bimserver.database.actions.UpdateModelCheckerDatabaseAction;
 import org.bimserver.database.actions.UpdateProjectDatabaseAction;
 import org.bimserver.database.actions.UpdateRevisionDatabaseAction;
 import org.bimserver.database.actions.UploadFileDatabaseAction;
@@ -110,6 +114,7 @@ import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SModelCheckerInstance;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
@@ -132,6 +137,7 @@ import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -1351,5 +1357,66 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		} finally {
 			session.close();
 		}
+	}
+	
+	@Override
+	public SModelCheckerInstance getModelCheckerInstance(Long mcioid) throws UserException, ServerException {
+		requireAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			GetModelCheckerOidDatabaseAction action = new GetModelCheckerOidDatabaseAction(session, getInternalAccessMethod(), mcioid);
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void addModelChecker(SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			ModelCheckerInstance convert = getBimServer().getSConverter().convertFromSObject(modelCheckerInstance, session);
+			session.executeAndCommitAction(new AddModelCheckerDatabaseAction(session, getInternalAccessMethod(), convert));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public List<SModelCheckerInstance> getAllModelCheckers() throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return getBimServer().getSConverter().convertToSListModelCheckerInstance(session.executeAndCommitAction(new GetAllModelCheckersDatabaseAction(session,
+					getInternalAccessMethod())));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void updateModelChecker(SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Void> action = new UpdateModelCheckerDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getBimServer().getSConverter().convertFromSObject(modelCheckerInstance, session));
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public List<SModelCheckerInstance> getAllModelCheckersOfProject(Long poid) throws ServerException, UserException {
+		return null;
 	}
 }

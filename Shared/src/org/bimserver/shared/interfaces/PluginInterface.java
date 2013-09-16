@@ -30,7 +30,6 @@ import javax.jws.soap.SOAPBinding.Use;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
-import org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
@@ -209,15 +208,6 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "name", partName = "getModelCompareByName.name") String name) throws ServerException, UserException;
 	
 	/**
-	 * @param name Name of the ModelCompare
-	 * @return SModelCompare
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getModelCheckerByName")
-	SModelCheckerPluginConfiguration getModelCheckerByName(
-			@WebParam(name = "name", partName = "getModelCheckerByName.name") String name) throws ServerException, UserException;
-	
-	/**
 	 * @param onlyEnabled Whether to only include enabled serializers
 	 * @return A list of Serializers
 	 * @throws ServerException, UserException
@@ -272,15 +262,6 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "onlyEnabled", partName = "getAllModelCompares.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 
 	/**
-	 * @param onlyEnabled Whether to only include enabled model compare
-	 * @return A list of SModelCompare
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllModelCheckers")
-	List<SModelCheckerPluginConfiguration> getAllModelCheckers(
-			@WebParam(name = "onlyEnabled", partName = "getAllModelCheckers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
-	
-	/**
 	 * @param oid ObjectID of the RenderEngine
 	 * @return RenderEngine
 	 * @throws ServerException, UserException
@@ -307,16 +288,6 @@ public interface PluginInterface extends PublicInterface {
 	SModelComparePluginConfiguration getModelCompareById(
 		@WebParam(name = "oid", partName = "getModelCompareById.oid") Long oid) throws ServerException, UserException;
 
-	/**
-	 * @param oid ObjectID of the ModelCompare
-	 * @return SModelCompare
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getModelCheckerById")
-	SModelCheckerPluginConfiguration getModelCheckerById(
-		@WebParam(name = "oid", partName = "getModelCheckerById.oid") Long oid) throws ServerException, UserException;
-
-	
 	/**
 	 * @param oid ObjectID of the Deserializer
 	 * @return Deserializer
@@ -367,14 +338,6 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "modelCompare", partName = "addModelCompare.modelCompare") SModelComparePluginConfiguration modelCompare) throws ServerException, UserException;
 
 	/**
-	 * @param modelCompare ModelCompare to add
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addModelChecker")
-	void addModelChecker(
-		@WebParam(name = "modelChecker", partName = "addModelChecker.modelChecker") SModelCheckerPluginConfiguration modelChecker) throws ServerException, UserException;
-	
-	/**
 	 * @param deserializer Deserializer to add
 	 * @throws ServerException, UserException
 	 */
@@ -421,14 +384,6 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "updateModelCompare")
 	void updateModelCompare(
 		@WebParam(name = "modelCompare", partName = "updateModelCompare.modelCompare") SModelComparePluginConfiguration modelCompare) throws ServerException, UserException;
-
-	/**
-	 * @param modelCompare ModelCompare to update
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "updateModelChecker")
-	void updateModelChecker(
-		@WebParam(name = "modelChecker", partName = "updateModelChecker.modelChecker") SModelCheckerPluginConfiguration modelChecker) throws ServerException, UserException;
 
 	/**
 	 * @param deserializer Deserializer to update

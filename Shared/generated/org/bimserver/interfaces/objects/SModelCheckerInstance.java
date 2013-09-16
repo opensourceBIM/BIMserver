@@ -29,8 +29,12 @@ public class SModelCheckerInstance implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	private java.lang.String name;
+	private java.lang.String description;
 	private java.lang.String code;
-	private long modelCheckerId = -1;
+	private byte[] compiled;
+	private boolean valid;
+	private java.lang.String modelCheckerPluginClassName;
 
 	public long getOid() {
 		return this.oid;
@@ -58,11 +62,23 @@ public class SModelCheckerInstance implements SDataBase
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
+		if (sField.getName().equals("description")) {
+			return getDescription();
+		}
 		if (sField.getName().equals("code")) {
 			return getCode();
 		}
-		if (sField.getName().equals("modelCheckerId")) {
-			return getModelCheckerId();
+		if (sField.getName().equals("compiled")) {
+			return getCompiled();
+		}
+		if (sField.getName().equals("valid")) {
+			return isValid();
+		}
+		if (sField.getName().equals("modelCheckerPluginClassName")) {
+			return getModelCheckerPluginClassName();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -74,12 +90,28 @@ public class SModelCheckerInstance implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("name")) {
+			setName((String)val);
+			return;
+		}
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
+			return;
+		}
 		if (sField.getName().equals("code")) {
 			setCode((String)val);
 			return;
 		}
-		if (sField.getName().equals("modelCheckerId")) {
-			setModelCheckerId((Long)val);
+		if (sField.getName().equals("compiled")) {
+			setCompiled((byte[])val);
+			return;
+		}
+		if (sField.getName().equals("valid")) {
+			setValid((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("modelCheckerPluginClassName")) {
+			setModelCheckerPluginClassName((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -93,6 +125,22 @@ public class SModelCheckerInstance implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
+	public java.lang.String getName() {
+		return name;
+	}
+
+	public void setName(java.lang.String name) {
+		this.name = name;
+	}
+	
+	public java.lang.String getDescription() {
+		return description;
+	}
+
+	public void setDescription(java.lang.String description) {
+		this.description = description;
+	}
+	
 	public java.lang.String getCode() {
 		return code;
 	}
@@ -101,12 +149,28 @@ public class SModelCheckerInstance implements SDataBase
 		this.code = code;
 	}
 	
-	public long getModelCheckerId() {
-		return modelCheckerId;
+	public byte[] getCompiled() {
+		return compiled;
 	}
 
-	public void setModelCheckerId(long modelCheckerId) {
-		this.modelCheckerId = modelCheckerId;
+	public void setCompiled(byte[] compiled) {
+		this.compiled = compiled;
+	}
+	
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	
+	public java.lang.String getModelCheckerPluginClassName() {
+		return modelCheckerPluginClassName;
+	}
+
+	public void setModelCheckerPluginClassName(java.lang.String modelCheckerPluginClassName) {
+		this.modelCheckerPluginClassName = modelCheckerPluginClassName;
 	}
 	
 	@Override

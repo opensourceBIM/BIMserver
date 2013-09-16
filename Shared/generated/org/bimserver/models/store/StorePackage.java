@@ -1214,22 +1214,13 @@ public interface StorePackage extends EPackage {
 	int USER_SETTINGS__SERVICES = 13;
 
 	/**
-	 * The feature id for the '<em><b>Model Checkers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_SETTINGS__MODEL_CHECKERS = 14;
-
-	/**
 	 * The number of structural features of the '<em>User Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SETTINGS_FEATURE_COUNT = 15;
+	int USER_SETTINGS_FEATURE_COUNT = 14;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginConfigurationImpl <em>Plugin Configuration</em>}' class.
@@ -6239,14 +6230,14 @@ public interface StorePackage extends EPackage {
 	int MODEL_CHECKER_RESULT_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.ModelCheckerPluginConfigurationImpl <em>Model Checker Plugin Configuration</em>}' class.
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl <em>Model Checker Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.ModelCheckerPluginConfigurationImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerPluginConfiguration()
+	 * @see org.bimserver.models.store.impl.ModelCheckerInstanceImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerInstance()
 	 * @generated
 	 */
-	int MODEL_CHECKER_PLUGIN_CONFIGURATION = 92;
+	int MODEL_CHECKER_INSTANCE = 92;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6255,16 +6246,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHECKER_PLUGIN_CONFIGURATION__NAME = PLUGIN_CONFIGURATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_CONFIGURATION__ENABLED = PLUGIN_CONFIGURATION__ENABLED;
+	int MODEL_CHECKER_INSTANCE__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -6273,53 +6255,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHECKER_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
-
-	/**
-	 * The feature id for the '<em><b>Settings</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_CONFIGURATION__SETTINGS = PLUGIN_CONFIGURATION__SETTINGS;
-
-	/**
-	 * The feature id for the '<em><b>User Settings</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_CONFIGURATION__USER_SETTINGS = PLUGIN_CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Model Checker Plugin Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl <em>Model Checker Instance</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.ModelCheckerInstanceImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerInstance()
-	 * @generated
-	 */
-	int MODEL_CHECKER_INSTANCE = 93;
+	int MODEL_CHECKER_INSTANCE__DESCRIPTION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Code</b></em>' attribute.
@@ -6328,16 +6264,34 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHECKER_INSTANCE__CODE = 0;
+	int MODEL_CHECKER_INSTANCE__CODE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Model Checker</b></em>' reference.
+	 * The feature id for the '<em><b>Compiled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHECKER_INSTANCE__MODEL_CHECKER = 1;
+	int MODEL_CHECKER_INSTANCE__COMPILED = 3;
+
+	/**
+	 * The feature id for the '<em><b>Valid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CHECKER_INSTANCE__VALID = 4;
+
+	/**
+	 * The feature id for the '<em><b>Model Checker Plugin Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME = 5;
 
 	/**
 	 * The number of structural features of the '<em>Model Checker Instance</em>' class.
@@ -6346,7 +6300,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHECKER_INSTANCE_FEATURE_COUNT = 2;
+	int MODEL_CHECKER_INSTANCE_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ModelCheckerPluginDescriptorImpl <em>Model Checker Plugin Descriptor</em>}' class.
@@ -6356,7 +6310,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerPluginDescriptor()
 	 * @generated
 	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR = 94;
+	int MODEL_CHECKER_PLUGIN_DESCRIPTOR = 93;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
@@ -6447,7 +6401,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 95;
+	int USER_TYPE = 94;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -6457,7 +6411,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 96;
+	int SI_PREFIX = 95;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -6467,7 +6421,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 97;
+	int OBJECT_STATE = 96;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -6477,7 +6431,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 98;
+	int COMPARE_TYPE = 97;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -6487,7 +6441,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 99;
+	int ACTION_STATE = 98;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -6497,7 +6451,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 100;
+	int SERVER_STATE = 99;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -6507,7 +6461,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 101;
+	int EXTENDED_DATA_SCHEMA_TYPE = 100;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -6517,7 +6471,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 102;
+	int TRIGGER = 101;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -6527,7 +6481,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 103;
+	int SERVICE_SIMPLE_TYPE = 102;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -6537,7 +6491,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 104;
+	int PRIMITIVE_ENUM = 103;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -6547,7 +6501,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 105;
+	int NOTIFICTION_RESULT_ENUM = 104;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -6557,7 +6511,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 106;
+	int PROGRESS_TOPIC_TYPE = 105;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ModelCheckerResultType <em>Model Checker Result Type</em>}' enum.
@@ -6567,7 +6521,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultType()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_TYPE = 107;
+	int MODEL_CHECKER_RESULT_TYPE = 106;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -6577,7 +6531,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 108;
+	int DATA_HANDLER = 107;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -7879,17 +7833,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUserSettings_Services();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getModelCheckers <em>Model Checkers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Model Checkers</em>'.
-	 * @see org.bimserver.models.store.UserSettings#getModelCheckers()
-	 * @see #getUserSettings()
-	 * @generated
-	 */
-	EReference getUserSettings_ModelCheckers();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginConfiguration <em>Plugin Configuration</em>}'.
@@ -11603,27 +11546,6 @@ public interface StorePackage extends EPackage {
 	EReference getModelCheckerResult_Items();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.ModelCheckerPluginConfiguration <em>Model Checker Plugin Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Checker Plugin Configuration</em>'.
-	 * @see org.bimserver.models.store.ModelCheckerPluginConfiguration
-	 * @generated
-	 */
-	EClass getModelCheckerPluginConfiguration();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ModelCheckerPluginConfiguration#getUserSettings <em>User Settings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User Settings</em>'.
-	 * @see org.bimserver.models.store.ModelCheckerPluginConfiguration#getUserSettings()
-	 * @see #getModelCheckerPluginConfiguration()
-	 * @generated
-	 */
-	EReference getModelCheckerPluginConfiguration_UserSettings();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ModelCheckerInstance <em>Model Checker Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11632,6 +11554,28 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getModelCheckerInstance();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ModelCheckerInstance#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.ModelCheckerInstance#getName()
+	 * @see #getModelCheckerInstance()
+	 * @generated
+	 */
+	EAttribute getModelCheckerInstance_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ModelCheckerInstance#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.ModelCheckerInstance#getDescription()
+	 * @see #getModelCheckerInstance()
+	 * @generated
+	 */
+	EAttribute getModelCheckerInstance_Description();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ModelCheckerInstance#getCode <em>Code</em>}'.
@@ -11645,15 +11589,37 @@ public interface StorePackage extends EPackage {
 	EAttribute getModelCheckerInstance_Code();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ModelCheckerInstance#getModelChecker <em>Model Checker</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ModelCheckerInstance#getCompiled <em>Compiled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model Checker</em>'.
-	 * @see org.bimserver.models.store.ModelCheckerInstance#getModelChecker()
+	 * @return the meta object for the attribute '<em>Compiled</em>'.
+	 * @see org.bimserver.models.store.ModelCheckerInstance#getCompiled()
 	 * @see #getModelCheckerInstance()
 	 * @generated
 	 */
-	EReference getModelCheckerInstance_ModelChecker();
+	EAttribute getModelCheckerInstance_Compiled();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ModelCheckerInstance#isValid <em>Valid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Valid</em>'.
+	 * @see org.bimserver.models.store.ModelCheckerInstance#isValid()
+	 * @see #getModelCheckerInstance()
+	 * @generated
+	 */
+	EAttribute getModelCheckerInstance_Valid();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ModelCheckerInstance#getModelCheckerPluginClassName <em>Model Checker Plugin Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Model Checker Plugin Class Name</em>'.
+	 * @see org.bimserver.models.store.ModelCheckerInstance#getModelCheckerPluginClassName()
+	 * @see #getModelCheckerInstance()
+	 * @generated
+	 */
+	EAttribute getModelCheckerInstance_ModelCheckerPluginClassName();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ModelCheckerPluginDescriptor <em>Model Checker Plugin Descriptor</em>}'.
@@ -12795,14 +12761,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference USER_SETTINGS__SERVICES = eINSTANCE.getUserSettings_Services();
-
-		/**
-		 * The meta object literal for the '<em><b>Model Checkers</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USER_SETTINGS__MODEL_CHECKERS = eINSTANCE.getUserSettings_ModelCheckers();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginConfigurationImpl <em>Plugin Configuration</em>}' class.
@@ -15733,24 +15691,6 @@ public interface StorePackage extends EPackage {
 		EReference MODEL_CHECKER_RESULT__ITEMS = eINSTANCE.getModelCheckerResult_Items();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelCheckerPluginConfigurationImpl <em>Model Checker Plugin Configuration</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.ModelCheckerPluginConfigurationImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerPluginConfiguration()
-		 * @generated
-		 */
-		EClass MODEL_CHECKER_PLUGIN_CONFIGURATION = eINSTANCE.getModelCheckerPluginConfiguration();
-
-		/**
-		 * The meta object literal for the '<em><b>User Settings</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_CHECKER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getModelCheckerPluginConfiguration_UserSettings();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl <em>Model Checker Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -15761,6 +15701,22 @@ public interface StorePackage extends EPackage {
 		EClass MODEL_CHECKER_INSTANCE = eINSTANCE.getModelCheckerInstance();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_CHECKER_INSTANCE__NAME = eINSTANCE.getModelCheckerInstance_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_CHECKER_INSTANCE__DESCRIPTION = eINSTANCE.getModelCheckerInstance_Description();
+
+		/**
 		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -15769,12 +15725,28 @@ public interface StorePackage extends EPackage {
 		EAttribute MODEL_CHECKER_INSTANCE__CODE = eINSTANCE.getModelCheckerInstance_Code();
 
 		/**
-		 * The meta object literal for the '<em><b>Model Checker</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Compiled</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_CHECKER_INSTANCE__MODEL_CHECKER = eINSTANCE.getModelCheckerInstance_ModelChecker();
+		EAttribute MODEL_CHECKER_INSTANCE__COMPILED = eINSTANCE.getModelCheckerInstance_Compiled();
+
+		/**
+		 * The meta object literal for the '<em><b>Valid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_CHECKER_INSTANCE__VALID = eINSTANCE.getModelCheckerInstance_Valid();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Checker Plugin Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME = eINSTANCE.getModelCheckerInstance_ModelCheckerPluginClassName();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelCheckerPluginDescriptorImpl <em>Model Checker Plugin Descriptor</em>}' class.

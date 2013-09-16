@@ -26,8 +26,12 @@ import org.bimserver.emf.IdEObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.bimserver.models.store.ModelCheckerInstance#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ModelCheckerInstance#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.ModelCheckerInstance#getCode <em>Code</em>}</li>
- *   <li>{@link org.bimserver.models.store.ModelCheckerInstance#getModelChecker <em>Model Checker</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ModelCheckerInstance#getCompiled <em>Compiled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ModelCheckerInstance#isValid <em>Valid</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ModelCheckerInstance#getModelCheckerPluginClassName <em>Model Checker Plugin Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,6 +41,58 @@ import org.bimserver.emf.IdEObject;
  * @generated
  */
 public interface ModelCheckerInstance extends IdEObject {
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.bimserver.models.store.StorePackage#getModelCheckerInstance_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ModelCheckerInstance#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.bimserver.models.store.StorePackage#getModelCheckerInstance_Description()
+	 * @model
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ModelCheckerInstance#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Code</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,29 +120,81 @@ public interface ModelCheckerInstance extends IdEObject {
 	void setCode(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Model Checker</b></em>' reference.
+	 * Returns the value of the '<em><b>Compiled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Model Checker</em>' reference isn't clear,
+	 * If the meaning of the '<em>Compiled</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Model Checker</em>' reference.
-	 * @see #setModelChecker(ModelCheckerPluginConfiguration)
-	 * @see org.bimserver.models.store.StorePackage#getModelCheckerInstance_ModelChecker()
+	 * @return the value of the '<em>Compiled</em>' attribute.
+	 * @see #setCompiled(byte[])
+	 * @see org.bimserver.models.store.StorePackage#getModelCheckerInstance_Compiled()
 	 * @model
 	 * @generated
 	 */
-	ModelCheckerPluginConfiguration getModelChecker();
+	byte[] getCompiled();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ModelCheckerInstance#getModelChecker <em>Model Checker</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.ModelCheckerInstance#getCompiled <em>Compiled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Model Checker</em>' reference.
-	 * @see #getModelChecker()
+	 * @param value the new value of the '<em>Compiled</em>' attribute.
+	 * @see #getCompiled()
 	 * @generated
 	 */
-	void setModelChecker(ModelCheckerPluginConfiguration value);
+	void setCompiled(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Valid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Valid</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Valid</em>' attribute.
+	 * @see #setValid(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getModelCheckerInstance_Valid()
+	 * @model
+	 * @generated
+	 */
+	boolean isValid();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ModelCheckerInstance#isValid <em>Valid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Valid</em>' attribute.
+	 * @see #isValid()
+	 * @generated
+	 */
+	void setValid(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Model Checker Plugin Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model Checker Plugin Class Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model Checker Plugin Class Name</em>' attribute.
+	 * @see #setModelCheckerPluginClassName(String)
+	 * @see org.bimserver.models.store.StorePackage#getModelCheckerInstance_ModelCheckerPluginClassName()
+	 * @model
+	 * @generated
+	 */
+	String getModelCheckerPluginClassName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ModelCheckerInstance#getModelCheckerPluginClassName <em>Model Checker Plugin Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Model Checker Plugin Class Name</em>' attribute.
+	 * @see #getModelCheckerPluginClassName()
+	 * @generated
+	 */
+	void setModelCheckerPluginClassName(String value);
 
 } // ModelCheckerInstance

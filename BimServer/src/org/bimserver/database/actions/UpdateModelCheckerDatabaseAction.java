@@ -17,13 +17,41 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.BimServer;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelCheckerPluginConfiguration;
+import org.bimserver.models.store.ModelCheckerInstance;
+import org.bimserver.plugins.modelchecker.ModelCheckException;
+import org.bimserver.plugins.modelchecker.ModelChecker;
+import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
+import org.bimserver.shared.exceptions.UserException;
 
-public class UpdateModelCheckerDatabaseAction extends UpdateDatabaseAction<ModelCheckerPluginConfiguration> {
+public class UpdateModelCheckerDatabaseAction extends UpdateDatabaseAction<ModelCheckerInstance> {
 
-	public UpdateModelCheckerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ModelCheckerPluginConfiguration modelChecker) {
+	private BimServer bimServer;
+
+	public UpdateModelCheckerDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, ModelCheckerInstance modelChecker) {
 		super(databaseSession, accessMethod, modelChecker);
+		this.bimServer = bimServer;
+	}
+	
+	@Override
+	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		ModelCheckerInstance modelCheckerInstance = getIdEObject();
+		ModelCheckerPlugin modelCheckerPlugin = bimServer.getPluginManager().getModelCheckerPlugin(modelCheckerInstance.getModelCheckerPluginClassName(), true);
+		if (modelCheckerPlugin == null) {
+			throw new UserException("Model Checker Plugin \"" + modelCheckerInstance.getModelCheckerPluginClassName() + "\" not found/enabled");
+		}
+		ModelChecker modelChecker = modelCheckerPlugin.createModelChecker(null);
+		try {
+			byte[] result = modelChecker.compile(modelCheckerInstance.getCode());
+			modelCheckerInstance.setValid(true);
+			modelCheckerInstance.setCompiled(result);
+		} catch (ModelCheckException e) {
+			throw new UserException(e);
+		}
+		return super.execute();
 	}
 }

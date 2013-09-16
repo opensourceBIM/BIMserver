@@ -39,11 +39,6 @@ public class AsyncPluginInterface {
 		void error(Exception e);
 	}
 	
-	public interface AddModelCheckerCallback {
-		void success();
-		void error(Exception e);
-	}
-	
 	public interface AddModelCompareCallback {
 		void success();
 		void error(Exception e);
@@ -136,11 +131,6 @@ public class AsyncPluginInterface {
 	
 	public interface GetAllModelCheckerPluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor> result);
-		void error(Exception e);
-	}
-	
-	public interface GetAllModelCheckersCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration> result);
 		void error(Exception e);
 	}
 	
@@ -256,16 +246,6 @@ public class AsyncPluginInterface {
 	
 	public interface GetInternalServiceByIdCallback {
 		void success(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration result);
-		void error(Exception e);
-	}
-	
-	public interface GetModelCheckerByIdCallback {
-		void success(org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration result);
-		void error(Exception e);
-	}
-	
-	public interface GetModelCheckerByNameCallback {
-		void success(org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration result);
 		void error(Exception e);
 	}
 	
@@ -399,11 +379,6 @@ public class AsyncPluginInterface {
 		void error(Exception e);
 	}
 	
-	public interface UpdateModelCheckerCallback {
-		void success();
-		void error(Exception e);
-	}
-	
 	public interface UpdateModelCompareCallback {
 		void success();
 		void error(Exception e);
@@ -454,19 +429,6 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					syncService.addInternalService(internalService);
-					callback.success();
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void addModelChecker(final org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration modelChecker, final AddModelCheckerCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					syncService.addModelChecker(modelChecker);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);
@@ -711,18 +673,6 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllModelCheckerPluginDescriptors());
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getAllModelCheckers(final java.lang.Boolean onlyEnabled, final GetAllModelCheckersCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getAllModelCheckers(onlyEnabled));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -999,30 +949,6 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getInternalServiceById(oid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getModelCheckerById(final java.lang.Long oid, final GetModelCheckerByIdCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getModelCheckerById(oid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getModelCheckerByName(final java.lang.String name, final GetModelCheckerByNameCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getModelCheckerByName(name));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -1344,19 +1270,6 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					syncService.updateInternalService(internalService);
-					callback.success();
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void updateModelChecker(final org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration modelChecker, final UpdateModelCheckerCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					syncService.updateModelChecker(modelChecker);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);

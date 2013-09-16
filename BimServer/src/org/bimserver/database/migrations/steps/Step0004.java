@@ -5,7 +5,6 @@ import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0004 extends Migration {
@@ -33,13 +32,13 @@ public class Step0004 extends Migration {
 		schema.createEAttribute(modelCheckerResult, "valid", EcorePackage.eINSTANCE.getEBoolean());
 		schema.createEReference(modelCheckerResult, "items", modelCheckerResultItem, Multiplicity.MANY);
 		
-		// ModelChecker plugin
-		EClass pluginConfiguration = schema.getEClass("store", "PluginConfiguration");
-		EClass modelCheckerPluginConfiguration = schema.createEClass("store", "ModelCheckerPluginConfiguration", pluginConfiguration);
-
 		EClass modelCheckerInstance = schema.createEClass("store", "ModelCheckerInstance");
+		schema.createEAttribute(modelCheckerInstance, "name", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(modelCheckerInstance, "description", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(modelCheckerInstance, "code", EcorePackage.eINSTANCE.getEString());
-		schema.createEReference(modelCheckerInstance, "modelChecker", modelCheckerPluginConfiguration, Multiplicity.SINGLE);
+		schema.createEAttribute(modelCheckerInstance, "compiled", EcorePackage.eINSTANCE.getEByteArray());
+		schema.createEAttribute(modelCheckerInstance, "valid", EcorePackage.eINSTANCE.getEBoolean());
+		schema.createEAttribute(modelCheckerInstance, "modelCheckerPluginClassName", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		
 		// References to plugin
 		EClass service = schema.getEClass("store", "Service");
@@ -47,17 +46,6 @@ public class Step0004 extends Migration {
 		
 		EClass project = schema.getEClass("store", "Project");
 		schema.createEReference(project, "modelCheckers", modelCheckerInstance, Multiplicity.MANY);
-		
-		EEnum primitiveEnum = schema.getEEnum("store", "PrimitiveEnum");
-		schema.createEEnumLiteral(primitiveEnum, "CODE");
-		
-		EClass userSettings = schema.getEClass("store", "UserSettings");
-		EReference userSettingsModelCheckers = schema.createEReference(userSettings, "modelCheckers", modelCheckerPluginConfiguration, Multiplicity.MANY);
-		EReference modelCheckerUserSettings = schema.createEReference(modelCheckerPluginConfiguration, "userSettings", userSettings, Multiplicity.SINGLE);
-		
-		link(userSettingsModelCheckers, modelCheckerUserSettings);
-		userSettingsModelCheckers.setEOpposite(modelCheckerUserSettings);
-		modelCheckerUserSettings.setEOpposite(userSettingsModelCheckers);
 		
 		schema.createEClass("store", "ModelCheckerPluginDescriptor", schema.getEClass("store", "PluginDescriptor"));
 	}

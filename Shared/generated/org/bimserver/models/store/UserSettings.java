@@ -41,7 +41,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultObjectIDM <em>Default Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getServices <em>Services</em>}</li>
- *   <li>{@link org.bimserver.models.store.UserSettings#getModelCheckers <em>Model Checkers</em>}</li>
  * </ul>
  * </p>
  *
@@ -350,23 +349,5 @@ public interface UserSettings extends IdEObject {
 	 * @generated
 	 */
 	EList<InternalServicePluginConfiguration> getServices();
-
-	/**
-	 * Returns the value of the '<em><b>Model Checkers</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.store.ModelCheckerPluginConfiguration}.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ModelCheckerPluginConfiguration#getUserSettings <em>User Settings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Model Checkers</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Model Checkers</em>' reference list.
-	 * @see org.bimserver.models.store.StorePackage#getUserSettings_ModelCheckers()
-	 * @see org.bimserver.models.store.ModelCheckerPluginConfiguration#getUserSettings
-	 * @model opposite="userSettings"
-	 * @generated
-	 */
-	EList<ModelCheckerPluginConfiguration> getModelCheckers();
 
 } // UserSettings

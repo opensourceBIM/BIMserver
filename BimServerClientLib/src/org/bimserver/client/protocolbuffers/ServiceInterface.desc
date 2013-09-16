@@ -1,5 +1,5 @@
 
-î”
+äﬁ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -43,9 +43,9 @@ revisionId	 (
 readRevision (
 profileIdentifier (	
 	projectId (
-profileDescription (	
-url (	
-modelCheckers (
+profileDescription (	
+modelCheckers (
+url (	
 serviceName	 (	=
 notificationProtocol
  (2.org.bimserver.pb.SAccessMethod
@@ -53,10 +53,10 @@ revisionId	 (
 rid (
 providerName (	
 description (	
-oid (
-writeRevisionId (
-readExtendedDataId (
-userId (
+oid (
+userId (
+writeRevisionId (
+readExtendedDataId (
 name (	
 serviceIdentifier (	
 writeExtendedDataId (
@@ -65,7 +65,18 @@ revisionId	 (
 AddLocalServiceToProjectRequest
 poid (,
 sService (2.org.bimserver.pb.SService
-internalServiceOid ("X
+internalServiceOid ("®
+SModelCheckerInstance
+valid (
+rid (
+oid (
+description (	
+compiled (
+name (	
+code (	#
+modelCheckerPluginClassName (	"_
+AddModelCheckerRequestE
+modelCheckerInstance (2'.org.bimserver.pb.SModelCheckerInstance"X
 AddServiceToProjectRequest
 poid (,
 sService (2.org.bimserver.pb.SService"á
@@ -77,23 +88,23 @@ revisionId	 (
 resetUrl (	"‘
 SUser
 userSettingsId (
-lastSeen (
-services (
-schemas (
+lastSeen (
+schemas (
+services (
 createdById (
 logs (
 validationToken (-
-state (2.org.bimserver.pb.SObjectState
-hasRightsOn	 (
-passwordHash
- (-
+state (2.org.bimserver.pb.SObjectState
+passwordHash	 (
+hasRightsOn
+ (-
 userType (2.org.bimserver.pb.SUserType
 	createdOn (
 extendedData (
-username (	
-passwordSalt (
-token (	
-rid (
+username (	
+token (	
+rid (
+passwordSalt (
 oid (
 name (	
 validationTokenCreated (
@@ -142,7 +153,10 @@ revisionId	 (
 roid1 (
 roid2 (4
 sCompareType (2.org.bimserver.pb.SCompareType
-mcid ("*
+mcid ("(
+SObjectAdded
+rid (
+oid ("*
 SObjectRemoved
 rid (
 oid ("b
@@ -151,14 +165,7 @@ revisionId	 (
 rid (
 oid (
 oldValue (	
-	fieldName (	"(
-SObjectAdded
-rid (
-oid ("X
-SListDataValue,
-values (2.org.bimserver.pb.SDataValue
-rid (
-oid ("A
+	fieldName (	"A
 SSimpleDataValue
 rid (
 oid (
@@ -167,13 +174,17 @@ revisionId	 (
 guid (	
 typeName (	
 rid (
-oid ("í
+oid ("X
+SListDataValue,
+values (2.org.bimserver.pb.SDataValue
+rid (
+oid ("í
 
 SDataValue
-__actual_type (	:
-__SListDataValue (2 .org.bimserver.pb.SListDataValue>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue
+__actual_type (	>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue:
+__SListDataValue (2 .org.bimserver.pb.SListDataValue
 rid (
 oid (
 	fieldName (	"
@@ -185,10 +196,10 @@ SDataValue
 name (	
 type (	"§
 SCompareItem
-__actual_type (	:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded
+__actual_type (	6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded:
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified
 rid (
 oid (1
 
@@ -311,7 +322,16 @@ identifier (	
 url (	"r
 %GetAllLocalServiceDescriptorsResponse
 errorMessage (	3
-value (2$.org.bimserver.pb.SServiceDescriptor"8
+value (2$.org.bimserver.pb.SServiceDescriptor"
+GetAllModelCheckersRequest"k
+GetAllModelCheckersResponse
+errorMessage (	6
+value (2'.org.bimserver.pb.SModelCheckerInstance"3
+#GetAllModelCheckersOfProjectRequest
+poid ("t
+$GetAllModelCheckersOfProjectResponse
+errorMessage (	6
+value (2'.org.bimserver.pb.SModelCheckerInstance"8
 (GetAllNonAuthorizedProjectsOfUserRequest
 uoid ("á
 SProject
@@ -323,10 +343,10 @@ identifier (	
 concreteRevisions (
 modelCheckers (
 
-id (
-extendedData	 (
-parentId
- (
+id (
+parentId	 (
+extendedData
+ (
 hasAuthorizedUsers (
 rid (
 geoTagId (>
@@ -335,9 +355,9 @@ identifier (	
 oid (
 name (	
 subProjects (
-lastRevisionId (
-createdDate (
-	revisions (
+lastRevisionId (
+	revisions (
+createdDate (
 	checkouts ("l
 )GetAllNonAuthorizedProjectsOfUserResponse
 errorMessage (	)
@@ -449,7 +469,12 @@ $GetAvailableClassesInRevisionRequest
 x	 ("S
 GetGeoTagResponse
 errorMessage (	(
-value (2.org.bimserver.pb.SGeoTag"1
+value (2.org.bimserver.pb.SGeoTag"0
+GetModelCheckerInstanceRequest
+mcioid ("o
+GetModelCheckerInstanceResponse
+errorMessage (	6
+value (2'.org.bimserver.pb.SModelCheckerInstance"1
 GetOidByGuidRequest
 roid (
 guid (	";
@@ -507,87 +532,53 @@ $GetAvailableClassesInRevisionRequest
 errorMessage (	&
 value (2.org.bimserver.pb.SUser")
 GetUserRelatedLogsRequest
-uoid ("d
-SExtendedDataAddedToRevision
+uoid ("1
+SNewObjectIDMUploaded
 rid (
-oid (
-extendedDataId (
-
-revisionId ("*
-SServerStarted
-rid (
-oid ("¡
-SRemoteServiceCalled
-errors (	
-infos (	
-	serviceId (
-
-percentage (
-rid (
-oid (7
-state (2(.org.bimserver.pb.SNotifictionResultEnum
-warnings (	"*
+oid ("*
 SSettingsSaved
 rid (
-oid ("[
-SRevisionBranched
-newrevisionId (
-rid (
-oid (
-oldrevisionId (",
-SPasswordChanged
+oid ("-
+SNewCheckoutAdded
 rid (
-oid ("(
-SUserDeleted
-rid (
-oid ("*
-SPasswordReset
-rid (
-oid ("(
-SUserChanged
-rid (
-oid ("*
-SUserUndeleted
-rid (
-oid ("B
-SUserAddedToProject
-rid (
-oid (
-	projectId (")
-SNewUserAdded
-rid (
-oid ("F
-SUserRemovedFromProject
-rid (
-oid (
-	projectId ("≈
-SUserRelated
-__actual_type (	>
-__SPasswordChanged (2".org.bimserver.pb.SPasswordChanged6
-__SUserDeleted (2.org.bimserver.pb.SUserDeleted:
-__SPasswordReset (2 .org.bimserver.pb.SPasswordReset6
-__SUserChanged (2.org.bimserver.pb.SUserChanged:
-__SUserUndeleted (2 .org.bimserver.pb.SUserUndeletedD
-__SUserAddedToProject (2%.org.bimserver.pb.SUserAddedToProject8
-__SNewUserAdded (2.org.bimserver.pb.SNewUserAddedL
-__SUserRemovedFromProject	 (2).org.bimserver.pb.SUserRemovedFromProject
-rid
- (
-oid (
-userId ("b
+oid ("ô
+SCheckoutRelated
+__actual_type (	@
+__SNewCheckoutAdded (2#.org.bimserver.pb.SNewCheckoutAdded
+rid (
+oid (
+
+checkoutId ("b
 SExtendedDataAddedToProject
 rid (
 oid (
 	projectId (
-extendedDataId ("%
+extendedDataId ("-
+SProjectUndeleted
+rid (
+oid ("E
+SNewProjectAdded
+rid (
+oid (
+parentProjectId ("+
+SProjectUpdated
+rid (
+oid ("+
+SProjectDeleted
+rid (
+oid ("”
+SProjectRelated
+__actual_type (	@
+__SProjectUndeleted (2#.org.bimserver.pb.SProjectUndeleted>
+__SNewProjectAdded (2".org.bimserver.pb.SNewProjectAdded<
+__SProjectUpdated (2!.org.bimserver.pb.SProjectUpdated<
+__SProjectDeleted (2!.org.bimserver.pb.SProjectDeleted
+rid (
+oid (
+	projectId ("%
 	SDownload
 rid (
-oid ("K
-SDatabaseCreated
-rid (
-oid (
-path (	
-version (",
+oid (",
 SRevisionUpdated
 rid (
 oid ("@
@@ -602,64 +593,98 @@ percentage (
 rid (
 oid (
 
-revisionId ("-
-SNewCheckoutAdded
+revisionId ("d
+SExtendedDataAddedToRevision
 rid (
-oid ("ô
-SCheckoutRelated
-__actual_type (	@
-__SNewCheckoutAdded (2#.org.bimserver.pb.SNewCheckoutAdded
-rid (
-oid (
+oid (
+extendedDataId (
 
-checkoutId ("-
-SProjectUndeleted
-rid (
-oid ("+
-SProjectDeleted
-rid (
-oid ("+
-SProjectUpdated
-rid (
-oid ("E
-SNewProjectAdded
-rid (
-oid (
-parentProjectId ("”
-SProjectRelated
-__actual_type (	@
-__SProjectUndeleted (2#.org.bimserver.pb.SProjectUndeleted<
-__SProjectDeleted (2!.org.bimserver.pb.SProjectDeleted<
-__SProjectUpdated (2!.org.bimserver.pb.SProjectUpdated>
-__SNewProjectAdded (2".org.bimserver.pb.SNewProjectAdded
-rid (
-oid (
-	projectId ("1
-SNewObjectIDMUploaded
-rid (
-oid ("<
+revisionId ("<
 SGeoTagUpdated
 rid (
 geoTagId (
-oid ("¥
+oid (",
+SPasswordChanged
+rid (
+oid ("B
+SUserAddedToProject
+rid (
+oid (
+	projectId ("*
+SUserUndeleted
+rid (
+oid ("*
+SPasswordReset
+rid (
+oid (")
+SNewUserAdded
+rid (
+oid ("(
+SUserDeleted
+rid (
+oid ("F
+SUserRemovedFromProject
+rid (
+oid (
+	projectId ("(
+SUserChanged
+rid (
+oid ("≈
+SUserRelated
+__actual_type (	>
+__SPasswordChanged (2".org.bimserver.pb.SPasswordChangedD
+__SUserAddedToProject (2%.org.bimserver.pb.SUserAddedToProject:
+__SUserUndeleted (2 .org.bimserver.pb.SUserUndeleted:
+__SPasswordReset (2 .org.bimserver.pb.SPasswordReset8
+__SNewUserAdded (2.org.bimserver.pb.SNewUserAdded6
+__SUserDeleted (2.org.bimserver.pb.SUserDeletedL
+__SUserRemovedFromProject (2).org.bimserver.pb.SUserRemovedFromProject6
+__SUserChanged	 (2.org.bimserver.pb.SUserChanged
+rid
+ (
+oid (
+userId ("*
+SServerStarted
+rid (
+oid ("[
+SRevisionBranched
+newrevisionId (
+rid (
+oid (
+oldrevisionId ("K
+SDatabaseCreated
+rid (
+oid (
+path (	
+version ("¡
+SRemoteServiceCalled
+infos (	
+errors (	
+	serviceId (
+
+percentage (
+rid (
+oid (7
+state (2(.org.bimserver.pb.SNotifictionResultEnum
+warnings (	"¥
 
 SLogAction
-__actual_type (	V
-__SExtendedDataAddedToRevision (2..org.bimserver.pb.SExtendedDataAddedToRevision:
-__SServerStarted (2 .org.bimserver.pb.SServerStartedF
-__SRemoteServiceCalled (2&.org.bimserver.pb.SRemoteServiceCalled:
-__SSettingsSaved (2 .org.bimserver.pb.SSettingsSaved@
-__SRevisionBranched (2#.org.bimserver.pb.SRevisionBranched6
-__SUserRelated (2.org.bimserver.pb.SUserRelatedT
-__SExtendedDataAddedToProject (2-.org.bimserver.pb.SExtendedDataAddedToProject0
-__SDownload	 (2.org.bimserver.pb.SDownload>
-__SDatabaseCreated
- (2".org.bimserver.pb.SDatabaseCreated>
-__SRevisionRelated (2".org.bimserver.pb.SRevisionRelated>
-__SCheckoutRelated (2".org.bimserver.pb.SCheckoutRelated<
-__SProjectRelated (2!.org.bimserver.pb.SProjectRelatedH
-__SNewObjectIDMUploaded (2'.org.bimserver.pb.SNewObjectIDMUploaded:
-__SGeoTagUpdated (2 .org.bimserver.pb.SGeoTagUpdated
+__actual_type (	H
+__SNewObjectIDMUploaded (2'.org.bimserver.pb.SNewObjectIDMUploaded:
+__SSettingsSaved (2 .org.bimserver.pb.SSettingsSaved>
+__SCheckoutRelated (2".org.bimserver.pb.SCheckoutRelatedT
+__SExtendedDataAddedToProject (2-.org.bimserver.pb.SExtendedDataAddedToProject<
+__SProjectRelated (2!.org.bimserver.pb.SProjectRelated0
+__SDownload (2.org.bimserver.pb.SDownload>
+__SRevisionRelated (2".org.bimserver.pb.SRevisionRelatedV
+__SExtendedDataAddedToRevision	 (2..org.bimserver.pb.SExtendedDataAddedToRevision:
+__SGeoTagUpdated
+ (2 .org.bimserver.pb.SGeoTagUpdated6
+__SUserRelated (2.org.bimserver.pb.SUserRelated:
+__SServerStarted (2 .org.bimserver.pb.SServerStarted@
+__SRevisionBranched (2#.org.bimserver.pb.SRevisionBranched>
+__SDatabaseCreated (2".org.bimserver.pb.SDatabaseCreatedF
+__SRemoteServiceCalled (2&.org.bimserver.pb.SRemoteServiceCalled
 
 executorId (
 rid (
@@ -669,7 +694,7 @@ executorId (
 GetUserRelatedLogsResponse
 errorMessage (	+
 value (2.org.bimserver.pb.SLogAction"
-GetUserSettingsRequest"ü
+GetUserSettingsRequest"à
 SUserSettings
 serializers (
 services (
@@ -678,18 +703,17 @@ executorId (
 defaultModelMergerId (
 
 objectIDMs (
-defaultObjectIDMId (
-modelCheckers (
-defaultModelCompareId	 (
-defaultQueryEngineId
- (
-rid (
-renderEngines (
-deserializers (
-oid (
-defaultRenderEngineId (
-defaultSerializerId (
-modelmergers ("_
+defaultObjectIDMId (
+defaultModelCompareId (
+defaultQueryEngineId	 (
+rid
+ (
+renderEngines (
+deserializers (
+oid (
+defaultRenderEngineId (
+defaultSerializerId (
+modelmergers ("_
 GetUserSettingsResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SUserSettings"'
@@ -733,7 +757,9 @@ objectIDMs (
 errorMessage (	
 value ("A
 UpdateGeoTagRequest*
-sGeoTag (2.org.bimserver.pb.SGeoTag"D
+sGeoTag (2.org.bimserver.pb.SGeoTag"b
+UpdateModelCheckerRequestE
+modelCheckerInstance (2'.org.bimserver.pb.SModelCheckerInstance"D
 UpdateProjectRequest,
 sProject (2.org.bimserver.pb.SProject"G
 UpdateRevisionRequest.
@@ -806,11 +832,12 @@ objectIDMs (
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2¬;
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2Ü@
 ServiceInterfaceg
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponsem
-addLocalServiceToProject1.org.bimserver.pb.AddLocalServiceToProjectRequest.org.bimserver.pb.VoidResponsec
+addLocalServiceToProject1.org.bimserver.pb.AddLocalServiceToProjectRequest.org.bimserver.pb.VoidResponse[
+addModelChecker(.org.bimserver.pb.AddModelCheckerRequest.org.bimserver.pb.VoidResponsec
 addServiceToProject,.org.bimserver.pb.AddServiceToProjectRequest.org.bimserver.pb.VoidResponseN
 addUser .org.bimserver.pb.AddUserRequest!.org.bimserver.pb.AddUserResponses
 addUserToExtendedDataSchema4.org.bimserver.pb.AddUserToExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsei
@@ -831,7 +858,9 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getAllCheckoutsOfRevision2.org.bimserver.pb.GetAllCheckoutsOfRevisionRequest3.org.bimserver.pb.GetAllCheckoutsOfRevisionResponseÑ
 getAllExtendedDataSchemas2.org.bimserver.pb.GetAllExtendedDataSchemasRequest3.org.bimserver.pb.GetAllExtendedDataSchemasResponser
 getAllLocalProfiles,.org.bimserver.pb.GetAllLocalProfilesRequest-.org.bimserver.pb.GetAllLocalProfilesResponseê
-getAllLocalServiceDescriptors6.org.bimserver.pb.GetAllLocalServiceDescriptorsRequest7.org.bimserver.pb.GetAllLocalServiceDescriptorsResponseú
+getAllLocalServiceDescriptors6.org.bimserver.pb.GetAllLocalServiceDescriptorsRequest7.org.bimserver.pb.GetAllLocalServiceDescriptorsResponser
+getAllModelCheckers,.org.bimserver.pb.GetAllModelCheckersRequest-.org.bimserver.pb.GetAllModelCheckersResponseç
+getAllModelCheckersOfProject5.org.bimserver.pb.GetAllModelCheckersOfProjectRequest6.org.bimserver.pb.GetAllModelCheckersOfProjectResponseú
 !getAllNonAuthorizedProjectsOfUser:.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserRequest;.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserResponseú
 !getAllNonAuthorizedUsersOfProject:.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectRequest;.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectResponsex
 getAllPrivateProfiles..org.bimserver.pb.GetAllPrivateProfilesRequest/.org.bimserver.pb.GetAllPrivateProfilesResponseu
@@ -850,7 +879,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getCheckoutWarnings,.org.bimserver.pb.GetCheckoutWarningsRequest-.org.bimserver.pb.GetCheckoutWarningsResponse¢
 #getExtendedDataSchemaFromRepository<.org.bimserver.pb.GetExtendedDataSchemaFromRepositoryRequest=.org.bimserver.pb.GetExtendedDataSchemaFromRepositoryResponseN
 getFile .org.bimserver.pb.GetFileRequest!.org.bimserver.pb.GetFileResponseT
-	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponse]
+	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponse~
+getModelCheckerInstance0.org.bimserver.pb.GetModelCheckerInstanceRequest1.org.bimserver.pb.GetModelCheckerInstanceResponse]
 getOidByGuid%.org.bimserver.pb.GetOidByGuidRequest&.org.bimserver.pb.GetOidByGuidResponsex
 getQueryEngineExample..org.bimserver.pb.GetQueryEngineExampleRequest/.org.bimserver.pb.GetQueryEngineExampleResponseÑ
 getQueryEngineExampleKeys2.org.bimserver.pb.GetQueryEngineExampleKeysRequest3.org.bimserver.pb.GetQueryEngineExampleKeysResponseo
@@ -871,7 +901,8 @@ getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceRes
 triggerNewExtendedData/.org.bimserver.pb.TriggerNewExtendedDataRequest.org.bimserver.pb.VoidResponsea
 triggerNewRevision+.org.bimserver.pb.TriggerNewRevisionRequest.org.bimserver.pb.VoidResponse]
 undeleteUser%.org.bimserver.pb.UndeleteUserRequest&.org.bimserver.pb.UndeleteUserResponseU
-updateGeoTag%.org.bimserver.pb.UpdateGeoTagRequest.org.bimserver.pb.VoidResponseW
+updateGeoTag%.org.bimserver.pb.UpdateGeoTagRequest.org.bimserver.pb.VoidResponsea
+updateModelChecker+.org.bimserver.pb.UpdateModelCheckerRequest.org.bimserver.pb.VoidResponseW
 updateProject&.org.bimserver.pb.UpdateProjectRequest.org.bimserver.pb.VoidResponseY
 updateRevision'.org.bimserver.pb.UpdateRevisionRequest.org.bimserver.pb.VoidResponseW
 

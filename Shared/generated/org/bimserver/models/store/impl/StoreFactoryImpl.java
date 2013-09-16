@@ -253,8 +253,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createModelCheckerResultLine();
 		case StorePackage.MODEL_CHECKER_RESULT:
 			return (EObject) createModelCheckerResult();
-		case StorePackage.MODEL_CHECKER_PLUGIN_CONFIGURATION:
-			return (EObject) createModelCheckerPluginConfiguration();
 		case StorePackage.MODEL_CHECKER_INSTANCE:
 			return (EObject) createModelCheckerInstance();
 		case StorePackage.MODEL_CHECKER_PLUGIN_DESCRIPTOR:
@@ -1264,16 +1262,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ModelCheckerResult createModelCheckerResult() {
 		ModelCheckerResultImpl modelCheckerResult = new ModelCheckerResultImpl();
 		return modelCheckerResult;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelCheckerPluginConfiguration createModelCheckerPluginConfiguration() {
-		ModelCheckerPluginConfigurationImpl modelCheckerPluginConfiguration = new ModelCheckerPluginConfigurationImpl();
-		return modelCheckerPluginConfiguration;
 	}
 
 	/**

@@ -20,28 +20,18 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelCheckerPluginConfiguration;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
+import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.authorization.Authorization;
 
-public class AddModelCheckerDatabaseAction extends AddDatabaseAction<ModelCheckerPluginConfiguration> {
+public class AddModelCheckerDatabaseAction extends AddDatabaseAction<ModelCheckerInstance> {
 
-	private Authorization authorization;
-
-	public AddModelCheckerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, ModelCheckerPluginConfiguration modelChecker) {
-		super(databaseSession, accessMethod, modelChecker);
-		this.authorization = authorization;
+	public AddModelCheckerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ModelCheckerInstance modelCheckerInstance) {
+		super(databaseSession, accessMethod, modelCheckerInstance);
 	}
 	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
-		user.getUserSettings().getModelCheckers().add(getIdEObject());
-		getDatabaseSession().store(user.getUserSettings());
 		return super.execute();
 	}
 }

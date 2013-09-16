@@ -27,9 +27,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	public void addInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws UserException, ServerException {
 	}
 	
-	public void addModelChecker(org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration modelChecker) throws UserException, ServerException {
-	}
-	
 	public void addModelCompare(org.bimserver.interfaces.objects.SModelComparePluginConfiguration modelCompare) throws UserException, ServerException {
 	}
 	
@@ -88,10 +85,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor> getAllModelCheckerPluginDescriptors() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration> getAllModelCheckers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -187,14 +180,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration getModelCheckerById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration getModelCheckerByName(java.lang.String name) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SModelComparePluginConfiguration getModelCompareById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
@@ -287,9 +272,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public void updateInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws UserException, ServerException {
-	}
-	
-	public void updateModelChecker(org.bimserver.interfaces.objects.SModelCheckerPluginConfiguration modelChecker) throws UserException, ServerException {
 	}
 	
 	public void updateModelCompare(org.bimserver.interfaces.objects.SModelComparePluginConfiguration modelCompare) throws UserException, ServerException {
