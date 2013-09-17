@@ -52,6 +52,7 @@ import org.bimserver.database.actions.AddExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.AddExtendedDataToProjectDatabaseAction;
 import org.bimserver.database.actions.AddLocalServiceToProjectDatabaseAction;
 import org.bimserver.database.actions.AddModelCheckerDatabaseAction;
+import org.bimserver.database.actions.AddModelCheckerToProjectDatabaseAction;
 import org.bimserver.database.actions.AddServiceToProjectDatabaseAction;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.AddUserToExtendedDataSchemaDatabaseAction;
@@ -87,6 +88,7 @@ import org.bimserver.database.actions.GetProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
+import org.bimserver.database.actions.RemoveModelCheckerFromProjectDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
 import org.bimserver.database.actions.SetRevisionTagDatabaseAction;
@@ -98,6 +100,7 @@ import org.bimserver.database.actions.UpdateRevisionDatabaseAction;
 import org.bimserver.database.actions.UploadFileDatabaseAction;
 import org.bimserver.database.actions.UserHasCheckinRightsDatabaseAction;
 import org.bimserver.database.actions.UserHasRightsDatabaseAction;
+import org.bimserver.database.actions.ValidateModelCheckerDatabaseAction;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -1114,6 +1117,31 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 	}
 
+	@Override
+	public List<SModelCheckerInstance> getAllRepositoryModelCheckers() throws ServerException, UserException {
+		requireRealUserAuthentication();
+		try {
+			List<SModelCheckerInstance> modelCheckers = new ArrayList<SModelCheckerInstance>();
+			String content = NetUtils.getContent(new URL(getServiceMap().get(SettingsInterface.class).getServiceRepositoryUrl() + "/modelcheckers"), 5000);
+			JSONObject root = new JSONObject(new JSONTokener(content));
+			JSONArray modelCheckersJson = root.getJSONArray("modelcheckers");
+			for (int i = 0; i < modelCheckersJson.length(); i++) {
+				JSONObject modelCheckerJson = modelCheckersJson.getJSONObject(i);
+				
+				SModelCheckerInstance sModelChecker = new SModelCheckerInstance();
+				sModelChecker.setName(modelCheckerJson.getString("name"));
+				sModelChecker.setCode(modelCheckerJson.getString("code"));
+				sModelChecker.setDescription(modelCheckerJson.getString("description"));
+				sModelChecker.setModelCheckerPluginClassName(modelCheckerJson.getString("modelCheckerPluginClassName"));
+			
+				modelCheckers.add(sModelChecker);
+			}
+			return modelCheckers;
+		} catch (Exception e) {
+			return handleException(e);
+		}
+	}
+	
 	public org.bimserver.interfaces.objects.SService getService(Long soid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1154,8 +1182,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			session.close();
 		}
 	}
-
-
 
 	@Override
 	public void deleteService(Long oid) throws ServerException, UserException {
@@ -1416,7 +1442,59 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
+	public void validateModelChecker(SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Void> action = new ValidateModelCheckerDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getBimServer().getSConverter().convertFromSObject(modelCheckerInstance, session));
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
 	public List<SModelCheckerInstance> getAllModelCheckersOfProject(Long poid) throws ServerException, UserException {
-		return null;
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Project project = session.get(poid, Query.getDefault());
+			return getBimServer().getSConverter().convertToSListModelCheckerInstance(project.getModelCheckers());
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void addModelCheckerToProject(Long poid, Long modelCheckerOid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			ModelCheckerInstance modelChecker = session.get(modelCheckerOid, Query.getDefault());
+			AddModelCheckerToProjectDatabaseAction action = new AddModelCheckerToProjectDatabaseAction(session, getInternalAccessMethod(), poid, modelChecker, getAuthorization());
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void removeModelCheckerFromProject(Long poid, Long modelCheckerOid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Boolean> action = new RemoveModelCheckerFromProjectDatabaseAction(getBimServer(), session, getInternalAccessMethod(), modelCheckerOid, poid, getAuthorization());
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

@@ -409,8 +409,12 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	public static VirtualFile fromJar(File file) throws IOException {
+		return fromJar(new FileInputStream(file));
+	}
+
+	public static VirtualFile fromJar(InputStream inputStream) throws IOException {
 		VirtualFile result = new VirtualFile();
-		JarInputStream jarInputStream = new JarInputStream(new FileInputStream(file));
+		JarInputStream jarInputStream = new JarInputStream(inputStream);
 		JarEntry jarEntry = jarInputStream.getNextJarEntry();
 		while (jarEntry != null) {
 			String n = jarEntry.getName();
@@ -424,7 +428,7 @@ public class VirtualFile implements JavaFileObject {
 		}
 		return result;
 	}
-
+	
 	private void setData(byte[] data) {
 		this.data = data;
 	}

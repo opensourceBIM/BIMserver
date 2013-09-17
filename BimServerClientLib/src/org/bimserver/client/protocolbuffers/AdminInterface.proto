@@ -85,17 +85,12 @@ message EnablePluginRequest {
 message GetAllPluginsRequest {
 }
 
+message SModelCheckerPluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
 message SQueryEnginePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SModelComparePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SSerializerPluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -105,7 +100,17 @@ message SModelMergerPluginDescriptor {
 	optional int64 oid = 2;
 }
 
-message SWebModulePluginDescriptor {
+message SSerializerPluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SModelComparePluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SRenderEnginePluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -115,12 +120,7 @@ message SDeserializerPluginDescriptor {
 	optional int64 oid = 2;
 }
 
-message SModelCheckerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SRenderEnginePluginDescriptor {
+message SWebModulePluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -132,14 +132,14 @@ message SServicePluginDescriptor {
 
 message SPluginDescriptor {
 	required string __actual_type = 1;
-	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 2;
-	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 3;
-	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 4;
-	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 5;
-	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 6;
-	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 7;
-	optional SModelCheckerPluginDescriptor __SModelCheckerPluginDescriptor = 8;
-	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 9;
+	optional SModelCheckerPluginDescriptor __SModelCheckerPluginDescriptor = 2;
+	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 3;
+	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 4;
+	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 5;
+	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 6;
+	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 7;
+	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 8;
+	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 9;
 	optional SServicePluginDescriptor __SServicePluginDescriptor = 10;
 	optional string defaultName = 11;
 	optional bool enabled = 12;
@@ -147,8 +147,8 @@ message SPluginDescriptor {
 	optional string pluginInterfaceClassName = 14;
 	optional int32 rid = 15;
 	optional string location = 16;
-	optional int64 oid = 17;
-	optional string description = 18;
+	optional string description = 17;
+	optional int64 oid = 18;
 	repeated int64 configurations = 19;
 	optional string pluginClassName = 20;
 }
@@ -200,8 +200,8 @@ message SDatabaseInformationCategory {
 }
 
 message SDatabaseInformation {
-	optional int64 created = 1;
-	optional int32 numberOfProjects = 2;
+	optional int32 numberOfProjects = 1;
+	optional int64 created = 2;
 	optional int32 rid = 3;
 	optional string location = 4;
 	optional int64 oid = 5;
@@ -224,29 +224,29 @@ message GetJavaInfoRequest {
 
 message SJavaInfo {
 	optional string javaFileSeparator = 1;
-	optional string javaVendor = 2;
-	optional string javavmVersion = 3;
-	optional string javaIoTmp = 4;
-	optional string javaspecVendor = 5;
-	optional int32 threads = 6;
-	optional string javaVendorurl = 7;
-	optional int64 oid = 8;
-	optional string javaExtdir = 9;
-	optional string javaVersion = 10;
-	optional string javavmVendor = 11;
-	optional int64 heapTotal = 12;
-	repeated string javaLibrarypath = 13;
-	optional string javaspecVersion = 14;
-	optional string javaClassVersion = 15;
-	optional int64 heapFree = 16;
-	optional string javaHome = 17;
-	optional string javaPathSeparator = 18;
-	optional string javaLineSeparator = 19;
-	optional int32 rid = 20;
-	repeated string javaClasspath = 21;
-	optional int64 heapUsed = 22;
-	optional string javaspecName = 23;
-	optional string javavmName = 24;
+	optional string javaspecVersion = 2;
+	optional string javaClassVersion = 3;
+	optional string javaVendor = 4;
+	optional int64 heapFree = 5;
+	optional string javavmVersion = 6;
+	optional string javaHome = 7;
+	optional string javaIoTmp = 8;
+	optional string javaPathSeparator = 9;
+	optional string javaspecVendor = 10;
+	optional string javaLineSeparator = 11;
+	optional int32 threads = 12;
+	optional int32 rid = 13;
+	repeated string javaClasspath = 14;
+	optional int64 oid = 15;
+	optional string javaVendorurl = 16;
+	optional string javaExtdir = 17;
+	optional int64 heapUsed = 18;
+	optional string javaVersion = 19;
+	optional string javavmVendor = 20;
+	optional string javaspecName = 21;
+	optional string javavmName = 22;
+	optional int64 heapTotal = 23;
+	repeated string javaLibrarypath = 24;
 	optional int64 heapMax = 25;
 }
 
@@ -297,8 +297,8 @@ message GetMigrationsRequest {
 message SMigration {
 	optional bool executed = 1;
 	optional int32 rid = 2;
-	optional int64 oid = 3;
-	optional string description = 4;
+	optional string description = 3;
+	optional int64 oid = 4;
 	optional int32 number = 5;
 }
 

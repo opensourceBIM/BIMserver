@@ -1,5 +1,6 @@
 package org.bimserver.javamodelchecker;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
@@ -36,11 +37,18 @@ public class JavaModelChecker implements ModelChecker {
 	}
 
 	@Override
-	public ModelCheckerResult check(IfcModelInterface model, String code) throws ModelCheckException {
+	public ModelCheckerResult check(IfcModelInterface model, byte[] compiledCode) throws ModelCheckException {
 		try {
-			JavaModelCheckerInterface modelCheckerInterface = createQueryInterface(code);
-			ModelCheckerResult modelCheckerResult = modelCheckerInterface.check(model);
-			return modelCheckerResult;
+			VirtualFile baseDir = VirtualFile.fromJar(new ByteArrayInputStream(compiledCode));
+			VirtualClassLoader loader = new VirtualClassLoader(classLoader, baseDir);
+			try {
+				Class<?> loadClass = loader.loadClass("org.bimserver.javamodelchecker.Implementation");
+				JavaModelCheckerInterface modelCheckerInterface = (JavaModelCheckerInterface) loadClass.newInstance();
+				ModelCheckerResult modelCheckerResult = modelCheckerInterface.check(model);
+				return modelCheckerResult;
+			} catch (Exception e) {
+				throw new CompileException(e);
+			}
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
@@ -67,46 +75,6 @@ public class JavaModelChecker implements ModelChecker {
 					fileList.add(f);
 				}
 			}
-		}
-	}
-
-	private JavaModelCheckerInterface createQueryInterface(String code) throws CompileException {
-		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-		if (compiler == null) {
-			throw new CompileException("JDK needed for compile tasks");
-		}
-		VirtualFile baseDir = new VirtualFile();
-		VirtualFile file = baseDir.createFile("org" + File.separator + "bimserver" + File.separator + "jqep" + File.separator + "Query.java");
-		file.setStringContent(code);
-		VirtualFileManager myFileManager = new VirtualFileManager(pluginFileManager, classLoader, baseDir);
-
-		List<VirtualFile> fileList = new ArrayList<VirtualFile>();
-		getJavaFiles(fileList, baseDir);
-		List<VirtualFile> compilationUnits = baseDir.getAllJavaFileObjects();
-
-		List<String> options = new ArrayList<String>();
-		options.add("-cp");
-		options.add(libPath);
-		// options.add("-target");
-		// options.add("7");
-
-		DiagnosticCollector<JavaFileObject> diagnosticsCollector = new DiagnosticCollector<JavaFileObject>();
-		compiler.getTask(null, myFileManager, diagnosticsCollector, options, null, compilationUnits).call();
-		List<Diagnostic<? extends JavaFileObject>> diagnostics = diagnosticsCollector.getDiagnostics();
-		for (Diagnostic<? extends JavaFileObject> d : diagnostics) {
-			if (d.getKind() == Kind.ERROR) {
-				throw new CompileException(d.getMessage(Locale.ENGLISH));
-			} else if (d.getKind() == Kind.WARNING) {
-				throw new CompileException(d.getMessage(Locale.ENGLISH));
-			}
-		}
-		VirtualClassLoader loader = new VirtualClassLoader(classLoader, baseDir);
-		try {
-			Class<?> loadClass = loader.loadClass("org.bimserver.jqep.Query");
-			JavaModelCheckerInterface newInstance = (JavaModelCheckerInterface) loadClass.newInstance();
-			return newInstance;
-		} catch (Exception e) {
-			throw new CompileException(e);
 		}
 	}
 

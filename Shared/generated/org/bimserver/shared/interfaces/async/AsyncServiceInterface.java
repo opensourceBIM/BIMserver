@@ -49,6 +49,11 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface AddModelCheckerToProjectCallback {
+		void success();
+		void error(Exception e);
+	}
+	
 	public interface AddServiceToProjectCallback {
 		void success();
 		void error(Exception e);
@@ -194,6 +199,11 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface GetAllRepositoryModelCheckersCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SModelCheckerInstance> result);
+		void error(Exception e);
+	}
+	
 	public interface GetAllRevisionsByUserCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SRevision> result);
 		void error(Exception e);
@@ -314,6 +324,11 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface RemoveModelCheckerFromProjectCallback {
+		void success();
+		void error(Exception e);
+	}
+	
 	public interface RemoveUserFromExtendedDataSchemaCallback {
 		void success();
 		void error(Exception e);
@@ -389,6 +404,11 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
+	public interface ValidateModelCheckerCallback {
+		void success();
+		void error(Exception e);
+	}
+	
 
 
 	public void addExtendedDataSchema(final org.bimserver.interfaces.objects.SExtendedDataSchema extendedDataSchema, final AddExtendedDataSchemaCallback callback) {
@@ -435,6 +455,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					syncService.addModelChecker(modelCheckerInstance);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void addModelCheckerToProject(final java.lang.Long poid, final java.lang.Long modelCheckerOid, final AddModelCheckerToProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.addModelCheckerToProject(poid, modelCheckerOid);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);
@@ -796,6 +829,18 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void getAllRepositoryModelCheckers(final GetAllRepositoryModelCheckersCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllRepositoryModelCheckers());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getAllRevisionsByUser(final java.lang.Long uoid, final GetAllRevisionsByUserCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1084,6 +1129,19 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void removeModelCheckerFromProject(final java.lang.Long poid, final java.lang.Long modelCheckerOid, final RemoveModelCheckerFromProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.removeModelCheckerFromProject(poid, modelCheckerOid);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void removeUserFromExtendedDataSchema(final java.lang.Long uoid, final java.lang.Long edsid, final RemoveUserFromExtendedDataSchemaCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1266,6 +1324,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.userHasRights(poid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void validateModelChecker(final org.bimserver.interfaces.objects.SModelCheckerInstance modelCheckerInstance, final ValidateModelCheckerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.validateModelChecker(modelCheckerInstance);
+					callback.success();
 				} catch (Exception e) {
 					callback.error(e);
 				}
