@@ -542,6 +542,9 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action="getAllRepositoryExtendedDataSchemas")
 	List<SExtendedDataSchema> getAllRepositoryExtendedDataSchemas() throws ServerException, UserException;
 
+	@WebMethod(action="getAllRepositoryModelCheckers")
+	List<SModelCheckerInstance> getAllRepositoryModelCheckers() throws ServerException, UserException;
+
 	@WebMethod(action="getAllPublicProfiles")
 	List<SProfileDescriptor> getAllPublicProfiles(
 		@WebParam(name = "notificationsUrl", partName = "getAllPublicProfiles.notificationsUrl") String notificationsUrl, 
@@ -628,7 +631,20 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action = "updateModelChecker")
 	void updateModelChecker(@WebParam(name = "modelCheckerInstance", partName = "updateModelChecker.modelCheckerInstance") SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException;
+
+	@WebMethod(action = "validateModelChecker")
+	void validateModelChecker(@WebParam(name = "modelCheckerInstance", partName = "validateModelChecker.modelCheckerInstance") SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException;
+
+	@WebMethod(action="addModelCheckerToProject")
+	void addModelCheckerToProject(
+		@WebParam(name = "poid", partName = "addModelCheckerToProject.poid") Long poid, 
+		@WebParam(name = "modelCheckerOid", partName = "addModelCheckerToProject.modelCheckerOid") Long modelCheckerOid) throws ServerException, UserException;
 	
 	@WebMethod(action = "getModelCheckerInstance")
 	SModelCheckerInstance getModelCheckerInstance(@WebParam(name = "mcioid", partName = "getModelCheckerInstance.mcioid") Long mcioid) throws UserException, ServerException;
+	
+	@WebMethod(action = "removeModelCheckerFromProject")
+	void removeModelCheckerFromProject(
+		@WebParam(name = "poid", partName = "removeModelCheckerFromProject.poid") Long poid, 
+		@WebParam(name = "modelCheckerOid", partName = "removeModelCheckerFromProject.modelCheckerOid") Long modelCheckerOid) throws ServerException, UserException;
 }

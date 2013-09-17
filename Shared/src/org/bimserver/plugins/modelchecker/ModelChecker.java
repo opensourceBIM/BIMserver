@@ -4,6 +4,6 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.store.ModelCheckerResult;
 
 public interface ModelChecker {
-	ModelCheckerResult check(IfcModelInterface model, String code) throws ModelCheckException;
+	ModelCheckerResult check(IfcModelInterface model, byte[] compiledCode) throws ModelCheckException;
 	byte[] compile(String code) throws ModelCheckException;
 }

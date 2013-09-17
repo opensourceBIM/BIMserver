@@ -21,28 +21,35 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCheckerInstance;
-import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
+import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.Authorization;
 
-public class UpdateModelCheckerDatabaseAction extends UpdateDatabaseAction<ModelCheckerInstance> {
+public class RemoveModelCheckerFromProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 
+	private final long poid;
+	private Authorization authorization;
 	private BimServer bimServer;
+	private long mcoid;
 
-	public UpdateModelCheckerDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, ModelCheckerInstance modelChecker) {
-		super(databaseSession, accessMethod, modelChecker);
+	public RemoveModelCheckerFromProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long mcoid, long poid,
+			Authorization authorization) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
+		this.mcoid = mcoid;
+		this.poid = poid;
+		this.authorization = authorization;
 	}
-	
+
 	@Override
-	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		ModelCheckerInstance modelCheckerInstance = getIdEObject();
-		ModelCheckerPlugin modelCheckerPlugin = bimServer.getPluginManager().getModelCheckerPlugin(modelCheckerInstance.getModelCheckerPluginClassName(), true);
-		if (modelCheckerPlugin == null) {
-			throw new UserException("Model Checker Plugin \"" + modelCheckerInstance.getModelCheckerPluginClassName() + "\" not found/enabled");
-		}
-		super.execute();
-		return null;
+	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
+		ModelCheckerInstance modelCheckerInstance = getDatabaseSession().get(mcoid, Query.getDefault());
+		Project project = getDatabaseSession().get(poid, Query.getDefault());
+		project.getModelCheckers().remove(modelCheckerInstance);
+		getDatabaseSession().store(project);
+		return true;
 	}
 }

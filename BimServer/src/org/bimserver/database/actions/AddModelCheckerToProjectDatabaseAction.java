@@ -17,32 +17,36 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCheckerInstance;
-import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.Authorization;
 
-public class UpdateModelCheckerDatabaseAction extends UpdateDatabaseAction<ModelCheckerInstance> {
+public class AddModelCheckerToProjectDatabaseAction extends BimDatabaseAction<Void> {
 
-	private BimServer bimServer;
+	private long poid;
+	private Authorization authorization;
+	private ModelCheckerInstance modelChecker;
 
-	public UpdateModelCheckerDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, ModelCheckerInstance modelChecker) {
-		super(databaseSession, accessMethod, modelChecker);
-		this.bimServer = bimServer;
+	public AddModelCheckerToProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, ModelCheckerInstance modelChecker, Authorization authorization) {
+		super(databaseSession, accessMethod);
+		this.poid = poid;
+		this.modelChecker = modelChecker;
+		this.authorization = authorization;
 	}
-	
+
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		ModelCheckerInstance modelCheckerInstance = getIdEObject();
-		ModelCheckerPlugin modelCheckerPlugin = bimServer.getPluginManager().getModelCheckerPlugin(modelCheckerInstance.getModelCheckerPluginClassName(), true);
-		if (modelCheckerPlugin == null) {
-			throw new UserException("Model Checker Plugin \"" + modelCheckerInstance.getModelCheckerPluginClassName() + "\" not found/enabled");
-		}
-		super.execute();
+		Project project = getDatabaseSession().get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+		project.getModelCheckers().add(modelChecker);
+		getDatabaseSession().store(modelChecker);
+		getDatabaseSession().store(project);
 		return null;
 	}
 }

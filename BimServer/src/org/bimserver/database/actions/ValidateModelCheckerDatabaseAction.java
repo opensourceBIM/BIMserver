@@ -23,26 +23,37 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCheckerInstance;
+import org.bimserver.plugins.modelchecker.ModelCheckException;
+import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.shared.exceptions.UserException;
 
-public class UpdateModelCheckerDatabaseAction extends UpdateDatabaseAction<ModelCheckerInstance> {
+public class ValidateModelCheckerDatabaseAction extends BimDatabaseAction<Void> {
 
 	private BimServer bimServer;
+	private ModelCheckerInstance modelCheckerInstance;
 
-	public UpdateModelCheckerDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, ModelCheckerInstance modelChecker) {
-		super(databaseSession, accessMethod, modelChecker);
+	public ValidateModelCheckerDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, ModelCheckerInstance modelCheckerInstance) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
+		this.modelCheckerInstance = modelCheckerInstance;
 	}
 	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		ModelCheckerInstance modelCheckerInstance = getIdEObject();
 		ModelCheckerPlugin modelCheckerPlugin = bimServer.getPluginManager().getModelCheckerPlugin(modelCheckerInstance.getModelCheckerPluginClassName(), true);
 		if (modelCheckerPlugin == null) {
 			throw new UserException("Model Checker Plugin \"" + modelCheckerInstance.getModelCheckerPluginClassName() + "\" not found/enabled");
 		}
-		super.execute();
+		ModelChecker modelChecker = modelCheckerPlugin.createModelChecker(null);
+		try {
+			byte[] result = modelChecker.compile(modelCheckerInstance.getCode());
+			modelCheckerInstance.setValid(true);
+			modelCheckerInstance.setCompiled(result);
+			getDatabaseSession().store(modelCheckerInstance);
+		} catch (ModelCheckException e) {
+			throw new UserException(e);
+		}
 		return null;
 	}
 }
