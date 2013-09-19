@@ -38,7 +38,7 @@ public class AddInternalServiceDatabaseAction extends AddDatabaseAction<Internal
 	}
 	
 	@Override
-	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
 		user.getUserSettings().getServices().add(getIdEObject());
 		getDatabaseSession().store(user.getUserSettings());

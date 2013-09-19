@@ -45,7 +45,7 @@ public class AsyncServiceInterface {
 	}
 	
 	public interface AddModelCheckerCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Exception e);
 	}
 	
@@ -454,8 +454,7 @@ public class AsyncServiceInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addModelChecker(modelCheckerInstance);
-					callback.success();
+					callback.success(syncService.addModelChecker(modelCheckerInstance));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -1331,11 +1330,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void validateModelChecker(final org.bimserver.interfaces.objects.SModelCheckerInstance modelCheckerInstance, final ValidateModelCheckerCallback callback) {
+	public void validateModelChecker(final java.lang.Long oid, final ValidateModelCheckerCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.validateModelChecker(modelCheckerInstance);
+					syncService.validateModelChecker(oid);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);

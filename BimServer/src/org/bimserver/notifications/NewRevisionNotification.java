@@ -23,11 +23,20 @@ import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ModelCheckerInstance;
+import org.bimserver.models.store.ModelCheckerResult;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Trigger;
+import org.bimserver.plugins.modelchecker.ModelCheckException;
+import org.bimserver.plugins.modelchecker.ModelChecker;
+import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -66,7 +75,7 @@ public class NewRevisionNotification extends Notification {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
 			for (Service service : project.getServices()) {
 				if (soid == -1 || service.getOid() == soid) {
-					triggerNewRevision(getBimServer().getNotificationsManager(), getBimServer(), getBimServer().getNotificationsManager().getSiteAddress(), project, roid, Trigger.NEW_REVISION, service);
+					triggerNewRevision(session, getBimServer().getNotificationsManager(), getBimServer(), getBimServer().getNotificationsManager().getSiteAddress(), project, roid, Trigger.NEW_REVISION, service);
 				}
 			}
 			if (soid == -1) {
@@ -85,10 +94,40 @@ public class NewRevisionNotification extends Notification {
 		}
 	}
 	
-	public void triggerNewRevision(NotificationsManager notificationsManager, final BimServer bimServer, String siteAddress, Project project, final long roid, Trigger trigger, final Service service) throws UserException, ServerException {
+	public void triggerNewRevision(DatabaseSession session, NotificationsManager notificationsManager, final BimServer bimServer, String siteAddress, Project project, final long roid, Trigger trigger, final Service service) throws UserException, ServerException {
 		if (service.getTrigger() == trigger) {
 			Channel channel = null;
 			try {
+				IfcModelInterface model = null;
+				for (ModelCheckerInstance modelCheckerInstance : service.getModelCheckers()) {
+					if (modelCheckerInstance.isValid()) {
+						ModelCheckerPlugin modelCheckerPlugin = bimServer.getPluginManager().getModelCheckerPlugin(modelCheckerInstance.getModelCheckerPluginClassName(), true);
+						if (modelCheckerPlugin != null) {
+							ModelChecker modelChecker = modelCheckerPlugin.createModelChecker(null);
+							ModelCheckerResult result;
+							try {
+								if (model == null) {
+									model = new IfcModel();
+									Revision revision;
+									try {
+										revision = session.get(roid, Query.getDefault());
+										session.getMap(model, new Query(project.getId(), revision.getId(), null, Deep.NO));
+									} catch (BimserverDatabaseException e) {
+										LOGGER.error("", e);
+									}
+								}
+								result = modelChecker.check(model, modelCheckerInstance.getCompiled());
+								if (!result.isValid()) {
+									LOGGER.info("Not triggering");
+									return;
+								}
+							} catch (ModelCheckException e) {
+								LOGGER.info("Not triggering");
+								return;
+							}
+						}
+					}
+				}
 				channel = notificationsManager.getChannel(service);
 				final Bimsie1RemoteServiceInterface remoteServiceInterface = channel.get(Bimsie1RemoteServiceInterface.class);
 				long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();

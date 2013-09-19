@@ -31,7 +31,7 @@ public class AddModelCheckerDatabaseAction extends AddDatabaseAction<ModelChecke
 	}
 	
 	@Override
-	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		return super.execute();
 	}
 }

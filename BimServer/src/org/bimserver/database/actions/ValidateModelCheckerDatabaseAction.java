@@ -21,6 +21,7 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.plugins.modelchecker.ModelCheckException;
@@ -31,16 +32,17 @@ import org.bimserver.shared.exceptions.UserException;
 public class ValidateModelCheckerDatabaseAction extends BimDatabaseAction<Void> {
 
 	private BimServer bimServer;
-	private ModelCheckerInstance modelCheckerInstance;
+	private long modelCheckerInstanceOid;
 
-	public ValidateModelCheckerDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, ModelCheckerInstance modelCheckerInstance) {
+	public ValidateModelCheckerDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long modelCheckerInstanceOid) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
-		this.modelCheckerInstance = modelCheckerInstance;
+		this.modelCheckerInstanceOid = modelCheckerInstanceOid;
 	}
 	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		ModelCheckerInstance modelCheckerInstance = getDatabaseSession().get(modelCheckerInstanceOid, Query.getDefault());
 		ModelCheckerPlugin modelCheckerPlugin = bimServer.getPluginManager().getModelCheckerPlugin(modelCheckerInstance.getModelCheckerPluginClassName(), true);
 		if (modelCheckerPlugin == null) {
 			throw new UserException("Model Checker Plugin \"" + modelCheckerInstance.getModelCheckerPluginClassName() + "\" not found/enabled");

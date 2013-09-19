@@ -30,7 +30,8 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	public void addLocalServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SService sService, java.lang.Long internalServiceOid) throws UserException, ServerException {
 	}
 	
-	public void addModelChecker(org.bimserver.interfaces.objects.SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException {
+	public java.lang.Long addModelChecker(org.bimserver.interfaces.objects.SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException {
+		return null;
 	}
 	
 	public void addModelCheckerToProject(java.lang.Long poid, java.lang.Long modelCheckerOid) throws UserException, ServerException {
@@ -301,7 +302,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public void validateModelChecker(org.bimserver.interfaces.objects.SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException {
+	public void validateModelChecker(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
 }
