@@ -627,13 +627,13 @@ public interface ServiceInterface extends PublicInterface {
 	List<SModelCheckerInstance> getAllModelCheckers() throws UserException, ServerException;
 	
 	@WebMethod(action = "addModelChecker")
-	void addModelChecker(@WebParam(name = "modelCheckerInstance", partName = "addModelChecker.modelCheckerInstance") SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException;
+	Long addModelChecker(@WebParam(name = "modelCheckerInstance", partName = "addModelChecker.modelCheckerInstance") SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException;
 
 	@WebMethod(action = "updateModelChecker")
 	void updateModelChecker(@WebParam(name = "modelCheckerInstance", partName = "updateModelChecker.modelCheckerInstance") SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException;
 
 	@WebMethod(action = "validateModelChecker")
-	void validateModelChecker(@WebParam(name = "modelCheckerInstance", partName = "validateModelChecker.modelCheckerInstance") SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException;
+	void validateModelChecker(@WebParam(name = "oid", partName = "validateModelChecker.oid") Long oid) throws UserException, ServerException;
 
 	@WebMethod(action="addModelCheckerToProject")
 	void addModelCheckerToProject(

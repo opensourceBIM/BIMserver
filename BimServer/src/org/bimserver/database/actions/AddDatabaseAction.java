@@ -24,7 +24,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
 
-public class AddDatabaseAction<T extends IdEObject> extends BimDatabaseAction<Void> {
+public class AddDatabaseAction<T extends IdEObject> extends BimDatabaseAction<Long> {
 
 	private final T idEObject;
 
@@ -35,9 +35,8 @@ public class AddDatabaseAction<T extends IdEObject> extends BimDatabaseAction<Vo
 
 
 	@Override
-	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		getDatabaseSession().store(idEObject);
-		return null;
+	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		return getDatabaseSession().store(idEObject);
 	}
 	
 	public T getIdEObject() {

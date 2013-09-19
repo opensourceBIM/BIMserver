@@ -1400,14 +1400,14 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
-	public void addModelChecker(SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException {
+	public Long addModelChecker(SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			ModelCheckerInstance convert = getBimServer().getSConverter().convertFromSObject(modelCheckerInstance, session);
-			session.executeAndCommitAction(new AddModelCheckerDatabaseAction(session, getInternalAccessMethod(), convert));
+			return session.executeAndCommitAction(new AddModelCheckerDatabaseAction(session, getInternalAccessMethod(), convert));
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1442,11 +1442,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public void validateModelChecker(SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException {
+	public void validateModelChecker(Long oid) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<Void> action = new ValidateModelCheckerDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getBimServer().getSConverter().convertFromSObject(modelCheckerInstance, session));
+			BimDatabaseAction<Void> action = new ValidateModelCheckerDatabaseAction(getBimServer(), session, getInternalAccessMethod(), oid);
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);

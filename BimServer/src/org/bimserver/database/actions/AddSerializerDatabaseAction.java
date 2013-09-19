@@ -38,8 +38,8 @@ public class AddSerializerDatabaseAction extends AddDatabaseAction<SerializerPlu
 	}
 	
 	@Override
-	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Void execute = super.execute();
+	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Long execute = super.execute();
 		// Make sure the backreferences are stored as well, someday this should be automatic
 		if (getIdEObject().getRenderEngine() != null) {
 			getDatabaseSession().store(getIdEObject().getRenderEngine());
