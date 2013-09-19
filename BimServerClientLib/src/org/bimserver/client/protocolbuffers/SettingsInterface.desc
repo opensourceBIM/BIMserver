@@ -19,13 +19,13 @@
 "allowUsersToCreateTopLevelProjects (
 serviceRepositoryUrl (	
 
-webModules (
-whitelistedDomains	 (	
-rid
- (
-allowSelfRegistration (
+webModules (
+rid	 (
 
-smtpServer (	
+smtpServer
+ (	
+allowSelfRegistration (
+whitelistedDomains (	
 cacheOutputFiles (
 oid (
 emailSenderAddress (	
