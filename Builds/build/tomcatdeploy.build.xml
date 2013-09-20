@@ -17,10 +17,10 @@
 	
 	<property name="version" value="1.2.0DEV"/>
 
-	<target name="deploycloudwar">
+	<target name="deploy">
 		<property name="target" value="war" />
 		<ant antfile="bimserver.build.xml" target="Build War"></ant>
-		<undeploy url="http://bimserver.tno.nl/manager/text" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
-		<deploy url="http://bimserver.tno.nl/manager/text" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />
+		<undeploy url="${tomcat_server}" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
+		<deploy url="${tomcat_server}" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />
 	</target>
 </project>
