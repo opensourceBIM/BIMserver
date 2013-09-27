@@ -115,6 +115,7 @@ import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
+import org.bimserver.serializers.BinaryGeometrySerializerPlugin;
 import org.bimserver.serializers.SerializerFactory;
 import org.bimserver.services.guidfixer.GuidFixerService;
 import org.bimserver.shared.InterfaceList;
@@ -321,6 +322,7 @@ public class BimServer {
 				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 				pluginManager.loadPlugin(WebModulePlugin.class, "Internal", "Internal", new DefaultWebModulePlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 				pluginManager.loadPlugin(ServicePlugin.class, "Internal", "Internal", new GuidFixerService(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
+				pluginManager.loadPlugin(SerializerPlugin.class, "Internal", "Internal", new BinaryGeometrySerializerPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
