@@ -76,7 +76,11 @@ public class JsonHandler {
 		out.name("responses");
 		out.beginArray();
 		for (int r = 0; r < requests.size(); r++) {
-			processSingleRequest((JsonObject) requests.get(r), jsonToken, httpRequest, out);
+			try {
+				processSingleRequest((JsonObject) requests.get(r), jsonToken, httpRequest, out);
+			} catch (Exception e) {
+				handleException(out, e);
+			}
 		}
 		out.endArray();
 	}
