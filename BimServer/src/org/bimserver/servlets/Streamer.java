@@ -60,7 +60,9 @@ public class Streamer implements EndPoint {
 		JsonReader jsonreader = new JsonReader(reader);
 		JsonParser parser = new JsonParser();
 		JsonObject request = (JsonObject) parser.parse(jsonreader);
-		if (request.has("token")) {
+		if (request.has("hb")) {
+			// Hearbeat, ignore
+		} else if (request.has("token")) {
 			String token = request.get("token").getAsString();
 			try {
 				ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.JSON);
