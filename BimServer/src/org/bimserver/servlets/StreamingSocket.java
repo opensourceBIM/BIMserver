@@ -40,6 +40,7 @@ public class StreamingSocket implements WebSocket.OnTextMessage, StreamingSocket
 
 	@Override
 	public void onOpen(Connection connection) {
+		connection.setMaxIdleTime(1000 * 60 * 60); // 1 hour
 		this.connection = connection;
 		streamer.onOpen();
 	}
