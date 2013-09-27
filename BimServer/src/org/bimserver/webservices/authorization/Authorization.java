@@ -157,6 +157,9 @@ public abstract class Authorization {
 	}
 	
 	public static Authorization fromToken(SecretKeySpec key, String token) throws AuthenticationException {
+		if (token == null) {
+			throw new IllegalArgumentException("Token required");
+		}
 		try {
 			int hashSizeBytes = 16;
 			Cipher decodingCipher = Cipher.getInstance("AES");
