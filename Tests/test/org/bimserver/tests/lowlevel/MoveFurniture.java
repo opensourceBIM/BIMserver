@@ -39,7 +39,7 @@ public class MoveFurniture extends TestWithEmbeddedServer {
 			
 			long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcFurnishingElement");
+			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcFurnishingElement", false);
 			int i=0;
 			for (SDataObject furnishingElement : dataObjectsByType) {
 				i++;
@@ -60,7 +60,7 @@ public class MoveFurniture extends TestWithEmbeddedServer {
 
 			long newRoid = lowLevelInterface.commitTransaction(tid, "Moved furniture 50 meters up");
 
-			System.out.println(lowLevelInterface.getDataObjectsByType(newRoid, "IfcFurnishingElement").size());
+			System.out.println(lowLevelInterface.getDataObjectsByType(newRoid, "IfcFurnishingElement", false).size());
 
 			SSerializerPluginConfiguration ifcSerializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
 			bimServerClient.download(newRoid, ifcSerializer.getOid(), new File("movedf.ifc"));

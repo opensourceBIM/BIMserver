@@ -38,7 +38,7 @@ public class GetDataObjectsByType extends TestWithEmbeddedServer{
 			lowLevelInterface.commitTransaction(tid, "test");
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 
-			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcRelContainedInSpatialStructure");
+			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcRelContainedInSpatialStructure", false);
 			for (SDataObject sDataObject : dataObjectsByType) {
 				System.out.println(sDataObject);
 			}
