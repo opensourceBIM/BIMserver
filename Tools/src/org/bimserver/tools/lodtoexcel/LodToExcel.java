@@ -128,9 +128,9 @@ public class LodToExcel {
 					totalMin.setZ(Float.MAX_VALUE);
 					totalBounds.setMinBounds(totalMin);
 					Vector3f totalMax = Ifc2x3tc1Factory.eINSTANCE.createVector3f();
-					totalMax.setX(Float.MIN_VALUE);
-					totalMax.setY(Float.MIN_VALUE);
-					totalMax.setZ(Float.MIN_VALUE);
+					totalMax.setX(-Float.MAX_VALUE);
+					totalMax.setY(-Float.MAX_VALUE);
+					totalMax.setZ(-Float.MAX_VALUE);
 					totalBounds.setMaxBounds(totalMax);
 					int totalUsedAttributes = 0;
 					int totalUsedAttributesNoFurniture = 0;
