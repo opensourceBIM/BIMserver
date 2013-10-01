@@ -541,11 +541,11 @@ public class AsyncBimsie1LowLevelInterface {
 		});
 	}
 	
-	public void getDataObjectsByType(final java.lang.Long roid, final java.lang.String className, final GetDataObjectsByTypeCallback callback) {
+	public void getDataObjectsByType(final java.lang.Long roid, final java.lang.String className, final java.lang.Boolean flat, final GetDataObjectsByTypeCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getDataObjectsByType(roid, className));
+					callback.success(syncService.getDataObjectsByType(roid, className, flat));
 				} catch (Exception e) {
 					callback.error(e);
 				}

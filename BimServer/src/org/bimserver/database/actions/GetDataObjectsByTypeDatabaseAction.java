@@ -48,12 +48,14 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 	private final String className;
 	private final long roid;
 	private final BimServer bimServer;
+	private boolean flat;
 
-	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String className, Authorization authorization) {
+	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String className, Authorization authorization, boolean flat) {
 		super(databaseSession, accessMethod, authorization);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.className = className;
+		this.flat = flat;
 	}
 
 	@Override
@@ -99,7 +101,9 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 					dataObject.setGuid("");
 					dataObject.setName("");
 				}
-				GetDataObjectByOidDatabaseAction.fillDataObject(ifcModel.getObjects(), eObject, dataObject);
+				if (!flat) {
+					GetDataObjectByOidDatabaseAction.fillDataObject(ifcModel.getObjects(), eObject, dataObject);
+				}
 				dataObjects.add(dataObject);
 			}
 		}

@@ -685,13 +685,12 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 	}
 
 	@Override
-	public List<SDataObject> getDataObjectsByType(Long roid, String className) throws ServerException, UserException {
+	public List<SDataObject> getDataObjectsByType(Long roid, String className, Boolean flat) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
-		BimDatabaseAction<List<DataObject>> action = new GetDataObjectsByTypeDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, className, getAuthorization());
+		BimDatabaseAction<List<DataObject>> action = new GetDataObjectsByTypeDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, className, getAuthorization(), flat);
 		try {
-			List<DataObject> dataObjects = session.executeAndCommitAction(action);
-			return getBimServer().getSConverter().convertToSListDataObject(dataObjects);
+			return getBimServer().getSConverter().convertToSListDataObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

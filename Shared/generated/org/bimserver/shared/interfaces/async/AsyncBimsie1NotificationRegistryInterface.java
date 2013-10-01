@@ -74,6 +74,11 @@ public class AsyncBimsie1NotificationRegistryInterface {
 		void error(Exception e);
 	}
 	
+	public interface RegisterNewRevisionHandlerCallback {
+		void success();
+		void error(Exception e);
+	}
+	
 	public interface RegisterNewRevisionOnSpecificProjectHandlerCallback {
 		void success();
 		void error(Exception e);
@@ -125,6 +130,11 @@ public class AsyncBimsie1NotificationRegistryInterface {
 	}
 	
 	public interface UnregisterNewProjectHandlerCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface UnregisterNewRevisionHandlerCallback {
 		void success();
 		void error(Exception e);
 	}
@@ -269,6 +279,19 @@ public class AsyncBimsie1NotificationRegistryInterface {
 		});
 	}
 	
+	public void registerNewRevisionHandler(final java.lang.Long endPointId, final RegisterNewRevisionHandlerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.registerNewRevisionHandler(endPointId);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void registerNewRevisionOnSpecificProjectHandler(final java.lang.Long endPointId, final java.lang.Long poid, final RegisterNewRevisionOnSpecificProjectHandlerCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -401,6 +424,19 @@ public class AsyncBimsie1NotificationRegistryInterface {
 			public void run(){
 				try {
 					syncService.unregisterNewProjectHandler(endPointId);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void unregisterNewRevisionHandler(final java.lang.Long endPointId, final UnregisterNewRevisionHandlerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.unregisterNewRevisionHandler(endPointId);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);

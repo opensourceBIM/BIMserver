@@ -179,6 +179,7 @@ public class SClass {
 	}
 	
 	public Set<SField> getAllFields() {
+		// TODO this is sloooow
 		Set<SField> fields = new LinkedHashSet<SField>(getFields());
 		if (getSuperClass() != null) {
 			fields.addAll(getSuperClass().getAllFields());
