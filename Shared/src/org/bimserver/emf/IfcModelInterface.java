@@ -21,7 +21,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -200,4 +202,7 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	IfcModelInterface branch(long poid);
 
 	long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException;
+
+	<T extends IdEObject> T create(Class<T> class1, OidProvider<Long> oidProvider) throws IfcModelInterfaceException;
+	<T extends IdEObject> T create(EClass eClass, OidProvider<Long> oidProvider) throws IfcModelInterfaceException;
 }

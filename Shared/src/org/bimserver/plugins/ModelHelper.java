@@ -23,6 +23,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.OidProvider;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.EList;
@@ -45,12 +46,12 @@ public class ModelHelper {
 		this.objectIDM = null;
 	}
 
-	public void copy(IdEObject object, IfcModelInterface destModel) throws IfcModelInterfaceException {
-		copy(object.eClass(), object, destModel);
+	public IdEObject copy(IdEObject object, IfcModelInterface destModel, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
+		return copy(object.eClass(), object, destModel, oidProvider);
 	}
 	
 	@SuppressWarnings("unchecked")
-	private IdEObject copy(EClass originalEClass, IdEObject original, IfcModelInterface newModel) throws IfcModelInterfaceException {
+	private IdEObject copy(EClass originalEClass, IdEObject original, IfcModelInterface newModel, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
 		if (!((IdEObjectImpl)original).isLoadedOrLoading()) {
 			return null;
 		}
@@ -58,7 +59,11 @@ public class ModelHelper {
 			return converted.get(original);
 		}
 		IdEObject newObject = (IdEObject) original.eClass().getEPackage().getEFactoryInstance().create(original.eClass());
-		((IdEObjectImpl)newObject).setOid(original.getOid());
+		if (oidProvider != null) {
+			((IdEObjectImpl)newObject).setOid(oidProvider.newOid(newObject.eClass()));
+		} else {
+			((IdEObjectImpl)newObject).setOid(original.getOid());
+		}
 		converted.put(original, newObject);
 		if (newObject.eClass().getEAnnotation("wrapped") == null) {
 			newModel.add(newObject.getOid(), newObject);
@@ -88,7 +93,7 @@ public class ModelHelper {
 								if (converted.containsKey(o)) {
 									toList.addUnique(converted.get(o));
 								} else {
-									IdEObject result = copy(originalEClass, (IdEObject) o, newModel);
+									IdEObject result = copy(originalEClass, (IdEObject) o, newModel, oidProvider);
 									if (result != null) {
 										toList.addUnique(result);
 									}
@@ -98,7 +103,7 @@ public class ModelHelper {
 							if (converted.containsKey(get)) {
 								newObject.eSet(eStructuralFeature, converted.get(get));
 							} else {
-								newObject.eSet(eStructuralFeature, copy(originalEClass, (IdEObject) get, newModel));
+								newObject.eSet(eStructuralFeature, copy(originalEClass, (IdEObject) get, newModel, oidProvider));
 							}
 						}
 					}

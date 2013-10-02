@@ -1,0 +1,147 @@
+package org.bimserver.test;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bimserver.HideAllInversesObjectIDM;
+import org.bimserver.LocalDevPluginLoader;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
+import org.bimserver.models.ifc2x3tc1.IfcBoundingBox;
+import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
+import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
+import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
+import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
+import org.bimserver.models.ifc2x3tc1.IfcOwnerHistory;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
+import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
+import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcSlab;
+import org.bimserver.models.ifc2x3tc1.IfcSlabTypeEnum;
+import org.bimserver.plugins.ModelHelper;
+import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.Deserializer;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.serializers.Serializer;
+import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.IncrementingOidProvider;
+import org.bimserver.utils.CollectionUtils;
+
+public class AddFurniture {
+	public static void main(String[] args) {
+		try {
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			
+			Deserializer deserializer = deserializerPlugin.createDeserializer(null);
+			deserializer.init(pluginManager.requireSchemaDefinition());
+			
+			IfcModelInterface model = deserializer.read(new File("../TestData/data/AC9R1-Haus-G-H-Ver2-2x3.ifc"));
+
+			deserializer = deserializerPlugin.createDeserializer(null);
+			deserializer.init(pluginManager.requireSchemaDefinition());
+			IfcModelInterface furnishingModel = deserializer.read(new File("test.ifc"));
+			
+			model.fixOids(new IncrementingOidProvider());
+			long oid = model.getHighestOid();
+			IncrementingOidProvider oidProvider = new IncrementingOidProvider(oid + 1);
+
+			IfcFurnishingElement picknick = (IfcFurnishingElement) furnishingModel.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
+
+			ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition()));
+
+			IfcProductDefinitionShape representation = (IfcProductDefinitionShape) picknick.getRepresentation();
+			IfcRepresentation surfaceModel = null;
+			IfcRepresentation boundingBox = null;
+			for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {
+				IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)ifcRepresentation;
+				if (ifcShapeRepresentation.getRepresentationType().equals("SurfaceModel")) {
+					surfaceModel = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, model, oidProvider);
+				} else if (ifcShapeRepresentation.getRepresentationType().equals("BoundingBox")) {
+					boundingBox	 = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, model, oidProvider);
+				}
+			}
+
+			IfcOwnerHistory ownerHistory = null;
+			List<IfcOwnerHistory> all = model.getAll(IfcOwnerHistory.class);
+			if (all.size() > 0) {
+				 ownerHistory = all.get(0);
+			}
+			
+			for (IfcBuildingStorey ifcBuildingStorey : model.getAll(IfcBuildingStorey.class)) {
+				List<IfcRelContainedInSpatialStructure> containsElements = new ArrayList(ifcBuildingStorey.getContainsElements());
+				for (IfcRelContainedInSpatialStructure containedInSpatialStructure : containsElements) {
+					for (IfcProduct ifcProduct : containedInSpatialStructure.getRelatedElements()) {
+						if (ifcProduct instanceof IfcSlab) {
+							IfcSlab ifcSlab = (IfcSlab)ifcProduct;
+							if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.FLOOR) {
+								IfcProductDefinitionShape slabRepr = (IfcProductDefinitionShape) ifcSlab.getRepresentation();
+								IfcBoundingBox box = null;
+								for (IfcRepresentation representation2 : slabRepr.getRepresentations()) {
+									IfcShapeRepresentation shapeRepresentation = (IfcShapeRepresentation)representation2;
+									if (shapeRepresentation.getRepresentationType().equals("BoundingBox")) {
+										for (IfcRepresentationItem i2 : shapeRepresentation.getItems()) {
+											box = (IfcBoundingBox)i2;
+										}
+									}
+								}
+								
+								IfcFurnishingElement newFurnishing = model.create(IfcFurnishingElement.class, oidProvider);
+								
+								IfcRelContainedInSpatialStructure containedInSpatialStructure2 = model.create(IfcRelContainedInSpatialStructure.class, oidProvider);
+								containedInSpatialStructure2.setRelatingStructure(ifcBuildingStorey);
+								containedInSpatialStructure2.getRelatedElements().add(newFurnishing);
+								
+								newFurnishing.setName("Generated");
+								newFurnishing.setGlobalId("TEST");
+								newFurnishing.setOwnerHistory(ownerHistory);
+								IfcProductDefinitionShape definitionShape = model.create(IfcProductDefinitionShape.class, oidProvider);
+								newFurnishing.setRepresentation(definitionShape);
+								
+								definitionShape.getRepresentations().add(boundingBox);
+								definitionShape.getRepresentations().add(surfaceModel);
+								
+								IfcLocalPlacement localPlacement = model.create(IfcLocalPlacement.class, oidProvider);
+								localPlacement.setPlacementRelTo(ifcSlab.getObjectPlacement());
+								IfcAxis2Placement3D axis2Placement3D = model.create(IfcAxis2Placement3D.class, oidProvider);
+								localPlacement.setRelativePlacement(axis2Placement3D);
+								
+								IfcCartesianPoint pos = model.create(IfcCartesianPoint.class, oidProvider);
+								pos.getCoordinates().add(-3d);
+								pos.getCoordinates().add(+0.5d);
+								pos.getCoordinates().add(0d);
+								axis2Placement3D.setLocation(pos);
+								
+								newFurnishing.setObjectPlacement(localPlacement);
+							}
+						}
+					}
+				}
+			}
+
+			model.resetExpressIds();
+
+			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
+			Serializer serializer = serializerPlugin.createSerializer(null);
+			serializer.init(model, null, pluginManager, null, true);
+			serializer.writeToFile(new File("withfurn.ifc"));
+		} catch (PluginException e) {
+			e.printStackTrace();
+		} catch (DeserializeException e) {
+			e.printStackTrace();
+		} catch (IfcModelInterfaceException e) {
+			e.printStackTrace();
+		} catch (SerializerException e) {
+			e.printStackTrace();
+		}
+	}
+}
