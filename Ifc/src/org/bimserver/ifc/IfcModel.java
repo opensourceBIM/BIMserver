@@ -43,6 +43,7 @@ import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -816,8 +817,24 @@ public class IfcModel implements IfcModelInterface {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	public <T extends IdEObject> T create(EClass eClass, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
+		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		long oid = oidProvider.newOid(eClass);
+		((IdEObjectImpl) object).setOid(oid);
+		add(oid, object, false, false);
+		return (T) object;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
 		return (T) create(eClassClassMap.inverse().get(clazz));
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends IdEObject> T create(Class<T> clazz, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
+		return (T) create(eClassClassMap.inverse().get(clazz), oidProvider);
 	}
 	
 	@Override

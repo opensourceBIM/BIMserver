@@ -112,7 +112,7 @@ public abstract class AbstractModelMerger implements ModelMerger {
 							continue;
 					}
 					try {
-						modelHelper.copy(ideObject, endModel);
+						modelHelper.copy(ideObject, endModel, null);
 					} catch (IfcModelInterfaceException e) {
 						throw new MergeException(e);
 					}
@@ -272,7 +272,7 @@ public abstract class AbstractModelMerger implements ModelMerger {
 						setIfcZShapeProfileDef(idEObject, scale);
 					}
 					try {
-						modelHelper.copy((IdEObject) ifcModel.get(key), endModel);
+						modelHelper.copy((IdEObject) ifcModel.get(key), endModel, null);
 					} catch (IfcModelInterfaceException e) {
 						throw new MergeException(e);
 					}
