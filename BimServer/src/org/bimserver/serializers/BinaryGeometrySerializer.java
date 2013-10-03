@@ -45,6 +45,8 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 
 	private void writeGeometries(OutputStream outputStream) throws IOException {
 		DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+		dataOutputStream.writeUTF("BGS");
+		dataOutputStream.writeByte(1);
 		
 		Bounds modelBounds = new Bounds();
 		int nrObjects = 0;
