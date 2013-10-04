@@ -37,7 +37,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param fileSize The size of the file in bytes
 	 * @param ifcFile The actual file
 	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getCheckinState method
+	 * @return An id, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "checkin")

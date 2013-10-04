@@ -3,6 +3,8 @@ package org.bimserver.servlets;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import org.bimserver.models.ifc2x3tc1.Vector3f;
+
 public class Bounds {
 	public Float3 min;
 	public Float3 max;
@@ -15,6 +17,11 @@ public class Bounds {
 	public Bounds() {
 		this.min = new Float3(Float.MAX_VALUE, Float.MAX_VALUE, Float.MAX_VALUE);
 		this.max = new Float3(-Float.MAX_VALUE, -Float.MAX_VALUE, -Float.MAX_VALUE);
+	}
+
+	public Bounds(Vector3f minBounds, Vector3f maxBounds) {
+		this.min = new Float3(minBounds.getX(), minBounds.getY(), minBounds.getZ());
+		this.max = new Float3(maxBounds.getX(), maxBounds.getY(), maxBounds.getZ());
 	}
 
 	public void integrate(Bounds objectBounds) {

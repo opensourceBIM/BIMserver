@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 
 public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometrySerializer.class);
+	private static final byte FORMAT_VERSION = 1;
 
 	@Override
 	public void reset() {
@@ -46,7 +47,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private void writeGeometries(OutputStream outputStream) throws IOException {
 		DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 		dataOutputStream.writeUTF("BGS");
-		dataOutputStream.writeByte(1);
+		dataOutputStream.writeByte(FORMAT_VERSION);
 		
 		Bounds modelBounds = new Bounds();
 		int nrObjects = 0;
@@ -63,26 +64,32 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		dataOutputStream.writeInt(nrObjects);
 		for (IfcProduct ifcProduct : getModel().getAllWithSubTypes(IfcProduct.class)) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
-			if (ifcProduct instanceof IfcSlab && ((IfcSlab) ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-				dataOutputStream.writeUTF("IfcRoof");
-			} else {
-				dataOutputStream.writeUTF(ifcProduct.eClass().getName());
+			if (geometryInfo != null) {
+				if (ifcProduct instanceof IfcSlab && ((IfcSlab) ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
+					dataOutputStream.writeUTF("IfcRoof");
+				} else {
+					dataOutputStream.writeUTF(ifcProduct.eClass().getName());
+				}
+				dataOutputStream.writeLong(ifcProduct.getOid());
+				
+				Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
+				objectBounds.writeTo(dataOutputStream);
+				
+				GeometryData geometryData = geometryInfo.getData();
+				byte[] vertices = geometryData.getVertices();
+				dataOutputStream.writeInt(vertices.length);
+				
+				ByteBuffer buffer = ByteBuffer.wrap(vertices);
+				convertOrder(buffer);
+				dataOutputStream.write(buffer.array());
+				
+				byte[] normals = geometryData.getNormals();
+				dataOutputStream.writeInt(normals.length);
+				
+				buffer = ByteBuffer.wrap(normals);
+				convertOrder(buffer);
+				dataOutputStream.write(buffer.array());
 			}
-			dataOutputStream.writeLong(ifcProduct.getOid());
-			GeometryData geometryData = geometryInfo.getData();
-			byte[] vertices = geometryData.getVertices();
-			dataOutputStream.writeInt(vertices.length);
-			
-			ByteBuffer buffer = ByteBuffer.wrap(vertices);
-			convertOrder(buffer);
-			dataOutputStream.write(buffer.array());
-			
-			byte[] normals = geometryData.getNormals();
-			dataOutputStream.writeInt(normals.length);
-			
-			buffer = ByteBuffer.wrap(normals);
-			convertOrder(buffer);
-			dataOutputStream.write(buffer.array());
 		}
 		dataOutputStream.flush();
 	}
