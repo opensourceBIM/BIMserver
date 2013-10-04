@@ -49,6 +49,10 @@ public class ModelHelper {
 	public IdEObject copy(IdEObject object, IfcModelInterface destModel, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
 		return copy(object.eClass(), object, destModel, oidProvider);
 	}
+
+	public IdEObject copy(IdEObject object, IfcModelInterface destModel) throws IfcModelInterfaceException {
+		return copy(object.eClass(), object, destModel, null);
+	}
 	
 	@SuppressWarnings("unchecked")
 	private IdEObject copy(EClass originalEClass, IdEObject original, IfcModelInterface newModel, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
