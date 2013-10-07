@@ -44,7 +44,7 @@ public abstract class Authorization {
 	private long uoid = -1;
 
 	public Authorization(int expires, TimeUnit expiresUnit) {
-		this.expires.add(Calendar.MILLISECOND, (int) TimeUnit.MILLISECONDS.convert(expires, expiresUnit));
+		this.expires.add(Calendar.SECOND, (int) TimeUnit.SECONDS.convert(expires, expiresUnit));
 	}
 	
 	public Authorization() {

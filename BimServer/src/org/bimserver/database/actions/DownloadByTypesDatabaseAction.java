@@ -23,13 +23,13 @@ import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
-import org.bimserver.HideAllInversesObjectIDM;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -42,6 +42,7 @@ import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.modelmerger.MergeException;
+import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.StructuralFeatureIdentifier;
 import org.bimserver.shared.exceptions.UserException;
@@ -125,10 +126,10 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					throw new UserException(e);
 				}
 			}
-			IfcModelInterface ifcModel;
+			IfcModelInterface ifcModel = new IfcModel();
 			if (ifcModelSet.size() > 1) {
 				try {
-					ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper());
+					ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 				} catch (MergeException e) {
 					throw new UserException(e);
 				}
@@ -143,10 +144,10 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
 		// TODO check, double merging??
-		IfcModelInterface ifcModel;
+		IfcModelInterface ifcModel = new IfcModel();
 		if (ifcModelSet.size() > 1) {
 			try {
-				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper());
+				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 			} catch (MergeException e) {
 				throw new UserException(e);
 			}

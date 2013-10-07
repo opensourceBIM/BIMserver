@@ -29,6 +29,7 @@ import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcCharacterStyleSelect;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcCurveStyle;
@@ -127,7 +128,8 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 //			bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
 
 			ModelMerger merger = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid());
-			IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper());
+			IfcModelInterface mergedModel = new IfcModel();
+			mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper(mergedModel));
 			mergedModel.getModelMetaData().setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 
 			Set<Long> added = new HashSet<Long>();

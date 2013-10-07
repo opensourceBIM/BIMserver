@@ -122,10 +122,10 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModelInterface ifcModel;
+		IfcModelInterface ifcModel = new IfcModel();
 		if (ifcModelSet.size() > 1) {
 			try {
-				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(revision.getProject(), ifcModelSet, new ModelHelper());
+				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(revision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
 			} catch (MergeException e) {
 				throw new UserException(e);
 			}

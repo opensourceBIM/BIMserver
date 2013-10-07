@@ -43,7 +43,7 @@ public class PublicInterfaceFactory implements ServiceFactory {
 	}
 	
 	public synchronized ServiceMap get(AccessMethod accessMethod) throws UserException {
-		Authorization authorization = new AnonymousAuthorization(1, TimeUnit.HOURS);
+		Authorization authorization = new AnonymousAuthorization(30, TimeUnit.DAYS);
 		return get(authorization, accessMethod);
 	}
 	

@@ -1,10 +1,8 @@
 package org.bimserver.test;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.bimserver.HideAllInversesObjectIDM;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
@@ -15,21 +13,22 @@ import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
+import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcOwnerHistory;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
+import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcSlab;
-import org.bimserver.models.ifc2x3tc1.IfcSlabTypeEnum;
+import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -57,7 +56,7 @@ public class AddFurniture {
 
 			IfcFurnishingElement picknick = (IfcFurnishingElement) furnishingModel.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
 
-			ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition()));
+			ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition()), model);
 
 			IfcProductDefinitionShape representation = (IfcProductDefinitionShape) picknick.getRepresentation();
 			IfcRepresentation surfaceModel = null;
@@ -65,9 +64,9 @@ public class AddFurniture {
 			for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {
 				IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)ifcRepresentation;
 				if (ifcShapeRepresentation.getRepresentationType().equals("SurfaceModel")) {
-					surfaceModel = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, model, oidProvider);
+					surfaceModel = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation);
 				} else if (ifcShapeRepresentation.getRepresentationType().equals("BoundingBox")) {
-					boundingBox	 = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, model, oidProvider);
+					boundingBox	 = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation);
 				}
 			}
 
@@ -78,51 +77,48 @@ public class AddFurniture {
 			}
 			
 			for (IfcBuildingStorey ifcBuildingStorey : model.getAll(IfcBuildingStorey.class)) {
-				List<IfcRelContainedInSpatialStructure> containsElements = new ArrayList(ifcBuildingStorey.getContainsElements());
-				for (IfcRelContainedInSpatialStructure containedInSpatialStructure : containsElements) {
-					for (IfcProduct ifcProduct : containedInSpatialStructure.getRelatedElements()) {
-						if (ifcProduct instanceof IfcSlab) {
-							IfcSlab ifcSlab = (IfcSlab)ifcProduct;
-							if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.FLOOR) {
-								IfcProductDefinitionShape slabRepr = (IfcProductDefinitionShape) ifcSlab.getRepresentation();
-								IfcBoundingBox box = null;
-								for (IfcRepresentation representation2 : slabRepr.getRepresentations()) {
-									IfcShapeRepresentation shapeRepresentation = (IfcShapeRepresentation)representation2;
-									if (shapeRepresentation.getRepresentationType().equals("BoundingBox")) {
-										for (IfcRepresentationItem i2 : shapeRepresentation.getItems()) {
-											box = (IfcBoundingBox)i2;
-										}
+				for (IfcRelDecomposes ifcRelDecomposes : ifcBuildingStorey.getIsDecomposedBy()) {
+					for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
+						if (ifcObjectDefinition instanceof IfcSpace) {
+							IfcSpace ifcSpace = (IfcSpace)ifcObjectDefinition;
+							IfcProductDefinitionShape slabRepr = (IfcProductDefinitionShape) ifcSpace.getRepresentation();
+							IfcBoundingBox box = null;
+							for (IfcRepresentation representation2 : slabRepr.getRepresentations()) {
+								IfcShapeRepresentation shapeRepresentation = (IfcShapeRepresentation)representation2;
+								if (shapeRepresentation.getRepresentationType().equals("BoundingBox")) {
+									for (IfcRepresentationItem i2 : shapeRepresentation.getItems()) {
+										box = (IfcBoundingBox)i2;
 									}
 								}
-								
-								IfcFurnishingElement newFurnishing = model.create(IfcFurnishingElement.class, oidProvider);
-								
-								IfcRelContainedInSpatialStructure containedInSpatialStructure2 = model.create(IfcRelContainedInSpatialStructure.class, oidProvider);
-								containedInSpatialStructure2.setRelatingStructure(ifcBuildingStorey);
-								containedInSpatialStructure2.getRelatedElements().add(newFurnishing);
-								
-								newFurnishing.setName("Generated");
-								newFurnishing.setGlobalId("TEST");
-								newFurnishing.setOwnerHistory(ownerHistory);
-								IfcProductDefinitionShape definitionShape = model.create(IfcProductDefinitionShape.class, oidProvider);
-								newFurnishing.setRepresentation(definitionShape);
-								
-								definitionShape.getRepresentations().add(boundingBox);
-								definitionShape.getRepresentations().add(surfaceModel);
-								
-								IfcLocalPlacement localPlacement = model.create(IfcLocalPlacement.class, oidProvider);
-								localPlacement.setPlacementRelTo(ifcSlab.getObjectPlacement());
-								IfcAxis2Placement3D axis2Placement3D = model.create(IfcAxis2Placement3D.class, oidProvider);
-								localPlacement.setRelativePlacement(axis2Placement3D);
-								
-								IfcCartesianPoint pos = model.create(IfcCartesianPoint.class, oidProvider);
-								pos.getCoordinates().add(-3d);
-								pos.getCoordinates().add(+0.5d);
-								pos.getCoordinates().add(0d);
-								axis2Placement3D.setLocation(pos);
-								
-								newFurnishing.setObjectPlacement(localPlacement);
 							}
+							
+							IfcFurnishingElement newFurnishing = model.create(IfcFurnishingElement.class, oidProvider);
+							
+							IfcRelContainedInSpatialStructure containedInSpatialStructure2 = model.create(IfcRelContainedInSpatialStructure.class, oidProvider);
+							containedInSpatialStructure2.setRelatingStructure(ifcBuildingStorey);
+							containedInSpatialStructure2.getRelatedElements().add(newFurnishing);
+							
+							newFurnishing.setName("Generated");
+							newFurnishing.setGlobalId("TEST");
+							newFurnishing.setOwnerHistory(ownerHistory);
+							IfcProductDefinitionShape definitionShape = model.create(IfcProductDefinitionShape.class, oidProvider);
+							newFurnishing.setRepresentation(definitionShape);
+							
+							definitionShape.getRepresentations().add(boundingBox);
+							definitionShape.getRepresentations().add(surfaceModel);
+							
+							IfcLocalPlacement localPlacement = model.create(IfcLocalPlacement.class, oidProvider);
+							localPlacement.setPlacementRelTo(ifcSpace.getObjectPlacement());
+							IfcAxis2Placement3D axis2Placement3D = model.create(IfcAxis2Placement3D.class, oidProvider);
+							localPlacement.setRelativePlacement(axis2Placement3D);
+							
+							IfcCartesianPoint pos = model.create(IfcCartesianPoint.class, oidProvider);
+							pos.getCoordinates().add(-3d);
+							pos.getCoordinates().add(+0.5d);
+							pos.getCoordinates().add(0d);
+							axis2Placement3D.setLocation(pos);
+							
+							newFurnishing.setObjectPlacement(localPlacement);							
 						}
 					}
 				}
