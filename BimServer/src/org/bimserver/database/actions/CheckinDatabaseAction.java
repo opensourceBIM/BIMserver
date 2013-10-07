@@ -220,9 +220,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		}
 		IfcModelInterface newModel = new IfcModel();
 		newModel.getModelMetaData().setDate(new Date());
-		IfcModelInterface oldModel;
+		IfcModelInterface oldModel = new IfcModel();
 		try {
-			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
+			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper(oldModel));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

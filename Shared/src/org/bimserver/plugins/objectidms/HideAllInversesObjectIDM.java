@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.plugins.objectidms;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org

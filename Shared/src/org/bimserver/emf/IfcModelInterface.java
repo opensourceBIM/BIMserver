@@ -36,7 +36,7 @@ import com.google.common.collect.BiMap;
  *
  * 
  */
-public interface IfcModelInterface extends Iterable<IdEObject> {
+public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 
 	/**
 	 * Retrieve an object by its GUID
@@ -173,9 +173,6 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	 * @return The ModelMetaData of this model
 	 */
 	ModelMetaData getModelMetaData();
-	
-	<T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException;
-	<T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException;
 	
 	void fixOids(OidProvider<Long> oidProvider);
 	void setObjectOids();

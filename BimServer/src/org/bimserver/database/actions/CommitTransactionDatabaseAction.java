@@ -34,6 +34,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
@@ -108,7 +109,8 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 
 		IfcModelInterface ifcModel = new IfcModel();
 		if (oldLastRevision != null) {
-			getDatabaseSession().getMap(ifcModel, new Query(project.getId(), oldLastRevision.getId()));
+			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
+			getDatabaseSession().getMap(ifcModel, new Query(project.getId(), oldLastRevision.getId(), null, Deep.YES, highestStopId));
 		}
 		
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
