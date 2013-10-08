@@ -1,4 +1,4 @@
-package org.bimserver.services.guidfixer;
+package org.bimserver.demoplugins.service;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.bimserver.client.ClientIfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
@@ -93,7 +93,7 @@ public class GuidFixerService extends ServicePlugin {
 					state.setProgress(-1);
 					state.setStart(startDate);
 
-					ClientIfcModel model = (ClientIfcModel) bimServerClientInterface.getModel(poid, roid, false);
+					IfcModelInterface model = bimServerClientInterface.getModel(poid, roid, false);
 					Map<String, List<IfcRoot>> guids = new HashMap<String, List<IfcRoot>>();
 					int fixed = 0;
 					// Iterate over all objects that can have a GUID
