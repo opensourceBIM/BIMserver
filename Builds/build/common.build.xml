@@ -255,7 +255,11 @@
 				</path>
 			</classpath>
 		</javac>
-		<jar destfile="builds/lib/bimserver-${version}-demplugins.jar">
+		<mkdir dir="builds/demoplugins/plugin"/>
+		<copy todir="builds/demoplugins/plugin">
+			<fileset dir="../../DemoPlugins/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/lib/bimserver-${version}-demoplugins.jar">
 			<fileset dir="builds/demoplugins"/>
 		</jar>
 	</target>
