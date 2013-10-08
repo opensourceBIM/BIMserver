@@ -40,7 +40,6 @@ public class ObjectInfoSerializerPlugin extends AbstractSerializerPlugin {
 
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
-		pluginManager.requireSchemaDefinition();
 		initialized = true;
 	}
 	

@@ -117,7 +117,6 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
 					IfcModelInterface model = bimServerClientInterface.getModel(poid, roid, true);
-					System.out.println(model.size());
 
 					DeserializerPlugin deserializerPlugin = getPluginManager().getFirstDeserializer("ifc", true);
 					
