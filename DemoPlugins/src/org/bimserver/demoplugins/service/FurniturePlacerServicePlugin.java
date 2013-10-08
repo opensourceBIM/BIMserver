@@ -1,7 +1,6 @@
 package org.bimserver.demoplugins.service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,9 +43,6 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
-import org.bimserver.plugins.serializers.Serializer;
-import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;

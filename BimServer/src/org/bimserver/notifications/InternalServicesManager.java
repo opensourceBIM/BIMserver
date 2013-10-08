@@ -7,9 +7,11 @@ import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.SimpleTokenHolder;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.interfaces.objects.SObjectType;
-import org.bimserver.interfaces.objects.SService;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.NotificationsManagerInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
@@ -18,7 +20,6 @@ import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.Bimsie1RemoteServiceInterfaceAdaptor;
-import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
@@ -70,31 +71,34 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 					e2.printStackTrace();
 				}
 				try {
-					final ServiceInterface serviceInterface = bimServer.getService(ServiceInterface.class);
-					final SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
-					final SObjectType settings = internalChannel.getPluginInterface().getPluginSettings(service.getInternalServiceId());
-
-					final BimServerClient bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
-					
-					// TODO this should somehow be managed...
-					// This must be asynchronous because we don't want the BIMserver's notifications processor to wait for this to finish...
-					new Thread(){
-						@Override
-						public void run() {
-							try {
-								newRevisionHandler.newRevision(bimServerClient, poid, roid, service.getOid(), settings);
-							} catch (ServerException e) {
-								LOGGER.error("", e);
-							} catch (UserException e) {
-								LOGGER.error("", e);
+					DatabaseSession session = bimServer.getDatabase().createSession();
+					try {
+						final InternalServicePluginConfiguration internalServicePluginConfiguration = session.get(Long.parseLong(profileIdentifier), Query.getDefault());
+						final SObjectType settings = bimServer.getSConverter().convertToSObject(internalServicePluginConfiguration.getSettings());
+						
+						final BimServerClient bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
+						
+						// TODO this should somehow be managed...
+						// This must be asynchronous because we don't want the BIMserver's notifications processor to wait for this to finish...
+						new Thread(){
+							@Override
+							public void run() {
+								try {
+									newRevisionHandler.newRevision(bimServerClient, poid, roid, internalServicePluginConfiguration.getOid(), settings);
+								} catch (ServerException e) {
+									LOGGER.error("", e);
+								} catch (UserException e) {
+									LOGGER.error("", e);
+								}
 							}
-						}
-					}.start();
+						}.start();
+					} finally {
+						session.close();
+					}
 				} catch (Exception e) {
 					LOGGER.error("", e);
 				}
 			}
 		});
 	}
-	
 }
