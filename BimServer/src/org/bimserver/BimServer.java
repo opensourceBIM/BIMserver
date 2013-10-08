@@ -106,7 +106,6 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.PluginSourceType;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
@@ -115,9 +114,9 @@ import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
-import org.bimserver.serializers.BinaryGeometrySerializerPlugin;
 import org.bimserver.serializers.SerializerFactory;
-import org.bimserver.services.guidfixer.GuidFixerService;
+import org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin;
+import org.bimserver.serializers.objectinfo.ObjectInfoSerializerPlugin;
 import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -321,8 +320,8 @@ public class BimServer {
 				});
 				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 				pluginManager.loadPlugin(WebModulePlugin.class, "Internal", "Internal", new DefaultWebModulePlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
-				pluginManager.loadPlugin(ServicePlugin.class, "Internal", "Internal", new GuidFixerService(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 				pluginManager.loadPlugin(SerializerPlugin.class, "Internal", "Internal", new BinaryGeometrySerializerPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
+				pluginManager.loadPlugin(SerializerPlugin.class, "Internal", "Internal", new ObjectInfoSerializerPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
@@ -559,9 +558,6 @@ public class BimServer {
 		}
 		if (userSettings.getDefaultRenderEngine() == null && !userSettings.getRenderEngines().isEmpty()) {
 			userSettings.setDefaultRenderEngine(userSettings.getRenderEngines().get(0));
-		}
-		for (ModelCheckerPlugin modelCheckerPlugin : pluginManager.getAllModelCheckerPlugins(true)) {
-			// Attempt to load this crap
 		}
 		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
 			QueryEnginePluginConfiguration queryEnginePluginConfiguration = find(userSettings.getQueryengines(), queryEnginePlugin.getClass().getName());

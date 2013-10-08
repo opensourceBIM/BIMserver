@@ -23,7 +23,7 @@
 		<antcall target="Mergers" />
 		<antcall target="JavaQueryEngine" />
 		<antcall target="IfcPlugins" />
-		<antcall target="MiscSerializers" />
+		<antcall target="DemoPlugins" />
 		<antcall target="BuildingSMARTLibrary" />
 		<antcall target="FileBasedObjectIDM" />
 	</target>
@@ -229,25 +229,6 @@
 			<fileset dir="builds/mergers"/>
 		</jar>
 	</target>
-	<target name="MiscSerializers">
-		<mkdir dir="builds/miscserializers" />
-		<javac destdir="builds/miscserializers" debug="on" includeantruntime="false">
-			<src path="../../MiscSerializers/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<mkdir dir="builds/miscserializers/plugin"/>
-		<copy todir="builds/miscserializers/plugin">
-			<fileset dir="../../MiscSerializers/plugin"></fileset>
-		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-${version}-miscserializers.jar">
-			<fileset dir="builds/miscserializers"/>
-		</jar>
-	</target>
 	<target name="XsltSerializer">
 		<mkdir dir="builds/xsltserializer" />
 		<javac destdir="builds/xsltserializer" debug="on" includeantruntime="false">
@@ -261,6 +242,21 @@
 		</javac>
 		<jar destfile="builds/lib/bimserver-${version}-xsltserializer.jar">
 			<fileset dir="builds/xsltserializer"/>
+		</jar>
+	</target>
+	<target name="DemoPlugins">
+		<mkdir dir="builds/demoplugins" />
+		<javac destdir="builds/demoplugins" debug="on" includeantruntime="false">
+			<src path="../../DemoPlugins/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<jar destfile="builds/lib/bimserver-${version}-demplugins.jar">
+			<fileset dir="builds/demoplugins"/>
 		</jar>
 	</target>
 	<target name="Collada">

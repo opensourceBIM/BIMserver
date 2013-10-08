@@ -1,4 +1,4 @@
-package org.bimserver.serializers;
+package org.bimserver.serializers.binarygeometry;
 
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
