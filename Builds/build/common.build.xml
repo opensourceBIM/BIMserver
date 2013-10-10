@@ -279,6 +279,9 @@
 		<copy todir="builds/demoplugins/plugin">
 			<fileset dir="../../DemoPlugins/plugin"></fileset>
 		</copy>
+		<copy todir="builds/demoplugins">
+			<fileset dir="../../DemoPlugins/data"></fileset>
+		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-demoplugins.jar">
 			<fileset dir="builds/demoplugins"/>
 		</jar>
