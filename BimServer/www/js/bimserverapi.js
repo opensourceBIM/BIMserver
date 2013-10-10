@@ -96,11 +96,11 @@ function BimServerApi(baseUrl, notifier) {
 		othis.call("Bimsie1AuthInterface", "login", request, function(data){
 			othis.token = data;
 			if (rememberme) {
-				$.cookie("autologin", othis.token, { expires: 31, path: "/"});
-				$.cookie("address", othis.baseUrl, { expires: 31, path: "/" });
+				$.cookie("autologin" + window.document.location.port, othis.token, { expires: 31, path: "/"});
+				$.cookie("address" + window.document.location.port, othis.baseUrl, { expires: 31, path: "/"});
 			} else {
-				$.cookie("autologin", othis.token, { path: "/" });
-				$.cookie("address", othis.baseUrl, { path: "/"});
+				$.cookie("autologin" + window.document.location.port, othis.token, { path: "/"});
+				$.cookie("address" + window.document.location.port, othis.baseUrl, { path: "/"});
 			}
 			othis.notifier.info("Login successful");
 			othis.resolveUser();
@@ -134,7 +134,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.logout = function(callback) {
-		$.removeCookie("autologin", {path: "/"});
+		$.removeCookie("autologin" + window.document.location.port, {path: "/"});
 		othis.call("Bimsie1AuthInterface", "logout", {}, function(){
 			othis.notifier.info("Logout successful");
 			callback();
@@ -424,8 +424,8 @@ function BimServerApi(baseUrl, notifier) {
 						}
 					}
 					if (data.response.exception != null) {
-						if (data.response.exception.message == "Invalid token" && !othis.autoLoginTried && $.cookie("username") != null && $.cookie("autologin") != null) {
-							othis.autologin($.cookie("username"), $.cookie("autologin"), function(){
+						if (data.response.exception.message == "Invalid token" && !othis.autoLoginTried && $.cookie("username" + window.document.location.port) != null && $.cookie("autologin" + window.document.location.port) != null) {
+							othis.autologin($.cookie("username" + window.document.location.port), $.cookie("autologin" + window.document.location.port), function(){
 								console.log("Trying to connect with autologin");
 								othis.multiCall(requests, callback, errorCallback);
 							});
