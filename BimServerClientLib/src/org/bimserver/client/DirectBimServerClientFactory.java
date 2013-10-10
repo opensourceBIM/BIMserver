@@ -30,6 +30,13 @@ public class DirectBimServerClientFactory<T extends PublicInterface> extends Abs
 	private ServiceFactory serviceFactory;
 	private String baseAddress;
 
+	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap, PluginManager pluginManager) {
+		super(servicesMap);
+		this.baseAddress = baseAddress;
+		this.serviceFactory = serviceFactory;
+		this.pluginManager = pluginManager;
+	}
+	
 	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap) {
 		super(servicesMap);
 		this.baseAddress = baseAddress;
