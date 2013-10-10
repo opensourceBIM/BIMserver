@@ -24,7 +24,7 @@
 		<antcall target="JavaQueryEngine" />
 		<antcall target="IfcPlugins" />
 		<antcall target="DemoPlugins" />
-		<antcall target="MiscPlugins" />
+		<antcall target="MiscSerializers" />
 		<antcall target="BuildingSMARTLibrary" />
 		<antcall target="FileBasedObjectIDM" />
 	</target>
