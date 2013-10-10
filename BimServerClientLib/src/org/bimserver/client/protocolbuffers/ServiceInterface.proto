@@ -639,18 +639,21 @@ message GetAllLocalServiceDescriptorsRequest {
 }
 
 message SServiceDescriptor {
-	optional string writeExtendedData = 1;
-	optional SAccessMethod notificationProtocol = 2;
-	optional STrigger trigger = 3;
-	optional bool writeRevision = 4;
-	optional string readExtendedData = 5;
-	optional string providerName = 6;
-	optional string token = 7;
-	optional string description = 8;
-	optional string name = 9;
-	optional bool readRevision = 10;
-	optional string identifier = 11;
-	optional string url = 12;
+	optional STrigger trigger = 1;
+	optional string writeExtendedData = 2;
+	optional string readExtendedData = 3;
+	optional bool readRevision = 4;
+	optional string companyUrl = 5;
+	optional string url = 6;
+	optional SAccessMethod notificationProtocol = 7;
+	optional bool writeRevision = 8;
+	optional string token = 9;
+	optional string providerName = 10;
+	optional string description = 11;
+	optional string name = 12;
+	optional string newProfileUrl = 13;
+	optional string identifier = 14;
+	optional string tokenUrl = 15;
 }
 
 message GetAllLocalServiceDescriptorsResponse {

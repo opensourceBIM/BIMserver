@@ -320,8 +320,8 @@ public class BimServer {
 				});
 				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 				pluginManager.loadPlugin(WebModulePlugin.class, "Internal", "Internal", new DefaultWebModulePlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
-				//pluginManager.loadPlugin(SerializerPlugin.class, "Internal", "Internal", new BinaryGeometrySerializerPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
-				//pluginManager.loadPlugin(SerializerPlugin.class, "Internal", "Internal", new ObjectInfoSerializerPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
+				pluginManager.loadPlugin(SerializerPlugin.class, "Internal", "Internal", new BinaryGeometrySerializerPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
+				pluginManager.loadPlugin(SerializerPlugin.class, "Internal", "Internal", new ObjectInfoSerializerPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}

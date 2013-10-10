@@ -78,7 +78,7 @@ public class JsonSocketReflector extends JsonReflector {
 						InputStream inputStream = resultEntity.getContent();
 						ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 						IOUtils.copy(inputStream, byteArrayOutputStream);
-						LOGGER.info(new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8));
+						LOGGER.debug(new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8));
 						JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()), Charsets.UTF_8));
 						return resultObject;
 					} else {

@@ -51,47 +51,50 @@ public class NewAttributeChange implements Change {
 		KeyValueStore keyValueStore = database.getKeyValueStore();
 		for (EClass subClass : schema.getSubClasses(eClass)) {
 			try {
-				RecordIterator recordIterator = keyValueStore.getRecordIterator(subClass.getEPackage().getName() + "_" + subClass.getName(), databaseSession);
-				try {
-					Record record = recordIterator.next();
-					while (record != null) {
-						ByteBuffer buffer = ByteBuffer.wrap(record.getValue());
-						GrowingByteBuffer growingByteBuffer = new GrowingByteBuffer(buffer);
-						growingByteBuffer.position(growingByteBuffer.capacity() - 1);
-						if (eAttribute.isMany()) {
-							growingByteBuffer.putInt((short)0);
-						} else {
-							if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-								growingByteBuffer.putShort((short)-1);
-							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-								growingByteBuffer.putInt(0);
-							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-								growingByteBuffer.putDouble(0.0);
-							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-								growingByteBuffer.putFloat(0.0f);
-							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getELong()) {
-								growingByteBuffer.putLong(0L);
-							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
-								growingByteBuffer.put((byte) 0);
-							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDate()) {
-								growingByteBuffer.putLong(-1L);
-							} else if (eAttribute.getEType().getName().equals("Tristate")) {
-								growingByteBuffer.putInt(0);
-							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
-								growingByteBuffer.putInt(0);
-							} else if (eAttribute.getEType() instanceof EEnum) {
-								growingByteBuffer.putInt(-1);
+				// No data migration if the database is new
+				if (!database.getKeyValueStore().isNew()) {
+					RecordIterator recordIterator = keyValueStore.getRecordIterator(subClass.getEPackage().getName() + "_" + subClass.getName(), databaseSession);
+					try {
+						Record record = recordIterator.next();
+						while (record != null) {
+							ByteBuffer buffer = ByteBuffer.wrap(record.getValue());
+							GrowingByteBuffer growingByteBuffer = new GrowingByteBuffer(buffer);
+							growingByteBuffer.position(growingByteBuffer.capacity() - 1);
+							if (eAttribute.isMany()) {
+								growingByteBuffer.putInt((short)0);
 							} else {
-								throw new NotImplementedException("Type " + eAttribute.getEType().getName() + " has not been implemented");
+								if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
+									growingByteBuffer.putShort((short)-1);
+								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
+									growingByteBuffer.putInt(0);
+								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+									growingByteBuffer.putDouble(0.0);
+								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
+									growingByteBuffer.putFloat(0.0f);
+								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getELong()) {
+									growingByteBuffer.putLong(0L);
+								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
+									growingByteBuffer.put((byte) 0);
+								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDate()) {
+									growingByteBuffer.putLong(-1L);
+								} else if (eAttribute.getEType().getName().equals("Tristate")) {
+									growingByteBuffer.putInt(0);
+								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+									growingByteBuffer.putInt(0);
+								} else if (eAttribute.getEType() instanceof EEnum) {
+									growingByteBuffer.putInt(-1);
+								} else {
+									throw new NotImplementedException("Type " + eAttribute.getEType().getName() + " has not been implemented");
+								}
 							}
+							keyValueStore.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), growingByteBuffer.array(), databaseSession);
+							record = recordIterator.next();
 						}
-						keyValueStore.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), growingByteBuffer.array(), databaseSession);
-						record = recordIterator.next();
+					} catch (BimserverDatabaseException e) {
+						LOGGER.error("", e);
+					} finally {
+						recordIterator.close();
 					}
-				} catch (BimserverDatabaseException e) {
-					LOGGER.error("", e);
-				} finally {
-					recordIterator.close();
 				}
 			} catch (BimserverLockConflictException e) {
 				LOGGER.error("", e);

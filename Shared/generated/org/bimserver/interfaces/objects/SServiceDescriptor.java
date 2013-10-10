@@ -39,6 +39,9 @@ public class SServiceDescriptor implements SBase
 	private boolean writeRevision;
 	private java.lang.String writeExtendedData;
 	private java.lang.String providerName;
+	private java.lang.String companyUrl;
+	private java.lang.String tokenUrl;
+	private java.lang.String newProfileUrl;
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -85,6 +88,15 @@ public class SServiceDescriptor implements SBase
 		}
 		if (sField.getName().equals("providerName")) {
 			return getProviderName();
+		}
+		if (sField.getName().equals("companyUrl")) {
+			return getCompanyUrl();
+		}
+		if (sField.getName().equals("tokenUrl")) {
+			return getTokenUrl();
+		}
+		if (sField.getName().equals("newProfileUrl")) {
+			return getNewProfileUrl();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
@@ -136,6 +148,18 @@ public class SServiceDescriptor implements SBase
 		}
 		if (sField.getName().equals("providerName")) {
 			setProviderName((String)val);
+			return;
+		}
+		if (sField.getName().equals("companyUrl")) {
+			setCompanyUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("tokenUrl")) {
+			setTokenUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("newProfileUrl")) {
+			setNewProfileUrl((String)val);
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
@@ -235,6 +259,30 @@ public class SServiceDescriptor implements SBase
 
 	public void setProviderName(java.lang.String providerName) {
 		this.providerName = providerName;
+	}
+	
+	public java.lang.String getCompanyUrl() {
+		return companyUrl;
+	}
+
+	public void setCompanyUrl(java.lang.String companyUrl) {
+		this.companyUrl = companyUrl;
+	}
+	
+	public java.lang.String getTokenUrl() {
+		return tokenUrl;
+	}
+
+	public void setTokenUrl(java.lang.String tokenUrl) {
+		this.tokenUrl = tokenUrl;
+	}
+	
+	public java.lang.String getNewProfileUrl() {
+		return newProfileUrl;
+	}
+
+	public void setNewProfileUrl(java.lang.String newProfileUrl) {
+		this.newProfileUrl = newProfileUrl;
 	}
 	
 }

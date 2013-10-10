@@ -4295,13 +4295,40 @@ public interface StorePackage extends EPackage {
 	int SERVICE_DESCRIPTOR__PROVIDER_NAME = 11;
 
 	/**
+	 * The feature id for the '<em><b>Company Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_DESCRIPTOR__COMPANY_URL = 12;
+
+	/**
+	 * The feature id for the '<em><b>Token Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_DESCRIPTOR__TOKEN_URL = 13;
+
+	/**
+	 * The feature id for the '<em><b>New Profile Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_DESCRIPTOR__NEW_PROFILE_URL = 14;
+
+	/**
 	 * The number of structural features of the '<em>Service Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR_FEATURE_COUNT = 12;
+	int SERVICE_DESCRIPTOR_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceImpl <em>Service</em>}' class.
@@ -9811,6 +9838,39 @@ public interface StorePackage extends EPackage {
 	EAttribute getServiceDescriptor_ProviderName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#getCompanyUrl <em>Company Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Company Url</em>'.
+	 * @see org.bimserver.models.store.ServiceDescriptor#getCompanyUrl()
+	 * @see #getServiceDescriptor()
+	 * @generated
+	 */
+	EAttribute getServiceDescriptor_CompanyUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#getTokenUrl <em>Token Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Token Url</em>'.
+	 * @see org.bimserver.models.store.ServiceDescriptor#getTokenUrl()
+	 * @see #getServiceDescriptor()
+	 * @generated
+	 */
+	EAttribute getServiceDescriptor_TokenUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#getNewProfileUrl <em>New Profile Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>New Profile Url</em>'.
+	 * @see org.bimserver.models.store.ServiceDescriptor#getNewProfileUrl()
+	 * @see #getServiceDescriptor()
+	 * @generated
+	 */
+	EAttribute getServiceDescriptor_NewProfileUrl();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Service <em>Service</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14329,6 +14389,30 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVICE_DESCRIPTOR__PROVIDER_NAME = eINSTANCE.getServiceDescriptor_ProviderName();
+
+		/**
+		 * The meta object literal for the '<em><b>Company Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_DESCRIPTOR__COMPANY_URL = eINSTANCE.getServiceDescriptor_CompanyUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Token Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_DESCRIPTOR__TOKEN_URL = eINSTANCE.getServiceDescriptor_TokenUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>New Profile Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_DESCRIPTOR__NEW_PROFILE_URL = eINSTANCE.getServiceDescriptor_NewProfileUrl();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceImpl <em>Service</em>}' class.
