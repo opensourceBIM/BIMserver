@@ -51,7 +51,7 @@ public class TestNotifications {
 			}
 
 			LocalDevBimServerStarter localDevBimWebServerStarter = new LocalDevBimServerStarter();
-			localDevBimWebServerStarter.start("localhost", 80);
+			localDevBimWebServerStarter.start(1, "localhost", 80, 85);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
