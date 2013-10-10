@@ -1,4 +1,4 @@
-package org.bimserver.servlets;
+package org.bimserver.serializers.binarygeometry;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

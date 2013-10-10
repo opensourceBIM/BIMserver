@@ -24,6 +24,7 @@
 		<antcall target="JavaQueryEngine" />
 		<antcall target="IfcPlugins" />
 		<antcall target="DemoPlugins" />
+		<antcall target="MiscPlugins" />
 		<antcall target="BuildingSMARTLibrary" />
 		<antcall target="FileBasedObjectIDM" />
 	</target>
@@ -148,6 +149,25 @@
 		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-buildingSMARTLibrary.jar">
 			<fileset dir="builds/BuildingSMARTLibrary"/>
+		</jar>
+	</target>
+	<target name="MiscSerializers">
+		<mkdir dir="builds/miscserializers" />
+		<javac destdir="builds/miscserializers" debug="on" includeantruntime="false">
+			<src path="../../MiscSerializers/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/miscserializers/plugin"/>
+		<copy todir="builds/miscserializers/plugin">
+			<fileset dir="../../MiscSerializers/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-miscserializers.jar">
+			<fileset dir="builds/miscserializers"/>
 		</jar>
 	</target>
 	<target name="IfcEngine">
