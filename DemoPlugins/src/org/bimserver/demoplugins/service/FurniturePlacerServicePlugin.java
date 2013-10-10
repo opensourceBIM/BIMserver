@@ -125,7 +125,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 
 					deserializer = deserializerPlugin.createDeserializer(null);
 					deserializer.init(getPluginManager().requireSchemaDefinition());
-					InputStream resourceAsInputStream = getPluginManager().getPluginContext(FurniturePlacerServicePlugin.this).getResourceAsInputStream("picknicktable.ifc");
+					InputStream resourceAsInputStream = getPluginManager().getPluginContext(FurniturePlacerServicePlugin.this).getResourceAsInputStream("data/picknicktable.ifc");
 					ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 					IOUtils.copy(resourceAsInputStream, byteArrayOutputStream);
 					IfcModelInterface furnishingModel = deserializer.read(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()), "picknicktable.ifc", byteArrayOutputStream.size());
