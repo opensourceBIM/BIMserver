@@ -7,6 +7,7 @@ import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.SimpleTokenHolder;
+import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.interfaces.objects.SObjectType;
@@ -76,7 +77,14 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 						final InternalServicePluginConfiguration internalServicePluginConfiguration = session.get(Long.parseLong(profileIdentifier), Query.getDefault());
 						final SObjectType settings = bimServer.getSConverter().convertToSObject(internalServicePluginConfiguration.getSettings());
 						
-						final BimServerClient bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
+						BimServerClient bimServerClient = null;
+						if (apiUrl == null) {
+							bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
+						} else {
+							bimServerClient = new JsonBimServerClientFactory(apiUrl).create(new TokenAuthentication(token));
+						}
+						
+						final BimServerClient finalClient = bimServerClient;
 						
 						// TODO this should somehow be managed...
 						// This must be asynchronous because we don't want the BIMserver's notifications processor to wait for this to finish...
@@ -84,7 +92,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 							@Override
 							public void run() {
 								try {
-									newRevisionHandler.newRevision(bimServerClient, poid, roid, internalServicePluginConfiguration.getOid(), settings);
+									newRevisionHandler.newRevision(finalClient, poid, roid, internalServicePluginConfiguration.getOid(), settings);
 								} catch (ServerException e) {
 									LOGGER.error("", e);
 								} catch (UserException e) {

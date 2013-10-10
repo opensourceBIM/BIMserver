@@ -77,6 +77,7 @@ public class PluginManager {
 	private SServicesMap servicesMap;
 
 	public PluginManager(File tempDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
+		LOGGER.debug("Creating new PluginManager");
 		this.tempDir = tempDir;
 		this.baseClassPath = baseClassPath;
 		this.serviceFactory = serviceFactory;
@@ -193,6 +194,7 @@ public class PluginManager {
 			if (pluginDescriptor == null) {
 				throw new PluginException("No plugin descriptor could be created");
 			}
+			LOGGER.debug(pluginDescriptor.toString());
 			loadPlugins(jarClassLoader, file.getAbsolutePath(), file.getAbsolutePath(), pluginDescriptor, PluginSourceType.JAR_FILE);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
