@@ -1016,6 +1016,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			sServiceDescriptor.setNotificationProtocol(SAccessMethod.valueOf(service.getString("notificationProtocol")));
 			sServiceDescriptor.setTrigger(STrigger.valueOf(service.getString("trigger")));
 			sServiceDescriptor.setUrl(service.getString("url"));
+			sServiceDescriptor.setCompanyUrl(service.getString("companyUrl"));
+			sServiceDescriptor.setTokenUrl(service.getString("tokenUrl"));
+			sServiceDescriptor.setNewProfileUrl(service.getString("newProfileUrl"));
 			sServiceDescriptor.setProviderName(service.getString("providerName"));
 
 			JSONObject rights = service.getJSONObject("rights");
@@ -1055,6 +1058,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				sServiceDescriptor.setNotificationProtocol(SAccessMethod.valueOf(service.getString("notificationProtocol")));
 				sServiceDescriptor.setTrigger(STrigger.valueOf(service.getString("trigger")));
 				sServiceDescriptor.setUrl(service.getString("url"));
+				sServiceDescriptor.setCompanyUrl(service.getString("companyUrl"));
+				sServiceDescriptor.setTokenUrl(service.getString("tokenUrl"));
+				sServiceDescriptor.setNewProfileUrl(service.getString("newProfileUrl"));
 				sServiceDescriptor.setProviderName(service.getString("providerName"));
 
 				JSONObject rights = service.getJSONObject("rights");

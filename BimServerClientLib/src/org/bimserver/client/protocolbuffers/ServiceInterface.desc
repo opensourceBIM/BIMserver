@@ -1,5 +1,5 @@
 
-›å
+Øå
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -310,22 +310,26 @@ identifier (	"h
 GetAllLocalProfilesResponse
 errorMessage (	3
 value (2$.org.bimserver.pb.SProfileDescriptor"&
-$GetAllLocalServiceDescriptorsRequest"Ë
-SServiceDescriptor
-writeExtendedData (	=
-notificationProtocol (2.org.bimserver.pb.SAccessMethod+
-trigger (2.org.bimserver.pb.STrigger
-writeRevision (
-readExtendedData (	
-providerName (	
-token (	
-description (	
-name	 (	
-readRevision
- (
+$GetAllLocalServiceDescriptorsRequest"ˆ
+SServiceDescriptor+
+trigger (2.org.bimserver.pb.STrigger
+writeExtendedData (	
+readExtendedData (	
+readRevision (
 
-identifier (	
-url (	"r
+companyUrl (	
+url (	=
+notificationProtocol (2.org.bimserver.pb.SAccessMethod
+writeRevision (
+token	 (	
+providerName
+ (	
+description (	
+name (	
+newProfileUrl (	
+
+identifier (	
+tokenUrl (	"r
 %GetAllLocalServiceDescriptorsResponse
 errorMessage (	3
 value (2$.org.bimserver.pb.SServiceDescriptor"

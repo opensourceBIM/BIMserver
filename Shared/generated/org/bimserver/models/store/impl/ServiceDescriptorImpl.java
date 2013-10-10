@@ -42,6 +42,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#isWriteRevision <em>Write Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getWriteExtendedData <em>Write Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getProviderName <em>Provider Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getCompanyUrl <em>Company Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getTokenUrl <em>Token Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getNewProfileUrl <em>New Profile Url</em>}</li>
  * </ul>
  * </p>
  *
@@ -291,6 +294,60 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 */
 	public void setProviderName(String newProviderName) {
 		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__PROVIDER_NAME, newProviderName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCompanyUrl() {
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__COMPANY_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCompanyUrl(String newCompanyUrl) {
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__COMPANY_URL, newCompanyUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTokenUrl() {
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__TOKEN_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTokenUrl(String newTokenUrl) {
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__TOKEN_URL, newTokenUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getNewProfileUrl() {
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__NEW_PROFILE_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNewProfileUrl(String newNewProfileUrl) {
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__NEW_PROFILE_URL, newNewProfileUrl);
 	}
 
 } //ServiceDescriptorImpl
