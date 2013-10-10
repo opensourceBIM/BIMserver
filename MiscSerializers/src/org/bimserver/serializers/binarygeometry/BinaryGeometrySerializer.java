@@ -13,8 +13,6 @@ import org.bimserver.models.ifc2x3tc1.IfcSlab;
 import org.bimserver.models.ifc2x3tc1.IfcSlabTypeEnum;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.servlets.Bounds;
-import org.bimserver.servlets.Float3;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
