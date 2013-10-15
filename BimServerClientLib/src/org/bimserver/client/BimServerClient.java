@@ -37,9 +37,11 @@ import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ServiceHolder;
+import org.bimserver.shared.SystemAuthentication;
 import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.TokenChangeListener;
 import org.bimserver.shared.TokenHolder;
@@ -112,6 +114,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			} else if (authenticationInfo instanceof TokenAuthentication) {
 				TokenAuthentication tokenAuthentication = (TokenAuthentication)authenticationInfo;
 				setToken(tokenAuthentication.getToken());
+			} else if (authenticationInfo instanceof SystemAuthentication) {
 			}
 		} catch (PublicInterfaceNotFoundException e) {
 			LOGGER.error("", e);
@@ -303,7 +306,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return channel.getDownloadData(baseAddress, token, download, serializerOid);
 	}
 
-	public ClientIfcModel newModel(SProject project) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
+	public IfcModelInterface newModel(SProject project) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
 		return new ClientIfcModel(this, project.getOid(), -1, false);
 	}
 

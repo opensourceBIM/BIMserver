@@ -17,7 +17,7 @@ package org.bimserver.unittests;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.ClientIfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.ifc2x3tc1.IfcApplication;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
@@ -62,7 +62,7 @@ public class CreateFromScratch {
 	private IfcLocalPlacement buildingStoreyLocalPlacement;
 	private IfcGeometricRepresentationContext geometricContext;
 
-	public IfcWall createWall(ClientIfcModel model) throws IfcModelInterfaceException {
+	public IfcWall createWall(IfcModelInterface model) throws IfcModelInterfaceException {
 		IfcWall wall = model.create(IfcWall.class);
 		wall.setGlobalId(makeGuid(model, "3Ep4r0uuX5ywPYOUG2H2A4"));
 		wall.setOwnerHistory(ownerHistory);
@@ -127,7 +127,7 @@ public class CreateFromScratch {
 		return wall;
 	}
 
-	private IfcFace makeFace(ClientIfcModel model, IfcCartesianPoint... cartesianPoints) throws IfcModelInterfaceException {
+	private IfcFace makeFace(IfcModelInterface model, IfcCartesianPoint... cartesianPoints) throws IfcModelInterfaceException {
 		IfcFace face = model.create(IfcFace.class);
 		IfcPolyLoop polyLoop = model.create(IfcPolyLoop.class);
 		for (IfcCartesianPoint ifcCartesianPoint : cartesianPoints) {
@@ -140,7 +140,7 @@ public class CreateFromScratch {
 		return face;
 	}
 
-	private IfcBuildingStorey createBuildingStorey(ClientIfcModel model) throws IfcModelInterfaceException {
+	private IfcBuildingStorey createBuildingStorey(IfcModelInterface model) throws IfcModelInterfaceException {
 		IfcBuildingStorey buildingStorey = model.create(IfcBuildingStorey.class);
 		buildingStorey.setGlobalId(makeGuid(model, "36_p3GiZXEHxQ3gWcOhQPE"));
 		buildingStorey.setName("Default Building Storey");
@@ -168,7 +168,7 @@ public class CreateFromScratch {
 		return buildingStorey;
 	}
 
-	private IfcBuilding createBuilding(ClientIfcModel model) throws IfcModelInterfaceException {
+	private IfcBuilding createBuilding(IfcModelInterface model) throws IfcModelInterfaceException {
 		IfcBuilding building = model.create(IfcBuilding.class);
 		building.setGlobalId(makeGuid(model, "1MW5jGD1fBiRPPs7T9I5O8"));
 		building.setName("Default Building");
@@ -192,7 +192,7 @@ public class CreateFromScratch {
 		return building;
 	}
 
-	private IfcSite createSite(ClientIfcModel model) throws IfcModelInterfaceException {
+	private IfcSite createSite(IfcModelInterface model) throws IfcModelInterfaceException {
 		IfcSite site = model.create(IfcSite.class);
 		site.setGlobalId(makeGuid(model, "0X4tGlJqHCcwlHMZaCq8EN"));
 		site.setDescription("Default Site");
@@ -222,7 +222,7 @@ public class CreateFromScratch {
 		return site;
 	}
 
-	public void createIfcProject(ClientIfcModel model) throws IfcModelInterfaceException {
+	public void createIfcProject(IfcModelInterface model) throws IfcModelInterfaceException {
 		IfcProject project = model.create(IfcProject.class);
 		project.setGlobalId(makeGuid(model, "2o1ykWxGT4ZxPjHNe4gayR"));
 		project.setName("Default Project");
@@ -237,7 +237,7 @@ public class CreateFromScratch {
 		buildingBuildingStorey.getRelatedObjects().add(createSite(model));
 	}
 
-	private IfcCartesianPoint makeCartesianPoint(ClientIfcModel model, double x, double y, double z) throws IfcModelInterfaceException {
+	private IfcCartesianPoint makeCartesianPoint(IfcModelInterface model, double x, double y, double z) throws IfcModelInterfaceException {
 		IfcCartesianPoint point = model.create(IfcCartesianPoint.class);
 		point.getCoordinates().add(x);
 		point.getCoordinates().add(y);
@@ -245,7 +245,7 @@ public class CreateFromScratch {
 		return point;
 	}
 
-	private IfcDirection makeDirection(ClientIfcModel model, double x, double y, double z) throws IfcModelInterfaceException {
+	private IfcDirection makeDirection(IfcModelInterface model, double x, double y, double z) throws IfcModelInterfaceException {
 		IfcDirection direction = model.create(IfcDirection.class);
 		direction.getDirectionRatios().add(x);
 		direction.getDirectionRatios().add(y);
@@ -253,7 +253,7 @@ public class CreateFromScratch {
 		return direction;
 	}
 
-	private IfcGeometricRepresentationContext createGeometricContext(ClientIfcModel model) throws IfcModelInterfaceException {
+	private IfcGeometricRepresentationContext createGeometricContext(IfcModelInterface model) throws IfcModelInterfaceException {
 		IfcCartesianPoint cartesianPoint = model.create(IfcCartesianPoint.class);
 		IfcAxis2Placement3D axis2Placement3D = model.create(IfcAxis2Placement3D.class);
 		axis2Placement3D.setLocation(cartesianPoint);
@@ -266,7 +266,7 @@ public class CreateFromScratch {
 		return geometricRepresentationContext;
 	}
 
-	private IfcUnitAssignment createUnits(ClientIfcModel model) throws IfcModelInterfaceException {
+	private IfcUnitAssignment createUnits(IfcModelInterface model) throws IfcModelInterfaceException {
 		IfcUnitAssignment unitAssignment = model.create(IfcUnitAssignment.class);
 		unitAssignment.getUnits().add(makeSiUnit(model, IfcUnitEnum.LENGTHUNIT, IfcSIPrefix.MILLI, IfcSIUnitName.METRE));
 		unitAssignment.getUnits().add(makeSiUnit(model, IfcUnitEnum.AREAUNIT, null, IfcSIUnitName.SQUARE_METRE));
@@ -294,7 +294,7 @@ public class CreateFromScratch {
 		return unitAssignment;
 	}
 
-	private IfcOwnerHistory createOwnerHistory(ClientIfcModel model) throws IfcModelInterfaceException {
+	private IfcOwnerHistory createOwnerHistory(IfcModelInterface model) throws IfcModelInterfaceException {
 		IfcPerson person = model.create(IfcPerson.class);
 		person.setId("ID001");
 		person.setFamilyName("Bonsma");
@@ -322,7 +322,7 @@ public class CreateFromScratch {
 		return ownerHistory;
 	}
 
-	private IfcSIUnit makeSiUnit(ClientIfcModel model, IfcUnitEnum unitEnum, IfcSIPrefix siPrefix, IfcSIUnitName siUnitName) throws IfcModelInterfaceException {
+	private IfcSIUnit makeSiUnit(IfcModelInterface model, IfcUnitEnum unitEnum, IfcSIPrefix siPrefix, IfcSIUnitName siUnitName) throws IfcModelInterfaceException {
 		IfcSIUnit siUnit = model.create(IfcSIUnit.class);
 		siUnit.setPrefix(siPrefix);
 		siUnit.setUnitType(unitEnum);
@@ -330,7 +330,7 @@ public class CreateFromScratch {
 		return siUnit;
 	}
 
-	private String makeGuid(ClientIfcModel model, String guid) {
+	private String makeGuid(IfcModelInterface model, String guid) {
 		return guid;
 	}
 }

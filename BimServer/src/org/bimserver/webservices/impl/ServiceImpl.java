@@ -42,8 +42,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -154,6 +152,8 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -1007,7 +1007,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public SServiceDescriptor getServiceDescriptor(String url) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			String content = NetUtils.getContent(new URL(url + "?doc"), 5000);
+			String content = NetUtils.getContent(new URL(url), 5000);
 			JSONObject service = new JSONObject(new JSONTokener(content));
 			SServiceDescriptor sServiceDescriptor = new SServiceDescriptor();
 			sServiceDescriptor.setName(service.getString("name"));
@@ -1208,7 +1208,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		try {
 			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory());
-			BimServerClient client = factory.create();
+			BimServerClientInterface client = factory.create();
 			return client.getRemoteServiceInterface().getPublicProfiles(serviceIdentifier);
 		} catch (Exception e) {
 			return handleException(e);
@@ -1220,7 +1220,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		try {
 			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory());
-			BimServerClient client = factory.create();
+			BimServerClientInterface client = factory.create();
 			return client.getRemoteServiceInterface().getPrivateProfiles(serviceIdentifier, token);
 		} catch (Exception e) {
 			return handleException(e);

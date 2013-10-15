@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import org.bimserver.client.Channel;
-import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.interfaces.PublicInterface;

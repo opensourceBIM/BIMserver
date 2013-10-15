@@ -21,12 +21,12 @@ import static org.junit.Assert.fail;
 
 import java.util.Random;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
-import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
@@ -38,7 +38,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestClientEmfModelRemoteProtocolBuffers {
-	private static BimServerClient bimServerClient;
+	private static BimServerClientInterface bimServerClient;
 
 	@BeforeClass
 	public static void setup() {
@@ -77,7 +77,7 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 	@Test
 	public void test() {
 		try {
-			ClientIfcModel model = bimServerClient.newModel(createProject());
+			IfcModelInterface model = bimServerClient.newModel(createProject());
 			new CreateFromScratch().createIfcProject(model);
 			model.commit("tralala");
 		} catch (Exception e) {

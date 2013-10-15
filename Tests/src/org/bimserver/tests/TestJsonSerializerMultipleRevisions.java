@@ -7,9 +7,9 @@ import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;

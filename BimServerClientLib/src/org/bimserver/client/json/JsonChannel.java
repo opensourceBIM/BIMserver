@@ -18,7 +18,7 @@ package org.bimserver.client.json;
  *****************************************************************************/
 
 import org.bimserver.client.Channel;
-import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.json.JsonReflector;

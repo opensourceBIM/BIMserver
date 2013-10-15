@@ -2,8 +2,8 @@ package org.bimserver.tests.serviceinterface;
 
 import static org.junit.Assert.fail;
 
-import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class UpdateProject extends TestWithEmbeddedServer {
 	public void test() {
 		try {
 			// Create a new BimServerClient with authentication
-			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a new project
 			String originalName = "test " + Math.random();

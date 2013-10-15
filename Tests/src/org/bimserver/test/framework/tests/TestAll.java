@@ -21,9 +21,9 @@ import java.io.File;
 
 import org.bimserver.test.framework.FolderWalker;
 import org.bimserver.test.framework.RandomBimServerClientFactory;
+import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.TestConfiguration;
 import org.bimserver.test.framework.TestFramework;
-import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.actions.AllActionsFactory;
 
 public class TestAll {

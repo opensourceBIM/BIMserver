@@ -57,11 +57,16 @@ import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.stillimagerenderer.StillImageRenderPlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
+import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceFactory;
+import org.bimserver.shared.SystemAuthentication;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,6 +80,7 @@ public class PluginManager {
 	private ServiceFactory serviceFactory;
 	private NotificationsManagerInterface notificationsManagerInterface;
 	private SServicesMap servicesMap;
+	private BimServerClientFactory bimServerClientFactory;
 
 	public PluginManager(File tempDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
 		LOGGER.debug("Creating new PluginManager");
@@ -561,5 +567,13 @@ public class PluginManager {
 
 	public ModelCheckerPlugin getModelCheckerPlugin(String className, boolean onlyEnabled) {
 		return getPluginByClassName(ModelCheckerPlugin.class, className, onlyEnabled);
+	}
+
+	public BimServerClientInterface getLocalBimServerClientInterface() throws ServiceException, ChannelConnectionException {
+		return bimServerClientFactory.create(new SystemAuthentication());
+	}
+
+	public void setBimServerClientFactory(BimServerClientFactory bimServerClientFactory) {
+		this.bimServerClientFactory = bimServerClientFactory;
 	}
 }

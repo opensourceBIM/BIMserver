@@ -20,9 +20,9 @@ package org.bimserver.test.framework.tests;
 import java.io.File;
 
 import org.bimserver.test.framework.RandomBimServerClientFactory;
+import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.TestConfiguration;
 import org.bimserver.test.framework.TestFramework;
-import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 
 public class TestCollada {
 	public static void main(String[] args) {

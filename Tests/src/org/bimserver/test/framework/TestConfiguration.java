@@ -19,7 +19,7 @@ package org.bimserver.test.framework;
 
 import java.io.File;
 
-import org.bimserver.client.BimServerClientFactory;
+import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.test.framework.actions.ActionFactory;
 
 public class TestConfiguration {

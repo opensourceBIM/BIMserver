@@ -18,8 +18,8 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import org.bimserver.client.Channel;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.exceptions.UserException;

@@ -6,12 +6,12 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.util.List;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ClientIfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class LoadCompleteModel extends TestWithEmbeddedServer {
 	public void start() {
 		try {
 			// New client
-			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a project
 			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
@@ -37,7 +37,7 @@ public class LoadCompleteModel extends TestWithEmbeddedServer {
 			project = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
 			
 			// Load model without lazy loading (complete model at once)
-			ClientIfcModel model = bimServerClient.getModel(project.getOid(), project.getLastRevisionId(), false);
+			IfcModelInterface model = bimServerClient.getModel(project.getOid(), project.getLastRevisionId(), false);
 
 			// Change the window names
 			for (IfcWindow window : model.getAllWithSubTypes(IfcWindow.class)) {
@@ -45,7 +45,7 @@ public class LoadCompleteModel extends TestWithEmbeddedServer {
 			}
 			long newRoid = model.commit("Changed window names");
 			
-			ClientIfcModel newModel = bimServerClient.getModel(project.getOid(), newRoid, true);
+			IfcModelInterface newModel = bimServerClient.getModel(project.getOid(), newRoid, true);
 			List<IfcWindow> windows = newModel.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWindow());
 			for (IfcWindow window : windows) {
 				assertTrue(window.getName().endsWith(" Changed"));

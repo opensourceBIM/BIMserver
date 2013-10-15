@@ -25,12 +25,12 @@ import java.io.InputStream;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
@@ -52,7 +52,7 @@ public class TestSceneJsDownload {
 			
 			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 			
-			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			bimServerClient.getBimsie1AuthInterface().login("admin@bimserver.org", "admin");
 			SSerializerPluginConfiguration serializerByContentType = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/json");
 			List<SProject> projects = bimServerClient.getBimsie1ServiceInterface().getProjectsByName("test");

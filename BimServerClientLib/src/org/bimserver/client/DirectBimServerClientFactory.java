@@ -19,6 +19,7 @@ package org.bimserver.client;
 
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.PublicInterface;

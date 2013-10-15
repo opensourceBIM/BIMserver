@@ -27,11 +27,11 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.bimserver.LocalDevBimServerStarter;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
+import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
@@ -88,7 +88,7 @@ public class TestNotifications {
 		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData);
 		
 		try {
-			BimServerClient bimServerClient = factory.create();
+			BimServerClientInterface bimServerClient = factory.create();
 			bimServerClient.getBimsie1AuthInterface().login("admin@bimserver.org", "admin");
 			//TODO
 //			bimServerClient.getServiceInterface().setHttpCallback(bimServerClient.getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
