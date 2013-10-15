@@ -13,7 +13,9 @@ import org.bimserver.database.Query;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.Service;
 import org.bimserver.models.store.ServiceDescriptor;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.NotificationsManagerInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.shared.ServiceMapInterface;
@@ -23,6 +25,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.Bimsie1RemoteServiceInterfaceAdaptor;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.webservices.ServiceMap;
+import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,8 +77,18 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 				try {
 					DatabaseSession session = bimServer.getDatabase().createSession();
 					try {
-						final InternalServicePluginConfiguration internalServicePluginConfiguration = session.get(Long.parseLong(profileIdentifier), Query.getDefault());
-						final SObjectType settings = bimServer.getSConverter().convertToSObject(internalServicePluginConfiguration.getSettings());
+						long profileId = Long.parseLong(profileIdentifier);
+						EClass eClassForOid = session.getEClassForOid(profileId);
+						final SObjectType settings = null;
+						InternalServicePluginConfiguration internalServicePluginConfiguration = null;
+						if (eClassForOid == StorePackage.eINSTANCE.getInternalServicePluginConfiguration()) {
+							internalServicePluginConfiguration = session.get(profileId, Query.getDefault());
+						} else if (eClassForOid == StorePackage.eINSTANCE.getService()) {
+							Service service = session.get(profileId, Query.getDefault());
+							internalServicePluginConfiguration = service.getInternalService();
+						}
+						
+						final InternalServicePluginConfiguration finalInternalServicePluginConfiguration = internalServicePluginConfiguration;
 						
 						BimServerClient bimServerClient = null;
 						if (apiUrl == null) {
@@ -92,7 +105,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 							@Override
 							public void run() {
 								try {
-									newRevisionHandler.newRevision(finalClient, poid, roid, internalServicePluginConfiguration.getOid(), settings);
+									newRevisionHandler.newRevision(finalClient, poid, roid, finalInternalServicePluginConfiguration.getOid(), settings);
 								} catch (ServerException e) {
 									LOGGER.error("", e);
 								} catch (UserException e) {
