@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.InternalServicePluginConfigurationImpl#isRemoteAccessible <em>Remote Accessible</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.InternalServicePluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.InternalServicePluginConfigurationImpl#isPublicProfile <em>Public Profile</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,6 +90,24 @@ public class InternalServicePluginConfigurationImpl extends PluginConfigurationI
 	 */
 	public void setUserSettings(UserSettings newUserSettings) {
 		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isPublicProfile() {
+		return (Boolean) eGet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPublicProfile(boolean newPublicProfile) {
+		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE, newPublicProfile);
 	}
 
 } //InternalServicePluginConfigurationImpl
