@@ -26,7 +26,6 @@ import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.client.Channel;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.DirectChannel;
 import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.json.JsonChannel;
@@ -35,6 +34,7 @@ import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.Service;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

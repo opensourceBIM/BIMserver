@@ -19,7 +19,6 @@ package org.bimserver.notifications;
 
 import org.bimserver.BimServer;
 import org.bimserver.client.Channel;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
@@ -37,6 +36,7 @@ import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.modelchecker.ModelCheckException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;

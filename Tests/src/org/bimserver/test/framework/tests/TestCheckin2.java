@@ -21,9 +21,9 @@ import java.io.File;
 
 import org.bimserver.test.framework.FolderWalker;
 import org.bimserver.test.framework.RandomBimServerClientFactory;
+import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.TestConfiguration;
 import org.bimserver.test.framework.TestFramework;
-import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.actions.Action;
 import org.bimserver.test.framework.actions.ActionCreater;
 import org.bimserver.test.framework.actions.AddUserToProjectAction;
@@ -32,9 +32,9 @@ import org.bimserver.test.framework.actions.CheckinSettings;
 import org.bimserver.test.framework.actions.CreateProjectAction;
 import org.bimserver.test.framework.actions.CreateSubProjectAction;
 import org.bimserver.test.framework.actions.CreateUserAction;
-import org.bimserver.test.framework.actions.RandomActionFactory;
 import org.bimserver.test.framework.actions.LoginAction;
 import org.bimserver.test.framework.actions.LogoutAction;
+import org.bimserver.test.framework.actions.RandomActionFactory;
 
 public class TestCheckin2 {
 	public static void main(String[] args) {

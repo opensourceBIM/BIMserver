@@ -9,9 +9,9 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.tests.emf.CreateGuid;
 import org.bimserver.tests.emf.DeleteObjects;
@@ -104,7 +104,7 @@ public class AllTests {
 			bimServer.start();
 			
 			// Get a client, not using any protocol (direct connection)
-			BimServerClient client = bimServer.getBimServerClientFactory().create();
+			BimServerClientInterface client = bimServer.getBimServerClientFactory().create();
 
 			// Setup the server
 			client.getAdminInterface().setup("http://localhost:8080", "localhost", "noreply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");

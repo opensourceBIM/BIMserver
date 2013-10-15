@@ -25,6 +25,7 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -40,14 +41,14 @@ import org.slf4j.LoggerFactory;
 
 public class VirtualUser extends Thread {
 	private final Logger LOGGER;
-	private final BimServerClient bimServerClient;
+	private final BimServerClientInterface bimServerClient;
 	private final TestFramework testFramework;
 	private final Random random = new Random();
 	private volatile boolean running;
 	private final List<String> usernames = new ArrayList<String>();
 	private ActionResults actionResults;
 
-	public VirtualUser(TestFramework testFramework, BimServerClient bimServerClient, String name) {
+	public VirtualUser(TestFramework testFramework, BimServerClientInterface bimServerClient, String name) {
 		setName(name);
 		this.testFramework = testFramework;
 		this.bimServerClient = bimServerClient;
@@ -152,7 +153,7 @@ public class VirtualUser extends Thread {
 		return null;
 	}
 
-	public BimServerClient getBimServerClient() {
+	public BimServerClientInterface getBimServerClient() {
 		return bimServerClient;
 	}
 

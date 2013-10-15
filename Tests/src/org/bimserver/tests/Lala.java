@@ -3,11 +3,12 @@ package org.bimserver.tests;
 import java.util.List;
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -24,7 +25,7 @@ public class Lala {
 	private void start() {
 		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 		UsernamePasswordAuthenticationInfo info = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
-		BimServerClient client;
+		BimServerClientInterface client;
 		try {
 			client = factory.create(info);
 			// ..Snippet..//

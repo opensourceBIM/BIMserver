@@ -9,6 +9,9 @@ var Settings = {
 			callback(data.address);
 		});
 	},
+	usableBimServerVersion: function(version) {
+		return version.major == 1 && version.minor == 2 && version.revision == 1;
+	},
 	getMenuItems: function(){
 		return [
 		        "serversettingsLink",

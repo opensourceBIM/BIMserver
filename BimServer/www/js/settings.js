@@ -10,6 +10,9 @@ var Settings = {
 		        "serverinfoLink"
 		];
 	},
+	usableBimServerVersion: function(version) {
+		return version.major == 1 && version.minor == 2 && version.revision == 1;
+	},
 	allowBimServerAddress: function() {
 		return true;
 	}

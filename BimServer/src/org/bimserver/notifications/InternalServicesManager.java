@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.BimServer;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.DatabaseSession;
@@ -17,7 +15,9 @@ import org.bimserver.models.store.Service;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.NotificationsManagerInterface;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.exceptions.ServerException;
@@ -90,14 +90,14 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 						
 						final InternalServicePluginConfiguration finalInternalServicePluginConfiguration = internalServicePluginConfiguration;
 						
-						BimServerClient bimServerClient = null;
+						BimServerClientInterface bimServerClient = null;
 						if (apiUrl == null) {
 							bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
 						} else {
 							bimServerClient = new JsonBimServerClientFactory(apiUrl).create(new TokenAuthentication(token));
 						}
 						
-						final BimServerClient finalClient = bimServerClient;
+						final BimServerClientInterface finalClient = bimServerClient;
 						
 						// TODO this should somehow be managed...
 						// This must be asynchronous because we don't want the BIMserver's notifications processor to wait for this to finish...
