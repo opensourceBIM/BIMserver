@@ -4740,13 +4740,22 @@ public interface StorePackage extends EPackage {
 	int INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Public Profile</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE = PLUGIN_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Internal Service Plugin Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERNAL_SERVICE_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 2;
+	int INTERNAL_SERVICE_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceInterfaceImpl <em>Service Interface</em>}' class.
@@ -10186,6 +10195,17 @@ public interface StorePackage extends EPackage {
 	EReference getInternalServicePluginConfiguration_UserSettings();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.InternalServicePluginConfiguration#isPublicProfile <em>Public Profile</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Public Profile</em>'.
+	 * @see org.bimserver.models.store.InternalServicePluginConfiguration#isPublicProfile()
+	 * @see #getInternalServicePluginConfiguration()
+	 * @generated
+	 */
+	EAttribute getInternalServicePluginConfiguration_PublicProfile();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ServiceInterface <em>Service Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14653,6 +14673,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getInternalServicePluginConfiguration_UserSettings();
+
+		/**
+		 * The meta object literal for the '<em><b>Public Profile</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE = eINSTANCE.getInternalServicePluginConfiguration_PublicProfile();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceInterfaceImpl <em>Service Interface</em>}' class.

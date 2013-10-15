@@ -27,6 +27,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
@@ -47,7 +48,29 @@ public class Bimsie1RemoteServiceImpl extends Bimsie1RemoteServiceInterfaceAdapt
 	
 	@Override
 	public List<SProfileDescriptor> getPublicProfiles(String serviceIdentifier) throws UserException, ServerException {
-		return new ArrayList<SProfileDescriptor>();
+		DatabaseSession session = serviceMapInterface.getBimServer().getDatabase().createSession();
+		List<SProfileDescriptor> descriptors = new ArrayList<SProfileDescriptor>();
+		try {
+			IfcModelInterface modelInterface = session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), Query.getDefault());
+			for (InternalServicePluginConfiguration internalServicePluginConfiguration : modelInterface.getAll(InternalServicePluginConfiguration.class)) {
+				if (internalServicePluginConfiguration.isPublicProfile()) {
+					if (internalServicePluginConfiguration.getPluginDescriptor().getPluginClassName().equals(serviceIdentifier)) {
+						SProfileDescriptor sProfileDescriptor = new SProfileDescriptor();
+						descriptors.add(sProfileDescriptor);
+						
+						sProfileDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
+						sProfileDescriptor.setName(internalServicePluginConfiguration.getName());
+						sProfileDescriptor.setDescription(internalServicePluginConfiguration.getDescription());
+						sProfileDescriptor.setPublicProfile(false);
+					}
+				}
+			}
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return descriptors;
 	}
 
 	@Override

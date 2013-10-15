@@ -4078,6 +4078,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getInternalServicePluginConfiguration_PublicProfile() {
+		return (EAttribute) getInternalServicePluginConfiguration().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getServiceInterface() {
 		if (serviceInterfaceEClass == null) {
 			serviceInterfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(69);
