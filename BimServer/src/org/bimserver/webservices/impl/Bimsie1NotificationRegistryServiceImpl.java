@@ -28,6 +28,7 @@ import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
@@ -66,9 +67,10 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 		}
 		try {
 			progressTopic.register(endPoint);
-			if (progressTopic.getLastProgress() != null && progressTopic.getLastProgress().getState() == ActionState.FINISHED) {
+			LongActionState lastProgress = progressTopic.getLastProgress();
+			if (lastProgress != null && lastProgress.getState() == ActionState.FINISHED) {
 				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("Sending update directly for topic " + progressTopic.getKey().getId());
-				progressTopic.updateProgress(progressTopic.getLastProgress());
+				progressTopic.updateProgress(lastProgress);
 			} else {
 				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("NOT Sending update directly for topic " + progressTopic.getKey().getId());
 			}

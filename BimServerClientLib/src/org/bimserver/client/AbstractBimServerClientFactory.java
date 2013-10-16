@@ -22,6 +22,7 @@ import java.util.List;
 
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.reflector.ReflectorFactoryImpl1;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -50,6 +51,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 
 	public AbstractBimServerClientFactory() {
 		this.servicesMap = new SServicesMap();
+		servicesMap.setReflectorFactory(new ReflectorFactoryImpl1());
 		SService serviceInterface = new SServiceInterfaceService(null, ServiceInterface.class);
 		addService(serviceInterface);
 		List<SService> serviceInterfaceDep = Collections.singletonList(serviceInterface);

@@ -164,4 +164,13 @@ public class StringUtils {
 		}
 		return sb.toString();
 	}
+
+	public static String stripHttps(String baseAddress) {
+		if (baseAddress.startsWith("http://")) {
+			return baseAddress.substring(7);
+		} else if (baseAddress.startsWith("https://")) {
+			return baseAddress.substring(8);
+		}
+		return baseAddress;
+	}
 }

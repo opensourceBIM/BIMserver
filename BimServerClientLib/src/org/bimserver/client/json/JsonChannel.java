@@ -43,6 +43,7 @@ public class JsonChannel extends Channel {
 
 	@Override
 	public void disconnect() {
+		reflector.close();
 	}
 
 	public void connect(TokenHolder tokenHolder) throws ChannelConnectionException {

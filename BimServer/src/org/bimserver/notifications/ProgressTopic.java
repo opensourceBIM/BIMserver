@@ -35,7 +35,7 @@ public class ProgressTopic extends Topic {
 	private SProgressTopicType type;
 	private String description;
 	private ProgressTopicKey key;
-	private LongActionState lastProgress;
+	private volatile LongActionState lastProgress;
 	private long lastSent = -1;
 
 	public ProgressTopic(ProgressTopicKey key, SProgressTopicType type, String description) {
@@ -49,9 +49,9 @@ public class ProgressTopic extends Topic {
 	}
 
 	public synchronized void updateProgress(final LongActionState state) {
-		lastProgress = state;
 		if (lastSent == -1 || System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS || state.getProgress() == 100 || state.getState() == ActionState.FINISHED || state.getState() == ActionState.AS_ERROR) {
 			try {
+				LOGGER.debug("Sending STATE " + state.getProgress());
 				map(new Mapper(){
 					@Override
 					public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
@@ -65,6 +65,7 @@ public class ProgressTopic extends Topic {
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
+			lastProgress = state;
 			lastSent = System.nanoTime();
 		}
 	}
