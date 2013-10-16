@@ -105,4 +105,7 @@ public abstract class JsonReflector implements Reflector {
 	}
 
 	public abstract JsonObject call(JsonObject request) throws JSONException, ReflectorException;
+
+	public void close() {
+	}
 }

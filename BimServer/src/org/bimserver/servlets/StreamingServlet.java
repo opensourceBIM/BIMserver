@@ -24,21 +24,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.BimServer;
-import org.eclipse.jetty.websocket.WebSocket;
-import org.eclipse.jetty.websocket.WebSocketServlet;
+import org.eclipse.jetty.websocket.api.UpgradeRequest;
+import org.eclipse.jetty.websocket.api.UpgradeResponse;
+import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
+import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
-public class StreamingServlet extends WebSocketServlet {
+public class StreamingServlet extends org.eclipse.jetty.websocket.servlet.WebSocketServlet {
 
 	private static final long serialVersionUID = -1813872488590907887L;
 
+	
 	@Override
-	public WebSocket doWebSocketConnect(HttpServletRequest request, String response) {
-		StreamingSocket streamingSocket = new StreamingSocket();
-		Streamer streamer = new Streamer(streamingSocket, (BimServer)getServletContext().getAttribute("bimserver"));
-		streamingSocket.setStreamer(streamer);
-		return streamingSocket;
+	public void configure(WebSocketServletFactory factory) {
+		factory.setCreator(new WebSocketCreator() {
+			@Override
+			public Object createWebSocket(UpgradeRequest arg0, UpgradeResponse arg1) {
+				StreamingSocket streamingSocket = new StreamingSocket();
+				Streamer streamer = new Streamer(streamingSocket, (BimServer)getServletContext().getAttribute("bimserver"));
+				streamingSocket.setStreamer(streamer);
+				return streamingSocket;
+			}
+		});
 	}
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		getServletContext().getNamedDispatcher("default").forward(request, response);
 	}

@@ -43,12 +43,12 @@ public class Handler extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Handler.class);
 	private final Socket socket;
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
-	private final SocketNotificationsClient socketNotificationsClient;
+	private final NotificationsManager socketNotificationsClient;
 	private ServiceFactory serviceFactory;
 	private boolean running;
 	private final SServicesMap servicesMap;
 
-	public Handler(SocketNotificationsClient socketNotificationsClient, Socket socket, final Bimsie1NotificationInterface notificationInterface, ProtocolBuffersMetaData protocolBuffersMetaData, SServicesMap servicesMap) {
+	public Handler(NotificationsManager socketNotificationsClient, Socket socket, final Bimsie1NotificationInterface notificationInterface, ProtocolBuffersMetaData protocolBuffersMetaData, SServicesMap servicesMap) {
 		this.socketNotificationsClient = socketNotificationsClient;
 		this.socket = socket;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
