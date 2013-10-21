@@ -23,5 +23,5 @@ import org.bimserver.shared.exceptions.UserException;
 
 public interface NewRevisionHandler {
 
-	void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, long soid, SObjectType settings) throws ServerException, UserException;
+	void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException;
 }

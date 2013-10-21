@@ -102,7 +102,7 @@ public class Bimsie1RemoteServiceImpl extends Bimsie1RemoteServiceInterfaceAdapt
 	}
 	
 	@Override
-	public void newRevision(Long poid, Long roid, Long soid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
-		bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier).newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, token, apiUrl);
+	public void newRevision(Long poid, Long roid, Long soid, String serviceIdentifier, String profileIdentifier, String userToken, String token, String apiUrl) throws UserException, ServerException {
+		bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier).newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
 	}
 }
