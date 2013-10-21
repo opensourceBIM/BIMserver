@@ -30,6 +30,7 @@ import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -104,7 +105,7 @@ public class CloneService extends ServicePlugin {
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
 			@Override
-			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, long soid, SObjectType settings) throws ServerException, UserException {
+			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				try {
 					Date startDate = new Date();
 					Long topicId = bimServerClientInterface.getRegistry().registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid,
@@ -123,7 +124,7 @@ public class CloneService extends ServicePlugin {
 					
 					String localProjectName = pluginConfiguration.getString("projectName");
 					
-					BimServerClientInterface localClient = getLocalBimServerClientInterface();
+					BimServerClientInterface localClient = getLocalBimServerClientInterface(new TokenAuthentication(userToken));
 					
 					SProject localProject = localClient.getBimsie1ServiceInterface().getProjectsByName(localProjectName).get(0);
 					

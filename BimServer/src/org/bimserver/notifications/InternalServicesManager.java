@@ -65,7 +65,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	public void registerInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
 		register(serviceDescriptor, new Bimsie1RemoteServiceInterfaceAdaptor(){
 			@Override
-			public void newRevision(final Long poid, final Long roid, Long soid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
+			public void newRevision(final Long poid, final Long roid, Long soid, String serviceIdentifier, String profileIdentifier, final String userToken, String token, String apiUrl) throws UserException, ServerException {
 				ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, null, AccessMethod.JSON);
 				serviceMapInterface.add(Bimsie1RemoteServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
 				final InternalChannel internalChannel = new InternalChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
@@ -105,7 +105,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 							@Override
 							public void run() {
 								try {
-									newRevisionHandler.newRevision(finalClient, poid, roid, finalInternalServicePluginConfiguration.getOid(), settings);
+									newRevisionHandler.newRevision(finalClient, poid, roid, userToken, finalInternalServicePluginConfiguration.getOid(), settings);
 								} catch (ServerException e) {
 									LOGGER.error("", e);
 								} catch (UserException e) {

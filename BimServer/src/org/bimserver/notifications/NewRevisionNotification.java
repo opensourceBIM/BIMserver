@@ -139,7 +139,7 @@ public class NewRevisionNotification extends Notification {
 				((org.bimserver.webservices.impl.ServiceImpl)newService).setAuthorization(authorization);
 				
 				AsyncBimsie1RemoteServiceInterface asyncRemoteServiceInterface = new AsyncBimsie1RemoteServiceInterface(remoteServiceInterface, bimServer.getExecutorService());
-				asyncRemoteServiceInterface.newRevision(poid, roid, service.getOid(), service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), null);
+				asyncRemoteServiceInterface.newRevision(poid, roid, service.getOid(), service.getServiceIdentifier(), service.getProfileIdentifier(), service.getToken(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), null);
 			} catch (ChannelConnectionException e) {
 				LOGGER.error("", e);
 			} catch (PublicInterfaceNotFoundException e) {

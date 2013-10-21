@@ -66,6 +66,7 @@ import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.SystemAuthentication;
+import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
@@ -569,8 +570,8 @@ public class PluginManager {
 		return getPluginByClassName(ModelCheckerPlugin.class, className, onlyEnabled);
 	}
 
-	public BimServerClientInterface getLocalBimServerClientInterface() throws ServiceException, ChannelConnectionException {
-		return bimServerClientFactory.create(new SystemAuthentication());
+	public BimServerClientInterface getLocalBimServerClientInterface(TokenAuthentication tokenAuthentication) throws ServiceException, ChannelConnectionException {
+		return bimServerClientFactory.create(tokenAuthentication);
 	}
 
 	public void setBimServerClientFactory(BimServerClientFactory bimServerClientFactory) {

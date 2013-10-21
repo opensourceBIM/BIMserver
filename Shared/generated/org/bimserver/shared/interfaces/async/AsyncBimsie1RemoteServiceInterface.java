@@ -87,11 +87,11 @@ public class AsyncBimsie1RemoteServiceInterface {
 		});
 	}
 	
-	public void newRevision(final java.lang.Long poid, final java.lang.Long roid, final java.lang.Long soid, final java.lang.String serviceIdentifier, final java.lang.String profileIdentifier, final java.lang.String token, final java.lang.String apiUrl, final NewRevisionCallback callback) {
+	public void newRevision(final java.lang.Long poid, final java.lang.Long roid, final java.lang.Long soid, final java.lang.String serviceIdentifier, final java.lang.String profileIdentifier, final java.lang.String userToken, final java.lang.String token, final java.lang.String apiUrl, final NewRevisionCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, token, apiUrl);
+					syncService.newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);
