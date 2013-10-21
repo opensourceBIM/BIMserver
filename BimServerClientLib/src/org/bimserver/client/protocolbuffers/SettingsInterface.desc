@@ -20,11 +20,11 @@
 serviceRepositoryUrl (	
 
 webModules (
-rid	 (
-allowSelfRegistration
- (
+rid	 (
 
-smtpServer (	
+smtpServer
+ (	
+allowSelfRegistration (
 whitelistedDomains (	
 cacheOutputFiles (
 oid (
