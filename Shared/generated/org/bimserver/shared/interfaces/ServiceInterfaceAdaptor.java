@@ -224,7 +224,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SServiceDescriptor getServiceDescriptor(java.lang.String url) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SServiceDescriptor getServiceDescriptor(java.lang.String baseUrl, java.lang.String serviceIdentifier) throws UserException, ServerException {
 		return null;
 	}
 	

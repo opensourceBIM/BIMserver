@@ -379,8 +379,6 @@ public class BimServer {
 
 			jsonHandler = new JsonHandler(this);
 			
-			openIdManager = new OpenIdManager(this);
-			
 			serializerFactory = new SerializerFactory();
 			deserializerFactory = new DeserializerFactory();
 

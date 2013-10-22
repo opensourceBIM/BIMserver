@@ -1056,11 +1056,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getServiceDescriptor(final java.lang.String url, final GetServiceDescriptorCallback callback) {
+	public void getServiceDescriptor(final java.lang.String baseUrl, final java.lang.String serviceIdentifier, final GetServiceDescriptorCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getServiceDescriptor(url));
+					callback.success(syncService.getServiceDescriptor(baseUrl, serviceIdentifier));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

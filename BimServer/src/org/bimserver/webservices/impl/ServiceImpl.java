@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -1004,32 +1003,14 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public SServiceDescriptor getServiceDescriptor(String url) throws ServerException, UserException {
+	public SServiceDescriptor getServiceDescriptor(String baseUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			String content = NetUtils.getContent(new URL(url), 5000);
-			JSONObject service = new JSONObject(new JSONTokener(content));
-			SServiceDescriptor sServiceDescriptor = new SServiceDescriptor();
-			sServiceDescriptor.setName(service.getString("name"));
-			sServiceDescriptor.setIdentifier(service.getString("identifier"));
-			sServiceDescriptor.setDescription(service.getString("description"));
-			sServiceDescriptor.setNotificationProtocol(SAccessMethod.valueOf(service.getString("notificationProtocol")));
-			sServiceDescriptor.setTrigger(STrigger.valueOf(service.getString("trigger")));
-			sServiceDescriptor.setUrl(service.getString("url"));
-			sServiceDescriptor.setCompanyUrl(service.getString("companyUrl"));
-			sServiceDescriptor.setTokenUrl(service.getString("tokenUrl"));
-			sServiceDescriptor.setNewProfileUrl(service.getString("newProfileUrl"));
-			sServiceDescriptor.setProviderName(service.getString("providerName"));
-
-			JSONObject rights = service.getJSONObject("rights");
-
-			sServiceDescriptor.setReadRevision(rights.getBoolean("readRevision"));
-			sServiceDescriptor.setReadExtendedData(rights.getString("readExtendedData"));
-			sServiceDescriptor.setWriteRevision(rights.getBoolean("writeRevision"));
-			sServiceDescriptor.setWriteExtendedData(rights.getString("writeExtendedData"));
-			return sServiceDescriptor;
-		} catch (MalformedURLException e) {
-			throw new UserException("Invalid URL");
+			BimServerClientFactory factory = new JsonBimServerClientFactory(baseUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory());
+			BimServerClientInterface client = factory.create();
+			SServiceDescriptor service = client.getRemoteServiceInterface().getService(serviceIdentifier);
+			service.setUrl(baseUrl);
+			return service;
 		} catch (Exception e) {
 			return handleException(e);
 		}

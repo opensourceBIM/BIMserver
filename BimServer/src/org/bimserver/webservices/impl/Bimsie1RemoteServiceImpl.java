@@ -31,6 +31,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.ServerException;
@@ -108,6 +109,7 @@ public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bims
 
 	@Override
 	public SServiceDescriptor getService(String serviceIdentifier) throws UserException, ServerException {
-		return null;
+		ServiceDescriptor internalService = getBimServer().getInternalServicesManager().getInternalService(serviceIdentifier);
+		return getBimServer().getSConverter().convertToSObject(internalService);
 	}
 }

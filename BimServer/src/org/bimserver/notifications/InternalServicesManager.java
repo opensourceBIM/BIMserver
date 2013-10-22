@@ -70,6 +70,10 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 		internalRemoteServiceInterfaces.put(serviceDescriptor.getIdentifier(), remoteServiceInterface);
 	}
 	
+	public ServiceDescriptor getInternalService(String serviceIdentifier) {
+		return internalServices.get(serviceIdentifier);
+	}
+	
 	public Map<String, ServiceDescriptor> getInternalServices() {
 		return internalServices;
 	}
