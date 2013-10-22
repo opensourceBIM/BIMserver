@@ -19,9 +19,11 @@ import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DemoServicePlugin1 extends ServicePlugin {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(DemoServicePlugin1.class);
 	private boolean initialized;
 
 	@Override
@@ -85,7 +87,7 @@ public class DemoServicePlugin1 extends ServicePlugin {
 						try {
 							Thread.sleep(200);
 						} catch (InterruptedException e) {
-							e.printStackTrace();
+							LOGGER.error("", e);
 						}
 					}
 					SLongActionState state = new SLongActionState();
@@ -97,8 +99,8 @@ public class DemoServicePlugin1 extends ServicePlugin {
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
 					bimServerClientInterface.getRegistry().unregisterProgressTopic(topicId);
-				} catch (PublicInterfaceNotFoundException e1) {
-					e1.printStackTrace();
+				} catch (PublicInterfaceNotFoundException e) {
+					LOGGER.error("", e);
 				}
 			}
 		});

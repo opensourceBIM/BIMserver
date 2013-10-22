@@ -684,7 +684,7 @@ public class BimServer {
 				updatePlugins(session);
 				session.commit();
 			} catch (ServiceException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} finally {
 				session.close();
 			}

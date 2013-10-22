@@ -10,22 +10,22 @@
 errorMessage (	
 value ("
 GetServerSettingsRequest"Ÿ
-SServerSettings.
-&sendConfirmationEmailAfterRegistration (!
-generateGeometryOnCheckin (
+SServerSettings!
+generateGeometryOnCheckin (.
+&sendConfirmationEmailAfterRegistration (
 protocolBuffersPort (
 allowOnlyWhitelisted (
 siteAddress (	*
 "allowUsersToCreateTopLevelProjects (
 serviceRepositoryUrl (	
 
-webModules (
-rid	 (
+webModules (
+whitelistedDomains	 (	
+rid
+ (
 
-smtpServer
- (	
-allowSelfRegistration (
-whitelistedDomains (	
+smtpServer (	
+allowSelfRegistration (
 cacheOutputFiles (
 oid (
 emailSenderAddress (	

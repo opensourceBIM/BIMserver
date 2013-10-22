@@ -31,17 +31,13 @@ import org.bimserver.webservices.authorization.Authorization;
 public class RemoveModelCheckerFromProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 
 	private final long poid;
-	private Authorization authorization;
-	private BimServer bimServer;
 	private long mcoid;
 
 	public RemoveModelCheckerFromProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long mcoid, long poid,
 			Authorization authorization) {
 		super(databaseSession, accessMethod);
-		this.bimServer = bimServer;
 		this.mcoid = mcoid;
 		this.poid = poid;
-		this.authorization = authorization;
 	}
 
 	@Override

@@ -83,8 +83,8 @@ public class NotificationsManager extends NotificationsClient {
 		webSocketClient = new WebSocketClient();
 		try {
 			webSocketClient.start();
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		try {
 			URI uri = URI.create("ws://" + address + "/stream");
@@ -95,7 +95,7 @@ public class NotificationsManager extends NotificationsClient {
 			webSocketImpl.waitForEndpointId();
 			running = true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -114,7 +114,7 @@ public class NotificationsManager extends NotificationsClient {
 			try {
 				webSocketClient.stop();
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 			webSocketClient.destroy();
 		}
@@ -153,11 +153,11 @@ public class NotificationsManager extends NotificationsClient {
 			progressListeners.get(topicId).remove(progressHandler);
 			bimServerClient.getRegistry().unregisterProgressHandler(topicId, getEndpointid());
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 	
@@ -169,11 +169,11 @@ public class NotificationsManager extends NotificationsClient {
 			progressListeners.get(topicId).add(progressHandler);
 			bimServerClient.getRegistry().registerProgressHandler(topicId, getEndpointid());
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -213,9 +213,9 @@ public class NotificationsManager extends NotificationsClient {
 		try {
 			method.invoke(sService.getInterfaceClass(), service, parameters);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ReflectorException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

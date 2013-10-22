@@ -4,7 +4,6 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
-import org.bimserver.client.ClientIfcModel;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;

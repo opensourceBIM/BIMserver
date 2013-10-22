@@ -76,4 +76,8 @@ public interface Bimsie1AuthInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAccessMethod")
 	SAccessMethod getAccessMethod() throws ServerException, UserException;
+
+	@WebMethod(action = "loginUserToken")
+	String loginUserToken(
+		@WebParam(name = "token", partName = "loginUserToken.token") String token) throws ServerException, UserException;
 }

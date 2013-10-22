@@ -31,14 +31,12 @@ import org.bimserver.webservices.authorization.Authorization;
 public class AddModelCheckerToProjectDatabaseAction extends BimDatabaseAction<Void> {
 
 	private long poid;
-	private Authorization authorization;
 	private ModelCheckerInstance modelChecker;
 
 	public AddModelCheckerToProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, ModelCheckerInstance modelChecker, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.poid = poid;
 		this.modelChecker = modelChecker;
-		this.authorization = authorization;
 	}
 
 	@Override

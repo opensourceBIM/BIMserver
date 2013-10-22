@@ -123,7 +123,7 @@ public class IfcVisualiser extends JFrame {
 		} catch (PluginException e) {
 			LOGGER.error("", e);
 		} catch (IfcModelInterfaceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

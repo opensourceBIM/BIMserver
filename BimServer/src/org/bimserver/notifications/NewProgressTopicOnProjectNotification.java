@@ -21,9 +21,12 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class NewProgressTopicOnProjectNotification extends Notification {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(NewProgressTopicOnProjectNotification.class);
 	private long topicId;
 	private long poid;
 
@@ -46,11 +49,11 @@ public class NewProgressTopicOnProjectNotification extends Notification {
 		try {
 			changeProgressOnProjectTopic.notifyOfNewTopic(this);
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

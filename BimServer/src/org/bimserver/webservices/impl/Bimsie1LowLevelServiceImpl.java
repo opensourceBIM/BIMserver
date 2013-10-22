@@ -111,8 +111,8 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 			} finally {
 				session.close();
 			}
-		} catch (NoTransactionException e1) {
-			e1.printStackTrace();
+		} catch (NoTransactionException e) {
+			LOGGER.error("", e);
 		}
 		return -1L;
 	}

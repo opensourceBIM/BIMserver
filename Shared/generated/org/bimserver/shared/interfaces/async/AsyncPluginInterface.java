@@ -31,382 +31,382 @@ public class AsyncPluginInterface {
 
 	public interface AddDeserializerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddInternalServiceCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddModelCompareCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddModelMergerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddObjectIDMCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddQueryEngineCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddRenderEngineCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddSerializerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteDeserializerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteInternalServiceCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteModelCheckerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteModelCompareCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteModelMergerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteObjectIDMCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteQueryEngineCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteRenderEngineCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteSerializerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllDeserializerPluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllDeserializersCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginConfiguration> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllInternalServicesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllModelCheckerPluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllModelComparePluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SModelComparePluginDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllModelComparesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SModelComparePluginConfiguration> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllModelMergerPluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllModelMergersCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginConfiguration> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllObjectIDMPluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllObjectIDMsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllQueryEnginePluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllQueryEnginesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllRenderEnginePluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllRenderEnginesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllSerializerPluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SSerializerPluginDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllSerializersCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllServicePluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllWebModulePluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SWebModulePluginDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllWebModulesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SWebModulePluginConfiguration> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDefaultModelCompareCallback {
 		void success(org.bimserver.interfaces.objects.SModelComparePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDefaultModelMergerCallback {
 		void success(org.bimserver.interfaces.objects.SModelMergerPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDefaultObjectIDMCallback {
 		void success(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDefaultQueryEngineCallback {
 		void success(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDefaultRenderEngineCallback {
 		void success(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDefaultSerializerCallback {
 		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDefaultWebModuleCallback {
 		void success(org.bimserver.interfaces.objects.SWebModulePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetInternalServiceByIdCallback {
 		void success(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetModelCompareByIdCallback {
 		void success(org.bimserver.interfaces.objects.SModelComparePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetModelCompareByNameCallback {
 		void success(org.bimserver.interfaces.objects.SModelComparePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetModelMergerByIdCallback {
 		void success(org.bimserver.interfaces.objects.SModelMergerPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetModelMergerByNameCallback {
 		void success(org.bimserver.interfaces.objects.SModelMergerPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetObjectIDMByIdCallback {
 		void success(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetObjectIDMByNameCallback {
 		void success(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetPluginDescriptorCallback {
 		void success(org.bimserver.interfaces.objects.SPluginDescriptor result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetPluginObjectDefinitionCallback {
 		void success(org.bimserver.interfaces.objects.SObjectDefinition result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetPluginSettingsCallback {
 		void success(org.bimserver.interfaces.objects.SObjectType result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetRenderEngineByIdCallback {
 		void success(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetRenderEngineByNameCallback {
 		void success(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetSerializerByPluginClassNameCallback {
 		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetSerializerPluginDescriptorCallback {
 		void success(org.bimserver.interfaces.objects.SSerializerPluginDescriptor result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetWebModuleByIdCallback {
 		void success(org.bimserver.interfaces.objects.SWebModulePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetWebModuleByNameCallback {
 		void success(org.bimserver.interfaces.objects.SWebModulePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface HasActiveSerializerCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetDefaultModelCompareCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetDefaultModelMergerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetDefaultObjectIDMCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetDefaultQueryEngineCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetDefaultRenderEngineCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetDefaultSerializerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetDefaultWebModuleCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetPluginSettingsCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpdateDeserializerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpdateInternalServiceCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpdateModelCompareCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpdateModelMergerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpdateObjectIDMCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpdateQueryEngineCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpdateRenderEngineCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpdateSerializerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 
@@ -417,7 +417,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.addDeserializer(deserializer);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -430,7 +430,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.addInternalService(internalService);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -443,7 +443,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.addModelCompare(modelCompare);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -456,7 +456,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.addModelMerger(modelMerger);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -469,7 +469,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.addObjectIDM(objectIDM);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -482,7 +482,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.addQueryEngine(queryEngine);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -495,7 +495,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.addRenderEngine(renderEngine);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -508,7 +508,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.addSerializer(serializer);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -521,7 +521,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.deleteDeserializer(sid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -534,7 +534,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.deleteInternalService(oid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -547,7 +547,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.deleteModelChecker(iid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -560,7 +560,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.deleteModelCompare(iid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -573,7 +573,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.deleteModelMerger(iid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -586,7 +586,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.deleteObjectIDM(oid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -599,7 +599,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.deleteQueryEngine(iid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -612,7 +612,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.deleteRenderEngine(iid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -625,7 +625,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.deleteSerializer(sid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -637,7 +637,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllDeserializerPluginDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -649,7 +649,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllDeserializers(onlyEnabled));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -661,7 +661,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllInternalServices(onlyEnabled));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -673,7 +673,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllModelCheckerPluginDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -685,7 +685,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllModelComparePluginDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -697,7 +697,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllModelCompares(onlyEnabled));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -709,7 +709,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllModelMergerPluginDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -721,7 +721,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllModelMergers(onlyEnabled));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -733,7 +733,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllObjectIDMPluginDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -745,7 +745,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllObjectIDMs(onlyEnabled));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -757,7 +757,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllQueryEnginePluginDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -769,7 +769,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllQueryEngines(onlyEnabled));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -781,7 +781,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllRenderEnginePluginDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -793,7 +793,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllRenderEngines(onlyEnabled));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -805,7 +805,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllSerializerPluginDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -817,7 +817,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllSerializers(onlyEnabled));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -829,7 +829,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllServicePluginDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -841,7 +841,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllWebModulePluginDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -853,7 +853,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllWebModules(onlyEnabled));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -865,7 +865,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDefaultModelCompare());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -877,7 +877,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDefaultModelMerger());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -889,7 +889,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDefaultObjectIDM());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -901,7 +901,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDefaultQueryEngine());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -913,7 +913,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDefaultRenderEngine());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -925,7 +925,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDefaultSerializer());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -937,7 +937,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDefaultWebModule());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -949,7 +949,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getInternalServiceById(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -961,7 +961,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getModelCompareById(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -973,7 +973,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getModelCompareByName(name));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -985,7 +985,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getModelMergerById(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -997,7 +997,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getModelMergerByName(name));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1009,7 +1009,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getObjectIDMById(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1021,7 +1021,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getObjectIDMByName(objectIDMName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1033,7 +1033,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getPluginDescriptor(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1045,7 +1045,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getPluginObjectDefinition(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1057,7 +1057,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getPluginSettings(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1069,7 +1069,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getRenderEngineById(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1081,7 +1081,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getRenderEngineByName(name));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1093,7 +1093,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSerializerByPluginClassName(pluginClassName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1105,7 +1105,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSerializerPluginDescriptor(type));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1117,7 +1117,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getWebModuleById(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1129,7 +1129,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getWebModuleByName(name));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1141,7 +1141,7 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.hasActiveSerializer(contentType));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1154,7 +1154,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.setDefaultModelCompare(oid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1167,7 +1167,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.setDefaultModelMerger(oid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1180,7 +1180,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.setDefaultObjectIDM(oid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1193,7 +1193,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.setDefaultQueryEngine(oid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1206,7 +1206,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.setDefaultRenderEngine(oid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1219,7 +1219,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.setDefaultSerializer(oid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1232,7 +1232,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.setDefaultWebModule(oid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1245,7 +1245,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.setPluginSettings(poid, settings);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1258,7 +1258,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.updateDeserializer(deserializer);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1271,7 +1271,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.updateInternalService(internalService);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1284,7 +1284,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.updateModelCompare(modelCompare);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1297,7 +1297,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.updateModelMerger(modelMerger);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1310,7 +1310,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.updateObjectIDM(objectIDM);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1323,7 +1323,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.updateQueryEngine(queryEngine);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1336,7 +1336,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.updateRenderEngine(renderEngine);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1349,7 +1349,7 @@ public class AsyncPluginInterface {
 				try {
 					syncService.updateSerializer(serializer);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

@@ -31,42 +31,42 @@ public class AsyncMetaInterface {
 
 	public interface GetAllAsJsonCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetEnumLiteralsCallback {
 		void success(java.util.List<java.lang.String> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServiceInterfaceCallback {
 		void success(org.bimserver.interfaces.objects.SServiceInterface result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServiceInterfacesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SServiceInterface> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServiceMethodCallback {
 		void success(org.bimserver.interfaces.objects.SServiceMethod result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServiceMethodParametersCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SServiceParameter> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServiceMethodsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SServiceMethod> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServiceTypesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SServiceType> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 
@@ -76,7 +76,7 @@ public class AsyncMetaInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllAsJson());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -88,7 +88,7 @@ public class AsyncMetaInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getEnumLiterals(enumName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -100,7 +100,7 @@ public class AsyncMetaInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServiceInterface(getServiceInterface));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -112,7 +112,7 @@ public class AsyncMetaInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServiceInterfaces());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -124,7 +124,7 @@ public class AsyncMetaInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServiceMethod(serviceInterfaceName, methodName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -136,7 +136,7 @@ public class AsyncMetaInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServiceMethodParameters(serviceInterfaceName, serviceMethodName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -148,7 +148,7 @@ public class AsyncMetaInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServiceMethods(serviceInterfaceName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -160,7 +160,7 @@ public class AsyncMetaInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServiceTypes(serviceInterfaceName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

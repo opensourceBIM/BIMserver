@@ -6,7 +6,6 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.client.ClientIfcModel;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;

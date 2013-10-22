@@ -40,6 +40,8 @@ service Bimsie1AuthInterface {
 
 	rpc loginOpenId (LoginOpenIdRequest) returns (LoginOpenIdResponse);
 
+	rpc loginUserToken (LoginUserTokenRequest) returns (LoginUserTokenResponse);
+
 	rpc logout (LogoutRequest) returns (VoidResponse);
 
 	rpc validateOpenId (ValidateOpenIdRequest) returns (ValidateOpenIdResponse);
@@ -78,6 +80,15 @@ message LoginOpenIdRequest {
 }
 
 message LoginOpenIdResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message LoginUserTokenRequest {
+	optional string token = 1;
+}
+
+message LoginUserTokenResponse {
 	optional string errorMessage = 1;
 	optional string value = 2;
 }

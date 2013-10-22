@@ -31,22 +31,22 @@ public class AsyncAuthInterface {
 
 	public interface ChangePasswordCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetLoggedInUserCallback {
 		void success(org.bimserver.interfaces.objects.SUser result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RequestPasswordChangeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface ValidateAccountCallback {
 		void success(org.bimserver.interfaces.objects.SUser result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 
@@ -56,7 +56,7 @@ public class AsyncAuthInterface {
 			public void run(){
 				try {
 					callback.success(syncService.changePassword(uoid, oldPassword, newPassword));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -68,7 +68,7 @@ public class AsyncAuthInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getLoggedInUser());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -81,7 +81,7 @@ public class AsyncAuthInterface {
 				try {
 					syncService.requestPasswordChange(username, resetUrl);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -93,7 +93,7 @@ public class AsyncAuthInterface {
 			public void run(){
 				try {
 					callback.success(syncService.validateAccount(uoid, token, password));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
