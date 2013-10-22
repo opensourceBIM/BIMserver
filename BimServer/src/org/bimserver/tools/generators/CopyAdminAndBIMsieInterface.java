@@ -95,6 +95,13 @@ public class CopyAdminAndBIMsieInterface {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "migrations.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "webmodules.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "log.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "usersettings.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "basicusersettings.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "genericpluginsettingslist.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "genericpluginsettings.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "modelcheckers.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "addrepomodelchecker.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "addnewmodelchecker.html"), admin);
 			
 			FileUtils.copyDirectory(new File(bootstrap, "js"), new File(admin, "js"), new FileFilter() {
 				@Override

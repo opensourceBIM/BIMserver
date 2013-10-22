@@ -15,6 +15,7 @@ var Settings = {
 	getMenuItems: function(){
 		return [
 		        "serversettingsLink",
+		        "usersettingsLink",
 		        "serverinfoLink"
 		];
 	},

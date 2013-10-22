@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SRevisionUpdated.class, SNewRevisionAdded.class})
+@XmlSeeAlso(value={SNewRevisionAdded.class, SRevisionUpdated.class})
 public class SRevisionRelated extends SLogAction implements SDataBase
 {
 	private long oid = -1;

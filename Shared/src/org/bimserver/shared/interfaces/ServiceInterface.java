@@ -534,7 +534,8 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action="getServiceDescriptor")
 	SServiceDescriptor getServiceDescriptor(
-		@WebParam(name = "url", partName = "getServiceDescriptor.url") String url) throws ServerException, UserException;
+		@WebParam(name = "baseUrl", partName = "getServiceDescriptor.baseUrl") String baseUrl,
+		@WebParam(name = "serviceIdentifier", partName = "getServiceDescriptor.serviceIdentifier") String serviceIdentifier) throws ServerException, UserException;
 	
 	@WebMethod(action="getAllServiceDescriptors")
 	List<SServiceDescriptor> getAllServiceDescriptors() throws ServerException, UserException;
