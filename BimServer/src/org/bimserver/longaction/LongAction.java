@@ -172,6 +172,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	
 	@Override
 	public void error(String error) {
+		LOGGER.error(error);
 		errors.add(error);
 		stop = new GregorianCalendar();
 		changeActionState(ActionState.AS_ERROR, error, 0);
