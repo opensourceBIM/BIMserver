@@ -44,6 +44,7 @@ import org.bimserver.shared.SystemAuthentication;
 import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.TokenChangeListener;
 import org.bimserver.shared.TokenHolder;
+import org.bimserver.shared.UserTokenAuthentication;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -114,6 +115,9 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			} else if (authenticationInfo instanceof TokenAuthentication) {
 				TokenAuthentication tokenAuthentication = (TokenAuthentication)authenticationInfo;
 				setToken(tokenAuthentication.getToken());
+			} else if (authenticationInfo instanceof UserTokenAuthentication) {
+				UserTokenAuthentication tokenAuthentication = (UserTokenAuthentication)authenticationInfo;
+				setToken(authInterface.loginUserToken(tokenAuthentication.getToken()));
 			} else if (authenticationInfo instanceof SystemAuthentication) {
 			}
 		} catch (PublicInterfaceNotFoundException e) {
@@ -252,13 +256,13 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			IOUtils.copy(inputStream, outputStream);
 			getServiceInterface().cleanupLongAction(download);
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

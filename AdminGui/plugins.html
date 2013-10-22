@@ -23,15 +23,23 @@ function Plugins(main, serversettings) {
 		}
 	};
 	
+	this.showPlugin = function(){
+		var plugin = $(this).data("plugin");
+		$(".plugins").load("plugin.html", function(){
+			new Plugin($(this), plugin);
+		});
+	};
+	
 	this.addPlugin = function(plugin){
 		var tr = $("<tr>");
-		console.log(plugin);
+		tr.data("plugin", plugin);
 		tr.append("<td>" + plugin.simpleName + "</td>");
 		tr.append("<td>" + plugin.description + "</td>");
 		tr.append("<td><input type=\"checkbox\"/></td>");
 		if (plugin.enabled) {
 			tr.find("input").attr("checked", "checked");
 		}
+		tr.click(othis.showPlugin);
 		tr.find("input").attr("name", plugin.pluginClassName);
 		tr.find("input").change(othis.changeEnabled);
 		$(".plugins table tbody").append(tr);
@@ -52,6 +60,8 @@ function Plugins(main, serversettings) {
 			name = "Serializers";
 		} else if (pluginInterfaceClassName == "org.bimserver.plugins.modelcompare.ModelComparePlugin") {
 			name = "Model Compare";
+		} else if (pluginInterfaceClassName == "org.bimserver.plugins.modelchecker.ModelCheckerPlugin") {
+			name = "Model Checker";
 		} else if (pluginInterfaceClassName == "org.bimserver.plugins.deserializers.DeserializerPlugin") {
 			name = "Deserializers";
 		} else if (pluginInterfaceClassName == "org.bimserver.plugins.modelmerger.ModelMergerPlugin") {

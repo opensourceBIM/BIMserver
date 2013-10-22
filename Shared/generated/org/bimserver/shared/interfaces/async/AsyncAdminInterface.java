@@ -31,102 +31,102 @@ public class AsyncAdminInterface {
 
 	public interface ClearOutputFileCacheCallback {
 		void success(java.lang.Integer result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DisablePluginCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface EnablePluginCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllPluginsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetBimServerInfoCallback {
 		void success(org.bimserver.interfaces.objects.SBimServerInfo result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDatabaseInformationCallback {
 		void success(org.bimserver.interfaces.objects.SDatabaseInformation result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetJavaInfoCallback {
 		void success(org.bimserver.interfaces.objects.SJavaInfo result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetLastDatabaseResetCallback {
 		void success(java.util.Date result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetLatestVersionCallback {
 		void success(org.bimserver.interfaces.objects.SVersion result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetLogsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SLogAction> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetMigrationsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SMigration> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetProtocolBuffersFileCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServerInfoCallback {
 		void success(org.bimserver.interfaces.objects.SServerInfo result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServerLogCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServerStartTimeCallback {
 		void success(java.util.Date result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetSystemInfoCallback {
 		void success(org.bimserver.interfaces.objects.SSystemInfo result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetVersionCallback {
 		void success(org.bimserver.interfaces.objects.SVersion result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface MigrateDatabaseCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetupCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpgradePossibleCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 
@@ -136,7 +136,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.clearOutputFileCache());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -149,7 +149,7 @@ public class AsyncAdminInterface {
 				try {
 					syncService.disablePlugin(name);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -162,7 +162,7 @@ public class AsyncAdminInterface {
 				try {
 					syncService.enablePlugin(name);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -174,7 +174,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllPlugins());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -186,7 +186,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getBimServerInfo());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -198,7 +198,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDatabaseInformation());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -210,7 +210,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getJavaInfo());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -222,7 +222,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getLastDatabaseReset());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -234,7 +234,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getLatestVersion());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -246,7 +246,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getLogs());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -258,7 +258,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getMigrations());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -270,7 +270,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getProtocolBuffersFile(interfaceName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -282,7 +282,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServerInfo());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -294,7 +294,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServerLog());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -306,7 +306,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServerStartTime());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -318,7 +318,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSystemInfo());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -330,7 +330,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getVersion());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -343,7 +343,7 @@ public class AsyncAdminInterface {
 				try {
 					syncService.migrateDatabase();
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -356,7 +356,7 @@ public class AsyncAdminInterface {
 				try {
 					syncService.setup(siteAddress, smtpServer, smtpSender, adminName, adminUsername, adminPassword);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -368,7 +368,7 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.upgradePossible());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

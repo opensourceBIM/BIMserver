@@ -24,6 +24,7 @@
 		<antcall target="JavaQueryEngine" />
 		<antcall target="IfcPlugins" />
 		<antcall target="DemoPlugins" />
+		<antcall target="AdminGui" />
 		<antcall target="MiscSerializers" />
 		<antcall target="BuildingSMARTLibrary" />
 		<antcall target="FileBasedObjectIDM" />
@@ -285,6 +286,29 @@
 		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-demoplugins.jar">
 			<fileset dir="builds/demoplugins"/>
+		</jar>
+	</target>
+	<target name="AdminGui">
+		<mkdir dir="builds/admingui" />
+		<javac destdir="builds/admingui" debug="on" includeantruntime="false">
+			<src path="../../AdminGui/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/admingui/plugin"/>
+		<copy todir="builds/admingui/plugin">
+			<fileset dir="../../AdminGui/plugin"></fileset>
+		</copy>
+		<mkdir dir="builds/admingui/data"/>
+		<copy todir="builds/admingui/data">
+			<fileset dir="../../AdminGui/data"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-admingui.jar">
+			<fileset dir="builds/admingui"/>
 		</jar>
 	</target>
 	<target name="Collada">

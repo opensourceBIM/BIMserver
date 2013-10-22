@@ -42,6 +42,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.async.AsyncBimsie1RemoteServiceInterface;
+import org.bimserver.shared.interfaces.async.AsyncBimsie1RemoteServiceInterface.NewRevisionCallback;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
 import org.slf4j.Logger;
@@ -136,17 +137,25 @@ public class NewRevisionNotification extends Notification {
 				long readExtendedDataRoid = service.getReadExtendedData() != null ? roid : -1;
 				final ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(service.getUser().getOid(), service.getOid(), readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
 				ServiceInterface newService = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL).get(ServiceInterface.class);
-				((org.bimserver.webservices.impl.ServiceImpl)newService).setAuthorization(authorization);
+				((org.bimserver.webservices.impl.ServiceImpl)newService).setAuthorization(authorization); // TODO redundant?
 				
 				AsyncBimsie1RemoteServiceInterface asyncRemoteServiceInterface = new AsyncBimsie1RemoteServiceInterface(remoteServiceInterface, bimServer.getExecutorService());
-				asyncRemoteServiceInterface.newRevision(poid, roid, service.getOid(), service.getServiceIdentifier(), service.getProfileIdentifier(), service.getToken(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), null);
+				asyncRemoteServiceInterface.newRevision(poid, roid, service.getOid(), service.getServiceIdentifier(), service.getProfileIdentifier(), service.getToken(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), new NewRevisionCallback(){
+					@Override
+					public void success() {
+					}
+
+					@Override
+					public void error(Throwable e) {
+						LOGGER.error("", e);
+					}});
 			} catch (ChannelConnectionException e) {
 				LOGGER.error("", e);
 			} catch (PublicInterfaceNotFoundException e) {
 				LOGGER.error("", e);
 			} finally {
 				if (channel != null) {
-					channel.disconnect();
+					channel.disconnect(); // TODO This is interesting, when sending async, is this not going to break?
 				}
 			}
 		}

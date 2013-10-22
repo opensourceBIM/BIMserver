@@ -1,22 +1,18 @@
 package org.bimserver.demoplugins.service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
-import org.bimserver.models.ifc2x3tc1.IfcBoundingBox;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
@@ -27,7 +23,6 @@ import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.log.AccessMethod;
@@ -39,21 +34,21 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
-import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FurniturePlacerServicePlugin extends ServicePlugin {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(FurniturePlacerServicePlugin.class);
 	private boolean initialized;
 
 	@Override
@@ -160,16 +155,16 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 							for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
 								if (ifcObjectDefinition instanceof IfcSpace) {
 									IfcSpace ifcSpace = (IfcSpace)ifcObjectDefinition;
-									IfcProductDefinitionShape slabRepr = (IfcProductDefinitionShape) ifcSpace.getRepresentation();
-									IfcBoundingBox box = null;
-									for (IfcRepresentation representation2 : slabRepr.getRepresentations()) {
-										IfcShapeRepresentation shapeRepresentation = (IfcShapeRepresentation)representation2;
-										if (shapeRepresentation.getRepresentationType().equals("BoundingBox")) {
-											for (IfcRepresentationItem i2 : shapeRepresentation.getItems()) {
-												box = (IfcBoundingBox)i2;
-											}
-										}
-									}
+//									IfcProductDefinitionShape slabRepr = (IfcProductDefinitionShape) ifcSpace.getRepresentation();
+//									IfcBoundingBox box = null;
+//									for (IfcRepresentation representation2 : slabRepr.getRepresentations()) {
+//										IfcShapeRepresentation shapeRepresentation = (IfcShapeRepresentation)representation2;
+//										if (shapeRepresentation.getRepresentationType().equals("BoundingBox")) {
+//											for (IfcRepresentationItem i2 : shapeRepresentation.getItems()) {
+//												box = (IfcBoundingBox)i2;
+//											}
+//										}
+//									}
 									
 									IfcFurnishingElement newFurnishing = model.create(IfcFurnishingElement.class);
 									
@@ -214,20 +209,8 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
 					bimServerClientInterface.getRegistry().unregisterProgressTopic(topicId);
-				} catch (PublicInterfaceNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (BimServerClientException e) {
-					e.printStackTrace();
-				} catch (IfcModelInterfaceException e) {
-					e.printStackTrace();
-				} catch (PluginException e) {
-					e.printStackTrace();
-				} catch (DeserializeException e) {
-					e.printStackTrace();
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+				} catch (Exception e) {
+					LOGGER.error("", e);
 				}
 			}
 		});

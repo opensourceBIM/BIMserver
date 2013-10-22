@@ -1,5 +1,22 @@
 package org.bimserver.test;
 
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 import java.io.File;
 import java.util.List;
 
@@ -8,7 +25,6 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
-import org.bimserver.models.ifc2x3tc1.IfcBoundingBox;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
@@ -19,7 +35,6 @@ import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.plugins.ModelHelper;
@@ -81,16 +96,16 @@ public class AddFurniture {
 					for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
 						if (ifcObjectDefinition instanceof IfcSpace) {
 							IfcSpace ifcSpace = (IfcSpace)ifcObjectDefinition;
-							IfcProductDefinitionShape slabRepr = (IfcProductDefinitionShape) ifcSpace.getRepresentation();
-							IfcBoundingBox box = null;
-							for (IfcRepresentation representation2 : slabRepr.getRepresentations()) {
-								IfcShapeRepresentation shapeRepresentation = (IfcShapeRepresentation)representation2;
-								if (shapeRepresentation.getRepresentationType().equals("BoundingBox")) {
-									for (IfcRepresentationItem i2 : shapeRepresentation.getItems()) {
-										box = (IfcBoundingBox)i2;
-									}
-								}
-							}
+//							IfcProductDefinitionShape slabRepr = (IfcProductDefinitionShape) ifcSpace.getRepresentation();
+//							IfcBoundingBox box = null;
+//							for (IfcRepresentation representation2 : slabRepr.getRepresentations()) {
+//								IfcShapeRepresentation shapeRepresentation = (IfcShapeRepresentation)representation2;
+//								if (shapeRepresentation.getRepresentationType().equals("BoundingBox")) {
+//									for (IfcRepresentationItem i2 : shapeRepresentation.getItems()) {
+//										box = (IfcBoundingBox)i2;
+//									}
+//								}
+//							}
 							
 							IfcFurnishingElement newFurnishing = model.create(IfcFurnishingElement.class, oidProvider);
 							

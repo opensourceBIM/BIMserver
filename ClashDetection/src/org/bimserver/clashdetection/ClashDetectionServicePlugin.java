@@ -219,8 +219,8 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 					} catch (Exception e) {
 						LOGGER.error("", e);
 					}
-				} catch (PublicInterfaceNotFoundException e1) {
-					e1.printStackTrace();
+				} catch (PublicInterfaceNotFoundException e) {
+					LOGGER.error("", e);
 				}
 			}
 		});

@@ -25,7 +25,6 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.ModelCheckerInstance;
-import org.bimserver.models.store.ModelCheckerPluginConfiguration;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;

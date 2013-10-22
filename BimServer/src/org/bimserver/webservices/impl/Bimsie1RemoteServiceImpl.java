@@ -29,26 +29,26 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
+import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.Bimsie1RemoteServiceInterfaceAdaptor;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.webservices.ServiceMap;
 
-public class Bimsie1RemoteServiceImpl extends Bimsie1RemoteServiceInterfaceAdaptor {
-	private ServiceMap serviceMapInterface;
+public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bimsie1RemoteServiceInterface {
 	private BimServer bimServer;
 
 	public Bimsie1RemoteServiceImpl(BimServer bimServer, ServiceMap serviceMapInterface) {
+		super(serviceMapInterface);
 		this.bimServer = bimServer;
-		this.serviceMapInterface = serviceMapInterface;
 	}
 	
 	@Override
 	public List<SProfileDescriptor> getPublicProfiles(String serviceIdentifier) throws UserException, ServerException {
-		DatabaseSession session = serviceMapInterface.getBimServer().getDatabase().createSession();
+		DatabaseSession session = getServiceMap().getBimServer().getDatabase().createSession();
 		List<SProfileDescriptor> descriptors = new ArrayList<SProfileDescriptor>();
 		try {
 			IfcModelInterface modelInterface = session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), Query.getDefault());
@@ -66,7 +66,7 @@ public class Bimsie1RemoteServiceImpl extends Bimsie1RemoteServiceInterfaceAdapt
 				}
 			}
 		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+			handleException(e);
 		} finally {
 			session.close();
 		}
@@ -75,7 +75,7 @@ public class Bimsie1RemoteServiceImpl extends Bimsie1RemoteServiceInterfaceAdapt
 
 	@Override
 	public List<SProfileDescriptor> getPrivateProfiles(String serviceIdentifier, String token) throws UserException, ServerException {
-		DatabaseSession session = serviceMapInterface.getBimServer().getDatabase().createSession();
+		DatabaseSession session = getServiceMap().getBimServer().getDatabase().createSession();
 		List<SProfileDescriptor> descriptors = new ArrayList<SProfileDescriptor>();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Token(), new StringLiteral(token));
@@ -94,7 +94,7 @@ public class Bimsie1RemoteServiceImpl extends Bimsie1RemoteServiceInterfaceAdapt
 				}
 			}
 		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+			handleException(e);
 		} finally {
 			session.close();
 		}
@@ -104,5 +104,10 @@ public class Bimsie1RemoteServiceImpl extends Bimsie1RemoteServiceInterfaceAdapt
 	@Override
 	public void newRevision(Long poid, Long roid, Long soid, String serviceIdentifier, String profileIdentifier, String userToken, String token, String apiUrl) throws UserException, ServerException {
 		bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier).newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
+	}
+
+	@Override
+	public SServiceDescriptor getService(String serviceIdentifier) throws UserException, ServerException {
+		return null;
 	}
 }

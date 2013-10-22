@@ -31,32 +31,37 @@ public class AsyncBimsie1AuthInterface {
 
 	public interface GetAccessMethodCallback {
 		void success(org.bimserver.interfaces.objects.SAccessMethod result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface IsLoggedInCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface LoginCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface LoginOpenIdCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
+	}
+	
+	public interface LoginUserTokenCallback {
+		void success(java.lang.String result);
+		void error(Throwable e);
 	}
 	
 	public interface LogoutCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface ValidateOpenIdCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 
@@ -66,7 +71,7 @@ public class AsyncBimsie1AuthInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAccessMethod());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -78,7 +83,7 @@ public class AsyncBimsie1AuthInterface {
 			public void run(){
 				try {
 					callback.success(syncService.isLoggedIn());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -90,7 +95,7 @@ public class AsyncBimsie1AuthInterface {
 			public void run(){
 				try {
 					callback.success(syncService.login(username, password));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -102,7 +107,19 @@ public class AsyncBimsie1AuthInterface {
 			public void run(){
 				try {
 					callback.success(syncService.loginOpenId(op, returnUrl));
-				} catch (Exception e) {
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void loginUserToken(final java.lang.String token, final LoginUserTokenCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.loginUserToken(token));
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -115,7 +132,7 @@ public class AsyncBimsie1AuthInterface {
 				try {
 					syncService.logout();
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -127,7 +144,7 @@ public class AsyncBimsie1AuthInterface {
 			public void run(){
 				try {
 					callback.success(syncService.validateOpenId(queryString));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

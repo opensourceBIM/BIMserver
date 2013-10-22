@@ -37,6 +37,10 @@ public class Bimsie1AuthInterfaceAdaptor implements org.bimserver.shared.interfa
 		return null;
 	}
 	
+	public java.lang.String loginUserToken(java.lang.String token) throws UserException, ServerException {
+		return null;
+	}
+	
 	public void logout() throws UserException, ServerException {
 	}
 	

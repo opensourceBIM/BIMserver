@@ -4,38 +4,38 @@
     	<div class="form">
 	    	<form class="loginForm form-horizontal">
 		    	<legend>Login</legend>
-				<div class="control-group serverDiv">
-					<label class="control-label">Server</label>
-					<div class="controls" style="padding-top: 5px">
+				<div class="form-group serverDiv">
+					<label class="col-lg-2 control-label">Server</label>
+					<div class="col-lg-4" style="padding-top: 5px">
 						<span class="serverAddress"></span>
 						<a class="otherServerLink">Other server</a>
 					</div>
 				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputEmail">Username</label>
-					<div class="controls">
-						<div class="input-prepend">
-		  					<span class="add-on">@</span>
-							<input type="email" class="username" id="inputEmail" placeholder="Username (e-mail address)">
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="inputEmail">Username</label>
+					<div class="col-lg-4">
+						<div class="input-group">
+		  					<span class="input-group-addon">@</span>
+							<input type="email" class="form-control username" id="inputEmail" placeholder="Username (e-mail address)">
 						</div>
 					</div>
 				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputPassword">Password</label>
-					<div class="controls">
-						<div class="input-prepend">
-			 				<span class="add-on"><i class="glyphicon-lock"></i></span>
-							<input type="password" class="password" id="inputPassword" placeholder="Password">
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="inputPassword">Password</label>
+					<div class="col-lg-4">
+						<div class="input-group">
+			 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+							<input type="password" class="form-control password" id="inputPassword" placeholder="Password">
 						</div>
 					</div>
 				</div>
-				<div class="control-group">
-					<div class="controls">
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
 						<label class="checkbox"> <input type="checkbox" class="rememberme" id="rememberMe"> Remember me
 						</label>
 						<button type="button" class="btn loginButton btn-primary">Sign in</button>
-						<button type="button" class="btn resetPasswordButton">Reset password</button>
-						<button type="button" class="btn registerButton initialhide">Register</button>
+						<button type="button" class="btn btn-default resetPasswordButton">Reset password</button>
+						<button type="button" class="btn btn-default registerButton initialhide">Register</button>
 						<!-- <button type="button" class="btn openIdButton">OpenID (beta)</button> -->
 					</div>
 				</div>
@@ -54,6 +54,13 @@ function Login(address, username) {
 	}
 	
 	this.show = function(){};
+
+	Global.bimServerApi.call("AdminInterface", "getVersion", {}, function(version){
+		if (!Settings.usableBimServerVersion(version)) {
+			var versionString = version.major + "." + version.minor + "." + version.revision;
+			Global.notifier.setStatus("This version of BIMserver (" + versionString + ") has not been tested with this version of BIMvie.ws");
+		}
+	});
 	
 	this.login = function(address) {
 		Global.bimServerApi.login($(".username").val(), $("#inputPassword").val(), $("#rememberMe").is(":checked"), function(data){
@@ -131,7 +138,7 @@ function Login(address, username) {
 	});
 	
 	$(".googleLink").click(function(){
-		$.cookie("address", Global.bimServerApi.baseUrl);
+		$.cookie("address" + window.document.location.port, Global.bimServerApi.baseUrl);
 		Global.bimServerApi.call("Bimsie1AuthInterface", "loginOpenId", {op: "https://www.google.com/accounts/o8/id", returnUrl: Global.baseDir + "openid.html"}, function(url){
 			document.location = url;
 		});

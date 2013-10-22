@@ -130,3 +130,15 @@ div.setup form.form-horizontal label {
 .fullwidth .controls {
 	width: 350px;
 }
+
+.mainmenu {
+	margin-bottom: 10px;
+}
+
+.buttonBar {
+	margin-top: 10px;
+}
+
+.tab-pane {
+	padding-top: 10px;	
+}

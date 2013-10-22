@@ -1,5 +1,22 @@
 package org.bimserver.notifications;
 
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,15 +88,14 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 				final InternalChannel internalChannel = new InternalChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
 				try {
 					internalChannel.connect(new SimpleTokenHolder());
-				} catch (ChannelConnectionException e2) {
-					e2.printStackTrace();
+				} catch (ChannelConnectionException e) {
+					LOGGER.error("", e);
 				}
 				try {
 					DatabaseSession session = bimServer.getDatabase().createSession();
 					try {
 						long profileId = Long.parseLong(profileIdentifier);
 						EClass eClassForOid = session.getEClassForOid(profileId);
-						final SObjectType settings = null;
 						InternalServicePluginConfiguration internalServicePluginConfiguration = null;
 						if (eClassForOid == StorePackage.eINSTANCE.getInternalServicePluginConfiguration()) {
 							internalServicePluginConfiguration = session.get(profileId, Query.getDefault());
@@ -87,6 +103,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 							Service service = session.get(profileId, Query.getDefault());
 							internalServicePluginConfiguration = service.getInternalService();
 						}
+						final SObjectType settings = bimServer.getSConverter().convertToSObject(internalServicePluginConfiguration.getSettings());
 						
 						final InternalServicePluginConfiguration finalInternalServicePluginConfiguration = internalServicePluginConfiguration;
 						

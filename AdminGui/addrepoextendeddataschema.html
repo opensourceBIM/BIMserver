@@ -1,5 +1,5 @@
 <div class="addrepoextendeddata">
-	<div class="well well-small noschemas initialhide">
+	<div class="well well-sm noschemas initialhide">
 		No (unused) extended data schemas available
 	</div>
 	<table class="table">
@@ -14,9 +14,9 @@
 		<tbody>
 		</tbody>
 	</table>
-	<div class="well well-small">
-		<button class="btn cancelButton">Cancel</button>
-		<button class="btn addAllButton">Add all</button>
+	<div class="well well-sm">
+		<button class="btn btn-default cancelButton">Cancel</button>
+		<button class="btn btn-default addAllButton">Add all</button>
 	</div>
 </div>
 <script>
@@ -43,7 +43,7 @@ function AddRepoExtendedDataSchema(main, serversettings) {
 		tr.append("<td>" + extendedDataSchema.description + "</td>");
 		
 		td = $("<td>");
-		var addButton = $("<button class=\"btn\">Add</button>");
+		var addButton = $("<button class=\"btn btn-default\">Add</button>");
 		addButton.click(othis.addButtonClick);
 		td.append(addButton);
 		tr.append(td);

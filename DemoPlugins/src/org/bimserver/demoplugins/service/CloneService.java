@@ -3,6 +3,7 @@ package org.bimserver.demoplugins.service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
+import java.util.List;
 
 import javax.activation.DataHandler;
 
@@ -30,14 +31,17 @@ import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.TokenAuthentication;
+import org.bimserver.shared.UserTokenAuthentication;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.InputStreamDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CloneService extends ServicePlugin {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(CloneService.class);
 	private boolean initialized;
 
 	@Override
@@ -122,11 +126,18 @@ public class CloneService extends ServicePlugin {
 					ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 					bimServerClientInterface.download(roid, stepSerializerRemote.getOid(), outputStream);
 					
+					BimServerClientInterface localClient = getLocalBimServerClientInterface(new UserTokenAuthentication(userToken));
+
+					PluginConfiguration pluginConfiguration = new org.bimserver.plugins.PluginConfiguration(settings);
+					
 					String localProjectName = pluginConfiguration.getString("projectName");
 					
-					BimServerClientInterface localClient = getLocalBimServerClientInterface(new TokenAuthentication(userToken));
 					
-					SProject localProject = localClient.getBimsie1ServiceInterface().getProjectsByName(localProjectName).get(0);
+					List<SProject> projectsByName = localClient.getBimsie1ServiceInterface().getProjectsByName(localProjectName);
+					if (projectsByName.isEmpty()) {
+						throw new UserException("No project with name \"" + localProjectName + "\" was found");
+					}
+					SProject localProject = projectsByName.get(0);
 					
 					SDeserializerPluginConfiguration localDeserializer = localClient.getBimsie1ServiceInterface().getDeserializerByName("IfcStepDeserializer");
 					localClient.getBimsie1ServiceInterface().checkin(localProject.getOid(), "Blaat", localDeserializer.getOid(), (long) outputStream.size(), "filename.ifc", new DataHandler(new InputStreamDataSource(new ByteArrayInputStream(outputStream.toByteArray()))), true);
@@ -140,12 +151,12 @@ public class CloneService extends ServicePlugin {
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 
 					bimServerClientInterface.getRegistry().unregisterProgressTopic(topicId);
-				} catch (PublicInterfaceNotFoundException e1) {
-					e1.printStackTrace();
+				} catch (PublicInterfaceNotFoundException e) {
+					LOGGER.error("", e);
 				} catch (ServiceException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				} catch (ChannelConnectionException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		});

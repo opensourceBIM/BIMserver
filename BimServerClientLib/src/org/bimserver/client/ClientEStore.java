@@ -1,5 +1,22 @@
 package org.bimserver.client;
 
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 import org.bimserver.client.ClientIfcModel.ModelState;
 import org.bimserver.emf.BimServerEStore;
 import org.bimserver.emf.IdEObject;
@@ -14,9 +31,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EStoreEObjectImpl.EStoreImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ClientEStore extends EStoreImpl implements BimServerEStore {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClientEStore.class);
 	private ClientIfcModel clientIfcModel;
 
 	public ClientEStore(ClientIfcModel clientIfcModel) {
@@ -33,11 +53,11 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 		try {
 			lowLevelInterface().removeObject(clientIfcModel.getTransactionId(), object.getOid());
 		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -69,9 +89,9 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 					throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
 				}
 			} catch (ServiceException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (PublicInterfaceNotFoundException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		super.add(eObject, eFeature, index, newValue);
@@ -110,9 +130,9 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 						}
 					}
 				} catch (ServiceException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				} catch (PublicInterfaceNotFoundException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		} else {
@@ -133,11 +153,11 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 						throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
 					}
 				} catch (ServerException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				} catch (UserException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				} catch (PublicInterfaceNotFoundException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		}

@@ -21,9 +21,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;

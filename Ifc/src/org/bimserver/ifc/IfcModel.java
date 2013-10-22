@@ -43,7 +43,6 @@ import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;

@@ -1,5 +1,5 @@
 <div class="log">
-	<div class="nologs well well-small">
+	<div class="nologs well well-sm">
 		No logged actions yet
 	</div>
 	<table class="table table-striped initialhide">
@@ -40,7 +40,7 @@ function Log(containerDiv, settings, main) {
 			tr.append("<td class=\"duration\"></td>");
 			tr.append("<td class=\"title\"></td>");
 			tr.append("<td class=\"state\"></td>");
-			tr.append("<td class=\"progresstd\" width=\"200px\"><div class=\"progress\"><div class=\"bar\"></div></div></td>");
+			tr.append("<td class=\"progresstd\" width=\"200px\"><div class=\"progress\"><div class=\"progress-bar\"></div></div></td>");
 		}
 		tr.find(".start").html(formatDateTimeShortest(new Date(state.start)));
 		var diff = (state.end != null ? new Date(state.end) : new Date()).getTime() - new Date(state.start).getTime();
@@ -59,12 +59,12 @@ function Log(containerDiv, settings, main) {
 				tr.find(".progress").hide();
 			} else {
 				tr.find(".progress").addClass("progress-striped").addClass("active");
-				tr.find(".progress .bar").css("width", "100%");
+				tr.find(".progress .progress-bar").css("width", "100%");
 			}
 		} else if (state.progress == 100) {
 			tr.find(".progress").hide();
 		} else {
-			tr.find(".progress .bar").css("width", state.progress + "%");
+			tr.find(".progress .progress-bar").css("width", state.progress + "%");
 			tr.find(".progress").removeClass("progress-striped").removeClass("active");
 		}
 		if (created) {

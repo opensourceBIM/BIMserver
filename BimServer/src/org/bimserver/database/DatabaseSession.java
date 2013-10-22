@@ -217,7 +217,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					try {
 						model.add(oid, idEObject);
 					} catch (IfcModelInterfaceException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				}
 			}
@@ -1697,7 +1697,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		try {
 			store(idEObject, Database.STORE_PROJECT_ID, Integer.MAX_VALUE);
 		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return idEObject;
 	}

@@ -173,11 +173,11 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 	}
 
 	@Override
-	public String getAllAsJson() {
+	public String getAllAsJson() throws ServerException, UserException {
 		try {
 			return getBimServer().getServicesMap().toJson().toString(2);
 		} catch (JSONException e) {
-			e.printStackTrace();
+			handleException(e);
 		}
 		return null;
 	}

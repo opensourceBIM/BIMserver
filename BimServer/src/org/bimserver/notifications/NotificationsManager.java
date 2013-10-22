@@ -97,7 +97,7 @@ public class NotificationsManager {
 			try {
 				directChannel.connect();
 			} catch (UserException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 			return directChannel;
 		default: 

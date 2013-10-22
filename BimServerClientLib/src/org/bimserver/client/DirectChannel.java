@@ -55,7 +55,7 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 				try {
 					add(interface1.getName(), serviceFactory.get(AccessMethod.INTERNAL).get(interface1));
 				} catch (UserException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		}
@@ -103,17 +103,8 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 			try {
 				add(interface1.getName(), serviceFactory.get(token, AccessMethod.INTERNAL).get(interface1));
 			} catch (UserException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
-//		try {
-//			get(AuthInterface.class).tokenlogin(token);
-//		} catch (PublicInterfaceNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (UserException e) {
-//			e.printStackTrace();
-//		} catch (ServerException e) {
-//			e.printStackTrace();
-//		}
 	}
 }

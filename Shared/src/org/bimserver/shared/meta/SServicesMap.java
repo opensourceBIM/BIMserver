@@ -27,8 +27,11 @@ import org.bimserver.shared.reflector.ReflectorFactory;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 public class SServicesMap {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SServicesMap.class);
 	private final Map<String, SService> servicesByName = new LinkedHashMap<String, SService>();
 	private final Map<String, SService> servicesBySimpleName = new LinkedHashMap<String, SService>();
 	private ReflectorFactory reflectorFactory;
@@ -115,7 +118,7 @@ public class SServicesMap {
 			}
 			return result;
 		} catch (JSONException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}

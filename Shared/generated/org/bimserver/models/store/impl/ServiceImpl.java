@@ -21,7 +21,6 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelCheckerInstance;
-import org.bimserver.models.store.ModelCheckerPluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;

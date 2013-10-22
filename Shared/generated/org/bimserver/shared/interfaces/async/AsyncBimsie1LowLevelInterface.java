@@ -31,302 +31,302 @@ public class AsyncBimsie1LowLevelInterface {
 
 	public interface AbortTransactionCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddBooleanAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddDoubleAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddIntegerAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddReferenceCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddStringAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface CommitTransactionCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface CountCallback {
 		void success(java.lang.Integer result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface CreateObjectCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetBooleanAttributeCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetBooleanAttributeAtIndexCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetBooleanAttributesCallback {
 		void success(java.util.List<java.lang.Boolean> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetByteArrayAttributeCallback {
 		void success(byte[] result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetByteArrayAttributesCallback {
 		void success(java.util.List<byte[]> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDataObjectByGuidCallback {
 		void success(org.bimserver.interfaces.objects.SDataObject result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDataObjectByOidCallback {
 		void success(org.bimserver.interfaces.objects.SDataObject result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDataObjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SDataObject> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDataObjectsByTypeCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SDataObject> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDoubleAttributeCallback {
 		void success(java.lang.Double result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDoubleAttributeAtIndexCallback {
 		void success(java.lang.Double result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDoubleAttributesCallback {
 		void success(java.util.List<java.lang.Double> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetEnumAttributeCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetIntegerAttributeCallback {
 		void success(java.lang.Integer result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetIntegerAttributeAtIndexCallback {
 		void success(java.lang.Integer result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetIntegerAttributesCallback {
 		void success(java.util.List<java.lang.Integer> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetLongAttributeCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetLongAttributeAtIndexCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetReferenceCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetReferencesCallback {
 		void success(java.util.List<java.lang.Long> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetStringAttributeCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetStringAttributesCallback {
 		void success(java.util.List<java.lang.String> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RemoveAllReferencesCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RemoveAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RemoveObjectCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RemoveReferenceCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetBooleanAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetBooleanAttributeAtIndexCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetBooleanAttributesCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetByteArrayAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetDoubleAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetDoubleAttributeAtIndexCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetDoubleAttributesCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetEnumAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetIntegerAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetIntegerAttributeAtIndexCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetIntegerAttributesCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetLongAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetLongAttributeAtIndexCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetLongAttributesCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetReferenceCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetStringAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetStringAttributeAtIndexCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetWrappedBooleanAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetWrappedDoubleAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetWrappedIntegerAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetWrappedLongAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetWrappedStringAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface StartTransactionCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UnsetAttributeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UnsetReferenceCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 
@@ -337,7 +337,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.abortTransaction(tid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -350,7 +350,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.addBooleanAttribute(tid, oid, attributeName, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -363,7 +363,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.addDoubleAttribute(tid, oid, attributeName, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -376,7 +376,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.addIntegerAttribute(tid, oid, attributeName, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -389,7 +389,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.addReference(tid, oid, referenceName, referenceOid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -402,7 +402,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.addStringAttribute(tid, oid, attributeName, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -414,7 +414,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.commitTransaction(tid, comment));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -426,7 +426,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.count(roid, className));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -438,7 +438,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.createObject(tid, className));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -450,7 +450,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getBooleanAttribute(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -462,7 +462,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getBooleanAttributeAtIndex(tid, oid, attributeName, index));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -474,7 +474,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getBooleanAttributes(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -486,7 +486,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getByteArrayAttribute(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -498,7 +498,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getByteArrayAttributes(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -510,7 +510,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDataObjectByGuid(roid, guid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -522,7 +522,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDataObjectByOid(roid, oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -534,7 +534,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDataObjects(roid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -546,7 +546,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDataObjectsByType(roid, className, flat));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -558,7 +558,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDoubleAttribute(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -570,7 +570,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDoubleAttributeAtIndex(tid, oid, attributeName, index));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -582,7 +582,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDoubleAttributes(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -594,7 +594,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getEnumAttribute(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -606,7 +606,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getIntegerAttribute(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -618,7 +618,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getIntegerAttributeAtIndex(tid, oid, attributeName, index));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -630,7 +630,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getIntegerAttributes(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -642,7 +642,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getLongAttribute(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -654,7 +654,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getLongAttributeAtIndex(tid, oid, attributeName, index));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -666,7 +666,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getReference(tid, oid, referenceName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -678,7 +678,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getReferences(tid, oid, referenceName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -690,7 +690,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getStringAttribute(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -702,7 +702,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getStringAttributes(tid, oid, attributeName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -715,7 +715,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.removeAllReferences(tid, oid, referenceName);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -728,7 +728,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.removeAttribute(tid, oid, attributeName, index);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -741,7 +741,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.removeObject(tid, oid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -754,7 +754,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.removeReference(tid, oid, referenceName, index);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -767,7 +767,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setBooleanAttribute(tid, oid, attributeName, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -780,7 +780,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setBooleanAttributeAtIndex(tid, oid, attributeName, index, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -793,7 +793,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setBooleanAttributes(tid, oid, attributeName, values);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -806,7 +806,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setByteArrayAttribute(tid, oid, attributeName, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -819,7 +819,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setDoubleAttribute(tid, oid, attributeName, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -832,7 +832,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setDoubleAttributeAtIndex(tid, oid, attributeName, index, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -845,7 +845,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setDoubleAttributes(tid, oid, attributeName, values);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -858,7 +858,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setEnumAttribute(tid, oid, attributeName, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -871,7 +871,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setIntegerAttribute(tid, oid, attributeName, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -884,7 +884,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setIntegerAttributeAtIndex(tid, oid, attributeName, index, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -897,7 +897,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setIntegerAttributes(tid, oid, attributeName, values);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -910,7 +910,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setLongAttribute(tid, oid, attributeName, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -923,7 +923,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setLongAttributeAtIndex(tid, oid, attributeName, index, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -936,7 +936,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setLongAttributes(tid, oid, attributeName, values);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -949,7 +949,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setReference(tid, oid, referenceName, referenceOid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -962,7 +962,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setStringAttribute(tid, oid, attributeName, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -975,7 +975,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setStringAttributeAtIndex(tid, oid, attributeName, index, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -988,7 +988,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setWrappedBooleanAttribute(tid, oid, attributeName, type, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1001,7 +1001,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setWrappedDoubleAttribute(tid, oid, attributeName, type, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1014,7 +1014,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setWrappedIntegerAttribute(tid, oid, attributeName, type, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1027,7 +1027,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setWrappedLongAttribute(tid, oid, attributeName, type, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1040,7 +1040,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.setWrappedStringAttribute(tid, oid, attributeName, type, value);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1052,7 +1052,7 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					callback.success(syncService.startTransaction(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1065,7 +1065,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.unsetAttribute(tid, oid, attributeName);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1078,7 +1078,7 @@ public class AsyncBimsie1LowLevelInterface {
 				try {
 					syncService.unsetReference(tid, oid, referenceName);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

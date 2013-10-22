@@ -67,7 +67,7 @@ public class JsonHandler {
 			try {
 				jsonWriter.endObject();
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 	}
