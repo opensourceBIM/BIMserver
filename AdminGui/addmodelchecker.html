@@ -1,0 +1,27 @@
+<div class="addmodelchecker">
+	<h1>Add Model Checker</h1>
+	<select class="modelCheckers"></select><br/>
+	<input type="text" class="nameInput"/>
+	<textarea style="width: 100%" rows="20"></textarea>
+	<button class="btn btn-primary saveButton">Save</button>
+</div>
+<script>
+function AddModelChecker(main, project) {
+	var othis = this;
+	
+	this.show = function(){
+		Global.bimServerApi.call("PluginInterface", "getAllModelCheckers", {onlyEnabled: true}, function(modelCheckers){
+			modelCheckers.forEach(function(modelChecker){
+				var option = $("<option value=\"" + modelChecker.oid + "\">" + modelChecker.name + "</option>");
+				$(".modelCheckers").append(option);
+			});
+		});
+	};
+	
+	this.saveButtonClick = function(){
+		Global.api.call("addModelChecker")
+	};
+	
+	$(".saveButton").click(othis.saveButtonClick);
+}
+</script>
