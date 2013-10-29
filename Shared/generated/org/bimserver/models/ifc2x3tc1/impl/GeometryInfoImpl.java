@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getPrimitiveCount <em>Primitive Count</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getData <em>Data</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getInstance <em>Instance</em>}</li>
  * </ul>
  * </p>
  *
@@ -177,6 +178,24 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	public void setData(GeometryData newData) {
 		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__DATA, newData);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public org.bimserver.models.ifc2x3tc1.GeometryInstance getInstance() {
+		return (org.bimserver.models.ifc2x3tc1.GeometryInstance) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__INSTANCE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInstance(org.bimserver.models.ifc2x3tc1.GeometryInstance newInstance) {
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__INSTANCE, newInstance);
 	}
 
 } //GeometryInfoImpl

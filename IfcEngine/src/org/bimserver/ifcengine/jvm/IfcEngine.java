@@ -40,6 +40,7 @@ import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.DoubleByReference;
 import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
 
 /**
@@ -1333,5 +1334,34 @@ public class IfcEngine {
 	 **/
 	public Pointer xxxxGetEntityAndSubTypesExtentBN(Pointer model, String entityName) {
 		return engine.xxxxGetEntityAndSubTypesExtentBN(model, entityName);
+	}
+	
+	public long owlGetModel(Pointer model) {
+		LongByReference owlInstanceReference = new LongByReference();
+		engine.owlGetModel(model, owlInstanceReference);
+		return owlInstanceReference.getValue();
+	}
+	
+	public long owlGetInstance(Pointer model, Pointer instance) {
+		LongByReference owlInstanceReference = new LongByReference();
+		engine.owlGetInstance(model, instance, owlInstanceReference);
+		return owlInstanceReference.getValue();
+	}
+	
+	public float[] owlGetMappedItem(Pointer model, Pointer instance, long owlInstance) {
+		Memory memory = new Memory(16 * 4 * getPlatformMultiplier());
+		LongByReference owlInstanceReference = new LongByReference();
+		owlInstanceReference.setValue(owlInstance);
+		engine.owlGetMappedItem(model, instance, owlInstanceReference, memory);
+		if (getPlatformMultiplier() == 2) {
+			double[] doubleArray = memory.getDoubleArray(0, 16);
+			float[] floatArray = new float[16];
+			for (int i=0; i<16; i++) {
+				floatArray[i] = (float)doubleArray[i];
+			}
+			return floatArray;
+		} else {
+			return memory.getFloatArray(0, 16);
+		}
 	}
 }

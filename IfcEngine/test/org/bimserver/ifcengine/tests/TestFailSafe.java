@@ -24,9 +24,12 @@ public class TestFailSafe {
 			model.setSettings(new RenderEngineSettings());
 			RenderEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
 
-			List<? extends RenderEngineInstance> instances = model.getInstances("IFCWINDOW");
+			List<? extends RenderEngineInstance> instances = model.getInstances("IFCMAPPEDITEM");
 			for (RenderEngineInstance instance : instances) {
+				float[] transformationMatrix = instance.getTransformationMatrix();
+//				dumpMatrix(transformationMatrix);
 				int index = geometry.getIndex(instance.getVisualisationProperties().getStartIndex());
+				System.out.println(index);
 				System.out.println(geometry.getVertex(index * 3));
 			}
 			
@@ -34,6 +37,17 @@ public class TestFailSafe {
 			failSafeIfcEngine.close();
 		} catch (RenderEngineException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private void dumpMatrix(float...fs) {
+		for (int i=0; i<16; i++) {
+			System.out.print(fs[i]);
+			if ((i + 1) % 4 == 0) {
+				System.out.println();
+			} else {
+				System.out.print(", ");
+			}
 		}
 	}
 }

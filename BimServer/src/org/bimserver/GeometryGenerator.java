@@ -30,9 +30,14 @@ import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
+import org.bimserver.models.ifc2x3tc1.GeometryInstance;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcMappedItem;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
@@ -158,27 +163,53 @@ public class GeometryGenerator {
 									geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
 									geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
 
-									GeometryData geometryData = null;
-									if (store) {
-										geometryData = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), pid, rid);
-									} else {
-										geometryData = Ifc2x3tc1Factory.eINSTANCE.createGeometryData();
+									IfcMappedItem ifcMappedItem = null;
+									
+									IfcProductRepresentation ifcProductRepresentation = ifcProduct.getRepresentation();
+									for (IfcRepresentation ifcRepresentation : ifcProductRepresentation.getRepresentations()) {
+										for (IfcRepresentationItem ifcRepresentationItem : ifcRepresentation.getItems()) {
+											if (ifcRepresentationItem instanceof IfcMappedItem) {
+												ifcMappedItem = (IfcMappedItem)ifcRepresentationItem;
+												break;
+											}
+										}
 									}
 									
-									for (int i = geometryInfo.getStartIndex(); i < geometryInfo.getPrimitiveCount() * 3 + geometryInfo.getStartIndex(); i++) {
-										processExtends(geometryInfo, renderEngineGeometry, verticesBuffer, normalsBuffer, renderEngineGeometry.getIndex(i) * 3);
-									}
-									
-									geometryInfo.setData(geometryData);
-									
-									geometryData.setVertices(verticesBuffer.array());
-									geometryData.setNormals(normalsBuffer.array());
+//									if (ifcMappedItem != null) {
+//										GeometryInstance geometryInstance = null;
+//										if (store) {
+//											geometryInstance = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryInstance(), pid, rid);
+//										} else {
+//											geometryInstance = Ifc2x3tc1Factory.eINSTANCE.createGeometryInstance();
+//										}
+//										
+//										geometryInstance.setData(null); // TODO
+//										geometryInstance.setTransformation(null); // TODO
+//										
+//										geometryInfo.setInstance(geometryInstance);
+//									} else {
+										GeometryData geometryData = null;
+										if (store) {
+											geometryData = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), pid, rid);
+										} else {
+											geometryData = Ifc2x3tc1Factory.eINSTANCE.createGeometryData();
+										}
+										
+										for (int i = geometryInfo.getStartIndex(); i < geometryInfo.getPrimitiveCount() * 3 + geometryInfo.getStartIndex(); i++) {
+											processExtends(geometryInfo, renderEngineGeometry, verticesBuffer, normalsBuffer, renderEngineGeometry.getIndex(i) * 3);
+										}
+										
+										geometryInfo.setData(geometryData);
+										
+										geometryData.setVertices(verticesBuffer.array());
+										geometryData.setNormals(normalsBuffer.array());
+										if (geometryCache != null) {
+											geometryCache.put(ifcProduct.getExpressId(), new GeometryCacheEntry(verticesBuffer, normalsBuffer, geometryInfo));
+										}
+//									}
 									ifcProduct.setGeometry(geometryInfo);
 									if (store) {
 										databaseSession.store(ifcProduct, pid, rid);
-									}
-									if (geometryCache != null) {
-										geometryCache.put(ifcProduct.getExpressId(), new GeometryCacheEntry(verticesBuffer, normalsBuffer, geometryInfo));
 									}
 								}
 							}

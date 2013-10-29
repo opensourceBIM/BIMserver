@@ -50,4 +50,9 @@ public class ExecutableIfcEngineInstance implements RenderEngineInstance {
 			return new RenderEngineInstanceVisualisationProperties(ifcEngine.readInt(), ifcEngine.readInt(), ifcEngine.readInt());
 		}
 	}
+
+	@Override
+	public float[] getTransformationMatrix() {
+		return null;
+	}
 }

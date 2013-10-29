@@ -115,8 +115,8 @@ message SServerSettings {
 	optional bool allowSelfRegistration = 11;
 	repeated string whitelistedDomains = 12;
 	optional int64 oid = 13;
-	optional bool cacheOutputFiles = 14;
-	optional string emailSenderAddress = 15;
+	optional string emailSenderAddress = 14;
+	optional bool cacheOutputFiles = 15;
 	optional bool hideUserListForNonAdmin = 16;
 	optional string emailSenderName = 17;
 	optional int64 webModuleId = 18;

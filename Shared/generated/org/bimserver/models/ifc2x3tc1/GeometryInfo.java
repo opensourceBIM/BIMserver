@@ -32,6 +32,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getPrimitiveCount <em>Primitive Count</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getData <em>Data</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getInstance <em>Instance</em>}</li>
  * </ul>
  * </p>
  *
@@ -196,5 +197,31 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setData(GeometryData value);
+
+	/**
+	 * Returns the value of the '<em><b>Instance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instance</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance</em>' reference.
+	 * @see #setInstance(org.bimserver.models.ifc2x3tc1.GeometryInstance)
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInfo_Instance()
+	 * @model
+	 * @generated
+	 */
+	org.bimserver.models.ifc2x3tc1.GeometryInstance getInstance();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getInstance <em>Instance</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Instance</em>' reference.
+	 * @see #getInstance()
+	 * @generated
+	 */
+	void setInstance(org.bimserver.models.ifc2x3tc1.GeometryInstance value);
 
 } // GeometryInfo
