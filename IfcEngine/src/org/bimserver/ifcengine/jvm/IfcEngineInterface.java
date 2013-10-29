@@ -29,6 +29,7 @@ import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.DoubleByReference;
 import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
 
 /**
@@ -153,6 +154,10 @@ public interface IfcEngineInterface extends Library {
 	 */
 	int initializeModellingInstance(Pointer model, IntByReference pV,
 			IntByReference pI, double scale, Pointer instance);
+	
+	void owlGetModel(Pointer model, LongByReference owlModel);
+	void owlGetInstance(Pointer model, Pointer instance, LongByReference owlModel);
+	void owlGetMappedItem(Pointer model, Pointer instance, LongByReference owlModel, Pointer transformationMatrix);
 
 	int initializeModelling(Pointer model, IntByReference pV,
 			IntByReference pI, double scale);

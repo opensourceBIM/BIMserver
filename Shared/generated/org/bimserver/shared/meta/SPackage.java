@@ -174,6 +174,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SModelCheckerResult");
 		Class.forName("org.bimserver.interfaces.objects.SModelCheckerInstance");
 		Class.forName("org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor");
+		Class.forName("org.bimserver.interfaces.objects.SGeometryInstance");
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

@@ -26,9 +26,9 @@ smtpServer	 (	
  (
 allowSelfRegistration (
 whitelistedDomains (	
-oid (
-cacheOutputFiles (
-emailSenderAddress (	
+oid (
+emailSenderAddress (	
+cacheOutputFiles (
 hideUserListForNonAdmin (
 emailSenderName (	
 webModuleId (

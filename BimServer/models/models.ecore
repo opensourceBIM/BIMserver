@@ -9466,6 +9466,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#/0/GeometryData">
         <eAnnotations source="nolazyload"/>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#/0/GeometryInstance"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Vector3f">
       <eAnnotations source="hidden"/>
@@ -9479,6 +9480,11 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="indices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="normals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
+      <eAnnotations source="hidden"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#/0/GeometryData"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="log" nsURI="log" nsPrefix="log">

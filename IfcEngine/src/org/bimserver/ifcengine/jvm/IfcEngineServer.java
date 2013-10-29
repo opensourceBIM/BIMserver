@@ -215,6 +215,16 @@ public class IfcEngineServer extends Thread {
 					}
 					break;
 				}
+				case GET_TRANSFORMATION_MATRIX: {
+					int modelId = in.readInt();
+					int instanceId = in.readInt();
+					long owlInstance = ifcEngine.owlGetInstance(pointers.get(modelId), pointers.get(instanceId));
+					float[] transformationMatrix = ifcEngine.owlGetMappedItem(pointers.get(modelId), pointers.get(instanceId), owlInstance);
+					for (int i=0; i<16; i++) {
+						out.writeFloat(transformationMatrix[i]);
+					}
+					break;					
+				}
 				case CLOSE: {
 					close();
 					System.exit(0);
