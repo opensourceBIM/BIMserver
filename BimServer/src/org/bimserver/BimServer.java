@@ -438,21 +438,6 @@ public class BimServer {
 			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager);
 			pluginManager.setBimServerClientFactory(bimServerClientFactory);
 			
-			DatabaseSession session = bimDatabase.createSession();
-			try {
-				for (InternalServicePluginConfiguration internalService : session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), InternalServicePluginConfiguration.class, Query.getDefault())) {
-					if (internalService.getEnabled()) {
-						ServicePlugin servicePlugin = pluginManager.getServicePlugin(internalService.getPluginDescriptor().getPluginClassName(), true);
-						if (servicePlugin != null) {
-							ObjectType settings = internalService.getSettings();
-							servicePlugin.register(new org.bimserver.plugins.PluginConfiguration(settings));
-						}
-					}
-				}
-			} finally {
-				session.close();
-			}
-			
 			try {
 				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, config.getInitialProtocolBuffersPort());
 				protocolBuffersServer.start();
@@ -683,6 +668,21 @@ public class BimServer {
 				session.commit();
 			} catch (ServiceException e) {
 				LOGGER.error("", e);
+			} finally {
+				session.close();
+			}
+
+			session = bimDatabase.createSession();
+			try {
+				for (InternalServicePluginConfiguration internalService : session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), InternalServicePluginConfiguration.class, Query.getDefault())) {
+					if (internalService.getEnabled()) {
+						ServicePlugin servicePlugin = pluginManager.getServicePlugin(internalService.getPluginDescriptor().getPluginClassName(), true);
+						if (servicePlugin != null) {
+							ObjectType settings = internalService.getSettings();
+							servicePlugin.register(new org.bimserver.plugins.PluginConfiguration(settings));
+						}
+					}
+				}
 			} finally {
 				session.close();
 			}

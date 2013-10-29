@@ -37,8 +37,6 @@ import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetLogsDatabaseAction;
-import org.bimserver.database.migrations.InconsistentModelsException;
-import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
 import org.bimserver.interfaces.objects.SBimServerInfo;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
@@ -272,10 +270,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 		try {
 			getBimServer().getDatabase().getMigrator().migrate();
 			getBimServer().getServerInfoManager().update();
-		} catch (MigrationException e) {
-			LOGGER.error("", e);
-			throw new ServerException(e);
-		} catch (InconsistentModelsException e) {
+		} catch (Exception e) {
 			LOGGER.error("", e);
 			throw new ServerException(e);
 		}

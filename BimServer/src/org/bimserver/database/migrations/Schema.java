@@ -171,7 +171,7 @@ public class Schema {
 			eAttribute.setUpperBound(-1);
 		}
 		if (!isNew(eClass)) {
-			changes.add(new NewAttributeChange(this, eAttribute));
+			changes.add(new NewAttributeChange(this, eClass.getEAllStructuralFeatures().size(), eAttribute));
 		}
 		eAttribute.setEType(eDataType);
 		eClass.getEStructuralFeatures().add(eAttribute);
@@ -199,6 +199,9 @@ public class Schema {
 		eReference.setName(name);
 		if (multiplicity == Multiplicity.MANY) {
 			eReference.setUpperBound(-1);
+		}
+		if (!isNew(eClass)) {
+			changes.add(new NewReferenceChange(this, eClass.getEAllStructuralFeatures().size(), eReference));
 		}
 		eReference.setEType(type);
 		eClass.getEStructuralFeatures().add(eReference);
