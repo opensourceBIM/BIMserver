@@ -92,7 +92,7 @@ public class PluginContext {
 	}
 
 	public InputStream getResourceAsInputStream(String name) throws FileNotFoundException {
-		InputStream resourceAsStream = plugin.getClass().getClassLoader().getResourceAsStream(name);
+		InputStream resourceAsStream = classLoader.getResourceAsStream(name);
 		if (resourceAsStream == null) {
 			File file = new File(location + File.separator + name);
 			if (file.exists()) {
@@ -103,7 +103,7 @@ public class PluginContext {
 	}
 
 	public URL getResourceAsUrl(String name) {
-		return plugin.getClass().getClassLoader().getResource(name);
+		return classLoader.getResource(name);
 	}
 
 	public void setClassLocation(String classLocation) {
@@ -115,7 +115,7 @@ public class PluginContext {
 	}
 
 	public ClassLoader getClassLoader() {
-		return plugin.getClass().getClassLoader();
+		return classLoader;
 	}
 
 	public JavaFileManager getFileManager() {

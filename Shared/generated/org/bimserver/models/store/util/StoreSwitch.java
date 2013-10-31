@@ -865,6 +865,54 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case StorePackage.MODEL_CHECKER_RESULT_ITEM: {
+			ModelCheckerResultItem modelCheckerResultItem = (ModelCheckerResultItem) theEObject;
+			T result = caseModelCheckerResultItem(modelCheckerResultItem);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.MODEL_CHECKER_RESULT_HEADER: {
+			ModelCheckerResultHeader modelCheckerResultHeader = (ModelCheckerResultHeader) theEObject;
+			T result = caseModelCheckerResultHeader(modelCheckerResultHeader);
+			if (result == null)
+				result = caseModelCheckerResultItem(modelCheckerResultHeader);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.MODEL_CHECKER_RESULT_LINE: {
+			ModelCheckerResultLine modelCheckerResultLine = (ModelCheckerResultLine) theEObject;
+			T result = caseModelCheckerResultLine(modelCheckerResultLine);
+			if (result == null)
+				result = caseModelCheckerResultItem(modelCheckerResultLine);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.MODEL_CHECKER_RESULT: {
+			ModelCheckerResult modelCheckerResult = (ModelCheckerResult) theEObject;
+			T result = caseModelCheckerResult(modelCheckerResult);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.MODEL_CHECKER_INSTANCE: {
+			ModelCheckerInstance modelCheckerInstance = (ModelCheckerInstance) theEObject;
+			T result = caseModelCheckerInstance(modelCheckerInstance);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.MODEL_CHECKER_PLUGIN_DESCRIPTOR: {
+			ModelCheckerPluginDescriptor modelCheckerPluginDescriptor = (ModelCheckerPluginDescriptor) theEObject;
+			T result = caseModelCheckerPluginDescriptor(modelCheckerPluginDescriptor);
+			if (result == null)
+				result = casePluginDescriptor(modelCheckerPluginDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -2187,6 +2235,96 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfcHeader(IfcHeader object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Checker Result Item</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Checker Result Item</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelCheckerResultItem(ModelCheckerResultItem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Checker Result Header</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Checker Result Header</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelCheckerResultHeader(ModelCheckerResultHeader object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Checker Result Line</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Checker Result Line</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelCheckerResultLine(ModelCheckerResultLine object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Checker Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Checker Result</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelCheckerResult(ModelCheckerResult object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Checker Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Checker Instance</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelCheckerInstance(ModelCheckerInstance object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Checker Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Checker Plugin Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelCheckerPluginDescriptor(ModelCheckerPluginDescriptor object) {
 		return null;
 	}
 

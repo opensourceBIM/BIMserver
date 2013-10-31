@@ -26,6 +26,7 @@ package org.bimserver.models.store;
  * <ul>
  *   <li>{@link org.bimserver.models.store.InternalServicePluginConfiguration#isRemoteAccessible <em>Remote Accessible</em>}</li>
  *   <li>{@link org.bimserver.models.store.InternalServicePluginConfiguration#getUserSettings <em>User Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.InternalServicePluginConfiguration#isPublicProfile <em>Public Profile</em>}</li>
  * </ul>
  * </p>
  *
@@ -87,5 +88,31 @@ public interface InternalServicePluginConfiguration extends PluginConfiguration 
 	 * @generated
 	 */
 	void setUserSettings(UserSettings value);
+
+	/**
+	 * Returns the value of the '<em><b>Public Profile</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Public Profile</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Public Profile</em>' attribute.
+	 * @see #setPublicProfile(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getInternalServicePluginConfiguration_PublicProfile()
+	 * @model
+	 * @generated
+	 */
+	boolean isPublicProfile();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.InternalServicePluginConfiguration#isPublicProfile <em>Public Profile</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Public Profile</em>' attribute.
+	 * @see #isPublicProfile()
+	 * @generated
+	 */
+	void setPublicProfile(boolean value);
 
 } // InternalServicePluginConfiguration

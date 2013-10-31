@@ -4,8 +4,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ClientIfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -15,6 +14,7 @@ import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -24,7 +24,7 @@ public class MoveObject extends TestWithEmbeddedServer{
 	public void test() {
 		try {
 			// Create a new BimServerClient with authentication
-			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a new project
 			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
@@ -38,7 +38,7 @@ public class MoveObject extends TestWithEmbeddedServer{
 			// Refresh project info
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 
-			ClientIfcModel model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
+			IfcModelInterface model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAllWithSubTypes(IfcFurnishingElement.class)) {
 				IfcObjectPlacement objectPlacement = ifcFurnishingElement.getObjectPlacement();
 				if (objectPlacement != null && objectPlacement instanceof IfcLocalPlacement) {

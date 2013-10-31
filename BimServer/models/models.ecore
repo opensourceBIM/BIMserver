@@ -9466,6 +9466,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#/0/GeometryData">
         <eAnnotations source="nolazyload"/>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#/0/GeometryInstance"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Vector3f">
       <eAnnotations source="hidden"/>
@@ -9479,6 +9480,11 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="indices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="normals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
+      <eAnnotations source="hidden"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#/0/GeometryData"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="log" nsURI="log" nsPrefix="log">
@@ -9638,6 +9644,8 @@
           eType="#/2/Service" eOpposite="#/2/Service/project"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1"
           eType="#/1/ProjectRelated" eOpposite="#/1/ProjectRelated/project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelCheckers" upperBound="-1"
+          eType="#/2/ModelCheckerInstance"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="User">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -10097,6 +10105,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="writeRevision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="writeExtendedData" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="providerName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="companyUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="tokenUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="newProfileUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Service">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -10122,6 +10133,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/2/User"
           eOpposite="#/2/User/services"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="internalService" eType="#/2/InternalServicePluginConfiguration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelCheckers" upperBound="-1"
+          eType="#/2/ModelCheckerInstance"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Token">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="tokenString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -10133,6 +10146,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="remoteAccessible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#/2/UserSettings"
           eOpposite="#/2/UserSettings/services"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="publicProfile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ServiceInterface">
       <eAnnotations source="nodatabase"/>
@@ -10357,5 +10371,35 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ifcSchemaVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="authorization" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerResultItem"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerResultHeader" eSuperTypes="#/2/ModelCheckerResultItem">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ModelCheckerResultType">
+      <eLiterals name="ERROR"/>
+      <eLiterals name="SUCCESS" value="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerResultLine" eSuperTypes="#/2/ModelCheckerResultItem">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fieldOrClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="shouldBe" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#/2/ModelCheckerResultType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerResult">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
+          eType="#/2/ModelCheckerResultItem"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerInstance">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="compiled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelCheckerPluginClassName"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerPluginDescriptor" eSuperTypes="#/2/PluginDescriptor"/>
   </ecore:EPackage>
 </xmi:XMI>

@@ -1,5 +1,5 @@
 
-”l
+‚l
 Bimsie1LowLevelInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoBimsie1ServiceInterface.proto"Bimsie1NotificationInterface.proto#Bimsie1RemoteServiceInterface.protoBimsie1AuthInterface.proto"&
 AbortTransactionRequest
 tid ("\
@@ -78,10 +78,10 @@
 GetByteArrayAttributesRequest
 tid (
 oid (
-attributeName (	"e
+attributeName (	"E
 GetByteArrayAttributesResponse
-errorMessage (	-
-value (2.org.bimserver.pb.VoidResponse"8
+errorMessage (	
+value ("8
 GetDataObjectByGuidRequest
 roid (
 guid (	"a
@@ -98,10 +98,11 @@
 roid ("\
 GetDataObjectsResponse
 errorMessage (	,
-value (2.org.bimserver.pb.SDataObject">
+value (2.org.bimserver.pb.SDataObject"L
 GetDataObjectsByTypeRequest
 roid (
-	className (	"b
+	className (	
+flat ("b
 GetDataObjectsByTypeResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SDataObject"L

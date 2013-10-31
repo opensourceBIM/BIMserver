@@ -21,6 +21,7 @@ import java.io.IOException;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.LoginDatabaseAction;
+import org.bimserver.database.actions.LoginUserTokenDatabaseAction;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -73,5 +74,18 @@ public class Bimsie1AuthServiceImpl extends GenericServiceImpl implements Bimsie
 	@Override
 	public String validateOpenId(String queryString) throws ServerException, UserException {
 		return null;
+	}
+
+	@Override
+	public String loginUserToken(String token) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			LoginUserTokenDatabaseAction loginDatabaseAction = new LoginUserTokenDatabaseAction(getBimServer(), session, getServiceMap(), super.getInternalAccessMethod(), token);
+			return session.executeAndCommitAction(loginDatabaseAction);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

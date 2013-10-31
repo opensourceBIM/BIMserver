@@ -23,6 +23,8 @@
 		<antcall target="Mergers" />
 		<antcall target="JavaQueryEngine" />
 		<antcall target="IfcPlugins" />
+		<antcall target="DemoPlugins" />
+		<antcall target="AdminGui" />
 		<antcall target="MiscSerializers" />
 		<antcall target="BuildingSMARTLibrary" />
 		<antcall target="FileBasedObjectIDM" />
@@ -150,6 +152,25 @@
 			<fileset dir="builds/BuildingSMARTLibrary"/>
 		</jar>
 	</target>
+	<target name="MiscSerializers">
+		<mkdir dir="builds/miscserializers" />
+		<javac destdir="builds/miscserializers" debug="on" includeantruntime="false">
+			<src path="../../MiscSerializers/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/miscserializers/plugin"/>
+		<copy todir="builds/miscserializers/plugin">
+			<fileset dir="../../MiscSerializers/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-miscserializers.jar">
+			<fileset dir="builds/miscserializers"/>
+		</jar>
+	</target>
 	<target name="IfcEngine">
 		<mkdir dir="builds/ifcengine" />
 		<javac destdir="builds/ifcengine" debug="on" includeantruntime="false">
@@ -229,25 +250,6 @@
 			<fileset dir="builds/mergers"/>
 		</jar>
 	</target>
-	<target name="MiscSerializers">
-		<mkdir dir="builds/miscserializers" />
-		<javac destdir="builds/miscserializers" debug="on" includeantruntime="false">
-			<src path="../../MiscSerializers/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<mkdir dir="builds/miscserializers/plugin"/>
-		<copy todir="builds/miscserializers/plugin">
-			<fileset dir="../../MiscSerializers/plugin"></fileset>
-		</copy>
-		<jar destfile="builds/pluginlibs/bimserver-${version}-miscserializers.jar">
-			<fileset dir="builds/miscserializers"/>
-		</jar>
-	</target>
 	<target name="XsltSerializer">
 		<mkdir dir="builds/xsltserializer" />
 		<javac destdir="builds/xsltserializer" debug="on" includeantruntime="false">
@@ -261,6 +263,48 @@
 		</javac>
 		<jar destfile="builds/lib/bimserver-${version}-xsltserializer.jar">
 			<fileset dir="builds/xsltserializer"/>
+		</jar>
+	</target>
+	<target name="DemoPlugins">
+		<mkdir dir="builds/demoplugins" />
+		<javac destdir="builds/demoplugins" debug="on" includeantruntime="false">
+			<src path="../../DemoPlugins/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/demoplugins/plugin"/>
+		<copy todir="builds/demoplugins/plugin">
+			<fileset dir="../../DemoPlugins/plugin"></fileset>
+		</copy>
+		<mkdir dir="builds/demoplugins/data"/>
+		<copy todir="builds/demoplugins/data">
+			<fileset dir="../../DemoPlugins/data"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-demoplugins.jar">
+			<fileset dir="builds/demoplugins"/>
+		</jar>
+	</target>
+	<target name="AdminGui">
+		<mkdir dir="builds/admingui" />
+		<javac destdir="builds/admingui" debug="on" includeantruntime="false">
+			<src path="../../AdminGui/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/admingui/plugin"/>
+		<copy todir="builds/admingui/plugin">
+			<fileset dir="../../AdminGui/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-admingui.jar">
+			<fileset dir="builds/admingui"/>
 		</jar>
 	</target>
 	<target name="Collada">

@@ -1,0 +1,304 @@
+<div class="usersettings">
+	<div class="tabbable tabs-left col-md-3" style="float: left">
+		<ul class="nav nav-tabs">
+			<li><a class="userSettingsLink">User Settings</a></li>
+			<li><a class="serializersLink">Serializers</a></li>
+			<li><a class="deserializersLink">Deserializers</a></li>
+			<li><a class="objectIdmsLink">ObjectIDMs</a></li>
+			<li><a class="renderEnginesLink">Render Engines</a></li>
+			<li><a class="queryEnginesLink">Query Engines</a></li>
+			<li><a class="modelMergersLink">Model Mergers</a></li>
+			<li><a class="modelComparesLink">Model Compare Engines</a></li>
+			<li><a class="internalServicesLink">Internal Services</a></li>
+		</ul>
+	</div>
+	<div class="tab-content col-md-6" style="float: left; ">
+	</div>
+</div>
+<script>
+	function UserSettings(main) {
+		var othis = this;
+
+		this.show = function(){
+		};
+		
+		this.changePage = function(linkElement, page, constructorFunction, callback) {
+			if (othis.current != null) {
+				othis.current.close();
+			}
+			$(".usersettings .nav li").removeClass("active");
+			linkElement.parent().addClass("active");
+			$(".usersettings .tab-content").load(Global.baseDir + page, function(){
+				constructorFunction();
+				if (callback != null) {
+					callback.call(othis.current);
+				}
+			});
+		};
+		
+		this.showBasicUserSettings = function(callback) {
+			othis.changePage($(".userSettingsLink"), "basicusersettings.html", function(){
+				othis.current = new BasicUserSettings();
+				pushHistory({page: "UserSettings", subpage: "BasicUserSettings"}, "User Settings");
+			}, callback);
+		};
+		
+		this.showSerializers = function(callback) {
+			othis.changePage($(".serializersLink"), "genericpluginsettingslist.html", function(){
+				othis.current = new GenericPluginSettingsList(main, othis, {
+					getAllMethodName: "getAllSerializers",
+					updateMethodName: "updateSerializer",
+					setDefaultMethodName: "setDefaultSerializer",
+					defaultFieldName: "defaultSerializerId",
+					createUpdateObject: function(pluginConfiguration){return {serializer: pluginConfiguration}},
+					listTitle: "Serializers",
+					showDetailsFunction: othis.showSerializer
+				});
+				pushHistory({page: "UserSettings", subpage: "Serializers"}, "User Settings");
+			}, callback);
+		};
+
+		this.showDeserializers = function(callback) {
+			othis.changePage($(".deserializersLink"), "genericpluginsettingslist.html", function(){
+				othis.current = new GenericPluginSettingsList(main, othis, {
+					getAllMethodName: "getAllDeserializers",
+					updateMethodName: "updateDeserializer",
+					createUpdateObject: function(pluginConfiguration){return {deserializer: pluginConfiguration}},
+					listTitle: "Deserializers",
+					showDetailsFunction: othis.showDeserializer
+				});
+				pushHistory({page: "UserSettings", subpage: "Deserializers"}, "User Settings");
+			}, callback);
+		};
+
+		this.showObjectIdms = function(callback) {
+			othis.changePage($(".objectIdmsLink"), "genericpluginsettingslist.html", function(){
+				othis.current = new GenericPluginSettingsList(main, othis, {
+					getAllMethodName: "getAllObjectIDMs",
+					updateMethodName: "updateObjectIDM",
+					setDefaultMethodName: "setDefaultObjectIDM",
+					defaultFieldName: "defaultObjectIDMId",
+					createUpdateObject: function(pluginConfiguration){return {objectIDM: pluginConfiguration}},
+					listTitle: "Object IDMs",
+					showDetailsFunction: othis.showObjectIdm
+				});
+				pushHistory({page: "UserSettings", subpage: "ObjectIDMs"}, "User Settings");
+			}, callback);
+		};
+
+		this.showRenderEngines = function(callback) {
+			othis.changePage($(".renderEnginesLink"), "genericpluginsettingslist.html", function(){
+				othis.current = new GenericPluginSettingsList(main, othis, {
+					getAllMethodName: "getAllRenderEngines",
+					updateMethodName: "updateRenderEngine",
+					setDefaultMethodName: "setDefaultRenderEngine",
+					defaultFieldName: "defaultRenderEngineId",
+					createUpdateObject: function(pluginConfiguration){return {renderEngine: pluginConfiguration}},
+					listTitle: "Render Engines",
+					showDetailsFunction: othis.showRenderEngine
+				});
+				pushHistory({page: "UserSettings", subpage: "RenderEngines"}, "User Settings");
+			}, callback);
+		};
+
+		this.showQueryEngines = function(callback) {
+			othis.changePage($(".queryEnginesLink"), "genericpluginsettingslist.html", function(){
+				othis.current = new GenericPluginSettingsList(main, othis, {
+					getAllMethodName: "getAllQueryEngines",
+					updateMethodName: "updateQueryEngine",
+					setDefaultMethodName: "setDefaultQueryEngine",
+					defaultFieldName: "defaultQueryEngineId",
+					createUpdateObject: function(pluginConfiguration){return {queryEngine: pluginConfiguration}},
+					listTitle: "Query Engines",
+					showDetailsFunction: othis.showQueryEngine
+				});
+				pushHistory({page: "UserSettings", subpage: "QueryEngines"}, "User Settings");
+			}, callback);
+		};
+
+		this.showModelMergers = function(callback) {
+			othis.changePage($(".modelMergersLink"), "genericpluginsettingslist.html", function(){
+				othis.current = new GenericPluginSettingsList(main, othis, {
+					getAllMethodName: "getAllModelMergers",
+					updateMethodName: "updateModelMerger",
+					setDefaultMethodName: "setDefaultModelMerger",
+					defaultFieldName: "defaultModelMergerId",
+					createUpdateObject: function(pluginConfiguration){return {modelMerger: pluginConfiguration}},
+					listTitle: "Model Mergers",
+					showDetailsFunction: othis.showModelMerger
+				});
+				pushHistory({page: "UserSettings", subpage: "ModelMergers"}, "User Settings");
+			}, callback);
+		};
+
+		this.showModelCompares = function(callback) {
+			othis.changePage($(".modelComparesLink"), "genericpluginsettingslist.html", function(){
+				othis.current = new GenericPluginSettingsList(main, othis, {
+					getAllMethodName: "getAllModelCompares",
+					updateMethodName: "updateModelCompare",
+					setDefaultMethodName: "setDefaultModelCompare",
+					defaultFieldName: "defaultModelCompareId",
+					createUpdateObject: function(pluginConfiguration){return {modelCompare: pluginConfiguration}},
+					listTitle: "Model Compares",
+					showDetailsFunction: othis.showModelCompare
+				});
+				pushHistory({page: "UserSettings", subpage: "ModelCompares"}, "User Settings");
+			}, callback);
+		};
+
+		this.showInternalServices = function(callback) {
+			othis.changePage($(".internalServicesLink"), "genericpluginsettingslist.html", function(){
+				othis.current = new GenericPluginSettingsList(main, othis, {
+					getAllMethodName: "getAllInternalServices",
+					updateMethodName: "updateInternalService",
+					createUpdateObject: function(pluginConfiguration){return {internalService: pluginConfiguration}},
+					listTitle: "Internal Services",
+					showDetailsFunction: othis.showInternalService
+				});
+				pushHistory({page: "UserSettings", subpage: "InternalServices"}, "User Settings");
+			}, callback);
+		};
+		
+		this.showSerializer = function(serializer, callback) {
+			othis.changePage($(".serializersLink"), "genericpluginsettings.html", function(){
+				othis.current = new GenericPluginSettings(main, othis, serializer, {
+					title: "Serializer",
+					getInterface: "Bimsie1ServiceInterface",
+					getMethod: "getSerializerById"
+				});
+				pushHistory({page: "UserSettings", subpage: "Serializer", oid: serializer.oid}, "User Settings");
+			}, callback);
+		};
+
+		this.showDeserializer = function(deserializer, callback) {
+			othis.changePage($(".deserializersLink"), "genericpluginsettings.html", function(){
+				othis.current = new GenericPluginSettings(main, othis, deserializer, {
+					title: "Deserializer",
+					getInterface: "Bimsie1ServiceInterface",
+					getMethod: "getDeserializerById"
+				});
+				pushHistory({page: "UserSettings", subpage: "Deserializer", oid: deserializer.oid}, "User Settings");
+			}, callback);
+		};
+
+		this.showObjectIdm = function(objectidm, callback) {
+			othis.changePage($(".objectIdmsLink"), "genericpluginsettings.html", function(){
+				othis.current = new GenericPluginSettings(main, othis, objectidm, {
+					title: "Object IDM",
+					getInterface: "Bimsie1ServiceInterface",
+					getMethod: "getObjectIDMById"
+				});
+				pushHistory({page: "UserSettings", subpage: "ObjectIDM", oid: objectidm.oid}, "User Settings");
+			}, callback);
+		};
+
+		this.showRenderEngine = function(renderEngine, callback) {
+			othis.changePage($(".renderEnginesLink"), "genericpluginsettings.html", function(){
+				othis.current = new GenericPluginSettings(main, othis, renderEngine, {
+					title: "Render Engine",
+					getInterface: "Bimsie1ServiceInterface",
+					getMethod: "getRenderEngineById"
+				});
+				pushHistory({page: "UserSettings", subpage: "RenderEngine", oid: renderEngine.oid}, "User Settings");
+			}, callback);
+		};
+
+		this.showQueryEngine = function(queryEngine, callback) {
+			othis.changePage($(".queryEnginesLink"), "genericpluginsettings.html", function(){
+				othis.current = new GenericPluginSettings(main, othis, queryEngine, {
+					title: "Query Engine",
+					getInterface: "Bimsie1ServiceInterface",
+					getMethod: "getQueryEngineById"
+				});
+				pushHistory({page: "UserSettings", subpage: "QueryEngine", oid: queryEngine.oid}, "User Settings");
+			}, callback);
+		};
+
+		this.showModelMerger = function(modelMerger, callback) {
+			othis.changePage($(".modelMergersLink"), "genericpluginsettings.html", function(){
+				othis.current = new GenericPluginSettings(main, othis, modelMerger, {
+					title: "Model Merger",
+					getInterface: "Bimsie1ServiceInterface",
+					getMethod: "getModelMergerById"
+				});
+				pushHistory({page: "UserSettings", subpage: "ModelMerger", oid: modelMerger.oid}, "User Settings");
+			}, callback);
+		};
+
+		this.showModelCompare = function(modelCompare, callback) {
+			othis.changePage($(".modelComparesLink"), "genericpluginsettings.html", function(){
+				othis.current = new GenericPluginSettings(main, othis, modelCompare, {
+					title: "Model Compare",
+					getInterface: "Bimsie1ServiceInterface",
+					getMethod: "getModelCompareById"
+				});
+				pushHistory({page: "UserSettings", subpage: "ModelCompare", oid: modelCompare.oid}, "User Settings");
+			}, callback);
+		};
+
+		this.showInternalService = function(internalService, callback) {
+			othis.changePage($(".internalServicesLink"), "genericpluginsettings.html", function(){
+				othis.current = new GenericPluginSettings(main, othis, internalService, {
+					title: "Internal Service",
+					getInterface: "Bimsie1ServiceInterface",
+					getMethod: "getInternalServiceById"
+				});
+				pushHistory({page: "UserSettings", subpage: "InternalService", oid: internalService.oid}, "User Settings");
+			}, callback);
+		};
+
+		this.close = function() {
+		};
+		
+		$(".usersettings .userSettingsLink").click(function(){othis.showBasicUserSettings(null, true)});
+		$(".usersettings .serializersLink").click(function(){othis.showSerializers(null, true)});
+		$(".usersettings .deserializersLink").click(function(){othis.showDeserializers(null, true)});
+		$(".usersettings .objectIdmsLink").click(function(){othis.showObjectIdms(null, true)});
+		$(".usersettings .renderEnginesLink").click(function(){othis.showRenderEngines(null, true)});
+		$(".usersettings .queryEnginesLink").click(function(){othis.showQueryEngines(null, true)});
+		$(".usersettings .modelMergersLink").click(function(){othis.showModelMergers(null, true)});
+		$(".usersettings .modelComparesLink").click(function(){othis.showModelCompares(null, true)});
+		$(".usersettings .internalServicesLink").click(function(){othis.showInternalServices(null, true)});
+		
+		var history = History.getState().data;
+		if (history.subpage == "Serializers") {
+			othis.showSerializers();
+		} else if (history.subpage == "Serializer") {
+			othis.showSerializer(parseInt(history.oid));
+		} else if (history.subpage == "Deserializers") {
+			othis.showDeserializers();
+		} else if (history.subpage == "Deserializer") {
+			othis.showDeserializer(parseInt(history.oid));
+		} else if (history.subpage == "ObjectIDMs") {
+			othis.showObjectIdms();
+		} else if (history.subpage == "ObjectIDM") {
+			othis.showObjectIdm(parseInt(history.oid));
+		} else if (history.subpage == "RenderEngines") {
+			othis.showRenderEngines();
+		} else if (history.subpage == "RenderEngine") {
+			othis.showRenderEngine(parseInt(history.oid));
+		} else if (history.subpage == "QueryEngines") {
+			othis.showQueryEngines();
+		} else if (history.subpage == "QueryEngine") {
+			othis.showQueryEngine(parseInt(history.oid));
+		} else if (history.subpage == "ModelMergers") {
+			othis.showModelMergers();
+		} else if (history.subpage == "ModelMerger") {
+			othis.showModelMerger(parseInt(history.oid));
+		} else if (history.subpage == "ModelChecker") {
+			othis.showModelChecker(parseInt(history.oid));
+		} else if (history.subpage == "ModelCompares") {
+			othis.showModelCompares();
+		} else if (history.subpage == "ModelCompare") {
+			othis.showModelCompare(parseInt(history.oid));
+		} else if (history.subpage == "InternalServices") {
+			othis.showInternalServices();
+		} else if (history.subpage == "InternalService") {
+			othis.showInternalService(parseInt(history.oid));
+		} else if (history.subpage == "BasicUserSettings") {
+			othis.showBasicUserSettings();
+		} else {
+			othis.showBasicUserSettings();
+		}
+	}
+</script>

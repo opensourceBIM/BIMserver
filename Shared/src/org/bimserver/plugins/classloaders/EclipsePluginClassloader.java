@@ -43,7 +43,7 @@ public class EclipsePluginClassloader extends ClassLoader {
 	
 	@Override
 	public String toString() {
-		return projectFolder.getAbsolutePath();
+		return "EclipsePluginClassLoader: " + projectFolder.getAbsolutePath();
 	}
 
 	@Override

@@ -20,11 +20,13 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.models.store.User;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -54,6 +56,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getInternalService <em>Internal Service</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getModelCheckers <em>Model Checkers</em>}</li>
  * </ul>
  * </p>
  *
@@ -447,6 +450,16 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 */
 	public void setInternalService(InternalServicePluginConfiguration newInternalService) {
 		eSet(StorePackage.Literals.SERVICE__INTERNAL_SERVICE, newInternalService);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ModelCheckerInstance> getModelCheckers() {
+		return (EList<ModelCheckerInstance>) eGet(StorePackage.Literals.SERVICE__MODEL_CHECKERS, true);
 	}
 
 } //ServiceImpl

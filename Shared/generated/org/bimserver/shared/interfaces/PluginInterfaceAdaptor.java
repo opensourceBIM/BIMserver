@@ -51,6 +51,9 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	public void deleteInternalService(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
+	public void deleteModelChecker(java.lang.Long iid) throws UserException, ServerException {
+	}
+	
 	public void deleteModelCompare(java.lang.Long iid) throws UserException, ServerException {
 	}
 	
@@ -78,6 +81,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> getAllInternalServices(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor> getAllModelCheckerPluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	

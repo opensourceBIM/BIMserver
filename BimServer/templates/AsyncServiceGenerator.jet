@@ -41,7 +41,7 @@ for (SMethod method : sService.getMethods()) {
 %>
 	public interface <%=StringUtils.firstUpperCase(method.getName())%>Callback {
 		void success(<%=method.getReturnType().isVoid() ? "" : (method.returnTypeToJavaCode() + " result")%>);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 <%
@@ -77,7 +77,7 @@ for (SMethod method : sService.getMethods()) {
 					%>));
 				<%
 					}
-				%>} catch (Exception e) {
+				%>} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

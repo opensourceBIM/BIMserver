@@ -607,6 +607,36 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseModelCheckerResultItem(ModelCheckerResultItem object) {
+			return createModelCheckerResultItemAdapter();
+		}
+
+		@Override
+		public Adapter caseModelCheckerResultHeader(ModelCheckerResultHeader object) {
+			return createModelCheckerResultHeaderAdapter();
+		}
+
+		@Override
+		public Adapter caseModelCheckerResultLine(ModelCheckerResultLine object) {
+			return createModelCheckerResultLineAdapter();
+		}
+
+		@Override
+		public Adapter caseModelCheckerResult(ModelCheckerResult object) {
+			return createModelCheckerResultAdapter();
+		}
+
+		@Override
+		public Adapter caseModelCheckerInstance(ModelCheckerInstance object) {
+			return createModelCheckerInstanceAdapter();
+		}
+
+		@Override
+		public Adapter caseModelCheckerPluginDescriptor(ModelCheckerPluginDescriptor object) {
+			return createModelCheckerPluginDescriptorAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -1854,6 +1884,90 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcHeaderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelCheckerResultItem <em>Model Checker Result Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ModelCheckerResultItem
+	 * @generated
+	 */
+	public Adapter createModelCheckerResultItemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelCheckerResultHeader <em>Model Checker Result Header</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ModelCheckerResultHeader
+	 * @generated
+	 */
+	public Adapter createModelCheckerResultHeaderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelCheckerResultLine <em>Model Checker Result Line</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ModelCheckerResultLine
+	 * @generated
+	 */
+	public Adapter createModelCheckerResultLineAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelCheckerResult <em>Model Checker Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ModelCheckerResult
+	 * @generated
+	 */
+	public Adapter createModelCheckerResultAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelCheckerInstance <em>Model Checker Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ModelCheckerInstance
+	 * @generated
+	 */
+	public Adapter createModelCheckerInstanceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelCheckerPluginDescriptor <em>Model Checker Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ModelCheckerPluginDescriptor
+	 * @generated
+	 */
+	public Adapter createModelCheckerPluginDescriptorAdapter() {
 		return null;
 	}
 

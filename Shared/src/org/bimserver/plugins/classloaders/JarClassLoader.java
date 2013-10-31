@@ -127,7 +127,7 @@ public class JarClassLoader extends ClassLoader {
 			try {
 				IOUtils.copy(inflaterInputStream, uncompressed);
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 			byte[] byteArray = uncompressed.toByteArray();
 			Class<?> defineClass = defineClass(name, byteArray, 0, byteArray.length);

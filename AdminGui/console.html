@@ -17,7 +17,7 @@
 					<li class="active"><a class="pageLink apiLink">API</a></li>
 					<li><a class="pageLink scenariosLink">Common scenarios</a></li>
 				</ul>
-				<button class="btn loginButton menuLoginButton pull-right">Login</button>
+				<button class="btn btn-default loginButton menuLoginButton pull-right">Login</button>
 				<label class="addressLabel pull-right">Address <input type="text" class="input-xlarge addressInput"/></label>
 			</div>
 		</div>
@@ -63,8 +63,8 @@
 								</form>
 							</div>
 							<div class="protocolSelector btn-group" data-toggle="buttons-radio">
-								<button type="button" class="btn active jsonRadio">JSON</button>
-								<button type="button" class="btn soapRadio">SOAP</button>
+								<button type="button" class="btn btn-default active jsonRadio">JSON</button>
+								<button type="button" class="btn btn-default soapRadio">SOAP</button>
 							</div>
 							<button class="btn btn-primary sendButton">Send</button>
 							<div class="textareas">
@@ -89,7 +89,7 @@
 	</div>
 	<div class="scenarios page initialhide container-fluid">
 		<div class="row-fluid">
-			<div class="alert alert-error">Scenarios are in development</div>
+			<div class="alert alert-danger">Scenarios are in development</div>
 		</div>
 		<div class="row-fluid">
 			<div class="span2">
@@ -105,7 +105,7 @@
 							<li class="disabled forwardButton"><a>&raquo;</a></li>
 						</ul>
 					</div>
-					<div class="scenarioDescription well well-small"></div>
+					<div class="scenarioDescription well well-sm"></div>
 					<div class="scenarioMethod">
 					</div>
 				</div>
@@ -512,7 +512,7 @@ LazyLoad.js([
 			container.find(".noparameters").hide();
 			container.find(".parameters").show();
 			method.parameters.forEach(function(parameter, index){
-				var div = $("<div class=\"control-group\">");
+				var div = $("<div class=\"form-group\">");
 				var label = $("<label class=\"control-label\"><a>" + parameter.name + "</a></label>");
 				label.find("a").attr("title", parameter.doc);
 				label.find("a").tooltip();

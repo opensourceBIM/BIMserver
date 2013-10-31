@@ -30,6 +30,7 @@ import javax.jws.soap.SOAPBinding.Use;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
+import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
@@ -157,6 +158,13 @@ public interface PluginInterface extends PublicInterface {
 	List<SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException;
 
 	/**
+	 * @return List of all SModelComparePluginDescriptor
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllModelCheckerPluginDescriptors")
+	List<SModelCheckerPluginDescriptor> getAllModelCheckerPluginDescriptors() throws ServerException, UserException;
+
+	/**
 	 * @return List of all SModelMergerPluginDescriptor
 	 * @throws ServerException, UserException
 	 */
@@ -279,7 +287,7 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getModelCompareById")
 	SModelComparePluginConfiguration getModelCompareById(
 		@WebParam(name = "oid", partName = "getModelCompareById.oid") Long oid) throws ServerException, UserException;
-	
+
 	/**
 	 * @param oid ObjectID of the Deserializer
 	 * @return Deserializer
@@ -458,6 +466,14 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "deleteModelCompare")
 	void deleteModelCompare(
 		@WebParam(name = "iid", partName = "deleteModelCompare.iid") Long iid) throws ServerException, UserException;
+
+	/**
+	 * @param iid ObjectID of the ModelCompare to delete
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "deleteModelChecker")
+	void deleteModelChecker(
+			@WebParam(name = "iid", partName = "deleteModelChecker.iid") Long iid) throws ServerException, UserException;
 
 	/**
 	 * @param iid ObjectID of the QueryEngine to delete

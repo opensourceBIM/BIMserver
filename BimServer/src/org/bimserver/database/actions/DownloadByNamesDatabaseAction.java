@@ -128,9 +128,9 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModelInterface ifcModel;
+		IfcModelInterface ifcModel = new IfcModel();
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 			ifcModel.getModelMetaData().setName("query");
 			for (String name : names) {
 				if (!foundNames.contains(name)) {

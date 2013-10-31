@@ -277,7 +277,7 @@ message GetByteArrayAttributesRequest {
 
 message GetByteArrayAttributesResponse {
 	optional string errorMessage = 1;
-	repeated VoidResponse value = 2;
+	repeated bytes value = 2;
 }
 
 message GetDataObjectByGuidRequest {
@@ -312,6 +312,7 @@ message GetDataObjectsResponse {
 message GetDataObjectsByTypeRequest {
 	optional int64 roid = 1;
 	optional string className = 2;
+	optional bool flat = 3;
 }
 
 message GetDataObjectsByTypeResponse {

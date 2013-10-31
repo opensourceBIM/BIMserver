@@ -23,12 +23,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.InetSocketAddress;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.client.notifications.SocketNotificationsClient;
+import org.bimserver.client.notifications.NotificationsManager;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SProject;
@@ -37,12 +36,15 @@ import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ServiceHolder;
+import org.bimserver.shared.SystemAuthentication;
 import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.TokenChangeListener;
 import org.bimserver.shared.TokenHolder;
+import org.bimserver.shared.UserTokenAuthentication;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -61,6 +63,7 @@ import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterf
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 import org.bimserver.shared.meta.SServicesMap;
+import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,7 +73,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	private final Set<TokenChangeListener> tokenChangeListeners = new HashSet<TokenChangeListener>();
 	private final Channel channel;
 	private final SServicesMap servicesMap;
-	private final SocketNotificationsClient notificationsClient;
+	private final NotificationsManager notificationsManager;
 	private final String baseAddress;
 	private final MetaDataManager metaDataManager = new MetaDataManager();
 	private AuthenticationInfo authenticationInfo = new AnonymousAuthentication();
@@ -80,7 +83,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		this.baseAddress = baseAddress;
 		this.servicesMap = servicesMap;
 		this.channel = channel;
-		this.notificationsClient = new SocketNotificationsClient();
+		this.notificationsManager = new NotificationsManager(this);
 		this.metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE);
 	}
 
@@ -112,6 +115,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			} else if (authenticationInfo instanceof TokenAuthentication) {
 				TokenAuthentication tokenAuthentication = (TokenAuthentication)authenticationInfo;
 				setToken(tokenAuthentication.getToken());
+			} else if (authenticationInfo instanceof UserTokenAuthentication) {
+				UserTokenAuthentication tokenAuthentication = (UserTokenAuthentication)authenticationInfo;
+				setToken(authInterface.loginUserToken(tokenAuthentication.getToken()));
+			} else if (authenticationInfo instanceof SystemAuthentication) {
 			}
 		} catch (PublicInterfaceNotFoundException e) {
 			LOGGER.error("", e);
@@ -139,6 +146,9 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 
 	public void disconnect() {
+		if (notificationsManager != null) {
+			notificationsManager.disconnect();
+		}
 		channel.disconnect();
 	}
 
@@ -159,43 +169,6 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		notifyOfDisconnect();
 	}
 
-	public void registerNotificationListener(Bimsie1NotificationInterface notificationInterface) {
-		setNotificationsEnabled(true);
-	}
-
-	public void setNotificationsEnabled(boolean enabled) {
-		if (enabled && !notificationsClient.isRunning()) {
-			notificationsClient.connect(servicesMap, new InetSocketAddress("localhost", 8055));
-			notificationsClient.startAndWaitForInit();
-			if (token != null) {
-				// try {
-				// TODO
-				// getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(),
-				// "localhost:8055");
-				// } catch (ServiceException e) {
-				// LOGGER.error("", e);
-				// }
-			} else {
-				registerConnectDisconnectListener(new ConnectDisconnectListener() {
-					@Override
-					public void disconnected() {
-					}
-
-					@Override
-					public void connected() {
-						// try {
-						// TODO
-						// getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(),
-						// "localhost:8055");
-						// } catch (ServiceException e) {
-						// LOGGER.error("", e);
-						// }
-					}
-				});
-			}
-		}
-	}
-
 	public ClientIfcModel getModel(long poid, long roid, boolean deep) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException {
 		return new ClientIfcModel(this, poid, roid, deep);
 	}
@@ -205,7 +178,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 
 	public void unregisterNotificationListener(Bimsie1NotificationInterface notificationInterface) {
-		notificationsClient.unregisterNotifictionListener(notificationInterface);
+		notificationsManager.unregisterNotifictionListener(notificationInterface);
 	}
 
 	public Bimsie1NotificationInterface getNotificationInterface() throws PublicInterfaceNotFoundException {
@@ -283,13 +256,13 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			IOUtils.copy(inputStream, outputStream);
 			getServiceInterface().cleanupLongAction(download);
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -303,7 +276,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return channel.getDownloadData(baseAddress, token, download, serializerOid);
 	}
 
-	public ClientIfcModel newModel(SProject project) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
+	public IfcModelInterface newModel(SProject project) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
 		return new ClientIfcModel(this, project.getOid(), -1, false);
 	}
 
@@ -342,5 +315,13 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 				LOGGER.error("", e);
 			}
 		}
+	}
+
+	public NotificationsManager getNotificationsManager() {
+		if (!notificationsManager.isRunning()) {
+			notificationsManager.connect(servicesMap, StringUtils.stripHttps(baseAddress));
+			notificationsManager.startAndWaitForInit();
+		}
+		return notificationsManager;
 	}
 }

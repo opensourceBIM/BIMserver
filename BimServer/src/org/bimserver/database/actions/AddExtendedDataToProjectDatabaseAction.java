@@ -48,7 +48,7 @@ public class AddExtendedDataToProjectDatabaseAction extends AddDatabaseAction<Ex
 	}
 	
 	@Override
-	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		super.execute();
 		User actingUser = getUserByUoid(authorization.getUoid());
 		Project project = getProjectByPoid(poid);

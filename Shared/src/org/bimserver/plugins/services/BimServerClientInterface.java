@@ -17,14 +17,33 @@ package org.bimserver.plugins.services;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ServiceHolder;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 
 public interface BimServerClientInterface extends ServiceHolder {
 
 	IfcModelInterface getModel(long poid, long roid, boolean deep) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException;
 	void commit(IfcModelInterface model, String comment);
+	void download(long roid, long serializerOid, OutputStream outputStream);
+	void download(long newRoid, long oid, File file) throws IOException;
+	long checkin(long oid, String string, long oid2, boolean b, boolean c, File file) throws IOException, UserException, ServerException;
+	IfcModelInterface newModel(SProject newProject) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException;
+	AuthInterface getBimServerAuthInterface() throws PublicInterfaceNotFoundException;
+	void disconnect();
+	InputStream getDownloadData(long download, long serializerOid) throws IOException;
+	Bimsie1RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException;
+	void setAuthentication(AuthenticationInfo authenticationInfo) throws ServerException, UserException, ChannelConnectionException;
 }

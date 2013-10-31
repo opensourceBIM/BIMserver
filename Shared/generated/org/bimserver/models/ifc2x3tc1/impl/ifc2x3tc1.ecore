@@ -9024,6 +9024,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//GeometryData">
       <eAnnotations source="nolazyload"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#//GeometryInstance"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Vector3f">
     <eAnnotations source="hidden"/>
@@ -9037,5 +9038,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="indices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="normals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
+    <eAnnotations source="hidden"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//GeometryData"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
   </eClassifiers>
 </ecore:EPackage>

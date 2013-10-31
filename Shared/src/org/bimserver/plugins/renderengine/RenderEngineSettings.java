@@ -18,10 +18,10 @@ package org.bimserver.plugins.renderengine;
  *****************************************************************************/
 
 public class RenderEngineSettings {
-	private IndexFormat indexFormat;
-	private Precision precision;
-	private boolean generateTriangles;
-	private boolean generateNormals;
+	private IndexFormat indexFormat = IndexFormat.AUTO_DETECT;
+	private Precision precision = Precision.SINGLE;
+	private boolean generateTriangles = true;
+	private boolean generateNormals = true;
 	private boolean generateWireFrame;
 
 	public IndexFormat getIndexFormat() {

@@ -52,8 +52,10 @@ public class GetAllWritableProjectsDatabaseAction extends BimDatabaseAction<Set<
 		for (IdEObject idEObject : projectsModel.getValues()) {
 			if (idEObject instanceof Project) {
 				Project project = (Project)idEObject;
-				if ((user.getUserType() == UserType.ADMIN || (project.getState() == ObjectState.ACTIVE) && authorization.hasRightsOnProjectOrSuperProjects(user, project))) {
-					result.add(project);
+				if (!project.getName().equals("INT-Store")) {
+					if ((user.getUserType() == UserType.ADMIN || (project.getState() == ObjectState.ACTIVE) && authorization.hasRightsOnProjectOrSuperProjects(user, project))) {
+						result.add(project);
+					}
 				}
 			}
 		}

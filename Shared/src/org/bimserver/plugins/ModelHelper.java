@@ -23,6 +23,8 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.ObjectFactory;
+import org.bimserver.emf.OidProvider;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.EList;
@@ -36,32 +38,45 @@ public class ModelHelper {
 
 	private final ObjectIDM objectIDM;
 	private final HashMap<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
+	private ObjectFactory objectFactory;
+	private IfcModelInterface targetModel;
+	private OidProvider<Long> oidProvider;
 
-	public ModelHelper(ObjectIDM objectIDM) {
+	public ModelHelper(ObjectIDM objectIDM, IfcModelInterface targetModel) {
 		this.objectIDM = objectIDM;
+		this.targetModel = targetModel;
+		this.objectFactory = targetModel;
 	}
 	
-	public ModelHelper() {
+	public ModelHelper(IfcModelInterface targetModel) {
+		this.targetModel = targetModel;
 		this.objectIDM = null;
+		this.objectFactory = targetModel;
 	}
 
-	public void copy(IdEObject object, IfcModelInterface destModel) throws IfcModelInterfaceException {
-		copy(object.eClass(), object, destModel);
+	public IdEObject copy(IdEObject object) throws IfcModelInterfaceException {
+		return copy(object.eClass(), object);
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	private IdEObject copy(EClass originalEClass, IdEObject original, IfcModelInterface newModel) throws IfcModelInterfaceException {
+	private IdEObject copy(EClass originalEClass, IdEObject original) throws IfcModelInterfaceException {
 		if (!((IdEObjectImpl)original).isLoadedOrLoading()) {
 			return null;
 		}
 		if (converted.containsKey(original)) {
 			return converted.get(original);
 		}
-		IdEObject newObject = (IdEObject) original.eClass().getEPackage().getEFactoryInstance().create(original.eClass());
-		((IdEObjectImpl)newObject).setOid(original.getOid());
+		IdEObject newObject = (IdEObject) objectFactory.create(original.eClass());
+		if (newObject.getOid() == -1) {
+			if (oidProvider != null) {
+				((IdEObjectImpl)newObject).setOid(oidProvider.newOid(newObject.eClass()));
+			} else {
+				((IdEObjectImpl)newObject).setOid(original.getOid());
+			}
+		}
 		converted.put(original, newObject);
 		if (newObject.eClass().getEAnnotation("wrapped") == null) {
-			newModel.add(newObject.getOid(), newObject);
+			targetModel.add(newObject.getOid(), newObject);
 		}
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
 			if (objectIDM == null ||  objectIDM.shouldFollowReference(originalEClass, original.eClass(), eStructuralFeature)) {
@@ -88,7 +103,7 @@ public class ModelHelper {
 								if (converted.containsKey(o)) {
 									toList.addUnique(converted.get(o));
 								} else {
-									IdEObject result = copy(originalEClass, (IdEObject) o, newModel);
+									IdEObject result = copy(originalEClass, (IdEObject) o);
 									if (result != null) {
 										toList.addUnique(result);
 									}
@@ -98,7 +113,7 @@ public class ModelHelper {
 							if (converted.containsKey(get)) {
 								newObject.eSet(eStructuralFeature, converted.get(get));
 							} else {
-								newObject.eSet(eStructuralFeature, copy(originalEClass, (IdEObject) get, newModel));
+								newObject.eSet(eStructuralFeature, copy(originalEClass, (IdEObject) get));
 							}
 						}
 					}
@@ -106,5 +121,17 @@ public class ModelHelper {
 			}
 		}
 		return newObject;
+	}
+
+	public void setOidProvider(OidProvider<Long> oidProvider) {
+		this.oidProvider = oidProvider;
+	}
+	
+	public void setTargetModel(IfcModelInterface targetModel) {
+		this.targetModel = targetModel;
+	}
+
+	public void setObjectFactory(ObjectFactory objectFactory) {
+		this.objectFactory = objectFactory;
 	}
 }

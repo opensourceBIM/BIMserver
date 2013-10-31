@@ -49,11 +49,10 @@ public class AddReferenceChange implements Change {
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		IdEObject idEObject = databaseSession.get(model, oid, new Query(project.getId(), concreteRevision.getId()));
-		EClass eClass = databaseSession.getEClassForOid(oid);
-		EClass referenceEClass = databaseSession.getEClassForOid(referenceOid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
+		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (idEObject == null) {
 			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + project.getId());
 		}
@@ -66,6 +65,10 @@ public class AddReferenceChange implements Change {
 		}
 		IdEObject referencedObject = databaseSession.get(referenceOid, new Query(project.getId(), concreteRevision.getId()));
 		if (referencedObject == null) {
+			referencedObject = created.get(oid);
+		}
+		if (referencedObject == null) {
+			EClass referenceEClass = databaseSession.getEClassForOid(referenceOid);
 			throw new UserException("Referenced object of type " + referenceEClass.getName() + " with oid " + referenceOid + " not found");
 		}
 		

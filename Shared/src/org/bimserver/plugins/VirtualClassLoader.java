@@ -56,7 +56,9 @@ public class VirtualClassLoader extends ClassLoader {
 			byte[] bytes = virtualFile.getData();
 			return defineClass(name, bytes, 0, bytes.length);
 		}
-		if (name.equals("org.bimserver.jqep.QueryInterface")) {
+		LoggerFactory.getLogger(VirtualClassLoader.class).info(name);
+		// TODO SOLVE THIS WITHOUT UGLY HACK!
+		if (name.equals("org.bimserver.jqep.QueryInterface") || name.equals("org.bimserver.javamodelchecker.JavaModelCheckerInterface")) {
 			return super.findClass(name);
 		} else {
 			LoggerFactory.getLogger(VirtualClassLoader.class).info(name);

@@ -83,9 +83,9 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 			}
 		}
 
-		IfcModelInterface ifcModel;
+		IfcModelInterface ifcModel = new IfcModel();
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

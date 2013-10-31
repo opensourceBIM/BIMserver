@@ -1,0 +1,119 @@
+<div class="addrepomodelchecker">
+	<div class="well well-sm noschemas initialhide">
+		No (unused) model checkers available
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Plugin</th>
+				<th>Add</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<div class="well well-sm">
+		<button class="btn btn-default cancelButton">Cancel</button>
+		<button class="btn btn-default addAllButton">Add all</button>
+	</div>
+</div>
+<script>
+function AddRepoModelChecker(main, serversettings) {
+	var othis = this;
+
+	this.close = function() {
+	};
+	
+	this.addButtonClick = function() {
+		serversettings.showAddNewModelChecker($(this).parents("tr").data("modelchecker"));
+	};
+	
+	this.addModelChecker = function(modelChecker) {
+		var tr = $("<tr>");
+		var td = $("<td>");
+		tr.data("modelchecker", modelChecker);
+		tr.append("<td>" + modelChecker.name + "</td>");
+		tr.append("<td>" + modelChecker.description + "</td>");
+		tr.append("<td>" + modelChecker.modelCheckerPluginClassName + "</td>");
+		
+		var td = $("<td>");
+		var addButton = $("<button class=\"btn btn-default\">Add</button>");
+		addButton.click(othis.addButtonClick);
+		td.append(addButton);
+		tr.append(td);
+		
+		$(".addrepomodelchecker table tbody").append(tr);
+	};
+
+	this.loadModelCheckers = function() {
+		var checkers = {};
+		Global.bimServerApi.call("ServiceInterface", "getAllModelCheckers", {}, function(modelCheckers){
+			modelCheckers.forEach(function(modelChecker){
+				checkers[modelChecker.name] = modelChecker;
+			});
+		});
+		Global.bimServerApi.call("ServiceInterface", "getAllRepositoryModelCheckers", {}, function(data){
+			$("addrepomodelchecker table tbody tr").remove();
+			data.forEach(function(modelChecker){
+				if (checkers[modelChecker.name] == null) {
+					othis.addModelChecker(modelChecker);
+				}
+			});
+			if ($(".addrepomodelchecker .table tbody tr").length == 0) {
+				$(".addrepomodelchecker .noschemas").show();
+				$(".addrepomodelchecker .table").hide();
+			} else {
+				$(".addrepomodelchecker .noschemas").hide();
+				$(".addrepomodelchecker .table").show();
+			}
+		});
+	};
+	
+	this.cancelClick = function(event) {
+		event.preventDefault();
+		main.showServerSettings(null, function(){
+			main.current.showExtendedDataSchemas();
+		});
+	};
+	
+	this.addAllClick = function(){
+		var schemas = {};
+		Global.bimServerApi.call("ServiceInterface", "getAllModelCheckers", {}, function(modelCheckers){
+			modelCheckers.forEach(function(modelChecker){
+				schemas[modelChecker.name] = modelChecker;
+			});
+		});
+		Global.bimServerApi.call("ServiceInterface", "getAllRepositoryModelCheckers", {}, function(data){
+			var requests = [];
+			$("addrepoextendeddata table tbody tr").remove();
+			data.forEach(function(modelChecker){
+				if (schemas[modelChecker.name] == null) {
+					var request = [
+						"ServiceInterface", "addModelChecker", {modelCheckerInstance: modelChecker}
+					];
+					requests.push(request);
+				}
+			});
+			Global.bimServerApi.multiCall(requests, function(responses){
+				var requests = [];
+				responses.forEach(function(response){
+					var request = [
+						"ServiceInterface", "validateModelChecker", {oid: response.result}
+					];
+					requests.push(request);
+				});
+				Global.bimServerApi.multiCall(requests, function(responses){
+					serversettings.showModelCheckers();
+				});
+			});
+		});
+	};
+	
+	$(".addrepomodelchecker .cancelButton").click(othis.cancelClick);
+	$(".addrepomodelchecker .addAllButton").click(othis.addAllClick);
+
+	this.loadModelCheckers();
+}
+</script>

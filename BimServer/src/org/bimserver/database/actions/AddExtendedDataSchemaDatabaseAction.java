@@ -35,7 +35,7 @@ public class AddExtendedDataSchemaDatabaseAction extends AddDatabaseAction<Exten
 	}
 	
 	@Override
-	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		if (getIdEObject().getName() == null || getIdEObject().getName().trim().equals("")) {
 			throw new UserException("Name cannot be empty");
 		}

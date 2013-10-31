@@ -6,8 +6,9 @@
 			<li><a class="pluginsLink">Plugins</a></li>
 			<li><a class="webModulesLink">Web Modules</a></li>
 			<li><a class="extendedDataSchemasLink">Extended Data Schemas</a></li>
+			<li><a class="modelCheckersLink">Model Checkers</a></li>
 		</ul>
-		<div class="tab-content">
+		<div class="tab-content" style="float: left">
 		</div>
 	</div>
 </div>
@@ -46,9 +47,29 @@
 			}, callback);
 		};
 		
+		this.showAddNewModelChecker = function(modelChecker, callback) {
+			othis.changePage($(".modelCheckersLink"), "addnewmodelchecker.html", function(){
+				othis.current = new AddModelChecker(main, othis, modelChecker);
+				pushHistory({page: "ServerSettings", subpage: "AddNewModelChecker"}, "Server Settings");
+			}, callback);
+		};
+
+		this.showAddRepoModelChecker = function(callback) {
+			othis.changePage($(".modelCheckersLink"), "addrepomodelchecker.html", function(){
+				othis.current = new AddRepoModelChecker(main, othis);
+				pushHistory({page: "ServerSettings", subpage: "AddRepoModelChecker"}, "Server Settings");
+			}, callback);
+		};
+		
 		this.showExtendedDataSchema = function(oid, callback) {
 			othis.changePage($(".extendedDataSchemasLink"), "extendeddataschema.html", function(){
 				othis.current = new ExtendedDataSchema(main, oid);
+			}, callback);
+		};
+		
+		this.showModelChecker = function(oid, callback) {
+			othis.changePage($(".modelCheckersLink"), "modelchecker.html", function(){
+				othis.current = new ModelChecker(main, oid);
 			}, callback);
 		};
 
@@ -80,6 +101,13 @@
 			}, callback);
 		};
 
+		this.showModelCheckers = function(callback) {
+			othis.changePage($(".modelCheckersLink"), "modelcheckers.html", function(){
+				othis.current = new ModelCheckers(main, othis);
+				pushHistory({page: "ServerSettings", subpage: "ModelCheckers"}, "Server Settings");
+			}, callback);
+		};
+
 		this.showExtendedDataSchemas = function(callback) {
 			othis.changePage($(".extendedDataSchemasLink"), "extendeddataschemas.html", function(){
 				othis.current = new ExtendedDataSchemas(main, othis);
@@ -103,6 +131,8 @@
 			othis.showPlugins();
 		} else if (history.subpage == "WebModules") {
 			othis.showWebModules();
+		} else if (history.subpage == "ModelCheckers") {
+			othis.showModelCheckers();
 		} else if (history.subpage == "ExtendedDataSchemas") {
 			othis.showExtendedDataSchemas();
 		} else if (history.subpage == "ExtendedDataSchema") {
@@ -115,6 +145,7 @@
 		$(".serversettings .migrationsLink").click(function(){othis.showMigrations(null, true)});
 		$(".serversettings .pluginsLink").click(function(){othis.showPlugins(null, true)});
 		$(".serversettings .webModulesLink").click(function(){othis.showWebModules(null, true)});
+		$(".serversettings .modelCheckersLink").click(function(){othis.showModelCheckers(null, true)});
 		$(".serversettings .extendedDataSchemasLink").click(function(){othis.showExtendedDataSchemas(null, true)});
 	}
 </script>

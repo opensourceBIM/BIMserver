@@ -44,6 +44,7 @@ import org.bimserver.plugins.classloaders.EclipsePluginClassloader;
 import org.bimserver.plugins.classloaders.JarClassLoader;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDM;
@@ -56,11 +57,16 @@ import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.stillimagerenderer.StillImageRenderPlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
+import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceFactory;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,8 +80,10 @@ public class PluginManager {
 	private ServiceFactory serviceFactory;
 	private NotificationsManagerInterface notificationsManagerInterface;
 	private SServicesMap servicesMap;
+	private BimServerClientFactory bimServerClientFactory;
 
 	public PluginManager(File tempDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
+		LOGGER.debug("Creating new PluginManager");
 		this.tempDir = tempDir;
 		this.baseClassPath = baseClassPath;
 		this.serviceFactory = serviceFactory;
@@ -109,8 +117,8 @@ public class PluginManager {
 		}
 		try {
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(new FileInputStream(pluginFile));
-			File libFolder = new File(projectRoot, "lib");
 			DelegatingClassLoader delegatingClassLoader = new DelegatingClassLoader(getClass().getClassLoader());
+			File libFolder = new File(projectRoot, "lib");
 			if (libFolder.isDirectory()) {
 				for (File libFile : libFolder.listFiles()) {
 					if (libFile.getName().toLowerCase().endsWith(".jar")) {
@@ -192,6 +200,7 @@ public class PluginManager {
 			if (pluginDescriptor == null) {
 				throw new PluginException("No plugin descriptor could be created");
 			}
+			LOGGER.debug(pluginDescriptor.toString());
 			loadPlugins(jarClassLoader, file.getAbsolutePath(), file.getAbsolutePath(), pluginDescriptor, PluginSourceType.JAR_FILE);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
@@ -550,5 +559,21 @@ public class PluginManager {
 
 	public Collection<WebModulePlugin> getAllWebPlugins(boolean onlyEnabled) {
 		return getPlugins(WebModulePlugin.class, onlyEnabled);
+	}
+
+	public Collection<ModelCheckerPlugin> getAllModelCheckerPlugins(boolean onlyEnabled) {
+		return getPlugins(ModelCheckerPlugin.class, onlyEnabled);
+	}
+
+	public ModelCheckerPlugin getModelCheckerPlugin(String className, boolean onlyEnabled) {
+		return getPluginByClassName(ModelCheckerPlugin.class, className, onlyEnabled);
+	}
+
+	public BimServerClientInterface getLocalBimServerClientInterface(AuthenticationInfo tokenAuthentication) throws ServiceException, ChannelConnectionException {
+		return bimServerClientFactory.create(tokenAuthentication);
+	}
+
+	public void setBimServerClientFactory(BimServerClientFactory bimServerClientFactory) {
+		this.bimServerClientFactory = bimServerClientFactory;
 	}
 }

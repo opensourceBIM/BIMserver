@@ -92,12 +92,13 @@ function pushHistoryAppend(obj, title) {
 		str = str.substring(0, str.length - 1);
 	}
 	if (!current.cleanUrl.endsWith(str)) {
+		console.log("pha ", obj);
 		History.pushState(obj, "BIM Views" + (title == null ? "" : " - " + title), str);
 	}
 	pushing = false;
 }
 
-function pushHistory(obj, title, force) {
+function pushHistory(obj, title, initial) {
 	pushing = true;
 	var current = History.getState();
 	var str = "?";
@@ -114,10 +115,14 @@ function pushHistory(obj, title, force) {
 	} else {
 		title = current.title;
 	}
-	if (force || !current.cleanUrl.endsWith(str)) {
-		History.pushState(obj, title, str);
+	if (initial) {
+		History.replaceState(obj, title, str);
 	} else {
-		document.title = title;
+		if (!current.cleanUrl.endsWith(str)) {
+			History.pushState(obj, title, str);
+		} else {
+			document.title = title;
+		}
 	}
 	pushing = false;
 }
@@ -133,6 +138,9 @@ function pushInitialState() {
 			obj[s.substring(0, s.indexOf("="))] = s.substring(s.indexOf("=") + 1);
 		}
 		pushHistory(obj, $("title").text(), true);
+		return obj;
+	} else {
+		return {};
 	}
 }
 
@@ -154,7 +162,7 @@ function loadProject(targetElement) {
 
 function newDropdown(title) {
 	var div = $("<div class=\"btn-group\">");
-	var a = $("<a class=\"btn dropdown-toggle\" data-toggle=\"dropdown\">");
+	var a = $("<a class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">");
 	a.append(title);
 	var span = $("<span class=\"caret\"></span>");
 	a.append(span);
@@ -166,10 +174,10 @@ function newDropdown(title) {
 
 function newSplitDropdown(title, clickCallback) {
 	var div = $("<div class=\"btn-group\">");
-	var button1 = $("<button class=\"btn btnMain\">" + title + "</button>");
+	var button1 = $("<button class=\"btn btn-default btnMain\">" + title + "</button>");
 	button1.click(clickCallback);
 	div.append(button1);
-	var button2 = $("<button class=\"btn dropdown-toggle\" data-toggle=\"dropdown\">");
+	var button2 = $("<button class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">");
 	button2.append("<span class=\"caret\"></span>");
 	div.append(button2);
 	var ul = $("<ul class=\"dropdown-menu\">");
@@ -178,7 +186,7 @@ function newSplitDropdown(title, clickCallback) {
 }
 
 function newButton(title, click) {
-	var button = $("<button class=\"btn\">" + title + "</button>");
+	var button = $("<button class=\"btn btn-default\">" + title + "</button>");
 	button.click(click);
 	return button;
 }

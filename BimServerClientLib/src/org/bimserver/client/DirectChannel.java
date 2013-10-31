@@ -24,6 +24,7 @@ import javax.activation.DataHandler;
 
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.TokenChangeListener;
@@ -54,7 +55,7 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 				try {
 					add(interface1.getName(), serviceFactory.get(AccessMethod.INTERNAL).get(interface1));
 				} catch (UserException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		}
@@ -102,17 +103,8 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 			try {
 				add(interface1.getName(), serviceFactory.get(token, AccessMethod.INTERNAL).get(interface1));
 			} catch (UserException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
-//		try {
-//			get(AuthInterface.class).tokenlogin(token);
-//		} catch (PublicInterfaceNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (UserException e) {
-//			e.printStackTrace();
-//		} catch (ServerException e) {
-//			e.printStackTrace();
-//		}
 	}
 }

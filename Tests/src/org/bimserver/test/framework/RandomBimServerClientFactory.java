@@ -18,13 +18,14 @@ package org.bimserver.test.framework;
  *****************************************************************************/
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.client.soap.SoapBimServerClientFactory;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -72,10 +73,10 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		soapBimServerClientFactory = new SoapBimServerClientFactory("http://localhost:8080", servicesMap);
 	}
 	
-	public synchronized BimServerClient create(AuthenticationInfo authenticationInfo) throws ServerException, UserException {
+	public synchronized BimServerClientInterface create(AuthenticationInfo authenticationInfo) throws ServerException, UserException {
 		try {
 			Type type = types[current];
-			BimServerClient bimServerClient = null;
+			BimServerClientInterface bimServerClient = null;
 			switch (type) {
 			case PROTOCOL_BUFFERS:
 				LOGGER.info("New BimServerClient: Protocol Buffers");

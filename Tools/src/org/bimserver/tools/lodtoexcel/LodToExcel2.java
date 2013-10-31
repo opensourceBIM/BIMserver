@@ -58,9 +58,9 @@ public class LodToExcel2 {
 		float minX = Float.MAX_VALUE;
 		float minY = Float.MAX_VALUE;
 		float minZ = Float.MAX_VALUE;
-		float maxX = Float.MIN_VALUE;
-		float maxY = Float.MIN_VALUE;
-		float maxZ = Float.MIN_VALUE;
+		float maxX = -Float.MAX_VALUE;
+		float maxY = -Float.MAX_VALUE;
+		float maxZ = -Float.MAX_VALUE;
 
 		public void integrate(Bounds bounds) {
 			if (bounds.maxX > maxX) {

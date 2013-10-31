@@ -29,6 +29,8 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.webservices.ServiceMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -36,6 +38,7 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.stream.JsonReader;
 
 public class Streamer implements EndPoint {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Streamer.class);
 	private long uoid;
 	private long endpointid;
 	private BimServer bimServer;
@@ -60,7 +63,9 @@ public class Streamer implements EndPoint {
 		JsonReader jsonreader = new JsonReader(reader);
 		JsonParser parser = new JsonParser();
 		JsonObject request = (JsonObject) parser.parse(jsonreader);
-		if (request.has("token")) {
+		if (request.has("hb")) {
+			// Hearbeat, ignore
+		} else if (request.has("token")) {
 			String token = request.get("token").getAsString();
 			try {
 				ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.JSON);
@@ -72,9 +77,9 @@ public class Streamer implements EndPoint {
 				enpointMessage.add("endpointid", new JsonPrimitive(endpointid));
 				streamingSocketInterface.send(enpointMessage);
 			} catch (UserException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (ServerException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		} else {
 			bimServer.getJsonHandler().execute(request, null, new NullWriter());

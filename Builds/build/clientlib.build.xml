@@ -40,10 +40,6 @@
 			<fileset file="../../BimServer/lib/jdt/org.eclipse.equinox.preferences_3.5.0.v20120522-1841.jar"/>
 			<fileset file="../../BimServer/lib/jdt/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar"/>
 			<fileset file="../../BimServer/lib/jdt/org.eclipse.osgi_3.8.0.v20120529-1548.jar"/>
-			<fileset file="../../BimServer/lib/emf/org.eclipse.emf_2.6.0.v20120608-0554.jar"/>
-			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.ecore_2.8.0.v20120606-0717.jar"/>
-			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.common_2.8.0.v20120606-0717.jar"/>
-			<fileset file="../../BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.8.0.v20120606-0717.jar"/>
 			<fileset file="../../BimServer/lib/protocolbuffers.jar"/>
 			<fileset file="../../BimServer/lib/gson-2.2.4.jar"/>
 			<fileset file="../../BimServer/lib/logging/log4j-1.2.16.jar"/>

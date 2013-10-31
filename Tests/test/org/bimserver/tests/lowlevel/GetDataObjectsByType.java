@@ -4,9 +4,9 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
@@ -18,7 +18,7 @@ public class GetDataObjectsByType extends TestWithEmbeddedServer{
 	public void test() {
 		try {
 			// Create a new BimServerClient with authentication
-			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the low level interface
 			Bimsie1LowLevelInterface lowLevelInterface = bimServerClient.getBimsie1LowLevelInterface();
@@ -38,7 +38,7 @@ public class GetDataObjectsByType extends TestWithEmbeddedServer{
 			lowLevelInterface.commitTransaction(tid, "test");
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 
-			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcRelContainedInSpatialStructure");
+			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcRelContainedInSpatialStructure", false);
 			for (SDataObject sDataObject : dataObjectsByType) {
 				System.out.println(sDataObject);
 			}

@@ -19,6 +19,7 @@ package org.bimserver.database.migrations;
 
 import org.bimserver.database.Database;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -65,6 +66,11 @@ public abstract class Migration {
 		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		eAnnotation.setSource("index");
 		return eAnnotation;
+	}
+	
+	protected void link(EReference eReference1, EReference eReference2) {
+		eReference1.setEOpposite(eReference2);
+		eReference2.setEOpposite(eReference1);
 	}
 
 	public abstract String getDescription();

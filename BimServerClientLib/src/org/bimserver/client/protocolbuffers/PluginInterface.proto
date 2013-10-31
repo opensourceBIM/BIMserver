@@ -48,6 +48,8 @@ service PluginInterface {
 
 	rpc deleteInternalService (DeleteInternalServiceRequest) returns (VoidResponse);
 
+	rpc deleteModelChecker (DeleteModelCheckerRequest) returns (VoidResponse);
+
 	rpc deleteModelCompare (DeleteModelCompareRequest) returns (VoidResponse);
 
 	rpc deleteModelMerger (DeleteModelMergerRequest) returns (VoidResponse);
@@ -65,6 +67,8 @@ service PluginInterface {
 	rpc getAllDeserializers (GetAllDeserializersRequest) returns (GetAllDeserializersResponse);
 
 	rpc getAllInternalServices (GetAllInternalServicesRequest) returns (GetAllInternalServicesResponse);
+
+	rpc getAllModelCheckerPluginDescriptors (GetAllModelCheckerPluginDescriptorsRequest) returns (GetAllModelCheckerPluginDescriptorsResponse);
 
 	rpc getAllModelComparePluginDescriptors (GetAllModelComparePluginDescriptorsRequest) returns (GetAllModelComparePluginDescriptorsResponse);
 
@@ -190,9 +194,10 @@ message AddDeserializerRequest {
 
 message SInternalServicePluginConfiguration {
 	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-	optional bool remoteAccessible = 4;
+	optional bool publicProfile = 2;
+	optional int32 rid = 3;
+	optional int64 oid = 4;
+	optional bool remoteAccessible = 5;
 }
 
 message AddInternalServiceRequest {
@@ -271,6 +276,10 @@ message DeleteInternalServiceRequest {
 	optional int64 oid = 1;
 }
 
+message DeleteModelCheckerRequest {
+	optional int64 iid = 1;
+}
+
 message DeleteModelCompareRequest {
 	optional int64 iid = 1;
 }
@@ -319,6 +328,14 @@ message GetAllInternalServicesRequest {
 message GetAllInternalServicesResponse {
 	optional string errorMessage = 1;
 	repeated SInternalServicePluginConfiguration value = 2;
+}
+
+message GetAllModelCheckerPluginDescriptorsRequest {
+}
+
+message GetAllModelCheckerPluginDescriptorsResponse {
+	optional string errorMessage = 1;
+	repeated SModelCheckerPluginDescriptor value = 2;
 }
 
 message GetAllModelComparePluginDescriptorsRequest {
@@ -610,8 +627,8 @@ message SPrimitiveDefinition {
 
 message STypeDefinition {
 	required string __actual_type = 1;
-	optional SArrayDefinition __SArrayDefinition = 2;
-	optional SObjectDefinition __SObjectDefinition = 3;
+	optional SObjectDefinition __SObjectDefinition = 2;
+	optional SArrayDefinition __SArrayDefinition = 3;
 	optional SPrimitiveDefinition __SPrimitiveDefinition = 4;
 }
 
@@ -636,22 +653,10 @@ message GetPluginSettingsRequest {
 	optional int64 poid = 1;
 }
 
-message SArrayType {
-	repeated SType values = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-}
-
 message SStringType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 	optional string value = 3;
-}
-
-message SBooleanType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional bool value = 3;
 }
 
 message SDoubleType {
@@ -660,34 +665,46 @@ message SDoubleType {
 	optional double value = 3;
 }
 
-message SLongType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 value = 3;
-}
-
 message SByteArrayType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 	optional bytes value = 3;
 }
 
+message SBooleanType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional bool value = 3;
+}
+
+message SLongType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 value = 3;
+}
+
 message SPrimitiveType {
 	required string __actual_type = 1;
 	optional SStringType __SStringType = 2;
-	optional SBooleanType __SBooleanType = 3;
-	optional SDoubleType __SDoubleType = 4;
-	optional SLongType __SLongType = 5;
-	optional SByteArrayType __SByteArrayType = 6;
+	optional SDoubleType __SDoubleType = 3;
+	optional SByteArrayType __SByteArrayType = 4;
+	optional SBooleanType __SBooleanType = 5;
+	optional SLongType __SLongType = 6;
 	optional int32 rid = 7;
 	optional int64 oid = 8;
 }
 
+message SArrayType {
+	repeated SType values = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+}
+
 message SType {
 	required string __actual_type = 1;
-	optional SArrayType __SArrayType = 2;
-	optional SObjectType __SObjectType = 3;
-	optional SPrimitiveType __SPrimitiveType = 4;
+	optional SObjectType __SObjectType = 2;
+	optional SPrimitiveType __SPrimitiveType = 3;
+	optional SArrayType __SArrayType = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 }

@@ -27,7 +27,7 @@ public class AsyncServiceGenerator
   protected final String TEXT_9 = " syncService, ExecutorService executorService) {" + NL + "\t\tthis.executorService = executorService;" + NL + "\t\tthis.syncService = syncService;" + NL + "\t}" + NL;
   protected final String TEXT_10 = NL + "\tpublic interface ";
   protected final String TEXT_11 = "Callback {" + NL + "\t\tvoid success(";
-  protected final String TEXT_12 = ");" + NL + "\t\tvoid error(Exception e);" + NL + "\t}" + NL + "\t";
+  protected final String TEXT_12 = ");" + NL + "\t\tvoid error(Throwable e);" + NL + "\t}" + NL + "\t";
   protected final String TEXT_13 = NL + NL;
   protected final String TEXT_14 = NL + "\tpublic void ";
   protected final String TEXT_15 = "(";
@@ -42,7 +42,7 @@ public class AsyncServiceGenerator
   protected final String TEXT_24 = NL + "\t\t\t\t\tcallback.success(syncService.";
   protected final String TEXT_25 = "(";
   protected final String TEXT_26 = "));" + NL + "\t\t\t\t";
-  protected final String TEXT_27 = "} catch (Exception e) {" + NL + "\t\t\t\t\tcallback.error(e);" + NL + "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t});" + NL + "\t}" + NL + "\t";
+  protected final String TEXT_27 = "} catch (Throwable e) {" + NL + "\t\t\t\t\tcallback.error(e);" + NL + "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t});" + NL + "\t}" + NL + "\t";
   protected final String TEXT_28 = NL + "}";
 
   public String generate(Object argument)

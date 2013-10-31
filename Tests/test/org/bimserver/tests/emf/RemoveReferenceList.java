@@ -2,11 +2,11 @@ package org.bimserver.tests.emf;
 
 import static org.junit.Assert.fail;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ClientIfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 	public void test() {
 		try {
 			// Create a new BimServerClient with authentication
-			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the service interface
 			bimServerClient.getSettingsInterface().setGenerateGeometryOnCheckin(false);
@@ -25,7 +25,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			// Create a new project
 			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
 			
-			ClientIfcModel model = bimServerClient.newModel(newProject);
+			IfcModelInterface model = bimServerClient.newModel(newProject);
 			
 			IfcFurnishingElement furnishingElement = model.create(IfcFurnishingElement.class);
 			furnishingElement.setName("Furnishing 1");

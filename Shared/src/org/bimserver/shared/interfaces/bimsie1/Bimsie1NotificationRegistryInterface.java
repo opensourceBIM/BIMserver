@@ -60,15 +60,19 @@ public interface Bimsie1NotificationRegistryInterface extends PublicInterface {
 		@WebParam(name = "endPointId", partName = "registerNewRevisionOnSpecificProjectHandler.endPointId") Long endPointId,
 		@WebParam(name = "poid", partName = "registerNewRevisionOnSpecificProjectHandler.poid") Long poid) throws UserException, ServerException;
 
+	@WebMethod(action = "registerNewRevisionHandler")
+	void registerNewRevisionHandler(
+		@WebParam(name = "endPointId", partName = "registerNewRevisionHandler.endPointId") Long endPointId) throws UserException, ServerException;
+	
 	@WebMethod(action = "registerNewExtendedDataOnRevisionHandler")
 	void registerNewExtendedDataOnRevisionHandler(
-			@WebParam(name = "endPointId", partName = "registerNewExtendedDataOnRevisionHandler.endPointId") Long endPointId,
-			@WebParam(name = "roid", partName = "registerNewExtendedDataOnRevisionHandler.roid") Long roid) throws UserException, ServerException;
+		@WebParam(name = "endPointId", partName = "registerNewExtendedDataOnRevisionHandler.endPointId") Long endPointId,
+		@WebParam(name = "roid", partName = "registerNewExtendedDataOnRevisionHandler.roid") Long roid) throws UserException, ServerException;
 
 	@WebMethod(action = "unregisterNewExtendedDataOnRevisionHandler")
 	void unregisterNewExtendedDataOnRevisionHandler(
-			@WebParam(name = "endPointId", partName = "unregisterNewExtendedDataOnRevisionHandler.endPointId") Long endPointId,
-			@WebParam(name = "roid", partName = "unregisterNewExtendedDataOnRevisionHandler.roid") Long roid) throws UserException, ServerException;
+		@WebParam(name = "endPointId", partName = "unregisterNewExtendedDataOnRevisionHandler.endPointId") Long endPointId,
+		@WebParam(name = "roid", partName = "unregisterNewExtendedDataOnRevisionHandler.roid") Long roid) throws UserException, ServerException;
 
 	@WebMethod(action = "registerNewProjectHandler")
 	void registerNewProjectHandler(
@@ -90,6 +94,10 @@ public interface Bimsie1NotificationRegistryInterface extends PublicInterface {
 	void unregisterNewRevisionOnSpecificProjectHandler(
 		@WebParam(name = "endPointId", partName = "unregisterNewRevisionOnSpecificProjectHandler.endPointId") Long endPointId,
 		@WebParam(name = "poid", partName = "unregisterNewRevisionOnSpecificProjectHandler.poid") Long poid) throws UserException, ServerException;
+
+	@WebMethod(action = "unregisterNewRevisionHandler")
+	void unregisterNewRevisionHandler(
+		@WebParam(name = "endPointId", partName = "unregisterNewRevisionHandler.endPointId") Long endPointId) throws UserException, ServerException;
 
 	@WebMethod(action = "unregisterProgressHandler")
 	void unregisterProgressHandler(

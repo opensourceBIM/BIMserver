@@ -39,7 +39,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
-import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.DirectBimServerClientFactory;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
@@ -115,7 +114,7 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.serializers.SerializerFactory;
-import org.bimserver.services.guidfixer.GuidFixerService;
+import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -319,7 +318,6 @@ public class BimServer {
 				});
 				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 				pluginManager.loadPlugin(WebModulePlugin.class, "Internal", "Internal", new DefaultWebModulePlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
-				pluginManager.loadPlugin(ServicePlugin.class, "Internal", "Internal", new GuidFixerService(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
@@ -381,8 +379,6 @@ public class BimServer {
 
 			jsonHandler = new JsonHandler(this);
 			
-			openIdManager = new OpenIdManager(this);
-			
 			serializerFactory = new SerializerFactory();
 			deserializerFactory = new DeserializerFactory();
 
@@ -439,22 +435,8 @@ public class BimServer {
 			bimScheduler = new JobScheduler(this);
 			bimScheduler.start();
 
-			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap);
-			
-			DatabaseSession session = bimDatabase.createSession();
-			try {
-				for (InternalServicePluginConfiguration internalService : session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), InternalServicePluginConfiguration.class, Query.getDefault())) {
-					if (internalService.getEnabled()) {
-						ServicePlugin servicePlugin = pluginManager.getServicePlugin(internalService.getPluginDescriptor().getPluginClassName(), true);
-						if (servicePlugin != null) {
-							ObjectType settings = internalService.getSettings();
-							servicePlugin.register(new org.bimserver.plugins.PluginConfiguration(settings));
-						}
-					}
-				}
-			} finally {
-				session.close();
-			}
+			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager);
+			pluginManager.setBimServerClientFactory(bimServerClientFactory);
 			
 			try {
 				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, config.getInitialProtocolBuffersPort());
@@ -685,7 +667,22 @@ public class BimServer {
 				updatePlugins(session);
 				session.commit();
 			} catch (ServiceException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
+			} finally {
+				session.close();
+			}
+
+			session = bimDatabase.createSession();
+			try {
+				for (InternalServicePluginConfiguration internalService : session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), InternalServicePluginConfiguration.class, Query.getDefault())) {
+					if (internalService.getEnabled()) {
+						ServicePlugin servicePlugin = pluginManager.getServicePlugin(internalService.getPluginDescriptor().getPluginClassName(), true);
+						if (servicePlugin != null) {
+							ObjectType settings = internalService.getSettings();
+							servicePlugin.register(new org.bimserver.plugins.PluginConfiguration(settings));
+						}
+					}
+				}
 			} finally {
 				session.close();
 			}
@@ -761,10 +758,12 @@ public class BimServer {
 			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(plugin.getClass().getName()));
 			Map<Long, PluginDescriptor> results = session.query(pluginCondition, PluginDescriptor.class, Query.getDefault());
 			if (results.size() == 0) {
+				PluginContext pluginContext = pluginManager.getPluginContext(plugin);
 				PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);
 				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 				pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
 				pluginDescriptor.setDescription(plugin.getDescription());
+				pluginDescriptor.setLocation(pluginContext.getLocation());
 				pluginDescriptor.setPluginInterfaceClassName(getPluginInterfaceClass(plugin).getName());
 				pluginDescriptor.setEnabled(true); // New plugins are enabled by default
 			} else if (results.size() == 1) {

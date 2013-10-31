@@ -114,7 +114,7 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 		try {
 			socket.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		interrupt();
 	}

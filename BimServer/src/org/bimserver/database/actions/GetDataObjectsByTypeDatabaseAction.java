@@ -28,6 +28,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -48,12 +49,14 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 	private final String className;
 	private final long roid;
 	private final BimServer bimServer;
+	private boolean flat;
 
-	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String className, Authorization authorization) {
+	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String className, Authorization authorization, boolean flat) {
 		super(databaseSession, accessMethod, authorization);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.className = className;
+		this.flat = flat;
 	}
 
 	@Override
@@ -72,9 +75,9 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel;
+		IfcModelInterface ifcModel = new IfcModel();
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}
@@ -99,7 +102,9 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 					dataObject.setGuid("");
 					dataObject.setName("");
 				}
-				GetDataObjectByOidDatabaseAction.fillDataObject(ifcModel.getObjects(), eObject, dataObject);
+				if (!flat) {
+					GetDataObjectByOidDatabaseAction.fillDataObject(ifcModel.getObjects(), eObject, dataObject);
+				}
 				dataObjects.add(dataObject);
 			}
 		}

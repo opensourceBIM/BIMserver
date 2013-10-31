@@ -14,10 +14,8 @@ import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
-import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
@@ -35,6 +33,8 @@ import org.bimserver.models.ifc2x3tc1.IfcSIUnitName;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
+import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.eclipse.emf.ecore.EAttribute;
 
@@ -53,7 +53,7 @@ public class LodToExcel {
 		try {
 //			BimServerClientFactory factory = new JsonBimServerClientFactory("http://sandbox.bimserver.org");
 			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
-			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 		    WorkbookSettings wbSettings = new WorkbookSettings();
 			
@@ -84,7 +84,7 @@ public class LodToExcel {
 				if (roid != -1) {
 					SRevision revision = bimServerClient.getBimsie1ServiceInterface().getRevision(roid);
 					System.out.println(revision.getComment());
-					ClientIfcModel model = bimServerClient.getModel(project.getOid(), roid, true);
+					IfcModelInterface model = bimServerClient.getModel(project.getOid(), roid, true);
 					
 					float scaleFactorToMeter = 1;
 					
@@ -128,9 +128,9 @@ public class LodToExcel {
 					totalMin.setZ(Float.MAX_VALUE);
 					totalBounds.setMinBounds(totalMin);
 					Vector3f totalMax = Ifc2x3tc1Factory.eINSTANCE.createVector3f();
-					totalMax.setX(Float.MIN_VALUE);
-					totalMax.setY(Float.MIN_VALUE);
-					totalMax.setZ(Float.MIN_VALUE);
+					totalMax.setX(-Float.MAX_VALUE);
+					totalMax.setY(-Float.MAX_VALUE);
+					totalMax.setZ(-Float.MAX_VALUE);
 					totalBounds.setMaxBounds(totalMax);
 					int totalUsedAttributes = 0;
 					int totalUsedAttributesNoFurniture = 0;

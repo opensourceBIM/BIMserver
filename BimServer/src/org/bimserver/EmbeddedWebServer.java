@@ -21,7 +21,7 @@ import java.io.File;
 import java.util.Random;
 
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.nio.SelectChannelConnector;
+import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
@@ -36,7 +36,7 @@ public class EmbeddedWebServer {
 		server = new Server();
 		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random()); // Should be SecureRandom, but this makes startup slow on certain systems
 		server.setSessionIdManager(hashSessionIdManager);
-		SelectChannelConnector socketConnector = new SelectChannelConnector();
+		ServerConnector socketConnector = new ServerConnector(server);
 		socketConnector.setPort(bimServer.getConfig().getPort());
 		server.addConnector(socketConnector);
 		context = new WebAppContext(server, "", "/");

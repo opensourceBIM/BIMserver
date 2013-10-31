@@ -394,9 +394,6 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	public VirtualFile get(String name) {
-		if (name.contains(".")) {
-			return files.get(name.substring(0, name.indexOf("."))).get(name.substring(name.indexOf(".") + 1));
-		}
 		return files.get(name);
 	}
 
@@ -412,8 +409,12 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	public static VirtualFile fromJar(File file) throws IOException {
+		return fromJar(new FileInputStream(file));
+	}
+
+	public static VirtualFile fromJar(InputStream inputStream) throws IOException {
 		VirtualFile result = new VirtualFile();
-		JarInputStream jarInputStream = new JarInputStream(new FileInputStream(file));
+		JarInputStream jarInputStream = new JarInputStream(inputStream);
 		JarEntry jarEntry = jarInputStream.getNextJarEntry();
 		while (jarEntry != null) {
 			String n = jarEntry.getName();
@@ -427,7 +428,7 @@ public class VirtualFile implements JavaFileObject {
 		}
 		return result;
 	}
-
+	
 	private void setData(byte[] data) {
 		this.data = data;
 	}

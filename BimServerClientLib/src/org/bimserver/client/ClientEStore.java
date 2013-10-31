@@ -1,5 +1,22 @@
 package org.bimserver.client;
 
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 import org.bimserver.client.ClientIfcModel.ModelState;
 import org.bimserver.emf.BimServerEStore;
 import org.bimserver.emf.IdEObject;
@@ -14,9 +31,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EStoreEObjectImpl.EStoreImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ClientEStore extends EStoreImpl implements BimServerEStore {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClientEStore.class);
 	private ClientIfcModel clientIfcModel;
 
 	public ClientEStore(ClientIfcModel clientIfcModel) {
@@ -33,11 +53,11 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 		try {
 			lowLevelInterface().removeObject(clientIfcModel.getTransactionId(), object.getOid());
 		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -69,9 +89,9 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 					throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
 				}
 			} catch (ServiceException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (PublicInterfaceNotFoundException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		super.add(eObject, eFeature, index, newValue);
@@ -83,34 +103,36 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 		if (index == NO_INDEX) {
 			if (clientIfcModel.getModelState() != ModelState.LOADING) {
 				try {
-					Bimsie1LowLevelInterface lowLevelInterface = clientIfcModel.getBimServerClient().getBimsie1LowLevelInterface();
-					if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
-						lowLevelInterface.setStringAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (String) newValue);
-					} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
-						lowLevelInterface.setLongAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Long) newValue);
-					} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
-						lowLevelInterface.setDoubleAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Double) newValue);
-					} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
-						lowLevelInterface.setBooleanAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Boolean) newValue);
-					} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
-						lowLevelInterface.setIntegerAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Integer) newValue);
-					} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
-						lowLevelInterface.setByteArrayAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Byte[]) newValue);
-					} else if (eFeature.getEType() instanceof EEnum) {
-						lowLevelInterface.setEnumAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), ((Enum<?>) newValue).toString());
-					} else if (eFeature instanceof EReference) {
-						if (newValue == null) {
-							lowLevelInterface.setReference(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), -1L);
+					if (newValue != EStructuralFeature.Internal.DynamicValueHolder.NIL) {
+						Bimsie1LowLevelInterface lowLevelInterface = clientIfcModel.getBimServerClient().getBimsie1LowLevelInterface();
+						if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+							lowLevelInterface.setStringAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (String) newValue);
+						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
+							lowLevelInterface.setLongAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Long) newValue);
+						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
+							lowLevelInterface.setDoubleAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Double) newValue);
+						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
+							lowLevelInterface.setBooleanAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Boolean) newValue);
+						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
+							lowLevelInterface.setIntegerAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Integer) newValue);
+						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+							lowLevelInterface.setByteArrayAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Byte[]) newValue);
+						} else if (eFeature.getEType() instanceof EEnum) {
+							lowLevelInterface.setEnumAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), ((Enum<?>) newValue).toString());
+						} else if (eFeature instanceof EReference) {
+							if (newValue == null) {
+								lowLevelInterface.setReference(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), -1L);
+							} else {
+								lowLevelInterface.setReference(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) newValue).getOid());
+							}
 						} else {
-							lowLevelInterface.setReference(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) newValue).getOid());
+							throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
 						}
-					} else {
-						throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
 					}
 				} catch (ServiceException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				} catch (PublicInterfaceNotFoundException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		} else {
@@ -131,11 +153,11 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 						throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
 					}
 				} catch (ServerException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				} catch (UserException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				} catch (PublicInterfaceNotFoundException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		}
