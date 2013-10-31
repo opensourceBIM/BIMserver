@@ -19,8 +19,8 @@ package org.bimserver.client.json;
 
 import org.bimserver.client.AbstractBimServerClientFactory;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.FileBasedReflectorFactoryBuilder;

@@ -115,13 +115,13 @@ public class ClientIfcModel extends IfcModel {
 		try {
 			loadDeep();
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimServerClientException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		Map<IdEObject, IdEObject> map = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject sourceObject : getObjects().values()) {
@@ -129,7 +129,7 @@ public class ClientIfcModel extends IfcModel {
 				IdEObject targetObject = create(sourceObject.eClass());
 				map.put(sourceObject, targetObject);
 			} catch (IfcModelInterfaceException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		for (IdEObject sourceObject : getObjects().values()) {

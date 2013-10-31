@@ -28,6 +28,7 @@ import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
@@ -38,6 +39,7 @@ import org.bimserver.notifications.NewExtendedDataOnRevisionTopic;
 import org.bimserver.notifications.NewExtendedDataOnRevisionTopicKey;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopic;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopicKey;
+import org.bimserver.notifications.NewRevisionTopic;
 import org.bimserver.notifications.ProgressNotification;
 import org.bimserver.notifications.ProgressOnRevisionTopic;
 import org.bimserver.notifications.ProgressTopic;
@@ -65,9 +67,10 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 		}
 		try {
 			progressTopic.register(endPoint);
-			if (progressTopic.getLastProgress() != null && progressTopic.getLastProgress().getState() == ActionState.FINISHED) {
+			LongActionState lastProgress = progressTopic.getLastProgress();
+			if (lastProgress != null && lastProgress.getState() == ActionState.FINISHED) {
 				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("Sending update directly for topic " + progressTopic.getKey().getId());
-				progressTopic.updateProgress(progressTopic.getLastProgress());
+				progressTopic.updateProgress(lastProgress);
 			} else {
 				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("NOT Sending update directly for topic " + progressTopic.getKey().getId());
 			}
@@ -101,31 +104,42 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 			ProgressNotification progressNotification = new ProgressNotification(getBimServer(), topic, getBimServer().getSConverter().convertFromSObject(state, session));
 			getBimServer().getNotificationsManager().addToQueue(progressNotification);
 		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+			handleException(e);
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public void registerNewRevisionOnSpecificProjectHandler(Long endPointId, Long poid) {
+	public void registerNewRevisionOnSpecificProjectHandler(Long endPointId, Long poid) throws ServerException, UserException {
 		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
 		NewRevisionOnSpecificProjectTopic newRevisionOnSpecificProjectTopic = getBimServer().getNotificationsManager().getOrCreateNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid));
 		try {
 			newRevisionOnSpecificProjectTopic.register(endPoint);
 		} catch (TopicRegisterException e) {
-			e.printStackTrace();
+			handleException(e);
 		}
 	}
 	
 	@Override
-	public void registerNewExtendedDataOnRevisionHandler(Long endPointId, Long roid) {
+	public void registerNewRevisionHandler(Long endPointId) throws ServerException, UserException {
+		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		NewRevisionTopic newRevisionTopic = getBimServer().getNotificationsManager().getNewRevisionTopic();
+		try {
+			newRevisionTopic.register(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
+	}
+
+	@Override
+	public void registerNewExtendedDataOnRevisionHandler(Long endPointId, Long roid) throws ServerException, UserException {
 		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
 		NewExtendedDataOnRevisionTopic topic = getBimServer().getNotificationsManager().getOrCreateNewExtendedDataOnRevisionTopic(new NewExtendedDataOnRevisionTopicKey(roid));
 		try {
 			topic.register(endPoint);
 		} catch (TopicRegisterException e) {
-			e.printStackTrace();
+			handleException(e);
 		}
 	}
 	
@@ -139,6 +153,16 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 		}
 	}
 
+	@Override
+	public void unregisterNewRevisionHandler(Long endPointId) throws ServerException, UserException {
+		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		try {
+			getBimServer().getNotificationsManager().getNewRevisionTopic().unregister(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
+	}
+	
 	@Override
 	public void unregisterNewExtendedDataOnRevisionHandler(Long endPointId, Long roid) throws ServerException, UserException {
 		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
@@ -173,12 +197,12 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	}
 
 	@Override
-	public void registerNewProjectHandler(Long endPointId) {
+	public void registerNewProjectHandler(Long endPointId) throws ServerException, UserException {
 		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
 		try {
 			getBimServer().getNotificationsManager().getNewProjectTopic().register(endPoint);
 		} catch (TopicRegisterException e) {
-			e.printStackTrace();
+			handleException(e);
 		}
 	}
 
@@ -193,12 +217,12 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	}
 
 	@Override
-	public void registerNewUserHandler(Long endPointId) {
+	public void registerNewUserHandler(Long endPointId) throws ServerException, UserException {
 		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
 		try {
 			getBimServer().getNotificationsManager().getNewUserTopic().register(endPoint);
 		} catch (TopicRegisterException e) {
-			e.printStackTrace();
+			handleException(e);
 		}
 	}
 

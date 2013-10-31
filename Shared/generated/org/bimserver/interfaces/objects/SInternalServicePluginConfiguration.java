@@ -31,6 +31,7 @@ public class SInternalServicePluginConfiguration extends SPluginConfiguration im
 	private static SClass sClass;
 	private boolean remoteAccessible;
 	private long userSettingsId = -1;
+	private boolean publicProfile;
 
 	public long getOid() {
 		return this.oid;
@@ -79,6 +80,9 @@ public class SInternalServicePluginConfiguration extends SPluginConfiguration im
 		if (sField.getName().equals("userSettingsId")) {
 			return getUserSettingsId();
 		}
+		if (sField.getName().equals("publicProfile")) {
+			return isPublicProfile();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -117,6 +121,10 @@ public class SInternalServicePluginConfiguration extends SPluginConfiguration im
 			setUserSettingsId((Long)val);
 			return;
 		}
+		if (sField.getName().equals("publicProfile")) {
+			setPublicProfile((Boolean)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -142,6 +150,14 @@ public class SInternalServicePluginConfiguration extends SPluginConfiguration im
 
 	public void setUserSettingsId(long userSettingsId) {
 		this.userSettingsId = userSettingsId;
+	}
+	
+	public boolean isPublicProfile() {
+		return publicProfile;
+	}
+
+	public void setPublicProfile(boolean publicProfile) {
+		this.publicProfile = publicProfile;
 	}
 	
 	@Override

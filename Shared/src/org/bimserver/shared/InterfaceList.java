@@ -58,8 +58,7 @@ public class InterfaceList {
 				try {
 					url = new File("../Shared/src/" + clazz.getName().replace(".", "/") + ".java").toURI().toURL();
 				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				}
+					LOGGER.error("", e);				}
 			}
 			if (url != null) {
 				try {

@@ -19,7 +19,7 @@ package org.bimserver.test.framework.actions;
 
 import java.io.File;
 
-import org.bimserver.client.ClientIfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -45,7 +45,7 @@ public class DownloadModelLowLevel extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		SRevision randomRevision = virtualUser.getRandomRevision();
 		if (randomRevision != null) {
-			ClientIfcModel model;
+			IfcModelInterface model;
 			try {
 				model = virtualUser.getBimServerClient().getModel(randomRevision.getProjectId(), randomRevision.getOid(), true);
 				PluginManager pluginManager = getTestFramework().getPluginManager();

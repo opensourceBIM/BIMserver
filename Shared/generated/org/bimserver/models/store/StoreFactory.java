@@ -828,6 +828,60 @@ public interface StoreFactory extends EFactory {
 	IfcHeader createIfcHeader();
 
 	/**
+	 * Returns a new object of class '<em>Model Checker Result Item</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Result Item</em>'.
+	 * @generated
+	 */
+	ModelCheckerResultItem createModelCheckerResultItem();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Result Header</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Result Header</em>'.
+	 * @generated
+	 */
+	ModelCheckerResultHeader createModelCheckerResultHeader();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Result Line</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Result Line</em>'.
+	 * @generated
+	 */
+	ModelCheckerResultLine createModelCheckerResultLine();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Result</em>'.
+	 * @generated
+	 */
+	ModelCheckerResult createModelCheckerResult();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Instance</em>'.
+	 * @generated
+	 */
+	ModelCheckerInstance createModelCheckerInstance();
+
+	/**
+	 * Returns a new object of class '<em>Model Checker Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Checker Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	ModelCheckerPluginDescriptor createModelCheckerPluginDescriptor();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

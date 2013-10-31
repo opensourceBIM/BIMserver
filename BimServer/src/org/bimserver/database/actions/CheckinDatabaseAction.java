@@ -41,6 +41,8 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.IfcHeader;
+import org.bimserver.models.store.ModelCheckerInstance;
+import org.bimserver.models.store.ModelCheckerResult;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
@@ -48,6 +50,8 @@ import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
+import org.bimserver.plugins.modelchecker.ModelChecker;
+import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.UserException;
@@ -105,6 +109,19 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				for (IdEObject idEObject : getModel().getValues()) {
 					if (idEObject.eClass().getEAnnotation("hidden") == null) {
 						size++;
+					}
+				}
+			}
+			
+			for (ModelCheckerInstance modelCheckerInstance : project.getModelCheckers()) {
+				if (modelCheckerInstance.isValid()) {
+					ModelCheckerPlugin modelCheckerPlugin = bimServer.getPluginManager().getModelCheckerPlugin(modelCheckerInstance.getModelCheckerPluginClassName(), true);
+					if (modelCheckerPlugin != null) {
+						ModelChecker modelChecker = modelCheckerPlugin.createModelChecker(null);
+						ModelCheckerResult result = modelChecker.check(getModel(), modelCheckerInstance.getCompiled());
+						if (!result.isValid()) {
+							throw new UserException("Model is not valid according to " + modelCheckerInstance.getName());
+						}
 					}
 				}
 			}
@@ -203,9 +220,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		}
 		IfcModelInterface newModel = new IfcModel();
 		newModel.getModelMetaData().setDate(new Date());
-		IfcModelInterface oldModel;
+		IfcModelInterface oldModel = new IfcModel();
 		try {
-			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
+			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper(oldModel));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

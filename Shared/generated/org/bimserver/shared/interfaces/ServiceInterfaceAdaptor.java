@@ -30,6 +30,13 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	public void addLocalServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SService sService, java.lang.Long internalServiceOid) throws UserException, ServerException {
 	}
 	
+	public java.lang.Long addModelChecker(org.bimserver.interfaces.objects.SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException {
+		return null;
+	}
+	
+	public void addModelCheckerToProject(java.lang.Long poid, java.lang.Long modelCheckerOid) throws UserException, ServerException {
+	}
+	
 	public void addServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SService sService) throws UserException, ServerException {
 	}
 	
@@ -105,6 +112,14 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SModelCheckerInstance> getAllModelCheckers() throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SModelCheckerInstance> getAllModelCheckersOfProject(java.lang.Long poid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllNonAuthorizedProjectsOfUser(java.lang.Long uoid) throws UserException, ServerException {
 		return null;
 	}
@@ -130,6 +145,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> getAllRepositoryExtendedDataSchemas() throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SModelCheckerInstance> getAllRepositoryModelCheckers() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -181,6 +200,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SModelCheckerInstance getModelCheckerInstance(java.lang.Long mcioid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.Long getOidByGuid(java.lang.Long roid, java.lang.String guid) throws UserException, ServerException {
 		return null;
 	}
@@ -201,7 +224,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SServiceDescriptor getServiceDescriptor(java.lang.String url) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SServiceDescriptor getServiceDescriptor(java.lang.String baseUrl, java.lang.String serviceIdentifier) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -223,6 +246,9 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getUsersProjects(java.lang.Long uoid) throws UserException, ServerException {
 		return null;
+	}
+	
+	public void removeModelCheckerFromProject(java.lang.Long poid, java.lang.Long modelCheckerOid) throws UserException, ServerException {
 	}
 	
 	public void removeUserFromExtendedDataSchema(java.lang.Long uoid, java.lang.Long edsid) throws UserException, ServerException {
@@ -255,6 +281,9 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	public void updateGeoTag(org.bimserver.interfaces.objects.SGeoTag sGeoTag) throws UserException, ServerException {
 	}
 	
+	public void updateModelChecker(org.bimserver.interfaces.objects.SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException {
+	}
+	
 	public void updateProject(org.bimserver.interfaces.objects.SProject sProject) throws UserException, ServerException {
 	}
 	
@@ -271,6 +300,9 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	
 	public java.lang.Boolean userHasRights(java.lang.Long poid) throws UserException, ServerException {
 		return null;
+	}
+	
+	public void validateModelChecker(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
 }

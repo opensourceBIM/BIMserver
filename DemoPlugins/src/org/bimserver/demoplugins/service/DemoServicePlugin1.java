@@ -19,9 +19,11 @@ import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DemoServicePlugin1 extends ServicePlugin {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(DemoServicePlugin1.class);
 	private boolean initialized;
 
 	@Override
@@ -71,7 +73,7 @@ public class DemoServicePlugin1 extends ServicePlugin {
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
 			@Override
-			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, long soid, SObjectType settings) throws ServerException, UserException {
+			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				try {
 					Date startDate = new Date();
 					Long topicId = bimServerClientInterface.getRegistry().registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid, "Running Demo Service");
@@ -85,7 +87,7 @@ public class DemoServicePlugin1 extends ServicePlugin {
 						try {
 							Thread.sleep(200);
 						} catch (InterruptedException e) {
-							e.printStackTrace();
+							LOGGER.error("", e);
 						}
 					}
 					SLongActionState state = new SLongActionState();
@@ -97,8 +99,8 @@ public class DemoServicePlugin1 extends ServicePlugin {
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
 					bimServerClientInterface.getRegistry().unregisterProgressTopic(topicId);
-				} catch (PublicInterfaceNotFoundException e1) {
-					e1.printStackTrace();
+				} catch (PublicInterfaceNotFoundException e) {
+					LOGGER.error("", e);
 				}
 			}
 		});

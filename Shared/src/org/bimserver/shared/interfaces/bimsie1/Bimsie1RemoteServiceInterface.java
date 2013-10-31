@@ -44,6 +44,7 @@ public interface Bimsie1RemoteServiceInterface extends PublicInterface {
 		@WebParam(name = "soid", partName = "newRevision.soid") Long soid,
 		@WebParam(name = "serviceIdentifier", partName = "newRevision.serviceIdentifier") String serviceIdentifier,
 		@WebParam(name = "profileIdentifier", partName = "newRevision.profileIdentifier") String profileIdentifier,
+		@WebParam(name = "userToken", partName = "newRevision.userToken") String userToken,
 		@WebParam(name = "token", partName = "newRevision.token") String token,
 		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws UserException, ServerException;
 	

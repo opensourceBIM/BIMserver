@@ -71,6 +71,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
+import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
@@ -336,6 +337,12 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
+	public List<SModelCheckerPluginDescriptor> getAllModelCheckerPluginDescriptors() throws ServerException, UserException {
+		requireRealUserAuthentication();
+		return getBimServer().getSerializerFactory().getAllModelCheckerPluginDescriptors();
+	}
+
+	@Override
 	public List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getAllModelMergerPluginDescriptors();
@@ -446,7 +453,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-
+	
 	@Override
 	public void updateModelMerger(SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -488,9 +495,23 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-
+	
 	@Override
 	public void deleteModelCompare(Long iid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Void> action = new DeleteModelCompareDatabaseAction(session, getInternalAccessMethod(), iid);
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void deleteModelChecker(Long iid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {

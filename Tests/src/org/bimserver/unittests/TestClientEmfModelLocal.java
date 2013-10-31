@@ -27,11 +27,8 @@ import java.util.Random;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.LocalDevBimServerStarter;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
-import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
@@ -40,6 +37,9 @@ import org.bimserver.interfaces.objects.SRevisionSummaryType;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.services.BimServerClientException;
+import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
@@ -51,7 +51,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestClientEmfModelLocal {
-	private BimServerClient bimServerClient;
+	private BimServerClientInterface bimServerClient;
 	private static BimServer bimServer;
 
 	@BeforeClass
@@ -63,7 +63,7 @@ public class TestClientEmfModelLocal {
 			}
 
 			LocalDevBimServerStarter localDevBimWebServerStarter = new LocalDevBimServerStarter();
-			localDevBimWebServerStarter.start("localhost", 8082);
+			localDevBimWebServerStarter.start(1, "localhost", 8082, 8085);
 			bimServer = localDevBimWebServerStarter.getBimServer();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -103,7 +103,7 @@ public class TestClientEmfModelLocal {
 			e.printStackTrace();
 		}
 		try {
-			ClientIfcModel model = bimServerClient.newModel(createProject());
+			IfcModelInterface model = bimServerClient.newModel(createProject());
 			SProject project = createProject();
 			CreateFromScratch createFromScratch = new CreateFromScratch();
 			createFromScratch.createIfcProject(model);
@@ -123,7 +123,7 @@ public class TestClientEmfModelLocal {
 
 	private void dumpToFile(long poid, long roid) throws SerializerException {
 		try {
-			ClientIfcModel model = bimServerClient.getModel(poid, roid, false);
+			IfcModelInterface model = bimServerClient.getModel(poid, roid, false);
 			IfcStepSerializer serializer = new IfcStepSerializer(new PluginConfiguration());
 			serializer.init(model, null, bimServer.getPluginManager(), null, false);
 			File output = new File("output");

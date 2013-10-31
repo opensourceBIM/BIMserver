@@ -1615,6 +1615,8 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 			return (EObject) createVector3f();
 		case Ifc2x3tc1Package.GEOMETRY_DATA:
 			return (EObject) createGeometryData();
+		case Ifc2x3tc1Package.GEOMETRY_INSTANCE:
+			return (EObject) createGeometryInstance();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -10044,6 +10046,16 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public GeometryData createGeometryData() {
 		GeometryDataImpl geometryData = new GeometryDataImpl();
 		return geometryData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GeometryInstance createGeometryInstance() {
+		GeometryInstanceImpl geometryInstance = new GeometryInstanceImpl();
+		return geometryInstance;
 	}
 
 	/**

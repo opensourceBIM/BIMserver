@@ -34,6 +34,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
@@ -50,9 +51,12 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.LongTransaction;
 import org.bimserver.webservices.NoTransactionException;
 import org.bimserver.webservices.authorization.Authorization;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseAction {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(CommitTransactionDatabaseAction.class);
 	private final String comment;
 	private final LongTransaction longTransaction;
 	private Revision revision;
@@ -108,7 +112,8 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 
 		IfcModelInterface ifcModel = new IfcModel();
 		if (oldLastRevision != null) {
-			getDatabaseSession().getMap(ifcModel, new Query(project.getId(), oldLastRevision.getId()));
+			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
+			getDatabaseSession().getMap(ifcModel, new Query(project.getId(), oldLastRevision.getId(), null, Deep.YES, highestStopId));
 		}
 		
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
@@ -118,7 +123,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				try {
 					bimServer.getLongTransactionManager().remove(longTransaction.getTid());
 				} catch (NoTransactionException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		});

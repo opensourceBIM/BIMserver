@@ -19,6 +19,7 @@ package org.bimserver.client;
 
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.PublicInterface;
@@ -30,6 +31,13 @@ public class DirectBimServerClientFactory<T extends PublicInterface> extends Abs
 	private ServiceFactory serviceFactory;
 	private String baseAddress;
 
+	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap, PluginManager pluginManager) {
+		super(servicesMap);
+		this.baseAddress = baseAddress;
+		this.serviceFactory = serviceFactory;
+		this.pluginManager = pluginManager;
+	}
+	
 	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap) {
 		super(servicesMap);
 		this.baseAddress = baseAddress;

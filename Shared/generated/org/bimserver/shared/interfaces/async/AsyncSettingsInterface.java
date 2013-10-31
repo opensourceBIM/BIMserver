@@ -31,137 +31,137 @@ public class AsyncSettingsInterface {
 
 	public interface GetEmailSenderAddressCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetProtocolBuffersPortCallback {
 		void success(java.lang.Integer result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServerSettingsCallback {
 		void success(org.bimserver.interfaces.objects.SServerSettings result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServiceRepositoryUrlCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetSiteAddressCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetSmtpServerCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface IsAllowSelfRegistrationCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface IsAllowUsersToCreateTopLevelProjectsCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface IsCacheOutputFilesCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface IsCheckinMergingEnabledCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface IsGenerateGeometryOnCheckinCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface IsHideUserListForNonAdminCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface IsSendConfirmationEmailAfterRegistrationCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetAllowSelfRegistrationCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetAllowUsersToCreateTopLevelProjectsCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetCacheOutputFilesCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetCheckinMergingEnabledCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetEmailSenderAddressCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetGenerateGeometryOnCheckinCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetHideUserListForNonAdminCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetProtocolBuffersPortCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetSendConfirmationEmailAfterRegistrationCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetServerSettingsCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetServiceRepositoryUrlCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetSiteAddressCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetSmtpServerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetWhiteListedDomainsCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 
@@ -171,7 +171,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getEmailSenderAddress());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -183,7 +183,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getProtocolBuffersPort());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -195,7 +195,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServerSettings());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -207,7 +207,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServiceRepositoryUrl());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -219,7 +219,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSiteAddress());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -231,7 +231,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSmtpServer());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -243,7 +243,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.isAllowSelfRegistration());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -255,7 +255,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.isAllowUsersToCreateTopLevelProjects());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -267,7 +267,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.isCacheOutputFiles());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -279,7 +279,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.isCheckinMergingEnabled());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -291,7 +291,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.isGenerateGeometryOnCheckin());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -303,7 +303,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.isHideUserListForNonAdmin());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -315,7 +315,7 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					callback.success(syncService.isSendConfirmationEmailAfterRegistration());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -328,7 +328,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setAllowSelfRegistration(allowSelfRegistration);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -341,7 +341,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -354,7 +354,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setCacheOutputFiles(cacheOutputFiles);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -367,7 +367,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setCheckinMergingEnabled(checkinMergingEnabled);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -380,7 +380,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setEmailSenderAddress(emailSenderAddress);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -393,7 +393,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setGenerateGeometryOnCheckin(generateGeometryOnCheckin);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -406,7 +406,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setHideUserListForNonAdmin(hideUserListForNonAdmin);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -419,7 +419,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setProtocolBuffersPort(port);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -432,7 +432,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -445,7 +445,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setServerSettings(serverSettings);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -458,7 +458,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setServiceRepositoryUrl(url);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -471,7 +471,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setSiteAddress(siteAddress);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -484,7 +484,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setSmtpServer(smtpServer);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -497,7 +497,7 @@ public class AsyncSettingsInterface {
 				try {
 					syncService.setWhiteListedDomains(domains);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

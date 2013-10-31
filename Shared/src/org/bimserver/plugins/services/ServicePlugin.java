@@ -23,6 +23,9 @@ import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 
@@ -37,6 +40,10 @@ public abstract class ServicePlugin implements Plugin {
 
 	protected void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
 		pluginManager.registerNewRevisionHandler(serviceDescriptor, newRevisionHandler);
+	}
+	
+	protected BimServerClientInterface getLocalBimServerClientInterface(AuthenticationInfo tokenAuthentication) throws ServiceException, ChannelConnectionException {
+		return pluginManager.getLocalBimServerClientInterface(tokenAuthentication);
 	}
 	
 	@Override

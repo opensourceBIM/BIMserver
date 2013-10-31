@@ -38,6 +38,7 @@ import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SModelCheckerInstance;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SProjectSmall;
@@ -223,6 +224,10 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getAllServicesOfProject")
 	List<SService> getAllServicesOfProject(
 		@WebParam(name = "poid", partName = "getAllServicesOfProject.poid") Long poid) throws ServerException, UserException;
+
+	@WebMethod(action = "getAllModelCheckersOfProject")
+	List<SModelCheckerInstance> getAllModelCheckersOfProject(
+			@WebParam(name = "poid", partName = "getAllModelCheckersOfProject.poid") Long poid) throws ServerException, UserException;
 	
 	/**
 	 * @param poid The ObjectID of the Project
@@ -529,13 +534,17 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action="getServiceDescriptor")
 	SServiceDescriptor getServiceDescriptor(
-		@WebParam(name = "url", partName = "getServiceDescriptor.url") String url) throws ServerException, UserException;
+		@WebParam(name = "baseUrl", partName = "getServiceDescriptor.baseUrl") String baseUrl,
+		@WebParam(name = "serviceIdentifier", partName = "getServiceDescriptor.serviceIdentifier") String serviceIdentifier) throws ServerException, UserException;
 	
 	@WebMethod(action="getAllServiceDescriptors")
 	List<SServiceDescriptor> getAllServiceDescriptors() throws ServerException, UserException;
 
 	@WebMethod(action="getAllRepositoryExtendedDataSchemas")
 	List<SExtendedDataSchema> getAllRepositoryExtendedDataSchemas() throws ServerException, UserException;
+
+	@WebMethod(action="getAllRepositoryModelCheckers")
+	List<SModelCheckerInstance> getAllRepositoryModelCheckers() throws ServerException, UserException;
 
 	@WebMethod(action="getAllPublicProfiles")
 	List<SProfileDescriptor> getAllPublicProfiles(
@@ -614,4 +623,29 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getAllRelatedProjects")
 	List<SProjectSmall> getAllRelatedProjects(
 		@WebParam(name = "poid", partName = "getAllRelatedProjects.poid") Long poid) throws ServerException, UserException;
+
+	@WebMethod(action = "getAllModelCheckers")
+	List<SModelCheckerInstance> getAllModelCheckers() throws UserException, ServerException;
+	
+	@WebMethod(action = "addModelChecker")
+	Long addModelChecker(@WebParam(name = "modelCheckerInstance", partName = "addModelChecker.modelCheckerInstance") SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException;
+
+	@WebMethod(action = "updateModelChecker")
+	void updateModelChecker(@WebParam(name = "modelCheckerInstance", partName = "updateModelChecker.modelCheckerInstance") SModelCheckerInstance modelCheckerInstance) throws UserException, ServerException;
+
+	@WebMethod(action = "validateModelChecker")
+	void validateModelChecker(@WebParam(name = "oid", partName = "validateModelChecker.oid") Long oid) throws UserException, ServerException;
+
+	@WebMethod(action="addModelCheckerToProject")
+	void addModelCheckerToProject(
+		@WebParam(name = "poid", partName = "addModelCheckerToProject.poid") Long poid, 
+		@WebParam(name = "modelCheckerOid", partName = "addModelCheckerToProject.modelCheckerOid") Long modelCheckerOid) throws ServerException, UserException;
+	
+	@WebMethod(action = "getModelCheckerInstance")
+	SModelCheckerInstance getModelCheckerInstance(@WebParam(name = "mcioid", partName = "getModelCheckerInstance.mcioid") Long mcioid) throws UserException, ServerException;
+	
+	@WebMethod(action = "removeModelCheckerFromProject")
+	void removeModelCheckerFromProject(
+		@WebParam(name = "poid", partName = "removeModelCheckerFromProject.poid") Long poid, 
+		@WebParam(name = "modelCheckerOid", partName = "removeModelCheckerFromProject.modelCheckerOid") Long modelCheckerOid) throws ServerException, UserException;
 }

@@ -104,19 +104,19 @@ message GetServerSettingsRequest {
 message SServerSettings {
 	optional bool sendConfirmationEmailAfterRegistration = 1;
 	optional bool generateGeometryOnCheckin = 2;
-	optional int32 protocolBuffersPort = 3;
-	optional bool allowOnlyWhitelisted = 4;
+	optional bool allowOnlyWhitelisted = 3;
+	optional int32 protocolBuffersPort = 4;
 	optional string siteAddress = 5;
 	optional bool allowUsersToCreateTopLevelProjects = 6;
 	optional string serviceRepositoryUrl = 7;
 	repeated int64 webModules = 8;
-	optional int32 rid = 9;
-	optional bool allowSelfRegistration = 10;
-	optional string smtpServer = 11;
+	optional string smtpServer = 9;
+	optional int32 rid = 10;
+	optional bool allowSelfRegistration = 11;
 	repeated string whitelistedDomains = 12;
-	optional bool cacheOutputFiles = 13;
-	optional int64 oid = 14;
-	optional string emailSenderAddress = 15;
+	optional int64 oid = 13;
+	optional string emailSenderAddress = 14;
+	optional bool cacheOutputFiles = 15;
 	optional bool hideUserListForNonAdmin = 16;
 	optional string emailSenderName = 17;
 	optional int64 webModuleId = 18;

@@ -13,7 +13,8 @@ import javax.xml.ws.WebFault;
 @WebFault(name = "ServerException", targetNamespace = "bimserver")
 public class ServerException_Exception extends Exception {
     
-    private org.bimserver.generatedclient.ServerException serverException;
+	private static final long serialVersionUID = -2636825072827753165L;
+	private org.bimserver.generatedclient.ServerException serverException;
 
     public ServerException_Exception() {
         super();

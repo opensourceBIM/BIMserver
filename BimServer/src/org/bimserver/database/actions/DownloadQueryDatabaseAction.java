@@ -23,6 +23,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
@@ -68,6 +69,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 				QueryEnginePlugin queryEnginePlugin = bimServer.getPluginManager().getQueryEngine(queryEngineObject.getPluginDescriptor().getPluginClassName(), true);
 				if (queryEnginePlugin != null) {
 					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(new PluginConfiguration(queryEngineObject.getSettings()));
+					IfcModelInterface result = new IfcModel();
 					return queryEngine.query(ifcModel, code, new Reporter(){
 
 						@Override
@@ -80,7 +82,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 
 						@Override
 						public void info(String info) {
-						}}, new ModelHelper(objectIDM));
+						}}, new ModelHelper(objectIDM, result));
 				} else {
 					throw new UserException("No Query Engine found " + queryEngineObject.getPluginDescriptor().getPluginClassName());
 				}

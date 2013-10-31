@@ -2,8 +2,8 @@ package org.bimserver.tests.lowlevel;
 
 import static org.junit.Assert.fail;
 
-import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
@@ -15,7 +15,7 @@ public class AddReferenceWithOpposite extends TestWithEmbeddedServer {
 	public void test() {
 		try {
 			// Create a new BimServerClient with authentication
-			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			Bimsie1LowLevelInterface lowLevelInterface = bimServerClient.getBimsie1LowLevelInterface();
 			

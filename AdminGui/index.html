@@ -12,11 +12,11 @@
 			<div class="message"></div>
 		</div>
   	</div>
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="sidespan span2">
+	<div class="container">
+		<div class="row">
+			<div class="sidespan col-md-2">
 			</div>
-			<div class="indexcontainer span10"></div>
+			<div class="indexcontainer col-md-10"></div>
 		</div>
 	</div>
 	<script>
@@ -51,14 +51,16 @@
 		LazyLoad.css([
 		    baseCssDir + "main.css", 
 		    baseCssDir + "bootstrap.min.css",
-		    baseCssDir + "openid.css",
-		    baseCssDir + "glyph.css"
+		    baseCssDir + "bootstrap-vert-tabs.css", 
+//		    baseCssDir + "bootstrap-theme.min.css",
+		    baseCssDir + "openid.css"
 		], function(){});
 		
 		LazyLoad.js([
-		    baseJsDir + "jquery-2.0.2.min.js", 
+		    baseJsDir + "jquery-2.0.3.min.js", 
 		    baseJsDir + "main.js", 
-		    baseJsDir + "jquery.history.js", 
+		    baseJsDir + "history.js", 
+		    baseJsDir + "history.adapter.jquery.js", 
 		    baseJsDir + "jquery.cookie.js", 
 		    baseJsDir + "jquery.numeric.js", 
 		    baseJsDir + "jquery.enterpress.js", 
@@ -93,24 +95,93 @@
 				}
 			});
 			
-			pushInitialState();
-
+			othis.loadBimServerApiFromAddress = function(address, successFunction, errorFunction){
+				loadBimServerApi(address, Global.notifier, function(serverInfo){
+					if (serverInfo.serverState == "NOT_SETUP") {
+						$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
+							new Setup(address);
+						});
+					} else if (serverInfo.serverState == "UNDEFINED") {
+					} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
+						$(".indexcontainer").load(Global.baseDir + "migrate.html", function(){
+							new Migrate(address);
+						});
+					} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
+					} else if (serverInfo.serverState == "FATAL_ERROR") {
+					} else if (serverInfo.serverState == "RUNNING") {
+						successFunction();
+					}
+				}, function(){
+					errorFunction();
+				});				
+			};
+			
 			function load() {
-				var history = History.getState().data;
-				if (history.page == "Login") {
-					tryAutoLogin();
-				} else if (history.page == "SelectServer") {
-					$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
-						othis.current = new SelectServer(null);
+				Global.history = pushInitialState();
+				var notLoggedInFunction = function(){
+					if (Global.history.page == "Login") {
+						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+							othis.current = new Login($.cookie("address" + window.document.location.port));
+						});
+					} else if (Global.history.page == "SelectServer") {
+						$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+							othis.current = new SelectServer(null);
+						});
+					} else if (Global.history.page == "Register") {
+						$(".indexcontainer").load(Global.baseDir + "register.html", function(){
+							othis.current = new Register($(this));
+						});
+					} else if (Global.history.page == "ResetPassword") {
+						$(".indexcontainer").load(Global.baseDir + "resetpassword.html", function(){
+							othis.current = new ResetPassword($(this), null);
+						});
+					} else {
+						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+							othis.current = new Login(null);
+						});
+					}
+				};
+				
+				var successFunction = function(){
+					// We do have an API
+					if ($.cookie("autologin" + window.document.location.port) != null) {
+						Global.bimServerApi.token = $.cookie("autologin" + window.document.location.port);
+						Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
+							$(".indexcontainer").load(Global.baseDir + "main.html", function(){
+								$(".indexStatus").hide();
+								othis.current = new Main(Global.bimServerApi.baseUrl, data.name).show(false);
+							});
+						}, function(){
+							$.removeCookie("autologin" + window.document.location.port);
+							notLoggedInFunction();
+						});
+					} else {
+						notLoggedInFunction();
+					}
+				};
+				
+				var errorFunction = function(){
+					
+				};
+				
+				if ($.cookie("address" + window.document.location.port) != null) {
+					othis.loadBimServerApiFromAddress($.cookie("address" + window.document.location.port), successFunction, errorFunction);
+				} else if (!Settings.allowBimServerAddress()) {
+					Settings.getStaticServerAddress(function(address){
+						if (address != null) {
+							othis.loadBimServerApiFromAddress(address, successFunction, errorFunction);
+						} else {
+							notLoggedInFunction();
+//							$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+//								new SelectServer();
+//							});
+						}
 					});
-				} else if (history.page == "Register") {
-					$(".indexcontainer").load(Global.baseDir + "register.html", function(){
-						othis.current = new Register($(this));
-					});
-				} else if (history.page == "ResetPassword") {
-					showResetPassword();
 				} else {
-					tryAutoLogin();
+					// NO API
+					$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+						new SelectServer();
+					});
 				}
 			}
 			
@@ -176,7 +247,7 @@
 						clearTimeout(othis.lastTimeOut);
 						othis.lastTimeOut = null;
 					}
-					$(othis.selector).find(".message").html(status).parent().show().removeClass("alert-error");
+					$(othis.selector).find(".message").html(status).parent().show().removeClass("alert-danger").addClass("alert-info");
 					var notifier = this;
 					if (timeToShow != -1) {
 						othis.lastTimeOut = setTimeout(function(){
@@ -190,7 +261,7 @@
 						clearTimeout(othis.lastTimeOut);
 						othis.lastTimeOut = null;
 					}
-					$(othis.selector).find(".message").html(error).parent().addClass("alert-error").show();
+					$(othis.selector).find(".message").html(error).parent().removeClass("alert-info").addClass("alert-danger").show();
 				};
 			}
 
@@ -199,73 +270,14 @@
 			function loadError() {
 				window.clearTimeout(Global.timeoutId);
 				Global.notifier.error("Could not connect");
-				$.removeCookie("username", {path: "/"});
-				$.removeCookie("autologin", {path: "/"});
-				$.removeCookie("address", {path: "/"});
+				$.removeCookie("username" + window.document.location.port, {path: "/"});
+				$.removeCookie("autologin" + window.document.location.port, {path: "/"});
+				$.removeCookie("address" + window.document.location.port, {path: "/"});
 				$(".indexcontainer").load(Global.baseDir + "login.html", function(){
 					new Login();
 				});
 			}
 			
-			this.showResetPassword = function() {
-				$(".indexcontainer").load(Global.baseDir + "resetpassword.html", function(){
-					new ResetPassword($(this), null);
-				});
-			};
-			
-			this.loadBimServerApiFromAddress = function(address){
-				loadBimServerApi(address, Global.notifier, function(serverInfo){
-					if (serverInfo.serverState == "NOT_SETUP") {
-						$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
-							new Setup(address);
-						});
-					} else if (serverInfo.serverState == "UNDEFINED") {
-					} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
-					} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
-					} else if (serverInfo.serverState == "FATAL_ERROR") {
-					} else if (serverInfo.serverState == "RUNNING") {
-						if ($.cookie("autologin") != null) {
-							Global.bimServerApi.token = $.cookie("autologin");
-							Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
-								$(".indexcontainer").load(Global.baseDir + "main.html", function(){
-									$(".indexStatus").hide();
-									othis.current = new Main(Global.bimServerApi.baseUrl, data.name).show(false);
-								});
-							}, function(){
-								$.removeCookie("autologin");
-								$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-									othis.current = new Login(address);
-								});
-							});
-						} else {
-							$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-								othis.current = new Login(address);
-							});
-						}
-					}
-				}, function(){
-					$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
-						othis.current = new SelectServer(address);
-					});
-				});				
-			};
-			
-			this.tryAutoLogin = function(){
-				$(function(){
-					if ($.cookie("address") != null) {
-						othis.loadBimServerApiFromAddress($.cookie("address"));
-					} else if (!Settings.allowBimServerAddress()) {
-						Settings.getStaticServerAddress(function(address){
-							othis.loadBimServerApiFromAddress(address);
-						});
-					} else {
-						$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
-							new SelectServer();
-						});
-					}
-				});
-			};
-
 			setInterval(function() {
 				var now = new Date().getTime();
 				$(".timespan").each(function() {

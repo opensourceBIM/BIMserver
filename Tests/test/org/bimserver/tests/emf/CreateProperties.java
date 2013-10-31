@@ -6,8 +6,7 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ClientIfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
@@ -21,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
 import org.bimserver.models.ifc2x3tc1.IfcValue;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.ifc2x3tc1.Tristate;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -33,7 +33,7 @@ public class CreateProperties extends TestWithEmbeddedServer  {
 	public void test() {
 		try {
 			// New client
-			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a project
 			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
@@ -47,7 +47,7 @@ public class CreateProperties extends TestWithEmbeddedServer  {
 			project = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
 			
 			// Load model without lazy loading (complete model at once)
-			ClientIfcModel model = bimServerClient.getModel(project.getOid(), project.getLastRevisionId(), true);
+			IfcModelInterface model = bimServerClient.getModel(project.getOid(), project.getLastRevisionId(), true);
 
 			String propertyName = "BooleanProperty";
 
@@ -105,7 +105,7 @@ public class CreateProperties extends TestWithEmbeddedServer  {
 		}
 	}
 
-	private void createProperty(IfcWindow window, ClientIfcModel model, String name, String description, Object value) throws IfcModelInterfaceException {
+	private void createProperty(IfcWindow window, IfcModelInterface model, String name, String description, Object value) throws IfcModelInterfaceException {
 		IfcRelDefinesByProperties ifcRelDefinesByProperties = model.create(IfcRelDefinesByProperties.class);
 		window.getIsDefinedBy().add(ifcRelDefinesByProperties);
 		IfcPropertySet propertySet = model.create(IfcPropertySet.class);

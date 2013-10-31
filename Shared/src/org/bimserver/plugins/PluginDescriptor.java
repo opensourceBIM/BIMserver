@@ -39,4 +39,13 @@ public class PluginDescriptor {
 	public List<PluginImplementation> getImplementations() {
 		return implementations;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (PluginImplementation pluginImplementation : implementations) {
+			sb.append(pluginImplementation.toString() + "\n");
+		}
+		return sb.toString();
+	}
 }

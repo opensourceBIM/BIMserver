@@ -7,12 +7,12 @@ import java.io.File;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
-import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
 	public void test() {
 		try {
 			// Create a new BimServerClient with authentication
-			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
 			long s = System.nanoTime();
 			for (int i=0; i<3; i++) {

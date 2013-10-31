@@ -5,13 +5,13 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.util.List;
 
-import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SReferenceDataValue;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
@@ -22,7 +22,7 @@ public class MoveFurniture extends TestWithEmbeddedServer {
 	public void test() {
 		try {
 			// Create a new BimServerClient with authentication
-			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a new project
 			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
@@ -39,7 +39,7 @@ public class MoveFurniture extends TestWithEmbeddedServer {
 			
 			long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcFurnishingElement");
+			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcFurnishingElement", false);
 			int i=0;
 			for (SDataObject furnishingElement : dataObjectsByType) {
 				i++;
@@ -60,7 +60,7 @@ public class MoveFurniture extends TestWithEmbeddedServer {
 
 			long newRoid = lowLevelInterface.commitTransaction(tid, "Moved furniture 50 meters up");
 
-			System.out.println(lowLevelInterface.getDataObjectsByType(newRoid, "IfcFurnishingElement").size());
+			System.out.println(lowLevelInterface.getDataObjectsByType(newRoid, "IfcFurnishingElement", false).size());
 
 			SSerializerPluginConfiguration ifcSerializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
 			bimServerClient.download(newRoid, ifcSerializer.getOid(), new File("movedf.ifc"));

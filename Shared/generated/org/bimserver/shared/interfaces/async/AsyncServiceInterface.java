@@ -31,337 +31,382 @@ public class AsyncServiceInterface {
 
 	public interface AddExtendedDataSchemaCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddExtendedDataToProjectCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddLocalServiceToProjectCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
+	}
+	
+	public interface AddModelCheckerCallback {
+		void success(java.lang.Long result);
+		void error(Throwable e);
+	}
+	
+	public interface AddModelCheckerToProjectCallback {
+		void success();
+		void error(Throwable e);
 	}
 	
 	public interface AddServiceToProjectCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddUserCallback {
 		void success(org.bimserver.interfaces.objects.SUser result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddUserToExtendedDataSchemaCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddUserToProjectCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface ChangeUserTypeCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface CheckinCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface CheckinFromUrlCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface CleanupLongActionCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface CompareCallback {
 		void success(org.bimserver.interfaces.objects.SCompareResult result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteServiceCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteUserCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DownloadCompareResultsCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllAuthorizedUsersOfProjectCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SUser> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllCheckoutsByUserCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SCheckout> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllCheckoutsOfProjectCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SCheckout> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllCheckoutsOfProjectAndSubProjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SCheckout> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllCheckoutsOfRevisionCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SCheckout> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllExtendedDataSchemasCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllLocalProfilesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllLocalServiceDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
+	}
+	
+	public interface GetAllModelCheckersCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SModelCheckerInstance> result);
+		void error(Throwable e);
+	}
+	
+	public interface GetAllModelCheckersOfProjectCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SModelCheckerInstance> result);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllNonAuthorizedProjectsOfUserCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllNonAuthorizedUsersOfProjectCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SUser> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllPrivateProfilesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllPublicProfilesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllReadableProjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllRelatedProjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProjectSmall> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllRepositoryExtendedDataSchemasCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> result);
-		void error(Exception e);
+		void error(Throwable e);
+	}
+	
+	public interface GetAllRepositoryModelCheckersCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SModelCheckerInstance> result);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllRevisionsByUserCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SRevision> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllServiceDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllServicesOfProjectCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SService> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllUsersCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SUser> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllWritableProjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAvailableClassesCallback {
 		void success(java.util.List<java.lang.String> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAvailableClassesInRevisionCallback {
 		void success(java.util.List<java.lang.String> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetCheckinWarningsCallback {
 		void success(java.util.Set<java.lang.String> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetCheckoutWarningsCallback {
 		void success(java.util.Set<java.lang.String> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetExtendedDataSchemaFromRepositoryCallback {
 		void success(org.bimserver.interfaces.objects.SExtendedDataSchema result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetFileCallback {
 		void success(org.bimserver.interfaces.objects.SFile result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetGeoTagCallback {
 		void success(org.bimserver.interfaces.objects.SGeoTag result);
-		void error(Exception e);
+		void error(Throwable e);
+	}
+	
+	public interface GetModelCheckerInstanceCallback {
+		void success(org.bimserver.interfaces.objects.SModelCheckerInstance result);
+		void error(Throwable e);
 	}
 	
 	public interface GetOidByGuidCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetQueryEngineExampleCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetQueryEngineExampleKeysCallback {
 		void success(java.util.List<java.lang.String> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetRevisionSummaryCallback {
 		void success(org.bimserver.interfaces.objects.SRevisionSummary result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServiceCallback {
 		void success(org.bimserver.interfaces.objects.SService result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServiceDescriptorCallback {
 		void success(org.bimserver.interfaces.objects.SServiceDescriptor result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetUserByUoidCallback {
 		void success(org.bimserver.interfaces.objects.SUser result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetUserByUserNameCallback {
 		void success(org.bimserver.interfaces.objects.SUser result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetUserRelatedLogsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SLogAction> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetUserSettingsCallback {
 		void success(org.bimserver.interfaces.objects.SUserSettings result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetUsersProjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
-		void error(Exception e);
+		void error(Throwable e);
+	}
+	
+	public interface RemoveModelCheckerFromProjectCallback {
+		void success();
+		void error(Throwable e);
 	}
 	
 	public interface RemoveUserFromExtendedDataSchemaCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RemoveUserFromProjectCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SendCompareEmailCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface SetRevisionTagCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface ShareRevisionCallback {
 		void success(java.lang.String result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface TriggerNewExtendedDataCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface TriggerNewRevisionCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UndeleteUserCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpdateGeoTagCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
+	}
+	
+	public interface UpdateModelCheckerCallback {
+		void success();
+		void error(Throwable e);
 	}
 	
 	public interface UpdateProjectCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpdateRevisionCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UploadFileCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UserHasCheckinRightsCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UserHasRightsCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
+	}
+	
+	public interface ValidateModelCheckerCallback {
+		void success();
+		void error(Throwable e);
 	}
 	
 
@@ -372,7 +417,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.addExtendedDataSchema(extendedDataSchema);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -385,7 +430,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.addExtendedDataToProject(poid, extendedData);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -398,7 +443,32 @@ public class AsyncServiceInterface {
 				try {
 					syncService.addLocalServiceToProject(poid, sService, internalServiceOid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void addModelChecker(final org.bimserver.interfaces.objects.SModelCheckerInstance modelCheckerInstance, final AddModelCheckerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.addModelChecker(modelCheckerInstance));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void addModelCheckerToProject(final java.lang.Long poid, final java.lang.Long modelCheckerOid, final AddModelCheckerToProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.addModelCheckerToProject(poid, modelCheckerOid);
+					callback.success();
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -411,7 +481,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.addServiceToProject(poid, sService);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -423,7 +493,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.addUser(username, name, type, selfRegistration, resetUrl));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -436,7 +506,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.addUserToExtendedDataSchema(uoid, edsid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -448,7 +518,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.addUserToProject(uoid, poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -461,7 +531,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.changeUserType(uoid, userType);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -473,7 +543,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.checkin(poid, comment, deserializerOid, fileSize, fileName, data, merge, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -485,7 +555,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.checkinFromUrl(poid, comment, deserializerOid, fileName, url, merge, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -498,7 +568,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.cleanupLongAction(actionId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -510,7 +580,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.compare(roid1, roid2, sCompareType, mcid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -523,7 +593,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.deleteService(oid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -535,7 +605,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.deleteUser(uoid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -547,7 +617,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.downloadCompareResults(serializerOid, roid1, roid2, mcid, type, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -559,7 +629,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllAuthorizedUsersOfProject(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -571,7 +641,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllCheckoutsByUser(uoid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -583,7 +653,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllCheckoutsOfProject(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -595,7 +665,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllCheckoutsOfProjectAndSubProjects(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -607,7 +677,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllCheckoutsOfRevision(roid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -619,7 +689,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllExtendedDataSchemas());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -631,7 +701,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllLocalProfiles(serviceIdentifier));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -643,7 +713,31 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllLocalServiceDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllModelCheckers(final GetAllModelCheckersCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllModelCheckers());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllModelCheckersOfProject(final java.lang.Long poid, final GetAllModelCheckersOfProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllModelCheckersOfProject(poid));
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -655,7 +749,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllNonAuthorizedProjectsOfUser(uoid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -667,7 +761,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllNonAuthorizedUsersOfProject(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -679,7 +773,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllPrivateProfiles(notificationsUrl, serviceIdentifier, token));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -691,7 +785,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllPublicProfiles(notificationsUrl, serviceIdentifier));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -703,7 +797,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllReadableProjects());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -715,7 +809,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllRelatedProjects(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -727,7 +821,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllRepositoryExtendedDataSchemas());
-				} catch (Exception e) {
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllRepositoryModelCheckers(final GetAllRepositoryModelCheckersCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllRepositoryModelCheckers());
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -739,7 +845,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllRevisionsByUser(uoid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -751,7 +857,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllServiceDescriptors());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -763,7 +869,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllServicesOfProject(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -775,7 +881,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllUsers());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -787,7 +893,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllWritableProjects());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -799,7 +905,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAvailableClasses());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -811,7 +917,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAvailableClassesInRevision(roid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -823,7 +929,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getCheckinWarnings(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -835,7 +941,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getCheckoutWarnings(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -847,7 +953,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getExtendedDataSchemaFromRepository(namespace));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -859,7 +965,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getFile(fileId));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -871,7 +977,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getGeoTag(goid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getModelCheckerInstance(final java.lang.Long mcioid, final GetModelCheckerInstanceCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getModelCheckerInstance(mcioid));
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -883,7 +1001,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getOidByGuid(roid, guid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -895,7 +1013,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getQueryEngineExample(qeid, key));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -907,7 +1025,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getQueryEngineExampleKeys(qeid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -919,7 +1037,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getRevisionSummary(roid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -931,19 +1049,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getService(soid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
 		});
 	}
 	
-	public void getServiceDescriptor(final java.lang.String url, final GetServiceDescriptorCallback callback) {
+	public void getServiceDescriptor(final java.lang.String baseUrl, final java.lang.String serviceIdentifier, final GetServiceDescriptorCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getServiceDescriptor(url));
-				} catch (Exception e) {
+					callback.success(syncService.getServiceDescriptor(baseUrl, serviceIdentifier));
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -955,7 +1073,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getUserByUoid(uoid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -967,7 +1085,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getUserByUserName(username));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -979,7 +1097,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getUserRelatedLogs(uoid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -991,7 +1109,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getUserSettings());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1003,7 +1121,20 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getUsersProjects(uoid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void removeModelCheckerFromProject(final java.lang.Long poid, final java.lang.Long modelCheckerOid, final RemoveModelCheckerFromProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.removeModelCheckerFromProject(poid, modelCheckerOid);
+					callback.success();
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1016,7 +1147,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.removeUserFromExtendedDataSchema(uoid, edsid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1028,7 +1159,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.removeUserFromProject(uoid, poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1041,7 +1172,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.sendCompareEmail(sCompareType, mcid, poid, roid1, roid2, address);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1054,7 +1185,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.setRevisionTag(roid, tag);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1066,7 +1197,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.shareRevision(roid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1079,7 +1210,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.triggerNewExtendedData(edid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1092,7 +1223,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.triggerNewRevision(roid, soid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1104,7 +1235,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.undeleteUser(uoid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1117,7 +1248,20 @@ public class AsyncServiceInterface {
 				try {
 					syncService.updateGeoTag(sGeoTag);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void updateModelChecker(final org.bimserver.interfaces.objects.SModelCheckerInstance modelCheckerInstance, final UpdateModelCheckerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.updateModelChecker(modelCheckerInstance);
+					callback.success();
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1130,7 +1274,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.updateProject(sProject);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1143,7 +1287,7 @@ public class AsyncServiceInterface {
 				try {
 					syncService.updateRevision(sRevision);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1155,7 +1299,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.uploadFile(file));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1167,7 +1311,7 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.userHasCheckinRights(uoid, poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -1179,7 +1323,20 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.userHasRights(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void validateModelChecker(final java.lang.Long oid, final ValidateModelCheckerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.validateModelChecker(oid);
+					callback.success();
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

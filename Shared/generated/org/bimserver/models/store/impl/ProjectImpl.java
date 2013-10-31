@@ -24,6 +24,7 @@ import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -60,6 +61,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getLogs <em>Logs</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getModelCheckers <em>Model Checkers</em>}</li>
  * </ul>
  * </p>
  *
@@ -371,6 +373,16 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	@SuppressWarnings("unchecked")
 	public EList<ProjectRelated> getLogs() {
 		return (EList<ProjectRelated>) eGet(StorePackage.Literals.PROJECT__LOGS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ModelCheckerInstance> getModelCheckers() {
+		return (EList<ModelCheckerInstance>) eGet(StorePackage.Literals.PROJECT__MODEL_CHECKERS, true);
 	}
 
 } //ProjectImpl

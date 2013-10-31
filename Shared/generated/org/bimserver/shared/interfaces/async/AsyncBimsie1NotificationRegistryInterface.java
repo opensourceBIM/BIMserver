@@ -31,127 +31,137 @@ public class AsyncBimsie1NotificationRegistryInterface {
 
 	public interface GetProgressCallback {
 		void success(org.bimserver.interfaces.objects.SLongActionState result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetProgressTopicsOnProjectCallback {
 		void success(java.util.List<java.lang.Long> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetProgressTopicsOnRevisionCallback {
 		void success(java.util.List<java.lang.Long> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetProgressTopicsOnServerCallback {
 		void success(java.util.List<java.lang.Long> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RegisterChangeProgressOnProjectCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RegisterChangeProgressOnRevisionCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RegisterChangeProgressOnServerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RegisterNewExtendedDataOnRevisionHandlerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RegisterNewProjectHandlerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
+	}
+	
+	public interface RegisterNewRevisionHandlerCallback {
+		void success();
+		void error(Throwable e);
 	}
 	
 	public interface RegisterNewRevisionOnSpecificProjectHandlerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RegisterNewUserHandlerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RegisterProgressHandlerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RegisterProgressOnProjectTopicCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RegisterProgressOnRevisionTopicCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface RegisterProgressTopicCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UnregisterChangeProgressOnProjectCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UnregisterChangeProgressOnRevisionCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UnregisterChangeProgressOnServerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UnregisterNewExtendedDataOnRevisionHandlerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UnregisterNewProjectHandlerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
+	}
+	
+	public interface UnregisterNewRevisionHandlerCallback {
+		void success();
+		void error(Throwable e);
 	}
 	
 	public interface UnregisterNewRevisionOnSpecificProjectHandlerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UnregisterNewUserHandlerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UnregisterProgressHandlerCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UnregisterProgressTopicCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UpdateProgressTopicCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 
@@ -161,7 +171,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getProgress(topicId));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -173,7 +183,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getProgressTopicsOnProject(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -185,7 +195,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getProgressTopicsOnRevision(poid, roid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -197,7 +207,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getProgressTopicsOnServer());
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -210,7 +220,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.registerChangeProgressOnProject(endPointId, poid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -223,7 +233,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.registerChangeProgressOnRevision(endPointId, roid, poid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -236,7 +246,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.registerChangeProgressOnServer(endPointId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -249,7 +259,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.registerNewExtendedDataOnRevisionHandler(endPointId, roid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -262,7 +272,20 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.registerNewProjectHandler(endPointId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void registerNewRevisionHandler(final java.lang.Long endPointId, final RegisterNewRevisionHandlerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.registerNewRevisionHandler(endPointId);
+					callback.success();
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -275,7 +298,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.registerNewRevisionOnSpecificProjectHandler(endPointId, poid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -288,7 +311,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.registerNewUserHandler(endPointId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -301,7 +324,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.registerProgressHandler(topicId, endPointId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -313,7 +336,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 			public void run(){
 				try {
 					callback.success(syncService.registerProgressOnProjectTopic(type, poid, description));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -325,7 +348,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 			public void run(){
 				try {
 					callback.success(syncService.registerProgressOnRevisionTopic(type, poid, roid, description));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -337,7 +360,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 			public void run(){
 				try {
 					callback.success(syncService.registerProgressTopic(type, description));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -350,7 +373,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.unregisterChangeProgressOnProject(endPointId, poid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -363,7 +386,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.unregisterChangeProgressOnRevision(endPointId, roid, poid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -376,7 +399,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.unregisterChangeProgressOnServer(endPointId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -389,7 +412,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.unregisterNewExtendedDataOnRevisionHandler(endPointId, roid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -402,7 +425,20 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.unregisterNewProjectHandler(endPointId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void unregisterNewRevisionHandler(final java.lang.Long endPointId, final UnregisterNewRevisionHandlerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.unregisterNewRevisionHandler(endPointId);
+					callback.success();
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -415,7 +451,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.unregisterNewRevisionOnSpecificProjectHandler(endPointId, poid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -428,7 +464,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.unregisterNewUserHandler(endPointId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -441,7 +477,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.unregisterProgressHandler(topicId, endPointId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -454,7 +490,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.unregisterProgressTopic(topicId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -467,7 +503,7 @@ public class AsyncBimsie1NotificationRegistryInterface {
 				try {
 					syncService.updateProgressTopic(topicId, state);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

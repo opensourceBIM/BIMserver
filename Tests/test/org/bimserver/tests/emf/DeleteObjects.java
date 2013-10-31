@@ -5,11 +5,11 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ClientIfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -20,12 +20,12 @@ public class DeleteObjects extends TestWithEmbeddedServer {
 	public void test() {
 		try {
 			// Create a new BimServerClient with authentication
-			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a new project
 			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
 			
-			ClientIfcModel model = bimServerClient.newModel(newProject);
+			IfcModelInterface model = bimServerClient.newModel(newProject);
 			
 			for (int i=0; i<10; i++) {
 				IfcWall wall = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcWall());

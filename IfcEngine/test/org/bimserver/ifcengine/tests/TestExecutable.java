@@ -12,12 +12,12 @@ import org.bimserver.plugins.renderengine.RenderEngineModel;
 
 public class TestExecutable {
 	public static void main(String[] args) {
-		new TestExecutable().start(args[0]);
+		new TestExecutable().start();
 	}
 
-	private void start(String args) {
+	private void start() {
 		try {
-			RenderEngine ifcEngine = new ExecutableIfcEngine(new File("IFC2X3_TC1.exp"), new File(args), new File("tmp"), System.getProperty("java.class.path"));
+			RenderEngine ifcEngine = new ExecutableIfcEngine(new File("IFC2X3_TC1.exp"), new File("lib/32"), new File("tmp"), System.getProperty("java.class.path"));
 			RenderEngineModel model = ifcEngine.openModel(new File("AC11-Institute-Var-2-IFC.ifc"));
 			RenderEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
 			List<? extends RenderEngineInstance> walls = model.getInstances("IfcWall");

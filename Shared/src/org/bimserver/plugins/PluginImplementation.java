@@ -44,4 +44,9 @@ public class PluginImplementation {
 	public void setImplementationClass(String implementationClass) {
 		this.implementationClass = implementationClass;
 	}
+	
+	@Override
+	public String toString() {
+		return interfaceClass + " / " + implementationClass;
+	}
 }

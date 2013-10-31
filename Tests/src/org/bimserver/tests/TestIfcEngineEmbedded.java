@@ -24,13 +24,13 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.slf4j.Logger;
@@ -70,13 +70,13 @@ public class TestIfcEngineEmbedded {
 		BimServer bimServer = new BimServer(config);
 		try {
 			// Load plugins
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."));
 			
 			// Start it
 			bimServer.start();
 			
 			// Get a client, not using any protocol (direct connection)
-			BimServerClient client = bimServer.getBimServerClientFactory().create();
+			BimServerClientInterface client = bimServer.getBimServerClientFactory().create();
 
 			// Setup the server
 			client.getAdminInterface().setup("http://localhost:8080", "localhost", "noreply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");

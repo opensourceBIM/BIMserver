@@ -816,8 +816,24 @@ public class IfcModel implements IfcModelInterface {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	public <T extends IdEObject> T create(EClass eClass, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
+		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		long oid = oidProvider.newOid(eClass);
+		((IdEObjectImpl) object).setOid(oid);
+		add(oid, object, false, false);
+		return (T) object;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
 		return (T) create(eClassClassMap.inverse().get(clazz));
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends IdEObject> T create(Class<T> clazz, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
+		return (T) create(eClassClassMap.inverse().get(clazz), oidProvider);
 	}
 	
 	@Override

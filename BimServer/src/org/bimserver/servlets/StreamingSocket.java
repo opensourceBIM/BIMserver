@@ -20,13 +20,15 @@ package org.bimserver.servlets;
 import java.io.IOException;
 import java.io.StringReader;
 
-import org.eclipse.jetty.websocket.WebSocket;
+import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.WebSocketAdapter;
+import org.eclipse.jetty.websocket.api.WebSocketException;
 
 import com.google.gson.JsonObject;
 
-public class StreamingSocket implements WebSocket.OnTextMessage, StreamingSocketInterface {
+public class StreamingSocket extends WebSocketAdapter implements StreamingSocketInterface {
 
-	private Connection connection;
+	private Session session;
 	private Streamer streamer;
 
 	public void setStreamer(Streamer streamer) {
@@ -34,25 +36,31 @@ public class StreamingSocket implements WebSocket.OnTextMessage, StreamingSocket
 	}
 
 	@Override
-	public void onClose(int arg0, String arg1) {
+	public void onWebSocketBinary(byte[] payload, int offset, int len) {
+	}
+	
+	@Override
+	public void onWebSocketClose(int arg0, String arg1) {
 		streamer.onClose();
 	}
 
 	@Override
-	public void onOpen(Connection connection) {
-		this.connection = connection;
-		streamer.onOpen();
-	}
-
-	@Override
-	public void onMessage(String message) {
+	public void onWebSocketText(String message) {
 		streamer.onText(new StringReader(message));
 	}
-
+	
+	@Override
+	public void onWebSocketConnect(Session session) {
+		session.setIdleTimeout(1000 * 60 * 60); // 1 hour
+		this.session = session;
+		streamer.onOpen();
+	}
+	
 	public void send(JsonObject object) {
 		try {
-			connection.sendMessage(object.toString());
+			session.getRemote().sendString(object.toString());
 		} catch (IOException e) {
+		} catch (WebSocketException e) {
 		}
 	}
 }

@@ -245,6 +245,18 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createProjectSmall();
 		case StorePackage.IFC_HEADER:
 			return (EObject) createIfcHeader();
+		case StorePackage.MODEL_CHECKER_RESULT_ITEM:
+			return (EObject) createModelCheckerResultItem();
+		case StorePackage.MODEL_CHECKER_RESULT_HEADER:
+			return (EObject) createModelCheckerResultHeader();
+		case StorePackage.MODEL_CHECKER_RESULT_LINE:
+			return (EObject) createModelCheckerResultLine();
+		case StorePackage.MODEL_CHECKER_RESULT:
+			return (EObject) createModelCheckerResult();
+		case StorePackage.MODEL_CHECKER_INSTANCE:
+			return (EObject) createModelCheckerInstance();
+		case StorePackage.MODEL_CHECKER_PLUGIN_DESCRIPTOR:
+			return (EObject) createModelCheckerPluginDescriptor();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -282,6 +294,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createNotifictionResultEnumFromString(eDataType, initialValue);
 		case StorePackage.PROGRESS_TOPIC_TYPE:
 			return createProgressTopicTypeFromString(eDataType, initialValue);
+		case StorePackage.MODEL_CHECKER_RESULT_TYPE:
+			return createModelCheckerResultTypeFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
 			return createDataHandlerFromString(eDataType, initialValue);
 		default:
@@ -321,6 +335,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertNotifictionResultEnumToString(eDataType, instanceValue);
 		case StorePackage.PROGRESS_TOPIC_TYPE:
 			return convertProgressTopicTypeToString(eDataType, instanceValue);
+		case StorePackage.MODEL_CHECKER_RESULT_TYPE:
+			return convertModelCheckerResultTypeToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
 			return convertDataHandlerToString(eDataType, instanceValue);
 		default:
@@ -1213,6 +1229,66 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ModelCheckerResultItem createModelCheckerResultItem() {
+		ModelCheckerResultItemImpl modelCheckerResultItem = new ModelCheckerResultItemImpl();
+		return modelCheckerResultItem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelCheckerResultHeader createModelCheckerResultHeader() {
+		ModelCheckerResultHeaderImpl modelCheckerResultHeader = new ModelCheckerResultHeaderImpl();
+		return modelCheckerResultHeader;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelCheckerResultLine createModelCheckerResultLine() {
+		ModelCheckerResultLineImpl modelCheckerResultLine = new ModelCheckerResultLineImpl();
+		return modelCheckerResultLine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelCheckerResult createModelCheckerResult() {
+		ModelCheckerResultImpl modelCheckerResult = new ModelCheckerResultImpl();
+		return modelCheckerResult;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelCheckerInstance createModelCheckerInstance() {
+		ModelCheckerInstanceImpl modelCheckerInstance = new ModelCheckerInstanceImpl();
+		return modelCheckerInstance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelCheckerPluginDescriptor createModelCheckerPluginDescriptor() {
+		ModelCheckerPluginDescriptorImpl modelCheckerPluginDescriptor = new ModelCheckerPluginDescriptorImpl();
+		return modelCheckerPluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
 		UserType result = UserType.get(initialValue);
 		if (result == null)
@@ -1457,6 +1533,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertProgressTopicTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelCheckerResultType createModelCheckerResultTypeFromString(EDataType eDataType, String initialValue) {
+		ModelCheckerResultType result = ModelCheckerResultType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertModelCheckerResultTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

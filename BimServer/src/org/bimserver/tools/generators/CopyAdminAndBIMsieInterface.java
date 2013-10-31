@@ -25,11 +25,15 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.meta.SServicesMap;
 import org.codehaus.jettison.json.JSONException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CopyAdminAndBIMsieInterface {
-	private static final File bootstrap = new File("D:\\git\\BootstrapBIM");
-	private static final File bimsie = new File("D:\\git\\BIMsie\\BIMsie\\BIMsie");
-	private static final File admin = new File("D:\\git\\BIMserver\\AdminGui");;
+	private static final Logger LOGGER = LoggerFactory.getLogger(CopyAdminAndBIMsieInterface.class);
+	private static final File baseGitDir = new File("C:\\Users\\Ruben de Laat\\git");
+	private static final File bootstrap = new File(baseGitDir, "bimvie.ws");
+	private static final File bimsie = new File(baseGitDir, "BIMsie\\BIMsie");
+	private static final File admin = new File(baseGitDir, "BIMserver\\AdminGui");;
 
 	public static void main(String[] args) {
 		CopyAdminAndBIMsieInterface copyAdminAndBIMsieInterface = new CopyAdminAndBIMsieInterface();
@@ -41,10 +45,10 @@ public class CopyAdminAndBIMsieInterface {
 		SServicesMap servicesMap = InterfaceList.createBimsie1SServicesMap();
 		try {
 			FileUtils.writeStringToFile(new File(bimsie, "js/services.json"), servicesMap.toJson().toString(2));
-		} catch (JSONException e1) {
-			e1.printStackTrace();
+		} catch (JSONException e) {
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		try {
 			FileUtils.copyFile(new File(bootstrap, "console.html"), new File(bimsie, "index.html"));
@@ -69,7 +73,7 @@ public class CopyAdminAndBIMsieInterface {
 			});
 			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(bimsie, "css"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -92,6 +96,13 @@ public class CopyAdminAndBIMsieInterface {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "migrations.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "webmodules.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "log.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "usersettings.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "basicusersettings.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "genericpluginsettingslist.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "genericpluginsettings.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "modelcheckers.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "addrepomodelchecker.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "addnewmodelchecker.html"), admin);
 			
 			FileUtils.copyDirectory(new File(bootstrap, "js"), new File(admin, "js"), new FileFilter() {
 				@Override
@@ -113,7 +124,7 @@ public class CopyAdminAndBIMsieInterface {
 				}
 			});
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

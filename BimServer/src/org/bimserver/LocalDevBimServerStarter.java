@@ -40,26 +40,28 @@ public class LocalDevBimServerStarter {
 	private BimServer bimServer;
 	
 	public static void main(String[] args) {
-		new LocalDevBimServerStarter().start("localhost", 8080);
+		new LocalDevBimServerStarter().start(1, "localhost", 8080, 8085);
+//		new LocalDevBimServerStarter().start(2, "localhost", 8081, 8086);
 	}
 
-	public void start(String address, int port) {
+	public void start(int id, String address, int port, int pbport) {
 		BimServerConfig config = new BimServerConfig();
-		config.setHomeDir(new File("home"));
+		config.setHomeDir(new File("home" + id));
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		config.setStartEmbeddedWebServer(true);
 		config.setClassPath(System.getProperty("java.class.path"));
+		config.setInitialProtocolBuffersPort(pbport);
 		config.setLocalDev(true);
 		config.setPort(port);
 		config.setStartCommandLine(true);
 		bimServer = new BimServer(config);
 		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
 		try {
-	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
+	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."));
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
-				adminInterface.setup("http://localhost:8080", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
+				adminInterface.setup("http://localhost:" + port, "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 				SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
 				settingsInterface.setCacheOutputFiles(false);
 			}

@@ -31,22 +31,22 @@ public class AsyncBimsie1RemoteServiceInterface {
 
 	public interface GetPrivateProfilesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetPublicProfilesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetServiceCallback {
 		void success(org.bimserver.interfaces.objects.SServiceDescriptor result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface NewRevisionCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 
@@ -56,7 +56,7 @@ public class AsyncBimsie1RemoteServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getPrivateProfiles(serviceIdentifier, token));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -68,7 +68,7 @@ public class AsyncBimsie1RemoteServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getPublicProfiles(serviceIdentifier));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -80,20 +80,20 @@ public class AsyncBimsie1RemoteServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getService(serviceIdentifier));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
 		});
 	}
 	
-	public void newRevision(final java.lang.Long poid, final java.lang.Long roid, final java.lang.Long soid, final java.lang.String serviceIdentifier, final java.lang.String profileIdentifier, final java.lang.String token, final java.lang.String apiUrl, final NewRevisionCallback callback) {
+	public void newRevision(final java.lang.Long poid, final java.lang.Long roid, final java.lang.Long soid, final java.lang.String serviceIdentifier, final java.lang.String profileIdentifier, final java.lang.String userToken, final java.lang.String token, final java.lang.String apiUrl, final NewRevisionCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, token, apiUrl);
+					syncService.newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

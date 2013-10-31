@@ -4,8 +4,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ClientIfcModel;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcAreaMeasure;
@@ -19,6 +18,7 @@ import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
 import org.bimserver.models.ifc2x3tc1.IfcValue;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -28,7 +28,7 @@ public class ReadProperties extends TestWithEmbeddedServer {
 	public void test() {
 		try {
 			// New client
-			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a project
 			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
@@ -43,7 +43,7 @@ public class ReadProperties extends TestWithEmbeddedServer {
 			project = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
 			
 			// Load model without lazy loading (complete model at once)
-			ClientIfcModel model = bimServerClient.getModel(project.getOid(), project.getLastRevisionId(), true);
+			IfcModelInterface model = bimServerClient.getModel(project.getOid(), project.getLastRevisionId(), true);
 
 			// Iterate over all projects, there should be 1
 			for (IfcProject ifcProject : model.getAllWithSubTypes(IfcProject.class)) {

@@ -28,5 +28,12 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/httpcore-4.2.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/httpcore-nio-4.2.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/httpmime-4.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-client-9.0.6.v20130930.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/javax.annotation-1.1.0.v201108011116.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-api-9.0.6.v20130930.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-common-9.0.6.v20130930.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-server-9.0.6.v20130930.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-servlet-9.0.6.v20130930.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jetty/jetty-util-9.0.6.v20130930.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

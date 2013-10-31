@@ -31,182 +31,182 @@ public class AsyncBimsie1ServiceInterface {
 
 	public interface AddExtendedDataToRevisionCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddProjectCallback {
 		void success(org.bimserver.interfaces.objects.SProject result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface AddProjectAsSubProjectCallback {
 		void success(org.bimserver.interfaces.objects.SProject result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface BranchToExistingProjectCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface BranchToNewProjectCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface CheckinCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface CheckinFromUrlCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface CheckoutCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DeleteProjectCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DownloadCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DownloadByGuidsCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DownloadByNamesCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DownloadByOidsCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DownloadByTypesCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DownloadQueryCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface DownloadRevisionsCallback {
 		void success(java.lang.Long result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllExtendedDataOfRevisionCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SExtendedData> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllProjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetAllRevisionsOfProjectCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SRevision> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDeserializerByIdCallback {
 		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDeserializerByNameCallback {
 		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetDownloadDataCallback {
 		void success(org.bimserver.interfaces.objects.SDownloadResult result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetExtendedDataCallback {
 		void success(org.bimserver.interfaces.objects.SExtendedData result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetExtendedDataSchemaByIdCallback {
 		void success(org.bimserver.interfaces.objects.SExtendedDataSchema result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetExtendedDataSchemaByNamespaceCallback {
 		void success(org.bimserver.interfaces.objects.SExtendedDataSchema result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetProjectByPoidCallback {
 		void success(org.bimserver.interfaces.objects.SProject result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetProjectsByNameCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetQueryEngineByIdCallback {
 		void success(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetQueryEngineByNameCallback {
 		void success(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetRevisionCallback {
 		void success(org.bimserver.interfaces.objects.SRevision result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetSerializerByContentTypeCallback {
 		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetSerializerByIdCallback {
 		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetSerializerByNameCallback {
 		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetSubProjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface GetSuggestedDeserializerForExtensionCallback {
 		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface UndeleteProjectCallback {
 		void success(java.lang.Boolean result);
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 
@@ -217,7 +217,7 @@ public class AsyncBimsie1ServiceInterface {
 				try {
 					syncService.addExtendedDataToRevision(roid, extendedData);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -229,7 +229,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.addProject(projectName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -241,7 +241,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.addProjectAsSubProject(projectName, parentPoid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -253,7 +253,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.branchToExistingProject(roid, destPoid, comment, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -265,7 +265,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.branchToNewProject(roid, projectName, comment, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -277,7 +277,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.checkin(poid, comment, deserializerOid, fileSize, fileName, data, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -289,7 +289,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.checkinFromUrl(poid, comment, deserializerOid, fileName, url, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -301,7 +301,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.checkout(roid, serializerOid, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -313,7 +313,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.deleteProject(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -325,7 +325,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.download(roid, serializerOid, showOwn, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -337,7 +337,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.downloadByGuids(roids, guids, serializerOid, deep, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -349,7 +349,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.downloadByNames(roids, names, serializerOid, deep, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -361,7 +361,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.downloadByOids(roids, oids, serializerOid, sync, deep));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -373,7 +373,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.downloadByTypes(roids, classNames, serializerOid, includeAllSubtypes, useObjectIDM, deep, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -385,7 +385,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.downloadQuery(roid, qeid, code, sync, serializerOid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -397,7 +397,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.downloadRevisions(roids, serializerOid, sync));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -409,7 +409,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllExtendedDataOfRevision(roid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -421,7 +421,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllProjects(onlyTopLevel, onlyActive));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -433,7 +433,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllRevisionsOfProject(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -445,7 +445,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDeserializerById(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -457,7 +457,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDeserializerByName(deserializerName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -469,7 +469,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDownloadData(actionId));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -481,7 +481,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getExtendedData(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -493,7 +493,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getExtendedDataSchemaById(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -505,7 +505,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getExtendedDataSchemaByNamespace(namespace));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -517,7 +517,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getProjectByPoid(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -529,7 +529,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getProjectsByName(name));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -541,7 +541,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getQueryEngineById(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -553,7 +553,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getQueryEngineByName(name));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -565,7 +565,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getRevision(roid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -577,7 +577,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSerializerByContentType(contentType));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -589,7 +589,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSerializerById(oid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -601,7 +601,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSerializerByName(serializerName));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -613,7 +613,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSubProjects(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -625,7 +625,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSuggestedDeserializerForExtension(extension));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -637,7 +637,7 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.undeleteProject(poid));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

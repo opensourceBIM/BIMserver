@@ -39,6 +39,9 @@ import org.bimserver.models.log.AccessMethod;
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#isWriteRevision <em>Write Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getWriteExtendedData <em>Write Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getProviderName <em>Provider Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getCompanyUrl <em>Company Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getTokenUrl <em>Token Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getNewProfileUrl <em>New Profile Url</em>}</li>
  * </ul>
  * </p>
  *
@@ -365,5 +368,83 @@ public interface ServiceDescriptor extends IdEObject {
 	 * @generated
 	 */
 	void setProviderName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Company Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Company Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Company Url</em>' attribute.
+	 * @see #setCompanyUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getServiceDescriptor_CompanyUrl()
+	 * @model
+	 * @generated
+	 */
+	String getCompanyUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServiceDescriptor#getCompanyUrl <em>Company Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Company Url</em>' attribute.
+	 * @see #getCompanyUrl()
+	 * @generated
+	 */
+	void setCompanyUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Token Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Token Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Token Url</em>' attribute.
+	 * @see #setTokenUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getServiceDescriptor_TokenUrl()
+	 * @model
+	 * @generated
+	 */
+	String getTokenUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServiceDescriptor#getTokenUrl <em>Token Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Token Url</em>' attribute.
+	 * @see #getTokenUrl()
+	 * @generated
+	 */
+	void setTokenUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>New Profile Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>New Profile Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>New Profile Url</em>' attribute.
+	 * @see #setNewProfileUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getServiceDescriptor_NewProfileUrl()
+	 * @model
+	 * @generated
+	 */
+	String getNewProfileUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServiceDescriptor#getNewProfileUrl <em>New Profile Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>New Profile Url</em>' attribute.
+	 * @see #getNewProfileUrl()
+	 * @generated
+	 */
+	void setNewProfileUrl(String value);
 
 } // ServiceDescriptor
