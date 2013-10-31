@@ -98,7 +98,7 @@ public class AllTests {
 		bimServer = new BimServer(config);
 		try {
 			// Load plugins
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."));
 
 			// Start it
 			bimServer.start();

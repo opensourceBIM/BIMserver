@@ -30,9 +30,10 @@ import org.slf4j.LoggerFactory;
 
 public class CopyAdminAndBIMsieInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CopyAdminAndBIMsieInterface.class);
-	private static final File bootstrap = new File("D:\\git\\bimvie.ws");
-	private static final File bimsie = new File("D:\\git\\BIMsie\\BIMsie\\BIMsie");
-	private static final File admin = new File("D:\\git\\BIMserver\\AdminGui");;
+	private static final File baseGitDir = new File("C:\\Users\\Ruben de Laat\\git");
+	private static final File bootstrap = new File(baseGitDir, "bimvie.ws");
+	private static final File bimsie = new File(baseGitDir, "BIMsie\\BIMsie");
+	private static final File admin = new File(baseGitDir, "BIMserver\\AdminGui");;
 
 	public static void main(String[] args) {
 		CopyAdminAndBIMsieInterface copyAdminAndBIMsieInterface = new CopyAdminAndBIMsieInterface();
