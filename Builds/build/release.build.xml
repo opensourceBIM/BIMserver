@@ -12,6 +12,7 @@
 	<property name="version" value="${majorversion}.${minorversion}.${revisionversion}"/>
 
 	<target name="release">
+		<mkdir dir="/var/www/BIMserver/${majorversion}.${minorversion}"/>
 		<mkdir dir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 		<mkdir dir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}/javadoc"/>
 		<copy file="README.txt" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
