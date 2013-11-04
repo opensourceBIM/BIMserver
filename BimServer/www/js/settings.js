@@ -14,6 +14,6 @@ var Settings = {
 		return version.major == 1 && version.minor == 2 && version.revision == 1;
 	},
 	allowBimServerAddress: function() {
-		return true;
+		return false;
 	}
 }
