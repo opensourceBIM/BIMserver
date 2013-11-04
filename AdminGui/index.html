@@ -12,10 +12,9 @@
 			<div class="message"></div>
 		</div>
   	</div>
-	<div class="container">
+	<div class="my-fluid-container">
 		<div class="row">
-			<div class="sidespan col-md-2">
-			</div>
+			<div class="sidespan col-md-2"></div>
 			<div class="indexcontainer col-md-10"></div>
 		</div>
 	</div>
@@ -113,10 +112,11 @@
 					}
 				}, function(){
 					errorFunction();
-				});				
+				});
 			};
 			
 			function load() {
+				$(".sidespan").empty();
 				Global.history = pushInitialState();
 				var notLoggedInFunction = function(){
 					if (Global.history.page == "Login") {

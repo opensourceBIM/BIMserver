@@ -4,34 +4,27 @@
   <base href="/"></base>
 </head>
 <body>
-	<div class="navbar navbar-static-top navbar-inverse">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a>
-				<ul class="nav">
-					<li><img class="logo"/></li>
-					<!--  <li><a class="pageLink homeLink">Home</a></li>-->
-					<li class="active"><a class="pageLink apiLink">API</a></li>
-					<li><a class="pageLink scenariosLink">Common scenarios</a></li>
-				</ul>
-				<button class="btn btn-default loginButton menuLoginButton pull-right">Login</button>
-				<label class="addressLabel pull-right">Address <input type="text" class="input-xlarge addressInput"/></label>
-			</div>
-		</div>
-	</div>
+	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+		<ul class="nav navbar-nav">
+			<li><img class="logo" style="margin: 10px"/></li>
+			<li class="active"><a class="pageLink apiLink">API</a></li>
+			<li><a class="pageLink scenariosLink">Common scenarios</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><button class="btn btn-default loginButton menuLoginButton" style="margin-top: 15px">Login</button></li>
+			<li><label class="addressLabel" style="margin-top: 20px">Address</label></li><li><input type="text" style="margin: 15px" class="addressInput form-control"/></li>
+		</ul>
+	</nav>
 	<div class="home page">
 	</div>
 	<div class="api page">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="row-fluid">
-				<div class="span2 methodList well">
-					<ul class="innerMethodList nav nav-list"></ul>
+				<div class="col-lg-2 methodList">
+					<div class="innerMethodList list-group"></div>
 				</div>
-				<div class="span10 mainDiv">
-					<div class="hero-unit">
+				<div class="col-lg-10 mainDiv">
+					<div class="jumbotron">
 						<div class="media">
 							<a class="pull-left" href="#">
 								<img class="largeLogo"/>
@@ -182,7 +175,7 @@ LazyLoad.js([
     Global.baseJsDir + "vkbeautify.0.99.00.beta.js", 
     Global.baseJsDir + "prettify.js", 
     Global.baseJsDir + "consolesettings.js", 
-    Global.baseJsDir + "jquery-2.0.2.min.js", 
+    Global.baseJsDir + "jquery-2.0.3.min.js", 
     Global.baseJsDir + "jquery.cookie.js", 
     Global.baseJsDir + "jquery.enterpress.js", 
     Global.baseJsDir + "bootstrap.min.js", 
@@ -284,7 +277,7 @@ LazyLoad.js([
 
 		this.call = function(requestObject, callback) {
 			$.ajax({
-				url: Global.address + "/json",
+				url: $(".addressInput").val() + "/json",
 				data: JSON.stringify(requestObject),
 				contentType: "application/json",
 				type: "POST",
@@ -416,13 +409,13 @@ LazyLoad.js([
 
 		this.makeFieldFromType = function(call, fieldName, type, genericType, doc) {
 			if (type.simpleName == "String") {
-				var input = $("<input type=\"text\"/>");
+				var input = $("<input type=\"text\" class=\"form-control\"/>");
 				input.addClass("__field" + fieldName);
 				input.keyup(othis.inputChange);
 				input.enterpress(othis.send);
 				return input;
 			} else if (type.simpleType == "ENUM") {
-				var select = $("<select></select>");
+				var select = $("<select class=\"form-control\"></select>");
 				select.addClass("__field" + fieldName);
 				select.change(othis.inputChange);
 				var request = {
@@ -444,7 +437,7 @@ LazyLoad.js([
 			} else if (type.name.contains("org.bimserver")) {
 				return $("<div>Unimplemented</div>");
 			} else if (type.name.contains("javax.activation.DataHandler")) {
-				var input = $("<input type=\"file\"/>");
+				var input = $("<input class=\"form-control\" type=\"file\"/>");
 				input.addClass("__field" + fieldName);
 				
 				var reader = new FileReader();
@@ -476,14 +469,14 @@ LazyLoad.js([
 				
 				return input;
 			} else if (type.simpleName == "Boolean") {
-				var input = $("<input type=\"checkbox\" value=\"true\"/>");
+				var input = $("<input type=\"checkbox\" class=\"form-control\" value=\"true\"/>");
 				input.addClass("__field" + fieldName);
 				input.change(othis.inputChange);
 				return input;
 			} else if (type.simpleName == "List") {
 				
 			} else {
-				var input = $("<input type=\"text\"/>");
+				var input = $("<input type=\"text\" class=\"form-control\"/>");
 				input.keyup(othis.inputChange);
 				input.enterpress(othis.send);
 				input.addClass("__field" + fieldName);
@@ -492,8 +485,8 @@ LazyLoad.js([
 		};
 
 		this.loadExampleJson = function(call, serviceInterface, method, container) {
-			if ($(".hero-unit").is(":visible")) {
-				$(".hero-unit").hide();
+			if ($(".jumbotron").is(":visible")) {
+				$(".jumbotron").hide();
 			}
 			othis.lastCall.serviceInterface = serviceInterface;
 			othis.lastCall.method = method;
@@ -540,17 +533,15 @@ LazyLoad.js([
 					var headerLi = $("<li class=\"nav-header\">" + serviceInterface.simpleName + "</li>");
 					$(".innerMethodList").append(headerLi);
 					serviceInterface.methods.forEach(function(serviceMethod){
-						var li = $("<li></li>");
-						var a = $("<a>" + serviceMethod.name + "</a>");
+						var a = $("<a class=\"list-group-item\">" + serviceMethod.name + "</a>");
 						a.data("method", serviceMethod);
 						a.data("serviceInterface", serviceInterface);
 						a.click(function(){
-							$(this).parent().parent().find("li").removeClass("active");
-							$(this).parent().addClass("active");
+							$(this).parent().find(".list-group-item").removeClass("active");
+							$(this).addClass("active");
 							othis.loadExampleJson(null, $(this).data("serviceInterface"), $(this).data("method"), $(".method"));
 						});
-						li.append(a);
-						$(".innerMethodList").append(li);
+						$(".innerMethodList").append(a);
 					});
 				});
 			});
