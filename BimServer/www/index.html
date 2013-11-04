@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>BIMserver</title>
-		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-		<meta content="utf-8" http-equiv="encoding">
-		<base href="/"></base>
-	</head>
-	<body>
-			<div class="row-fluid show-grid">
-              <div class="span4"></div>
-              <div class="span4">
-             	 	<div class="hero-unit">
-						<label>Status: <span class="status"></span></label>
-						<label>Version: <span class="version"></span></label>
-					</div>
-              </div>
-              <div class="span4"></div>
-        </div>
-	</body>
-</html>
+	<title>BIMserver</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<base href="/"></base>
+</head>
+<body>
+	<div class="row-fluid show-grid" style="margin-top: 10px">
+		<div class="span4"></div>
+		<div class="span4">
+			<div class="hero-unit">
+				<label>Status: <span class="status"></span></label> <label>Version:
+					<span class="version"></span>
+				</label>
+			</div>
+		</div>
+		<div class="span4"></div>
+	</div>
+</body>
 <script>
 Global = {};
 
@@ -55,7 +55,7 @@ LazyLoad.css([
 ], function(){});
 
 LazyLoad.js([
-    baseJsDir + "jquery-2.0.2.min.js", 
+    baseJsDir + "jquery-2.0.3.min.js", 
     baseJsDir + "main.js", 
     baseJsDir + "jquery.cookie.js", 
     baseJsDir + "jquery.history.js", 
@@ -114,3 +114,4 @@ LazyLoad.js([
 	});
 });
 </script>
+</html>
