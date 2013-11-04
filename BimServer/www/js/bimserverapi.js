@@ -43,7 +43,13 @@ function BimServerApi(baseUrl, notifier) {
 		SETDEFAULTMODELCOMPARE_DONE: "Default Model Compare successfully changed",
 		LOGIN_BUSY: "Trying to login",
 		CHANGEUSERTYPE_DONE: "Type of user successfully changed",
-		ADDUSER_DONE: "User successfully added"
+		ADDUSER_DONE: "User successfully added",
+		UPDATEINTERNALSERVICE_DONE: "Internal service successfully updated",
+		UPDATEMODELCOMPARE_DONE: "Model compare plugin successfully updated",
+		UPDATEMODELMERGER_DONE: "Model merger successfully updated",
+		UPDATEQUERYENGINE_DONE: "Query engine plugin successfully updated",
+		UPDATEOBJECTIDM_DONE: "ObjectIDM succesfully updated",
+		UPDATEDESERIALIZER_DONE: "Serializer succesfully updated"
 	}
 
 	othis.token = null;

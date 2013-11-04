@@ -12,12 +12,13 @@
 		<tbody>
 		</tbody>
 	</table>
+	<div class="popupLoader"></div>
 	<div class="well clearfix">
 		<button class="btn btn-default saveButton pull-right">Save</button>
 	</div>
 </div>
 <script>
-function GenericPluginSettings(main, usersettings, pluginsettings, configuration) {
+function GenericPluginSettings(main, usersettings, pluginsettingsoid, configuration) {
 	var othis = this;
 	
 	this.close = function(){
@@ -32,15 +33,16 @@ function GenericPluginSettings(main, usersettings, pluginsettings, configuration
 			$(".genericpluginsettings .detailsTable tbody").append("<tr><td>Plugin State</td><td>" + (pluginDescriptor.enabled ? "Enabled" : "Disabled") + "</td></tr>");
 		});
 		if (configuration.title == "Internal Service") {
-			$(".genericpluginsettings .detailsTable tbody").append("<tr><td>Remote Accessible</td><td><input class=\"remoteAccessible\" type=\"checkbox\"" + (pluginsettings.remoteAccessible ? " checked=\"checked\"" : "") + "/></td></tr>");
-			$(".genericpluginsettings .detailsTable tbody").append("<tr><td>Public Profile</td><td><input class=\"publicProfile\" type=\"checkbox\"" + (pluginsettings.publicProfile ? " checked=\"checked\"" : "") + "/></td></tr>");
+			$(".genericpluginsettings .detailsTable tbody").append("<tr><td>Remote Accessible</td><td><input class=\"remoteAccessible\" type=\"checkbox\"" + (othis.pluginsettings.remoteAccessible ? " checked=\"checked\"" : "") + "/></td></tr>");
+			$(".genericpluginsettings .detailsTable tbody").append("<tr><td>Public Profile</td><td><input class=\"publicProfile\" type=\"checkbox\"" + (othis.pluginsettings.publicProfile ? " checked=\"checked\"" : "") + "/></td></tr>");
+			//$(".genericpluginsettings .detailsTable tbody").append("<tr><td><a class=\"linkStripeButton\">Link Stripe</a></td></tr>");
 		}
 		$(".genericpluginsettings h3.title").html(configuration.title);
 		othis.loadPluginObjectDefinition();
 	};
 	
 	this.loadPluginSettings = function() {
-		Global.bimServerApi.call("PluginInterface", "getPluginSettings", {poid: pluginsettings.oid}, function(objectDefinition){
+		Global.bimServerApi.call("PluginInterface", "getPluginSettings", {poid: pluginsettingsoid}, function(objectDefinition){
 			if (objectDefinition != null) {
 				if (objectDefinition.parameters != null) {
 					objectDefinition.parameters.forEach(function(parameter){
@@ -58,7 +60,7 @@ function GenericPluginSettings(main, usersettings, pluginsettings, configuration
 	};
 	
 	this.loadPluginObjectDefinition = function() {
-		Global.bimServerApi.call("PluginInterface", "getPluginObjectDefinition", {oid: pluginsettings.pluginDescriptorId}, function(objectDefinition){
+		Global.bimServerApi.call("PluginInterface", "getPluginObjectDefinition", {oid: othis.pluginsettings.pluginDescriptorId}, function(objectDefinition){
 			if (objectDefinition != null && objectDefinition.parameters != null) {
 				objectDefinition.parameters.forEach(function(parameter){
 					$(".genericpluginsettings .nosettings").hide();
@@ -153,8 +155,8 @@ function GenericPluginSettings(main, usersettings, pluginsettings, configuration
 		othis.savePlugin();
 	};
 
-	if (typeof pluginsettings == "number") {
-		Global.bimServerApi.call(configuration.getInterface, configuration.getMethod, {oid: pluginsettings}, function(data){
+	if (typeof pluginsettingsoid == "number") {
+		Global.bimServerApi.call(configuration.getInterface, configuration.getMethod, {oid: pluginsettingsoid}, function(data){
 			othis.pluginsettings = data;
 			othis.loadGenericPluginSettings();
 		});
@@ -162,6 +164,14 @@ function GenericPluginSettings(main, usersettings, pluginsettings, configuration
 		othis.pluginsettings = pluginsettings;
 		othis.loadGenericPluginSettings();
 	}
+	
+	$(".linkStripeButton").click(function(){
+		$(".popupLoader").load(Global.baseDir + "stripe.html", function(){
+			new StripeGetToken(function(token){
+				console.log(token);
+			});
+		});
+	});
 	
 	$(".genericpluginsettings .saveButton").click(othis.save);
 }
