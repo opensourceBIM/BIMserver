@@ -2,7 +2,7 @@
 	<import file="common.build.xml"/>
 
 	<target name="Build JavaDoc">
-		<javadoc destdir="builds/bimserver-javadoc-${version}">
+		<javadoc destdir="builds/bimserver-javadoc-${version}" maxmemory="2g">
 			<fileset dir="../../BimServer/src"/>
 			<fileset dir="../../BimServer/generated"/>
 			<fileset dir="../../BimServerClientLib/src"/>
