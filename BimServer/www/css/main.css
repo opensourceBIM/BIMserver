@@ -1,0 +1,144 @@
+a {
+	cursor: pointer;
+}
+
+.container-fluid {
+	margin: 10px;
+}
+
+.sidespan ul li {
+	list-style: none;
+}
+
+.sidespan {
+	margin-top: 100px;
+	overflow: hidden;
+}
+
+.container {
+	padding: 10px;
+}
+
+.initialhide, .btn.initialhide {
+	display: none
+}
+
+table .header {
+	font-weight: bold;
+}
+
+.login .span5 {
+	padding-top: 50px;
+	width: 500px;
+}
+
+.modal {
+	overflow: visible;
+}
+
+.modal-body {
+	overflow-y: visible;
+}
+
+.addservice2 .loadPrivateProfiles form {
+	margin-bottom: 0px;
+}
+
+.linkspacer {
+	margin: 8px;
+}
+
+table.table-hover tr {
+	cursor: pointer;
+}
+
+table .btn {
+	padding: 1px 5px 1px;
+	margin-right: -3px;
+}
+
+.accept {
+	background-image: url("../img/accept.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+.basicserversettings .removeDomainButton {
+	margin-left: 5px;
+}
+
+.basicserversettings .whiteListedDomainDiv {
+	margin-bottom: 3px;
+}
+
+.basicserversettings .form-horizontal .control-label {
+	width: 250px;
+}
+
+.basicserversettings .form-horizontal .controls {
+	margin-left: 260px;
+}
+
+.status {
+	cursor: pointer;
+}
+
+.classpath {
+	max-width: 400px;	
+}
+
+.error {
+	color: red;
+}
+
+.success {
+	color: green;
+}
+
+.running {
+	color: blue;
+}
+
+label.checkbox {
+	cursor: pointer;
+}
+
+.progresstd .progress {
+	margin-bottom: 2px;
+}
+
+table.table tr td span {
+	margin-left: 0;
+}
+
+.row-fluid span.timespan {
+	min-height: 0;	
+}
+
+div.setup form.form-horizontal label {
+	text-align: left;
+}
+
+.uploadStatus {
+	word-wrap: break-word;
+}
+
+.fullwidth input {
+	width: 100%;
+}
+
+.fullwidth .controls {
+	width: 350px;
+}
+
+.mainmenu {
+	margin-bottom: 10px;
+}
+
+.buttonBar {
+	margin-top: 10px;
+}
+
+.tab-pane {
+	padding-top: 10px;	
+}
