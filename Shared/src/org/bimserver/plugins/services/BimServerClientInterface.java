@@ -24,6 +24,7 @@ import java.io.OutputStream;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
@@ -46,4 +47,5 @@ public interface BimServerClientInterface extends ServiceHolder {
 	InputStream getDownloadData(long download, long serializerOid) throws IOException;
 	Bimsie1RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException;
 	void setAuthentication(AuthenticationInfo authenticationInfo) throws ServerException, UserException, ChannelConnectionException;
+	Geometry getGeometry(long roid, IfcProduct ifcProduct);
 }
