@@ -8,4 +8,8 @@
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.geometry.jsonshell.SceneJsShellSerializerPlugin</implementationClass>
 	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.geometry.jsonshell.SceneJs3ShellSerializerPlugin</implementationClass>
+	</PluginImplementation>
 </PluginDescriptor>
