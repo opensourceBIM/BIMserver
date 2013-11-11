@@ -303,6 +303,23 @@
 		<copy todir="builds/admingui/plugin">
 			<fileset dir="../../AdminGui/plugin"></fileset>
 		</copy>
+		<mkdir dir="builds/admingui/css"/>
+		<copy todir="builds/admingui/css">
+			<fileset dir="../../AdminGui/css"></fileset>
+		</copy>
+		<mkdir dir="builds/admingui/js"/>
+		<copy todir="builds/admingui/js">
+			<fileset dir="../../AdminGui/js"></fileset>
+		</copy>
+		<mkdir dir="builds/admingui/img"/>
+		<copy todir="builds/admingui/img">
+			<fileset dir="../../AdminGui/img"></fileset>
+		</copy>
+		<copy todir="builds/admingui">
+			<fileset dir="../../AdminGui">
+				<include name="*.html"/>
+			</fileset>
+		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-admingui.jar">
 			<fileset dir="builds/admingui"/>
 		</jar>
