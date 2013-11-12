@@ -72,7 +72,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			} else {
 				LOGGER.error("", e);
 			}
-			error(e.getMessage());
+			error(e);
 		} finally {
 			session.close();
 			if (getActionState() != ActionState.AS_ERROR) {

@@ -41,6 +41,7 @@ public class ModelHelper {
 	private ObjectFactory objectFactory;
 	private IfcModelInterface targetModel;
 	private OidProvider<Long> oidProvider;
+	private boolean keepOriginalOids;
 
 	public ModelHelper(ObjectIDM objectIDM, IfcModelInterface targetModel) {
 		this.objectIDM = objectIDM;
@@ -58,6 +59,10 @@ public class ModelHelper {
 		return copy(object.eClass(), object);
 	}
 
+	public void setKeepOriginalOids(boolean keepOriginalOids) {
+		this.keepOriginalOids = keepOriginalOids;
+	}
+	
 	@SuppressWarnings("unchecked")
 	private IdEObject copy(EClass originalEClass, IdEObject original) throws IfcModelInterfaceException {
 		if (!((IdEObjectImpl)original).isLoadedOrLoading()) {
@@ -67,11 +72,15 @@ public class ModelHelper {
 			return converted.get(original);
 		}
 		IdEObject newObject = (IdEObject) objectFactory.create(original.eClass());
-		if (newObject.getOid() == -1) {
-			if (oidProvider != null) {
-				((IdEObjectImpl)newObject).setOid(oidProvider.newOid(newObject.eClass()));
-			} else {
-				((IdEObjectImpl)newObject).setOid(original.getOid());
+		if (keepOriginalOids) {
+			((IdEObjectImpl)newObject).setOid(original.getOid());
+		} else {
+			if (newObject.getOid() == -1) {
+				if (oidProvider != null) {
+					((IdEObjectImpl)newObject).setOid(oidProvider.newOid(newObject.eClass()));
+				} else {
+					((IdEObjectImpl)newObject).setOid(original.getOid());
+				}
 			}
 		}
 		converted.put(original, newObject);

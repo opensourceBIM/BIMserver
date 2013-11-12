@@ -29,14 +29,14 @@ import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterf
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 
 public interface ServiceHolder {
-	public <T extends PublicInterface> T get(Class<T> clazz) throws PublicInterfaceNotFoundException;
-	public Bimsie1NotificationRegistryInterface getRegistry() throws PublicInterfaceNotFoundException;
-	public Bimsie1AuthInterface getBimsie1AuthInterface() throws PublicInterfaceNotFoundException;
-	public SettingsInterface getSettingsInterface() throws PublicInterfaceNotFoundException;
-	public Bimsie1LowLevelInterface getBimsie1LowLevelInterface() throws PublicInterfaceNotFoundException;
-	public AdminInterface getAdminInterface() throws PublicInterfaceNotFoundException;
-	public MetaInterface getMeta() throws PublicInterfaceNotFoundException;
-	public PluginInterface getPluginInterface() throws PublicInterfaceNotFoundException;
-	public ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException;
-	public Bimsie1ServiceInterface getBimsie1ServiceInterface() throws PublicInterfaceNotFoundException;
+	<T extends PublicInterface> T get(Class<T> clazz) throws PublicInterfaceNotFoundException;
+	Bimsie1NotificationRegistryInterface getRegistry() throws PublicInterfaceNotFoundException;
+	Bimsie1AuthInterface getBimsie1AuthInterface() throws PublicInterfaceNotFoundException;
+	SettingsInterface getSettingsInterface() throws PublicInterfaceNotFoundException;
+	Bimsie1LowLevelInterface getBimsie1LowLevelInterface() throws PublicInterfaceNotFoundException;
+	AdminInterface getAdminInterface() throws PublicInterfaceNotFoundException;
+	MetaInterface getMeta() throws PublicInterfaceNotFoundException;
+	PluginInterface getPluginInterface() throws PublicInterfaceNotFoundException;
+	ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException;
+	Bimsie1ServiceInterface getBimsie1ServiceInterface() throws PublicInterfaceNotFoundException;
 }

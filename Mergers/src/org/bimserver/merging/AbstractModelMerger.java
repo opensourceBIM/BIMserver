@@ -100,6 +100,9 @@ public abstract class AbstractModelMerger implements ModelMerger {
 			size += ifcModel.size();
 		}
 		IfcModelInterface endModel = new IfcModel((int) size);
+		modelHelper.setTargetModel(endModel);
+		modelHelper.setObjectFactory(endModel);
+		modelHelper.setKeepOriginalOids(true);
 		float foundPrefix = Float.MIN_VALUE;
 		boolean allModelsSameScale = allModelsSameScale(ifcModels, foundPrefix);
 		if (allModelsSameScale) {
@@ -125,6 +128,7 @@ public abstract class AbstractModelMerger implements ModelMerger {
 				float scale = (float) (getLengthUnitPrefix(ifcModel) / Math.pow(10.0, prefix.getValue()));
 				setLengthUnitMeasure(ifcModel, prefix);
 
+				
 				ifcModel.indexGuids();
 				for (long key : ifcModel.keySet()) {
 					IdEObject idEObject = (IdEObject) ifcModel.get(key);

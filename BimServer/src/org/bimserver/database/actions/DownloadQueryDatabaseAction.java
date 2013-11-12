@@ -73,7 +73,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 					return queryEngine.query(ifcModel, code, new Reporter(){
 
 						@Override
-						public void error(String error) {
+						public void error(Exception error) {
 						}
 
 						@Override

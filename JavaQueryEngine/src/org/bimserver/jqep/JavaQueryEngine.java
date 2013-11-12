@@ -46,7 +46,7 @@ public class JavaQueryEngine implements QueryEngine {
 			return dest;
 		} catch (Exception e) {
 			LOGGER.error("", e);
-			reporter.error(e.getMessage());
+			reporter.error(e);
 		}
 		return null;
 	}

@@ -171,11 +171,11 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	}
 	
 	@Override
-	public void error(String error) {
-		LOGGER.error(error);
-		errors.add(error);
+	public void error(Exception error) {
+		LOGGER.error("", error);
+		errors.add(error.getMessage());
 		stop = new GregorianCalendar();
-		changeActionState(ActionState.AS_ERROR, error == null ? "Unknown Error" : error, 0);
+		changeActionState(ActionState.AS_ERROR, error == null ? "Unknown Error" : error.getMessage(), 0);
 	}
 	
 	@Override

@@ -351,7 +351,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	private void add(long oid, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException {
-		if (((IdEObjectImpl) eObject).hasModel() && !allowMultiModel) {
+		if (((IdEObjectImpl) eObject).hasModel() && !allowMultiModel && ((IdEObjectImpl) eObject).getModel() != this) {
 			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel());
 		}
 		if (oid == -1 || eObject.eClass().getEAnnotation("wrapped") != null) {
@@ -359,7 +359,9 @@ public class IfcModel implements IfcModelInterface {
 		} else {
 			if (objects.containsKey(oid)) {
 				if (!ignoreDuplicateOids) {
-					throw new IfcModelInterfaceException("Oid already stored: " + oid + " " + eObject + " (old: " + objects.get(oid));
+					if (objects.get(oid) != eObject) {
+						throw new IfcModelInterfaceException("Oid already stored: " + oid + " " + eObject + " (old: " + objects.get(oid));
+					}
 				}
 			} else {
 				objects.put(oid, eObject);
@@ -810,7 +812,6 @@ public class IfcModel implements IfcModelInterface {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		long oid = oidCounter++;
 		((IdEObjectImpl) object).setOid(oid);
-		add(oid, object, false, false);
 		return (T) object;
 	}
 	
@@ -823,6 +824,8 @@ public class IfcModel implements IfcModelInterface {
 		add(oid, object, false, false);
 		return (T) object;
 	}
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	@Override
