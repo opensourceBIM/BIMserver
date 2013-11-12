@@ -41,7 +41,9 @@ import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.classloaders.DelegatingClassLoader;
 import org.bimserver.plugins.classloaders.EclipsePluginClassloader;
+import org.bimserver.plugins.classloaders.FileJarClassLoader;
 import org.bimserver.plugins.classloaders.JarClassLoader;
+import org.bimserver.plugins.classloaders.MemoryJarClassLoader;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
@@ -122,7 +124,8 @@ public class PluginManager {
 			if (libFolder.isDirectory()) {
 				for (File libFile : libFolder.listFiles()) {
 					if (libFile.getName().toLowerCase().endsWith(".jar")) {
-						JarClassLoader jarClassLoader = new JarClassLoader(delegatingClassLoader, libFile);
+						FileJarClassLoader jarClassLoader = new FileJarClassLoader(delegatingClassLoader, libFile, new File(tempDir, projectRoot.getName()));
+//						JarClassLoader jarClassLoader = new MemoryJarClassLoader(delegatingClassLoader, libFile);
 						delegatingClassLoader.add(jarClassLoader);
 					}
 				}
@@ -191,7 +194,8 @@ public class PluginManager {
 			throw new PluginException("Not a file: " + file.getAbsolutePath());
 		}
 		try {
-			JarClassLoader jarClassLoader = new JarClassLoader(getClass().getClassLoader(), file);
+			FileJarClassLoader jarClassLoader = new FileJarClassLoader(getClass().getClassLoader(), file, new File(tempDir, file.getName()));
+//			JarClassLoader jarClassLoader = new MemoryJarClassLoader(getClass().getClassLoader(), file);
 			InputStream pluginStream = jarClassLoader.getResourceAsStream("plugin/plugin.xml");
 			if (pluginStream == null) {
 				throw new PluginException("No plugin/plugin.xml found");

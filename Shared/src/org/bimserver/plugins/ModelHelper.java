@@ -143,4 +143,8 @@ public class ModelHelper {
 	public void setObjectFactory(ObjectFactory objectFactory) {
 		this.objectFactory = objectFactory;
 	}
+	
+	public IfcModelInterface getTargetModel() {
+		return targetModel;
+	}
 }
