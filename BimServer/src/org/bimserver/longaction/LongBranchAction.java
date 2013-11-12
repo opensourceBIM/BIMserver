@@ -80,7 +80,7 @@ public class LongBranchAction extends LongAction<LongCheckinActionKey> {
 			} else {
 				LOGGER.error("", e);
 			}
-			error(e.getMessage());
+			error(e);
 		} finally {
 			session.close();
 			done();

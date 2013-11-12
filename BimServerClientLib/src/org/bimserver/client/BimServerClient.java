@@ -276,8 +276,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		outputStream.close();
 	}
 
-	public InputStream getDownloadData(long download, long serializerOid) throws IOException {
-		return channel.getDownloadData(baseAddress, token, download, serializerOid);
+	public InputStream getDownloadData(long downloadId, long serializerOid) throws IOException {
+		return channel.getDownloadData(baseAddress, token, downloadId, serializerOid);
 	}
 
 	public IfcModelInterface newModel(SProject project) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {

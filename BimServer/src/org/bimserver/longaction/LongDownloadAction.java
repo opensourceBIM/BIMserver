@@ -61,9 +61,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		try {
 			executeAction(action, downloadParameters, session, false);
  		} catch (UserException e) {
- 			error(e.getMessage());
+ 			error(e);
  		} catch (Exception e) {
- 			error(e.getMessage());
+ 			error(e);
 			LOGGER.error("", e);
 		} finally {
 			if (session != null) {

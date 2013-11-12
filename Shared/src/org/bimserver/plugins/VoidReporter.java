@@ -20,7 +20,7 @@ package org.bimserver.plugins;
 public class VoidReporter implements Reporter {
 
 	@Override
-	public void error(String error) {
+	public void error(Exception error) {
 	}
 
 	@Override
