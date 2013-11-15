@@ -47,7 +47,6 @@
 		</copy>
 		<copy todir="builds/BuildJar/plugins">
 			<fileset dir="builds/pluginlibs" />
-			<fileset dir="../plugins" />
 		</copy>
 		<delete dir="builds/BuildJar/classes" />
 		<javac destdir="builds/BuildJar" debug="on" srcdir="../../BimServer/starter"  includeantruntime="false"/>
@@ -124,7 +123,6 @@
 		</copy>
 		<copy todir="builds/BuildWar/WEB-INF/plugins">
 			<fileset dir="builds/pluginlibs" />
-			<fileset dir="../plugins" />
 		</copy>
 		<jar jarfile="builds/BuildWar/WEB-INF/lib/bimserver.jar">
 			<fileset dir="builds/BuildWar/WEB-INF/classes" />
