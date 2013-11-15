@@ -128,8 +128,8 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				
 				byte[] normals = geometryData.getNormals();
 				buffer = ByteBuffer.wrap(normals);
-				dataOutputStream.writeInt(buffer.capacity() / 4);
 				convertOrder(buffer);
+				dataOutputStream.writeInt(buffer.capacity() / 4);
 				dataOutputStream.write(buffer.array());
 			}
 		}
