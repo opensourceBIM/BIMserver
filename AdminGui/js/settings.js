@@ -16,7 +16,8 @@ var Settings = {
 		return [
 		        "serversettingsLink",
 		        "usersettingsLink",
-		        "serverinfoLink"
+		        "serverinfoLink",
+		        "gettingStartedLink"
 		];
 	},
 	allowBimServerAddress: function() {
