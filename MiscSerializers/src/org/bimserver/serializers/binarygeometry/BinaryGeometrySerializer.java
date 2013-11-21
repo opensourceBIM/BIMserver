@@ -111,8 +111,18 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					type = ifcProduct.eClass().getName();
 				}
 				dataOutputStream.writeUTF(type);
+				
+				int skip = 4 - (dataOutputStream.size() % 4);
+				if(skip > 0 && skip != 4)
+					dataOutputStream.write(new byte[skip]);
+				
 				dataOutputStream.writeLong(ifcProduct.getOid());
-				dataOutputStream.write(new byte[4 - ((materialName + type).getBytes(Charsets.UTF_8).length % 4)]); // the 2 + 2 length bytes can be ignored here because they make up 4 together :)
+				
+				skip = 4 - (dataOutputStream.size() % 4);
+				if(skip > 0 && skip != 4)
+					dataOutputStream.write(new byte[skip]);
+				
+			//	dataOutputStream.write(new byte[4 - ((materialName + type).getBytes(Charsets.UTF_8).length % 4)]); // the 2 + 2 length bytes can be ignored here because they make up 4 together :)
 				
 				Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
 				objectBounds.writeTo(dataOutputStream);
