@@ -49,28 +49,18 @@ base[0].href = Global.baseDir;
 }());
 
 LazyLoad.css([
-    baseCssDir + "main.css", 
-    baseCssDir + "bootstrap.min.css",
-    baseCssDir + "glyph.css"
+    baseCssDir + "bootstrap.min.css"
 ], function(){});
 
 LazyLoad.js([
     baseJsDir + "jquery-2.0.3.min.js", 
     baseJsDir + "main.js", 
     baseJsDir + "jquery.cookie.js", 
-    baseJsDir + "jquery.history.js", 
-    baseJsDir + "jquery.numeric.js", 
-    baseJsDir + "jquery.enterpress.js", 
-    baseJsDir + "jquery.ui.widget.js", 
     baseJsDir + "String.js", 
     baseJsDir + "bimserverapibootstrap.js", 
     baseJsDir + "bootstrap.min.js", 
-    baseJsDir + "utils.js", 
-    baseJsDir + "formatters.js", 
-    baseJsDir + "settings.js"
+    baseJsDir + "formatters.js"
 ], function () {
-	pushInitialState();
-
 	Global.bimServerApi = null;
 	Global.objectcache = {};
 	Global.timeoutId;

@@ -160,7 +160,9 @@
 				};
 				
 				var errorFunction = function(){
-					
+					$.removeCookie("username" + window.document.location.port, {path: "/"});
+					$.removeCookie("autologin" + window.document.location.port, {path: "/"});
+					$.removeCookie("address" + window.document.location.port, {path: "/"});
 				};
 				
 				if ($.cookie("address" + window.document.location.port) != null) {
