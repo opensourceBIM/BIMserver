@@ -88,6 +88,7 @@ public class CopyAdminAndBIMsieInterface {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "basicserversettings.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "serversettings.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "serverinfo.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "gettingstarted.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "plugins.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "console.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "extendeddataschemas.html"), admin);
