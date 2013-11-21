@@ -109,12 +109,12 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				}
 				dataOutputStream.writeUTF(type);
 				
+				dataOutputStream.writeLong(ifcProduct.getOid());
+
 				int skip = 4 - (dataOutputStream.size() % 4);
 				if(skip > 0 && skip != 4) {
 					dataOutputStream.write(new byte[skip]);
 				}
-				
-				dataOutputStream.writeLong(ifcProduct.getOid());
 				
 				Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
 				objectBounds.writeTo(dataOutputStream);
