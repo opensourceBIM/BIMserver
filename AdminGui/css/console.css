@@ -5,21 +5,27 @@
 .mainDiv {
 	padding-right: 16px;
 	position: absolute;
-	top: 46px;
+	top: 74px;
 	bottom: 0px;
 	right: 0px;
+	left: 324px;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
 
+.parametersForm {
+	padding: 20px;	
+}
+
 .methodList {
-	padding: 8px 0;
+	padding: 16px;
 	position: absolute;
-	top: 62px;
-	left: 16px;
+	top: 58px;
+	left: 0px;
 	bottom: 0px;
 	overflow-y: auto;
 	overflow-x: hidden;
+	width: 310px;
 }
 
 .innerMethodList {
@@ -102,4 +108,8 @@ pre.prettyprint {
 	color: white;
 	margin-top: 5px;
 	margin-bottom: 0px;	
+}
+
+.list-group-item.header {
+	background-color: #EEEEEE;	
 }

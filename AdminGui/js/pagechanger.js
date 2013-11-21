@@ -45,7 +45,7 @@ function TabChanger(navElement, mainContainer) {
 		if (page != null) {
 			contentElement.load(page, function(response, status, xhr) {
 				if (status == "error") {
-					console.log(msg, xhr.status, xhr.statusText);
+					console.log(response, xhr.status, xhr.statusText);
 				} else {
 					othis.current = constructorFunction.call(this);
 					contentElement.show();

@@ -156,3 +156,7 @@ div.sidespan > div > ul {
 .sidespan ul {
 	padding-left: 20px;
 }
+
+.nav>li>a {
+	padding: 5px 10px;	
+}
