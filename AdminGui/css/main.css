@@ -160,3 +160,13 @@ div.sidespan > div > ul {
 .nav>li>a {
 	padding: 5px 10px;	
 }
+
+.nav-stacked {
+	width: 250px;
+	float: left;	
+}
+
+.indexcontainer {
+	padding-left: 20px;	
+	padding-right: 20px;	
+}

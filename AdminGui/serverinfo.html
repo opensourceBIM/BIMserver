@@ -40,7 +40,9 @@
 <script>
 function ServerInfo(containerDiv, main) {
 	var othis = this;
-
+	
+	othis.containerDiv = containerDiv;
+	
 	this.show = function(){
 		var history = History.getState().data;
 		if (history.page == "ServerInfo" && history.subpage != null) {

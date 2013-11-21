@@ -7,6 +7,7 @@
 			<li class="usersettingsLink initialhide"><a>User Settings</a></li>
 			<li class="serversettingsLink initialhide"><a>Server Settings</a></li>
 			<li class="serverinfoLink initialhide"><a>Server Info</a></li>
+			<li class="gettingStartedLink initialhide"><a>Getting Started</a></li>
 			<li class="testingLink initialhide"><a>Testing</a></li>
 		</ul>
 	</div>
@@ -69,6 +70,8 @@ function Main(address, username) {
 				othis.showServerInfo(null);
 			} else if (history.page == "Testing") {
 				othis.showTesting(null);
+			} else if (history.page == "GettingStarted") {
+				othis.showGettingStarted(null);
 			} else if (history.page == "ResetPassword") {
 				othis.showResetPassword(null);
 			} else if (history.page == "AddService") {
@@ -239,6 +242,12 @@ function Main(address, username) {
 		}, callback);
 	};
 
+	this.showGettingStarted = function(callback) {
+		othis.pageChanger.changePage($(".gettingStartedLink"), "gettingstarted.html", function(){
+			return new GettingStarted($(this), othis);
+		}, callback);
+	};
+
 	this.showTesting = function(callback) {
 		othis.pageChanger.changePage($(".testingLink"), "testing.html", function(){
 			pushHistory({page: "Testing"}, "Testing");
@@ -271,6 +280,7 @@ function Main(address, username) {
 	$(".usersettingsLink").click(function(event){othis.showUserSettings(null, true)});
 	$(".serverinfoLink").click(function(event){othis.showServerInfo(null, true)});
 	$(".serversettingsLink").click(function(event){othis.showServerSettings(null, true)});
+	$(".gettingStartedLink").click(function(event){othis.showGettingStarted(null, true)});
 	$(".testingLink").click(function(event){othis.showTesting(null, true)});
 	$(".logoutLink").click(othis.logout);
 	

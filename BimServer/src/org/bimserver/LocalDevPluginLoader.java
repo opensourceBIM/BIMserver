@@ -37,7 +37,7 @@ public class LocalDevPluginLoader {
 
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimql\\BimQL"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimvie.ws"));
-		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMsie"));
+		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMSie2\\BIMsie"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMsurfer3"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "RGDChecker"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "WebGL-threeJS\\ServerPlugin"));

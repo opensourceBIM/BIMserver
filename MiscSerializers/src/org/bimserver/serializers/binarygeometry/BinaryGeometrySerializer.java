@@ -99,7 +99,11 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		for (IfcProduct ifcProduct : getModel().getAllWithSubTypes(IfcProduct.class)) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
 			if (geometryInfo != null) {
-				String materialName = getMaterial(ifcProduct);
+				String materialName = ifcProduct.eClass().getName();
+				try {
+					materialName = getMaterial(ifcProduct);
+				} catch (Exception e) {
+				}
 				dataOutputStream.writeUTF(materialName);
 				String type = null;
 				if (ifcProduct instanceof IfcSlab && ((IfcSlab) ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
@@ -112,7 +116,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				dataOutputStream.writeLong(ifcProduct.getOid());
 
 				int skip = 4 - (dataOutputStream.size() % 4);
-				if(skip > 0 && skip != 4) {
+				if(skip != 0 && skip != 4) {
 					dataOutputStream.write(new byte[skip]);
 				}
 				
@@ -138,7 +142,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		dataOutputStream.flush();
 	}
 	
-	public String getMaterial(IfcProduct ifcProduct) {
+	public String getMaterial(IfcProduct ifcProduct) throws Exception {
 		boolean materialFound = false;
 		String material = ifcProduct.eClass().getName();
 		if (ifcProduct instanceof IfcSlab && ((IfcSlab)ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {

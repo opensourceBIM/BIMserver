@@ -30,10 +30,11 @@ import org.slf4j.LoggerFactory;
 
 public class CopyAdminAndBIMsieInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CopyAdminAndBIMsieInterface.class);
-	private static final File baseGitDir = new File("D:\\git");
+	private static final File baseGitDir = new File("C:\\Users\\Ruben de Laat\\git");
+//	private static final File baseGitDir = new File("D:\\git");
 	private static final File bootstrap = new File(baseGitDir, "bimvie.ws");
-	private static final File bimsie = new File(baseGitDir, "BIMsie");
-	private static final File admin = new File(baseGitDir, "BIMserver\\AdminGui");;
+	private static final File bimsie = new File(baseGitDir, "BIMSie2");
+	private static final File admin = new File(baseGitDir, "BIMserver2\\AdminGui");;
 
 	public static void main(String[] args) {
 		CopyAdminAndBIMsieInterface copyAdminAndBIMsieInterface = new CopyAdminAndBIMsieInterface();
@@ -72,6 +73,7 @@ public class CopyAdminAndBIMsieInterface {
 				}
 			});
 			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(bimsie, "css"));
+			FileUtils.copyDirectory(new File(bootstrap, "fonts"), new File(bimsie, "fonts"));
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
@@ -114,15 +116,8 @@ public class CopyAdminAndBIMsieInterface {
 				}
 			});
 			FileUtils.copyDirectory(new File(bootstrap, "img"), new File(admin, "img"));
-			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(admin, "css"), new FileFilter() {
-				@Override
-				public boolean accept(File pathname) {
-					if (pathname.getName().equals("bootstrap.min.css")) {
-						return false;
-					}
-					return true;
-				}
-			});
+			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(admin, "css"));
+			FileUtils.copyDirectory(new File(bootstrap, "fonts"), new File(admin, "fonts"));
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}

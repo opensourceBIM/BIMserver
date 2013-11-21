@@ -307,6 +307,10 @@
 		<copy todir="builds/admingui/css">
 			<fileset dir="../../AdminGui/css"></fileset>
 		</copy>
+		<mkdir dir="builds/admingui/fonts"/>
+		<copy todir="builds/admingui/fonts">
+			<fileset dir="../../AdminGui/fonts"></fileset>
+		</copy>
 		<mkdir dir="builds/admingui/js"/>
 		<copy todir="builds/admingui/js">
 			<fileset dir="../../AdminGui/js"></fileset>
