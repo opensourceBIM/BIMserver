@@ -51,11 +51,9 @@ import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Charsets;
-
 public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometrySerializer.class);
-	private static final byte FORMAT_VERSION = 2;
+	private static final byte FORMAT_VERSION = 3;
 	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
 
 	@Override
@@ -82,9 +80,8 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 
 	private void writeGeometries(OutputStream outputStream) throws IOException {
 		DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-		dataOutputStream.writeUTF("BGS"); // 5 bytes
-		dataOutputStream.writeByte(FORMAT_VERSION); // 1 byte
-		dataOutputStream.write(new byte[2]); // 2 bytes
+		dataOutputStream.writeUTF("BGS");
+		dataOutputStream.writeByte(FORMAT_VERSION);
 		
 		Bounds modelBounds = new Bounds();
 		int nrObjects = 0;
@@ -113,16 +110,11 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				dataOutputStream.writeUTF(type);
 				
 				int skip = 4 - (dataOutputStream.size() % 4);
-				if(skip > 0 && skip != 4)
+				if(skip > 0 && skip != 4) {
 					dataOutputStream.write(new byte[skip]);
+				}
 				
 				dataOutputStream.writeLong(ifcProduct.getOid());
-				
-				skip = 4 - (dataOutputStream.size() % 4);
-				if(skip > 0 && skip != 4)
-					dataOutputStream.write(new byte[skip]);
-				
-			//	dataOutputStream.write(new byte[4 - ((materialName + type).getBytes(Charsets.UTF_8).length % 4)]); // the 2 + 2 length bytes can be ignored here because they make up 4 together :)
 				
 				Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
 				objectBounds.writeTo(dataOutputStream);
