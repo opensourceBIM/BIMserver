@@ -1009,6 +1009,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			BimServerClientFactory factory = new JsonBimServerClientFactory(baseUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory());
 			BimServerClientInterface client = factory.create();
 			SServiceDescriptor service = client.getRemoteServiceInterface().getService(serviceIdentifier);
+			if (service == null) {
+				throw new UserException("No service found with identifier " + serviceIdentifier);
+			}
 			service.setUrl(baseUrl);
 			return service;
 		} catch (Exception e) {
