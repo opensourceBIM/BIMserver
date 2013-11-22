@@ -81,6 +81,6 @@ public class LoginUserTokenDatabaseAction extends BimDatabaseAction<String> {
 		} catch (InterruptedException e) {
 			LOGGER.error("", e);
 		}
-		throw new UserException("Invalid username/password combination");
+		throw new UserException("Invalid token");
 	}
 }

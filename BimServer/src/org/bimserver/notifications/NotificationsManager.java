@@ -89,7 +89,7 @@ public class NotificationsManager {
 	public Channel getChannel(Service service) throws ChannelConnectionException {
 		switch (service.getNotificationProtocol()) {
 		case JSON:
-			JsonChannel jsonChannel = new JsonChannel(bimServer.getReflectorFactory(), jsonSocketReflectorFactory, service.getUrl(), bimServer.getServicesMap());
+			JsonChannel jsonChannel = new JsonChannel(bimServer.getReflectorFactory(), jsonSocketReflectorFactory, service.getUrl() + "/json", bimServer.getServicesMap());
 			jsonChannel.connect(new SimpleTokenHolder());
 			return jsonChannel;
 		case INTERNAL:
