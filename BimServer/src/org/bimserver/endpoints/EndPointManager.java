@@ -42,8 +42,10 @@ public class EndPointManager {
 
 	public void unregister(long endPointId) {
 		EndPoint endPoint = endPoints.get(endPointId);
-		endPoints.remove(endPointId);
-		endPoint.cleanup();
+		if (endPoint != null) {
+			endPoints.remove(endPointId);
+			endPoint.cleanup();
+		}
 	}
 	
 	public EndPoint get(long endPointId) {
