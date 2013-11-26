@@ -7,4 +7,4 @@ Dear $name,<br/>
 
 A new revision ($revisionId) with comment "$comment" has been checked-in on project "$projectName".
 
-The BIMserver<br/>
+The BIMserver ($siteaddress)<br/>
