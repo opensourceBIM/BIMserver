@@ -30,8 +30,11 @@ import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Migrator {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Migrator.class);
 	private final Database database;
 
 	public Migrator(Database database) {
@@ -44,11 +47,8 @@ public class Migrator {
 		try {
 			Class<Migration> migrationClass = (Class<Migration>) Class.forName(name);
 			return (Migration) migrationClass.newInstance();
-		} catch (ClassNotFoundException e) {
-			return null;
-		} catch (InstantiationException e) {
-			return null;
-		} catch (IllegalAccessException e) {
+		} catch (Exception e) {
+			LOGGER.error("", e);
 			return null;
 		}
 	}
@@ -65,6 +65,9 @@ public class Migrator {
 			} else {
 				moreUpgrades = false;
 			}
+		}
+		if (i < targetVersion) {
+			LOGGER.warn("Not upgraded to " + targetVersion + ", probably missing Step files!");
 		}
 		return schema;
 	}
