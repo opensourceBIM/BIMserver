@@ -100,7 +100,7 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 		});
 	};
 
-	this.saveSettings = function() {
+	this.saveSettings = function(callback) {
 		var settings = {
 			__type: "SObjectType",
 			parameters: []
@@ -136,7 +136,9 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 			settings.parameters.push(parameter);
 		});
 		Global.bimServerApi.callWithFullIndication("PluginInterface", "setPluginSettings", {poid: othis.pluginsettings.oid, settings: settings}, function(data){
-			
+			if (callback != null) {
+				callback();
+			}
 		});
 	};
 	
@@ -145,9 +147,11 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 			othis.pluginsettings.remoteAccessible = $(".genericpluginsettings .remoteAccessible").is(":checked");
 			othis.pluginsettings.publicProfile = $(".genericpluginsettings .publicProfile").is(":checked");
 			Global.bimServerApi.call("PluginInterface", "updateInternalService", {internalService: othis.pluginsettings}, function(data){
+				othis.saveSettings();
 			});
+		} else {
+			othis.saveSettings();
 		}
-		othis.saveSettings();
 	};
 	
 	this.save = function(event) {
