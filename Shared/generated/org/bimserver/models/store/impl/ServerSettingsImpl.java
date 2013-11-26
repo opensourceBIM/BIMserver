@@ -47,6 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getWebModules <em>Web Modules</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getWebModule <em>Web Module</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  * </ul>
  * </p>
  *
@@ -370,6 +371,24 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setServiceRepositoryUrl(String newServiceRepositoryUrl) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SERVICE_REPOSITORY_URL, newServiceRepositoryUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSendEmailOnNewRevision() {
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSendEmailOnNewRevision(boolean newSendEmailOnNewRevision) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION, newSendEmailOnNewRevision);
 	}
 
 } //ServerSettingsImpl

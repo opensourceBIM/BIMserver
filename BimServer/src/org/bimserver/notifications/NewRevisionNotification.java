@@ -17,6 +17,17 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.bimserver.BimServer;
 import org.bimserver.client.Channel;
 import org.bimserver.database.BimserverDatabaseException;
@@ -25,14 +36,17 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.ModelCheckerResult;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Trigger;
+import org.bimserver.models.store.User;
 import org.bimserver.plugins.modelchecker.ModelCheckException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
@@ -44,6 +58,7 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.async.AsyncBimsie1RemoteServiceInterface;
 import org.bimserver.shared.interfaces.async.AsyncBimsie1RemoteServiceInterface.NewRevisionCallback;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,6 +89,8 @@ public class NewRevisionNotification extends Notification {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
+			sendEmail(session, project, revision);
 			for (Service service : project.getServices()) {
 				if (soid == -1 || service.getOid() == soid) {
 					triggerNewRevision(session, getBimServer().getNotificationsManager(), getBimServer(), getBimServer().getNotificationsManager().getSiteAddress(), project, roid, Trigger.NEW_REVISION, service);
@@ -95,6 +112,80 @@ public class NewRevisionNotification extends Notification {
 		}
 	}
 	
+	private void sendEmail(DatabaseSession session, Project project, Revision revision) {
+		Set<User> users = getUsers(session, project);
+		for (User user : users) {
+			String body = null;
+			try {
+				if (MailSystem.isValidEmailAddress(user.getUsername())) {
+					Session mailSession = getBimServer().getMailSystem().createMailSession();
+					ServerSettings serverSettings = getBimServer().getServerSettingsCache().getServerSettings();
+					
+					Message msg = new MimeMessage(mailSession);
+					String emailSenderAddress = serverSettings.getEmailSenderAddress();
+					InternetAddress addressFrom = new InternetAddress(emailSenderAddress);
+					msg.setFrom(addressFrom);
+					
+					InternetAddress[] addressTo = new InternetAddress[1];
+					addressTo[0] = new InternetAddress(user.getUsername());
+					msg.setRecipients(Message.RecipientType.TO, addressTo);
+					
+					Map<String, Object> context = new HashMap<String, Object>();
+					context.put("name", user.getName());
+					context.put("username", user.getUsername());
+					context.put("siteaddress", serverSettings.getSiteAddress());
+					context.put("revisionId", revision.getId());
+					context.put("comment", revision.getComment());
+					context.put("projectName", project.getName());
+					String subject = null;
+					body = getBimServer().getTemplateEngine().process(context, TemplateIdentifier.NEW_REVISION_EMAIL_BODY);
+					subject = getBimServer().getTemplateEngine().process(context, TemplateIdentifier.NEW_REVISION_EMAIL_SUBJECT);
+					msg.setContent(body, "text/html");
+					msg.setSubject(subject.trim());
+					
+					LOGGER.info("Sending new revision e-mail to " + user.getUsername());
+					
+					Transport.send(msg);
+				}
+			} catch (Exception e) {
+				LOGGER.error(body);
+				LOGGER.error("", e);
+			}
+		}
+	}
+
+	private Set<User> getUsers(DatabaseSession session, Project project) {
+		Set<Project> relatedProjects = getRelatedProjects(project);
+		Set<User> users = new HashSet<User>();
+		for (Project relatedProject : relatedProjects) {
+			for (User user : relatedProject.getHasAuthorizedUsers()) {
+				users.add(user);
+			}
+		}
+		return users;
+	}
+	
+	private Set<Project> getRelatedProjects(Project project) {
+		Set<Project> projects = new HashSet<Project>();
+		Project rootProject = getRootProject(project);
+		getAllSubProjects(projects, rootProject);
+		return projects;
+	}
+
+	private Project getRootProject(Project project) {
+		if (project.getParent() != null) {
+			return getRootProject(project.getParent());
+		}
+		return project;
+	}
+	
+	private void getAllSubProjects(Set<Project> projects, Project project) {
+		projects.add(project);
+		for (Project subProject : project.getSubProjects()) {
+			getAllSubProjects(projects, subProject);
+		}
+	}
+
 	public void triggerNewRevision(DatabaseSession session, NotificationsManager notificationsManager, final BimServer bimServer, String siteAddress, Project project, final long roid, Trigger trigger, final Service service) throws UserException, ServerException {
 		if (service.getTrigger() == trigger) {
 			Channel channel = null;

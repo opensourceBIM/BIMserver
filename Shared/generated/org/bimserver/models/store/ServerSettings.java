@@ -44,6 +44,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getWebModules <em>Web Modules</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getWebModule <em>Web Module</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  * </ul>
  * </p>
  *
@@ -476,5 +477,31 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setServiceRepositoryUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Send Email On New Revision</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Send Email On New Revision</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Send Email On New Revision</em>' attribute.
+	 * @see #setSendEmailOnNewRevision(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SendEmailOnNewRevision()
+	 * @model
+	 * @generated
+	 */
+	boolean isSendEmailOnNewRevision();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Send Email On New Revision</em>' attribute.
+	 * @see #isSendEmailOnNewRevision()
+	 * @generated
+	 */
+	void setSendEmailOnNewRevision(boolean value);
 
 } // ServerSettings

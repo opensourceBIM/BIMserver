@@ -48,6 +48,7 @@ public class SServerSettings implements SDataBase
 	private List<Long> webModules = new ArrayList<Long>();
 	private long webModuleId = -1;
 	private java.lang.String serviceRepositoryUrl;
+	private boolean sendEmailOnNewRevision;
 
 	public long getOid() {
 		return this.oid;
@@ -126,6 +127,9 @@ public class SServerSettings implements SDataBase
 		if (sField.getName().equals("serviceRepositoryUrl")) {
 			return getServiceRepositoryUrl();
 		}
+		if (sField.getName().equals("sendEmailOnNewRevision")) {
+			return isSendEmailOnNewRevision();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -203,6 +207,10 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("serviceRepositoryUrl")) {
 			setServiceRepositoryUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("sendEmailOnNewRevision")) {
+			setSendEmailOnNewRevision((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -351,6 +359,14 @@ public class SServerSettings implements SDataBase
 
 	public void setServiceRepositoryUrl(java.lang.String serviceRepositoryUrl) {
 		this.serviceRepositoryUrl = serviceRepositoryUrl;
+	}
+	
+	public boolean isSendEmailOnNewRevision() {
+		return sendEmailOnNewRevision;
+	}
+
+	public void setSendEmailOnNewRevision(boolean sendEmailOnNewRevision) {
+		this.sendEmailOnNewRevision = sendEmailOnNewRevision;
 	}
 	
 	@Override
