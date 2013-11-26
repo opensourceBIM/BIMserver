@@ -1069,13 +1069,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__SERVICE_REPOSITORY_URL = 16;
 
 	/**
+	 * The feature id for the '<em><b>Send Email On New Revision</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION = 17;
+
+	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 17;
+	int SERVER_SETTINGS_FEATURE_COUNT = 18;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -7707,6 +7716,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerSettings_ServiceRepositoryUrl();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Send Email On New Revision</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#isSendEmailOnNewRevision()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_SendEmailOnNewRevision();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.UserSettings <em>User Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12719,6 +12739,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_SETTINGS__SERVICE_REPOSITORY_URL = eINSTANCE.getServerSettings_ServiceRepositoryUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Send Email On New Revision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION = eINSTANCE.getServerSettings_SendEmailOnNewRevision();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
