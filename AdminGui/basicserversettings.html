@@ -1,8 +1,8 @@
 <div class="basicserversettings">
 	<form class="form-horizontal" role="form">
 		<div class="form-group">
-			<label class="col-sm-2 control-label" for="inputRepositoryServer"><a rel="tooltip" data-original-title="Central repository server from which services, plugins and extended data schemas can be loaded" data-placement="right">Repository Server</a></label>
-			<div class="col-sm-8">
+			<label class="col-lg-2 control-label" for="inputRepositoryServer"><a rel="tooltip" data-original-title="Central repository server from which services, plugins and extended data schemas can be loaded" data-placement="right">Repository Server</a></label>
+			<div class="col-lg-8">
 				<input type="text" class="form-control inputRepositoryServer" id="inputRepositoryServer" placeholder="Name">
 			</div>
 		</div>
@@ -45,51 +45,58 @@
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="cacheOutputFiles"><a rel="tooltip" data-original-title="Whether serialized versions of models should be cached on disk. The first time a model is downloaded a cache file will be created. The server administrator is responsible for cleaning up cached files" data-placement="right">Cache output files</a>
-					<input type="checkbox" class="input-xxlarge cacheOutputFiles" id="cacheOutputFiles">
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether serialized versions of models should be cached on disk. The first time a model is downloaded a cache file will be created. The server administrator is responsible for cleaning up cached files" data-placement="right">Cache output files</a>
+					<input type="checkbox" class="input-xxlarge cacheOutputFiles">
 				</label>
 				<button class="btn btn-default clearCacheButton">Clear cache</button>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="checkinMergingEnabled"><a rel="tooltip" data-original-title="Whether checkin-merging is enabled" data-placement="right">Checkin merging enabled</a>
-					<input type="checkbox" class="checkinMergingEnabled" id="checkinMergingEnabled">
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether checkin-merging is enabled" data-placement="right">Checkin merging enabled</a>
+					<input type="checkbox" class="checkinMergingEnabled">
 				</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="generateGeometryCheckin"><a rel="tooltip" data-original-title="Whether to generate geometry on checkin" data-placement="right">Generate geometry on checkin</a>
-					<input type="checkbox" class="generateGeometryCheckin" id="generateGeometryCheckin">
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether to generate geometry on checkin" data-placement="right">Generate geometry on checkin</a>
+					<input type="checkbox" class="generateGeometryCheckin">
 				</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="createTopLevelProjects"><a rel="tooltip" data-original-title="Allow user to create top level projects" data-placement="right">Allow user to create top level projects</a>
-					<input type="checkbox" class="createTopLevelProjects" id="createTopLevelProjects">
+				<label class="checkbox"><a rel="tooltip" data-original-title="Allow user to create top level projects" data-placement="right">Allow user to create top level projects</a>
+					<input type="checkbox" class="createTopLevelProjects">
 				</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="allowSelfRegistration"><a rel="tooltip" data-original-title="Whether to allow users to register themselves" data-placement="right">Allow self registration</a>
-					<input type="checkbox" class="allowSelfRegistration" id="allowSelfRegistration"/>
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether to allow users to register themselves" data-placement="right">Allow self registration</a>
+					<input type="checkbox" class="allowSelfRegistration"/>
 				</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="sendConfirmationEmailAfterRegistration"><a rel="tooltip" data-original-title="Whether a confirmation e-mail should be send after a new user has been registered" data-placement="right">Send confirmation email after registration</a>
-					<input type="checkbox" class="sendConfirmationEmailAfterRegistration" id="sendConfirmationEmailAfterRegistration"/>
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether a confirmation e-mail should be send after a new user has been registered" data-placement="right">Send confirmation email after registration</a>
+					<input type="checkbox" class="sendConfirmationEmailAfterRegistration"/>
 				</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="allowOnlyWhitelisted"><a rel="tooltip" data-original-title="Whether only whitelisted (below) domains should be authorized to connect" data-placement="right">Only white listed domains</a>
-					<input type="checkbox" class="allowOnlyWhitelisted" id="allowOnlyWhitelisted"/>
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether an email should be send to all authorized users of a project when there is new revision" data-placement="right">Send email on new revision</a>
+					<input type="checkbox" class="sendEmailOnNewRevision"/>
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-lg-8">
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether only whitelisted (below) domains should be authorized to connect" data-placement="right">Only white listed domains</a>
+					<input type="checkbox" class="allowOnlyWhitelisted"/>
 				</label>
 			</div>
 		</div>
@@ -161,6 +168,7 @@ function BasicServerSettings(main, serversettings) {
 			serverSettings.allowUsersToCreateTopLevelProjects = $(".basicserversettings .createTopLevelProjects").prop("checked");
 			serverSettings.allowSelfRegistration = $(".basicserversettings .allowSelfRegistration").prop("checked");
 			serverSettings.sendConfirmationEmailAfterRegistration = $(".basicserversettings .sendConfirmationEmailAfterRegistration").prop("checked");
+			serverSettings.sendEmailOnNewRevision = $(".basicserversettings .sendEmailOnNewRevision").prop("checked");
 			serverSettings.allowOnlyWhitelisted = $(".basicserversettings .allowOnlyWhitelisted").prop("checked");
 			serverSettings.generateGeometryOnCheckin = $(".basicserversettings .generateGeometryCheckin").prop("checked");
 			Global.bimServerApi.callWithFullIndication("SettingsInterface", "setServerSettings", {serverSettings: serverSettings}, function(data){
@@ -203,6 +211,7 @@ function BasicServerSettings(main, serversettings) {
 			$(".basicserversettings .createTopLevelProjects").prop("checked", data.allowUsersToCreateTopLevelProjects);
 			$(".basicserversettings .allowSelfRegistration").prop("checked", data.allowSelfRegistration);
 			$(".basicserversettings .sendConfirmationEmailAfterRegistration").prop("checked", data.sendConfirmationEmailAfterRegistration);
+			$(".basicserversettings .sendEmailOnNewRevision").prop("checked", data.sendEmailOnNewRevision);
 			$(".basicserversettings .allowOnlyWhitelisted").prop("checked", data.allowOnlyWhitelisted);
 			$(".basicserversettings .generateGeometryCheckin").prop("checked", data.generateGeometryOnCheckin);
 			data.whitelistedDomains.forEach(function(domain){
