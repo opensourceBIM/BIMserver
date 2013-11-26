@@ -1,22 +1,12 @@
 package org.bimserver.demoplugins.service;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.util.Date;
-import java.util.List;
-
-import javax.activation.DataHandler;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SActionState;
-import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
-import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectDefinition;
@@ -30,13 +20,10 @@ import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
-import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UserTokenAuthentication;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.utils.InputStreamDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -104,12 +91,12 @@ public class SpaceInvadersService extends ServicePlugin {
 					state.setStart(startDate);
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 
-					SSerializerPluginConfiguration stepSerializerRemote = bimServerClientInterface.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
+//					SSerializerPluginConfiguration stepSerializerRemote = bimServerClientInterface.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
 					
 					try {
 						IfcModelInterface model = bimServerClientInterface.getModel(poid, roid, true);
 						for (IfcSpace ifcSpace : model.getAllWithSubTypes(IfcSpace.class)) {
-							GeometryInfo geometry = ifcSpace.getGeometry();
+//							GeometryInfo geometry = ifcSpace.getGeometry();
 							bimServerClientInterface.getGeometry(roid, ifcSpace);
 						}
 					} catch (BimServerClientException e) {

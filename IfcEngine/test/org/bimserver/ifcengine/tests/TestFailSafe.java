@@ -26,7 +26,7 @@ public class TestFailSafe {
 
 			List<? extends RenderEngineInstance> instances = model.getInstances("IFCMAPPEDITEM");
 			for (RenderEngineInstance instance : instances) {
-				float[] transformationMatrix = instance.getTransformationMatrix();
+//				float[] transformationMatrix = instance.getTransformationMatrix();
 //				dumpMatrix(transformationMatrix);
 				int index = geometry.getIndex(instance.getVisualisationProperties().getStartIndex());
 				System.out.println(index);
@@ -40,6 +40,7 @@ public class TestFailSafe {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void dumpMatrix(float...fs) {
 		for (int i=0; i<16; i++) {
 			System.out.print(fs[i]);
