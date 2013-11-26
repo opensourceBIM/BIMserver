@@ -76,8 +76,6 @@ function BimServerApi(baseUrl, notifier) {
 	othis.listeners = {};
 	othis.autoLoginTried = false;
 
-	othis.AJAXaSync = true;
-
 	this.init = function(callback) {
 		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.js", function(result){
 			othis.schema = result.classes;
@@ -94,10 +92,15 @@ function BimServerApi(baseUrl, notifier) {
 		return key;
 	};
 
-	this.login = function(username, password, rememberme, callback, errorCallback) {
+	this.login = function(username, password, rememberme, callback, errorCallback, options) {
+		if(typeof options == 'undefined') {
+			options = { async: true };
+		}
+
 		var request = {
 			username: username,
-			password: password
+			password: password,
+			async: options.async
 		};
 		othis.call("Bimsie1AuthInterface", "login", request, function(data){
 			othis.token = data;
@@ -409,14 +412,20 @@ function BimServerApi(baseUrl, notifier) {
 
 		othis.notifier.resetStatusQuick();
 
-		console.log("request", request);
+		var async = true;
+		if(typeof request.request != 'undefined' && typeof request.request.parameters != 'undefined' && typeof request.request.parameters.async != 'undefined') {
+			async = request.request.parameters.async;
+			delete request.request.parameters.async;
+		}
+
+		console.log((async ? "async" : "sync"), "request", request);
 
 		$.ajax(othis.address, {
 			type: "POST",
 			contentType: 'application/json',
 			data: JSON.stringify(request),
 			dataType: "json",
-			async: othis.AJAXaSync,
+			async: async,
 			success: function(data) {
 				console.log("response", data);
 				var errorsToReport = [];
