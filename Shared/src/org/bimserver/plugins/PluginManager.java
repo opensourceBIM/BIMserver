@@ -42,8 +42,6 @@ import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.classloaders.DelegatingClassLoader;
 import org.bimserver.plugins.classloaders.EclipsePluginClassloader;
 import org.bimserver.plugins.classloaders.FileJarClassLoader;
-import org.bimserver.plugins.classloaders.JarClassLoader;
-import org.bimserver.plugins.classloaders.MemoryJarClassLoader;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;

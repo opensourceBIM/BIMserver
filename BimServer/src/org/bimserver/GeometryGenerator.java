@@ -30,14 +30,9 @@ import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcMappedItem;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
@@ -163,17 +158,17 @@ public class GeometryGenerator {
 									geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
 									geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
 
-									IfcMappedItem ifcMappedItem = null;
-									
-									IfcProductRepresentation ifcProductRepresentation = ifcProduct.getRepresentation();
-									for (IfcRepresentation ifcRepresentation : ifcProductRepresentation.getRepresentations()) {
-										for (IfcRepresentationItem ifcRepresentationItem : ifcRepresentation.getItems()) {
-											if (ifcRepresentationItem instanceof IfcMappedItem) {
-												ifcMappedItem = (IfcMappedItem)ifcRepresentationItem;
-												break;
-											}
-										}
-									}
+//									IfcMappedItem ifcMappedItem = null;
+//									
+//									IfcProductRepresentation ifcProductRepresentation = ifcProduct.getRepresentation();
+//									for (IfcRepresentation ifcRepresentation : ifcProductRepresentation.getRepresentations()) {
+//										for (IfcRepresentationItem ifcRepresentationItem : ifcRepresentation.getItems()) {
+//											if (ifcRepresentationItem instanceof IfcMappedItem) {
+//												ifcMappedItem = (IfcMappedItem)ifcRepresentationItem;
+//												break;
+//											}
+//										}
+//									}
 									
 //									if (ifcMappedItem != null) {
 //										GeometryInstance geometryInstance = null;
