@@ -25,7 +25,7 @@
 		<mkdir dir="builds/BuildJar/home/logs" />
 		<mkdir dir="builds/BuildJar/home/tmp" />
 		<copy todir="builds/BuildJar/home/templates" overwrite="true" failonerror="false">
-			<fileset dir="${defaultsettings}/${target}/templates" />
+			<fileset dir="${defaultsettings}/shared/templates" />
 		</copy>
 		<replace file="builds/BuildJar/config/version.xml" token="@MAJOR@" value="${majorversion}" />
 		<replace file="builds/BuildJar/config/version.xml" token="@MINOR@" value="${minorversion}" />
@@ -102,7 +102,7 @@
 		<replace file="builds/BuildWar/WEB-INF/web.xml" token="@VERSION@" value="${version}" />
 		
 		<copy todir="builds/BuildWar/WEB-INF/templates" overwrite="true">
-			<fileset dir="${defaultsettings}/${target}/templates" />
+			<fileset dir="${defaultsettings}/shared/templates" />
 		</copy>
 		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
 			<fileset file="${defaultsettings}/${target}/settings.xml" />
