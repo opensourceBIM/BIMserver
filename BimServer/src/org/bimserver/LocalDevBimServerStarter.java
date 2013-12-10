@@ -21,6 +21,10 @@ import java.io.File;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
@@ -34,17 +38,38 @@ import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.commons.cli.CommandLine;
 
 public class LocalDevBimServerStarter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimServerStarter.class);
 	private BimServer bimServer;
 	
 	public static void main(String[] args) {
-		new LocalDevBimServerStarter().start(1, "localhost", 8080, 8085);
-//		new LocalDevBimServerStarter().start(2, "localhost", 8081, 8086);
+		Options options = new Options();
+
+		options.addOption("git", true, "Directory from which to load git plugins");
+		
+		CommandLineParser parser = new BasicParser();
+		File gitDir = null;
+		try {
+			CommandLine cmd = parser.parse(options, args);
+			if (cmd.hasOption("git")) {
+				String gitString = cmd.getOptionValue("git");
+				gitDir = new File(gitString);
+				if (!gitDir.isDirectory()) {
+					throw new RuntimeException("git parameter must point to a directory");
+				}
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+		new LocalDevBimServerStarter().start(1, "localhost", 8080, 8085, gitDir);
+//		new LocalDevBimServerStarter().start(2, "localhost", 8081, 8086, gitDir);
 	}
 
-	public void start(int id, String address, int port, int pbport) {
+	public void start(int id, String address, int port, int pbport, File gitDir) {
 		BimServerConfig config = new BimServerConfig();
 		config.setHomeDir(new File("home" + id));
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
@@ -57,7 +82,7 @@ public class LocalDevBimServerStarter {
 		bimServer = new BimServer(config);
 		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
 		try {
-	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."));
+	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), gitDir);
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);

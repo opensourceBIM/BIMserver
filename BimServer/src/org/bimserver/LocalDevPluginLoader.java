@@ -27,14 +27,10 @@ import org.slf4j.LoggerFactory;
 public class LocalDevPluginLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevPluginLoader.class);
 	
-	public static void loadPlugins(PluginManager pluginManager, File current) throws PluginException {
+	public static void loadPlugins(PluginManager pluginManager, File current, File gitDirectory) throws PluginException {
 		LOGGER.info("Loading plugins from " + current.getAbsolutePath());
 		pluginManager.loadAllPluginsFromEclipseWorkspace(current);
 		
-		// Change this to wherever your GIT base dir is
-		File gitDirectory = new File("D:\\git");
-//		File gitDirectory = new File("C:\\Users\\Ruben de Laat\\git");
-
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimql\\BimQL"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimvie.ws"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMSie2\\BIMsie"));
@@ -57,7 +53,7 @@ public class LocalDevPluginLoader {
 			home.mkdir();
 		}
 		PluginManager pluginManager = new PluginManager(new File(home, "tmp"), System.getProperty("java.class.path"), null, null, null);
-		loadPlugins(pluginManager, current);
+		loadPlugins(pluginManager, current, current);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;
 	}

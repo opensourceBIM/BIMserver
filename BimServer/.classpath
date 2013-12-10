@@ -22,6 +22,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/openid/xercesImpl-2.8.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/JOpenId-1.08.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/javax.annotation-1.1.0.v201108011116.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-cli-1.2.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>
