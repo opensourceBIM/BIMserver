@@ -544,7 +544,7 @@ function BimServerApi(baseUrl, notifier) {
 				}
 			} else {
 				if (errorCallback != null) {
-					errorCallback();
+					errorCallback(data.exception);
 				}
 			}
 		}, showBusy, showDone, showError);
