@@ -70,7 +70,7 @@ public class TestFramework {
 			EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
 		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
 			try {
-				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."));
+				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), null);
 				bimServer.start();
 				// Convenience, setup the server to make sure it is in RUNNING state
 				if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {

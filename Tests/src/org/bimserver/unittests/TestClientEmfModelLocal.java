@@ -63,7 +63,7 @@ public class TestClientEmfModelLocal {
 			}
 
 			LocalDevBimServerStarter localDevBimWebServerStarter = new LocalDevBimServerStarter();
-			localDevBimWebServerStarter.start(1, "localhost", 8082, 8085);
+			localDevBimWebServerStarter.start(1, "localhost", 8082, 8085, null);
 			bimServer = localDevBimWebServerStarter.getBimServer();
 		} catch (IOException e) {
 			e.printStackTrace();
