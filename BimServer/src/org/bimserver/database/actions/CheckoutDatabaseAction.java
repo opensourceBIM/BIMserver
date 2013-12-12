@@ -117,7 +117,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 					if (totalSize == 0) {
 						setProgress("Preparing checkout...", 0);
 					} else {
-						setProgress("Preparing checkout...", Math.round(100L * total.get() / totalSize));
+						setProgress("Preparing checkout...", (int)Math.round(100.0 * total.get() / totalSize));
 					}
 				}
 			});
