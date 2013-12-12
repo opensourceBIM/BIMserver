@@ -15,6 +15,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
+import org.bimserver.models.ifc2x3tc1.IfcClassification;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
@@ -25,6 +26,7 @@ import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
+import org.bimserver.models.ifc2x3tc1.IfcStair;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ServiceDescriptor;
@@ -112,7 +114,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
 					IfcModelInterface model = bimServerClientInterface.getModel(poid, roid, true);
-
+					
 					DeserializerPlugin deserializerPlugin = getPluginManager().getFirstDeserializer("ifc", true);
 					
 					Deserializer deserializer = deserializerPlugin.createDeserializer(null);

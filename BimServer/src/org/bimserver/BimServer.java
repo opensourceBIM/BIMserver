@@ -255,8 +255,9 @@ public class BimServer {
 		} catch (Throwable e) {
 			if (LOGGER == null) {
 				e.printStackTrace();
+			} else {
+				LOGGER.error("", e);
 			}
-			LOGGER.error("", e);
 			serverInfoManager.setErrorMessage(e.getMessage());
 		}
 	}
