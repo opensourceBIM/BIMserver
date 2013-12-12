@@ -77,7 +77,9 @@ public class FileJarClassLoader extends JarClassLoader {
 		if (!file.getParentFile().exists()) {
 			FileUtils.forceMkdir(file.getParentFile());
 		}
-		IOUtils.copy(jarInputStream, new FileOutputStream(file));
+		FileOutputStream fileOutputStream = new FileOutputStream(file);
+		IOUtils.copy(jarInputStream, fileOutputStream);
+		fileOutputStream.close();
 	}
 
 	private void loadSubJars(byte[] byteArray) {

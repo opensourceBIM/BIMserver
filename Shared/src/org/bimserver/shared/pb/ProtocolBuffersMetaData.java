@@ -173,6 +173,12 @@ public class ProtocolBuffersMetaData {
 			LOGGER.error("", e);
 		} catch (DescriptorValidationException e) {
 			LOGGER.error("", e);
+		} finally {
+			try {
+				inputStream.close();
+			} catch (IOException e) {
+				LOGGER.error("", e);
+			}
 		}
 		return null;
 	}
