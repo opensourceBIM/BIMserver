@@ -84,7 +84,9 @@ public class RootServlet extends HttpServlet {
 				response.setContentType("image/gif");
 			}
 			String pathInfo = request.getPathInfo();
-			if (pathInfo.startsWith("/soap11/") || pathInfo.equals("/soap11")) {
+			if (pathInfo == null) {
+				LOGGER.error("PathInfo of Request is null");
+			} else if (pathInfo.startsWith("/soap11/") || pathInfo.equals("/soap11")) {
 				soap11Servlet.service(request, response);
 			} else if (pathInfo.startsWith("/soap12/") || pathInfo.equals("/soap12")) {
 				soap12Servlet.service(request, response);

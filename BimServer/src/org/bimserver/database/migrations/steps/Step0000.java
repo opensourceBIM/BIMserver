@@ -286,7 +286,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(referenceDataValue, "guid", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
 		EClass listDataValue = schema.createEClass(storePackage, "ListDataValue", dataValue);
-		schema.createEReference(listDataValue, "values", dataValue, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());;
+		schema.createEReference(listDataValue, "values", dataValue, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		EClass simpleDataValue = schema.createEClass(storePackage, "SimpleDataValue", dataValue);
 		schema.createEAttribute(simpleDataValue, "stringValue", ecorePackage.getEString(), Multiplicity.SINGLE);

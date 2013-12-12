@@ -70,102 +70,104 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 		SMethod sMethod = servicesMap.getBySimpleName(methodDescriptor.getServiceDescriptorContainer().getName()).getSMethod(methodDescriptor.getName());
 		if (sMethod == null) {
 			LOGGER.info("Method " + methodDescriptor.getName() + " not found");
-		}
-		try {
-			KeyValuePair[] arguments = new KeyValuePair[inputType.getFields().size()];
-			int i = 0;
-			for (FieldDescriptor fieldDescriptor : inputType.getFields()) {
-				SParameter sParameter = sMethod.getParameter(i);
-				Object value = request.getField(fieldDescriptor);
-				if (value instanceof EnumValueDescriptor) {
-					EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)value;
-					Class en = getJavaType(fieldDescriptor);
-					arguments[i] = new KeyValuePair(fieldDescriptor.getName(), en.getEnumConstants()[enumValueDescriptor.getIndex()]);
-				} else if (value instanceof ByteString) {
-					ByteString byteString = (ByteString)value;
-					DataSource dataSource = new org.bimserver.utils.ByteArrayDataSource("bytes", byteString.toByteArray());
-					DataHandler dataHandler = new DataHandler(dataSource);
-					arguments[i] = new KeyValuePair(fieldDescriptor.getName(), dataHandler);
-				} else if (value instanceof DynamicMessage) {
-					arguments[i] = new KeyValuePair(fieldDescriptor.getName(), convertProtocolBuffersMessageToSObject((DynamicMessage)value, null, sParameter.getType()));
-				} else if (value instanceof Collection) {
-					Collection col = (Collection)value;
-					if (sParameter.getType().isList()) {
-						List list = new ArrayList(col);
-						arguments[i] = new KeyValuePair(fieldDescriptor.getName(), list);
-					} else if (sParameter.getType().isSet()) {
-						Set set = new HashSet(col);
-						arguments[i] = new KeyValuePair(fieldDescriptor.getName(), set);
-					}
-				} else {
-					arguments[i] = new KeyValuePair(fieldDescriptor.getName(), value);
-				}
-				i++;
-			}
-			Object result = sMethod.invoke(publicInterface, service, arguments);
-			Builder builder = response.newBuilderForType();
-			if (methodDescriptor.getOutputDescriptor().getName().equals("VoidResponse")) {
-				builder.setField(errorMessageField, "OKE");
-			} else {
-				FieldDescriptor valueField = protocolBuffersMetaData.getMessageDescriptor(response.getDescriptorForType().getName()).getField("value");
-				if (result != null) {
-					if (valueField.getType().getJavaType() == JavaType.ENUM) {
-						builder.setField(valueField, valueField.getEnumType().findValueByName(result.toString()));
-					} else if (valueField.getType().getJavaType() != JavaType.MESSAGE) {
-						if (result instanceof Date) {
-							builder.setField(valueField, ((Date)result).getTime());
-						} else {
-							if (valueField.isRepeated()) {
-								builder.setField(valueField, new ArrayList());
-							} else {
-								builder.setField(valueField, result);
-							}
+			return null;
+		} else {
+			try {
+				KeyValuePair[] arguments = new KeyValuePair[inputType.getFields().size()];
+				int i = 0;
+				for (FieldDescriptor fieldDescriptor : inputType.getFields()) {
+					SParameter sParameter = sMethod.getParameter(i);
+					Object value = request.getField(fieldDescriptor);
+					if (value instanceof EnumValueDescriptor) {
+						EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)value;
+						Class en = getJavaType(fieldDescriptor);
+						arguments[i] = new KeyValuePair(fieldDescriptor.getName(), en.getEnumConstants()[enumValueDescriptor.getIndex()]);
+					} else if (value instanceof ByteString) {
+						ByteString byteString = (ByteString)value;
+						DataSource dataSource = new org.bimserver.utils.ByteArrayDataSource("bytes", byteString.toByteArray());
+						DataHandler dataHandler = new DataHandler(dataSource);
+						arguments[i] = new KeyValuePair(fieldDescriptor.getName(), dataHandler);
+					} else if (value instanceof DynamicMessage) {
+						arguments[i] = new KeyValuePair(fieldDescriptor.getName(), convertProtocolBuffersMessageToSObject((DynamicMessage)value, null, sParameter.getType()));
+					} else if (value instanceof Collection) {
+						Collection col = (Collection)value;
+						if (sParameter.getType().isList()) {
+							List list = new ArrayList(col);
+							arguments[i] = new KeyValuePair(fieldDescriptor.getName(), list);
+						} else if (sParameter.getType().isSet()) {
+							Set set = new HashSet(col);
+							arguments[i] = new KeyValuePair(fieldDescriptor.getName(), set);
 						}
-					} else if (result instanceof List) {
-						List list = new ArrayList();
-						List originalList = (List) result;
-						for (Object object : originalList) {
-							list.add(convertSObjectToProtocolBuffersObject((SBase) object, sMethod.getBestReturnType()));
-						}
-						builder.setField(valueField, list);
-					} else if (result instanceof Set) {
-						List list = new ArrayList();
-						Set originalSet = (Set) result;
-						for (Object object : originalSet) {
-							list.add(convertSObjectToProtocolBuffersObject((SBase) object, sMethod.getBestReturnType()));
-						}
-						builder.setField(valueField, list);
 					} else {
-						builder.setField(valueField, convertSObjectToProtocolBuffersObject((SBase) result, sMethod.getBestReturnType()));
+						arguments[i] = new KeyValuePair(fieldDescriptor.getName(), value);
 					}
+					i++;
 				}
-				builder.setField(errorMessageField, "OKE");
+				Object result = sMethod.invoke(publicInterface, service, arguments);
+				Builder builder = response.newBuilderForType();
+				if (methodDescriptor.getOutputDescriptor().getName().equals("VoidResponse")) {
+					builder.setField(errorMessageField, "OKE");
+				} else {
+					FieldDescriptor valueField = protocolBuffersMetaData.getMessageDescriptor(response.getDescriptorForType().getName()).getField("value");
+					if (result != null) {
+						if (valueField.getType().getJavaType() == JavaType.ENUM) {
+							builder.setField(valueField, valueField.getEnumType().findValueByName(result.toString()));
+						} else if (valueField.getType().getJavaType() != JavaType.MESSAGE) {
+							if (result instanceof Date) {
+								builder.setField(valueField, ((Date)result).getTime());
+							} else {
+								if (valueField.isRepeated()) {
+									builder.setField(valueField, new ArrayList());
+								} else {
+									builder.setField(valueField, result);
+								}
+							}
+						} else if (result instanceof List) {
+							List list = new ArrayList();
+							List originalList = (List) result;
+							for (Object object : originalList) {
+								list.add(convertSObjectToProtocolBuffersObject((SBase) object, sMethod.getBestReturnType()));
+							}
+							builder.setField(valueField, list);
+						} else if (result instanceof Set) {
+							List list = new ArrayList();
+							Set originalSet = (Set) result;
+							for (Object object : originalSet) {
+								list.add(convertSObjectToProtocolBuffersObject((SBase) object, sMethod.getBestReturnType()));
+							}
+							builder.setField(valueField, list);
+						} else {
+							builder.setField(valueField, convertSObjectToProtocolBuffersObject((SBase) result, sMethod.getBestReturnType()));
+						}
+					}
+					builder.setField(errorMessageField, "OKE");
+				}
+				return builder.build();
+	//		} catch (InvocationTargetException e) {
+	//			Builder errorMessage = response.newBuilderForType();
+	//			if (e.getTargetException() != null && e.getTargetException().getMessage() != null) {
+	//				errorMessage.setField(errorMessageField, e.getTargetException().getMessage());
+	//			} else {
+	//				if (e.getMessage() != null) {
+	//					errorMessage.setField(errorMessageField, e.getMessage());
+	//				} else {
+	//					errorMessage.setField(errorMessageField, "Unknown error");
+	//				}
+	//			}
+	//			return errorMessage.build();
+			} catch (Exception e) {
+				if (!(e instanceof org.bimserver.shared.exceptions.ServiceException)) {
+					LOGGER.error("", e);
+				}
+				Builder errorMessage = response.newBuilderForType();
+				if (e.getMessage() != null) {
+					errorMessage.setField(errorMessageField, e.getMessage());
+				} else {
+					LOGGER.error("", e);
+					errorMessage.setField(errorMessageField, "Unknown error");
+				}
+				return errorMessage.build();
 			}
-			return builder.build();
-//		} catch (InvocationTargetException e) {
-//			Builder errorMessage = response.newBuilderForType();
-//			if (e.getTargetException() != null && e.getTargetException().getMessage() != null) {
-//				errorMessage.setField(errorMessageField, e.getTargetException().getMessage());
-//			} else {
-//				if (e.getMessage() != null) {
-//					errorMessage.setField(errorMessageField, e.getMessage());
-//				} else {
-//					errorMessage.setField(errorMessageField, "Unknown error");
-//				}
-//			}
-//			return errorMessage.build();
-		} catch (Exception e) {
-			if (!(e instanceof org.bimserver.shared.exceptions.ServiceException)) {
-				LOGGER.error("", e);
-			}
-			Builder errorMessage = response.newBuilderForType();
-			if (e.getMessage() != null) {
-				errorMessage.setField(errorMessageField, e.getMessage());
-			} else {
-				LOGGER.error("", e);
-				errorMessage.setField(errorMessageField, "Unknown error");
-			}
-			return errorMessage.build();
 		}
 	}
 }

@@ -46,7 +46,7 @@ public class Migrator {
 		String name = "org.bimserver.database.migrations.steps.Step" + StringUtils.leftPad("" + number, 4, "0");
 		try {
 			Class<Migration> migrationClass = (Class<Migration>) Class.forName(name);
-			return (Migration) migrationClass.newInstance();
+			return migrationClass.newInstance();
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			return null;

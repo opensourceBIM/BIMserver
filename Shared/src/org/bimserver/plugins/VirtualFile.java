@@ -246,7 +246,7 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	private boolean remove(VirtualFile virtualFile) {
-		return files.remove(virtualFile) != null;
+		return files.remove(virtualFile.getName()) != null;
 	}
 
 	@Override

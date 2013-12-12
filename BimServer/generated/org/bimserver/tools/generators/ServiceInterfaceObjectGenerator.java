@@ -4,7 +4,6 @@ import org.eclipse.emf.ecore.*;
 import org.bimserver.utils.*;
 import org.bimserver.emf.MetaDataManager;
 import java.io.File;
-import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.StringUtils;
 
 public class ServiceInterfaceObjectGenerator

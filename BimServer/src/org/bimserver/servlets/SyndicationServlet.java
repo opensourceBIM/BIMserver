@@ -86,10 +86,6 @@ public class SyndicationServlet extends SubServlet {
 				} else {
 					serviceMap = getBimServer().getServiceFactory().get(token, AccessMethod.SYNDICATION);
 				}
-			} catch (UserException e) {
-				LOGGER.error("", e);
-			}
-			try {
 				if (serviceMap.getBimsie1AuthInterface().login(username, password) != null) {
 					String requestURI = request.getRequestURI();
 					response.setContentType("application/atom+xml");

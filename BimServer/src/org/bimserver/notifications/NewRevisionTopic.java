@@ -29,12 +29,6 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
 public class NewRevisionTopic extends Topic {
-	@Override
-	public void register(EndPoint endPoint) throws TopicRegisterException {
-		// TODO check rights here too
-		super.register(endPoint);
-	}
-
 	public void process(final DatabaseSession session, final long poid, final long roid, NewRevisionNotification newRevisionNotification) throws BimserverDatabaseException, UserException, ServerException {
 		map(new Mapper(){
 			@Override

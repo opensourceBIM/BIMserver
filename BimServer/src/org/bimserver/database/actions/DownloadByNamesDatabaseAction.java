@@ -112,7 +112,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 					@Override
 					public void objectAdded() {
 						total.incrementAndGet();
-						progress = Math.round(100L * total.get() / totalSize);
+						progress = (int) Math.round(100.0 * total.get() / totalSize);
 					}
 				});
 				Set<Long> oids = map.get(concreteRevision);

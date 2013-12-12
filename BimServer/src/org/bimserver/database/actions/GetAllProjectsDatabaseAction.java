@@ -72,7 +72,7 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 			condition = condition.and(authorized);
 			condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getProject_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
-		Map<Long, Project> results = (Map<Long, Project>) getDatabaseSession().query(condition, Project.class, Query.getDefault());
+		Map<Long, Project> results = getDatabaseSession().query(condition, Project.class, Query.getDefault());
 		Set<Project> resultSet = new HashSet<Project>();
 		for (Project p : results.values()) {
 			if (p.getParent() == null || !onlyTopLevel) {

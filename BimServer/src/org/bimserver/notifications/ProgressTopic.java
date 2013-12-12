@@ -82,19 +82,6 @@ public class ProgressTopic extends Topic {
 		return description;
 	}
 	
-	@Override
-	public void register(EndPoint endPoint) throws TopicRegisterException {
-		// TODO A more sophisticated rights checkin algorithm is needed here, for example, a user with rights on project X should be able to see all progress, also by other users
-//		if (endPoint.getUoid() != uoid) {
-//			throw new TopicRegisterException("This user cannot register for updates on this Topic");
-//		}
-		super.register(endPoint);
-	}
-
-	public void unregister(EndPoint endPoint) throws TopicRegisterException {
-		super.unregister(endPoint);
-	}
-
 	public void close() {
 	}
 }

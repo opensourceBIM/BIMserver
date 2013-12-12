@@ -114,7 +114,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 					if (serializerPluginConfiguration != null) {
 						RenderEnginePluginConfiguration renderEngine = serializerPluginConfiguration.getRenderEngine();
 						if (renderEngine != null) {
-							renderEnginePlugin = (RenderEnginePlugin) getBimServer().getPluginManager().getRenderEngine(renderEngine.getPluginDescriptor().getPluginClassName(), true);
+							renderEnginePlugin = getBimServer().getPluginManager().getRenderEngine(renderEngine.getPluginDescriptor().getPluginClassName(), true);
 						}
 					}
 				} catch (BimserverDatabaseException e) {

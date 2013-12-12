@@ -49,7 +49,7 @@ public class Part21Parser implements Part21ParserConstants {
 
 	private FileInputStream inputStream;
 
-	static boolean verbose;
+	private boolean verbose;
 
 	public void init() {
 		this.instances = new HashMap<Integer, EntityInstance>();
