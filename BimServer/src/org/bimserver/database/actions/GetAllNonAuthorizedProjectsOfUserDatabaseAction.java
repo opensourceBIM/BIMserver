@@ -17,7 +17,6 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
@@ -49,6 +48,6 @@ public class GetAllNonAuthorizedProjectsOfUserDatabaseAction extends BimDatabase
 	public Set<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), getUserByUoid(uoid))).and(
 				new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME))));
-		return CollectionUtils.mapToSet((Map<Long, Project>) getDatabaseSession().query(condition, Project.class, Query.getDefault()));
+		return CollectionUtils.mapToSet(getDatabaseSession().query(condition, Project.class, Query.getDefault()));
 	}
 }

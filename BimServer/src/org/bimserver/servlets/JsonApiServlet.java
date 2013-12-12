@@ -197,7 +197,7 @@ public class JsonApiServlet extends SubServlet {
 			writer.print("  ");
 			for (String value : sType.getEnumValues()) {
 				writer.print("\"" + value + "\"");
-				if (sType.getEnumValues().get(sType.getEnumValues().size() - 1) != value) {
+				if (sType.getEnumValues().get(sType.getEnumValues().size() - 1) != value) { // String compare on identity is ok here
 					writer.print(" | ");
 				}
 			}
@@ -209,7 +209,7 @@ public class JsonApiServlet extends SubServlet {
 					writer.println("  " + getJsonTypeName(subType));
 				}
 			}
-			writer.println("{");
+			writer.println('{');
 			writer.println("  __type: \"" + sType.getSimpleName() + "\"");
 			for (SField sField : sType.getFields()) {
 				if (sField.isAggregate()) {
@@ -223,7 +223,7 @@ public class JsonApiServlet extends SubServlet {
 					writer.println();
 				}
 			}
-			writer.println("}");
+			writer.println('}');
 		}
 		writer.println("</pre>");
 	}

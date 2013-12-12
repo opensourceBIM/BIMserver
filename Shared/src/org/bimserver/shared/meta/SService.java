@@ -298,13 +298,11 @@ public class SService {
 		}
 		for (SClass type : getTypes()) {
 			System.out.println(type.getName());
-			if (type instanceof SClass) {
-				SClass sClass = (SClass) type;
-				for (SField sField : sClass.getFields()) {
-					SClass type2 = sField.getType();
-					if (type2 == null) {
-						System.err.println("type for " + sField.getName() + " = null");
-					}
+			for (SField sField : type.getFields()) {
+				SClass type2 = sField.getType();
+				if (type2 == null) {
+					System.err.println("type for " + sField.getName() + " = null");
+				} else {
 					System.out.println("\t" + sField.getName() + " " + type2.getName());
 				}
 			}

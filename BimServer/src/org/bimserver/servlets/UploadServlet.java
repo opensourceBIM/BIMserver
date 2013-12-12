@@ -75,7 +75,7 @@ public class UploadServlet extends SubServlet {
 			String comment = null;
 			if (isMultipart) {
 				ServletFileUpload upload = new ServletFileUpload(factory);
-				List<FileItem> items = (List<FileItem>) upload.parseRequest(request);
+				List<FileItem> items = upload.parseRequest(request);
 				Iterator<FileItem> iter = items.iterator();
 				InputStream in = null;
 				long size = 0;

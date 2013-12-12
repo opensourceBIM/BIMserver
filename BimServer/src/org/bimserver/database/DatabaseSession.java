@@ -410,9 +410,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			}
 			return idEObject;
 		} catch (BufferUnderflowException e) {
-			throw new BimserverDatabaseException("Reading " + idEObject.eClass().getName(), e);
+			throw new BimserverDatabaseException("Reading " + eClass.getName(), e);
 		} catch (BufferOverflowException e) {
-			throw new BimserverDatabaseException("Reading " + idEObject.eClass().getName(), e);
+			throw new BimserverDatabaseException("Reading " + eClass.getName(), e);
 		}
 	}
 
@@ -1181,8 +1181,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 								return null;
 							} else {
 								BinUtils.readString(value, stringLength); // GUID
-								if (value.getShort() != -1) {
-									; // CID of OwnerHistory
+								if (value.getShort() != -1) { // CID of OwnerHistory
 									value.getLong(); // OID of OwnerHistory
 								}
 								stringLength = value.getInt();

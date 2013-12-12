@@ -17,7 +17,6 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
@@ -46,6 +45,6 @@ public class GetAllRevisionsByUserDatabaseAction extends BimDatabaseAction<Set<R
 	public Set<Revision> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(uoid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getRevision_User(), user);
-		return CollectionUtils.mapToSet((Map<Long, Revision>) getDatabaseSession().query(condition, Revision.class, Query.getDefault()));
+		return CollectionUtils.mapToSet(getDatabaseSession().query(condition, Revision.class, Query.getDefault()));
 	}
 }

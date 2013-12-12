@@ -89,7 +89,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 					@Override
 					public void objectAdded() {
 						total.incrementAndGet();
-						progress = Math.round(100L * total.get() / totalSize);
+						progress = (int) Math.round(100.0 * total.get() / totalSize);
 					}
 				});
 				getDatabaseSession().getMapWithOids(subModel, oids, query);

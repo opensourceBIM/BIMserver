@@ -106,6 +106,8 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 						} else if (eClassForOid == StorePackage.eINSTANCE.getService()) {
 							Service service = session.get(profileId, Query.getDefault());
 							internalServicePluginConfiguration = service.getInternalService();
+						} else {
+							throw new RuntimeException("Oid is neither an InternalServicePluginConfiguration nor a Server");
 						}
 						final SObjectType settings = bimServer.getSConverter().convertToSObject(internalServicePluginConfiguration.getSettings());
 						

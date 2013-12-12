@@ -20,8 +20,6 @@ package org.bimserver.plugins.objectidms;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.bimserver.plugins.objectidms.FieldIgnoreMap;
-import org.bimserver.plugins.objectidms.StructuralFeatureIdentifier;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;

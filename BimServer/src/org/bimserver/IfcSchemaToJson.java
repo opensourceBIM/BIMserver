@@ -46,10 +46,12 @@ public class IfcSchemaToJson {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				fos.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

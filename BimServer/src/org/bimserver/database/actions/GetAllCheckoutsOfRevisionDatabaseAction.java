@@ -18,7 +18,6 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.List;
-import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -46,6 +45,6 @@ public class GetAllCheckoutsOfRevisionDatabaseAction extends BimDatabaseAction<L
 	public List<Checkout> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_Revision(), revision);
-		return CollectionUtils.mapToList((Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, Query.getDefault()));
+		return CollectionUtils.mapToList(getDatabaseSession().query(condition, Checkout.class, Query.getDefault()));
 	}
 }

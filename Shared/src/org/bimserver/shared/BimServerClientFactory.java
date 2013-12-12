@@ -18,7 +18,6 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public interface BimServerClientFactory {

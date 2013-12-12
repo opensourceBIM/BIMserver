@@ -30,11 +30,6 @@ public class NewExtendedDataOnRevisionTopic extends Topic {
 		this.roid = roid;
 	}
 	
-	public void register(EndPoint endPoint) throws TopicRegisterException {
-		// TODO check rights here too
-		super.register(endPoint);
-	}
-
 	public void process(final NewExtendedDataOnRevisionNotification newExtendedDataOnRevisionNotification) throws BimserverDatabaseException, UserException, ServerException {
 		map(new Mapper(){
 			@Override

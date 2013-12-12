@@ -1,4 +1,4 @@
-<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.utils.* org.bimserver.emf.MetaDataManager java.io.File org.bimserver.tools.generators.GenerateUtils org.bimserver.utils.StringUtils" class="ServiceInterfaceObjectGenerator" %>
+<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.utils.* org.bimserver.emf.MetaDataManager java.io.File org.bimserver.utils.StringUtils" class="ServiceInterfaceObjectGenerator" %>
 package org.bimserver.interfaces.objects;
 <%
 /******************************************************************************

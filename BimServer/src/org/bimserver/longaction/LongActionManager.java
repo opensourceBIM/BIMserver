@@ -42,7 +42,7 @@ public class LongActionManager {
 				public void run() {
 					longAction.execute();
 				}
-			});
+			}, "LongAction Runner");
 			longAction.init();
 			thread.setDaemon(true);
 			thread.setName(longAction.getDescription());

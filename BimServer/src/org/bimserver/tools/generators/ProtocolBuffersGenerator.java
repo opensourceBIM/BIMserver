@@ -94,7 +94,7 @@ public class ProtocolBuffersGenerator {
 						LOGGER.error("", e);
 					}
 				}
-			}).start();
+			}, "Protocol Buffers Generator").start();
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -111,7 +111,7 @@ public class ProtocolBuffersGenerator {
 						LOGGER.error("", e);
 					}
 				}
-			}).start();
+			}, "Protocol Buffers Generator").start();
 			exec.waitFor();
 		} catch (IOException e) {
 			LOGGER.error("", e);
@@ -262,7 +262,7 @@ public class ProtocolBuffersGenerator {
 				}
 				out.println("\t}\n");
 			}
-			out.println("}");
+			out.println('}');
 			out.close();
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);
@@ -288,27 +288,22 @@ public class ProtocolBuffersGenerator {
 	}
 
 	private void genServiceInterfaceToProtocolBuffers(PrintWriter out, String sourceName, String targetName, SClass parameterType) {
-		if (parameterType instanceof SClass) {
-			SClass sClass = (SClass) parameterType;
-			for (SField field : sClass.getFields()) {
-				SClass fieldType = field.getType();
-				if (fieldType instanceof SClass) {
-					SClass fieldClass = (SClass) fieldType;
-					if (fieldClass.isList()) {
-						out.println("\t\t\tfor (" + fieldType.getName() + " o : " + sourceName + "." + field.getName() + "()) {");
-						out.println("\t\t\t\t" + targetName + ".add" + field.getName() + "(o);");
-						out.println("\t\t\t}");
-					} else if (fieldClass.isDate()) {
-						out.println("\t\t\t" + targetName + ".set" + field.getName() + "(" + sourceName + "." + field.getName() + "().getTime());");
-					} else if (fieldType.getInstanceClass() == byte[].class) {
-						out.println("\t\t\t" + targetName + ".set" + field.getName() + "(ByteString.copyFrom(" + sourceName + "." + field.getName() + "()));");
-					} else if (fieldClass.isEnum()) {
-						out.println("\t\t\t" + targetName + ".set" + field.getName() + "(" + fieldType.getInstanceClass().getSimpleName() + ".values()[" + sourceName + "."
-								+ field.getName() + "().ordinal()]);");
-					} else {
-						out.println("\t\t\t" + targetName + ".set" + field.getName() + "(" + sourceName + "." + field.getName() + "());");
-					}
-				}
+		for (SField field : parameterType.getFields()) {
+			SClass fieldType = field.getType();
+			SClass fieldClass = fieldType;
+			if (fieldClass.isList()) {
+				out.println("\t\t\tfor (" + fieldType.getName() + " o : " + sourceName + "." + field.getName() + "()) {");
+				out.println("\t\t\t\t" + targetName + ".add" + field.getName() + "(o);");
+				out.println("\t\t\t}");
+			} else if (fieldClass.isDate()) {
+				out.println("\t\t\t" + targetName + ".set" + field.getName() + "(" + sourceName + "." + field.getName() + "().getTime());");
+			} else if (fieldType.getInstanceClass() == byte[].class) {
+				out.println("\t\t\t" + targetName + ".set" + field.getName() + "(ByteString.copyFrom(" + sourceName + "." + field.getName() + "()));");
+			} else if (fieldClass.isEnum()) {
+				out.println("\t\t\t" + targetName + ".set" + field.getName() + "(" + fieldType.getInstanceClass().getSimpleName() + ".values()[" + sourceName + "."
+						+ field.getName() + "().ordinal()]);");
+			} else {
+				out.println("\t\t\t" + targetName + ".set" + field.getName() + "(" + sourceName + "." + field.getName() + "());");
 			}
 		}
 	}
@@ -343,10 +338,6 @@ public class ProtocolBuffersGenerator {
 		PrintWriter out = null;
 		try {
 			out = new PrintWriter(protoFile);
-		} catch (FileNotFoundException e) {
-			LOGGER.error("", e);
-		}
-		try {
 			out.println("package org.bimserver.pb;\n");
 			out.println(Licenser.getCommentedLicenseText(new File("license.txt")));
 			for (String importFile : imports) {
@@ -376,6 +367,8 @@ public class ProtocolBuffersGenerator {
 			serviceBuilder.append("}\n\n");
 			out.print(serviceBuilder.toString());
 			out.print(messageBuilder.toString());
+		} catch (FileNotFoundException e) {
+			LOGGER.error("", e);
 		} finally {
 			if (out != null) {
 				out.close();
@@ -404,7 +397,7 @@ public class ProtocolBuffersGenerator {
 		StringBuilder messageBuilder = new StringBuilder();
 		messageBuilder.append("message " + messageName + " {\n");
 		messageBuilder.append("\toptional string errorMessage = 1;\n");
-		messageBuilder.append("\t");
+		messageBuilder.append('\t');
 		if (method.isAggregateReturnType()) {
 			messageBuilder.append("repeated ");
 		} else {
@@ -445,20 +438,19 @@ public class ProtocolBuffersGenerator {
 			return "string";
 		} else {
 			StringBuilder messageBuilder = new StringBuilder();
-			SClass sClass = (SClass) sType;
 			generatedClasses.put(clazz, clazz.getSimpleName());
 			messageBuilder.append("message " + clazz.getSimpleName() + " {\n");
 			int counter = 1;
-			if (!sClass.getSubClasses().isEmpty()) {
+			if (!sType.getSubClasses().isEmpty()) {
 				messageBuilder.append("\trequired string __actual_type = " + (counter++) + ";\n");
-				for (SClass subClass : sClass.getSubClasses()) {
-					messageBuilder.append("\t");
+				for (SClass subClass : sType.getSubClasses()) {
+					messageBuilder.append('\t');
 					messageBuilder.append("optional ");
 					messageBuilder.append(createMessage(sb, subClass) + " __" + subClass.getInstanceClass().getSimpleName() + " = " + (counter++) + ";\n");
 				}
 			}
-			for (SField field : sClass.getFields()) {
-				messageBuilder.append("\t");
+			for (SField field : sType.getFields()) {
+				messageBuilder.append('\t');
 				if (field.isAggregate()) {
 					messageBuilder.append("repeated ");
 				} else {
@@ -511,7 +503,7 @@ public class ProtocolBuffersGenerator {
 		messageBuilder.append("message " + messageName + " {\n");
 		int counter = 1;
 		for (SParameter sParameter : method.getParameters()) {
-			messageBuilder.append("\t");
+			messageBuilder.append('\t');
 			if (sParameter.isAggregate()) {
 				messageBuilder.append("repeated ");
 			} else {

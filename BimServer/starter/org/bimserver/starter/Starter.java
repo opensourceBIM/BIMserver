@@ -218,7 +218,7 @@ public class Starter extends JFrame {
 								JOptionPane.showMessageDialog(Starter.this, "JVM field should contain a valid JVM directory, or 'default' for the default JVM");
 							}
 						}
-					}).start();
+					}, "BIMserver Starter Thread").start();
 				} else if (startStopButton.getText().equals("Stop")) {
 					if (exec != null) {
 						exec.destroy();
@@ -313,7 +313,7 @@ public class Starter extends JFrame {
 					exec.destroy();
 				}
 			}
-		}));
+		}, "Thutdown Hook"));
 		setVisible(true);
 	}
 
@@ -433,7 +433,7 @@ public class Starter extends JFrame {
 						}
 					} catch (IOException e) {
 					}
-				}}).start();
+				}}, "Sysin reader").start();
 			new Thread(new Runnable(){
 				@Override
 				public void run() {
@@ -449,7 +449,7 @@ public class Starter extends JFrame {
 						}
 					} catch (IOException e) {
 					}
-				}}).start();
+				}}, "Syserr reader").start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -465,7 +465,7 @@ public class Starter extends JFrame {
 				jar = new java.util.jar.JarFile(jarFileName);
 				Enumeration<JarEntry> enumr = jar.entries();
 				while (enumr.hasMoreElements()) {
-					JarEntry file = (JarEntry) enumr.nextElement();
+					JarEntry file = enumr.nextElement();
 					System.out.println(file.getName());
 					File f = new File(destDir, file.getName());
 					if (file.isDirectory()) {

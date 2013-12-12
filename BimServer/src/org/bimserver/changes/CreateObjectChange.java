@@ -57,7 +57,7 @@ public class CreateObjectChange implements Change {
 		eObject.setOid(oid);
 		eObject.setPid(project.getId());
 		eObject.setRid(concreteRevision.getId());
-		((IdEObjectImpl)eObject).setLoaded();
+		eObject.setLoaded();
 		databaseSession.store(eObject, project.getId(), concreteRevision.getId());
 		created.put(oid, eObject);
 	}

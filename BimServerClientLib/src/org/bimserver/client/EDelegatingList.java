@@ -115,12 +115,12 @@ public class EDelegatingList<E> extends AbstractEList<E> {
 
 	@Override
 	public boolean addAllUnique(Collection<? extends E> collection) {
-		return addAllUnique(collection);
+		return delegate.addAllUnique(collection);
 	}
 
 	@Override
 	public boolean addAllUnique(int index, Collection<? extends E> collection) {
-		return addAllUnique(index, collection);
+		return delegate.addAllUnique(index, collection);
 	}
 
 	@Override

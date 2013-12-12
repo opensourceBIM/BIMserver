@@ -132,15 +132,17 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 								listDataValue.getValues().add(dataValue);
 							}
 						} else {
-							List list = (List)eGet;
-							for (Object o : list) {
-								SimpleDataValue dataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
-								if (eGet != null) {
-									dataValue.setStringValue(o.toString());
-								} else {
-									dataValue.setStringValue(null);
+							if (eGet != null) {
+								List list = (List)eGet;
+								for (Object o : list) {
+									SimpleDataValue dataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
+									if (eGet != null) {
+										dataValue.setStringValue(o.toString());
+									} else {
+										dataValue.setStringValue(null);
+									}
+									listDataValue.getValues().add(dataValue);
 								}
-								listDataValue.getValues().add(dataValue);
 							}
 						}
 					} else {
@@ -176,7 +178,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 							dataValue.setFieldName(eStructuralFeature.getName());
 							for (EObject item : list) {
 								if (item.eClass().getEAnnotation("wrapped") != null) {
-									EObject referenceEObject = (EObject) item;
+									EObject referenceEObject = item;
 									SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
 									simpleDataValue.setStringValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue")).toString());
 									dataValue.getValues().add(simpleDataValue);

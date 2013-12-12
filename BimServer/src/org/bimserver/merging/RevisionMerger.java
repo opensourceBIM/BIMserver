@@ -77,7 +77,7 @@ public class RevisionMerger {
 		while (iterator.hasNext()) {
 			Long oid = iterator.next();
 			IdEObject idEObject = resultModel.get(oid);
-			IdEObject originalObject = (IdEObject) oldModel.get(oid);
+			IdEObject originalObject = oldModel.get(oid);
 			if (originalObject != null) {
 				boolean objectChanged = false;
 				for (EAttribute eAttribute : idEObject.eClass().getEAllAttributes()) {
