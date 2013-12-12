@@ -73,8 +73,9 @@ public class TNOJvmRenderEnginePlugin implements RenderEnginePlugin {
 			}
 			InputStream inputStream = pluginContext.getResourceAsInputStream("lib/" + System.getProperty("sun.arch.data.model") + "/" + libraryName);
 			if (inputStream != null) {
-				File tmpFolder = pluginManager.getTempDir();
-				nativeFolder = new File(tmpFolder, "TNOEngineSeries");
+				try {
+					File tmpFolder = pluginManager.getTempDir();
+					nativeFolder = new File(tmpFolder, "TNOEngineSeries");
 					File file = new File(nativeFolder, libraryName);
 					if (nativeFolder.exists()) {
 						try {
@@ -88,6 +89,9 @@ public class TNOJvmRenderEnginePlugin implements RenderEnginePlugin {
 					IOUtils.copy(inputStream, fileOutputStream);
 					fileOutputStream.close();
 					initialized = true;
+				} finally {
+					inputStream.close();
+				}
 			}
 		} catch (Exception e) {
 			throw new PluginException(e);

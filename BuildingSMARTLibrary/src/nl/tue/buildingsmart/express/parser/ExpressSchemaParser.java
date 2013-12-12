@@ -269,4 +269,11 @@ public class ExpressSchemaParser {
 		return (((hours < 10) ? "0" + hours : "" + hours) + ":" + ((minutes < 10) ? "0" + minutes : "" + minutes) + ":" + ((seconds < 10) ? "0" + seconds : "" + seconds));
 	}
 
+	public void close() {
+		try {
+			inputStream.close();
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
+	}
 }
