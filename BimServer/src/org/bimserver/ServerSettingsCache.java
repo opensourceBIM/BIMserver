@@ -38,7 +38,6 @@ public class ServerSettingsCache {
 
 	public ServerSettingsCache(BimDatabase database) {
 		this.database = database;
-		updateCache();
 	}
 
 	public synchronized void updateCache() {
@@ -68,5 +67,9 @@ public class ServerSettingsCache {
 
 	public ServerSettings getServerSettings() {
 		return serverSettings;
+	}
+
+	public void init() {
+		updateCache();
 	}
 }
