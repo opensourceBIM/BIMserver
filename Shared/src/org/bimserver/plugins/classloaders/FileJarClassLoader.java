@@ -100,6 +100,10 @@ public class FileJarClassLoader extends JarClassLoader {
 
 	@Override
 	public URL findResource(final String name) {
+		final File file = new File(tempDir, name);
+		if (!file.exists()) {
+			return null;
+		}
 		try {
 			return new URL(new URL("file:" + this.tempDir.getAbsolutePath() + "/" + name), name, new URLStreamHandler() {
 				@Override
@@ -111,7 +115,7 @@ public class FileJarClassLoader extends JarClassLoader {
 
 						@Override
 						public InputStream getInputStream() throws IOException {
-							return new FileInputStream(new File(tempDir, name));
+							return new FileInputStream(file);
 						}
 					};
 				}
