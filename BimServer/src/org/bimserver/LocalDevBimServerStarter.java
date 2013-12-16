@@ -45,27 +45,7 @@ public class LocalDevBimServerStarter {
 	private BimServer bimServer;
 	
 	public static void main(String[] args) {
-		Options options = new Options();
-
-		options.addOption("git", true, "Directory from which to load git plugins");
-		
-		CommandLineParser parser = new BasicParser();
-		File gitDir = null;
-		try {
-			CommandLine cmd = parser.parse(options, args);
-			if (cmd.hasOption("git")) {
-				String gitString = cmd.getOptionValue("git");
-				gitDir = new File(gitString);
-				if (!gitDir.isDirectory()) {
-					throw new RuntimeException("git parameter must point to a directory");
-				}
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		
-		new LocalDevBimServerStarter().start(1, "localhost", 8080, 8085, gitDir);
+		new LocalDevBimServerStarter().start(1, "localhost", 8080, 8085, new OptionsParser(args).getGitDir());
 //		new LocalDevBimServerStarter().start(2, "localhost", 8081, 8086, gitDir);
 	}
 

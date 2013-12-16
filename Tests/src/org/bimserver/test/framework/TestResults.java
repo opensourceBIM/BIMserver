@@ -54,10 +54,11 @@ public class TestResults {
 
 	public synchronized void addRow(ActionResults actionResults, VirtualUser virtualUser, Action action, String... values) {
 		String type = actionResults.getType();
-		out.println("<tr user=\"" + virtualUser.getName() + "\" action=\"" + action.getClass().getSimpleName() + "\" type=\"" + type + "\">");
+		String className = action == null ? "Unknown" : action.getClass().getSimpleName();
+		out.println("<tr user=\"" + virtualUser.getName() + "\" action=\"" + className + "\" type=\"" + type + "\">");
 		out.println("<td>" + rowNr + ".</td>");
 		out.println("<td>" + virtualUser.getName() + "</td>");
-		out.println("<td>" + action.getClass().getSimpleName() + "</td>");
+		out.println("<td>" + className + "</td>");
 		out.println("<td class=\"type_" + type + "\">" + type + "</td>");
 		out.println("<td>" + actionResults.getText() + "</td>");
 		out.println("</tr>");

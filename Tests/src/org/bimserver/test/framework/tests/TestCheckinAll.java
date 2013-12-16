@@ -19,6 +19,7 @@ package org.bimserver.test.framework.tests;
 
 import java.io.File;
 
+import org.bimserver.OptionsParser;
 import org.bimserver.test.framework.FolderWalker;
 import org.bimserver.test.framework.RandomBimServerClientFactory;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
@@ -29,7 +30,7 @@ import org.bimserver.test.framework.actions.CheckinActionsFactory;
 public class TestCheckinAll {
 	public static void main(String[] args) {
 		TestConfiguration testConfiguration = new TestConfiguration();
-		TestFramework testFramework = new TestFramework(testConfiguration);
+		TestFramework testFramework = new TestFramework(testConfiguration, new OptionsParser(args).getGitDir());
 
 		testConfiguration.setHomeDir(new File("D:\\Test"));
 		testConfiguration.setActionFactory(new CheckinActionsFactory(testFramework));

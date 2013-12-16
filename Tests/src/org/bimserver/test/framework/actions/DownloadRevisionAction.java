@@ -67,7 +67,7 @@ public class DownloadRevisionAction extends Action {
 				SRevision revision = virtualUser.getBimServerClient().getBimsie1ServiceInterface().getRevision(project.getLastRevisionId());
 				long topicId = virtualUser.getBimServerClient().getBimsie1ServiceInterface().download(project.getLastRevisionId(), serializer.getOid(), true, sync);
 				SActionState state = virtualUser.getBimServerClient().getRegistry().getProgress(topicId).getState();
-				while (state != SActionState.FINISHED) {
+				while (state != SActionState.FINISHED && state != SActionState.AS_ERROR) {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {

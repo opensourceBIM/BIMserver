@@ -90,7 +90,9 @@ public class NewRevisionNotification extends Notification {
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
-			sendEmail(session, project, revision);
+			if (getBimServer().getServerSettingsCache().getServerSettings().isSendEmailOnNewRevision()) {
+				sendEmail(session, project, revision);
+			}
 			for (Service service : project.getServices()) {
 				if (soid == -1 || service.getOid() == soid) {
 					triggerNewRevision(session, getBimServer().getNotificationsManager(), getBimServer(), getBimServer().getNotificationsManager().getSiteAddress(), project, roid, Trigger.NEW_REVISION, service);

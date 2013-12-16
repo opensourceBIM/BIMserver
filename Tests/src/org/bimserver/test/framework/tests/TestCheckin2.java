@@ -19,6 +19,7 @@ package org.bimserver.test.framework.tests;
 
 import java.io.File;
 
+import org.bimserver.OptionsParser;
 import org.bimserver.test.framework.FolderWalker;
 import org.bimserver.test.framework.RandomBimServerClientFactory;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
@@ -39,7 +40,7 @@ import org.bimserver.test.framework.actions.RandomActionFactory;
 public class TestCheckin2 {
 	public static void main(String[] args) {
 		TestConfiguration testConfiguration = new TestConfiguration();
-		final TestFramework testFramework = new TestFramework(testConfiguration);
+		final TestFramework testFramework = new TestFramework(testConfiguration, new OptionsParser(args).getGitDir());
 		testConfiguration.setStopNoVirtualUsers(false);
 //		testConfiguration.setNrRunsPerVirtualUser(30);
 

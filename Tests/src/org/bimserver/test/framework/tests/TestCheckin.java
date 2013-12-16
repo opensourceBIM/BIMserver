@@ -19,6 +19,7 @@ package org.bimserver.test.framework.tests;
 
 import java.io.File;
 
+import org.bimserver.OptionsParser;
 import org.bimserver.test.framework.FolderWalker;
 import org.bimserver.test.framework.RandomBimServerClientFactory;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
@@ -38,11 +39,11 @@ import org.bimserver.test.framework.actions.RandomActionFactory;
 public class TestCheckin {
 	public static void main(String[] args) {
 		TestConfiguration testConfiguration = new TestConfiguration();
-		final TestFramework testFramework = new TestFramework(testConfiguration);
+		final TestFramework testFramework = new TestFramework(testConfiguration, new OptionsParser(args).getGitDir());
 		testConfiguration.setStopNoVirtualUsers(false);
 //		testConfiguration.setNrRunsPerVirtualUser(30);
 
-		testConfiguration.setHomeDir(new File("D:\\Testing"));
+		testConfiguration.setHomeDir(new File("E:\\Testing"));
 		testConfiguration.setActionFactory(new RandomActionFactory(
 			new ActionCreater(){
 				public Action create() {
@@ -77,10 +78,10 @@ public class TestCheckin {
 		));
 //		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
 		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON));
-		testConfiguration.setTestFileProvider(new FolderWalker(new File("D:\\ifc selected"), testFramework));
+		testConfiguration.setTestFileProvider(new FolderWalker(new File("E:\\Ifc Files"), testFramework));
 //		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected")));
-		testConfiguration.setOutputFolder(new File("D:\\output"));
-		testConfiguration.setNrVirtualUsers(8);
+		testConfiguration.setOutputFolder(new File("E:\\output"));
+		testConfiguration.setNrVirtualUsers(4);
 		
 		testFramework.start();
 	}
