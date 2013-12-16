@@ -19,6 +19,11 @@ package org.bimserver.test.framework.tests;
 
 import java.io.File;
 
+import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.bimserver.test.framework.FolderWalker;
 import org.bimserver.test.framework.RandomBimServerClientFactory;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
@@ -28,15 +33,34 @@ import org.bimserver.test.framework.actions.AllActionsFactory;
 
 public class TestAll {
 	public static void main(String[] args) {
-		TestConfiguration testConfiguration = new TestConfiguration();
-		TestFramework testFramework = new TestFramework(testConfiguration);
+		Options options = new Options();
 
-		testConfiguration.setHomeDir(new File("D:\\Test"));
+		options.addOption("git", true, "Directory from which to load git plugins");
+		
+		CommandLineParser parser = new BasicParser();
+		File gitDir = null;
+		try {
+			CommandLine cmd = parser.parse(options, args);
+			if (cmd.hasOption("git")) {
+				String gitString = cmd.getOptionValue("git");
+				gitDir = new File(gitString);
+				if (!gitDir.isDirectory()) {
+					throw new RuntimeException("git parameter must point to a directory");
+				}
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		TestConfiguration testConfiguration = new TestConfiguration();
+		TestFramework testFramework = new TestFramework(testConfiguration, gitDir);
+
+		testConfiguration.setHomeDir(new File("E:\\Test"));
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
-		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.SOAP, Type.PROTOCOL_BUFFERS, Type.JSON));
-		testConfiguration.setTestFileProvider(new FolderWalker(new File("D:\\ifc selected"), testFramework));
-		testConfiguration.setOutputFolder(new File("D:\\Output"));
-		testConfiguration.setNrVirtualUsers(1);
+		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON));
+		testConfiguration.setTestFileProvider(new FolderWalker(new File("E:\\Ifc Files"), testFramework));
+		testConfiguration.setOutputFolder(new File("E:\\Output"));
+		testConfiguration.setNrVirtualUsers(3);
 
 		testFramework.start();
 	}

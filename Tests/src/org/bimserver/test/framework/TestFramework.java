@@ -44,8 +44,11 @@ public class TestFramework {
 	private final TestResults testResults = new TestResults();
 	private BimServer bimServer;
 
-	public TestFramework(TestConfiguration testConfiguration) {
+	private File gitDir;
+
+	public TestFramework(TestConfiguration testConfiguration, File gitDir) {
 		this.testConfiguration = testConfiguration;
+		this.gitDir = gitDir;
 	}
 	
 	public void start() {
@@ -70,12 +73,13 @@ public class TestFramework {
 			EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
 		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
 			try {
-				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), null);
+				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), gitDir);
 				bimServer.start();
 				// Convenience, setup the server to make sure it is in RUNNING state
 				if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 					bimServer.getService(AdminInterface.class).setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 					bimServer.getService(SettingsInterface.class).setGenerateGeometryOnCheckin(false);
+					bimServer.getService(SettingsInterface.class).setSendConfirmationEmailAfterRegistration(false);
 				}
 				
 				// Change a setting so normal users can create projects
@@ -95,7 +99,7 @@ public class TestFramework {
 		for (VirtualUser virtualUser : virtualUsers) {
 			virtualUser.start();
 		}
-		CommandLine commandLine = new CommandLine(this);
+		org.bimserver.CommandLine commandLine = new org.bimserver.CommandLine(bimServer);
 		commandLine.start();
 	}
 

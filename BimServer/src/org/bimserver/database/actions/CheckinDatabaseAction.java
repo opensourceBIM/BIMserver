@@ -191,7 +191,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().store(project);
 		} catch (Throwable e) {
 			if (e instanceof BimserverDatabaseException) {
-				// Let this one slide
 				throw (BimserverDatabaseException) e;
 			}
 			if (e instanceof UserException) {

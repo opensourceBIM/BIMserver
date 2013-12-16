@@ -1280,9 +1280,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		} catch (BimserverLockConflictException e) {
 			throw new UncheckedBimserverLockConflictException(e);
 		} catch (BimserverDatabaseException e) {
-			// TODO probably make unchecked version for other exceptions as
-			// well...
-			LOGGER.error("", e);
+			throw new UncheckedBimserverDatabaseException(e);
 		}
 	}
 
