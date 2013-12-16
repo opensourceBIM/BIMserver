@@ -64,7 +64,11 @@ public class PublicInterfaceFactory implements ServiceFactory {
 			}
 			return get(authorization, accessMethod);
 		} catch (Exception e) {
-			throw new UserException(e);
+			if (e instanceof UserException) {
+				throw (UserException)e;
+			} else {
+				throw new UserException(e);
+			}
 		}
 	}
 }
