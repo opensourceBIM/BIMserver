@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 public class ServerInfoManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServerInfoManager.class);
 	private BimServer bimServer;
-	private Set<StateChangeListener> stateChangeListeners = new HashSet<StateChangeListener>();
+	private final Set<StateChangeListener> stateChangeListeners = new HashSet<StateChangeListener>();
 	private final ServerInfo serverInfo = StoreFactory.eINSTANCE.createServerInfo();
 
 	public void registerStateChangeListener(StateChangeListener stateChangeListener) {
