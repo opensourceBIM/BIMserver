@@ -34,6 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
+import org.bimserver.models.store.ServerState;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SMethod;
@@ -58,7 +59,7 @@ public class JsonApiServlet extends SubServlet {
 	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getHeader("Origin") != null && !getBimServer().getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
+		if (request.getHeader("Origin") != null && (getBimServer().getServerInfo().getServerState() != ServerState.MIGRATION_REQUIRED && !getBimServer().getServerSettingsCache().isHostAllowed(request.getHeader("Origin")))) {
 			response.setStatus(403);
 			return;
 		}

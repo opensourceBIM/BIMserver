@@ -379,6 +379,8 @@ public class BimServer {
 			serializerFactory = new SerializerFactory();
 			deserializerFactory = new DeserializerFactory();
 
+			serverSettingsCache = new ServerSettingsCache(bimDatabase);
+			
 			if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {
 				serverInfoManager.registerStateChangeListener(new StateChangeListener() {
 					@Override
@@ -398,26 +400,6 @@ public class BimServer {
 
 			mailSystem = new MailSystem(this);
 
-			webModules = new HashMap<String, WebModulePlugin>();
-			DatabaseSession ses = bimDatabase.createSession();
-			try {
-				List<WebModulePluginConfiguration> webModuleConfigurations = serverSettingsCache.getServerSettings().getWebModules();
-				for (WebModulePluginConfiguration webModulePluginConfiguration : webModuleConfigurations) {
-					String contextPath = "";
-					for (Parameter parameter : webModulePluginConfiguration.getSettings().getParameters()) {
-						if (parameter.getName().equals("contextPath")) {
-							contextPath = ((StringType)parameter.getValue()).getValue();
-						}
-					}
-					webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(webModulePluginConfiguration.getPluginDescriptor().getPluginClassName(), true));
-				}
-				if (serverSettingsCache.getServerSettings().getWebModule() != null) {
-					defaultWebModule = (WebModulePlugin) pluginManager.getPlugin(serverSettingsCache.getServerSettings().getWebModule().getPluginDescriptor().getPluginClassName(), true);
-				}
-			} finally {
-				ses.close();
-			}
-
 			diskCacheManager = new DiskCacheManager(this, new File(config.getHomeDir(), "cache"));
 
 			mergerFactory = new MergerFactory(this);
@@ -432,9 +414,6 @@ public class BimServer {
 			bimScheduler = new JobScheduler(this);
 			bimScheduler.start();
 
-			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager);
-			pluginManager.setBimServerClientFactory(bimServerClientFactory);
-			
 			try {
 				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, config.getInitialProtocolBuffersPort());
 				protocolBuffersServer.start();
@@ -656,11 +635,9 @@ public class BimServer {
 	}
 
 	private void initDatabaseDependantItems() throws BimserverDatabaseException {
-		serverSettingsCache = new ServerSettingsCache(bimDatabase);
+		serverSettingsCache.init();
 		notificationsManager.init();
 
-		serverInfoManager.update();
-		
 		getSerializerFactory().init(pluginManager, bimDatabase);
 		getDeserializerFactory().init(pluginManager, bimDatabase);
 		try {
@@ -723,6 +700,31 @@ public class BimServer {
 			} finally {
 				session.close();
 			}
+			
+			webModules = new HashMap<String, WebModulePlugin>();
+			DatabaseSession ses = bimDatabase.createSession();
+			try {
+				List<WebModulePluginConfiguration> webModuleConfigurations = serverSettingsCache.getServerSettings().getWebModules();
+				for (WebModulePluginConfiguration webModulePluginConfiguration : webModuleConfigurations) {
+					String contextPath = "";
+					for (Parameter parameter : webModulePluginConfiguration.getSettings().getParameters()) {
+						if (parameter.getName().equals("contextPath")) {
+							contextPath = ((StringType)parameter.getValue()).getValue();
+						}
+					}
+					webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(webModulePluginConfiguration.getPluginDescriptor().getPluginClassName(), true));
+				}
+				if (serverSettingsCache.getServerSettings().getWebModule() != null) {
+					defaultWebModule = (WebModulePlugin) pluginManager.getPlugin(serverSettingsCache.getServerSettings().getWebModule().getPluginDescriptor().getPluginClassName(), true);
+				}
+			} finally {
+				ses.close();
+			}
+			
+			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager);
+			pluginManager.setBimServerClientFactory(bimServerClientFactory);
+			
+			serverInfoManager.update();
 		} catch (BimserverLockConflictException e) {
 			throw new BimserverDatabaseException(e);
 		} catch (PluginException e) {
