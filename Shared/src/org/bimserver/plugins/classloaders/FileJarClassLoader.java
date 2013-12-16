@@ -101,7 +101,7 @@ public class FileJarClassLoader extends JarClassLoader {
 	@Override
 	public URL findResource(final String name) {
 		try {
-			return new URL(new URL("jar:" + jarFile.toURI().toURL() + "!/" + name), name, new URLStreamHandler() {
+			return new URL(new URL("file:" + this.tempDir.getAbsolutePath() + "/" + name), name, new URLStreamHandler() {
 				@Override
 				protected URLConnection openConnection(URL u) throws IOException {
 					return new URLConnection(u) {
