@@ -381,6 +381,8 @@ public class BimServer {
 
 			serverSettingsCache = new ServerSettingsCache(bimDatabase);
 			
+			serverInfoManager.update();
+			
 			if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {
 				serverInfoManager.registerStateChangeListener(new StateChangeListener() {
 					@Override
@@ -723,8 +725,6 @@ public class BimServer {
 			
 			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager);
 			pluginManager.setBimServerClientFactory(bimServerClientFactory);
-			
-			serverInfoManager.update();
 		} catch (BimserverLockConflictException e) {
 			throw new BimserverDatabaseException(e);
 		} catch (PluginException e) {

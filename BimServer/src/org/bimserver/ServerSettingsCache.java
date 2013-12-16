@@ -66,6 +66,9 @@ public class ServerSettingsCache {
 	}
 
 	public ServerSettings getServerSettings() {
+		if (serverSettings == null) {
+			updateCache();
+		}
 		return serverSettings;
 	}
 
