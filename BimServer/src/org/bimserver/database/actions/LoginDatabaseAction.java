@@ -60,7 +60,7 @@ public class LoginDatabaseAction extends BimDatabaseAction<String> {
 		BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(getDatabaseSession(), getAccessMethod(), username);
 		User user = action.execute();
 		if (user != null) {
-			if (user.getPasswordHash() == null) {
+			if (user.getPasswordHash() == null || user.getPasswordHash().length == 0) {
 				throw new UserException("Your email address has not been validated yet");
 			}
 			if (new Authenticator().validate(password, user.getPasswordHash(), user.getPasswordSalt())) {
