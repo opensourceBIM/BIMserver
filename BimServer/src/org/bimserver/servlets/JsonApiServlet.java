@@ -82,8 +82,7 @@ public class JsonApiServlet extends SubServlet {
 		response.setCharacterEncoding("UTF-8");
 		try {
 			ServletInputStream inputStream = httpRequest.getInputStream();
-			// TODO why??
-			byte[] bytes = IOUtils.toByteArray(inputStream);
+			byte[] bytes = IOUtils.toByteArray(inputStream); // Not streaming here, because we want to be able to show the request-data when it's not valid
 			JsonReader jsonReader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(bytes)));
 			JsonParser parser = new JsonParser();
 			JsonElement parse = parser.parse(jsonReader);

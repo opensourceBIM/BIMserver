@@ -60,6 +60,9 @@ public class LoginDatabaseAction extends BimDatabaseAction<String> {
 		BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(getDatabaseSession(), getAccessMethod(), username);
 		User user = action.execute();
 		if (user != null) {
+			if (user.getPasswordHash() == null) {
+				throw new UserException("Your email address has not been validated yet");
+			}
 			if (new Authenticator().validate(password, user.getPasswordHash(), user.getPasswordSalt())) {
 				if (user.getState() == ObjectState.DELETED) {
 					throw new UserException("User account has been deleted");
