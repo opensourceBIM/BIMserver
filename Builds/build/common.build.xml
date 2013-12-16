@@ -125,7 +125,6 @@
 				<include name="*.xml" />
 			</fileset>
 		</copy>
-		<copy file="../../FileBasedObjectIDM/src/org/bimserver/objectidms/jaxb.properties" todir="builds/filebasedobjectidm/org/bimserver/objectidms"/>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-filebasedobjectidm.jar">
 			<fileset dir="builds/filebasedobjectidm"/>
 		</jar>
