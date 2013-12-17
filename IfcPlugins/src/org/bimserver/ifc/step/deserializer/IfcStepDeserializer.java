@@ -335,7 +335,11 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				tokenizer.shouldBeFinished();
 			} else if (line.startsWith("FILE_SCHEMA")) {
 				Tokenizer tokenizer = new Tokenizer(line.substring(line.indexOf("(")));
-				ifcHeader.setIfcSchemaVersion(tokenizer.zoomIn("(", ")").zoomIn("(", ")").readSingleQuoted());
+				String ifcSchemaVersion = tokenizer.zoomIn("(", ")").zoomIn("(", ")").readSingleQuoted();
+				if (!ifcSchemaVersion.equalsIgnoreCase("ifc2x3")) {
+					throw new DeserializeException("Only IFC2x3 is supported by this deserializer");
+				}
+				ifcHeader.setIfcSchemaVersion(ifcSchemaVersion);
 			} else if (line.startsWith("ENDSEC;")) {
 				// Do nothing
 			}
