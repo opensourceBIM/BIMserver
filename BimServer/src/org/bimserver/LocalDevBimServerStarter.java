@@ -21,10 +21,6 @@ import java.io.File;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.cli.BasicParser;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
@@ -38,7 +34,6 @@ import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.commons.cli.CommandLine;
 
 public class LocalDevBimServerStarter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimServerStarter.class);

@@ -41,13 +41,11 @@ import org.slf4j.LoggerFactory;
 
 public class FileJarClassLoader extends JarClassLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileJarClassLoader.class);
-	private final File jarFile;
 	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
 	private File tempDir;
 
 	public FileJarClassLoader(ClassLoader parentClassLoader, File jarFile, File tempDir) throws FileNotFoundException, IOException {
 		super(parentClassLoader);
-		this.jarFile = jarFile;
 		this.tempDir = tempDir;
 		if (!tempDir.exists()) {
 			tempDir.mkdir();
