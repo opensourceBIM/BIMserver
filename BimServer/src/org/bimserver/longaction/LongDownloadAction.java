@@ -78,22 +78,24 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			return;
 		}
 		ObjectIDM objectIDM = null;
-		session = getBimServer().getDatabase().createSession();
-		try {
-			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
-			if (serializerPluginConfiguration != null) {
-				ObjectIDMPluginConfiguration objectIdm = serializerPluginConfiguration.getObjectIDM();
-				if (objectIdm != null) {
-					ObjectIDMPlugin objectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getPluginDescriptor().getPluginClassName(), true);
-					if (objectIDMPlugin != null) {
-						objectIDM = objectIDMPlugin.getObjectIDM(new PluginConfiguration());
+		if (downloadParameters.getUseObjectIDM()) {
+			session = getBimServer().getDatabase().createSession();
+			try {
+				SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
+				if (serializerPluginConfiguration != null) {
+					ObjectIDMPluginConfiguration objectIdm = serializerPluginConfiguration.getObjectIDM();
+					if (objectIdm != null) {
+						ObjectIDMPlugin objectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getPluginDescriptor().getPluginClassName(), true);
+						if (objectIDMPlugin != null) {
+							objectIDM = objectIDMPlugin.getObjectIDM(new PluginConfiguration());
+						}
 					}
 				}
+			} catch (BimserverDatabaseException e) {
+				LOGGER.error("", e);
+			} finally {
+				session.close();
 			}
-		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
-		} finally {
-			session.close();
 		}
 
 		session = getBimServer().getDatabase().createSession();

@@ -52,6 +52,18 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 			private static final long serialVersionUID = 6865419120828460240L;
 
 			@Override
+			public int size() {
+				load();
+				return super.size();
+			}
+			
+			@Override
+			public boolean isEmpty() {
+				load();
+				return super.isEmpty();
+			}
+			
+			@Override
 			public Iterator<Object> iterator() {
 				load();
 				return super.iterator();

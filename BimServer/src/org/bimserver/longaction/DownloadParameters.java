@@ -46,7 +46,7 @@ public class DownloadParameters extends LongActionKey {
 	private String code;
 	private long qeid;
 	private long serializerOid;
-	private Boolean useObjectIDM;
+	private boolean useObjectIDM;
 	private Deep deep;
 
 	public DownloadParameters(BimServer bimServer) {
@@ -267,7 +267,7 @@ public class DownloadParameters extends LongActionKey {
 		result = prime * result + (int) (qeid ^ (qeid >>> 32));
 		result = prime * result + ((roids == null) ? 0 : roids.hashCode());
 		result = prime * result + (int) (serializerOid ^ (serializerOid >>> 32));
-		result = prime * result + ((useObjectIDM == null) ? 0 : useObjectIDM.hashCode());
+		result = prime * result + (useObjectIDM ? 1231 : 1237);
 		return result;
 	}
 
@@ -326,11 +326,9 @@ public class DownloadParameters extends LongActionKey {
 			return false;
 		if (serializerOid != other.serializerOid)
 			return false;
-		if (useObjectIDM == null) {
-			if (other.useObjectIDM != null)
-				return false;
-		} else if (!useObjectIDM.equals(other.useObjectIDM))
+		if (useObjectIDM != other.useObjectIDM) {
 			return false;
+		}
 		return true;
 	}
 
@@ -411,7 +409,7 @@ public class DownloadParameters extends LongActionKey {
 		this.modelCompareIdentifier = modelCompareIdentifier;
 	}
 
-	public Boolean getUseObjectIDM() {
+	public boolean getUseObjectIDM() {
 		return useObjectIDM;
 	}
 	

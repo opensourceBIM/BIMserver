@@ -134,7 +134,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-common-9.0.6.v20130930.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-server-9.0.6.v20130930.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-servlet-9.0.6.v20130930.jar"/>
-	<classpathentry kind="lib" path="lib/je-5.0.97.jar"/>
+	<classpathentry kind="lib" path="lib/je-5.0.97.jar" sourcepath="libsrc/je5.0.97.zip"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.4.4.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
 	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.7.3.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>

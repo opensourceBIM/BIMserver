@@ -133,6 +133,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			return false;
 		}
 		tables.put(tableName, database);
+		
 		return true;
 	}
 

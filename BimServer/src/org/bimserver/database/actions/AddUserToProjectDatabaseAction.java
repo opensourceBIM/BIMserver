@@ -26,7 +26,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserAddedToProject;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
@@ -56,7 +55,7 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 		if (authorization.hasRightsOnProject(actingUser, project)) {
 			User user = getUserByUoid(uoid);
 			project.getHasAuthorizedUsers().add(user);
-			final UserAddedToProject userAddedToProject = LogFactory.eINSTANCE.createUserAddedToProject();
+			final UserAddedToProject userAddedToProject = getDatabaseSession().create(UserAddedToProject.class);
 			userAddedToProject.setExecutor(actingUser);
 			userAddedToProject.setDate(new Date());
 			userAddedToProject.setAccessMethod(getAccessMethod());
@@ -70,7 +69,6 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 			});
 			getDatabaseSession().store(user);
 			getDatabaseSession().store(project);
-			getDatabaseSession().store(userAddedToProject);
 			return true;
 		} else {
 			throw new UserException("User has no rights to grant permission on '" + project.getName() + "'");

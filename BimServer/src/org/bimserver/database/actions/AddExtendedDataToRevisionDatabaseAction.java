@@ -27,7 +27,6 @@ import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.ExtendedDataAddedToRevision;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
@@ -68,13 +67,12 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 			getDatabaseSession().store(getIdEObject().getSchema());
 		}
 
-		final ExtendedDataAddedToRevision extendedDataAddedToRevision = LogFactory.eINSTANCE.createExtendedDataAddedToRevision();
+		final ExtendedDataAddedToRevision extendedDataAddedToRevision = getDatabaseSession().create(ExtendedDataAddedToRevision.class);
 		extendedDataAddedToRevision.setAccessMethod(getAccessMethod());
 		extendedDataAddedToRevision.setDate(new Date());
 		extendedDataAddedToRevision.setExecutor(actingUser);
 		extendedDataAddedToRevision.setExtendedData(getIdEObject());
 		extendedDataAddedToRevision.setRevision(revision);
-		getDatabaseSession().store(extendedDataAddedToRevision);
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {

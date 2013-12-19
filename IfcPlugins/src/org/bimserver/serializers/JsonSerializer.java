@@ -89,6 +89,9 @@ public class JsonSerializer extends IfcSerializer {
 							for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
 								if (eStructuralFeature.getEAnnotation("nolazyload") == null && eStructuralFeature.getEAnnotation("hidden") == null) {
 									if (eStructuralFeature instanceof EReference) {
+										if (object.eClass().getName().equals("IfcBuildingElementProxy") && eStructuralFeature.getName().equals("IsDefinedBy")) {
+											System.out.println();
+										}
 										Object value = object.eGet(eStructuralFeature);
 										if (value != null) {
 											if (eStructuralFeature.isMany()) {
