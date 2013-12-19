@@ -26,7 +26,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ProjectUndeleted;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -57,7 +56,7 @@ public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 		}
 		if (actingUser.getUserType() == UserType.ADMIN || actingUser.getHasRightsOn().contains(project)) {
 			project.setState(ObjectState.ACTIVE);
-			final ProjectUndeleted projectUndeleted = LogFactory.eINSTANCE.createProjectUndeleted();
+			final ProjectUndeleted projectUndeleted = getDatabaseSession().create(ProjectUndeleted.class);
 			projectUndeleted.setAccessMethod(getAccessMethod());
 			projectUndeleted.setDate(new Date());
 			projectUndeleted.setExecutor(actingUser);
@@ -69,7 +68,6 @@ public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 				}
 			});
 			getDatabaseSession().store(project);
-			getDatabaseSession().store(projectUndeleted);
 			return true;
 		} else {
 			throw new UserException("No rights to undelete this project");

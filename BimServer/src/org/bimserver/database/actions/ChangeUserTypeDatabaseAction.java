@@ -27,7 +27,6 @@ import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserChanged;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
@@ -60,7 +59,7 @@ public class ChangeUserTypeDatabaseAction extends BimDatabaseAction<Void> {
 			throw new UserException("Type of system user cannot be changed");
 		}
 		user.setUserType(UserType.get(userType.getOrdinal()));
-		final UserChanged userChanged = LogFactory.eINSTANCE.createUserChanged();
+		final UserChanged userChanged = getDatabaseSession().create(UserChanged.class);
 		userChanged.setAccessMethod(getAccessMethod());
 		userChanged.setDate(new Date());
 		userChanged.setExecutor(actingUser);
@@ -71,7 +70,6 @@ public class ChangeUserTypeDatabaseAction extends BimDatabaseAction<Void> {
 				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(userChanged));
 			}
 		});
-		getDatabaseSession().store(userChanged);
 		getDatabaseSession().store(user);
 		return null;
 	}

@@ -26,7 +26,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserRemovedFromProject;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
@@ -70,7 +69,7 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 			}
 			project.getHasAuthorizedUsers().remove(user);
 			user.getHasRightsOn().remove(project);
-			final UserRemovedFromProject userRemovedFromProject = LogFactory.eINSTANCE.createUserRemovedFromProject();
+			final UserRemovedFromProject userRemovedFromProject = getDatabaseSession().create(UserRemovedFromProject.class);
 			userRemovedFromProject.setDate(new Date());
 			userRemovedFromProject.setExecutor(actingUser);
 			userRemovedFromProject.setAccessMethod(getAccessMethod());
@@ -82,7 +81,6 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(userRemovedFromProject));
 				}
 			});
-			getDatabaseSession().store(userRemovedFromProject);
 			getDatabaseSession().store(user);
 			getDatabaseSession().store(project);
 			return true;

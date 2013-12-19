@@ -26,7 +26,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ProjectDeleted;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -54,7 +53,7 @@ public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 		final Project project = getProjectByPoid(poid);
 		if (actingUser.getUserType() == UserType.ADMIN || (actingUser.getHasRightsOn().contains(project) && bimServer.getServerSettingsCache().getServerSettings().isAllowUsersToCreateTopLevelProjects())) {
 			delete(project);
-			final ProjectDeleted projectDeleted = LogFactory.eINSTANCE.createProjectDeleted();
+			final ProjectDeleted projectDeleted = getDatabaseSession().create(ProjectDeleted.class);
 			projectDeleted.setAccessMethod(getAccessMethod());
 			projectDeleted.setDate(new Date());
 			projectDeleted.setExecutor(actingUser);

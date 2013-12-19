@@ -27,7 +27,6 @@ import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.RevisionUpdated;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -59,7 +58,7 @@ public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 		if (!authorization.hasRightsOnProjectOrSuperProjects(actingUser, project)) {
 			throw new UserException("User has no rights to update project properties");
 		}
-		final RevisionUpdated revisionUpdated = LogFactory.eINSTANCE.createRevisionUpdated();
+		final RevisionUpdated revisionUpdated = getDatabaseSession().create(RevisionUpdated.class);
 		revisionUpdated.setRevision(revision);
 		revisionUpdated.setDate(new Date());
 		revisionUpdated.setExecutor(actingUser);
@@ -71,7 +70,6 @@ public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 			}
 		});
 		revision.setTag(sRevision.getTag());
-		getDatabaseSession().store(revisionUpdated);
 		getDatabaseSession().store(revision);
 		return null;
 	}

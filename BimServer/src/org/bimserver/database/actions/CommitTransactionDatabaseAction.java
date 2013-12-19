@@ -41,7 +41,6 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -103,7 +102,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		ConcreteRevision concreteRevision = result.getConcreteRevision();
 		revision = concreteRevision.getRevisions().get(0);
 		project.setLastRevision(revision);
-		final NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
+		final NewRevisionAdded newRevisionAdded = getDatabaseSession().create(NewRevisionAdded.class);
 		newRevisionAdded.setDate(new Date());
 		newRevisionAdded.setExecutor(user);
 		newRevisionAdded.setRevision(concreteRevision.getRevisions().get(0));
@@ -166,7 +165,6 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		
 		concreteRevision.setSummary(summaryMap.toRevisionSummary(getDatabaseSession()));
 
-		getDatabaseSession().store(newRevisionAdded);
 		getDatabaseSession().store(concreteRevision);
 		getDatabaseSession().store(project);
 		return concreteRevision;

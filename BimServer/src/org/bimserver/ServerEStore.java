@@ -55,10 +55,25 @@ public class ServerEStore implements BimServerEStore {
 	protected EList<Object> getList(final Entry entry) {
 		EList<Object> result = (EList<Object>) map.get(entry);
 		if (result == null) {
+			if (entry.eObject.eClass().getName().equals("IfcBuildingElementProxy") && entry.eStructuralFeature.getName().equals("IsDefinedBy")) {
+				System.out.println();
+			}
 			if (entry.eStructuralFeature.isUnique()) {
 				result = new UniqueEList<Object>(){
 					private static final long serialVersionUID = -1331649607984463166L;
 
+					@Override
+					public int size() {
+						((IdEObject) entry.eObject).load();
+						return super.size();
+					}
+					
+					@Override
+					public boolean isEmpty() {
+						((IdEObject) entry.eObject).load();
+						return super.isEmpty();
+					}
+					
 					@Override
 					public Iterator<Object> iterator() {
 						((IdEObject) entry.eObject).load();
@@ -69,6 +84,18 @@ public class ServerEStore implements BimServerEStore {
 				result = new BasicEList<Object>(){
 					private static final long serialVersionUID = -2646843411311359243L;
 
+					@Override
+					public int size() {
+						((IdEObject) entry.eObject).load();
+						return super.size();
+					}
+					
+					@Override
+					public boolean isEmpty() {
+						((IdEObject) entry.eObject).load();
+						return super.isEmpty();
+					}
+					
 					@Override
 					public Iterator<Object> iterator() {
 						((IdEObject) entry.eObject).load();

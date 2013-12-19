@@ -68,7 +68,7 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 			geoTag.setZ(sGeoTag.getZ());
 			geoTag.setDirectionAngle(sGeoTag.getDirectionAngle());
 			geoTag.setEpsg(sGeoTag.getEpsg());
-			final GeoTagUpdated geoTagUpdated = LogFactory.eINSTANCE.createGeoTagUpdated();
+			final GeoTagUpdated geoTagUpdated = getDatabaseSession().create(GeoTagUpdated.class);
 			geoTagUpdated.setGeoTag(geoTag);
 			geoTagUpdated.setAccessMethod(getAccessMethod());
 			geoTagUpdated.setDate(new Date());
@@ -79,7 +79,6 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(geoTagUpdated));
 				}
 			});
-			getDatabaseSession().store(geoTagUpdated);
 			getDatabaseSession().store(geoTag);
 		} else {
 			throw new UserException("User has no rights on any projects associated with this geotag");

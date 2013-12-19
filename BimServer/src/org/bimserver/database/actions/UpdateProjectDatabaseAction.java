@@ -80,7 +80,7 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 		project.setName(sProject.getName());
 		project.setDescription(sProject.getDescription());
 		project.setExportLengthMeasurePrefix(SIPrefix.get(sProject.getExportLengthMeasurePrefix().getOrdinal()));
-		final ProjectUpdated projectUpdated = LogFactory.eINSTANCE.createProjectUpdated();
+		final ProjectUpdated projectUpdated = getDatabaseSession().create(ProjectUpdated.class);
 		projectUpdated.setAccessMethod(getAccessMethod());
 		projectUpdated.setDate(new Date());
 		projectUpdated.setExecutor(actingUser);
@@ -91,7 +91,6 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(projectUpdated));
 			}
 		});
-		getDatabaseSession().store(projectUpdated);
 		getDatabaseSession().store(project);
 		return null;
 	}

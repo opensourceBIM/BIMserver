@@ -144,7 +144,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 
 	private Revision createNewVirtualRevision(DatabaseSession session, Project project, ConcreteRevision concreteRevision, String comment, Date date, User user, long size)
 			throws BimserverLockConflictException, BimserverDatabaseException {
-		Revision revision = StoreFactory.eINSTANCE.createRevision();
+		Revision revision = session.create(Revision.class);
 		revision.setLastConcreteRevision(concreteRevision);
 		revision.setComment(comment);
 		revision.setDate(date);
@@ -154,7 +154,6 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		revision.setId(project.getRevisions().size() + 1);
 		revision.getConcreteRevisions().add(concreteRevision);
 		revision.setProject(project);
-		session.store(revision);
 		return revision;
 	}
 

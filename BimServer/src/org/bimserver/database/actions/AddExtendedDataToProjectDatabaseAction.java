@@ -27,7 +27,6 @@ import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.ExtendedDataAddedToProject;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
@@ -58,13 +57,12 @@ public class AddExtendedDataToProjectDatabaseAction extends AddDatabaseAction<Ex
 		project.getExtendedData().add(getIdEObject());
 		getDatabaseSession().store(project);
 		
-		final ExtendedDataAddedToProject extendedDataAddedToProject = LogFactory.eINSTANCE.createExtendedDataAddedToProject();
+		final ExtendedDataAddedToProject extendedDataAddedToProject = getDatabaseSession().create(ExtendedDataAddedToProject.class);
 		extendedDataAddedToProject.setAccessMethod(getAccessMethod());
 		extendedDataAddedToProject.setDate(new Date());
 		extendedDataAddedToProject.setExecutor(actingUser);
 		extendedDataAddedToProject.setExtendedData(getIdEObject());
 		extendedDataAddedToProject.setProject(project);
-		getDatabaseSession().store(extendedDataAddedToProject);
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
