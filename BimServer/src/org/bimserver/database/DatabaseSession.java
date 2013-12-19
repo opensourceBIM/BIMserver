@@ -89,7 +89,7 @@ import com.sleepycat.je.TransactionTimeoutException;
 
 public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public static final int DEFAULT_CONFLICT_RETRIES = 10;
-	private static boolean DEVELOPER_DEBUG = true;
+	private static boolean DEVELOPER_DEBUG = false;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
 	private static final EcorePackage ECORE_PACKAGE = EcorePackage.eINSTANCE;
 	private final Database database;
@@ -275,9 +275,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 			int fieldCounter = 0;
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
-				if (idEObject.eClass().getName().equals("IfcBuildingElementProxy") && feature.getName().equals("IsDefinedBy")) {
-					System.out.println();
-				}
 				if (feature.isUnsettable() && (unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0) {
 					idEObject.eUnset(feature);
 				} else {
@@ -400,9 +397,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 									idEObject.eSet(feature, newValue);
 								}
 							} else {
-								if (feature.getName().equals("id")) {
-									System.out.println();
-								}
 								idEObject.eSet(feature, newValue);
 							}
 						}
@@ -687,9 +681,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	@SuppressWarnings("unchecked")
 	public <T extends IdEObject> T get(IdEObject idEObject, long oid, IfcModelInterface model, QueryInterface query, TodoList todoList) throws BimserverDatabaseException {
 		checkOpen();
-		if (oid == 262145) {
-			System.out.println();
-		}
 		if (oid == -1) {
 			throw new BimserverDatabaseException("Cannot get object for oid " + oid);
 		}
