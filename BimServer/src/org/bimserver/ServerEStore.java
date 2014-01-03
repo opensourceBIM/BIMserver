@@ -55,9 +55,6 @@ public class ServerEStore implements BimServerEStore {
 	protected EList<Object> getList(final Entry entry) {
 		EList<Object> result = (EList<Object>) map.get(entry);
 		if (result == null) {
-			if (entry.eObject.eClass().getName().equals("IfcBuildingElementProxy") && entry.eStructuralFeature.getName().equals("IsDefinedBy")) {
-				System.out.println();
-			}
 			if (entry.eStructuralFeature.isUnique()) {
 				result = new UniqueEList<Object>(){
 					private static final long serialVersionUID = -1331649607984463166L;
