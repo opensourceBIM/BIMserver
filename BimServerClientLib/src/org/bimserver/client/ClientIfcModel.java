@@ -337,9 +337,6 @@ public class ClientIfcModel extends IfcModel {
 																while (l.size() <= index) {
 																	l.addUnique(refObj.eClass().getEPackage().getEFactoryInstance().create(refObj.eClass()));
 																}
-																if (eClass.getName().equals("IfcRelAssociatesClassification") && eStructuralFeature.getName().equals("RelatedObjects")) {
-																	System.out.println();
-																}
 																l.setUnique(index, refObj);
 															} else {
 																waitingList.add(refOid, new ListWaitingObject(object, eStructuralFeature, index));
