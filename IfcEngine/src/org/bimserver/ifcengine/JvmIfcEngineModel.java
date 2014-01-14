@@ -35,8 +35,11 @@ import org.bimserver.plugins.renderengine.RenderEngineInstance;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
 import org.bimserver.plugins.renderengine.RenderEngineSurfaceProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JvmIfcEngineModel implements RenderEngineModel {
+	private static final Logger LOGGER = LoggerFactory.getLogger(JvmIfcEngineModel.class);
 	private final int modelId;
 	private final JvmIfcEngine failSafeIfcEngine;
 
@@ -80,6 +83,7 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 			if (surfaceProperties.getIndicesCount() == 0 || surfaceProperties.getVerticesCount() == 0) {
 				return null;
 			}
+			LOGGER.info(surfaceProperties.getIndicesCount() + " indices, " + surfaceProperties.getVerticesCount() + " vertices");
 			if (surfaceProperties.getIndicesCount() < 0) {
 				throw new RenderEngineException("Number of indices negative " + surfaceProperties.getIndicesCount());
 			}
