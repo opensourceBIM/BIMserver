@@ -80,18 +80,18 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 			if (surfaceProperties.getIndicesCount() == 0 || surfaceProperties.getVerticesCount() == 0) {
 				return null;
 			}
+			if (surfaceProperties.getIndicesCount() < 0) {
+				throw new RenderEngineException("Number of indices negative " + surfaceProperties.getIndicesCount());
+			}
+			if (surfaceProperties.getVerticesCount() < 0) {
+				throw new RenderEngineException("Number of vertices negative " + surfaceProperties.getVerticesCount());
+			}
 			failSafeIfcEngine.writeCommand(Command.FINALIZE_MODELLING);
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.writeInt(surfaceProperties.getIndicesCount());
 			failSafeIfcEngine.writeInt(surfaceProperties.getVerticesCount());
 			failSafeIfcEngine.flush();
-			if (surfaceProperties.getIndicesCount() < 0) {
-				throw new RenderEngineException("Number of indices negative " + surfaceProperties.getIndicesCount());
-			}
 			int[] indices = new int[surfaceProperties.getIndicesCount()];
-			if (surfaceProperties.getVerticesCount() < 0) {
-				throw new RenderEngineException("Number of vertices negative " + surfaceProperties.getVerticesCount());
-			}
 			float[] vertices = new float[surfaceProperties.getVerticesCount() * 3];
 			float[] normals = new float[surfaceProperties.getVerticesCount() * 3];
 			for (int i = 0; i < indices.length; i++) {
