@@ -42,7 +42,7 @@ public class JsonSerializer extends IfcSerializer {
 		HEADER, BODY, FOOTER, DONE
 	}
 	
-	private boolean serializerEmptyLists = false;
+	private static final boolean SERIALIZE_EMPTY_LISTS = false;
 
 	private UTF8PrintWriter out;
 	private Mode mode = Mode.HEADER;
@@ -93,7 +93,7 @@ public class JsonSerializer extends IfcSerializer {
 										if (value != null) {
 											if (eStructuralFeature.isMany()) {
 												List<?> list = (List<?>) value;
-												if (serializerEmptyLists || !list.isEmpty()) {
+												if (SERIALIZE_EMPTY_LISTS || !list.isEmpty()) {
 													if (firstF) {
 														firstF = false;
 													} else {
@@ -166,7 +166,7 @@ public class JsonSerializer extends IfcSerializer {
 										if (value != null) {
 											if (eStructuralFeature.isMany()) {
 												List<?> list = (List<?>) value;
-												if (serializerEmptyLists || !list.isEmpty()) {
+												if (SERIALIZE_EMPTY_LISTS || !list.isEmpty()) {
 													if (firstF) {
 														firstF = false;
 													} else {

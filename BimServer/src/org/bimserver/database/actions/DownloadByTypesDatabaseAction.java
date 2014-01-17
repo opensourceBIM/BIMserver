@@ -117,7 +117,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(new StructuralFeatureIdentifier(Ifc2x3tc1Package.eINSTANCE.getIfcExtrudedAreaSolid().getName(), Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_StyledByItem().getName()));
 					
 					int highestStopId = findHighestStopRid(project, concreteRevision);
-					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, deep, highestStopId));
+					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), useObjectIDM ? null : null, deep, highestStopId));
 					size += subModel.size();
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());
 					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);

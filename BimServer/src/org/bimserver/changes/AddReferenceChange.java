@@ -76,7 +76,10 @@ public class AddReferenceChange implements Change {
 		
 		if (eReference.getEOpposite() != null) {
 			if (eReference.getEOpposite().isMany()) {
-				// TODO This never happens, no N-N??
+				List oppositeList = (List)referencedObject.eGet(eReference.getEOpposite());
+				oppositeList.add(idEObject);
+				databaseSession.store(referencedObject, project.getId(), concreteRevision.getId());
+				added = true;
 			} else {
 				IdEObject oldReferencing = (IdEObject) referencedObject.eGet(eReference.getEOpposite());
 				if (oldReferencing != null) {

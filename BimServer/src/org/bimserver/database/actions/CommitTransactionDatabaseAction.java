@@ -134,6 +134,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			summaryMap = new SummaryMap();
 		}
 
+		boolean geometryChanged = false;
+		// TODO actually change this variable...
+		
 		// First create all new objects
 		Map<Long, IdEObject> created = new HashMap<Long, IdEObject>();
 		Map<Long, IdEObject> deleted = new HashMap<Long, IdEObject>();
@@ -153,7 +156,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			}
 		}
 		
-		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
+		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin() && geometryChanged) {
 			setProgress("Generating Geometry...", -1);
 			try {
 				new GeometryGenerator().generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), revision, true, geometryCache);

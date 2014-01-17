@@ -32,6 +32,7 @@ public class LocalDevPluginLoader {
 		pluginManager.loadAllPluginsFromEclipseWorkspace(current);
 		
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("E:\\Workspaces\\BIMserver\\Myplugins"));
+		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("E:\\Workspaces\\BIMserver\\IfcOpenShellPlugin"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimql\\BimQL"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimvie.ws"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMSie2\\BIMsie"));
