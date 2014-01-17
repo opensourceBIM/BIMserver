@@ -134,7 +134,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			summaryMap = new SummaryMap();
 		}
 
-		boolean geometryChanged = false;
+		boolean geometryChanged = true;
 		// TODO actually change this variable...
 		
 		// First create all new objects
