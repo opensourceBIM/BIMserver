@@ -25,6 +25,14 @@ public class StructuralFeatureIdentifier {
 		this.eClass = eClass;
 		this.eStructuralFeature = eStructuralFeature;
 	}
+	
+	public String geteClass() {
+		return eClass;
+	}
+	
+	public String geteStructuralFeature() {
+		return eStructuralFeature;
+	}
 
 	@Override
 	public int hashCode() {
