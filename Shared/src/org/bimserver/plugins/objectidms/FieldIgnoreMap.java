@@ -19,6 +19,7 @@ package org.bimserver.plugins.objectidms;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -35,11 +36,11 @@ public class FieldIgnoreMap implements ObjectIDM {
 		packages = ePackages;
 	}
 	
-	protected void addToGeneralIgnoreSet(StructuralFeatureIdentifier structuralFeatureIdentifier) {
+	public void addToGeneralIgnoreSet(StructuralFeatureIdentifier structuralFeatureIdentifier) {
 		generalIgnoreSet.add(structuralFeatureIdentifier);
 	}
 
-	protected void addToSpecificIncludeMap(EClass eClass, StructuralFeatureIdentifier structuralFeatureIdentifier) {
+	public void addToSpecificIncludeMap(EClass eClass, StructuralFeatureIdentifier structuralFeatureIdentifier) {
 		if (specificIncludeMap.containsKey(eClass)) {
 			specificIncludeMap.get(eClass).add(structuralFeatureIdentifier);
 		} else {
@@ -58,8 +59,18 @@ public class FieldIgnoreMap implements ObjectIDM {
 		return null;
 	}
 	
-	public void removeFromGeneralIgnoreSet(StructuralFeatureIdentifier structuralFeatureIdentifier) {
-		generalIgnoreSet.remove(structuralFeatureIdentifier);
+	public void removeFromGeneralIgnoreSet(EStructuralFeature eStructuralFeature) {
+		Iterator<StructuralFeatureIdentifier> iterator = generalIgnoreSet.iterator();
+		while (iterator.hasNext()) {
+			StructuralFeatureIdentifier next = iterator.next();
+			if (next.geteStructuralFeature().equals(eStructuralFeature.getName())) {
+				iterator.remove();
+			}
+		}
+	}
+	
+	public boolean removeFromGeneralIgnoreSet(StructuralFeatureIdentifier structuralFeatureIdentifier) {
+		return generalIgnoreSet.remove(structuralFeatureIdentifier);
 	}
 	
 	protected EStructuralFeature getEStructuralFeature(String className, String fieldName) {
