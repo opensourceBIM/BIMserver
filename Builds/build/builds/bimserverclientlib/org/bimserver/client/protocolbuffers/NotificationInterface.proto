@@ -1,0 +1,130 @@
+package org.bimserver.pb;
+
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+import "ServiceInterface.proto";
+option java_generic_services = true;
+
+option java_outer_classname = "NotificationInterfaceImpl";
+
+option optimize_for = SPEED;
+
+service NotificationInterface {
+	rpc closedProgressOnProjectTopic (ClosedProgressOnProjectTopicRequest) returns (VoidResponse);
+
+	rpc closedProgressOnRevisionTopic (ClosedProgressOnRevisionTopicRequest) returns (VoidResponse);
+
+	rpc closedProgressOnServerTopic (ClosedProgressOnServerTopicRequest) returns (VoidResponse);
+
+	rpc newExtendedData (NewExtendedDataRequest) returns (VoidResponse);
+
+	rpc newProgressOnProjectTopic (NewProgressOnProjectTopicRequest) returns (VoidResponse);
+
+	rpc newProgressOnRevisionTopic (NewProgressOnRevisionTopicRequest) returns (VoidResponse);
+
+	rpc newProgressOnServerTopic (NewProgressOnServerTopicRequest) returns (VoidResponse);
+
+	rpc newProgressTopic (NewProgressTopicRequest) returns (VoidResponse);
+
+	rpc newProject (NewProjectRequest) returns (VoidResponse);
+
+	rpc newRevision (NewRevisionRequest) returns (VoidResponse);
+
+	rpc newUser (NewUserRequest) returns (VoidResponse);
+
+	rpc progress (ProgressRequest) returns (VoidResponse);
+
+}
+
+message ClosedProgressOnProjectTopicRequest {
+	optional int64 poid = 1;
+	optional int64 topicId = 2;
+}
+
+message ClosedProgressOnRevisionTopicRequest {
+	optional int64 poid = 1;
+	optional int64 roid = 2;
+	optional int64 topicId = 3;
+}
+
+message ClosedProgressOnServerTopicRequest {
+	optional int64 topicId = 1;
+}
+
+message NewExtendedDataRequest {
+	optional int64 roid = 1;
+	optional int64 edid = 2;
+}
+
+message NewProgressOnProjectTopicRequest {
+	optional int64 poid = 1;
+	optional int64 topicId = 2;
+}
+
+message NewProgressOnRevisionTopicRequest {
+	optional int64 poid = 1;
+	optional int64 roid = 2;
+	optional int64 topicId = 3;
+}
+
+message NewProgressOnServerTopicRequest {
+	optional int64 topicId = 1;
+}
+
+message NewProgressTopicRequest {
+	optional int64 topicId = 1;
+}
+
+message NewProjectRequest {
+	optional int64 poid = 1;
+}
+
+message NewRevisionRequest {
+	optional int64 poid = 1;
+	optional int64 roid = 2;
+}
+
+message NewUserRequest {
+	optional int64 uoid = 1;
+}
+
+enum SActionState{
+	SActionState_UNKNOWN = 0;
+	SActionState_STARTED = 1;
+	SActionState_AS_ERROR = 2;
+	SActionState_FINISHED = 3;
+}
+
+message SLongActionState {
+	optional int32 progress = 1;
+	optional string title = 2;
+	repeated string infos = 3;
+	repeated string errors = 4;
+	optional int64 start = 5;
+	optional int32 rid = 6;
+	optional int64 oid = 7;
+	optional SActionState state = 8;
+	optional int32 stage = 9;
+	repeated string warnings = 10;
+	optional int64 end = 11;
+}
+
+message ProgressRequest {
+	optional int64 topicId = 1;
+	optional SLongActionState state = 2;
+}
+

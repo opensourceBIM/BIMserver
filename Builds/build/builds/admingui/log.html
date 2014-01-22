@@ -1,0 +1,109 @@
+<div class="log">
+	<div class="nologs well well-sm">
+		No logged actions yet
+	</div>
+	<table class="table table-striped initialhide">
+		<thead>
+			<tr>
+				<th>Start</th>
+				<th>Duration</th>
+				<th>Description</th>
+				<th>State</th>
+				<th>Progress</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</div>
+<script>
+function Log(containerDiv, settings, main) {
+	var othis = this;
+	
+	this.close = function(){
+		settings.unregisterFunction(othis.newChangeProgressHandler, othis.closedChangeProgressHandler);
+	};
+	
+	this.getName = function(){
+		return "Log";
+	};
+	
+	this.progressHandler = function(topicId, state){
+		containerDiv.find("table").show();
+		containerDiv.find(".nologs").hide();
+		var tr = containerDiv.find("table tr[tid=\"" + topicId + "\"]");
+		var created = false;
+		if (tr.length == 0) {
+			created = true;
+			tr = $("<tr>");
+			tr.attr("tid", topicId);
+			tr.append("<td class=\"start\"></td>");
+			tr.append("<td class=\"duration\"></td>");
+			tr.append("<td class=\"title\"></td>");
+			tr.append("<td class=\"state\"></td>");
+			tr.append("<td class=\"progresstd\" width=\"200px\"><div class=\"progress\"><div class=\"progress-bar\"></div></div></td>");
+		}
+		tr.find(".start").html(formatDateTimeShortest(new Date(state.start)));
+		var diff = (state.end != null ? new Date(state.end) : new Date()).getTime() - new Date(state.start).getTime();
+		tr.find(".duration").attr("start", state.start);
+		tr.find(".duration").attr("end", state.end);
+		tr.find(".duration").html(formatDuration(diff, true));
+		if (state.end == null) {
+			tr.find(".duration").css("color", "red");
+		} else {
+			tr.find(".duration").css("color", "black");	
+		}
+		tr.find(".title").html(state.title);
+		tr.find(".state").html(formatLogState(state.state));
+		if (state.progress == -1 || state.progress == 0) {
+			if (state.state == "FINISHED" || state.state == "AS_ERROR") {
+				tr.find(".progress").hide();
+			} else {
+				tr.find(".progress").addClass("progress-striped").addClass("active");
+				tr.find(".progress .progress-bar").css("width", "100%");
+			}
+		} else if (state.progress == 100) {
+			tr.find(".progress").hide();
+		} else {
+			tr.find(".progress .progress-bar").css("width", state.progress + "%");
+			tr.find(".progress").removeClass("progress-striped").removeClass("active");
+		}
+		if (created) {
+			if (containerDiv.find("table tbody tr").length > 0) {
+				var foundElement = null;
+				containerDiv.find("table tbody tr").each(function(){
+					if (parseInt($(this).attr("tid")) < topicId) {
+						foundElement = $(this);
+						return false;
+					}
+				});
+				if (foundElement != null) {
+					foundElement.before(tr);
+				} else {
+					containerDiv.find("table tbody").append(tr);
+				}
+			} else {
+				containerDiv.find("table tbody").append(tr);
+			}
+		}
+	};
+
+	this.newChangeProgressHandler = function(topicId){
+		Global.bimServerApi.call("Bimsie1NotificationRegistryInterface", "getProgress", {topicId: topicId}, function(state){
+			othis.progressHandler(topicId, state);
+			Global.bimServerApi.registerProgressHandler(topicId, othis.progressHandler);
+		});
+	};
+
+	this.closedChangeProgressHandler = function(topicId){
+		Global.bimServerApi.unregisterProgressHandler(topicId, othis.progressHandler);
+	};
+
+	Global.bimServerApi.call("Bimsie1NotificationRegistryInterface", settings.getTopicsMethod, settings.getTopicsArguments, function(topicIds){
+		topicIds.forEach(function(topicId){
+			othis.newChangeProgressHandler(topicId);
+		});
+		
+		settings.registerFunction(othis.newChangeProgressHandler, othis.closedChangeProgressHandler);
+	});
+}
+</script>

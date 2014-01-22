@@ -1,0 +1,107 @@
+package org.bimserver.pb;
+
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+import "ServiceInterface.proto";
+import "AdminInterface.proto";
+import "MetaInterface.proto";
+import "SettingsInterface.proto";
+import "AuthInterface.proto";
+import "PluginInterface.proto";
+import "Bimsie1ServiceInterface.proto";
+import "Bimsie1NotificationInterface.proto";
+import "Bimsie1RemoteServiceInterface.proto";
+option java_generic_services = true;
+
+option java_outer_classname = "Bimsie1AuthInterfaceImpl";
+
+option optimize_for = SPEED;
+
+service Bimsie1AuthInterface {
+	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
+
+	rpc isLoggedIn (IsLoggedInRequest) returns (IsLoggedInResponse);
+
+	rpc login (LoginRequest) returns (LoginResponse);
+
+	rpc loginOpenId (LoginOpenIdRequest) returns (LoginOpenIdResponse);
+
+	rpc loginUserToken (LoginUserTokenRequest) returns (LoginUserTokenResponse);
+
+	rpc logout (LogoutRequest) returns (VoidResponse);
+
+	rpc validateOpenId (ValidateOpenIdRequest) returns (ValidateOpenIdResponse);
+
+}
+
+message GetAccessMethodRequest {
+}
+
+message GetAccessMethodResponse {
+	optional string errorMessage = 1;
+	optional SAccessMethod value = 2;
+}
+
+message IsLoggedInRequest {
+}
+
+message IsLoggedInResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message LoginRequest {
+	optional string username = 1;
+	optional string password = 2;
+}
+
+message LoginResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message LoginOpenIdRequest {
+	optional string op = 1;
+	optional string returnUrl = 2;
+}
+
+message LoginOpenIdResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message LoginUserTokenRequest {
+	optional string token = 1;
+}
+
+message LoginUserTokenResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message LogoutRequest {
+}
+
+message ValidateOpenIdRequest {
+	optional string queryString = 1;
+}
+
+message ValidateOpenIdResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+

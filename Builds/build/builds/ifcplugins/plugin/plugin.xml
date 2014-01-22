@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginDescriptor>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.serializers.JsonSerializerPlugin</implementationClass>
+	</PluginImplementation>
+
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin</implementationClass>
+	</PluginImplementation>
+
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.xml.deserializer.IfcXmlDeserializerPlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.step.deserializer.IfcStepDeserializerPlugin</implementationClass>
+	</PluginImplementation>
+
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.modelcompare.ModelComparePlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.compare.NameBasedModelComparePlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.modelcompare.ModelComparePlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.compare.GuidBasedModelComparePlugin</implementationClass>
+	</PluginImplementation>
+</PluginDescriptor>

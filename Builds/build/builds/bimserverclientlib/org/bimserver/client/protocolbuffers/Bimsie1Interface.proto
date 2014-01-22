@@ -1,0 +1,164 @@
+package org.bimserver.pb;
+
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+import "ServiceInterface.proto";
+import "NotificationInterface.proto";
+import "RemoteServiceInterface.proto";
+import "AdminInterface.proto";
+import "MetaInterface.proto";
+import "SettingsInterface.proto";
+import "Bimsie1AuthInterface.proto";
+import "BimServerAuthInterface.proto";
+import "LowLevelInterface.proto";
+import "PluginInterface.proto";
+import "RegistryInterface.proto";
+option java_generic_services = true;
+
+option java_outer_classname = "Bimsie1InterfaceImpl";
+
+option optimize_for = SPEED;
+
+service Bimsie1Interface {
+	rpc abortTransaction (AbortTransactionRequest) returns (VoidResponse);
+
+	rpc addBooleanAttribute (AddBooleanAttributeRequest) returns (VoidResponse);
+
+	rpc addDoubleAttribute (AddDoubleAttributeRequest) returns (VoidResponse);
+
+	rpc addIntegerAttribute (AddIntegerAttributeRequest) returns (VoidResponse);
+
+	rpc addReference (AddReferenceRequest) returns (VoidResponse);
+
+	rpc addStringAttribute (AddStringAttributeRequest) returns (VoidResponse);
+
+	rpc checkin (CheckinRequest) returns (CheckinResponse);
+
+	rpc commitTransaction (CommitTransactionRequest) returns (CommitTransactionResponse);
+
+	rpc createObject (CreateObjectRequest) returns (CreateObjectResponse);
+
+	rpc download (DownloadRequest) returns (DownloadResponse);
+
+	rpc getBooleanAttribute (GetBooleanAttributeRequest) returns (GetBooleanAttributeResponse);
+
+	rpc getBooleanAttributes (GetBooleanAttributesRequest) returns (GetBooleanAttributesResponse);
+
+	rpc getByteArrayAttribute (GetByteArrayAttributeRequest) returns (GetByteArrayAttributeResponse);
+
+	rpc getByteArrayAttributes (GetByteArrayAttributesRequest) returns (GetByteArrayAttributesResponse);
+
+	rpc getDataObjectByGuid (GetDataObjectByGuidRequest) returns (GetDataObjectByGuidResponse);
+
+	rpc getDataObjectByOid (GetDataObjectByOidRequest) returns (GetDataObjectByOidResponse);
+
+	rpc getDataObjects (GetDataObjectsRequest) returns (GetDataObjectsResponse);
+
+	rpc getDataObjectsByType (GetDataObjectsByTypeRequest) returns (GetDataObjectsByTypeResponse);
+
+	rpc getDoubleAttribute (GetDoubleAttributeRequest) returns (GetDoubleAttributeResponse);
+
+	rpc getDoubleAttributes (GetDoubleAttributesRequest) returns (GetDoubleAttributesResponse);
+
+	rpc getEnumAttribute (GetEnumAttributeRequest) returns (GetEnumAttributeResponse);
+
+	rpc getIntegerAttribute (GetIntegerAttributeRequest) returns (GetIntegerAttributeResponse);
+
+	rpc getIntegerAttributes (GetIntegerAttributesRequest) returns (GetIntegerAttributesResponse);
+
+	rpc getLongAttribute (GetLongAttributeRequest) returns (GetLongAttributeResponse);
+
+	rpc getReference (GetReferenceRequest) returns (GetReferenceResponse);
+
+	rpc getReferences (GetReferencesRequest) returns (GetReferencesResponse);
+
+	rpc getServiceLog (GetServiceLogRequest) returns (GetServiceLogResponse);
+
+	rpc getStringAttribute (GetStringAttributeRequest) returns (GetStringAttributeResponse);
+
+	rpc getStringAttributes (GetStringAttributesRequest) returns (GetStringAttributesResponse);
+
+	rpc login (LoginRequest) returns (LoginResponse);
+
+	rpc logout (LogoutRequest) returns (VoidResponse);
+
+	rpc removeAllReferences (RemoveAllReferencesRequest) returns (VoidResponse);
+
+	rpc removeAttribute (RemoveAttributeRequest) returns (VoidResponse);
+
+	rpc removeObject (RemoveObjectRequest) returns (VoidResponse);
+
+	rpc removeReference (RemoveReferenceRequest) returns (VoidResponse);
+
+	rpc setBooleanAttribute (SetBooleanAttributeRequest) returns (VoidResponse);
+
+	rpc setBooleanAttributes (SetBooleanAttributesRequest) returns (VoidResponse);
+
+	rpc setByteArrayAttribute (SetByteArrayAttributeRequest) returns (VoidResponse);
+
+	rpc setDoubleAttribute (SetDoubleAttributeRequest) returns (VoidResponse);
+
+	rpc setDoubleAttributeAtIndex (SetDoubleAttributeAtIndexRequest) returns (VoidResponse);
+
+	rpc setDoubleAttributes (SetDoubleAttributesRequest) returns (VoidResponse);
+
+	rpc setEnumAttribute (SetEnumAttributeRequest) returns (VoidResponse);
+
+	rpc setIntegerAttribute (SetIntegerAttributeRequest) returns (VoidResponse);
+
+	rpc setIntegerAttributeAtIndex (SetIntegerAttributeAtIndexRequest) returns (VoidResponse);
+
+	rpc setIntegerAttributes (SetIntegerAttributesRequest) returns (VoidResponse);
+
+	rpc setLongAttribute (SetLongAttributeRequest) returns (VoidResponse);
+
+	rpc setLongAttributeAtIndex (SetLongAttributeAtIndexRequest) returns (VoidResponse);
+
+	rpc setLongAttributes (SetLongAttributesRequest) returns (VoidResponse);
+
+	rpc setReference (SetReferenceRequest) returns (VoidResponse);
+
+	rpc setStringAttribute (SetStringAttributeRequest) returns (VoidResponse);
+
+	rpc setStringAttributeAtIndex (SetStringAttributeAtIndexRequest) returns (VoidResponse);
+
+	rpc setWrappedBooleanAttribute (SetWrappedBooleanAttributeRequest) returns (VoidResponse);
+
+	rpc setWrappedDoubleAttribute (SetWrappedDoubleAttributeRequest) returns (VoidResponse);
+
+	rpc setWrappedIntegerAttribute (SetWrappedIntegerAttributeRequest) returns (VoidResponse);
+
+	rpc setWrappedLongAttribute (SetWrappedLongAttributeRequest) returns (VoidResponse);
+
+	rpc setWrappedStringAttribute (SetWrappedStringAttributeRequest) returns (VoidResponse);
+
+	rpc startTransaction (StartTransactionRequest) returns (StartTransactionResponse);
+
+	rpc unsetAttribute (UnsetAttributeRequest) returns (VoidResponse);
+
+	rpc unsetReference (UnsetReferenceRequest) returns (VoidResponse);
+
+}
+
+message GetServiceLogRequest {
+}
+
+message GetServiceLogResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+

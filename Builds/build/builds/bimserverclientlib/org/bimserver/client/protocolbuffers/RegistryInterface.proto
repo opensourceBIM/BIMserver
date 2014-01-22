@@ -1,0 +1,234 @@
+package org.bimserver.pb;
+
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+import "ServiceInterface.proto";
+import "NotificationInterface.proto";
+import "RemoteServiceInterface.proto";
+import "AdminInterface.proto";
+import "MetaInterface.proto";
+import "SettingsInterface.proto";
+import "Bimsie1AuthInterface.proto";
+import "AuthInterface.proto";
+import "Bimsie1LowLevelInterface.proto";
+import "PluginInterface.proto";
+option java_generic_services = true;
+
+option java_outer_classname = "RegistryInterfaceImpl";
+
+option optimize_for = SPEED;
+
+service RegistryInterface {
+	rpc getProgress (GetProgressRequest) returns (GetProgressResponse);
+
+	rpc getProgressTopicsOnProject (GetProgressTopicsOnProjectRequest) returns (GetProgressTopicsOnProjectResponse);
+
+	rpc getProgressTopicsOnRevision (GetProgressTopicsOnRevisionRequest) returns (GetProgressTopicsOnRevisionResponse);
+
+	rpc getProgressTopicsOnServer (GetProgressTopicsOnServerRequest) returns (GetProgressTopicsOnServerResponse);
+
+	rpc registerChangeProgressOnProject (RegisterChangeProgressOnProjectRequest) returns (VoidResponse);
+
+	rpc registerChangeProgressOnRevision (RegisterChangeProgressOnRevisionRequest) returns (VoidResponse);
+
+	rpc registerChangeProgressOnServer (RegisterChangeProgressOnServerRequest) returns (VoidResponse);
+
+	rpc registerNewProjectHandler (RegisterNewProjectHandlerRequest) returns (VoidResponse);
+
+	rpc registerNewRevisionOnSpecificProjectHandler (RegisterNewRevisionOnSpecificProjectHandlerRequest) returns (VoidResponse);
+
+	rpc registerNewUserHandler (RegisterNewUserHandlerRequest) returns (VoidResponse);
+
+	rpc registerProgressHandler (RegisterProgressHandlerRequest) returns (VoidResponse);
+
+	rpc registerProgressOnProjectTopic (RegisterProgressOnProjectTopicRequest) returns (RegisterProgressOnProjectTopicResponse);
+
+	rpc registerProgressOnRevisionTopic (RegisterProgressOnRevisionTopicRequest) returns (RegisterProgressOnRevisionTopicResponse);
+
+	rpc registerProgressTopic (RegisterProgressTopicRequest) returns (RegisterProgressTopicResponse);
+
+	rpc unregisterChangeProgressOnProject (UnregisterChangeProgressOnProjectRequest) returns (VoidResponse);
+
+	rpc unregisterChangeProgressOnRevision (UnregisterChangeProgressOnRevisionRequest) returns (VoidResponse);
+
+	rpc unregisterChangeProgressOnServer (UnregisterChangeProgressOnServerRequest) returns (VoidResponse);
+
+	rpc unregisterNewProjectHandler (UnregisterNewProjectHandlerRequest) returns (VoidResponse);
+
+	rpc unregisterNewRevisionOnSpecificProjectHandler (UnregisterNewRevisionOnSpecificProjectHandlerRequest) returns (VoidResponse);
+
+	rpc unregisterNewUserHandler (UnregisterNewUserHandlerRequest) returns (VoidResponse);
+
+	rpc unregisterProgressHandler (UnregisterProgressHandlerRequest) returns (VoidResponse);
+
+	rpc unregisterProgressTopic (UnregisterProgressTopicRequest) returns (VoidResponse);
+
+	rpc updateProgressTopic (UpdateProgressTopicRequest) returns (VoidResponse);
+
+}
+
+message GetProgressRequest {
+	optional int64 topicId = 1;
+}
+
+message GetProgressResponse {
+	optional string errorMessage = 1;
+	optional SLongActionState value = 2;
+}
+
+message GetProgressTopicsOnProjectRequest {
+	optional int64 poid = 1;
+}
+
+message GetProgressTopicsOnProjectResponse {
+	optional string errorMessage = 1;
+	repeated int64 value = 2;
+}
+
+message GetProgressTopicsOnRevisionRequest {
+	optional int64 poid = 1;
+	optional int64 roid = 2;
+}
+
+message GetProgressTopicsOnRevisionResponse {
+	optional string errorMessage = 1;
+	repeated int64 value = 2;
+}
+
+message GetProgressTopicsOnServerRequest {
+}
+
+message GetProgressTopicsOnServerResponse {
+	optional string errorMessage = 1;
+	repeated int64 value = 2;
+}
+
+message RegisterChangeProgressOnProjectRequest {
+	optional int64 endPointId = 1;
+	optional int64 poid = 2;
+}
+
+message RegisterChangeProgressOnRevisionRequest {
+	optional int64 endPointId = 1;
+	optional int64 roid = 2;
+	optional int64 poid = 3;
+}
+
+message RegisterChangeProgressOnServerRequest {
+	optional int64 endPointId = 1;
+}
+
+message RegisterNewProjectHandlerRequest {
+	optional int64 endPointId = 1;
+}
+
+message RegisterNewRevisionOnSpecificProjectHandlerRequest {
+	optional int64 endPointId = 1;
+	optional int64 poid = 2;
+}
+
+message RegisterNewUserHandlerRequest {
+	optional int64 endPointId = 1;
+}
+
+message RegisterProgressHandlerRequest {
+	optional int64 topicId = 1;
+	optional int64 endPointId = 2;
+}
+
+enum SProgressTopicType{
+	SProgressTopicType_DOWNLOAD = 0;
+	SProgressTopicType_UPLOAD = 1;
+	SProgressTopicType_RUNNING_SERVICE = 2;
+	SProgressTopicType_BRANCH = 3;
+}
+
+message RegisterProgressOnProjectTopicRequest {
+	optional SProgressTopicType type = 1;
+	optional int64 poid = 2;
+	optional string description = 3;
+}
+
+message RegisterProgressOnProjectTopicResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message RegisterProgressOnRevisionTopicRequest {
+	optional SProgressTopicType type = 1;
+	optional int64 poid = 2;
+	optional int64 roid = 3;
+	optional string description = 4;
+}
+
+message RegisterProgressOnRevisionTopicResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message RegisterProgressTopicRequest {
+	optional SProgressTopicType type = 1;
+	optional string description = 2;
+}
+
+message RegisterProgressTopicResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message UnregisterChangeProgressOnProjectRequest {
+	optional int64 endPointId = 1;
+	optional int64 poid = 2;
+}
+
+message UnregisterChangeProgressOnRevisionRequest {
+	optional int64 endPointId = 1;
+	optional int64 roid = 2;
+	optional int64 poid = 3;
+}
+
+message UnregisterChangeProgressOnServerRequest {
+	optional int64 endPointId = 1;
+}
+
+message UnregisterNewProjectHandlerRequest {
+	optional int64 endPointId = 1;
+}
+
+message UnregisterNewRevisionOnSpecificProjectHandlerRequest {
+	optional int64 endPointId = 1;
+	optional int64 poid = 2;
+}
+
+message UnregisterNewUserHandlerRequest {
+	optional int64 endPointId = 1;
+}
+
+message UnregisterProgressHandlerRequest {
+	optional int64 topicId = 1;
+	optional int64 endPointId = 2;
+}
+
+message UnregisterProgressTopicRequest {
+	optional int64 topicId = 1;
+}
+
+message UpdateProgressTopicRequest {
+	optional int64 topicId = 1;
+	optional SLongActionState state = 2;
+}
+

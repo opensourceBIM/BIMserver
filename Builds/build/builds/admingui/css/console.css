@@ -1,0 +1,115 @@
+.methodList li {
+	list-style: none;
+}
+
+.mainDiv {
+	padding-right: 16px;
+	position: absolute;
+	top: 74px;
+	bottom: 0px;
+	right: 0px;
+	left: 324px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.parametersForm {
+	padding: 20px;	
+}
+
+.methodList {
+	padding: 16px;
+	position: absolute;
+	top: 58px;
+	left: 0px;
+	bottom: 0px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 310px;
+}
+
+.innerMethodList {
+	height: 100%;
+}
+
+a {
+	cursor: pointer;
+}
+
+.scenarioNav {
+	width: 250px;
+	margin: 10px;
+}
+
+.initialhide {
+	display: none;
+}
+
+textarea {
+	width: 570px;
+	height: 460px;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono;
+}
+
+.requestdiv, .responsediv {
+	float: left;
+	margin: 5px;
+	width: 600px;
+	height: 470px;
+}
+
+.str {
+	white-space: nowrap;
+}
+
+pre.prettyprint {
+	border: none;
+	width: auto;
+	height: auto;
+}
+
+.requestdiv div, .responsediv div {
+	width: 600px;
+	height: 470px;
+	overflow: auto;
+}
+
+.textareas {
+	height: 500px;
+}
+
+.example {
+	background-color: #eeeeee;
+	border-radius: 3px;
+	padding: 10px;
+}
+
+.menuLoginButton {
+	float: right;
+	margin: 10px;
+}
+.hero-unit {
+	margin-top: 16px;
+}
+.logo {
+	margin-top: 5px;
+}
+
+.pagination .selected {
+	font-weight: bold;
+}
+
+.addressLabel input {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.addressLabel {
+	color: white;
+	margin-top: 5px;
+	margin-bottom: 0px;	
+}
+
+.list-group-item.header {
+	background-color: #EEEEEE;	
+}

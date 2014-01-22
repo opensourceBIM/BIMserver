@@ -1,0 +1,44 @@
+
+ß
+Bimsie1AuthInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoBimsie1ServiceInterface.proto"Bimsie1NotificationInterface.proto#Bimsie1RemoteServiceInterface.proto"
+GetAccessMethodRequest"_
+GetAccessMethodResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SAccessMethod"
+IsLoggedInRequest"9
+IsLoggedInResponse
+errorMessage (	
+value ("2
+LoginRequest
+username (	
+password (	"4
+LoginResponse
+errorMessage (	
+value (	"3
+LoginOpenIdRequest
+
+op (	
+	returnUrl (	":
+LoginOpenIdResponse
+errorMessage (	
+value (	"&
+LoginUserTokenRequest
+token (	"=
+LoginUserTokenResponse
+errorMessage (	
+value (	"
+LogoutRequest",
+ValidateOpenIdRequest
+queryString (	"=
+ValidateOpenIdResponse
+errorMessage (	
+value (	2’
+Bimsie1AuthInterfacef
+getAccessMethod(.org.bimserver.pb.GetAccessMethodRequest).org.bimserver.pb.GetAccessMethodResponseW
+
+isLoggedIn#.org.bimserver.pb.IsLoggedInRequest$.org.bimserver.pb.IsLoggedInResponseH
+login.org.bimserver.pb.LoginRequest.org.bimserver.pb.LoginResponseZ
+loginOpenId$.org.bimserver.pb.LoginOpenIdRequest%.org.bimserver.pb.LoginOpenIdResponsec
+loginUserToken'.org.bimserver.pb.LoginUserTokenRequest(.org.bimserver.pb.LoginUserTokenResponseI
+logout.org.bimserver.pb.LogoutRequest.org.bimserver.pb.VoidResponsec
+validateOpenId'.org.bimserver.pb.ValidateOpenIdRequest(.org.bimserver.pb.ValidateOpenIdResponseBBBimsie1AuthInterfaceImplHˆ

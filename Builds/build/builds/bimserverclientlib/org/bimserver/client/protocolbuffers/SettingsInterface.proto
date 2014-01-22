@@ -1,0 +1,266 @@
+package org.bimserver.pb;
+
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+import "ServiceInterface.proto";
+import "AdminInterface.proto";
+import "MetaInterface.proto";
+option java_generic_services = true;
+
+option java_outer_classname = "SettingsInterfaceImpl";
+
+option optimize_for = SPEED;
+
+service SettingsInterface {
+	rpc getEmailSenderAddress (GetEmailSenderAddressRequest) returns (GetEmailSenderAddressResponse);
+
+	rpc getProtocolBuffersPort (GetProtocolBuffersPortRequest) returns (GetProtocolBuffersPortResponse);
+
+	rpc getServerSettings (GetServerSettingsRequest) returns (GetServerSettingsResponse);
+
+	rpc getServiceRepositoryUrl (GetServiceRepositoryUrlRequest) returns (GetServiceRepositoryUrlResponse);
+
+	rpc getSiteAddress (GetSiteAddressRequest) returns (GetSiteAddressResponse);
+
+	rpc getSmtpServer (GetSmtpServerRequest) returns (GetSmtpServerResponse);
+
+	rpc isAllowSelfRegistration (IsAllowSelfRegistrationRequest) returns (IsAllowSelfRegistrationResponse);
+
+	rpc isAllowUsersToCreateTopLevelProjects (IsAllowUsersToCreateTopLevelProjectsRequest) returns (IsAllowUsersToCreateTopLevelProjectsResponse);
+
+	rpc isCacheOutputFiles (IsCacheOutputFilesRequest) returns (IsCacheOutputFilesResponse);
+
+	rpc isCheckinMergingEnabled (IsCheckinMergingEnabledRequest) returns (IsCheckinMergingEnabledResponse);
+
+	rpc isGenerateGeometryOnCheckin (IsGenerateGeometryOnCheckinRequest) returns (IsGenerateGeometryOnCheckinResponse);
+
+	rpc isHideUserListForNonAdmin (IsHideUserListForNonAdminRequest) returns (IsHideUserListForNonAdminResponse);
+
+	rpc isSendConfirmationEmailAfterRegistration (IsSendConfirmationEmailAfterRegistrationRequest) returns (IsSendConfirmationEmailAfterRegistrationResponse);
+
+	rpc setAllowSelfRegistration (SetAllowSelfRegistrationRequest) returns (VoidResponse);
+
+	rpc setAllowUsersToCreateTopLevelProjects (SetAllowUsersToCreateTopLevelProjectsRequest) returns (VoidResponse);
+
+	rpc setCacheOutputFiles (SetCacheOutputFilesRequest) returns (VoidResponse);
+
+	rpc setCheckinMergingEnabled (SetCheckinMergingEnabledRequest) returns (VoidResponse);
+
+	rpc setEmailSenderAddress (SetEmailSenderAddressRequest) returns (VoidResponse);
+
+	rpc setGenerateGeometryOnCheckin (SetGenerateGeometryOnCheckinRequest) returns (VoidResponse);
+
+	rpc setHideUserListForNonAdmin (SetHideUserListForNonAdminRequest) returns (VoidResponse);
+
+	rpc setProtocolBuffersPort (SetProtocolBuffersPortRequest) returns (VoidResponse);
+
+	rpc setSendConfirmationEmailAfterRegistration (SetSendConfirmationEmailAfterRegistrationRequest) returns (VoidResponse);
+
+	rpc setServerSettings (SetServerSettingsRequest) returns (VoidResponse);
+
+	rpc setServiceRepositoryUrl (SetServiceRepositoryUrlRequest) returns (VoidResponse);
+
+	rpc setSiteAddress (SetSiteAddressRequest) returns (VoidResponse);
+
+	rpc setSmtpServer (SetSmtpServerRequest) returns (VoidResponse);
+
+	rpc setWhiteListedDomains (SetWhiteListedDomainsRequest) returns (VoidResponse);
+
+}
+
+message GetEmailSenderAddressRequest {
+}
+
+message GetEmailSenderAddressResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message GetProtocolBuffersPortRequest {
+}
+
+message GetProtocolBuffersPortResponse {
+	optional string errorMessage = 1;
+	optional int32 value = 2;
+}
+
+message GetServerSettingsRequest {
+}
+
+message SServerSettings {
+	optional bool sendConfirmationEmailAfterRegistration = 1;
+	optional bool generateGeometryOnCheckin = 2;
+	optional bool allowOnlyWhitelisted = 3;
+	optional int32 protocolBuffersPort = 4;
+	optional string siteAddress = 5;
+	optional bool allowUsersToCreateTopLevelProjects = 6;
+	optional string serviceRepositoryUrl = 7;
+	repeated int64 webModules = 8;
+	optional string smtpServer = 9;
+	optional int32 rid = 10;
+	optional bool allowSelfRegistration = 11;
+	repeated string whitelistedDomains = 12;
+	optional int64 oid = 13;
+	optional string emailSenderAddress = 14;
+	optional bool cacheOutputFiles = 15;
+	optional bool hideUserListForNonAdmin = 16;
+	optional string emailSenderName = 17;
+	optional int64 webModuleId = 18;
+	optional bool checkinMergingEnabled = 19;
+}
+
+message GetServerSettingsResponse {
+	optional string errorMessage = 1;
+	optional SServerSettings value = 2;
+}
+
+message GetServiceRepositoryUrlRequest {
+}
+
+message GetServiceRepositoryUrlResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message GetSiteAddressRequest {
+}
+
+message GetSiteAddressResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message GetSmtpServerRequest {
+}
+
+message GetSmtpServerResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message IsAllowSelfRegistrationRequest {
+}
+
+message IsAllowSelfRegistrationResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message IsAllowUsersToCreateTopLevelProjectsRequest {
+}
+
+message IsAllowUsersToCreateTopLevelProjectsResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message IsCacheOutputFilesRequest {
+}
+
+message IsCacheOutputFilesResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message IsCheckinMergingEnabledRequest {
+}
+
+message IsCheckinMergingEnabledResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message IsGenerateGeometryOnCheckinRequest {
+}
+
+message IsGenerateGeometryOnCheckinResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message IsHideUserListForNonAdminRequest {
+}
+
+message IsHideUserListForNonAdminResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message IsSendConfirmationEmailAfterRegistrationRequest {
+}
+
+message IsSendConfirmationEmailAfterRegistrationResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message SetAllowSelfRegistrationRequest {
+	optional bool allowSelfRegistration = 1;
+}
+
+message SetAllowUsersToCreateTopLevelProjectsRequest {
+	optional bool allowUsersToCreateTopLevelProjects = 1;
+}
+
+message SetCacheOutputFilesRequest {
+	optional bool cacheOutputFiles = 1;
+}
+
+message SetCheckinMergingEnabledRequest {
+	optional bool checkinMergingEnabled = 1;
+}
+
+message SetEmailSenderAddressRequest {
+	optional string emailSenderAddress = 1;
+}
+
+message SetGenerateGeometryOnCheckinRequest {
+	optional bool generateGeometryOnCheckin = 1;
+}
+
+message SetHideUserListForNonAdminRequest {
+	optional bool hideUserListForNonAdmin = 1;
+}
+
+message SetProtocolBuffersPortRequest {
+	optional int32 port = 1;
+}
+
+message SetSendConfirmationEmailAfterRegistrationRequest {
+	optional bool sendConfirmationEmailAfterRegistration = 1;
+}
+
+message SetServerSettingsRequest {
+	optional SServerSettings serverSettings = 1;
+}
+
+message SetServiceRepositoryUrlRequest {
+	optional string url = 1;
+}
+
+message SetSiteAddressRequest {
+	optional string siteAddress = 1;
+}
+
+message SetSmtpServerRequest {
+	optional string smtpServer = 1;
+}
+
+message SetWhiteListedDomainsRequest {
+	repeated string domains = 1;
+}
+

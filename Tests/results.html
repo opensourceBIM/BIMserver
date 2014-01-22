@@ -1,0 +1,5619 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<style>
+.left {width: 200px; float: left}
+.right {float: left;}
+.row {clear: both; height: 30px}
+
+.enabled {font-weight: bold}
+
+.button {border: 1px solid black; display: inline; padding: 2px; margin-left: 2px; cursor: pointer;}
+.type_all {background-color: white}
+.type_oke {background-color: #00FF00}
+.type_warn {background-color: orange}
+.type_error {background-color: red}
+
+.action_all {background-color: white}
+
+.user_all {background-color: white}
+
+.body {clear: both}
+</style>
+</head>
+<script>
+var types = {};
+var actions = {};
+var users = {};
+var typesAvailable = {};
+var actionsAvailable = {};
+var usersAvailable = {};
+
+function toggleRows(action) {
+	if ($(this).hasClass("enabled")) {
+		$(this).removeClass("enabled");
+	} else {
+		$(this).addClass("enabled");
+	}
+
+	updateMaps();
+
+	$(".body").find("tr").each(function(){
+		var tr = $(this);
+		var type = tr.attr("type");
+		var action = tr.attr("action");
+		var user = tr.attr("user");
+		if ((types["all"] != null || types[type] != null) && (actions["all"] != null || actions[action] != null) && (users["all"] != null || users[user] != null)) {
+			tr.show();
+		} else {
+			tr.hide();
+		}
+	});
+}
+
+function updateMaps() {
+	types = {};
+	actions = {};
+	users = {};
+	$(".head .types .enabled").each(function(){
+		types[$(this).attr("type")] = true;
+	});
+	$(".head .actions .enabled").each(function(){
+		actions[$(this).attr("action")] = true;
+	});
+	$(".head .users .enabled").each(function(){
+		users[$(this).attr("user")] = true;
+	});
+}
+
+function updateAvailableMaps() {
+	typesAvailable = {};
+	$(".body").find("[type]").each(function(index, data){
+		var type = $(this).attr("type");
+		if (types[type] == null) {
+			typesAvailable[type] = true;
+		}
+	});
+	
+	actionsAvailable = {};
+	$(".body").find("[action]").each(function(index, data){
+		var action = $(this).attr("action");
+		if (actions[action] == null) {
+			actionsAvailable[action] = true;
+		}
+	});
+	
+	usersAvailable = {};
+	$(".body").find("[user]").each(function(index, data){
+		var user = $(this).attr("user");
+		if (users[user] == null) {
+			usersAvailable[user] = true;
+		}
+	});
+}
+
+$(function(){
+	$(".head .button").click(toggleRows);
+	updateAvailableMaps();
+	for (t in typesAvailable) {
+		var u = $("<div type=\"" + t + "\" class=\"button type type_" + t + "\">" + t + "</div>");
+		u.click(toggleRows);
+		$(".head").find(".types .right").append(u);
+	}
+	for (t in actionsAvailable) {
+		var u = $("<div action=\"" + t + "\" class=\"button action action_" + t + "\">" + t + "</div>");
+		u.click(toggleRows);
+		$(".head").find(".actions .right").append(u);
+	}
+	for (t in usersAvailable) {
+		var u = $("<div user=\"" + t + "\" class=\"button user user_" + t + "\">" + t + "</div>");
+		u.click(toggleRows);
+		$(".head").find(".users .right").append(u);
+	}
+});
+</script>
+<body>
+<div class="head">
+	<div class="row types">
+		<div class="left">Types</div>
+		<div class="right">
+			<div type="all" class="button type enabled type_all">All</div>
+		</div>
+	</div>
+	
+	<div class="row actions">
+		<div class="left">Actions</div>
+		<div class="right">
+			<div action="all" class="button action enabled action_all">All</div>
+		</div>
+	</div>
+	
+	<div class="row users">
+		<div class="left">Users</div>
+		<div class="right">
+			<div user="all" class="button user enabled user_all">All</div>
+		</div>
+	</div>
+</div>
+<div class="body"><table>
+<tr>
+<th>#</th>
+<th>Virtual User</td>
+<th>Action</td>
+<th>Result</td>
+<th>Message</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>0.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="WARN">
+<td>1.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA(('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 1" action="LoginAction" type="OKE">
+<td>2.</td>
+<td>Virtual User 1</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as admin@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateProjectAction" type="OKE">
+<td>3.</td>
+<td>Virtual User 1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1176479098</td>
+</tr>
+<tr user="Virtual User 2" action="RemoveUserFromProjectAction" type="WARN">
+<td>4.</td>
+<td>Virtual User 2</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>5.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="WARN">
+<td>6.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 2" action="RemoveUserFromProjectAction" type="WARN">
+<td>7.</td>
+<td>Virtual User 2</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="OKE">
+<td>8.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>9.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="OKE">
+<td>10.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateProjectAction" type="OKE">
+<td>11.</td>
+<td>Virtual User 1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 2086025919</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="WARN">
+<td>12.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 153 (IFC_DOORLININGPROPERTIES is not a known entity) #161=IFC_DOORLININGPROPERTIES('2uYllRMJvCeOb8cUtlgTW5',#24,'Single-Flush:36" x 84" - 2" Inset:36" x 84" - 2" Inset:131666',$,$,$,$,$,$,$,$,$,$,$,$);</td>
+</tr>
+<tr user="Virtual User 0" action="UpdateProjectAction" type="OKE">
+<td>13.</td>
+<td>Virtual User 0</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>14.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 2008521299@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>15.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="DumpDataObjects" type="WARN">
+<td>16.</td>
+<td>Virtual User 1</td>
+<td>DumpDataObjects</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 5 (org.bimserver.utils.TokenizeException: No ( found in /* description */ ('CIS/2 IFC Test Model'),/* implementation level */ '2;1) FILE_DESCRIPTION(/* description */ ('CIS/2 IFC Test Model'),/* implementation level */ '2;1');</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>17.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="UpdateProjectAction" type="OKE">
+<td>18.</td>
+<td>Virtual User 0</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>19.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 2146007570@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="UpdateProjectAction" type="OKE">
+<td>20.</td>
+<td>Virtual User 2</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>21.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="DumpDataObjects" type="WARN">
+<td>22.</td>
+<td>Virtual User 0</td>
+<td>DumpDataObjects</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA(('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 0" action="LoginAction" type="OKE">
+<td>23.</td>
+<td>Virtual User 0</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as admin@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>24.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 779947517@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="WARN">
+<td>25.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>26.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1541240338@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="RemoveUserFromProjectAction" type="WARN">
+<td>27.</td>
+<td>Virtual User 1</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>28.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>29.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>30.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 2086431584@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>31.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 785183473@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="WARN">
+<td>32.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA(('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>33.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="WARN">
+<td>34.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 9 (org.bimserver.utils.TokenizeException: No opening "'" found in $,          $) FILE_NAME('TBlockArchicadDucts',          '2004-01-22T20:08:03',          ('sdai-user'),          ('ANONYMOUS ORGANISATION'),          'EXPRESS Data Manager version 20030909',          $,          $);</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>35.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2086025919 (01-01-01-BasicSpaces-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CompareAction" type="OKE">
+<td>36.</td>
+<td>Virtual User 2</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>37.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1067657335@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>38.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>39.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="DumpDataObjects" type="OKE">
+<td>40.</td>
+<td>Virtual User 1</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (01-01-01-BasicSpaces-ADT-fix2.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>41.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 104517847@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>42.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (01-01-01-BasicSpaces-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>43.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>44.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1962492410@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>45.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="OKE">
+<td>46.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>47.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>48.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>49.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 65539 of project Project 2086025919 with serializer SceneJsShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>50.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>51.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1252301392@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>52.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 65539 of project Project 2086025919 with serializer SceneJs3ShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>53.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (01-01-01_layer_number_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>54.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>55.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 2007000365 (01-01-01_wall-layered_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>56.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1603138439@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>57.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 196611 of project 1367793144 with serializer SceneJs3ShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>58.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (01-01-02-ArcAxis-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>59.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (01-01-02_brep_walls_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="DumpDataObjects" type="OKE">
+<td>60.</td>
+<td>Virtual User 1</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 2007000365 (01-01-02-BREPWall-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>61.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2086025919 (01-01-02_circular_axis_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>62.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 2007000365 (01-01-02_walls_circular_axis_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>63.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>64.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (01-01-02_walls_poly_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>65.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 2007000365 (01-01-02_wall_circular_axis_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>66.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>67.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>68.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>69.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (01-01-01-LayerNumber-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>70.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 2083097899@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>71.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 917507 of project 2007000365 with serializer SceneJs3MinimalShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="CompareAction" type="OKE">
+<td>72.</td>
+<td>Virtual User 1</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="OKE">
+<td>73.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 851971 of project 1367793144 with serializer Ifc2x3 sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>74.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (01-01-03-Clipping-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="AddUserToProjectAction" type="OKE">
+<td>75.</td>
+<td>Virtual User 1</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 1015099653 to project 2007000365</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>76.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2086025919 (01-01-03-Clipping-Restricted-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>77.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 980823307@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>78.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 875309771@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateProjectAction" type="OKE">
+<td>79.</td>
+<td>Virtual User 1</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateProjectAction" type="OKE">
+<td>80.</td>
+<td>Virtual User 1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1869410527</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>81.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 1114115 of project Project 2086025919 with serializer SceneJs3ShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>82.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>83.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 224081325@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DumpDataObjects" type="OKE">
+<td>84.</td>
+<td>Virtual User 1</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>85.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (01-01-03-SpacesVoids-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>86.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>87.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (01-01-03-WallClipping_LayerClipping_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>88.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1869410527 (01-01-03-WallClipping_LayerClipping_rev_1_fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>89.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (01-01-03-WallClipping_RestrictedClipping_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="OKE">
+<td>90.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 1114115 of project Project 2086025919 with serializer Ifc2x3 sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>91.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1234968071@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>92.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2086025919 (01-01-03-WallClipping_RestrictedClipping_rev_1_fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>93.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 379512309@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>94.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>95.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (01-01-03_clipping_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>96.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2086025919 (01-01-03_walls_circular_axis_clipping_1peak_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>97.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 917507 of project 1348499450 with serializer SceneJs3ShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>98.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CreateSubProjectAction" type="OKE">
+<td>99.</td>
+<td>Virtual User 0</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 1619058270 as subproject of Project 842209481</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>100.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>101.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 917507 of project 1348499450 with serializer SceneJsShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>102.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>103.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 655363 of project Project 842209481 with serializer CityGML1.0.0 sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="AddUserToProjectAction" type="OKE">
+<td>104.</td>
+<td>Virtual User 1</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 1437294915 to project 1367793144</td>
+</tr>
+<tr user="Virtual User 2" action="RemoveUserFromProjectAction" type="OKE">
+<td>105.</td>
+<td>Virtual User 2</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="UpdateProjectAction" type="OKE">
+<td>106.</td>
+<td>Virtual User 1</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="DumpDataObjects" type="OKE">
+<td>107.</td>
+<td>Virtual User 0</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>108.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1467898906@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>109.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 893377569@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>110.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2086025919 (01-01-03_walls_circular_axis_clipping_2peak_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadModelLowLevel" type="OKE">
+<td>111.</td>
+<td>Virtual User 2</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>112.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 741036302@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>113.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 0" action="CreateSubProjectAction" type="OKE">
+<td>114.</td>
+<td>Virtual User 0</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 1034722188 as subproject of Project 2086025919</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>115.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>116.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 88769119@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="OKE">
+<td>117.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="AddUserToProjectAction" type="OKE">
+<td>118.</td>
+<td>Virtual User 2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 532484765 to project 1686712470</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>119.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1034722188 (01-01-03_walls_circular_axis_clipping_general_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>120.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1034722188 (01-01-03_walls_curved_topbottom_clipping_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadModelLowLevel" type="OKE">
+<td>121.</td>
+<td>Virtual User 1</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (01-01-03_walls_straight_bottom_clipping_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>122.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1485805889@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateProjectAction" type="OKE">
+<td>123.</td>
+<td>Virtual User 1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 455855482</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>124.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1034722188 (01-01-03_walls_straight_clipping_1peak_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>125.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 1245187 of project 1367793144 with serializer Ifc2x3 sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateRevisionAction" type="OKE">
+<td>126.</td>
+<td>Virtual User 1</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>127.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>128.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1348499450 (01-01-03_walls_straight_clipping_2peak_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateSubProjectAction" type="OKE">
+<td>129.</td>
+<td>Virtual User 2</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 893954640 as subproject of 1367793144</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>130.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 1245187 of project 1367793144 with serializer SceneJs3MinimalShellSerializer sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadModelLowLevel" type="OKE">
+<td>131.</td>
+<td>Virtual User 2</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 893954640 (01-01-03_walls_straight_clipping_general_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>132.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 893954640 (01-01-03_walls_straight_topbottom_clipping_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="UpdateProjectAction" type="OKE">
+<td>133.</td>
+<td>Virtual User 2</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>134.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 2031619 of project Project 1034722188 with serializer BinaryGeometrySerializer sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="LogoutAction" type="OKE">
+<td>135.</td>
+<td>Virtual User 2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>136.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 943546533@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>137.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="LoginAction" type="OKE">
+<td>138.</td>
+<td>Virtual User 0</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 224081325@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>139.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1193901702@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="UpdateRevisionAction" type="OKE">
+<td>140.</td>
+<td>Virtual User 2</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>141.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>142.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>143.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 455855482 (01-01-04-WallComponents-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>144.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 2162691 of project 1348499450 with serializer SceneJs3MinimalShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>145.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (01-01-04-WallNonUniformComponents-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>146.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 455855482 (01-01-04-WallNonUniformComponentsBasic-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateProjectAction" type="OKE">
+<td>147.</td>
+<td>Virtual User 2</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 2067924415</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>148.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 550528421@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>149.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>150.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 484000856@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>151.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1348499450 (01-01-04_non-vertical_walls_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>152.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1686712470 (01-02-01-OpeningsStandard-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>153.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 342435890@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="DumpDataObjects" type="OKE">
+<td>154.</td>
+<td>Virtual User 0</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>155.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1776017082@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>156.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (01-02-01_round_clipped_wall_with_openings_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>157.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (01-02-01_round_wall_with_openings_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateSubProjectAction" type="OKE">
+<td>158.</td>
+<td>Virtual User 1</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 1216578332 as subproject of Project 455855482</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>159.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1348499450 (01-02-01_wall_opening1_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateRevisionAction" type="OKE">
+<td>160.</td>
+<td>Virtual User 1</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>161.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadModelLowLevel" type="OKE">
+<td>162.</td>
+<td>Virtual User 0</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1686712470 (01-02-01_wall_openings2_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="AddUserToProjectAction" type="OKE">
+<td>163.</td>
+<td>Virtual User 1</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 1335155820 to project Project 1216578332</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>164.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2086025919 (01-02-01_wall_openings_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>165.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 669999558@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateProjectAction" type="OKE">
+<td>166.</td>
+<td>Virtual User 1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 946042239</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>167.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2067924415 (01-02-02-VerticalExtrusions_StandardOpenings_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>168.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 2621443 of project Project 455855482 with serializer IfcXML sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="LoginAction" type="OKE">
+<td>169.</td>
+<td>Virtual User 0</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 484000856@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>170.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 875777563@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>171.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="UpdateRevisionAction" type="OKE">
+<td>172.</td>
+<td>Virtual User 0</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>173.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 3014659 of project 1686712470 with serializer BinaryGeometrySerializer sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>174.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 946042239 (01-02-02-VerticalExtrusions_StandardOpenings_rev_1_fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>175.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1376285558@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>176.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="RemoveUserFromProjectAction" type="WARN">
+<td>177.</td>
+<td>Virtual User 2</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>178.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 818752789@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>179.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 3014659 of project 1686712470 with serializer CityGML1.0.0 sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>180.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1034722188 (01-02-04-BrepShapeOpenings_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>181.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 967779407@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>182.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1034722188 (01-02-04-PolyBREPOpenings-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>183.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="DumpDataObjects" type="OKE">
+<td>184.</td>
+<td>Virtual User 2</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="OKE">
+<td>185.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 2883587 of project 1367793144 with serializer IfcXML sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="LogoutAction" type="OKE">
+<td>186.</td>
+<td>Virtual User 2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>187.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="OKE">
+<td>188.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 3014659 of project 1686712470 with serializer IfcXML sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>189.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2086025919 (01-03-03-RecessesWithBrepGeometry_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateProjectAction" type="OKE">
+<td>190.</td>
+<td>Virtual User 1</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>191.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1377644526@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>192.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1216578332 (01-03-03-RecessesWithBrepGeometry_rev_1_old.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>193.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1216578332 (01-04-01-L-ShapeConnection-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>194.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>195.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 811671991@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>196.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 2883587 of project 1367793144 with serializer SceneJs3ShellSerializer sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>197.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 634707780@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>198.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 96711854@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="UpdateRevisionAction" type="OKE">
+<td>199.</td>
+<td>Virtual User 2</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="OKE">
+<td>200.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 2359299 of project 2006423794 with serializer IfcXML sync: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateProjectAction" type="OKE">
+<td>201.</td>
+<td>Virtual User 0</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 503694979</td>
+</tr>
+<tr user="Virtual User 2" action="UpdateRevisionAction" type="OKE">
+<td>202.</td>
+<td>Virtual User 2</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>203.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1317396416@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>204.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (01-04-01-L-ShapeConnections_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>205.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 2883587 of project 1367793144 with serializer BinaryGeometrySerializer sync: false</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadModelLowLevel" type="OKE">
+<td>206.</td>
+<td>Virtual User 0</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 2006423794 (01-04-01_L-shape_connection_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>207.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="LoginAction" type="OKE">
+<td>208.</td>
+<td>Virtual User 0</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 875777563@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>209.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 852395801@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>210.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1034722188 (01-04-01_walls-L-connection_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="LogoutAction" type="OKE">
+<td>211.</td>
+<td>Virtual User 1</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>212.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>213.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>214.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>215.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1781806403@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>216.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>217.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 503694979 (01-04-02-T-ShapeConnection-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>218.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>219.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (01-04-02_T-shape_connection_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>220.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 775037747@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>221.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2067924415 (01-04-02_walls-T-connection_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="LoginAction" type="OKE">
+<td>222.</td>
+<td>Virtual User 0</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 875777563@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>223.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 904037041@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="LoginAction" type="OKE">
+<td>224.</td>
+<td>Virtual User 2</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 852395801@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>225.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1034722188 (01-04-03-X-ShapeConnections_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>226.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (01-04-04-3-WallConnection-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>227.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 455855482 (01-04-03-X-ShapeConnection-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateProjectAction" type="OKE">
+<td>228.</td>
+<td>Virtual User 0</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 60060480</td>
+</tr>
+<tr user="Virtual User 0" action="CreateSubProjectAction" type="OKE">
+<td>229.</td>
+<td>Virtual User 0</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 1175915616 as subproject of Project 1619058270</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>230.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>231.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="RemoveUserFromProjectAction" type="WARN">
+<td>232.</td>
+<td>Virtual User 0</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>233.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>234.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 3997699 of project 1367793144 with serializer BinaryGeometrySerializer sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>235.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 4456451 of project Project 1034722188 with serializer IfcXML sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>236.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1686712470 (01-04-04-ThreeConnectingWalls_rev_1_fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>237.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>238.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 168924649@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="AddUserToProjectAction" type="OKE">
+<td>239.</td>
+<td>Virtual User 1</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 1597711757 to project 1348499450</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>240.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1175915616 (01-04-04-ThreeConnectingWalls_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>241.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>242.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 793108398@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadModelLowLevel" type="OKE">
+<td>243.</td>
+<td>Virtual User 2</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CompareAction" type="OKE">
+<td>244.</td>
+<td>Virtual User 2</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>245.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1686712470 (011.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>246.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>247.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>248.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 114350292@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateSubProjectAction" type="OKE">
+<td>249.</td>
+<td>Virtual User 2</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 139323940 as subproject of Project 946042239</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>250.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>251.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 4521987 of project Project 2086025919 with serializer SceneJs3ShellSerializer sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>252.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 3735555 of project Project 1216578332 with serializer Json sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>253.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>254.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 702302164@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadModelLowLevel" type="OKE">
+<td>255.</td>
+<td>Virtual User 2</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="WARN">
+<td>256.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 85 (IFC_WALLSTANDARDCASE is not a known entity) #27=IFC_WALLSTANDARDCASE('Aier3CYltMi000001_grtG',#20,'WALL | Standard(1)','','',#33,#84,$);</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>257.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 4456451 of project Project 1034722188 with serializer IfcXML sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="LogoutAction" type="OKE">
+<td>258.</td>
+<td>Virtual User 2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>259.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>260.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>261.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 4980739 of project Project 1175915616 with serializer SceneJs3ShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadModelLowLevel" type="OKE">
+<td>262.</td>
+<td>Virtual User 1</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="WARN">
+<td>263.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 49 (IFC_TEMPSTANDARDCASE is not a known entity) #268437125= IFC_TEMPSTANDARDCASE('2MOapIg4D75eLUUsi31gXK',#268437024,'IFC_TEMP-9',$,$,#268437122,#268437212,$);</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>264.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 519648584@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>265.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>266.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>267.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 60060480 (01_wall_opening_tek.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>268.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 2006423794 (02-01-01_beams_basic_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CompareAction" type="OKE">
+<td>269.</td>
+<td>Virtual User 0</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>270.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 0" action="CreateSubProjectAction" type="OKE">
+<td>271.</td>
+<td>Virtual User 0</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 782172794 as subproject of 2006423794</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>272.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="UpdateProjectAction" type="OKE">
+<td>273.</td>
+<td>Virtual User 0</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateProjectAction" type="OKE">
+<td>274.</td>
+<td>Virtual User 0</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1473697262</td>
+</tr>
+<tr user="Virtual User 1" action="DumpDataObjects" type="OKE">
+<td>275.</td>
+<td>Virtual User 1</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="RemoveUserFromProjectAction" type="OKE">
+<td>276.</td>
+<td>Virtual User 1</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>277.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 455855482 (02-01-01_beam_profile_basic_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>278.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>279.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>280.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 4521987 of project Project 2086025919 with serializer Ifc2x3 sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>281.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>282.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 139323940 (02-01-01_beam_profile_para_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>283.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 2137421124@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>284.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>285.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1262937174@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>286.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 139323940 (02-01-01_profile_basic_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>287.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 503694979 (02-01-01_profile_para_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>288.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (02-01-03-BeamClipping-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateSubProjectAction" type="OKE">
+<td>289.</td>
+<td>Virtual User 2</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 1682240385 as subproject of Project 503694979</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>290.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1034722188 (02-01-03_beam_profile_basic_clip_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>291.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1011242738 (02-01-03_beam_profile_para_clip_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>292.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 5373955 of project 1367793144 with serializer CityGML1.0.0 sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>293.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>294.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 2100424666@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>295.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="OKE">
+<td>296.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 5832707 of project Project 842209481 with serializer Ifc2x3 sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>297.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1725006049@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>298.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1027971924@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="UpdateRevisionAction" type="OKE">
+<td>299.</td>
+<td>Virtual User 0</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>300.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 5373955 of project 1367793144 with serializer JsonGeometrySerializer sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>301.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>302.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 2114524193@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>303.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>304.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>305.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>306.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 5177347 of project 1686712470 with serializer SceneJs3MinimalShellSerializer sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>307.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 344471118@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>308.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 5373955 of project 1367793144 with serializer SceneJsShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>309.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 5898243 of project Project 1034722188 with serializer Json sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="CreateSubProjectAction" type="OKE">
+<td>310.</td>
+<td>Virtual User 1</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 274486114 as subproject of Project 60060480</td>
+</tr>
+<tr user="Virtual User 2" action="DumpDataObjects" type="OKE">
+<td>311.</td>
+<td>Virtual User 2</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>312.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CompareAction" type="OKE">
+<td>313.</td>
+<td>Virtual User 0</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="LoginAction" type="OKE">
+<td>314.</td>
+<td>Virtual User 2</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 2008521299@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>315.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>316.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 274486114 (02-01-04-BeamBREP-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="UpdateRevisionAction" type="OKE">
+<td>317.</td>
+<td>Virtual User 0</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>318.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>319.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 226866209@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="LogoutAction" type="OKE">
+<td>320.</td>
+<td>Virtual User 2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>321.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1619058270 (02-01-04-BeamsWithBrepGeometry_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateProjectAction" type="OKE">
+<td>322.</td>
+<td>Virtual User 0</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1522360526</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>323.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 6160387 of project Project 60060480 with serializer SceneJsShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="CompareAction" type="OKE">
+<td>324.</td>
+<td>Virtual User 1</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>325.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 125505659@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>326.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 373215740@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>327.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1348499450 (02-01-04_arbitrary_beams_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>328.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1462417625@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>329.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 841640522@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>330.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 5177347 of project 1686712470 with serializer SceneJs3ShellSerializer sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="CompareAction" type="OKE">
+<td>331.</td>
+<td>Virtual User 1</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="RemoveUserFromProjectAction" type="WARN">
+<td>332.</td>
+<td>Virtual User 2</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>333.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>334.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 872786241@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>335.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 6160387 of project Project 60060480 with serializer ObjectInfo sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>336.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 2006423794 (02-01-04_curved_beams_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="AddUserToProjectAction" type="OKE">
+<td>337.</td>
+<td>Virtual User 0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 1015099653 to project 2006423794</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>338.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1522360526 (02-01-04_haunch_beams_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>339.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 6225923 of project Project 1619058270 with serializer SceneJsShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>340.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 6291459 of project Project 842209481 with serializer Ifc2x3 sync: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>341.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>342.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 1" action="LoginAction" type="OKE">
+<td>343.</td>
+<td>Virtual User 1</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 2086431584@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>344.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>345.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1619058270 (02-01-04_steel_beams_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadModelLowLevel" type="OKE">
+<td>346.</td>
+<td>Virtual User 1</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="DownloadModelLowLevel" type="OKE">
+<td>347.</td>
+<td>Virtual User 0</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>348.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1016485696@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>349.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CompareAction" type="OKE">
+<td>350.</td>
+<td>Virtual User 1</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>351.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1216578332 (02-01-04_straight_beams_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>352.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>353.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 5767171 of project Project 503694979 with serializer Ifc2x3 sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>354.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>355.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 5767171 of project Project 503694979 with serializer Collada sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateRevisionAction" type="OKE">
+<td>356.</td>
+<td>Virtual User 1</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>357.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>358.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1809629675@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CompareAction" type="OKE">
+<td>359.</td>
+<td>Virtual User 2</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>360.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 456745068@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>361.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>362.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>363.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>364.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>365.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1348499450 (02-01-05-BeamProfile-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="DumpDataObjects" type="OKE">
+<td>366.</td>
+<td>Virtual User 2</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>367.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>368.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 6356995 of project 1348499450 with serializer ObjectInfo sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="UpdateProjectAction" type="OKE">
+<td>369.</td>
+<td>Virtual User 2</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>370.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 225042304@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>371.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>372.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1034722188 (02-01-06-BeamSpecific-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>373.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 6160387 of project Project 60060480 with serializer Ifc2x3 sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>374.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>375.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 58372165@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>376.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>377.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1276763844@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>378.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (02-01-06-SpecificBeams_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>379.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>380.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="UpdateProjectAction" type="OKE">
+<td>381.</td>
+<td>Virtual User 2</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>382.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 9922681@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>383.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1461234371@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>384.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1751435763@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="DumpDataObjects" type="OKE">
+<td>385.</td>
+<td>Virtual User 2</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>386.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>387.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>388.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1522360526 (02-01-06_beams_specific_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>389.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 377208216@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>390.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>391.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1775892317 (02-02-01-OpeningsInExtrudedBeams_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateSubProjectAction" type="OKE">
+<td>392.</td>
+<td>Virtual User 0</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 433098299 as subproject of Project 842209481</td>
+</tr>
+<tr user="Virtual User 2" action="LogoutAction" type="OKE">
+<td>393.</td>
+<td>Virtual User 2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>394.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (02-02-01_beams_openings_general_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="RemoveUserFromProjectAction" type="WARN">
+<td>395.</td>
+<td>Virtual User 2</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>396.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>397.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1151931359@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>398.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1522360526 (02_beam_with_clipping_tek.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>399.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1971899485@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="RemoveUserFromProjectAction" type="WARN">
+<td>400.</td>
+<td>Virtual User 2</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 0" action="DumpDataObjects" type="OKE">
+<td>401.</td>
+<td>Virtual User 0</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>402.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>403.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>404.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1686712470 (03-01-01_col_profile_basic_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>405.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 7012355 of project Project 2086025919 with serializer SceneJsShellSerializer sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>406.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 6160387 of project Project 60060480 with serializer JsonGeometrySerializer sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>407.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>408.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 339588155@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="OKE">
+<td>409.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>410.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1094619820@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>411.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 6750211 of project Project 1216578332 with serializer IfcXML sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>412.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (03-01-01_col_profile_para_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="RemoveUserFromProjectAction" type="WARN">
+<td>413.</td>
+<td>Virtual User 2</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 1" action="CreateProjectAction" type="OKE">
+<td>414.</td>
+<td>Virtual User 1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 201348767</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>415.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1316557579 (03-01-01_profile_basic_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>416.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1316557579 (03-01-01_profile_para_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateProjectAction" type="OKE">
+<td>417.</td>
+<td>Virtual User 1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 236595409</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>418.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 56369789@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="LoginAction" type="OKE">
+<td>419.</td>
+<td>Virtual User 0</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 875777563@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>420.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>421.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 371111031@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>422.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1348499450 (03-01-03-ColumnClipping-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateProjectAction" type="OKE">
+<td>423.</td>
+<td>Virtual User 1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1620440724</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>424.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>425.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 4980739 of project Project 1175915616 with serializer IfcXML sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>426.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2086025919 (03-01-03_col_profile_basic_clip_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>427.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 433098299 (03-01-03_col_profile_para_clip_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>428.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 5767171 of project Project 503694979 with serializer SceneJs3ShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>429.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1619058270 (03-01-04-ColumnBREP-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>430.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 6815747 of project Project 455855482 with serializer Ifc2x3 sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>431.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1705422649@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="RemoveUserFromProjectAction" type="WARN">
+<td>432.</td>
+<td>Virtual User 0</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>433.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 6815747 of project Project 455855482 with serializer Ifc2x3 sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>434.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 7208963 of project 1775892317 with serializer SceneJs3ShellSerializer sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>435.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1321331144@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>436.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 6094851 of project Project 274486114 with serializer Collada sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="LogoutAction" type="OKE">
+<td>437.</td>
+<td>Virtual User 1</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>438.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 7733251 of project 1348499450 with serializer JsonGeometrySerializer sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>439.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>440.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 1" action="RemoveUserFromProjectAction" type="WARN">
+<td>441.</td>
+<td>Virtual User 1</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>442.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 8060931 of project Project 842209481 with serializer IfcXML sync: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>443.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 503694979 (03-01-04_arbitrary_columns_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateProjectAction" type="OKE">
+<td>444.</td>
+<td>Virtual User 1</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>445.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 6946819 of project Project 1034722188 with serializer SceneJs3ShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>446.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 236595409 (03-01-04_ColumnWithBrepGeometry_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>447.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 7733251 of project 1348499450 with serializer Collada sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>448.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 274486114 (03-01-04_curved_columns_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>449.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 2" action="LoginAction" type="OKE">
+<td>450.</td>
+<td>Virtual User 2</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 96711854@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>451.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1700213283@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>452.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>453.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="UpdateRevisionAction" type="OKE">
+<td>454.</td>
+<td>Virtual User 2</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="DownloadModelLowLevel" type="OKE">
+<td>455.</td>
+<td>Virtual User 1</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>456.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1833562411@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>457.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1462915213@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="AddUserToProjectAction" type="OKE">
+<td>458.</td>
+<td>Virtual User 0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user Administrator to project 492683868</td>
+</tr>
+<tr user="Virtual User 2" action="UpdateProjectAction" type="OKE">
+<td>459.</td>
+<td>Virtual User 2</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CompareAction" type="OKE">
+<td>460.</td>
+<td>Virtual User 0</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CompareAction" type="OKE">
+<td>461.</td>
+<td>Virtual User 0</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>462.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1377816283@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>463.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 7733251 of project 1348499450 with serializer SceneJs3ShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>464.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadModelLowLevel" type="OKE">
+<td>465.</td>
+<td>Virtual User 0</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>466.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 8126467 of project Project 503694979 with serializer IfcXML sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>467.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 4980739 of project Project 1175915616 with serializer CityGML1.0.0 sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>468.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>469.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 7995395 of project Project 1619058270 with serializer BinaryGeometrySerializer sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>470.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1376349574@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>471.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1682240385 (03-01-04_haunch_columns_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>472.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="OKE">
+<td>473.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 8257539 of project Project 274486114 with serializer IfcXML sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>474.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 4980739 of project 633922428 with serializer Json sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>475.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 433098299 (03-01-04_straight_columns_brep_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>476.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (03-01-05-ColumnProfile-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateRevisionAction" type="OKE">
+<td>477.</td>
+<td>Virtual User 1</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>478.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1775892317 (03-01-06_spec_column1_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>479.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="UpdateRevisionAction" type="OKE">
+<td>480.</td>
+<td>Virtual User 0</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="UpdateProjectAction" type="OKE">
+<td>481.</td>
+<td>Virtual User 2</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>482.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2086025919 (03-02-01_columns_openings_general_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>483.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2086025919 (03-02-01_OpeningsInExtrudedColumns_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>484.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1348846955@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateProjectAction" type="OKE">
+<td>485.</td>
+<td>Virtual User 2</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 342337944</td>
+</tr>
+<tr user="Virtual User 0" action="RemoveUserFromProjectAction" type="WARN">
+<td>486.</td>
+<td>Virtual User 0</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>487.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="WARN">
+<td>488.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 43 (IFC_RELVOIDSELEMENT is not a known entity) #26=IFC_RELVOIDSELEMENT('03E02cgpfBCeTRG5eqIAoK',#14,$,$,#50,#28);</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>489.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 633922428 (03-01-06_spec_column2_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>490.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>491.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>492.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 503694979 (04-01-01-SlabComponents-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>493.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 6750211 of project Project 1216578332 with serializer SceneJs3ShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>494.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1133555731@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>495.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 293487470@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>496.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>497.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>498.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 201348767 (04-01-01_layer_number_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="AddUserToProjectAction" type="OKE">
+<td>499.</td>
+<td>Virtual User 1</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 1304123580 to project Project 1619058270</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>500.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>501.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 139323940 (04-01-02-SlabProfiles-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>502.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 8323075 of project Project 60060480 with serializer Ifc2x3 sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="UpdateRevisionAction" type="OKE">
+<td>503.</td>
+<td>Virtual User 0</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>504.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 836235155 (04-01-02_slabs_profiles1_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>505.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>506.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="UpdateProjectAction" type="OKE">
+<td>507.</td>
+<td>Virtual User 0</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="RemoveUserFromProjectAction" type="WARN">
+<td>508.</td>
+<td>Virtual User 2</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>509.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1473697262 (04-01-02_slab_profiles_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateProjectAction" type="OKE">
+<td>510.</td>
+<td>Virtual User 1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1577532295</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>511.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1026255327@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>512.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 999114424@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateSubProjectAction" type="OKE">
+<td>513.</td>
+<td>Virtual User 1</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 2025165069 as subproject of Project 842209481</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>514.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1626738896@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="UpdateProjectAction" type="OKE">
+<td>515.</td>
+<td>Virtual User 0</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="UpdateProjectAction" type="OKE">
+<td>516.</td>
+<td>Virtual User 1</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>517.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1216003249@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadModelLowLevel" type="OKE">
+<td>518.</td>
+<td>Virtual User 1</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 503694979 (04-01-02_slab_profiles_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateSubProjectAction" type="OKE">
+<td>519.</td>
+<td>Virtual User 1</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 2062986737 as subproject of 2006423794</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>520.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 503694979 (04-01-03-SlabExtrusions-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>521.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 342337944 (04-01-03_slabs_extrudes1_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>522.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 7340035 of project Project 1522360526 with serializer Ifc2x3 sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>523.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>524.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 606031250@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>525.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>526.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 963941680@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>527.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1271673765 (04-01-03_slabs_extrudes2_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>528.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2025165069 (04-01-05-SpecificSlabs-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>529.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateProjectAction" type="OKE">
+<td>530.</td>
+<td>Virtual User 1</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 620334519</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>531.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 851465181@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateSubProjectAction" type="OKE">
+<td>532.</td>
+<td>Virtual User 1</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 642556639 as subproject of Project 1216578332</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="OKE">
+<td>533.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>534.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>535.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 158925666@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadModelLowLevel" type="OKE">
+<td>536.</td>
+<td>Virtual User 2</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 503694979 (04-01-05-SpecificSlabs-ADT_Fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateProjectAction" type="OKE">
+<td>537.</td>
+<td>Virtual User 2</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 1999125221</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>538.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>539.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 503694979 (04-02_SlabObjectTypes_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>540.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (04-03-01_OpeningsInExtrudedSlabs_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="RemoveUserFromProjectAction" type="WARN">
+<td>541.</td>
+<td>Virtual User 1</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>542.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>543.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 656828634 (04-01-05_SpecificSlabs_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="LoginAction" type="OKE">
+<td>544.</td>
+<td>Virtual User 0</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 1027971924@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>545.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1577532295 (04-03-01_slab_openings_esa.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>546.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 342337944 (04-03-01_slab_opening_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="UpdateRevisionAction" type="OKE">
+<td>547.</td>
+<td>Virtual User 2</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>548.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 7667715 of project 1316557579 with serializer SceneJs3ShellSerializer sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateSubProjectAction" type="OKE">
+<td>549.</td>
+<td>Virtual User 2</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 1428159170 as subproject of 656828634</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>550.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 684685023@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="AddUserToProjectAction" type="OKE">
+<td>551.</td>
+<td>Virtual User 0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 1715077014 to project 633922428</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>552.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>553.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1085407222@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="AddUserToProjectAction" type="OKE">
+<td>554.</td>
+<td>Virtual User 0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 2008240457 to project Project 1999125221</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>555.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 19370033@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="LogoutAction" type="OKE">
+<td>556.</td>
+<td>Virtual User 0</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="OKE">
+<td>557.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>558.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateRevisionAction" type="OKE">
+<td>559.</td>
+<td>Virtual User 1</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>560.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1316557579 (04-04-01_RecessesInExtrudedSlabs_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>561.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 9502723 of project 1775892317 with serializer IfcXML sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="WARN">
+<td>562.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 19 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="WARN">
+<td>563.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 19 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>564.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 9371651 of project Project 201348767 with serializer Ifc2x3 sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>565.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1927227136@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>566.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="WARN">
+<td>567.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA(('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="WARN">
+<td>568.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="WARN">
+<td>569.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="WARN">
+<td>570.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>571.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 10616835 of project Project 1577532295 with serializer SceneJsShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>572.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 10223619 of project Project 842209481 with serializer Ifc2x3 sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>573.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1726387601@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>574.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 10551299 of project 656828634 with serializer Collada sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateRevisionAction" type="OKE">
+<td>575.</td>
+<td>Virtual User 1</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="WARN">
+<td>576.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>577.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="WARN">
+<td>578.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA(('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>579.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1273259478@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="UpdateRevisionAction" type="OKE">
+<td>580.</td>
+<td>Virtual User 0</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>581.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="WARN">
+<td>582.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 19 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadModelLowLevel" type="WARN">
+<td>583.</td>
+<td>Virtual User 1</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 4 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>584.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="WARN">
+<td>585.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 19 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>586.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 804419762@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>587.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="WARN">
+<td>588.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 19 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>589.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="WARN">
+<td>590.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_WARN">WARN</td>
+<td>Error on line 19 (Only IFC2x3 is supported by this deserializer) FILE_SCHEMA (('IFC2X_FINAL'));</td>
+</tr>
+<tr user="Virtual User 1" action="AddUserToProjectAction" type="OKE">
+<td>591.</td>
+<td>Virtual User 1</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 260751622 to project Project 620334519</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>592.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>593.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 1" action="CompareAction" type="OKE">
+<td>594.</td>
+<td>Virtual User 1</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>595.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>596.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 9043971 of project Project 2086025919 with serializer Json sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>597.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2062986737 (04_slab_tek.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="AddUserToProjectAction" type="OKE">
+<td>598.</td>
+<td>Virtual User 0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 2079434121 to project Project 1682240385</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>599.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>600.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (04_V3_Erdgeschoss_ADT2008 SP1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>601.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>602.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1999125221 (04_V3_Erdgeschoss_ADT2008-fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>603.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1757560352@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>604.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1172534545@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>605.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 8519683 of project 1179920317 with serializer CityGML1.0.0 sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>606.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (04_V3_Erdgeschoss_ADT2008.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateSubProjectAction" type="OKE">
+<td>607.</td>
+<td>Virtual User 1</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 1371512820 as subproject of Project 2086025919</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>608.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1371512820 (05-01-01-DoorGeometry-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>609.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 9502723 of project 1775892317 with serializer Ifc2x3 sync: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>610.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 836235155 (05-01-01-DoorGeometry-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="UpdateProjectAction" type="OKE">
+<td>611.</td>
+<td>Virtual User 2</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>612.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1775096140@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>613.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 274486114 (05-01-03-ExplicitDoorGeom-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="AddUserToProjectAction" type="OKE">
+<td>614.</td>
+<td>Virtual User 0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 1619632439 to project Project 2062986737</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>615.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1999125221 (05-01-02-AdditionalDoorGeom-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>616.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 239974992 (05-01-03-ExplicitDoorGeom-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateSubProjectAction" type="OKE">
+<td>617.</td>
+<td>Virtual User 1</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 1178430467 as subproject of Project 1216578332</td>
+</tr>
+<tr user="Virtual User 1" action="LogoutAction" type="OKE">
+<td>618.</td>
+<td>Virtual User 1</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>619.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>620.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>621.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1665001495@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>622.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 360800848@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="AddUserToProjectAction" type="OKE">
+<td>623.</td>
+<td>Virtual User 0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 791385708 to project Project 1999125221</td>
+</tr>
+<tr user="Virtual User 1" action="DumpDataObjects" type="OKE">
+<td>624.</td>
+<td>Virtual User 1</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>625.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 2033423266@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>626.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1619058270 (05-01-02-AdditionalDoorGeom-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="LoginAction" type="OKE">
+<td>627.</td>
+<td>Virtual User 1</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 1151931359@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>628.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (05-01-03-ExplicitDoorGeom-ADT_fix_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="OKE">
+<td>629.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CompareAction" type="OKE">
+<td>630.</td>
+<td>Virtual User 1</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>631.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 2144622503@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>632.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>633.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1179920317 (05-01-03_ExplicitGeometry_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>634.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1371512820 (05-01-03_ExplicitGeometry_rev_1_fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>635.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 11468803 of project Project 2086025919 with serializer Ifc2x3 sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="OKE">
+<td>636.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>637.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2025165069 (05-01-03_ExplicitGeometry_rev_2.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>638.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 139323940 (05-01-03_garage_door_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>639.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1178430467 (05-01-04-Door2DGeom-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="AddUserToProjectAction" type="OKE">
+<td>640.</td>
+<td>Virtual User 2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 212337980 to project 1367793144</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>641.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1467470230@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>642.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="DumpDataObjects" type="OKE">
+<td>643.</td>
+<td>Virtual User 1</td>
+<td>DumpDataObjects</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>644.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 455855482 (05-01-04-Door2DGeom-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>645.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2025165069 (05-02-01-DoorOperations-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>646.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>647.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1254836919@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="WARN">
+<td>648.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>649.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 780114612@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>650.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1333108908@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>651.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1491414147@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>652.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 379874811@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>653.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>654.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>655.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>656.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 13500419 of project Project 1216578332 with serializer Json sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>657.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 12058627 of project Project 274486114 with serializer Collada sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateProjectAction" type="OKE">
+<td>658.</td>
+<td>Virtual User 1</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>659.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>660.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1216578332 (05-02-01-DoorOperations-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>661.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 201348767 (05-02-01_DoorOperationsPlacementInsideWall_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>662.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1458670061@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>663.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1064766561@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>664.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1522360526 (05-02-01_DoorOperations_rev_2.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>665.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 2122210269@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="AddUserToProjectAction" type="OKE">
+<td>666.</td>
+<td>Virtual User 2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 1720768025 to project 1348499450</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>667.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>668.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 239974992 (05-02-02-DoorPlacement-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>669.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 13762563 of project Project 2025165069 with serializer Collada sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>670.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>671.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 0" action="LogoutAction" type="OKE">
+<td>672.</td>
+<td>Virtual User 0</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>673.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 10813443 of project Project 2062986737 with serializer IfcXML sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="OKE">
+<td>674.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 10747907 of project 1316557579 with serializer IfcXML sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>675.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 455201148@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadModelLowLevel" type="OKE">
+<td>676.</td>
+<td>Virtual User 1</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>677.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 11730947 of project 836235155 with serializer IfcXML sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>678.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 13959171 of project Project 455855482 with serializer IfcXML sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>679.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>680.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1577532295 (05-02-02-DoorPlacement-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>681.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1837975824@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>682.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (05-03-01_DoorsInStraightRoundWalls_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="UpdateRevisionAction" type="OKE">
+<td>683.</td>
+<td>Virtual User 0</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>684.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>685.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 239974992 (05-03-01_doors_in_round_wall_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>686.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>687.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>688.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1179920317 (05-03-03_doors-standalone_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>689.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>690.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1642052038@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>691.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 13893635 of project Project 1216578332 with serializer CityGML1.0.0 sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>692.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 60060480 (06-01-01-WindowGeometry-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>693.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>694.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="LoginAction" type="OKE">
+<td>695.</td>
+<td>Virtual User 0</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 225042304@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="AddUserToProjectAction" type="OKE">
+<td>696.</td>
+<td>Virtual User 2</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 532861628 to project 945004859</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>697.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 911128828@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>698.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>699.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 460006008@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>700.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 274486114 (06-01-01-WindowGeometry-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="UpdateRevisionAction" type="OKE">
+<td>701.</td>
+<td>Virtual User 2</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>702.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 945004859 (06-01-01_window_para_cbs.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>703.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="UpdateProjectAction" type="OKE">
+<td>704.</td>
+<td>Virtual User 0</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>705.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="WARN">
+<td>706.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>707.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 11730947 of project 836235155 with serializer Ifc2x3 sync: false</td>
+</tr>
+<tr user="Virtual User 0" action="AddUserToProjectAction" type="OKE">
+<td>708.</td>
+<td>Virtual User 0</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 613016858 to project Project 455855482</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>709.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CompareAction" type="OKE">
+<td>710.</td>
+<td>Virtual User 1</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>711.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>712.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1785455401 (06-01-02-WindowAddedGeometry-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>713.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateSubProjectAction" type="OKE">
+<td>714.</td>
+<td>Virtual User 1</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 512706611 as subproject of 633922428</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>715.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 14614531 of project Project 274486114 with serializer BinaryGeometrySerializer sync: false</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadModelLowLevel" type="OKE">
+<td>716.</td>
+<td>Virtual User 1</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>717.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>718.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 642556639 (06-01-02-WindowAddedGeometry-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="LogoutAction" type="OKE">
+<td>719.</td>
+<td>Virtual User 2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>720.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 48609596@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>721.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 492683868 (06-01-03-ExplicitWindowGeom-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>722.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 7733251 of project 1348499450 with serializer CityGML1.0.0 sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CompareAction" type="OKE">
+<td>723.</td>
+<td>Virtual User 0</td>
+<td>CompareAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>724.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 2006423794 (06-01-03_ExplicitGeometry_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>725.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 14876675 of project Project 642556639 with serializer SceneJsShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>726.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 265788172@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>727.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1367793144 (06-01-03_windows_explicit_geom_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>728.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 14680067 of project Project 60060480 with serializer Json sync: false</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>729.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 10420227 of project Project 503694979 with serializer Collada sync: false</td>
+</tr>
+<tr user="Virtual User 0" action="LoginAction" type="OKE">
+<td>730.</td>
+<td>Virtual User 0</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 371111031@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>731.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 14090243 of project Project 1522360526 with serializer SceneJsShellSerializer sync: true</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>732.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 415458414@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="OKE">
+<td>733.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>734.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1886132444@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="LogoutAction" type="OKE">
+<td>735.</td>
+<td>Virtual User 1</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>736.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 842209481 (06-01-03_windows_standalone_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="WARN">
+<td>737.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>738.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1462744733@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>739.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 633922428 (06-01-04-Window2DGeom-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>740.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 201348767 (06-02-02-WindowPlacement-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>741.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1316557579 (06-02-02_PlacementInsideTheWall_rev_1_fix.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>742.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1577532295 (06-02-02_PlacementInsideTheWall_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>743.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 150819340@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>744.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 1577532295 (06-03-01-WindowsInWalls-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="LogoutAction" type="OKE">
+<td>745.</td>
+<td>Virtual User 0</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 0" action="DownloadRevisionAction" type="OKE">
+<td>746.</td>
+<td>Virtual User 0</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CreateSubProjectAction" type="OKE">
+<td>747.</td>
+<td>Virtual User 2</td>
+<td>CreateSubProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project: Project 1787434145 as subproject of Project 1999125221</td>
+</tr>
+<tr user="Virtual User 1" action="DownloadRevisionAction" type="OKE">
+<td>748.</td>
+<td>Virtual User 1</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 10420227 of project Project 503694979 with serializer ObjectInfo sync: true</td>
+</tr>
+<tr user="Virtual User 2" action="LoginAction" type="OKE">
+<td>749.</td>
+<td>Virtual User 2</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 1252301392@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckoutAction" type="OKE">
+<td>750.</td>
+<td>Virtual User 1</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>751.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 60060480 (06-03-01-WindowsInWalls-ADT-fix2.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="LogoutAction" type="OKE">
+<td>752.</td>
+<td>Virtual User 0</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>753.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 945004859 (06-03-01-WindowsInWalls-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>754.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 341369858@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadModelLowLevel" type="OKE">
+<td>755.</td>
+<td>Virtual User 2</td>
+<td>DownloadModelLowLevel</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>756.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1275052086@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="OKE">
+<td>757.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1521644288@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateRevisionAction" type="OKE">
+<td>758.</td>
+<td>Virtual User 1</td>
+<td>UpdateRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="CheckoutAction" type="WARN">
+<td>759.</td>
+<td>Virtual User 2</td>
+<td>CheckoutAction</td>
+<td class="type_WARN">WARN</td>
+<td>Only IFC or IFCXML allowed when checking out</td>
+</tr>
+<tr user="Virtual User 2" action="UpdateProjectAction" type="OKE">
+<td>760.</td>
+<td>Virtual User 2</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>761.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 2006423794 (06-03-01_WindowsInStraightRoundWalls_rev_1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>762.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1270378551@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="OKE">
+<td>763.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 132006939@bimserver.org</td>
+</tr>
+<tr user="Virtual User 2" action="RemoveUserFromProjectAction" type="WARN">
+<td>764.</td>
+<td>Virtual User 2</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 0" action="CheckoutAction" type="OKE">
+<td>765.</td>
+<td>Virtual User 0</td>
+<td>CheckoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking out revision 14614531 of project Project 274486114 with serializer IfcXML sync: false</td>
+</tr>
+<tr user="Virtual User 0" action="LoginAction" type="OKE">
+<td>766.</td>
+<td>Virtual User 0</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 2083097899@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="CheckinAction" type="OKE">
+<td>767.</td>
+<td>Virtual User 1</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>[Uploaded model is the same as last revision (10), duplicate model not stored]</td>
+</tr>
+<tr user="Virtual User 1" action="CreateUserAction" type="WARN">
+<td>768.</td>
+<td>Virtual User 1</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create admin user with self registration</td>
+</tr>
+<tr user="Virtual User 2" action="DownloadRevisionAction" type="OKE">
+<td>769.</td>
+<td>Virtual User 2</td>
+<td>DownloadRevisionAction</td>
+<td class="type_OKE">OKE</td>
+<td>Downloading revision 14352387 of project 239974992 with serializer ObjectInfo sync: true</td>
+</tr>
+<tr user="Virtual User 1" action="UpdateProjectAction" type="OKE">
+<td>770.</td>
+<td>Virtual User 1</td>
+<td>UpdateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td></td>
+</tr>
+<tr user="Virtual User 2" action="RemoveUserFromProjectAction" type="WARN">
+<td>771.</td>
+<td>Virtual User 2</td>
+<td>RemoveUserFromProjectAction</td>
+<td class="type_WARN">WARN</td>
+<td>User cannot be removed from this project because it is the only admin user with authorization on this project</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>772.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1348499450 (06-03-01_windows_in_curved_wall_vw.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="CreateUserAction" type="OKE">
+<td>773.</td>
+<td>Virtual User 2</td>
+<td>CreateUserAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new user: 1898811786@bimserver.org</td>
+</tr>
+<tr user="Virtual User 1" action="AddUserToProjectAction" type="OKE">
+<td>774.</td>
+<td>Virtual User 1</td>
+<td>AddUserToProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Adding user 152242437 to project 720033451</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>775.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1348499450 (06-03-03-WindowsStandalone-ADT-fix1.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 0" action="CreateProjectAction" type="OKE">
+<td>776.</td>
+<td>Virtual User 0</td>
+<td>CreateProjectAction</td>
+<td class="type_OKE">OKE</td>
+<td>Creating new project Project 949166469</td>
+</tr>
+<tr user="Virtual User 0" action="LoginAction" type="OKE">
+<td>777.</td>
+<td>Virtual User 0</td>
+<td>LoginAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging in as 1016485696@bimserver.org</td>
+</tr>
+<tr user="Virtual User 0" action="CreateUserAction" type="WARN">
+<td>778.</td>
+<td>Virtual User 0</td>
+<td>CreateUserAction</td>
+<td class="type_WARN">WARN</td>
+<td>Cannot create system users</td>
+</tr>
+<tr user="Virtual User 2" action="CheckinAction" type="OKE">
+<td>779.</td>
+<td>Virtual User 2</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project Project 2062986737 (06-03-03-WindowsStandalone-ADT.ifc) sync: true, merge: false</td>
+</tr>
+<tr user="Virtual User 2" action="LogoutAction" type="OKE">
+<td>780.</td>
+<td>Virtual User 2</td>
+<td>LogoutAction</td>
+<td class="type_OKE">OKE</td>
+<td>Logging out</td>
+</tr>
+<tr user="Virtual User 0" action="CheckinAction" type="OKE">
+<td>781.</td>
+<td>Virtual User 0</td>
+<td>CheckinAction</td>
+<td class="type_OKE">OKE</td>
+<td>Checking in new revision on project 1686712470 (07-01-01_StairWithGeometry_rev_1.ifc) sync: true, merge: false</td>
+</tr>
