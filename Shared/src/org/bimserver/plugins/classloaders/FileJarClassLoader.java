@@ -76,8 +76,11 @@ public class FileJarClassLoader extends JarClassLoader {
 			FileUtils.forceMkdir(file.getParentFile());
 		}
 		FileOutputStream fileOutputStream = new FileOutputStream(file);
-		IOUtils.copy(jarInputStream, fileOutputStream);
-		fileOutputStream.close();
+		try {
+			IOUtils.copy(jarInputStream, fileOutputStream);
+		} finally {
+			fileOutputStream.close();
+		}
 	}
 
 	private void loadSubJars(byte[] byteArray) {
@@ -133,8 +136,11 @@ public class FileJarClassLoader extends JarClassLoader {
 		try {
 			FileInputStream fileInputStream = new FileInputStream(new File(tempDir, fileName));
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-			IOUtils.copy(fileInputStream, byteArrayOutputStream);
-			fileInputStream.close();
+			try {
+				IOUtils.copy(fileInputStream, byteArrayOutputStream);
+			} finally {
+				fileInputStream.close();
+			}
 			Class<?> defineClass = defineClass(name, byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.toByteArray().length);
 			loadedClasses.put(fileName, defineClass);
 			/*
