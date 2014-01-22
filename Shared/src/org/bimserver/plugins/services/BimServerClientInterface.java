@@ -39,7 +39,7 @@ public interface BimServerClientInterface extends ServiceHolder {
 	IfcModelInterface getModel(long poid, long roid, boolean deep) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException;
 	void commit(IfcModelInterface model, String comment);
 	void download(long roid, long serializerOid, OutputStream outputStream);
-	void download(long newRoid, long oid, File file) throws IOException;
+	void download(long roid, long serializerOid, File file) throws IOException;
 	long checkin(long poid, String string, long deserializerOid, boolean merge, boolean sync, File file) throws IOException, UserException, ServerException;
 	IfcModelInterface newModel(SProject newProject) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException;
 	AuthInterface getBimServerAuthInterface() throws PublicInterfaceNotFoundException;

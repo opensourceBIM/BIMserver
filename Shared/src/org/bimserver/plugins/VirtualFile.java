@@ -62,7 +62,7 @@ public class VirtualFile implements JavaFileObject {
 	private byte[] data = new byte[0];
 	private VirtualFile parent;
 	private URI uri;
-	private Set<VirtualFile> sourceFiles = new HashSet<VirtualFile>();
+	private final Set<VirtualFile> sourceFiles = new HashSet<VirtualFile>();
 
 	public VirtualFile() {
 		this.parent = null;
@@ -418,12 +418,14 @@ public class VirtualFile implements JavaFileObject {
 		JarEntry jarEntry = jarInputStream.getNextJarEntry();
 		while (jarEntry != null) {
 			String n = jarEntry.getName();
-			n = n.replace("/", File.separator);
-			n = n.replace("\\", File.separator);
-			VirtualFile newFile = result.createFile(n);
-			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-			IOUtils.copy(jarInputStream, byteArrayOutputStream);
-			newFile.setData(byteArrayOutputStream.toByteArray());
+			if (n.endsWith(".class")) {
+				n = n.replace("/", File.separator);
+				n = n.replace("\\", File.separator);
+				VirtualFile newFile = result.createFile(n);
+				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+				IOUtils.copy(jarInputStream, byteArrayOutputStream);
+				newFile.setData(byteArrayOutputStream.toByteArray());
+			}
 			jarEntry = jarInputStream.getNextJarEntry();
 		}
 		return result;
