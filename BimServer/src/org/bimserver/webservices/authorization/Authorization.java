@@ -71,6 +71,9 @@ public abstract class Authorization {
 	protected abstract byte getId();
 
 	public boolean hasRightsOnProjectOrSuperProjectsOrSubProjects(User user, Project project) {
+		if (user == null) {
+			return false;
+		}
 		if (user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.SYSTEM) {
 			return true;
 		}
