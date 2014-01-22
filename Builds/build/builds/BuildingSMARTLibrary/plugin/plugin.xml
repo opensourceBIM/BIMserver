@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<PluginDescriptor>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.schema.SchemaPlugin</interfaceClass>
-		<implementationClass>nl.tue.buildingsmart.emf.BuildingSmartLibrarySchemaPlugin</implementationClass>
-	</PluginImplementation>
-</PluginDescriptor>

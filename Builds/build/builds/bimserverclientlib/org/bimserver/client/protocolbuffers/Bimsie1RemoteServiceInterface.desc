@@ -1,20 +1,0 @@
-
-ª
-#Bimsie1RemoteServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoBimsie1ServiceInterface.proto"Bimsie1NotificationInterface.proto"E
-GetPrivateProfilesRequest
-serviceIdentifier (	
-token (	"g
-GetPrivateProfilesResponse
-errorMessage (	3
-value (2$.org.bimserver.pb.SProfileDescriptor"5
-GetPublicProfilesRequest
-serviceIdentifier (	"f
-GetPublicProfilesResponse
-errorMessage (	3
-value (2$.org.bimserver.pb.SProfileDescriptor2¬
-Bimsie1RemoteServiceInterfaceo
-getPrivateProfiles+.org.bimserver.pb.GetPrivateProfilesRequest,.org.bimserver.pb.GetPrivateProfilesResponsel
-getPublicProfiles*.org.bimserver.pb.GetPublicProfilesRequest+.org.bimserver.pb.GetPublicProfilesResponseW
-
-getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceResponseS
-newRevision$.org.bimserver.pb.NewRevisionRequest.org.bimserver.pb.VoidResponseB(B!Bimsie1RemoteServiceInterfaceImplHˆ

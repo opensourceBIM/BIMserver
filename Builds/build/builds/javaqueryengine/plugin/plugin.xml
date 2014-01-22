@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<PluginDescriptor>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.queryengine.QueryEnginePlugin</interfaceClass>
-		<implementationClass>org.bimserver.jqep.JavaQueryEnginePlugin</implementationClass>
-	</PluginImplementation>
-</PluginDescriptor>
