@@ -22,6 +22,7 @@
 		<antcall target="IfcEngine" />
 		<antcall target="Mergers" />
 		<antcall target="JavaQueryEngine" />
+		<antcall target="JavaModelChecker" />
 		<antcall target="IfcPlugins" />
 		<antcall target="DemoPlugins" />
 		<antcall target="AdminGui" />
@@ -229,6 +230,25 @@
 		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-javaqueryengine.jar">
 			<fileset dir="builds/javaqueryengine"/>
+		</jar>
+	</target>
+	<target name="JavaModelChecker">
+		<mkdir dir="builds/javamodelchecker" />
+		<javac destdir="builds/javamodelchecker" debug="on" includeantruntime="false">
+			<src path="../../JavaModelChecker/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/javamodelchecker/plugin"/>
+		<copy todir="builds/javamodelchecker/plugin">
+			<fileset dir="../../JavaModelChecker/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-javamodelchecker.jar">
+			<fileset dir="builds/javamodelchecker"/>
 		</jar>
 	</target>
 	<target name="Mergers">
