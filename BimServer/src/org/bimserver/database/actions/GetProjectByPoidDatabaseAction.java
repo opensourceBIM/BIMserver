@@ -46,6 +46,9 @@ public class GetProjectByPoidDatabaseAction extends BimDatabaseAction<Project> {
 			throw new UserException("Project with oid " + poid + " does not exist");
 		}
 		User user = getUserByUoid(authorization.getUoid());
+		if (user == null) {
+			throw new UserException("Authenticated user required");
+		}
 		if (project.getState() == ObjectState.DELETED && user.getUserType() != UserType.ADMIN) {
 			throw new UserException("Project has been deleted");
 		}
