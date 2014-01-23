@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelCheckerResultHeaderImpl extends ModelCheckerResultItemImpl implements ModelCheckerResultHeader {
+public class ModelCheckerResultHeaderImpl extends ModelCheckerResultItemImpl
+		implements ModelCheckerResultHeader {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class ModelCheckerResultHeaderImpl extends ModelCheckerResultItemImpl imp
 	 * @generated
 	 */
 	public String getText() {
-		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_HEADER__TEXT, true);
+		return (String) eGet(
+				StorePackage.Literals.MODEL_CHECKER_RESULT_HEADER__TEXT, true);
 	}
 
 	/**

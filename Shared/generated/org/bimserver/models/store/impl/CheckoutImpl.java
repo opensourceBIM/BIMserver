@@ -192,7 +192,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<CheckoutRelated> getLogs() {
-		return (EList<CheckoutRelated>) eGet(StorePackage.Literals.CHECKOUT__LOGS, true);
+		return (EList<CheckoutRelated>) eGet(
+				StorePackage.Literals.CHECKOUT__LOGS, true);
 	}
 
 } //CheckoutImpl

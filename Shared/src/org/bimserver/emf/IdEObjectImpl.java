@@ -21,7 +21,9 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EStoreEObjectImpl;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 
@@ -45,7 +47,7 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 	public long getOid() {
 		return oid;
 	}
-	
+
 	@Override
 	protected EList<?> createList(EStructuralFeature eStructuralFeature) {
 		return new BasicEStoreEList<Object>(this, eStructuralFeature){

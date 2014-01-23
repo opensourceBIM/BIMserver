@@ -26,13 +26,13 @@ public class FolderWalker implements TestFileProvider {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(FolderWalker.class);
 	private volatile int current = 0;
-	private File[] listFiles;
+	private final File[] listFiles;
 	private final TestFramework testFramework;
 	private int lastPerc;
 
 	public FolderWalker(File folder, TestFramework testFramework) {
 		this.testFramework = testFramework;
-		listFiles = folder.listFiles();
+		this.listFiles = folder.listFiles();
 	}
 
 	@Override

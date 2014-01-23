@@ -45,6 +45,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getWebModule <em>Web Module</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getSessionTimeOutSeconds <em>Session Time Out Seconds</em>}</li>
  * </ul>
  * </p>
  *
@@ -503,5 +504,31 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setSendEmailOnNewRevision(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Session Time Out Seconds</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Session Time Out Seconds</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Session Time Out Seconds</em>' attribute.
+	 * @see #setSessionTimeOutSeconds(int)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SessionTimeOutSeconds()
+	 * @model
+	 * @generated
+	 */
+	int getSessionTimeOutSeconds();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getSessionTimeOutSeconds <em>Session Time Out Seconds</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Session Time Out Seconds</em>' attribute.
+	 * @see #getSessionTimeOutSeconds()
+	 * @generated
+	 */
+	void setSessionTimeOutSeconds(int value);
 
 } // ServerSettings

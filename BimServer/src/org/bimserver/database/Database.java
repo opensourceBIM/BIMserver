@@ -85,7 +85,7 @@ public class Database implements BimDatabase {
 	 * database-schema change. Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 5;
+	public static final int APPLICATION_SCHEMA_VERSION = 6;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore) throws DatabaseInitException {
 		this.bimServer = bimServer;
@@ -204,6 +204,7 @@ public class Database implements BimDatabase {
 		settings.setServiceRepositoryUrl("http://extend.bimserver.org");
 		settings.setAllowOnlyWhitelisted(false);
 		settings.setGenerateGeometryOnCheckin(true);
+		settings.setSessionTimeOutSeconds(60 * 60 * 24 * 30); // 1 month
 		settings.getWhitelistedDomains().add("localhost");
 		settings.getWhitelistedDomains().add("localhost:8080");
 		return settings;

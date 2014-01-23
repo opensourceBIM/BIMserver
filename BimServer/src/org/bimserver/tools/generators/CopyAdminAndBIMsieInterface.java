@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 public class CopyAdminAndBIMsieInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CopyAdminAndBIMsieInterface.class);
-	private static final File baseGitDir = new File("C:\\Users\\Ruben de Laat\\git");
+	private static final File baseGitDir = new File("E:\\git");
 //	private static final File baseGitDir = new File("D:\\git");
 	private static final File bootstrap = new File(baseGitDir, "bimvie.ws");
 	private static final File bimsie = new File(baseGitDir, "BIMSie");
@@ -117,7 +117,15 @@ public class CopyAdminAndBIMsieInterface {
 				}
 			});
 			FileUtils.copyDirectory(new File(bootstrap, "img"), new File(admin, "img"));
-			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(admin, "css"));
+			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(admin, "css"), new FileFilter() {
+				@Override
+				public boolean accept(File pathname) {
+					if (pathname.getName().equals("magic-bootstrap-min.css")) {
+						return false;
+					}
+					return true;
+				}
+			});
 			FileUtils.copyDirectory(new File(bootstrap, "fonts"), new File(admin, "fonts"));
 		} catch (IOException e) {
 			LOGGER.error("", e);

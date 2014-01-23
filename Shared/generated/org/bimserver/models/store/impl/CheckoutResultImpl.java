@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class CheckoutResultImpl extends DownloadResultImpl implements CheckoutResult {
+public class CheckoutResultImpl extends DownloadResultImpl implements
+		CheckoutResult {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

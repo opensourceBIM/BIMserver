@@ -20,6 +20,7 @@ package org.bimserver.webservices.authorization;
 import java.nio.ByteBuffer;
 import java.util.concurrent.TimeUnit;
 
+import org.bimserver.BimServer;
 import org.bimserver.shared.exceptions.UserException;
 
 public class ExplicitRightsAuthorization extends Authorization {
@@ -30,8 +31,8 @@ public class ExplicitRightsAuthorization extends Authorization {
 	private long writeExtendedDataRoid = -1;
 	private long soid;
 
-	public ExplicitRightsAuthorization(long uoid, long soid, long readRevisionRoid, long writeProjectPoid, long readExtendedDataRoid, long writeExtendedDataRoid) {
-		super(1, TimeUnit.HOURS);
+	public ExplicitRightsAuthorization(BimServer bimServer, long uoid, long soid, long readRevisionRoid, long writeProjectPoid, long readExtendedDataRoid, long writeExtendedDataRoid) {
+		super(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 		this.soid = soid;
 		this.setUoid(uoid);
 		this.setReadRevisionRoid(readRevisionRoid);

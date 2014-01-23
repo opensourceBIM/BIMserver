@@ -60,7 +60,7 @@ public class TestAll {
 		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON));
 		testConfiguration.setTestFileProvider(new FolderWalker(new File("E:\\Ifc Files"), testFramework));
 		testConfiguration.setOutputFolder(new File("E:\\Output"));
-		testConfiguration.setNrVirtualUsers(3);
+		testConfiguration.setNrVirtualUsers(8);
 
 		testFramework.start();
 	}

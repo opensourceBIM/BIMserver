@@ -33,7 +33,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PercentageChangeImpl extends RemoteServiceUpdateImpl implements PercentageChange {
+public class PercentageChangeImpl extends RemoteServiceUpdateImpl implements
+		PercentageChange {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59,7 +60,8 @@ public class PercentageChangeImpl extends RemoteServiceUpdateImpl implements Per
 	 * @generated
 	 */
 	public int getPercentage() {
-		return (Integer) eGet(StorePackage.Literals.PERCENTAGE_CHANGE__PERCENTAGE, true);
+		return (Integer) eGet(
+				StorePackage.Literals.PERCENTAGE_CHANGE__PERCENTAGE, true);
 	}
 
 	/**

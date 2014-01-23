@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2014  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -49,6 +49,7 @@ public class SServerSettings implements SDataBase
 	private long webModuleId = -1;
 	private java.lang.String serviceRepositoryUrl;
 	private boolean sendEmailOnNewRevision;
+	private int sessionTimeOutSeconds;
 
 	public long getOid() {
 		return this.oid;
@@ -129,6 +130,9 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("sendEmailOnNewRevision")) {
 			return isSendEmailOnNewRevision();
+		}
+		if (sField.getName().equals("sessionTimeOutSeconds")) {
+			return getSessionTimeOutSeconds();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -211,6 +215,10 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("sendEmailOnNewRevision")) {
 			setSendEmailOnNewRevision((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("sessionTimeOutSeconds")) {
+			setSessionTimeOutSeconds((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -367,6 +375,14 @@ public class SServerSettings implements SDataBase
 
 	public void setSendEmailOnNewRevision(boolean sendEmailOnNewRevision) {
 		this.sendEmailOnNewRevision = sendEmailOnNewRevision;
+	}
+	
+	public int getSessionTimeOutSeconds() {
+		return sessionTimeOutSeconds;
+	}
+
+	public void setSessionTimeOutSeconds(int sessionTimeOutSeconds) {
+		this.sessionTimeOutSeconds = sessionTimeOutSeconds;
 	}
 	
 	@Override

@@ -413,8 +413,9 @@ public enum ServiceSimpleType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ServiceSimpleType[] VALUES_ARRAY = new ServiceSimpleType[] { ENUM, STRING, LONG, INT, BOOLEAN, FLOAT, DOUBLE, DATE, CLASS, DATAHANDLER, BYTEARRAY, LIST,
-			SET, VOID, UNKNOWN, };
+	private static final ServiceSimpleType[] VALUES_ARRAY = new ServiceSimpleType[] {
+			ENUM, STRING, LONG, INT, BOOLEAN, FLOAT, DOUBLE, DATE, CLASS,
+			DATAHANDLER, BYTEARRAY, LIST, SET, VOID, UNKNOWN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Service Simple Type</b></em>' enumerators.
@@ -422,7 +423,8 @@ public enum ServiceSimpleType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ServiceSimpleType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ServiceSimpleType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Service Simple Type</b></em>' literal with the specified literal value.

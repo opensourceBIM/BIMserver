@@ -113,7 +113,8 @@ public enum ExtendedDataSchemaType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ExtendedDataSchemaType[] VALUES_ARRAY = new ExtendedDataSchemaType[] { XSD, PDF, TXT, };
+	private static final ExtendedDataSchemaType[] VALUES_ARRAY = new ExtendedDataSchemaType[] {
+			XSD, PDF, TXT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Extended Data Schema Type</b></em>' enumerators.
@@ -121,7 +122,8 @@ public enum ExtendedDataSchemaType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ExtendedDataSchemaType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ExtendedDataSchemaType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Extended Data Schema Type</b></em>' literal with the specified literal value.

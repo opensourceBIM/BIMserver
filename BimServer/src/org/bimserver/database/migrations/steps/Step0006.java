@@ -1,4 +1,4 @@
-package org.bimserver.interfaces.objects;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2014  BIMserver.org
@@ -17,18 +17,21 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public enum SActionState {
-	UNKNOWN(0),
-	STARTED(1),
-	AS_ERROR(2),
-	FINISHED(3);
-	int ordinal;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EcorePackage;
 
-	SActionState(int ordinal) {
-		this.ordinal = ordinal;
+public class Step0006 extends Migration {
+
+	@Override
+	public void migrate(Schema schema) {
+		EClass serverSettings = schema.getEClass("store", "ServerSettings");
+		schema.createEAttribute(serverSettings, "sessionTimeOutSeconds", EcorePackage.eINSTANCE.getEInt());
 	}
-	
-	public int getOrdinal() {
-		return ordinal;
+
+	@Override
+	public String getDescription() {
+		return "Adding a server setting for the default session timeout";
 	}
 }

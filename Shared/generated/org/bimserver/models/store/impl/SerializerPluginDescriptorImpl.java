@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class SerializerPluginDescriptorImpl extends PluginDescriptorImpl implements SerializerPluginDescriptor {
+public class SerializerPluginDescriptorImpl extends PluginDescriptorImpl
+		implements SerializerPluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

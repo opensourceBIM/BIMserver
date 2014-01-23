@@ -138,7 +138,8 @@ public enum ActionState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ActionState[] VALUES_ARRAY = new ActionState[] { UNKNOWN, STARTED, AS_ERROR, FINISHED, };
+	private static final ActionState[] VALUES_ARRAY = new ActionState[] {
+			UNKNOWN, STARTED, AS_ERROR, FINISHED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Action State</b></em>' enumerators.
@@ -146,7 +147,8 @@ public enum ActionState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ActionState> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ActionState> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Action State</b></em>' literal with the specified literal value.
