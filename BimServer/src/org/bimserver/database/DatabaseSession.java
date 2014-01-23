@@ -338,12 +338,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 											// referencedObject).isLoadedOrLoading())
 											// {
 											if (feature.isUnique()) {
-												if (list instanceof BasicEStoreEList) {
-													BasicEStoreEList list2 = (BasicEStoreEList)list;
-													list2.inverseAdd(referencedObject, null);
-												} else {
-													list.add(referencedObject);
-												}
+												list.add(referencedObject);
 											} else {
 												list.addUnique(referencedObject);
 											}
