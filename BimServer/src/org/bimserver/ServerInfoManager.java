@@ -55,14 +55,14 @@ public class ServerInfoManager {
 
 	public void update() {
 		if (bimServer.getDatabase().getMigrator().migrationRequired()) {
+			setServerState(ServerState.MIGRATION_REQUIRED);
 			if (bimServer.getConfig().isAutoMigrate()) {
 				try {
 					bimServer.getDatabase().getMigrator().migrate();
+					setServerState(ServerState.RUNNING);
 				} catch (MigrationException | InconsistentModelsException e) {
 					LOGGER.error("", e);
 				}
-			} else {
-				setServerState(ServerState.MIGRATION_REQUIRED);
 			}
 		} else if (bimServer.getDatabase().getMigrator().migrationImpossible()) {
 			setServerState(ServerState.MIGRATION_IMPOSSIBLE);
