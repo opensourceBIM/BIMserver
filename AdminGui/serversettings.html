@@ -2,12 +2,12 @@
 	<div class="row">
 		<div class="tabbable tabs-left col-md-2">
 			<ul class="nav nav-tabs" style="width: 100%"> 
-				<li><a class="basicServerSettingsLink">Server Settings</a></li>
-				<li><a class="migrationsLink">Migrations</a></li>
-				<li><a class="pluginsLink">Plugins</a></li>
-				<li><a class="webModulesLink">Web Modules</a></li>
-				<li><a class="extendedDataSchemasLink">Extended Data Schemas</a></li>
-				<li><a class="modelCheckersLink">Model Checkers</a></li>
+				<li class="basicServerSettingsLink active"><a>Server Settings</a></li>
+				<li class="migrationsLink"><a>Migrations</a></li>
+				<li class="pluginsLink"><a>Plugins</a></li>
+				<li class="webModulesLink"><a>Web Modules</a></li>
+				<li class="extendedDataSchemasLink"><a>Extended Data Schemas</a></li>
+				<li class="modelCheckersLink"><a>Model Checkers</a></li>
 			</ul>
 		</div>
 		<div class="tab-content col-md-10">
@@ -21,99 +21,89 @@
 		this.show = function(){
 		};
 		
-		this.changePage = function(linkElement, page, constructorFunction, callback) {
-			if (othis.current != null) {
-				othis.current.close();
-			}
-			$(".serversettings .nav li").removeClass("active");
-			linkElement.parent().addClass("active");
-			$(".serversettings .tab-content").load(Global.baseDir + page, function(){
-				constructorFunction();
-				if (callback != null) {
-					callback.call(othis.current);
-				}
-			});
-		};
+		othis.pageChanger = new PageChanger($(".serversettings .nav"), $(".serversettings .tab-content"));
 		
 		this.showAddNewExtendedDataSchema = function(extendedDataSchema, callback) {
-			othis.changePage($(".extendedDataSchemasLink"), "addnewextendeddataschema.html", function(){
-				othis.current = new AddExtendedDataSchema(main, othis, extendedDataSchema);
+			othis.pageChanger.changePage($(".extendedDataSchemasLink"), "addnewextendeddataschema.html", function(){
 				pushHistory({page: "ServerSettings", subpage: "AddNewExtendedDataSchema"}, "Server Settings");
+				return new AddExtendedDataSchema(main, othis, extendedDataSchema);
 			}, callback);
 		};
 
 		this.showAddRepoExtendedDataSchema = function(callback) {
-			othis.changePage($(".extendedDataSchemasLink"), "addrepoextendeddataschema.html", function(){
-				othis.current = new AddRepoExtendedDataSchema(main, othis);
+			othis.pageChanger.changePage($(".extendedDataSchemasLink"), "addrepoextendeddataschema.html", function(){
 				pushHistory({page: "ServerSettings", subpage: "AddRepoExtendedDataSchema"}, "Server Settings");
+				return new AddRepoExtendedDataSchema(main, othis);
 			}, callback);
 		};
 		
 		this.showAddNewModelChecker = function(modelChecker, callback) {
-			othis.changePage($(".modelCheckersLink"), "addnewmodelchecker.html", function(){
-				othis.current = new AddModelChecker(main, othis, modelChecker);
+			othis.pageChanger.changePage($(".modelCheckersLink"), "addnewmodelchecker.html", function(){
 				pushHistory({page: "ServerSettings", subpage: "AddNewModelChecker"}, "Server Settings");
+				return new AddModelChecker(main, othis, modelChecker);
 			}, callback);
 		};
 
 		this.showAddRepoModelChecker = function(callback) {
-			othis.changePage($(".modelCheckersLink"), "addrepomodelchecker.html", function(){
-				othis.current = new AddRepoModelChecker(main, othis);
+			othis.pageChanger.changePage($(".modelCheckersLink"), "addrepomodelchecker.html", function(){
 				pushHistory({page: "ServerSettings", subpage: "AddRepoModelChecker"}, "Server Settings");
+				return new AddRepoModelChecker(main, othis);
 			}, callback);
 		};
 		
 		this.showExtendedDataSchema = function(oid, callback) {
-			othis.changePage($(".extendedDataSchemasLink"), "extendeddataschema.html", function(){
-				othis.current = new ExtendedDataSchema(main, oid);
+			othis.pageChanger.changePage($(".extendedDataSchemasLink"), "extendeddataschema.html", function(){
+				return new ExtendedDataSchema(main, oid);
+				pushHistory({page: "ServerSettings", subpage: "ExtendedDataSchema"}, "Extended Data Schema");
 			}, callback);
 		};
 		
 		this.showModelChecker = function(oid, callback) {
-			othis.changePage($(".modelCheckersLink"), "modelchecker.html", function(){
-				othis.current = new ModelChecker(main, oid);
+			othis.pageChanger.changePage($(".modelCheckersLink"), "modelchecker.html", function(){
+				pushHistory({page: "ServerSettings", subpage: "ModelChecker"}, "Model Checker");
+				return new ModelChecker(main, oid);
 			}, callback);
 		};
 
 		this.showBasicServerSettings = function(callback) {
-			othis.changePage($(".basicServerSettingsLink"), "basicserversettings.html", function(){
-				othis.current = new BasicServerSettings(main, othis);
-				pushHistory({page: "ServerSettings", subpage: "BasicServerSettings"}, "Server Settings");
+			othis.pageChanger.changePage($(".basicServerSettingsLink"), "basicserversettings.html", function(){
+				pushHistory({page: "ServerSettings", subpage: "BasicServerSettings"}, "Basic Server Settings");
+				return new BasicServerSettings(main, othis);
 			}, callback);
 		};
 
 		this.showMigrations = function(callback) {
-			othis.changePage($(".migrationsLink"), "migrations.html", function(){
-				othis.current = new Migrations(main, othis);
+			othis.pageChanger.changePage($(".migrationsLink"), "migrations.html", function(){
 				pushHistory({page: "ServerSettings", subpage: "Migrations"}, "Server Settings");
+				return new Migrations(main, othis);
 			}, callback);
 		};
 
 		this.showPlugins = function(callback) {
-			othis.changePage($(".pluginsLink"), "plugins.html", function(){
-				othis.current = new Plugins(main, othis);
+			othis.pageChanger.changePage($(".pluginsLink"), "plugins.html", function(){
 				pushHistory({page: "ServerSettings", subpage: "Plugins"}, "Server Settings");
+				return new Plugins(main, othis);
 			}, callback);
 		};
 
 		this.showWebModules = function(callback) {
-			othis.changePage($(".webModulesLink"), "webmodules.html", function(){
-				othis.current = new WebModules(main, othis);
+			othis.pageChanger.changePage($(".webModulesLink"), "webmodules.html", function(){
 				pushHistory({page: "ServerSettings", subpage: "WebModules"}, "Server Settings");
+				return new WebModules(main, othis);
 			}, callback);
 		};
 
 		this.showModelCheckers = function(callback) {
-			othis.changePage($(".modelCheckersLink"), "modelcheckers.html", function(){
-				othis.current = new ModelCheckers(main, othis);
+			othis.pageChanger.changePage($(".modelCheckersLink"), "modelcheckers.html", function(){
 				pushHistory({page: "ServerSettings", subpage: "ModelCheckers"}, "Server Settings");
+				return new ModelCheckers(main, othis);
 			}, callback);
 		};
 
 		this.showExtendedDataSchemas = function(callback) {
-			othis.changePage($(".extendedDataSchemasLink"), "extendeddataschemas.html", function(){
-				othis.current = new ExtendedDataSchemas(main, othis);
+			othis.pageChanger.changePage($(".extendedDataSchemasLink"), "extendeddataschemas.html", function(){
 				pushHistory({page: "ServerSettings", subpage: "ExtendedDataSchemas"}, "Server Settings");
+				return new ExtendedDataSchemas(main, othis);
 			}, callback);
 		};
 		

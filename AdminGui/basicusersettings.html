@@ -1,14 +1,20 @@
 <div class="basicusersettings">
 	<h3>Basic User Settings</h3>
-	<div class="alert">
-		There are no basic user settings yet, but there probably will be in the future.
+	<label>Service Token</label>
+	<div class="form-group">
+		<div class="col-xs-4">
+			<input type="text" class="tokenInput form-control" disabled="disabled"/>
+		</div>
 	</div>
 </div>
 <script>
-function BasicUserSettings() {
+function BasicUserSettings(containerDiv, main) {
 	var othis = this;
 
 	this.show = function(){
+		Global.bimServerApi.call("ServiceInterface", "getUserByUoid", {uoid: main.user.oid}, function(user){
+			containerDiv.find(".tokenInput").val(user.token);
+		});
 	};
 	
 	this.close = function(){

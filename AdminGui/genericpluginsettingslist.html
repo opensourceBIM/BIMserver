@@ -24,6 +24,9 @@ function GenericPluginSettingsList(main, usersettings, configuration) {
 	if (configuration.setDefaultMethodName == null) {
 		$(".genericpluginsettingslist .defaultHeader").hide();
 	}
+
+	this.show = function(){
+	};
 	
 	this.pluginClick = function(event) {
 		if (!$(event.target).is("a, button, span.caret, input")) {
