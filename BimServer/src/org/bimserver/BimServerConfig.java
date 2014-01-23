@@ -30,6 +30,7 @@ public class BimServerConfig {
 	private boolean startCommandLine = false;
 	private int initialProtocolBuffersPort = 8020;
 	private boolean localDev;
+	private boolean autoMigrate = false;
 	
 	public boolean isStartEmbeddedWebServer() {
 		return startEmbeddedWebServer;
@@ -93,5 +94,13 @@ public class BimServerConfig {
 
 	public void setLocalDev(boolean localDev) {
 		this.localDev = localDev;
+	}
+
+	public boolean isAutoMigrate() {
+		return autoMigrate;
+	}
+
+	public void setAutoMigrate(boolean autoMigrate) {
+		this.autoMigrate = autoMigrate;
 	}
 }

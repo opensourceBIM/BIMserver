@@ -39,6 +39,7 @@ public class WarServerInitializer implements ServletContextListener {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 	private BimServer bimServer;
+
 	
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -50,6 +51,14 @@ public class WarServerInitializer implements ServletContextListener {
 		if (homeDir == null && servletContext.getInitParameter("homedir") != null) {
 			homeDir = new File(servletContext.getInitParameter("homedir"));
 		}
+
+		boolean autoMigrate = false;
+		if (servletContext.getAttribute("autoMigrate") != null) {
+			autoMigrate = (boolean) servletContext.getAttribute("autoMigrate");
+		}
+		if (autoMigrate == false && servletContext.getInitParameter("autoMigrate") != null) {
+			autoMigrate = Boolean.valueOf(servletContext.getInitParameter("autoMigrate"));
+		}
 		
 		File baseDir = new File(servletContext.getRealPath("/") + "WEB-INF");
 		if (homeDir == null) {
@@ -57,6 +66,7 @@ public class WarServerInitializer implements ServletContextListener {
 		}
 		ResourceFetcher resourceFetcher = new WarResourceFetcher(servletContext, homeDir);
 		BimServerConfig config = new BimServerConfig();
+		config.setAutoMigrate(autoMigrate);
 		config.setHomeDir(homeDir);
 		config.setResourceFetcher(resourceFetcher);
 		config.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));

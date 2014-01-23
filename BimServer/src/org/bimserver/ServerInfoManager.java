@@ -23,6 +23,8 @@ import java.util.Set;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
+import org.bimserver.database.migrations.InconsistentModelsException;
+import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.store.ServerInfo;
@@ -53,7 +55,15 @@ public class ServerInfoManager {
 
 	public void update() {
 		if (bimServer.getDatabase().getMigrator().migrationRequired()) {
-			setServerState(ServerState.MIGRATION_REQUIRED);
+			if (bimServer.getConfig().isAutoMigrate()) {
+				try {
+					bimServer.getDatabase().getMigrator().migrate();
+				} catch (MigrationException | InconsistentModelsException e) {
+					LOGGER.error("", e);
+				}
+			} else {
+				setServerState(ServerState.MIGRATION_REQUIRED);
+			}
 		} else if (bimServer.getDatabase().getMigrator().migrationImpossible()) {
 			setServerState(ServerState.MIGRATION_IMPOSSIBLE);
 		} else {
