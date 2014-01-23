@@ -507,6 +507,7 @@ public interface ServerSettings extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Session Time Out Seconds</b></em>' attribute.
+	 * The default value is <code>"2592000"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Session Time Out Seconds</em>' attribute isn't clear,
@@ -516,7 +517,7 @@ public interface ServerSettings extends IdEObject {
 	 * @return the value of the '<em>Session Time Out Seconds</em>' attribute.
 	 * @see #setSessionTimeOutSeconds(int)
 	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SessionTimeOutSeconds()
-	 * @model
+	 * @model default="2592000"
 	 * @generated
 	 */
 	int getSessionTimeOutSeconds();
