@@ -218,9 +218,11 @@ function newDropdownTd(title) {
 	return td;
 }
 
-function stripHttp(url) {
+function stripHttps(url) {
 	if (url.startsWith("http://")) {
 		return url.substring(7);
+	} else if (url.startsWith("https://")) {
+		return url.substring(8);
 	}
 	return url;
 }

@@ -112,6 +112,8 @@ function BasicServerSettings(main, serversettings) {
 	var othis = this;
 	othis.change = false;
 	
+	this.show = function(){};
+	
 	this.removeDomainButton = function(){
 		$(this).parent().remove();		
 		othis.change = true;

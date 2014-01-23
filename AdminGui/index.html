@@ -51,7 +51,8 @@
 		    baseCssDir + "bootstrap.min.css",
 		    baseCssDir + "main.css", 
 		    baseCssDir + "bootstrap-vert-tabs.css", 
-		    baseCssDir + "openid.css"
+		    baseCssDir + "openid.css",
+		    baseCssDir + "magic-bootstrap-min.css"
 		], function(){});
 		
 		LazyLoad.js([
@@ -77,6 +78,12 @@
 		], function () {
 			var othis = this;
 
+			if (new String(top.location).indexOf("31.3.99.183") != -1) {
+			//	window.location.replace("http://connectandconstruct.bimvie.ws");
+			} else if (top.location!= self.location) {
+			       top.location.replace(location);
+			}
+			
 			Global.lastKey = null;
 
 			$("body").on("keyup", function (e) {

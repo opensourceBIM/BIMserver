@@ -93,7 +93,6 @@ function Main(address, username) {
 	};
 
 	this.logout = function() {
-		$(".sidespan").empty();
 		Global.bimServerApi.logout(function(){
 			if (Settings.allowBimServerAddress()) {
 				$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
