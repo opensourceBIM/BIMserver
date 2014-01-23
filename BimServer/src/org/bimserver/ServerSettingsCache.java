@@ -44,6 +44,9 @@ public class ServerSettingsCache {
 		DatabaseSession session = database.createSession();
 		try {
 			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), new Query(true));
+			if (serverSettings.getSessionTimeOutSeconds() == 0) {
+				serverSettings.setSessionTimeOutSeconds(60 * 60 * 24 * 30);
+			}
 			allowedHosts.clear();
 			for (String domain : serverSettings.getWhitelistedDomains()) {
 				allowedHosts.add(domain);
