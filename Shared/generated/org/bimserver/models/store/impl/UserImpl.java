@@ -155,7 +155,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Project> getHasRightsOn() {
-		return (EList<Project>) eGet(StorePackage.Literals.USER__HAS_RIGHTS_ON, true);
+		return (EList<Project>) eGet(StorePackage.Literals.USER__HAS_RIGHTS_ON,
+				true);
 	}
 
 	/**
@@ -165,7 +166,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Revision> getRevisions() {
-		return (EList<Revision>) eGet(StorePackage.Literals.USER__REVISIONS, true);
+		return (EList<Revision>) eGet(StorePackage.Literals.USER__REVISIONS,
+				true);
 	}
 
 	/**
@@ -318,7 +320,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	public Date getValidationTokenCreated() {
-		return (Date) eGet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, true);
+		return (Date) eGet(
+				StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, true);
 	}
 
 	/**
@@ -327,7 +330,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	public void setValidationTokenCreated(Date newValidationTokenCreated) {
-		eSet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, newValidationTokenCreated);
+		eSet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED,
+				newValidationTokenCreated);
 	}
 
 	/**
@@ -336,7 +340,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(StorePackage.Literals.USER__USER_SETTINGS, true);
+		return (UserSettings) eGet(StorePackage.Literals.USER__USER_SETTINGS,
+				true);
 	}
 
 	/**
@@ -355,7 +360,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ExtendedDataSchema> getSchemas() {
-		return (EList<ExtendedDataSchema>) eGet(StorePackage.Literals.USER__SCHEMAS, true);
+		return (EList<ExtendedDataSchema>) eGet(
+				StorePackage.Literals.USER__SCHEMAS, true);
 	}
 
 	/**
@@ -365,7 +371,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ExtendedData> getExtendedData() {
-		return (EList<ExtendedData>) eGet(StorePackage.Literals.USER__EXTENDED_DATA, true);
+		return (EList<ExtendedData>) eGet(
+				StorePackage.Literals.USER__EXTENDED_DATA, true);
 	}
 
 	/**

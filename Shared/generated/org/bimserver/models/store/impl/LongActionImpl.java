@@ -77,7 +77,8 @@ public class LongActionImpl extends IdEObjectImpl implements LongAction {
 	 * @generated
 	 */
 	public String getIdentification() {
-		return (String) eGet(StorePackage.Literals.LONG_ACTION__IDENTIFICATION, true);
+		return (String) eGet(StorePackage.Literals.LONG_ACTION__IDENTIFICATION,
+				true);
 	}
 
 	/**
@@ -86,7 +87,8 @@ public class LongActionImpl extends IdEObjectImpl implements LongAction {
 	 * @generated
 	 */
 	public void setIdentification(String newIdentification) {
-		eSet(StorePackage.Literals.LONG_ACTION__IDENTIFICATION, newIdentification);
+		eSet(StorePackage.Literals.LONG_ACTION__IDENTIFICATION,
+				newIdentification);
 	}
 
 	/**

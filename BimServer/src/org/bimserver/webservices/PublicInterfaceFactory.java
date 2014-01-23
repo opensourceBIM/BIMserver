@@ -43,7 +43,7 @@ public class PublicInterfaceFactory implements ServiceFactory {
 	}
 	
 	public synchronized ServiceMap get(AccessMethod accessMethod) throws UserException {
-		Authorization authorization = new AnonymousAuthorization(30, TimeUnit.DAYS);
+		Authorization authorization = new AnonymousAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 		return get(authorization, accessMethod);
 	}
 	

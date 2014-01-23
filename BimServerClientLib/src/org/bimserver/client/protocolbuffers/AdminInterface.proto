@@ -1,7 +1,7 @@
 package org.bimserver.pb;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2014  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -90,17 +90,7 @@ message SModelMergerPluginDescriptor {
 	optional int64 oid = 2;
 }
 
-message SSerializerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SDeserializerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SModelComparePluginDescriptor {
+message SServicePluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -110,12 +100,7 @@ message SModelCheckerPluginDescriptor {
 	optional int64 oid = 2;
 }
 
-message SServicePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SRenderEnginePluginDescriptor {
+message SSerializerPluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -125,7 +110,22 @@ message SQueryEnginePluginDescriptor {
 	optional int64 oid = 2;
 }
 
+message SModelComparePluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
 message SWebModulePluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SDeserializerPluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SRenderEnginePluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -133,19 +133,19 @@ message SWebModulePluginDescriptor {
 message SPluginDescriptor {
 	required string __actual_type = 1;
 	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 2;
-	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 3;
-	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 4;
-	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 5;
-	optional SModelCheckerPluginDescriptor __SModelCheckerPluginDescriptor = 6;
-	optional SServicePluginDescriptor __SServicePluginDescriptor = 7;
-	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 8;
-	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 9;
-	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 10;
+	optional SServicePluginDescriptor __SServicePluginDescriptor = 3;
+	optional SModelCheckerPluginDescriptor __SModelCheckerPluginDescriptor = 4;
+	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 5;
+	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 6;
+	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 7;
+	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 8;
+	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 9;
+	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 10;
 	optional string defaultName = 11;
 	optional bool enabled = 12;
 	optional string simpleName = 13;
-	optional int32 rid = 14;
-	optional string pluginInterfaceClassName = 15;
+	optional string pluginInterfaceClassName = 14;
+	optional int32 rid = 15;
 	optional string location = 16;
 	optional int64 oid = 17;
 	optional string description = 18;
@@ -162,10 +162,10 @@ message GetBimServerInfoRequest {
 }
 
 message SBimServerInfo {
-	optional int32 projects = 1;
-	optional string latestVersion = 2;
-	optional int64 latestDate = 3;
-	optional int32 users = 4;
+	optional int32 users = 1;
+	optional int64 latestDate = 2;
+	optional string latestVersion = 3;
+	optional int32 projects = 4;
 	optional string serverLogUrl = 5;
 	optional int32 rid = 6;
 	optional int64 currentDate = 7;
@@ -200,13 +200,13 @@ message SDatabaseInformationCategory {
 }
 
 message SDatabaseInformation {
-	optional int64 created = 1;
-	optional int32 rid = 2;
-	optional int32 numberOfProjects = 3;
+	optional int32 numberOfProjects = 1;
+	optional int64 created = 2;
+	optional int32 rid = 3;
 	optional string location = 4;
 	optional int64 oid = 5;
-	repeated SDatabaseInformationCategory categories = 6;
-	optional int32 numberOfUsers = 7;
+	optional int32 numberOfUsers = 6;
+	repeated SDatabaseInformationCategory categories = 7;
 	optional int64 databaseSizeInBytes = 8;
 	optional string type = 9;
 	optional int32 schemaVersion = 10;
@@ -223,31 +223,31 @@ message GetJavaInfoRequest {
 }
 
 message SJavaInfo {
-	optional string javaspecVersion = 1;
-	optional string javaFileSeparator = 2;
+	optional string javaFileSeparator = 1;
+	optional string javaspecVersion = 2;
 	optional string javaClassVersion = 3;
 	optional string javaVendor = 4;
 	optional int64 heapFree = 5;
-	optional string javaIoTmp = 6;
+	optional string javavmVersion = 6;
 	optional string javaHome = 7;
-	optional string javavmVersion = 8;
+	optional string javaIoTmp = 8;
 	optional string javaPathSeparator = 9;
 	optional string javaspecVendor = 10;
 	optional string javaLineSeparator = 11;
-	optional int32 rid = 12;
-	optional int32 threads = 13;
-	optional int64 oid = 14;
+	optional int32 threads = 12;
+	optional int32 rid = 13;
+	repeated string javaClasspath = 14;
 	optional string javaVendorurl = 15;
-	repeated string javaClasspath = 16;
+	optional int64 oid = 16;
 	optional string javaExtdir = 17;
 	optional int64 heapUsed = 18;
 	optional string javaVersion = 19;
 	optional string javavmVendor = 20;
 	optional string javaspecName = 21;
-	optional string javavmName = 22;
-	optional int64 heapTotal = 23;
-	optional int64 heapMax = 24;
-	repeated string javaLibrarypath = 25;
+	optional int64 heapTotal = 22;
+	optional string javavmName = 23;
+	repeated string javaLibrarypath = 24;
+	optional int64 heapMax = 25;
 }
 
 message GetJavaInfoResponse {

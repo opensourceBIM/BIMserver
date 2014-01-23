@@ -122,7 +122,10 @@ public class RootServlet extends HttpServlet {
 					IOUtils.copy(resourceAsStream, response.getOutputStream());
 				} else {
 					response.setStatus(404);
-					response.getWriter().println("404 - Not Found");
+					try {
+						response.getWriter().println("404 - Not Found");
+					} catch (IllegalStateException e) {
+					}
 				}
 			}
 		} catch (Throwable e) {

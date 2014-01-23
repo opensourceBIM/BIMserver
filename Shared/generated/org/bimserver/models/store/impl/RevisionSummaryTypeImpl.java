@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSummaryType {
+public class RevisionSummaryTypeImpl extends IdEObjectImpl implements
+		RevisionSummaryType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +72,8 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSu
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__NAME, true);
+		return (String) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__NAME,
+				true);
 	}
 
 	/**
@@ -89,7 +91,8 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSu
 	 * @generated
 	 */
 	public Integer getCount() {
-		return (Integer) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__COUNT, true);
+		return (Integer) eGet(
+				StorePackage.Literals.REVISION_SUMMARY_TYPE__COUNT, true);
 	}
 
 	/**

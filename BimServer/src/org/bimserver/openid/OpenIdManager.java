@@ -169,9 +169,9 @@ public class OpenIdManager {
 							}
 							Authorization authorization = null;
 							if (user.getUserType() == UserType.ADMIN) {
-								authorization = new AdminAuthorization(30, TimeUnit.DAYS);
+								authorization = new AdminAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 							} else {
-								authorization = new UserAuthorization(30, TimeUnit.DAYS);
+								authorization = new UserAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 							}
 							authorization.setUoid(user.getOid());
 							String asHexToken = authorization.asHexToken(bimServer.getEncryptionKey());

@@ -32,7 +32,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelCheckerResultItemImpl extends IdEObjectImpl implements ModelCheckerResultItem {
+public class ModelCheckerResultItemImpl extends IdEObjectImpl implements
+		ModelCheckerResultItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

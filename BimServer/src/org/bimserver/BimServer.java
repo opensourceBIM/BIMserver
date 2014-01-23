@@ -962,7 +962,7 @@ public class BimServer {
 	}
 
 	public <T extends PublicInterface> T getService(Class<T> clazz) {
-		return getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(clazz);
+		return getServiceFactory().get(new SystemAuthorization(getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS), AccessMethod.INTERNAL).get(clazz);
 	}
 	
 	public LongTransactionManager getLongTransactionManager() {

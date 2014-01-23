@@ -138,7 +138,8 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final UserType[] VALUES_ARRAY = new UserType[] { SYSTEM, ADMIN, USER, READ_ONLY, };
+	private static final UserType[] VALUES_ARRAY = new UserType[] { SYSTEM,
+			ADMIN, USER, READ_ONLY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>User Type</b></em>' enumerators.
@@ -146,7 +147,8 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<UserType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<UserType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>User Type</b></em>' literal with the specified literal value.

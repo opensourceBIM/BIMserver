@@ -163,7 +163,8 @@ public enum PrimitiveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PrimitiveEnum[] VALUES_ARRAY = new PrimitiveEnum[] { LONG, DOUBLE, BOOLEAN, STRING, BYTE_ARRAY, };
+	private static final PrimitiveEnum[] VALUES_ARRAY = new PrimitiveEnum[] {
+			LONG, DOUBLE, BOOLEAN, STRING, BYTE_ARRAY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Primitive Enum</b></em>' enumerators.
@@ -171,7 +172,8 @@ public enum PrimitiveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<PrimitiveEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<PrimitiveEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Primitive Enum</b></em>' literal with the specified literal value.

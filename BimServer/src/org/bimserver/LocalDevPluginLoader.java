@@ -30,9 +30,9 @@ public class LocalDevPluginLoader {
 	public static void loadPlugins(PluginManager pluginManager, File current, File gitDirectory) throws PluginException {
 		LOGGER.info("Loading plugins from " + current.getAbsolutePath());
 		
-		pluginManager.loadAllPluginsFromDirectoryOfJars(new File("E:\\plugins"));
+//		pluginManager.loadAllPluginsFromDirectoryOfJars(new File("E:\\plugins"));
 		
-//		pluginManager.loadAllPluginsFromEclipseWorkspace(current);
+		pluginManager.loadAllPluginsFromEclipseWorkspace(current);
 		
 //		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("E:\\Workspaces\\BIMserver\\Myplugins"));
 //		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("E:\\Workspaces\\BIMserver\\IfcOpenShellPlugin"));

@@ -40,7 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelCheckerResultImpl extends IdEObjectImpl implements ModelCheckerResult {
+public class ModelCheckerResultImpl extends IdEObjectImpl implements
+		ModelCheckerResult {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,7 +77,8 @@ public class ModelCheckerResultImpl extends IdEObjectImpl implements ModelChecke
 	 * @generated
 	 */
 	public boolean isValid() {
-		return (Boolean) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT__VALID, true);
+		return (Boolean) eGet(
+				StorePackage.Literals.MODEL_CHECKER_RESULT__VALID, true);
 	}
 
 	/**
@@ -95,7 +97,8 @@ public class ModelCheckerResultImpl extends IdEObjectImpl implements ModelChecke
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ModelCheckerResultItem> getItems() {
-		return (EList<ModelCheckerResultItem>) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT__ITEMS, true);
+		return (EList<ModelCheckerResultItem>) eGet(
+				StorePackage.Literals.MODEL_CHECKER_RESULT__ITEMS, true);
 	}
 
 } //ModelCheckerResultImpl

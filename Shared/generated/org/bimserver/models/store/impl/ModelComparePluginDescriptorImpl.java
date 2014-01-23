@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelComparePluginDescriptorImpl extends PluginDescriptorImpl implements ModelComparePluginDescriptor {
+public class ModelComparePluginDescriptorImpl extends PluginDescriptorImpl
+		implements ModelComparePluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

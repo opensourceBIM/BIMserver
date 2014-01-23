@@ -134,7 +134,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public String getServiceIdentifier() {
-		return (String) eGet(StorePackage.Literals.SERVICE__SERVICE_IDENTIFIER, true);
+		return (String) eGet(StorePackage.Literals.SERVICE__SERVICE_IDENTIFIER,
+				true);
 	}
 
 	/**
@@ -143,7 +144,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public void setServiceIdentifier(String newServiceIdentifier) {
-		eSet(StorePackage.Literals.SERVICE__SERVICE_IDENTIFIER, newServiceIdentifier);
+		eSet(StorePackage.Literals.SERVICE__SERVICE_IDENTIFIER,
+				newServiceIdentifier);
 	}
 
 	/**
@@ -206,7 +208,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public AccessMethod getNotificationProtocol() {
-		return (AccessMethod) eGet(StorePackage.Literals.SERVICE__NOTIFICATION_PROTOCOL, true);
+		return (AccessMethod) eGet(
+				StorePackage.Literals.SERVICE__NOTIFICATION_PROTOCOL, true);
 	}
 
 	/**
@@ -215,7 +218,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public void setNotificationProtocol(AccessMethod newNotificationProtocol) {
-		eSet(StorePackage.Literals.SERVICE__NOTIFICATION_PROTOCOL, newNotificationProtocol);
+		eSet(StorePackage.Literals.SERVICE__NOTIFICATION_PROTOCOL,
+				newNotificationProtocol);
 	}
 
 	/**
@@ -260,7 +264,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public boolean isReadRevision() {
-		return (Boolean) eGet(StorePackage.Literals.SERVICE__READ_REVISION, true);
+		return (Boolean) eGet(StorePackage.Literals.SERVICE__READ_REVISION,
+				true);
 	}
 
 	/**
@@ -278,7 +283,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public ExtendedDataSchema getReadExtendedData() {
-		return (ExtendedDataSchema) eGet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, true);
+		return (ExtendedDataSchema) eGet(
+				StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, true);
 	}
 
 	/**
@@ -287,7 +293,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public void setReadExtendedData(ExtendedDataSchema newReadExtendedData) {
-		eSet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, newReadExtendedData);
+		eSet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA,
+				newReadExtendedData);
 	}
 
 	/**
@@ -296,7 +303,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public Project getWriteRevision() {
-		return (Project) eGet(StorePackage.Literals.SERVICE__WRITE_REVISION, true);
+		return (Project) eGet(StorePackage.Literals.SERVICE__WRITE_REVISION,
+				true);
 	}
 
 	/**
@@ -314,7 +322,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public ExtendedDataSchema getWriteExtendedData() {
-		return (ExtendedDataSchema) eGet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, true);
+		return (ExtendedDataSchema) eGet(
+				StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, true);
 	}
 
 	/**
@@ -323,7 +332,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public void setWriteExtendedData(ExtendedDataSchema newWriteExtendedData) {
-		eSet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, newWriteExtendedData);
+		eSet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA,
+				newWriteExtendedData);
 	}
 
 	/**
@@ -332,7 +342,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public String getProfileIdentifier() {
-		return (String) eGet(StorePackage.Literals.SERVICE__PROFILE_IDENTIFIER, true);
+		return (String) eGet(StorePackage.Literals.SERVICE__PROFILE_IDENTIFIER,
+				true);
 	}
 
 	/**
@@ -341,7 +352,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public void setProfileIdentifier(String newProfileIdentifier) {
-		eSet(StorePackage.Literals.SERVICE__PROFILE_IDENTIFIER, newProfileIdentifier);
+		eSet(StorePackage.Literals.SERVICE__PROFILE_IDENTIFIER,
+				newProfileIdentifier);
 	}
 
 	/**
@@ -368,7 +380,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public String getProfileDescription() {
-		return (String) eGet(StorePackage.Literals.SERVICE__PROFILE_DESCRIPTION, true);
+		return (String) eGet(
+				StorePackage.Literals.SERVICE__PROFILE_DESCRIPTION, true);
 	}
 
 	/**
@@ -377,7 +390,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public void setProfileDescription(String newProfileDescription) {
-		eSet(StorePackage.Literals.SERVICE__PROFILE_DESCRIPTION, newProfileDescription);
+		eSet(StorePackage.Literals.SERVICE__PROFILE_DESCRIPTION,
+				newProfileDescription);
 	}
 
 	/**
@@ -386,7 +400,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public boolean isProfilePublic() {
-		return (Boolean) eGet(StorePackage.Literals.SERVICE__PROFILE_PUBLIC, true);
+		return (Boolean) eGet(StorePackage.Literals.SERVICE__PROFILE_PUBLIC,
+				true);
 	}
 
 	/**
@@ -440,7 +455,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	public InternalServicePluginConfiguration getInternalService() {
-		return (InternalServicePluginConfiguration) eGet(StorePackage.Literals.SERVICE__INTERNAL_SERVICE, true);
+		return (InternalServicePluginConfiguration) eGet(
+				StorePackage.Literals.SERVICE__INTERNAL_SERVICE, true);
 	}
 
 	/**
@@ -448,8 +464,10 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInternalService(InternalServicePluginConfiguration newInternalService) {
-		eSet(StorePackage.Literals.SERVICE__INTERNAL_SERVICE, newInternalService);
+	public void setInternalService(
+			InternalServicePluginConfiguration newInternalService) {
+		eSet(StorePackage.Literals.SERVICE__INTERNAL_SERVICE,
+				newInternalService);
 	}
 
 	/**
@@ -459,7 +477,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ModelCheckerInstance> getModelCheckers() {
-		return (EList<ModelCheckerInstance>) eGet(StorePackage.Literals.SERVICE__MODEL_CHECKERS, true);
+		return (EList<ModelCheckerInstance>) eGet(
+				StorePackage.Literals.SERVICE__MODEL_CHECKERS, true);
 	}
 
 } //ServiceImpl

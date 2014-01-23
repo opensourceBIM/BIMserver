@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterface {
+public class ServiceInterfaceImpl extends IdEObjectImpl implements
+		ServiceInterface {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,7 +73,8 @@ public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterf
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(StorePackage.Literals.SERVICE_INTERFACE__NAME, true);
+		return (String) eGet(StorePackage.Literals.SERVICE_INTERFACE__NAME,
+				true);
 	}
 
 	/**
@@ -90,7 +92,8 @@ public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterf
 	 * @generated
 	 */
 	public String getNameSpace() {
-		return (String) eGet(StorePackage.Literals.SERVICE_INTERFACE__NAME_SPACE, true);
+		return (String) eGet(
+				StorePackage.Literals.SERVICE_INTERFACE__NAME_SPACE, true);
 	}
 
 	/**
@@ -108,7 +111,8 @@ public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterf
 	 * @generated
 	 */
 	public String getSimpleName() {
-		return (String) eGet(StorePackage.Literals.SERVICE_INTERFACE__SIMPLE_NAME, true);
+		return (String) eGet(
+				StorePackage.Literals.SERVICE_INTERFACE__SIMPLE_NAME, true);
 	}
 
 	/**
@@ -117,7 +121,8 @@ public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterf
 	 * @generated
 	 */
 	public void setSimpleName(String newSimpleName) {
-		eSet(StorePackage.Literals.SERVICE_INTERFACE__SIMPLE_NAME, newSimpleName);
+		eSet(StorePackage.Literals.SERVICE_INTERFACE__SIMPLE_NAME,
+				newSimpleName);
 	}
 
 } //ServiceInterfaceImpl
