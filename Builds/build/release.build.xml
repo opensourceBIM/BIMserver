@@ -8,7 +8,7 @@
 	<property name="majorversion" value="1"/>
 	<property name="minorversion" value="3"/>
 	<property name="revisionversion" value="0"/>
-	<property name="type" value="RC2"/>
+	<property name="type" value="RC3"/>
 	<property name="revisiondate" value="${builddate}"/>
 	<property name="version" value="${majorversion}.${minorversion}.${revisionversion}-${type}-${revisiondate}"/>
 
