@@ -121,7 +121,11 @@ public class NewAttributeChange implements Change {
 									if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
 										newBuffer.putShort((short)-1);
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-										newBuffer.putInt(0);
+										if (eAttribute.getDefaultValue() != null) {
+											newBuffer.putInt((int)eAttribute.getDefaultValue());
+										} else {
+											newBuffer.putInt(0);
+										}
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
 										newBuffer.putDouble(0.0);
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
