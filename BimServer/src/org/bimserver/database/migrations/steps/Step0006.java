@@ -19,6 +19,7 @@ package org.bimserver.database.migrations.steps;
 
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -27,7 +28,8 @@ public class Step0006 extends Migration {
 	@Override
 	public void migrate(Schema schema) {
 		EClass serverSettings = schema.getEClass("store", "ServerSettings");
-		schema.createEAttribute(serverSettings, "sessionTimeOutSeconds", EcorePackage.eINSTANCE.getEInt());
+		EAttribute sessionTimeOutSeconds = schema.createEAttribute(serverSettings, "sessionTimeOutSeconds", EcorePackage.eINSTANCE.getEInt());
+		sessionTimeOutSeconds.setDefaultValue(60 * 60 * 24 * 30); // 1 month
 	}
 
 	@Override
