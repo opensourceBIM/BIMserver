@@ -1,6 +1,6 @@
 package org.bimserver.merging;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
@@ -91,6 +91,9 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.modelmerger.ModelMerger;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 
 public abstract class AbstractModelMerger implements ModelMerger {
 	// TODO: Actually we should not modify the original objects and then copy them to the destination model, but the other way around...
@@ -127,154 +130,157 @@ public abstract class AbstractModelMerger implements ModelMerger {
 			for (IfcModelInterface ifcModel : ifcModels) {
 				float scale = (float) (getLengthUnitPrefix(ifcModel) / Math.pow(10.0, prefix.getValue()));
 				setLengthUnitMeasure(ifcModel, prefix);
-
-				
 				ifcModel.indexGuids();
-				for (long key : ifcModel.keySet()) {
-					IdEObject idEObject = (IdEObject) ifcModel.get(key);
-					if (idEObject instanceof IfcAsymmetricIShapeProfileDef) {
-						setIfcAsymmetricIShapeProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcBlock) {
-						setIfcBlock(idEObject, scale);
-					} else if (idEObject instanceof IfcBoundingBox) {
-						setIfcBoundingBox(idEObject, scale);
-					} else if (idEObject instanceof IfcBuilding) {
-						setIfcBuilding(idEObject, scale);
-					} else if (idEObject instanceof IfcBuildingStorey) {
-						setIfcBuildingStorey(idEObject, scale);
-					} else if (idEObject instanceof IfcCartesianPoint) {
-						setIfcCartesianPoint(idEObject, scale);
-					} else if (idEObject instanceof IfcCenterLineProfileDef) {
-						setIfcCenterLineProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcChamferEdgeFeature) {
-						setIfcChamferEdgeFeature(idEObject, scale);
-					} else if (idEObject instanceof IfcCircle) {
-						setIfcCircle(idEObject, scale);
-					} else if (idEObject instanceof IfcCircleHollowProfileDef) {
-						setIfcCircleHollowProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcCircleProfileDef) {
-						setIfcCircleProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcCraneRailAShapeProfileDef) {
-						setIfcCraneRailAShapeProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcCraneRailFShapeProfileDef) {
-						setIfcCraneRailFShapeProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcConnectionPointEccentricity) {
-						setIfcConnectionPointEccentricity(idEObject, scale);
-					} else if (idEObject instanceof IfcCShapeProfileDef) {
-						setIfcCShapeProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcCurveStyleFontPattern) {
-						setIfcCurveStyleFontPattern(idEObject, scale);
-					} else if (idEObject instanceof IfcDoor) {
-						setIfcDoor(idEObject, scale);
-					} else if (idEObject instanceof IfcDoorLiningProperties) {
-						setIfcDoorLiningProperties(idEObject, scale);
-					} else if (idEObject instanceof IfcDoorPanelProperties) {
-						setIfcDoorPanelProperties(idEObject, scale);
-					} else if (idEObject instanceof IfcEdgeFeature) {
-						setIfcEdgeFeature(idEObject, scale);
-					} else if (idEObject instanceof IfcEllipse) {
-						setIfcEllipse(idEObject, scale);
-					} else if (idEObject instanceof IfcEllipseProfileDef) {
-						setIfcEllipseProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcExtrudedAreaSolid) {
-						setIfcExtrudedAreaSolid(idEObject, scale);
-					} else if (idEObject instanceof IfcGeneralProfileProperties) {
-						setIfcGeneralProfileProperties(idEObject, scale);
-					} else if (idEObject instanceof IfcIShapeProfileDef) {
-						setIfcIShapeProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcLightSourcePositional) {
-						setIfcLightSourcePositional(idEObject, scale);
-					} else if (idEObject instanceof IfcLShapeProfileDef) {
-						setIfcLShapeProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcMaterialLayer) {
-						setIfcMaterialLayer(idEObject, scale);
-					} else if (idEObject instanceof IfcMaterialLayerSetUsage) {
-						setIfcMaterialLayerSetUsage(idEObject, scale);
-					} else if (idEObject instanceof IfcMechanicalConcreteMaterialProperties) {
-						setIfcMechanicalConcreteMaterialProperties(idEObject, scale);
-					} else if (idEObject instanceof IfcMechanicalFastener) {
-						setIfcMechanicalFastener(idEObject, scale);
-					} else if (idEObject instanceof IfcOffsetCurve2D) {
-						setIfcOffsetCurve2D(idEObject, scale);
-					} else if (idEObject instanceof IfcOffsetCurve3D) {
-						setIfcOffsetCurve3D(idEObject, scale);
-					} else if (idEObject instanceof IfcPermeableCoveringProperties) {
-						setIfcPermeableCoveringProperties(idEObject, scale);
-					} else if (idEObject instanceof IfcPlanarExtent) {
-						setIfcPlanarExtent(idEObject, scale);
-					} else if (idEObject instanceof IfcQuantityLength) {
-						setIfcQuantityLength(idEObject, scale);
-					} else if (idEObject instanceof IfcRectangleHollowProfileDef) {
-						setIfcRectangleHollowProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcRectangleProfileDef) {
-						setIfcRectangleProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcRectangularPyramid) {
-						setIfcRectangularPyramid(idEObject, scale);
-					} else if (idEObject instanceof IfcReinforcementBarProperties) {
-						setIfcReinforcementBarProperties(idEObject, scale);
-					} else if (idEObject instanceof IfcReinforcingBar) {
-						setIfcReinforcingBar(idEObject, scale);
-					} else if (idEObject instanceof IfcReinforcingMesh) {
-						setIfcReinforcingMesh(idEObject, scale);
-					} else if (idEObject instanceof IfcRelConnectsStructuralMember) {
-						setIfcRelConnectsStructuralMember(idEObject, scale);
-					} else if (idEObject instanceof IfcRibPlateProfileProperties) {
-						setIfcRibPlateProfileProperties(idEObject, scale);
-					} else if (idEObject instanceof IfcRightCircularCone) {
-						setIfcRightCircularCone(idEObject, scale);
-					} else if (idEObject instanceof IfcRightCircularCylinder) {
-						setIfcRightCircularCylinder(idEObject, scale);
-					} else if (idEObject instanceof IfcRoundedEdgeFeature) {
-						setIfcRoundedEdgeFeature(idEObject, scale);
-					} else if (idEObject instanceof IfcRoundedRectangleProfileDef) {
-						setIfcRoundedRectangleProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcSectionReinforcementProperties) {
-						setIfcSectionReinforcementProperties(idEObject, scale);
-					} else if (idEObject instanceof IfcSite) {
-						setIfcSite(idEObject, scale);
-					} else if (idEObject instanceof IfcSlippageConnectionCondition) {
-						setIfcSlippageConnectionCondition(idEObject, scale);
-					} else if (idEObject instanceof IfcSpace) {
-						setIfcSpace(idEObject, scale);
-					} else if (idEObject instanceof IfcSphere) {
-						setIfcSphere(idEObject, scale);
-					} else if (idEObject instanceof IfcStairFlight) {
-						setIfcStairFlight(idEObject, scale);
-					} else if (idEObject instanceof IfcStructuralLoadSingleDisplacement) {
-						setIfcStructuralLoadSingleDisplacement(idEObject, scale);
-					} else if (idEObject instanceof IfcStructuralProfileProperties) {
-						setIfcStructuralProfileProperties(idEObject, scale);
-					} else if (idEObject instanceof IfcStructuralSurfaceMember) {
-						setIfcStructuralSurfaceMember(idEObject, scale);
-					} else if (idEObject instanceof IfcStructuralSurfaceMemberVarying) {
-						setIfcStructuralSurfaceMemberVarying(idEObject, scale);
-					} else if (idEObject instanceof IfcSurfaceOfLinearExtrusion) {
-						setIfcSurfaceOfLinearExtrusion(idEObject, scale);
-					} else if (idEObject instanceof IfcSweptDiskSolid) {
-						setIfcSweptDiskSolid(idEObject, scale);
-					} else if (idEObject instanceof IfcTendon) {
-						setIfcTendon(idEObject, scale);
-					} else if (idEObject instanceof IfcTextStyleWithBoxCharacteristics) {
-						setIfcTextStyleWithBoxCharacteristics(idEObject, scale);
-					} else if (idEObject instanceof IfcTrapeziumProfileDef) {
-						setIfcTrapeziumProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcTShapeProfileDef) {
-						setIfcTShapeProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcUShapeProfileDef) {
-						setIfcUShapeProfileDef(idEObject, scale);
-					} else if (idEObject instanceof IfcVector) {
-						setIfcVector(idEObject, scale);
-					} else if (idEObject instanceof IfcVirtualGridIntersection) {
-						setIfcVirtualGridIntersection(idEObject, scale);
-					} else if (idEObject instanceof IfcWindow) {
-						setIfcWindow(idEObject, scale);
-					} else if (idEObject instanceof IfcWindowLiningProperties) {
-						setIfcWindowLiningProperties(idEObject, scale);
-					} else if (idEObject instanceof IfcWindowPanelProperties) {
-						setIfcWindowPanelProperties(idEObject, scale);
-					} else if (idEObject instanceof IfcZShapeProfileDef) {
-						setIfcZShapeProfileDef(idEObject, scale);
+				if (scale != 1.0f) {
+					for (long key : ifcModel.keySet()) {
+						IdEObject idEObject = (IdEObject) ifcModel.get(key);
+						if (idEObject instanceof IfcAsymmetricIShapeProfileDef) {
+							setIfcAsymmetricIShapeProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcBlock) {
+							setIfcBlock(idEObject, scale);
+						} else if (idEObject instanceof IfcBoundingBox) {
+							setIfcBoundingBox(idEObject, scale);
+						} else if (idEObject instanceof IfcBuilding) {
+							setIfcBuilding(idEObject, scale);
+						} else if (idEObject instanceof IfcBuildingStorey) {
+							setIfcBuildingStorey(idEObject, scale);
+						} else if (idEObject instanceof IfcCartesianPoint) {
+							setIfcCartesianPoint(idEObject, scale);
+						} else if (idEObject instanceof IfcCenterLineProfileDef) {
+							setIfcCenterLineProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcChamferEdgeFeature) {
+							setIfcChamferEdgeFeature(idEObject, scale);
+						} else if (idEObject instanceof IfcCircle) {
+							setIfcCircle(idEObject, scale);
+						} else if (idEObject instanceof IfcCircleHollowProfileDef) {
+							setIfcCircleHollowProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcCircleProfileDef) {
+							setIfcCircleProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcCraneRailAShapeProfileDef) {
+							setIfcCraneRailAShapeProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcCraneRailFShapeProfileDef) {
+							setIfcCraneRailFShapeProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcConnectionPointEccentricity) {
+							setIfcConnectionPointEccentricity(idEObject, scale);
+						} else if (idEObject instanceof IfcCShapeProfileDef) {
+							setIfcCShapeProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcCurveStyleFontPattern) {
+							setIfcCurveStyleFontPattern(idEObject, scale);
+						} else if (idEObject instanceof IfcDoor) {
+							setIfcDoor(idEObject, scale);
+						} else if (idEObject instanceof IfcDoorLiningProperties) {
+							setIfcDoorLiningProperties(idEObject, scale);
+						} else if (idEObject instanceof IfcDoorPanelProperties) {
+							setIfcDoorPanelProperties(idEObject, scale);
+						} else if (idEObject instanceof IfcEdgeFeature) {
+							setIfcEdgeFeature(idEObject, scale);
+						} else if (idEObject instanceof IfcEllipse) {
+							setIfcEllipse(idEObject, scale);
+						} else if (idEObject instanceof IfcEllipseProfileDef) {
+							setIfcEllipseProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcExtrudedAreaSolid) {
+							setIfcExtrudedAreaSolid(idEObject, scale);
+						} else if (idEObject instanceof IfcGeneralProfileProperties) {
+							setIfcGeneralProfileProperties(idEObject, scale);
+						} else if (idEObject instanceof IfcIShapeProfileDef) {
+							setIfcIShapeProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcLightSourcePositional) {
+							setIfcLightSourcePositional(idEObject, scale);
+						} else if (idEObject instanceof IfcLShapeProfileDef) {
+							setIfcLShapeProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcMaterialLayer) {
+							setIfcMaterialLayer(idEObject, scale);
+						} else if (idEObject instanceof IfcMaterialLayerSetUsage) {
+							setIfcMaterialLayerSetUsage(idEObject, scale);
+						} else if (idEObject instanceof IfcMechanicalConcreteMaterialProperties) {
+							setIfcMechanicalConcreteMaterialProperties(idEObject, scale);
+						} else if (idEObject instanceof IfcMechanicalFastener) {
+							setIfcMechanicalFastener(idEObject, scale);
+						} else if (idEObject instanceof IfcOffsetCurve2D) {
+							setIfcOffsetCurve2D(idEObject, scale);
+						} else if (idEObject instanceof IfcOffsetCurve3D) {
+							setIfcOffsetCurve3D(idEObject, scale);
+						} else if (idEObject instanceof IfcPermeableCoveringProperties) {
+							setIfcPermeableCoveringProperties(idEObject, scale);
+						} else if (idEObject instanceof IfcPlanarExtent) {
+							setIfcPlanarExtent(idEObject, scale);
+						} else if (idEObject instanceof IfcQuantityLength) {
+							setIfcQuantityLength(idEObject, scale);
+						} else if (idEObject instanceof IfcRectangleHollowProfileDef) {
+							setIfcRectangleHollowProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcRectangleProfileDef) {
+							setIfcRectangleProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcRectangularPyramid) {
+							setIfcRectangularPyramid(idEObject, scale);
+						} else if (idEObject instanceof IfcReinforcementBarProperties) {
+							setIfcReinforcementBarProperties(idEObject, scale);
+						} else if (idEObject instanceof IfcReinforcingBar) {
+							setIfcReinforcingBar(idEObject, scale);
+						} else if (idEObject instanceof IfcReinforcingMesh) {
+							setIfcReinforcingMesh(idEObject, scale);
+						} else if (idEObject instanceof IfcRelConnectsStructuralMember) {
+							setIfcRelConnectsStructuralMember(idEObject, scale);
+						} else if (idEObject instanceof IfcRibPlateProfileProperties) {
+							setIfcRibPlateProfileProperties(idEObject, scale);
+						} else if (idEObject instanceof IfcRightCircularCone) {
+							setIfcRightCircularCone(idEObject, scale);
+						} else if (idEObject instanceof IfcRightCircularCylinder) {
+							setIfcRightCircularCylinder(idEObject, scale);
+						} else if (idEObject instanceof IfcRoundedEdgeFeature) {
+							setIfcRoundedEdgeFeature(idEObject, scale);
+						} else if (idEObject instanceof IfcRoundedRectangleProfileDef) {
+							setIfcRoundedRectangleProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcSectionReinforcementProperties) {
+							setIfcSectionReinforcementProperties(idEObject, scale);
+						} else if (idEObject instanceof IfcSite) {
+							setIfcSite(idEObject, scale);
+						} else if (idEObject instanceof IfcSlippageConnectionCondition) {
+							setIfcSlippageConnectionCondition(idEObject, scale);
+						} else if (idEObject instanceof IfcSpace) {
+							setIfcSpace(idEObject, scale);
+						} else if (idEObject instanceof IfcSphere) {
+							setIfcSphere(idEObject, scale);
+						} else if (idEObject instanceof IfcStairFlight) {
+							setIfcStairFlight(idEObject, scale);
+						} else if (idEObject instanceof IfcStructuralLoadSingleDisplacement) {
+							setIfcStructuralLoadSingleDisplacement(idEObject, scale);
+						} else if (idEObject instanceof IfcStructuralProfileProperties) {
+							setIfcStructuralProfileProperties(idEObject, scale);
+						} else if (idEObject instanceof IfcStructuralSurfaceMember) {
+							setIfcStructuralSurfaceMember(idEObject, scale);
+						} else if (idEObject instanceof IfcStructuralSurfaceMemberVarying) {
+							setIfcStructuralSurfaceMemberVarying(idEObject, scale);
+						} else if (idEObject instanceof IfcSurfaceOfLinearExtrusion) {
+							setIfcSurfaceOfLinearExtrusion(idEObject, scale);
+						} else if (idEObject instanceof IfcSweptDiskSolid) {
+							setIfcSweptDiskSolid(idEObject, scale);
+						} else if (idEObject instanceof IfcTendon) {
+							setIfcTendon(idEObject, scale);
+						} else if (idEObject instanceof IfcTextStyleWithBoxCharacteristics) {
+							setIfcTextStyleWithBoxCharacteristics(idEObject, scale);
+						} else if (idEObject instanceof IfcTrapeziumProfileDef) {
+							setIfcTrapeziumProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcTShapeProfileDef) {
+							setIfcTShapeProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcUShapeProfileDef) {
+							setIfcUShapeProfileDef(idEObject, scale);
+						} else if (idEObject instanceof IfcVector) {
+							setIfcVector(idEObject, scale);
+						} else if (idEObject instanceof IfcVirtualGridIntersection) {
+							setIfcVirtualGridIntersection(idEObject, scale);
+						} else if (idEObject instanceof IfcWindow) {
+							setIfcWindow(idEObject, scale);
+						} else if (idEObject instanceof IfcWindowLiningProperties) {
+							setIfcWindowLiningProperties(idEObject, scale);
+						} else if (idEObject instanceof IfcWindowPanelProperties) {
+							setIfcWindowPanelProperties(idEObject, scale);
+						} else if (idEObject instanceof IfcZShapeProfileDef) {
+							setIfcZShapeProfileDef(idEObject, scale);
+						}
+						setDoubleAsStringValues(idEObject);
 					}
+				}
+				for (long key : ifcModel.keySet()) {
 					try {
 						modelHelper.copy((IdEObject) ifcModel.get(key));
 					} catch (IfcModelInterfaceException e) {
@@ -298,6 +304,26 @@ public abstract class AbstractModelMerger implements ModelMerger {
 		return true;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void setDoubleAsStringValues(IdEObject idEObject) {
+		for (EAttribute eAttribute : idEObject.eClass().getEAllAttributes()) {
+			if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+				EStructuralFeature asStringFeature = idEObject.eClass().getEStructuralFeature(eAttribute.getName() + "AsString");
+				if (asStringFeature != null) {
+					if (eAttribute.isMany()) {
+						List list = (List)idEObject.eGet(eAttribute);
+						List listAsString = (List)idEObject.eGet(asStringFeature);
+						for (int i=0; i<list.size(); i++) {
+							listAsString.set(i, "" + list.get(i));
+						}
+					} else {
+						idEObject.eSet(asStringFeature, "" + idEObject.eGet(eAttribute));
+					}
+				}
+			}
+		}
+	}
+	
 	private void setIfcAsymmetricIShapeProfileDef(IdEObject idEObject, float scale) {
 		setIfcIShapeProfileDef(idEObject, scale);
 		IfcAsymmetricIShapeProfileDef ifcAsymmetricIShapeProfileDef = (IfcAsymmetricIShapeProfileDef) idEObject;
@@ -921,8 +947,8 @@ public abstract class AbstractModelMerger implements ModelMerger {
 	private void setIfcVirtualGridIntersection(IdEObject idEObject, float scale) {
 		IfcVirtualGridIntersection ifcVirtualGridIntersection = (IfcVirtualGridIntersection) idEObject;
 		EList<Double> offsetDistances = ifcVirtualGridIntersection.getOffsetDistances();
-		for (Double offsetDistance : offsetDistances) {
-			offsetDistance *= scale;
+		for (int i=0; i<offsetDistances.size(); i++) {
+			offsetDistances.set(i, offsetDistances.get(i) * scale);
 		}
 	}
 
@@ -979,74 +1005,71 @@ public abstract class AbstractModelMerger implements ModelMerger {
 	private float getLengthUnitPrefix(IfcModelInterface model) {
 		float lengthUnitPrefix = 1.0f;
 		boolean prefixFound = false;
-		Map<Long, IdEObject> objects = model.getObjects();
-		for (IdEObject object : objects.values()) {
-			if (object instanceof IfcProject) {
-				IfcUnitAssignment unitsInContext = ((IfcProject) object).getUnitsInContext();
-				if (unitsInContext != null) {
-					EList<IfcUnit> units = unitsInContext.getUnits();
-					for (IfcUnit unit : units) {
-						if (unit instanceof IfcSIUnit) {
-							IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
-							IfcUnitEnum unitType = ifcSIUnit.getUnitType();
-							if (unitType == IfcUnitEnum.LENGTHUNIT) {
-								IfcSIPrefix prefix = ifcSIUnit.getPrefix();
-								if (prefix != null) {
-									prefixFound = true;
-									switch (prefix) {
-									case EXA:
-										lengthUnitPrefix = 1.0e18f;
-										break;
-									case PETA:
-										lengthUnitPrefix = 1.0e15f;
-										break;
-									case TERA:
-										lengthUnitPrefix = 1.0e12f;
-										break;
-									case GIGA:
-										lengthUnitPrefix = 1.0e9f;
-										break;
-									case MEGA:
-										lengthUnitPrefix = 1.0e6f;
-										break;
-									case KILO:
-										lengthUnitPrefix = 1.0e3f;
-										break;
-									case HECTO:
-										lengthUnitPrefix = 1.0e2f;
-										break;
-									case DECA:
-										lengthUnitPrefix = 1.0e1f;
-										break;
-									case DECI:
-										lengthUnitPrefix = 1.0e-1f;
-										break;
-									case CENTI:
-										lengthUnitPrefix = 1.0e-2f;
-										break;
-									case MILLI:
-										lengthUnitPrefix = 1.0e-3f;
-										break;
-									case MICRO:
-										lengthUnitPrefix = 1.0e-6f;
-										break;
-									case NANO:
-										lengthUnitPrefix = 1.0e-9f;
-										break;
-									case PICO:
-										lengthUnitPrefix = 1.0e-12f;
-										break;
-									case FEMTO:
-										lengthUnitPrefix = 1.0e-15f;
-										break;
-									case ATTO:
-										lengthUnitPrefix = 1.0e-18f;
-										break;
-									case NULL:
-										break;
-									}
+		for (IfcProject ifcProject : model.getAll(IfcProject.class)) {
+			IfcUnitAssignment unitsInContext = ifcProject.getUnitsInContext();
+			if (unitsInContext != null) {
+				EList<IfcUnit> units = unitsInContext.getUnits();
+				for (IfcUnit unit : units) {
+					if (unit instanceof IfcSIUnit) {
+						IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
+						IfcUnitEnum unitType = ifcSIUnit.getUnitType();
+						if (unitType == IfcUnitEnum.LENGTHUNIT) {
+							IfcSIPrefix prefix = ifcSIUnit.getPrefix();
+							if (prefix != null) {
+								prefixFound = true;
+								switch (prefix) {
+								case EXA:
+									lengthUnitPrefix = 1.0e18f;
+									break;
+								case PETA:
+									lengthUnitPrefix = 1.0e15f;
+									break;
+								case TERA:
+									lengthUnitPrefix = 1.0e12f;
+									break;
+								case GIGA:
+									lengthUnitPrefix = 1.0e9f;
+									break;
+								case MEGA:
+									lengthUnitPrefix = 1.0e6f;
+									break;
+								case KILO:
+									lengthUnitPrefix = 1.0e3f;
+									break;
+								case HECTO:
+									lengthUnitPrefix = 1.0e2f;
+									break;
+								case DECA:
+									lengthUnitPrefix = 1.0e1f;
+									break;
+								case DECI:
+									lengthUnitPrefix = 1.0e-1f;
+									break;
+								case CENTI:
+									lengthUnitPrefix = 1.0e-2f;
+									break;
+								case MILLI:
+									lengthUnitPrefix = 1.0e-3f;
+									break;
+								case MICRO:
+									lengthUnitPrefix = 1.0e-6f;
+									break;
+								case NANO:
+									lengthUnitPrefix = 1.0e-9f;
+									break;
+								case PICO:
+									lengthUnitPrefix = 1.0e-12f;
+									break;
+								case FEMTO:
+									lengthUnitPrefix = 1.0e-15f;
+									break;
+								case ATTO:
+									lengthUnitPrefix = 1.0e-18f;
+									break;
+								case NULL:
 									break;
 								}
+								break;
 							}
 						}
 					}
@@ -1059,28 +1082,25 @@ public abstract class AbstractModelMerger implements ModelMerger {
 	}
 
 	private void setLengthUnitMeasure(IfcModelInterface model, SIPrefix prefix) {
-		Map<Long, IdEObject> objects = model.getObjects();
 		boolean prefixFound = false;
-		for (IdEObject object : objects.values()) {
-			if (object instanceof IfcProject) {
-				IfcUnitAssignment unitsInContext = ((IfcProject) object).getUnitsInContext();
-				EList<IfcUnit> units = unitsInContext.getUnits();
-				for (IfcUnit unit : units) {
-					if (unit instanceof IfcSIUnit) {
-						IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
-						IfcUnitEnum unitType = ifcSIUnit.getUnitType();
-						if (unitType == IfcUnitEnum.LENGTHUNIT) {
-							prefixFound = true;
-							if (prefix == SIPrefix.METER) {
-								// Set the prefix to null, there is no "meter"
-								// prefix in IFC
-								ifcSIUnit.setPrefix(null);
-							} else {
-								String siPrefix = prefix.getLiteral().substring(0, prefix.getLiteral().length() - 5).toUpperCase();
-								ifcSIUnit.setPrefix(IfcSIPrefix.valueOf(siPrefix));
-							}
-							break;
+		for (IfcProject ifcProject : model.getAll(IfcProject.class)) {
+			IfcUnitAssignment unitsInContext = ifcProject.getUnitsInContext();
+			EList<IfcUnit> units = unitsInContext.getUnits();
+			for (IfcUnit unit : units) {
+				if (unit instanceof IfcSIUnit) {
+					IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
+					IfcUnitEnum unitType = ifcSIUnit.getUnitType();
+					if (unitType == IfcUnitEnum.LENGTHUNIT) {
+						prefixFound = true;
+						if (prefix == SIPrefix.METER) {
+							// Set the prefix to null, there is no "meter"
+							// prefix in IFC
+							ifcSIUnit.setPrefix(null);
+						} else {
+							String siPrefix = prefix.getLiteral().substring(0, prefix.getLiteral().length() - 5).toUpperCase();
+							ifcSIUnit.setPrefix(IfcSIPrefix.valueOf(siPrefix));
 						}
+						break;
 					}
 				}
 			}
