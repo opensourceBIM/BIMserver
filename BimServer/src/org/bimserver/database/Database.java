@@ -44,6 +44,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.ServerSettings;
+import org.bimserver.models.store.SmtpProtocol;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
@@ -85,7 +86,7 @@ public class Database implements BimDatabase {
 	 * database-schema change. Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 6;
+	public static final int APPLICATION_SCHEMA_VERSION = 7;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore) throws DatabaseInitException {
 		this.bimServer = bimServer;
@@ -195,6 +196,8 @@ public class Database implements BimDatabase {
 		settings.setEmailSenderName("Administrator");
 		settings.setSiteAddress("");
 		settings.setSmtpServer("");
+		settings.setSmtpPort(25);
+		settings.setSmtpProtocol(SmtpProtocol.SMTP);
 		settings.setProtocolBuffersPort(8020);
 		settings.setAllowSelfRegistration(false);
 		settings.setAllowUsersToCreateTopLevelProjects(false);

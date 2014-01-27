@@ -806,6 +806,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum smtpProtocolEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType dataHandlerEDataType = null;
 
 	/**
@@ -1883,6 +1890,46 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	public EAttribute getServerSettings_SessionTimeOutSeconds() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures()
 				.get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_SmtpUsername() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures()
+				.get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_SmtpPassword() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures()
+				.get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_SmtpPort() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures()
+				.get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_SmtpProtocol() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures()
+				.get(22);
 	}
 
 	/**
@@ -5968,6 +6015,20 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 					.get(103);
 		}
 		return modelCheckerResultTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getSmtpProtocol() {
+		if (smtpProtocolEEnum == null) {
+			smtpProtocolEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(StorePackage.eNS_URI).getEClassifiers()
+					.get(108);
+		}
+		return smtpProtocolEEnum;
 	}
 
 	/**

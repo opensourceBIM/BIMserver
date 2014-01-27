@@ -23,10 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 import org.bimserver.BimServer;
 import org.bimserver.client.Channel;
@@ -36,6 +33,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.mail.EmailMessage;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCheckerInstance;
@@ -120,17 +118,16 @@ public class NewRevisionNotification extends Notification {
 			String body = null;
 			try {
 				if (MailSystem.isValidEmailAddress(user.getUsername())) {
-					Session mailSession = getBimServer().getMailSystem().createMailSession();
+					EmailMessage message = getBimServer().getMailSystem().createMessage();
 					ServerSettings serverSettings = getBimServer().getServerSettingsCache().getServerSettings();
 					
-					Message msg = new MimeMessage(mailSession);
 					String emailSenderAddress = serverSettings.getEmailSenderAddress();
 					InternetAddress addressFrom = new InternetAddress(emailSenderAddress);
-					msg.setFrom(addressFrom);
+					message.setFrom(addressFrom);
 					
 					InternetAddress[] addressTo = new InternetAddress[1];
 					addressTo[0] = new InternetAddress(user.getUsername());
-					msg.setRecipients(Message.RecipientType.TO, addressTo);
+					message.setRecipients(Message.RecipientType.TO, addressTo);
 					
 					Map<String, Object> context = new HashMap<String, Object>();
 					context.put("name", user.getName());
@@ -142,12 +139,12 @@ public class NewRevisionNotification extends Notification {
 					String subject = null;
 					body = getBimServer().getTemplateEngine().process(context, TemplateIdentifier.NEW_REVISION_EMAIL_BODY);
 					subject = getBimServer().getTemplateEngine().process(context, TemplateIdentifier.NEW_REVISION_EMAIL_SUBJECT);
-					msg.setContent(body, "text/html");
-					msg.setSubject(subject.trim());
+					message.setContent(body, "text/html");
+					message.setSubject(subject.trim());
 					
 					LOGGER.info("Sending new revision e-mail to " + user.getUsername());
 					
-					Transport.send(msg);
+					message.send();
 				}
 			} catch (Exception e) {
 				LOGGER.error(body);

@@ -609,6 +609,10 @@ message GetPluginObjectDefinitionRequest {
 	optional int64 oid = 1;
 }
 
+message SArrayDefinition {
+	optional STypeDefinition type = 1;
+}
+
 enum SPrimitiveEnum{
 	SPrimitiveEnum_LONG = 0;
 	SPrimitiveEnum_DOUBLE = 1;
@@ -621,14 +625,10 @@ message SPrimitiveDefinition {
 	optional SPrimitiveEnum type = 1;
 }
 
-message SArrayDefinition {
-	optional STypeDefinition type = 1;
-}
-
 message STypeDefinition {
 	required string __actual_type = 1;
-	optional SPrimitiveDefinition __SPrimitiveDefinition = 2;
-	optional SArrayDefinition __SArrayDefinition = 3;
+	optional SArrayDefinition __SArrayDefinition = 2;
+	optional SPrimitiveDefinition __SPrimitiveDefinition = 3;
 	optional SObjectDefinition __SObjectDefinition = 4;
 }
 
@@ -653,10 +653,10 @@ message GetPluginSettingsRequest {
 	optional int64 poid = 1;
 }
 
-message SStringType {
+message SLongType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional string value = 3;
+	optional int64 value = 3;
 }
 
 message SBooleanType {
@@ -671,25 +671,25 @@ message SDoubleType {
 	optional double value = 3;
 }
 
+message SStringType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional string value = 3;
+}
+
 message SByteArrayType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 	optional bytes value = 3;
 }
 
-message SLongType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 value = 3;
-}
-
 message SPrimitiveType {
 	required string __actual_type = 1;
-	optional SStringType __SStringType = 2;
+	optional SLongType __SLongType = 2;
 	optional SBooleanType __SBooleanType = 3;
 	optional SDoubleType __SDoubleType = 4;
-	optional SByteArrayType __SByteArrayType = 5;
-	optional SLongType __SLongType = 6;
+	optional SStringType __SStringType = 5;
+	optional SByteArrayType __SByteArrayType = 6;
 	optional int32 rid = 7;
 	optional int64 oid = 8;
 }

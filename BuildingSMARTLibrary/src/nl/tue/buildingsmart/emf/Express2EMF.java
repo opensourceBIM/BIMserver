@@ -177,7 +177,7 @@ public class Express2EMF {
 				EClass eClass = (EClass) schemaPack.getEClassifier(entityDefinition.getName());
 				// EStructuralFeature derivedAttribute =
 				// eFactory.createEReference();
-				if (attributeName.getType() != null) {
+				if (attributeName.getType() != null && !attributeName.hasSuper()) {
 					// if (attributeName.getType() instanceof EntityDefinition)
 					// {
 					// derivedAttribute.setEType(schemaPack.getEClassifier(((EntityDefinition)
@@ -193,7 +193,7 @@ public class Express2EMF {
 					if (attributeName.getType() instanceof DefinedType) {
 						EClassifier eType = schemaPack.getEClassifier(((DefinedType) attributeName.getType()).getName());
 						boolean found = false;
-						for (EClass eSuperType : eClass.getESuperTypes()) {
+						for (EClass eSuperType : eClass.getEAllSuperTypes()) {
 							if (eSuperType.getEStructuralFeature(attributeName.getName()) != null) {
 								found = true;
 								break;

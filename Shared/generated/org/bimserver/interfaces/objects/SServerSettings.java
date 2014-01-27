@@ -50,6 +50,10 @@ public class SServerSettings implements SDataBase
 	private java.lang.String serviceRepositoryUrl;
 	private boolean sendEmailOnNewRevision;
 	private int sessionTimeOutSeconds;
+	private java.lang.String smtpUsername;
+	private java.lang.String smtpPassword;
+	private int smtpPort;
+	private SSmtpProtocol smtpProtocol;
 
 	public long getOid() {
 		return this.oid;
@@ -133,6 +137,18 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("sessionTimeOutSeconds")) {
 			return getSessionTimeOutSeconds();
+		}
+		if (sField.getName().equals("smtpUsername")) {
+			return getSmtpUsername();
+		}
+		if (sField.getName().equals("smtpPassword")) {
+			return getSmtpPassword();
+		}
+		if (sField.getName().equals("smtpPort")) {
+			return getSmtpPort();
+		}
+		if (sField.getName().equals("smtpProtocol")) {
+			return getSmtpProtocol();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -219,6 +235,22 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("sessionTimeOutSeconds")) {
 			setSessionTimeOutSeconds((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("smtpUsername")) {
+			setSmtpUsername((String)val);
+			return;
+		}
+		if (sField.getName().equals("smtpPassword")) {
+			setSmtpPassword((String)val);
+			return;
+		}
+		if (sField.getName().equals("smtpPort")) {
+			setSmtpPort((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("smtpProtocol")) {
+			setSmtpProtocol((SSmtpProtocol)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -383,6 +415,38 @@ public class SServerSettings implements SDataBase
 
 	public void setSessionTimeOutSeconds(int sessionTimeOutSeconds) {
 		this.sessionTimeOutSeconds = sessionTimeOutSeconds;
+	}
+	
+	public java.lang.String getSmtpUsername() {
+		return smtpUsername;
+	}
+
+	public void setSmtpUsername(java.lang.String smtpUsername) {
+		this.smtpUsername = smtpUsername;
+	}
+	
+	public java.lang.String getSmtpPassword() {
+		return smtpPassword;
+	}
+
+	public void setSmtpPassword(java.lang.String smtpPassword) {
+		this.smtpPassword = smtpPassword;
+	}
+	
+	public int getSmtpPort() {
+		return smtpPort;
+	}
+
+	public void setSmtpPort(int smtpPort) {
+		this.smtpPort = smtpPort;
+	}
+	
+	public SSmtpProtocol getSmtpProtocol() {
+		return smtpProtocol;
+	}
+
+	public void setSmtpProtocol(SSmtpProtocol smtpProtocol) {
+		this.smtpProtocol = smtpProtocol;
 	}
 	
 	@Override

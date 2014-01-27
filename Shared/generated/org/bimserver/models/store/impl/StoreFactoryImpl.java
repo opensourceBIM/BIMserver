@@ -301,6 +301,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 		case StorePackage.MODEL_CHECKER_RESULT_TYPE:
 			return createModelCheckerResultTypeFromString(eDataType,
 					initialValue);
+		case StorePackage.SMTP_PROTOCOL:
+			return createSmtpProtocolFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
 			return createDataHandlerFromString(eDataType, initialValue);
 		default:
@@ -346,6 +348,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 		case StorePackage.MODEL_CHECKER_RESULT_TYPE:
 			return convertModelCheckerResultTypeToString(eDataType,
 					instanceValue);
+		case StorePackage.SMTP_PROTOCOL:
+			return convertSmtpProtocolToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
 			return convertDataHandlerToString(eDataType, instanceValue);
 		default:
@@ -1617,6 +1621,31 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertModelCheckerResultTypeToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SmtpProtocol createSmtpProtocolFromString(EDataType eDataType,
+			String initialValue) {
+		SmtpProtocol result = SmtpProtocol.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSmtpProtocolToString(EDataType eDataType,
 			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}

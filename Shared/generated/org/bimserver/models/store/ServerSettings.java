@@ -46,6 +46,10 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSessionTimeOutSeconds <em>Session Time Out Seconds</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpUsername <em>Smtp Username</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpPassword <em>Smtp Password</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpPort <em>Smtp Port</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpProtocol <em>Smtp Protocol</em>}</li>
  * </ul>
  * </p>
  *
@@ -531,5 +535,112 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setSessionTimeOutSeconds(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Smtp Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Smtp Username</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Smtp Username</em>' attribute.
+	 * @see #setSmtpUsername(String)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SmtpUsername()
+	 * @model
+	 * @generated
+	 */
+	String getSmtpUsername();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getSmtpUsername <em>Smtp Username</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Smtp Username</em>' attribute.
+	 * @see #getSmtpUsername()
+	 * @generated
+	 */
+	void setSmtpUsername(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Smtp Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Smtp Password</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Smtp Password</em>' attribute.
+	 * @see #setSmtpPassword(String)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SmtpPassword()
+	 * @model
+	 * @generated
+	 */
+	String getSmtpPassword();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getSmtpPassword <em>Smtp Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Smtp Password</em>' attribute.
+	 * @see #getSmtpPassword()
+	 * @generated
+	 */
+	void setSmtpPassword(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Smtp Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Smtp Port</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Smtp Port</em>' attribute.
+	 * @see #setSmtpPort(int)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SmtpPort()
+	 * @model
+	 * @generated
+	 */
+	int getSmtpPort();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getSmtpPort <em>Smtp Port</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Smtp Port</em>' attribute.
+	 * @see #getSmtpPort()
+	 * @generated
+	 */
+	void setSmtpPort(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Smtp Protocol</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.store.SmtpProtocol}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Smtp Protocol</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Smtp Protocol</em>' attribute.
+	 * @see org.bimserver.models.store.SmtpProtocol
+	 * @see #setSmtpProtocol(SmtpProtocol)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SmtpProtocol()
+	 * @model
+	 * @generated
+	 */
+	SmtpProtocol getSmtpProtocol();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getSmtpProtocol <em>Smtp Protocol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Smtp Protocol</em>' attribute.
+	 * @see org.bimserver.models.store.SmtpProtocol
+	 * @see #getSmtpProtocol()
+	 * @generated
+	 */
+	void setSmtpProtocol(SmtpProtocol value);
 
 } // ServerSettings
