@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExternalReference {
+public class IfcExternalReferenceImpl extends IdEObjectImpl implements
+		IfcExternalReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,7 +73,9 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * @generated
 	 */
 	public String getLocation() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_EXTERNAL_REFERENCE__LOCATION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_EXTERNAL_REFERENCE__LOCATION,
+				true);
 	}
 
 	/**
@@ -81,7 +84,8 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * @generated
 	 */
 	public void setLocation(String newLocation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_EXTERNAL_REFERENCE__LOCATION, newLocation);
+		eSet(Ifc2x3tc1Package.Literals.IFC_EXTERNAL_REFERENCE__LOCATION,
+				newLocation);
 	}
 
 	/**
@@ -108,7 +112,9 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * @generated
 	 */
 	public String getItemReference() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_EXTERNAL_REFERENCE__ITEM_REFERENCE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_EXTERNAL_REFERENCE__ITEM_REFERENCE,
+				true);
 	}
 
 	/**
@@ -117,7 +123,8 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * @generated
 	 */
 	public void setItemReference(String newItemReference) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_EXTERNAL_REFERENCE__ITEM_REFERENCE, newItemReference);
+		eSet(Ifc2x3tc1Package.Literals.IFC_EXTERNAL_REFERENCE__ITEM_REFERENCE,
+				newItemReference);
 	}
 
 	/**
@@ -144,7 +151,8 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_EXTERNAL_REFERENCE__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_EXTERNAL_REFERENCE__NAME, true);
 	}
 
 	/**

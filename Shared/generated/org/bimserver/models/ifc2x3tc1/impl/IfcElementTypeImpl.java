@@ -33,7 +33,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElementTypeImpl extends IfcTypeProductImpl implements IfcElementType {
+public class IfcElementTypeImpl extends IfcTypeProductImpl implements
+		IfcElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59,7 +60,8 @@ public class IfcElementTypeImpl extends IfcTypeProductImpl implements IfcElement
 	 * @generated
 	 */
 	public String getElementType() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT_TYPE__ELEMENT_TYPE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT_TYPE__ELEMENT_TYPE, true);
 	}
 
 	/**
@@ -68,7 +70,8 @@ public class IfcElementTypeImpl extends IfcTypeProductImpl implements IfcElement
 	 * @generated
 	 */
 	public void setElementType(String newElementType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELEMENT_TYPE__ELEMENT_TYPE, newElementType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELEMENT_TYPE__ELEMENT_TYPE,
+				newElementType);
 	}
 
 	/**

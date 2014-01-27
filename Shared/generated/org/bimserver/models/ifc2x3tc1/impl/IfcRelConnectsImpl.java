@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelConnectsImpl extends IfcRelationshipImpl implements IfcRelConnects {
+public class IfcRelConnectsImpl extends IfcRelationshipImpl implements
+		IfcRelConnects {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

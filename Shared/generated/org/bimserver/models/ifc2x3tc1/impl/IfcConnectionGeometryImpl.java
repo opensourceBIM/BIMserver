@@ -30,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConnectionGeometryImpl extends IdEObjectImpl implements IfcConnectionGeometry {
+public class IfcConnectionGeometryImpl extends IdEObjectImpl implements
+		IfcConnectionGeometry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

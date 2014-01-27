@@ -74,7 +74,9 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * @generated
 	 */
 	public IfcOrganization getApplicationDeveloper() {
-		return (IfcOrganization) eGet(Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_DEVELOPER, true);
+		return (IfcOrganization) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_DEVELOPER,
+				true);
 	}
 
 	/**
@@ -83,7 +85,8 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * @generated
 	 */
 	public void setApplicationDeveloper(IfcOrganization newApplicationDeveloper) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_DEVELOPER, newApplicationDeveloper);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_DEVELOPER,
+				newApplicationDeveloper);
 	}
 
 	/**
@@ -92,7 +95,8 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * @generated
 	 */
 	public String getVersion() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_APPLICATION__VERSION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLICATION__VERSION, true);
 	}
 
 	/**
@@ -110,7 +114,9 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * @generated
 	 */
 	public String getApplicationFullName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_FULL_NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_FULL_NAME,
+				true);
 	}
 
 	/**
@@ -119,7 +125,8 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * @generated
 	 */
 	public void setApplicationFullName(String newApplicationFullName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_FULL_NAME, newApplicationFullName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_FULL_NAME,
+				newApplicationFullName);
 	}
 
 	/**
@@ -128,7 +135,9 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * @generated
 	 */
 	public String getApplicationIdentifier() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_IDENTIFIER, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_IDENTIFIER,
+				true);
 	}
 
 	/**
@@ -137,7 +146,8 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * @generated
 	 */
 	public void setApplicationIdentifier(String newApplicationIdentifier) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_IDENTIFIER, newApplicationIdentifier);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLICATION__APPLICATION_IDENTIFIER,
+				newApplicationIdentifier);
 	}
 
 } //IfcApplicationImpl

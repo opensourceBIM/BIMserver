@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcGeometricRepresentationItemImpl extends IfcRepresentationItemImpl implements IfcGeometricRepresentationItem {
+public class IfcGeometricRepresentationItemImpl extends
+		IfcRepresentationItemImpl implements IfcGeometricRepresentationItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

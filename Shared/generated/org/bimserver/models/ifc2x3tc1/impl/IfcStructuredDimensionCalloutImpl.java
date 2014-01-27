@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuredDimensionCalloutImpl extends IfcDraughtingCalloutImpl implements IfcStructuredDimensionCallout {
+public class IfcStructuredDimensionCalloutImpl extends IfcDraughtingCalloutImpl
+		implements IfcStructuredDimensionCallout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

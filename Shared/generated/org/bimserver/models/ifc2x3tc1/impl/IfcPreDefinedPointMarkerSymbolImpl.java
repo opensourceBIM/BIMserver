@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPreDefinedPointMarkerSymbolImpl extends IfcPreDefinedSymbolImpl implements IfcPreDefinedPointMarkerSymbol {
+public class IfcPreDefinedPointMarkerSymbolImpl extends IfcPreDefinedSymbolImpl
+		implements IfcPreDefinedPointMarkerSymbol {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

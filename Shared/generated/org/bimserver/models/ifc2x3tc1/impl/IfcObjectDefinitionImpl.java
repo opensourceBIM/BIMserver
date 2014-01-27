@@ -40,7 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDefinition {
+public class IfcObjectDefinitionImpl extends IfcRootImpl implements
+		IfcObjectDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,7 +68,9 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssigns> getHasAssignments() {
-		return (EList<IfcRelAssigns>) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSIGNMENTS, true);
+		return (EList<IfcRelAssigns>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSIGNMENTS,
+				true);
 	}
 
 	/**
@@ -95,7 +98,9 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDecomposes> getIsDecomposedBy() {
-		return (EList<IfcRelDecomposes>) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT_DEFINITION__IS_DECOMPOSED_BY, true);
+		return (EList<IfcRelDecomposes>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_OBJECT_DEFINITION__IS_DECOMPOSED_BY,
+				true);
 	}
 
 	/**
@@ -123,7 +128,9 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDecomposes> getDecomposes() {
-		return (EList<IfcRelDecomposes>) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT_DEFINITION__DECOMPOSES, true);
+		return (EList<IfcRelDecomposes>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_OBJECT_DEFINITION__DECOMPOSES,
+				true);
 	}
 
 	/**
@@ -151,7 +158,9 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociates> getHasAssociations() {
-		return (EList<IfcRelAssociates>) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSOCIATIONS, true);
+		return (EList<IfcRelAssociates>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSOCIATIONS,
+				true);
 	}
 
 	/**

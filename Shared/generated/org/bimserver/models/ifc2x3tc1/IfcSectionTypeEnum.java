@@ -113,7 +113,8 @@ public enum IfcSectionTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSectionTypeEnum[] VALUES_ARRAY = new IfcSectionTypeEnum[] { NULL, UNIFORM, TAPERED, };
+	private static final IfcSectionTypeEnum[] VALUES_ARRAY = new IfcSectionTypeEnum[] {
+			NULL, UNIFORM, TAPERED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Section Type Enum</b></em>' enumerators.
@@ -121,7 +122,8 @@ public enum IfcSectionTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSectionTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSectionTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Section Type Enum</b></em>' literal with the specified literal value.

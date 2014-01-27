@@ -78,7 +78,8 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress {
 	 * @generated
 	 */
 	public IfcAddressTypeEnum getPurpose() {
-		return (IfcAddressTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ADDRESS__PURPOSE, true);
+		return (IfcAddressTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ADDRESS__PURPOSE, true);
 	}
 
 	/**
@@ -114,7 +115,8 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress {
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ADDRESS__DESCRIPTION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ADDRESS__DESCRIPTION, true);
 	}
 
 	/**
@@ -150,7 +152,9 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress {
 	 * @generated
 	 */
 	public String getUserDefinedPurpose() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ADDRESS__USER_DEFINED_PURPOSE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ADDRESS__USER_DEFINED_PURPOSE,
+				true);
 	}
 
 	/**
@@ -159,7 +163,8 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress {
 	 * @generated
 	 */
 	public void setUserDefinedPurpose(String newUserDefinedPurpose) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ADDRESS__USER_DEFINED_PURPOSE, newUserDefinedPurpose);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ADDRESS__USER_DEFINED_PURPOSE,
+				newUserDefinedPurpose);
 	}
 
 	/**
@@ -187,7 +192,8 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPerson> getOfPerson() {
-		return (EList<IfcPerson>) eGet(Ifc2x3tc1Package.Literals.IFC_ADDRESS__OF_PERSON, true);
+		return (EList<IfcPerson>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ADDRESS__OF_PERSON, true);
 	}
 
 	/**
@@ -215,7 +221,8 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganization> getOfOrganization() {
-		return (EList<IfcOrganization>) eGet(Ifc2x3tc1Package.Literals.IFC_ADDRESS__OF_ORGANIZATION, true);
+		return (EList<IfcOrganization>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ADDRESS__OF_ORGANIZATION, true);
 	}
 
 	/**

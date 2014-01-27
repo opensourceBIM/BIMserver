@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements IfcLibraryReference {
+public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
+		IfcLibraryReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLibraryInformation> getReferenceIntoLibrary() {
-		return (EList<IfcLibraryInformation>) eGet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_REFERENCE__REFERENCE_INTO_LIBRARY, true);
+		return (EList<IfcLibraryInformation>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LIBRARY_REFERENCE__REFERENCE_INTO_LIBRARY,
+				true);
 	}
 
 	/**

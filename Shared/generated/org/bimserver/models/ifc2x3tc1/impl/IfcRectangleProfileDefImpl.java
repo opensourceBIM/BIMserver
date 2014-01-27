@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl implements IfcRectangleProfileDef {
+public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl
+		implements IfcRectangleProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,8 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * @generated
 	 */
 	public double getXDim() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM, true);
 	}
 
 	/**
@@ -80,7 +82,9 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * @generated
 	 */
 	public String getXDimAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM_AS_STRING,
+				true);
 	}
 
 	/**
@@ -89,7 +93,8 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * @generated
 	 */
 	public void setXDimAsString(String newXDimAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM_AS_STRING, newXDimAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__XDIM_AS_STRING,
+				newXDimAsString);
 	}
 
 	/**
@@ -98,7 +103,8 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * @generated
 	 */
 	public double getYDim() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM, true);
 	}
 
 	/**
@@ -116,7 +122,9 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * @generated
 	 */
 	public String getYDimAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM_AS_STRING,
+				true);
 	}
 
 	/**
@@ -125,7 +133,8 @@ public class IfcRectangleProfileDefImpl extends IfcParameterizedProfileDefImpl i
 	 * @generated
 	 */
 	public void setYDimAsString(String newYDimAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM_AS_STRING, newYDimAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_RECTANGLE_PROFILE_DEF__YDIM_AS_STRING,
+				newYDimAsString);
 	}
 
 } //IfcRectangleProfileDefImpl

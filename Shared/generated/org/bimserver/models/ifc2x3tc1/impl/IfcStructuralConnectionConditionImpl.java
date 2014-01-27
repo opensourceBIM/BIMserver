@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralConnectionConditionImpl extends IdEObjectImpl implements IfcStructuralConnectionCondition {
+public class IfcStructuralConnectionConditionImpl extends IdEObjectImpl
+		implements IfcStructuralConnectionCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +71,9 @@ public class IfcStructuralConnectionConditionImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION_CONDITION__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION_CONDITION__NAME,
+				true);
 	}
 
 	/**
@@ -79,7 +82,8 @@ public class IfcStructuralConnectionConditionImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION_CONDITION__NAME, newName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION_CONDITION__NAME,
+				newName);
 	}
 
 	/**

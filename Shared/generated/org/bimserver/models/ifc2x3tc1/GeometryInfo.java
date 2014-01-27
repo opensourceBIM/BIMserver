@@ -207,12 +207,12 @@ public interface GeometryInfo extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Instance</em>' reference.
-	 * @see #setInstance(org.bimserver.models.ifc2x3tc1.GeometryInstance)
+	 * @see #setInstance(GeometryInstance)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInfo_Instance()
 	 * @model
 	 * @generated
 	 */
-	org.bimserver.models.ifc2x3tc1.GeometryInstance getInstance();
+	GeometryInstance getInstance();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getInstance <em>Instance</em>}' reference.
@@ -222,6 +222,6 @@ public interface GeometryInfo extends IdEObject {
 	 * @see #getInstance()
 	 * @generated
 	 */
-	void setInstance(org.bimserver.models.ifc2x3tc1.GeometryInstance value);
+	void setInstance(GeometryInstance value);
 
 } // GeometryInfo

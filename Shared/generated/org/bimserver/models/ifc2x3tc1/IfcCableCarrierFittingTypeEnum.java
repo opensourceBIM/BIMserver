@@ -213,7 +213,8 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCableCarrierFittingTypeEnum[] VALUES_ARRAY = new IfcCableCarrierFittingTypeEnum[] { NULL, NOTDEFINED, TEE, REDUCER, CROSS, USERDEFINED, BEND, };
+	private static final IfcCableCarrierFittingTypeEnum[] VALUES_ARRAY = new IfcCableCarrierFittingTypeEnum[] {
+			NULL, NOTDEFINED, TEE, REDUCER, CROSS, USERDEFINED, BEND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cable Carrier Fitting Type Enum</b></em>' enumerators.
@@ -221,7 +222,8 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCableCarrierFittingTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCableCarrierFittingTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Cable Carrier Fitting Type Enum</b></em>' literal with the specified literal value.
@@ -308,7 +310,8 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcCableCarrierFittingTypeEnum(int value, String name, String literal) {
+	private IfcCableCarrierFittingTypeEnum(int value, String name,
+			String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

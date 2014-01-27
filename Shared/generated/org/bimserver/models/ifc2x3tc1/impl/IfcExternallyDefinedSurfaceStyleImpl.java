@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExternallyDefinedSurfaceStyleImpl extends IfcExternalReferenceImpl implements IfcExternallyDefinedSurfaceStyle {
+public class IfcExternallyDefinedSurfaceStyleImpl extends
+		IfcExternalReferenceImpl implements IfcExternallyDefinedSurfaceStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

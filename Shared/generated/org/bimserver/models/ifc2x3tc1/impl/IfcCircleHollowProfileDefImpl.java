@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl implements IfcCircleHollowProfileDef {
+public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl
+		implements IfcCircleHollowProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 * @generated
 	 */
 	public double getWallThickness() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 * @generated
 	 */
 	public void setWallThickness(double newWallThickness) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS, newWallThickness);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS,
+				newWallThickness);
 	}
 
 	/**
@@ -78,7 +82,9 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 * @generated
 	 */
 	public String getWallThicknessAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -87,7 +93,8 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 * @generated
 	 */
 	public void setWallThicknessAsString(String newWallThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING, newWallThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING,
+				newWallThicknessAsString);
 	}
 
 } //IfcCircleHollowProfileDefImpl

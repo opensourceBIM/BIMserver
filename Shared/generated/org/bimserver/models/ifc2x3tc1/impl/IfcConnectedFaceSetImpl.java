@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConnectedFaceSetImpl extends IfcTopologicalRepresentationItemImpl implements IfcConnectedFaceSet {
+public class IfcConnectedFaceSetImpl extends
+		IfcTopologicalRepresentationItemImpl implements IfcConnectedFaceSet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcConnectedFaceSetImpl extends IfcTopologicalRepresentationItemImp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcFace> getCfsFaces() {
-		return (EList<IfcFace>) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTED_FACE_SET__CFS_FACES, true);
+		return (EList<IfcFace>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONNECTED_FACE_SET__CFS_FACES,
+				true);
 	}
 
 } //IfcConnectedFaceSetImpl

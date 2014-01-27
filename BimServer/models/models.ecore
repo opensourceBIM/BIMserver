@@ -299,9 +299,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="FirstOperand" eType="#/0/IfcBooleanOperand"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="SecondOperand" eType="#/0/IfcBooleanOperand"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcBoundaryCondition">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -475,9 +473,7 @@
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcBoxedHalfSpace" eSuperTypes="#/0/IfcHalfSpaceSolid">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Enclosure" eType="#/0/IfcBoundingBox"/>
@@ -586,9 +582,7 @@
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcCartesianTransformationOperator"
         eSuperTypes="#/0/IfcGeometricRepresentationItem">
@@ -605,9 +599,7 @@
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcCartesianTransformationOperator2D"
         eSuperTypes="#/0/IfcCartesianTransformationOperator"/>
@@ -792,9 +784,7 @@
         <eAnnotations source="inverse"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcCompositeProfileDef" eSuperTypes="#/0/IfcProfileDef">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Profiles" unique="false"
@@ -1164,9 +1154,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcCsgPrimitive3D" eSuperTypes="#/0/IfcGeometricRepresentationItem #/0/IfcBooleanOperand #/0/IfcCsgSelect">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Position" eType="#/0/IfcAxis2Placement3D"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcCsgSolid" eSuperTypes="#/0/IfcSolidModel">
       <eStructuralFeatures xsi:type="ecore:EReference" name="TreeRootExpression" eType="#/0/IfcCsgSelect"/>
@@ -1192,9 +1180,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcCurve" eSuperTypes="#/0/IfcGeometricRepresentationItem #/0/IfcGeometricSetSelect">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcCurveBoundedPlane" eSuperTypes="#/0/IfcBoundedSurface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="BasisSurface" eType="#/0/IfcPlane"/>
@@ -1202,9 +1188,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="InnerBoundaries" unique="false"
           upperBound="-1" eType="#/0/IfcCurve"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcCurveStyle" eSuperTypes="#/0/IfcPresentationStyle #/0/IfcPresentationStyleSelect">
       <eStructuralFeatures xsi:type="ecore:EReference" name="CurveFont" eType="#/0/IfcCurveFontOrScaledCurveFontSelect"
@@ -1311,9 +1295,7 @@
         <eAnnotations source="asstring"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDiscreteAccessory" eSuperTypes="#/0/IfcElementComponent"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDiscreteAccessoryType" eSuperTypes="#/0/IfcElementComponentType"/>
@@ -1585,12 +1567,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#/0/IfcDuctSilencerTypeEnum"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcEdge" eSuperTypes="#/0/IfcTopologicalRepresentationItem">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="EdgeStart" eType="#/0/IfcVertex">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="EdgeEnd" eType="#/0/IfcVertex">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="EdgeStart" eType="#/0/IfcVertex"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="EdgeEnd" eType="#/0/IfcVertex"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcEdgeCurve" eSuperTypes="#/0/IfcEdge #/0/IfcCurveOrEdgeCurve">
       <eStructuralFeatures xsi:type="ecore:EReference" name="EdgeGeometry" eType="#/0/IfcCurve"/>
@@ -1763,9 +1741,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcElementarySurface" eSuperTypes="#/0/IfcSurface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Position" eType="#/0/IfcAxis2Placement3D"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcEllipse" eSuperTypes="#/0/IfcConic">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="SemiAxis1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
@@ -1851,9 +1827,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="FbsmFaces" unique="false"
           upperBound="-1" eType="#/0/IfcConnectedFaceSet"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcFaceBound" eSuperTypes="#/0/IfcTopologicalRepresentationItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Bound" eType="#/0/IfcLoop"/>
@@ -2186,26 +2160,18 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcGeometricRepresentationContext"
         eSuperTypes="#/0/IfcRepresentationContext">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="CoordinateSpaceDimension"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Precision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
-          unsettable="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PrecisionAsString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true">
         <eAnnotations source="asstring"/>
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="WorldCoordinateSystem"
-          eType="#/0/IfcAxis2Placement">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          eType="#/0/IfcAxis2Placement"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="TrueNorth" eType="#/0/IfcDirection"
-          unsettable="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasSubContexts" upperBound="-1"
           eType="#/0/IfcGeometricRepresentationSubContext" unsettable="true" eOpposite="#/0/IfcGeometricRepresentationSubContext/ParentContext">
         <eAnnotations source="inverse"/>
@@ -2235,9 +2201,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="Elements" unique="false"
           upperBound="-1" eType="#/0/IfcGeometricSetSelect"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcGrid" eSuperTypes="#/0/IfcProduct">
       <eStructuralFeatures xsi:type="ecore:EReference" name="UAxes" upperBound="-1"
@@ -2294,9 +2258,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="BaseSurface" eType="#/0/IfcSurface"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="AgreementFlag" eType="#/0/Tristate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcHeatExchangerType" eSuperTypes="#/0/IfcEnergyConversionDeviceType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#/0/IfcHeatExchangerTypeEnum"/>
@@ -2712,9 +2674,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="LayerSetName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="TotalThickness" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="TotalThicknessAsString"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true">
@@ -2921,9 +2881,7 @@
           unsettable="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcNamedUnit" eSuperTypes="#/0/IfcUnit">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="Dimensions" eType="#/0/IfcDimensionalExponents">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Dimensions" eType="#/0/IfcDimensionalExponents"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="UnitType" eType="#/0/IfcUnitEnum"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcObject" eSuperTypes="#/0/IfcObjectDefinition">
@@ -3264,9 +3222,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcPlacement" eSuperTypes="#/0/IfcGeometricRepresentationItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Location" eType="#/0/IfcCartesianPoint"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPlanarBox" eSuperTypes="#/0/IfcPlanarExtent">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Placement" eType="#/0/IfcAxis2Placement"/>
@@ -3298,9 +3254,7 @@
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPointOnSurface" eSuperTypes="#/0/IfcPoint">
       <eStructuralFeatures xsi:type="ecore:EReference" name="BasisSurface" eType="#/0/IfcSurface"/>
@@ -3317,9 +3271,7 @@
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPolyLoop" eSuperTypes="#/0/IfcLoop">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Polygon" unique="false"
@@ -3799,9 +3751,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Usense" eType="#/0/Tristate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Vsense" eType="#/0/Tristate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcReferencesValueDocument">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferencedDocument" eType="#/0/IfcDocumentSelect"/>
@@ -4646,9 +4596,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="CrossSectionPositions"
           unique="false" upperBound="-1" eType="#/0/IfcAxis2Placement3D"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSensorType" eSuperTypes="#/0/IfcDistributionControlElementType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#/0/IfcSensorTypeEnum"/>
@@ -4698,9 +4646,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="SbsmBoundary" unique="false"
           upperBound="-1" eType="#/0/IfcShell"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSimpleProperty" eSuperTypes="#/0/IfcProperty"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSite" eSuperTypes="#/0/IfcSpatialStructureElement">
@@ -4755,9 +4701,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSolidModel" eSuperTypes="#/0/IfcGeometricRepresentationItem #/0/IfcBooleanOperand">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSoundProperties" eSuperTypes="#/0/IfcPropertySetDefinition">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsAttenuating" eType="#/0/Tristate"/>
@@ -5482,9 +5426,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="VaryingThicknessLocation"
           eType="#/0/IfcShapeAspect"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="VaryingThickness" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="VaryingThicknessAsString"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true">
@@ -5642,9 +5584,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="SweptCurve" eType="#/0/IfcProfileDef"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Position" eType="#/0/IfcAxis2Placement3D"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSwitchingDeviceType" eSuperTypes="#/0/IfcFlowControllerType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#/0/IfcSwitchingDeviceTypeEnum"/>
@@ -6177,9 +6117,7 @@
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          unsettable="true" derived="true">
-        <eAnnotations source="derived"/>
-      </eStructuralFeatures>
+          unsettable="true" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcVertex" eSuperTypes="#/0/IfcTopologicalRepresentationItem"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcVertexBasedTextureMap">
@@ -7924,8 +7862,8 @@
       <eLiterals name="FJD" value="35" literal="FJD"/>
       <eLiterals name="DDP" value="36" literal="DDP"/>
       <eLiterals name="GRX" value="37" literal="GRX"/>
-      <eLiterals name="JMD" value="38" literal="JMD"/>
-      <eLiterals name="KRW" value="39" literal="KRW"/>
+      <eLiterals name="KRW" value="38" literal="KRW"/>
+      <eLiterals name="JMD" value="39" literal="JMD"/>
       <eLiterals name="EST" value="40" literal="EST"/>
       <eLiterals name="BGL" value="41" literal="BGL"/>
       <eLiterals name="ZWD" value="42" literal="ZWD"/>
@@ -7980,8 +7918,8 @@
       <eLiterals name="NULL" literal="NULL"/>
       <eLiterals name="BLASTDAMPER" value="1" literal="BLASTDAMPER"/>
       <eLiterals name="FIRESMOKEDAMPER" value="2" literal="FIRESMOKEDAMPER"/>
-      <eLiterals name="BALANCINGDAMPER" value="3" literal="BALANCINGDAMPER"/>
-      <eLiterals name="NOTDEFINED" value="4" literal="NOTDEFINED"/>
+      <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+      <eLiterals name="BALANCINGDAMPER" value="4" literal="BALANCINGDAMPER"/>
       <eLiterals name="FIREDAMPER" value="5" literal="FIREDAMPER"/>
       <eLiterals name="SMOKEDAMPER" value="6" literal="SMOKEDAMPER"/>
       <eLiterals name="RELIEFDAMPER" value="7" literal="RELIEFDAMPER"/>
@@ -8134,8 +8072,8 @@
       <eLiterals name="DOUBLE_DOOR_SINGLE_SWING" value="8" literal="DOUBLE_DOOR_SINGLE_SWING"/>
       <eLiterals name="SLIDING_TO_LEFT" value="9" literal="SLIDING_TO_LEFT"/>
       <eLiterals name="DOUBLE_DOOR_SLIDING" value="10" literal="DOUBLE_DOOR_SLIDING"/>
-      <eLiterals name="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT" value="11" literal="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"/>
-      <eLiterals name="FOLDING_TO_RIGHT" value="12" literal="FOLDING_TO_RIGHT"/>
+      <eLiterals name="FOLDING_TO_RIGHT" value="11" literal="FOLDING_TO_RIGHT"/>
+      <eLiterals name="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT" value="12" literal="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"/>
       <eLiterals name="REVOLVING" value="13" literal="REVOLVING"/>
       <eLiterals name="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT" value="14" literal="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT"/>
       <eLiterals name="USERDEFINED" value="15" literal="USERDEFINED"/>
@@ -8179,8 +8117,8 @@
       <eLiterals name="SCANNER" value="5" literal="SCANNER"/>
       <eLiterals name="FREEZER" value="6" literal="FREEZER"/>
       <eLiterals name="COMPUTER" value="7" literal="COMPUTER"/>
-      <eLiterals name="PHOTOCOPIER" value="8" literal="PHOTOCOPIER"/>
-      <eLiterals name="INDIRECTWATERHEATER" value="9" literal="INDIRECTWATERHEATER"/>
+      <eLiterals name="INDIRECTWATERHEATER" value="8" literal="INDIRECTWATERHEATER"/>
+      <eLiterals name="PHOTOCOPIER" value="9" literal="PHOTOCOPIER"/>
       <eLiterals name="FACSIMILE" value="10" literal="FACSIMILE"/>
       <eLiterals name="VENDINGMACHINE" value="11" literal="VENDINGMACHINE"/>
       <eLiterals name="DISHWASHER" value="12" literal="DISHWASHER"/>
@@ -8808,9 +8746,9 @@
       <eLiterals name="RESELLER" value="4" literal="RESELLER"/>
       <eLiterals name="ENGINEER" value="5" literal="ENGINEER"/>
       <eLiterals name="ARCHITECT" value="6" literal="ARCHITECT"/>
-      <eLiterals name="CLIENT" value="7" literal="CLIENT"/>
-      <eLiterals name="ELECTRICALENGINEER" value="8" literal="ELECTRICALENGINEER"/>
-      <eLiterals name="PROJECTMANAGER" value="9" literal="PROJECTMANAGER"/>
+      <eLiterals name="PROJECTMANAGER" value="7" literal="PROJECTMANAGER"/>
+      <eLiterals name="CLIENT" value="8" literal="CLIENT"/>
+      <eLiterals name="ELECTRICALENGINEER" value="9" literal="ELECTRICALENGINEER"/>
       <eLiterals name="CIVILENGINEER" value="10" literal="CIVILENGINEER"/>
       <eLiterals name="SUPPLIER" value="11" literal="SUPPLIER"/>
       <eLiterals name="CONTRACTOR" value="12" literal="CONTRACTOR"/>
@@ -8834,9 +8772,9 @@
       <eLiterals name="HIP_ROOF" value="4" literal="HIP_ROOF"/>
       <eLiterals name="DOME_ROOF" value="5" literal="DOME_ROOF"/>
       <eLiterals name="PAVILION_ROOF" value="6" literal="PAVILION_ROOF"/>
-      <eLiterals name="GABLE_ROOF" value="7" literal="GABLE_ROOF"/>
-      <eLiterals name="BARREL_ROOF" value="8" literal="BARREL_ROOF"/>
-      <eLiterals name="FREEFORM" value="9" literal="FREEFORM"/>
+      <eLiterals name="FREEFORM" value="7" literal="FREEFORM"/>
+      <eLiterals name="GABLE_ROOF" value="8" literal="GABLE_ROOF"/>
+      <eLiterals name="BARREL_ROOF" value="9" literal="BARREL_ROOF"/>
       <eLiterals name="MANSARD_ROOF" value="10" literal="MANSARD_ROOF"/>
       <eLiterals name="FLAT_ROOF" value="11" literal="FLAT_ROOF"/>
       <eLiterals name="RAINBOW_ROOF" value="12" literal="RAINBOW_ROOF"/>
@@ -8870,8 +8808,8 @@
       <eLiterals name="SECOND" value="4" literal="SECOND"/>
       <eLiterals name="AMPERE" value="5" literal="AMPERE"/>
       <eLiterals name="JOULE" value="6" literal="JOULE"/>
-      <eLiterals name="KELVIN" value="7" literal="KELVIN"/>
-      <eLiterals name="GRAM" value="8" literal="GRAM"/>
+      <eLiterals name="GRAM" value="7" literal="GRAM"/>
+      <eLiterals name="KELVIN" value="8" literal="KELVIN"/>
       <eLiterals name="LUMEN" value="9" literal="LUMEN"/>
       <eLiterals name="FARAD" value="10" literal="FARAD"/>
       <eLiterals name="STERADIAN" value="11" literal="STERADIAN"/>
@@ -8925,8 +8863,8 @@
       <eLiterals name="MOISTURESENSOR" value="6" literal="MOISTURESENSOR"/>
       <eLiterals name="LIGHTSENSOR" value="7" literal="LIGHTSENSOR"/>
       <eLiterals name="SMOKESENSOR" value="8" literal="SMOKESENSOR"/>
-      <eLiterals name="GASSENSOR" value="9" literal="GASSENSOR"/>
-      <eLiterals name="TEMPERATURESENSOR" value="10" literal="TEMPERATURESENSOR"/>
+      <eLiterals name="TEMPERATURESENSOR" value="9" literal="TEMPERATURESENSOR"/>
+      <eLiterals name="GASSENSOR" value="10" literal="GASSENSOR"/>
       <eLiterals name="PRESSURESENSOR" value="11" literal="PRESSURESENSOR"/>
       <eLiterals name="USERDEFINED" value="12" literal="USERDEFINED"/>
       <eLiterals name="HUMIDITYSENSOR" value="13" literal="HUMIDITYSENSOR"/>
@@ -9115,17 +9053,17 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="IfcThermalLoadSourceEnum">
       <eLiterals name="NULL" literal="NULL"/>
-      <eLiterals name="VENTILATIONINDOORAIR" value="1" literal="VENTILATIONINDOORAIR"/>
-      <eLiterals name="RECIRCULATEDAIR" value="2" literal="RECIRCULATEDAIR"/>
-      <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-      <eLiterals name="EXHAUSTAIR" value="4" literal="EXHAUSTAIR"/>
-      <eLiterals name="VENTILATIONOUTSIDEAIR" value="5" literal="VENTILATIONOUTSIDEAIR"/>
-      <eLiterals name="EQUIPMENT" value="6" literal="EQUIPMENT"/>
-      <eLiterals name="DRYBULBTEMPERATURE" value="7" literal="DRYBULBTEMPERATURE"/>
-      <eLiterals name="RELATIVEHUMIDITY" value="8" literal="RELATIVEHUMIDITY"/>
-      <eLiterals name="PEOPLE" value="9" literal="PEOPLE"/>
-      <eLiterals name="INFILTRATION" value="10" literal="INFILTRATION"/>
-      <eLiterals name="USERDEFINED" value="11" literal="USERDEFINED"/>
+      <eLiterals name="DRYBULBTEMPERATURE" value="1" literal="DRYBULBTEMPERATURE"/>
+      <eLiterals name="VENTILATIONINDOORAIR" value="2" literal="VENTILATIONINDOORAIR"/>
+      <eLiterals name="RECIRCULATEDAIR" value="3" literal="RECIRCULATEDAIR"/>
+      <eLiterals name="NOTDEFINED" value="4" literal="NOTDEFINED"/>
+      <eLiterals name="RELATIVEHUMIDITY" value="5" literal="RELATIVEHUMIDITY"/>
+      <eLiterals name="EXHAUSTAIR" value="6" literal="EXHAUSTAIR"/>
+      <eLiterals name="VENTILATIONOUTSIDEAIR" value="7" literal="VENTILATIONOUTSIDEAIR"/>
+      <eLiterals name="PEOPLE" value="8" literal="PEOPLE"/>
+      <eLiterals name="INFILTRATION" value="9" literal="INFILTRATION"/>
+      <eLiterals name="USERDEFINED" value="10" literal="USERDEFINED"/>
+      <eLiterals name="EQUIPMENT" value="11" literal="EQUIPMENT"/>
       <eLiterals name="AIREXCHANGERATE" value="12" literal="AIREXCHANGERATE"/>
       <eLiterals name="LIGHTING" value="13" literal="LIGHTING"/>
     </eClassifiers>
@@ -9195,13 +9133,13 @@
       <eLiterals name="ELECTRICRESISTANCEUNIT" value="1" literal="ELECTRICRESISTANCEUNIT"/>
       <eLiterals name="ELECTRICCURRENTUNIT" value="2" literal="ELECTRICCURRENTUNIT"/>
       <eLiterals name="ILLUMINANCEUNIT" value="3" literal="ILLUMINANCEUNIT"/>
-      <eLiterals name="FREQUENCYUNIT" value="4" literal="FREQUENCYUNIT"/>
-      <eLiterals name="AREAUNIT" value="5" literal="AREAUNIT"/>
+      <eLiterals name="AREAUNIT" value="4" literal="AREAUNIT"/>
+      <eLiterals name="FREQUENCYUNIT" value="5" literal="FREQUENCYUNIT"/>
       <eLiterals name="TIMEUNIT" value="6" literal="TIMEUNIT"/>
       <eLiterals name="ELECTRICCHARGEUNIT" value="7" literal="ELECTRICCHARGEUNIT"/>
       <eLiterals name="FORCEUNIT" value="8" literal="FORCEUNIT"/>
-      <eLiterals name="LENGTHUNIT" value="9" literal="LENGTHUNIT"/>
-      <eLiterals name="RADIOACTIVITYUNIT" value="10" literal="RADIOACTIVITYUNIT"/>
+      <eLiterals name="RADIOACTIVITYUNIT" value="9" literal="RADIOACTIVITYUNIT"/>
+      <eLiterals name="LENGTHUNIT" value="10" literal="LENGTHUNIT"/>
       <eLiterals name="DOSEEQUIVALENTUNIT" value="11" literal="DOSEEQUIVALENTUNIT"/>
       <eLiterals name="INDUCTANCEUNIT" value="12" literal="INDUCTANCEUNIT"/>
       <eLiterals name="MAGNETICFLUXDENSITYUNIT" value="13" literal="MAGNETICFLUXDENSITYUNIT"/>

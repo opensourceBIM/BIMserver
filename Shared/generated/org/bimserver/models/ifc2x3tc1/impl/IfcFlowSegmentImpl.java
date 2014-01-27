@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFlowSegmentImpl extends IfcDistributionFlowElementImpl implements IfcFlowSegment {
+public class IfcFlowSegmentImpl extends IfcDistributionFlowElementImpl
+		implements IfcFlowSegment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

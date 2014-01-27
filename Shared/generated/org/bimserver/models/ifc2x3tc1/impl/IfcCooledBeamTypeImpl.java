@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCooledBeamTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcCooledBeamType {
+public class IfcCooledBeamTypeImpl extends IfcEnergyConversionDeviceTypeImpl
+		implements IfcCooledBeamType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcCooledBeamTypeImpl extends IfcEnergyConversionDeviceTypeImpl imp
 	 * @generated
 	 */
 	public IfcCooledBeamTypeEnum getPredefinedType() {
-		return (IfcCooledBeamTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_COOLED_BEAM_TYPE__PREDEFINED_TYPE, true);
+		return (IfcCooledBeamTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COOLED_BEAM_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcCooledBeamTypeImpl extends IfcEnergyConversionDeviceTypeImpl imp
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCooledBeamTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COOLED_BEAM_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COOLED_BEAM_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcCooledBeamTypeImpl

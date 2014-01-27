@@ -238,7 +238,8 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStructuralCurveTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveTypeEnum[] { NULL, NOTDEFINED, CABLE, TENSION_MEMBER, COMPRESSION_MEMBER,
+	private static final IfcStructuralCurveTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveTypeEnum[] {
+			NULL, NOTDEFINED, CABLE, TENSION_MEMBER, COMPRESSION_MEMBER,
 			PIN_JOINED_MEMBER, USERDEFINED, RIGID_JOINED_MEMBER, };
 
 	/**
@@ -247,7 +248,8 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcStructuralCurveTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcStructuralCurveTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Structural Curve Type Enum</b></em>' literal with the specified literal value.

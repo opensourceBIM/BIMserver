@@ -62,7 +62,8 @@ public class IfcPolyLoopImpl extends IfcLoopImpl implements IfcPolyLoop {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCartesianPoint> getPolygon() {
-		return (EList<IfcCartesianPoint>) eGet(Ifc2x3tc1Package.Literals.IFC_POLY_LOOP__POLYGON, true);
+		return (EList<IfcCartesianPoint>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_POLY_LOOP__POLYGON, true);
 	}
 
 } //IfcPolyLoopImpl

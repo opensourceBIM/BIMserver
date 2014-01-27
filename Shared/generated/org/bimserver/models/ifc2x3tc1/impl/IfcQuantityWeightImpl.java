@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl implements IfcQuantityWeight {
+public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl
+		implements IfcQuantityWeight {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * @generated
 	 */
 	public double getWeightValue() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * @generated
 	 */
 	public void setWeightValue(double newWeightValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE, newWeightValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE,
+				newWeightValue);
 	}
 
 	/**
@@ -78,7 +82,9 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * @generated
 	 */
 	public String getWeightValueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -87,7 +93,8 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * @generated
 	 */
 	public void setWeightValueAsString(String newWeightValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING, newWeightValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING,
+				newWeightValueAsString);
 	}
 
 } //IfcQuantityWeightImpl

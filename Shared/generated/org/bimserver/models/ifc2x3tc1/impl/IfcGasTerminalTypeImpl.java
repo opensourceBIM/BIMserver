@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcGasTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements IfcGasTerminalType {
+public class IfcGasTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements
+		IfcGasTerminalType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcGasTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements I
 	 * @generated
 	 */
 	public IfcGasTerminalTypeEnum getPredefinedType() {
-		return (IfcGasTerminalTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_GAS_TERMINAL_TYPE__PREDEFINED_TYPE, true);
+		return (IfcGasTerminalTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GAS_TERMINAL_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcGasTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements I
 	 * @generated
 	 */
 	public void setPredefinedType(IfcGasTerminalTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GAS_TERMINAL_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_GAS_TERMINAL_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcGasTerminalTypeImpl

@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl implements IfcStructuralCurveMember {
+public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl
+		implements IfcStructuralCurveMember {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl implem
 	 * @generated
 	 */
 	public IfcStructuralCurveTypeEnum getPredefinedType() {
-		return (IfcStructuralCurveTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE, true);
+		return (IfcStructuralCurveTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl implem
 	 * @generated
 	 */
 	public void setPredefinedType(IfcStructuralCurveTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcStructuralCurveMemberImpl

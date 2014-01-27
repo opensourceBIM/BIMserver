@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssociatesLibraryImpl extends IfcRelAssociatesImpl implements IfcRelAssociatesLibrary {
+public class IfcRelAssociatesLibraryImpl extends IfcRelAssociatesImpl implements
+		IfcRelAssociatesLibrary {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcRelAssociatesLibraryImpl extends IfcRelAssociatesImpl implements
 	 * @generated
 	 */
 	public IfcLibrarySelect getRelatingLibrary() {
-		return (IfcLibrarySelect) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_LIBRARY__RELATING_LIBRARY, true);
+		return (IfcLibrarySelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_LIBRARY__RELATING_LIBRARY,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcRelAssociatesLibraryImpl extends IfcRelAssociatesImpl implements
 	 * @generated
 	 */
 	public void setRelatingLibrary(IfcLibrarySelect newRelatingLibrary) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_LIBRARY__RELATING_LIBRARY, newRelatingLibrary);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_LIBRARY__RELATING_LIBRARY,
+				newRelatingLibrary);
 	}
 
 } //IfcRelAssociatesLibraryImpl

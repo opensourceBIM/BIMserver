@@ -50,7 +50,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICRESISTANCEUNIT(1, "ELECTRICRESISTANCEUNIT", "ELECTRICRESISTANCEUNIT"),
+	ELECTRICRESISTANCEUNIT(1, "ELECTRICRESISTANCEUNIT",
+			"ELECTRICRESISTANCEUNIT"),
 
 	/**
 	 * The '<em><b>ELECTRICCURRENTUNIT</b></em>' literal object.
@@ -73,16 +74,6 @@ public enum IfcUnitEnum implements Enumerator {
 	ILLUMINANCEUNIT(3, "ILLUMINANCEUNIT", "ILLUMINANCEUNIT"),
 
 	/**
-	 * The '<em><b>FREQUENCYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FREQUENCYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FREQUENCYUNIT(4, "FREQUENCYUNIT", "FREQUENCYUNIT"),
-
-	/**
 	 * The '<em><b>AREAUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +81,15 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AREAUNIT(5, "AREAUNIT", "AREAUNIT"),
+	AREAUNIT(4, "AREAUNIT", "AREAUNIT"), /**
+											 * The '<em><b>FREQUENCYUNIT</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #FREQUENCYUNIT_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	FREQUENCYUNIT(5, "FREQUENCYUNIT", "FREQUENCYUNIT"),
 
 	/**
 	 * The '<em><b>TIMEUNIT</b></em>' literal object.
@@ -123,16 +122,6 @@ public enum IfcUnitEnum implements Enumerator {
 	FORCEUNIT(8, "FORCEUNIT", "FORCEUNIT"),
 
 	/**
-	 * The '<em><b>LENGTHUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LENGTHUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LENGTHUNIT(9, "LENGTHUNIT", "LENGTHUNIT"),
-
-	/**
 	 * The '<em><b>RADIOACTIVITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,7 +129,15 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RADIOACTIVITYUNIT(10, "RADIOACTIVITYUNIT", "RADIOACTIVITYUNIT"),
+	RADIOACTIVITYUNIT(9, "RADIOACTIVITYUNIT", "RADIOACTIVITYUNIT"), /**
+																	 * The '<em><b>LENGTHUNIT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #LENGTHUNIT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	LENGTHUNIT(10, "LENGTHUNIT", "LENGTHUNIT"),
 
 	/**
 	 * The '<em><b>DOSEEQUIVALENTUNIT</b></em>' literal object.
@@ -170,7 +167,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MAGNETICFLUXDENSITYUNIT(13, "MAGNETICFLUXDENSITYUNIT", "MAGNETICFLUXDENSITYUNIT"),
+	MAGNETICFLUXDENSITYUNIT(13, "MAGNETICFLUXDENSITYUNIT",
+			"MAGNETICFLUXDENSITYUNIT"),
 
 	/**
 	 * The '<em><b>LUMINOUSINTENSITYUNIT</b></em>' literal object.
@@ -210,7 +208,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICCONDUCTANCEUNIT(17, "ELECTRICCONDUCTANCEUNIT", "ELECTRICCONDUCTANCEUNIT"),
+	ELECTRICCONDUCTANCEUNIT(17, "ELECTRICCONDUCTANCEUNIT",
+			"ELECTRICCONDUCTANCEUNIT"),
 
 	/**
 	 * The '<em><b>AMOUNTOFSUBSTANCEUNIT</b></em>' literal object.
@@ -270,7 +269,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICCAPACITANCEUNIT(23, "ELECTRICCAPACITANCEUNIT", "ELECTRICCAPACITANCEUNIT"),
+	ELECTRICCAPACITANCEUNIT(23, "ELECTRICCAPACITANCEUNIT",
+			"ELECTRICCAPACITANCEUNIT"),
 
 	/**
 	 * The '<em><b>PRESSUREUNIT</b></em>' literal object.
@@ -290,7 +290,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THERMODYNAMICTEMPERATUREUNIT(25, "THERMODYNAMICTEMPERATUREUNIT", "THERMODYNAMICTEMPERATUREUNIT"),
+	THERMODYNAMICTEMPERATUREUNIT(25, "THERMODYNAMICTEMPERATUREUNIT",
+			"THERMODYNAMICTEMPERATUREUNIT"),
 
 	/**
 	 * The '<em><b>MASSUNIT</b></em>' literal object.
@@ -403,21 +404,6 @@ public enum IfcUnitEnum implements Enumerator {
 	public static final int ILLUMINANCEUNIT_VALUE = 3;
 
 	/**
-	 * The '<em><b>FREQUENCYUNIT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FREQUENCYUNIT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FREQUENCYUNIT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FREQUENCYUNIT_VALUE = 4;
-
-	/**
 	 * The '<em><b>AREAUNIT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -430,7 +416,22 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AREAUNIT_VALUE = 5;
+	public static final int AREAUNIT_VALUE = 4;
+
+	/**
+	 * The '<em><b>FREQUENCYUNIT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FREQUENCYUNIT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FREQUENCYUNIT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FREQUENCYUNIT_VALUE = 5;
 
 	/**
 	 * The '<em><b>TIMEUNIT</b></em>' literal value.
@@ -478,21 +479,6 @@ public enum IfcUnitEnum implements Enumerator {
 	public static final int FORCEUNIT_VALUE = 8;
 
 	/**
-	 * The '<em><b>LENGTHUNIT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LENGTHUNIT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LENGTHUNIT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LENGTHUNIT_VALUE = 9;
-
-	/**
 	 * The '<em><b>RADIOACTIVITYUNIT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -505,7 +491,22 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RADIOACTIVITYUNIT_VALUE = 10;
+	public static final int RADIOACTIVITYUNIT_VALUE = 9;
+
+	/**
+	 * The '<em><b>LENGTHUNIT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LENGTHUNIT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LENGTHUNIT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LENGTHUNIT_VALUE = 10;
 
 	/**
 	 * The '<em><b>DOSEEQUIVALENTUNIT</b></em>' literal value.
@@ -813,10 +814,16 @@ public enum IfcUnitEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcUnitEnum[] VALUES_ARRAY = new IfcUnitEnum[] { NULL, ELECTRICRESISTANCEUNIT, ELECTRICCURRENTUNIT, ILLUMINANCEUNIT, FREQUENCYUNIT, AREAUNIT, TIMEUNIT,
-			ELECTRICCHARGEUNIT, FORCEUNIT, LENGTHUNIT, RADIOACTIVITYUNIT, DOSEEQUIVALENTUNIT, INDUCTANCEUNIT, MAGNETICFLUXDENSITYUNIT, LUMINOUSINTENSITYUNIT, LUMINOUSFLUXUNIT,
-			VOLUMEUNIT, ELECTRICCONDUCTANCEUNIT, AMOUNTOFSUBSTANCEUNIT, ENERGYUNIT, POWERUNIT, SOLIDANGLEUNIT, ELECTRICVOLTAGEUNIT, ELECTRICCAPACITANCEUNIT, PRESSUREUNIT,
-			THERMODYNAMICTEMPERATUREUNIT, MASSUNIT, USERDEFINED, ABSORBEDDOSEUNIT, MAGNETICFLUXUNIT, PLANEANGLEUNIT, };
+	private static final IfcUnitEnum[] VALUES_ARRAY = new IfcUnitEnum[] { NULL,
+			ELECTRICRESISTANCEUNIT, ELECTRICCURRENTUNIT, ILLUMINANCEUNIT,
+			AREAUNIT, FREQUENCYUNIT, TIMEUNIT, ELECTRICCHARGEUNIT, FORCEUNIT,
+			RADIOACTIVITYUNIT, LENGTHUNIT, DOSEEQUIVALENTUNIT, INDUCTANCEUNIT,
+			MAGNETICFLUXDENSITYUNIT, LUMINOUSINTENSITYUNIT, LUMINOUSFLUXUNIT,
+			VOLUMEUNIT, ELECTRICCONDUCTANCEUNIT, AMOUNTOFSUBSTANCEUNIT,
+			ENERGYUNIT, POWERUNIT, SOLIDANGLEUNIT, ELECTRICVOLTAGEUNIT,
+			ELECTRICCAPACITANCEUNIT, PRESSUREUNIT,
+			THERMODYNAMICTEMPERATUREUNIT, MASSUNIT, USERDEFINED,
+			ABSORBEDDOSEUNIT, MAGNETICFLUXUNIT, PLANEANGLEUNIT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Unit Enum</b></em>' enumerators.
@@ -824,7 +831,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcUnitEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcUnitEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Unit Enum</b></em>' literal with the specified literal value.
@@ -874,20 +882,20 @@ public enum IfcUnitEnum implements Enumerator {
 			return ELECTRICCURRENTUNIT;
 		case ILLUMINANCEUNIT_VALUE:
 			return ILLUMINANCEUNIT;
-		case FREQUENCYUNIT_VALUE:
-			return FREQUENCYUNIT;
 		case AREAUNIT_VALUE:
 			return AREAUNIT;
+		case FREQUENCYUNIT_VALUE:
+			return FREQUENCYUNIT;
 		case TIMEUNIT_VALUE:
 			return TIMEUNIT;
 		case ELECTRICCHARGEUNIT_VALUE:
 			return ELECTRICCHARGEUNIT;
 		case FORCEUNIT_VALUE:
 			return FORCEUNIT;
-		case LENGTHUNIT_VALUE:
-			return LENGTHUNIT;
 		case RADIOACTIVITYUNIT_VALUE:
 			return RADIOACTIVITYUNIT;
+		case LENGTHUNIT_VALUE:
+			return LENGTHUNIT;
 		case DOSEEQUIVALENTUNIT_VALUE:
 			return DOSEEQUIVALENTUNIT;
 		case INDUCTANCEUNIT_VALUE:

@@ -46,7 +46,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcElement extends IfcProduct, IfcStructuralActivityAssignmentSelect {
+public interface IfcElement extends IfcProduct,
+		IfcStructuralActivityAssignmentSelect {
 	/**
 	 * Returns the value of the '<em><b>Tag</b></em>' attribute.
 	 * <!-- begin-user-doc -->

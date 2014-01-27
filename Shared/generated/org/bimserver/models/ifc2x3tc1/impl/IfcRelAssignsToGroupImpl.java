@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsToGroupImpl extends IfcRelAssignsImpl implements IfcRelAssignsToGroup {
+public class IfcRelAssignsToGroupImpl extends IfcRelAssignsImpl implements
+		IfcRelAssignsToGroup {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcRelAssignsToGroupImpl extends IfcRelAssignsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcGroup getRelatingGroup() {
-		return (IfcGroup) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_GROUP__RELATING_GROUP, true);
+		return (IfcGroup) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_GROUP__RELATING_GROUP,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcRelAssignsToGroupImpl extends IfcRelAssignsImpl implements IfcRe
 	 * @generated
 	 */
 	public void setRelatingGroup(IfcGroup newRelatingGroup) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_GROUP__RELATING_GROUP, newRelatingGroup);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_GROUP__RELATING_GROUP,
+				newRelatingGroup);
 	}
 
 } //IfcRelAssignsToGroupImpl

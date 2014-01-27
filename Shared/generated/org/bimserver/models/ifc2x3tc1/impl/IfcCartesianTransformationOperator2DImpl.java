@@ -29,7 +29,9 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCartesianTransformationOperator2DImpl extends IfcCartesianTransformationOperatorImpl implements IfcCartesianTransformationOperator2D {
+public class IfcCartesianTransformationOperator2DImpl extends
+		IfcCartesianTransformationOperatorImpl implements
+		IfcCartesianTransformationOperator2D {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

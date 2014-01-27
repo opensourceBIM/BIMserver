@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCurtainWallImpl extends IfcBuildingElementImpl implements IfcCurtainWall {
+public class IfcCurtainWallImpl extends IfcBuildingElementImpl implements
+		IfcCurtainWall {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

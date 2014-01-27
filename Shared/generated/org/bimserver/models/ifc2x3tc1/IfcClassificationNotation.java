@@ -34,7 +34,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcClassificationNotation extends IfcClassificationNotationSelect {
+public interface IfcClassificationNotation extends
+		IfcClassificationNotationSelect {
 	/**
 	 * Returns the value of the '<em><b>Notation Facets</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc2x3tc1.IfcClassificationNotationFacet}.

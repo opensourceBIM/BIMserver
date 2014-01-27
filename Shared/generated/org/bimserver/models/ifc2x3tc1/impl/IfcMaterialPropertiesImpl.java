@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialPropertiesImpl extends IdEObjectImpl implements IfcMaterialProperties {
+public class IfcMaterialPropertiesImpl extends IdEObjectImpl implements
+		IfcMaterialProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +72,9 @@ public class IfcMaterialPropertiesImpl extends IdEObjectImpl implements IfcMater
 	 * @generated
 	 */
 	public IfcMaterial getMaterial() {
-		return (IfcMaterial) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_PROPERTIES__MATERIAL, true);
+		return (IfcMaterial) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MATERIAL_PROPERTIES__MATERIAL,
+				true);
 	}
 
 	/**
@@ -80,7 +83,8 @@ public class IfcMaterialPropertiesImpl extends IdEObjectImpl implements IfcMater
 	 * @generated
 	 */
 	public void setMaterial(IfcMaterial newMaterial) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_PROPERTIES__MATERIAL, newMaterial);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_PROPERTIES__MATERIAL,
+				newMaterial);
 	}
 
 } //IfcMaterialPropertiesImpl

@@ -35,7 +35,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcRelConnectsWithRealizingElements extends IfcRelConnectsElements {
+public interface IfcRelConnectsWithRealizingElements extends
+		IfcRelConnectsElements {
 	/**
 	 * Returns the value of the '<em><b>Realizing Elements</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc2x3tc1.IfcElement}.

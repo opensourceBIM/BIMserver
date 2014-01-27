@@ -35,7 +35,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcCartesianTransformationOperator3DnonUniform extends IfcCartesianTransformationOperator3D {
+public interface IfcCartesianTransformationOperator3DnonUniform extends
+		IfcCartesianTransformationOperator3D {
 	/**
 	 * Returns the value of the '<em><b>Scale2</b></em>' attribute.
 	 * <!-- begin-user-doc -->

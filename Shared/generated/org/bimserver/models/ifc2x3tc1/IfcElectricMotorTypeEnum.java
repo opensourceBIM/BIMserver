@@ -238,8 +238,9 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricMotorTypeEnum[] VALUES_ARRAY = new IfcElectricMotorTypeEnum[] { NULL, RELUCTANCESYNCHRONOUS, NOTDEFINED, SYNCHRONOUS, INDUCTION, POLYPHASE, DC,
-			USERDEFINED, };
+	private static final IfcElectricMotorTypeEnum[] VALUES_ARRAY = new IfcElectricMotorTypeEnum[] {
+			NULL, RELUCTANCESYNCHRONOUS, NOTDEFINED, SYNCHRONOUS, INDUCTION,
+			POLYPHASE, DC, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Motor Type Enum</b></em>' enumerators.
@@ -247,7 +248,8 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricMotorTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricMotorTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Motor Type Enum</b></em>' literal with the specified literal value.

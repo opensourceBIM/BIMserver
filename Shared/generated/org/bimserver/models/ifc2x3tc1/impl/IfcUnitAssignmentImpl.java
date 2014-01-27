@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcUnitAssignmentImpl extends IdEObjectImpl implements IfcUnitAssignment {
+public class IfcUnitAssignmentImpl extends IdEObjectImpl implements
+		IfcUnitAssignment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +74,8 @@ public class IfcUnitAssignmentImpl extends IdEObjectImpl implements IfcUnitAssig
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcUnit> getUnits() {
-		return (EList<IfcUnit>) eGet(Ifc2x3tc1Package.Literals.IFC_UNIT_ASSIGNMENT__UNITS, true);
+		return (EList<IfcUnit>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_UNIT_ASSIGNMENT__UNITS, true);
 	}
 
 } //IfcUnitAssignmentImpl

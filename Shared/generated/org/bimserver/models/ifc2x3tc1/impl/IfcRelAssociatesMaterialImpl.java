@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssociatesMaterialImpl extends IfcRelAssociatesImpl implements IfcRelAssociatesMaterial {
+public class IfcRelAssociatesMaterialImpl extends IfcRelAssociatesImpl
+		implements IfcRelAssociatesMaterial {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcRelAssociatesMaterialImpl extends IfcRelAssociatesImpl implement
 	 * @generated
 	 */
 	public IfcMaterialSelect getRelatingMaterial() {
-		return (IfcMaterialSelect) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_MATERIAL__RELATING_MATERIAL, true);
+		return (IfcMaterialSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_MATERIAL__RELATING_MATERIAL,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcRelAssociatesMaterialImpl extends IfcRelAssociatesImpl implement
 	 * @generated
 	 */
 	public void setRelatingMaterial(IfcMaterialSelect newRelatingMaterial) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_MATERIAL__RELATING_MATERIAL, newRelatingMaterial);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_MATERIAL__RELATING_MATERIAL,
+				newRelatingMaterial);
 	}
 
 } //IfcRelAssociatesMaterialImpl

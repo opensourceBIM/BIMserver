@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelNestsImpl extends IfcRelDecomposesImpl implements IfcRelNests {
+public class IfcRelNestsImpl extends IfcRelDecomposesImpl implements
+		IfcRelNests {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

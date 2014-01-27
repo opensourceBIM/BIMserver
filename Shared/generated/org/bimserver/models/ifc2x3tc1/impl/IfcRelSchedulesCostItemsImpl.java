@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelSchedulesCostItemsImpl extends IfcRelAssignsToControlImpl implements IfcRelSchedulesCostItems {
+public class IfcRelSchedulesCostItemsImpl extends IfcRelAssignsToControlImpl
+		implements IfcRelSchedulesCostItems {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -62,7 +62,8 @@ public class IfcOrientedEdgeImpl extends IfcEdgeImpl implements IfcOrientedEdge 
 	 * @generated
 	 */
 	public IfcEdge getEdgeElement() {
-		return (IfcEdge) eGet(Ifc2x3tc1Package.Literals.IFC_ORIENTED_EDGE__EDGE_ELEMENT, true);
+		return (IfcEdge) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ORIENTED_EDGE__EDGE_ELEMENT, true);
 	}
 
 	/**
@@ -71,7 +72,8 @@ public class IfcOrientedEdgeImpl extends IfcEdgeImpl implements IfcOrientedEdge 
 	 * @generated
 	 */
 	public void setEdgeElement(IfcEdge newEdgeElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ORIENTED_EDGE__EDGE_ELEMENT, newEdgeElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ORIENTED_EDGE__EDGE_ELEMENT,
+				newEdgeElement);
 	}
 
 	/**
@@ -80,7 +82,8 @@ public class IfcOrientedEdgeImpl extends IfcEdgeImpl implements IfcOrientedEdge 
 	 * @generated
 	 */
 	public Tristate getOrientation() {
-		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_ORIENTED_EDGE__ORIENTATION, true);
+		return (Tristate) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ORIENTED_EDGE__ORIENTATION, true);
 	}
 
 	/**
@@ -89,7 +92,8 @@ public class IfcOrientedEdgeImpl extends IfcEdgeImpl implements IfcOrientedEdge 
 	 * @generated
 	 */
 	public void setOrientation(Tristate newOrientation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ORIENTED_EDGE__ORIENTATION, newOrientation);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ORIENTED_EDGE__ORIENTATION,
+				newOrientation);
 	}
 
 } //IfcOrientedEdgeImpl

@@ -92,7 +92,8 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTableRow> getRows() {
-		return (EList<IfcTableRow>) eGet(Ifc2x3tc1Package.Literals.IFC_TABLE__ROWS, true);
+		return (EList<IfcTableRow>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TABLE__ROWS, true);
 	}
 
 } //IfcTableImpl

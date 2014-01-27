@@ -40,7 +40,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcMechanicalConcreteMaterialProperties extends IfcMechanicalMaterialProperties {
+public interface IfcMechanicalConcreteMaterialProperties extends
+		IfcMechanicalMaterialProperties {
 	/**
 	 * Returns the value of the '<em><b>Compressive Strength</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFlowStorageDeviceImpl extends IfcDistributionFlowElementImpl implements IfcFlowStorageDevice {
+public class IfcFlowStorageDeviceImpl extends IfcDistributionFlowElementImpl
+		implements IfcFlowStorageDevice {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

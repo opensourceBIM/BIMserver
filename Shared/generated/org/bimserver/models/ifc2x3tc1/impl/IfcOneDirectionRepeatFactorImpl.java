@@ -34,7 +34,9 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcOneDirectionRepeatFactorImpl extends IfcGeometricRepresentationItemImpl implements IfcOneDirectionRepeatFactor {
+public class IfcOneDirectionRepeatFactorImpl extends
+		IfcGeometricRepresentationItemImpl implements
+		IfcOneDirectionRepeatFactor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcOneDirectionRepeatFactorImpl extends IfcGeometricRepresentationI
 	 * @generated
 	 */
 	public IfcVector getRepeatFactor() {
-		return (IfcVector) eGet(Ifc2x3tc1Package.Literals.IFC_ONE_DIRECTION_REPEAT_FACTOR__REPEAT_FACTOR, true);
+		return (IfcVector) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ONE_DIRECTION_REPEAT_FACTOR__REPEAT_FACTOR,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcOneDirectionRepeatFactorImpl extends IfcGeometricRepresentationI
 	 * @generated
 	 */
 	public void setRepeatFactor(IfcVector newRepeatFactor) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ONE_DIRECTION_REPEAT_FACTOR__REPEAT_FACTOR, newRepeatFactor);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ONE_DIRECTION_REPEAT_FACTOR__REPEAT_FACTOR,
+				newRepeatFactor);
 	}
 
 } //IfcOneDirectionRepeatFactorImpl

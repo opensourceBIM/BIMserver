@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSymbolStyleImpl extends IfcPresentationStyleImpl implements IfcSymbolStyle {
+public class IfcSymbolStyleImpl extends IfcPresentationStyleImpl implements
+		IfcSymbolStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcSymbolStyleImpl extends IfcPresentationStyleImpl implements IfcS
 	 * @generated
 	 */
 	public IfcSymbolStyleSelect getStyleOfSymbol() {
-		return (IfcSymbolStyleSelect) eGet(Ifc2x3tc1Package.Literals.IFC_SYMBOL_STYLE__STYLE_OF_SYMBOL, true);
+		return (IfcSymbolStyleSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SYMBOL_STYLE__STYLE_OF_SYMBOL,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcSymbolStyleImpl extends IfcPresentationStyleImpl implements IfcS
 	 * @generated
 	 */
 	public void setStyleOfSymbol(IfcSymbolStyleSelect newStyleOfSymbol) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SYMBOL_STYLE__STYLE_OF_SYMBOL, newStyleOfSymbol);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SYMBOL_STYLE__STYLE_OF_SYMBOL,
+				newStyleOfSymbol);
 	}
 
 } //IfcSymbolStyleImpl

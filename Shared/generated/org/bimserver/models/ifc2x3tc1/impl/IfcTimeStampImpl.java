@@ -70,7 +70,8 @@ public class IfcTimeStampImpl extends IdEObjectImpl implements IfcTimeStamp {
 	 * @generated
 	 */
 	public int getWrappedValue() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_STAMP__WRAPPED_VALUE, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TIME_STAMP__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -79,7 +80,8 @@ public class IfcTimeStampImpl extends IdEObjectImpl implements IfcTimeStamp {
 	 * @generated
 	 */
 	public void setWrappedValue(int newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TIME_STAMP__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TIME_STAMP__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**

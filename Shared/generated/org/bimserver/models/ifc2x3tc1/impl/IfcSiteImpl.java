@@ -40,7 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements IfcSite {
+public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements
+		IfcSite {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,7 +68,8 @@ public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements IfcSi
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Integer> getRefLatitude() {
-		return (EList<Integer>) eGet(Ifc2x3tc1Package.Literals.IFC_SITE__REF_LATITUDE, true);
+		return (EList<Integer>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SITE__REF_LATITUDE, true);
 	}
 
 	/**
@@ -95,7 +97,8 @@ public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements IfcSi
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Integer> getRefLongitude() {
-		return (EList<Integer>) eGet(Ifc2x3tc1Package.Literals.IFC_SITE__REF_LONGITUDE, true);
+		return (EList<Integer>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SITE__REF_LONGITUDE, true);
 	}
 
 	/**
@@ -122,7 +125,8 @@ public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements IfcSi
 	 * @generated
 	 */
 	public double getRefElevation() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_SITE__REF_ELEVATION, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_SITE__REF_ELEVATION,
+				true);
 	}
 
 	/**
@@ -158,7 +162,9 @@ public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements IfcSi
 	 * @generated
 	 */
 	public String getRefElevationAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SITE__REF_ELEVATION_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SITE__REF_ELEVATION_AS_STRING,
+				true);
 	}
 
 	/**
@@ -167,7 +173,8 @@ public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements IfcSi
 	 * @generated
 	 */
 	public void setRefElevationAsString(String newRefElevationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SITE__REF_ELEVATION_AS_STRING, newRefElevationAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SITE__REF_ELEVATION_AS_STRING,
+				newRefElevationAsString);
 	}
 
 	/**
@@ -194,7 +201,8 @@ public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements IfcSi
 	 * @generated
 	 */
 	public String getLandTitleNumber() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SITE__LAND_TITLE_NUMBER, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SITE__LAND_TITLE_NUMBER, true);
 	}
 
 	/**
@@ -203,7 +211,8 @@ public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements IfcSi
 	 * @generated
 	 */
 	public void setLandTitleNumber(String newLandTitleNumber) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SITE__LAND_TITLE_NUMBER, newLandTitleNumber);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SITE__LAND_TITLE_NUMBER,
+				newLandTitleNumber);
 	}
 
 	/**
@@ -230,7 +239,8 @@ public class IfcSiteImpl extends IfcSpatialStructureElementImpl implements IfcSi
 	 * @generated
 	 */
 	public IfcPostalAddress getSiteAddress() {
-		return (IfcPostalAddress) eGet(Ifc2x3tc1Package.Literals.IFC_SITE__SITE_ADDRESS, true);
+		return (IfcPostalAddress) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SITE__SITE_ADDRESS, true);
 	}
 
 	/**

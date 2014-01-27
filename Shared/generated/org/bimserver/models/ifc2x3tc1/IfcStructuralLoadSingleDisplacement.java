@@ -43,7 +43,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadStatic {
+public interface IfcStructuralLoadSingleDisplacement extends
+		IfcStructuralLoadStatic {
 	/**
 	 * Returns the value of the '<em><b>Displacement X</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcParameterizedProfileDefImpl extends IfcProfileDefImpl implements IfcParameterizedProfileDef {
+public class IfcParameterizedProfileDefImpl extends IfcProfileDefImpl implements
+		IfcParameterizedProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcParameterizedProfileDefImpl extends IfcProfileDefImpl implements
 	 * @generated
 	 */
 	public IfcAxis2Placement2D getPosition() {
-		return (IfcAxis2Placement2D) eGet(Ifc2x3tc1Package.Literals.IFC_PARAMETERIZED_PROFILE_DEF__POSITION, true);
+		return (IfcAxis2Placement2D) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PARAMETERIZED_PROFILE_DEF__POSITION,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcParameterizedProfileDefImpl extends IfcProfileDefImpl implements
 	 * @generated
 	 */
 	public void setPosition(IfcAxis2Placement2D newPosition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PARAMETERIZED_PROFILE_DEF__POSITION, newPosition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PARAMETERIZED_PROFILE_DEF__POSITION,
+				newPosition);
 	}
 
 } //IfcParameterizedProfileDefImpl

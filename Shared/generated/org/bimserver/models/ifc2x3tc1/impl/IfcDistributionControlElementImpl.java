@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDistributionControlElementImpl extends IfcDistributionElementImpl implements IfcDistributionControlElement {
+public class IfcDistributionControlElementImpl extends
+		IfcDistributionElementImpl implements IfcDistributionControlElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcDistributionControlElementImpl extends IfcDistributionElementImp
 	 * @generated
 	 */
 	public String getControlElementId() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__CONTROL_ELEMENT_ID, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__CONTROL_ELEMENT_ID,
+				true);
 	}
 
 	/**
@@ -71,7 +74,8 @@ public class IfcDistributionControlElementImpl extends IfcDistributionElementImp
 	 * @generated
 	 */
 	public void setControlElementId(String newControlElementId) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__CONTROL_ELEMENT_ID, newControlElementId);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__CONTROL_ELEMENT_ID,
+				newControlElementId);
 	}
 
 	/**
@@ -99,7 +103,9 @@ public class IfcDistributionControlElementImpl extends IfcDistributionElementImp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelFlowControlElements> getAssignedToFlowElement() {
-		return (EList<IfcRelFlowControlElements>) eGet(Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT, true);
+		return (EList<IfcRelFlowControlElements>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT,
+				true);
 	}
 
 	/**

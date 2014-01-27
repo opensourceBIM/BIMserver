@@ -37,7 +37,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcConnectionPointEccentricity extends IfcConnectionPointGeometry {
+public interface IfcConnectionPointEccentricity extends
+		IfcConnectionPointGeometry {
 	/**
 	 * Returns the value of the '<em><b>Eccentricity In X</b></em>' attribute.
 	 * <!-- begin-user-doc -->

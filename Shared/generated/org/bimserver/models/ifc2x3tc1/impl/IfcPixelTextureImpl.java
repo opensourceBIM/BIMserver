@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPixelTexture {
+public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements
+		IfcPixelTexture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +62,8 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * @generated
 	 */
 	public int getWidth() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_PIXEL_TEXTURE__WIDTH, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PIXEL_TEXTURE__WIDTH, true);
 	}
 
 	/**
@@ -79,7 +81,8 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * @generated
 	 */
 	public int getHeight() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_PIXEL_TEXTURE__HEIGHT, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PIXEL_TEXTURE__HEIGHT, true);
 	}
 
 	/**
@@ -97,7 +100,9 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * @generated
 	 */
 	public int getColourComponents() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS,
+				true);
 	}
 
 	/**
@@ -106,7 +111,8 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * @generated
 	 */
 	public void setColourComponents(int newColourComponents) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS, newColourComponents);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS,
+				newColourComponents);
 	}
 
 } //IfcPixelTextureImpl

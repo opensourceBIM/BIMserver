@@ -60,7 +60,8 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROPORTIONALINTEGRALDERIVATIVE(2, "PROPORTIONALINTEGRALDERIVATIVE", "PROPORTIONALINTEGRALDERIVATIVE"),
+	PROPORTIONALINTEGRALDERIVATIVE(2, "PROPORTIONALINTEGRALDERIVATIVE",
+			"PROPORTIONALINTEGRALDERIVATIVE"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
@@ -263,8 +264,10 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcControllerTypeEnum[] VALUES_ARRAY = new IfcControllerTypeEnum[] { NULL, TWOPOSITION, PROPORTIONALINTEGRALDERIVATIVE, NOTDEFINED, FLOATING,
-			PROPORTIONAL, USERDEFINED, TIMEDTWOPOSITION, PROPORTIONALINTEGRAL, };
+	private static final IfcControllerTypeEnum[] VALUES_ARRAY = new IfcControllerTypeEnum[] {
+			NULL, TWOPOSITION, PROPORTIONALINTEGRALDERIVATIVE, NOTDEFINED,
+			FLOATING, PROPORTIONAL, USERDEFINED, TIMEDTWOPOSITION,
+			PROPORTIONALINTEGRAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Controller Type Enum</b></em>' enumerators.
@@ -272,7 +275,8 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcControllerTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcControllerTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Controller Type Enum</b></em>' literal with the specified literal value.

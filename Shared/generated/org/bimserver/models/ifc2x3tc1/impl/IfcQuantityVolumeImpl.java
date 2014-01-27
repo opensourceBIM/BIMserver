@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl implements IfcQuantityVolume {
+public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl
+		implements IfcQuantityVolume {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * @generated
 	 */
 	public double getVolumeValue() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * @generated
 	 */
 	public void setVolumeValue(double newVolumeValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE, newVolumeValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE,
+				newVolumeValue);
 	}
 
 	/**
@@ -78,7 +82,9 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * @generated
 	 */
 	public String getVolumeValueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -87,7 +93,8 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * @generated
 	 */
 	public void setVolumeValueAsString(String newVolumeValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING, newVolumeValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING,
+				newVolumeValueAsString);
 	}
 
 } //IfcQuantityVolumeImpl

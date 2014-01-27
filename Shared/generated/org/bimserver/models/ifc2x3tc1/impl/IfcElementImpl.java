@@ -120,7 +120,9 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralElement> getHasStructuralMember() {
-		return (EList<IfcRelConnectsStructuralElement>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__HAS_STRUCTURAL_MEMBER, true);
+		return (EList<IfcRelConnectsStructuralElement>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__HAS_STRUCTURAL_MEMBER,
+				true);
 	}
 
 	/**
@@ -148,7 +150,8 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelFillsElement> getFillsVoids() {
-		return (EList<IfcRelFillsElement>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__FILLS_VOIDS, true);
+		return (EList<IfcRelFillsElement>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__FILLS_VOIDS, true);
 	}
 
 	/**
@@ -176,7 +179,8 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsElements> getConnectedTo() {
-		return (EList<IfcRelConnectsElements>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__CONNECTED_TO, true);
+		return (EList<IfcRelConnectsElements>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__CONNECTED_TO, true);
 	}
 
 	/**
@@ -204,7 +208,8 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelCoversBldgElements> getHasCoverings() {
-		return (EList<IfcRelCoversBldgElements>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__HAS_COVERINGS, true);
+		return (EList<IfcRelCoversBldgElements>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__HAS_COVERINGS, true);
 	}
 
 	/**
@@ -232,7 +237,8 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelProjectsElement> getHasProjections() {
-		return (EList<IfcRelProjectsElement>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__HAS_PROJECTIONS, true);
+		return (EList<IfcRelProjectsElement>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__HAS_PROJECTIONS, true);
 	}
 
 	/**
@@ -260,7 +266,9 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelReferencedInSpatialStructure> getReferencedInStructures() {
-		return (EList<IfcRelReferencedInSpatialStructure>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__REFERENCED_IN_STRUCTURES, true);
+		return (EList<IfcRelReferencedInSpatialStructure>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__REFERENCED_IN_STRUCTURES,
+				true);
 	}
 
 	/**
@@ -288,7 +296,8 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsPortToElement> getHasPorts() {
-		return (EList<IfcRelConnectsPortToElement>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__HAS_PORTS, true);
+		return (EList<IfcRelConnectsPortToElement>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__HAS_PORTS, true);
 	}
 
 	/**
@@ -316,7 +325,8 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelVoidsElement> getHasOpenings() {
-		return (EList<IfcRelVoidsElement>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__HAS_OPENINGS, true);
+		return (EList<IfcRelVoidsElement>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__HAS_OPENINGS, true);
 	}
 
 	/**
@@ -344,7 +354,9 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsWithRealizingElements> getIsConnectionRealization() {
-		return (EList<IfcRelConnectsWithRealizingElements>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__IS_CONNECTION_REALIZATION, true);
+		return (EList<IfcRelConnectsWithRealizingElements>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__IS_CONNECTION_REALIZATION,
+				true);
 	}
 
 	/**
@@ -372,7 +384,9 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSpaceBoundary> getProvidesBoundaries() {
-		return (EList<IfcRelSpaceBoundary>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__PROVIDES_BOUNDARIES, true);
+		return (EList<IfcRelSpaceBoundary>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__PROVIDES_BOUNDARIES,
+				true);
 	}
 
 	/**
@@ -400,7 +414,8 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsElements> getConnectedFrom() {
-		return (EList<IfcRelConnectsElements>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__CONNECTED_FROM, true);
+		return (EList<IfcRelConnectsElements>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__CONNECTED_FROM, true);
 	}
 
 	/**
@@ -428,7 +443,9 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelContainedInSpatialStructure> getContainedInStructure() {
-		return (EList<IfcRelContainedInSpatialStructure>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT__CONTAINED_IN_STRUCTURE, true);
+		return (EList<IfcRelContainedInSpatialStructure>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT__CONTAINED_IN_STRUCTURE,
+				true);
 	}
 
 	/**

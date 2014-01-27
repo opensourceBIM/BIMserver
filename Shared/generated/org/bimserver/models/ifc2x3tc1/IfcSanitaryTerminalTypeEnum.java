@@ -363,7 +363,8 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSanitaryTerminalTypeEnum[] VALUES_ARRAY = new IfcSanitaryTerminalTypeEnum[] { NULL, TOILETPAN, BATH, CISTERN, BIDET, NOTDEFINED, WASHHANDBASIN,
+	private static final IfcSanitaryTerminalTypeEnum[] VALUES_ARRAY = new IfcSanitaryTerminalTypeEnum[] {
+			NULL, TOILETPAN, BATH, CISTERN, BIDET, NOTDEFINED, WASHHANDBASIN,
 			SANITARYFOUNTAIN, URINAL, SINK, USERDEFINED, WCSEAT, SHOWER, };
 
 	/**
@@ -372,7 +373,8 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSanitaryTerminalTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSanitaryTerminalTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Sanitary Terminal Type Enum</b></em>' literal with the specified literal value.

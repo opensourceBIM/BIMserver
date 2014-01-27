@@ -188,7 +188,8 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDocumentStatusEnum[] VALUES_ARRAY = new IfcDocumentStatusEnum[] { NULL, FINAL, NOTDEFINED, REVISION, DRAFT, FINALDRAFT, };
+	private static final IfcDocumentStatusEnum[] VALUES_ARRAY = new IfcDocumentStatusEnum[] {
+			NULL, FINAL, NOTDEFINED, REVISION, DRAFT, FINALDRAFT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Document Status Enum</b></em>' enumerators.
@@ -196,7 +197,8 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDocumentStatusEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDocumentStatusEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Document Status Enum</b></em>' literal with the specified literal value.

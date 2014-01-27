@@ -163,7 +163,8 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFlowDirectionEnum[] VALUES_ARRAY = new IfcFlowDirectionEnum[] { NULL, SOURCEANDSINK, SOURCE, NOTDEFINED, SINK, };
+	private static final IfcFlowDirectionEnum[] VALUES_ARRAY = new IfcFlowDirectionEnum[] {
+			NULL, SOURCEANDSINK, SOURCE, NOTDEFINED, SINK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Flow Direction Enum</b></em>' enumerators.
@@ -171,7 +172,8 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcFlowDirectionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcFlowDirectionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Flow Direction Enum</b></em>' literal with the specified literal value.

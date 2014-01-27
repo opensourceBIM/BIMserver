@@ -37,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCurveStyleFontPatternImpl extends IdEObjectImpl implements IfcCurveStyleFontPattern {
+public class IfcCurveStyleFontPatternImpl extends IdEObjectImpl implements
+		IfcCurveStyleFontPattern {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +74,9 @@ public class IfcCurveStyleFontPatternImpl extends IdEObjectImpl implements IfcCu
 	 * @generated
 	 */
 	public double getVisibleSegmentLength() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH,
+				true);
 	}
 
 	/**
@@ -82,7 +85,8 @@ public class IfcCurveStyleFontPatternImpl extends IdEObjectImpl implements IfcCu
 	 * @generated
 	 */
 	public void setVisibleSegmentLength(double newVisibleSegmentLength) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH, newVisibleSegmentLength);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH,
+				newVisibleSegmentLength);
 	}
 
 	/**
@@ -91,7 +95,9 @@ public class IfcCurveStyleFontPatternImpl extends IdEObjectImpl implements IfcCu
 	 * @generated
 	 */
 	public String getVisibleSegmentLengthAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH_AS_STRING,
+				true);
 	}
 
 	/**
@@ -99,8 +105,10 @@ public class IfcCurveStyleFontPatternImpl extends IdEObjectImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVisibleSegmentLengthAsString(String newVisibleSegmentLengthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH_AS_STRING, newVisibleSegmentLengthAsString);
+	public void setVisibleSegmentLengthAsString(
+			String newVisibleSegmentLengthAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH_AS_STRING,
+				newVisibleSegmentLengthAsString);
 	}
 
 	/**
@@ -109,7 +117,9 @@ public class IfcCurveStyleFontPatternImpl extends IdEObjectImpl implements IfcCu
 	 * @generated
 	 */
 	public double getInvisibleSegmentLength() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH,
+				true);
 	}
 
 	/**
@@ -118,7 +128,8 @@ public class IfcCurveStyleFontPatternImpl extends IdEObjectImpl implements IfcCu
 	 * @generated
 	 */
 	public void setInvisibleSegmentLength(double newInvisibleSegmentLength) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH, newInvisibleSegmentLength);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH,
+				newInvisibleSegmentLength);
 	}
 
 	/**
@@ -127,7 +138,9 @@ public class IfcCurveStyleFontPatternImpl extends IdEObjectImpl implements IfcCu
 	 * @generated
 	 */
 	public String getInvisibleSegmentLengthAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH_AS_STRING,
+				true);
 	}
 
 	/**
@@ -135,8 +148,10 @@ public class IfcCurveStyleFontPatternImpl extends IdEObjectImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInvisibleSegmentLengthAsString(String newInvisibleSegmentLengthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH_AS_STRING, newInvisibleSegmentLengthAsString);
+	public void setInvisibleSegmentLengthAsString(
+			String newInvisibleSegmentLengthAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH_AS_STRING,
+				newInvisibleSegmentLengthAsString);
 	}
 
 } //IfcCurveStyleFontPatternImpl

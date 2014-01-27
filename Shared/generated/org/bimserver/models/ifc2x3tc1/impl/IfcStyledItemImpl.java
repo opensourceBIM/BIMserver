@@ -38,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcStyledItem {
+public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements
+		IfcStyledItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,8 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * @generated
 	 */
 	public IfcRepresentationItem getItem() {
-		return (IfcRepresentationItem) eGet(Ifc2x3tc1Package.Literals.IFC_STYLED_ITEM__ITEM, true);
+		return (IfcRepresentationItem) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STYLED_ITEM__ITEM, true);
 	}
 
 	/**
@@ -101,7 +103,8 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationStyleAssignment> getStyles() {
-		return (EList<IfcPresentationStyleAssignment>) eGet(Ifc2x3tc1Package.Literals.IFC_STYLED_ITEM__STYLES, true);
+		return (EList<IfcPresentationStyleAssignment>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STYLED_ITEM__STYLES, true);
 	}
 
 	/**
@@ -110,7 +113,8 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STYLED_ITEM__NAME, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STYLED_ITEM__NAME,
+				true);
 	}
 
 	/**

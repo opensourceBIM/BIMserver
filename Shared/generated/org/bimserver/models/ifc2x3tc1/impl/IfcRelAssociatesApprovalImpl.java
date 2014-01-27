@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssociatesApprovalImpl extends IfcRelAssociatesImpl implements IfcRelAssociatesApproval {
+public class IfcRelAssociatesApprovalImpl extends IfcRelAssociatesImpl
+		implements IfcRelAssociatesApproval {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcRelAssociatesApprovalImpl extends IfcRelAssociatesImpl implement
 	 * @generated
 	 */
 	public IfcApproval getRelatingApproval() {
-		return (IfcApproval) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPROVAL__RELATING_APPROVAL, true);
+		return (IfcApproval) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPROVAL__RELATING_APPROVAL,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcRelAssociatesApprovalImpl extends IfcRelAssociatesImpl implement
 	 * @generated
 	 */
 	public void setRelatingApproval(IfcApproval newRelatingApproval) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPROVAL__RELATING_APPROVAL, newRelatingApproval);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPROVAL__RELATING_APPROVAL,
+				newRelatingApproval);
 	}
 
 } //IfcRelAssociatesApprovalImpl

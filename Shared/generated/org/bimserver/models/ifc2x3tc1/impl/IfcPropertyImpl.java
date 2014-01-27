@@ -95,7 +95,8 @@ public class IfcPropertyImpl extends IdEObjectImpl implements IfcProperty {
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY__DESCRIPTION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY__DESCRIPTION, true);
 	}
 
 	/**
@@ -104,7 +105,8 @@ public class IfcPropertyImpl extends IdEObjectImpl implements IfcProperty {
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY__DESCRIPTION, newDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY__DESCRIPTION,
+				newDescription);
 	}
 
 	/**
@@ -132,7 +134,9 @@ public class IfcPropertyImpl extends IdEObjectImpl implements IfcProperty {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyDependencyRelationship> getPropertyForDependance() {
-		return (EList<IfcPropertyDependencyRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY__PROPERTY_FOR_DEPENDANCE, true);
+		return (EList<IfcPropertyDependencyRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY__PROPERTY_FOR_DEPENDANCE,
+				true);
 	}
 
 	/**
@@ -160,7 +164,9 @@ public class IfcPropertyImpl extends IdEObjectImpl implements IfcProperty {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyDependencyRelationship> getPropertyDependsOn() {
-		return (EList<IfcPropertyDependencyRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY__PROPERTY_DEPENDS_ON, true);
+		return (EList<IfcPropertyDependencyRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY__PROPERTY_DEPENDS_ON,
+				true);
 	}
 
 	/**
@@ -188,7 +194,8 @@ public class IfcPropertyImpl extends IdEObjectImpl implements IfcProperty {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcComplexProperty> getPartOfComplex() {
-		return (EList<IfcComplexProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY__PART_OF_COMPLEX, true);
+		return (EList<IfcComplexProperty>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY__PART_OF_COMPLEX, true);
 	}
 
 	/**

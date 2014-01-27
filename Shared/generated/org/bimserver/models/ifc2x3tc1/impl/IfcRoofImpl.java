@@ -60,7 +60,8 @@ public class IfcRoofImpl extends IfcBuildingElementImpl implements IfcRoof {
 	 * @generated
 	 */
 	public IfcRoofTypeEnum getShapeType() {
-		return (IfcRoofTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ROOF__SHAPE_TYPE, true);
+		return (IfcRoofTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ROOF__SHAPE_TYPE, true);
 	}
 
 	/**

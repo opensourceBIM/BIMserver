@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcJunctionBoxTypeImpl extends IfcFlowFittingTypeImpl implements IfcJunctionBoxType {
+public class IfcJunctionBoxTypeImpl extends IfcFlowFittingTypeImpl implements
+		IfcJunctionBoxType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcJunctionBoxTypeImpl extends IfcFlowFittingTypeImpl implements If
 	 * @generated
 	 */
 	public IfcJunctionBoxTypeEnum getPredefinedType() {
-		return (IfcJunctionBoxTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_JUNCTION_BOX_TYPE__PREDEFINED_TYPE, true);
+		return (IfcJunctionBoxTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_JUNCTION_BOX_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcJunctionBoxTypeImpl extends IfcFlowFittingTypeImpl implements If
 	 * @generated
 	 */
 	public void setPredefinedType(IfcJunctionBoxTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_JUNCTION_BOX_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_JUNCTION_BOX_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcJunctionBoxTypeImpl

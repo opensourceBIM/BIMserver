@@ -163,7 +163,8 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcArithmeticOperatorEnum[] VALUES_ARRAY = new IfcArithmeticOperatorEnum[] { NULL, MULTIPLY, SUBTRACT, DIVIDE, ADD, };
+	private static final IfcArithmeticOperatorEnum[] VALUES_ARRAY = new IfcArithmeticOperatorEnum[] {
+			NULL, MULTIPLY, SUBTRACT, DIVIDE, ADD, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Arithmetic Operator Enum</b></em>' enumerators.
@@ -171,7 +172,8 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcArithmeticOperatorEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcArithmeticOperatorEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Arithmetic Operator Enum</b></em>' literal with the specified literal value.

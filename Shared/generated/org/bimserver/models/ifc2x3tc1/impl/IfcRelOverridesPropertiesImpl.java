@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelOverridesPropertiesImpl extends IfcRelDefinesByPropertiesImpl implements IfcRelOverridesProperties {
+public class IfcRelOverridesPropertiesImpl extends
+		IfcRelDefinesByPropertiesImpl implements IfcRelOverridesProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcRelOverridesPropertiesImpl extends IfcRelDefinesByPropertiesImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getOverridingProperties() {
-		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_REL_OVERRIDES_PROPERTIES__OVERRIDING_PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_OVERRIDES_PROPERTIES__OVERRIDING_PROPERTIES,
+				true);
 	}
 
 } //IfcRelOverridesPropertiesImpl

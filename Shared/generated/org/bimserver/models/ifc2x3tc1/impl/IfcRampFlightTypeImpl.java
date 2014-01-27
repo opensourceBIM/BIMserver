@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRampFlightTypeImpl extends IfcBuildingElementTypeImpl implements IfcRampFlightType {
+public class IfcRampFlightTypeImpl extends IfcBuildingElementTypeImpl implements
+		IfcRampFlightType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcRampFlightTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcRampFlightTypeEnum getPredefinedType() {
-		return (IfcRampFlightTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_RAMP_FLIGHT_TYPE__PREDEFINED_TYPE, true);
+		return (IfcRampFlightTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RAMP_FLIGHT_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcRampFlightTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcRampFlightTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_RAMP_FLIGHT_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_RAMP_FLIGHT_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcRampFlightTypeImpl

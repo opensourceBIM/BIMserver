@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPlanarBoxImpl extends IfcPlanarExtentImpl implements IfcPlanarBox {
+public class IfcPlanarBoxImpl extends IfcPlanarExtentImpl implements
+		IfcPlanarBox {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcPlanarBoxImpl extends IfcPlanarExtentImpl implements IfcPlanarBo
 	 * @generated
 	 */
 	public IfcAxis2Placement getPlacement() {
-		return (IfcAxis2Placement) eGet(Ifc2x3tc1Package.Literals.IFC_PLANAR_BOX__PLACEMENT, true);
+		return (IfcAxis2Placement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PLANAR_BOX__PLACEMENT, true);
 	}
 
 	/**

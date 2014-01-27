@@ -32,7 +32,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcMaterialDefinitionRepresentation extends IfcProductRepresentation {
+public interface IfcMaterialDefinitionRepresentation extends
+		IfcProductRepresentation {
 	/**
 	 * Returns the value of the '<em><b>Represented Material</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc2x3tc1.IfcMaterial#getHasRepresentation <em>Has Representation</em>}'.

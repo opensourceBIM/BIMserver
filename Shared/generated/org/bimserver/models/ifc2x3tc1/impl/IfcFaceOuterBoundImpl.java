@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFaceOuterBoundImpl extends IfcFaceBoundImpl implements IfcFaceOuterBound {
+public class IfcFaceOuterBoundImpl extends IfcFaceBoundImpl implements
+		IfcFaceOuterBound {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

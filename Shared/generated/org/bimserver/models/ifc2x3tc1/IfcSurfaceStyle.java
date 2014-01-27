@@ -35,7 +35,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcSurfaceStyle extends IfcPresentationStyle, IfcPresentationStyleSelect {
+public interface IfcSurfaceStyle extends IfcPresentationStyle,
+		IfcPresentationStyleSelect {
 	/**
 	 * Returns the value of the '<em><b>Side</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc2x3tc1.IfcSurfaceSide}.

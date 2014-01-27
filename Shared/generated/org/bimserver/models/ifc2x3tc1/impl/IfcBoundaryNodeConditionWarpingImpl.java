@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditionImpl implements IfcBoundaryNodeConditionWarping {
+public class IfcBoundaryNodeConditionWarpingImpl extends
+		IfcBoundaryNodeConditionImpl implements IfcBoundaryNodeConditionWarping {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 * @generated
 	 */
 	public double getWarpingStiffness() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 * @generated
 	 */
 	public void setWarpingStiffness(double newWarpingStiffness) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS, newWarpingStiffness);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS,
+				newWarpingStiffness);
 	}
 
 	/**
@@ -96,7 +100,9 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 * @generated
 	 */
 	public String getWarpingStiffnessAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -105,7 +111,8 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 * @generated
 	 */
 	public void setWarpingStiffnessAsString(String newWarpingStiffnessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING, newWarpingStiffnessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING,
+				newWarpingStiffnessAsString);
 	}
 
 	/**

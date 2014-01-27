@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsToActorImpl extends IfcRelAssignsImpl implements IfcRelAssignsToActor {
+public class IfcRelAssignsToActorImpl extends IfcRelAssignsImpl implements
+		IfcRelAssignsToActor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcRelAssignsToActorImpl extends IfcRelAssignsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcActor getRelatingActor() {
-		return (IfcActor) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_ACTOR__RELATING_ACTOR, true);
+		return (IfcActor) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_ACTOR__RELATING_ACTOR,
+				true);
 	}
 
 	/**
@@ -71,7 +74,8 @@ public class IfcRelAssignsToActorImpl extends IfcRelAssignsImpl implements IfcRe
 	 * @generated
 	 */
 	public void setRelatingActor(IfcActor newRelatingActor) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_ACTOR__RELATING_ACTOR, newRelatingActor);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_ACTOR__RELATING_ACTOR,
+				newRelatingActor);
 	}
 
 	/**
@@ -80,7 +84,9 @@ public class IfcRelAssignsToActorImpl extends IfcRelAssignsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcActorRole getActingRole() {
-		return (IfcActorRole) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_ACTOR__ACTING_ROLE, true);
+		return (IfcActorRole) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_ACTOR__ACTING_ROLE,
+				true);
 	}
 
 	/**
@@ -89,7 +95,8 @@ public class IfcRelAssignsToActorImpl extends IfcRelAssignsImpl implements IfcRe
 	 * @generated
 	 */
 	public void setActingRole(IfcActorRole newActingRole) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_ACTOR__ACTING_ROLE, newActingRole);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_ACTOR__ACTING_ROLE,
+				newActingRole);
 	}
 
 	/**

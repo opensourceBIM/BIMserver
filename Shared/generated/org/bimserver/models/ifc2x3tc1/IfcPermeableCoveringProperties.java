@@ -38,7 +38,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcPermeableCoveringProperties extends IfcPropertySetDefinition {
+public interface IfcPermeableCoveringProperties extends
+		IfcPropertySetDefinition {
 	/**
 	 * Returns the value of the '<em><b>Operation Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc2x3tc1.IfcPermeableCoveringOperationEnum}.

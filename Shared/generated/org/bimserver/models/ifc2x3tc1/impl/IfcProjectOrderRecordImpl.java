@@ -37,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProjectOrderRecordImpl extends IfcControlImpl implements IfcProjectOrderRecord {
+public class IfcProjectOrderRecordImpl extends IfcControlImpl implements
+		IfcProjectOrderRecord {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,9 @@ public class IfcProjectOrderRecordImpl extends IfcControlImpl implements IfcProj
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToProjectOrder> getRecords() {
-		return (EList<IfcRelAssignsToProjectOrder>) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER_RECORD__RECORDS, true);
+		return (EList<IfcRelAssignsToProjectOrder>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER_RECORD__RECORDS,
+				true);
 	}
 
 	/**
@@ -73,7 +76,9 @@ public class IfcProjectOrderRecordImpl extends IfcControlImpl implements IfcProj
 	 * @generated
 	 */
 	public IfcProjectOrderRecordTypeEnum getPredefinedType() {
-		return (IfcProjectOrderRecordTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER_RECORD__PREDEFINED_TYPE, true);
+		return (IfcProjectOrderRecordTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER_RECORD__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -81,8 +86,10 @@ public class IfcProjectOrderRecordImpl extends IfcControlImpl implements IfcProj
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(IfcProjectOrderRecordTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER_RECORD__PREDEFINED_TYPE, newPredefinedType);
+	public void setPredefinedType(
+			IfcProjectOrderRecordTypeEnum newPredefinedType) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER_RECORD__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcProjectOrderRecordImpl

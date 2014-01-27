@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcManifoldSolidBrepImpl extends IfcSolidModelImpl implements IfcManifoldSolidBrep {
+public class IfcManifoldSolidBrepImpl extends IfcSolidModelImpl implements
+		IfcManifoldSolidBrep {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcManifoldSolidBrepImpl extends IfcSolidModelImpl implements IfcMa
 	 * @generated
 	 */
 	public IfcClosedShell getOuter() {
-		return (IfcClosedShell) eGet(Ifc2x3tc1Package.Literals.IFC_MANIFOLD_SOLID_BREP__OUTER, true);
+		return (IfcClosedShell) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MANIFOLD_SOLID_BREP__OUTER, true);
 	}
 
 	/**

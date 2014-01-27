@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcColumnTypeImpl extends IfcBuildingElementTypeImpl implements IfcColumnType {
+public class IfcColumnTypeImpl extends IfcBuildingElementTypeImpl implements
+		IfcColumnType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcColumnTypeImpl extends IfcBuildingElementTypeImpl implements Ifc
 	 * @generated
 	 */
 	public IfcColumnTypeEnum getPredefinedType() {
-		return (IfcColumnTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_COLUMN_TYPE__PREDEFINED_TYPE, true);
+		return (IfcColumnTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COLUMN_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcColumnTypeImpl extends IfcBuildingElementTypeImpl implements Ifc
 	 * @generated
 	 */
 	public void setPredefinedType(IfcColumnTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COLUMN_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COLUMN_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcColumnTypeImpl

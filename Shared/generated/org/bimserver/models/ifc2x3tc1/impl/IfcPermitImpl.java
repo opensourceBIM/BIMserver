@@ -59,7 +59,8 @@ public class IfcPermitImpl extends IfcControlImpl implements IfcPermit {
 	 * @generated
 	 */
 	public String getPermitID() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PERMIT__PERMIT_ID, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PERMIT__PERMIT_ID,
+				true);
 	}
 
 	/**

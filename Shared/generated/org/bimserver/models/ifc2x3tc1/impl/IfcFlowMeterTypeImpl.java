@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFlowMeterTypeImpl extends IfcFlowControllerTypeImpl implements IfcFlowMeterType {
+public class IfcFlowMeterTypeImpl extends IfcFlowControllerTypeImpl implements
+		IfcFlowMeterType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcFlowMeterTypeImpl extends IfcFlowControllerTypeImpl implements I
 	 * @generated
 	 */
 	public IfcFlowMeterTypeEnum getPredefinedType() {
-		return (IfcFlowMeterTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_FLOW_METER_TYPE__PREDEFINED_TYPE, true);
+		return (IfcFlowMeterTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FLOW_METER_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcFlowMeterTypeImpl extends IfcFlowControllerTypeImpl implements I
 	 * @generated
 	 */
 	public void setPredefinedType(IfcFlowMeterTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FLOW_METER_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FLOW_METER_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcFlowMeterTypeImpl

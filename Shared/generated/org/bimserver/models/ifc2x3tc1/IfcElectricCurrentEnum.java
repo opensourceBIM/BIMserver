@@ -138,7 +138,8 @@ public enum IfcElectricCurrentEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricCurrentEnum[] VALUES_ARRAY = new IfcElectricCurrentEnum[] { NULL, NOTDEFINED, DIRECT, ALTERNATING, };
+	private static final IfcElectricCurrentEnum[] VALUES_ARRAY = new IfcElectricCurrentEnum[] {
+			NULL, NOTDEFINED, DIRECT, ALTERNATING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Current Enum</b></em>' enumerators.
@@ -146,7 +147,8 @@ public enum IfcElectricCurrentEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricCurrentEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricCurrentEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Current Enum</b></em>' literal with the specified literal value.

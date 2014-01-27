@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSimplePropertyImpl extends IfcPropertyImpl implements IfcSimpleProperty {
+public class IfcSimplePropertyImpl extends IfcPropertyImpl implements
+		IfcSimpleProperty {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

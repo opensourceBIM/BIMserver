@@ -188,7 +188,8 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricHeaterTypeEnum[] VALUES_ARRAY = new IfcElectricHeaterTypeEnum[] { NULL, ELECTRICMATHEATER, NOTDEFINED, ELECTRICCABLEHEATER,
+	private static final IfcElectricHeaterTypeEnum[] VALUES_ARRAY = new IfcElectricHeaterTypeEnum[] {
+			NULL, ELECTRICMATHEATER, NOTDEFINED, ELECTRICCABLEHEATER,
 			ELECTRICPOINTHEATER, USERDEFINED, };
 
 	/**
@@ -197,7 +198,8 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricHeaterTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricHeaterTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Heater Type Enum</b></em>' literal with the specified literal value.

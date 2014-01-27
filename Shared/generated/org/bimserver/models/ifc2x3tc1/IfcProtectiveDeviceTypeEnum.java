@@ -100,7 +100,8 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RESIDUALCURRENTCIRCUITBREAKER(6, "RESIDUALCURRENTCIRCUITBREAKER", "RESIDUALCURRENTCIRCUITBREAKER"),
+	RESIDUALCURRENTCIRCUITBREAKER(6, "RESIDUALCURRENTCIRCUITBREAKER",
+			"RESIDUALCURRENTCIRCUITBREAKER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -263,8 +264,10 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] { NULL, CIRCUITBREAKER, VARISTOR, NOTDEFINED, FUSEDISCONNECTOR,
-			EARTHFAILUREDEVICE, RESIDUALCURRENTCIRCUITBREAKER, USERDEFINED, RESIDUALCURRENTSWITCH, };
+	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] {
+			NULL, CIRCUITBREAKER, VARISTOR, NOTDEFINED, FUSEDISCONNECTOR,
+			EARTHFAILUREDEVICE, RESIDUALCURRENTCIRCUITBREAKER, USERDEFINED,
+			RESIDUALCURRENTSWITCH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Protective Device Type Enum</b></em>' enumerators.
@@ -272,7 +275,8 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProtectiveDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProtectiveDeviceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Protective Device Type Enum</b></em>' literal with the specified literal value.

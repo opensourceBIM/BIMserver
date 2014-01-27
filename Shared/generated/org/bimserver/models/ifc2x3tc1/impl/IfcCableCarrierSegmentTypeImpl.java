@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCableCarrierSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements IfcCableCarrierSegmentType {
+public class IfcCableCarrierSegmentTypeImpl extends IfcFlowSegmentTypeImpl
+		implements IfcCableCarrierSegmentType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcCableCarrierSegmentTypeImpl extends IfcFlowSegmentTypeImpl imple
 	 * @generated
 	 */
 	public IfcCableCarrierSegmentTypeEnum getPredefinedType() {
-		return (IfcCableCarrierSegmentTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_CABLE_CARRIER_SEGMENT_TYPE__PREDEFINED_TYPE, true);
+		return (IfcCableCarrierSegmentTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CABLE_CARRIER_SEGMENT_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -68,8 +71,10 @@ public class IfcCableCarrierSegmentTypeImpl extends IfcFlowSegmentTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(IfcCableCarrierSegmentTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CABLE_CARRIER_SEGMENT_TYPE__PREDEFINED_TYPE, newPredefinedType);
+	public void setPredefinedType(
+			IfcCableCarrierSegmentTypeEnum newPredefinedType) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_CABLE_CARRIER_SEGMENT_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcCableCarrierSegmentTypeImpl

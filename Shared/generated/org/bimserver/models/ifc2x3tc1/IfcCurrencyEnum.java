@@ -413,16 +413,6 @@ public enum IfcCurrencyEnum implements Enumerator {
 	GRX(37, "GRX", "GRX"),
 
 	/**
-	 * The '<em><b>JMD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JMD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	JMD(38, "JMD", "JMD"),
-
-	/**
 	 * The '<em><b>KRW</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -430,7 +420,15 @@ public enum IfcCurrencyEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	KRW(39, "KRW", "KRW"),
+	KRW(38, "KRW", "KRW"), /**
+							 * The '<em><b>JMD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #JMD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	JMD(39, "JMD", "JMD"),
 
 	/**
 	 * The '<em><b>EST</b></em>' literal object.
@@ -1443,21 +1441,6 @@ public enum IfcCurrencyEnum implements Enumerator {
 	public static final int GRX_VALUE = 37;
 
 	/**
-	 * The '<em><b>JMD</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>JMD</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #JMD
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int JMD_VALUE = 38;
-
-	/**
 	 * The '<em><b>KRW</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -1470,7 +1453,22 @@ public enum IfcCurrencyEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KRW_VALUE = 39;
+	public static final int KRW_VALUE = 38;
+
+	/**
+	 * The '<em><b>JMD</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>JMD</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #JMD
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int JMD_VALUE = 39;
 
 	/**
 	 * The '<em><b>EST</b></em>' literal value.
@@ -2138,9 +2136,14 @@ public enum IfcCurrencyEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCurrencyEnum[] VALUES_ARRAY = new IfcCurrencyEnum[] { NULL, CNY, JPY, KYD, TTD, LKR, MXN, XEU, CAD, ZAR, AUD, DEM, NOK, ILS, AES, FAK, PKR, BBD, THB,
-			SCR, FKP, ATS, FIM, IDR, AED, PGK, GIP, QAR, BHD, BWP, BSD, IRP, DKK, SEK, MYR, FJD, DDP, GRX, JMD, KRW, EST, BGL, ZWD, CZK, FRF, KWD, VEB, VND, TRL, JOD, NZD, CLP,
-			GBP, KES, CHF, EGL, MUR, SAR, BZD, INR, PTN, TWD, BMD, ITL, OMR, SGD, NLG, SKP, HKD, RUR, GMD, CYS, CBD, BRL, EUR, ICK, BEG, PHP, HUF, PLN, USD, MTL, LUF, BND, };
+	private static final IfcCurrencyEnum[] VALUES_ARRAY = new IfcCurrencyEnum[] {
+			NULL, CNY, JPY, KYD, TTD, LKR, MXN, XEU, CAD, ZAR, AUD, DEM, NOK,
+			ILS, AES, FAK, PKR, BBD, THB, SCR, FKP, ATS, FIM, IDR, AED, PGK,
+			GIP, QAR, BHD, BWP, BSD, IRP, DKK, SEK, MYR, FJD, DDP, GRX, KRW,
+			JMD, EST, BGL, ZWD, CZK, FRF, KWD, VEB, VND, TRL, JOD, NZD, CLP,
+			GBP, KES, CHF, EGL, MUR, SAR, BZD, INR, PTN, TWD, BMD, ITL, OMR,
+			SGD, NLG, SKP, HKD, RUR, GMD, CYS, CBD, BRL, EUR, ICK, BEG, PHP,
+			HUF, PLN, USD, MTL, LUF, BND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Currency Enum</b></em>' enumerators.
@@ -2148,7 +2151,8 @@ public enum IfcCurrencyEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCurrencyEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCurrencyEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Currency Enum</b></em>' literal with the specified literal value.
@@ -2266,10 +2270,10 @@ public enum IfcCurrencyEnum implements Enumerator {
 			return DDP;
 		case GRX_VALUE:
 			return GRX;
-		case JMD_VALUE:
-			return JMD;
 		case KRW_VALUE:
 			return KRW;
+		case JMD_VALUE:
+			return JMD;
 		case EST_VALUE:
 			return EST;
 		case BGL_VALUE:

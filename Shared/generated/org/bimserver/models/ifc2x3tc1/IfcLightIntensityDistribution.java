@@ -35,7 +35,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcLightIntensityDistribution extends IfcLightDistributionDataSourceSelect {
+public interface IfcLightIntensityDistribution extends
+		IfcLightDistributionDataSourceSelect {
 	/**
 	 * Returns the value of the '<em><b>Light Distribution Curve</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc2x3tc1.IfcLightDistributionCurveEnum}.

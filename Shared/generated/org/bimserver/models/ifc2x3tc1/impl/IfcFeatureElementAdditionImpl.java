@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFeatureElementAdditionImpl extends IfcFeatureElementImpl implements IfcFeatureElementAddition {
+public class IfcFeatureElementAdditionImpl extends IfcFeatureElementImpl
+		implements IfcFeatureElementAddition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcFeatureElementAdditionImpl extends IfcFeatureElementImpl impleme
 	 * @generated
 	 */
 	public IfcRelProjectsElement getProjectsElements() {
-		return (IfcRelProjectsElement) eGet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_ADDITION__PROJECTS_ELEMENTS, true);
+		return (IfcRelProjectsElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_ADDITION__PROJECTS_ELEMENTS,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcFeatureElementAdditionImpl extends IfcFeatureElementImpl impleme
 	 * @generated
 	 */
 	public void setProjectsElements(IfcRelProjectsElement newProjectsElements) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_ADDITION__PROJECTS_ELEMENTS, newProjectsElements);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_ADDITION__PROJECTS_ELEMENTS,
+				newProjectsElements);
 	}
 
 	/**

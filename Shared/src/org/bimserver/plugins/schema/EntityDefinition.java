@@ -34,7 +34,7 @@ public class EntityDefinition extends NamedType {
 	private ArrayList<Attribute> attributesPlusSuper;
 
 	private ArrayList<EntityDefinition> subtypes = new ArrayList<EntityDefinition>();
-	private Map<String, DerivedAttribute2> derivedAttributes = new HashMap<String, DerivedAttribute2>();
+	private final Map<String, DerivedAttribute2> derivedAttributes = new HashMap<String, DerivedAttribute2>();
 	boolean complex;
 	boolean instantiable;
 	boolean independent;

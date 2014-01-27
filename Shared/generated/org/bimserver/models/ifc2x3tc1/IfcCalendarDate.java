@@ -34,7 +34,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcCalendarDate extends IfcDateTimeSelect, IfcObjectReferenceSelect {
+public interface IfcCalendarDate extends IfcDateTimeSelect,
+		IfcObjectReferenceSelect {
 	/**
 	 * Returns the value of the '<em><b>Day Component</b></em>' attribute.
 	 * <!-- begin-user-doc -->

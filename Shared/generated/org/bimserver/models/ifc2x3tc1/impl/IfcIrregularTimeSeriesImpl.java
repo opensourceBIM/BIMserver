@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcIrregularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcIrregularTimeSeries {
+public class IfcIrregularTimeSeriesImpl extends IfcTimeSeriesImpl implements
+		IfcIrregularTimeSeries {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcIrregularTimeSeriesImpl extends IfcTimeSeriesImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcIrregularTimeSeriesValue> getValues() {
-		return (EList<IfcIrregularTimeSeriesValue>) eGet(Ifc2x3tc1Package.Literals.IFC_IRREGULAR_TIME_SERIES__VALUES, true);
+		return (EList<IfcIrregularTimeSeriesValue>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_IRREGULAR_TIME_SERIES__VALUES,
+				true);
 	}
 
 } //IfcIrregularTimeSeriesImpl

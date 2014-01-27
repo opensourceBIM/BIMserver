@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLinearDimensionImpl extends IfcDimensionCurveDirectedCalloutImpl implements IfcLinearDimension {
+public class IfcLinearDimensionImpl extends
+		IfcDimensionCurveDirectedCalloutImpl implements IfcLinearDimension {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

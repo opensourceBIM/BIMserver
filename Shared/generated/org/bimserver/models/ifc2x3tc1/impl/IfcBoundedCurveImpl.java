@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBoundedCurveImpl extends IfcCurveImpl implements IfcBoundedCurve {
+public class IfcBoundedCurveImpl extends IfcCurveImpl implements
+		IfcBoundedCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

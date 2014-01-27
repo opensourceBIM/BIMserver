@@ -33,7 +33,8 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	Ifc2x3tc1Factory eINSTANCE = org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1FactoryImpl.init();
+	Ifc2x3tc1Factory eINSTANCE = org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1FactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Ifc2 DComposite Curve</em>'.

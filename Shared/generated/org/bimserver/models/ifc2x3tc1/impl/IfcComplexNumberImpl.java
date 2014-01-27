@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcComplexNumberImpl extends IdEObjectImpl implements IfcComplexNumber {
+public class IfcComplexNumberImpl extends IdEObjectImpl implements
+		IfcComplexNumber {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +74,9 @@ public class IfcComplexNumberImpl extends IdEObjectImpl implements IfcComplexNum
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getWrappedValue() {
-		return (EList<Double>) eGet(Ifc2x3tc1Package.Literals.IFC_COMPLEX_NUMBER__WRAPPED_VALUE, true);
+		return (EList<Double>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COMPLEX_NUMBER__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -101,7 +104,9 @@ public class IfcComplexNumberImpl extends IdEObjectImpl implements IfcComplexNum
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getWrappedValueAsString() {
-		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_COMPLEX_NUMBER__WRAPPED_VALUE_AS_STRING, true);
+		return (EList<String>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COMPLEX_NUMBER__WRAPPED_VALUE_AS_STRING,
+				true);
 	}
 
 	/**

@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTwoDirectionRepeatFactorImpl extends IfcOneDirectionRepeatFactorImpl implements IfcTwoDirectionRepeatFactor {
+public class IfcTwoDirectionRepeatFactorImpl extends
+		IfcOneDirectionRepeatFactorImpl implements IfcTwoDirectionRepeatFactor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcTwoDirectionRepeatFactorImpl extends IfcOneDirectionRepeatFactor
 	 * @generated
 	 */
 	public IfcVector getSecondRepeatFactor() {
-		return (IfcVector) eGet(Ifc2x3tc1Package.Literals.IFC_TWO_DIRECTION_REPEAT_FACTOR__SECOND_REPEAT_FACTOR, true);
+		return (IfcVector) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TWO_DIRECTION_REPEAT_FACTOR__SECOND_REPEAT_FACTOR,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcTwoDirectionRepeatFactorImpl extends IfcOneDirectionRepeatFactor
 	 * @generated
 	 */
 	public void setSecondRepeatFactor(IfcVector newSecondRepeatFactor) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TWO_DIRECTION_REPEAT_FACTOR__SECOND_REPEAT_FACTOR, newSecondRepeatFactor);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TWO_DIRECTION_REPEAT_FACTOR__SECOND_REPEAT_FACTOR,
+				newSecondRepeatFactor);
 	}
 
 } //IfcTwoDirectionRepeatFactorImpl

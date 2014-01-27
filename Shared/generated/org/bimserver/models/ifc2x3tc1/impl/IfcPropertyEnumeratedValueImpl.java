@@ -37,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyEnumeratedValueImpl extends IfcSimplePropertyImpl implements IfcPropertyEnumeratedValue {
+public class IfcPropertyEnumeratedValueImpl extends IfcSimplePropertyImpl
+		implements IfcPropertyEnumeratedValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,9 @@ public class IfcPropertyEnumeratedValueImpl extends IfcSimplePropertyImpl implem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getEnumerationValues() {
-		return (EList<IfcValue>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATED_VALUE__ENUMERATION_VALUES, true);
+		return (EList<IfcValue>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATED_VALUE__ENUMERATION_VALUES,
+				true);
 	}
 
 	/**
@@ -73,7 +76,9 @@ public class IfcPropertyEnumeratedValueImpl extends IfcSimplePropertyImpl implem
 	 * @generated
 	 */
 	public IfcPropertyEnumeration getEnumerationReference() {
-		return (IfcPropertyEnumeration) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATED_VALUE__ENUMERATION_REFERENCE, true);
+		return (IfcPropertyEnumeration) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATED_VALUE__ENUMERATION_REFERENCE,
+				true);
 	}
 
 	/**
@@ -81,8 +86,10 @@ public class IfcPropertyEnumeratedValueImpl extends IfcSimplePropertyImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnumerationReference(IfcPropertyEnumeration newEnumerationReference) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATED_VALUE__ENUMERATION_REFERENCE, newEnumerationReference);
+	public void setEnumerationReference(
+			IfcPropertyEnumeration newEnumerationReference) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATED_VALUE__ENUMERATION_REFERENCE,
+				newEnumerationReference);
 	}
 
 	/**

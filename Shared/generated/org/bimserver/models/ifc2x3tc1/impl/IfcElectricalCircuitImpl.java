@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricalCircuitImpl extends IfcSystemImpl implements IfcElectricalCircuit {
+public class IfcElectricalCircuitImpl extends IfcSystemImpl implements
+		IfcElectricalCircuit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

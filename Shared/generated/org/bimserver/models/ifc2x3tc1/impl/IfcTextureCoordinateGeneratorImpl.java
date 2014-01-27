@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl implements IfcTextureCoordinateGenerator {
+public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl
+		implements IfcTextureCoordinateGenerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl 
 	 * @generated
 	 */
 	public String getMode() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__MODE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__MODE,
+				true);
 	}
 
 	/**
@@ -71,7 +74,8 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl 
 	 * @generated
 	 */
 	public void setMode(String newMode) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__MODE, newMode);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__MODE,
+				newMode);
 	}
 
 	/**
@@ -81,7 +85,9 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSimpleValue> getParameter() {
-		return (EList<IfcSimpleValue>) eGet(Ifc2x3tc1Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__PARAMETER, true);
+		return (EList<IfcSimpleValue>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__PARAMETER,
+				true);
 	}
 
 } //IfcTextureCoordinateGeneratorImpl

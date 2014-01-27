@@ -34,7 +34,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcStructuralItem extends IfcProduct, IfcStructuralActivityAssignmentSelect {
+public interface IfcStructuralItem extends IfcProduct,
+		IfcStructuralActivityAssignmentSelect {
 	/**
 	 * Returns the value of the '<em><b>Assigned Structural Activity</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralActivity}.

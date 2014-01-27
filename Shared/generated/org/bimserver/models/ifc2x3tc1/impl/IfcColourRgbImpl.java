@@ -38,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcColourRgb {
+public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements
+		IfcColourRgb {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * @generated
 	 */
 	public double getRed() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__RED, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__RED,
+				true);
 	}
 
 	/**
@@ -82,7 +84,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * @generated
 	 */
 	public String getRedAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING, true);
 	}
 
 	/**
@@ -91,7 +94,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * @generated
 	 */
 	public void setRedAsString(String newRedAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING, newRedAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING,
+				newRedAsString);
 	}
 
 	/**
@@ -100,7 +104,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * @generated
 	 */
 	public double getGreen() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__GREEN, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__GREEN,
+				true);
 	}
 
 	/**
@@ -118,7 +123,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * @generated
 	 */
 	public String getGreenAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, true);
 	}
 
 	/**
@@ -127,7 +133,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * @generated
 	 */
 	public void setGreenAsString(String newGreenAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, newGreenAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING,
+				newGreenAsString);
 	}
 
 	/**
@@ -136,7 +143,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * @generated
 	 */
 	public double getBlue() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__BLUE, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__BLUE,
+				true);
 	}
 
 	/**
@@ -154,7 +162,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * @generated
 	 */
 	public String getBlueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, true);
 	}
 
 	/**
@@ -163,7 +172,8 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * @generated
 	 */
 	public void setBlueAsString(String newBlueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, newBlueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING,
+				newBlueAsString);
 	}
 
 } //IfcColourRgbImpl

@@ -188,7 +188,8 @@ public enum IfcConstraintEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcConstraintEnum[] VALUES_ARRAY = new IfcConstraintEnum[] { NULL, ADVISORY, NOTDEFINED, HARD, USERDEFINED, SOFT, };
+	private static final IfcConstraintEnum[] VALUES_ARRAY = new IfcConstraintEnum[] {
+			NULL, ADVISORY, NOTDEFINED, HARD, USERDEFINED, SOFT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Constraint Enum</b></em>' enumerators.
@@ -196,7 +197,8 @@ public enum IfcConstraintEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcConstraintEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcConstraintEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Constraint Enum</b></em>' literal with the specified literal value.

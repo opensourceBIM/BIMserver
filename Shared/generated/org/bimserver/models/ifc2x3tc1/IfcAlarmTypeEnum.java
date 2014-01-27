@@ -263,7 +263,9 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAlarmTypeEnum[] VALUES_ARRAY = new IfcAlarmTypeEnum[] { NULL, BREAKGLASSBUTTON, NOTDEFINED, BELL, WHISTLE, LIGHT, SIREN, USERDEFINED, MANUALPULLBOX, };
+	private static final IfcAlarmTypeEnum[] VALUES_ARRAY = new IfcAlarmTypeEnum[] {
+			NULL, BREAKGLASSBUTTON, NOTDEFINED, BELL, WHISTLE, LIGHT, SIREN,
+			USERDEFINED, MANUALPULLBOX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Alarm Type Enum</b></em>' enumerators.
@@ -271,7 +273,8 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAlarmTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAlarmTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Alarm Type Enum</b></em>' literal with the specified literal value.

@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcIonConcentrationMeasureImpl extends IdEObjectImpl implements IfcIonConcentrationMeasure {
+public class IfcIonConcentrationMeasureImpl extends IdEObjectImpl implements
+		IfcIonConcentrationMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +72,9 @@ public class IfcIonConcentrationMeasureImpl extends IdEObjectImpl implements Ifc
 	 * @generated
 	 */
 	public double getWrappedValue() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_ION_CONCENTRATION_MEASURE__WRAPPED_VALUE, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ION_CONCENTRATION_MEASURE__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -80,7 +83,8 @@ public class IfcIonConcentrationMeasureImpl extends IdEObjectImpl implements Ifc
 	 * @generated
 	 */
 	public void setWrappedValue(double newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ION_CONCENTRATION_MEASURE__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ION_CONCENTRATION_MEASURE__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**
@@ -107,7 +111,9 @@ public class IfcIonConcentrationMeasureImpl extends IdEObjectImpl implements Ifc
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ION_CONCENTRATION_MEASURE__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ION_CONCENTRATION_MEASURE__WRAPPED_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -116,7 +122,8 @@ public class IfcIonConcentrationMeasureImpl extends IdEObjectImpl implements Ifc
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ION_CONCENTRATION_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ION_CONCENTRATION_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**

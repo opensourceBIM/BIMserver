@@ -70,7 +70,8 @@ public class IfcFontVariantImpl extends IdEObjectImpl implements IfcFontVariant 
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_FONT_VARIANT__WRAPPED_VALUE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FONT_VARIANT__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -79,7 +80,8 @@ public class IfcFontVariantImpl extends IdEObjectImpl implements IfcFontVariant 
 	 * @generated
 	 */
 	public void setWrappedValue(String newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FONT_VARIANT__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FONT_VARIANT__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**
