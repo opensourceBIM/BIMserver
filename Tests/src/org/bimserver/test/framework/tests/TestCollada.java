@@ -19,7 +19,7 @@ package org.bimserver.test.framework.tests;
 
 import java.io.File;
 
-import org.bimserver.OptionsParser;
+import org.bimserver.plugins.OptionsParser;
 import org.bimserver.test.framework.RandomBimServerClientFactory;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.TestConfiguration;
@@ -28,7 +28,7 @@ import org.bimserver.test.framework.TestFramework;
 public class TestCollada {
 	public static void main(String[] args) {
 		TestConfiguration testConfiguration = new TestConfiguration();
-		TestFramework testFramework = new TestFramework(testConfiguration, new OptionsParser(args).getGitDir());
+		TestFramework testFramework = new TestFramework(testConfiguration, new OptionsParser(args).getPluginDirectories());
 
 		testConfiguration.setCleanEnvironmentFirst(true);
 		testConfiguration.setNrVirtualUsers(1);

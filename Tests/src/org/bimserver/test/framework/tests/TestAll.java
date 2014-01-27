@@ -19,11 +19,7 @@ package org.bimserver.test.framework.tests;
 
 import java.io.File;
 
-import org.apache.commons.cli.BasicParser;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
+import org.bimserver.plugins.OptionsParser;
 import org.bimserver.test.framework.FolderWalker;
 import org.bimserver.test.framework.RandomBimServerClientFactory;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
@@ -33,27 +29,8 @@ import org.bimserver.test.framework.actions.AllActionsFactory;
 
 public class TestAll {
 	public static void main(String[] args) {
-		Options options = new Options();
-
-		options.addOption("git", true, "Directory from which to load git plugins");
-		
-		CommandLineParser parser = new BasicParser();
-		File gitDir = null;
-		try {
-			CommandLine cmd = parser.parse(options, args);
-			if (cmd.hasOption("git")) {
-				String gitString = cmd.getOptionValue("git");
-				gitDir = new File(gitString);
-				if (!gitDir.isDirectory()) {
-					throw new RuntimeException("git parameter must point to a directory");
-				}
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
 		TestConfiguration testConfiguration = new TestConfiguration();
-		TestFramework testFramework = new TestFramework(testConfiguration, gitDir);
+		TestFramework testFramework = new TestFramework(testConfiguration, new OptionsParser(args).getPluginDirectories());
 
 		testConfiguration.setHomeDir(new File("E:\\Test"));
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));

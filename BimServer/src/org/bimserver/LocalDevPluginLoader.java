@@ -27,14 +27,14 @@ import org.slf4j.LoggerFactory;
 public class LocalDevPluginLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevPluginLoader.class);
 	
-	public static void loadPlugins(PluginManager pluginManager, File current, File gitDirectory) throws PluginException {
+	public static void loadPlugins(PluginManager pluginManager, File current, File[] pluginDirectories) throws PluginException {
 		LOGGER.info("Loading plugins from " + current.getAbsolutePath());
-		
-		if (gitDirectory != null) {
-			pluginManager.loadAllPluginsFromEclipseWorkspaces(gitDirectory, false);
+
+		if (pluginDirectories != null) {
+			for (File pluginDirectory : pluginDirectories) {
+				pluginManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
+			}
 		}
-		
-		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("E:\\Workspaces\\BIMserver\\IfcOpenShellPlugin"));
 	}
 	
 	public static PluginManager createPluginManager(File home) throws PluginException {
@@ -46,7 +46,7 @@ public class LocalDevPluginLoader {
 			home.mkdir();
 		}
 		PluginManager pluginManager = new PluginManager(new File(home, "tmp"), System.getProperty("java.class.path"), null, null, null);
-		loadPlugins(pluginManager, current, current);
+		loadPlugins(pluginManager, current, null);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;
 	}

@@ -26,6 +26,7 @@ import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
+import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -40,11 +41,11 @@ public class LocalDevBimServerStarter {
 	private BimServer bimServer;
 	
 	public static void main(String[] args) {
-		new LocalDevBimServerStarter().start(1, "localhost", 8080, 8085, new OptionsParser(args).getGitDir());
+		new LocalDevBimServerStarter().start(1, "localhost", 8080, 8085, new OptionsParser(args).getPluginDirectories());
 //		new LocalDevBimServerStarter().start(2, "localhost", 8081, 8086, gitDir);
 	}
 
-	public void start(int id, String address, int port, int pbport, File gitDir) {
+	public void start(int id, String address, int port, int pbport, File[] pluginDirectories) {
 		BimServerConfig config = new BimServerConfig();
 		config.setHomeDir(new File("home" + id));
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
@@ -57,7 +58,7 @@ public class LocalDevBimServerStarter {
 		bimServer = new BimServer(config);
 		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
 		try {
-	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), gitDir);
+	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), pluginDirectories);
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);

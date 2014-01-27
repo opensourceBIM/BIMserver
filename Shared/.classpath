@@ -33,6 +33,7 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.common_2.8.0.v20130125-0546.jar" sourcepath="/BimServer/libsrc/org.eclipse.emf.common.source_2.8.0.v20130125-0546.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.8.3.v20130125-0546.jar" sourcepath="/BimServer/libsrc/org.eclipse.emf.ecore.source_2.8.0.v20120606-0717.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.8.1.v20130125-0546.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/commons/commons-cli-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.4.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.4.3-src.zip"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.7.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.7.3-src.zip"/>
