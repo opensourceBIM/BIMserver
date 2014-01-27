@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.plugins;
 
 /******************************************************************************
  * Copyright (C) 2009-2014  BIMserver.org
@@ -26,22 +26,25 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 public class OptionsParser {
-	private File gitDir;
+	private File[] pluginDirectories;
 
 	public OptionsParser(String... args) {
 		Options options = new Options();
 
-		options.addOption("git", true, "Directory from which to load git plugins");
+		options.addOption("plugins", true, "Directory from which to load plugins");
 		
 		CommandLineParser parser = new BasicParser();
-		gitDir = null;
+		pluginDirectories = null;
 		try {
 			CommandLine cmd = parser.parse(options, args);
-			if (cmd.hasOption("git")) {
-				String gitString = cmd.getOptionValue("git");
-				gitDir = new File(gitString);
-				if (!gitDir.isDirectory()) {
-					throw new RuntimeException("git parameter must point to a directory");
+			if (cmd.hasOption("plugins")) {
+				String[] plugins = cmd.getOptionValues("plugins");
+				pluginDirectories = new File[plugins.length];
+				for (int i=0; i<plugins.length; i++) {
+					pluginDirectories[i] = new File(plugins[i]);
+					if (!pluginDirectories[i].isDirectory()) {
+						throw new RuntimeException("plugins parameter must point to a directory");
+					}
 				}
 			}
 		} catch (ParseException e) {
@@ -49,7 +52,7 @@ public class OptionsParser {
 		}
 	}
 	
-	public File getGitDir() {
-		return gitDir;
+	public File[] getPluginDirectories() {
+		return pluginDirectories;
 	}
 }

@@ -19,14 +19,14 @@ package org.bimserver.test.framework;
 
 import java.io.File;
 
-import org.bimserver.OptionsParser;
+import org.bimserver.plugins.OptionsParser;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.actions.AllActionsFactory;
 
 public class RemoteTest {
 	public static void main(String[] args) {
 		TestConfiguration testConfiguration = new TestConfiguration();
-		TestFramework testFramework = new TestFramework(testConfiguration, new OptionsParser(args).getGitDir());
+		TestFramework testFramework = new TestFramework(testConfiguration, new OptionsParser(args).getPluginDirectories());
 
 		testConfiguration.setHomeDir(new File("/opt/bimservertest"));
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
