@@ -83,7 +83,7 @@ public class NewAttributeChange implements Change {
 									extra = 4;
 								} else {
 									if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-										extra = 2;
+										extra = 4;
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
 										extra = 4;
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
@@ -119,7 +119,7 @@ public class NewAttributeChange implements Change {
 									newBuffer.putInt(0);
 								} else {
 									if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-										newBuffer.putShort((short)-1);
+										newBuffer.putInt(-1);
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
 										if (eAttribute.getDefaultValue() != null) {
 											newBuffer.putInt((int)eAttribute.getDefaultValue());
