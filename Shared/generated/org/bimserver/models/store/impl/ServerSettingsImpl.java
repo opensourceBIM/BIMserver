@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ServerSettings;
+import org.bimserver.models.store.SmtpProtocol;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.eclipse.emf.common.util.EList;
@@ -49,6 +50,10 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSessionTimeOutSeconds <em>Session Time Out Seconds</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpUsername <em>Smtp Username</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpPassword <em>Smtp Password</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpPort <em>Smtp Port</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpProtocol <em>Smtp Protocol</em>}</li>
  * </ul>
  * </p>
  *
@@ -458,6 +463,85 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	public void setSessionTimeOutSeconds(int newSessionTimeOutSeconds) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SESSION_TIME_OUT_SECONDS,
 				newSessionTimeOutSeconds);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSmtpUsername() {
+		return (String) eGet(
+				StorePackage.Literals.SERVER_SETTINGS__SMTP_USERNAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSmtpUsername(String newSmtpUsername) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_USERNAME,
+				newSmtpUsername);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSmtpPassword() {
+		return (String) eGet(
+				StorePackage.Literals.SERVER_SETTINGS__SMTP_PASSWORD, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSmtpPassword(String newSmtpPassword) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PASSWORD,
+				newSmtpPassword);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getSmtpPort() {
+		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PORT,
+				true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSmtpPort(int newSmtpPort) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PORT, newSmtpPort);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SmtpProtocol getSmtpProtocol() {
+		return (SmtpProtocol) eGet(
+				StorePackage.Literals.SERVER_SETTINGS__SMTP_PROTOCOL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSmtpProtocol(SmtpProtocol newSmtpProtocol) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PROTOCOL,
+				newSmtpProtocol);
 	}
 
 } //ServerSettingsImpl

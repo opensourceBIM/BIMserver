@@ -22,16 +22,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
+import org.bimserver.mail.EmailMessage;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
@@ -70,19 +68,17 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 			@Override
 			public void execute() throws UserException {
 				if (MailSystem.isValidEmailAddress(user.getUsername())) {
-					Session mailSession = bimServer.getMailSystem().createMailSession();
-					
-					Message msg = new MimeMessage(mailSession);
+					EmailMessage message = bimServer.getMailSystem().createMessage();
 					
 					String body = null;
 					String subject = null;
 					try {
 						InternetAddress addressFrom = new InternetAddress(bimServer.getServerSettingsCache().getServerSettings().getEmailSenderAddress());
-						msg.setFrom(addressFrom);
+						message.setFrom(addressFrom);
 						
 						InternetAddress[] addressTo = new InternetAddress[1];
 						addressTo[0] = new InternetAddress(user.getUsername());
-						msg.setRecipients(Message.RecipientType.TO, addressTo);
+						message.setRecipients(Message.RecipientType.TO, addressTo);
 						
 						Map<String, Object> context = new HashMap<String, Object>();
 						context.put("name", user.getName());
@@ -91,9 +87,9 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 						context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token + "&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
 						body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_BODY);
 						subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_SUBJECT);
-						msg.setContent(body, "text/html");
-						msg.setSubject(subject.trim());
-						Transport.send(msg);
+						message.setContent(body, "text/html");
+						message.setSubject(subject.trim());
+						message.send();
 					} catch (Exception e) {
 						LOGGER.error(body);
 						throw new UserException(e);

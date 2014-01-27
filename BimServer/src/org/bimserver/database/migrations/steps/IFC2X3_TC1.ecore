@@ -454,11 +454,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcBoundedCurve" eSuperTypes="//IfcCurve //IfcCurveOrEdgeCurve"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IfcBoundedSurface" eSuperTypes="//IfcSurface">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    </eStructuralFeatures>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfcBoundedSurface" eSuperTypes="//IfcSurface"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcBoundingBox" eSuperTypes="//IfcGeometricRepresentationItem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Corner" eType="//IfcCartesianPoint"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="XDim">
@@ -1276,6 +1272,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="BasisSurface" eType="//IfcPlane"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="OuterBoundary" eType="//IfcCurve"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="InnerBoundaries" unique="false" upperBound="-1" eType="//IfcCurve"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcCurveStyle" eSuperTypes="//IfcPresentationStyle //IfcPresentationStyleSelect">
     <eStructuralFeatures xsi:type="ecore:EReference" name="CurveFont" eType="//IfcCurveFontOrScaledCurveFontSelect" unsettable="true"/>
@@ -2249,16 +2248,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="HasSubContexts" upperBound="-1" eType="//IfcGeometricRepresentationSubContext" unsettable="true" eOpposite="//IfcGeometricRepresentationSubContext/ParentContext">
       <eAnnotations source="inverse"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="WorldCoordinateSystem" eType="//IfcAxis2Placement" unsettable="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CoordinateSpaceDimension" unsettable="true" derived="true">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IfcGeometricRepresentationItem" eSuperTypes="//IfcRepresentationItem">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    </eStructuralFeatures>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfcGeometricRepresentationItem" eSuperTypes="//IfcRepresentationItem"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcGeometricRepresentationSubContext" eSuperTypes="//IfcGeometricRepresentationContext">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ParentContext" eType="//IfcGeometricRepresentationContext" eOpposite="//IfcGeometricRepresentationContext/HasSubContexts">
       <eAnnotations source="inverse"/>
@@ -2278,6 +2269,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcGeometricSet" eSuperTypes="//IfcGeometricRepresentationItem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Elements" unique="false" upperBound="-1" eType="//IfcGeometricSetSelect"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcGrid" eSuperTypes="//IfcProduct">
     <eStructuralFeatures xsi:type="ecore:EReference" name="UAxes" upperBound="-1" eType="//IfcGridAxis" eOpposite="//IfcGridAxis/PartOfU">
@@ -2324,6 +2318,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="IfcHalfSpaceSolid" eSuperTypes="//IfcGeometricRepresentationItem //IfcBooleanOperand">
     <eStructuralFeatures xsi:type="ecore:EReference" name="BaseSurface" eType="//IfcSurface"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="AgreementFlag" eType="//Tristate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcHeatExchangerType" eSuperTypes="//IfcEnergyConversionDeviceType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="//IfcHeatExchangerTypeEnum"/>
@@ -2972,14 +2969,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="IsDefinedBy" upperBound="-1" eType="//IfcRelDefines" unsettable="true" eOpposite="//IfcRelDefines/RelatedObjects">
       <eAnnotations source="inverse"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VaryingThickness" unsettable="true" derived="true">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VaryingThicknessAsString" unsettable="true">
-      <eAnnotations source="asstring"/>
-      <eAnnotations source="hidden"/>
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcObjectDefinition" eSuperTypes="//IfcRoot">
     <eStructuralFeatures xsi:type="ecore:EReference" name="HasAssignments" upperBound="-1" eType="//IfcRelAssigns" unsettable="true" eOpposite="//IfcRelAssigns/RelatedObjects">
@@ -2993,14 +2982,6 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="HasAssociations" upperBound="-1" eType="//IfcRelAssociates" unsettable="true">
       <eAnnotations source="inverse"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VaryingThickness" unsettable="true" derived="true">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VaryingThicknessAsString" unsettable="true">
-      <eAnnotations source="asstring"/>
-      <eAnnotations source="hidden"/>
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcObjectPlacement">
@@ -3322,6 +3303,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPlacement" eSuperTypes="//IfcGeometricRepresentationItem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Location" eType="//IfcCartesianPoint"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPlanarBox" eSuperTypes="//IfcPlanarExtent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Placement" eType="//IfcAxis2Placement"/>
@@ -3360,6 +3344,9 @@
       <eAnnotations source="hidden"/>
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPointOnSurface" eSuperTypes="//IfcPoint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="BasisSurface" eType="//IfcSurface"/>
@@ -3378,6 +3365,9 @@
       <eAnnotations source="asstring"/>
       <eAnnotations source="hidden"/>
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPolyLoop" eSuperTypes="//IfcLoop">
@@ -3895,6 +3885,9 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Usense" eType="//Tristate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Vsense" eType="//Tristate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcReferencesValueDocument">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ReferencedDocument" eType="//IfcDocumentSelect"/>
@@ -4431,10 +4424,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="RepresentationsInContext" upperBound="-1" eType="//IfcRepresentation" unsettable="true" eOpposite="//IfcRepresentation/ContextOfItems">
       <eAnnotations source="inverse"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="WorldCoordinateSystem" eType="//IfcAxis2Placement" unsettable="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CoordinateSpaceDimension" unsettable="true" derived="true">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcRepresentationItem" eSuperTypes="//IfcLayeredItem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="LayerAssignments" upperBound="-1" eType="//IfcPresentationLayerAssignment" unsettable="true">
@@ -4442,9 +4431,6 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="StyledByItem" upperBound="2" eType="//IfcStyledItem" unsettable="true" eOpposite="//IfcStyledItem/Item">
       <eAnnotations source="inverse"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcRepresentationMap">
@@ -4555,14 +4541,6 @@
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" unsettable="true">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VaryingThickness" unsettable="true" derived="true">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VaryingThicknessAsString" unsettable="true">
-      <eAnnotations source="asstring"/>
-      <eAnnotations source="hidden"/>
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -4710,6 +4688,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="SpineCurve" eType="//IfcCompositeCurve"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="CrossSections" unique="false" upperBound="-1" eType="//IfcProfileDef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="CrossSectionPositions" unique="false" upperBound="-1" eType="//IfcAxis2Placement3D"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcSensorType" eSuperTypes="//IfcDistributionControlElementType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="//IfcSensorTypeEnum"/>
@@ -4756,6 +4737,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="IfcShapeRepresentation" eSuperTypes="//IfcShapeModel"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcShellBasedSurfaceModel" eSuperTypes="//IfcGeometricRepresentationItem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="SbsmBoundary" unique="false" upperBound="-1" eType="//IfcShell"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcSimpleProperty" eSuperTypes="//IfcProperty"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcSite" eSuperTypes="//IfcSpatialStructureElement">
@@ -4810,7 +4794,11 @@
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IfcSolidModel" eSuperTypes="//IfcGeometricRepresentationItem //IfcBooleanOperand"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IfcSolidModel" eSuperTypes="//IfcGeometricRepresentationItem //IfcBooleanOperand">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcSoundProperties" eSuperTypes="//IfcPropertySetDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsAttenuating" eType="//Tristate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="SoundScale" eType="//IfcSoundScaleEnum" unsettable="true"/>
@@ -5505,6 +5493,14 @@
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="VaryingThicknessLocation" eType="//IfcShapeAspect"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VaryingThickness" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VaryingThicknessAsString" unsettable="true">
+      <eAnnotations source="asstring"/>
+      <eAnnotations source="hidden"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcStructuredDimensionCallout" eSuperTypes="//IfcDraughtingCallout"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcStyleModel" eSuperTypes="//IfcRepresentation"/>
@@ -5661,6 +5657,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="IfcSweptSurface" eSuperTypes="//IfcSurface">
     <eStructuralFeatures xsi:type="ecore:EReference" name="SweptCurve" eType="//IfcProfileDef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Position" eType="//IfcAxis2Placement3D"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcSwitchingDeviceType" eSuperTypes="//IfcFlowControllerType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="//IfcSwitchingDeviceTypeEnum"/>
@@ -6224,6 +6223,9 @@
       <eAnnotations source="asstring"/>
       <eAnnotations source="hidden"/>
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcVertex" eSuperTypes="//IfcTopologicalRepresentationItem"/>

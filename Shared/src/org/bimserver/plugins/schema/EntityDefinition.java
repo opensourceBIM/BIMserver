@@ -61,18 +61,29 @@ public class EntityDefinition extends NamedType {
 		return true;
 	}
 
-	public void addDerived(DerivedAttribute2 attribute) {
-		derivedAttributes.put(attribute.getName(), attribute);
+	public void addDerived(DerivedAttribute2 attribute, boolean firstOccurance) {
+		if (!derivedAttributes.containsKey(attribute.getName())) {
+			derivedAttributes.put(attribute.getName(), attribute);
+		} else {
+			if (firstOccurance) {
+				derivedAttributes.put(attribute.getName(), attribute);
+			}
+		}
 		for (EntityDefinition entityDefinition : supertypes) {
 			if (entityDefinition.getAttributeBNWithSuper(attribute.getName()) != null) {
 				derivedAttributesOverride.add(attribute.getName());
 			}
 		}
-		for (EntityDefinition entityDefinition : subtypes) {
-			entityDefinition.addDerived(new DerivedAttribute2(attribute.getName(), attribute.getType(), attribute.getExpressCode(), attribute.isCollection()));
-		}
+		doSubtypes(attribute);
 	}
 
+	private void doSubtypes(DerivedAttribute2 attribute) {
+		for (EntityDefinition entityDefinition : subtypes) {
+			entityDefinition.addDerived(new DerivedAttribute2(attribute.getName(), attribute.getType(), attribute.getExpressCode(), attribute.isCollection(), true), false);
+			entityDefinition.doSubtypes(attribute);
+		}
+	}
+	
 	public Attribute getAttributeBN(String name) {
 		return attributesBN.get(name);
 	}

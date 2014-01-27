@@ -1088,13 +1088,49 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__SESSION_TIME_OUT_SECONDS = 18;
 
 	/**
+	 * The feature id for the '<em><b>Smtp Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__SMTP_USERNAME = 19;
+
+	/**
+	 * The feature id for the '<em><b>Smtp Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__SMTP_PASSWORD = 20;
+
+	/**
+	 * The feature id for the '<em><b>Smtp Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__SMTP_PORT = 21;
+
+	/**
+	 * The feature id for the '<em><b>Smtp Protocol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__SMTP_PROTOCOL = 22;
+
+	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 19;
+	int SERVER_SETTINGS_FEATURE_COUNT = 23;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -6579,6 +6615,16 @@ public interface StorePackage extends EPackage {
 	int MODEL_CHECKER_RESULT_TYPE = 106;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.SmtpProtocol
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
+	 * @generated
+	 */
+	int SMTP_PROTOCOL = 107;
+
+	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6586,7 +6632,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 107;
+	int DATA_HANDLER = 108;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -7746,6 +7792,50 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServerSettings_SessionTimeOutSeconds();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getSmtpUsername <em>Smtp Username</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Smtp Username</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#getSmtpUsername()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_SmtpUsername();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getSmtpPassword <em>Smtp Password</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Smtp Password</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#getSmtpPassword()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_SmtpPassword();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getSmtpPort <em>Smtp Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Smtp Port</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#getSmtpPort()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_SmtpPort();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getSmtpProtocol <em>Smtp Protocol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Smtp Protocol</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#getSmtpProtocol()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_SmtpProtocol();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.UserSettings <em>User Settings</em>}'.
@@ -11883,6 +11973,16 @@ public interface StorePackage extends EPackage {
 	EEnum getModelCheckerResultType();
 
 	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Smtp Protocol</em>'.
+	 * @see org.bimserver.models.store.SmtpProtocol
+	 * @generated
+	 */
+	EEnum getSmtpProtocol();
+
+	/**
 	 * Returns the meta object for data type '{@link javax.activation.DataHandler <em>Data Handler</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12815,6 +12915,42 @@ public interface StorePackage extends EPackage {
 		 */
 		EAttribute SERVER_SETTINGS__SESSION_TIME_OUT_SECONDS = eINSTANCE
 				.getServerSettings_SessionTimeOutSeconds();
+
+		/**
+		 * The meta object literal for the '<em><b>Smtp Username</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__SMTP_USERNAME = eINSTANCE
+				.getServerSettings_SmtpUsername();
+
+		/**
+		 * The meta object literal for the '<em><b>Smtp Password</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__SMTP_PASSWORD = eINSTANCE
+				.getServerSettings_SmtpPassword();
+
+		/**
+		 * The meta object literal for the '<em><b>Smtp Port</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__SMTP_PORT = eINSTANCE
+				.getServerSettings_SmtpPort();
+
+		/**
+		 * The meta object literal for the '<em><b>Smtp Protocol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__SMTP_PROTOCOL = eINSTANCE
+				.getServerSettings_SmtpProtocol();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -16316,6 +16452,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum MODEL_CHECKER_RESULT_TYPE = eINSTANCE.getModelCheckerResultType();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.SmtpProtocol
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
+		 * @generated
+		 */
+		EEnum SMTP_PROTOCOL = eINSTANCE.getSmtpProtocol();
 
 		/**
 		 * The meta object literal for the '<em>Data Handler</em>' data type.

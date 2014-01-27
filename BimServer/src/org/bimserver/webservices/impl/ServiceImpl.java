@@ -34,11 +34,8 @@ import java.util.Set;
 import javax.activation.DataHandler;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -129,6 +126,7 @@ import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.longaction.LongCheckinAction;
+import org.bimserver.mail.EmailMessage;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
@@ -836,24 +834,22 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				senderAddress = getBimServer().getServerSettingsCache().getServerSettings().getEmailSenderAddress();
 			}
 
-			Session mailSession = getBimServer().getMailSystem().createMailSession();
-
-			Message msg = new MimeMessage(mailSession);
+			EmailMessage message = getBimServer().getMailSystem().createMessage();
 
 			try {
 				InternetAddress addressFrom = new InternetAddress(senderAddress);
 				addressFrom.setPersonal(senderName);
-				msg.setFrom(addressFrom);
+				message.setFrom(addressFrom);
 
 				InternetAddress[] addressTo = new InternetAddress[1];
 				addressTo[0] = new InternetAddress(address);
-				msg.setRecipients(Message.RecipientType.TO, addressTo);
+				message.setRecipients(Message.RecipientType.TO, addressTo);
 
-				msg.setSubject("BIMserver Model Comparator");
+				message.setSubject("BIMserver Model Comparator");
 				SCompareResult compareResult = compare(roid1, roid2, sCompareType, mcid);
 				String html = CompareWriter.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType, getServiceMap().getBimsie1ServiceInterface().getProjectByPoid(poid), false);
-				msg.setContent(html, "text/html");
-				Transport.send(msg);
+				message.setContent(html, "text/html");
+				message.send();
 			} catch (AddressException e) {
 				throw new UserException(e);
 			} catch (UnsupportedEncodingException e) {

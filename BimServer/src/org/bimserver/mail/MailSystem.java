@@ -17,9 +17,6 @@ package org.bimserver.mail;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Properties;
-
-import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
@@ -31,14 +28,6 @@ public class MailSystem {
 
 	public MailSystem(BimServer bimServer) {
 		this.bimServer = bimServer;
-	}
-
-	public Session createMailSession() {
-		Properties props = new Properties();
-		props.put("mail.smtp.host", bimServer.getServerSettingsCache().getServerSettings().getSmtpServer());
-		props.put("mail.smtp.localhost", "bimserver.org");
-		Session mailSession = Session.getDefaultInstance(props);
-		return mailSession;
 	}
 
 	public static boolean isValidEmailAddress(String aEmailAddress) {
@@ -59,5 +48,9 @@ public class MailSystem {
 	private static boolean hasNameAndDomain(String aEmailAddress) {
 		String[] tokens = aEmailAddress.split("@");
 		return tokens.length == 2 && !tokens[0].isEmpty() && !tokens[1].isEmpty();
+	}
+
+	public EmailMessage createMessage() {
+		return new EmailMessage(bimServer);
 	}
 }

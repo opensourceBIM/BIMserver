@@ -142,6 +142,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SModelCheckerResult");
 		Class.forName("org.bimserver.interfaces.objects.SModelCheckerInstance");
 		Class.forName("org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor");
+		Class.forName("org.bimserver.interfaces.objects.SSmtpProtocol");
 		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
 		Class.forName("org.bimserver.interfaces.objects.SLogAction");
 		Class.forName("org.bimserver.interfaces.objects.SServerLog");
