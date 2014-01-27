@@ -17,7 +17,6 @@ package org.bimserver.plugins;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.IOException;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -44,15 +43,11 @@ public class PluginException extends Exception {
 		super(message);
 	}
 
-	public PluginException(Exception e) {
+	public PluginException(Throwable e) {
 		super(e);
 	}
 
-	public PluginException(String message, ClassNotFoundException e) {
-		super(message, e);
-	}
-
-	public PluginException(String message, IOException e) {
+	public PluginException(String message, Throwable e) {
 		super(message, e);
 	}
 }

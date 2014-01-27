@@ -26,8 +26,11 @@ public class WaitingObject {
 
 	// The structural feature (usually a reference) on which to 'connect' the object on
 	private final EStructuralFeature structuralFeature;
+
+	private int lineNumber;
 	
-	public WaitingObject(EObject object, EStructuralFeature structuralFeature) {
+	public WaitingObject(int lineNumber, EObject object, EStructuralFeature structuralFeature) {
+		this.lineNumber = lineNumber;
 		this.object = object;
 		this.structuralFeature = structuralFeature;
 	}
@@ -38,6 +41,10 @@ public class WaitingObject {
 
 	public EStructuralFeature getStructuralFeature() {
 		return structuralFeature;
+	}
+	
+	public int getLineNumber() {
+		return lineNumber;
 	}
 	
 	@Override

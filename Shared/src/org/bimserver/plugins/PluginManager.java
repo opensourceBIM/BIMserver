@@ -149,6 +149,8 @@ public class PluginManager {
 					Class implementationClass = classLoader.loadClass(implementationClassName);
 					Plugin plugin = (Plugin) implementationClass.newInstance();
 					loadPlugin(interfaceClass, location, classLocation, plugin, classLoader, pluginType);
+				} catch (NoClassDefFoundError e) {
+					throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
 				} catch (ClassNotFoundException e) {
 					throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
 				} catch (InstantiationException e) {
@@ -410,7 +412,7 @@ public class PluginManager {
 		}
 	}
 	
-	public void initAllLoadedPlugins() {
+	public void initAllLoadedPlugins() throws PluginException {
 		LOGGER.debug("Initializig all loaded plugins");
 		for (Class<? extends Plugin> pluginClass : implementations.keySet()) {
 			Set<PluginContext> set = implementations.get(pluginClass);
@@ -420,8 +422,8 @@ public class PluginManager {
 					if (!plugin.isInitialized()) {
 						plugin.init(this);
 					}
-				} catch (Exception e) {
-					LOGGER.error("", e);
+				} catch (Throwable e) {
+					pluginContext.setEnabled(false, false);
 				}
 			}
 		}
@@ -486,15 +488,26 @@ public class PluginManager {
 		return getPluginByClassName(QueryEnginePlugin.class, className, onlyEnabled);
 	}
 
-	public void loadAllPluginsFromEclipseWorkspace(File file) throws PluginException {
+	public void loadAllPluginsFromEclipseWorkspace(File file, boolean showExceptions) throws PluginException {
 		for (File project : file.listFiles()) {
 			File pluginDir = new File(project, "plugin");
 			if (pluginDir.exists()) {
 				File pluginFile = new File(pluginDir, "plugin.xml");
 				if (pluginFile.exists()) {
-					loadPluginsFromEclipseProject(project);
+					if (showExceptions) {
+						loadPluginsFromEclipseProject(project);
+					} else {
+						loadPluginsFromEclipseProjectNoExceptions(project);
+					}
 				}
 			}
+		}
+	}
+	
+	public void loadAllPluginsFromEclipseWorkspaces(File directory, boolean showExceptions) throws PluginException {
+		loadAllPluginsFromEclipseWorkspace(directory, showExceptions);
+		for (File workspace : directory.listFiles()) {
+			loadAllPluginsFromEclipseWorkspace(workspace, showExceptions);
 		}
 	}
 

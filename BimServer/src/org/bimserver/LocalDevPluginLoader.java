@@ -32,12 +32,16 @@ public class LocalDevPluginLoader {
 		
 //		pluginManager.loadAllPluginsFromDirectoryOfJars(new File("E:\\plugins"));
 		
-		pluginManager.loadAllPluginsFromEclipseWorkspace(current);
+//		pluginManager.loadAllPluginsFromEclipseWorkspace(current, false);
+		
+		if (gitDirectory != null) {
+			pluginManager.loadAllPluginsFromEclipseWorkspaces(gitDirectory, false);
+		}
 		
 //		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("E:\\Workspaces\\BIMserver\\Myplugins"));
-		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("E:\\Workspaces\\BIMserver\\IfcOpenShellPlugin"));
+//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("E:\\Workspaces\\BIMserver\\IfcOpenShellPlugin"));
 //		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimql\\BimQL"));
-		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimvie.ws"));
+//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimvie.ws"));
 //		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMSie2\\BIMsie"));
 //		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMsurfer3"));
 //		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "RGDChecker"));

@@ -143,7 +143,7 @@ public class JsonDeserializer extends EmfDeserializer {
 												jsonReader.endObject();
 											} else {
 												long refOid = jsonReader.nextLong();
-												waitingList.add(refOid, new ListWaitingObject(object, eStructuralFeature, index));
+												waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
 												index++;
 											}
 										}
@@ -187,7 +187,7 @@ public class JsonDeserializer extends EmfDeserializer {
 											}
 											jsonReader.endObject();
 										} else {
-											waitingList.add(jsonReader.nextLong(), new SingleWaitingObject(object, eStructuralFeature));
+											waitingList.add(jsonReader.nextLong(), new SingleWaitingObject(-1, object, eStructuralFeature));
 										}
 									}
 								}

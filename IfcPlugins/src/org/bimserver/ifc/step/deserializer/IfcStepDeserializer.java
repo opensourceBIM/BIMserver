@@ -54,15 +54,9 @@ import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.Attribute;
-import org.bimserver.plugins.schema.BooleanType;
-import org.bimserver.plugins.schema.DefinedType;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.ExplicitAttribute;
-import org.bimserver.plugins.schema.IntegerType;
-import org.bimserver.plugins.schema.RealType;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.schema.StringType;
-import org.bimserver.plugins.schema.UnderlyingType;
 import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
@@ -104,6 +98,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	private SchemaDefinition schema;
 	private Mode mode = Mode.HEADER;
 	private IfcModelInterface model;
+	private int lineNumber;
 
 	public enum Mode {
 		HEADER, DATA, FOOTER, DONE
@@ -160,7 +155,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
 		model = new IfcModel(initialCapacity);
-		int lineNumber = 0;
+		lineNumber = 0;
 		try {
 			String line = reader.readLine();
 			MessageDigest md = MessageDigest.getInstance("MD5");
@@ -177,7 +172,11 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						lineNumber++;
 					}
 				} catch (Exception e) {
-					throw new DeserializeException("Error on line " + lineNumber + " (" + e.getMessage() + ") " + line, e);
+					if (e instanceof DeserializeException) {
+						throw e;
+					} else {
+						throw new DeserializeException(lineNumber, " (" + e.getMessage() + ") " + line, e);
+					}
 				}
 				line = reader.readLine();
 				lineNumber++;
@@ -480,7 +479,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 							}
 						}
 					} else {
-						waitingList.add(referenceId, new ListWaitingObject(object, structuralFeature, index));
+						waitingList.add(referenceId, new ListWaitingObject(lineNumber, object, structuralFeature, index));
 					}
 				} else {
 					Object convert = convert(structuralFeature.getEType(), stringValue);
@@ -514,7 +513,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				try {
 					return Double.parseDouble(value);
 				} catch (NumberFormatException e) {
-					throw new DeserializeException("Incorrect double floating point value", e);
+					throw new DeserializeException(lineNumber, "Incorrect double floating point value", e);
 				}
 			} else if (instanceClass == String.class) {
 				if (value.startsWith("'") && value.endsWith("'")) {
@@ -581,7 +580,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			} catch (DecoderException e) {
 				throw new DeserializeException(e);
 			} catch (UnsupportedCharsetException e) {
-				throw new DeserializeException("UTF-32 is not supported on your system", e);
+				throw new DeserializeException(lineNumber, "UTF-32 is not supported on your system", e);
 			}
 		}
 		// Replace all \\ with \
@@ -649,43 +648,19 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			String v = value.substring(value.indexOf("(") + 1, value.length() - 1);
 			EClassifier eClassifier = classes.get(typeName);
 			if (eClassifier instanceof EClass) {
-				EClass cl = (EClass) classes.get(typeName);
-				if (cl == null) {
-					DefinedType typeBN = schema.getTypeBN(typeName);
-					if (typeBN == null) {
-						throw new DeserializeException(typeName + " is not an existing IFC entity");
-					}
-					return convertSimpleValue(typeBN.getDomain(), v);
-				} else {
-					Object convert = convert(cl, v);
-					try {
-						model.add(-1, (IdEObject) convert);
-					} catch (IfcModelInterfaceException e) {
-						throw new DeserializeException(e);
-					}
-					return convert;
+				Object convert = convert(eClassifier, v);
+				try {
+					model.add(-1, (IdEObject) convert);
+				} catch (IfcModelInterfaceException e) {
+					throw new DeserializeException(e);
 				}
+				return convert;
 			} else {
 				throw new DeserializeException(typeName + " is not an existing IFC entity");
 			}
 		} else {
 			return convertSimpleValue(classifier.getInstanceClass(), value);
 		}
-	}
-
-	private Object convertSimpleValue(UnderlyingType domain, String value) {
-		if (!value.equals("")) {
-			if (domain instanceof RealType) {
-				return Double.parseDouble(value);
-			} else if (domain instanceof IntegerType) {
-				return Integer.parseInt(value);
-			} else if (domain instanceof BooleanType) {
-				return Boolean.parseBoolean(value);
-			} else if (domain instanceof StringType) {
-				return value;
-			}
-		}
-		return null;
 	}
 
 	private void readEnum(String val, EObject object, EStructuralFeature structuralFeature) throws DeserializeException {
@@ -751,7 +726,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		if (model.contains(referenceId)) {
 			object.eSet(structuralFeature, model.get(referenceId));
 		} else {
-			waitingList.add(referenceId, new SingleWaitingObject(object, structuralFeature));
+			waitingList.add(referenceId, new SingleWaitingObject(lineNumber, object, structuralFeature));
 		}
 	}
 }

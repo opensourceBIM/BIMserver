@@ -65,7 +65,7 @@ public class WaitingList<T> {
 						}
 						list.setUnique(listWaitingObject.getIndex(), eObject);
 					} else {
-						throw new DeserializeException("Field " + waitingObject.getStructuralFeature().getName() + " of "
+						throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
 								+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
 					}
 				}
@@ -73,7 +73,7 @@ public class WaitingList<T> {
 				if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
 					waitingObject.getObject().eSet(waitingObject.getStructuralFeature(), eObject);
 				} else {
-					throw new DeserializeException("Field " + waitingObject.getStructuralFeature().getName() + " of "
+					throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
 							+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
 				}
 			}

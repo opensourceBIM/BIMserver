@@ -68,6 +68,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Charsets;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
+import com.sun.org.apache.bcel.internal.classfile.LineNumber;
 
 public class ClientIfcModel extends IfcModel {
 	public static enum ModelState {
@@ -325,7 +326,7 @@ public class ClientIfcModel extends IfcModel {
 																	}
 																	l.setUnique(index, refObj);
 																} else {
-																	waitingList.add(refOid, new ListWaitingObject(object, eStructuralFeature, index));
+																	waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
 																}
 															}
 															jsonReader.endObject();
@@ -339,7 +340,7 @@ public class ClientIfcModel extends IfcModel {
 																}
 																l.setUnique(index, refObj);
 															} else {
-																waitingList.add(refOid, new ListWaitingObject(object, eStructuralFeature, index));
+																waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
 															}
 															index++;
 														}
@@ -375,7 +376,7 @@ public class ClientIfcModel extends IfcModel {
 															IdEObject refObj = getNoFetch(refOid);
 															object.eSet(eStructuralFeature, refObj);
 														} else {
-															waitingList.add(refOid, new SingleWaitingObject(object, eStructuralFeature));
+															waitingList.add(refOid, new SingleWaitingObject(-1, object, eStructuralFeature));
 														}
 													}
 												}
