@@ -30,8 +30,8 @@ public class ListWaitingObject extends WaitingObject {
 	// To keep an eventual order intact, for EList's you can store the index at which it should be placed
 	private final int index;
 
-	public ListWaitingObject(EObject object, EStructuralFeature structuralFeature, int index) {
-		super(object, structuralFeature);
+	public ListWaitingObject(int lineNumber, EObject object, EStructuralFeature structuralFeature, int index) {
+		super(lineNumber, object, structuralFeature);
 		this.index = index;
 	}
 	

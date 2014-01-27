@@ -262,8 +262,9 @@ public class IfcStepSerializer extends IfcSerializer {
 		out.print(upperCase);
 		out.print(OPEN_PAREN);
 		boolean isFirst = true;
+		EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName());
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
-			if (feature.getEAnnotation("hidden") == null) {
+			if (feature.getEAnnotation("hidden") == null && (!entityBN.isDerived(feature.getName()) || entityBN.isDerivedOverride(feature.getName()))) {
 				EClassifier type = feature.getEType();
 				if (type instanceof EEnum) {
 					if (!isFirst) {
@@ -283,7 +284,7 @@ public class IfcStepSerializer extends IfcSerializer {
 					if (!isFirst) {
 						out.print(COMMA);
 					}
-					writeEDataType(out, object, feature);
+					writeEDataType(out, object, entityBN, feature);
 					isFirst = false;
 				}
 			}
@@ -291,8 +292,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		out.println(PAREN_CLOSE_SEMICOLON);
 	}
 
-	private void writeEDataType(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
-		EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName());
+	private void writeEDataType(PrintWriter out, EObject object, EntityDefinition entityBN, EStructuralFeature feature) throws SerializerException {
 		if (entityBN != null && entityBN.isDerived(feature.getName())) {
 			out.print(ASTERISK);
 		} else if (feature.isMany()) {

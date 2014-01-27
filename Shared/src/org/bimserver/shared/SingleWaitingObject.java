@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class SingleWaitingObject extends WaitingObject {
 
-	public SingleWaitingObject(EObject object, EStructuralFeature structuralFeature) {
-		super(object, structuralFeature);
+	public SingleWaitingObject(int lineNumber, EObject object, EStructuralFeature structuralFeature) {
+		super(lineNumber, object, structuralFeature);
 	}
 }

@@ -19,14 +19,16 @@ package org.bimserver.plugins.schema;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class EntityDefinition extends NamedType {
-	// store each supertype in both a list and a hashtable for convinience
+	// store each supertype in both a list and a hashtable for convenience
 	private ArrayList<EntityDefinition> supertypes = new ArrayList<EntityDefinition>();
 	private HashMap<String, EntityDefinition> supertypesBN = new HashMap<String, EntityDefinition>();
-	// store each attribute in both a list and a hashtable for convinience
+	// store each attribute in both a list and a hashtable for convenience
 	private ArrayList<Attribute> attributes = new ArrayList<Attribute>();
 	private HashMap<String, Attribute> attributesBN = new HashMap<String, Attribute>();
 
@@ -35,13 +37,13 @@ public class EntityDefinition extends NamedType {
 
 	private ArrayList<EntityDefinition> subtypes = new ArrayList<EntityDefinition>();
 	private final Map<String, DerivedAttribute2> derivedAttributes = new HashMap<String, DerivedAttribute2>();
+	private final Set<String> derivedAttributesOverride = new HashSet<String>();
 	boolean complex;
 	boolean instantiable;
 	boolean independent;
 
 	public EntityDefinition(String name) {
 		super(name);
-
 	}
 
 	public boolean isDerived(String name) {
@@ -61,6 +63,14 @@ public class EntityDefinition extends NamedType {
 
 	public void addDerived(DerivedAttribute2 attribute) {
 		derivedAttributes.put(attribute.getName(), attribute);
+		for (EntityDefinition entityDefinition : supertypes) {
+			if (entityDefinition.getAttributeBNWithSuper(attribute.getName()) != null) {
+				derivedAttributesOverride.add(attribute.getName());
+			}
+		}
+		for (EntityDefinition entityDefinition : subtypes) {
+			entityDefinition.addDerived(new DerivedAttribute2(attribute.getName(), attribute.getType(), attribute.getExpressCode(), attribute.isCollection()));
+		}
 	}
 
 	public Attribute getAttributeBN(String name) {
@@ -181,5 +191,9 @@ public class EntityDefinition extends NamedType {
 	
 	public Map<String, DerivedAttribute2> getDerivedAttributes() {
 		return derivedAttributes;
+	}
+
+	public boolean isDerivedOverride(String name) {
+		return derivedAttributesOverride.contains(name);
 	}
 }

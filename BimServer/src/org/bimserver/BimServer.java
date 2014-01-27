@@ -323,7 +323,11 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 
-			pluginManager.initAllLoadedPlugins();
+			try {
+				pluginManager.initAllLoadedPlugins();
+			} catch (PluginException e) {
+				LOGGER.error("", e);
+			}
 			serverStartTime = new GregorianCalendar();
 
 			longActionManager = new LongActionManager();
@@ -456,25 +460,30 @@ public class BimServer {
 	private <T extends PluginConfiguration> T find(List<T> list, String name) {
 		for (T t : list) {
 			if (t.getPluginDescriptor() == null) {
-				throw new RuntimeException("No PluginDescriptor!");
-			}
-			if (t.getPluginDescriptor().getPluginClassName().equals(name)) {
-				return t;
+//				throw new RuntimeException("No PluginDescriptor!");
+			} else {
+				if (t.getPluginDescriptor().getPluginClassName().equals(name)) {
+					return t;
+				}
 			}
 		}
 		return null;
 	}
 
 	private void genericPluginConversion(DatabaseSession session, Plugin plugin, PluginConfiguration pluginConfiguration, PluginDescriptor pluginDescriptor) throws BimserverDatabaseException {
-		pluginConfiguration.setName(plugin.getDefaultName());
-		pluginConfiguration.setPluginDescriptor(pluginDescriptor);
-		
-		// For the opposite of setPluginDescriptor
-		session.store(pluginDescriptor);
-
-		pluginConfiguration.setDescription(plugin.getDescription());
-		pluginConfiguration.setEnabled(true);
-		pluginConfiguration.setSettings(convertSettings(session, plugin));
+		try {
+			pluginConfiguration.setName(plugin.getDefaultName());
+			pluginConfiguration.setPluginDescriptor(pluginDescriptor);
+			
+			// For the opposite of setPluginDescriptor
+			session.store(pluginDescriptor);
+			
+			pluginConfiguration.setDescription(plugin.getDescription());
+			pluginConfiguration.setEnabled(true);
+			pluginConfiguration.setSettings(convertSettings(session, plugin));
+		} catch (NoClassDefFoundError e) {
+			// ignore for now
+		}
 	}
 
 	private PluginDescriptor getPluginDescriptor(DatabaseSession session, String pluginClassName) throws BimserverDatabaseException {
