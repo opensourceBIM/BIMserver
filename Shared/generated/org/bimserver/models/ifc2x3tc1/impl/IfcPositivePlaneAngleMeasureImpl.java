@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPositivePlaneAngleMeasureImpl extends IfcPlaneAngleMeasureImpl implements IfcPositivePlaneAngleMeasure {
+public class IfcPositivePlaneAngleMeasureImpl extends IfcPlaneAngleMeasureImpl
+		implements IfcPositivePlaneAngleMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

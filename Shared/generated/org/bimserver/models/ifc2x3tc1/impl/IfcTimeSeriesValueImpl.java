@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTimeSeriesValueImpl extends IdEObjectImpl implements IfcTimeSeriesValue {
+public class IfcTimeSeriesValueImpl extends IdEObjectImpl implements
+		IfcTimeSeriesValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +74,9 @@ public class IfcTimeSeriesValueImpl extends IdEObjectImpl implements IfcTimeSeri
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getListValues() {
-		return (EList<IfcValue>) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_VALUE__LIST_VALUES, true);
+		return (EList<IfcValue>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_VALUE__LIST_VALUES,
+				true);
 	}
 
 } //IfcTimeSeriesValueImpl

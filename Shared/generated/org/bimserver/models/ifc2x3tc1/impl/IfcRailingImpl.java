@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRailingImpl extends IfcBuildingElementImpl implements IfcRailing {
+public class IfcRailingImpl extends IfcBuildingElementImpl implements
+		IfcRailing {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcRailingImpl extends IfcBuildingElementImpl implements IfcRailing
 	 * @generated
 	 */
 	public IfcRailingTypeEnum getPredefinedType() {
-		return (IfcRailingTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_RAILING__PREDEFINED_TYPE, true);
+		return (IfcRailingTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RAILING__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -69,7 +71,8 @@ public class IfcRailingImpl extends IfcBuildingElementImpl implements IfcRailing
 	 * @generated
 	 */
 	public void setPredefinedType(IfcRailingTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_RAILING__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_RAILING__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 	/**

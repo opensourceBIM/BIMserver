@@ -62,7 +62,8 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToResource> getResourceOf() {
-		return (EList<IfcRelAssignsToResource>) eGet(Ifc2x3tc1Package.Literals.IFC_RESOURCE__RESOURCE_OF, true);
+		return (EList<IfcRelAssignsToResource>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RESOURCE__RESOURCE_OF, true);
 	}
 
 	/**

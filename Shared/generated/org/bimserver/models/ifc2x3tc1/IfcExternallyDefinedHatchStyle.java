@@ -26,5 +26,6 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcExternallyDefinedHatchStyle extends IfcExternalReference, IfcFillStyleSelect {
+public interface IfcExternallyDefinedHatchStyle extends IfcExternalReference,
+		IfcFillStyleSelect {
 } // IfcExternallyDefinedHatchStyle

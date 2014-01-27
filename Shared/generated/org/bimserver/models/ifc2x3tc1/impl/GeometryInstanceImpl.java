@@ -38,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInstance {
+public class GeometryInstanceImpl extends IdEObjectImpl implements
+		GeometryInstance {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,7 +75,8 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * @generated
 	 */
 	public GeometryData getData() {
-		return (GeometryData) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__DATA, true);
+		return (GeometryData) eGet(
+				Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__DATA, true);
 	}
 
 	/**
@@ -92,7 +94,9 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * @generated
 	 */
 	public byte[] getTransformation() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__TRANSFORMATION, true);
+		return (byte[]) eGet(
+				Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__TRANSFORMATION,
+				true);
 	}
 
 	/**
@@ -101,7 +105,8 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * @generated
 	 */
 	public void setTransformation(byte[] newTransformation) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__TRANSFORMATION, newTransformation);
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__TRANSFORMATION,
+				newTransformation);
 	}
 
 } //GeometryInstanceImpl

@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcGeometricCurveSetImpl extends IfcGeometricSetImpl implements IfcGeometricCurveSet {
+public class IfcGeometricCurveSetImpl extends IfcGeometricSetImpl implements
+		IfcGeometricCurveSet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

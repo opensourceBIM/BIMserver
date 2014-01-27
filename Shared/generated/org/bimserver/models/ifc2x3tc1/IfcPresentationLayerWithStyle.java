@@ -37,7 +37,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcPresentationLayerWithStyle extends IfcPresentationLayerAssignment {
+public interface IfcPresentationLayerWithStyle extends
+		IfcPresentationLayerAssignment {
 	/**
 	 * Returns the value of the '<em><b>Layer On</b></em>' attribute.
 	 * <!-- begin-user-doc -->

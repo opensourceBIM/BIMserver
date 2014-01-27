@@ -113,7 +113,8 @@ public enum IfcJunctionBoxTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcJunctionBoxTypeEnum[] VALUES_ARRAY = new IfcJunctionBoxTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, };
+	private static final IfcJunctionBoxTypeEnum[] VALUES_ARRAY = new IfcJunctionBoxTypeEnum[] {
+			NULL, NOTDEFINED, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Junction Box Type Enum</b></em>' enumerators.
@@ -121,7 +122,8 @@ public enum IfcJunctionBoxTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcJunctionBoxTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcJunctionBoxTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Junction Box Type Enum</b></em>' literal with the specified literal value.

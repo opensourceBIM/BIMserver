@@ -638,8 +638,11 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcValveTypeEnum[] VALUES_ARRAY = new IfcValveTypeEnum[] { NULL, FAUCET, NOTDEFINED, ISOLATING, COMMISSIONING, DOUBLECHECK, STOPCOCK, PRESSUREREDUCING,
-			STEAMTRAP, GASTAP, DOUBLEREGULATING, ANTIVACUUM, SAFETYCUTOFF, REGULATING, CHANGEOVER, CHECK, DIVERTING, DRAWOFFCOCK, PRESSURERELIEF, MIXING, FLUSHING, USERDEFINED,
+	private static final IfcValveTypeEnum[] VALUES_ARRAY = new IfcValveTypeEnum[] {
+			NULL, FAUCET, NOTDEFINED, ISOLATING, COMMISSIONING, DOUBLECHECK,
+			STOPCOCK, PRESSUREREDUCING, STEAMTRAP, GASTAP, DOUBLEREGULATING,
+			ANTIVACUUM, SAFETYCUTOFF, REGULATING, CHANGEOVER, CHECK, DIVERTING,
+			DRAWOFFCOCK, PRESSURERELIEF, MIXING, FLUSHING, USERDEFINED,
 			GASCOCK, AIRRELEASE, };
 
 	/**
@@ -648,7 +651,8 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcValveTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcValveTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Valve Type Enum</b></em>' literal with the specified literal value.

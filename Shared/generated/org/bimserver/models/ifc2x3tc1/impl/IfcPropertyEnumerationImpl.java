@@ -39,7 +39,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyEnumerationImpl extends IdEObjectImpl implements IfcPropertyEnumeration {
+public class IfcPropertyEnumerationImpl extends IdEObjectImpl implements
+		IfcPropertyEnumeration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,7 +76,8 @@ public class IfcPropertyEnumerationImpl extends IdEObjectImpl implements IfcProp
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATION__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATION__NAME, true);
 	}
 
 	/**
@@ -94,7 +96,9 @@ public class IfcPropertyEnumerationImpl extends IdEObjectImpl implements IfcProp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getEnumerationValues() {
-		return (EList<IfcValue>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATION__ENUMERATION_VALUES, true);
+		return (EList<IfcValue>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATION__ENUMERATION_VALUES,
+				true);
 	}
 
 	/**
@@ -103,7 +107,8 @@ public class IfcPropertyEnumerationImpl extends IdEObjectImpl implements IfcProp
 	 * @generated
 	 */
 	public IfcUnit getUnit() {
-		return (IfcUnit) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATION__UNIT, true);
+		return (IfcUnit) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_ENUMERATION__UNIT, true);
 	}
 
 	/**

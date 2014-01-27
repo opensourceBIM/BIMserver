@@ -26,5 +26,6 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcPositiveLengthMeasure extends IfcLengthMeasure, IfcHatchLineDistanceSelect, IfcMeasureValue, IfcSizeSelect {
+public interface IfcPositiveLengthMeasure extends IfcLengthMeasure,
+		IfcHatchLineDistanceSelect, IfcMeasureValue, IfcSizeSelect {
 } // IfcPositiveLengthMeasure

@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExternallyDefinedSymbolImpl extends IfcExternalReferenceImpl implements IfcExternallyDefinedSymbol {
+public class IfcExternallyDefinedSymbolImpl extends IfcExternalReferenceImpl
+		implements IfcExternallyDefinedSymbol {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsToProjectOrderImpl extends IfcRelAssignsToControlImpl implements IfcRelAssignsToProjectOrder {
+public class IfcRelAssignsToProjectOrderImpl extends IfcRelAssignsToControlImpl
+		implements IfcRelAssignsToProjectOrder {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

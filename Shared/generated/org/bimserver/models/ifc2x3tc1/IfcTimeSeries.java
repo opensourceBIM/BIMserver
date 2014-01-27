@@ -42,7 +42,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceSelect {
+public interface IfcTimeSeries extends IfcMetricValueSelect,
+		IfcObjectReferenceSelect {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

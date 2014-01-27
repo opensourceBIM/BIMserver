@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implements IfcDocumentReference {
+public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl
+		implements IfcDocumentReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentInformation> getReferenceToDocument() {
-		return (EList<IfcDocumentInformation>) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCE_TO_DOCUMENT, true);
+		return (EList<IfcDocumentInformation>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCE_TO_DOCUMENT,
+				true);
 	}
 
 	/**

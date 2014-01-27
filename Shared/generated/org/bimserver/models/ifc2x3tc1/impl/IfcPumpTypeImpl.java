@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPumpTypeImpl extends IfcFlowMovingDeviceTypeImpl implements IfcPumpType {
+public class IfcPumpTypeImpl extends IfcFlowMovingDeviceTypeImpl implements
+		IfcPumpType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcPumpTypeImpl extends IfcFlowMovingDeviceTypeImpl implements IfcP
 	 * @generated
 	 */
 	public IfcPumpTypeEnum getPredefinedType() {
-		return (IfcPumpTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PUMP_TYPE__PREDEFINED_TYPE, true);
+		return (IfcPumpTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PUMP_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -69,7 +71,8 @@ public class IfcPumpTypeImpl extends IfcFlowMovingDeviceTypeImpl implements IfcP
 	 * @generated
 	 */
 	public void setPredefinedType(IfcPumpTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PUMP_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PUMP_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcPumpTypeImpl

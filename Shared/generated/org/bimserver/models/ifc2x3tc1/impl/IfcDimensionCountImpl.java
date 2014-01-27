@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDimensionCountImpl extends IdEObjectImpl implements IfcDimensionCount {
+public class IfcDimensionCountImpl extends IdEObjectImpl implements
+		IfcDimensionCount {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +71,9 @@ public class IfcDimensionCountImpl extends IdEObjectImpl implements IfcDimension
 	 * @generated
 	 */
 	public int getWrappedValue() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_DIMENSION_COUNT__WRAPPED_VALUE, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DIMENSION_COUNT__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -79,7 +82,8 @@ public class IfcDimensionCountImpl extends IdEObjectImpl implements IfcDimension
 	 * @generated
 	 */
 	public void setWrappedValue(int newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSION_COUNT__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSION_COUNT__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**

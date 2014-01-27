@@ -26,5 +26,6 @@ package org.bimserver.models.ifc2x3tc1;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface IfcCurveStyleFontSelect extends IfcCurveFontOrScaledCurveFontSelect {
+public interface IfcCurveStyleFontSelect extends
+		IfcCurveFontOrScaledCurveFontSelect {
 } // IfcCurveStyleFontSelect

@@ -32,7 +32,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcFlowInstrumentType extends IfcDistributionControlElementType {
+public interface IfcFlowInstrumentType extends
+		IfcDistributionControlElementType {
 	/**
 	 * Returns the value of the '<em><b>Predefined Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc2x3tc1.IfcFlowInstrumentTypeEnum}.

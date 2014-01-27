@@ -213,7 +213,8 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDocumentConfidentialityEnum[] VALUES_ARRAY = new IfcDocumentConfidentialityEnum[] { NULL, RESTRICTED, NOTDEFINED, CONFIDENTIAL, PERSONAL, PUBLIC,
+	private static final IfcDocumentConfidentialityEnum[] VALUES_ARRAY = new IfcDocumentConfidentialityEnum[] {
+			NULL, RESTRICTED, NOTDEFINED, CONFIDENTIAL, PERSONAL, PUBLIC,
 			USERDEFINED, };
 
 	/**
@@ -222,7 +223,8 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDocumentConfidentialityEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDocumentConfidentialityEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Document Confidentiality Enum</b></em>' literal with the specified literal value.
@@ -309,7 +311,8 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcDocumentConfidentialityEnum(int value, String name, String literal) {
+	private IfcDocumentConfidentialityEnum(int value, String name,
+			String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

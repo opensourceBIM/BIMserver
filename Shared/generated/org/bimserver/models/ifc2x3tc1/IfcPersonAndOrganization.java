@@ -36,7 +36,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcPersonAndOrganization extends IfcActorSelect, IfcObjectReferenceSelect {
+public interface IfcPersonAndOrganization extends IfcActorSelect,
+		IfcObjectReferenceSelect {
 	/**
 	 * Returns the value of the '<em><b>The Person</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc2x3tc1.IfcPerson#getEngagedIn <em>Engaged In</em>}'.

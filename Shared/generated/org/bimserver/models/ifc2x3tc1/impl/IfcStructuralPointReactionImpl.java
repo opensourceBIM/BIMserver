@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralPointReactionImpl extends IfcStructuralReactionImpl implements IfcStructuralPointReaction {
+public class IfcStructuralPointReactionImpl extends IfcStructuralReactionImpl
+		implements IfcStructuralPointReaction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

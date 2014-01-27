@@ -48,7 +48,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl {
+public class IfcWorkControlImpl extends IfcControlImpl implements
+		IfcWorkControl {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,7 +75,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public String getIdentifier() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__IDENTIFIER, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__IDENTIFIER, true);
 	}
 
 	/**
@@ -83,7 +85,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public void setIdentifier(String newIdentifier) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__IDENTIFIER, newIdentifier);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__IDENTIFIER,
+				newIdentifier);
 	}
 
 	/**
@@ -92,7 +95,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public IfcDateTimeSelect getCreationDate() {
-		return (IfcDateTimeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__CREATION_DATE, true);
+		return (IfcDateTimeSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__CREATION_DATE, true);
 	}
 
 	/**
@@ -101,7 +105,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public void setCreationDate(IfcDateTimeSelect newCreationDate) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__CREATION_DATE, newCreationDate);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__CREATION_DATE,
+				newCreationDate);
 	}
 
 	/**
@@ -111,7 +116,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPerson> getCreators() {
-		return (EList<IfcPerson>) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__CREATORS, true);
+		return (EList<IfcPerson>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__CREATORS, true);
 	}
 
 	/**
@@ -138,7 +144,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public String getPurpose() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__PURPOSE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__PURPOSE, true);
 	}
 
 	/**
@@ -174,7 +181,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public double getDuration() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__DURATION, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__DURATION, true);
 	}
 
 	/**
@@ -210,7 +218,9 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public String getDurationAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__DURATION_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__DURATION_AS_STRING,
+				true);
 	}
 
 	/**
@@ -219,7 +229,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public void setDurationAsString(String newDurationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__DURATION_AS_STRING, newDurationAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__DURATION_AS_STRING,
+				newDurationAsString);
 	}
 
 	/**
@@ -246,7 +257,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public double getTotalFloat() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT, true);
 	}
 
 	/**
@@ -255,7 +267,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public void setTotalFloat(double newTotalFloat) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT, newTotalFloat);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT,
+				newTotalFloat);
 	}
 
 	/**
@@ -282,7 +295,9 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public String getTotalFloatAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -291,7 +306,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public void setTotalFloatAsString(String newTotalFloatAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT_AS_STRING, newTotalFloatAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT_AS_STRING,
+				newTotalFloatAsString);
 	}
 
 	/**
@@ -318,7 +334,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public IfcDateTimeSelect getStartTime() {
-		return (IfcDateTimeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__START_TIME, true);
+		return (IfcDateTimeSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__START_TIME, true);
 	}
 
 	/**
@@ -327,7 +344,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public void setStartTime(IfcDateTimeSelect newStartTime) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__START_TIME, newStartTime);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__START_TIME,
+				newStartTime);
 	}
 
 	/**
@@ -336,7 +354,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public IfcDateTimeSelect getFinishTime() {
-		return (IfcDateTimeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__FINISH_TIME, true);
+		return (IfcDateTimeSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__FINISH_TIME, true);
 	}
 
 	/**
@@ -345,7 +364,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public void setFinishTime(IfcDateTimeSelect newFinishTime) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__FINISH_TIME, newFinishTime);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__FINISH_TIME,
+				newFinishTime);
 	}
 
 	/**
@@ -372,7 +392,9 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public IfcWorkControlTypeEnum getWorkControlType() {
-		return (IfcWorkControlTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__WORK_CONTROL_TYPE, true);
+		return (IfcWorkControlTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__WORK_CONTROL_TYPE,
+				true);
 	}
 
 	/**
@@ -381,7 +403,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public void setWorkControlType(IfcWorkControlTypeEnum newWorkControlType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__WORK_CONTROL_TYPE, newWorkControlType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__WORK_CONTROL_TYPE,
+				newWorkControlType);
 	}
 
 	/**
@@ -408,7 +431,9 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public String getUserDefinedControlType() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__USER_DEFINED_CONTROL_TYPE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__USER_DEFINED_CONTROL_TYPE,
+				true);
 	}
 
 	/**
@@ -417,7 +442,8 @@ public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl
 	 * @generated
 	 */
 	public void setUserDefinedControlType(String newUserDefinedControlType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__USER_DEFINED_CONTROL_TYPE, newUserDefinedControlType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WORK_CONTROL__USER_DEFINED_CONTROL_TYPE,
+				newUserDefinedControlType);
 	}
 
 	/**

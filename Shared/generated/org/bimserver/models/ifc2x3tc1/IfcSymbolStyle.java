@@ -32,7 +32,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcSymbolStyle extends IfcPresentationStyle, IfcPresentationStyleSelect {
+public interface IfcSymbolStyle extends IfcPresentationStyle,
+		IfcPresentationStyleSelect {
 	/**
 	 * Returns the value of the '<em><b>Style Of Symbol</b></em>' reference.
 	 * <!-- begin-user-doc -->

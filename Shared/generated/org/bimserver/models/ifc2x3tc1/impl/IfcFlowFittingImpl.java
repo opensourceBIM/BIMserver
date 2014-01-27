@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFlowFittingImpl extends IfcDistributionFlowElementImpl implements IfcFlowFitting {
+public class IfcFlowFittingImpl extends IfcDistributionFlowElementImpl
+		implements IfcFlowFitting {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

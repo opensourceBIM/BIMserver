@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralReactionImpl extends IfcStructuralActivityImpl implements IfcStructuralReaction {
+public class IfcStructuralReactionImpl extends IfcStructuralActivityImpl
+		implements IfcStructuralReaction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,8 @@ public class IfcStructuralReactionImpl extends IfcStructuralActivityImpl impleme
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralAction> getCauses() {
-		return (EList<IfcStructuralAction>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_REACTION__CAUSES, true);
+		return (EList<IfcStructuralAction>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_REACTION__CAUSES, true);
 	}
 
 	/**

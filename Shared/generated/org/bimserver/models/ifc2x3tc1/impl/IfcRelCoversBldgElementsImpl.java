@@ -37,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelCoversBldgElementsImpl extends IfcRelConnectsImpl implements IfcRelCoversBldgElements {
+public class IfcRelCoversBldgElementsImpl extends IfcRelConnectsImpl implements
+		IfcRelCoversBldgElements {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,7 +64,9 @@ public class IfcRelCoversBldgElementsImpl extends IfcRelConnectsImpl implements 
 	 * @generated
 	 */
 	public IfcElement getRelatingBuildingElement() {
-		return (IfcElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATING_BUILDING_ELEMENT, true);
+		return (IfcElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATING_BUILDING_ELEMENT,
+				true);
 	}
 
 	/**
@@ -72,7 +75,8 @@ public class IfcRelCoversBldgElementsImpl extends IfcRelConnectsImpl implements 
 	 * @generated
 	 */
 	public void setRelatingBuildingElement(IfcElement newRelatingBuildingElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATING_BUILDING_ELEMENT, newRelatingBuildingElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATING_BUILDING_ELEMENT,
+				newRelatingBuildingElement);
 	}
 
 	/**
@@ -82,7 +86,9 @@ public class IfcRelCoversBldgElementsImpl extends IfcRelConnectsImpl implements 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCovering> getRelatedCoverings() {
-		return (EList<IfcCovering>) eGet(Ifc2x3tc1Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATED_COVERINGS, true);
+		return (EList<IfcCovering>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATED_COVERINGS,
+				true);
 	}
 
 } //IfcRelCoversBldgElementsImpl

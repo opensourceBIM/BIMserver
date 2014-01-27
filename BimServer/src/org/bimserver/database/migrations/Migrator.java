@@ -48,7 +48,11 @@ public class Migrator {
 			Class<Migration> migrationClass = (Class<Migration>) Class.forName(name);
 			return migrationClass.newInstance();
 		} catch (Exception e) {
-			LOGGER.error("", e);
+			if (e instanceof ClassNotFoundException) {
+				// ignore
+			} else {
+				LOGGER.error("", e);
+			}
 			return null;
 		}
 	}

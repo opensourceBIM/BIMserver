@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadImpl extends IdEObjectImpl implements IfcStructuralLoad {
+public class IfcStructuralLoadImpl extends IdEObjectImpl implements
+		IfcStructuralLoad {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +71,8 @@ public class IfcStructuralLoadImpl extends IdEObjectImpl implements IfcStructura
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD__NAME, true);
 	}
 
 	/**

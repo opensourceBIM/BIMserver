@@ -100,7 +100,8 @@ public enum IfcCondenserTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WATERCOOLEDBRAZEDPLATE(6, "WATERCOOLEDBRAZEDPLATE", "WATERCOOLEDBRAZEDPLATE"),
+	WATERCOOLEDBRAZEDPLATE(6, "WATERCOOLEDBRAZEDPLATE",
+			"WATERCOOLEDBRAZEDPLATE"),
 
 	/**
 	 * The '<em><b>WATERCOOLEDSHELLCOIL</b></em>' literal object.
@@ -263,8 +264,10 @@ public enum IfcCondenserTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCondenserTypeEnum[] VALUES_ARRAY = new IfcCondenserTypeEnum[] { NULL, EVAPORATIVECOOLED, NOTDEFINED, USERDEFINED, WATERCOOLEDSHELLTUBE,
-			WATERCOOLEDTUBEINTUBE, WATERCOOLEDBRAZEDPLATE, WATERCOOLEDSHELLCOIL, AIRCOOLED, };
+	private static final IfcCondenserTypeEnum[] VALUES_ARRAY = new IfcCondenserTypeEnum[] {
+			NULL, EVAPORATIVECOOLED, NOTDEFINED, USERDEFINED,
+			WATERCOOLEDSHELLTUBE, WATERCOOLEDTUBEINTUBE,
+			WATERCOOLEDBRAZEDPLATE, WATERCOOLEDSHELLCOIL, AIRCOOLED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Condenser Type Enum</b></em>' enumerators.
@@ -272,7 +275,8 @@ public enum IfcCondenserTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCondenserTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCondenserTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Condenser Type Enum</b></em>' literal with the specified literal value.

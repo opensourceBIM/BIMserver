@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcQuantityTimeImpl extends IfcPhysicalSimpleQuantityImpl implements IfcQuantityTime {
+public class IfcQuantityTimeImpl extends IfcPhysicalSimpleQuantityImpl
+		implements IfcQuantityTime {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcQuantityTimeImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * @generated
 	 */
 	public double getTimeValue() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE, true);
 	}
 
 	/**
@@ -69,7 +71,8 @@ public class IfcQuantityTimeImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * @generated
 	 */
 	public void setTimeValue(double newTimeValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE, newTimeValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE,
+				newTimeValue);
 	}
 
 	/**
@@ -78,7 +81,9 @@ public class IfcQuantityTimeImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * @generated
 	 */
 	public String getTimeValueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -87,7 +92,8 @@ public class IfcQuantityTimeImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * @generated
 	 */
 	public void setTimeValueAsString(String newTimeValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE_AS_STRING, newTimeValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_TIME__TIME_VALUE_AS_STRING,
+				newTimeValueAsString);
 	}
 
 } //IfcQuantityTimeImpl

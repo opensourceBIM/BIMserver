@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDiscreteAccessoryTypeImpl extends IfcElementComponentTypeImpl implements IfcDiscreteAccessoryType {
+public class IfcDiscreteAccessoryTypeImpl extends IfcElementComponentTypeImpl
+		implements IfcDiscreteAccessoryType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

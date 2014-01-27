@@ -44,7 +44,9 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionConditionImpl implements IfcFailureConnectionCondition {
+public class IfcFailureConnectionConditionImpl extends
+		IfcStructuralConnectionConditionImpl implements
+		IfcFailureConnectionCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +72,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public double getTensionFailureX() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_X, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_X,
+				true);
 	}
 
 	/**
@@ -79,7 +83,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public void setTensionFailureX(double newTensionFailureX) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_X, newTensionFailureX);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_X,
+				newTensionFailureX);
 	}
 
 	/**
@@ -106,7 +111,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public String getTensionFailureXAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_XAS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_XAS_STRING,
+				true);
 	}
 
 	/**
@@ -115,7 +122,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public void setTensionFailureXAsString(String newTensionFailureXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_XAS_STRING, newTensionFailureXAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_XAS_STRING,
+				newTensionFailureXAsString);
 	}
 
 	/**
@@ -142,7 +150,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public double getTensionFailureY() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Y, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Y,
+				true);
 	}
 
 	/**
@@ -151,7 +161,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public void setTensionFailureY(double newTensionFailureY) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Y, newTensionFailureY);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Y,
+				newTensionFailureY);
 	}
 
 	/**
@@ -178,7 +189,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public String getTensionFailureYAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_YAS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_YAS_STRING,
+				true);
 	}
 
 	/**
@@ -187,7 +200,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public void setTensionFailureYAsString(String newTensionFailureYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_YAS_STRING, newTensionFailureYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_YAS_STRING,
+				newTensionFailureYAsString);
 	}
 
 	/**
@@ -214,7 +228,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public double getTensionFailureZ() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Z, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Z,
+				true);
 	}
 
 	/**
@@ -223,7 +239,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public void setTensionFailureZ(double newTensionFailureZ) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Z, newTensionFailureZ);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Z,
+				newTensionFailureZ);
 	}
 
 	/**
@@ -250,7 +267,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public String getTensionFailureZAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_ZAS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_ZAS_STRING,
+				true);
 	}
 
 	/**
@@ -259,7 +278,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public void setTensionFailureZAsString(String newTensionFailureZAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_ZAS_STRING, newTensionFailureZAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_ZAS_STRING,
+				newTensionFailureZAsString);
 	}
 
 	/**
@@ -286,7 +306,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public double getCompressionFailureX() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_X, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_X,
+				true);
 	}
 
 	/**
@@ -295,7 +317,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public void setCompressionFailureX(double newCompressionFailureX) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_X, newCompressionFailureX);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_X,
+				newCompressionFailureX);
 	}
 
 	/**
@@ -322,7 +345,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public String getCompressionFailureXAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_XAS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_XAS_STRING,
+				true);
 	}
 
 	/**
@@ -330,8 +355,10 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCompressionFailureXAsString(String newCompressionFailureXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_XAS_STRING, newCompressionFailureXAsString);
+	public void setCompressionFailureXAsString(
+			String newCompressionFailureXAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_XAS_STRING,
+				newCompressionFailureXAsString);
 	}
 
 	/**
@@ -358,7 +385,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public double getCompressionFailureY() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Y, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Y,
+				true);
 	}
 
 	/**
@@ -367,7 +396,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public void setCompressionFailureY(double newCompressionFailureY) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Y, newCompressionFailureY);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Y,
+				newCompressionFailureY);
 	}
 
 	/**
@@ -394,7 +424,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public String getCompressionFailureYAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_YAS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_YAS_STRING,
+				true);
 	}
 
 	/**
@@ -402,8 +434,10 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCompressionFailureYAsString(String newCompressionFailureYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_YAS_STRING, newCompressionFailureYAsString);
+	public void setCompressionFailureYAsString(
+			String newCompressionFailureYAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_YAS_STRING,
+				newCompressionFailureYAsString);
 	}
 
 	/**
@@ -430,7 +464,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public double getCompressionFailureZ() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Z, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Z,
+				true);
 	}
 
 	/**
@@ -439,7 +475,8 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public void setCompressionFailureZ(double newCompressionFailureZ) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Z, newCompressionFailureZ);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Z,
+				newCompressionFailureZ);
 	}
 
 	/**
@@ -466,7 +503,9 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * @generated
 	 */
 	public String getCompressionFailureZAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_ZAS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_ZAS_STRING,
+				true);
 	}
 
 	/**
@@ -474,8 +513,10 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCompressionFailureZAsString(String newCompressionFailureZAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_ZAS_STRING, newCompressionFailureZAsString);
+	public void setCompressionFailureZAsString(
+			String newCompressionFailureZAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_ZAS_STRING,
+				newCompressionFailureZAsString);
 	}
 
 	/**

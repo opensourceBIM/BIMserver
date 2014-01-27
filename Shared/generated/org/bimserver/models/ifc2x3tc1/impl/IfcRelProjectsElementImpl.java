@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelProjectsElementImpl extends IfcRelConnectsImpl implements IfcRelProjectsElement {
+public class IfcRelProjectsElementImpl extends IfcRelConnectsImpl implements
+		IfcRelProjectsElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcRelProjectsElementImpl extends IfcRelConnectsImpl implements Ifc
 	 * @generated
 	 */
 	public IfcElement getRelatingElement() {
-		return (IfcElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATING_ELEMENT, true);
+		return (IfcElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATING_ELEMENT,
+				true);
 	}
 
 	/**
@@ -71,7 +74,8 @@ public class IfcRelProjectsElementImpl extends IfcRelConnectsImpl implements Ifc
 	 * @generated
 	 */
 	public void setRelatingElement(IfcElement newRelatingElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATING_ELEMENT, newRelatingElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATING_ELEMENT,
+				newRelatingElement);
 	}
 
 	/**
@@ -80,7 +84,9 @@ public class IfcRelProjectsElementImpl extends IfcRelConnectsImpl implements Ifc
 	 * @generated
 	 */
 	public IfcFeatureElementAddition getRelatedFeatureElement() {
-		return (IfcFeatureElementAddition) eGet(Ifc2x3tc1Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT, true);
+		return (IfcFeatureElementAddition) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT,
+				true);
 	}
 
 	/**
@@ -88,8 +94,10 @@ public class IfcRelProjectsElementImpl extends IfcRelConnectsImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatedFeatureElement(IfcFeatureElementAddition newRelatedFeatureElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT, newRelatedFeatureElement);
+	public void setRelatedFeatureElement(
+			IfcFeatureElementAddition newRelatedFeatureElement) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT,
+				newRelatedFeatureElement);
 	}
 
 } //IfcRelProjectsElementImpl

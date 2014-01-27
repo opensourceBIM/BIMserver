@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcVertexImpl extends IfcTopologicalRepresentationItemImpl implements IfcVertex {
+public class IfcVertexImpl extends IfcTopologicalRepresentationItemImpl
+		implements IfcVertex {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

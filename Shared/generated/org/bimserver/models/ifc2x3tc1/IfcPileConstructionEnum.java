@@ -213,8 +213,9 @@ public enum IfcPileConstructionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPileConstructionEnum[] VALUES_ARRAY = new IfcPileConstructionEnum[] { NULL, PRECAST_CONCRETE, COMPOSITE, NOTDEFINED, USERDEFINED, PREFAB_STEEL,
-			CAST_IN_PLACE, };
+	private static final IfcPileConstructionEnum[] VALUES_ARRAY = new IfcPileConstructionEnum[] {
+			NULL, PRECAST_CONCRETE, COMPOSITE, NOTDEFINED, USERDEFINED,
+			PREFAB_STEEL, CAST_IN_PLACE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pile Construction Enum</b></em>' enumerators.
@@ -222,7 +223,8 @@ public enum IfcPileConstructionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPileConstructionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPileConstructionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Pile Construction Enum</b></em>' literal with the specified literal value.

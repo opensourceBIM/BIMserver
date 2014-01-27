@@ -33,7 +33,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcBoundaryNodeConditionWarping extends IfcBoundaryNodeCondition {
+public interface IfcBoundaryNodeConditionWarping extends
+		IfcBoundaryNodeCondition {
 	/**
 	 * Returns the value of the '<em><b>Warping Stiffness</b></em>' attribute.
 	 * <!-- begin-user-doc -->

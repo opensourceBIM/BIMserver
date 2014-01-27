@@ -38,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransportElement {
+public class IfcTransportElementImpl extends IfcElementImpl implements
+		IfcTransportElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,9 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public IfcTransportElementTypeEnum getOperationType() {
-		return (IfcTransportElementTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__OPERATION_TYPE, true);
+		return (IfcTransportElementTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__OPERATION_TYPE,
+				true);
 	}
 
 	/**
@@ -73,7 +76,8 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public void setOperationType(IfcTransportElementTypeEnum newOperationType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__OPERATION_TYPE, newOperationType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__OPERATION_TYPE,
+				newOperationType);
 	}
 
 	/**
@@ -100,7 +104,9 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public double getCapacityByWeight() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT,
+				true);
 	}
 
 	/**
@@ -109,7 +115,8 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public void setCapacityByWeight(double newCapacityByWeight) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT, newCapacityByWeight);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT,
+				newCapacityByWeight);
 	}
 
 	/**
@@ -136,7 +143,9 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public String getCapacityByWeightAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -145,7 +154,8 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public void setCapacityByWeightAsString(String newCapacityByWeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT_AS_STRING, newCapacityByWeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT_AS_STRING,
+				newCapacityByWeightAsString);
 	}
 
 	/**
@@ -172,7 +182,9 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public double getCapacityByNumber() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER,
+				true);
 	}
 
 	/**
@@ -181,7 +193,8 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public void setCapacityByNumber(double newCapacityByNumber) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER, newCapacityByNumber);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER,
+				newCapacityByNumber);
 	}
 
 	/**
@@ -208,7 +221,9 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public String getCapacityByNumberAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER_AS_STRING,
+				true);
 	}
 
 	/**
@@ -217,7 +232,8 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public void setCapacityByNumberAsString(String newCapacityByNumberAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER_AS_STRING, newCapacityByNumberAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER_AS_STRING,
+				newCapacityByNumberAsString);
 	}
 
 	/**

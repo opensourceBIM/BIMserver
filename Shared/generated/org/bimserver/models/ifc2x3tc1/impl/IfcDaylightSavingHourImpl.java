@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDaylightSavingHourImpl extends IdEObjectImpl implements IfcDaylightSavingHour {
+public class IfcDaylightSavingHourImpl extends IdEObjectImpl implements
+		IfcDaylightSavingHour {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +71,9 @@ public class IfcDaylightSavingHourImpl extends IdEObjectImpl implements IfcDayli
 	 * @generated
 	 */
 	public int getWrappedValue() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_DAYLIGHT_SAVING_HOUR__WRAPPED_VALUE, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DAYLIGHT_SAVING_HOUR__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -79,7 +82,8 @@ public class IfcDaylightSavingHourImpl extends IdEObjectImpl implements IfcDayli
 	 * @generated
 	 */
 	public void setWrappedValue(int newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DAYLIGHT_SAVING_HOUR__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DAYLIGHT_SAVING_HOUR__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**

@@ -62,7 +62,8 @@ public class IfcSystemImpl extends IfcGroupImpl implements IfcSystem {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelServicesBuildings> getServicesBuildings() {
-		return (EList<IfcRelServicesBuildings>) eGet(Ifc2x3tc1Package.Literals.IFC_SYSTEM__SERVICES_BUILDINGS, true);
+		return (EList<IfcRelServicesBuildings>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SYSTEM__SERVICES_BUILDINGS, true);
 	}
 
 	/**

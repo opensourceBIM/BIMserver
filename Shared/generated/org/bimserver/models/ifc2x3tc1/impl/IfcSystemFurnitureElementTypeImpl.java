@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSystemFurnitureElementTypeImpl extends IfcFurnishingElementTypeImpl implements IfcSystemFurnitureElementType {
+public class IfcSystemFurnitureElementTypeImpl extends
+		IfcFurnishingElementTypeImpl implements IfcSystemFurnitureElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -64,7 +64,8 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * @generated
 	 */
 	public IfcRelConnectsPortToElement getContainedIn() {
-		return (IfcRelConnectsPortToElement) eGet(Ifc2x3tc1Package.Literals.IFC_PORT__CONTAINED_IN, true);
+		return (IfcRelConnectsPortToElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PORT__CONTAINED_IN, true);
 	}
 
 	/**
@@ -101,7 +102,8 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsPorts> getConnectedFrom() {
-		return (EList<IfcRelConnectsPorts>) eGet(Ifc2x3tc1Package.Literals.IFC_PORT__CONNECTED_FROM, true);
+		return (EList<IfcRelConnectsPorts>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PORT__CONNECTED_FROM, true);
 	}
 
 	/**
@@ -129,7 +131,8 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsPorts> getConnectedTo() {
-		return (EList<IfcRelConnectsPorts>) eGet(Ifc2x3tc1Package.Literals.IFC_PORT__CONNECTED_TO, true);
+		return (EList<IfcRelConnectsPorts>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PORT__CONNECTED_TO, true);
 	}
 
 	/**

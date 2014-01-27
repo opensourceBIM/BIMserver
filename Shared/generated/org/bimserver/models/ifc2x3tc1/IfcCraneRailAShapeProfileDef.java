@@ -55,7 +55,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcCraneRailAShapeProfileDef extends IfcParameterizedProfileDef {
+public interface IfcCraneRailAShapeProfileDef extends
+		IfcParameterizedProfileDef {
 	/**
 	 * Returns the value of the '<em><b>Overall Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->

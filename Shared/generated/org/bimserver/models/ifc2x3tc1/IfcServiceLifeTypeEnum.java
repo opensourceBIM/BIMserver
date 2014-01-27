@@ -50,7 +50,8 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PESSIMISTICREFERENCESERVICELIFE(1, "PESSIMISTICREFERENCESERVICELIFE", "PESSIMISTICREFERENCESERVICELIFE"),
+	PESSIMISTICREFERENCESERVICELIFE(1, "PESSIMISTICREFERENCESERVICELIFE",
+			"PESSIMISTICREFERENCESERVICELIFE"),
 
 	/**
 	 * The '<em><b>EXPECTEDSERVICELIFE</b></em>' literal object.
@@ -80,7 +81,8 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OPTIMISTICREFERENCESERVICELIFE(4, "OPTIMISTICREFERENCESERVICELIFE", "OPTIMISTICREFERENCESERVICELIFE"),
+	OPTIMISTICREFERENCESERVICELIFE(4, "OPTIMISTICREFERENCESERVICELIFE",
+			"OPTIMISTICREFERENCESERVICELIFE"),
 
 	/**
 	 * The '<em><b>ACTUALSERVICELIFE</b></em>' literal object.
@@ -188,8 +190,10 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcServiceLifeTypeEnum[] VALUES_ARRAY = new IfcServiceLifeTypeEnum[] { NULL, PESSIMISTICREFERENCESERVICELIFE, EXPECTEDSERVICELIFE, REFERENCESERVICELIFE,
-			OPTIMISTICREFERENCESERVICELIFE, ACTUALSERVICELIFE, };
+	private static final IfcServiceLifeTypeEnum[] VALUES_ARRAY = new IfcServiceLifeTypeEnum[] {
+			NULL, PESSIMISTICREFERENCESERVICELIFE, EXPECTEDSERVICELIFE,
+			REFERENCESERVICELIFE, OPTIMISTICREFERENCESERVICELIFE,
+			ACTUALSERVICELIFE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Service Life Type Enum</b></em>' enumerators.
@@ -197,7 +201,8 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcServiceLifeTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcServiceLifeTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Service Life Type Enum</b></em>' literal with the specified literal value.

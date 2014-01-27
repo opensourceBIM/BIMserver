@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBoxAlignmentImpl extends IfcLabelImpl implements IfcBoxAlignment {
+public class IfcBoxAlignmentImpl extends IfcLabelImpl implements
+		IfcBoxAlignment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAggregatesImpl extends IfcRelDecomposesImpl implements IfcRelAggregates {
+public class IfcRelAggregatesImpl extends IfcRelDecomposesImpl implements
+		IfcRelAggregates {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -83,6 +83,7 @@ public class TestIfcEngineEmbedded {
 			
 			// Authenticate
 			client.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+//			client.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 			
 			// Iterate over the IfcEngines and see if there is one matching the classname specified above
 			boolean ifcEngineFound = false;
@@ -116,10 +117,10 @@ public class TestIfcEngineEmbedded {
 			project = client.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
 
 			// Find collada serializer
-			SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/collada");
+			SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
 
 			// Download as collada			
-			client.download(project.getLastRevisionId(), serializer.getOid(), new File(testIfcFile.getName() + ".dae"));
+			client.download(project.getLastRevisionId(), serializer.getOid(), new File(testIfcFile.getName() + ".ifc"));
 
 			client.disconnect();
 			bimServer.stop();

@@ -60,7 +60,8 @@ public class IfcRampImpl extends IfcBuildingElementImpl implements IfcRamp {
 	 * @generated
 	 */
 	public IfcRampTypeEnum getShapeType() {
-		return (IfcRampTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_RAMP__SHAPE_TYPE, true);
+		return (IfcRampTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RAMP__SHAPE_TYPE, true);
 	}
 
 	/**

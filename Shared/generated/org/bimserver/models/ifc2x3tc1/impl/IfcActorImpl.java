@@ -63,7 +63,8 @@ public class IfcActorImpl extends IfcObjectImpl implements IfcActor {
 	 * @generated
 	 */
 	public IfcActorSelect getTheActor() {
-		return (IfcActorSelect) eGet(Ifc2x3tc1Package.Literals.IFC_ACTOR__THE_ACTOR, true);
+		return (IfcActorSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ACTOR__THE_ACTOR, true);
 	}
 
 	/**
@@ -82,7 +83,8 @@ public class IfcActorImpl extends IfcObjectImpl implements IfcActor {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToActor> getIsActingUpon() {
-		return (EList<IfcRelAssignsToActor>) eGet(Ifc2x3tc1Package.Literals.IFC_ACTOR__IS_ACTING_UPON, true);
+		return (EList<IfcRelAssignsToActor>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ACTOR__IS_ACTING_UPON, true);
 	}
 
 	/**

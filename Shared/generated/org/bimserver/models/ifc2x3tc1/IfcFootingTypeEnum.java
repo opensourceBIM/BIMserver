@@ -213,7 +213,9 @@ public enum IfcFootingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFootingTypeEnum[] VALUES_ARRAY = new IfcFootingTypeEnum[] { NULL, STRIP_FOOTING, NOTDEFINED, FOOTING_BEAM, USERDEFINED, PILE_CAP, PAD_FOOTING, };
+	private static final IfcFootingTypeEnum[] VALUES_ARRAY = new IfcFootingTypeEnum[] {
+			NULL, STRIP_FOOTING, NOTDEFINED, FOOTING_BEAM, USERDEFINED,
+			PILE_CAP, PAD_FOOTING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Footing Type Enum</b></em>' enumerators.
@@ -221,7 +223,8 @@ public enum IfcFootingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcFootingTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcFootingTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Footing Type Enum</b></em>' literal with the specified literal value.

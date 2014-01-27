@@ -163,7 +163,8 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBoilerTypeEnum[] VALUES_ARRAY = new IfcBoilerTypeEnum[] { NULL, WATER, NOTDEFINED, USERDEFINED, STEAM, };
+	private static final IfcBoilerTypeEnum[] VALUES_ARRAY = new IfcBoilerTypeEnum[] {
+			NULL, WATER, NOTDEFINED, USERDEFINED, STEAM, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Boiler Type Enum</b></em>' enumerators.
@@ -171,7 +172,8 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcBoilerTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcBoilerTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Boiler Type Enum</b></em>' literal with the specified literal value.

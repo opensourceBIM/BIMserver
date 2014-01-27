@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertySetImpl extends IfcPropertySetDefinitionImpl implements IfcPropertySet {
+public class IfcPropertySetImpl extends IfcPropertySetDefinitionImpl implements
+		IfcPropertySet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcPropertySetImpl extends IfcPropertySetDefinitionImpl implements 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getHasProperties() {
-		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_SET__HAS_PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_SET__HAS_PROPERTIES,
+				true);
 	}
 
 } //IfcPropertySetImpl

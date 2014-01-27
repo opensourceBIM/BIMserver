@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralPlanarActionImpl extends IfcStructuralActionImpl implements IfcStructuralPlanarAction {
+public class IfcStructuralPlanarActionImpl extends IfcStructuralActionImpl
+		implements IfcStructuralPlanarAction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcStructuralPlanarActionImpl extends IfcStructuralActionImpl imple
 	 * @generated
 	 */
 	public IfcProjectedOrTrueLengthEnum getProjectedOrTrue() {
-		return (IfcProjectedOrTrueLengthEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_PLANAR_ACTION__PROJECTED_OR_TRUE, true);
+		return (IfcProjectedOrTrueLengthEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_PLANAR_ACTION__PROJECTED_OR_TRUE,
+				true);
 	}
 
 	/**
@@ -68,8 +71,10 @@ public class IfcStructuralPlanarActionImpl extends IfcStructuralActionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProjectedOrTrue(IfcProjectedOrTrueLengthEnum newProjectedOrTrue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_PLANAR_ACTION__PROJECTED_OR_TRUE, newProjectedOrTrue);
+	public void setProjectedOrTrue(
+			IfcProjectedOrTrueLengthEnum newProjectedOrTrue) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_PLANAR_ACTION__PROJECTED_OR_TRUE,
+				newProjectedOrTrue);
 	}
 
 } //IfcStructuralPlanarActionImpl

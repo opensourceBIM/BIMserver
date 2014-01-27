@@ -63,16 +63,6 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	FIRESMOKEDAMPER(2, "FIRESMOKEDAMPER", "FIRESMOKEDAMPER"),
 
 	/**
-	 * The '<em><b>BALANCINGDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BALANCINGDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BALANCINGDAMPER(3, "BALANCINGDAMPER", "BALANCINGDAMPER"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +70,15 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>BALANCINGDAMPER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #BALANCINGDAMPER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	BALANCINGDAMPER(4, "BALANCINGDAMPER", "BALANCINGDAMPER"),
 
 	/**
 	 * The '<em><b>FIREDAMPER</b></em>' literal object.
@@ -218,21 +216,6 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	public static final int FIRESMOKEDAMPER_VALUE = 2;
 
 	/**
-	 * The '<em><b>BALANCINGDAMPER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BALANCINGDAMPER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BALANCINGDAMPER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BALANCINGDAMPER_VALUE = 3;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -245,7 +228,22 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 3;
+
+	/**
+	 * The '<em><b>BALANCINGDAMPER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BALANCINGDAMPER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BALANCINGDAMPER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BALANCINGDAMPER_VALUE = 4;
 
 	/**
 	 * The '<em><b>FIREDAMPER</b></em>' literal value.
@@ -388,8 +386,11 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDamperTypeEnum[] VALUES_ARRAY = new IfcDamperTypeEnum[] { NULL, BLASTDAMPER, FIRESMOKEDAMPER, BALANCINGDAMPER, NOTDEFINED, FIREDAMPER, SMOKEDAMPER,
-			RELIEFDAMPER, GRAVITYRELIEFDAMPER, BACKDRAFTDAMPER, GRAVITYDAMPER, FUMEHOODEXHAUST, USERDEFINED, CONTROLDAMPER, };
+	private static final IfcDamperTypeEnum[] VALUES_ARRAY = new IfcDamperTypeEnum[] {
+			NULL, BLASTDAMPER, FIRESMOKEDAMPER, NOTDEFINED, BALANCINGDAMPER,
+			FIREDAMPER, SMOKEDAMPER, RELIEFDAMPER, GRAVITYRELIEFDAMPER,
+			BACKDRAFTDAMPER, GRAVITYDAMPER, FUMEHOODEXHAUST, USERDEFINED,
+			CONTROLDAMPER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Damper Type Enum</b></em>' enumerators.
@@ -397,7 +398,8 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDamperTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDamperTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Damper Type Enum</b></em>' literal with the specified literal value.
@@ -445,10 +447,10 @@ public enum IfcDamperTypeEnum implements Enumerator {
 			return BLASTDAMPER;
 		case FIRESMOKEDAMPER_VALUE:
 			return FIRESMOKEDAMPER;
-		case BALANCINGDAMPER_VALUE:
-			return BALANCINGDAMPER;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case BALANCINGDAMPER_VALUE:
+			return BALANCINGDAMPER;
 		case FIREDAMPER_VALUE:
 			return FIREDAMPER;
 		case SMOKEDAMPER_VALUE:

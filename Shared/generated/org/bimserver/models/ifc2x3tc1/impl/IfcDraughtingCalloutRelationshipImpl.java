@@ -38,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implements IfcDraughtingCalloutRelationship {
+public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl
+		implements IfcDraughtingCalloutRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,7 +75,9 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__NAME,
+				true);
 	}
 
 	/**
@@ -83,7 +86,8 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__NAME, newName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__NAME,
+				newName);
 	}
 
 	/**
@@ -110,7 +114,9 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__DESCRIPTION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__DESCRIPTION,
+				true);
 	}
 
 	/**
@@ -119,7 +125,8 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__DESCRIPTION, newDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__DESCRIPTION,
+				newDescription);
 	}
 
 	/**
@@ -146,7 +153,9 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public IfcDraughtingCallout getRelatingDraughtingCallout() {
-		return (IfcDraughtingCallout) eGet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATING_DRAUGHTING_CALLOUT, true);
+		return (IfcDraughtingCallout) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATING_DRAUGHTING_CALLOUT,
+				true);
 	}
 
 	/**
@@ -154,8 +163,10 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatingDraughtingCallout(IfcDraughtingCallout newRelatingDraughtingCallout) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATING_DRAUGHTING_CALLOUT, newRelatingDraughtingCallout);
+	public void setRelatingDraughtingCallout(
+			IfcDraughtingCallout newRelatingDraughtingCallout) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATING_DRAUGHTING_CALLOUT,
+				newRelatingDraughtingCallout);
 	}
 
 	/**
@@ -164,7 +175,9 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public IfcDraughtingCallout getRelatedDraughtingCallout() {
-		return (IfcDraughtingCallout) eGet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT, true);
+		return (IfcDraughtingCallout) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT,
+				true);
 	}
 
 	/**
@@ -172,8 +185,10 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatedDraughtingCallout(IfcDraughtingCallout newRelatedDraughtingCallout) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT, newRelatedDraughtingCallout);
+	public void setRelatedDraughtingCallout(
+			IfcDraughtingCallout newRelatedDraughtingCallout) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT,
+				newRelatedDraughtingCallout);
 	}
 
 } //IfcDraughtingCalloutRelationshipImpl

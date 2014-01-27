@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl implements IfcPlacement {
+public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcPlacement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +62,8 @@ public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * @generated
 	 */
 	public IfcCartesianPoint getLocation() {
-		return (IfcCartesianPoint) eGet(Ifc2x3tc1Package.Literals.IFC_PLACEMENT__LOCATION, true);
+		return (IfcCartesianPoint) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PLACEMENT__LOCATION, true);
 	}
 
 	/**
@@ -79,7 +81,8 @@ public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_PLACEMENT__DIM, true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_PLACEMENT__DIM,
+				true);
 	}
 
 	/**

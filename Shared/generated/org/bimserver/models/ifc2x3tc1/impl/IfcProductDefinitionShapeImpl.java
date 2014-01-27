@@ -37,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProductDefinitionShapeImpl extends IfcProductRepresentationImpl implements IfcProductDefinitionShape {
+public class IfcProductDefinitionShapeImpl extends IfcProductRepresentationImpl
+		implements IfcProductDefinitionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,9 @@ public class IfcProductDefinitionShapeImpl extends IfcProductRepresentationImpl 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProduct> getShapeOfProduct() {
-		return (EList<IfcProduct>) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__SHAPE_OF_PRODUCT, true);
+		return (EList<IfcProduct>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__SHAPE_OF_PRODUCT,
+				true);
 	}
 
 	/**
@@ -92,7 +95,9 @@ public class IfcProductDefinitionShapeImpl extends IfcProductRepresentationImpl 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcShapeAspect> getHasShapeAspects() {
-		return (EList<IfcShapeAspect>) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__HAS_SHAPE_ASPECTS, true);
+		return (EList<IfcShapeAspect>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__HAS_SHAPE_ASPECTS,
+				true);
 	}
 
 	/**

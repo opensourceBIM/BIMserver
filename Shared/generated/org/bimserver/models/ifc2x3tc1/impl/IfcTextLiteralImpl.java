@@ -37,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl implements IfcTextLiteral {
+public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcTextLiteral {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,7 +64,8 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * @generated
 	 */
 	public String getLiteral() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL__LITERAL, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL__LITERAL, true);
 	}
 
 	/**
@@ -81,7 +83,8 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * @generated
 	 */
 	public IfcAxis2Placement getPlacement() {
-		return (IfcAxis2Placement) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL__PLACEMENT, true);
+		return (IfcAxis2Placement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL__PLACEMENT, true);
 	}
 
 	/**
@@ -90,7 +93,8 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * @generated
 	 */
 	public void setPlacement(IfcAxis2Placement newPlacement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL__PLACEMENT, newPlacement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL__PLACEMENT,
+				newPlacement);
 	}
 
 	/**
@@ -99,7 +103,8 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * @generated
 	 */
 	public IfcTextPath getPath() {
-		return (IfcTextPath) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL__PATH, true);
+		return (IfcTextPath) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL__PATH, true);
 	}
 
 	/**

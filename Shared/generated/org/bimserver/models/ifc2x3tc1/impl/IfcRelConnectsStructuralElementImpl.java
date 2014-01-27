@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelConnectsStructuralElementImpl extends IfcRelConnectsImpl implements IfcRelConnectsStructuralElement {
+public class IfcRelConnectsStructuralElementImpl extends IfcRelConnectsImpl
+		implements IfcRelConnectsStructuralElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcRelConnectsStructuralElementImpl extends IfcRelConnectsImpl impl
 	 * @generated
 	 */
 	public IfcElement getRelatingElement() {
-		return (IfcElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATING_ELEMENT, true);
+		return (IfcElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATING_ELEMENT,
+				true);
 	}
 
 	/**
@@ -71,7 +74,8 @@ public class IfcRelConnectsStructuralElementImpl extends IfcRelConnectsImpl impl
 	 * @generated
 	 */
 	public void setRelatingElement(IfcElement newRelatingElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATING_ELEMENT, newRelatingElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATING_ELEMENT,
+				newRelatingElement);
 	}
 
 	/**
@@ -80,7 +84,9 @@ public class IfcRelConnectsStructuralElementImpl extends IfcRelConnectsImpl impl
 	 * @generated
 	 */
 	public IfcStructuralMember getRelatedStructuralMember() {
-		return (IfcStructuralMember) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER, true);
+		return (IfcStructuralMember) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER,
+				true);
 	}
 
 	/**
@@ -88,8 +94,10 @@ public class IfcRelConnectsStructuralElementImpl extends IfcRelConnectsImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatedStructuralMember(IfcStructuralMember newRelatedStructuralMember) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER, newRelatedStructuralMember);
+	public void setRelatedStructuralMember(
+			IfcStructuralMember newRelatedStructuralMember) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER,
+				newRelatedStructuralMember);
 	}
 
 } //IfcRelConnectsStructuralElementImpl

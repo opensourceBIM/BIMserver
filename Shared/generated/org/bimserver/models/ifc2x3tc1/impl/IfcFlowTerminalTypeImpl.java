@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFlowTerminalTypeImpl extends IfcDistributionFlowElementTypeImpl implements IfcFlowTerminalType {
+public class IfcFlowTerminalTypeImpl extends IfcDistributionFlowElementTypeImpl
+		implements IfcFlowTerminalType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

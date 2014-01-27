@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextureVertexImpl extends IdEObjectImpl implements IfcTextureVertex {
+public class IfcTextureVertexImpl extends IdEObjectImpl implements
+		IfcTextureVertex {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +74,8 @@ public class IfcTextureVertexImpl extends IdEObjectImpl implements IfcTextureVer
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getCoordinates() {
-		return (EList<Double>) eGet(Ifc2x3tc1Package.Literals.IFC_TEXTURE_VERTEX__COORDINATES, true);
+		return (EList<Double>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXTURE_VERTEX__COORDINATES, true);
 	}
 
 	/**
@@ -83,7 +85,9 @@ public class IfcTextureVertexImpl extends IdEObjectImpl implements IfcTextureVer
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getCoordinatesAsString() {
-		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_TEXTURE_VERTEX__COORDINATES_AS_STRING, true);
+		return (EList<String>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXTURE_VERTEX__COORDINATES_AS_STRING,
+				true);
 	}
 
 } //IfcTextureVertexImpl

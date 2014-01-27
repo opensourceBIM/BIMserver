@@ -33,7 +33,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcAnnotationFillAreaOccurrence extends IfcAnnotationOccurrence {
+public interface IfcAnnotationFillAreaOccurrence extends
+		IfcAnnotationOccurrence {
 	/**
 	 * Returns the value of the '<em><b>Fill Style Target</b></em>' reference.
 	 * <!-- begin-user-doc -->

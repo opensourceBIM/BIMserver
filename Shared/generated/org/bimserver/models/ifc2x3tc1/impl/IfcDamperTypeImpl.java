@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDamperTypeImpl extends IfcFlowControllerTypeImpl implements IfcDamperType {
+public class IfcDamperTypeImpl extends IfcFlowControllerTypeImpl implements
+		IfcDamperType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcDamperTypeImpl extends IfcFlowControllerTypeImpl implements IfcD
 	 * @generated
 	 */
 	public IfcDamperTypeEnum getPredefinedType() {
-		return (IfcDamperTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DAMPER_TYPE__PREDEFINED_TYPE, true);
+		return (IfcDamperTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DAMPER_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcDamperTypeImpl extends IfcFlowControllerTypeImpl implements IfcD
 	 * @generated
 	 */
 	public void setPredefinedType(IfcDamperTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DAMPER_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DAMPER_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcDamperTypeImpl

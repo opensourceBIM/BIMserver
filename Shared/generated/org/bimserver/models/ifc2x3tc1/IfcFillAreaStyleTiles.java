@@ -37,7 +37,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem, IfcFillStyleSelect {
+public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem,
+		IfcFillStyleSelect {
 	/**
 	 * Returns the value of the '<em><b>Tiling Pattern</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEquipmentStandardImpl extends IfcControlImpl implements IfcEquipmentStandard {
+public class IfcEquipmentStandardImpl extends IfcControlImpl implements
+		IfcEquipmentStandard {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

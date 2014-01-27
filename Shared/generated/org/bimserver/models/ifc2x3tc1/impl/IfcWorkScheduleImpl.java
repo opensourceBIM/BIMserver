@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWorkScheduleImpl extends IfcWorkControlImpl implements IfcWorkSchedule {
+public class IfcWorkScheduleImpl extends IfcWorkControlImpl implements
+		IfcWorkSchedule {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

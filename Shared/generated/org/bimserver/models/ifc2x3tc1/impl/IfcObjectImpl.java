@@ -62,7 +62,8 @@ public class IfcObjectImpl extends IfcObjectDefinitionImpl implements IfcObject 
 	 * @generated
 	 */
 	public String getObjectType() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT__OBJECT_TYPE, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT__OBJECT_TYPE,
+				true);
 	}
 
 	/**
@@ -99,7 +100,8 @@ public class IfcObjectImpl extends IfcObjectDefinitionImpl implements IfcObject 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefines> getIsDefinedBy() {
-		return (EList<IfcRelDefines>) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT__IS_DEFINED_BY, true);
+		return (EList<IfcRelDefines>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_OBJECT__IS_DEFINED_BY, true);
 	}
 
 	/**

@@ -62,7 +62,8 @@ public class IfcControlImpl extends IfcObjectImpl implements IfcControl {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToControl> getControls() {
-		return (EList<IfcRelAssignsToControl>) eGet(Ifc2x3tc1Package.Literals.IFC_CONTROL__CONTROLS, true);
+		return (EList<IfcRelAssignsToControl>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONTROL__CONTROLS, true);
 	}
 
 	/**

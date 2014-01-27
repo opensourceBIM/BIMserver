@@ -50,7 +50,8 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THERMOSIPHONCOILTYPEHEATEXCHANGERS(1, "THERMOSIPHONCOILTYPEHEATEXCHANGERS", "THERMOSIPHONCOILTYPEHEATEXCHANGERS"),
+	THERMOSIPHONCOILTYPEHEATEXCHANGERS(1, "THERMOSIPHONCOILTYPEHEATEXCHANGERS",
+			"THERMOSIPHONCOILTYPEHEATEXCHANGERS"),
 
 	/**
 	 * The '<em><b>TWINTOWERENTHALPYRECOVERYLOOPS</b></em>' literal object.
@@ -60,7 +61,8 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TWINTOWERENTHALPYRECOVERYLOOPS(2, "TWINTOWERENTHALPYRECOVERYLOOPS", "TWINTOWERENTHALPYRECOVERYLOOPS"),
+	TWINTOWERENTHALPYRECOVERYLOOPS(2, "TWINTOWERENTHALPYRECOVERYLOOPS",
+			"TWINTOWERENTHALPYRECOVERYLOOPS"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
@@ -90,7 +92,8 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FIXEDPLATECROSSFLOWEXCHANGER(5, "FIXEDPLATECROSSFLOWEXCHANGER", "FIXEDPLATECROSSFLOWEXCHANGER"),
+	FIXEDPLATECROSSFLOWEXCHANGER(5, "FIXEDPLATECROSSFLOWEXCHANGER",
+			"FIXEDPLATECROSSFLOWEXCHANGER"),
 
 	/**
 	 * The '<em><b>RUNAROUNDCOILLOOP</b></em>' literal object.
@@ -120,7 +123,8 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FIXEDPLATECOUNTERFLOWEXCHANGER(8, "FIXEDPLATECOUNTERFLOWEXCHANGER", "FIXEDPLATECOUNTERFLOWEXCHANGER"),
+	FIXEDPLATECOUNTERFLOWEXCHANGER(8, "FIXEDPLATECOUNTERFLOWEXCHANGER",
+			"FIXEDPLATECOUNTERFLOWEXCHANGER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -140,7 +144,8 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FIXEDPLATEPARALLELFLOWEXCHANGER(10, "FIXEDPLATEPARALLELFLOWEXCHANGER", "FIXEDPLATEPARALLELFLOWEXCHANGER"),
+	FIXEDPLATEPARALLELFLOWEXCHANGER(10, "FIXEDPLATEPARALLELFLOWEXCHANGER",
+			"FIXEDPLATEPARALLELFLOWEXCHANGER"),
 
 	/**
 	 * The '<em><b>THERMOSIPHONSEALEDTUBEHEATEXCHANGERS</b></em>' literal object.
@@ -150,7 +155,9 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THERMOSIPHONSEALEDTUBEHEATEXCHANGERS(11, "THERMOSIPHONSEALEDTUBEHEATEXCHANGERS", "THERMOSIPHONSEALEDTUBEHEATEXCHANGERS");
+	THERMOSIPHONSEALEDTUBEHEATEXCHANGERS(11,
+			"THERMOSIPHONSEALEDTUBEHEATEXCHANGERS",
+			"THERMOSIPHONSEALEDTUBEHEATEXCHANGERS");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -338,9 +345,13 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAirToAirHeatRecoveryTypeEnum[] VALUES_ARRAY = new IfcAirToAirHeatRecoveryTypeEnum[] { NULL, THERMOSIPHONCOILTYPEHEATEXCHANGERS,
-			TWINTOWERENTHALPYRECOVERYLOOPS, NOTDEFINED, HEATPIPE, FIXEDPLATECROSSFLOWEXCHANGER, RUNAROUNDCOILLOOP, ROTARYWHEEL, FIXEDPLATECOUNTERFLOWEXCHANGER, USERDEFINED,
-			FIXEDPLATEPARALLELFLOWEXCHANGER, THERMOSIPHONSEALEDTUBEHEATEXCHANGERS, };
+	private static final IfcAirToAirHeatRecoveryTypeEnum[] VALUES_ARRAY = new IfcAirToAirHeatRecoveryTypeEnum[] {
+			NULL, THERMOSIPHONCOILTYPEHEATEXCHANGERS,
+			TWINTOWERENTHALPYRECOVERYLOOPS, NOTDEFINED, HEATPIPE,
+			FIXEDPLATECROSSFLOWEXCHANGER, RUNAROUNDCOILLOOP, ROTARYWHEEL,
+			FIXEDPLATECOUNTERFLOWEXCHANGER, USERDEFINED,
+			FIXEDPLATEPARALLELFLOWEXCHANGER,
+			THERMOSIPHONSEALEDTUBEHEATEXCHANGERS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Air To Air Heat Recovery Type Enum</b></em>' enumerators.
@@ -348,7 +359,8 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAirToAirHeatRecoveryTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAirToAirHeatRecoveryTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Air To Air Heat Recovery Type Enum</b></em>' literal with the specified literal value.
@@ -445,7 +457,8 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcAirToAirHeatRecoveryTypeEnum(int value, String name, String literal) {
+	private IfcAirToAirHeatRecoveryTypeEnum(int value, String name,
+			String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

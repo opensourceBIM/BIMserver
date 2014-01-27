@@ -163,7 +163,8 @@ public enum IfcConnectionTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcConnectionTypeEnum[] VALUES_ARRAY = new IfcConnectionTypeEnum[] { NULL, ATPATH, ATEND, NOTDEFINED, ATSTART, };
+	private static final IfcConnectionTypeEnum[] VALUES_ARRAY = new IfcConnectionTypeEnum[] {
+			NULL, ATPATH, ATEND, NOTDEFINED, ATSTART, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Connection Type Enum</b></em>' enumerators.
@@ -171,7 +172,8 @@ public enum IfcConnectionTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcConnectionTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcConnectionTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Connection Type Enum</b></em>' literal with the specified literal value.

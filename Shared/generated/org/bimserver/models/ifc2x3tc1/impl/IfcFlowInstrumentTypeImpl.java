@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFlowInstrumentTypeImpl extends IfcDistributionControlElementTypeImpl implements IfcFlowInstrumentType {
+public class IfcFlowInstrumentTypeImpl extends
+		IfcDistributionControlElementTypeImpl implements IfcFlowInstrumentType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcFlowInstrumentTypeImpl extends IfcDistributionControlElementType
 	 * @generated
 	 */
 	public IfcFlowInstrumentTypeEnum getPredefinedType() {
-		return (IfcFlowInstrumentTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_FLOW_INSTRUMENT_TYPE__PREDEFINED_TYPE, true);
+		return (IfcFlowInstrumentTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FLOW_INSTRUMENT_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcFlowInstrumentTypeImpl extends IfcDistributionControlElementType
 	 * @generated
 	 */
 	public void setPredefinedType(IfcFlowInstrumentTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FLOW_INSTRUMENT_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FLOW_INSTRUMENT_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcFlowInstrumentTypeImpl

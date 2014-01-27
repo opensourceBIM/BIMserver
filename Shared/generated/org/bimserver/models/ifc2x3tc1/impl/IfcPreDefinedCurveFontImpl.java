@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPreDefinedCurveFontImpl extends IfcPreDefinedItemImpl implements IfcPreDefinedCurveFont {
+public class IfcPreDefinedCurveFontImpl extends IfcPreDefinedItemImpl implements
+		IfcPreDefinedCurveFont {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

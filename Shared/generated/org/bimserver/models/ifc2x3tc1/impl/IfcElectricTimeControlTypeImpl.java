@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricTimeControlTypeImpl extends IfcFlowControllerTypeImpl implements IfcElectricTimeControlType {
+public class IfcElectricTimeControlTypeImpl extends IfcFlowControllerTypeImpl
+		implements IfcElectricTimeControlType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcElectricTimeControlTypeImpl extends IfcFlowControllerTypeImpl im
 	 * @generated
 	 */
 	public IfcElectricTimeControlTypeEnum getPredefinedType() {
-		return (IfcElectricTimeControlTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_TIME_CONTROL_TYPE__PREDEFINED_TYPE, true);
+		return (IfcElectricTimeControlTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELECTRIC_TIME_CONTROL_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -68,8 +71,10 @@ public class IfcElectricTimeControlTypeImpl extends IfcFlowControllerTypeImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(IfcElectricTimeControlTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_TIME_CONTROL_TYPE__PREDEFINED_TYPE, newPredefinedType);
+	public void setPredefinedType(
+			IfcElectricTimeControlTypeEnum newPredefinedType) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_TIME_CONTROL_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcElectricTimeControlTypeImpl

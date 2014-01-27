@@ -32,7 +32,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcTwoDirectionRepeatFactor extends IfcOneDirectionRepeatFactor {
+public interface IfcTwoDirectionRepeatFactor extends
+		IfcOneDirectionRepeatFactor {
 	/**
 	 * Returns the value of the '<em><b>Second Repeat Factor</b></em>' reference.
 	 * <!-- begin-user-doc -->

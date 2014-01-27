@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements IfcChamferEdgeFeature {
+public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements
+		IfcChamferEdgeFeature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,8 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public double getWidth() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__WIDTH, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__WIDTH, true);
 	}
 
 	/**
@@ -71,7 +73,8 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public void setWidth(double newWidth) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__WIDTH, newWidth);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__WIDTH,
+				newWidth);
 	}
 
 	/**
@@ -98,7 +101,9 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public String getWidthAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__WIDTH_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__WIDTH_AS_STRING,
+				true);
 	}
 
 	/**
@@ -107,7 +112,8 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public void setWidthAsString(String newWidthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__WIDTH_AS_STRING, newWidthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__WIDTH_AS_STRING,
+				newWidthAsString);
 	}
 
 	/**
@@ -134,7 +140,9 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public double getHeight() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__HEIGHT, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__HEIGHT,
+				true);
 	}
 
 	/**
@@ -143,7 +151,8 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public void setHeight(double newHeight) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__HEIGHT, newHeight);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__HEIGHT,
+				newHeight);
 	}
 
 	/**
@@ -170,7 +179,9 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public String getHeightAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__HEIGHT_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__HEIGHT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -179,7 +190,8 @@ public class IfcChamferEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public void setHeightAsString(String newHeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__HEIGHT_AS_STRING, newHeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CHAMFER_EDGE_FEATURE__HEIGHT_AS_STRING,
+				newHeightAsString);
 	}
 
 	/**

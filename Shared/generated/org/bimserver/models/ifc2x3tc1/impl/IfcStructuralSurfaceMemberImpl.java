@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl implements IfcStructuralSurfaceMember {
+public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl
+		implements IfcStructuralSurfaceMember {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,9 @@ public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl impl
 	 * @generated
 	 */
 	public IfcStructuralSurfaceTypeEnum getPredefinedType() {
-		return (IfcStructuralSurfaceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__PREDEFINED_TYPE, true);
+		return (IfcStructuralSurfaceTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -71,7 +74,8 @@ public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl impl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcStructuralSurfaceTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 	/**
@@ -80,7 +84,9 @@ public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl impl
 	 * @generated
 	 */
 	public double getThickness() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS,
+				true);
 	}
 
 	/**
@@ -89,7 +95,8 @@ public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl impl
 	 * @generated
 	 */
 	public void setThickness(double newThickness) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS, newThickness);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS,
+				newThickness);
 	}
 
 	/**
@@ -116,7 +123,9 @@ public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl impl
 	 * @generated
 	 */
 	public String getThicknessAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -125,7 +134,8 @@ public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl impl
 	 * @generated
 	 */
 	public void setThicknessAsString(String newThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS_AS_STRING, newThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__THICKNESS_AS_STRING,
+				newThicknessAsString);
 	}
 
 	/**

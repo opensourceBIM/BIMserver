@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPreDefinedTextFontImpl extends IfcPreDefinedItemImpl implements IfcPreDefinedTextFont {
+public class IfcPreDefinedTextFontImpl extends IfcPreDefinedItemImpl implements
+		IfcPreDefinedTextFont {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

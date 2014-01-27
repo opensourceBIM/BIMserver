@@ -26,5 +26,6 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcConstructionEquipmentResource extends IfcConstructionResource {
+public interface IfcConstructionEquipmentResource extends
+		IfcConstructionResource {
 } // IfcConstructionEquipmentResource

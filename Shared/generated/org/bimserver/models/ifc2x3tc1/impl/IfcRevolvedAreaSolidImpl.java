@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements IfcRevolvedAreaSolid {
+public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements
+		IfcRevolvedAreaSolid {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,8 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * @generated
 	 */
 	public IfcAxis1Placement getAxis() {
-		return (IfcAxis1Placement) eGet(Ifc2x3tc1Package.Literals.IFC_REVOLVED_AREA_SOLID__AXIS, true);
+		return (IfcAxis1Placement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REVOLVED_AREA_SOLID__AXIS, true);
 	}
 
 	/**
@@ -80,7 +82,8 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * @generated
 	 */
 	public double getAngle() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE, true);
 	}
 
 	/**
@@ -98,7 +101,9 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * @generated
 	 */
 	public String getAngleAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -107,7 +112,8 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * @generated
 	 */
 	public void setAngleAsString(String newAngleAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE_AS_STRING, newAngleAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE_AS_STRING,
+				newAngleAsString);
 	}
 
 } //IfcRevolvedAreaSolidImpl

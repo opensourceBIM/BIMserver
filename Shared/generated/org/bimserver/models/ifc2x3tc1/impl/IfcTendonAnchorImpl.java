@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTendonAnchorImpl extends IfcReinforcingElementImpl implements IfcTendonAnchor {
+public class IfcTendonAnchorImpl extends IfcReinforcingElementImpl implements
+		IfcTendonAnchor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

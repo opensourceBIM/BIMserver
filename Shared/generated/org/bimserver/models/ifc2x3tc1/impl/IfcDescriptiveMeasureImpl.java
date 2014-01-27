@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDescriptiveMeasureImpl extends IdEObjectImpl implements IfcDescriptiveMeasure {
+public class IfcDescriptiveMeasureImpl extends IdEObjectImpl implements
+		IfcDescriptiveMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +71,9 @@ public class IfcDescriptiveMeasureImpl extends IdEObjectImpl implements IfcDescr
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DESCRIPTIVE_MEASURE__WRAPPED_VALUE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DESCRIPTIVE_MEASURE__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -79,7 +82,8 @@ public class IfcDescriptiveMeasureImpl extends IdEObjectImpl implements IfcDescr
 	 * @generated
 	 */
 	public void setWrappedValue(String newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DESCRIPTIVE_MEASURE__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DESCRIPTIVE_MEASURE__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**

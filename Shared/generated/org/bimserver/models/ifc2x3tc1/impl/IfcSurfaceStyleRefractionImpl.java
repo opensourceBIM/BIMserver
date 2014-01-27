@@ -37,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements IfcSurfaceStyleRefraction {
+public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements
+		IfcSurfaceStyleRefraction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +74,9 @@ public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements IfcS
 	 * @generated
 	 */
 	public double getRefractionIndex() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX,
+				true);
 	}
 
 	/**
@@ -82,7 +85,8 @@ public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements IfcS
 	 * @generated
 	 */
 	public void setRefractionIndex(double newRefractionIndex) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX, newRefractionIndex);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX,
+				newRefractionIndex);
 	}
 
 	/**
@@ -109,7 +113,9 @@ public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements IfcS
 	 * @generated
 	 */
 	public String getRefractionIndexAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX_AS_STRING,
+				true);
 	}
 
 	/**
@@ -118,7 +124,8 @@ public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements IfcS
 	 * @generated
 	 */
 	public void setRefractionIndexAsString(String newRefractionIndexAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX_AS_STRING, newRefractionIndexAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX_AS_STRING,
+				newRefractionIndexAsString);
 	}
 
 	/**
@@ -145,7 +152,9 @@ public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements IfcS
 	 * @generated
 	 */
 	public double getDispersionFactor() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR,
+				true);
 	}
 
 	/**
@@ -154,7 +163,8 @@ public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements IfcS
 	 * @generated
 	 */
 	public void setDispersionFactor(double newDispersionFactor) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR, newDispersionFactor);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR,
+				newDispersionFactor);
 	}
 
 	/**
@@ -181,7 +191,9 @@ public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements IfcS
 	 * @generated
 	 */
 	public String getDispersionFactorAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING,
+				true);
 	}
 
 	/**
@@ -190,7 +202,8 @@ public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements IfcS
 	 * @generated
 	 */
 	public void setDispersionFactorAsString(String newDispersionFactorAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING, newDispersionFactorAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING,
+				newDispersionFactorAsString);
 	}
 
 	/**

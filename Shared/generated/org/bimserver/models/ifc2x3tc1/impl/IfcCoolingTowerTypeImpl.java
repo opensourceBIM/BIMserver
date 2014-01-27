@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCoolingTowerTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcCoolingTowerType {
+public class IfcCoolingTowerTypeImpl extends IfcEnergyConversionDeviceTypeImpl
+		implements IfcCoolingTowerType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,9 @@ public class IfcCoolingTowerTypeImpl extends IfcEnergyConversionDeviceTypeImpl i
 	 * @generated
 	 */
 	public IfcCoolingTowerTypeEnum getPredefinedType() {
-		return (IfcCoolingTowerTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_COOLING_TOWER_TYPE__PREDEFINED_TYPE, true);
+		return (IfcCoolingTowerTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COOLING_TOWER_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcCoolingTowerTypeImpl extends IfcEnergyConversionDeviceTypeImpl i
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCoolingTowerTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COOLING_TOWER_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COOLING_TOWER_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcCoolingTowerTypeImpl

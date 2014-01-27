@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcClosedShellImpl extends IfcConnectedFaceSetImpl implements IfcClosedShell {
+public class IfcClosedShellImpl extends IfcConnectedFaceSetImpl implements
+		IfcClosedShell {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

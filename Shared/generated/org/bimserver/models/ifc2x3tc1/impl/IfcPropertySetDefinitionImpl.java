@@ -37,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl implements IfcPropertySetDefinition {
+public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl
+		implements IfcPropertySetDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,9 @@ public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByProperties> getPropertyDefinitionOf() {
-		return (EList<IfcRelDefinesByProperties>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_SET_DEFINITION__PROPERTY_DEFINITION_OF, true);
+		return (EList<IfcRelDefinesByProperties>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_SET_DEFINITION__PROPERTY_DEFINITION_OF,
+				true);
 	}
 
 	/**
@@ -92,7 +95,9 @@ public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTypeObject> getDefinesType() {
-		return (EList<IfcTypeObject>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_TYPE, true);
+		return (EList<IfcTypeObject>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_TYPE,
+				true);
 	}
 
 	/**

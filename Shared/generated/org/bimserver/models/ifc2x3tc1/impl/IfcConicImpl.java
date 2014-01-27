@@ -60,7 +60,8 @@ public class IfcConicImpl extends IfcCurveImpl implements IfcConic {
 	 * @generated
 	 */
 	public IfcAxis2Placement getPosition() {
-		return (IfcAxis2Placement) eGet(Ifc2x3tc1Package.Literals.IFC_CONIC__POSITION, true);
+		return (IfcAxis2Placement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONIC__POSITION, true);
 	}
 
 	/**

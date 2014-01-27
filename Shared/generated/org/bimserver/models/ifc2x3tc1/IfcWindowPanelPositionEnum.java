@@ -213,7 +213,8 @@ public enum IfcWindowPanelPositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowPanelPositionEnum[] VALUES_ARRAY = new IfcWindowPanelPositionEnum[] { NULL, BOTTOM, RIGHT, NOTDEFINED, TOP, LEFT, MIDDLE, };
+	private static final IfcWindowPanelPositionEnum[] VALUES_ARRAY = new IfcWindowPanelPositionEnum[] {
+			NULL, BOTTOM, RIGHT, NOTDEFINED, TOP, LEFT, MIDDLE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Panel Position Enum</b></em>' enumerators.
@@ -221,7 +222,8 @@ public enum IfcWindowPanelPositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWindowPanelPositionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWindowPanelPositionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Window Panel Position Enum</b></em>' literal with the specified literal value.

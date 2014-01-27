@@ -62,7 +62,8 @@ public class IfcProcedureImpl extends IfcProcessImpl implements IfcProcedure {
 	 * @generated
 	 */
 	public String getProcedureID() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROCEDURE__PROCEDURE_ID, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROCEDURE__PROCEDURE_ID, true);
 	}
 
 	/**
@@ -71,7 +72,8 @@ public class IfcProcedureImpl extends IfcProcessImpl implements IfcProcedure {
 	 * @generated
 	 */
 	public void setProcedureID(String newProcedureID) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROCEDURE__PROCEDURE_ID, newProcedureID);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROCEDURE__PROCEDURE_ID,
+				newProcedureID);
 	}
 
 	/**
@@ -80,7 +82,8 @@ public class IfcProcedureImpl extends IfcProcessImpl implements IfcProcedure {
 	 * @generated
 	 */
 	public IfcProcedureTypeEnum getProcedureType() {
-		return (IfcProcedureTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PROCEDURE__PROCEDURE_TYPE, true);
+		return (IfcProcedureTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROCEDURE__PROCEDURE_TYPE, true);
 	}
 
 	/**
@@ -89,7 +92,8 @@ public class IfcProcedureImpl extends IfcProcessImpl implements IfcProcedure {
 	 * @generated
 	 */
 	public void setProcedureType(IfcProcedureTypeEnum newProcedureType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROCEDURE__PROCEDURE_TYPE, newProcedureType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROCEDURE__PROCEDURE_TYPE,
+				newProcedureType);
 	}
 
 	/**
@@ -98,7 +102,9 @@ public class IfcProcedureImpl extends IfcProcessImpl implements IfcProcedure {
 	 * @generated
 	 */
 	public String getUserDefinedProcedureType() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROCEDURE__USER_DEFINED_PROCEDURE_TYPE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROCEDURE__USER_DEFINED_PROCEDURE_TYPE,
+				true);
 	}
 
 	/**
@@ -107,7 +113,8 @@ public class IfcProcedureImpl extends IfcProcessImpl implements IfcProcedure {
 	 * @generated
 	 */
 	public void setUserDefinedProcedureType(String newUserDefinedProcedureType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROCEDURE__USER_DEFINED_PROCEDURE_TYPE, newUserDefinedProcedureType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROCEDURE__USER_DEFINED_PROCEDURE_TYPE,
+				newUserDefinedProcedureType);
 	}
 
 	/**

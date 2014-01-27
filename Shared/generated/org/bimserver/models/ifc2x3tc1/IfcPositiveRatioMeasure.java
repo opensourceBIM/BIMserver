@@ -26,5 +26,6 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcPositiveRatioMeasure extends IfcRatioMeasure, IfcMeasureValue, IfcSizeSelect {
+public interface IfcPositiveRatioMeasure extends IfcRatioMeasure,
+		IfcMeasureValue, IfcSizeSelect {
 } // IfcPositiveRatioMeasure

@@ -163,7 +163,8 @@ public enum IfcDuctSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDuctSegmentTypeEnum[] VALUES_ARRAY = new IfcDuctSegmentTypeEnum[] { NULL, FLEXIBLESEGMENT, NOTDEFINED, RIGIDSEGMENT, USERDEFINED, };
+	private static final IfcDuctSegmentTypeEnum[] VALUES_ARRAY = new IfcDuctSegmentTypeEnum[] {
+			NULL, FLEXIBLESEGMENT, NOTDEFINED, RIGIDSEGMENT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Duct Segment Type Enum</b></em>' enumerators.
@@ -171,7 +172,8 @@ public enum IfcDuctSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDuctSegmentTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDuctSegmentTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Duct Segment Type Enum</b></em>' literal with the specified literal value.

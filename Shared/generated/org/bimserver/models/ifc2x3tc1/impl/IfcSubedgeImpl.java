@@ -60,7 +60,8 @@ public class IfcSubedgeImpl extends IfcEdgeImpl implements IfcSubedge {
 	 * @generated
 	 */
 	public IfcEdge getParentEdge() {
-		return (IfcEdge) eGet(Ifc2x3tc1Package.Literals.IFC_SUBEDGE__PARENT_EDGE, true);
+		return (IfcEdge) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SUBEDGE__PARENT_EDGE, true);
 	}
 
 	/**

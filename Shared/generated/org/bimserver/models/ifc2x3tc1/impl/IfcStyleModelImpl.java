@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStyleModelImpl extends IfcRepresentationImpl implements IfcStyleModel {
+public class IfcStyleModelImpl extends IfcRepresentationImpl implements
+		IfcStyleModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

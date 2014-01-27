@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstructionProductResourceImpl extends IfcConstructionResourceImpl implements IfcConstructionProductResource {
+public class IfcConstructionProductResourceImpl extends
+		IfcConstructionResourceImpl implements IfcConstructionProductResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

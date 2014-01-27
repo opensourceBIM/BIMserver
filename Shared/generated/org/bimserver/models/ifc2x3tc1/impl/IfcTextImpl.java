@@ -70,7 +70,8 @@ public class IfcTextImpl extends IdEObjectImpl implements IfcText {
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT__WRAPPED_VALUE, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT__WRAPPED_VALUE,
+				true);
 	}
 
 	/**

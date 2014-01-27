@@ -41,7 +41,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements IfcAppliedValueRelationship {
+public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements
+		IfcAppliedValueRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,7 +78,9 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public IfcAppliedValue getComponentOfTotal() {
-		return (IfcAppliedValue) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENT_OF_TOTAL, true);
+		return (IfcAppliedValue) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENT_OF_TOTAL,
+				true);
 	}
 
 	/**
@@ -86,7 +89,8 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public void setComponentOfTotal(IfcAppliedValue newComponentOfTotal) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENT_OF_TOTAL, newComponentOfTotal);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENT_OF_TOTAL,
+				newComponentOfTotal);
 	}
 
 	/**
@@ -96,7 +100,9 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValue> getComponents() {
-		return (EList<IfcAppliedValue>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENTS, true);
+		return (EList<IfcAppliedValue>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENTS,
+				true);
 	}
 
 	/**
@@ -105,7 +111,9 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public IfcArithmeticOperatorEnum getArithmeticOperator() {
-		return (IfcArithmeticOperatorEnum) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__ARITHMETIC_OPERATOR, true);
+		return (IfcArithmeticOperatorEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__ARITHMETIC_OPERATOR,
+				true);
 	}
 
 	/**
@@ -113,8 +121,10 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setArithmeticOperator(IfcArithmeticOperatorEnum newArithmeticOperator) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__ARITHMETIC_OPERATOR, newArithmeticOperator);
+	public void setArithmeticOperator(
+			IfcArithmeticOperatorEnum newArithmeticOperator) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__ARITHMETIC_OPERATOR,
+				newArithmeticOperator);
 	}
 
 	/**
@@ -123,7 +133,9 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__NAME,
+				true);
 	}
 
 	/**
@@ -132,7 +144,8 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__NAME, newName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__NAME,
+				newName);
 	}
 
 	/**
@@ -159,7 +172,9 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__DESCRIPTION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__DESCRIPTION,
+				true);
 	}
 
 	/**
@@ -168,7 +183,8 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__DESCRIPTION, newDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__DESCRIPTION,
+				newDescription);
 	}
 
 	/**
