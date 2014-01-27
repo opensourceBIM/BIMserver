@@ -30,27 +30,11 @@ public class LocalDevPluginLoader {
 	public static void loadPlugins(PluginManager pluginManager, File current, File gitDirectory) throws PluginException {
 		LOGGER.info("Loading plugins from " + current.getAbsolutePath());
 		
-//		pluginManager.loadAllPluginsFromDirectoryOfJars(new File("E:\\plugins"));
-		
-//		pluginManager.loadAllPluginsFromEclipseWorkspace(current, false);
-		
 		if (gitDirectory != null) {
 			pluginManager.loadAllPluginsFromEclipseWorkspaces(gitDirectory, false);
 		}
 		
-//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("E:\\Workspaces\\BIMserver\\Myplugins"));
-//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("E:\\Workspaces\\BIMserver\\IfcOpenShellPlugin"));
-//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimql\\BimQL"));
-//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimvie.ws"));
-//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMSie2\\BIMsie"));
-//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMsurfer3"));
-//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "RGDChecker"));
-//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "WebGL-threeJS\\ServerPlugin"));
-//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "StatsbyggValidator\\StatsbyggValidator"));
-//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "COBie-plugins\\COBiePlugins_Public"));
-//		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "COBie-plugins\\COBiePlugins_Public"));
-//		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
-//		pluginManager.loadPluginsFromJar(new File("../Builds/plugins/jqe.jar"));
+		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("E:\\Workspaces\\BIMserver\\IfcOpenShellPlugin"));
 	}
 	
 	public static PluginManager createPluginManager(File home) throws PluginException {

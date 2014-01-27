@@ -218,7 +218,7 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 			GeometryData geometryData = geometryInfo.getData();
 			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
-
+			
 			int totalNrVertexValues = verticesBuffer.capacity() / 4;
 			int maxVertexValues = 49167; // Must be divisible by 9!
 

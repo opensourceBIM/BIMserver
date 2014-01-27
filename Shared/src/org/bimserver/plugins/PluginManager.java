@@ -74,6 +74,7 @@ import org.slf4j.LoggerFactory;
 public class PluginManager {
 	private final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<Class<? extends Plugin>, Set<PluginContext>>();
+	private final Set<String> loadedLocations = new HashSet<>();
 	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<PluginChangeListener>();
 	private File tempDir;
 	private final String baseClassPath;
@@ -104,6 +105,9 @@ public class PluginManager {
 	}
 	
 	public void loadPluginsFromEclipseProject(File projectRoot) throws PluginException {
+		if (loadedLocations.contains(projectRoot.getAbsolutePath())) {
+			return;
+		}
 		if (!projectRoot.isDirectory()) {
 			throw new PluginException("No directory: " + projectRoot.getAbsolutePath());
 		}
@@ -128,6 +132,7 @@ public class PluginManager {
 				}
 			}
 			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
+			loadedLocations.add(projectRoot.getAbsolutePath());
 			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), new File(projectRoot, "bin").getAbsolutePath(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
@@ -188,6 +193,9 @@ public class PluginManager {
 	}
 
 	public void loadPluginsFromJar(File file) throws PluginException {
+		if (loadedLocations.contains(file.getAbsolutePath())) {
+			return;
+		}
 		LOGGER.debug("Loading plugins from " + file.getAbsolutePath());
 		if (!file.isFile()) {
 			throw new PluginException("Not a file: " + file.getAbsolutePath());
@@ -203,6 +211,7 @@ public class PluginManager {
 				throw new PluginException("No plugin descriptor could be created");
 			}
 			LOGGER.debug(pluginDescriptor.toString());
+			loadedLocations.add(file.getAbsolutePath());
 			loadPlugins(jarClassLoader, file.getAbsolutePath(), file.getAbsolutePath(), pluginDescriptor, PluginSourceType.JAR_FILE);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
