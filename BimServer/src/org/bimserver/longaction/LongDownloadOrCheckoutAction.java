@@ -97,6 +97,9 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
 			} else {
 				Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), Query.getDefault());
+				if (revision == null) {
+					throw new UserException("Revision with roid " + downloadParameters.getRoid() + " not found");
+				}
 				revision.getProject().getGeoTag().load(); // Little hack to make
 															// sure this is
 															// lazily loaded,
