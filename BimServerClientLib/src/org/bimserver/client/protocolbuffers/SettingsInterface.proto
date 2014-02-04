@@ -101,30 +101,37 @@ message GetProtocolBuffersPortResponse {
 message GetServerSettingsRequest {
 }
 
+enum SSmtpProtocol{
+	SSmtpProtocol_SMTP = 0;
+	SSmtpProtocol_SMTPS = 1;
+}
+
 message SServerSettings {
-	optional int32 smtpUsername = 1;
-	optional bool sendConfirmationEmailAfterRegistration = 2;
-	optional int32 sessionTimeOutSeconds = 3;
-	optional bool generateGeometryOnCheckin = 4;
-	optional bool allowOnlyWhitelisted = 5;
+	optional int32 smtpPort = 1;
+	optional string smtpUsername = 2;
+	optional bool sendConfirmationEmailAfterRegistration = 3;
+	optional int32 sessionTimeOutSeconds = 4;
+	optional bool generateGeometryOnCheckin = 5;
 	optional int32 protocolBuffersPort = 6;
-	optional bool sendEmailOnNewRevision = 7;
-	optional string siteAddress = 8;
-	optional bool allowUsersToCreateTopLevelProjects = 9;
-	optional string serviceRepositoryUrl = 10;
-	repeated int64 webModules = 11;
-	optional int32 smtpPassword = 12;
-	optional string smtpServer = 13;
-	optional int32 rid = 14;
-	optional bool allowSelfRegistration = 15;
-	repeated string whitelistedDomains = 16;
-	optional int64 oid = 17;
+	optional bool allowOnlyWhitelisted = 7;
+	optional bool sendEmailOnNewRevision = 8;
+	optional string siteAddress = 9;
+	optional bool allowUsersToCreateTopLevelProjects = 10;
+	optional string serviceRepositoryUrl = 11;
+	repeated int64 webModules = 12;
+	optional string smtpPassword = 13;
+	optional bool allowSelfRegistration = 14;
+	repeated string whitelistedDomains = 15;
+	optional int32 rid = 16;
+	optional string smtpServer = 17;
 	optional string emailSenderAddress = 18;
 	optional bool cacheOutputFiles = 19;
-	optional bool hideUserListForNonAdmin = 20;
-	optional string emailSenderName = 21;
-	optional int64 webModuleId = 22;
-	optional bool checkinMergingEnabled = 23;
+	optional int64 oid = 20;
+	optional bool hideUserListForNonAdmin = 21;
+	optional SSmtpProtocol smtpProtocol = 22;
+	optional string emailSenderName = 23;
+	optional int64 webModuleId = 24;
+	optional bool checkinMergingEnabled = 25;
 }
 
 message GetServerSettingsResponse {

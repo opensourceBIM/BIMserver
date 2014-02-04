@@ -28,6 +28,8 @@
 
 	<target name="deploy">
 		<property name="target" value="war" />
+		<mkdir dir="builds/additionalplugins"/>
+		<get src="http://test.bimvie.ws/bimviews.jar" dest="builds/additionalplugins"/>
 		<ant antfile="bimserver.build.xml" target="Build War"></ant>
 		<undeploy url="${tomcat_server}" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
 		<deploy url="${tomcat_server}" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />

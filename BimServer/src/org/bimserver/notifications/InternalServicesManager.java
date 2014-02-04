@@ -23,6 +23,7 @@ import java.util.Map;
 import org.bimserver.BimServer;
 import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.interfaces.objects.SObjectType;
@@ -33,11 +34,14 @@ import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.NotificationsManagerInterface;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
+import org.bimserver.plugins.services.NewExtendedDataOnRevisionHandler;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.Bimsie1RemoteServiceInterfaceAdaptor;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
@@ -83,65 +87,110 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	}
 	
 	@Override
+	public void registerInternalNewExtendedDataOnRevisionHandler(ServiceDescriptor serviceDescriptor, final NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
+		register(serviceDescriptor, new Bimsie1RemoteServiceInterfaceAdaptor(){
+			@Override
+			public void newExtendedDataOnRevision(Long poid, Long roid, Long edid, Long soid, String serviceIdentifier, String profileIdentifier, String userToken, String token, String apiUrl)
+					throws UserException, ServerException {
+				final P p = getBimServerClient(serviceIdentifier, profileIdentifier, apiUrl, token);
+				newExtendedDataHandler.newExtendedDataOnRevision(p.client, poid, roid, edid, userToken, soid, p.settings);
+			}
+		});
+	}
+	
+	@Override
+	public void registerInternalNewExtendedDataOnProjectHandler(ServiceDescriptor serviceDescriptor, final NewExtendedDataOnProjectHandler newExtendedDataHandler) {
+		register(serviceDescriptor, new Bimsie1RemoteServiceInterfaceAdaptor(){
+			@Override
+			public void newExtendedDataOnProject(Long poid, Long edid, Long soid, String serviceIdentifier, String profileIdentifier, String userToken, String token, String apiUrl)
+					throws UserException, ServerException {
+				final P p = getBimServerClient(serviceIdentifier, profileIdentifier, apiUrl, token);
+				newExtendedDataHandler.newExtendedDataOnProject(p.client, poid, edid, userToken, soid, p.settings);
+			}
+		});
+	}
+	
+	private class P {
+		public BimServerClientInterface client;
+		public long configurationId;
+		public SObjectType settings;
+	}
+	
+	private P getBimServerClient(String serviceIdentifier, String profileIdentifier, String apiUrl, String token) {
+		ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, null, AccessMethod.JSON);
+		serviceMapInterface.add(Bimsie1RemoteServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
+		P p = new P();
+		final InternalChannel internalChannel = new InternalChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
+		try {
+			internalChannel.connect(new SimpleTokenHolder());
+		} catch (ChannelConnectionException e) {
+			LOGGER.error("", e);
+		}
+		try {
+			DatabaseSession session = bimServer.getDatabase().createSession();
+			try {
+				long profileId = Long.parseLong(profileIdentifier);
+				EClass eClassForOid = session.getEClassForOid(profileId);
+				InternalServicePluginConfiguration internalServicePluginConfiguration = null;
+				if (eClassForOid == StorePackage.eINSTANCE.getInternalServicePluginConfiguration()) {
+					internalServicePluginConfiguration = session.get(profileId, Query.getDefault());
+				} else if (eClassForOid == StorePackage.eINSTANCE.getService()) {
+					Service service = session.get(profileId, Query.getDefault());
+					internalServicePluginConfiguration = service.getInternalService();
+				} else {
+					throw new RuntimeException("Oid is neither an InternalServicePluginConfiguration nor a Server");
+				}
+				final SObjectType settings = bimServer.getSConverter().convertToSObject(internalServicePluginConfiguration.getSettings());
+				
+				final InternalServicePluginConfiguration finalInternalServicePluginConfiguration = internalServicePluginConfiguration;
+				
+				BimServerClientInterface bimServerClient = null;
+				if (apiUrl == null) {
+					bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
+				} else {
+					bimServerClient = new JsonBimServerClientFactory(apiUrl).create(new TokenAuthentication(token));
+				}
+				
+				p.client = bimServerClient;
+				p.settings = settings;
+				p.configurationId = finalInternalServicePluginConfiguration.getOid();
+				
+				return p;
+			} catch (BimserverDatabaseException e) {
+				e.printStackTrace();
+			} catch (ServiceException e) {
+				e.printStackTrace();
+			} catch (ChannelConnectionException e) {
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+		} finally {
+		}
+		return null;
+	}
+	
+	@Override
 	public void registerInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
 		register(serviceDescriptor, new Bimsie1RemoteServiceInterfaceAdaptor(){
 			@Override
 			public void newRevision(final Long poid, final Long roid, Long soid, String serviceIdentifier, String profileIdentifier, final String userToken, String token, String apiUrl) throws UserException, ServerException {
-				ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, null, AccessMethod.JSON);
-				serviceMapInterface.add(Bimsie1RemoteServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
-				final InternalChannel internalChannel = new InternalChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
-				try {
-					internalChannel.connect(new SimpleTokenHolder());
-				} catch (ChannelConnectionException e) {
-					LOGGER.error("", e);
-				}
-				try {
-					DatabaseSession session = bimServer.getDatabase().createSession();
-					try {
-						long profileId = Long.parseLong(profileIdentifier);
-						EClass eClassForOid = session.getEClassForOid(profileId);
-						InternalServicePluginConfiguration internalServicePluginConfiguration = null;
-						if (eClassForOid == StorePackage.eINSTANCE.getInternalServicePluginConfiguration()) {
-							internalServicePluginConfiguration = session.get(profileId, Query.getDefault());
-						} else if (eClassForOid == StorePackage.eINSTANCE.getService()) {
-							Service service = session.get(profileId, Query.getDefault());
-							internalServicePluginConfiguration = service.getInternalService();
-						} else {
-							throw new RuntimeException("Oid is neither an InternalServicePluginConfiguration nor a Server");
+				final P p = getBimServerClient(serviceIdentifier, profileIdentifier, apiUrl, token);
+				
+				// TODO this should somehow be managed...
+				// This must be asynchronous because we don't want the BIMserver's notifications processor to wait for this to finish...
+				new Thread(){
+					@Override
+					public void run() {
+						try {
+							newRevisionHandler.newRevision(p.client, poid, roid, userToken, p.configurationId, p.settings);
+						} catch (ServerException e) {
+							LOGGER.error("", e);
+						} catch (UserException e) {
+							LOGGER.error("", e);
 						}
-						final SObjectType settings = bimServer.getSConverter().convertToSObject(internalServicePluginConfiguration.getSettings());
-						
-						final InternalServicePluginConfiguration finalInternalServicePluginConfiguration = internalServicePluginConfiguration;
-						
-						BimServerClientInterface bimServerClient = null;
-						if (apiUrl == null) {
-							bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
-						} else {
-							bimServerClient = new JsonBimServerClientFactory(apiUrl).create(new TokenAuthentication(token));
-						}
-						
-						final BimServerClientInterface finalClient = bimServerClient;
-						
-						// TODO this should somehow be managed...
-						// This must be asynchronous because we don't want the BIMserver's notifications processor to wait for this to finish...
-						new Thread(){
-							@Override
-							public void run() {
-								try {
-									newRevisionHandler.newRevision(finalClient, poid, roid, userToken, finalInternalServicePluginConfiguration.getOid(), settings);
-								} catch (ServerException e) {
-									LOGGER.error("", e);
-								} catch (UserException e) {
-									LOGGER.error("", e);
-								}
-							}
-						}.start();
-					} finally {
-						session.close();
 					}
-				} catch (Exception e) {
-					LOGGER.error("", e);
-				}
+				}.start();
 			}
 		});
 	}

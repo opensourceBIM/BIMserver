@@ -112,4 +112,14 @@ public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bims
 		ServiceDescriptor internalService = getBimServer().getInternalServicesManager().getInternalService(serviceIdentifier);
 		return getBimServer().getSConverter().convertToSObject(internalService);
 	}
+
+	@Override
+	public void newExtendedDataOnProject(Long poid, Long edid, Long soid, String serviceIdentifier, String profileIdentifier, String userToken, String token, String apiUrl) throws UserException, ServerException {
+		bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier).newExtendedDataOnProject(poid, edid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
+	}
+
+	@Override
+	public void newExtendedDataOnRevision(Long poid, Long roid, Long edid, Long soid, String serviceIdentifier, String profileIdentifier, String userToken, String token, String apiUrl) throws UserException, ServerException {
+		bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier).newExtendedDataOnRevision(poid, roid, edid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
+	}
 }
