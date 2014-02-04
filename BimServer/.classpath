@@ -28,7 +28,6 @@
 	<classpathentry kind="src" path="generated"/>
 	<classpathentry exported="true" kind="lib" path="lib/geoapi/geoapi-2.3-M1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/geoapi/geoapi-pending-2.3-M1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/commons/commons-codec-1.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-fileupload-1.2.1.jar" sourcepath="libsrc/commons-fileupload-1.2.2-src.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-io-1.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/activation.jar"/>
