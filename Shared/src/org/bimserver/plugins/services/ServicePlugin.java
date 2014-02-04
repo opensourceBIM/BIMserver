@@ -55,6 +55,14 @@ public abstract class ServicePlugin implements Plugin {
 		return pluginManager;
 	}
 
+	public void registerNewExtendedDataOnProjectHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
+		pluginManager.registerNewExtendedDataOnProjectHandler(serviceDescriptor, newExtendedDataHandler);
+	}
+
+	public void registerNewExtendedDataOnRevisionHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
+		pluginManager.registerNewExtendedDataOnRevisionHandler(serviceDescriptor, newExtendedDataHandler);
+	}
+	
 	/**
 	 * This will start an instance of the ServicePlugin with the settings for a specific user
 	 * 

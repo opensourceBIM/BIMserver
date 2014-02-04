@@ -33,6 +33,12 @@ public class Bimsie1RemoteServiceInterfaceAdaptor implements org.bimserver.share
 		return null;
 	}
 	
+	public void newExtendedDataOnProject(java.lang.Long poid, java.lang.Long edid, java.lang.Long soid, java.lang.String serviceIdentifier, java.lang.String profileIdentifier, java.lang.String userToken, java.lang.String token, java.lang.String apiUrl) throws UserException, ServerException {
+	}
+	
+	public void newExtendedDataOnRevision(java.lang.Long poid, java.lang.Long roid, java.lang.Long edid, java.lang.Long soid, java.lang.String serviceIdentifier, java.lang.String profileIdentifier, java.lang.String userToken, java.lang.String token, java.lang.String apiUrl) throws UserException, ServerException {
+	}
+	
 	public void newRevision(java.lang.Long poid, java.lang.Long roid, java.lang.Long soid, java.lang.String serviceIdentifier, java.lang.String profileIdentifier, java.lang.String userToken, java.lang.String token, java.lang.String apiUrl) throws UserException, ServerException {
 	}
 	

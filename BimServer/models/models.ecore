@@ -9716,8 +9716,10 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="2592000"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="smtpUsername" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="smtpPassword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="smtpPort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="smtpProtocol" eType="#/2/SmtpProtocol"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="smtpPort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          defaultValueLiteral="25"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="smtpProtocol" eType="#/2/SmtpProtocol"
+          defaultValueLiteral="SMTP"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UserSettings">
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"

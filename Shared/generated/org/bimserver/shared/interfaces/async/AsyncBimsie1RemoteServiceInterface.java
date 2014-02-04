@@ -44,6 +44,16 @@ public class AsyncBimsie1RemoteServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface NewExtendedDataOnProjectCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface NewExtendedDataOnRevisionCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface NewRevisionCallback {
 		void success();
 		void error(Throwable e);
@@ -80,6 +90,32 @@ public class AsyncBimsie1RemoteServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getService(serviceIdentifier));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void newExtendedDataOnProject(final java.lang.Long poid, final java.lang.Long edid, final java.lang.Long soid, final java.lang.String serviceIdentifier, final java.lang.String profileIdentifier, final java.lang.String userToken, final java.lang.String token, final java.lang.String apiUrl, final NewExtendedDataOnProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.newExtendedDataOnProject(poid, edid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void newExtendedDataOnRevision(final java.lang.Long poid, final java.lang.Long roid, final java.lang.Long edid, final java.lang.Long soid, final java.lang.String serviceIdentifier, final java.lang.String profileIdentifier, final java.lang.String userToken, final java.lang.String token, final java.lang.String apiUrl, final NewExtendedDataOnRevisionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.newExtendedDataOnRevision(poid, roid, edid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
+					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
 				}

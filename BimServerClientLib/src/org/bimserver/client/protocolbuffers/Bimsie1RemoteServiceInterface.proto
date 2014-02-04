@@ -37,6 +37,10 @@ service Bimsie1RemoteServiceInterface {
 
 	rpc getService (GetServiceRequest) returns (GetServiceResponse);
 
+	rpc newExtendedDataOnProject (NewExtendedDataOnProjectRequest) returns (VoidResponse);
+
+	rpc newExtendedDataOnRevision (NewExtendedDataOnRevisionRequest) returns (VoidResponse);
+
 	rpc newRevision (NewRevisionRequest) returns (VoidResponse);
 
 }
@@ -58,5 +62,28 @@ message GetPublicProfilesRequest {
 message GetPublicProfilesResponse {
 	optional string errorMessage = 1;
 	repeated SProfileDescriptor value = 2;
+}
+
+message NewExtendedDataOnProjectRequest {
+	optional int64 poid = 1;
+	optional int64 edid = 2;
+	optional int64 soid = 3;
+	optional string serviceIdentifier = 4;
+	optional string profileIdentifier = 5;
+	optional string userToken = 6;
+	optional string token = 7;
+	optional string apiUrl = 8;
+}
+
+message NewExtendedDataOnRevisionRequest {
+	optional int64 poid = 1;
+	optional int64 roid = 2;
+	optional int64 edid = 3;
+	optional int64 soid = 4;
+	optional string serviceIdentifier = 5;
+	optional string profileIdentifier = 6;
+	optional string userToken = 7;
+	optional string token = 8;
+	optional string apiUrl = 9;
 }
 

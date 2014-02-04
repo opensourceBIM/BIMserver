@@ -58,6 +58,8 @@ import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
+import org.bimserver.plugins.services.NewExtendedDataOnRevisionHandler;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.stillimagerenderer.StillImageRenderPlugin;
@@ -597,5 +599,17 @@ public class PluginManager {
 
 	public void setBimServerClientFactory(BimServerClientFactory bimServerClientFactory) {
 		this.bimServerClientFactory = bimServerClientFactory;
+	}
+
+	public void registerNewExtendedDataOnProjectHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
+		if (notificationsManagerInterface != null) {
+			notificationsManagerInterface.registerInternalNewExtendedDataOnProjectHandler(serviceDescriptor, newExtendedDataHandler);
+		}
+	}
+
+	public void registerNewExtendedDataOnRevisionHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
+		if (notificationsManagerInterface != null) {
+			notificationsManagerInterface.registerInternalNewExtendedDataOnRevisionHandler(serviceDescriptor, newExtendedDataHandler);
+		}
 	}
 }
