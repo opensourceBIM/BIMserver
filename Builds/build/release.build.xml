@@ -28,34 +28,15 @@
 		<ant antfile="bimserver.build.xml" target="Build War"/>
 		<copy file="builds/bimserver-${version}.war" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 
-		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-${version}.war" targetfilename="bimserver-${version}.war" summary="Release ${version} (WAR)" description="A WAR file to deploy and start a BIMserver in (ie) Tomcat.
-
-			Basic installation instructions can be found on http://code.google.com/p/bimserver/wiki/Installation 
-
-			View know issues on http://code.google.com/p/bimserver/wiki/Known_issues" labels="${version}, Type-Package, OpSys-All" />
-
 		<ant antfile="bimserver.build.xml" target="Build Jar"/>
 		<copy file="builds/bimserver-${version}.jar" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
-		
-		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-${version}.jar" targetfilename="bimserver-${version}.jar" summary="Release ${version} (JAR)" description="A JAR file. 
-			Make sure you have java installed on your computer.
-			Download, double click and run.
-			Basic installation instructions can be found on http://code.google.com/p/bimserver/wiki/Installation 
-
-			View known issues on http://code.google.com/p/bimserver/wiki/Known_issues" labels="${version}, Type-Executable, OpSys-All" />
 		
 		<ant antfile="clientlib.build.xml" target="Build ClientLib"/>
 		<copy file="builds/bimserver-client-lib-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 		
-		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-client-lib-${version}.zip" targetfilename="bimserver-client-lib-${version}.zip" summary="bimserver ${version} client-library for developers (java)" description="Client library, usable for projects that want to connect their client to a BIMserver.
-			Please note the open source license issues." labels="${version}, library, OpSys-All" />
-
 		<ant antfile="bimserverlib.build.xml" target="Build ServerLib"/>
 		<copy file="builds/bimserver-lib-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 		
-		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-lib-${version}.zip" targetfilename="bimserver-lib-${version}.zip" summary="bimserver ${version} library for developers (java)" description="Server library, useable for Java developers that want to embed a BIMserver in their own application.
-			Please note the open source license issues." labels="library, ${version}, OpSys-All" />
-
 		<ant antfile="source.build.xml" target="Build Source"/>
 		<copy file="builds/bimserver-source-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 		
