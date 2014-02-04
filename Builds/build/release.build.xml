@@ -41,16 +41,16 @@
 		<copy file="builds/bimserver-source-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 		
 		<java jar="antlibs/githubrelease.jar">
-			<arg>${github_username}</arg>
-			<arg>${github_password}</arg>
-			<arg>opensourceBIM</arg>
-			<arg>BIMserver</arg>
-			<arg>test</arg>
-			<arg>test</arg>
-			<arg>test</arg>
-			<arg>true</arg>
-			<arg>true</arg>
-			<arg>builds/bimserver-${version}.jar;builds/bimserver-${version}.war;builds/bimserver-javadoc-${version}.zip;builds/bimserver-client-lib-${version}.zip;builds/bimserver-lib-${version}.zip</arg>			
+			<arg value="${github_username}"></arg>
+			<arg value="${github_password}"></arg>
+			<arg value="opensourceBIM"></arg>
+			<arg value="BIMserver"></arg>
+			<arg value="${version}"></arg>
+			<arg value="${version}"></arg>
+			<arg value="BIMserver Release"></arg>
+			<arg value="true"></arg>
+			<arg value="true"></arg>
+			<arg value="builds/bimserver-${version}.jar;builds/bimserver-${version}.war;builds/bimserver-javadoc-${version}.zip;builds/bimserver-client-lib-${version}.zip;builds/bimserver-lib-${version}.zip"></arg>			
 		</java>
 	</target>
 </project>
