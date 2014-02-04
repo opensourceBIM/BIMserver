@@ -50,7 +50,7 @@
 		</copy>
 		
 		<copy todir="builds/BuildWar/WEB-INF/plugins" failonerror="false">
-			<fileset dir="builds/additionalplugins" />
+			<fileset dir="additionalplugins" />
 		</copy>
 
 		<delete dir="builds/BuildJar/classes" />
@@ -131,7 +131,7 @@
 		</copy>
 
 		<copy todir="builds/BuildWar/WEB-INF/plugins" failonerror="false">
-			<fileset dir="builds/additionalplugins" />
+			<fileset dir="additionalplugins" />
 		</copy>
 		
 		<jar jarfile="builds/BuildWar/WEB-INF/lib/bimserver.jar">
