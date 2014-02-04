@@ -41,7 +41,7 @@ function Main(address, username) {
 			$(".main .nav li").hide();
 			othis.user = user;
 			Settings.getMenuItems().forEach(function(menuItem){
-				if (menuItem == "serversettingsLink" || menuItem == "serverinfoLink" || menuItem == "testingLink" || menuItem == "usersLink") {
+				if (menuItem == "dashboardLink" || menuItem == "serversettingsLink" || menuItem == "serverinfoLink" || menuItem == "testingLink" || menuItem == "usersLink") {
 					if (user.userType == "ADMIN") {
 						$("." + menuItem).show();
 					}

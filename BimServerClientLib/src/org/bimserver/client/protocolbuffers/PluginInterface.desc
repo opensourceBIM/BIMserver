@@ -7,9 +7,9 @@
 oid ("b
 AddDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration"ˆ
-#SInternalServicePluginConfiguration
-userSettingsId (
-publicProfile (
+#SInternalServicePluginConfiguration
+publicProfile (
+userSettingsId (
 rid (
 oid (
 remoteAccessible ("k
@@ -27,9 +27,9 @@
 oid ("_
 AddModelMergerRequestF
 modelMerger (21.org.bimserver.pb.SModelMergerPluginConfiguration"f
-SObjectIDMPluginConfiguration
-userSettingsId (
-serializers (
+SObjectIDMPluginConfiguration
+serializers (
+userSettingsId (
 rid (
 oid ("Y
 AddObjectIDMRequestB
@@ -40,9 +40,9 @@
 oid ("_
 AddQueryEngineRequestF
 queryEngine (21.org.bimserver.pb.SQueryEnginePluginConfiguration"i
- SRenderEnginePluginConfiguration
-userSettingsId (
-serializers (
+ SRenderEnginePluginConfiguration
+serializers (
+userSettingsId (
 rid (
 oid ("b
 AddRenderEngineRequestH
@@ -236,16 +236,16 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 errorMessage (	2
 value (2#.org.bimserver.pb.SPluginDescriptor"/
  GetPluginObjectDefinitionRequest
-oid ("C
-SArrayDefinition/
-type (2!.org.bimserver.pb.STypeDefinition"F
+oid ("F
 SPrimitiveDefinition.
-type (2 .org.bimserver.pb.SPrimitiveEnum"ò
+type (2 .org.bimserver.pb.SPrimitiveEnum"C
+SArrayDefinition/
+type (2!.org.bimserver.pb.STypeDefinition"ò
 STypeDefinition
-__actual_type (	>
-__SArrayDefinition (2".org.bimserver.pb.SArrayDefinitionF
-__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition@
-__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition"”
+__actual_type (	@
+__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinitionF
+__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition>
+__SArrayDefinition (2".org.bimserver.pb.SArrayDefinition"”
 SParameterDefinition
 description (	
 name (	
@@ -263,15 +263,15 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 	SLongType
 rid (
 oid (
-value ("7
+value ("6
+SDoubleType
+rid (
+oid (
+value ("7
 SBooleanType
 rid (
 oid (
 value ("6
-SDoubleType
-rid (
-oid (
-value ("6
 SStringType
 rid (
 oid (
@@ -282,9 +282,9 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 value ("Ó
 SPrimitiveType
 __actual_type (	0
-__SLongType (2.org.bimserver.pb.SLongType6
-__SBooleanType (2.org.bimserver.pb.SBooleanType4
-__SDoubleType (2.org.bimserver.pb.SDoubleType4
+__SLongType (2.org.bimserver.pb.SLongType4
+__SDoubleType (2.org.bimserver.pb.SDoubleType6
+__SBooleanType (2.org.bimserver.pb.SBooleanType4
 __SStringType (2.org.bimserver.pb.SStringType:
 __SByteArrayType (2 .org.bimserver.pb.SByteArrayType
 rid (
@@ -296,9 +296,9 @@ SArrayType'
 oid ("Þ
 SType
 __actual_type (	:
-__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType4
-__SObjectType (2.org.bimserver.pb.SObjectType2
-__SArrayType (2.org.bimserver.pb.SArrayType
+__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType2
+__SArrayType (2.org.bimserver.pb.SArrayType4
+__SObjectType (2.org.bimserver.pb.SObjectType
 rid (
 oid ("\
 
