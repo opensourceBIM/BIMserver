@@ -46,10 +46,20 @@ public class FileJarClassLoader extends JarClassLoader {
 
 	public FileJarClassLoader(ClassLoader parentClassLoader, File jarFile, File tempDir) throws FileNotFoundException, IOException {
 		super(parentClassLoader);
-		this.tempDir = tempDir;
-		if (!tempDir.exists()) {
-			tempDir.mkdir();
+		FileInputStream fis = new FileInputStream(jarFile);
+		try {
+			String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(fis);
+			this.tempDir = new File(tempDir, md5);
+ 		} finally {
+ 			fis.close();
+ 		}
+		
+		if (tempDir.exists()) {
+			// This exact file has been extracted before, do nothing
+			return;
 		}
+		tempDir.mkdir();
+		
 		JarInputStream jarInputStream = new JarInputStream(new FileInputStream(jarFile));
 		JarEntry entry = jarInputStream.getNextJarEntry();
 		while (entry != null) {
@@ -61,7 +71,6 @@ public class FileJarClassLoader extends JarClassLoader {
 				loadSubJars(byteArrayOutputStream.toByteArray());
 			} else {
 				if (!entry.isDirectory()) {
-					// Files are being stored deflated in memory because most of the time a lot of files are not being used (or the complete plugin is not being used)
 					addDataToMap(jarInputStream, entry);
 				}
 			}
