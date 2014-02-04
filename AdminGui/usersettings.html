@@ -151,7 +151,7 @@
 		
 		this.showSerializer = function(serializer, callback) {
 			var oid = typeof serializer == "number" ? serializer : serializer.oid;
-			othis.changePage($(".serializersLink"), "genericpluginsettings.html", function(){
+			othis.pageChanger.changePage($(".serializersLink"), "genericpluginsettings.html", function(){
 				pushHistory({page: "UserSettings", subpage: "Serializer", oid: oid}, "User Settings");
 				return new GenericPluginSettings(main, othis, oid, {
 					title: "Serializer",
@@ -163,7 +163,7 @@
 
 		this.showDeserializer = function(deserializer, callback) {
 			var oid = typeof deserializer == "number" ? deserializer : deserializer.oid;
-			othis.changePage($(".deserializersLink"), "genericpluginsettings.html", function(){
+			othis.pageChanger.changePage($(".deserializersLink"), "genericpluginsettings.html", function(){
 				pushHistory({page: "UserSettings", subpage: "Deserializer", oid: oid}, "User Settings");
 				return new GenericPluginSettings(main, othis, oid, {
 					title: "Deserializer",
@@ -175,7 +175,7 @@
 
 		this.showObjectIdm = function(objectidm, callback) {
 			var oid = typeof objectidm == "number" ? objectidm : objectidm.oid;
-			othis.changePage($(".objectIdmsLink"), "genericpluginsettings.html", function(){
+			othis.pageChanger.changePage($(".objectIdmsLink"), "genericpluginsettings.html", function(){
 				pushHistory({page: "UserSettings", subpage: "ObjectIDM", oid: oid}, "User Settings");
 				return new GenericPluginSettings(main, othis, oid, {
 					title: "Object IDM",
@@ -187,7 +187,7 @@
 
 		this.showRenderEngine = function(renderEngine, callback) {
 			var oid = typeof renderEngine == "number" ? renderEngine : renderEngine.oid;
-			othis.changePage($(".renderEnginesLink"), "genericpluginsettings.html", function(){
+			othis.pageChanger.changePage($(".renderEnginesLink"), "genericpluginsettings.html", function(){
 				pushHistory({page: "UserSettings", subpage: "RenderEngine", oid: oid}, "User Settings");
 				return new GenericPluginSettings(main, othis, oid, {
 					title: "Render Engine",
@@ -199,7 +199,7 @@
 
 		this.showQueryEngine = function(queryEngine, callback) {
 			var oid = typeof queryEngine == "number" ? queryEngine : queryEngine.oid;
-			othis.changePage($(".queryEnginesLink"), "genericpluginsettings.html", function(){
+			othis.pageChanger.changePage($(".queryEnginesLink"), "genericpluginsettings.html", function(){
 				pushHistory({page: "UserSettings", subpage: "QueryEngine", oid: oid}, "User Settings");
 				return new GenericPluginSettings(main, othis, oid, {
 					title: "Query Engine",
@@ -211,7 +211,7 @@
 
 		this.showModelMerger = function(modelMerger, callback) {
 			var oid = typeof modelMerger == "number" ? modelMerger : modelMerger.oid;
-			othis.changePage($(".modelMergersLink"), "genericpluginsettings.html", function(){
+			othis.pageChanger.changePage($(".modelMergersLink"), "genericpluginsettings.html", function(){
 				pushHistory({page: "UserSettings", subpage: "ModelMerger", oid: oid}, "User Settings");
 				return new GenericPluginSettings(main, othis, oid, {
 					title: "Model Merger",
@@ -223,7 +223,7 @@
 
 		this.showModelCompare = function(modelCompare, callback) {
 			var oid = typeof modelCompare == "number" ? modelCompare : modelCompare.oid;
-			othis.changePage($(".modelComparesLink"), "genericpluginsettings.html", function(){
+			othis.pageChanger.changePage($(".modelComparesLink"), "genericpluginsettings.html", function(){
 				pushHistory({page: "UserSettings", subpage: "ModelCompare", oid: oid}, "User Settings");
 				return new GenericPluginSettings(main, othis, oid, {
 					title: "Model Compare",
@@ -235,7 +235,7 @@
 
 		this.showInternalService = function(internalService, callback) {
 			var oid = typeof internalService == "number" ? internalService : internalService.oid;
-			othis.changePage($(".internalServicesLink"), "genericpluginsettings.html", function(){
+			othis.pageChanger.changePage($(".internalServicesLink"), "genericpluginsettings.html", function(){
 				pushHistory({page: "UserSettings", subpage: "InternalService", oid: oid}, "User Settings");
 				return new GenericPluginSettings(main, othis, oid, {
 					title: "Internal Service",

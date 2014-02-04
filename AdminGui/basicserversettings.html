@@ -19,6 +19,33 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-lg-2 control-label" for="smtpUsername"><a rel="tooltip" data-original-title="SMTP username" data-placement="right">SMTP username</a></label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control smtpUsername" id="smtpUsername" placeholder="SMTP username">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label" for="smtpPassword"><a rel="tooltip" data-original-title="SMTP password" data-placement="right">SMTP password</a></label>
+			<div class="col-lg-8">
+				<input type="password" class="form-control smtpPassword" id="smtpPassword" placeholder="SMTP password">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label" for="smtpPort"><a rel="tooltip" data-original-title="SMTP port" data-placement="right">SMTP port</a></label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control smtpPort" id="smtpPort" placeholder="SMTP port">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label" for="smtpProtocol"><a rel="tooltip" data-original-title="SMTP protocol" data-placement="right">SMTP protocol</a></label>
+			<div class="col-lg-8">
+				<select class="form-control smtpProtocol" id="smtpProtocol">
+					<option value="SMTP">SMTP</option>
+					<option value="SMTPS">SMTPS</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="col-lg-2 control-label" for="emailSenderAddress"><a rel="tooltip" data-original-title="Email address to send emails from" data-placement="right">Email sender address</a></label>
 			<div class="col-lg-8">
 				<input type="text" class="form-control emailSenderAddress" id="emailSenderAddress" placeholder="Name">
@@ -34,6 +61,12 @@
 			<label class="col-lg-2 control-label" for="protocolBuffersPort"><a rel="tooltip" data-original-title="Port to run the protocol buffers server on" data-placement="right">Protocol buffers port</a></label>
 			<div class="col-lg-8">
 				<input type="text" class="form-control protocolBuffersPort" id="protocolBuffersPort">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label" for="sessionTimeOutSeconds"><a rel="tooltip" data-original-title="Session timeout in seconds" data-placement="right">Session timeout (s)</a></label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control sessionTimeOutSeconds" id="sessionTimeOutSeconds">
 			</div>
 		</div>
 		<div class="form-group">
@@ -161,10 +194,15 @@ function BasicServerSettings(main, serversettings) {
 			serverSettings.serviceRepositoryUrl = $(".basicserversettings .inputRepositoryServer").val();
 			serverSettings.siteAddress = $(".basicserversettings .siteAddress").val();
 			serverSettings.smtpServer = $(".basicserversettings .smtpServer").val();
+			serverSettings.smtpProtocol = $(".basicserversettings .smtpProtocol").val();
+			serverSettings.smtpPort = $(".basicserversettings .smtpPort").val();
+			serverSettings.smtpUsername = $(".basicserversettings .smtpUsername").val();
+			serverSettings.smtpPassword = $(".basicserversettings .smtpPassword").val();
 			serverSettings.emailSenderAddress = $(".basicserversettings .emailSenderAddress").val();
 			serverSettings.emailSenderName = $(".basicserversettings .emailSenderName").val();
 			serverSettings.hideUserListForNonAdmin = $(".basicserversettings .hideUserList").prop("checked");
 			serverSettings.protocolBuffersPort = $(".basicserversettings .protocolBuffersPort").val();
+			serverSettings.sessionTimeOutSeconds = $(".basicserversettings .sessionTimeOutSeconds").val();
 			serverSettings.cacheOutputFiles = $(".basicserversettings .cacheOutputFiles").prop("checked");
 			serverSettings.checkinMergingEnabled = $(".basicserversettings .checkinMergingEnabled").prop("checked");
 			serverSettings.allowUsersToCreateTopLevelProjects = $(".basicserversettings .createTopLevelProjects").prop("checked");
@@ -204,10 +242,15 @@ function BasicServerSettings(main, serversettings) {
 			$(".basicserversettings .inputRepositoryServer").val(data.serviceRepositoryUrl);
 			$(".basicserversettings .siteAddress").val(data.siteAddress);
 			$(".basicserversettings .smtpServer").val(data.smtpServer);
+			$(".basicserversettings .smtpUsername").val(data.smtpUsername);
+			$(".basicserversettings .smtpPassword").val(data.smtpPassword);
+			$(".basicserversettings .smtpPort").val(data.smtpPort);
+			$(".basicserversettings .smtpProtocol").val(data.smtpProtocol);
 			$(".basicserversettings .emailSenderAddress").val(data.emailSenderAddress);
 			$(".basicserversettings .emailSenderName").val(data.emailSenderName);
 			$(".basicserversettings .hideUserList").prop("checked", data.hideUserListForNonAdmin);
 			$(".basicserversettings .protocolBuffersPort").val(data.protocolBuffersPort);
+			$(".basicserversettings .sessionTimeOutSeconds").val(data.sessionTimeOutSeconds);
 			$(".basicserversettings .cacheOutputFiles").prop("checked", data.cacheOutputFiles);
 			$(".basicserversettings .checkinMergingEnabled").prop("checked", data.checkinMergingEnabled);
 			$(".basicserversettings .createTopLevelProjects").prop("checked", data.allowUsersToCreateTopLevelProjects);
@@ -254,6 +297,7 @@ function BasicServerSettings(main, serversettings) {
 	this.close = function(){
 	};
 	
+	$(".basicserversettings select").change(function(){othis.change = true; othis.save()});
 	$(".basicserversettings input[type='checkbox']").change(function(){othis.change = true; othis.save()});
 	$(".basicserversettings input[type='text']").blur(othis.save);
 	$(".basicserversettings input[type='text']").enterpress(othis.save);

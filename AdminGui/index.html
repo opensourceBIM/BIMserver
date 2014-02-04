@@ -51,7 +51,6 @@
 		    baseCssDir + "bootstrap.min.css",
 		    baseCssDir + "main.css", 
 		    baseCssDir + "bootstrap-vert-tabs.css", 
-		    baseCssDir + "openid.css",
 		    baseCssDir + "magic-bootstrap-min.css"
 		], function(){});
 		
@@ -68,8 +67,6 @@
 		    baseJsDir + "bimserverapibootstrap.js", 
 		    baseJsDir + "bootstrap.min.js", 
 		    baseJsDir + "sha256.js", 
-		    baseJsDir + "openid-jquery.js", 
-		    baseJsDir + "openid-en.js", 
 		    baseJsDir + "utils.js", 
 		    baseJsDir + "formatters.js", 
 		    baseJsDir + "settings.js", 
@@ -90,9 +87,9 @@
 				if (e.target.nodeName == "BODY") {
 					if (e.keyCode == 67 && Global.lastKey == 67) {
 						console.log("Clearing cookies");
-						$.removeCookie("address", {path: "/"});
-						$.removeCookie("username", {path: "/"});
-						$.removeCookie("autologin", {path: "/"});
+						$.removeCookie("address" + window.document.location.port, {path: "/"});
+						$.removeCookie("username" + window.document.location.port, {path: "/"});
+						$.removeCookie("autologin" + window.document.location.port, {path: "/"});
 						Global.lastKey = null;
 					} else {
 						Global.lastKey = e.keyCode;
@@ -171,8 +168,12 @@
 					$.removeCookie("autologin" + window.document.location.port, {path: "/"});
 					$.removeCookie("address" + window.document.location.port, {path: "/"});
 				};
+
+				var address = getParameterByName("address");
 				
-				if ($.cookie("address" + window.document.location.port) != null) {
+				if (address != null) {
+					othis.loadBimServerApiFromAddress(address, successFunction, errorFunction);
+				} else if ($.cookie("address" + window.document.location.port) != null) {
 					othis.loadBimServerApiFromAddress($.cookie("address" + window.document.location.port), successFunction, errorFunction);
 				} else if (!Settings.allowBimServerAddress()) {
 					Settings.getStaticServerAddress(function(address){

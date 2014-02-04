@@ -193,8 +193,8 @@ message AddDeserializerRequest {
 }
 
 message SInternalServicePluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional bool publicProfile = 2;
+	optional bool publicProfile = 1;
+	optional int64 userSettingsId = 2;
 	optional int32 rid = 3;
 	optional int64 oid = 4;
 	optional bool remoteAccessible = 5;
@@ -225,8 +225,8 @@ message AddModelMergerRequest {
 }
 
 message SObjectIDMPluginConfiguration {
-	optional int64 userSettingsId = 1;
-	repeated int64 serializers = 2;
+	repeated int64 serializers = 1;
+	optional int64 userSettingsId = 2;
 	optional int32 rid = 3;
 	optional int64 oid = 4;
 }
@@ -246,8 +246,8 @@ message AddQueryEngineRequest {
 }
 
 message SRenderEnginePluginConfiguration {
-	optional int64 userSettingsId = 1;
-	repeated int64 serializers = 2;
+	repeated int64 serializers = 1;
+	optional int64 userSettingsId = 2;
 	optional int32 rid = 3;
 	optional int64 oid = 4;
 }
@@ -609,10 +609,6 @@ message GetPluginObjectDefinitionRequest {
 	optional int64 oid = 1;
 }
 
-message SArrayDefinition {
-	optional STypeDefinition type = 1;
-}
-
 enum SPrimitiveEnum{
 	SPrimitiveEnum_LONG = 0;
 	SPrimitiveEnum_DOUBLE = 1;
@@ -625,11 +621,15 @@ message SPrimitiveDefinition {
 	optional SPrimitiveEnum type = 1;
 }
 
+message SArrayDefinition {
+	optional STypeDefinition type = 1;
+}
+
 message STypeDefinition {
 	required string __actual_type = 1;
-	optional SArrayDefinition __SArrayDefinition = 2;
+	optional SObjectDefinition __SObjectDefinition = 2;
 	optional SPrimitiveDefinition __SPrimitiveDefinition = 3;
-	optional SObjectDefinition __SObjectDefinition = 4;
+	optional SArrayDefinition __SArrayDefinition = 4;
 }
 
 message SParameterDefinition {
@@ -659,16 +659,16 @@ message SLongType {
 	optional int64 value = 3;
 }
 
-message SBooleanType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional bool value = 3;
-}
-
 message SDoubleType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 	optional double value = 3;
+}
+
+message SBooleanType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional bool value = 3;
 }
 
 message SStringType {
@@ -686,8 +686,8 @@ message SByteArrayType {
 message SPrimitiveType {
 	required string __actual_type = 1;
 	optional SLongType __SLongType = 2;
-	optional SBooleanType __SBooleanType = 3;
-	optional SDoubleType __SDoubleType = 4;
+	optional SDoubleType __SDoubleType = 3;
+	optional SBooleanType __SBooleanType = 4;
 	optional SStringType __SStringType = 5;
 	optional SByteArrayType __SByteArrayType = 6;
 	optional int32 rid = 7;
@@ -703,8 +703,8 @@ message SArrayType {
 message SType {
 	required string __actual_type = 1;
 	optional SPrimitiveType __SPrimitiveType = 2;
-	optional SObjectType __SObjectType = 3;
-	optional SArrayType __SArrayType = 4;
+	optional SArrayType __SArrayType = 3;
+	optional SObjectType __SObjectType = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 }
