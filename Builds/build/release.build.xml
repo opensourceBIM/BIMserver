@@ -40,7 +40,11 @@
 		<ant antfile="source.build.xml" target="Build Source"/>
 		<copy file="builds/bimserver-source-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 		
-		<java jar="antlibs/githubrelease.jar">
+		<java jar="antlibs/githubrelease.jar" fork="true">
+			<classpath>
+				<pathelement location="antlibs/httpclient-4.3.2.jar"/>
+				<pathelement location="antlibs/httpcore-4.3.1.jar"/>
+         	</classpath>
 			<arg value="${github_username}"></arg>
 			<arg value="${github_password}"></arg>
 			<arg value="opensourceBIM"></arg>
