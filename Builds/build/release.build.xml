@@ -59,7 +59,7 @@
 			<arg value="BIMserver Release"></arg>
 			<arg value="true"></arg>
 			<arg value="true"></arg>
-			<arg value="builds/bimserver-${version}.jar;builds/bimserver-${version}.war;builds/bimserver-javadoc-${version}.zip;builds/bimserver-client-lib-${version}.zip;builds/bimserver-lib-${version}.zip"></arg>			
+			<arg value="/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-${version}.jar;/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-${version}.war;/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-javadoc-${version}.zip;/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-client-lib-${version}.zip;/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-lib-${version}.zip"></arg>			
 		</java>
 	</target>
 </project>
