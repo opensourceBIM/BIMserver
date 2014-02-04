@@ -128,7 +128,7 @@ public class PluginManager {
 			if (libFolder.isDirectory()) {
 				for (File libFile : libFolder.listFiles()) {
 					if (libFile.getName().toLowerCase().endsWith(".jar")) {
-						FileJarClassLoader jarClassLoader = new FileJarClassLoader(delegatingClassLoader, libFile, new File(tempDir, projectRoot.getName()));
+						FileJarClassLoader jarClassLoader = new FileJarClassLoader(delegatingClassLoader, libFile, tempDir);
 						delegatingClassLoader.add(jarClassLoader);
 					}
 				}
@@ -203,7 +203,7 @@ public class PluginManager {
 			throw new PluginException("Not a file: " + file.getAbsolutePath());
 		}
 		try {
-			FileJarClassLoader jarClassLoader = new FileJarClassLoader(getClass().getClassLoader(), file, new File(tempDir, file.getName()));
+			FileJarClassLoader jarClassLoader = new FileJarClassLoader(getClass().getClassLoader(), file, tempDir);
 			InputStream pluginStream = jarClassLoader.getResourceAsStream("plugin/plugin.xml");
 			if (pluginStream == null) {
 				throw new PluginException("No plugin/plugin.xml found");
