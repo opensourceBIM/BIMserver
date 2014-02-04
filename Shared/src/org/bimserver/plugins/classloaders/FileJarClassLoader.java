@@ -54,11 +54,11 @@ public class FileJarClassLoader extends JarClassLoader {
  			fis.close();
  		}
 		
-		if (tempDir.exists()) {
+		if (this.tempDir.exists()) {
 			// This exact file has been extracted before, do nothing
 			return;
 		}
-		tempDir.mkdir();
+		this.tempDir.mkdir();
 		
 		JarInputStream jarInputStream = new JarInputStream(new FileInputStream(jarFile));
 		JarEntry entry = jarInputStream.getNextJarEntry();
