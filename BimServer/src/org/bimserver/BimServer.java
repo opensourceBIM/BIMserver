@@ -420,13 +420,6 @@ public class BimServer {
 			bimScheduler = new JobScheduler(this);
 			bimScheduler.start();
 
-			try {
-				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, config.getInitialProtocolBuffersPort());
-				protocolBuffersServer.start();
-			} catch (Exception e) {
-				LOGGER.error("", e);
-			}
-
 			if (config.isStartEmbeddedWebServer()) {
 				embeddedWebServer.start();
 			}
@@ -730,6 +723,15 @@ public class BimServer {
 				}
 			} finally {
 				ses.close();
+			}
+
+			if (getServerSettingsCache().getServerSettings().getProtocolBuffersPort() != -1) {
+				try {
+					protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, config.getInitialProtocolBuffersPort());
+					protocolBuffersServer.start();
+				} catch (Exception e) {
+					LOGGER.error("", e);
+				}
 			}
 			
 			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager);

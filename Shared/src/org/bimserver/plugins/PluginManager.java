@@ -103,6 +103,7 @@ public class PluginManager {
 		try {
 			loadPluginsFromEclipseProject(projectRoot);
 		} catch (PluginException e) {
+			LOGGER.error("", e);
 		}
 	}
 	
@@ -167,6 +168,8 @@ public class PluginManager {
 				}
 			} catch (ClassNotFoundException e) {
 				throw new PluginException("Interface class '" + interfaceClassName + "' not found", e);
+			} catch (Error e) {
+				throw new PluginException(e);
 			}
 		}
 	}
