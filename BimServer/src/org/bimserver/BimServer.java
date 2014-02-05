@@ -825,6 +825,11 @@ public class BimServer {
 							for (File f : sourceFile.listFiles()) {
 								if (f.isFile()) {
 									FileUtils.copyFile(f, new File(destFile, f.getName()));
+								} else if (f.isDirectory()) {
+									File destDir2 = new File(destFile, f.getName());
+									for (File x : f.listFiles()) {
+										FileUtils.copyFile(x, new File(destDir2, x.getName()));
+									}
 								}
 							}
 						} else {
