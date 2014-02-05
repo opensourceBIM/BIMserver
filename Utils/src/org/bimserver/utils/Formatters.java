@@ -32,15 +32,15 @@ public class Formatters {
 				if (bytes > 1024L * 1024L) {
 					if (bytes > 1024L * 1024L * 1024L) {
 						if (bytes > 1024L * 1024L * 1024L * 1024L) {
-							return formatter.format("%9.2f %n", ((float) bytes / (float) (1024L * 1024L * 1024L * 1024L))) + " TB";
+							return formatter.format("%9.2f", ((float) bytes / (float) (1024L * 1024L * 1024L * 1024L))) + " TB";
 						} else {
-							return formatter.format("%9.2f %n", (float) bytes / (float) (1024L * 1024L * 1024L)) + " GB";
+							return formatter.format("%9.2f", (float) bytes / (float) (1024L * 1024L * 1024L)) + " GB";
 						}
 					} else {
-						return formatter.format("%9.2f %n", ((float) bytes / (float) (1024L * 1024L))) + " MB";
+						return formatter.format("%9.2f", ((float) bytes / (float) (1024L * 1024L))) + " MB";
 					}
 				} else {
-					return formatter.format("%9.2f %n", ((float) bytes / (float) 1024L)) + " KB";
+					return formatter.format("%9.2f", ((float) bytes / (float) 1024L)) + " KB";
 				}
 			} else {
 				return "" + bytes + " B";

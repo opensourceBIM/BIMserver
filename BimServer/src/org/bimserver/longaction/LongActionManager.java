@@ -31,7 +31,7 @@ import com.google.common.collect.HashBiMap;
 public class LongActionManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
-	private static final int FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
+	private static final int FIVE_MINUTES_IN_MS = 5000; // 5 seconds
 	private final BiMap<Long, LongAction<?>> actions = HashBiMap.create();
 	private volatile boolean running = true;
 
