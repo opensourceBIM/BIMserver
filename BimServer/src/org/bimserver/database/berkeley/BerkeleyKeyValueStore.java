@@ -83,7 +83,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			}
 		}
 		EnvironmentConfig envConfig = new EnvironmentConfig();
-		envConfig.setCachePercent(50);
+		envConfig.setCachePercent(30);
 		envConfig.setAllowCreate(true);
 		envConfig.setTransactional(true);
 		envConfig.setTxnTimeout(10, TimeUnit.SECONDS);
@@ -334,8 +334,13 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 
 	@Override
 	public void store(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException {
+		store(tableName, key, value, 0, value.length, databaseSession);
+	}
+	
+	@Override
+	public void store(String tableName, byte[] key, byte[] value, int offset, int length, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException {
 		DatabaseEntry dbKey = new DatabaseEntry(key);
-		DatabaseEntry dbValue = new DatabaseEntry(value);
+		DatabaseEntry dbValue = new DatabaseEntry(value, offset, length);
 		try {
 			Database database = getDatabase(tableName);
 			database.put(getTransaction(databaseSession), dbKey, dbValue);
@@ -348,8 +353,13 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 
 	@Override
 	public void storeNoOverwrite(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException, BimserverConcurrentModificationDatabaseException {
+		storeNoOverwrite(tableName, key, value, 0, value.length, databaseSession);
+	}
+	
+	@Override
+	public void storeNoOverwrite(String tableName, byte[] key, byte[] value, int index, int length, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException, BimserverConcurrentModificationDatabaseException {
 		DatabaseEntry dbKey = new DatabaseEntry(key);
-		DatabaseEntry dbValue = new DatabaseEntry(value);
+		DatabaseEntry dbValue = new DatabaseEntry(value, index, length);
 		try {
 			Database database = getDatabase(tableName);
 			OperationStatus putNoOverwrite = database.putNoOverwrite(getTransaction(databaseSession), dbKey, dbValue);
