@@ -13,6 +13,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.utils.Formatters;
 
 public class TestUploadDir {
 	private BimServerClient client;
@@ -26,7 +27,11 @@ public class TestUploadDir {
 		try {
 			client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			client.getSettingsInterface().setGenerateGeometryOnCheckin(false);
-			process(new File("E:\\Dropbox\\Shared\\IFC files"), null);
+			
+			File directory = new File("E:\\Dropbox\\Shared\\IFC files");
+			for (File f : directory.listFiles()) {
+				process(f, null);
+			}
 		} catch (ServiceException | ChannelConnectionException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
@@ -48,11 +53,12 @@ public class TestUploadDir {
 				process(file, project);
 			}
 		} else {
-			if (directory.getName().endsWith("ifc") || directory.getName().endsWith("ifcxml")) {
+			String lowerCase = directory.getName().toLowerCase();
+			if (lowerCase.endsWith("ifc") || lowerCase.endsWith("ifcxml") || lowerCase.endsWith("ifczip")) {
 				SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(directory.getName().substring(directory.getName().lastIndexOf(".") + 1));
-				System.out.println("Checking in " + directory.getAbsolutePath());
+				System.out.println("Checking in " + directory.getAbsolutePath() + " - " + Formatters.bytesToString(directory.length()));
 				try {
-					client.checkin(parentProject.getOid(), "", deserializerForExtension.getOid(), false, false, directory);
+					client.checkin(parentProject.getOid(), "", deserializerForExtension.getOid(), false, true, directory);
 				} catch (UserException e) {
 					e.printStackTrace();
 				}

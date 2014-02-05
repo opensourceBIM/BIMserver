@@ -84,7 +84,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject.EStore;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
-import org.eclipse.emf.ecore.impl.EStoreEObjectImpl.BasicEStoreEList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -162,6 +161,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				database.getKeyValueStore().storeNoOverwrite(recordIdentifier.getPackageName() + "_" + recordIdentifier.getClassName(), keyBuffer.array(), new byte[] { -1 }, this);
 				writes++;
 			}
+			// This buffer is reused for the values, it's position must be reset at the end of the loop, and the convertObjectToByteArray function is responsible for settings the buffer's position to the end of the (used part of the) buffer
+			ByteBuffer buffer = ByteBuffer.allocate(32768);
 			for (IdEObject object : objectsToCommit) {
 				if (object.getOid() == -1) {
 					throw new BimserverDatabaseException("Cannot store object with oid -1");
@@ -172,15 +173,16 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				}
 				if (object.eClass().getEAnnotation("nolazyload") == null) {
 					database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
-							convertObjectToByteArray(object).array(), this);
+							convertObjectToByteArray(object, buffer).array(), 0, buffer.position(), this);
 				} else {
 					database.getKeyValueStore().store(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
-							convertObjectToByteArray(object).array(), this);
+							convertObjectToByteArray(object, buffer).array(), 0, buffer.position(), this);
 				}
 				if (progressHandler != null) {
 					progressHandler.progress(++current, objectsToCommit.size());
 				}
 				writes++;
+				buffer.position(0);
 			}
 			bimTransaction.commit();
 			database.incrementCommittedWrites(writes);
@@ -424,8 +426,12 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 	}
 
-	private ByteBuffer convertObjectToByteArray(IdEObject object) throws BimserverDatabaseException {
-		ByteBuffer buffer = ByteBuffer.allocate(getExactSize(object));
+	private ByteBuffer convertObjectToByteArray(IdEObject object, ByteBuffer buffer) throws BimserverDatabaseException {
+		int bufferSize = getExactSize(object);
+		if (bufferSize > buffer.capacity()) {
+			LOGGER.debug("Buffer too small (" + bufferSize + ")");
+			buffer = ByteBuffer.allocate(bufferSize);
+		}
 		byte[] unsetted = new byte[(int) Math.ceil(object.eClass().getEAllStructuralFeatures().size() / 8.0)];
 		int fieldCounter = 0;
 		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
@@ -1651,7 +1657,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			if (wrappedValue.getOid() == -1) {
 				((IdEObjectImpl) wrappedValue).setOid(newOid(Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId()));
 			}
-			ByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue);
+			ByteBuffer b = ByteBuffer.allocate(getExactSize(wrappedValue));
+			ByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue, b);
 			ByteBuffer createKeyBuffer = createKeyBuffer(pid, wrappedValue.getOid(), rid);
 			try {
 				EClass ifcGloballyUniqueIdEClass = Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId();
