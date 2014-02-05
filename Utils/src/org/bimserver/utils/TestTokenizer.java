@@ -77,9 +77,11 @@ public class TestTokenizer {
 	
 	public static void main(String[] args) throws ParseException {
 		try {
+			readFileName("('\\\\alpha\\macvol\\Projects\\2006\\06006 18 - 40 Mount St\\11.0 CAD\\11.20 Data Exchange\\Sent out\\IFC''s\\090320\\A.BIM.P-090320.ifc','2009-03-20T16:36:54',('Architect'),('Building Designer Office'),'PreProc - EDM 4.5.0033','Windows System','The authorising person')");
 			readFileName("(\r\n/* name */ '040123_TF_Teil_Halle_A3',\r\n/* time_stamp */ '2004-01-23T12:53:15+01:00',\r\n/* author */ ('Dayal'),\r\n/* organization */ ('Audi/TUM'),\r\n/* preprocessor_version */ 'ST-DEVELOPER v8',\r\n/* originating_system */ 'WinXP',\r\n/* authorisation */ 'dayal')");
 			readFileName("('', '2007-04-10T13:03:07', (''), (''), 'IFC Export', 'Esa.Pt', '')");
 			readFileName("('G:\\Users\\NLST\\ArchiCAD\\2x.ifc','2006-02-16T17:26:18',('Architect'),('Building Designer Office'),'PreProc - EDM 4.5.0033','Windows System','The authorising person')");
+			readDescription("(('ArchiCAD 11.00 Release 1 generated IFC file.','Build Number of the Ifc 2x3 interface: 63096 (01-09-2008)\\X\\0A'),'2;1')");
 			readDescription("(('ArchiCAD 11.00 Release 1 generated IFC file.','Build Number of the Ifc 2x3 interface: 63090 (13-06-2008)\\X\\0A'),'2;1')");
 			readDescription("((''), '2;1')");
 			readDescription("((), '2;1')");

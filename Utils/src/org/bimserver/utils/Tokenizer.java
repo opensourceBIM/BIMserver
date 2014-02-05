@@ -96,6 +96,10 @@ public class Tokenizer {
 		}
 		int add = toString.indexOf("'");
 		int endIndex = trimmed.indexOf("'", 1);
+		while (trimmed.length() > endIndex + 1 && trimmed.charAt(endIndex + 1) == '\'') {
+			// Two quotes
+			endIndex = trimmed.indexOf("'", endIndex + 2);
+		}
 		if (endIndex == -1) {
 			throw new TokenizeException("No closing \"'\" found in " + trimmed);
 		}
