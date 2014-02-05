@@ -198,7 +198,7 @@ public class Database implements BimDatabase {
 		settings.setSmtpServer("");
 		settings.setSmtpPort(25);
 		settings.setSmtpProtocol(SmtpProtocol.SMTP);
-		settings.setProtocolBuffersPort(8020);
+		settings.setProtocolBuffersPort(-1);
 		settings.setAllowSelfRegistration(false);
 		settings.setAllowUsersToCreateTopLevelProjects(false);
 		settings.setCheckinMergingEnabled(false);
