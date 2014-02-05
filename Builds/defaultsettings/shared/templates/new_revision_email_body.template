@@ -3,8 +3,9 @@
 ##   username: The users username (usually e-mail address)
 ##   siteaddress: The address of the running BIMserver
 ##   validationlink: A link where the user can set his/her password
+#parse("inc/header.template")
 Dear $name,<br/>
 
 A new revision ($revisionId) with comment "$comment" has been checked-in on project "$projectName".
 
-The BIMserver ($siteaddress)<br/>
+#parse("inc/footer.template")
