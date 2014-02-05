@@ -74,6 +74,7 @@ public abstract class Channel implements ServiceHolder {
 	private final Map<String, PublicInterface> serviceInterfaces = new HashMap<String, PublicInterface>();
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 	private static final Logger LOGGER = LoggerFactory.getLogger(Channel.class);
+	private final DefaultHttpClient httpclient = new DefaultHttpClient();
 
 	@SuppressWarnings("unchecked")
 	public <T extends PublicInterface> T get(String interfaceClass) {
@@ -113,7 +114,6 @@ public abstract class Channel implements ServiceHolder {
 
 	public long checkin(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, boolean sync, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
 		String address = baseAddress + "/upload";
-		DefaultHttpClient httpclient = new DefaultHttpClient();
 		httpclient.addRequestInterceptor(new HttpRequestInterceptor() {
 			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {
 				if (!request.containsHeader("Accept-Encoding")) {
@@ -158,21 +158,26 @@ public abstract class Channel implements ServiceHolder {
 			HttpResponse httpResponse = httpclient.execute(httppost);
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
 				JsonParser jsonParser = new JsonParser();
-				JsonElement result = jsonParser.parse(new JsonReader(new InputStreamReader(httpResponse.getEntity().getContent())));
-				if (result instanceof JsonObject) {
-					JsonObject jsonObject = (JsonObject)result;
-					if (jsonObject.has("exception")) {
-						JsonObject exceptionJson = jsonObject.get("exception").getAsJsonObject();
-						String exceptionType = exceptionJson.get("__type").getAsString();
-						String message = exceptionJson.has("message") ? exceptionJson.get("message").getAsString() : "unknown";
-						if (exceptionType.equals(UserException.class.getSimpleName())) {
-							throw new UserException(message);
-						} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
-							throw new ServerException(message);
+				InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent());
+				try {
+					JsonElement result = jsonParser.parse(new JsonReader(in));
+					if (result instanceof JsonObject) {
+						JsonObject jsonObject = (JsonObject)result;
+						if (jsonObject.has("exception")) {
+							JsonObject exceptionJson = jsonObject.get("exception").getAsJsonObject();
+							String exceptionType = exceptionJson.get("__type").getAsString();
+							String message = exceptionJson.has("message") ? exceptionJson.get("message").getAsString() : "unknown";
+							if (exceptionType.equals(UserException.class.getSimpleName())) {
+								throw new UserException(message);
+							} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
+								throw new ServerException(message);
+							}
+						} else {
+							return jsonObject.get("checkinid").getAsLong();
 						}
-					} else {
-						return jsonObject.get("checkinid").getAsLong();
 					}
+				} finally {
+					in.close();
 				}
 			}
 		} catch (ClientProtocolException e) {
