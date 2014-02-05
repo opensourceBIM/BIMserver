@@ -360,12 +360,14 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 						} else {
 							if (feature.getEType() instanceof EEnum) {
 								int enumOrdinal = buffer.getInt();
-								EClassifier eType = feature.getEType();
-								EEnumLiteral enumLiteral = ((EEnumImpl) eType).getEEnumLiteral(enumOrdinal);
-								if (enumLiteral != null) {
-									newValue = enumLiteral.getInstance();
+								if (enumOrdinal == -1) {
+									newValue = null;
 								} else {
-									LOGGER.error(enumOrdinal + " not found");
+									EClassifier eType = feature.getEType();
+									EEnumLiteral enumLiteral = ((EEnumImpl) eType).getEEnumLiteral(enumOrdinal);
+									if (enumLiteral != null) {
+										newValue = enumLiteral.getInstance();
+									}
 								}
 							} else if (feature.getEType() instanceof EClass) {
 								// EReference eReference = (EReference) feature;
@@ -411,8 +413,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				fieldCounter++;
 			}
 			((IdEObjectImpl) idEObject).setLoaded();
-			if (idEObject.getRid() > 100000 || idEObject.getRid() < -100000) {
-				throw new RuntimeException("Improbable rid " + idEObject.getRid() + " - " + idEObject);
+			if (DEVELOPER_DEBUG && idEObject.getRid() > 100000 || idEObject.getRid() < -100000) {
+				LOGGER.debug("Improbable rid " + idEObject.getRid() + " - " + idEObject);
 			}
 			return idEObject;
 		} catch (BufferUnderflowException e) {
@@ -500,8 +502,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private ByteBuffer fillKeyBuffer(ByteBuffer buffer, IdEObject object) {
-		if (object.getRid() > 100000 || object.getRid() < -100000) {
-			throw new RuntimeException("Improbable rid: " + object.getRid() + " - " + object);
+		if (DEVELOPER_DEBUG && object.getRid() > 100000 || object.getRid() < -100000) {
+			LOGGER.debug("Improbable rid: " + object.getRid() + " - " + object);
 		}
 		return fillKeyBuffer(buffer, object.getPid(), object.getOid(), object.getRid());
 	}
@@ -1277,8 +1279,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		IfcModelInterface model = createModel();
 		idEObject = get(model, idEObject, idEObject.getOid(), ((IdEObjectImpl) idEObject).getQueryInterface(), new TodoList());
 		if (idEObject != null) {
-			if (idEObject.getRid() > 100000 || idEObject.getRid() < -100000) {
-				throw new RuntimeException("Improbable rid " + idEObject.getRid() + " - " + idEObject);
+			if (DEVELOPER_DEBUG && idEObject.getRid() > 100000 || idEObject.getRid() < -100000) {
+				LOGGER.debug("Improbable rid " + idEObject.getRid() + " - " + idEObject);
 			}
 		}
 		return idEObject;
