@@ -162,7 +162,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				writes++;
 			}
 			// This buffer is reused for the values, it's position must be reset at the end of the loop, and the convertObjectToByteArray function is responsible for settings the buffer's position to the end of the (used part of the) buffer
-			ByteBuffer buffer = ByteBuffer.allocate(32768);
+			ByteBuffer reusableBuffer = ByteBuffer.allocate(32768);
 			for (IdEObject object : objectsToCommit) {
 				if (object.getOid() == -1) {
 					throw new BimserverDatabaseException("Cannot store object with oid -1");
@@ -171,18 +171,19 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				if (DEVELOPER_DEBUG) {
 					LOGGER.info("Write: " + object.eClass().getName() + " " + "pid=" + object.getPid() + " oid=" + object.getOid() + " rid=" + object.getRid());
 				}
+				ByteBuffer valueBuffer = convertObjectToByteArray(object, reusableBuffer);
 				if (object.eClass().getEAnnotation("nolazyload") == null) {
 					database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
-							convertObjectToByteArray(object, buffer).array(), 0, buffer.position(), this);
+							valueBuffer.array(), 0, valueBuffer.position(), this);
 				} else {
 					database.getKeyValueStore().store(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
-							convertObjectToByteArray(object, buffer).array(), 0, buffer.position(), this);
+							valueBuffer.array(), 0, valueBuffer.position(), this);
 				}
 				if (progressHandler != null) {
 					progressHandler.progress(++current, objectsToCommit.size());
 				}
 				writes++;
-				buffer.position(0);
+				reusableBuffer.position(0);
 			}
 			bimTransaction.commit();
 			database.incrementCommittedWrites(writes);
@@ -1578,6 +1579,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				}
 				buffer.putInt(bytes.length);
 				buffer.put(bytes);
+				buffer.position(buffer.position() + bytes.length); // put(byte[]) does not advance position
 			}
 		} else if (type == ECORE_PACKAGE.getEInt() || type == ECORE_PACKAGE.getEIntegerObject()) {
 			if (value == null) {
@@ -1628,6 +1630,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				byte[] bytes = (byte[]) value;
 				buffer.putInt(bytes.length);
 				buffer.put(bytes);
+				buffer.position(buffer.position() + bytes.length); // put(byte[]) does not advance position
 			}
 		} else {
 			throw new RuntimeException("Unsupported type " + type.getName());
@@ -1657,8 +1660,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			if (wrappedValue.getOid() == -1) {
 				((IdEObjectImpl) wrappedValue).setOid(newOid(Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId()));
 			}
-			ByteBuffer b = ByteBuffer.allocate(getExactSize(wrappedValue));
-			ByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue, b);
+			ByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue, ByteBuffer.allocate(getExactSize(wrappedValue)));
 			ByteBuffer createKeyBuffer = createKeyBuffer(pid, wrappedValue.getOid(), rid);
 			try {
 				EClass ifcGloballyUniqueIdEClass = Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId();
