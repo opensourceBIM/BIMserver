@@ -22,9 +22,12 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import org.apache.cxf.ws.discovery.wsdl.ByeType;
+import org.bimserver.geometry.Matrix;
 import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -96,6 +99,8 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		}
 		modelBounds.writeTo(dataOutputStream);
 		dataOutputStream.writeInt(nrObjects);
+		int bytesSaved = 0;
+		int bytesTotal = 0;
 		for (IfcProduct ifcProduct : getModel().getAllWithSubTypes(IfcProduct.class)) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
 			if (geometryInfo != null) {
@@ -124,21 +129,42 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				objectBounds.writeTo(dataOutputStream);
 				
 				dataOutputStream.writeInt(geometryInfo.getPrimitiveCount() * 3);
-
+	
 				GeometryData geometryData = geometryInfo.getData();
 				byte[] vertices = geometryData.getVertices();
 				ByteBuffer buffer = ByteBuffer.wrap(vertices);
-				convertOrder(buffer);
+				buffer.order(ByteOrder.nativeOrder());
+				bytesTotal += buffer.capacity();
+				if (geometryInfo.getTransformation() != null && geometryInfo.getTransformation().size() == 16) {
+					bytesSaved += buffer.capacity();
+					FloatBuffer vertexBuffer = buffer.asFloatBuffer();
+					ByteBuffer newByteBuffer = ByteBuffer.allocate(buffer.capacity());
+					newByteBuffer.order(buffer.order());
+					FloatBuffer newFloatBuffer = newByteBuffer.asFloatBuffer();
+					float[] matrix = new float[16];
+					EList<Float> list = geometryInfo.getTransformation();
+					for (int i=0; i<list.size(); i++) {
+						matrix[i] = list.get(i);
+					}
+					for (int i=0; i<vertexBuffer.capacity(); i+=3) {
+						float[] newVector = new float[4];
+						float[] oldVector = new float[]{vertexBuffer.get(i), vertexBuffer.get(i + 1), vertexBuffer.get(i + 2), 1};
+						Matrix.multiplyMV(newVector, 0, matrix, 0, oldVector, 0);
+						newFloatBuffer.put(i, newVector[0]);
+						newFloatBuffer.put(i + 1, newVector[1]);
+						newFloatBuffer.put(i + 2, newVector[2]);
+					}
+					buffer = newByteBuffer;
+				}
 				dataOutputStream.writeInt(buffer.capacity() / 4);
 				dataOutputStream.write(buffer.array());
 				
-				byte[] normals = geometryData.getNormals();
-				buffer = ByteBuffer.wrap(normals);
-				convertOrder(buffer);
-				dataOutputStream.writeInt(buffer.capacity() / 4);
-				dataOutputStream.write(buffer.array());
+				ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
+				dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
+				dataOutputStream.write(normalsBuffer.array());
 			}
 		}
+		System.out.println((100 * bytesSaved / bytesTotal) + "% saved");
 		dataOutputStream.flush();
 	}
 	
@@ -222,18 +248,6 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 			return "UNKNOWN";
 		}
 		return material;
-	}
-	
-	private void convertOrder(ByteBuffer input) {
-		input.position(0);
-		for (int i = 0; i < input.capacity(); i += 4) {
-			input.order(ByteOrder.BIG_ENDIAN);
-			float x = input.getFloat();
-			input.order(ByteOrder.nativeOrder());
-			input.position(input.position() - 4);
-			input.putFloat(x);
-		}
-		input.position(0);
 	}
 	
 	private String processStyledItem(String material, IfcStyledItem sItem) {
