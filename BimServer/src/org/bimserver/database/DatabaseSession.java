@@ -84,6 +84,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject.EStore;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
+import org.opengis.referencing.operation.Matrix;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -504,6 +505,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					}
 				}
 			}
+		}
+		if (buffer.position() != bufferSize) {
+			throw new BimserverDatabaseException("Value buffer sizes do not match for " + object.eClass().getName() + " " + buffer.position() + "/" + bufferSize);
 		}
 		return buffer;
 	}
@@ -933,14 +937,14 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					}
 				} else if (eStructuralFeature instanceof EReference) {
 					EReference eReference = (EReference) eStructuralFeature;
-					if (val == null) {
-						size += 2;
+					if (eReference.isMany()) {
+						size += 4;
+						for (Object v : ((List<?>) val)) {
+							size += getWrappedValueSize(v);
+						}
 					} else {
-						if (eReference.isMany()) {
-							size += 4;
-							for (Object v : ((List<?>) val)) {
-								size += getWrappedValueSize(v);
-							}
+						if (val == null) {
+							size += 2;
 						} else {
 							size += getWrappedValueSize(val);
 						}
@@ -1253,6 +1257,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private int getWrappedValueSize(Object val) {
+		if (val == null) {
+			return 2;
+		}
 		if (val instanceof EObject) {
 			EObject eObject = (EObject) val;
 			int refSize = 10;
@@ -1579,7 +1586,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				}
 				buffer.putInt(bytes.length);
 				buffer.put(bytes);
-				buffer.position(buffer.position() + bytes.length); // put(byte[]) does not advance position
 			}
 		} else if (type == ECORE_PACKAGE.getEInt() || type == ECORE_PACKAGE.getEIntegerObject()) {
 			if (value == null) {
@@ -1630,7 +1636,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				byte[] bytes = (byte[]) value;
 				buffer.putInt(bytes.length);
 				buffer.put(bytes);
-				buffer.position(buffer.position() + bytes.length); // put(byte[]) does not advance position
 			}
 		} else {
 			throw new RuntimeException("Unsupported type " + type.getName());
@@ -1660,12 +1665,12 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			if (wrappedValue.getOid() == -1) {
 				((IdEObjectImpl) wrappedValue).setOid(newOid(Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId()));
 			}
-			ByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue, ByteBuffer.allocate(getExactSize(wrappedValue)));
-			ByteBuffer createKeyBuffer = createKeyBuffer(pid, wrappedValue.getOid(), rid);
+			ByteBuffer valueBuffer = convertObjectToByteArray(wrappedValue, ByteBuffer.allocate(getExactSize(wrappedValue)));
+			ByteBuffer keyBuffer = createKeyBuffer(pid, wrappedValue.getOid(), rid);
 			try {
 				EClass ifcGloballyUniqueIdEClass = Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId();
 				database.getKeyValueStore().storeNoOverwrite(ifcGloballyUniqueIdEClass.getEPackage().getName() + "_" + ifcGloballyUniqueIdEClass.getName(),
-						createKeyBuffer.array(), convertObjectToByteArray.array(), this);
+						keyBuffer.array(), valueBuffer.array(), this);
 				database.incrementCommittedWrites(1);
 			} catch (BimserverLockConflictException e) {
 				LOGGER.error("", e);

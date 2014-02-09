@@ -22,6 +22,7 @@ import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.GeometryInstance;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getPrimitiveCount <em>Primitive Count</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getInstance <em>Instance</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getTransformation <em>Transformation</em>}</li>
  * </ul>
  * </p>
  *
@@ -207,6 +209,17 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	public void setInstance(GeometryInstance newInstance) {
 		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__INSTANCE, newInstance);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Float> getTransformation() {
+		return (EList<Float>) eGet(
+				Ifc2x3tc1Package.Literals.GEOMETRY_INFO__TRANSFORMATION, true);
 	}
 
 } //GeometryInfoImpl

@@ -55,6 +55,7 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 					if (geometryInfo != null) {
 						geometryInfo.loadExplicit();
 						geometryInfo.getData().loadExplicit();
+						geometryInfo.getTransformation();
 						geometryInfo.getMinBounds().loadExplicit();
 						geometryInfo.getMaxBounds().loadExplicit();
 					}
