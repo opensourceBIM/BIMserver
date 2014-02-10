@@ -84,7 +84,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject.EStore;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
-import org.opengis.referencing.operation.Matrix;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -285,8 +284,10 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 			int fieldCounter = 0;
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
-				if (feature.isUnsettable() && (unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0) {
+				boolean isUnsetted = (unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0;
+				if (feature.isUnsettable() && isUnsetted) {
 					idEObject.eUnset(feature);
+				} else if (!feature.isUnsettable() && isUnsetted) {
 				} else {
 					if (!query.shouldFollowReference(originalQueryClass, eClass, feature)) {
 						// we have to do some reading to maintain a correct
@@ -428,6 +429,23 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 	}
 
+	private boolean useUnsetBit(EStructuralFeature feature, IdEObject object) {
+		Object value = object.eGet(feature);
+		if (feature.isUnsettable()) {
+			if (!object.eIsSet(feature)) {
+				return true;
+			}
+		} else {
+			if (feature.isMany() && ((List<?>)value).isEmpty()) {
+				return true;
+			}
+			if (feature.getDefaultValue() == value || (feature.getDefaultValue() != null && feature.getDefaultValue().equals(value))) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	private ByteBuffer convertObjectToByteArray(IdEObject object, ByteBuffer buffer) throws BimserverDatabaseException {
 		int bufferSize = getExactSize(object);
 		if (bufferSize > buffer.capacity()) {
@@ -437,7 +455,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		byte[] unsetted = new byte[(int) Math.ceil(object.eClass().getEAllStructuralFeatures().size() / 8.0)];
 		int fieldCounter = 0;
 		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
-			if (feature.isUnsettable() && !object.eIsSet(feature)) {
+			if (useUnsetBit(feature, object)) {
 				unsetted[fieldCounter / 8] |= (1 << (fieldCounter % 8));
 			}
 			fieldCounter++;
@@ -446,7 +464,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		buffer.put(unsetted);
 
 		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
-			if (!feature.isUnsettable() || object.eIsSet(feature)) {
+			if (!useUnsetBit(feature, object)) {
 				if (feature.isMany()) {
 					if (feature.getEType() instanceof EEnum) {
 						// Aggregate relations to enums never occur... at this
@@ -923,7 +941,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 		for (EStructuralFeature eStructuralFeature : idEObject.eClass().getEAllStructuralFeatures()) {
 			bits++;
-			if (!eStructuralFeature.isUnsettable() || idEObject.eIsSet(eStructuralFeature)) {
+			if (!useUnsetBit(eStructuralFeature, idEObject)) {
 				Object val = idEObject.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					EAttribute eAttribute = (EAttribute) eStructuralFeature;

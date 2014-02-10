@@ -17,6 +17,7 @@ package org.bimserver.database.migrations.steps;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EClass;
@@ -25,7 +26,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 public class Step0003 extends Migration {
 
 	@Override
-	public void migrate(Schema schema) {
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		EClass serviceDescriptor = schema.getEClass("store", "ServiceDescriptor");
 		schema.createEAttribute(serviceDescriptor, "companyUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(serviceDescriptor, "tokenUrl", EcorePackage.eINSTANCE.getEString());

@@ -18,6 +18,7 @@ package org.bimserver.database.migrations;
  *****************************************************************************/
 
 import org.bimserver.database.Database;
+import org.bimserver.database.DatabaseSession;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
@@ -27,7 +28,7 @@ public abstract class Migration {
 
 	public EcorePackage ecorePackage = EcorePackage.eINSTANCE;
 
-	public abstract void migrate(Schema schema);
+	public abstract void migrate(Schema schema, DatabaseSession databaseSession);
 
 	public void upgrade(Database database) {
 	}

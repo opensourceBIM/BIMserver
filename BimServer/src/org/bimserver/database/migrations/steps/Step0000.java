@@ -19,6 +19,7 @@ package org.bimserver.database.migrations.steps;
 
 import javax.activation.DataHandler;
 
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
@@ -69,7 +70,7 @@ public class Step0000 extends Migration {
 	private EReference userRevisions;
 
 	@Override
-	public void migrate(Schema schema) {
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		this.schema = schema;
 		storePackage = schema.createEPackage("store");
 		

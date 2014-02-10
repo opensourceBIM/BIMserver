@@ -28,7 +28,7 @@ public class TestUploadDir {
 			client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			client.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 			
-			File directory = new File("E:\\Dropbox\\Shared\\IFC files");
+			File directory = new File("d:\\testfiles");
 			for (File f : directory.listFiles()) {
 				process(f, null);
 			}

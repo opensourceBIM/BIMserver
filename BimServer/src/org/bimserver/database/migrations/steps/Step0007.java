@@ -17,6 +17,7 @@ package org.bimserver.database.migrations.steps;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EClass;
@@ -26,7 +27,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 public class Step0007 extends Migration {
 
 	@Override
-	public void migrate(Schema schema) {
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		EEnum smtpProtocol = schema.createEEnum("store", "SmtpProtocol");
 		schema.createEEnumLiteral(smtpProtocol, "SMTP");
 		schema.createEEnumLiteral(smtpProtocol, "SMTPS");

@@ -17,6 +17,7 @@ package org.bimserver.database.migrations.steps;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
@@ -26,7 +27,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 public class Step0008 extends Migration {
 
 	@Override
-	public void migrate(Schema schema) {
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		EClass geometryInfo = schema.getEClass("ifc2x3tc1", "GeometryInfo");
 		schema.createEAttribute(geometryInfo, "transformation", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.MANY).setUnique(false);
 	}
