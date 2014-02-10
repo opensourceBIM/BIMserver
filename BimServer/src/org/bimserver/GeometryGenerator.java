@@ -37,7 +37,6 @@ import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
@@ -263,7 +262,8 @@ public class GeometryGenerator {
 
 		float[] toZeroTranslation = new float[16];
 		Matrix.setIdentityM(toZeroTranslation, 0);
-		Matrix.translateM(toZeroTranslation, 0, -v1[0], -v1[1], -v1[2]);
+//		Matrix.translateM(toZeroTranslation, 0, -v1[0], -v1[1], -v1[2]);
+		Matrix.translateM(toZeroTranslation, 0, transX, transY, transZ);
 		
 		if (almostTheSame(v2[0] + transX, u2[0]) && almostTheSame(v2[1] + transY, u2[1]) && almostTheSame(v2[2] + transZ, u2[2]) && almostTheSame(v3[0] + transX, u3[0]) && almostTheSame(v3[1] + transY, u3[1]) && almostTheSame(v3[2] + transZ, u3[2])) {
 			// The other two points are already the same, to there was no rotation
@@ -314,15 +314,15 @@ public class GeometryGenerator {
 		float[] startMatrix = new float[16];
 		Matrix.setIdentityM(startMatrix, 0);
 		
-		Matrix.multiplyMM(subResult, 0, toZeroTranslation, 0, startMatrix, 0);
-		Matrix.multiplyMM(subResult2, 0, r2, 0, subResult, 0);
+//		Matrix.multiplyMM(subResult, 0, toZeroTranslation, 0, startMatrix, 0);
+//		Matrix.multiplyMM(subResult2, 0, r2, 0, subResult, 0);
 //		Matrix.multiplyMM(totalResult, 0, r3, 0, subResult, 0);
 //		Matrix.translateM(totalResult, 0, v1[0], v1[1], v1[2]);
-		Matrix.multiplyMM(totalResult, 0, translation, 0, subResult2, 0);
+//		Matrix.multiplyMM(totalResult, 0, translation, 0, subResult, 0);
 
 //		Matrix.dump(totalResult);
 		
-		addAll(totalResult, geometryInfo.getTransformation());
+		addAll(toZeroTranslation, geometryInfo.getTransformation());
 	}
 
 	private void subtract(float[] u2, float[] v1) {

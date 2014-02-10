@@ -64,7 +64,7 @@ public class Migrator {
 		while (moreUpgrades && i <= targetVersion) {
 			Migration migration = getMigration(i);
 			if (migration != null) {
-				migration.migrate(schema);
+				migration.migrate(schema, null);
 				i++;
 			} else {
 				moreUpgrades = false;
@@ -112,7 +112,7 @@ public class Migrator {
 		for (int i = 0; i <= applicationSchemaVersion; i++) {
 			Migration migration = getMigration(i);
 			if (migration != null) {
-				migration.migrate(schema);
+				migration.migrate(schema, databaseSession);
 				if (i > databaseSchemaVersion) {
 					schema.upgradeDatabase(database, i, databaseSession);
 				}

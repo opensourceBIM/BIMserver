@@ -112,15 +112,15 @@ public class Matrix {
      * rhsVecOffset + 4 > rhsVec.length.
      */
     public static void multiplyMV(float[] resultVec, int resultVecOffset, float[] lhsMat, int lhsMatOffset, float[] rhsVec, int rhsVecOffset) {
-//    	resultVec[resultVecOffset + 0] = lhsMat[0] * rhsVec[0] + lhsMat[1] * rhsVec[1] + lhsMat[2] * rhsVec[2] + lhsMat[3] * rhsVec[3];
-//    	resultVec[resultVecOffset + 1] = lhsMat[4] * rhsVec[0] + lhsMat[5] * rhsVec[1] + lhsMat[6] * rhsVec[2] + lhsMat[7] * rhsVec[3];
-//    	resultVec[resultVecOffset + 2] = lhsMat[8] * rhsVec[0] + lhsMat[9] * rhsVec[1] + lhsMat[10] * rhsVec[2] + lhsMat[11] * rhsVec[3];
-//    	resultVec[resultVecOffset + 3] = lhsMat[12] * rhsVec[0] + lhsMat[13] * rhsVec[1] + lhsMat[14] * rhsVec[2] + lhsMat[15] * rhsVec[3];
+    	resultVec[resultVecOffset + 0] = lhsMat[0] * rhsVec[0] + lhsMat[1] * rhsVec[1] + lhsMat[2] * rhsVec[2] + lhsMat[3] * rhsVec[3];
+    	resultVec[resultVecOffset + 1] = lhsMat[4] * rhsVec[0] + lhsMat[5] * rhsVec[1] + lhsMat[6] * rhsVec[2] + lhsMat[7] * rhsVec[3];
+    	resultVec[resultVecOffset + 2] = lhsMat[8] * rhsVec[0] + lhsMat[9] * rhsVec[1] + lhsMat[10] * rhsVec[2] + lhsMat[11] * rhsVec[3];
+    	resultVec[resultVecOffset + 3] = lhsMat[12] * rhsVec[0] + lhsMat[13] * rhsVec[1] + lhsMat[14] * rhsVec[2] + lhsMat[15] * rhsVec[3];
 
-    	resultVec[resultVecOffset + 0] = lhsMat[0] * rhsVec[0] + lhsMat[4] * rhsVec[1] + lhsMat[8] * rhsVec[2] + lhsMat[12] * rhsVec[3];
-    	resultVec[resultVecOffset + 1] = lhsMat[1] * rhsVec[0] + lhsMat[5] * rhsVec[1] + lhsMat[9] * rhsVec[2] + lhsMat[13] * rhsVec[3];
-    	resultVec[resultVecOffset + 2] = lhsMat[2] * rhsVec[0] + lhsMat[6] * rhsVec[1] + lhsMat[10] * rhsVec[2] + lhsMat[14] * rhsVec[3];
-    	resultVec[resultVecOffset + 3] = lhsMat[3] * rhsVec[0] + lhsMat[7] * rhsVec[1] + lhsMat[11] * rhsVec[2] + lhsMat[15] * rhsVec[3];
+//    	resultVec[resultVecOffset + 0] = lhsMat[0] * rhsVec[0] + lhsMat[4] * rhsVec[1] + lhsMat[8] * rhsVec[2] + lhsMat[12] * rhsVec[3];
+//    	resultVec[resultVecOffset + 1] = lhsMat[1] * rhsVec[0] + lhsMat[5] * rhsVec[1] + lhsMat[9] * rhsVec[2] + lhsMat[13] * rhsVec[3];
+//    	resultVec[resultVecOffset + 2] = lhsMat[2] * rhsVec[0] + lhsMat[6] * rhsVec[1] + lhsMat[10] * rhsVec[2] + lhsMat[14] * rhsVec[3];
+//    	resultVec[resultVecOffset + 3] = lhsMat[3] * rhsVec[0] + lhsMat[7] * rhsVec[1] + lhsMat[11] * rhsVec[2] + lhsMat[15] * rhsVec[3];
     }
 
     /**
