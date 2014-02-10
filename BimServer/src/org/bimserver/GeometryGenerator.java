@@ -37,6 +37,7 @@ import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
@@ -62,6 +63,7 @@ import org.slf4j.LoggerFactory;
 
 public class GeometryGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryGenerator.class);
+	private static final boolean REUSE_GEOMETRY = false;
 
 	public static class GeometryCacheEntry {
 		public GeometryCacheEntry(ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, GeometryInfo geometryInfo) {
@@ -187,11 +189,13 @@ public class GeometryGenerator {
 									if (geometryCache != null) {
 										geometryCache.put(ifcProduct.getExpressId(), new GeometryCacheEntry(verticesBuffer, normalsBuffer, geometryInfo));
 									}
-									GeometryData matchingGeometryData = geometrySimplifier.getMatchingGeometry(ifcProduct, geometryData);
-									if (matchingGeometryData != null) {
-										reuseGeometry(geometryInfo, geometryData, matchingGeometryData);
-									} else {
-										geometrySimplifier.add(ifcProduct, geometryData);
+									if (REUSE_GEOMETRY) {
+										GeometryData matchingGeometryData = geometrySimplifier.getMatchingGeometry(ifcProduct, geometryData);
+										if (matchingGeometryData != null) {
+											reuseGeometry(ifcProduct, geometryInfo, geometryData, matchingGeometryData);
+										} else {
+											geometrySimplifier.add(ifcProduct, geometryData);
+										}
 									}
 									ifcProduct.setGeometry(geometryInfo);
 									if (store) {
@@ -229,7 +233,105 @@ public class GeometryGenerator {
 		}
 	}
 
-	private void reuseGeometry(GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
+	private boolean almostTheSame(float f1, float f2) {
+		return Math.abs(f1 - f2) < 0.01;
+	}
+	
+	private void reuseGeometry(IfcProduct ifcProduct, GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
+		geometryInfo.setData(matchingGeometryData);
+		ByteBuffer bb1 = ByteBuffer.wrap(matchingGeometryData.getVertices());
+		ByteBuffer bb2 = ByteBuffer.wrap(geometryData.getVertices());
+		bb1.order(ByteOrder.nativeOrder());
+		bb2.order(ByteOrder.nativeOrder());
+		FloatBuffer vertices1 = bb1.asFloatBuffer();
+		FloatBuffer vertices2 = bb2.asFloatBuffer();
+
+		float[] v1 = new float[]{vertices1.get(0), vertices1.get(1), vertices1.get(2)};
+		float[] u1 = new float[]{vertices2.get(0), vertices2.get(1), vertices2.get(2)};
+		float[] v2 = new float[]{vertices1.get(3), vertices1.get(4), vertices1.get(5)};
+		float[] u2 = new float[]{vertices2.get(3), vertices2.get(4), vertices2.get(5)};
+		float[] v3 = new float[]{vertices1.get(6), vertices1.get(7), vertices1.get(8)};
+		float[] u3 = new float[]{vertices2.get(6), vertices2.get(7), vertices2.get(8)};
+
+		float transX = u1[0] - v1[0];
+		float transY = u1[1] - v1[1];
+		float transZ = u1[2] - v1[2];
+		
+		float translation[] = new float[16];
+		Matrix.setIdentityM(translation, 0);
+		Matrix.translateM(translation, 0, u1[0], u1[1], u1[2]);
+
+		float[] toZeroTranslation = new float[16];
+		Matrix.setIdentityM(toZeroTranslation, 0);
+		Matrix.translateM(toZeroTranslation, 0, -v1[0], -v1[1], -v1[2]);
+		
+		if (almostTheSame(v2[0] + transX, u2[0]) && almostTheSame(v2[1] + transY, u2[1]) && almostTheSame(v2[2] + transZ, u2[2]) && almostTheSame(v3[0] + transX, u3[0]) && almostTheSame(v3[1] + transY, u3[1]) && almostTheSame(v3[2] + transZ, u3[2])) {
+			// The other two points are already the same, to there was no rotation
+			addAll(translation, geometryInfo.getTransformation());
+			System.out.println("No rotation");
+			return;
+		}
+		
+		subtract(u2, u1);
+		subtract(u3, u1);
+		
+		subtract(v2, v1);
+		subtract(v3, v1);
+		
+//		Vector.normalize(v1);
+//		Vector.normalize(v2);
+//		Vector.normalize(v3);
+//		Vector.normalize(u1);
+//		Vector.normalize(u2);
+//		Vector.normalize(u3);
+		
+		float[] u2CrossV2 = Vector.crossProduct(u2, v2);
+		float[] r2 = new float[16];
+		Matrix.setIdentityM(r2, 0);
+		float u2InV2 = Vector.dot(u2, v2);
+		if (u2CrossV2[0] == 0 && u2CrossV2[1] == 0 && u2CrossV2[2] == 0) {
+			float[] h = new float[]{u2[1], -u2[0], 0, 0};
+			Matrix.rotateM(r2, 0, -(float) Math.toDegrees(Math.atan2(Vector.length(u2CrossV2), u2InV2)), h[0], h[1], h[2]);
+		} else {
+			Matrix.rotateM(r2, 0, -(float) Math.toDegrees(Math.atan2(Vector.length(u2CrossV2), u2InV2)), u2CrossV2[0], u2CrossV2[1], u2CrossV2[2]);
+		}
+
+		float[] r2v3 = new float[4];
+		Matrix.multiplyMV(r2v3, 0, r2, 0, new float[]{v3[0], v3[1], v3[2], 1}, 0);
+		
+		float[] r3 = new float[16];
+		Matrix.setIdentityM(r3, 0);
+		float[] r2c3Crossu3 = Vector.crossProduct(r2v3, u3);
+		if (u2CrossV2[0] == 0 && u2CrossV2[1] == 0 && u2CrossV2[2] == 0) {
+			System.out.println();
+		} else {
+			Matrix.rotateM(r3, 0, -(float) Math.toDegrees(Math.atan2(Vector.length(r2c3Crossu3), Vector.dot(r2v3, u3))), u2[0], u2[1], u2[2]);
+		}
+
+		float[] subResult = new float[16];
+		float[] subResult2 = new float[16];
+		float[] totalResult = new float[16];
+		float[] startMatrix = new float[16];
+		Matrix.setIdentityM(startMatrix, 0);
+		
+		Matrix.multiplyMM(subResult, 0, toZeroTranslation, 0, startMatrix, 0);
+		Matrix.multiplyMM(subResult2, 0, r2, 0, subResult, 0);
+//		Matrix.multiplyMM(totalResult, 0, r3, 0, subResult, 0);
+//		Matrix.translateM(totalResult, 0, v1[0], v1[1], v1[2]);
+		Matrix.multiplyMM(totalResult, 0, translation, 0, subResult2, 0);
+
+//		Matrix.dump(totalResult);
+		
+		addAll(totalResult, geometryInfo.getTransformation());
+	}
+
+	private void subtract(float[] u2, float[] v1) {
+		u2[0] = u2[0] - v1[0];
+		u2[1] = u2[1] - v1[1];
+		u2[2] = u2[2] - v1[2];
+	}
+
+	private void reuseGeometryOld(GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
 		geometryInfo.setData(matchingGeometryData);
 		ByteBuffer bb1 = ByteBuffer.wrap(matchingGeometryData.getVertices());
 		ByteBuffer bb2 = ByteBuffer.wrap(geometryData.getVertices());
@@ -303,7 +405,7 @@ public class GeometryGenerator {
 			Matrix.setIdentityM(result, 0);
 			return result;
 		}
-		
+
 		float[] v4 = Vector.crossProduct(v3, v1);
 		
 		float[] m1 = new float[]{v1[0], v1[1], v1[2], 0,
