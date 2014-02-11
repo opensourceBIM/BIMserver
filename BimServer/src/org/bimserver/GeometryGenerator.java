@@ -238,7 +238,6 @@ public class GeometryGenerator {
 	}
 	
 	private void reuseGeometry(IfcProduct ifcProduct, GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
-		geometryInfo.setData(matchingGeometryData);
 		ByteBuffer bb1 = ByteBuffer.wrap(matchingGeometryData.getVertices());
 		ByteBuffer bb2 = ByteBuffer.wrap(geometryData.getVertices());
 		bb1.order(ByteOrder.nativeOrder());
@@ -255,20 +254,41 @@ public class GeometryGenerator {
 
 		float[] totalResult = getTransformationMatrix(v1, v2, v3, u1, u2, u3);
 
+		float[] r = new float[4];
+		Matrix.multiplyMV(r, 0, totalResult, 0, new float[]{v1[0], v1[1], v1[2], 1}, 0);
+		
+		if (almostTheSame(r[0] - v1[0], u1[0]) && almostTheSame(r[1] - v1[1], u1[1]) && almostTheSame(r[2] - v1[2], u1[2])) {
+			// Interesting
+			Matrix.translateM(totalResult, 0, -v1[0], -v1[1], -v1[2]);
+		}
+		
 //		Matrix.dump(totalResult);
 		
 		System.out.println(ifcProduct.eClass().getName());
 		if (test(v1, u1, totalResult)) {
 			System.out.println("OK");
+			geometryInfo.setData(matchingGeometryData);
+			addAll(totalResult, geometryInfo.getTransformation());
 		}
-		
-		addAll(totalResult, geometryInfo.getTransformation());
 	}
 
-	private static float[] getTransformationMatrix(float[] v1, float[] v2, float[] v3, float[] u1, float[] u2, float[] u3) {
-		v1 = copy(v1);
-		v2 = copy(v2);
-		v3 = copy(v3);
+	/**
+	 * This function should return a transformation matrix (with translation and rotation, no scaling) overlaying triangle V on U
+	 * Assumed is that the triangles are indeed the same and the order of the vertices is also the same (shifts are not allowed)
+	 * This function can probably be optimized for speed and also the LOC can probably be reduced
+	 * 
+	 * @param originalV1
+	 * @param originalV2
+	 * @param originalV3
+	 * @param u1
+	 * @param u2
+	 * @param u3
+	 * @return
+	 */
+	private static float[] getTransformationMatrix(float[] originalV1, float[] originalV2, float[] originalV3, float[] u1, float[] u2, float[] u3) {
+		float[] v1 = copy(originalV1);
+		float[] v2 = copy(originalV2);
+		float[] v3 = copy(originalV3);
 		u1 = copy(u1);
 		u2 = copy(u2);
 		u3 = copy(u3);
@@ -290,6 +310,7 @@ public class GeometryGenerator {
 			return translation;
 		}
 		
+		// Normalize both triangles to their first vertex
 		subtract(u2, u1);
 		subtract(u3, u1);
 		subtract(u1, u1);
@@ -302,7 +323,7 @@ public class GeometryGenerator {
 		float[] r2 = new float[16];
 		Matrix.setIdentityM(r2, 0);
 		float[] r2v2 = new float[4];
-		if (!equals(u2, v2)) {
+		if (!equalsAlmost(u2, v2)) {
 			float u2InV2 = Vector.dot(u2, v2);
 			float[] axis = u2CrossV2; 
 			if (axis[0] == 0 && axis[1] == 0 && axis[2] == 0) {
@@ -312,12 +333,12 @@ public class GeometryGenerator {
 
 			Matrix.multiplyMV(r2v2, 0, r2, 0, new float[]{v2[0], v2[1], v2[2], 1}, 0);
 			
-			if (!equals(r2v2, u2)) {
+			if (!equalsAlmost(r2v2, u2)) {
 				System.out.println("Initial wrong rotation, fixing...");
 				Matrix.setIdentityM(r2, 0);
 				Matrix.rotateM(r2, 0, -(float) Math.toDegrees(Math.atan2(Vector.length(u2CrossV2), u2InV2)), axis[0], axis[1], axis[2]);
 				Matrix.multiplyMV(r2v2, 0, r2, 0, new float[]{v2[0], v2[1], v2[2], 1}, 0);
-				if (!equals(r2v2, u2)) {
+				if (!equalsAlmost(r2v2, u2)) {
 					System.out.println("Still wrong");
 				}
 			}
@@ -337,15 +358,21 @@ public class GeometryGenerator {
 		
 		float[] r3v3 = new float[4];
 		Matrix.multiplyMV(r3v3, 0, r3, 0, new float[]{r2v3[0], r2v3[1], r2v3[2], 1}, 0);
+
+		float[] r2v1 = new float[4];
+		Matrix.multiplyMV(r2v1, 0, r2, 0, new float[]{v1[0], v1[1], v1[2], 1}, 0);
+
+		float[] r3v1 = new float[4];
+		Matrix.multiplyMV(r3v1, 0, r3, 0, new float[]{r2v1[0], r2v1[1], r2v1[2], 1}, 0);
 		
-		if (!equals(r3v3, u3)) {
+		if (!equalsAlmost(r3v3, u3)) {
 			System.out.println("Initial wrong rotation, fixing...");
 			Matrix.setIdentityM(r3, 0);
 			Matrix.rotateM(r3, 0, -angleDegrees, r2v2[0], r2v2[1], r2v2[2]);
 			Matrix.multiplyMV(r3v3, 0, r3, 0, new float[]{r2v3[0], r2v3[1], r2v3[2], 1}, 0);
 			float[] r3v2 = new float[4];
 			Matrix.multiplyMV(r3v2, 0, r3, 0, new float[]{r2v2[0], r2v2[1], r2v2[2], 1}, 0);
-			if (!equals(r3v3, u3) || !equals(r3v2, u2)) {
+			if (!equalsAlmost(r3v3, u3) || !equalsAlmost(r3v2, u2)) {
 				System.out.println("Still wrong");
 			}
 		}
@@ -364,6 +391,17 @@ public class GeometryGenerator {
 		return totalResult;
 	}
 
+	/**
+	 * Get the angle in radians between two planes
+	 * 
+	 * @param v1
+	 * @param v2
+	 * @param v3
+	 * @param u1
+	 * @param u2
+	 * @param u3
+	 * @return
+	 */
 	private static double getPlaneAngle(float[] v1, float[] v2, float[] v3, float[] u1, float[] u2, float[] u3) {
 		float[] cross1 = Vector.crossProduct(new float[]{v2[0] - v1[0], v2[1] - v1[1], v2[2] - v1[2]}, new float[]{v3[0] - v1[0], v3[1] - v1[1], v3[2] - v1[2]});
 		float[] cross2 = Vector.crossProduct(new float[]{u2[0] - u1[0], u2[1] - u1[1], u2[2] - u1[2]}, new float[]{u3[0] - u1[0], u3[1] - u1[1], u3[2] - u1[2]});
@@ -386,7 +424,7 @@ public class GeometryGenerator {
 		return result;
 	}
 
-	private static boolean equals(float[] r2v2, float[] u2) {
+	private static boolean equalsAlmost(float[] r2v2, float[] u2) {
 		for (int i=0; i<3; i++) {
 			if (!almostTheSame(r2v2[i], u2[i])) {
 				return false;
