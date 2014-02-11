@@ -92,6 +92,7 @@ import org.bimserver.models.store.StringType;
 import org.bimserver.models.store.Type;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.UserType;
 import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.notifications.InternalServicesManager;
 import org.bimserver.notifications.NotificationsManager;
@@ -704,6 +705,28 @@ public class BimServer {
 			} finally {
 				session.close();
 			}
+			
+			DatabaseSession tempSession = getDatabase().createSession();
+            try {
+                IfcModelInterface allOfType = tempSession.getAllOfType(StorePackage.eINSTANCE.getUser(), Query.getDefault());
+                for (User user : allOfType.getAll(User.class)) {
+                    if (user.getUserType() == UserType.ADMIN) {
+                        System.out.println(user.getUsername());
+                        Authenticator authenticator = new Authenticator();
+                        byte[] salt = new byte[32];
+                        new java.security.SecureRandom().nextBytes(salt);
+                        user.setPasswordHash(authenticator.createHash("test", salt));
+                        user.setPasswordSalt(salt);
+                        tempSession.store(user);
+                    }
+                }
+                tempSession.commit();
+            } catch (ServiceException e) {
+                e.printStackTrace();
+            } finally {
+                tempSession.close();
+            }
+			
 			
 			webModules = new HashMap<String, WebModulePlugin>();
 			DatabaseSession ses = bimDatabase.createSession();

@@ -61,6 +61,7 @@ import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.DatabaseInformationCategory;
 import org.bimserver.models.store.DatabaseInformationItem;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
@@ -285,9 +286,17 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			int fieldCounter = 0;
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 				boolean isUnsetted = (unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0;
-				if (feature.isUnsettable() && isUnsetted) {
-					idEObject.eUnset(feature);
-				} else if (!feature.isUnsettable() && isUnsetted) {
+				if (isUnsetted) {
+					if (feature.isUnsettable()) {
+						idEObject.eUnset(feature);
+					} else if (feature.isMany()) {
+						// do nothing
+					} else if (feature.getDefaultValue() != null) {
+						if (idEObject instanceof ServerSettings) {
+							System.out.println();
+						}
+						idEObject.eSet(feature, feature.getDefaultValue());
+					}
 				} else {
 					if (!query.shouldFollowReference(originalQueryClass, eClass, feature)) {
 						// we have to do some reading to maintain a correct
@@ -430,6 +439,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private boolean useUnsetBit(EStructuralFeature feature, IdEObject object) {
+		// TODO non-unsettable boolean values can also be stored in these bits
 		Object value = object.eGet(feature);
 		if (feature.isUnsettable()) {
 			if (!object.eIsSet(feature)) {
