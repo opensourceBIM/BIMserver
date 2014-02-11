@@ -34,8 +34,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class MetaDataManager {
 	private final Map<String, EPackage> ePackages = new TreeMap<String, EPackage>();
-	private final Map<EClass, Set<EClass>> directSubClasses = new TreeMap<EClass, Set<EClass>>();
-	private final Map<EClass, Set<EClass>> allSubClasses = new TreeMap<EClass, Set<EClass>>();
+	private final Map<String, Set<EClass>> directSubClasses = new TreeMap<String, Set<EClass>>();
+	private final Map<String, Set<EClass>> allSubClasses = new TreeMap<String, Set<EClass>>();
 	private final Map<String, EClassifier> caseInsensitive = new TreeMap<String, EClassifier>();
 	private final Map<String, EClassifier> caseSensitive = new TreeMap<String, EClassifier>();
 	
@@ -58,34 +58,34 @@ public class MetaDataManager {
 			caseSensitive.put(eClassifier.getName(), eClassifier);
 			if (eClassifier instanceof EClass) {
 				EClass eClass = (EClass)eClassifier;
-				if (!allSubClasses.containsKey(eClass)) {
-					allSubClasses.put(eClass, new HashSet<EClass>());
+				if (!allSubClasses.containsKey(eClass.getName())) {
+					allSubClasses.put(eClass.getName(), new HashSet<EClass>());
 				}
-				if (!directSubClasses.containsKey(eClass)) {
-					directSubClasses.put(eClass, new HashSet<EClass>());
+				if (!directSubClasses.containsKey(eClass.getName())) {
+					directSubClasses.put(eClass.getName(), new HashSet<EClass>());
 				}
 				for (EClass superClass : eClass.getEAllSuperTypes()) {
-					if (!allSubClasses.containsKey(superClass)) {
-						allSubClasses.put(superClass, new HashSet<EClass>());
+					if (!allSubClasses.containsKey(superClass.getName())) {
+						allSubClasses.put(superClass.getName(), new HashSet<EClass>());
 					}
-					allSubClasses.get(superClass).add(eClass);
+					allSubClasses.get(superClass.getName()).add(eClass);
 				}
 				for (EClass superClass : eClass.getESuperTypes()) {
-					if (!directSubClasses.containsKey(superClass)) {
-						directSubClasses.put(superClass, new HashSet<EClass>());
+					if (!directSubClasses.containsKey(superClass.getName())) {
+						directSubClasses.put(superClass.getName(), new HashSet<EClass>());
 					}
-					directSubClasses.get(superClass).add(eClass);
+					directSubClasses.get(superClass.getName()).add(eClass);
 				}
 			}
 		}
 	}
 
 	public Set<EClass> getDirectSubClasses(EClass superClass) {
-		return directSubClasses.get(superClass);
+		return directSubClasses.get(superClass.getName());
 	}
 	
 	public Set<EClass> getAllSubClasses(EClass superClass) {
-		return allSubClasses.get(superClass);
+		return allSubClasses.get(superClass.getName());
 	}
 
 	public EClassifier getEClassifier(String type) {
@@ -97,6 +97,7 @@ public class MetaDataManager {
 	}
 	
 	public EAttribute getEAttribute(String className, String attributeName) {
+		// TODO add packageName argument and use hashmap for lookup
 		for (EPackage ePackage : ePackages.values()) {
 			EClassifier eClassifier = ePackage.getEClassifier(className);
 			if (eClassifier instanceof EClass) {
@@ -111,6 +112,7 @@ public class MetaDataManager {
 	}
 	
 	public EReference getEReference(String className, String referenceName) {
+		// TODO add packageName argument and use hashmap for lookup
 		for (EPackage ePackage : ePackages.values()) {
 			EClassifier eClassifier = ePackage.getEClassifier(className);
 			if (eClassifier instanceof EClass) {
