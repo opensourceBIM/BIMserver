@@ -17,10 +17,10 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.LogPackage;
@@ -33,11 +33,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class MetaDataManager {
-	private final Map<String, EPackage> ePackages = new HashMap<String, EPackage>();
-	private final Map<EClass, Set<EClass>> directSubClasses = new HashMap<EClass, Set<EClass>>();
-	private final Map<EClass, Set<EClass>> allSubClasses = new HashMap<EClass, Set<EClass>>();
-	private final Map<String, EClassifier> caseInsensitive = new HashMap<String, EClassifier>();
-	private final Map<String, EClassifier> caseSensitive = new HashMap<String, EClassifier>();
+	private final Map<String, EPackage> ePackages = new TreeMap<String, EPackage>();
+	private final Map<EClass, Set<EClass>> directSubClasses = new TreeMap<EClass, Set<EClass>>();
+	private final Map<EClass, Set<EClass>> allSubClasses = new TreeMap<EClass, Set<EClass>>();
+	private final Map<String, EClassifier> caseInsensitive = new TreeMap<String, EClassifier>();
+	private final Map<String, EClassifier> caseSensitive = new TreeMap<String, EClassifier>();
 	
 	public MetaDataManager(Set<EPackage> ePackages) {
 		for (EPackage ePackage : ePackages) {
