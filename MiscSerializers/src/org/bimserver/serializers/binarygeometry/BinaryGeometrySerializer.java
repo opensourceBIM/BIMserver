@@ -56,7 +56,7 @@ import org.slf4j.LoggerFactory;
 
 public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometrySerializer.class);
-	private static final byte FORMAT_VERSION = 3;
+	private static final byte FORMAT_VERSION = 4;
 	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
 
 	@Override
@@ -135,17 +135,19 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				ByteBuffer buffer = ByteBuffer.wrap(vertices);
 				buffer.order(ByteOrder.nativeOrder());
 				bytesTotal += buffer.capacity();
-				if (geometryInfo.getTransformation() != null && geometryInfo.getTransformation().size() == 16) {
+				if (FORMAT_VERSION > 3 && geometryInfo.getTransformation() != null && geometryInfo.getTransformation().size() == 16) {
 					bytesSaved += buffer.capacity();
-					FloatBuffer vertexBuffer = buffer.asFloatBuffer();
-					ByteBuffer newByteBuffer = ByteBuffer.allocate(buffer.capacity());
-					newByteBuffer.order(buffer.order());
-					FloatBuffer newFloatBuffer = newByteBuffer.asFloatBuffer();
+					
 					float[] matrix = new float[16];
 					EList<Float> list = geometryInfo.getTransformation();
 					for (int i=0; i<list.size(); i++) {
 						matrix[i] = list.get(i);
 					}
+
+					FloatBuffer vertexBuffer = buffer.asFloatBuffer();
+					ByteBuffer newByteBuffer = ByteBuffer.allocate(buffer.capacity());
+					newByteBuffer.order(buffer.order());
+					FloatBuffer newFloatBuffer = newByteBuffer.asFloatBuffer();
 					for (int i=0; i<vertexBuffer.capacity(); i+=3) {
 						float[] newVector = new float[4];
 						float[] oldVector = new float[]{vertexBuffer.get(i), vertexBuffer.get(i + 1), vertexBuffer.get(i + 2), 1};
@@ -164,7 +166,9 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				dataOutputStream.write(normalsBuffer.array());
 			}
 		}
-		System.out.println((100 * bytesSaved / bytesTotal) + "% saved");
+		if (FORMAT_VERSION > 3) {
+			System.out.println((100 * bytesSaved / bytesTotal) + "% saved");
+		}
 		dataOutputStream.flush();
 	}
 	
