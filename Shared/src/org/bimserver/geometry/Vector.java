@@ -37,4 +37,8 @@ public class Vector {
 	public static void dump(float[] v) {
 		System.out.println(v[0] + ", " + v[1] + ", " + v[2] + (v.length == 4 ? (", " + v[3]) : ""));
 	}
+
+	public static void dump(String pre, float[] v) {
+		System.out.println(pre + ": " + v[0] + ", " + v[1] + ", " + v[2] + (v.length == 4 ? (", " + v[3]) : ""));
+	}
 }

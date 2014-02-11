@@ -25,6 +25,7 @@ import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -232,7 +233,7 @@ public class GeometryGenerator {
 		}
 	}
 
-	private boolean almostTheSame(float f1, float f2) {
+	private static boolean almostTheSame(float f1, float f2) {
 		return Math.abs(f1 - f2) < 0.01;
 	}
 	
@@ -252,6 +253,26 @@ public class GeometryGenerator {
 		float[] v3 = new float[]{vertices1.get(6), vertices1.get(7), vertices1.get(8)};
 		float[] u3 = new float[]{vertices2.get(6), vertices2.get(7), vertices2.get(8)};
 
+		float[] totalResult = getTransformationMatrix(v1, v2, v3, u1, u2, u3);
+
+//		Matrix.dump(totalResult);
+		
+		System.out.println(ifcProduct.eClass().getName());
+		if (test(v1, u1, totalResult)) {
+			System.out.println("OK");
+		}
+		
+		addAll(totalResult, geometryInfo.getTransformation());
+	}
+
+	private static float[] getTransformationMatrix(float[] v1, float[] v2, float[] v3, float[] u1, float[] u2, float[] u3) {
+		v1 = copy(v1);
+		v2 = copy(v2);
+		v3 = copy(v3);
+		u1 = copy(u1);
+		u2 = copy(u2);
+		u3 = copy(u3);
+
 		float transX = u1[0] - v1[0];
 		float transY = u1[1] - v1[1];
 		float transZ = u1[2] - v1[2];
@@ -262,175 +283,236 @@ public class GeometryGenerator {
 
 		float[] toZeroTranslation = new float[16];
 		Matrix.setIdentityM(toZeroTranslation, 0);
-//		Matrix.translateM(toZeroTranslation, 0, -v1[0], -v1[1], -v1[2]);
-		Matrix.translateM(toZeroTranslation, 0, transX, transY, transZ);
+		Matrix.translateM(toZeroTranslation, 0, -v1[0], -v1[1], -v1[2]);
 		
 		if (almostTheSame(v2[0] + transX, u2[0]) && almostTheSame(v2[1] + transY, u2[1]) && almostTheSame(v2[2] + transZ, u2[2]) && almostTheSame(v3[0] + transX, u3[0]) && almostTheSame(v3[1] + transY, u3[1]) && almostTheSame(v3[2] + transZ, u3[2])) {
 			// The other two points are already the same, to there was no rotation
-			addAll(translation, geometryInfo.getTransformation());
-			System.out.println("No rotation");
-			return;
+			return translation;
 		}
 		
 		subtract(u2, u1);
 		subtract(u3, u1);
+		subtract(u1, u1);
 		
 		subtract(v2, v1);
 		subtract(v3, v1);
-		
-//		Vector.normalize(v1);
-//		Vector.normalize(v2);
-//		Vector.normalize(v3);
-//		Vector.normalize(u1);
-//		Vector.normalize(u2);
-//		Vector.normalize(u3);
+		subtract(v1, v1);
 		
 		float[] u2CrossV2 = Vector.crossProduct(u2, v2);
 		float[] r2 = new float[16];
 		Matrix.setIdentityM(r2, 0);
-		float u2InV2 = Vector.dot(u2, v2);
-		if (u2CrossV2[0] == 0 && u2CrossV2[1] == 0 && u2CrossV2[2] == 0) {
-			float[] h = new float[]{u2[1], -u2[0], 0, 0};
-			Matrix.rotateM(r2, 0, -(float) Math.toDegrees(Math.atan2(Vector.length(u2CrossV2), u2InV2)), h[0], h[1], h[2]);
-		} else {
-			Matrix.rotateM(r2, 0, -(float) Math.toDegrees(Math.atan2(Vector.length(u2CrossV2), u2InV2)), u2CrossV2[0], u2CrossV2[1], u2CrossV2[2]);
-		}
+		float[] r2v2 = new float[4];
+		if (!equals(u2, v2)) {
+			float u2InV2 = Vector.dot(u2, v2);
+			float[] axis = u2CrossV2; 
+			if (axis[0] == 0 && axis[1] == 0 && axis[2] == 0) {
+				axis = new float[]{u2[1], -u2[0], 0, 0};
+			}
+			Matrix.rotateM(r2, 0, (float) Math.toDegrees(Math.atan2(Vector.length(u2CrossV2), u2InV2)), axis[0], axis[1], axis[2]);
 
+			Matrix.multiplyMV(r2v2, 0, r2, 0, new float[]{v2[0], v2[1], v2[2], 1}, 0);
+			
+			if (!equals(r2v2, u2)) {
+				System.out.println("Initial wrong rotation, fixing...");
+				Matrix.setIdentityM(r2, 0);
+				Matrix.rotateM(r2, 0, -(float) Math.toDegrees(Math.atan2(Vector.length(u2CrossV2), u2InV2)), axis[0], axis[1], axis[2]);
+				Matrix.multiplyMV(r2v2, 0, r2, 0, new float[]{v2[0], v2[1], v2[2], 1}, 0);
+				if (!equals(r2v2, u2)) {
+					System.out.println("Still wrong");
+				}
+			}
+		} else {
+			r2v2 = copy(v2);
+		}
+		
 		float[] r2v3 = new float[4];
 		Matrix.multiplyMV(r2v3, 0, r2, 0, new float[]{v3[0], v3[1], v3[2], 1}, 0);
-		
+
 		float[] r3 = new float[16];
 		Matrix.setIdentityM(r3, 0);
-		float[] r2c3Crossu3 = Vector.crossProduct(r2v3, u3);
-		if (u2CrossV2[0] == 0 && u2CrossV2[1] == 0 && u2CrossV2[2] == 0) {
-			System.out.println();
-		} else {
-			Matrix.rotateM(r3, 0, -(float) Math.toDegrees(Math.atan2(Vector.length(r2c3Crossu3), Vector.dot(r2v3, u3))), u2[0], u2[1], u2[2]);
+		
+		float angleDegrees = (float) Math.toDegrees(getPlaneAngle(v1, r2v2, r2v3, u1, u2, u3));
+		
+		Matrix.rotateM(r3, 0, angleDegrees, r2v2[0], r2v2[1], r2v2[2]);
+		
+		float[] r3v3 = new float[4];
+		Matrix.multiplyMV(r3v3, 0, r3, 0, new float[]{r2v3[0], r2v3[1], r2v3[2], 1}, 0);
+		
+		if (!equals(r3v3, u3)) {
+			System.out.println("Initial wrong rotation, fixing...");
+			Matrix.setIdentityM(r3, 0);
+			Matrix.rotateM(r3, 0, -angleDegrees, r2v2[0], r2v2[1], r2v2[2]);
+			Matrix.multiplyMV(r3v3, 0, r3, 0, new float[]{r2v3[0], r2v3[1], r2v3[2], 1}, 0);
+			float[] r3v2 = new float[4];
+			Matrix.multiplyMV(r3v2, 0, r3, 0, new float[]{r2v2[0], r2v2[1], r2v2[2], 1}, 0);
+			if (!equals(r3v3, u3) || !equals(r3v2, u2)) {
+				System.out.println("Still wrong");
+			}
 		}
-
 		float[] subResult = new float[16];
 		float[] subResult2 = new float[16];
+		float[] subResult3 = new float[16];
 		float[] totalResult = new float[16];
 		float[] startMatrix = new float[16];
 		Matrix.setIdentityM(startMatrix, 0);
 		
-//		Matrix.multiplyMM(subResult, 0, toZeroTranslation, 0, startMatrix, 0);
-//		Matrix.multiplyMM(subResult2, 0, r2, 0, subResult, 0);
-//		Matrix.multiplyMM(totalResult, 0, r3, 0, subResult, 0);
-//		Matrix.translateM(totalResult, 0, v1[0], v1[1], v1[2]);
-//		Matrix.multiplyMM(totalResult, 0, translation, 0, subResult, 0);
-
-//		Matrix.dump(totalResult);
+		Matrix.multiplyMM(subResult, 0, toZeroTranslation, 0, startMatrix, 0);
+		Matrix.multiplyMM(subResult2, 0, r2, 0, subResult, 0);
+		Matrix.multiplyMM(subResult3, 0, r3, 0, subResult2, 0);
+		Matrix.multiplyMM(totalResult, 0, translation, 0, subResult3, 0);		
 		
-		addAll(toZeroTranslation, geometryInfo.getTransformation());
+		return totalResult;
 	}
 
-	private void subtract(float[] u2, float[] v1) {
+	private static double getPlaneAngle(float[] v1, float[] v2, float[] v3, float[] u1, float[] u2, float[] u3) {
+		float[] cross1 = Vector.crossProduct(new float[]{v2[0] - v1[0], v2[1] - v1[1], v2[2] - v1[2]}, new float[]{v3[0] - v1[0], v3[1] - v1[1], v3[2] - v1[2]});
+		float[] cross2 = Vector.crossProduct(new float[]{u2[0] - u1[0], u2[1] - u1[1], u2[2] - u1[2]}, new float[]{u3[0] - u1[0], u3[1] - u1[1], u3[2] - u1[2]});
+		
+		float num = Vector.dot(cross1, cross2);
+		float den = Vector.length(cross1) * Vector.length(cross2);
+		
+		float a = num / den;
+		if (a > 1) {
+			a = 1;
+		}
+		if (a < -1) {
+			a = -1;
+		}
+		double result = Math.acos(a);
+		
+		if (Double.isNaN(result)) {
+			System.out.println();
+		}
+		return result;
+	}
+
+	private static boolean equals(float[] r2v2, float[] u2) {
+		for (int i=0; i<3; i++) {
+			if (!almostTheSame(r2v2[i], u2[i])) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private static float[] min(float[] r2v3, float[] r2v2) {
+		return new float[]{r2v3[0] - r2v2[0], r2v3[1] - r2v2[1], r2v3[2] - r2v2[2]};
+	}
+
+	private static float[] copy(float[] v1) {
+		float[] result = new float[v1.length];
+		System.arraycopy(v1, 0, result, 0, v1.length);
+		return result;
+	}
+
+	private static boolean test(float[] v1, float[] v2, float[] transformationMatrix) {
+		float[] resultVector = new float[4];
+		Matrix.multiplyMV(resultVector, 0, transformationMatrix, 0, new float[]{v1[0], v1[1], v1[2], 1}, 0);
+		normalize(resultVector);
+		boolean theSame = true;
+		for (int i=0; i<3; i++) {
+			if (!almostTheSame(resultVector[i], v2[i])) {
+				theSame = false;
+			}
+		}
+		if (!theSame) {
+			System.out.println("Difference");
+			Vector.dump("Was", v1);
+			Vector.dump("Became", resultVector);
+			Vector.dump("Should be", v2);
+			System.out.println();
+			return false;
+		}
+		return true;
+	}
+
+	private static void normalize(float[] resultVector) {
+		resultVector[0] = resultVector[0] * resultVector[3];
+		resultVector[1] = resultVector[1] * resultVector[3];
+		resultVector[2] = resultVector[2] * resultVector[3];
+		resultVector[3] = 1;
+	}
+
+	private static void subtract(float[] u2, float[] v1) {
 		u2[0] = u2[0] - v1[0];
 		u2[1] = u2[1] - v1[1];
 		u2[2] = u2[2] - v1[2];
 	}
 
-	private void reuseGeometryOld(GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
-		geometryInfo.setData(matchingGeometryData);
-		ByteBuffer bb1 = ByteBuffer.wrap(matchingGeometryData.getVertices());
-		ByteBuffer bb2 = ByteBuffer.wrap(geometryData.getVertices());
-		bb1.order(ByteOrder.nativeOrder());
-		bb2.order(ByteOrder.nativeOrder());
-		FloatBuffer vertices1 = bb1.asFloatBuffer();
-		FloatBuffer vertices2 = bb2.asFloatBuffer();
-		float translation[] = new float[16];
-		translation[0] = 1;
-		translation[5] = 1;
-		translation[10] = 1;
-		translation[15] = 1;
-		translation[3] = vertices2.get(0) - vertices1.get(0);
-		translation[7] = vertices2.get(1) - vertices1.get(1);
-		translation[11] = vertices2.get(2) - vertices1.get(2);
-
-//		addAll(translation, geometryInfo.getTransformation());
-		
-		float[] v1 = new float[]{vertices1.get(0) - vertices1.get(3), vertices1.get(1) - vertices1.get(4), vertices1.get(2) - vertices1.get(5)};
-		float[] v2 = new float[]{vertices2.get(0) - vertices2.get(3), vertices2.get(1) - vertices2.get(4), vertices2.get(2) - vertices2.get(5)};
-		Vector.normalize(v1);
-		Vector.normalize(v2);
-
-		float[] v3 = new float[]{vertices1.get(6) - vertices1.get(3), vertices1.get(7) - vertices1.get(4), vertices1.get(8) - vertices1.get(5)};
-		float[] v4 = new float[]{vertices2.get(6) - vertices2.get(3), vertices2.get(7) - vertices2.get(4), vertices2.get(8) - vertices2.get(5)};
-		Vector.normalize(v3);
-		Vector.normalize(v4);
-		
-		float[] rotationMatrix1 = alignVectors(v2, v1);
-		
-		float[] v3rotated = new float[4];
-		float[] v4rotated = new float[4];
-		Matrix.multiplyMV(v3rotated, 0, rotationMatrix1, 0, new float[]{v3[0], v3[1], v3[2], 1}, 0);
-		Matrix.multiplyMV(v4rotated, 0, rotationMatrix1, 0, new float[]{v4[0], v4[1], v4[2], 1}, 0);
-		
-		Vector.normalize(v3rotated);
-		Vector.normalize(v4rotated);
-		
-		float[] rotationMatrix2 = alignVectors(v4rotated, v3rotated);
-
-		float[] subResult = new float[16];
-		float[] totalResult = new float[16];
-		Matrix.multiplyMM(subResult, 0, rotationMatrix1, 0, translation, 0);
-		Matrix.multiplyMM(totalResult, 0, rotationMatrix2, 0, subResult, 0);
-
-		addAll(totalResult, geometryInfo.getTransformation());
-	}
-	
 	public static void main(String[] args) {
-		float[] v1 = new float[]{1, 1, 0};
-		float[] v2 = new float[]{0, 1, 0};
-		Vector.normalize(v1);
-		Vector.normalize(v2);
+		test1();
+		test2();
 		
-		float[] matrix = alignVectors(v1, v2);
+		Random random = new Random();
+		for (int i=0; i<10; i++) {
+			float[] matrix = new float[16];
+			Matrix.setIdentityM(matrix, 0);
+			for (int j=0; j<10; j++) {
+				Matrix.rotateM(matrix, 0, random.nextFloat() * 360, random.nextFloat(), random.nextFloat(), random.nextFloat());
+			}
+
+			float[] v1 = new float[]{random.nextFloat(), random.nextFloat(), random.nextFloat(), 1};
+			float[] v2 = new float[]{random.nextFloat(), random.nextFloat(), random.nextFloat(), 1};
+			float[] v3 = new float[]{random.nextFloat(), random.nextFloat(), random.nextFloat(), 1};
+			float[] r1 = new float[4];
+			float[] r2 = new float[4];
+			float[] r3 = new float[4];
+			Matrix.multiplyMV(r1, 0, matrix, 0, v1, 0);
+			Matrix.multiplyMV(r2, 0, matrix, 0, v2, 0);
+			Matrix.multiplyMV(r3, 0, matrix, 0, v3, 0);
+			
+			float[] calculatedMatrix = getTransformationMatrix(v1, v2, v3, r1, r2, r3);
+			
+			test(v1, r1, calculatedMatrix);
+			test(v2, r2, calculatedMatrix);
+			test(v3, r3, calculatedMatrix);
+			
+			for (int j=0; j<10; j++) {
+				float[] q1 = new float[]{random.nextFloat(), random.nextFloat(), random.nextFloat(), 1};
+				float[] q2 = new float[]{random.nextFloat(), random.nextFloat(), random.nextFloat(), 1};
+				float[] q3 = new float[]{random.nextFloat(), random.nextFloat(), random.nextFloat(), 1};
+				float[] b1 = new float[4];
+				float[] b2 = new float[4];
+				float[] b3 = new float[4];
+				Matrix.multiplyMV(b1, 0, matrix, 0, q1, 0);
+				Matrix.multiplyMV(b2, 0, matrix, 0, q2, 0);
+				Matrix.multiplyMV(b3, 0, matrix, 0, q3, 0);
+				
+				test(q1, b1, calculatedMatrix);
+				test(q2, b2, calculatedMatrix);
+				test(q3, b3, calculatedMatrix);
+			}
+		}
+	}
+
+	private static void test1() {
+		float[] v1 = new float[]{1, 2, 0};
+		float[] v2 = new float[]{1, 1, 0};
+		float[] v3 = new float[]{3, 2, 0};
+		float[] u1 = new float[]{0, 2, 0};
+		float[] u2 = new float[]{-1, 2, 0};
+		float[] u3 = new float[]{0, 2, 2};
 		
-		float[] test = new float[4];
-		Matrix.multiplyMV(test, 0, matrix, 0, new float[]{v2[0], v2[1], v2[2], 1}, 0);
+		float[] transformationMatrix = getTransformationMatrix(v1, v2, v3, u1, u2, u3);
 		
-		Vector.dump(v1);
-		Vector.dump(test);
-		Vector.dump(v2);
+		test(v1, u1, transformationMatrix);
+		test(v2, u2, transformationMatrix);
+		test(v3, u3, transformationMatrix);
 	}
 	
-	private static float[] alignVectors(float[] v1, float[] v2) {
-		float[] v3 = Vector.crossProduct(v1, v2);
-		Vector.normalize(v3);
-		if (Float.isNaN(v3[0]) || Float.isNaN(v3[1]) || Float.isNaN(v3[2])) {
-			// Probably already aligned...
-			float[] result = new float[16];
-			Matrix.setIdentityM(result, 0);
-			return result;
-		}
-
-		float[] v4 = Vector.crossProduct(v3, v1);
+	private static void test2() {
+		float[] v1 = new float[]{3, 0, 0};
+		float[] v2 = new float[]{4, 0, 0};
+		float[] v3 = new float[]{4, 1, 0};
+		float[] u1 = new float[]{1, 3, 0};
+		float[] u2 = new float[]{0, 3, 0};
+		float[] u3 = new float[]{0, 2, 0};
 		
-		float[] m1 = new float[]{v1[0], v1[1], v1[2], 0,
-								v4[0], v4[1], v4[2], 0, 
-								v3[0], v3[1], v3[2], 0, 
-								0, 0, 0, 1};
+		float[] transformationMatrix = getTransformationMatrix(v1, v2, v3, u1, u2, u3);
 		
-		float cos = Vector.dot(v2, v1);
-		float sin = Vector.dot(v2, v4);
-		
-		float[] m2 = new float[]{cos, sin, 0, 0,
-								 -sin, cos, 0, 0,
-								 0, 0, 1, 0,
-								 0, 0, 0, 1};
-		
-		float[] result = new float[16];
-		Matrix.multiplyMM(result, 0, m2, 0, m1, 0);
-		
-		float[] invertedM1 = new float[16];
-		Matrix.invertM(invertedM1, 0, m1, 0);
-		
-		float[] rotation = new float[16];
-		Matrix.multiplyMM(rotation, 0, invertedM1, 0, result, 0);
-		
-		return rotation;
+		test(v1, u1, transformationMatrix);
+		test(v2, u2, transformationMatrix);
+		test(v3, u3, transformationMatrix);
 	}
 
 	private void addAll(float[] floats, List<Float> list) {
