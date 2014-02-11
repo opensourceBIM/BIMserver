@@ -26,7 +26,6 @@ import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import org.apache.cxf.ws.discovery.wsdl.ByeType;
 import org.bimserver.geometry.Matrix;
 import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
@@ -56,7 +55,7 @@ import org.slf4j.LoggerFactory;
 
 public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometrySerializer.class);
-	private static final byte FORMAT_VERSION = 4;
+	private static final byte FORMAT_VERSION = 3;
 	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
 
 	@Override
