@@ -147,7 +147,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			LOGGER.info("END SESSION");
 		}
 	}
-
+	
 	public void commit(ProgressHandler progressHandler) throws BimserverDatabaseException, ServiceException {
 		checkOpen();
 		try {
@@ -292,9 +292,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					} else if (feature.isMany()) {
 						// do nothing
 					} else if (feature.getDefaultValue() != null) {
-						if (idEObject instanceof ServerSettings) {
-							System.out.println();
-						}
 						idEObject.eSet(feature, feature.getDefaultValue());
 					}
 				} else {
