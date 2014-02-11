@@ -109,9 +109,9 @@ enum SSmtpProtocol{
 message SServerSettings {
 	optional int32 smtpPort = 1;
 	optional string smtpUsername = 2;
-	optional bool sendConfirmationEmailAfterRegistration = 3;
-	optional int32 sessionTimeOutSeconds = 4;
-	optional bool generateGeometryOnCheckin = 5;
+	optional int32 sessionTimeOutSeconds = 3;
+	optional bool generateGeometryOnCheckin = 4;
+	optional bool sendConfirmationEmailAfterRegistration = 5;
 	optional int32 protocolBuffersPort = 6;
 	optional bool allowOnlyWhitelisted = 7;
 	optional bool sendEmailOnNewRevision = 8;
