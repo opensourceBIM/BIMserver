@@ -706,28 +706,6 @@ public class BimServer {
 				session.close();
 			}
 			
-			DatabaseSession tempSession = getDatabase().createSession();
-            try {
-                IfcModelInterface allOfType = tempSession.getAllOfType(StorePackage.eINSTANCE.getUser(), Query.getDefault());
-                for (User user : allOfType.getAll(User.class)) {
-                    if (user.getUserType() == UserType.ADMIN) {
-                        System.out.println(user.getUsername());
-                        Authenticator authenticator = new Authenticator();
-                        byte[] salt = new byte[32];
-                        new java.security.SecureRandom().nextBytes(salt);
-                        user.setPasswordHash(authenticator.createHash("test", salt));
-                        user.setPasswordSalt(salt);
-                        tempSession.store(user);
-                    }
-                }
-                tempSession.commit();
-            } catch (ServiceException e) {
-                e.printStackTrace();
-            } finally {
-                tempSession.close();
-            }
-			
-			
 			webModules = new HashMap<String, WebModulePlugin>();
 			DatabaseSession ses = bimDatabase.createSession();
 			try {

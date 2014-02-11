@@ -193,8 +193,8 @@ message AddDeserializerRequest {
 }
 
 message SInternalServicePluginConfiguration {
-	optional bool publicProfile = 1;
-	optional int64 userSettingsId = 2;
+	optional int64 userSettingsId = 1;
+	optional bool publicProfile = 2;
 	optional int32 rid = 3;
 	optional int64 oid = 4;
 	optional bool remoteAccessible = 5;
@@ -609,10 +609,6 @@ message GetPluginObjectDefinitionRequest {
 	optional int64 oid = 1;
 }
 
-message SArrayDefinition {
-	optional STypeDefinition type = 1;
-}
-
 enum SPrimitiveEnum{
 	SPrimitiveEnum_LONG = 0;
 	SPrimitiveEnum_DOUBLE = 1;
@@ -625,10 +621,14 @@ message SPrimitiveDefinition {
 	optional SPrimitiveEnum type = 1;
 }
 
+message SArrayDefinition {
+	optional STypeDefinition type = 1;
+}
+
 message STypeDefinition {
 	required string __actual_type = 1;
-	optional SArrayDefinition __SArrayDefinition = 2;
-	optional SPrimitiveDefinition __SPrimitiveDefinition = 3;
+	optional SPrimitiveDefinition __SPrimitiveDefinition = 2;
+	optional SArrayDefinition __SArrayDefinition = 3;
 	optional SObjectDefinition __SObjectDefinition = 4;
 }
 
@@ -653,22 +653,10 @@ message GetPluginSettingsRequest {
 	optional int64 poid = 1;
 }
 
-message SArrayType {
-	repeated SType values = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-}
-
-message SDoubleType {
+message SLongType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional double value = 3;
-}
-
-message SBooleanType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional bool value = 3;
+	optional int64 value = 3;
 }
 
 message SByteArrayType {
@@ -677,10 +665,10 @@ message SByteArrayType {
 	optional bytes value = 3;
 }
 
-message SLongType {
+message SBooleanType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional int64 value = 3;
+	optional bool value = 3;
 }
 
 message SStringType {
@@ -689,22 +677,34 @@ message SStringType {
 	optional string value = 3;
 }
 
+message SDoubleType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional double value = 3;
+}
+
 message SPrimitiveType {
 	required string __actual_type = 1;
-	optional SDoubleType __SDoubleType = 2;
-	optional SBooleanType __SBooleanType = 3;
-	optional SByteArrayType __SByteArrayType = 4;
-	optional SLongType __SLongType = 5;
-	optional SStringType __SStringType = 6;
+	optional SLongType __SLongType = 2;
+	optional SByteArrayType __SByteArrayType = 3;
+	optional SBooleanType __SBooleanType = 4;
+	optional SStringType __SStringType = 5;
+	optional SDoubleType __SDoubleType = 6;
 	optional int32 rid = 7;
 	optional int64 oid = 8;
 }
 
+message SArrayType {
+	repeated SType values = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+}
+
 message SType {
 	required string __actual_type = 1;
-	optional SArrayType __SArrayType = 2;
-	optional SPrimitiveType __SPrimitiveType = 3;
-	optional SObjectType __SObjectType = 4;
+	optional SPrimitiveType __SPrimitiveType = 2;
+	optional SObjectType __SObjectType = 3;
+	optional SArrayType __SArrayType = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 }
