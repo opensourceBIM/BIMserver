@@ -22,6 +22,12 @@
 	<classpathentry exported="true" kind="lib" path="lib/JOpenId-1.08.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/javax.annotation-1.1.0.v201108011116.jar"/>
 	<classpathentry kind="lib" path="lib/commons/commons-cli-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf_2.6.0.v20130902-0605.jar"/>
+	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.codegen_2.9.0.v20130902-0605.jar"/>
+	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.codegen.ecore_2.9.1.v20130902-0605.jar"/>
+	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.common_2.9.1.v20130827-0309.jar"/>
+	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar" sourcepath="libsrc/org.eclipse.emf.ecore.source_2.9.1.v20130827-0309.jar"/>
+	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>
