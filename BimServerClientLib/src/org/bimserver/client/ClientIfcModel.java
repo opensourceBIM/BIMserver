@@ -68,7 +68,6 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Charsets;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
-import com.sun.org.apache.bcel.internal.classfile.LineNumber;
 
 public class ClientIfcModel extends IfcModel {
 	public static enum ModelState {
@@ -308,6 +307,8 @@ public class ClientIfcModel extends IfcModel {
 															if (n.equals("__type")) {
 																String t = jsonReader.nextString();
 																IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
+																((IdEObjectImpl) wrappedObject).setOid(object.getOid()); // crazy hack, to make sure the wrapped objects know to which object they belong, otherwise we would never know what to do when user calls setWrappedValue
+																((IdEObjectImpl) wrappedObject).eSetStore(eStore);
 																if (jsonReader.nextName().equals("value")) {
 																	EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
 																	wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
@@ -316,7 +317,7 @@ public class ClientIfcModel extends IfcModel {
 																	// error
 																}
 															} else if (n.equals("oid")) {
-																// Sometimes embedded is true, bot also referenced are included, those are always embdedded in an object
+																// Sometimes embedded is true, but also referenced are included, those are always embedded in an object
 																long refOid = jsonReader.nextLong();
 																if (containsNoFetch(refOid)) {
 																	IdEObject refObj = getNoFetch(refOid);
@@ -361,6 +362,8 @@ public class ClientIfcModel extends IfcModel {
 														if (jsonReader.nextName().equals("__type")) {
 															String t = jsonReader.nextString();
 															IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
+															((IdEObjectImpl) wrappedObject).eSetStore(eStore);
+															((IdEObjectImpl) wrappedObject).setOid(object.getOid()); // crazy hack, to make sure the wrapped objects know to which object they belong, otherwise we would never know what to do when user calls setWrappedValue
 															if (jsonReader.nextName().equals("value")) {
 																EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
 																wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));

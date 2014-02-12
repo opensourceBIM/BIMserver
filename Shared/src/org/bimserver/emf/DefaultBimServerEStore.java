@@ -20,6 +20,9 @@ package org.bimserver.emf;
 import org.eclipse.emf.ecore.impl.EStoreEObjectImpl.EStoreImpl;
 
 public class DefaultBimServerEStore extends EStoreImpl implements BimServerEStore {
+	public DefaultBimServerEStore() {
+	}
+	
 	@Override
 	public void load(IdEObject object) {
 	}
