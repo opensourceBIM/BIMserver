@@ -115,8 +115,6 @@ public class SceneJs3MinimalShellSerializer extends AbstractGeometrySerializer {
 					jsonWriter.name("data").beginObject();
 					jsonWriter.name("bounds");
 					writeBounds(jsonWriter);
-					jsonWriter.name("bounds2");
-					writeBounds2(jsonWriter);
 					jsonWriter.name("unit");
 					writeUnit(jsonWriter);
 					jsonWriter.name("ifcTypes");
@@ -310,16 +308,6 @@ public class SceneJs3MinimalShellSerializer extends AbstractGeometrySerializer {
 	}
 
 	private void writeBounds(JsonWriter jsonWriter) throws IOException {
-		Extends sceneExtends = getSceneExtends();
-		float[] bounds = { sceneExtends.max[0] - sceneExtends.min[0], sceneExtends.max[1] - sceneExtends.min[1], sceneExtends.max[2] - sceneExtends.min[2] };
-		jsonWriter.beginArray();
-		jsonWriter.value(Float.isInfinite(bounds[0]) ? 50.0f : bounds[0]);
-		jsonWriter.value(Float.isInfinite(bounds[1]) ? 50.0f : bounds[1]);
-		jsonWriter.value(Float.isInfinite(bounds[2]) ? 50.0f : bounds[2]);
-		jsonWriter.endArray();
-	}
-
-	private void writeBounds2(JsonWriter jsonWriter) throws IOException {
 		Extends sceneExtends = getSceneExtends();
 		float[] bounds = { (sceneExtends.max[0] + sceneExtends.min[0]) * 0.5f, (sceneExtends.max[1] + sceneExtends.min[1]) * 0.5f,
 				(sceneExtends.max[2] + sceneExtends.min[2]) * 0.5f };

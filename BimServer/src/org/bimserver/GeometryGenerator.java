@@ -63,7 +63,7 @@ import org.slf4j.LoggerFactory;
 
 public class GeometryGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryGenerator.class);
-	private static final boolean REUSE_GEOMETRY = false;
+	private static final boolean REUSE_GEOMETRY = true;
 
 	public static class GeometryCacheEntry {
 		public GeometryCacheEntry(ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, GeometryInfo geometryInfo) {
@@ -192,9 +192,17 @@ public class GeometryGenerator {
 									if (REUSE_GEOMETRY) {
 										GeometryData matchingGeometryData = geometrySimplifier.getMatchingGeometry(ifcProduct, geometryData);
 										if (matchingGeometryData != null) {
-											reuseGeometry(ifcProduct, geometryInfo, geometryData, matchingGeometryData);
+											if (reuseGeometry(ifcProduct, geometryInfo, geometryData, matchingGeometryData)) {
+											} else {
+												float[] identityMatrix = new float[16];
+												Matrix.setIdentityM(identityMatrix, 0);
+												setTransformationMatrix(geometryInfo, identityMatrix);
+											}
 										} else {
 											geometrySimplifier.add(ifcProduct, geometryData);
+											float[] identityMatrix = new float[16];
+											Matrix.setIdentityM(identityMatrix, 0);
+											setTransformationMatrix(geometryInfo, identityMatrix);
 										}
 									}
 									ifcProduct.setGeometry(geometryInfo);
@@ -219,6 +227,16 @@ public class GeometryGenerator {
 		}
 	}
 	
+	private void setTransformationMatrix(GeometryInfo geometryInfo, float[] transformationMatrix) {
+		ByteBuffer byteBuffer = ByteBuffer.allocate(16 * 4);
+		byteBuffer.order(ByteOrder.nativeOrder());
+		FloatBuffer asFloatBuffer = byteBuffer.asFloatBuffer();
+		for (float f : transformationMatrix) {
+			asFloatBuffer.put(f);
+		}
+		geometryInfo.setTransformation(byteBuffer.array());
+	}
+
 	private void convertOrder(ByteBuffer input) {
 		if (input.order() != ByteOrder.nativeOrder()) {
 			input.position(0);
@@ -237,7 +255,7 @@ public class GeometryGenerator {
 		return Math.abs(f1 - f2) < 0.01;
 	}
 	
-	private void reuseGeometry(IfcProduct ifcProduct, GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
+	private boolean reuseGeometry(IfcProduct ifcProduct, GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
 		ByteBuffer bb1 = ByteBuffer.wrap(matchingGeometryData.getVertices());
 		ByteBuffer bb2 = ByteBuffer.wrap(geometryData.getVertices());
 		bb1.order(ByteOrder.nativeOrder());
@@ -262,14 +280,12 @@ public class GeometryGenerator {
 			Matrix.translateM(totalResult, 0, -v1[0], -v1[1], -v1[2]);
 		}
 		
-//		Matrix.dump(totalResult);
-		
-		System.out.println(ifcProduct.eClass().getName());
 		if (test(v1, u1, totalResult)) {
-			System.out.println("OK");
 			geometryInfo.setData(matchingGeometryData);
-			addAll(totalResult, geometryInfo.getTransformation());
+			setTransformationMatrix(geometryInfo, totalResult);
+			return true;
 		}
+		return false;
 	}
 
 	/**
