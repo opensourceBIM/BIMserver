@@ -217,9 +217,19 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Float> getTransformation() {
-		return (EList<Float>) eGet(
+	public byte[] getTransformation() {
+		return (byte[]) eGet(
 				Ifc2x3tc1Package.Literals.GEOMETRY_INFO__TRANSFORMATION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTransformation(byte[] newTransformation) {
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__TRANSFORMATION,
+				newTransformation);
 	}
 
 } //GeometryInfoImpl

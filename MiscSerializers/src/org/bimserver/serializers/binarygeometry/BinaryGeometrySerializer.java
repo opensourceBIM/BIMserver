@@ -22,11 +22,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
-import org.bimserver.geometry.Matrix;
 import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -55,8 +54,10 @@ import org.slf4j.LoggerFactory;
 
 public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometrySerializer.class);
-	private static final byte FORMAT_VERSION = 3;
+	private static final byte FORMAT_VERSION = 4;
 	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
+	private static final byte GEOMETRY_TYPE_TRIANGLES = 0;
+	private static final byte GEOMETRY_TYPE_INSTANCE = 1;
 
 	@Override
 	public void reset() {
@@ -100,6 +101,9 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		dataOutputStream.writeInt(nrObjects);
 		int bytesSaved = 0;
 		int bytesTotal = 0;
+		
+		Set<Long> concreteGeometrySent = new HashSet<>();
+		
 		for (IfcProduct ifcProduct : getModel().getAllWithSubTypes(IfcProduct.class)) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
 			if (geometryInfo != null) {
@@ -110,20 +114,11 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				}
 				dataOutputStream.writeUTF(materialName);
 				String type = null;
-				if (ifcProduct instanceof IfcSlab && ((IfcSlab) ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-					type = "IfcRoof";
-				} else {
-					type = ifcProduct.eClass().getName();
-				}
+				type = ifcProduct.eClass().getName();
 				dataOutputStream.writeUTF(type);
 				
 				dataOutputStream.writeLong(ifcProduct.getOid());
 
-				int skip = 4 - (dataOutputStream.size() % 4);
-				if(skip != 0 && skip != 4) {
-					dataOutputStream.write(new byte[skip]);
-				}
-				
 				Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
 				objectBounds.writeTo(dataOutputStream);
 				
@@ -131,38 +126,39 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	
 				GeometryData geometryData = geometryInfo.getData();
 				byte[] vertices = geometryData.getVertices();
-				ByteBuffer buffer = ByteBuffer.wrap(vertices);
-				buffer.order(ByteOrder.nativeOrder());
-				bytesTotal += buffer.capacity();
-				if (FORMAT_VERSION > 3 && geometryInfo.getTransformation() != null && geometryInfo.getTransformation().size() == 16) {
-					bytesSaved += buffer.capacity();
-					
-					float[] matrix = new float[16];
-					EList<Float> list = geometryInfo.getTransformation();
-					for (int i=0; i<list.size(); i++) {
-						matrix[i] = list.get(i);
+				ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
+				vertexByteBuffer.order(ByteOrder.nativeOrder());
+				bytesTotal += vertexByteBuffer.capacity();
+				if (FORMAT_VERSION > 3 && geometryInfo.getTransformation() != null) {
+					if (concreteGeometrySent.contains(geometryData.getOid())) {
+						dataOutputStream.write(GEOMETRY_TYPE_INSTANCE);
+					} else {
+						dataOutputStream.write(GEOMETRY_TYPE_TRIANGLES);
 					}
 
-					FloatBuffer vertexBuffer = buffer.asFloatBuffer();
-					ByteBuffer newByteBuffer = ByteBuffer.allocate(buffer.capacity());
-					newByteBuffer.order(buffer.order());
-					FloatBuffer newFloatBuffer = newByteBuffer.asFloatBuffer();
-					for (int i=0; i<vertexBuffer.capacity(); i+=3) {
-						float[] newVector = new float[4];
-						float[] oldVector = new float[]{vertexBuffer.get(i), vertexBuffer.get(i + 1), vertexBuffer.get(i + 2), 1};
-						Matrix.multiplyMV(newVector, 0, matrix, 0, oldVector, 0);
-						newFloatBuffer.put(i, newVector[0]);
-						newFloatBuffer.put(i + 1, newVector[1]);
-						newFloatBuffer.put(i + 2, newVector[2]);
+					int skip = 4 - (dataOutputStream.size() % 4);
+					if(skip != 0 && skip != 4) {
+						dataOutputStream.write(new byte[skip]);
 					}
-					buffer = newByteBuffer;
+					
+					dataOutputStream.write(geometryInfo.getTransformation());
+
+					if (concreteGeometrySent.contains(geometryData.getOid())) {
+						dataOutputStream.writeLong(geometryData.getOid());
+						bytesSaved += vertexByteBuffer.capacity();
+					} else {
+						dataOutputStream.writeLong(geometryData.getOid());
+						
+						dataOutputStream.writeInt(vertexByteBuffer.capacity() / 4);
+						dataOutputStream.write(vertexByteBuffer.array());
+						
+						ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
+						dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
+						dataOutputStream.write(normalsBuffer.array());
+						
+						concreteGeometrySent.add(geometryData.getOid());
+					}
 				}
-				dataOutputStream.writeInt(buffer.capacity() / 4);
-				dataOutputStream.write(buffer.array());
-				
-				ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
-				dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
-				dataOutputStream.write(normalsBuffer.array());
 			}
 		}
 		if (FORMAT_VERSION > 3) {
