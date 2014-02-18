@@ -27,7 +27,6 @@ import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ProjectUpdated;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SIPrefix;

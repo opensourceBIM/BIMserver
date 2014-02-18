@@ -92,7 +92,6 @@ import org.bimserver.models.store.StringType;
 import org.bimserver.models.store.Type;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
-import org.bimserver.models.store.UserType;
 import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.notifications.InternalServicesManager;
 import org.bimserver.notifications.NotificationsManager;

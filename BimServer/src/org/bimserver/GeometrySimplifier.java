@@ -47,34 +47,34 @@ public class GeometrySimplifier {
 		return null;
 	}
 	
-	private boolean matchTotalDistance(GeometryData geometryData, GeometryData d) {
-		FloatBuffer buffer1 = ByteBuffer.wrap(geometryData.getVertices()).asFloatBuffer();
-		FloatBuffer buffer2 = ByteBuffer.wrap(d.getVertices()).asFloatBuffer();
-		float lastX1 = buffer1.get(0);
-		float lastY1 = buffer1.get(1);
-		float lastZ1 = buffer1.get(2);
-		float lastX2 = buffer2.get(0);
-		float lastY2 = buffer2.get(1);
-		float lastZ2 = buffer2.get(2);
-		double totalDistance1 = 0;
-		double totalDistance2 = 0;
-		for (int i=3; i<buffer1.capacity(); i+=3) {
-			double distance1 = Math.sqrt(Math.pow(buffer1.get(i) - lastX1, 2) + Math.pow(buffer1.get(i+1) - lastY1, 2) + Math.pow(buffer1.get(i+2) - lastZ1, 2));
-			double distance2 = Math.sqrt(Math.pow(buffer2.get(i) - lastX2, 2) + Math.pow(buffer2.get(i+1) - lastY2, 2) + Math.pow(buffer2.get(i+2) - lastZ2, 2));
-			totalDistance1 += distance1;
-			totalDistance2 += distance2;
-			lastX1 = buffer1.get(i);
-			lastY1 = buffer1.get(i+1);
-			lastZ1 = buffer1.get(i+2);
-			lastX2 = buffer2.get(i);
-			lastY2 = buffer2.get(i+1);
-			lastZ2 = buffer2.get(i+2);
-		}
-		if (Math.abs(totalDistance1 - totalDistance2) < 0.1) {
-			return true;
-		}
-		return false;
-	}
+//	private boolean matchTotalDistance(GeometryData geometryData, GeometryData d) {
+//		FloatBuffer buffer1 = ByteBuffer.wrap(geometryData.getVertices()).asFloatBuffer();
+//		FloatBuffer buffer2 = ByteBuffer.wrap(d.getVertices()).asFloatBuffer();
+//		float lastX1 = buffer1.get(0);
+//		float lastY1 = buffer1.get(1);
+//		float lastZ1 = buffer1.get(2);
+//		float lastX2 = buffer2.get(0);
+//		float lastY2 = buffer2.get(1);
+//		float lastZ2 = buffer2.get(2);
+//		double totalDistance1 = 0;
+//		double totalDistance2 = 0;
+//		for (int i=3; i<buffer1.capacity(); i+=3) {
+//			double distance1 = Math.sqrt(Math.pow(buffer1.get(i) - lastX1, 2) + Math.pow(buffer1.get(i+1) - lastY1, 2) + Math.pow(buffer1.get(i+2) - lastZ1, 2));
+//			double distance2 = Math.sqrt(Math.pow(buffer2.get(i) - lastX2, 2) + Math.pow(buffer2.get(i+1) - lastY2, 2) + Math.pow(buffer2.get(i+2) - lastZ2, 2));
+//			totalDistance1 += distance1;
+//			totalDistance2 += distance2;
+//			lastX1 = buffer1.get(i);
+//			lastY1 = buffer1.get(i+1);
+//			lastZ1 = buffer1.get(i+2);
+//			lastX2 = buffer2.get(i);
+//			lastY2 = buffer2.get(i+1);
+//			lastZ2 = buffer2.get(i+2);
+//		}
+//		if (Math.abs(totalDistance1 - totalDistance2) < 0.1) {
+//			return true;
+//		}
+//		return false;
+//	}
 
 	private boolean matchSameOrder(GeometryData geometryDate, GeometryData d) {
 		ByteBuffer bb1 = ByteBuffer.wrap(geometryDate.getVertices());

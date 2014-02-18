@@ -63,7 +63,7 @@ import org.slf4j.LoggerFactory;
 
 public class GeometryGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryGenerator.class);
-	private static final boolean REUSE_GEOMETRY = true;
+	private static final boolean REUSE_GEOMETRY = false;
 
 	public static class GeometryCacheEntry {
 		public GeometryCacheEntry(ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, GeometryInfo geometryInfo) {
@@ -447,10 +447,6 @@ public class GeometryGenerator {
 		return true;
 	}
 
-	private static float[] min(float[] r2v3, float[] r2v2) {
-		return new float[]{r2v3[0] - r2v2[0], r2v3[1] - r2v2[1], r2v3[2] - r2v2[2]};
-	}
-
 	private static float[] copy(float[] v1) {
 		float[] result = new float[v1.length];
 		System.arraycopy(v1, 0, result, 0, v1.length);
@@ -565,15 +561,6 @@ public class GeometryGenerator {
 		test(v1, u1, transformationMatrix);
 		test(v2, u2, transformationMatrix);
 		test(v3, u3, transformationMatrix);
-	}
-
-	private void addAll(float[] floats, List<Float> list) {
-		for (int i=0; i<floats.length; i++) {
-			if (Float.isNaN(floats[i])) {
-				System.out.println();
-			}
-			list.add(floats[i]);
-		}
 	}
 
 	private void returnCachedData(IfcModelInterface model, GeometryCache geometryCache, DatabaseSession databaseSession, int pid, int rid) throws BimserverDatabaseException {

@@ -85,37 +85,7 @@ message EnablePluginRequest {
 message GetAllPluginsRequest {
 }
 
-message SModelComparePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SSerializerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SRenderEnginePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
 message SModelMergerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SServicePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SWebModulePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SQueryEnginePluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -125,30 +95,60 @@ message SModelCheckerPluginDescriptor {
 	optional int64 oid = 2;
 }
 
+message SQueryEnginePluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SSerializerPluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SWebModulePluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SServicePluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SModelComparePluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
 message SDeserializerPluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SRenderEnginePluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
 
 message SPluginDescriptor {
 	required string __actual_type = 1;
-	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 2;
-	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 3;
-	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 4;
-	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 5;
-	optional SServicePluginDescriptor __SServicePluginDescriptor = 6;
-	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 7;
-	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 8;
-	optional SModelCheckerPluginDescriptor __SModelCheckerPluginDescriptor = 9;
-	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 10;
+	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 2;
+	optional SModelCheckerPluginDescriptor __SModelCheckerPluginDescriptor = 3;
+	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 4;
+	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 5;
+	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 6;
+	optional SServicePluginDescriptor __SServicePluginDescriptor = 7;
+	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 8;
+	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 9;
+	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 10;
 	optional string defaultName = 11;
 	optional bool enabled = 12;
 	optional string simpleName = 13;
 	optional string pluginInterfaceClassName = 14;
 	optional int32 rid = 15;
 	optional string location = 16;
-	optional string description = 17;
-	optional int64 oid = 18;
+	optional int64 oid = 17;
+	optional string description = 18;
 	repeated int64 configurations = 19;
 	optional string pluginClassName = 20;
 }
@@ -162,8 +162,8 @@ message GetBimServerInfoRequest {
 }
 
 message SBimServerInfo {
-	optional int64 latestDate = 1;
-	optional int32 users = 2;
+	optional int32 users = 1;
+	optional int64 latestDate = 2;
 	optional string latestVersion = 3;
 	optional int32 projects = 4;
 	optional string serverLogUrl = 5;
@@ -297,8 +297,8 @@ message GetMigrationsRequest {
 message SMigration {
 	optional bool executed = 1;
 	optional int32 rid = 2;
-	optional string description = 3;
-	optional int64 oid = 4;
+	optional int64 oid = 3;
+	optional string description = 4;
 	optional int32 number = 5;
 }
 
