@@ -5515,6 +5515,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getProjectSmall_State() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfcHeader() {
 		if (ifcHeaderEClass == null) {
 			ifcHeaderEClass = (EClass) EPackage.Registry.INSTANCE

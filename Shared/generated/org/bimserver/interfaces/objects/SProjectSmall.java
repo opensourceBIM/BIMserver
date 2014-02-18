@@ -31,6 +31,7 @@ public class SProjectSmall implements SDataBase
 	private static SClass sClass;
 	private java.lang.String name;
 	private long parentId;
+	private SObjectState state;
 
 	public long getOid() {
 		return this.oid;
@@ -64,6 +65,9 @@ public class SProjectSmall implements SDataBase
 		if (sField.getName().equals("parentId")) {
 			return getParentId();
 		}
+		if (sField.getName().equals("state")) {
+			return getState();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -80,6 +84,10 @@ public class SProjectSmall implements SDataBase
 		}
 		if (sField.getName().equals("parentId")) {
 			setParentId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("state")) {
+			setState((SObjectState)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -107,6 +115,14 @@ public class SProjectSmall implements SDataBase
 
 	public void setParentId(long parentId) {
 		this.parentId = parentId;
+	}
+	
+	public SObjectState getState() {
+		return state;
+	}
+
+	public void setState(SObjectState state) {
+		this.state = state;
 	}
 	
 	@Override

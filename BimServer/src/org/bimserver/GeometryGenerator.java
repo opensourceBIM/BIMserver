@@ -350,7 +350,6 @@ public class GeometryGenerator {
 			Matrix.multiplyMV(r2v2, 0, r2, 0, new float[]{v2[0], v2[1], v2[2], 1}, 0);
 			
 			if (!equalsAlmost(r2v2, u2)) {
-				System.out.println("Initial wrong rotation, fixing...");
 				Matrix.setIdentityM(r2, 0);
 				Matrix.rotateM(r2, 0, -(float) Math.toDegrees(Math.atan2(Vector.length(u2CrossV2), u2InV2)), axis[0], axis[1], axis[2]);
 				Matrix.multiplyMV(r2v2, 0, r2, 0, new float[]{v2[0], v2[1], v2[2], 1}, 0);
@@ -382,7 +381,6 @@ public class GeometryGenerator {
 		Matrix.multiplyMV(r3v1, 0, r3, 0, new float[]{r2v1[0], r2v1[1], r2v1[2], 1}, 0);
 		
 		if (!equalsAlmost(r3v3, u3)) {
-			System.out.println("Initial wrong rotation, fixing...");
 			Matrix.setIdentityM(r3, 0);
 			Matrix.rotateM(r3, 0, -angleDegrees, r2v2[0], r2v2[1], r2v2[2]);
 			Matrix.multiplyMV(r3v3, 0, r3, 0, new float[]{r2v3[0], r2v3[1], r2v3[2], 1}, 0);

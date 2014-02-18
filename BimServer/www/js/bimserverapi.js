@@ -459,7 +459,7 @@ function BimServerApi(baseUrl, notifier) {
 					}
 				} else if (requests.length > 1) {
 					data.responses.forEach(function(response){
-						if (response.exception != null) {
+						if (response.exception != null && showError) {
 							if (errorCallback == null) {
 								othis.notifier.error(response.exception.message);
 							} else {
@@ -468,7 +468,7 @@ function BimServerApi(baseUrl, notifier) {
 						}
 					});
 				}
-				if (errorsToReport.length > 0) {
+				if (errorsToReport.length > 0 && showError) {
 					errorCallback(errorsToReport);
 				} else {
 					if (requests.length == 1) {
@@ -512,16 +512,20 @@ function BimServerApi(baseUrl, notifier) {
 		return model;
 	};
 
+	this.callWithNoIndication = function(interfaceName, methodName, data, callback) {
+		othis.call(interfaceName, methodName, data, callback, null, false, false, false);
+	};
+	
 	this.callWithFullIndication = function(interfaceName, methodName, data, callback) {
-		othis.call(interfaceName, methodName, data, callback, true, true, true);
+		othis.call(interfaceName, methodName, data, callback, null,  true, true, true);
 	};
 
 	this.callWithUserErrorIndication = function(action, data, callback) {
-		othis.call(interfaceName, methodName, data, callback, false, false, true);
+		othis.call(interfaceName, methodName, data, callback, null, false, false, true);
 	};
 
 	this.callWithUserErrorAndDoneIndication = function(action, data, callback) {
-		othis.call(interfaceName, methodName, data, callback, false, true, true);
+		othis.call(interfaceName, methodName, data, callback, null, false, true, true);
 	};
 
 	this.setToken = function(token) {
@@ -543,7 +547,7 @@ function BimServerApi(baseUrl, notifier) {
 					callback(data.result);
 				}
 			} else {
-				if (errorCallback != null) {
+				if (showError && errorCallback != null) {
 					errorCallback(data.exception);
 				}
 			}

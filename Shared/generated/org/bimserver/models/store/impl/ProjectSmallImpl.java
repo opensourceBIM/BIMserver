@@ -17,6 +17,7 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.ProjectSmall;
 import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EClass;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getParentId <em>Parent Id</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
@@ -99,6 +101,25 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 */
 	public void setParentId(long newParentId) {
 		eSet(StorePackage.Literals.PROJECT_SMALL__PARENT_ID, newParentId);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectState getState() {
+		return (ObjectState) eGet(StorePackage.Literals.PROJECT_SMALL__STATE,
+				true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setState(ObjectState newState) {
+		eSet(StorePackage.Literals.PROJECT_SMALL__STATE, newState);
 	}
 
 } //ProjectSmallImpl
