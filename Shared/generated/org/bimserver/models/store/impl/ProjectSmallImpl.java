@@ -32,6 +32,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getParentId <em>Parent Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getState <em>State</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getNrRevisions <em>Nr Revisions</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getNrSubProjects <em>Nr Sub Projects</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#isHasCheckinRights <em>Has Checkin Rights</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,6 +123,65 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 */
 	public void setState(ObjectState newState) {
 		eSet(StorePackage.Literals.PROJECT_SMALL__STATE, newState);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getNrRevisions() {
+		return (Integer) eGet(
+				StorePackage.Literals.PROJECT_SMALL__NR_REVISIONS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNrRevisions(int newNrRevisions) {
+		eSet(StorePackage.Literals.PROJECT_SMALL__NR_REVISIONS, newNrRevisions);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getNrSubProjects() {
+		return (Integer) eGet(
+				StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNrSubProjects(int newNrSubProjects) {
+		eSet(StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS,
+				newNrSubProjects);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isHasCheckinRights() {
+		return (Boolean) eGet(
+				StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHasCheckinRights(boolean newHasCheckinRights) {
+		eSet(StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS,
+				newHasCheckinRights);
 	}
 
 } //ProjectSmallImpl

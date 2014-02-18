@@ -32,6 +32,9 @@ public class SProjectSmall implements SDataBase
 	private java.lang.String name;
 	private long parentId;
 	private SObjectState state;
+	private int nrRevisions;
+	private int nrSubProjects;
+	private boolean hasCheckinRights;
 
 	public long getOid() {
 		return this.oid;
@@ -68,6 +71,15 @@ public class SProjectSmall implements SDataBase
 		if (sField.getName().equals("state")) {
 			return getState();
 		}
+		if (sField.getName().equals("nrRevisions")) {
+			return getNrRevisions();
+		}
+		if (sField.getName().equals("nrSubProjects")) {
+			return getNrSubProjects();
+		}
+		if (sField.getName().equals("hasCheckinRights")) {
+			return isHasCheckinRights();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -88,6 +100,18 @@ public class SProjectSmall implements SDataBase
 		}
 		if (sField.getName().equals("state")) {
 			setState((SObjectState)val);
+			return;
+		}
+		if (sField.getName().equals("nrRevisions")) {
+			setNrRevisions((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("nrSubProjects")) {
+			setNrSubProjects((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("hasCheckinRights")) {
+			setHasCheckinRights((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -123,6 +147,30 @@ public class SProjectSmall implements SDataBase
 
 	public void setState(SObjectState state) {
 		this.state = state;
+	}
+	
+	public int getNrRevisions() {
+		return nrRevisions;
+	}
+
+	public void setNrRevisions(int nrRevisions) {
+		this.nrRevisions = nrRevisions;
+	}
+	
+	public int getNrSubProjects() {
+		return nrSubProjects;
+	}
+
+	public void setNrSubProjects(int nrSubProjects) {
+		this.nrSubProjects = nrSubProjects;
+	}
+	
+	public boolean isHasCheckinRights() {
+		return hasCheckinRights;
+	}
+
+	public void setHasCheckinRights(boolean hasCheckinRights) {
+		this.hasCheckinRights = hasCheckinRights;
 	}
 	
 	@Override

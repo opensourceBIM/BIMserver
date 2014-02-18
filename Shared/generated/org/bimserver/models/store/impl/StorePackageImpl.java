@@ -5524,6 +5524,33 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getProjectSmall_NrRevisions() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSmall_NrSubProjects() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSmall_HasCheckinRights() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfcHeader() {
 		if (ifcHeaderEClass == null) {
 			ifcHeaderEClass = (EClass) EPackage.Registry.INSTANCE

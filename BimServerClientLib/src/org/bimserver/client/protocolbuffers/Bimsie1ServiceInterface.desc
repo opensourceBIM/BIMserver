@@ -1,5 +1,5 @@
 
-´L
+¢N
 Bimsie1ServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"g
  AddExtendedDataToRevisionRequest
 roid (5
@@ -118,7 +118,11 @@ $GetAllExtendedDataOfRevisionResponse
 onlyActive ("Y
 GetAllProjectsResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"/
+value (2.org.bimserver.pb.SProject"
+GetAllProjectsSmallRequest"c
+GetAllProjectsSmallResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SProjectSmall"/
 GetAllRevisionsOfProjectRequest
 poid ("d
  GetAllRevisionsOfProjectResponse
@@ -220,7 +224,7 @@ revisionNr (
 poid (">
 UndeleteProjectResponse
 errorMessage (	
-value (2”
+value (2« 
 Bimsie1ServiceInterfaceo
 addExtendedDataToRevision2.org.bimserver.pb.AddExtendedDataToRevisionRequest.org.bimserver.pb.VoidResponseW
 
@@ -240,7 +244,8 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 downloadQuery&.org.bimserver.pb.DownloadQueryRequest'.org.bimserver.pb.DownloadQueryResponsel
 downloadRevisions*.org.bimserver.pb.DownloadRevisionsRequest+.org.bimserver.pb.DownloadRevisionsResponseç
 getAllExtendedDataOfRevision5.org.bimserver.pb.GetAllExtendedDataOfRevisionRequest6.org.bimserver.pb.GetAllExtendedDataOfRevisionResponsec
-getAllProjects'.org.bimserver.pb.GetAllProjectsRequest(.org.bimserver.pb.GetAllProjectsResponseÅ
+getAllProjects'.org.bimserver.pb.GetAllProjectsRequest(.org.bimserver.pb.GetAllProjectsResponser
+getAllProjectsSmall,.org.bimserver.pb.GetAllProjectsSmallRequest-.org.bimserver.pb.GetAllProjectsSmallResponseÅ
 getAllRevisionsOfProject1.org.bimserver.pb.GetAllRevisionsOfProjectRequest2.org.bimserver.pb.GetAllRevisionsOfProjectResponser
 getDeserializerById,.org.bimserver.pb.GetDeserializerByIdRequest-.org.bimserver.pb.GetDeserializerByIdResponsex
 getDeserializerByName..org.bimserver.pb.GetDeserializerByNameRequest/.org.bimserver.pb.GetDeserializerByNameResponsef

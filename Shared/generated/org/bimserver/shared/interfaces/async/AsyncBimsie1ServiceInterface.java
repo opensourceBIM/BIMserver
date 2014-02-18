@@ -119,6 +119,11 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetAllProjectsSmallCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SProjectSmall> result);
+		void error(Throwable e);
+	}
+	
 	public interface GetAllRevisionsOfProjectCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SRevision> result);
 		void error(Throwable e);
@@ -421,6 +426,18 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllProjects(onlyTopLevel, onlyActive));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllProjectsSmall(final GetAllProjectsSmallCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllProjectsSmall());
 				} catch (Throwable e) {
 					callback.error(e);
 				}

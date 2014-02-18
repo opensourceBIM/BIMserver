@@ -35,6 +35,7 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SProjectSmall;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -478,4 +479,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getExtendedDataSchemaByNamespace")
 	SExtendedDataSchema getExtendedDataSchemaByNamespace(
 		@WebParam(name = "namespace", partName = "getExtendedDataSchemaByNamespace.namespace") String namespace) throws UserException, ServerException;
+
+	@WebMethod(action = "getAllProjectsSmall")
+	List<SProjectSmall> getAllProjectsSmall() throws ServerException, UserException;
 }
