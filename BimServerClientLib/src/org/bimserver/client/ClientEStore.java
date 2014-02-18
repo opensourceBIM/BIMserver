@@ -111,30 +111,57 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 							// We are making this crazy hack ever crazier, let's iterate over our parents features, and see if there is one matching our wrapped type...
 							// Seriously, when there are multiple fields of the same type, this fails miserably, a real fix should probably store the parent-oid + feature name in the wrapped object (requires two extra, volatile, fields),
 							// or we just don't support this (just create a new wrapped object too), we could even throw some sort of exception. Hack morally okay because it's client-side...
-							IdEObject parentObject = clientIfcModel.get(idEObject.getOid());
-							int found = 0;
 							EReference foundReference = null;
-							for (EReference testReference : parentObject.eClass().getEAllReferences()) {
-								if (((EClass)testReference.getEType()).isSuperTypeOf(idEObject.eClass())) {
-									foundReference = testReference;
-									found++;
-									if (found > 1) {
-										throw new RuntimeException("Sorry, crazy hack could not resolve the right field, please let BIMserver developer know (debug info: " + parentObject.eClass().getName() + ", " + idEObject.eClass().getName() + ")");
+							if (clientIfcModel.contains(idEObject.getOid())) {
+								IdEObject parentObject = clientIfcModel.get(idEObject.getOid());
+								int found = 0;
+								foundReference = null;
+								for (EReference testReference : parentObject.eClass().getEAllReferences()) {
+									if (((EClass)testReference.getEType()).isSuperTypeOf(idEObject.eClass())) {
+										foundReference = testReference;
+										found++;
+										if (found > 1) {
+											throw new RuntimeException("Sorry, crazy hack could not resolve the right field, please let BIMserver developer know (debug info: " + parentObject.eClass().getName() + ", " + idEObject.eClass().getName() + ")");
+										}
 									}
 								}
-							}
-							if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
-								lowLevelInterface.setWrappedStringAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (String) newValue);
-							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
-								lowLevelInterface.setWrappedLongAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Long) newValue);
-							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
-								lowLevelInterface.setWrappedDoubleAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Double) newValue);
-							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
-								lowLevelInterface.setWrappedBooleanAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Boolean) newValue);
-							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
-								lowLevelInterface.setWrappedIntegerAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Integer) newValue);
-							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
-								throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
+								if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+									lowLevelInterface.setWrappedStringAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (String) newValue);
+								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
+									lowLevelInterface.setWrappedLongAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Long) newValue);
+								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
+									lowLevelInterface.setWrappedDoubleAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Double) newValue);
+								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
+									lowLevelInterface.setWrappedBooleanAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Boolean) newValue);
+								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
+									lowLevelInterface.setWrappedIntegerAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Integer) newValue);
+								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+									throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
+								}
+							} else {
+								if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+									lowLevelInterface.setStringAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (String) newValue);
+								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
+									lowLevelInterface.setLongAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Long) newValue);
+								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
+									lowLevelInterface.setDoubleAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Double) newValue);
+								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
+									lowLevelInterface.setBooleanAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Boolean) newValue);
+								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
+									lowLevelInterface.setIntegerAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Integer) newValue);
+								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+									lowLevelInterface.setByteArrayAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), (Byte[]) newValue);
+								} else if (eFeature.getEType() instanceof EEnum) {
+									lowLevelInterface.setEnumAttribute(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), ((Enum<?>) newValue).toString());
+								} else if (eFeature instanceof EReference) {
+									if (newValue == null) {
+										lowLevelInterface.setReference(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), -1L);
+									} else {
+										lowLevelInterface.setReference(clientIfcModel.getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) newValue).getOid());
+									}
+								} else {
+									throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
+								}
 							}
 						} else {
 							if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {

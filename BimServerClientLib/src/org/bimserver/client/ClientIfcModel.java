@@ -524,7 +524,7 @@ public class ClientIfcModel extends IfcModel {
 	public void loadExplicit(long oid) {
 		try {
 			IdEObjectImpl idEObjectImpl = (IdEObjectImpl) super.get(oid);
-			if (!idEObjectImpl.isLoadedOrLoading()) {
+			if (idEObjectImpl != null && !idEObjectImpl.isLoadedOrLoading()) {
 				LOGGER.info("Loading " + oid);
 				modelState = ModelState.LOADING;
 				Long downloadByOids = bimServerClient.getBimsie1ServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(oid), getIfcSerializerOid(), true,
