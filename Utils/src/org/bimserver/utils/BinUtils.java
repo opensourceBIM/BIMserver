@@ -172,4 +172,18 @@ public class BinUtils {
 		buffer.position(buffer.position() + length);
 		return string;
 	}
+	
+	public static void dumpUnsetted(byte[] unsetted) {
+		for (byte b : unsetted) {
+			for (int i=0; i<8; i++) {
+				if (((1 << i) & b) != 0) {
+					System.out.print("1 ");
+				} else {
+					System.out.print("0 ");
+				}
+			}
+			System.out.print("  ");
+		}
+		System.out.println();
+	}
 }

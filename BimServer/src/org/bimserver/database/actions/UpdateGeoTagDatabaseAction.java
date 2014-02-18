@@ -29,7 +29,6 @@ import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.GeoTagUpdated;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;

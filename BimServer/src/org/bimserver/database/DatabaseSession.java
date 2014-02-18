@@ -61,7 +61,6 @@ import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.DatabaseInformationCategory;
 import org.bimserver.models.store.DatabaseInformationItem;
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
@@ -257,7 +256,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return convertByteArrayToObject(object, originalQueryClass, eClass, oid, buffer, model, rid, query, todoList);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	private IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int rid,
 			QueryInterface query, TodoList todoList) throws BimserverDatabaseException {
 		try {
@@ -537,6 +536,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return buffer;
 	}
 
+	@SuppressWarnings("unused")
 	private ByteBuffer fillKeyBuffer(ByteBuffer buffer, IdEObject object) {
 		if (DEVELOPER_DEBUG && object.getRid() > 100000 || object.getRid() < -100000) {
 			LOGGER.debug("Improbable rid: " + object.getRid() + " - " + object);
@@ -1311,6 +1311,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return new IfcModel();
 	}
 
+	@SuppressWarnings("unused")
 	public IdEObject lazyLoad(IdEObject idEObject) throws BimserverDatabaseException {
 		if (DEVELOPER_DEBUG) {
 			LOGGER.info("Lazy loading " + idEObject.eClass().getName() + " " + idEObject.getOid());

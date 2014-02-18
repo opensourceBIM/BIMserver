@@ -112,8 +112,8 @@ message SServerSettings {
 	optional bool sendConfirmationEmailAfterRegistration = 3;
 	optional int32 sessionTimeOutSeconds = 4;
 	optional bool generateGeometryOnCheckin = 5;
-	optional int32 protocolBuffersPort = 6;
-	optional bool allowOnlyWhitelisted = 7;
+	optional bool allowOnlyWhitelisted = 6;
+	optional int32 protocolBuffersPort = 7;
 	optional bool sendEmailOnNewRevision = 8;
 	optional string siteAddress = 9;
 	optional bool allowUsersToCreateTopLevelProjects = 10;

@@ -28,7 +28,6 @@ import org.bimserver.database.migrations.Schema;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
@@ -42,16 +41,14 @@ public class Step0009 extends Migration {
 				IfcModelInterface projects = databaseSession.getAllOfType(StorePackage.eINSTANCE.getProject(), Query.getDefault());
 				for (Project project : projects.getAll(Project.class)) {
 					for (Revision revision : project.getRevisions()) {
-						for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-							IfcModelInterface allOfType = databaseSession.getAllOfType(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), new Query(project.getId(), revision.getId()));
-							for (GeometryData geometryData : allOfType.getAll(GeometryData.class)) {
-								System.out.println("Updating geometry data for " + geometryData.getOid());
-								ByteBuffer buffer = ByteBuffer.wrap(geometryData.getVertices());
-								convertOrder(buffer);
-								buffer = ByteBuffer.wrap(geometryData.getNormals());
-								convertOrder(buffer);
-								databaseSession.store(geometryData);
-							}
+						IfcModelInterface allOfType = databaseSession.getAllOfType(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), new Query(project.getId(), revision.getId()));
+						for (GeometryData geometryData : allOfType.getAll(GeometryData.class)) {
+							System.out.println("Updating geometry data for " + geometryData.getOid());
+							ByteBuffer buffer = ByteBuffer.wrap(geometryData.getVertices());
+							convertOrder(buffer);
+							buffer = ByteBuffer.wrap(geometryData.getNormals());
+							convertOrder(buffer);
+							databaseSession.store(geometryData);
 						}
 					}
 				}
