@@ -166,23 +166,18 @@ public class JsonHandler {
 		}
 	}
 
-	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, String methodName, String jsonToken)
+	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, String methodName, String token)
 			throws JSONException, UserException, ServerException {
-		String token = httpRequest == null ? null : (String) httpRequest.getSession().getAttribute("token");
 		if (methodName.equals("login") || methodName.equals("autologin")) {
 			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 		}
-		T service = null;
 		if (token == null) {
-			// There is no token in the HTTP Session, but we also allow the user
-			// to not use sessions and provide the token in the json request
-			if (jsonToken != null) {
-				service = bimServer.getServiceFactory().get(jsonToken, AccessMethod.JSON).get(interfaceClass);
-				token = jsonToken;
-			}
-		} else {
-			service = bimServer.getServiceFactory().get(token, AccessMethod.JSON).get(interfaceClass);
+			token = httpRequest == null ? null : (String) httpRequest.getSession().getAttribute("token");
 		}
+		if (token == null) {
+			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
+		}
+		T service = bimServer.getServiceFactory().get(token, AccessMethod.JSON).get(interfaceClass);
 		if (service == null) {
 			service = bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 			if (httpRequest != null) {
