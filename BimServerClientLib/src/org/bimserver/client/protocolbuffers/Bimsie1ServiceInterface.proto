@@ -65,6 +65,8 @@ service Bimsie1ServiceInterface {
 
 	rpc getAllProjects (GetAllProjectsRequest) returns (GetAllProjectsResponse);
 
+	rpc getAllProjectsSmall (GetAllProjectsSmallRequest) returns (GetAllProjectsSmallResponse);
+
 	rpc getAllRevisionsOfProject (GetAllRevisionsOfProjectRequest) returns (GetAllRevisionsOfProjectResponse);
 
 	rpc getDeserializerById (GetDeserializerByIdRequest) returns (GetDeserializerByIdResponse);
@@ -278,6 +280,14 @@ message GetAllProjectsRequest {
 message GetAllProjectsResponse {
 	optional string errorMessage = 1;
 	repeated SProject value = 2;
+}
+
+message GetAllProjectsSmallRequest {
+}
+
+message GetAllProjectsSmallResponse {
+	optional string errorMessage = 1;
+	repeated SProjectSmall value = 2;
 }
 
 message GetAllRevisionsOfProjectRequest {

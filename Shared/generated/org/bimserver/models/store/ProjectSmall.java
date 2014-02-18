@@ -29,6 +29,9 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getParentId <em>Parent Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getState <em>State</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#getNrRevisions <em>Nr Revisions</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#getNrSubProjects <em>Nr Sub Projects</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#isHasCheckinRights <em>Has Checkin Rights</em>}</li>
  * </ul>
  * </p>
  *
@@ -118,5 +121,83 @@ public interface ProjectSmall extends IdEObject {
 	 * @generated
 	 */
 	void setState(ObjectState value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Revisions</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Revisions</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Revisions</em>' attribute.
+	 * @see #setNrRevisions(int)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_NrRevisions()
+	 * @model
+	 * @generated
+	 */
+	int getNrRevisions();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#getNrRevisions <em>Nr Revisions</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Revisions</em>' attribute.
+	 * @see #getNrRevisions()
+	 * @generated
+	 */
+	void setNrRevisions(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Sub Projects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Sub Projects</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Sub Projects</em>' attribute.
+	 * @see #setNrSubProjects(int)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_NrSubProjects()
+	 * @model
+	 * @generated
+	 */
+	int getNrSubProjects();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#getNrSubProjects <em>Nr Sub Projects</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Sub Projects</em>' attribute.
+	 * @see #getNrSubProjects()
+	 * @generated
+	 */
+	void setNrSubProjects(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Has Checkin Rights</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Has Checkin Rights</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Has Checkin Rights</em>' attribute.
+	 * @see #setHasCheckinRights(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_HasCheckinRights()
+	 * @model
+	 * @generated
+	 */
+	boolean isHasCheckinRights();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#isHasCheckinRights <em>Has Checkin Rights</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Has Checkin Rights</em>' attribute.
+	 * @see #isHasCheckinRights()
+	 * @generated
+	 */
+	void setHasCheckinRights(boolean value);
 
 } // ProjectSmall

@@ -33,6 +33,7 @@ import org.bimserver.database.actions.BranchToExistingProjectDatabaseAction;
 import org.bimserver.database.actions.BranchToNewProjectDatabaseAction;
 import org.bimserver.database.actions.DeleteProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllProjectsDatabaseAction;
+import org.bimserver.database.actions.GetAllProjectsSmallDatabaseAction;
 import org.bimserver.database.actions.GetAllRevisionsOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetDeserializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
@@ -55,6 +56,7 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SProjectSmall;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -541,7 +543,6 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 			session.close();
 		}
 	}
-	
 
 	@Override
 	public List<SRevision> getAllRevisionsOfProject(Long poid) throws ServerException, UserException {
@@ -559,7 +560,6 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 		}
 	}
 	
-
 	@Override
 	public List<SProject> getAllProjects(Boolean onlyTopLevel, Boolean onlyActive) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -575,8 +575,21 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 			session.close();
 		}
 	}
-	
 
+	@Override
+	public List<SProjectSmall> getAllProjectsSmall() throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<List<SProjectSmall>> action = new GetAllProjectsSmallDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getAuthorization());
+			return action.execute();
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public SProject addProject(String projectName) throws ServerException, UserException {
 		requireRealUserAuthentication();
