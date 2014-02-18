@@ -590,6 +590,7 @@ public interface ServerSettings extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Smtp Port</b></em>' attribute.
+	 * The default value is <code>"25"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Smtp Port</em>' attribute isn't clear,
@@ -599,7 +600,7 @@ public interface ServerSettings extends IdEObject {
 	 * @return the value of the '<em>Smtp Port</em>' attribute.
 	 * @see #setSmtpPort(int)
 	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SmtpPort()
-	 * @model
+	 * @model default="25"
 	 * @generated
 	 */
 	int getSmtpPort();
@@ -616,6 +617,7 @@ public interface ServerSettings extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Smtp Protocol</b></em>' attribute.
+	 * The default value is <code>"SMTP"</code>.
 	 * The literals are from the enumeration {@link org.bimserver.models.store.SmtpProtocol}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -627,7 +629,7 @@ public interface ServerSettings extends IdEObject {
 	 * @see org.bimserver.models.store.SmtpProtocol
 	 * @see #setSmtpProtocol(SmtpProtocol)
 	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SmtpProtocol()
-	 * @model
+	 * @model default="SMTP"
 	 * @generated
 	 */
 	SmtpProtocol getSmtpProtocol();

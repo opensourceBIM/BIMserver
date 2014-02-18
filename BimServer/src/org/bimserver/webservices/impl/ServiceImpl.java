@@ -1333,7 +1333,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public List<SProjectSmall> getAllRelatedProjects(Long poid) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			GetAllRelatedProjectsDatabaseAction action = new GetAllRelatedProjectsDatabaseAction(session, getInternalAccessMethod(), poid);
+			GetAllRelatedProjectsDatabaseAction action = new GetAllRelatedProjectsDatabaseAction(getBimServer(), session, getAuthorization(), getInternalAccessMethod(), poid);
 			return action.execute();
 		} catch (Exception e) {
 			return handleException(e);

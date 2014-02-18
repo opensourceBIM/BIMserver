@@ -28,6 +28,7 @@ import org.bimserver.emf.IdEObject;
  * <ul>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getParentId <em>Parent Id</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,5 +89,34 @@ public interface ProjectSmall extends IdEObject {
 	 * @generated
 	 */
 	void setParentId(long value);
+
+	/**
+	 * Returns the value of the '<em><b>State</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.store.ObjectState}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>State</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State</em>' attribute.
+	 * @see org.bimserver.models.store.ObjectState
+	 * @see #setState(ObjectState)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_State()
+	 * @model
+	 * @generated
+	 */
+	ObjectState getState();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#getState <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>State</em>' attribute.
+	 * @see org.bimserver.models.store.ObjectState
+	 * @see #getState()
+	 * @generated
+	 */
+	void setState(ObjectState value);
 
 } // ProjectSmall

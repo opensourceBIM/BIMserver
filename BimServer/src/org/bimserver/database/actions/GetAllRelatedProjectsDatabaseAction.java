@@ -22,22 +22,30 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.interfaces.objects.SProjectSmall;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.AdminAuthorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class GetAllRelatedProjectsDatabaseAction extends BimDatabaseAction<List<SProjectSmall>> {
 
 	private Long poid;
+	private BimServer bimServer;
+	private Authorization authorization;
 
-	public GetAllRelatedProjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Long poid) {
+	public GetAllRelatedProjectsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, Authorization authorization, AccessMethod accessMethod, Long poid) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
+		this.authorization = authorization;
 		this.poid = poid;
 	}
 
@@ -59,6 +67,9 @@ public class GetAllRelatedProjectsDatabaseAction extends BimDatabaseAction<List<
 	}
 	
 	private void addProjects(List<SProjectSmall> list, Project project) {
+		if (project.getState() == ObjectState.DELETED && !(authorization instanceof AdminAuthorization)) {
+			return;
+		}
 		list.add(createSmallProject(project));
 		List<Project> subProjects = new ArrayList<Project>(project.getSubProjects());
 		Collections.sort(subProjects, new Comparator<Project>(){
@@ -75,6 +86,7 @@ public class GetAllRelatedProjectsDatabaseAction extends BimDatabaseAction<List<
 		SProjectSmall small = new SProjectSmall();
 		small.setName(project.getName());
 		small.setOid(project.getOid());
+		small.setState(bimServer.getSConverter().convertToSObject(project.getState()));
 		small.setParentId(project.getParent() == null ? -1 : project.getParent().getOid());
 		return small;
 	}

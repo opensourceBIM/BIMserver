@@ -10302,6 +10302,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="ProjectSmall">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="parentId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#/2/ObjectState"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcHeader">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" upperBound="-1"

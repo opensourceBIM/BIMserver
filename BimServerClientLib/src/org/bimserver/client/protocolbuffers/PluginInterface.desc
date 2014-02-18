@@ -242,9 +242,9 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 SArrayDefinition/
 type (2!.org.bimserver.pb.STypeDefinition"ò
 STypeDefinition
-__actual_type (	F
-__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition@
-__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition>
+__actual_type (	@
+__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinitionF
+__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition>
 __SArrayDefinition (2".org.bimserver.pb.SArrayDefinition"”
 SParameterDefinition
 description (	
@@ -264,7 +264,11 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 SArrayType'
 values (2.org.bimserver.pb.SType
 rid (
-oid ("7
+oid ("9
+SByteArrayType
+rid (
+oid (
+value ("7
 SBooleanType
 rid (
 oid (
@@ -280,25 +284,21 @@ SArrayType'
 SDoubleType
 rid (
 oid (
-value ("9
-SByteArrayType
-rid (
-oid (
-value ("Ó
+value ("Ó
 SPrimitiveType
-__actual_type (	6
-__SBooleanType (2.org.bimserver.pb.SBooleanType4
-__SStringType (2.org.bimserver.pb.SStringType0
-__SLongType (2.org.bimserver.pb.SLongType4
-__SDoubleType (2.org.bimserver.pb.SDoubleType:
-__SByteArrayType (2 .org.bimserver.pb.SByteArrayType
+__actual_type (	:
+__SByteArrayType (2 .org.bimserver.pb.SByteArrayType6
+__SBooleanType (2.org.bimserver.pb.SBooleanType4
+__SStringType (2.org.bimserver.pb.SStringType0
+__SLongType (2.org.bimserver.pb.SLongType4
+__SDoubleType (2.org.bimserver.pb.SDoubleType
 rid (
 oid ("Þ
 SType
 __actual_type (	2
-__SArrayType (2.org.bimserver.pb.SArrayType:
-__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType4
-__SObjectType (2.org.bimserver.pb.SObjectType
+__SArrayType (2.org.bimserver.pb.SArrayType4
+__SObjectType (2.org.bimserver.pb.SObjectType:
+__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType
 rid (
 oid ("\
 
