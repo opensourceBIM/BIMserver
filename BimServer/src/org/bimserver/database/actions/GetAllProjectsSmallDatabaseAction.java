@@ -25,6 +25,7 @@ import java.util.List;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
@@ -56,7 +57,7 @@ public class GetAllProjectsSmallDatabaseAction extends BimDatabaseAction<List<SP
 		IfcModelInterface model = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), Query.getDefault());
 		List<Project> projects = model.getAll(Project.class);
 		for (Project project : projects) {
-			if (project.getParent() == null) {
+			if (project.getParent() == null && !project.getName().equals(Database.STORE_PROJECT_NAME)) {
 				Project rootProject = getRootProject(project);
 				addProjects(list, rootProject, user);
 			}
