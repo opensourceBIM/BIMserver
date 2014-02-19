@@ -30,21 +30,24 @@ public class GeometrySimplifier {
 		set.add(geometryData);
 	}
 
-	public GeometryData getMatchingGeometry(IfcProduct ifcProduct, GeometryData geometryData) {
+	public Set<GeometryData> getMatchingGeometry(IfcProduct ifcProduct, GeometryData geometryData) {
+		Set<GeometryData> result = new HashSet<>();
 		Map<Integer, Set<GeometryData>> ofType = data.get(ifcProduct.eClass());
 		if (ofType != null) {
 			Set<GeometryData> set = ofType.get(geometryData.getVertices().length);
 			if (set != null) {
 				for (GeometryData d : set) {
-					if (matchSameOrder(geometryData, d)) {
-						return d;
+					if (d != ifcProduct.getGeometry().getData()) {
+						if (matchSameOrder(geometryData, d)) {
+							result.add(d);
 //					} else if (matchTotalDistance(geometryData, d)) {
 //						return d;
+						}
 					}
 				}
 			}
 		}
-		return null;
+		return result;
 	}
 	
 //	private boolean matchTotalDistance(GeometryData geometryData, GeometryData d) {

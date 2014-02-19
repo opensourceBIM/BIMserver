@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -164,10 +165,10 @@ public class GeometryGenerator {
 									geometryInfo.setStartVertex(visualisationProperties.getStartVertex());
 									ByteBuffer verticesBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
 									ByteBuffer normalsBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
-
-									convertOrder(verticesBuffer);
-									convertOrder(normalsBuffer);
 									
+									verticesBuffer.order(ByteOrder.LITTLE_ENDIAN);
+									normalsBuffer.order(ByteOrder.LITTLE_ENDIAN);
+
 									geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
 									geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
 									
@@ -189,25 +190,27 @@ public class GeometryGenerator {
 									if (geometryCache != null) {
 										geometryCache.put(ifcProduct.getExpressId(), new GeometryCacheEntry(verticesBuffer, normalsBuffer, geometryInfo));
 									}
+									float[] identityMatrix = new float[16];
+									Matrix.setIdentityM(identityMatrix, 0);
+									setTransformationMatrix(geometryInfo, identityMatrix);
 									if (REUSE_GEOMETRY) {
-										GeometryData matchingGeometryData = geometrySimplifier.getMatchingGeometry(ifcProduct, geometryData);
-										if (matchingGeometryData != null) {
-											if (reuseGeometry(ifcProduct, geometryInfo, geometryData, matchingGeometryData)) {
-											} else {
-												float[] identityMatrix = new float[16];
-												Matrix.setIdentityM(identityMatrix, 0);
-												setTransformationMatrix(geometryInfo, identityMatrix);
-											}
-										} else {
-											geometrySimplifier.add(ifcProduct, geometryData);
-											float[] identityMatrix = new float[16];
-											Matrix.setIdentityM(identityMatrix, 0);
-											setTransformationMatrix(geometryInfo, identityMatrix);
-										}
+										geometrySimplifier.add(ifcProduct, geometryData);
 									}
 									ifcProduct.setGeometry(geometryInfo);
 									if (store) {
 										databaseSession.store(ifcProduct, pid, rid);
+									}
+								}
+							}
+							if (REUSE_GEOMETRY) {
+								for (IfcProduct ifcProduct : products) {
+									if (ifcProduct.getGeometry() != null && ifcProduct.getGeometry().getData() != null) {
+										Set<GeometryData> matchingGeometryDatas = geometrySimplifier.getMatchingGeometry(ifcProduct, ifcProduct.getGeometry().getData());
+										for (GeometryData matchingGeometryData : matchingGeometryDatas) {
+											if (reuseGeometry(ifcProduct, ifcProduct.getGeometry(), ifcProduct.getGeometry().getData(), matchingGeometryData)) {
+												break;
+											}
+										}
 									}
 								}
 							}
@@ -237,29 +240,18 @@ public class GeometryGenerator {
 		geometryInfo.setTransformation(byteBuffer.array());
 	}
 
-	private void convertOrder(ByteBuffer input) {
-		if (input.order() != ByteOrder.nativeOrder()) {
-			input.position(0);
-			for (int i = 0; i < input.capacity(); i += 4) {
-				input.order(ByteOrder.BIG_ENDIAN);
-				float x = input.getFloat();
-				input.order(ByteOrder.nativeOrder());
-				input.position(input.position() - 4);
-				input.putFloat(x);
-			}
-			input.position(0);
-		}
-	}
-
-	private static boolean almostTheSame(float f1, float f2) {
-		return Math.abs(f1 - f2) < 0.01;
+	private static boolean almostTheSame(float f1, float f2, float maxDiff) {
+		return Math.abs(f1 - f2) < maxDiff;
 	}
 	
 	private boolean reuseGeometry(IfcProduct ifcProduct, GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
+		double distanceFromCorners = Math.sqrt(Math.pow(geometryInfo.getMaxBounds().getX() - geometryInfo.getMinBounds().getX(), 2) + Math.pow(geometryInfo.getMaxBounds().getY() - geometryInfo.getMinBounds().getY(), 2) + Math.pow(geometryInfo.getMaxBounds().getZ() - geometryInfo.getMinBounds().getZ(), 2));
+		float maxDiff = (float) (distanceFromCorners / 100.0);
+		
 		ByteBuffer bb1 = ByteBuffer.wrap(matchingGeometryData.getVertices());
 		ByteBuffer bb2 = ByteBuffer.wrap(geometryData.getVertices());
-		bb1.order(ByteOrder.nativeOrder());
-		bb2.order(ByteOrder.nativeOrder());
+		bb1.order(ByteOrder.LITTLE_ENDIAN);
+		bb2.order(ByteOrder.LITTLE_ENDIAN);
 		FloatBuffer vertices1 = bb1.asFloatBuffer();
 		FloatBuffer vertices2 = bb2.asFloatBuffer();
 
@@ -270,17 +262,20 @@ public class GeometryGenerator {
 		float[] v3 = new float[]{vertices1.get(6), vertices1.get(7), vertices1.get(8)};
 		float[] u3 = new float[]{vertices2.get(6), vertices2.get(7), vertices2.get(8)};
 
-		float[] totalResult = getTransformationMatrix(v1, v2, v3, u1, u2, u3);
+		float[] totalResult = getTransformationMatrix(v1, v2, v3, u1, u2, u3, maxDiff);
+		if (totalResult == null) {
+			return false;
+		}
 
 		float[] r = new float[4];
 		Matrix.multiplyMV(r, 0, totalResult, 0, new float[]{v1[0], v1[1], v1[2], 1}, 0);
 		
-		if (almostTheSame(r[0] - v1[0], u1[0]) && almostTheSame(r[1] - v1[1], u1[1]) && almostTheSame(r[2] - v1[2], u1[2])) {
+		if (almostTheSame(r[0] - v1[0], u1[0], maxDiff) && almostTheSame(r[1] - v1[1], u1[1], maxDiff) && almostTheSame(r[2] - v1[2], u1[2], maxDiff)) {
 			// Interesting
 			Matrix.translateM(totalResult, 0, -v1[0], -v1[1], -v1[2]);
 		}
 		
-		if (test(v1, u1, totalResult)) {
+		if (test(v1, u1, totalResult, maxDiff)) {
 			geometryInfo.setData(matchingGeometryData);
 			setTransformationMatrix(geometryInfo, totalResult);
 			return true;
@@ -301,7 +296,7 @@ public class GeometryGenerator {
 	 * @param u3
 	 * @return
 	 */
-	private static float[] getTransformationMatrix(float[] originalV1, float[] originalV2, float[] originalV3, float[] u1, float[] u2, float[] u3) {
+	private static float[] getTransformationMatrix(float[] originalV1, float[] originalV2, float[] originalV3, float[] u1, float[] u2, float[] u3, float maxDiff) {
 		float[] v1 = copy(originalV1);
 		float[] v2 = copy(originalV2);
 		float[] v3 = copy(originalV3);
@@ -321,7 +316,7 @@ public class GeometryGenerator {
 		Matrix.setIdentityM(toZeroTranslation, 0);
 		Matrix.translateM(toZeroTranslation, 0, -v1[0], -v1[1], -v1[2]);
 		
-		if (almostTheSame(v2[0] + transX, u2[0]) && almostTheSame(v2[1] + transY, u2[1]) && almostTheSame(v2[2] + transZ, u2[2]) && almostTheSame(v3[0] + transX, u3[0]) && almostTheSame(v3[1] + transY, u3[1]) && almostTheSame(v3[2] + transZ, u3[2])) {
+		if (almostTheSame(v2[0] + transX, u2[0], maxDiff) && almostTheSame(v2[1] + transY, u2[1], maxDiff) && almostTheSame(v2[2] + transZ, u2[2], maxDiff) && almostTheSame(v3[0] + transX, u3[0], maxDiff) && almostTheSame(v3[1] + transY, u3[1], maxDiff) && almostTheSame(v3[2] + transZ, u3[2], maxDiff)) {
 			// The other two points are already the same, to there was no rotation
 			return translation;
 		}
@@ -339,7 +334,7 @@ public class GeometryGenerator {
 		float[] r2 = new float[16];
 		Matrix.setIdentityM(r2, 0);
 		float[] r2v2 = new float[4];
-		if (!equalsAlmost(u2, v2)) {
+		if (!equalsAlmost(u2, v2, maxDiff)) {
 			float u2InV2 = Vector.dot(u2, v2);
 			float[] axis = u2CrossV2; 
 			if (axis[0] == 0 && axis[1] == 0 && axis[2] == 0) {
@@ -349,12 +344,12 @@ public class GeometryGenerator {
 
 			Matrix.multiplyMV(r2v2, 0, r2, 0, new float[]{v2[0], v2[1], v2[2], 1}, 0);
 			
-			if (!equalsAlmost(r2v2, u2)) {
+			if (!equalsAlmost(r2v2, u2, maxDiff)) {
 				Matrix.setIdentityM(r2, 0);
 				Matrix.rotateM(r2, 0, -(float) Math.toDegrees(Math.atan2(Vector.length(u2CrossV2), u2InV2)), axis[0], axis[1], axis[2]);
 				Matrix.multiplyMV(r2v2, 0, r2, 0, new float[]{v2[0], v2[1], v2[2], 1}, 0);
-				if (!equalsAlmost(r2v2, u2)) {
-					System.out.println("Still wrong");
+				if (!equalsAlmost(r2v2, u2, maxDiff)) {
+					return null;
 				}
 			}
 		} else {
@@ -380,14 +375,14 @@ public class GeometryGenerator {
 		float[] r3v1 = new float[4];
 		Matrix.multiplyMV(r3v1, 0, r3, 0, new float[]{r2v1[0], r2v1[1], r2v1[2], 1}, 0);
 		
-		if (!equalsAlmost(r3v3, u3)) {
+		if (!equalsAlmost(r3v3, u3, maxDiff)) {
 			Matrix.setIdentityM(r3, 0);
 			Matrix.rotateM(r3, 0, -angleDegrees, r2v2[0], r2v2[1], r2v2[2]);
 			Matrix.multiplyMV(r3v3, 0, r3, 0, new float[]{r2v3[0], r2v3[1], r2v3[2], 1}, 0);
 			float[] r3v2 = new float[4];
 			Matrix.multiplyMV(r3v2, 0, r3, 0, new float[]{r2v2[0], r2v2[1], r2v2[2], 1}, 0);
-			if (!equalsAlmost(r3v3, u3) || !equalsAlmost(r3v2, u2)) {
-				System.out.println("Still wrong");
+			if (!equalsAlmost(r3v3, u3, maxDiff) || !equalsAlmost(r3v2, u2, maxDiff)) {
+				return null;
 			}
 		}
 		float[] subResult = new float[16];
@@ -438,9 +433,9 @@ public class GeometryGenerator {
 		return result;
 	}
 
-	private static boolean equalsAlmost(float[] r2v2, float[] u2) {
+	private static boolean equalsAlmost(float[] r2v2, float[] u2, float maxDiff) {
 		for (int i=0; i<3; i++) {
-			if (!almostTheSame(r2v2[i], u2[i])) {
+			if (!almostTheSame(r2v2[i], u2[i], maxDiff)) {
 				return false;
 			}
 		}
@@ -453,13 +448,13 @@ public class GeometryGenerator {
 		return result;
 	}
 
-	private static boolean test(float[] v1, float[] v2, float[] transformationMatrix) {
+	private static boolean test(float[] v1, float[] v2, float[] transformationMatrix, float maxDiff) {
 		float[] resultVector = new float[4];
 		Matrix.multiplyMV(resultVector, 0, transformationMatrix, 0, new float[]{v1[0], v1[1], v1[2], 1}, 0);
 		normalize(resultVector);
 		boolean theSame = true;
 		for (int i=0; i<3; i++) {
-			if (!almostTheSame(resultVector[i], v2[i])) {
+			if (!almostTheSame(resultVector[i], v2[i], maxDiff)) {
 				theSame = false;
 			}
 		}
@@ -488,8 +483,10 @@ public class GeometryGenerator {
 	}
 
 	public static void main(String[] args) {
-		test1();
-		test2();
+		float maxDiff = 0.1f;
+		
+		test1(maxDiff);
+		test2(maxDiff);
 		
 		Random random = new Random();
 		for (int i=0; i<10; i++) {
@@ -509,11 +506,11 @@ public class GeometryGenerator {
 			Matrix.multiplyMV(r2, 0, matrix, 0, v2, 0);
 			Matrix.multiplyMV(r3, 0, matrix, 0, v3, 0);
 			
-			float[] calculatedMatrix = getTransformationMatrix(v1, v2, v3, r1, r2, r3);
+			float[] calculatedMatrix = getTransformationMatrix(v1, v2, v3, r1, r2, r3, maxDiff);
 			
-			test(v1, r1, calculatedMatrix);
-			test(v2, r2, calculatedMatrix);
-			test(v3, r3, calculatedMatrix);
+			test(v1, r1, calculatedMatrix, maxDiff);
+			test(v2, r2, calculatedMatrix, maxDiff);
+			test(v3, r3, calculatedMatrix, maxDiff);
 			
 			for (int j=0; j<10; j++) {
 				float[] q1 = new float[]{random.nextFloat(), random.nextFloat(), random.nextFloat(), 1};
@@ -526,14 +523,14 @@ public class GeometryGenerator {
 				Matrix.multiplyMV(b2, 0, matrix, 0, q2, 0);
 				Matrix.multiplyMV(b3, 0, matrix, 0, q3, 0);
 				
-				test(q1, b1, calculatedMatrix);
-				test(q2, b2, calculatedMatrix);
-				test(q3, b3, calculatedMatrix);
+				test(q1, b1, calculatedMatrix, maxDiff);
+				test(q2, b2, calculatedMatrix, maxDiff);
+				test(q3, b3, calculatedMatrix, maxDiff);
 			}
 		}
 	}
 
-	private static void test1() {
+	private static void test1(float maxDiff) {
 		float[] v1 = new float[]{1, 2, 0};
 		float[] v2 = new float[]{1, 1, 0};
 		float[] v3 = new float[]{3, 2, 0};
@@ -541,14 +538,14 @@ public class GeometryGenerator {
 		float[] u2 = new float[]{-1, 2, 0};
 		float[] u3 = new float[]{0, 2, 2};
 		
-		float[] transformationMatrix = getTransformationMatrix(v1, v2, v3, u1, u2, u3);
+		float[] transformationMatrix = getTransformationMatrix(v1, v2, v3, u1, u2, u3, maxDiff);
 		
-		test(v1, u1, transformationMatrix);
-		test(v2, u2, transformationMatrix);
-		test(v3, u3, transformationMatrix);
+		test(v1, u1, transformationMatrix, maxDiff);
+		test(v2, u2, transformationMatrix, maxDiff);
+		test(v3, u3, transformationMatrix, maxDiff);
 	}
 	
-	private static void test2() {
+	private static void test2(float maxDiff) {
 		float[] v1 = new float[]{3, 0, 0};
 		float[] v2 = new float[]{4, 0, 0};
 		float[] v3 = new float[]{4, 1, 0};
@@ -556,11 +553,11 @@ public class GeometryGenerator {
 		float[] u2 = new float[]{0, 3, 0};
 		float[] u3 = new float[]{0, 2, 0};
 		
-		float[] transformationMatrix = getTransformationMatrix(v1, v2, v3, u1, u2, u3);
+		float[] transformationMatrix = getTransformationMatrix(v1, v2, v3, u1, u2, u3, maxDiff);
 		
-		test(v1, u1, transformationMatrix);
-		test(v2, u2, transformationMatrix);
-		test(v3, u3, transformationMatrix);
+		test(v1, u1, transformationMatrix, maxDiff);
+		test(v2, u2, transformationMatrix, maxDiff);
+		test(v3, u3, transformationMatrix, maxDiff);
 	}
 
 	private void returnCachedData(IfcModelInterface model, GeometryCache geometryCache, DatabaseSession databaseSession, int pid, int rid) throws BimserverDatabaseException {
