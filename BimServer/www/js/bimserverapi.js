@@ -1,10 +1,4 @@
-if (typeof console === "undefined") {
-	console = {
-		log: function(msg){
-			print(msg);
-		}
-	};
-}
+"use strict"
 
 function BimServerApi(baseUrl, notifier) {
 	var othis = this;
@@ -78,6 +72,8 @@ function BimServerApi(baseUrl, notifier) {
 	othis.user = null;
 	othis.listeners = {};
 	othis.autoLoginTried = false;
+	othis.serializersByPluginClassName = [];
+	othis.debug = false;
 
 	this.init = function(callback) {
 		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.js", function(result){
@@ -86,12 +82,18 @@ function BimServerApi(baseUrl, notifier) {
 		});
 	};
 
+	this.log = function(message){
+		if (othis.debug) {
+			console.log(message)
+		}
+	};
+	
 	this.translate = function(key) {
 		key = key.toUpperCase();
 		if (othis.translations[key] != null) {
 			return othis.translations[key];
 		}
-		console.log("translation for " + key + " not found");
+		othis.log("translation for " + key + " not found");
 		return key;
 	};
 
@@ -163,6 +165,17 @@ function BimServerApi(baseUrl, notifier) {
 			othis.server.connect(callback);
 		}
 	};
+	
+	this.getSerializerByPluginClassName = function(pluginClassName, callback) {
+		if (othis.serializersByPluginClassName[name] == null) {
+			othis.call("PluginInterface", "getSerializerByPluginClassName", {pluginClassName : pluginClassName}, function(serializer) {
+				othis.serializersByPluginClassName[name] = serializer;
+				callback(serializer);
+			});
+		} else {
+			callback(othis.serializersByPluginClassName[name]);
+		}
+	},
 
 	this.register = function(interfaceName, methodName, callback, registerCallback) {
 		if (othis.listeners[interfaceName] == null) {
@@ -368,7 +381,7 @@ function BimServerApi(baseUrl, notifier) {
 		if (requests.length == 1) {
 			var request = requests[0];
 			if (othis.interfaceMapping[request[0]] == null) {
-				console.log("Interface " + request[0] + " not found");
+				othis.log("Interface " + request[0] + " not found");
 			}
 			request = {request: othis.createRequest(othis.interfaceMapping[request[0]], request[1], request[2])};
 		} else if (requests.length > 1) {
@@ -410,7 +423,7 @@ function BimServerApi(baseUrl, notifier) {
 
 //		othis.notifier.resetStatusQuick();
 
-		console.log("request", request);
+		othis.log("request", request);
 
 		$.ajax(othis.address, {
 			type: "POST",
@@ -418,7 +431,7 @@ function BimServerApi(baseUrl, notifier) {
 			data: JSON.stringify(request),
 			dataType: "json",
 			success: function(data) {
-				console.log("response", data);
+				othis.log("response", data);
 				var errorsToReport = [];
 				if (requests.length == 1) {
 					if (showBusy) {
@@ -429,7 +442,7 @@ function BimServerApi(baseUrl, notifier) {
 					if (data.response.exception != null) {
 						if (data.response.exception.message == "Invalid token" && !othis.autoLoginTried && $.cookie("username" + window.document.location.port) != null && $.cookie("autologin" + window.document.location.port) != null) {
 							othis.autologin($.cookie("username" + window.document.location.port), $.cookie("autologin" + window.document.location.port), function(){
-								console.log("Trying to connect with autologin");
+								othis.log("Trying to connect with autologin");
 								othis.multiCall(requests, callback, errorCallback);
 							});
 						} else {
@@ -478,9 +491,9 @@ function BimServerApi(baseUrl, notifier) {
 				if (textStatus == "abort") {
 					// ignore
 				} else {
-					console.log(errorThrown);
-					console.log(textStatus);
-					console.log(jqXHR);
+					othis.log(errorThrown);
+					othis.log(textStatus);
+					othis.log(jqXHR);
 					if (othis.lastTimeOut != null) {
 						clearTimeout(othis.lastTimeOut);
 					}
@@ -688,12 +701,12 @@ function Model(bimServerApi, poid, roid) {
 
 	this.incrementRunningCalls = function(method){
 		othis.runningCalls++;
-		console.log("inc", method, othis.runningCalls);
+		othis.bimServerApi.log("inc", method, othis.runningCalls);
 	};
 
 	this.decrementRunningCalls = function(method){
 		othis.runningCalls--;
-		console.log("dec", method, othis.runningCalls);
+		othis.bimServerApi.log("dec", method, othis.runningCalls);
 		if (othis.runningCalls == 0) {
 			othis.doneCallbacks.forEach(function(cb){
 				cb(othis);
@@ -703,7 +716,7 @@ function Model(bimServerApi, poid, roid) {
 
 	this.done = function(doneCallback){
 		if (othis.runningCalls == 0) {
-			console.log("immediately done");
+			othis.bimServerApi.log("immediately done");
 			doneCallback(othis);
 		} else {
 			othis.doneCallbacks.push(doneCallback);
@@ -1008,7 +1021,7 @@ function Model(bimServerApi, poid, roid) {
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else {
-									console.log("Unimplemented type " + typeof value);
+									othis.bimServerApi.log("Unimplemented type " + typeof value);
 									othis.decrementRunningCalls("set" + fieldName.firstUpper());
 								}
 								object[fieldName] = value;
@@ -1153,7 +1166,7 @@ function Model(bimServerApi, poid, roid) {
 									});
 								});
 							} else {
-								console.log("Object with " + keyname + " " + list + " not found");
+								othis.bimServerApi.log("Object with " + keyname + " " + list + " not found");
 							}
 						});
 					});
@@ -1279,13 +1292,13 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 
 	this.send = function(object) {
 		var str = JSON.stringify(object);
-		console.log("Sending", str);
+		bimServerApi.log("Sending", str);
 		othis._send(str);
 	};
 
 	this._onmessage = function(message) {
 		var incomingMessage = JSON.parse(message.data);
-		console.log("incoming", incomingMessage);
+		bimServerApi.log("incoming", incomingMessage);
 		if (incomingMessage.welcome != null) {
 			othis.send({"token": bimServerApi.token});
 		} else if (incomingMessage.endpointid != null) {
