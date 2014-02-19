@@ -21,7 +21,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -108,10 +107,13 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
 			if (geometryInfo != null) {
 				String materialName = ifcProduct.eClass().getName();
-				try {
-					materialName = getMaterial(ifcProduct);
-				} catch (Exception e) {
+				if  (ifcProduct instanceof IfcSlab && ((IfcSlab)ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
+					materialName = "IfcRoof";
 				}
+//				try {
+//					materialName = getMaterial(ifcProduct);
+//				} catch (Exception e) {
+//				}
 				dataOutputStream.writeUTF(materialName);
 				String type = null;
 				type = ifcProduct.eClass().getName();
@@ -126,8 +128,10 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	
 				GeometryData geometryData = geometryInfo.getData();
 				byte[] vertices = geometryData.getVertices();
+				
+				// BEWARE, ByteOrder is always LITTLE_ENDIAN, because that's what GPU's seem to prefer, Java's ByteBuffer default is BIG_ENDIAN though!
+				
 				ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
-				vertexByteBuffer.order(ByteOrder.nativeOrder());
 				bytesTotal += vertexByteBuffer.capacity();
 				if (FORMAT_VERSION > 3 && geometryInfo.getTransformation() != null) {
 					if (concreteGeometrySent.contains(geometryData.getOid())) {
@@ -162,7 +166,9 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 			}
 		}
 		if (FORMAT_VERSION > 3) {
-			System.out.println((100 * bytesSaved / bytesTotal) + "% saved");
+			if (bytesTotal != 0) {
+				System.out.println((100 * bytesSaved / bytesTotal) + "% saved");
+			}
 		}
 		dataOutputStream.flush();
 	}
