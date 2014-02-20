@@ -19,6 +19,7 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.ByteBuffer;
 
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
@@ -61,6 +62,14 @@ public class StreamingSocket extends WebSocketAdapter implements StreamingSocket
 			session.getRemote().sendString(object.toString());
 		} catch (IOException e) {
 		} catch (WebSocketException e) {
+		}
+	}
+
+	@Override
+	public void send(byte[] data, int start, int length) {
+		try {
+			session.getRemote().sendBytes(ByteBuffer.wrap(data, start, length));
+		} catch (IOException e) {
 		}
 	}
 }

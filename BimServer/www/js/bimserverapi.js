@@ -117,18 +117,32 @@ function BimServerApi(baseUrl, notifier) {
 		}, errorCallback);
 	};
 
+	this.downloadViaWebsocket = function(msg){
+		msg.action = "download";
+		msg.token = othis.token;
+		othis.server.send(msg);
+	};
+	
+	this.setBinaryDataListener = function(listener){
+		othis.binaryDataListener = listener;
+	};
+	
 	this.processNotification = function(message) {
-		var intf = message["interface"];
-		if (othis.listeners[intf] != null) {
-			if (othis.listeners[intf][message.method] != null) {
-				othis.listeners[intf][message.method].forEach(function(listener) {
-					var ar = [];
-					var i=0;
-					for (var key in message.parameters) {
-						ar[i++] = message.parameters[key];
-					}
-					listener.apply(null, ar);
-				});
+		if (message instanceof ArrayBuffer) {
+			othis.binaryDataListener(message);
+		} else {
+			var intf = message["interface"];
+			if (othis.listeners[intf] != null) {
+				if (othis.listeners[intf][message.method] != null) {
+					othis.listeners[intf][message.method].forEach(function(listener) {
+						var ar = [];
+						var i=0;
+						for (var key in message.parameters) {
+							ar[i++] = message.parameters[key];
+						}
+						listener.apply(null, ar);
+					});
+				}
 			}
 		}
 	};
@@ -1048,6 +1062,9 @@ function Model(bimServerApi, poid, roid) {
 	this.isA = function(typeSubject, typeName){
 		var isa = false;
 		var subject = othis.bimServerApi.schema[typeSubject];
+		if (typeSubject == typeName) {
+			return true;
+		}
 		subject.superclasses.forEach(function(superclass){
 			if (superclass == typeName) {
 				isa = true;
@@ -1239,9 +1256,6 @@ function Model(bimServerApi, poid, roid) {
 						$.getJSON(url, function(data, textStatus, jqXHR){
 							data.objects.forEach(function(object){
 								othis.objects[object.__oid] = object;
-							});
-							for (var oid in othis.objects) {
-								var object = othis.objects[oid];
 								othis.resolveReferences(object, function(){
 									if (object.__state == "LOADED") {
 										if (object.isA(type)) {
@@ -1249,7 +1263,7 @@ function Model(bimServerApi, poid, roid) {
 										}
 									}
 								});
-							}
+							});
 							bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
 								othis.decrementRunningCalls("getAllOfType");
 								promise.fire();
@@ -1275,6 +1289,7 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 		var location = bimServerApi.baseUrl.toString().replace('http://', 'ws://').replace('https://', 'wss://') + "/stream";
 		if (typeof(WebSocket) == "function") {
 			this._ws = new WebSocket(location);
+			this._ws.binaryType = "arraybuffer";
 			this._ws.onopen = this._onopen;
 			this._ws.onmessage = this._onmessage;
 			this._ws.onclose = this._onclose;
@@ -1297,24 +1312,28 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this._onmessage = function(message) {
-		var incomingMessage = JSON.parse(message.data);
-		bimServerApi.log("incoming", incomingMessage);
-		if (incomingMessage.welcome != null) {
-			othis.send({"token": bimServerApi.token});
-		} else if (incomingMessage.endpointid != null) {
-			othis.endPointId = incomingMessage.endpointid;
-			othis.connected = true;
-			othis.openCallbacks.forEach(function(callback){
-				callback();
-			});
-			othis.openCallbacks = [];
+		if (message.data instanceof ArrayBuffer) {
+			othis.listener(message.data);
 		} else {
-			if (incomingMessage.request != null) {
-				othis.listener(incomingMessage.request);
-			} else if (incomingMessage.requests != null) {
-				incomingMessage.requests.forEach(function(request){
-					othis.listener(request);
+			var incomingMessage = JSON.parse(message.data);
+			bimServerApi.log("incoming", incomingMessage);
+			if (incomingMessage.welcome != null) {
+				othis.send({"token": bimServerApi.token});
+			} else if (incomingMessage.endpointid != null) {
+				othis.endPointId = incomingMessage.endpointid;
+				othis.connected = true;
+				othis.openCallbacks.forEach(function(callback){
+					callback();
 				});
+				othis.openCallbacks = [];
+			} else {
+				if (incomingMessage.request != null) {
+					othis.listener(incomingMessage.request);
+				} else if (incomingMessage.requests != null) {
+					incomingMessage.requests.forEach(function(request){
+						othis.listener(request);
+					});
+				}
 			}
 		}
 	};

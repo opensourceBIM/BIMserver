@@ -20,6 +20,7 @@ package org.bimserver.servlets;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 
 import org.apache.catalina.websocket.StreamInbound;
@@ -65,5 +66,14 @@ public class TomcatStreamInbound extends StreamInbound implements StreamingSocke
 	
 	@Override
 	protected void onBinaryData(InputStream arg0) throws IOException {
+	}
+
+	@Override
+	public void send(byte[] data, int start, int length) {
+		try {
+			outbound.writeBinaryMessage(ByteBuffer.wrap(data, start, length));
+			outbound.flush();
+		} catch (IOException e) {
+		}
 	}
 }
