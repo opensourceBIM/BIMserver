@@ -17,13 +17,24 @@ package org.bimserver.servlets;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Reader;
 import java.util.GregorianCalendar;
 
+import javax.activation.DataSource;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
+import org.bimserver.cache.FileInputStreamDataSource;
 import org.bimserver.endpoints.EndPoint;
+import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.plugins.serializers.AligningOutputStream;
+import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
@@ -59,12 +70,73 @@ public class Streamer implements EndPoint {
 		streamingSocketInterface.send(welcome);
 	}
 	
+	public static class WebSocketifier extends OutputStream implements AligningOutputStream {
+		private byte[] buffer = new byte[1024 * 1024 * 100];
+		private int pos = 0;
+		private StreamingSocketInterface streamingSocketInterface;
+		
+		public WebSocketifier(StreamingSocketInterface streamingSocketInterface) {
+			this.streamingSocketInterface = streamingSocketInterface;
+		}
+
+		@Override
+		public void write(int val) throws IOException {
+			buffer[pos] = (byte) val;
+			pos++;
+		}
+
+		@Override
+		public void write(byte[] b, int off, int len) throws IOException {
+			System.arraycopy(b, off, buffer, pos, len);
+			pos += len;
+		}
+		
+		public void align4() {
+			int skip = 4 - (pos % 4);
+			if(skip != 0 && skip != 4) {
+				pos += skip;
+			}
+		}
+		
+		@Override
+		public void flush() throws IOException {
+			streamingSocketInterface.send(buffer, 0, pos);
+			pos = 0;
+		}
+	}
+	
 	public void onText(Reader reader) {
 		JsonReader jsonreader = new JsonReader(reader);
 		JsonParser parser = new JsonParser();
 		JsonObject request = (JsonObject) parser.parse(jsonreader);
 		if (request.has("hb")) {
-			// Hearbeat, ignore
+			// Heartbeat, ignore
+		} else if (request.has("action")) {
+			if (request.get("action").getAsString().equals("download")) {
+				String token = request.get("token").getAsString();
+				try {
+					ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL);
+					long downloadId = request.get("longActionId").getAsLong();
+					SDownloadResult checkoutResult = serviceMap.getBimsie1ServiceInterface().getDownloadData(downloadId);
+					DataSource dataSource = checkoutResult.getFile().getDataSource();
+					OutputStream outputStream = new WebSocketifier(streamingSocketInterface);
+					if (dataSource instanceof FileInputStreamDataSource) {
+						InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
+						IOUtils.copy(inputStream, outputStream);
+						inputStream.close();
+					} else {
+						((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
+					}
+				} catch (UserException e) {
+					e.printStackTrace();
+				} catch (ServerException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (SerializerException e) {
+					e.printStackTrace();
+				}
+			}
 		} else if (request.has("token")) {
 			String token = request.get("token").getAsString();
 			try {

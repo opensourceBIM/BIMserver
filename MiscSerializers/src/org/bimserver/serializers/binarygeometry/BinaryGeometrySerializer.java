@@ -46,6 +46,7 @@ import org.bimserver.models.ifc2x3tc1.IfcSlabTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
+import org.bimserver.plugins.serializers.AligningOutputStream;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
@@ -81,6 +82,8 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	}
 
 	private void writeGeometries(OutputStream outputStream) throws IOException {
+		long start = System.nanoTime();
+
 		DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 		dataOutputStream.writeUTF("BGS");
 		dataOutputStream.writeByte(FORMAT_VERSION);
@@ -102,6 +105,10 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		int bytesTotal = 0;
 		
 		Set<Long> concreteGeometrySent = new HashSet<>();
+		
+//		dataOutputStream.flush();
+		
+		int counter = 0;
 		
 		for (IfcProduct ifcProduct : getModel().getAllWithSubTypes(IfcProduct.class)) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
@@ -140,9 +147,13 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 						dataOutputStream.write(GEOMETRY_TYPE_TRIANGLES);
 					}
 
-					int skip = 4 - (dataOutputStream.size() % 4);
-					if(skip != 0 && skip != 4) {
-						dataOutputStream.write(new byte[skip]);
+					if (outputStream instanceof AligningOutputStream) {
+						((AligningOutputStream)outputStream).align4();
+					} else {
+						int skip = 4 - (dataOutputStream.size() % 4);
+						if(skip != 0 && skip != 4) {
+							dataOutputStream.write(new byte[skip]);
+						}
 					}
 					
 					dataOutputStream.write(geometryInfo.getTransformation());
@@ -164,13 +175,19 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					}
 				}
 			}
+			counter++;
+			if (counter % 100 == 0) {
+//				dataOutputStream.flush();
+			}
 		}
+		dataOutputStream.flush();
 		if (FORMAT_VERSION > 3) {
 			if (bytesTotal != 0) {
 				System.out.println((100 * bytesSaved / bytesTotal) + "% saved");
 			}
 		}
-		dataOutputStream.flush();
+		long end = System.nanoTime();
+		System.out.println(((end - start) / 1000000) + " ms");
 	}
 	
 	public String getMaterial(IfcProduct ifcProduct) throws Exception {

@@ -33,7 +33,6 @@ public class StreamingServlet extends org.eclipse.jetty.websocket.servlet.WebSoc
 
 	private static final long serialVersionUID = -1813872488590907887L;
 
-	
 	@Override
 	public void configure(WebSocketServletFactory factory) {
 		factory.setCreator(new WebSocketCreator() {
