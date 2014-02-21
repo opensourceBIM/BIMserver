@@ -138,6 +138,8 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				
 				// BEWARE, ByteOrder is always LITTLE_ENDIAN, because that's what GPU's seem to prefer, Java's ByteBuffer default is BIG_ENDIAN though!
 				
+				dataOutputStream.flush();
+				
 				ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
 				bytesTotal += vertexByteBuffer.capacity();
 				if (FORMAT_VERSION > 3 && geometryInfo.getTransformation() != null) {
@@ -176,8 +178,8 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				}
 			}
 			counter++;
-			if (counter % 100 == 0) {
-//				dataOutputStream.flush();
+			if (counter % 10 == 0) {
+				dataOutputStream.flush();
 			}
 		}
 		dataOutputStream.flush();

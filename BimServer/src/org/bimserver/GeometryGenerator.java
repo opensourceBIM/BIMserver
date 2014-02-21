@@ -64,7 +64,7 @@ import org.slf4j.LoggerFactory;
 
 public class GeometryGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryGenerator.class);
-	private static final boolean REUSE_GEOMETRY = false;
+	private static final boolean REUSE_GEOMETRY = true;
 
 	public static class GeometryCacheEntry {
 		public GeometryCacheEntry(ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, GeometryInfo geometryInfo) {
