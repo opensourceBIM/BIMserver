@@ -21,24 +21,32 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSetUsage;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialSelect;
+import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesMaterial;
+import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcSlab;
@@ -90,7 +98,10 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		
 		Bounds modelBounds = new Bounds();
 		int nrObjects = 0;
-		for (IfcProduct ifcProduct : getModel().getAllWithSubTypes(IfcProduct.class)) {
+		
+		List<IfcProduct> products = getModel().getAllWithSubTypes(IfcProduct.class);
+		
+		for (IfcProduct ifcProduct : products) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
 			if (geometryInfo != null) {
 				Bounds objectBounds = new Bounds(new Float3(geometryInfo.getMinBounds().getX(), geometryInfo.getMinBounds().getY(), geometryInfo.getMinBounds()
@@ -106,13 +117,13 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		
 		Set<Long> concreteGeometrySent = new HashSet<>();
 		
-//		dataOutputStream.flush();
+		dataOutputStream.flush();
 		
 		int counter = 0;
 		
-		for (IfcProduct ifcProduct : getModel().getAllWithSubTypes(IfcProduct.class)) {
+		for (IfcProduct ifcProduct : products) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
-			if (geometryInfo != null) {
+			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 				String materialName = ifcProduct.eClass().getName();
 				if  (ifcProduct instanceof IfcSlab && ((IfcSlab)ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
 					materialName = "IfcRoof";
@@ -128,53 +139,46 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				
 				dataOutputStream.writeLong(ifcProduct.getOid());
 
-				Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
-				objectBounds.writeTo(dataOutputStream);
-				
-				dataOutputStream.writeInt(geometryInfo.getPrimitiveCount() * 3);
-	
 				GeometryData geometryData = geometryInfo.getData();
 				byte[] vertices = geometryData.getVertices();
 				
 				// BEWARE, ByteOrder is always LITTLE_ENDIAN, because that's what GPU's seem to prefer, Java's ByteBuffer default is BIG_ENDIAN though!
 				
-				dataOutputStream.flush();
+				bytesTotal += vertices.length;
+				byte geometryType = concreteGeometrySent.contains(geometryData.getOid()) ? GEOMETRY_TYPE_INSTANCE : GEOMETRY_TYPE_TRIANGLES;
+				dataOutputStream.write(geometryType);
+
+				if (outputStream instanceof AligningOutputStream) {
+					((AligningOutputStream)outputStream).align4();
+				} else {
+					int skip = 4 - (dataOutputStream.size() % 4);
+					if(skip != 0 && skip != 4) {
+						dataOutputStream.write(new byte[skip]);
+					}
+				}
 				
-				ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
-				bytesTotal += vertexByteBuffer.capacity();
-				if (FORMAT_VERSION > 3 && geometryInfo.getTransformation() != null) {
-					if (concreteGeometrySent.contains(geometryData.getOid())) {
-						dataOutputStream.write(GEOMETRY_TYPE_INSTANCE);
-					} else {
-						dataOutputStream.write(GEOMETRY_TYPE_TRIANGLES);
-					}
+				dataOutputStream.write(geometryInfo.getTransformation());
 
-					if (outputStream instanceof AligningOutputStream) {
-						((AligningOutputStream)outputStream).align4();
-					} else {
-						int skip = 4 - (dataOutputStream.size() % 4);
-						if(skip != 0 && skip != 4) {
-							dataOutputStream.write(new byte[skip]);
-						}
-					}
+				if (concreteGeometrySent.contains(geometryData.getOid())) {
+					dataOutputStream.writeLong(geometryData.getOid());
+					bytesSaved += vertices.length;
+				} else {
+					ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
+					dataOutputStream.writeLong(geometryData.getOid());
 					
-					dataOutputStream.write(geometryInfo.getTransformation());
-
-					if (concreteGeometrySent.contains(geometryData.getOid())) {
-						dataOutputStream.writeLong(geometryData.getOid());
-						bytesSaved += vertexByteBuffer.capacity();
-					} else {
-						dataOutputStream.writeLong(geometryData.getOid());
-						
-						dataOutputStream.writeInt(vertexByteBuffer.capacity() / 4);
-						dataOutputStream.write(vertexByteBuffer.array());
-						
-						ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
-						dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
-						dataOutputStream.write(normalsBuffer.array());
-						
-						concreteGeometrySent.add(geometryData.getOid());
-					}
+					dataOutputStream.writeInt(geometryInfo.getPrimitiveCount() * 3);
+					
+					Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
+					objectBounds.writeTo(dataOutputStream);
+					
+					dataOutputStream.writeInt(vertexByteBuffer.capacity() / 4);
+					dataOutputStream.write(vertexByteBuffer.array());
+					
+					ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
+					dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
+					dataOutputStream.write(normalsBuffer.array());
+					
+					concreteGeometrySent.add(geometryData.getOid());
 				}
 			}
 			counter++;
@@ -183,15 +187,50 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 			}
 		}
 		dataOutputStream.flush();
-		if (FORMAT_VERSION > 3) {
-			if (bytesTotal != 0) {
-				System.out.println((100 * bytesSaved / bytesTotal) + "% saved");
-			}
+		if (bytesTotal != 0) {
+			System.out.println((100 * bytesSaved / bytesTotal) + "% saved");
 		}
 		long end = System.nanoTime();
 		System.out.println(((end - start) / 1000000) + " ms");
 	}
 	
+	private void add(Set<IfcProduct> alreadySent, IfcObjectDefinition parent) {
+		if (alreadySent.contains(parent)) {
+			return;
+		}
+		if (parent instanceof IfcProduct) {
+			System.out.println("Adding " + parent);
+			alreadySent.add((IfcProduct) parent);
+		}
+		EList<IfcRelDecomposes> isDecomposedBy = parent.getIsDecomposedBy();
+		for (IfcRelDecomposes ifcRelDecomposes : isDecomposedBy) {
+			for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
+				add(alreadySent, ifcObjectDefinition);
+			}
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	private Set<IfcProduct> getNicelyOrdered(IfcModelInterface model) {
+		Set<IfcProduct> alreadySent = new LinkedHashSet<>();
+		List<IfcBuildingStorey> stories = model.getAllWithSubTypes(IfcBuildingStorey.class);
+		Collections.sort(stories, new Comparator<IfcBuildingStorey>(){
+			@Override
+			public int compare(IfcBuildingStorey o1, IfcBuildingStorey o2) {
+				return (int) (o1.getElevation() - o2.getElevation());
+			}
+		});
+		for (IfcBuildingStorey ifcBuildingStorey : stories) {
+			add(alreadySent, ifcBuildingStorey);
+		}
+		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
+			if (!alreadySent.contains(ifcProduct)) {
+				alreadySent.add(ifcProduct);
+			}
+		}
+		return alreadySent;
+	}
+
 	public String getMaterial(IfcProduct ifcProduct) throws Exception {
 		boolean materialFound = false;
 		String material = ifcProduct.eClass().getName();
