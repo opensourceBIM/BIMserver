@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.activation.DataSource;
 import javax.imageio.ImageIO;
+import javax.mail.util.ByteArrayDataSource;
 import javax.xml.datatype.DatatypeFactory;
 
 import org.bimserver.bcf.markup.Header;
@@ -62,6 +64,8 @@ import org.openmali.vecmath2.Vector3f;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ibm.wsdl.util.IOUtils;
+
 public class ClashDetectionServicePlugin extends ServicePlugin {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClashDetectionServicePlugin.class);
@@ -96,7 +100,12 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 
 					try {
 						ByteArrayOutputStream baos = new ByteArrayOutputStream();
-						((EmfSerializerDataSource) downloadData.getFile().getDataSource()).getSerializer().writeToOutputStream(baos);
+						DataSource dataSource = downloadData.getFile().getDataSource();
+						if (dataSource instanceof ByteArrayDataSource) {
+							org.apache.commons.io.IOUtils.copy(((ByteArrayDataSource) dataSource).getInputStream(), baos);
+						} else {
+							((EmfSerializerDataSource) dataSource).getSerializer().writeToOutputStream(baos);
+						}
 
 						Deserializer deserializer = getPluginManager().requireDeserializer("ifc").createDeserializer(new PluginConfiguration());
 						deserializer.init(getPluginManager().requireSchemaDefinition());
