@@ -28,4 +28,8 @@
 		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
 		<implementationClass>org.bimserver.demoplugins.service.SpaceInvadersService</implementationClass>
 	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
+		<implementationClass>org.bimserver.demoplugins.service.Lod2ExcelServicePlugin</implementationClass>
+	</PluginImplementation>
 </PluginDescriptor>

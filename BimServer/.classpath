@@ -28,6 +28,7 @@
 	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.common_2.9.1.v20130827-0309.jar"/>
 	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar" sourcepath="libsrc/org.eclipse.emf.ecore.source_2.9.1.v20130827-0309.jar"/>
 	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar"/>
+	<classpathentry kind="lib" path="lib/jxl.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>
