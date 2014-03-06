@@ -48,7 +48,8 @@ function BimServerApi(baseUrl, notifier) {
 		REMOVEUSERFROMPROJECT_DONE: "User successfully removed from project",
 		UNDELETEPROJECT_DONE: "Project successfully undeleted",
 		DELETEPROJECT_DONE: "Project successfully deleted",
-		ADDPROJECT_DONE: "Project successfully added"
+		ADDPROJECT_DONE: "Project successfully added",
+		DOWNLOAD_BUSY: "Busy downloading..."
 	}
 
 	othis.token = null;
@@ -313,11 +314,13 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.unregisterNewProjectHandler = function(handler, callback){
 		othis.unregister(handler);
-		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
-			if (callback != null) {
-				callback();
-			}
-		});
+		if (othis.server.endPointId != null) {
+			othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
+				if (callback != null) {
+					callback();
+				}
+			});
+		}
 	};
 
 	this.unregisterNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
