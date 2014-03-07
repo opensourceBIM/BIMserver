@@ -88,7 +88,7 @@ public class WaitingList<T> {
 	public void dumpIfNotEmpty() throws BimServerClientException {
 		if (size() > 0) {
 			for (Entry<T, List<WaitingObject>> entry : waitingObjects.entrySet()) {
-				StringBuilder sb = new StringBuilder("" + entry.getKey());
+				StringBuilder sb = new StringBuilder("" + entry.getKey() + " ");
 				for (WaitingObject waitingObject : entry.getValue()) {
 					sb.append(waitingObject.toString() + " ");
 				}
