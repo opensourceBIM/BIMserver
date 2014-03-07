@@ -681,7 +681,7 @@ public class BimServer {
 					serverSettings.getWebModules().add(webPluginConfiguration);
 					genericPluginConversion(session, webModulePlugin, webPluginConfiguration, getPluginDescriptor(session, webModulePlugin.getClass().getName()));
 				}
-				if (serverSettings.getWebModule() == null && webModulePlugin.getClass().getName().equals("org.bimserver.bootstrap.BootstrapWebModulePlugin")) {
+				if (serverSettings.getWebModule() == null && webModulePlugin.getClass().getName().equals("org.bimserver.bimviews.BimViewsWebModulePlugin")) {
 					serverSettings.setWebModule(webPluginConfiguration);
 				}
 			}
