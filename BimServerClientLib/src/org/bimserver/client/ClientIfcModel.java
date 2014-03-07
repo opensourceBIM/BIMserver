@@ -201,13 +201,17 @@ public class ClientIfcModel extends IfcModel {
 		if (modelState != ModelState.FULLY_LOADED) {
 			modelState = ModelState.LOADING;
 			Long download = bimServerClient.getBimsie1ServiceInterface().download(roid, getIfcSerializerOid(), true, true);
-			processDownload(download);
-			modelState = ModelState.FULLY_LOADED;
+			try {
+				processDownload(download);
+				modelState = ModelState.FULLY_LOADED;
+			} catch (IfcModelInterfaceException | IOException e) {
+				LOGGER.error("", e);
+			}
 		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void processDownload(Long download) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException {
+	private void processDownload(Long download) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
 		WaitingList<Long> waitingList = new WaitingList<Long>();
 		try {
 			InputStream downloadData = bimServerClient.getDownloadData(download, getIfcSerializerOid());
@@ -401,17 +405,13 @@ public class ClientIfcModel extends IfcModel {
 					jsonReader.endArray();
 				}
 				jsonReader.endObject();
-			} catch (IfcModelInterfaceException e1) {
-				LOGGER.error("", e1);
 			} finally {
 				jsonReader.close();
 			}
-		} catch (IOException e) {
-			LOGGER.error("", e);
+			waitingList.dumpIfNotEmpty();
 		} catch (SerializerException e) {
 			LOGGER.error("", e);
 		} finally {
-			waitingList.dumpIfNotEmpty();
 			bimServerClient.getServiceInterface().cleanupLongAction(download);
 		}
 	}

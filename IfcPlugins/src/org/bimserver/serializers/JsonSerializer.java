@@ -84,8 +84,7 @@ public class JsonSerializer extends IfcSerializer {
 							out.write("{");
 							out.write("\"__oid\":" + object.getOid() + ",");
 							out.write("\"__type\":\"" + object.eClass().getName() + "\",");
-							out.write("\"__state\":\"LOADED\",");
-							boolean firstF = true;
+							out.write("\"__state\":\"LOADED\"");
 							for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
 								if (eStructuralFeature.getEAnnotation("nolazyload") == null && eStructuralFeature.getEAnnotation("hidden") == null) {
 									if (eStructuralFeature instanceof EReference) {
@@ -94,11 +93,7 @@ public class JsonSerializer extends IfcSerializer {
 											if (eStructuralFeature.isMany()) {
 												List<?> list = (List<?>) value;
 												if (SERIALIZE_EMPTY_LISTS || !list.isEmpty()) {
-													if (firstF) {
-														firstF = false;
-													} else {
-														out.write(",");
-													}
+													out.write(",");
 													int wrapped = 0;
 													int referred = 0;
 													for (Object o : list) {
@@ -144,11 +139,7 @@ public class JsonSerializer extends IfcSerializer {
 													out.write("]");
 												}
 											} else {
-												if (firstF) {
-													firstF = false;
-												} else {
-													out.write(",");
-												}
+												out.write(",");
 												IdEObject ref = (IdEObject) value;
 												if (ref instanceof IfcGloballyUniqueId) {
 													out.write("\"" + eStructuralFeature.getName() + "\":");
@@ -167,11 +158,7 @@ public class JsonSerializer extends IfcSerializer {
 											if (eStructuralFeature.isMany()) {
 												List<?> list = (List<?>) value;
 												if (SERIALIZE_EMPTY_LISTS || !list.isEmpty()) {
-													if (firstF) {
-														firstF = false;
-													} else {
-														out.write(",");
-													}
+													out.write(",");
 													out.write("\"" + eStructuralFeature.getName() + "\":[");
 													boolean f = true;
 													for (Object o : list) {
@@ -185,11 +172,7 @@ public class JsonSerializer extends IfcSerializer {
 													out.write("]");
 												}
 											} else {
-												if (firstF) {
-													firstF = false;
-												} else {
-													out.write(",");
-												}
+												out.write(",");
 												out.write("\"" + eStructuralFeature.getName() + "\":");
 												writePrimitive(out, eStructuralFeature, value);
 											}
