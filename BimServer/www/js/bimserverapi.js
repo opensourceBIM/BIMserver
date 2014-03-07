@@ -393,7 +393,7 @@ function BimServerApi(baseUrl, notifier) {
 		return object;
 	};
 
-	this.multiCall = function(requests, callback, showBusy, showDone, showError) {
+	this.multiCall = function(requests, callback, errorCallback, showBusy, showDone, showError) {
 		var request = null;
 		if (requests.length == 1) {
 			var request = requests[0];
@@ -487,7 +487,7 @@ function BimServerApi(baseUrl, notifier) {
 					data.responses.forEach(function(response){
 						if (response.exception != null) {
 							if (errorCallback == null) {
-								othis.notifier.error(response.exception.message);
+								othis.notifier.setError(response.exception.message);
 							} else {
 								errorsToReport.push(response.exception);
 							}
@@ -514,7 +514,7 @@ function BimServerApi(baseUrl, notifier) {
 					if (othis.lastTimeOut != null) {
 						clearTimeout(othis.lastTimeOut);
 					}
-					othis.notifier.error("ERROR_REMOTE_METHOD_CALL");
+					othis.notifier.setError("ERROR_REMOTE_METHOD_CALL");
 				}
 				if (callback != null) {
 					var result = new Object();
@@ -577,7 +577,7 @@ function BimServerApi(baseUrl, notifier) {
 					errorCallback(data.exception);
 				}
 			}
-		}, showBusy, showDone, showError);
+		}, errorCallback, showBusy, showDone, showError);
 	};
 
 	othis.server.listener = othis.processNotification;
