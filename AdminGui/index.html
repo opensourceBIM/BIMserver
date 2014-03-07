@@ -8,7 +8,7 @@
   <body>
   	<div class="indexStatus">
 		<div class="alert status">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<button type="button" class="close">&times;</button>
 			<div class="message"></div>
 		</div>
   	</div>
@@ -111,20 +111,20 @@
 					} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
 					} else if (serverInfo.serverState == "FATAL_ERROR") {
 					} else if (serverInfo.serverState == "RUNNING") {
-						successFunction();
+						successFunction(address);
 					}
 				}, function(){
-					errorFunction();
+					errorFunction(address);
 				});
 			};
 			
 			function load() {
 				$(".sidespan").empty();
 				Global.history = pushInitialState();
-				var notLoggedInFunction = function(){
+				var notLoggedInFunction = function(address){
 					if (Global.history.page == "Login") {
 						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-							othis.current = new Login($.cookie("address" + window.document.location.port));
+							othis.current = new Login(address);
 						});
 					} else if (Global.history.page == "SelectServer") {
 						$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
@@ -140,12 +140,12 @@
 						});
 					} else {
 						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-							othis.current = new Login(null);
+							othis.current = new Login(address);
 						});
 					}
 				};
 				
-				var successFunction = function(){
+				var successFunction = function(address){
 					// We do have an API
 					if ($.cookie("autologin" + window.document.location.port) != null) {
 						Global.bimServerApi.token = $.cookie("autologin" + window.document.location.port);
@@ -156,10 +156,10 @@
 							});
 						}, function(){
 							$.removeCookie("autologin" + window.document.location.port);
-							notLoggedInFunction();
+							notLoggedInFunction(address);
 						});
 					} else {
-						notLoggedInFunction();
+						notLoggedInFunction(address);
 					}
 				};
 				
@@ -180,7 +180,7 @@
 						if (address != null) {
 							othis.loadBimServerApiFromAddress(address, successFunction, errorFunction);
 						} else {
-							notLoggedInFunction();
+							notLoggedInFunction(address);
 //							$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
 //								new SelectServer();
 //							});
@@ -206,24 +206,18 @@
 			
 			function Notifier() {
 				var othis = this;
-				othis.selector = ".indexStatus .status";
 				
-				$(othis.selector).hide();
-
-				this.error = function(message){
-					if (othis.lastTimeOut != null) {
-						clearTimeout(othis.lastTimeOut);
-						othis.lastTimeOut = null;
+				this.setSelector = function(selector) {
+					var currentmessage = $(othis.selector).find(".message").html();
+					$(othis.selector).hide();
+					othis.selector = selector;
+					if (currentmessage != "" && currentmessage != undefined) {
+						$(selector).show();
+						$(selector).find(".message").html(currentmessage).parent().addClass("alert-success");
+					} else {
+						$(othis.selector).hide();
 					}
-					$(othis.selector).find(".message").html(message).parent().show();
-				};
-
-				this.info = function(message) {
-					if (othis.lastTimeOut != null) {
-						clearTimeout(othis.lastTimeOut);
-						othis.lastTimeOut = null;
-					}
-					$(othis.selector).find(".message").html(message).parent().show();						
+					$(othis.selector).find(".close").click(othis.clear);
 				};
 
 				this.clear = function() {
@@ -247,7 +241,7 @@
 					$(othis.selector).hide();
 				};
 
-				this.setStatus = function(status, timeToShow) {
+				this.setSuccess = function(status, timeToShow) {
 					if (timeToShow == null) {
 						timeToShow = 5000;
 					}
@@ -256,11 +250,29 @@
 						clearTimeout(othis.lastTimeOut);
 						othis.lastTimeOut = null;
 					}
-					$(othis.selector).find(".message").html(status).parent().show().removeClass("alert-danger").addClass("alert-info");
+					$(othis.selector).find(".message").html(status).parent().show().removeClass("alert-danger").removeClass("alert-info").addClass("alert-success");
 					var notifier = this;
 					if (timeToShow != -1) {
 						othis.lastTimeOut = setTimeout(function(){
-							othis.resetStatus();
+							notifier.resetStatus();
+						}, timeToShow);
+					}
+				};
+				
+				this.setInfo = function(status, timeToShow) {
+					if (timeToShow == null) {
+						timeToShow = 5000;
+					}
+					$(othis.selector).stop(true, true);
+					if (othis.lastTimeOut != null) {
+						clearTimeout(othis.lastTimeOut);
+						othis.lastTimeOut = null;
+					}
+					$(othis.selector).find(".message").html(status).parent().show().removeClass("alert-danger").removeClass("alert-success").addClass("alert-info");
+					var notifier = this;
+					if (timeToShow != -1) {
+						othis.lastTimeOut = setTimeout(function(){
+							notifier.resetStatus();
 						}, timeToShow);
 					}
 				};
@@ -270,8 +282,10 @@
 						clearTimeout(othis.lastTimeOut);
 						othis.lastTimeOut = null;
 					}
-					$(othis.selector).find(".message").html(error).parent().removeClass("alert-info").addClass("alert-danger").show();
+					$(othis.selector).find(".message").html(error).parent().removeClass("alert-info").removeClass("alert-success").addClass("alert-danger").show();
 				};
+				
+				othis.setSelector(".indexStatus .status");
 			}
 
 			Global.notifier = new Notifier();

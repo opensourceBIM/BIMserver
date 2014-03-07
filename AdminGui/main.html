@@ -22,7 +22,7 @@
 	</div>
 	<div class="clearfix"></div>
 	<div class="alert status initialhide">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<button type="button" class="close">&times;</button>
 		<div class="message"></div>
 	</div>
 	<div class="maincontainer"></div>
@@ -36,12 +36,12 @@ function Main(address, username) {
 	$(".main .addressLabel").html(address);
 	
 	this.show = function() {
-		Global.notifier.selector = ".main .status";
+		Global.notifier.setSelector(".main .status");
 		Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(user){
 			$(".main .nav li").hide();
 			othis.user = user;
 			Settings.getMenuItems().forEach(function(menuItem){
-				if (menuItem == "dashboardLink" || menuItem == "serversettingsLink" || menuItem == "serverinfoLink" || menuItem == "testingLink" || menuItem == "usersLink") {
+				if (menuItem == "dashboardLink" || menuItem == "gettingStartedLink" || menuItem == "serversettingsLink" || menuItem == "serverinfoLink" || menuItem == "testingLink" || menuItem == "usersLink") {
 					if (user.userType == "ADMIN") {
 						$("." + menuItem).show();
 					}
@@ -86,25 +86,19 @@ function Main(address, username) {
 				if ($(".dashboardLink").is(":visible")) {
 					othis.showDashboard(null);
 				} else {
-					othis.showServerSettings(null);
+					othis.showProjects();
 				}
 			}
 		});
 	};
 
 	this.logout = function() {
+		$(".sidespan").empty();
 		Global.bimServerApi.logout(function(){
-			if (Settings.allowBimServerAddress()) {
-				$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
-					$(".indexStatus").show();
-					new SelectServer(Global.bimServerApi.baseUrl);
-				});
-			} else {
-				$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-					$(".indexStatus").show();
-					new Login(Global.bimServerApi.baseUrl);
-				});
-			}
+			$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+				Global.notifier.setSelector(".indexStatus .status");
+				new Login(Global.bimServerApi.baseUrl);
+			});
 		});
 	};
 

@@ -10,7 +10,7 @@ var ConsoleSettings = {
 		});
 	},
 	getVersion: function(){
-		return "1.2";
+		return "1.3";
 	}, getServiceInterfaces: function(consoleObject, callback){
 		var request = {
 			request: {

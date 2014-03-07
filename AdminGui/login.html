@@ -36,19 +36,16 @@
 						<button type="button" class="btn loginButton btn-primary">Sign in</button>
 						<button type="button" class="btn btn-default resetPasswordButton">Reset password</button>
 						<button type="button" class="btn btn-default registerButton initialhide">Register</button>
-						<!-- <button type="button" class="btn openIdButton">OpenID (beta)</button> -->
 					</div>
 				</div>
 			</form>
-		</div>
-		<div class="openidDiv initialhide">
-			<a class="googleLink"><img src="images.large/google.gif"/></a>
 		</div>
   </div>
 </div>
 <script>
 function Login(address, username) {
 	var othis = this;
+	
 	if (address != null && address.startsWith("http://")) {
 		address = address.substring(7);
 	}
@@ -58,7 +55,7 @@ function Login(address, username) {
 	Global.bimServerApi.call("AdminInterface", "getVersion", {}, function(version){
 		if (!Settings.usableBimServerVersion(version)) {
 			var versionString = version.major + "." + version.minor + "." + version.revision;
-			Global.notifier.setStatus("This version of BIMserver (" + versionString + ") has not been tested with this version of BIMvie.ws");
+			Global.notifier.setInfo("This version of BIMserver (" + versionString + ") has not been tested with this version of BIMvie.ws");
 		}
 	});
 	
@@ -136,14 +133,5 @@ function Login(address, username) {
 			new SelectServer();
 		});
 	});
-	
-	$(".googleLink").click(function(){
-		$.cookie("address" + window.document.location.port, Global.bimServerApi.baseUrl);
-		Global.bimServerApi.call("Bimsie1AuthInterface", "loginOpenId", {op: "https://www.google.com/accounts/o8/id", returnUrl: Global.baseDir + "openid.html"}, function(url){
-			document.location = url;
-		});
-	}); 
-	
-	$(".openIdButton").click(othis.openIdClick);
 }
 </script>

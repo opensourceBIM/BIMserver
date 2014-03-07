@@ -92,7 +92,6 @@ function pushHistoryAppend(obj, title) {
 		str = str.substring(0, str.length - 1);
 	}
 	if (!current.cleanUrl.endsWith(str)) {
-		console.log("pha ", obj);
 		History.pushState(obj, "BIM Views" + (title == null ? "" : " - " + title), str);
 	}
 	pushing = false;
