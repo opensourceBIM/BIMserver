@@ -78,21 +78,21 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 						var primitiveDefinition = parameter.type;
 						var input = null;
 						if (primitiveDefinition.type == "LONG") {
-							input = $("<input parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
+							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
 							input.numeric({ decimal: false, negative: false });
 							td.append(input);
 						} else if (primitiveDefinition.type == "DOUBLE") {
-							input = $("<input parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
+							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
 							input.numeric({ decimal: ".", negative: false });
 							td.append(input);
 						} else if (primitiveDefinition.type == "STRING") {
-							input = $("<input parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
+							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
 							td.append(input);
 						} else if (primitiveDefinition.type == "BYTE_ARRAY") {
-							input = $("<input parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"file\"/>");
+							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"file\"/>");
 							td.append(input);
 						} else if (primitiveDefinition.type == "BOOLEAN") {
-							input = $("<input parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"checkbox\"/>");
+							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"checkbox\"/>");
 							td.append(input);
 						}
 					}

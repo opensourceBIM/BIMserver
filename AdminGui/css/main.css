@@ -170,3 +170,11 @@ div.sidespan > div > ul {
 	padding-left: 20px;	
 	padding-right: 20px;	
 }
+
+.indexStatus {
+	margin: 10px;
+}
+
+.downloadpopup form {
+	margin: 14px;
+}
