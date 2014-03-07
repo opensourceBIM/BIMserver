@@ -143,7 +143,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		this.progress.set(progress);
 		if (progress != oldProgress || !oldTitle.equals(title)) {
 			if (!title.equals(oldTitle)) {
-				stage ++;
+				stage++;
 			}
 			bimServer.getNotificationsManager().notify(new ProgressNotification(bimServer, progressTopic, getState()));
 		}
