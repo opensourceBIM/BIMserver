@@ -339,7 +339,6 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getProjectByPoid")
 	SProject getProjectByPoid(
 		@WebParam(name = "poid", partName = "getProjectByPoid.poid") Long poid) throws ServerException, UserException;
-	
 
 	/**
 	 * @param roid ObjectID of the Revision
@@ -349,7 +348,6 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getRevision")
 	SRevision getRevision(
 		@WebParam(name = "roid", partName = "getRevision.roid") Long roid) throws ServerException, UserException;
-	
 
 	/**
 	 * Undelete a previously deleted Project, Projets can be deleted with the deleteProject method

@@ -270,7 +270,7 @@ public class ProtocolBuffersGenerator {
 	}
 
 	private void genProtocolBuffersToServiceInterface(PrintWriter out, String sourceName, String targetName, SClass sType, SMethod method) {
-		for (SField field : sType.getFields()) {
+		for (SField field : sType.getAllFields()) {
 			if (sType.getInstanceClass().isAssignableFrom(List.class)) {
 			} else if (sType.isDate()) {
 				out.println("\t\t\t\t" + targetName + ".set" + field.getName() + "(new Date(" + sourceName + "." + method.getName() + "()));");
@@ -288,7 +288,7 @@ public class ProtocolBuffersGenerator {
 	}
 
 	private void genServiceInterfaceToProtocolBuffers(PrintWriter out, String sourceName, String targetName, SClass parameterType) {
-		for (SField field : parameterType.getFields()) {
+		for (SField field : parameterType.getAllFields()) {
 			SClass fieldType = field.getType();
 			SClass fieldClass = fieldType;
 			if (fieldClass.isList()) {
@@ -449,7 +449,7 @@ public class ProtocolBuffersGenerator {
 					messageBuilder.append(createMessage(sb, subClass) + " __" + subClass.getInstanceClass().getSimpleName() + " = " + (counter++) + ";\n");
 				}
 			}
-			for (SField field : sType.getFields()) {
+			for (SField field : sType.getAllFields()) {
 				messageBuilder.append('\t');
 				if (field.isAggregate()) {
 					messageBuilder.append("repeated ");

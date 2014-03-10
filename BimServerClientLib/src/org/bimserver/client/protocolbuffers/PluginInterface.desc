@@ -1,58 +1,108 @@
 
-ž¦
-PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"T
- SDeserializerPluginConfiguration
-userSettingsId (
-rid (
-oid ("b
+ª­
+PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
+ SDeserializerPluginConfiguration
+description (	
+enabled (
+name (	
+oid (
+pluginDescriptorId (
+rid (
+
+settingsId (
+userSettingsId ("b
 AddDeserializerRequestH
-deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration"ˆ
-#SInternalServicePluginConfiguration
-userSettingsId (
-publicProfile (
-rid (
-oid (
-remoteAccessible ("k
+deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration"ì
+#SInternalServicePluginConfiguration
+description (	
+enabled (
+name (	
+oid (
+pluginDescriptorId (
+publicProfile (
+remoteAccessible (
+rid (
+
+settingsId	 (
+userSettingsId
+ ("k
 AddInternalServiceRequestN
-internalService (25.org.bimserver.pb.SInternalServicePluginConfiguration"T
- SModelComparePluginConfiguration
-userSettingsId (
-rid (
-oid ("b
+internalService (25.org.bimserver.pb.SInternalServicePluginConfiguration"¸
+ SModelComparePluginConfiguration
+description (	
+enabled (
+name (	
+oid (
+pluginDescriptorId (
+rid (
+
+settingsId (
+userSettingsId ("b
 AddModelCompareRequestH
-modelCompare (22.org.bimserver.pb.SModelComparePluginConfiguration"S
-SModelMergerPluginConfiguration
-userSettingsId (
-rid (
-oid ("_
+modelCompare (22.org.bimserver.pb.SModelComparePluginConfiguration"·
+SModelMergerPluginConfiguration
+description (	
+enabled (
+name (	
+oid (
+pluginDescriptorId (
+rid (
+
+settingsId (
+userSettingsId ("_
 AddModelMergerRequestF
-modelMerger (21.org.bimserver.pb.SModelMergerPluginConfiguration"f
-SObjectIDMPluginConfiguration
-userSettingsId (
-serializers (
-rid (
-oid ("Y
+modelMerger (21.org.bimserver.pb.SModelMergerPluginConfiguration"Ê
+SObjectIDMPluginConfiguration
+description (	
+enabled (
+name (	
+oid (
+pluginDescriptorId (
+rid (
+serializers (
+
+settingsId (
+userSettingsId	 ("Y
 AddObjectIDMRequestB
-	objectIDM (2/.org.bimserver.pb.SObjectIDMPluginConfiguration"S
-SQueryEnginePluginConfiguration
-userSettingsId (
-rid (
-oid ("_
+	objectIDM (2/.org.bimserver.pb.SObjectIDMPluginConfiguration"·
+SQueryEnginePluginConfiguration
+description (	
+enabled (
+name (	
+oid (
+pluginDescriptorId (
+rid (
+
+settingsId (
+userSettingsId ("_
 AddQueryEngineRequestF
-queryEngine (21.org.bimserver.pb.SQueryEnginePluginConfiguration"i
- SRenderEnginePluginConfiguration
-userSettingsId (
-serializers (
-rid (
-oid ("b
+queryEngine (21.org.bimserver.pb.SQueryEnginePluginConfiguration"Í
+ SRenderEnginePluginConfiguration
+description (	
+enabled (
+name (	
+oid (
+pluginDescriptorId (
+rid (
+serializers (
+
+settingsId (
+userSettingsId	 ("b
 AddRenderEngineRequestH
-renderEngine (22.org.bimserver.pb.SRenderEnginePluginConfiguration"
-SSerializerPluginConfiguration
-userSettingsId (
-rid (
-oid (
-objectIDMId (
-renderEngineId ("\
+renderEngine (22.org.bimserver.pb.SRenderEnginePluginConfiguration"ã
+SSerializerPluginConfiguration
+description (	
+enabled (
+name (	
+objectIDMId (
+oid (
+pluginDescriptorId (
+renderEngineId (
+rid (
+
+settingsId	 (
+userSettingsId
+ ("\
 AddSerializerRequestD
 
 serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
@@ -111,10 +161,10 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 errorMessage (	@
 value (21.org.bimserver.pb.SModelMergerPluginConfiguration")
 'GetAllObjectIDMPluginDescriptorsRequest"I
-SObjectIDMPluginDescriptor
-rid (
-oid (
-	className (	"}
+SObjectIDMPluginDescriptor
+	className (	
+oid (
+rid ("}
 (GetAllObjectIDMPluginDescriptorsResponse
 errorMessage (	;
 value (2,.org.bimserver.pb.SObjectIDMPluginDescriptor".
@@ -159,11 +209,17 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 errorMessage (	;
 value (2,.org.bimserver.pb.SWebModulePluginDescriptor".
 GetAllWebModulesRequest
-onlyEnabled ("S
-SWebModulePluginConfiguration
-serverSettingsId (
-rid (
-oid ("p
+onlyEnabled ("·
+SWebModulePluginConfiguration
+description (	
+enabled (
+name (	
+oid (
+pluginDescriptorId (
+rid (
+serverSettingsId (
+
+settingsId ("p
 GetAllWebModulesResponse
 errorMessage (	>
 value (2/.org.bimserver.pb.SWebModulePluginConfiguration"
@@ -242,14 +298,14 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 SPrimitiveDefinition.
 type (2 .org.bimserver.pb.SPrimitiveEnum"ò
 STypeDefinition
-__actual_type (	@
-__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition>
-__SArrayDefinition (2".org.bimserver.pb.SArrayDefinitionF
+__actual_type (	>
+__SArrayDefinition (2".org.bimserver.pb.SArrayDefinition@
+__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinitionF
 __SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition"”
-SParameterDefinition
-description (	
-name (	
-defaultValueId (
+SParameterDefinition
+defaultValueId (
+description (	
+name (	
 required (/
 type (2!.org.bimserver.pb.STypeDefinition"O
 SObjectDefinition:
@@ -259,60 +315,60 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 errorMessage (	2
 value (2#.org.bimserver.pb.SObjectDefinition"(
 GetPluginSettingsRequest
-poid ("6
+poid ("O
+
+SArrayType
+oid (
+rid ('
+values (2.org.bimserver.pb.SType"7
+SBooleanType
+oid (
+rid (
+value ("9
+SByteArrayType
+oid (
+rid (
+value ("6
 SDoubleType
-rid (
-oid (
+oid (
+rid (
 value ("4
 	SLongType
-rid (
-oid (
-value ("7
-SBooleanType
-rid (
-oid (
-value ("6
+oid (
+rid (
+value ("6
 SStringType
-rid (
-oid (
-value (	"9
-SByteArrayType
-rid (
-oid (
-value ("Ó
+oid (
+rid (
+value (	"Ó
 SPrimitiveType
-__actual_type (	4
-__SDoubleType (2.org.bimserver.pb.SDoubleType0
-__SLongType (2.org.bimserver.pb.SLongType6
-__SBooleanType (2.org.bimserver.pb.SBooleanType4
-__SStringType (2.org.bimserver.pb.SStringType:
-__SByteArrayType (2 .org.bimserver.pb.SByteArrayType
-rid (
-oid ("O
-
-SArrayType'
-values (2.org.bimserver.pb.SType
-rid (
-oid ("Þ
+__actual_type (	6
+__SBooleanType (2.org.bimserver.pb.SBooleanType:
+__SByteArrayType (2 .org.bimserver.pb.SByteArrayType4
+__SDoubleType (2.org.bimserver.pb.SDoubleType0
+__SLongType (2.org.bimserver.pb.SLongType4
+__SStringType (2.org.bimserver.pb.SStringType
+oid (
+rid ("Þ
 SType
-__actual_type (	:
-__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType4
-__SObjectType (2.org.bimserver.pb.SObjectType2
-__SArrayType (2.org.bimserver.pb.SArrayType
-rid (
-oid ("\
+__actual_type (	2
+__SArrayType (2.org.bimserver.pb.SArrayType4
+__SObjectType (2.org.bimserver.pb.SObjectType:
+__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType
+oid (
+rid ("\
 
-SParameter
-rid (
-oid (
-name (	&
+SParameter
+name (	
+oid (
+rid (&
 value (2.org.bimserver.pb.SType"g
-SObjectType
-rid (
-oid (
-name (	0
+SObjectType
+name (	
+oid (0
 
-parameters (2.org.bimserver.pb.SParameter"_
+parameters (2.org.bimserver.pb.SParameter
+rid ("_
 GetPluginSettingsResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SObjectType")

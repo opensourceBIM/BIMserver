@@ -107,31 +107,31 @@ enum SSmtpProtocol{
 }
 
 message SServerSettings {
-	optional int32 smtpPort = 1;
-	optional string smtpUsername = 2;
-	optional bool sendConfirmationEmailAfterRegistration = 3;
-	optional int32 sessionTimeOutSeconds = 4;
-	optional bool generateGeometryOnCheckin = 5;
-	optional bool allowOnlyWhitelisted = 6;
-	optional int32 protocolBuffersPort = 7;
-	optional bool sendEmailOnNewRevision = 8;
-	optional string siteAddress = 9;
-	optional bool allowUsersToCreateTopLevelProjects = 10;
-	optional string serviceRepositoryUrl = 11;
-	repeated int64 webModules = 12;
-	optional string smtpPassword = 13;
-	optional string smtpServer = 14;
-	optional int32 rid = 15;
-	optional bool allowSelfRegistration = 16;
-	repeated string whitelistedDomains = 17;
-	optional bool cacheOutputFiles = 18;
-	optional int64 oid = 19;
-	optional string emailSenderAddress = 20;
-	optional bool hideUserListForNonAdmin = 21;
-	optional SSmtpProtocol smtpProtocol = 22;
-	optional string emailSenderName = 23;
-	optional int64 webModuleId = 24;
-	optional bool checkinMergingEnabled = 25;
+	optional bool allowOnlyWhitelisted = 1;
+	optional bool allowSelfRegistration = 2;
+	optional bool allowUsersToCreateTopLevelProjects = 3;
+	optional bool cacheOutputFiles = 4;
+	optional bool checkinMergingEnabled = 5;
+	optional string emailSenderAddress = 6;
+	optional string emailSenderName = 7;
+	optional bool generateGeometryOnCheckin = 8;
+	optional bool hideUserListForNonAdmin = 9;
+	optional int64 oid = 10;
+	optional int32 protocolBuffersPort = 11;
+	optional int32 rid = 12;
+	optional bool sendConfirmationEmailAfterRegistration = 13;
+	optional bool sendEmailOnNewRevision = 14;
+	optional string serviceRepositoryUrl = 15;
+	optional int32 sessionTimeOutSeconds = 16;
+	optional string siteAddress = 17;
+	optional string smtpPassword = 18;
+	optional int32 smtpPort = 19;
+	optional SSmtpProtocol smtpProtocol = 20;
+	optional string smtpServer = 21;
+	optional string smtpUsername = 22;
+	optional int64 webModuleId = 23;
+	repeated int64 webModules = 24;
+	repeated string whitelistedDomains = 25;
 }
 
 message GetServerSettingsResponse {

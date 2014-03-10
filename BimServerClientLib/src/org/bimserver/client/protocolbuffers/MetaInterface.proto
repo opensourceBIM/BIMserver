@@ -65,9 +65,9 @@ message GetServiceInterfaceRequest {
 }
 
 message SServiceInterface {
-	optional string simpleName = 1;
+	optional string name = 1;
 	optional string nameSpace = 2;
-	optional string name = 3;
+	optional string simpleName = 3;
 }
 
 message GetServiceInterfaceResponse {
@@ -89,8 +89,8 @@ message GetServiceMethodRequest {
 }
 
 message SServiceMethod {
-	optional string name = 1;
-	optional string doc = 2;
+	optional string doc = 1;
+	optional string name = 2;
 	optional string returnDoc = 3;
 }
 
@@ -102,6 +102,13 @@ message GetServiceMethodResponse {
 message GetServiceMethodParametersRequest {
 	optional string serviceInterfaceName = 1;
 	optional string serviceMethodName = 2;
+}
+
+message SServiceField {
+	optional string doc = 1;
+	optional SServiceType genericType = 2;
+	optional string name = 3;
+	optional SServiceType type = 4;
 }
 
 enum SServiceSimpleType{
@@ -122,26 +129,19 @@ enum SServiceSimpleType{
 	SServiceSimpleType_UNKNOWN = 14;
 }
 
-message SServiceField {
-	optional SServiceType genericType = 1;
-	optional string name = 2;
-	optional string doc = 3;
-	optional SServiceType type = 4;
-}
-
 message SServiceType {
-	optional string simpleName = 1;
-	optional int32 rid = 2;
+	repeated SServiceField fields = 1;
+	optional string name = 2;
 	optional int64 oid = 3;
-	optional string name = 4;
-	optional SServiceSimpleType simpleType = 5;
-	repeated SServiceField fields = 6;
+	optional int32 rid = 4;
+	optional string simpleName = 5;
+	optional SServiceSimpleType simpleType = 6;
 }
 
 message SServiceParameter {
-	optional SServiceType genericType = 1;
-	optional string name = 2;
-	optional string doc = 3;
+	optional string doc = 1;
+	optional SServiceType genericType = 2;
+	optional string name = 3;
 	optional SServiceType type = 4;
 }
 

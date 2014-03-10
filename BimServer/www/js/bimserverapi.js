@@ -49,7 +49,8 @@ function BimServerApi(baseUrl, notifier) {
 		UNDELETEPROJECT_DONE: "Project successfully undeleted",
 		DELETEPROJECT_DONE: "Project successfully deleted",
 		ADDPROJECT_DONE: "Project successfully added",
-		DOWNLOAD_BUSY: "Busy downloading..."
+		DOWNLOAD_BUSY: "Busy downloading...",
+		VALIDATEACCOUNT_DONE: "Account successfully validated, you can now login"
 	}
 
 	othis.token = null;
@@ -396,7 +397,7 @@ function BimServerApi(baseUrl, notifier) {
 	this.multiCall = function(requests, callback, errorCallback, showBusy, showDone, showError) {
 		var request = null;
 		if (requests.length == 1) {
-			var request = requests[0];
+			request = requests[0];
 			if (othis.interfaceMapping[request[0]] == null) {
 				othis.log("Interface " + request[0] + " not found");
 			}
@@ -409,6 +410,8 @@ function BimServerApi(baseUrl, notifier) {
 			request = {
 				requests: requestObjects
 			};
+		} else if (requests.length == 0) {
+			callback();
 		}
 
 //		othis.notifier.clear();
@@ -1304,7 +1307,13 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 
 	this._send = function(message) {
 		if (this._ws) {
-			this._ws.send(message);
+			if (this._ws.readyState == 1) {
+				this._ws.send(message);
+			} else if (this._ws.readyState == 0) {
+				console.log("Discarded message because connecting");
+			} else {
+				console.log(this._ws.readyState);
+			}
 		}
 	};
 

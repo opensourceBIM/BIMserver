@@ -37,7 +37,7 @@ import org.codehaus.jettison.json.JSONObject;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public class SField {
+public class SField implements Comparable<SField> {
 	private String name;
 	private final SClass type;
 	private final boolean aggregate;
@@ -96,6 +96,7 @@ public class SField {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -113,6 +114,16 @@ public class SField {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(SField o) {
+		return name.compareTo(o.getName());
 	}
 }

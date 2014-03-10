@@ -23,13 +23,13 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import javax.activation.DataHandler;
 
@@ -40,16 +40,17 @@ import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SClass {
+public class SClass implements Comparable<SClass> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SClass.class);
-	private final Map<String, SField> fields = new HashMap<String, SField>();
+	private final Map<String, SField> ownFields = new TreeMap<String, SField>();
+	private final Map<String, SField> allFields = new TreeMap<String, SField>();
 	private final String name;
 	private final Class<?> instanceClass;
 	private final SService sService;
+	private final Set<SClass> subClasses = new TreeSet<SClass>();
+	private final SConstructor sConstructor;
+	private final SimpleType simpleType;
 	private SClass superClass;
-	private Set<SClass> subClasses = new HashSet<SClass>();
-	private SConstructor sConstructor;
-	private SimpleType simpleType;
 	
 	public SClass(SService sService, Class<?> instanceClass, SConstructor sConstructor) {
 		this.sConstructor = sConstructor;
@@ -120,9 +121,12 @@ public class SClass {
 
 	private void addSuperClass(SClass sType) {
 		superClass = sType;
+		for (SField field : superClass.getOwnFields()) {
+			allFields.put(field.getName(), field);
+		}
 		sType.addSubClass(this);
 	}
-
+	
 	private void addSubClass(SClass sClass) {
 		subClasses.add(sClass);
 	}
@@ -144,7 +148,8 @@ public class SClass {
 	}
 
 	public void addField(SField sField) {
-		fields.put(sField.getName(), sField);
+		ownFields.put(sField.getName(), sField);
+		allFields.put(sField.getName(), sField);
 	}
 	
 	public String getName() {
@@ -160,31 +165,19 @@ public class SClass {
 	}
 	
 	public SField getField(String name) {
-		SField sField = fields.get(name);
-		if (sField != null) {
-			return sField;
-		}
-		if (superClass != null) {
-			return superClass.getField(name);
-		}
-		return null;
+		return allFields.get(name);
 	}
 
 	public Class<?> getInstanceClass() {
 		return instanceClass;
 	}
 	
-	public Set<SField> getFields() {
-		return new LinkedHashSet<SField>(fields.values());
+	public Collection<SField> getOwnFields() {
+		return ownFields.values();
 	}
-	
-	public Set<SField> getAllFields() {
-		// TODO this is sloooow
-		Set<SField> fields = new LinkedHashSet<SField>(getFields());
-		if (getSuperClass() != null) {
-			fields.addAll(getSuperClass().getAllFields());
-		}
-		return fields;
+
+	public Collection<SField> getAllFields() {
+		return allFields.values();
 	}
 	
 	public SBase newInstance() {
@@ -258,7 +251,7 @@ public class SClass {
 	
 	@Override
 	public String toString() {
-		return name;
+		return sService.getName() + "." + name;
 	}
 	
 	public String toJavaCode() {
@@ -309,10 +302,40 @@ public class SClass {
 		result.put("simpleName", getSimpleName());
 		result.put("simpleType", getSimpleType().name());
 		JSONArray fieldsJson = new JSONArray();
-		for (SField field : fields.values()) {
+		for (SField field : ownFields.values()) {
 			fieldsJson.put(field.toJson());
 		}
 		result.put("fields", fieldsJson);
 		return result;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((instanceClass == null) ? 0 : instanceClass.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SClass other = (SClass) obj;
+		if (instanceClass == null) {
+			if (other.instanceClass != null)
+				return false;
+		} else if (!instanceClass.equals(other.instanceClass))
+			return false;
+		return true;
+	}
+
+	@Override
+	public int compareTo(SClass arg0) {
+		return name.compareTo(arg0.getName());
 	}
 }
