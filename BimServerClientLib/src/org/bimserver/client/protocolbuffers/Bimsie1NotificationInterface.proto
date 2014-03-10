@@ -116,17 +116,17 @@ enum SActionState{
 }
 
 message SLongActionState {
-	optional int32 progress = 1;
-	optional string title = 2;
+	optional int64 end = 1;
+	repeated string errors = 2;
 	repeated string infos = 3;
-	repeated string errors = 4;
-	optional int64 start = 5;
+	optional int64 oid = 4;
+	optional int32 progress = 5;
 	optional int32 rid = 6;
-	optional int64 oid = 7;
-	optional SActionState state = 8;
-	optional int32 stage = 9;
-	repeated string warnings = 10;
-	optional int64 end = 11;
+	optional int32 stage = 7;
+	optional int64 start = 8;
+	optional SActionState state = 9;
+	optional string title = 10;
+	repeated string warnings = 11;
 }
 
 message ProgressRequest {

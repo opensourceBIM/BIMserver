@@ -211,13 +211,13 @@ public class JsonApiServlet extends SubServlet {
 			}
 			writer.println('{');
 			writer.println("  __type: \"" + sType.getSimpleName() + "\"");
-			for (SField sField : sType.getFields()) {
+			for (SField sField : sType.getAllFields()) {
 				if (sField.isAggregate()) {
 					writer.print("  " + sField.getName() + ": [" + getJsonTypeName(sField.getGenericType()) + "]");
 				} else {
 					writer.print("  " + sField.getName() + ": " + getJsonTypeName(sField.getType()));
 				}
-				if (sField != new ArrayList<SField>(sType.getAllFields()).get(sType.getFields().size() - 1)) {
+				if (sField != new ArrayList<SField>(sType.getOwnFields()).get(sType.getAllFields().size() - 1)) {
 					writer.println(", ");
 				} else {
 					writer.println();

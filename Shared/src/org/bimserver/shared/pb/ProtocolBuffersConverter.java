@@ -161,7 +161,7 @@ public class ProtocolBuffersConverter {
 			builder.setField(messageDescriptor.getField("__actual_type"), sClass.getSimpleName());
 			builder.setField(messageDescriptor.getField("__" + sClass.getSimpleName()), convertSObjectToProtocolBuffersObject(object, sClass));
 		}
-		for (SField field : definedType.getFields()) {
+		for (SField field : definedType.getAllFields()) {
 			try {
 				Object value = object.sGet(field);
 				FieldDescriptor fieldDescriptor = messageDescriptor.getField(field.getName());

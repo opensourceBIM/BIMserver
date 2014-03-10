@@ -183,9 +183,14 @@ service PluginInterface {
 }
 
 message SDeserializerPluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
+	optional int64 oid = 4;
+	optional int64 pluginDescriptorId = 5;
+	optional int32 rid = 6;
+	optional int64 settingsId = 7;
+	optional int64 userSettingsId = 8;
 }
 
 message AddDeserializerRequest {
@@ -193,11 +198,16 @@ message AddDeserializerRequest {
 }
 
 message SInternalServicePluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional bool publicProfile = 2;
-	optional int32 rid = 3;
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
 	optional int64 oid = 4;
-	optional bool remoteAccessible = 5;
+	optional int64 pluginDescriptorId = 5;
+	optional bool publicProfile = 6;
+	optional bool remoteAccessible = 7;
+	optional int32 rid = 8;
+	optional int64 settingsId = 9;
+	optional int64 userSettingsId = 10;
 }
 
 message AddInternalServiceRequest {
@@ -205,9 +215,14 @@ message AddInternalServiceRequest {
 }
 
 message SModelComparePluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
+	optional int64 oid = 4;
+	optional int64 pluginDescriptorId = 5;
+	optional int32 rid = 6;
+	optional int64 settingsId = 7;
+	optional int64 userSettingsId = 8;
 }
 
 message AddModelCompareRequest {
@@ -215,9 +230,14 @@ message AddModelCompareRequest {
 }
 
 message SModelMergerPluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
+	optional int64 oid = 4;
+	optional int64 pluginDescriptorId = 5;
+	optional int32 rid = 6;
+	optional int64 settingsId = 7;
+	optional int64 userSettingsId = 8;
 }
 
 message AddModelMergerRequest {
@@ -225,10 +245,15 @@ message AddModelMergerRequest {
 }
 
 message SObjectIDMPluginConfiguration {
-	optional int64 userSettingsId = 1;
-	repeated int64 serializers = 2;
-	optional int32 rid = 3;
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
 	optional int64 oid = 4;
+	optional int64 pluginDescriptorId = 5;
+	optional int32 rid = 6;
+	repeated int64 serializers = 7;
+	optional int64 settingsId = 8;
+	optional int64 userSettingsId = 9;
 }
 
 message AddObjectIDMRequest {
@@ -236,9 +261,14 @@ message AddObjectIDMRequest {
 }
 
 message SQueryEnginePluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
+	optional int64 oid = 4;
+	optional int64 pluginDescriptorId = 5;
+	optional int32 rid = 6;
+	optional int64 settingsId = 7;
+	optional int64 userSettingsId = 8;
 }
 
 message AddQueryEngineRequest {
@@ -246,10 +276,15 @@ message AddQueryEngineRequest {
 }
 
 message SRenderEnginePluginConfiguration {
-	optional int64 userSettingsId = 1;
-	repeated int64 serializers = 2;
-	optional int32 rid = 3;
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
 	optional int64 oid = 4;
+	optional int64 pluginDescriptorId = 5;
+	optional int32 rid = 6;
+	repeated int64 serializers = 7;
+	optional int64 settingsId = 8;
+	optional int64 userSettingsId = 9;
 }
 
 message AddRenderEngineRequest {
@@ -257,11 +292,16 @@ message AddRenderEngineRequest {
 }
 
 message SSerializerPluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
 	optional int64 objectIDMId = 4;
-	optional int64 renderEngineId = 5;
+	optional int64 oid = 5;
+	optional int64 pluginDescriptorId = 6;
+	optional int64 renderEngineId = 7;
+	optional int32 rid = 8;
+	optional int64 settingsId = 9;
+	optional int64 userSettingsId = 10;
 }
 
 message AddSerializerRequest {
@@ -376,9 +416,9 @@ message GetAllObjectIDMPluginDescriptorsRequest {
 }
 
 message SObjectIDMPluginDescriptor {
-	optional int32 rid = 1;
+	optional string className = 1;
 	optional int64 oid = 2;
-	optional string className = 3;
+	optional int32 rid = 3;
 }
 
 message GetAllObjectIDMPluginDescriptorsResponse {
@@ -467,9 +507,14 @@ message GetAllWebModulesRequest {
 }
 
 message SWebModulePluginConfiguration {
-	optional int64 serverSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
+	optional int64 oid = 4;
+	optional int64 pluginDescriptorId = 5;
+	optional int32 rid = 6;
+	optional int64 serverSettingsId = 7;
+	optional int64 settingsId = 8;
 }
 
 message GetAllWebModulesResponse {
@@ -627,15 +672,15 @@ message SPrimitiveDefinition {
 
 message STypeDefinition {
 	required string __actual_type = 1;
-	optional SObjectDefinition __SObjectDefinition = 2;
-	optional SArrayDefinition __SArrayDefinition = 3;
+	optional SArrayDefinition __SArrayDefinition = 2;
+	optional SObjectDefinition __SObjectDefinition = 3;
 	optional SPrimitiveDefinition __SPrimitiveDefinition = 4;
 }
 
 message SParameterDefinition {
-	optional string description = 1;
-	optional string name = 2;
-	optional int64 defaultValueId = 3;
+	optional int64 defaultValueId = 1;
+	optional string description = 2;
+	optional string name = 3;
 	optional bool required = 4;
 	optional STypeDefinition type = 5;
 }
@@ -653,74 +698,74 @@ message GetPluginSettingsRequest {
 	optional int64 poid = 1;
 }
 
+message SArrayType {
+	optional int64 oid = 1;
+	optional int32 rid = 2;
+	repeated SType values = 3;
+}
+
+message SBooleanType {
+	optional int64 oid = 1;
+	optional int32 rid = 2;
+	optional bool value = 3;
+}
+
+message SByteArrayType {
+	optional int64 oid = 1;
+	optional int32 rid = 2;
+	optional bytes value = 3;
+}
+
 message SDoubleType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
+	optional int64 oid = 1;
+	optional int32 rid = 2;
 	optional double value = 3;
 }
 
 message SLongType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
+	optional int64 oid = 1;
+	optional int32 rid = 2;
 	optional int64 value = 3;
 }
 
-message SBooleanType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional bool value = 3;
-}
-
 message SStringType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
+	optional int64 oid = 1;
+	optional int32 rid = 2;
 	optional string value = 3;
-}
-
-message SByteArrayType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional bytes value = 3;
 }
 
 message SPrimitiveType {
 	required string __actual_type = 1;
-	optional SDoubleType __SDoubleType = 2;
-	optional SLongType __SLongType = 3;
-	optional SBooleanType __SBooleanType = 4;
-	optional SStringType __SStringType = 5;
-	optional SByteArrayType __SByteArrayType = 6;
-	optional int32 rid = 7;
-	optional int64 oid = 8;
-}
-
-message SArrayType {
-	repeated SType values = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
+	optional SBooleanType __SBooleanType = 2;
+	optional SByteArrayType __SByteArrayType = 3;
+	optional SDoubleType __SDoubleType = 4;
+	optional SLongType __SLongType = 5;
+	optional SStringType __SStringType = 6;
+	optional int64 oid = 7;
+	optional int32 rid = 8;
 }
 
 message SType {
 	required string __actual_type = 1;
-	optional SPrimitiveType __SPrimitiveType = 2;
+	optional SArrayType __SArrayType = 2;
 	optional SObjectType __SObjectType = 3;
-	optional SArrayType __SArrayType = 4;
-	optional int32 rid = 5;
-	optional int64 oid = 6;
+	optional SPrimitiveType __SPrimitiveType = 4;
+	optional int64 oid = 5;
+	optional int32 rid = 6;
 }
 
 message SParameter {
-	optional int32 rid = 1;
+	optional string name = 1;
 	optional int64 oid = 2;
-	optional string name = 3;
+	optional int32 rid = 3;
 	optional SType value = 4;
 }
 
 message SObjectType {
-	optional int32 rid = 1;
+	optional string name = 1;
 	optional int64 oid = 2;
-	optional string name = 3;
-	repeated SParameter parameters = 4;
+	repeated SParameter parameters = 3;
+	optional int32 rid = 4;
 }
 
 message GetPluginSettingsResponse {

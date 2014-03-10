@@ -125,7 +125,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 		sServiceType.setName(sClass.getName());
 		sServiceType.setSimpleName(sClass.getSimpleName());
 		sServiceType.setSimpleType(SServiceSimpleType.valueOf(sClass.getSimpleType().name()));
-		for (SField field : sClass.getAllFields()) {
+		for (SField field : sClass.getOwnFields()) {
 			SServiceField sServiceField = new SServiceField();
 			sServiceField.setName(field.getName());
 			sServiceField.setType(createSServiceType(field.getType()));

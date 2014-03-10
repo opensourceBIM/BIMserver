@@ -1,5 +1,5 @@
 
-¢N
+ÙN
 Bimsie1ServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"g
  AddExtendedDataToRevisionRequest
 roid (5
@@ -139,19 +139,23 @@ onlyActive ("Y
 errorMessage (	A
 value (22.org.bimserver.pb.SDeserializerPluginConfiguration"*
 GetDownloadDataRequest
-actionId ("+
-SCheckoutResult
-rid (
-oid ("·
+actionId ("b
+SCheckoutResult
+file (
+oid (
+projectName (	
+
+revisionNr (
+rid ("·
 SDownloadResult
 __actual_type (	<
-__SCheckoutResult (2!.org.bimserver.pb.SCheckoutResult
-rid (
-oid (
-file (
+__SCheckoutResult (2!.org.bimserver.pb.SCheckoutResult
+file (
+oid (
+projectName (	
 
-revisionNr (
-projectName (	"a
+revisionNr (
+rid ("a
 GetDownloadDataResponse
 errorMessage (	0
 value (2!.org.bimserver.pb.SDownloadResult"%

@@ -33,6 +33,7 @@ import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.meta.SBase;
@@ -63,7 +64,15 @@ public class JsonConverter {
 			out.beginObject();
 			out.name("__type");
 			out.value(base.getSClass().getSimpleName());
-			for (SField field : base.getSClass().getAllFields()) {
+			
+			Collection<SField> allFields = base.getSClass().getAllFields();
+			
+			if (object instanceof SProject) {
+				System.out.println(base.getSClass());
+				System.out.println(allFields.size());
+			}
+			
+			for (SField field : allFields) {
 				out.name(field.getName());
 				toJson(base.sGet(field), out);
 			}
@@ -112,7 +121,7 @@ public class JsonConverter {
 			SBase base = (SBase) object;
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.add("__type", new JsonPrimitive(base.getSClass().getSimpleName()));
-			for (SField field : base.getSClass().getAllFields()) {
+			for (SField field : base.getSClass().getOwnFields()) {
 				jsonObject.add(field.getName(), toJson(base.sGet(field)));
 			}
 			return jsonObject;
@@ -160,7 +169,7 @@ public class JsonConverter {
 					String type = jsonObject.get("__type").getAsString();
 					SClass sClass = servicesMap.getType(type);
 					SBase newObject = sClass.newInstance();
-					for (SField field : newObject.getSClass().getAllFields()) {
+					for (SField field : newObject.getSClass().getOwnFields()) {
 						if (jsonObject.has(field.getName())) {
 							newObject.sSet(field, fromJson(field.getType(), field.getGenericType(), jsonObject.get(field.getName())));
 						}

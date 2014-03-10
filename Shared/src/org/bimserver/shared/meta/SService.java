@@ -53,8 +53,6 @@ public class SService {
 	private final Map<String, SClass> types = new TreeMap<String, SClass>();
 	private final String fullName;
 	private final Class<? extends PublicInterface> interfaceClass;
-
-	// Disabled for now, makes the deployed JAR stop at this point
 	private boolean processJavaDoc = true;
 	private List<SService> others;
 	private SServicesMap servicesMap;
@@ -298,7 +296,7 @@ public class SService {
 		}
 		for (SClass type : getTypes()) {
 			System.out.println(type.getName());
-			for (SField sField : type.getFields()) {
+			for (SField sField : type.getAllFields()) {
 				SClass type2 = sField.getType();
 				if (type2 == null) {
 					System.err.println("type for " + sField.getName() + " = null");

@@ -465,7 +465,8 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			GetProjectByPoidDatabaseAction action = new GetProjectByPoidDatabaseAction(session, getInternalAccessMethod(), poid, getAuthorization());
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
+			SProject result = getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
+			return result;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

@@ -322,18 +322,21 @@ message GetDownloadDataRequest {
 }
 
 message SCheckoutResult {
-	optional int32 rid = 1;
+	optional bytes file = 1;
 	optional int64 oid = 2;
+	optional string projectName = 3;
+	optional int32 revisionNr = 4;
+	optional int32 rid = 5;
 }
 
 message SDownloadResult {
 	required string __actual_type = 1;
 	optional SCheckoutResult __SCheckoutResult = 2;
-	optional int32 rid = 3;
+	optional bytes file = 3;
 	optional int64 oid = 4;
-	optional bytes file = 5;
+	optional string projectName = 5;
 	optional int32 revisionNr = 6;
-	optional string projectName = 7;
+	optional int32 rid = 7;
 }
 
 message GetDownloadDataResponse {

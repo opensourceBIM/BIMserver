@@ -85,72 +85,144 @@ message EnablePluginRequest {
 message GetAllPluginsRequest {
 }
 
-message SModelMergerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
+message SDeserializerPluginDescriptor {
+	repeated int64 configurations = 1;
+	optional string defaultName = 2;
+	optional string description = 3;
+	optional bool enabled = 4;
+	optional string location = 5;
+	optional int64 oid = 6;
+	optional string pluginClassName = 7;
+	optional string pluginInterfaceClassName = 8;
+	optional int32 rid = 9;
+	optional string simpleName = 10;
 }
 
 message SModelCheckerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SQueryEnginePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SSerializerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SWebModulePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SServicePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
+	repeated int64 configurations = 1;
+	optional string defaultName = 2;
+	optional string description = 3;
+	optional bool enabled = 4;
+	optional string location = 5;
+	optional int64 oid = 6;
+	optional string pluginClassName = 7;
+	optional string pluginInterfaceClassName = 8;
+	optional int32 rid = 9;
+	optional string simpleName = 10;
 }
 
 message SModelComparePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
+	repeated int64 configurations = 1;
+	optional string defaultName = 2;
+	optional string description = 3;
+	optional bool enabled = 4;
+	optional string location = 5;
+	optional int64 oid = 6;
+	optional string pluginClassName = 7;
+	optional string pluginInterfaceClassName = 8;
+	optional int32 rid = 9;
+	optional string simpleName = 10;
 }
 
-message SDeserializerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
+message SModelMergerPluginDescriptor {
+	repeated int64 configurations = 1;
+	optional string defaultName = 2;
+	optional string description = 3;
+	optional bool enabled = 4;
+	optional string location = 5;
+	optional int64 oid = 6;
+	optional string pluginClassName = 7;
+	optional string pluginInterfaceClassName = 8;
+	optional int32 rid = 9;
+	optional string simpleName = 10;
+}
+
+message SQueryEnginePluginDescriptor {
+	repeated int64 configurations = 1;
+	optional string defaultName = 2;
+	optional string description = 3;
+	optional bool enabled = 4;
+	optional string location = 5;
+	optional int64 oid = 6;
+	optional string pluginClassName = 7;
+	optional string pluginInterfaceClassName = 8;
+	optional int32 rid = 9;
+	optional string simpleName = 10;
 }
 
 message SRenderEnginePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
+	repeated int64 configurations = 1;
+	optional string defaultName = 2;
+	optional string description = 3;
+	optional bool enabled = 4;
+	optional string location = 5;
+	optional int64 oid = 6;
+	optional string pluginClassName = 7;
+	optional string pluginInterfaceClassName = 8;
+	optional int32 rid = 9;
+	optional string simpleName = 10;
+}
+
+message SSerializerPluginDescriptor {
+	repeated int64 configurations = 1;
+	optional string defaultName = 2;
+	optional string description = 3;
+	optional bool enabled = 4;
+	optional string location = 5;
+	optional int64 oid = 6;
+	optional string pluginClassName = 7;
+	optional string pluginInterfaceClassName = 8;
+	optional int32 rid = 9;
+	optional string simpleName = 10;
+}
+
+message SServicePluginDescriptor {
+	repeated int64 configurations = 1;
+	optional string defaultName = 2;
+	optional string description = 3;
+	optional bool enabled = 4;
+	optional string location = 5;
+	optional int64 oid = 6;
+	optional string pluginClassName = 7;
+	optional string pluginInterfaceClassName = 8;
+	optional int32 rid = 9;
+	optional string simpleName = 10;
+}
+
+message SWebModulePluginDescriptor {
+	repeated int64 configurations = 1;
+	optional string defaultName = 2;
+	optional string description = 3;
+	optional bool enabled = 4;
+	optional string location = 5;
+	optional int64 oid = 6;
+	optional string pluginClassName = 7;
+	optional string pluginInterfaceClassName = 8;
+	optional int32 rid = 9;
+	optional string simpleName = 10;
 }
 
 message SPluginDescriptor {
 	required string __actual_type = 1;
-	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 2;
+	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 2;
 	optional SModelCheckerPluginDescriptor __SModelCheckerPluginDescriptor = 3;
-	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 4;
-	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 5;
-	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 6;
-	optional SServicePluginDescriptor __SServicePluginDescriptor = 7;
-	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 8;
-	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 9;
-	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 10;
-	optional string defaultName = 11;
-	optional bool enabled = 12;
-	optional string simpleName = 13;
-	optional string pluginInterfaceClassName = 14;
-	optional int32 rid = 15;
-	optional string location = 16;
-	optional int64 oid = 17;
-	optional string description = 18;
-	repeated int64 configurations = 19;
-	optional string pluginClassName = 20;
+	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 4;
+	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 5;
+	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 6;
+	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 7;
+	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 8;
+	optional SServicePluginDescriptor __SServicePluginDescriptor = 9;
+	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 10;
+	repeated int64 configurations = 11;
+	optional string defaultName = 12;
+	optional string description = 13;
+	optional bool enabled = 14;
+	optional string location = 15;
+	optional int64 oid = 16;
+	optional string pluginClassName = 17;
+	optional string pluginInterfaceClassName = 18;
+	optional int32 rid = 19;
+	optional string simpleName = 20;
 }
 
 message GetAllPluginsResponse {
@@ -162,19 +234,19 @@ message GetBimServerInfoRequest {
 }
 
 message SBimServerInfo {
-	optional int32 users = 1;
-	optional int64 latestDate = 2;
-	optional string latestVersion = 3;
-	optional int32 projects = 4;
-	optional string serverLogUrl = 5;
-	optional int32 rid = 6;
-	optional int64 currentDate = 7;
-	optional int64 oid = 8;
-	optional string currentVersion = 9;
-	optional int64 started = 10;
-	optional int32 revisions = 11;
-	optional int32 schemaVersion = 12;
-	optional int32 checkouts = 13;
+	optional int32 checkouts = 1;
+	optional int64 currentDate = 2;
+	optional string currentVersion = 3;
+	optional int64 latestDate = 4;
+	optional string latestVersion = 5;
+	optional int64 oid = 6;
+	optional int32 projects = 7;
+	optional int32 revisions = 8;
+	optional int32 rid = 9;
+	optional int32 schemaVersion = 10;
+	optional string serverLogUrl = 11;
+	optional int64 started = 12;
+	optional int32 users = 13;
 }
 
 message GetBimServerInfoResponse {
@@ -186,32 +258,32 @@ message GetDatabaseInformationRequest {
 }
 
 message SDatabaseInformationItem {
-	optional int32 rid = 1;
+	optional string key = 1;
 	optional int64 oid = 2;
-	optional string value = 3;
-	optional string key = 4;
+	optional int32 rid = 3;
+	optional string value = 4;
 }
 
 message SDatabaseInformationCategory {
-	optional string title = 1;
-	repeated SDatabaseInformationItem items = 2;
+	repeated SDatabaseInformationItem items = 1;
+	optional int64 oid = 2;
 	optional int32 rid = 3;
-	optional int64 oid = 4;
+	optional string title = 4;
 }
 
 message SDatabaseInformation {
-	optional int64 created = 1;
-	optional int32 numberOfProjects = 2;
-	optional int32 rid = 3;
+	repeated SDatabaseInformationCategory categories = 1;
+	optional int64 created = 2;
+	optional int64 databaseSizeInBytes = 3;
 	optional string location = 4;
-	optional int64 oid = 5;
-	repeated SDatabaseInformationCategory categories = 6;
-	optional int32 numberOfUsers = 7;
-	optional int64 databaseSizeInBytes = 8;
-	optional string type = 9;
-	optional int32 schemaVersion = 10;
-	optional int32 numberOfCheckouts = 11;
-	optional int32 numberOfRevisions = 12;
+	optional int32 numberOfCheckouts = 5;
+	optional int32 numberOfProjects = 6;
+	optional int32 numberOfRevisions = 7;
+	optional int32 numberOfUsers = 8;
+	optional int64 oid = 9;
+	optional int32 rid = 10;
+	optional int32 schemaVersion = 11;
+	optional string type = 12;
 }
 
 message GetDatabaseInformationResponse {
@@ -223,31 +295,31 @@ message GetJavaInfoRequest {
 }
 
 message SJavaInfo {
-	optional string javaFileSeparator = 1;
-	optional string javaspecVersion = 2;
-	optional string javaClassVersion = 3;
-	optional string javaVendor = 4;
-	optional int64 heapFree = 5;
-	optional string javaIoTmp = 6;
-	optional string javaHome = 7;
-	optional string javavmVersion = 8;
-	optional string javaPathSeparator = 9;
-	optional string javaspecVendor = 10;
-	optional string javaLineSeparator = 11;
-	optional int32 threads = 12;
-	optional int32 rid = 13;
-	optional int64 oid = 14;
+	optional int64 heapFree = 1;
+	optional int64 heapMax = 2;
+	optional int64 heapTotal = 3;
+	optional int64 heapUsed = 4;
+	optional string javaClassVersion = 5;
+	repeated string javaClasspath = 6;
+	optional string javaExtdir = 7;
+	optional string javaFileSeparator = 8;
+	optional string javaHome = 9;
+	optional string javaIoTmp = 10;
+	repeated string javaLibrarypath = 11;
+	optional string javaLineSeparator = 12;
+	optional string javaPathSeparator = 13;
+	optional string javaVendor = 14;
 	optional string javaVendorurl = 15;
-	repeated string javaClasspath = 16;
-	optional string javaExtdir = 17;
-	optional int64 heapUsed = 18;
-	optional string javaVersion = 19;
-	optional string javavmVendor = 20;
-	optional string javaspecName = 21;
-	optional string javavmName = 22;
-	optional int64 heapTotal = 23;
-	optional int64 heapMax = 24;
-	repeated string javaLibrarypath = 25;
+	optional string javaVersion = 16;
+	optional string javaspecName = 17;
+	optional string javaspecVendor = 18;
+	optional string javaspecVersion = 19;
+	optional string javavmName = 20;
+	optional string javavmVendor = 21;
+	optional string javavmVersion = 22;
+	optional int64 oid = 23;
+	optional int32 rid = 24;
+	optional int32 threads = 25;
 }
 
 message GetJavaInfoResponse {
@@ -267,15 +339,15 @@ message GetLatestVersionRequest {
 }
 
 message SVersion {
-	optional string supportEmail = 1;
-	optional int32 revision = 2;
-	optional int32 minor = 3;
-	optional int32 rid = 4;
+	optional int64 date = 1;
+	optional string downloadUrl = 2;
+	optional int32 major = 3;
+	optional int32 minor = 4;
 	optional int64 oid = 5;
-	optional string supportUrl = 6;
-	optional string downloadUrl = 7;
-	optional int64 date = 8;
-	optional int32 major = 9;
+	optional int32 revision = 6;
+	optional int32 rid = 7;
+	optional string supportEmail = 8;
+	optional string supportUrl = 9;
 }
 
 message GetLatestVersionResponse {
@@ -295,11 +367,11 @@ message GetMigrationsRequest {
 }
 
 message SMigration {
-	optional bool executed = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-	optional string description = 4;
-	optional int32 number = 5;
+	optional string description = 1;
+	optional bool executed = 2;
+	optional int32 number = 3;
+	optional int64 oid = 4;
+	optional int32 rid = 5;
 }
 
 message GetMigrationsResponse {
@@ -330,8 +402,8 @@ enum SServerState{
 
 message SServerInfo {
 	optional string errorMessage = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
+	optional int64 oid = 2;
+	optional int32 rid = 3;
 	optional SServerState serverState = 4;
 }
 
@@ -360,15 +432,15 @@ message GetSystemInfoRequest {
 }
 
 message SSystemInfo {
-	optional string userDir = 1;
-	optional string osname = 2;
-	optional string userHome = 3;
-	optional int32 rid = 4;
-	optional int64 oid = 5;
-	optional string userName = 6;
-	optional int64 datetime = 7;
-	optional string osversion = 8;
-	optional int32 cpucores = 9;
+	optional int32 cpucores = 1;
+	optional int64 datetime = 2;
+	optional int64 oid = 3;
+	optional string osname = 4;
+	optional string osversion = 5;
+	optional int32 rid = 6;
+	optional string userDir = 7;
+	optional string userHome = 8;
+	optional string userName = 9;
 }
 
 message GetSystemInfoResponse {
