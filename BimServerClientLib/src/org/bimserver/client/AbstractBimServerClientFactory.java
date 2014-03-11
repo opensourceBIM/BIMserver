@@ -17,9 +17,6 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Collections;
-import java.util.List;
-
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.reflector.ReflectorFactoryImpl1;
@@ -52,20 +49,20 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 	public AbstractBimServerClientFactory() {
 		this.servicesMap = new SServicesMap();
 		servicesMap.setReflectorFactory(new ReflectorFactoryImpl1());
-		SService serviceInterface = new SServiceInterfaceService(null, ServiceInterface.class);
+		SService serviceInterface = new SServiceInterfaceService(servicesMap, null, ServiceInterface.class);
 		addService(serviceInterface);
-		List<SService> serviceInterfaceDep = Collections.singletonList(serviceInterface);
-		addService(new SService(null, MetaInterface.class, serviceInterfaceDep));
-		addService(new SService(null, AdminInterface.class, serviceInterfaceDep));
-		addService(new SService(null, AuthInterface.class, serviceInterfaceDep));
-		addService(new SService(null, SettingsInterface.class, serviceInterfaceDep));
-		addService(new SService(null, PluginInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1NotificationInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1RemoteServiceInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1AuthInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1LowLevelInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1NotificationRegistryInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1ServiceInterface.class, serviceInterfaceDep));
+		addService(new SService(servicesMap, null, MetaInterface.class));
+		addService(new SService(servicesMap, null, AdminInterface.class));
+		addService(new SService(servicesMap, null, AuthInterface.class));
+		addService(new SService(servicesMap, null, SettingsInterface.class));
+		addService(new SService(servicesMap, null, PluginInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1NotificationInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1RemoteServiceInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1AuthInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1LowLevelInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1NotificationRegistryInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1ServiceInterface.class));
+		servicesMap.initialize();
 	}
 	
 	@Override

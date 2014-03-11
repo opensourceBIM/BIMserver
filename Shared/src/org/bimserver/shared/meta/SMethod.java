@@ -75,20 +75,20 @@ public class SMethod {
 				LOGGER.warn("Method " + method.getName() + " parameter " + parameterCounter + " has no @WebParam annotation");
 			}
 			Class<?> genericType = getGenericReturnType(parameterCounter);
-			parameters.add(new SParameter(this, service.getSType(parameterType.getName()), genericType == null ? null : service.getSType(genericType.getName()), paramName));
+			parameters.add(new SParameter(this, service.getServicesMap().getSType(parameterType.getName()), genericType == null ? null : service.getServicesMap().getSType(genericType.getName()), paramName));
 			parameterCounter++;			
 		}
-		this.returnType = service.getSType(method.getReturnType().getName());
+		this.returnType = service.getServicesMap().getSType(method.getReturnType().getName());
 		if (method.getReturnType() == List.class || method.getReturnType() == Set.class) {
 			Type genericReturnType = method.getGenericReturnType();
 			ParameterizedType parameterizedType = (ParameterizedType)genericReturnType;
 			Type type = parameterizedType.getActualTypeArguments()[0];
 			if (type instanceof Class) {
-				this.genericReturnType = service.getSType(((Class)type).getName());
+				this.genericReturnType = service.getServicesMap().getSType(((Class)type).getName());
 			} else if (type instanceof GenericArrayTypeImpl) {
 				// Somehow this only happens on Java 6 JVMs
 				GenericArrayTypeImpl genericArrayTypeImpl = (GenericArrayTypeImpl)type;
-				this.genericReturnType = service.getSType(((Class)genericArrayTypeImpl.getGenericComponentType()).getName());
+				this.genericReturnType = service.getServicesMap().getSType(((Class)genericArrayTypeImpl.getGenericComponentType()).getName());
 			}
 		}
  	}

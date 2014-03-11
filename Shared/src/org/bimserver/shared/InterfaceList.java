@@ -23,9 +23,7 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collections;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
@@ -106,25 +104,24 @@ public class InterfaceList {
 	public static SServicesMap createSServicesMap() {
 		SServicesMap servicesMap = new SServicesMap();
 		CodeFetcher sourceCodeFetcher = new CodeFetcher();
-		SService serviceInterface = new SServiceInterfaceService(sourceCodeFetcher, ServiceInterface.class);
+		SService serviceInterface = new SServiceInterfaceService(servicesMap, sourceCodeFetcher, ServiceInterface.class);
 		servicesMap.add(serviceInterface);
-		List<SService> singletonList = Collections.singletonList(serviceInterface);
 		for (Class<? extends PublicInterface> clazz : getInterfaces()) {
 			if (clazz != ServiceInterface.class) {
-				servicesMap.add(new SService(sourceCodeFetcher, clazz, singletonList));
+				servicesMap.add(new SService(servicesMap, sourceCodeFetcher, clazz));
 			}
 		}
+		servicesMap.initialize();
 		return servicesMap;
 	}
 
 	public static SServicesMap createBimsie1SServicesMap() {
 		SServicesMap servicesMap = new SServicesMap();
 		CodeFetcher sourceCodeFetcher = new CodeFetcher();
-		SService serviceInterface = new SServiceInterfaceService(sourceCodeFetcher, ServiceInterface.class);
-		List<SService> singletonList = Collections.singletonList(serviceInterface);
 		for (Class<? extends PublicInterface> clazz : bimsie1Interfaces) {
-			servicesMap.add(new SService(sourceCodeFetcher, clazz, singletonList));
+			servicesMap.add(new SService(servicesMap, sourceCodeFetcher, clazz));
 		}
+		servicesMap.initialize();
 		return servicesMap;
 	}
 

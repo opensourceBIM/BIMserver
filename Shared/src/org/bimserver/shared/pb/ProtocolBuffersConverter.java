@@ -62,7 +62,7 @@ public class ProtocolBuffersConverter {
 			Message subTypeMessage = null;
 			for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 				if (fieldDescriptor.getName().equals("__actual_type")) {
-					sClass = sClass.getsService().getSType((String)message.getField(fieldDescriptor));
+					sClass = sClass.getServicesMap().getSType((String)message.getField(fieldDescriptor));
 					newInstance = sClass.newInstance();
 				} else if (fieldDescriptor.getName().startsWith("__")) {
 					if (fieldDescriptor.getName().substring(2).equals(sClass.getSimpleName())) {
