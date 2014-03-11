@@ -115,7 +115,7 @@ function BimServerApi(baseUrl, notifier) {
 			}
 			othis.notifier.setInfo("Login successful", 2000);
 			othis.resolveUser();
-			callback();
+			othis.server.connect(callback);
 		}, errorCallback);
 	};
 
@@ -174,14 +174,6 @@ function BimServerApi(baseUrl, notifier) {
 		return othis.baseUrl + "/download?token=" + othis.token + "&action=extendeddata&edid=" + edid;
 	};
 
-	this.openWebSocket = function(callback) {
-		if (othis.server.connected) {
-			callback();
-		} else {
-			othis.server.connect(callback);
-		}
-	};
-	
 	this.getSerializerByPluginClassName = function(pluginClassName, callback) {
 		if (othis.serializersByPluginClassName[name] == null) {
 			othis.call("PluginInterface", "getSerializerByPluginClassName", {pluginClassName : pluginClassName}, function(serializer) {
@@ -201,11 +193,9 @@ function BimServerApi(baseUrl, notifier) {
 			othis.listeners[interfaceName][methodName] = [];
 		}
 		othis.listeners[interfaceName][methodName].push(callback);
-		othis.openWebSocket(function(){
-			if (registerCallback != null) {
-				registerCallback();
-			}
-		});
+		if (registerCallback != null) {
+			registerCallback();
+		}
 	};
 
 	this.registerNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
@@ -557,8 +547,9 @@ function BimServerApi(baseUrl, notifier) {
 		othis.call(interfaceName, methodName, data, callback, null, false, true, true);
 	};
 
-	this.setToken = function(token) {
+	this.setToken = function(token, callback) {
 		othis.token = token;
+		othis.server.connect(callback);
 	};
 
 	this.call = function(interfaceName, methodName, data, callback, errorCallback, showBusy, showDone, showError) {
@@ -1289,6 +1280,7 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	this.openCallbacks = [];
 	this.endPointId = null;
 	this.listener = null;
+	this.tosend = [];
 
 	this.connect = function(callback) {
 		othis.openCallbacks.push(callback);
@@ -1303,17 +1295,24 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this._onopen = function() {
+		while (othis.tosend.length > 0 && othis._ws.readyState == 1) {
+			var messageArray = othis.tosend.splice(0, 1);
+			console.log(messageArray[0]);
+			othis._send(messageArray[0]);
+		}
 	};
 
 	this._send = function(message) {
-		if (this._ws) {
-			if (this._ws.readyState == 1) {
-				this._ws.send(message);
-			} else if (this._ws.readyState == 0) {
-				console.log("Discarded message because connecting");
+		if (othis._ws) {
+			if (othis._ws.readyState == 1) {
+				othis._ws.send(message);
+			} else if (othis._ws.readyState == 0) {
+				othis.tosend.push(message);
 			} else {
-				console.log(this._ws.readyState);
+				console.log("Skipping message because of websocket state: " + this._ws.readyState);
 			}
+		} else {
+			othis.tosend.push(message);
 		}
 	};
 
