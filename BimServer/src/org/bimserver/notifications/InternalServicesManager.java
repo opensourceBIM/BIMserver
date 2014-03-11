@@ -23,6 +23,7 @@ import java.util.Map;
 import org.bimserver.BimServer;
 import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
@@ -37,6 +38,7 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
 import org.bimserver.plugins.services.NewExtendedDataOnRevisionHandler;
 import org.bimserver.plugins.services.NewRevisionHandler;
+import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.TokenAuthentication;
@@ -45,6 +47,8 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.Bimsie1RemoteServiceInterfaceAdaptor;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.shared.reflector.FileBasedReflectorFactoryBuilder;
+import org.bimserver.shared.reflector.ReflectorFactory;
 import org.bimserver.webservices.ServiceMap;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
@@ -55,6 +59,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 
 	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
 	private final Map<String, Bimsie1RemoteServiceInterface> internalRemoteServiceInterfaces = new HashMap<String, Bimsie1RemoteServiceInterface>();
+	private final Map<String, BimServerClientFactory> factories = new HashMap<>();
 	private BimServer bimServer;
 
 	private String url;
@@ -145,11 +150,20 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 				final InternalServicePluginConfiguration finalInternalServicePluginConfiguration = internalServicePluginConfiguration;
 				
 				BimServerClientInterface bimServerClient = null;
+				BimServerClientFactory factory = null;
 				if (apiUrl == null) {
-					bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
+					factory = bimServer.getBimServerClientFactory();
 				} else {
-					bimServerClient = new JsonBimServerClientFactory(apiUrl).create(new TokenAuthentication(token));
+					if (factories.containsKey(apiUrl)) {
+						factory = factories.get(apiUrl);
+					} else {
+						FileBasedReflectorFactoryBuilder reflectorBuilder = new FileBasedReflectorFactoryBuilder();
+						ReflectorFactory reflectorFactory = reflectorBuilder.newReflectorFactory();
+						factory = new JsonBimServerClientFactory(apiUrl, bimServer.getServicesMap(), new JsonSocketReflectorFactory(bimServer.getServicesMap()), reflectorFactory);
+						factories.put(apiUrl, factory);
+					}
 				}
+				bimServerClient = factory.create(new TokenAuthentication(token));
 				
 				p.client = bimServerClient;
 				p.settings = settings;
@@ -157,11 +171,11 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 				
 				return p;
 			} catch (BimserverDatabaseException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (ServiceException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (ChannelConnectionException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} finally {
 				session.close();
 			}

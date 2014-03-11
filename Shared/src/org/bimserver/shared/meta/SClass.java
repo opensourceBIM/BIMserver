@@ -118,7 +118,7 @@ public class SClass implements Comparable<SClass> {
 
 	private void addSuperClass(SClass sType) {
 		superClass = sType;
-		for (SField field : superClass.getOwnFields()) {
+		for (SField field : superClass.getAllFields()) {
 			allFields.put(field.getName(), field);
 		}
 		sType.addSubClass(this);
@@ -232,7 +232,7 @@ public class SClass implements Comparable<SClass> {
 	
 	@Override
 	public String toString() {
-		return name;
+		return name + super.toString();
 	}
 	
 	public String toJavaCode() {

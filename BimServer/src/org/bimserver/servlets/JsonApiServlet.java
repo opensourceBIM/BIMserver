@@ -57,21 +57,17 @@ public class JsonApiServlet extends SubServlet {
 		if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
 			return;
 		}
-		handleRequest(request, response, getBimServer());
-	}
-
-	private void handleRequest(HttpServletRequest httpRequest, HttpServletResponse response, BimServer bimServer) {
 		response.setCharacterEncoding("UTF-8");
 		try {
-			ServletInputStream inputStream = httpRequest.getInputStream();
+			ServletInputStream inputStream = request.getInputStream();
 			byte[] bytes = IOUtils.toByteArray(inputStream); // Not streaming here, because we want to be able to show the request-data when it's not valid
 			JsonReader jsonReader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(bytes)));
 			JsonParser parser = new JsonParser();
 			JsonElement parse = parser.parse(jsonReader);
 			if (parse instanceof JsonObject) {
-				JsonObject request = (JsonObject) parse;
+				JsonObject jsonRequest = (JsonObject) parse;
 				response.setHeader("Content-Type", "application/json");
-				bimServer.getJsonHandler().execute(request, httpRequest, response.getWriter());
+				getBimServer().getJsonHandler().execute(jsonRequest, request, response.getWriter());
 			} else {
 				LOGGER.error("Invalid JSON request: " + new String(bytes, Charsets.UTF_8));
 				response.setStatus(500);

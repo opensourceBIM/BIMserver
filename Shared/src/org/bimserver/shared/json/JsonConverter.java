@@ -64,15 +64,7 @@ public class JsonConverter {
 			out.beginObject();
 			out.name("__type");
 			out.value(base.getSClass().getSimpleName());
-			
-			Collection<SField> allFields = base.getSClass().getAllFields();
-			
-			if (object instanceof SProject) {
-				System.out.println(base.getSClass());
-				System.out.println(allFields.size());
-			}
-			
-			for (SField field : allFields) {
+			for (SField field : base.getSClass().getAllFields()) {
 				out.name(field.getName());
 				toJson(base.sGet(field), out);
 			}
@@ -169,7 +161,7 @@ public class JsonConverter {
 					String type = jsonObject.get("__type").getAsString();
 					SClass sClass = servicesMap.getType(type);
 					SBase newObject = sClass.newInstance();
-					for (SField field : newObject.getSClass().getOwnFields()) {
+					for (SField field : newObject.getSClass().getAllFields()) {
 						if (jsonObject.has(field.getName())) {
 							newObject.sSet(field, fromJson(field.getType(), field.getGenericType(), jsonObject.get(field.getName())));
 						}
