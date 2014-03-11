@@ -31,6 +31,7 @@ import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.meta.SourceCodeFetcher;
 import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.tools.generators.AdaptorGeneratorWrapper;
@@ -60,6 +61,7 @@ public class CodeMigrator {
 	private ProtocolBuffersGenerator protocolBuffersGenerator;
 	private List<SService> knownServices = new ArrayList<SService>();
 	private List<String> knownShortNames = new ArrayList<String>();
+	private SServicesMap servicesMap = new SServicesMap();
 
 	public static void main(String[] args) {
 		new CodeMigrator().start();
@@ -97,7 +99,30 @@ public class CodeMigrator {
 		protocolBuffersGenerator = new ProtocolBuffersGenerator();
 
 		for (Class<? extends PublicInterface> clazz : InterfaceList.getInterfaces()) {
-			generateFiles(clazz);
+			SService service = new SService(servicesMap, new SourceCodeFetcher() {
+				@Override
+				public String get(Class<?> clazz) {
+					File javaFile = new File("../Shared/src/" + clazz.getName().replace(".", "/") + ".java");
+					try {
+						return FileUtils.readFileToString(javaFile);
+					} catch (IOException e) {
+						return null;
+					}
+				}
+			} , clazz);
+			servicesMap.add(service);
+		}
+		servicesMap.initialize();
+		for (SService service : servicesMap.list()) {
+			AdaptorGeneratorWrapper adaptorGeneratorWrapper = new AdaptorGeneratorWrapper();
+			adaptorGeneratorWrapper.generate(service.getInterfaceClass(), service);
+			AsyncServiceGeneratorWrapper asyncServiceGeneratorWrapper = new AsyncServiceGeneratorWrapper();
+			asyncServiceGeneratorWrapper.generate(service.getInterfaceClass(), service);
+			File protoFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + service.getInterfaceClass().getSimpleName() + ".proto");
+			File descFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + service.getInterfaceClass().getSimpleName() + ".desc");
+			protocolBuffersGenerator.generate(service.getInterfaceClass(), protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);
+			this.knownServices.add(service);
+			this.knownShortNames.add(service.getInterfaceClass().getSimpleName());
 		}
 
 		SPackageGeneratorWrapper sPackageGeneratorWrapper = new SPackageGeneratorWrapper();
@@ -110,28 +135,5 @@ public class CodeMigrator {
 		
 		LOGGER.info("");
 		LOGGER.info("Migration successfull");
-	}
-
-	private void generateFiles(Class<? extends PublicInterface> interfaceClass) {
-		SService service = new SService(new SourceCodeFetcher() {
-			@Override
-			public String get(Class<?> clazz) {
-				File javaFile = new File("../Shared/src/" + clazz.getName().replace(".", "/") + ".java");
-				try {
-					return FileUtils.readFileToString(javaFile);
-				} catch (IOException e) {
-					return null;
-				}
-			}
-		} , interfaceClass, knownServices);
-		AdaptorGeneratorWrapper adaptorGeneratorWrapper = new AdaptorGeneratorWrapper();
-		adaptorGeneratorWrapper.generate(interfaceClass, service);
-		AsyncServiceGeneratorWrapper asyncServiceGeneratorWrapper = new AsyncServiceGeneratorWrapper();
-		asyncServiceGeneratorWrapper.generate(interfaceClass, service);
-		File protoFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + interfaceClass.getSimpleName() + ".proto");
-		File descFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + interfaceClass.getSimpleName() + ".desc");
-		protocolBuffersGenerator.generate(interfaceClass, protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);
-		this.knownServices.add(service);
-		this.knownShortNames.add(interfaceClass.getSimpleName());
 	}
 }

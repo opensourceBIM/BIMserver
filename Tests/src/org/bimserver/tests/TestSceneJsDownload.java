@@ -36,9 +36,6 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.meta.SService;
-import org.bimserver.shared.meta.SServicesMap;
 
 public class TestSceneJsDownload {
 	public static void main(String[] args) {
@@ -47,9 +44,6 @@ public class TestSceneJsDownload {
 
 	private void start() {
 		try {
-			SServicesMap servicesMap = new SServicesMap();
-			servicesMap.add(new SService(null, ServiceInterface.class));
-			
 			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 			
 			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));

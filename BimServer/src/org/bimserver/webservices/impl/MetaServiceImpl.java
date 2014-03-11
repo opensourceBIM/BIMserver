@@ -94,17 +94,18 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public List<SServiceType> getServiceTypes(String serviceInterfaceName) throws ServerException, UserException {
-		List<SServiceType> sServiceTypes = new ArrayList<SServiceType>();
-		SService serviceInterface = getBimServer().getServicesMap().getByName(serviceInterfaceName);
-		if (serviceInterface == null) {
-			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
-		}
-		for (SClass sType : serviceInterface.getTypes()) {
-			SServiceType sServiceType = new SServiceType();
-			sServiceType.setName(sType.getName());
-			sServiceTypes.add(sServiceType);
-		}
-		return sServiceTypes;
+//		List<SServiceType> sServiceTypes = new ArrayList<SServiceType>();
+//		SService serviceInterface = getBimServer().getServicesMap().getByName(serviceInterfaceName);
+//		if (serviceInterface == null) {
+//			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
+//		}
+//		for (SClass sType : serviceInterface.getTypes()) {
+//			SServiceType sServiceType = new SServiceType();
+//			sServiceType.setName(sType.getName());
+//			sServiceTypes.add(sServiceType);
+//		}
+//		return sServiceTypes;
+		return null;
 	}
 
 	public List<String> getEnumLiterals(String enumName) throws UserException {

@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SReferenceDataValue.class, SListDataValue.class, SSimpleDataValue.class})
+@XmlSeeAlso(value={SSimpleDataValue.class, SListDataValue.class, SReferenceDataValue.class})
 public class SDataValue implements SDataBase
 {
 	private long oid = -1;
