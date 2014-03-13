@@ -22,6 +22,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -217,7 +218,9 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 		if (geometryInfo != null) {
 			GeometryData geometryData = geometryInfo.getData();
 			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
+			verticesBuffer.order(ByteOrder.LITTLE_ENDIAN);
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
+			normalsBuffer.order(ByteOrder.LITTLE_ENDIAN);
 			
 			int totalNrVertexValues = verticesBuffer.capacity() / 4;
 			int maxVertexValues = 49167; // Must be divisible by 9!
