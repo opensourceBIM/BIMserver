@@ -10,6 +10,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
@@ -97,8 +98,12 @@ public class AllTests {
 		
 		bimServer = new BimServer(config);
 		try {
+			// CHANGE THESE TO MATCH YOUR CONFIGURATION
+			File[] pluginDirectories = new File[]{new File("E:\\Git"), new File("E:\\Workspaces\\BIMserver")};
+			
+			
 			// Load plugins
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), null);
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), pluginDirectories);
 
 			// Start it
 			bimServer.start();
