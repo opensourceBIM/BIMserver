@@ -75,7 +75,7 @@ function BimServerApi(baseUrl, notifier) {
 	othis.listeners = {};
 	othis.autoLoginTried = false;
 	othis.serializersByPluginClassName = [];
-	othis.debug = false;
+	othis.debug = true;
 
 	this.init = function(callback) {
 		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.js", function(result){
@@ -84,9 +84,9 @@ function BimServerApi(baseUrl, notifier) {
 		});
 	};
 
-	this.log = function(message){
+	this.log = function(message, message2){
 		if (othis.debug) {
-			console.log(message)
+			console.log(message, message2);
 		}
 	};
 	
@@ -144,7 +144,11 @@ function BimServerApi(baseUrl, notifier) {
 						}
 						listener.apply(null, ar);
 					});
+				} else {
+					console.log("No listeners on interface " + intf + " for method " + message.method);
 				}
+			} else {
+				console.log("No listeners for interface " + intf);
 			}
 		}
 	};
@@ -1295,23 +1299,13 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this._onopen = function() {
-		while (othis.tosend.length > 0 && othis._ws.readyState == 1) {
-			var messageArray = othis.tosend.splice(0, 1);
-			console.log(messageArray[0]);
-			othis._send(messageArray[0]);
-		}
 	};
 
 	this._send = function(message) {
-		if (othis._ws) {
-			if (othis._ws.readyState == 1) {
-				othis._ws.send(message);
-			} else if (othis._ws.readyState == 0) {
-				othis.tosend.push(message);
-			} else {
-				console.log("Skipping message because of websocket state: " + this._ws.readyState);
-			}
+		if (othis._ws && othis.endPointId != null && othis._ws.readyState == 1) {
+			othis._ws.send(message);
 		} else {
+			console.log("Waiting", message);
 			othis.tosend.push(message);
 		}
 	};
@@ -1329,13 +1323,18 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 			var incomingMessage = JSON.parse(message.data);
 			bimServerApi.log("incoming", incomingMessage);
 			if (incomingMessage.welcome != null) {
-				othis.send({"token": bimServerApi.token});
+				othis._ws.send(JSON.stringify({"token": bimServerApi.token}));
 			} else if (incomingMessage.endpointid != null) {
 				othis.endPointId = incomingMessage.endpointid;
 				othis.connected = true;
 				othis.openCallbacks.forEach(function(callback){
 					callback();
 				});
+				while (othis.tosend.length > 0 && othis._ws.readyState == 1) {
+					var messageArray = othis.tosend.splice(0, 1);
+					console.log(messageArray[0]);
+					othis._send(messageArray[0]);
+				}
 				othis.openCallbacks = [];
 			} else {
 				if (incomingMessage.request != null) {

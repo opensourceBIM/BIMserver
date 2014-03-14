@@ -186,4 +186,9 @@ public class Streamer implements EndPoint {
 	public long getUoid() {
 		return uoid;
 	}
+	
+	@Override
+	public String toString() {
+		return "" + endpointid;
+	}
 }
