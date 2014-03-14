@@ -182,12 +182,12 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				}
 			}
 			counter++;
-			if (counter % 10 == 0) {
+			if (counter % 12 == 0) {
 				dataOutputStream.flush();
 			}
 		}
 		dataOutputStream.flush();
-		if (bytesTotal != 0) {
+		if (bytesTotal != 0 && bytesSaved != 0) {
 			System.out.println((100 * bytesSaved / bytesTotal) + "% saved");
 		}
 		long end = System.nanoTime();

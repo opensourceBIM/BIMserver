@@ -78,6 +78,7 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 				System.out.println(longActionState.getState());
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}
