@@ -37,8 +37,10 @@
 		<ant antfile="bimserverlib.build.xml" target="Build ServerLib"/>
 		<copy file="builds/bimserver-lib-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 		
+<!--
 		<ant antfile="source.build.xml" target="Build Source"/>
 		<copy file="builds/bimserver-source-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
+-->
 		
 		<java jar="antlibs/githubrelease.jar" fork="true">
 			<classpath>
