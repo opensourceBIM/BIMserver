@@ -75,7 +75,7 @@ function BimServerApi(baseUrl, notifier) {
 	othis.listeners = {};
 	othis.autoLoginTried = false;
 	othis.serializersByPluginClassName = [];
-	othis.debug = true;
+	othis.debug = false;
 
 	this.init = function(callback) {
 		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.js", function(result){

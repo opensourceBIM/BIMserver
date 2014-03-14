@@ -148,15 +148,16 @@
 				var successFunction = function(address){
 					// We do have an API
 					if ($.cookie("autologin" + window.document.location.port) != null) {
-						Global.bimServerApi.token = $.cookie("autologin" + window.document.location.port);
-						Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
-							$(".indexcontainer").load(Global.baseDir + "main.html", function(){
-								$(".indexStatus").hide();
-								othis.current = new Main(Global.bimServerApi.baseUrl, data.name).show(false);
+						Global.bimServerApi.setToken($.cookie("autologin" + window.document.location.port), function(){
+							Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
+								$(".indexcontainer").load(Global.baseDir + "main.html", function(){
+									$(".indexStatus").hide();
+									othis.current = new Main(Global.bimServerApi.baseUrl, data.name).show(false);
+								});
+							}, function(){
+								$.removeCookie("autologin" + window.document.location.port);
+								notLoggedInFunction(address);
 							});
-						}, function(){
-							$.removeCookie("autologin" + window.document.location.port);
-							notLoggedInFunction(address);
 						});
 					} else {
 						notLoggedInFunction(address);
