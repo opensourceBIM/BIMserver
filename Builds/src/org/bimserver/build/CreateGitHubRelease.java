@@ -46,7 +46,9 @@ public class CreateGitHubRelease {
 		map.put("draft", draft);
 		map.put("prerelease", prerelease);
 		try {
-			JsonObject gitHubResponse = gitHubClient.post("/repos/" + repo + "/" + project + "/releases", map, JsonObject.class);
+			String string = "/repos/" + repo + "/" + project + "/releases";
+			System.out.println(string);
+			JsonObject gitHubResponse = gitHubClient.post(string, map, JsonObject.class);
 			System.out.println(gitHubResponse);
 			String id = gitHubResponse.get("id").getAsString();
 			

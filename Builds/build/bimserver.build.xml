@@ -48,7 +48,9 @@
 		<copy todir="builds/BuildJar/plugins">
 			<fileset dir="builds/pluginlibs" />
 		</copy>
-		
+		<copy todir="builds/BuildJar/plugins">
+			<fileset dir="../prebuildplugins" />
+		</copy>
 		<copy todir="builds/BuildWar/WEB-INF/plugins" failonerror="false">
 			<fileset dir="additionalplugins" />
 		</copy>
@@ -129,7 +131,9 @@
 		<copy todir="builds/BuildWar/WEB-INF/plugins">
 			<fileset dir="builds/pluginlibs" />
 		</copy>
-
+		<copy todir="builds/BuildWar/WEB-INF/plugins">
+			<fileset dir="../prebuildplugins" />
+		</copy>
 		<copy todir="builds/BuildWar/WEB-INF/plugins" failonerror="false">
 			<fileset dir="additionalplugins" />
 		</copy>
