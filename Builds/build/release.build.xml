@@ -16,12 +16,14 @@
 		<mkdir dir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}/javadoc"/>
 		<copy file="README.txt" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 
+<!--
 		<ant antfile="javadoc.build.xml" target="Build JavaDoc"/>
 		<copy file="builds/bimserver-javadoc-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 
 		<copy todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}/javadoc">
 			<fileset dir="builds/bimserver-javadoc-${version}"/>
 		</copy>
+-->
 		
 		<ant antfile="bimserver.build.xml" target="Build War"/>
 		<copy file="builds/bimserver-${version}.war" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
@@ -57,7 +59,7 @@
 			<arg value="BIMserver Release"></arg>
 			<arg value="true"></arg>
 			<arg value="true"></arg>
-			<arg value="/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-${version}.jar;/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-${version}.war;/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-javadoc-${version}.zip;/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-client-lib-${version}.zip;/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-lib-${version}.zip"></arg>			
+			<arg value="/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-${version}.jar;/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-${version}.war;/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-client-lib-${version}.zip;/var/www/BIMserver/${majorversion}.${minorversion}/${version}/bimserver-lib-${version}.zip"></arg>			
 		</java>
 	</target>
 </project>
