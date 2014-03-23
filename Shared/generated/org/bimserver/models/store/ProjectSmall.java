@@ -32,6 +32,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getNrRevisions <em>Nr Revisions</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getNrSubProjects <em>Nr Sub Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#isHasCheckinRights <em>Has Checkin Rights</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#getLastRevisionId <em>Last Revision Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -199,5 +200,31 @@ public interface ProjectSmall extends IdEObject {
 	 * @generated
 	 */
 	void setHasCheckinRights(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Last Revision Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Last Revision Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Last Revision Id</em>' attribute.
+	 * @see #setLastRevisionId(long)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_LastRevisionId()
+	 * @model
+	 * @generated
+	 */
+	long getLastRevisionId();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#getLastRevisionId <em>Last Revision Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Last Revision Id</em>' attribute.
+	 * @see #getLastRevisionId()
+	 * @generated
+	 */
+	void setLastRevisionId(long value);
 
 } // ProjectSmall

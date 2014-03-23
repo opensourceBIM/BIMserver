@@ -164,6 +164,11 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetProjectSmallByPoidCallback {
+		void success(org.bimserver.interfaces.objects.SProjectSmall result);
+		void error(Throwable e);
+	}
+	
 	public interface GetProjectsByNameCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
 		void error(Throwable e);
@@ -534,6 +539,18 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getProjectByPoid(poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getProjectSmallByPoid(final java.lang.Long poid, final GetProjectSmallByPoidCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getProjectSmallByPoid(poid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

@@ -35,6 +35,7 @@ public class SProjectSmall implements SDataBase
 	private int nrRevisions;
 	private int nrSubProjects;
 	private boolean hasCheckinRights;
+	private long lastRevisionId;
 
 	public long getOid() {
 		return this.oid;
@@ -80,6 +81,9 @@ public class SProjectSmall implements SDataBase
 		if (sField.getName().equals("hasCheckinRights")) {
 			return isHasCheckinRights();
 		}
+		if (sField.getName().equals("lastRevisionId")) {
+			return getLastRevisionId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -112,6 +116,10 @@ public class SProjectSmall implements SDataBase
 		}
 		if (sField.getName().equals("hasCheckinRights")) {
 			setHasCheckinRights((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("lastRevisionId")) {
+			setLastRevisionId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -171,6 +179,14 @@ public class SProjectSmall implements SDataBase
 
 	public void setHasCheckinRights(boolean hasCheckinRights) {
 		this.hasCheckinRights = hasCheckinRights;
+	}
+	
+	public long getLastRevisionId() {
+		return lastRevisionId;
+	}
+
+	public void setLastRevisionId(long lastRevisionId) {
+		this.lastRevisionId = lastRevisionId;
 	}
 	
 	@Override
