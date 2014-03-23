@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 public class ProgressTopic extends Topic {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProgressTopic.class);
-	private static final int RATE_LIMIT_NANO_SECONDS = 400000000; // 400ms
+	private static final int RATE_LIMIT_NANO_SECONDS = 200000000; // 400ms
 	private SProgressTopicType type;
 	private String description;
 	private ProgressTopicKey key;
@@ -49,9 +49,9 @@ public class ProgressTopic extends Topic {
 	}
 
 	public synchronized void updateProgress(final LongActionState state) {
+		// Actually we should be keeping track of when we last sent a message to A SPECIFIC ENDPOINT, this way, new endpoints won't receive the message rights away
 		if (lastSent == -1 || System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS || state.getProgress() == 100 || state.getState() == ActionState.FINISHED || state.getState() == ActionState.AS_ERROR) {
 			try {
-				LOGGER.debug("Sending STATE " + state.getProgress());
 				map(new Mapper(){
 					@Override
 					public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {

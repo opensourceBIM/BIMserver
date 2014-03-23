@@ -47,13 +47,11 @@ import org.bimserver.webservices.authorization.Authorization;
 public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
 	private final Set<Long> roids;
-	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private long serializerOid;
 
 	public DownloadProjectsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long serializerOid, Authorization authorization, ObjectIDM objectIDM) {
-		super(databaseSession, accessMethod, authorization);
-		this.bimServer = bimServer;
+		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roids = roids;
 		this.serializerOid = serializerOid;
 		this.objectIDM = objectIDM;
@@ -101,7 +99,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());
 
 					try {
-						checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, revision);
+						checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, revision);
 					} catch (GeometryGeneratingException e) {
 						throw new UserException(e);
 					}
@@ -114,7 +112,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 		}
 		IfcModelInterface ifcModel = new IfcModel();
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

@@ -167,7 +167,7 @@ public class NotificationsManager {
 		return url;
 	}
 
-	public ProgressTopic createProgressTopic(SProgressTopicType type, String description) {
+	public synchronized ProgressTopic createProgressTopic(SProgressTopicType type, String description) {
 		ProgressTopicKey key = new ProgressTopicKey();
 		ProgressTopic topic = new ProgressTopic(key, type, description);
 		progressTopicsById.put(key.getId(), topic);

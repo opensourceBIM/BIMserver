@@ -45,11 +45,9 @@ import org.eclipse.emf.ecore.EObject;
 public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction<List<DataObject>> {
 
 	private final long roid;
-	private final BimServer bimServer;
 
 	public GetDataObjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, long roid, Authorization authorization) {
-		super(databaseSession, accessMethod, authorization);
-		this.bimServer = bimServer;
+		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roid = roid;
 	}
 
@@ -67,7 +65,7 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 		}
 		IfcModelInterface ifcModel = new IfcModel();
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
+			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

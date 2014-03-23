@@ -49,15 +49,13 @@ import org.eclipse.emf.common.util.EList;
 public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
 	private final long roid;
-	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final long ignoreUoid;
 	private long serializerOid;
 
 	public DownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, long serializerOid, Authorization authorization,
 			ObjectIDM objectIDM) {
-		super(databaseSession, accessMethod, authorization);
-		this.bimServer = bimServer;
+		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roid = roid;
 		this.ignoreUoid = ignoreUoid;
 		this.serializerOid = serializerOid;
@@ -113,7 +111,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				getDatabaseSession().getMap(subModel, query);
 				if (serializerPluginConfiguration != null) {
 					try {
-						checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, subRevision, revision);
+						checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, subRevision, revision);
 					} catch (GeometryGeneratingException e) {
 						throw new UserException(e);
 					}
@@ -125,7 +123,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		IfcModelInterface ifcModel = new IfcModel();
 		if (ifcModelSet.size() > 1) {
 			try {
-				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(revision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
+				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(revision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
 			} catch (MergeException e) {
 				throw new UserException(e);
 			}
@@ -133,7 +131,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			ifcModel = ifcModelSet.iterator().next();
 		}
 		if (ifcHeader != null) {
-			ifcModel.getModelMetaData().setIfcHeader(bimServer.getSConverter().convertToSObject(ifcHeader));
+			ifcModel.getModelMetaData().setIfcHeader(getBimServer().getSConverter().convertToSObject(ifcHeader));
 		}
 		ifcModel.getModelMetaData().setName(project.getName() + "." + revision.getId());
 		ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(revision) + 1);

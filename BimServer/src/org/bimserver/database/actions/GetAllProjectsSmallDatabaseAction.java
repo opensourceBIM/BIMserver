@@ -93,6 +93,7 @@ public class GetAllProjectsSmallDatabaseAction extends BimDatabaseAction<List<SP
 		SProjectSmall small = new SProjectSmall();
 		small.setName(project.getName());
 		small.setOid(project.getOid());
+		small.setLastRevisionId(project.getLastRevision() == null ? -1 : project.getLastRevision().getOid());
 		small.setNrRevisions(project.getRevisions().size());
 		small.setNrSubProjects(project.getSubProjects().size());
 		small.setHasCheckinRights(authorization.hasRightsOnProject(user, project));

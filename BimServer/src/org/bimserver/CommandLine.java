@@ -48,6 +48,7 @@ public class CommandLine extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommandLine.class);
 	private final BimServer bimServer;
 	private volatile boolean running;
+	private BufferedReader reader;
 
 	public CommandLine(BimServer bimServer) {
 		this.bimServer = bimServer;
@@ -57,106 +58,106 @@ public class CommandLine extends Thread {
 
 	@Override
 	public void run() {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		reader = new BufferedReader(new InputStreamReader(System.in));
 		running = true;
-		while (running) {
-			try {
-				String line = reader.readLine();
-				if (line == null) {
-					try {
+		try {
+			while (running) {
+				try {
+					String line = reader.readLine();
+					if (line == null) {
 						Thread.sleep(50);
-					} catch (InterruptedException e) {
-						LOGGER.error("", e);
+						continue;
 					}
-					continue;
-				}
-				if (line.equalsIgnoreCase("exit")) {
-					bimServer.stop();
-					return;
-				} else if (line.startsWith("dumpmodel")) {
-					try {
-						long roid = Long.parseLong(line.substring(9).trim());
-						DatabaseSession databaseSession = bimServer.getDatabase().createSession();	
+					if (line.equalsIgnoreCase("exit")) {
+						bimServer.stop();
+						return;
+					} else if (line.startsWith("dumpmodel")) {
 						try {
-							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, roid, -1, -1, new SystemAuthorization(1, TimeUnit.HOURS), null);
-							IfcModelInterface model = downloadDatabaseAction.execute();
-							LOGGER.info("Model size: " + model.size());
-							
-							List<IfcWall> walls = model.getAll(IfcWall.class);
-							List<IfcProject> projects = model.getAll(IfcProject.class);
-							List<IfcSlab> slabs = model.getAll(IfcSlab.class);
-							List<IfcWindow> windows = model.getAll(IfcWindow.class);
-							
-							LOGGER.info("Walls: " + walls.size());
-							LOGGER.info("Windows: " + windows.size());
-							LOGGER.info("Projects: " + projects.size());
-							LOGGER.info("Slabs: " + slabs.size());
-						} catch (UserException e) {
+							long roid = Long.parseLong(line.substring(9).trim());
+							DatabaseSession databaseSession = bimServer.getDatabase().createSession();	
+							try {
+								DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, roid, -1, -1, new SystemAuthorization(1, TimeUnit.HOURS), null);
+								IfcModelInterface model = downloadDatabaseAction.execute();
+								LOGGER.info("Model size: " + model.size());
+								
+								List<IfcWall> walls = model.getAll(IfcWall.class);
+								List<IfcProject> projects = model.getAll(IfcProject.class);
+								List<IfcSlab> slabs = model.getAll(IfcSlab.class);
+								List<IfcWindow> windows = model.getAll(IfcWindow.class);
+								
+								LOGGER.info("Walls: " + walls.size());
+								LOGGER.info("Windows: " + windows.size());
+								LOGGER.info("Projects: " + projects.size());
+								LOGGER.info("Slabs: " + slabs.size());
+							} catch (UserException e) {
+								LOGGER.error("", e);
+							} catch (BimserverLockConflictException e) {
+								LOGGER.error("", e);
+							} catch (BimserverDatabaseException e) {
+								LOGGER.error("", e);
+							} finally {
+								databaseSession.close();
+							}
+						} catch (Exception e) {
 							LOGGER.error("", e);
-						} catch (BimserverLockConflictException e) {
-							LOGGER.error("", e);
-						} catch (BimserverDatabaseException e) {
-							LOGGER.error("", e);
-						} finally {
-							databaseSession.close();
 						}
-					} catch (Exception e) {
-						LOGGER.error("", e);
-					}
-				} else if (line.equalsIgnoreCase("dump")) {
-					LOGGER.info("Dumping all thread's track traces...");
-					LOGGER.info("");
-					Map<Thread, StackTraceElement[]> allStackTraces = Thread.getAllStackTraces();
-					for (Thread t : allStackTraces.keySet()) {
-						LOGGER.info(t.getName());
-						StackTraceElement[] stackTraceElements = allStackTraces.get(t);
-						for (StackTraceElement stackTraceElement : stackTraceElements) {
-							LOGGER.info("\t" + stackTraceElement.getClassName() + ":" + stackTraceElement.getLineNumber() + "."
-									+ stackTraceElement.getMethodName());
-						}
+					} else if (line.equalsIgnoreCase("dump")) {
+						LOGGER.info("Dumping all thread's track traces...");
 						LOGGER.info("");
-					}
-					LOGGER.info("Done printing stack traces");
-					LOGGER.info("");
-					try {
-						Thread.sleep(10000);
-					} catch (InterruptedException e) {
-						LOGGER.error("", e);
-					}
-				} else if (line.equals("migrate")) {
-					try {
-						bimServer.getDatabase().getMigrator().migrate();
-						bimServer.getServerInfoManager().update();
-					} catch (MigrationException e) {
-						LOGGER.error("", e);
-					} catch (InconsistentModelsException e) {
-						LOGGER.error("", e);
-					}
-				} else if (line.equals("clearendpoints")) {
-					bimServer.getEndPointManager().clear();
-				} else if (line.startsWith("showall")) {
-					KeyValueStore keyValueStore = ((Database) bimServer.getDatabase()).getKeyValueStore();
-					Set<String> allTableNames = keyValueStore.getAllTableNames();
-					long total = 0;
-					for (String tableName : allTableNames) {
-						long size = keyValueStore.count(tableName);
-						total += size;
-						if (size != 0) {
-							LOGGER.info(tableName + " " + size);
+						Map<Thread, StackTraceElement[]> allStackTraces = Thread.getAllStackTraces();
+						for (Thread t : allStackTraces.keySet()) {
+							LOGGER.info(t.getName());
+							StackTraceElement[] stackTraceElements = allStackTraces.get(t);
+							for (StackTraceElement stackTraceElement : stackTraceElements) {
+								LOGGER.info("\t" + stackTraceElement.getClassName() + ":" + stackTraceElement.getLineNumber() + "."
+										+ stackTraceElement.getMethodName());
+							}
+							LOGGER.info("");
 						}
+						LOGGER.info("Done printing stack traces");
+						LOGGER.info("");
+						Thread.sleep(10000);
+					} else if (line.equals("migrate")) {
+						try {
+							bimServer.getDatabase().getMigrator().migrate();
+							bimServer.getServerInfoManager().update();
+						} catch (MigrationException e) {
+							LOGGER.error("", e);
+						} catch (InconsistentModelsException e) {
+							LOGGER.error("", e);
+						}
+					} else if (line.equals("clearendpoints")) {
+						bimServer.getEndPointManager().clear();
+					} else if (line.startsWith("showall")) {
+						KeyValueStore keyValueStore = ((Database) bimServer.getDatabase()).getKeyValueStore();
+						Set<String> allTableNames = keyValueStore.getAllTableNames();
+						long total = 0;
+						for (String tableName : allTableNames) {
+							long size = keyValueStore.count(tableName);
+							total += size;
+							if (size != 0) {
+								LOGGER.info(tableName + " " + size);
+							}
+						}
+						LOGGER.info("total: " + total);
+					} else {
+						LOGGER.info("Unknown command");
 					}
-					LOGGER.info("total: " + total);
-				} else {
-					LOGGER.info("Unknown command");
+				} catch (IOException e) {
+					LOGGER.error("", e);
 				}
-			} catch (IOException e) {
-				LOGGER.error("", e);
 			}
+		} catch (InterruptedException e) {
 		}
 	}
 
 	public void shutdown() {
 		running = false;
 		interrupt();
+		try {
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

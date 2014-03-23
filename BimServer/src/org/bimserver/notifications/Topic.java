@@ -45,4 +45,8 @@ public class Topic {
 	public synchronized void unregister(EndPoint endPoint) throws TopicRegisterException {
 		endPoints.remove(endPoint);
 	}
+	
+	public Set<EndPoint> getEndPoints() {
+		return endPoints;
+	}
 }
