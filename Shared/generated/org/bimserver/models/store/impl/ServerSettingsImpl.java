@@ -54,6 +54,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpPassword <em>Smtp Password</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpPort <em>Smtp Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpProtocol <em>Smtp Protocol</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isReuseGeometry <em>Reuse Geometry</em>}</li>
  * </ul>
  * </p>
  *
@@ -542,6 +543,26 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	public void setSmtpProtocol(SmtpProtocol newSmtpProtocol) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PROTOCOL,
 				newSmtpProtocol);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isReuseGeometry() {
+		return (Boolean) eGet(
+				StorePackage.Literals.SERVER_SETTINGS__REUSE_GEOMETRY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReuseGeometry(boolean newReuseGeometry) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__REUSE_GEOMETRY,
+				newReuseGeometry);
 	}
 
 } //ServerSettingsImpl

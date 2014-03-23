@@ -54,6 +54,7 @@ public class SServerSettings implements SDataBase
 	private java.lang.String smtpPassword;
 	private int smtpPort;
 	private SSmtpProtocol smtpProtocol;
+	private boolean reuseGeometry;
 
 	public long getOid() {
 		return this.oid;
@@ -149,6 +150,9 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("smtpProtocol")) {
 			return getSmtpProtocol();
+		}
+		if (sField.getName().equals("reuseGeometry")) {
+			return isReuseGeometry();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -251,6 +255,10 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("smtpProtocol")) {
 			setSmtpProtocol((SSmtpProtocol)val);
+			return;
+		}
+		if (sField.getName().equals("reuseGeometry")) {
+			setReuseGeometry((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -447,6 +455,14 @@ public class SServerSettings implements SDataBase
 
 	public void setSmtpProtocol(SSmtpProtocol smtpProtocol) {
 		this.smtpProtocol = smtpProtocol;
+	}
+	
+	public boolean isReuseGeometry() {
+		return reuseGeometry;
+	}
+
+	public void setReuseGeometry(boolean reuseGeometry) {
+		this.reuseGeometry = reuseGeometry;
 	}
 	
 	@Override

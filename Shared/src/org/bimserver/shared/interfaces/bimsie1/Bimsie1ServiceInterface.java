@@ -55,7 +55,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param fileSize The size of the file in bytes
 	 * @param ifcFile The actual file
 	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "checkin")
@@ -76,7 +76,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
 	 * @param url A URL to the file
 	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getCheckinState method
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "checkinFromUrl")
@@ -94,7 +94,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param roid Revision ObjectID
 	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState method
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "checkout")
@@ -110,7 +110,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param showOwn Whether to return revisions created by the current user
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "download")
@@ -126,7 +126,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param oids A set of ObjectIDs
 	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "downloadByOids")
@@ -144,7 +144,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param includeAllSubtypes Whether to query all (recursive) subtypes of each gives class
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "downloadByTypes")
@@ -340,6 +340,15 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	SProject getProjectByPoid(
 		@WebParam(name = "poid", partName = "getProjectByPoid.poid") Long poid) throws ServerException, UserException;
 
+	/**
+	 * @param poid ObjectID of the Project
+	 * @return The Project
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getProjectSmallByPoid")
+	SProjectSmall getProjectSmallByPoid(
+			@WebParam(name = "poid", partName = "getProjectSmallByPoid.poid") Long poid) throws ServerException, UserException;
+	
 	/**
 	 * @param roid ObjectID of the Revision
 	 * @return The Revision

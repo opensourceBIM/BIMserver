@@ -1124,13 +1124,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__SMTP_PROTOCOL = 22;
 
 	/**
+	 * The feature id for the '<em><b>Reuse Geometry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__REUSE_GEOMETRY = 23;
+
+	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 23;
+	int SERVER_SETTINGS_FEATURE_COUNT = 24;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -6091,13 +6100,22 @@ public interface StorePackage extends EPackage {
 	int PROJECT_SMALL__HAS_CHECKIN_RIGHTS = 5;
 
 	/**
+	 * The feature id for the '<em><b>Last Revision Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SMALL__LAST_REVISION_ID = 6;
+
+	/**
 	 * The number of structural features of the '<em>Project Small</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SMALL_FEATURE_COUNT = 6;
+	int PROJECT_SMALL_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.IfcHeaderImpl <em>Ifc Header</em>}' class.
@@ -7872,6 +7890,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServerSettings_SmtpProtocol();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#isReuseGeometry <em>Reuse Geometry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reuse Geometry</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#isReuseGeometry()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_ReuseGeometry();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.UserSettings <em>User Settings</em>}'.
@@ -11589,6 +11618,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getProjectSmall_HasCheckinRights();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ProjectSmall#getLastRevisionId <em>Last Revision Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Last Revision Id</em>'.
+	 * @see org.bimserver.models.store.ProjectSmall#getLastRevisionId()
+	 * @see #getProjectSmall()
+	 * @generated
+	 */
+	EAttribute getProjectSmall_LastRevisionId();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.IfcHeader <em>Ifc Header</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13031,6 +13071,15 @@ public interface StorePackage extends EPackage {
 		 */
 		EAttribute SERVER_SETTINGS__SMTP_PROTOCOL = eINSTANCE
 				.getServerSettings_SmtpProtocol();
+
+		/**
+		 * The meta object literal for the '<em><b>Reuse Geometry</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__REUSE_GEOMETRY = eINSTANCE
+				.getServerSettings_ReuseGeometry();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -16150,6 +16199,15 @@ public interface StorePackage extends EPackage {
 		 */
 		EAttribute PROJECT_SMALL__HAS_CHECKIN_RIGHTS = eINSTANCE
 				.getProjectSmall_HasCheckinRights();
+
+		/**
+		 * The meta object literal for the '<em><b>Last Revision Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT_SMALL__LAST_REVISION_ID = eINSTANCE
+				.getProjectSmall_LastRevisionId();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.IfcHeaderImpl <em>Ifc Header</em>}' class.

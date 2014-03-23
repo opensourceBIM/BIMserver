@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getNrRevisions <em>Nr Revisions</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getNrSubProjects <em>Nr Sub Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#isHasCheckinRights <em>Has Checkin Rights</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getLastRevisionId <em>Last Revision Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -182,6 +183,26 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	public void setHasCheckinRights(boolean newHasCheckinRights) {
 		eSet(StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS,
 				newHasCheckinRights);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getLastRevisionId() {
+		return (Long) eGet(
+				StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLastRevisionId(long newLastRevisionId) {
+		eSet(StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID,
+				newLastRevisionId);
 	}
 
 } //ProjectSmallImpl

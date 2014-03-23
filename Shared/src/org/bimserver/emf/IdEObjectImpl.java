@@ -105,9 +105,9 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 	}
 
 	public void loadExplicit() {
-		loadingState = State.LOADING;
+		setLoadingState(State.LOADING);
 		internalLoad();
-		loadingState = State.LOADED;
+		setLoadingState(State.LOADED);
 	}
 
 	private void internalLoad() {
@@ -139,7 +139,7 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 	}
 
 	public void setLoading() {
-		loadingState = State.LOADING;
+		setLoadingState(State.LOADING);
 	}
 
 	public void setQueryInterface(QueryInterface queryInterface) {

@@ -232,7 +232,7 @@ public class SClass implements Comparable<SClass> {
 	
 	@Override
 	public String toString() {
-		return name + super.toString();
+		return name;
 	}
 	
 	public String toJavaCode() {

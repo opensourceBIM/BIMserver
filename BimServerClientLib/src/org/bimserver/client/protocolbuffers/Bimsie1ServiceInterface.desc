@@ -1,5 +1,5 @@
 
-ÙN
+èP
 Bimsie1ServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"g
  AddExtendedDataToRevisionRequest
 roid (5
@@ -178,7 +178,12 @@ revisionNr (
 poid ("[
 GetProjectByPoidResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"(
+value (2.org.bimserver.pb.SProject",
+GetProjectSmallByPoidRequest
+poid ("e
+GetProjectSmallByPoidResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SProjectSmall"(
 GetProjectsByNameRequest
 name (	"\
 GetProjectsByNameResponse
@@ -228,7 +233,7 @@ revisionNr (
 poid (">
 UndeleteProjectResponse
 errorMessage (	
-value (2Ç 
+value (2Á!
 Bimsie1ServiceInterfaceo
 addExtendedDataToRevision2.org.bimserver.pb.AddExtendedDataToRevisionRequest.org.bimserver.pb.VoidResponseW
 
@@ -257,7 +262,8 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 getExtendedData(.org.bimserver.pb.GetExtendedDataRequest).org.bimserver.pb.GetExtendedDataResponse„
 getExtendedDataSchemaById2.org.bimserver.pb.GetExtendedDataSchemaByIdRequest3.org.bimserver.pb.GetExtendedDataSchemaByIdResponse™
  getExtendedDataSchemaByNamespace9.org.bimserver.pb.GetExtendedDataSchemaByNamespaceRequest:.org.bimserver.pb.GetExtendedDataSchemaByNamespaceResponsei
-getProjectByPoid).org.bimserver.pb.GetProjectByPoidRequest*.org.bimserver.pb.GetProjectByPoidResponsel
+getProjectByPoid).org.bimserver.pb.GetProjectByPoidRequest*.org.bimserver.pb.GetProjectByPoidResponsex
+getProjectSmallByPoid..org.bimserver.pb.GetProjectSmallByPoidRequest/.org.bimserver.pb.GetProjectSmallByPoidResponsel
 getProjectsByName*.org.bimserver.pb.GetProjectsByNameRequest+.org.bimserver.pb.GetProjectsByNameResponseo
 getQueryEngineById+.org.bimserver.pb.GetQueryEngineByIdRequest,.org.bimserver.pb.GetQueryEngineByIdResponseu
 getQueryEngineByName-.org.bimserver.pb.GetQueryEngineByNameRequest..org.bimserver.pb.GetQueryEngineByNameResponseZ

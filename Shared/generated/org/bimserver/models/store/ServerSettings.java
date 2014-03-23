@@ -50,6 +50,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpPassword <em>Smtp Password</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpPort <em>Smtp Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpProtocol <em>Smtp Protocol</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#isReuseGeometry <em>Reuse Geometry</em>}</li>
  * </ul>
  * </p>
  *
@@ -644,5 +645,31 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setSmtpProtocol(SmtpProtocol value);
+
+	/**
+	 * Returns the value of the '<em><b>Reuse Geometry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Reuse Geometry</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reuse Geometry</em>' attribute.
+	 * @see #setReuseGeometry(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_ReuseGeometry()
+	 * @model
+	 * @generated
+	 */
+	boolean isReuseGeometry();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#isReuseGeometry <em>Reuse Geometry</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reuse Geometry</em>' attribute.
+	 * @see #isReuseGeometry()
+	 * @generated
+	 */
+	void setReuseGeometry(boolean value);
 
 } // ServerSettings

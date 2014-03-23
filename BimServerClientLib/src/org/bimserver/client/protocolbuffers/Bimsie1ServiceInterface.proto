@@ -83,6 +83,8 @@ service Bimsie1ServiceInterface {
 
 	rpc getProjectByPoid (GetProjectByPoidRequest) returns (GetProjectByPoidResponse);
 
+	rpc getProjectSmallByPoid (GetProjectSmallByPoidRequest) returns (GetProjectSmallByPoidResponse);
+
 	rpc getProjectsByName (GetProjectsByNameRequest) returns (GetProjectsByNameResponse);
 
 	rpc getQueryEngineById (GetQueryEngineByIdRequest) returns (GetQueryEngineByIdResponse);
@@ -378,6 +380,15 @@ message GetProjectByPoidRequest {
 message GetProjectByPoidResponse {
 	optional string errorMessage = 1;
 	optional SProject value = 2;
+}
+
+message GetProjectSmallByPoidRequest {
+	optional int64 poid = 1;
+}
+
+message GetProjectSmallByPoidResponse {
+	optional string errorMessage = 1;
+	optional SProjectSmall value = 2;
 }
 
 message GetProjectsByNameRequest {

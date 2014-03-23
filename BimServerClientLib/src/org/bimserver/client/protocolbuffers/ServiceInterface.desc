@@ -1,5 +1,5 @@
 
-®ô
+Œÿ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -404,16 +404,17 @@ $GetAllModelCheckersOfProjectResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject",
 GetAllRelatedProjectsRequest
-poid ("¾
+poid ("Ö
 SProjectSmall
-hasCheckinRights (
-name (	
-nrRevisions (
-nrSubProjects (
-oid (
-parentId (
-rid (-
-state (2.org.bimserver.pb.SObjectState"e
+hasCheckinRights (
+lastRevisionId (
+name (	
+nrRevisions (
+nrSubProjects (
+oid (
+parentId (
+rid (-
+state	 (2.org.bimserver.pb.SObjectState"e
 GetAllRelatedProjectsResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SProjectSmall",
@@ -560,12 +561,16 @@ $GetAvailableClassesInRevisionRequest
 errorMessage (	&
 value (2.org.bimserver.pb.SUser")
 GetUserRelatedLogsRequest
-uoid ("A
-SNewCheckoutAdded
+uoid ("š
+SNewCheckoutAdded5
+accessMethod (2.org.bimserver.pb.SAccessMethod
 
-checkoutId (
-oid (
-rid ("ò
+checkoutId (
+date (
+
+executorId (
+oid (
+rid ("ò
 SCheckoutRelated
 __actual_type (	@
 __SNewCheckoutAdded (2#.org.bimserver.pb.SNewCheckoutAdded5
@@ -626,24 +631,40 @@ executorId (
 
 executorId (
 oid (
-rid ("X
-SNewProjectAdded
-oid (
-parentProjectId (
-	projectId (
-rid (">
-SProjectDeleted
-oid (
-	projectId (
-rid ("@
-SProjectUndeleted
-oid (
-	projectId (
-rid (">
-SProjectUpdated
-oid (
-	projectId (
-rid ("¬
+rid ("±
+SNewProjectAdded5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+parentProjectId (
+	projectId (
+rid ("—
+SProjectDeleted5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+	projectId (
+rid ("™
+SProjectUndeleted5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+	projectId (
+rid ("—
+SProjectUpdated5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+	projectId (
+rid ("¬
 SProjectRelated
 __actual_type (	>
 __SNewProjectAdded (2".org.bimserver.pb.SNewProjectAdded<
@@ -681,18 +702,26 @@ executorId (
 newrevisionId (
 oid (
 oldrevisionId (
-rid ("T
-SNewRevisionAdded
-oid (
-	projectId (
+rid ("­
+SNewRevisionAdded5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
 
-revisionId (
-rid ("@
-SRevisionUpdated
-oid (
+executorId (
+oid (
+	projectId (
 
-revisionId (
-rid ("²
+revisionId (
+rid ("™
+SRevisionUpdated5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+
+revisionId (
+rid ("²
 SRevisionRelated
 __actual_type (	@
 __SNewRevisionAdded (2#.org.bimserver.pb.SNewRevisionAdded>
@@ -718,41 +747,73 @@ executorId (
 
 executorId (
 oid (
-rid ("9
-SNewUserAdded
-oid (
-rid (
-userId ("<
-SPasswordChanged
-oid (
-rid (
-userId (":
-SPasswordReset
-oid (
-rid (
-userId ("R
-SUserAddedToProject
-oid (
-	projectId (
-rid (
-userId ("8
-SUserChanged
-oid (
-rid (
-userId ("8
-SUserDeleted
-oid (
-rid (
-userId ("V
-SUserRemovedFromProject
-oid (
-	projectId (
-rid (
-userId (":
-SUserUndeleted
-oid (
-rid (
-userId ("ž
+rid ("’
+SNewUserAdded5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+rid (
+userId ("•
+SPasswordChanged5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+rid (
+userId ("“
+SPasswordReset5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+rid (
+userId ("«
+SUserAddedToProject5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+	projectId (
+rid (
+userId ("‘
+SUserChanged5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+rid (
+userId ("‘
+SUserDeleted5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+rid (
+userId ("¯
+SUserRemovedFromProject5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+	projectId (
+rid (
+userId ("“
+SUserUndeleted5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+date (
+
+executorId (
+oid (
+rid (
+userId ("ž
 SUserRelated
 __actual_type (	8
 __SNewUserAdded (2.org.bimserver.pb.SNewUserAdded>

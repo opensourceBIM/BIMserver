@@ -782,13 +782,14 @@ message GetAllRelatedProjectsRequest {
 
 message SProjectSmall {
 	optional bool hasCheckinRights = 1;
-	optional string name = 2;
-	optional int32 nrRevisions = 3;
-	optional int32 nrSubProjects = 4;
-	optional int64 oid = 5;
-	optional int64 parentId = 6;
-	optional int32 rid = 7;
-	optional SObjectState state = 8;
+	optional int64 lastRevisionId = 2;
+	optional string name = 3;
+	optional int32 nrRevisions = 4;
+	optional int32 nrSubProjects = 5;
+	optional int64 oid = 6;
+	optional int64 parentId = 7;
+	optional int32 rid = 8;
+	optional SObjectState state = 9;
 }
 
 message GetAllRelatedProjectsResponse {
@@ -1045,9 +1046,12 @@ message GetUserRelatedLogsRequest {
 }
 
 message SNewCheckoutAdded {
-	optional int64 checkoutId = 1;
-	optional int64 oid = 2;
-	optional int32 rid = 3;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 checkoutId = 2;
+	optional int64 date = 3;
+	optional int64 executorId = 4;
+	optional int64 oid = 5;
+	optional int32 rid = 6;
 }
 
 message SCheckoutRelated {
@@ -1117,28 +1121,40 @@ message SNewObjectIDMUploaded {
 }
 
 message SNewProjectAdded {
-	optional int64 oid = 1;
-	optional int64 parentProjectId = 2;
-	optional int64 projectId = 3;
-	optional int32 rid = 4;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int64 parentProjectId = 5;
+	optional int64 projectId = 6;
+	optional int32 rid = 7;
 }
 
 message SProjectDeleted {
-	optional int64 oid = 1;
-	optional int64 projectId = 2;
-	optional int32 rid = 3;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int64 projectId = 5;
+	optional int32 rid = 6;
 }
 
 message SProjectUndeleted {
-	optional int64 oid = 1;
-	optional int64 projectId = 2;
-	optional int32 rid = 3;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int64 projectId = 5;
+	optional int32 rid = 6;
 }
 
 message SProjectUpdated {
-	optional int64 oid = 1;
-	optional int64 projectId = 2;
-	optional int32 rid = 3;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int64 projectId = 5;
+	optional int32 rid = 6;
 }
 
 message SProjectRelated {
@@ -1187,16 +1203,22 @@ message SRevisionBranched {
 }
 
 message SNewRevisionAdded {
-	optional int64 oid = 1;
-	optional int64 projectId = 2;
-	optional int64 revisionId = 3;
-	optional int32 rid = 4;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int64 projectId = 5;
+	optional int64 revisionId = 6;
+	optional int32 rid = 7;
 }
 
 message SRevisionUpdated {
-	optional int64 oid = 1;
-	optional int64 revisionId = 2;
-	optional int32 rid = 3;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int64 revisionId = 5;
+	optional int32 rid = 6;
 }
 
 message SRevisionRelated {
@@ -1228,53 +1250,77 @@ message SSettingsSaved {
 }
 
 message SNewUserAdded {
-	optional int64 oid = 1;
-	optional int32 rid = 2;
-	optional int64 userId = 3;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int32 rid = 5;
+	optional int64 userId = 6;
 }
 
 message SPasswordChanged {
-	optional int64 oid = 1;
-	optional int32 rid = 2;
-	optional int64 userId = 3;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int32 rid = 5;
+	optional int64 userId = 6;
 }
 
 message SPasswordReset {
-	optional int64 oid = 1;
-	optional int32 rid = 2;
-	optional int64 userId = 3;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int32 rid = 5;
+	optional int64 userId = 6;
 }
 
 message SUserAddedToProject {
-	optional int64 oid = 1;
-	optional int64 projectId = 2;
-	optional int32 rid = 3;
-	optional int64 userId = 4;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int64 projectId = 5;
+	optional int32 rid = 6;
+	optional int64 userId = 7;
 }
 
 message SUserChanged {
-	optional int64 oid = 1;
-	optional int32 rid = 2;
-	optional int64 userId = 3;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int32 rid = 5;
+	optional int64 userId = 6;
 }
 
 message SUserDeleted {
-	optional int64 oid = 1;
-	optional int32 rid = 2;
-	optional int64 userId = 3;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int32 rid = 5;
+	optional int64 userId = 6;
 }
 
 message SUserRemovedFromProject {
-	optional int64 oid = 1;
-	optional int64 projectId = 2;
-	optional int32 rid = 3;
-	optional int64 userId = 4;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int64 projectId = 5;
+	optional int32 rid = 6;
+	optional int64 userId = 7;
 }
 
 message SUserUndeleted {
-	optional int64 oid = 1;
-	optional int32 rid = 2;
-	optional int64 userId = 3;
+	optional SAccessMethod accessMethod = 1;
+	optional int64 date = 2;
+	optional int64 executorId = 3;
+	optional int64 oid = 4;
+	optional int32 rid = 5;
+	optional int64 userId = 6;
 }
 
 message SUserRelated {

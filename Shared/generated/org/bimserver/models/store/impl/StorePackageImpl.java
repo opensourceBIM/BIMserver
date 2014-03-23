@@ -1937,6 +1937,16 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getServerSettings_ReuseGeometry() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures()
+				.get(23);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUserSettings() {
 		if (userSettingsEClass == null) {
 			userSettingsEClass = (EClass) EPackage.Registry.INSTANCE
@@ -5544,6 +5554,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getProjectSmall_HasCheckinRights() {
 		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSmall_LastRevisionId() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(6);
 	}
 
 	/**
