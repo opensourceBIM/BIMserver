@@ -86,8 +86,10 @@ public class GetAllRelatedProjectsDatabaseAction extends BimDatabaseAction<List<
 		SProjectSmall small = new SProjectSmall();
 		small.setName(project.getName());
 		small.setOid(project.getOid());
+		small.setLastRevisionId(project.getLastRevision() == null ? -1 : project.getLastRevision().getOid());
 		small.setState(bimServer.getSConverter().convertToSObject(project.getState()));
 		small.setParentId(project.getParent() == null ? -1 : project.getParent().getOid());
+		small.setNrSubProjects(project.getSubProjects().size());
 		return small;
 	}
 }

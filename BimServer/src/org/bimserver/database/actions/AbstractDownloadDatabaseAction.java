@@ -17,6 +17,7 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.BimServer;
 import org.bimserver.GeometryGenerator;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.database.BimserverDatabaseException;
@@ -36,9 +37,11 @@ import org.bimserver.webservices.authorization.Authorization;
 public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseAction<T> {
 
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public AbstractDownloadDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization) {
+	public AbstractDownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.authorization = authorization;
 	}
 	
@@ -48,7 +51,7 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 			if (!revision.isHasGeometry()) {
 				setProgress("Generating geometry...", -1);
 				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)
-				new GeometryGenerator().generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), revision, false, null);
+				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), revision, false, null);
 			} else {
 				for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 					GeometryInfo geometryInfo = ifcProduct.getGeometry();
@@ -62,6 +65,10 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 				}
 			}
 		}
+	}
+	
+	public BimServer getBimServer() {
+		return bimServer;
 	}
 	
 	public static int findHighestStopRid(Project project, ConcreteRevision subRevision) {

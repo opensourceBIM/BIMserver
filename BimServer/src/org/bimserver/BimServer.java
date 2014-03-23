@@ -883,6 +883,7 @@ public class BimServer {
 		if (commandLine != null) {
 			commandLine.shutdown();
 		}
+		LOGGER.info("BIMserver stopped");
 	}
 
 	public PluginManager getPluginManager() {

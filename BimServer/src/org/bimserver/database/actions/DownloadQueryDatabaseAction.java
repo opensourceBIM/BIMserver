@@ -40,7 +40,6 @@ import org.bimserver.webservices.authorization.Authorization;
 
 public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
-	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final long qeid;
 	private final String code;
@@ -48,8 +47,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 	private long serializerOid;
 
 	public DownloadQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long qeid, long serializerOid, String code, Authorization authorization, ObjectIDM objectIDM) {
-		super(databaseSession, accessMethod, authorization);
-		this.bimServer = bimServer;
+		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roid = roid;
 		this.qeid = qeid;
 		this.serializerOid = serializerOid;
@@ -59,14 +57,14 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
-		DatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
-			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, serializerPluginConfiguration.getOid(), getAuthorization(), null);
+			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(getBimServer(), session, AccessMethod.INTERNAL, roid, -1, serializerPluginConfiguration.getOid(), getAuthorization(), null);
 			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
 			QueryEnginePluginConfiguration queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), qeid, Query.getDefault());
 			if (queryEngineObject != null) {
-				QueryEnginePlugin queryEnginePlugin = bimServer.getPluginManager().getQueryEngine(queryEngineObject.getPluginDescriptor().getPluginClassName(), true);
+				QueryEnginePlugin queryEnginePlugin = getBimServer().getPluginManager().getQueryEngine(queryEngineObject.getPluginDescriptor().getPluginClassName(), true);
 				if (queryEnginePlugin != null) {
 					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(new PluginConfiguration(queryEngineObject.getSettings()));
 					IfcModelInterface result = new IfcModel();

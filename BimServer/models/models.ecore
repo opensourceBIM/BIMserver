@@ -9721,6 +9721,7 @@
           defaultValueLiteral="25"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="smtpProtocol" eType="#/2/SmtpProtocol"
           defaultValueLiteral="SMTP"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="reuseGeometry" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UserSettings">
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
@@ -10306,6 +10307,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrRevisions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrSubProjects" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasCheckinRights" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastRevisionId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcHeader">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" upperBound="-1"

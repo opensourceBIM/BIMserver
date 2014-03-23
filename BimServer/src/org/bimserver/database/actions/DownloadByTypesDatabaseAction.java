@@ -56,7 +56,6 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 	private final Set<String> classNames;
 	private final Set<Long> roids;
 	private int progress;
-	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final boolean includeAllSubtypes;
 	private long serializerOid;
@@ -64,8 +63,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 	private Deep deep;
 
 	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, long serializerOid, boolean includeAllSubtypes, boolean useObjectIDM, Authorization authorization, ObjectIDM objectIDM, Deep deep) {
-		super(databaseSession, accessMethod, authorization);
-		this.bimServer = bimServer;
+		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roids = roids;
 		this.serializerOid = serializerOid;
 		this.includeAllSubtypes = includeAllSubtypes;
@@ -89,7 +87,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 				if (eClassifier == null) {
 					throw new UserException("Class " + className + " not found");
 				}
-				eClasses.addAll(bimServer.getDatabase().getMetaDataManager().getAllSubClasses((EClass)eClassifier));
+				eClasses.addAll(getBimServer().getDatabase().getMetaDataManager().getAllSubClasses((EClass)eClassifier));
 			}
 		}
 		String name = "";
@@ -110,7 +108,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			int size = 0;
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 				try {
-					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), bimServer.getPluginManager().requireSchemaDefinition());
+					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getBimServer().getPluginManager().requireSchemaDefinition());
 					
 					// This hack makes sure the JsonGeometrySerializer can look at the styles, probably more subtypes of getIfcRepresentationItem should be added (not ignored), also this code should not be here at all...
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(new StructuralFeatureIdentifier(Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem().getName(), Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_StyledByItem().getName()));
@@ -122,7 +120,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, deep, highestStopId));
 					size += subModel.size();
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());
-					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
+					checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 					ifcModelSet.add(subModel);
 				} catch (PluginException e) {
 					throw new UserException(e);
@@ -133,7 +131,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			IfcModelInterface ifcModel = new IfcModel(size);
 			if (ifcModelSet.size() > 1) {
 				try {
-					ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 				} catch (MergeException e) {
 					throw new UserException(e);
 				}
@@ -151,7 +149,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		IfcModelInterface ifcModel = new IfcModel();
 		if (ifcModelSet.size() > 1) {
 			try {
-				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 			} catch (MergeException e) {
 				throw new UserException(e);
 			}

@@ -473,6 +473,28 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 			session.close();
 		}
 	}
+
+	@Override
+	public SProjectSmall getProjectSmallByPoid(Long poid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			GetProjectByPoidDatabaseAction action = new GetProjectByPoidDatabaseAction(session, getInternalAccessMethod(), poid, getAuthorization());
+			Project project = session.executeAndCommitAction(action);
+			SProjectSmall small = new SProjectSmall();
+			small.setName(project.getName());
+			small.setOid(project.getOid());
+			small.setLastRevisionId(project.getLastRevision() == null ? -1 : project.getLastRevision().getOid());
+			small.setState(getBimServer().getSConverter().convertToSObject(project.getState()));
+			small.setParentId(project.getParent() == null ? -1 : project.getParent().getOid());
+			small.setNrSubProjects(project.getSubProjects().size());
+			return small;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
 	
 	@Override
 	public List<SProject> getProjectsByName(String name) throws UserException, ServerException {

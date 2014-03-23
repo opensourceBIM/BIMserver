@@ -50,14 +50,12 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 	private final Set<Long> oids;
 	private final Set<Long> roids;
 	private int progress;
-	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private long serializerOid;
 	private Deep deep;
 
 	public DownloadByOidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<Long> oids, long serializerOid, Authorization authorization, ObjectIDM objectIDM, Deep deep) {
-		super(databaseSession, accessMethod, authorization);
-		this.bimServer = bimServer;
+		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roids = roids;
 		this.oids = oids;
 		this.serializerOid = serializerOid;
@@ -92,11 +90,14 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 						progress = (int) Math.round(100.0 * total.get() / totalSize);
 					}
 				});
+				if (oids.contains(2032161L)) {
+					System.out.println();
+				}
 				getDatabaseSession().getMapWithOids(subModel, oids, query);
 				subModel.getModelMetaData().setDate(concreteRevision.getDate());
 				
 				try {
-					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
+					checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 				} catch (GeometryGeneratingException e) {
 					throw new UserException(e);
 				}
@@ -113,7 +114,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 		}
 		IfcModelInterface ifcModel = new IfcModel();
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

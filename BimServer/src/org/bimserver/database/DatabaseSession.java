@@ -236,6 +236,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 
 		IdEObjectImpl object = createInternal(eClass, query);
+
 		object.setOid(oid);
 		object.setPid(query.getPid());
 		object.setRid(rid);
@@ -262,6 +263,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		try {
 			if (idEObject == null) {
 				idEObject = createInternal(eClass, query);
+
 				((IdEObjectImpl) idEObject).setOid(oid);
 				((IdEObjectImpl) idEObject).setPid(query.getPid());
 				if (rid == Integer.MAX_VALUE) {

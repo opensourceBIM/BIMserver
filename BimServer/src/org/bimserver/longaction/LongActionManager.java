@@ -31,7 +31,7 @@ import com.google.common.collect.HashBiMap;
 public class LongActionManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
-	private static final int FIVE_MINUTES_IN_MS = 5000; // 5 seconds
+	private static final int FIVE_MINUTES_IN_MS = 5000 * 60; // 5 minutes
 	private final BiMap<Long, LongAction<?>> actions = HashBiMap.create();
 	private volatile boolean running = true;
 
@@ -89,14 +89,14 @@ public class LongActionManager {
 		}
 	}
 
-	public synchronized void remove(long actionId) throws UserException {
-		LongAction<?> longAction = actions.get(actionId);
+	public synchronized void remove(long topicId) throws UserException {
+		LongAction<?> longAction = actions.get(topicId);
 		if (longAction != null) {
-			LOGGER.info("Cleaning up long running action: " + longAction.getDescription());
+			LOGGER.debug("Cleaning up long running action: " + longAction.getDescription() + " (" + longAction.getProgressTopic().getKey().getId() + ")");
 			longAction.stop();
-			actions.remove(actionId);
+			actions.remove(topicId);
 		} else {
-			throw new UserException("No long action with id " + actionId + " found");
+			throw new UserException("No long action with id " + topicId + " found");
 		}
 	}
 

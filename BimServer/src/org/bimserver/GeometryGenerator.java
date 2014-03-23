@@ -64,7 +64,7 @@ import org.slf4j.LoggerFactory;
 
 public class GeometryGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryGenerator.class);
-	private static final boolean REUSE_GEOMETRY = false;
+	private BimServer bimServer;
 
 	public static class GeometryCacheEntry {
 		public GeometryCacheEntry(ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, GeometryInfo geometryInfo) {
@@ -104,6 +104,10 @@ public class GeometryGenerator {
 		public GeometryCacheEntry get(int expressId) {
 			return cache.get(expressId);
 		}
+	}
+
+	public GeometryGenerator(BimServer bimServer) {
+		this.bimServer = bimServer;
 	}
 
 	public void generateGeometry(long uoid, PluginManager pluginManager, DatabaseSession databaseSession, IfcModelInterface model, int pid, int rid, Revision revision,
@@ -193,7 +197,7 @@ public class GeometryGenerator {
 									float[] identityMatrix = new float[16];
 									Matrix.setIdentityM(identityMatrix, 0);
 									setTransformationMatrix(geometryInfo, identityMatrix);
-									if (REUSE_GEOMETRY) {
+									if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
 										geometrySimplifier.add(ifcProduct, geometryData);
 									}
 									ifcProduct.setGeometry(geometryInfo);
@@ -202,7 +206,7 @@ public class GeometryGenerator {
 									}
 								}
 							}
-							if (REUSE_GEOMETRY) {
+							if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
 								for (IfcProduct ifcProduct : products) {
 									if (ifcProduct.getGeometry() != null && ifcProduct.getGeometry().getData() != null) {
 										Set<GeometryData> matchingGeometryDatas = geometrySimplifier.getMatchingGeometry(ifcProduct, ifcProduct.getGeometry().getData());

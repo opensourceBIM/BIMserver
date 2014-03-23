@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.util.GregorianCalendar;
 
 import javax.activation.DataSource;
@@ -74,9 +76,19 @@ public class Streamer implements EndPoint {
 		private byte[] buffer = new byte[1024 * 1024 * 100];
 		private int pos = 0;
 		private StreamingSocketInterface streamingSocketInterface;
+		private int topicId;
 		
-		public WebSocketifier(StreamingSocketInterface streamingSocketInterface) {
+		public WebSocketifier(int topicId, StreamingSocketInterface streamingSocketInterface) {
+			this.topicId = topicId;
 			this.streamingSocketInterface = streamingSocketInterface;
+			ByteBuffer wrap = ByteBuffer.wrap(buffer);
+			IntBuffer intBuffer = wrap.asIntBuffer();
+			intBuffer.put(topicId);
+			pos = 4;
+		}
+		
+		public int getTopicId() {
+			return topicId;
 		}
 
 		@Override
@@ -101,7 +113,10 @@ public class Streamer implements EndPoint {
 		@Override
 		public void flush() throws IOException {
 			streamingSocketInterface.send(buffer, 0, pos);
-			pos = 0;
+			ByteBuffer wrap = ByteBuffer.wrap(buffer);
+			IntBuffer intBuffer = wrap.asIntBuffer();
+			intBuffer.put(topicId);
+			pos = 4;
 		}
 	}
 	
@@ -114,27 +129,38 @@ public class Streamer implements EndPoint {
 		} else if (request.has("action")) {
 			if (request.get("action").getAsString().equals("download")) {
 				String token = request.get("token").getAsString();
+				final int topicId = request.get("topicId").getAsInt();
 				try {
-					ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL);
-					long downloadId = request.get("longActionId").getAsLong();
-					SDownloadResult checkoutResult = serviceMap.getBimsie1ServiceInterface().getDownloadData(downloadId);
-					DataSource dataSource = checkoutResult.getFile().getDataSource();
-					OutputStream outputStream = new WebSocketifier(streamingSocketInterface);
-					if (dataSource instanceof FileInputStreamDataSource) {
-						InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
-						IOUtils.copy(inputStream, outputStream);
-						inputStream.close();
-					} else {
-						((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
-					}
+					final ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL);
+					final long downloadId = request.get("longActionId").getAsLong();
+					new Thread(){
+						@Override
+						public void run() {
+							try {
+								SDownloadResult checkoutResult = serviceMap.getBimsie1ServiceInterface().getDownloadData(downloadId);
+								DataSource dataSource = checkoutResult.getFile().getDataSource();
+								OutputStream outputStream = new WebSocketifier(topicId, streamingSocketInterface);
+								if (dataSource instanceof FileInputStreamDataSource) {
+									InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
+									IOUtils.copy(inputStream, outputStream);
+									inputStream.close();
+								} else {
+									((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
+								}
+							} catch (ServerException e) {
+								LOGGER.error("", e);
+							} catch (UserException e) {
+								LOGGER.error("", e);
+							} catch (IOException e) {
+								LOGGER.error("", e);
+							} catch (SerializerException e) {
+								LOGGER.error("", e);
+							}
+						}
+					}.start();
+					
 				} catch (UserException e) {
-					e.printStackTrace();
-				} catch (ServerException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (SerializerException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		} else if (request.has("token")) {
