@@ -77,7 +77,7 @@ public class JarBimServer {
 		bimServerConfig.setClassPath(System.getProperty("java.class.path"));
 		bimServer = new BimServer(bimServerConfig);
 	 	try {
-	 		LOGGER.debug("Settings resourcebase to www");
+	 		LOGGER.debug("Setting resourcebase to www");
 	 		bimServer.getEmbeddedWebServer().getContext().setResourceBase("www");
 	 		LOGGER.debug("Loading plugins");
 	 		bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(new File("plugins"));
