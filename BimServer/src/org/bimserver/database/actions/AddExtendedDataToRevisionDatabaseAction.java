@@ -73,10 +73,12 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 		extendedDataAddedToRevision.setExecutor(actingUser);
 		extendedDataAddedToRevision.setExtendedData(getIdEObject());
 		extendedDataAddedToRevision.setRevision(revision);
+		final long poid = revision.getProject().getOid();
+		final long roid = revision.getOid();
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
-				bimServer.getNotificationsManager().notify(new NewExtendedDataOnRevisionNotification(bimServer, getIdEObject().getOid(), roid));
+				bimServer.getNotificationsManager().notify(new NewExtendedDataOnRevisionNotification(bimServer, getIdEObject().getOid(), poid, roid, -1));
 				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(extendedDataAddedToRevision));
 			}
 		});

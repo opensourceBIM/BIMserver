@@ -1,5 +1,5 @@
 
-Œÿ
+šÿ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -913,9 +913,10 @@ $RemoveModelCheckerFromProjectRequest
 roid ("<
 ShareRevisionResponse
 errorMessage (	
-value (	"-
+value (	";
 TriggerNewExtendedDataRequest
-edid ("7
+edid (
+soid ("7
 TriggerNewRevisionRequest
 roid (
 soid ("#

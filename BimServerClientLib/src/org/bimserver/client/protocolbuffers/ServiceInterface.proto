@@ -1450,6 +1450,7 @@ message ShareRevisionResponse {
 
 message TriggerNewExtendedDataRequest {
 	optional int64 edid = 1;
+	optional int64 soid = 2;
 }
 
 message TriggerNewRevisionRequest {

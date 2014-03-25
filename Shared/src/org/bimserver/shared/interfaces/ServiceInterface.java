@@ -585,7 +585,8 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action = "triggerNewExtendedData")
 	void triggerNewExtendedData(
-		@WebParam(name = "edid", partName = "triggerNewExtendedData.edid") Long edid) throws ServerException, UserException;
+		@WebParam(name = "edid", partName = "triggerNewExtendedData.edid") Long edid,
+		@WebParam(name = "soid", partName = "triggerNewExtendedData.soid") Long soid) throws ServerException, UserException;
 
 	@WebMethod(action = "getAllLocalServiceDescriptors")
 	List<SServiceDescriptor> getAllLocalServiceDescriptors() throws ServerException, UserException;
