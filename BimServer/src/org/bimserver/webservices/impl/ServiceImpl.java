@@ -1282,14 +1282,14 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
-	public void triggerNewExtendedData(Long edid) throws ServerException, UserException {
+	public void triggerNewExtendedData(Long edid, Long soid) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			ExtendedData extendedData = (ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), edid, Query.getDefault());
 			SExtendedDataAddedToRevision newExtendedData = new SExtendedDataAddedToRevision();
 			newExtendedData.setRevisionId(extendedData.getRevision().getOid());
 			newExtendedData.setExtendedDataId(edid);
-			getBimServer().getNotificationsManager().notify(new NewExtendedDataOnRevisionNotification(getBimServer(), edid, extendedData.getRevision().getOid()));
+			getBimServer().getNotificationsManager().notify(new NewExtendedDataOnRevisionNotification(getBimServer(), edid, extendedData.getRevision().getProject().getOid(), extendedData.getRevision().getOid(), soid));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

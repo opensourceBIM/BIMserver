@@ -268,7 +268,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public void triggerNewExtendedData(java.lang.Long edid) throws UserException, ServerException {
+	public void triggerNewExtendedData(java.lang.Long edid, java.lang.Long soid) throws UserException, ServerException {
 	}
 	
 	public void triggerNewRevision(java.lang.Long roid, java.lang.Long soid) throws UserException, ServerException {

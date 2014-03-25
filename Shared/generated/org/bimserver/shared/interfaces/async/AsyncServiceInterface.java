@@ -1204,11 +1204,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void triggerNewExtendedData(final java.lang.Long edid, final TriggerNewExtendedDataCallback callback) {
+	public void triggerNewExtendedData(final java.lang.Long edid, final java.lang.Long soid, final TriggerNewExtendedDataCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.triggerNewExtendedData(edid);
+					syncService.triggerNewExtendedData(edid, soid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
