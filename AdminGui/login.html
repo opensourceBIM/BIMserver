@@ -40,7 +40,7 @@
 				</div>
 			</form>
 		</div>
-  </div>
+	</div>
 </div>
 <script>
 function Login(address, username) {
@@ -63,7 +63,7 @@ function Login(address, username) {
 		Global.bimServerApi.login($(".username").val(), $("#inputPassword").val(), $("#rememberMe").is(":checked"), function(data){
 			Global.bimServerApi.resolveUser(function(user){
 				$(".indexcontainer").load(Global.baseDir + "main.html", function(){
-					new Main(address, user.name).show(false);
+					new Main(address, user).show(false);
 				});
 			});
 		});

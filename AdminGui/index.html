@@ -14,8 +14,7 @@
   	</div>
 	<div class="my-fluid-container">
 		<div class="row">
-			<div class="sidespan col-md-2"></div>
-			<div class="indexcontainer col-md-10"></div>
+			<div class="indexcontainer col-md-12"></div>
 		</div>
 	</div>
 	<script>
@@ -64,6 +63,7 @@
 		    baseJsDir + "jquery.enterpress.js", 
 		    baseJsDir + "jquery.ui.widget.js", 
 		    baseJsDir + "String.js", 
+		    baseJsDir + "tree.js", 
 		    baseJsDir + "bimserverapibootstrap.js", 
 		    baseJsDir + "bootstrap.min.js", 
 		    baseJsDir + "sha256.js", 
@@ -71,16 +71,36 @@
 		    baseJsDir + "formatters.js", 
 		    baseJsDir + "settings.js", 
 		    baseJsDir + "jquery.fileupload.js", 
-		    baseJsDir + "pagechanger.js"
+		    baseJsDir + "jquery.scrollto.js", 
+		    baseJsDir + "pagechanger.js",
+		    baseJsDir + "BIMSURFER.js",
+		    baseJsDir + 'scenejs-3.1/scenejs.js',
+		    baseJsDir + 'SceneJS.js',
+		    baseJsDir + 'BIMSURFER/Constants.js',
+		    baseJsDir + 'BIMSURFER/ProgressLoader.js',
+		    baseJsDir + 'BIMSURFER/Types/Light.js',
+		    baseJsDir + 'BIMSURFER/Types/Light/Ambient.js',
+			baseJsDir + 'BIMSURFER/Types/Light/Sun.js',
+			baseJsDir + 'BIMSURFER/Control.js',
+			baseJsDir + 'BIMSURFER/Control/ClickSelect.js',
+			baseJsDir + 'BIMSURFER/Control/LayerList.js',
+			baseJsDir + 'BIMSURFER/Control/ProgressBar.js',
+			baseJsDir + 'BIMSURFER/Control/PickFlyOrbit.js',
+			baseJsDir + 'BIMSURFER/Control/ObjectTreeView.js',
+			baseJsDir + 'BIMSURFER/Events.js',
+			baseJsDir + 'BIMSURFER/Project.js',
+			baseJsDir + 'BIMSURFER/ProjectRevision.js',
+			baseJsDir + 'BIMSURFER/StringView.js',
+			baseJsDir + 'BIMSURFER/GeometryLoader.js',
+			baseJsDir + 'BIMSURFER/AsyncStream.js',
+			baseJsDir + 'BIMSURFER/DataInputStream.js',
+			baseJsDir + 'BIMSURFER/Server.js',
+			baseJsDir + 'BIMSURFER/Viewer.js',
+			baseJsDir + 'BIMSURFER/Util.js'
+
 		], function () {
 			var othis = this;
 
-			if (new String(top.location).indexOf("31.3.99.183") != -1) {
-			//	window.location.replace("http://connectandconstruct.bimvie.ws");
-			} else if (top.location!= self.location) {
-			       top.location.replace(location);
-			}
-			
 			Global.lastKey = null;
 
 			$("body").on("keyup", function (e) {
@@ -147,17 +167,19 @@
 				
 				var successFunction = function(address){
 					// We do have an API
-					if ($.cookie("autologin" + window.document.location.port) != null) {
-						Global.bimServerApi.setToken($.cookie("autologin" + window.document.location.port), function(){
-							Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
-								$(".indexcontainer").load(Global.baseDir + "main.html", function(){
-									$(".indexStatus").hide();
-									othis.current = new Main(Global.bimServerApi.baseUrl, data.name).show(false);
-								});
-							}, function(){
-								$.removeCookie("autologin" + window.document.location.port);
-								notLoggedInFunction(address);
+					var token = getParameterByName("token");
+					if (token == null) {
+						token = $.cookie("autologin" + window.document.location.port);
+					}
+					if (token != null) {
+						Global.bimServerApi.setToken(token, function(){
+							$(".indexcontainer").load(Global.baseDir + "main.html", function(){
+								$(".indexStatus").hide();
+								othis.current = new Main(Global.bimServerApi.baseUrl, Global.bimServerApi.user.name).show(false);
 							});
+						}, function(){
+							$.removeCookie("autologin" + window.document.location.port);
+							notLoggedInFunction(address);
 						});
 					} else {
 						notLoggedInFunction(address);

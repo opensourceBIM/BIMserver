@@ -42,6 +42,9 @@ function ExtendedDataSchema(main, oid) {
 	
 	this.close = function(){
 	};
+
+	this.show = function(){
+	};
 	
 	Global.bimServerApi.call("Bimsie1ServiceInterface", "getExtendedDataSchemaById", {oid: oid}, function(extendedDataSchema){
 		othis.extendedDataSchema = extendedDataSchema;

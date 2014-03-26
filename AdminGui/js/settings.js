@@ -4,6 +4,11 @@ var Settings = {
 			callback(data.servers);
 		}).error(function(error) {console.log(error); });
 	},
+	createStartPage: function(container, main){
+		main.pageChanger.changePage($(".serverinfoLink"), "start.html", function(){
+			return new Start($(this), main);
+		});
+	},
 	getStaticServerAddress: function(callback){
 		$.getJSON("getbimserveraddress", function(data){
 			callback(data.address);
@@ -14,10 +19,8 @@ var Settings = {
 	},
 	getMenuItems: function(){
 		return [
-		        "serversettingsLink",
-		        "usersettingsLink",
-		        "serverinfoLink",
-		        "gettingStartedLink"
+	        "serversettingsLink",
+	        "gettingStartedLink"
 		];
 	},
 	allowBimServerAddress: function() {

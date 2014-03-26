@@ -1,6 +1,6 @@
 <div class="extendeddataschemas">
 	<div class="well well-sm">
-		<button class="btn btn-default addNewExtendedDataSchemaButton">Add new</button>
+		<button class="btn btn-default addExtendedDataSchemaButton">Add new</button>
 		<button class="btn btn-default addRepoExtendedDataSchemaButton">Add from repository</button>
 	</div>
 	<div class="well well-sm noextendeddataschemas">
@@ -56,7 +56,7 @@ function ExtendedDataSchemas(main, serversettings) {
 	};
 
 	othis.loadExtendedDataSchemas();
-	$(".extendeddataschemas .addNewExtendedDataSchemaButton").click(serversettings.showAddNewExtendedDataSchema);
+	$(".extendeddataschemas .addExtendedDataSchemaButton").click(serversettings.showAddExtendedDataSchema);
 	$(".extendeddataschemas .addRepoExtendedDataSchemaButton").click(serversettings.showAddRepoExtendedDataSchema);
 }
 </script>
