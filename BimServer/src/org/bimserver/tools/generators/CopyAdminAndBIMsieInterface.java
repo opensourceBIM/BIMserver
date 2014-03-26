@@ -93,7 +93,7 @@ public class CopyAdminAndBIMsieInterface {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "console.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "extendeddataschemas.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "extendeddataschema.html"), admin);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "addnewextendeddataschema.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "addextendeddataschema.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "addrepoextendeddataschema.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "main.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "migrations.html"), admin);
@@ -106,6 +106,8 @@ public class CopyAdminAndBIMsieInterface {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "modelcheckers.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "addrepomodelchecker.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "addnewmodelchecker.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "plugin.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "modelchecker.html"), admin);
 			
 			FileUtils.copyDirectory(new File(bootstrap, "js"), new File(admin, "js"), new FileFilter() {
 				@Override

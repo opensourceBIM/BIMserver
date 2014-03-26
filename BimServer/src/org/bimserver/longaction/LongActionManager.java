@@ -70,7 +70,7 @@ public class LongActionManager {
 			if (longAction.getActionState() == ActionState.FINISHED) {
 				GregorianCalendar stop = longAction.getStop();
 				if (now.getTimeInMillis() - stop.getTimeInMillis() > FIVE_MINUTES_IN_MS) {
-					LOGGER.info("Cleaning up long running action: " + longAction.getDescription());
+					LOGGER.info("Cleaning up long running action: " + longAction.getDescription() + " - " + longAction.getClass().getSimpleName());
 					iterator.remove();
 				}
 			}

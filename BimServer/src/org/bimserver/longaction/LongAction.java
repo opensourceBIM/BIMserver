@@ -189,5 +189,6 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	}
 
 	public void stop() {
+		progressTopic.remove();
 	}
 }
