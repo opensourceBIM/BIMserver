@@ -29,7 +29,7 @@ import com.google.common.collect.Sets;
 
 public class DownloadParameters extends LongActionKey {
 	public enum DownloadType {
-		DOWNLOAD_REVISION, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS, DOWNLOAD_COMPARE, DOWNLOAD_QUERY, DOWNLOAD_BY_NAMES
+		DOWNLOAD_REVISION, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS, DOWNLOAD_COMPARE, DOWNLOAD_QUERY, DOWNLOAD_BY_NAMES, DOWNLOAD_JSON_QUERY
 	};
 
 	private Set<Long> roids;
@@ -37,6 +37,7 @@ public class DownloadParameters extends LongActionKey {
 	private Set<Long> oids;
 	private Set<String> guids;
 	private Set<String> names;
+	private String jsonQuery;
 	private Set<String> classNames;
 	private DownloadType downloadType;
 	private final BimServer bimServer;
@@ -124,6 +125,15 @@ public class DownloadParameters extends LongActionKey {
 		return downloadParameters;
 	}
 
+	public static DownloadParameters fromJsonQuery(BimServer bimServer, Set<Long> roids, String jsonQuery, long serializerOid) {
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer);
+		downloadParameters.setRoids(roids);
+		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_JSON_QUERY);
+		downloadParameters.setJsonQuery(jsonQuery);
+		downloadParameters.setSerializerOid(serializerOid);
+		return downloadParameters;
+	}
+
 	public static DownloadParameters fromRoids(BimServer bimServer, Set<Long> roids, long serializerOid) {
 		DownloadParameters downloadParameters = new DownloadParameters(bimServer);
 		downloadParameters.setRoids(roids);
@@ -132,6 +142,10 @@ public class DownloadParameters extends LongActionKey {
 		return downloadParameters;
 	}
 
+	public void setJsonQuery(String jsonQuery) {
+		this.jsonQuery = jsonQuery;
+	}
+	
 	public String getId() {
 		return String.valueOf(((long) hashCode()) + (long) Integer.MAX_VALUE);
 	}
@@ -365,6 +379,8 @@ public class DownloadParameters extends LongActionKey {
 			return getRoidsString() + "." + extension;
 		case DOWNLOAD_COMPARE:
 			return "compare." + extension;
+		case DOWNLOAD_JSON_QUERY:
+			return getRoidsString() + "." + extension;
 		case DOWNLOAD_QUERY:
 			return "query." + extension;
 		}
@@ -427,5 +443,9 @@ public class DownloadParameters extends LongActionKey {
 	
 	public Set<String> getNames() {
 		return names;
+	}
+
+	public String getJsonQuery() {
+		return jsonQuery;
 	}
 }
