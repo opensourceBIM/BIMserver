@@ -1,0 +1,69 @@
+<div class="adduser">
+	<h2>Add user</h2>
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label class="col-lg-3 control-label" for="inputUsername">Username</label>
+			<div class="controls">
+			
+			<div class="input-group col-lg-5">
+  				<span class="input-group-addon">@</span>
+				<input type="text" class="inputUsername form-control" placeholder="Username (e-mail address)">
+			</div>
+			
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label" for="inputName">Name</label>
+			<div class="controls col-lg-5">
+				<input type="text" class="inputName form-control" placeholder="Name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label" for="inputName">Type</label>
+			<div class="controls col-lg-5">
+				<select class="selectType form-control">
+					<option value="ADMIN">Administrator</option>
+					<option value="USER">User</option>
+					<option value="READ_ONLY">Read only</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="controls buttonBar">
+				<button type="button" class="btn btn-primary addButton">Add</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+function AddUser(main) {
+	var othis = this;
+
+	this.close = function(){
+	};
+	
+	this.show = function(){
+	};
+	
+	this.addUser = function() {
+		Global.bimServerApi.call("ServiceInterface", "addUser", {
+			username: $(".adduser .inputUsername").val(),
+			name: $(".adduser .inputName").val(),
+			type: $(".adduser .selectType").val(),
+			selfRegistration: false,
+			resetUrl: Global.baseDir + "?page=ResetPassword"
+		}, function(data){
+			main.showUser(data);
+		});
+	};
+
+	$(".adduser .addButton").click(othis.addUser);
+	$(".adduser .inputName").keypress(function(event){
+		if (event.which == 13) {
+			event.preventDefault();
+			othis.addUser();
+		}
+	});
+	$(".adduser .inputUsername").focus();
+}
+</script>
