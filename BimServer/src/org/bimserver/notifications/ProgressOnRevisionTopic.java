@@ -17,14 +17,15 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 
 public class ProgressOnRevisionTopic extends ProgressTopic {
 	private long poid;
 	private long roid;
 
-	public ProgressOnRevisionTopic(ProgressOnRevisionTopicKey key, long poid, long roid, SProgressTopicType type, String description) {
-		super(key, type, description);
+	public ProgressOnRevisionTopic(NotificationsManager notificationsManager, ProgressOnRevisionTopicKey key, long poid, long roid, SProgressTopicType type, String description) {
+		super(notificationsManager, key, type, description);
 		this.poid = poid;
 		this.roid = roid;
 	}

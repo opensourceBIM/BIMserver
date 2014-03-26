@@ -25,13 +25,18 @@ import org.bimserver.endpoints.EndPoint;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-public class Topic {
+public abstract class Topic {
 	private final Set<EndPoint> endPoints = new HashSet<EndPoint>();
+	private final NotificationsManager notificationsManager;
 	
 	public static interface Mapper {
 		void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException;
 	}
 	
+	public Topic(NotificationsManager notificationsManager) {
+		this.notificationsManager = notificationsManager;
+	}
+
 	public synchronized void map(Mapper mapper) throws UserException, ServerException, BimserverDatabaseException {
 		for (EndPoint endPoint : endPoints) {
 			mapper.map(endPoint);
@@ -46,7 +51,13 @@ public class Topic {
 		endPoints.remove(endPoint);
 	}
 	
+	public NotificationsManager getNotificationsManager() {
+		return notificationsManager;
+	}
+	
 	public Set<EndPoint> getEndPoints() {
 		return endPoints;
 	}
+	
+	public abstract void remove();
 }

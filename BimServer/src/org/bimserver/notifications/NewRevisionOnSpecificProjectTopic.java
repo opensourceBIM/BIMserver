@@ -30,10 +30,11 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class NewRevisionOnSpecificProjectTopic extends Topic {
 
-	private long poid;
+	private NewRevisionOnSpecificProjectTopicKey key;
 
-	public NewRevisionOnSpecificProjectTopic(long poid) {
-		this.poid = poid;
+	public NewRevisionOnSpecificProjectTopic(NotificationsManager notificationsManager, NewRevisionOnSpecificProjectTopicKey key) {
+		super(notificationsManager);
+		this.key = key;
 	}
 
 	public void process(final DatabaseSession session, final long poid, final long roid, NewRevisionNotification newRevisionNotification) throws BimserverDatabaseException, UserException, ServerException {
@@ -42,12 +43,17 @@ public class NewRevisionOnSpecificProjectTopic extends Topic {
 			public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
 				User user = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
 				Project notificationProject = session.get(StorePackage.eINSTANCE.getUser(), poid, Query.getDefault());
-				Project registrationProject = session.get(StorePackage.eINSTANCE.getUser(), NewRevisionOnSpecificProjectTopic.this.poid, Query.getDefault());
+				Project registrationProject = session.get(StorePackage.eINSTANCE.getUser(), key.getPoid(), Query.getDefault());
 				if (notificationProject.getOid() == registrationProject.getOid()) {
 					if (user.getUserType() == UserType.ADMIN || user.getHasRightsOn().contains(notificationProject)) {
 						endPoint.getNotificationInterface().newRevision(poid, roid);
 					}
 				}
 			}});
+	}
+
+	@Override
+	public void remove() {
+		getNotificationsManager().removeNewRevisionOnSpecificProjectTopic(key);
 	}
 }

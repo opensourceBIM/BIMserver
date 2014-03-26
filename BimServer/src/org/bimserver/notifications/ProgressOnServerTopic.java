@@ -21,8 +21,8 @@ import org.bimserver.interfaces.objects.SProgressTopicType;
 
 public class ProgressOnServerTopic extends ProgressTopic {
 
-	public ProgressOnServerTopic(ProgressTopicKey key, SProgressTopicType type, String description) {
-		super(key, type, description);
+	public ProgressOnServerTopic(NotificationsManager notificationsManager, ProgressTopicKey key, SProgressTopicType type, String description) {
+		super(notificationsManager, key, type, description);
 		
 	}
 }

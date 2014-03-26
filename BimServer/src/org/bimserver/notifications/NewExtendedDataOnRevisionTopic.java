@@ -24,17 +24,23 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class NewExtendedDataOnRevisionTopic extends Topic {
 
-	private long roid;
+	private NewExtendedDataOnRevisionTopicKey key;
 
-	public NewExtendedDataOnRevisionTopic(long roid) {
-		this.roid = roid;
+	public NewExtendedDataOnRevisionTopic(NotificationsManager notificationsManager, NewExtendedDataOnRevisionTopicKey key) {
+		super(notificationsManager);
+		this.key = key;
 	}
 	
 	public void process(final NewExtendedDataOnRevisionNotification newExtendedDataOnRevisionNotification) throws BimserverDatabaseException, UserException, ServerException {
 		map(new Mapper(){
 			@Override
 			public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
-				endPoint.getNotificationInterface().newExtendedData(roid, newExtendedDataOnRevisionNotification.getEdid());
+				endPoint.getNotificationInterface().newExtendedData(key.getRoid(), newExtendedDataOnRevisionNotification.getEdid());
 			}});
+	}
+
+	@Override
+	public void remove() {
+		getNotificationsManager().removeNewExtendedDataOnRevisionTopic(key);
 	}
 }

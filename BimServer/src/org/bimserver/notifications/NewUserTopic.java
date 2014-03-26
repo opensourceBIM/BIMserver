@@ -28,6 +28,10 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
 public class NewUserTopic extends Topic {
+	public NewUserTopic(NotificationsManager notificationsManager) {
+		super(notificationsManager);
+	}
+
 	public void process(final DatabaseSession session, final long uoid, NewUserNotification newUserNotification) throws BimserverDatabaseException, UserException, ServerException {
 		map(new Mapper(){
 			@Override
@@ -37,5 +41,10 @@ public class NewUserTopic extends Topic {
 					endPoint.getNotificationInterface().newUser(uoid);
 				}
 			}});
+	}
+
+	@Override
+	public void remove() {
+		// Do nothing, there is only one topic of this type
 	}
 }
