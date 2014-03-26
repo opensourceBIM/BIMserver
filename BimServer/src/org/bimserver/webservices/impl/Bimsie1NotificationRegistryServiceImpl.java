@@ -57,7 +57,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 
 	@Override
 	public void registerProgressHandler(Long topicId, Long endPointId) throws UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		if (endPoint == null) {
 			throw new UserException("Endpoint with id " + endPointId + " not found");
 		}
@@ -79,12 +79,17 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 		}
 	}
 	
-	@Override
-	public void unregisterProgressHandler(Long topicId, Long endPointId) throws UserException, ServerException {
+	private EndPoint getEndPoint(long endPointId) throws UserException {
 		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
 		if (endPoint == null) {
 			throw new UserException("Endpoint with id " + endPointId + " not found");
 		}
+		return endPoint;
+	}
+	
+	@Override
+	public void unregisterProgressHandler(Long topicId, Long endPointId) throws UserException, ServerException {
+		EndPoint endPoint = getEndPoint(endPointId);
 		ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
 		if (progressTopic == null) {
 			throw new UserException("Topic with id " + topicId + " not found");
@@ -112,7 +117,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 
 	@Override
 	public void registerNewRevisionOnSpecificProjectHandler(Long endPointId, Long poid) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		NewRevisionOnSpecificProjectTopic newRevisionOnSpecificProjectTopic = getBimServer().getNotificationsManager().getOrCreateNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid));
 		try {
 			newRevisionOnSpecificProjectTopic.register(endPoint);
@@ -123,7 +128,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	
 	@Override
 	public void registerNewRevisionHandler(Long endPointId) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		NewRevisionTopic newRevisionTopic = getBimServer().getNotificationsManager().getNewRevisionTopic();
 		try {
 			newRevisionTopic.register(endPoint);
@@ -134,7 +139,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 
 	@Override
 	public void registerNewExtendedDataOnRevisionHandler(Long endPointId, Long roid) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		NewExtendedDataOnRevisionTopic topic = getBimServer().getNotificationsManager().getOrCreateNewExtendedDataOnRevisionTopic(new NewExtendedDataOnRevisionTopicKey(roid));
 		try {
 			topic.register(endPoint);
@@ -145,7 +150,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	
 	@Override
 	public void unregisterNewRevisionOnSpecificProjectHandler(Long endPointId, Long poid) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			getBimServer().getNotificationsManager().getNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid)).unregister(endPoint);
 		} catch (TopicRegisterException e) {
@@ -155,7 +160,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 
 	@Override
 	public void unregisterNewRevisionHandler(Long endPointId) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			getBimServer().getNotificationsManager().getNewRevisionTopic().unregister(endPoint);
 		} catch (TopicRegisterException e) {
@@ -165,7 +170,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	
 	@Override
 	public void unregisterNewExtendedDataOnRevisionHandler(Long endPointId, Long roid) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			NewExtendedDataOnRevisionTopic newExtendedDataOnRevisionTopic = getBimServer().getNotificationsManager().getNewExtendedDataOnRevisionTopic(new NewExtendedDataOnRevisionTopicKey(roid));
 			if (newExtendedDataOnRevisionTopic != null) {
@@ -198,7 +203,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 
 	@Override
 	public void registerNewProjectHandler(Long endPointId) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			getBimServer().getNotificationsManager().getNewProjectTopic().register(endPoint);
 		} catch (TopicRegisterException e) {
@@ -208,7 +213,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 
 	@Override
 	public void unregisterNewProjectHandler(Long endPointId) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			getBimServer().getNotificationsManager().getNewProjectTopic().unregister(endPoint);
 		} catch (TopicRegisterException e) {
@@ -218,7 +223,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 
 	@Override
 	public void registerNewUserHandler(Long endPointId) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			getBimServer().getNotificationsManager().getNewUserTopic().register(endPoint);
 		} catch (TopicRegisterException e) {
@@ -228,7 +233,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 
 	@Override
 	public void unregisterNewUserHandler(Long endPointId) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			getBimServer().getNotificationsManager().getNewUserTopic().unregister(endPoint);
 		} catch (TopicRegisterException e) {
@@ -293,7 +298,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	@Override
 	public void registerChangeProgressOnProject(Long endPointId, Long poid) throws ServerException, UserException {
 		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnProjectTopic(poid);
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			changeProgressOnProjectTopic.register(endPoint);
 		} catch (TopicRegisterException e) {
@@ -304,7 +309,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	@Override
 	public void registerChangeProgressOnServer(Long endPointId) throws ServerException, UserException {
 		ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = getBimServer().getNotificationsManager().getChangeProgressTopicOnServerTopic();
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			changeProgressTopicOnServerTopic.register(endPoint);
 		} catch (TopicRegisterException e) {
@@ -314,11 +319,8 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	
 	@Override
 	public void unregisterChangeProgressOnServer(Long endPointId) throws ServerException, UserException {
-		if (endPointId == null) {
-			throw new RuntimeException();
-		}
 		ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = getBimServer().getNotificationsManager().getChangeProgressTopicOnServerTopic();
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			changeProgressTopicOnServerTopic.unregister(endPoint);
 		} catch (TopicRegisterException e) {
@@ -329,7 +331,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	@Override
 	public void registerChangeProgressOnRevision(Long endPointId, Long poid, Long roid) throws ServerException, UserException {
 		ChangeProgressTopicOnRevisionTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnRevisionTopic(poid, roid);
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			changeProgressOnProjectTopic.register(endPoint);
 		} catch (TopicRegisterException e) {
@@ -340,7 +342,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	@Override
 	public void unregisterChangeProgressOnProject(Long endPointId, Long poid) throws ServerException, UserException {
 		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnProjectTopic(poid);
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			changeProgressOnProjectTopic.unregister(endPoint);
 		} catch (TopicRegisterException e) {
@@ -351,7 +353,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	@Override
 	public void unregisterChangeProgressOnRevision(Long endPointId, Long poid, Long roid) throws ServerException, UserException {
 		ChangeProgressTopicOnRevisionTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnRevisionTopic(poid, roid);
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		EndPoint endPoint = getEndPoint(endPointId);
 		try {
 			changeProgressOnProjectTopic.unregister(endPoint);
 		} catch (TopicRegisterException e) {

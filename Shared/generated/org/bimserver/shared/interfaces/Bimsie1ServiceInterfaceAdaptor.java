@@ -64,6 +64,10 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 		return null;
 	}
 	
+	public java.lang.Long downloadByJsonQuery(java.util.Set<java.lang.Long> roids, java.lang.String jsonQuery, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.Long downloadByNames(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> names, java.lang.Long serializerOid, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}

@@ -371,6 +371,11 @@ public class IfcModel implements IfcModelInterface {
 				if (guidIndexed != null) {
 					indexGuid(eObject);
 				}
+				if (indexPerClassWithSubTypes != null) {
+					if (indexPerClassWithSubTypes.get(eObject.eClass()) != null) {
+						buildIndexWithSuperTypes(eObject, eObject.eClass());
+					}
+				}
 			}
 			for (IfcModelChangeListener ifcModelChangeListener : changeListeners) {
 				ifcModelChangeListener.objectAdded();

@@ -141,11 +141,15 @@ function BimServerApi(baseUrl, notifier) {
 			var intf = message["interface"];
 			if (othis.listeners[intf] != null) {
 				if (othis.listeners[intf][message.method] != null) {
+					var ar = null;
 					othis.listeners[intf][message.method].forEach(function(listener) {
-						var ar = [];
-						var i=0;
-						for (var key in message.parameters) {
-							ar[i++] = message.parameters[key];
+						if (ar == null) {
+							// Only parse the arguments once, or when there are no listeners, not even once
+							ar = [];
+							var i=0;
+							for (var key in message.parameters) {
+								ar[i++] = message.parameters[key];
+							}
 						}
 						listener.apply(null, ar);
 					});
@@ -195,6 +199,9 @@ function BimServerApi(baseUrl, notifier) {
 	},
 
 	this.register = function(interfaceName, methodName, callback, registerCallback) {
+		if (callback == null) {
+			throw "Cannot register null callback";
+		}
 		if (othis.listeners[interfaceName] == null) {
 			othis.listeners[interfaceName] = {};
 		}
@@ -1171,7 +1178,10 @@ function Model(bimServerApi, poid, roid) {
 			list = [list];
 		}
 		othis.waitForLoaded(function(){
-			list.forEach(function(item){
+			var len = list.length;
+			// Iterating in reverse order because we remove items from this array
+			while (len--) {
+				var item = list[len];
 				if (targetMap[item] != null) {
 					// Already loaded? Remove from list and call callback
 					if (targetMap[item].object.__state == "LOADED") {
@@ -1185,7 +1195,7 @@ function Model(bimServerApi, poid, roid) {
 					var index = list.indexOf(item);
 					list.splice(index, 1);
 				}
-			});
+			}
 			// Any left?
 			if (list.length > 0) {
 				list.forEach(function(item){
@@ -1211,7 +1221,7 @@ function Model(bimServerApi, poid, roid) {
 									var wrapper = null;
 									if (othis.objects[object.__oid] != null) {
 										wrapper = othis.objects[object.__oid];
-										if (object.__state == "LOADED") {
+										if (wrapper.object.__state != "LOADED") {
 											wrapper.object = object;
 										}											
 									} else {
@@ -1282,6 +1292,59 @@ function Model(bimServerApi, poid, roid) {
 				}
 			}
 		};
+		return promise;
+	};
+
+	this.query = function(query, callback){
+		var promise = othis.createPromise();
+		var fullTypesLoading = {};
+		query.queries.forEach(function(subQuery){
+			if (subQuery.type != null) {
+				fullTypesLoading[subQuery.type] = true;
+				othis.loadedTypes[subQuery.type] = {};
+			}
+		});
+		othis.waitForLoaded(function(){
+			othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
+				bimServerApi.call("Bimsie1ServiceInterface", "downloadByJsonQuery", {
+					roids: [othis.roid],
+					jsonQuery: JSON.stringify(query),
+					serializerOid: jsonSerializerOid,
+					sync: true
+				}, function(laid){
+					var url = bimServerApi.generateRevisionDownloadUrl({
+						laid: laid,
+						serializerOid: jsonSerializerOid
+					});
+					$.getJSON(url, function(data, textStatus, jqXHR){
+						data.objects.forEach(function(object){
+							var wrapper = othis.objects[object.__oid];
+							if (wrapper == null) {
+								wrapper = othis.createWrapper(object, object.__type);
+								othis.objects[object.__oid] = wrapper;
+								if (fullTypesLoading[object.__type] != null) {
+									othis.loadedTypes[object.__type][wrapper.oid] = wrapper;
+								}
+							} else {
+								if (object.__state == "LOADED") {
+									wrapper.object = object;
+								}
+							}
+//							if (othis.loadedTypes[wrapper.getType()] == null) {
+//								othis.loadedTypes[wrapper.getType()] = {};
+//							}
+//							othis.loadedTypes[wrapper.getType()][object.__oid] = wrapper;
+							if (object.__state == "LOADED") {
+								callback(wrapper);
+							}
+						});
+						bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
+							promise.fire();
+						});
+					});
+				});
+			});
+		});
 		return promise;
 	};
 	
