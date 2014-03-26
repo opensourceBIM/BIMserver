@@ -29,6 +29,10 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
 public class NewRevisionTopic extends Topic {
+	public NewRevisionTopic(NotificationsManager notificationsManager) {
+		super(notificationsManager);
+	}
+
 	public void process(final DatabaseSession session, final long poid, final long roid, NewRevisionNotification newRevisionNotification) throws BimserverDatabaseException, UserException, ServerException {
 		map(new Mapper(){
 			@Override
@@ -40,5 +44,10 @@ public class NewRevisionTopic extends Topic {
 				}
 			}
 		});
+	}
+
+	@Override
+	public void remove() {
+		// Do nothing, there is only one topic of this type
 	}
 }

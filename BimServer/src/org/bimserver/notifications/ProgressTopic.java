@@ -38,7 +38,8 @@ public class ProgressTopic extends Topic {
 	private volatile LongActionState lastProgress;
 	private long lastSent = -1;
 
-	public ProgressTopic(ProgressTopicKey key, SProgressTopicType type, String description) {
+	public ProgressTopic(NotificationsManager notificationsManager, ProgressTopicKey key, SProgressTopicType type, String description) {
+		super(notificationsManager);
 		this.key = key;
 		this.type = type;
 		this.description = description;
@@ -83,5 +84,10 @@ public class ProgressTopic extends Topic {
 	}
 	
 	public void close() {
+	}
+
+	@Override
+	public void remove() {
+		getNotificationsManager().removeProgressTopic(key);
 	}
 }

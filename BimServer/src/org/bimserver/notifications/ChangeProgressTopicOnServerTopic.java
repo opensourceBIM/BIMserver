@@ -24,6 +24,10 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class ChangeProgressTopicOnServerTopic extends Topic {
 
+	public ChangeProgressTopicOnServerTopic(NotificationsManager notificationsManager) {
+		super(notificationsManager);
+	}
+
 	public void notifyOfNewTopic(final NewProgressTopicOnServerNotification notification) throws UserException, ServerException, BimserverDatabaseException {
 		map(new Mapper(){
 			@Override
@@ -31,5 +35,10 @@ public class ChangeProgressTopicOnServerTopic extends Topic {
 				endPoint.getNotificationInterface().newProgressOnServerTopic(notification.getTopicId());
 			}
 		});
+	}
+
+	@Override
+	public void remove() {
+		// Do nothing, there is only one topic of this type
 	}
 }
