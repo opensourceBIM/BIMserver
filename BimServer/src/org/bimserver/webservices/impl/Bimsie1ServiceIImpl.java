@@ -191,6 +191,13 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 		fromClassNames.setUseObjectIDM(useObjectIDM);
 		return download(fromClassNames, sync);
 	}
+	
+	@Override
+	public Long downloadByJsonQuery(Set<Long> roids, String jsonQuery, Long serializerOid, Boolean sync) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DownloadParameters fromJsonQuery = DownloadParameters.fromJsonQuery(getBimServer(), roids, jsonQuery, serializerOid);
+		return download(fromJsonQuery, sync);
+	}
 
 	@Override
 	public Long downloadByGuids(Set<Long> roids, Set<String> guids, Long serializerOid, Boolean deep, Boolean sync) throws ServerException, UserException {

@@ -84,6 +84,11 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface DownloadByJsonQueryCallback {
+		void success(java.lang.Long result);
+		void error(Throwable e);
+	}
+	
 	public interface DownloadByNamesCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
@@ -347,6 +352,18 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.downloadByGuids(roids, guids, serializerOid, deep, sync));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void downloadByJsonQuery(final java.util.Set<java.lang.Long> roids, final java.lang.String jsonQuery, final java.lang.Long serializerOid, final java.lang.Boolean sync, final DownloadByJsonQueryCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.downloadByJsonQuery(roids, jsonQuery, serializerOid, sync));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
