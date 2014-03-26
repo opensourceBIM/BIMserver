@@ -1,25 +1,63 @@
 <div class="main">
-	<div class="pull-left mainmenu">
-		<ul class="nav nav-pills">
-			<li class="dashboardLink active initialhide"><a>Dashboard</a></li>
-			<li class="projectsLink initialhide"><a>Projects</a></li>
-			<li class="usersLink initialhide"><a>Users</a></li>
-			<li class="usersettingsLink initialhide"><a>User Settings</a></li>
-			<li class="serversettingsLink initialhide"><a>Server Settings</a></li>
-			<li class="serverinfoLink initialhide"><a>Server Info</a></li>
-			<li class="gettingStartedLink initialhide"><a>Getting Started</a></li>
-			<li class="testingLink initialhide"><a>Testing</a></li>
-		</ul>
-	</div>
-	<div class="btn-group pull-right">
-		<a class="btn btn-primary userButton"><i class="icon-user icon-white"></i> <span style="color: white" class="userLabel">User</span></a> <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span
-			class="caret"></span></a>
-		<ul class="dropdown-menu">
-			<li><a class="logoutLink"><i></i>Logout</a></li>
-			<li><a class="changePasswordLink"><i></i>Change password</a></li>
-			<li><a><span class="addressLabel"></span></a></li>
-		</ul>
-	</div>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand btnBrand">BIMvie.ws</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="dropdown projectLink"><a href="#" class="dropdown-toggle Project" data-toggle="dropdown">Project <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a class="btnAddProject">New project</a></li>
+							<li><a class="btnShowProjects">Show projects</a></li>
+							<li class="divider"></li>
+							<li role="presentation" class="dropdown-header">This project</li>
+						</ul></li>
+					<li class="dropdown usersettingsLink"><a href="#" class="dropdown-toggle" data-toggle="dropdown">User Settings <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a class="btnBasicSettings">User Settings</a></li>
+							<li><a class="btnSerializers">Serializers</a></li>
+							<li><a class="btnDeserializers">Deserializers</a></li>
+							<li><a class="btnObjectIDMs">Object IDMs</a></li>
+							<li><a class="btnRenderEngines">Render Engines</a></li>
+							<li><a class="btnQueryEngines">Query Engines</a></li>
+							<li><a class="btnModelMergers">Model Mergers</a></li>
+							<li><a class="btnModelCompareEngines">Model Compare Engines</a></li>
+							<li><a class="btnInternalServices">Internal Services</a></li>
+						</ul></li>
+					<li class="dropdown serversettingsLink"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Server <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li role="presentation" class="dropdown-header">Server Settings</li>
+							<li><a class="btnBasicServerSettings">Server Settings</a></li>
+							<li><a class="btnMigrations">Migrations</a></li>
+							<li><a class="btnPlugins">Plugins</a></li>
+							<li><a class="btnWebModules">Web Modules</a></li>
+							<li><a class="btnExtendedDataSchemas">Extended Data Schemas</a></li>
+							<li><a class="btnModelCheckers">Model Checkers</a></li>
+							<li class="divider"></li>
+							<li role="presentation" class="dropdown-header">Server Info</li>
+							<li><a class="btnSystem">System</a></li>
+							<li><a class="btnJava">Java</a></li>
+							<li><a class="btnBimServer">BIMserver</a></li>
+							<li><a class="btnDatabase">Database</a></li>
+							<li><a class="btnWebServices">Web Services</a></li>
+							<li><a class="btnLog">Log</a></li>
+							<li class="userDivider divider"></li>
+							<li><a class="btnAddUser">Add User</a></li>
+							<li><a class="btnListUsers">List Users</a></li>
+						</ul></li>
+					<li class="dropdown userLink"><a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a class="changePasswordLink"><i></i>Change password</a></li>
+							<li><a><span class="addressLabel"></span></a></li>
+							<li class="divider"></li>
+							<li><a class="logoutLink"><i></i>Logout</a></li>
+						</ul>
+					</li>						
+				</ul>
+			</div>
+		</div>
+	</nav>
 	<div class="clearfix"></div>
 	<div class="alert status initialhide">
 		<button type="button" class="close">&times;</button>
@@ -28,22 +66,25 @@
 	<div class="maincontainer"></div>
 </div>
 <script>
-function Main(address, username) {
+function Main(address, user) {
 	var othis = this;
 	othis.pageChanger = new PageChanger($(".main .nav"), $(".main .maincontainer"));
 
-	$(".main .userLabel").html(username);
+	$(".main .userLabel").html(user.username);
 	$(".main .addressLabel").html(address);
 	
 	this.show = function() {
 		Global.notifier.setSelector(".main .status");
 		Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(user){
-			$(".main .nav li").hide();
+			//$(".main .nav li").hide();
 			othis.user = user;
+			$(".nav.navbar-nav > li, .userDivider, .btnAddUser, .btnListUsers").hide();
 			Settings.getMenuItems().forEach(function(menuItem){
-				if (menuItem == "dashboardLink" || menuItem == "gettingStartedLink" || menuItem == "serversettingsLink" || menuItem == "serverinfoLink" || menuItem == "testingLink" || menuItem == "usersLink") {
+				if (menuItem == "dashboardLink" || menuItem == "gettingStartedLink" || menuItem == "serversettingsLink") {
 					if (user.userType == "ADMIN") {
 						$("." + menuItem).show();
+					} else {
+						$("." + menuItem).hide();
 					}
 				} else {
 					$("." + menuItem).show();
@@ -83,11 +124,7 @@ function Main(address, username) {
 					othis.showAddService(project, null, true);
 				});
 			} else {
-				if ($(".dashboardLink").is(":visible")) {
-					othis.showDashboard(null);
-				} else {
-					othis.showProjects();
-				}
+				Settings.createStartPage($(".main .maincontainer"), othis);
 			}
 		});
 	};
@@ -218,7 +255,7 @@ function Main(address, username) {
 			othis.current.showService(service);
 		});
 	};
-	
+
 	this.showServerSettings = function(callback) {
 		if (othis.current != null && othis.current.getName != null && othis.current.getName() == "ServerSettings") {
 			callback.call(othis.current);
@@ -265,17 +302,156 @@ function Main(address, username) {
 		});
 	};
 	
+	this.showCheckinPopup = function(project, callback) {
+		var div = $("<div class=\"modal fade\">");
+		$(document.body).append(div);
+		div.load(Global.baseDir + "checkin.html", function(){
+			new Checkin($(this), project, function(){
+				if (callback != null) {
+					callback();
+				}
+			});
+		}).modal({keyboard:true});
+	};
+	
+	this.showDownloadCheckoutPopup = function(poid, roid) {
+		var div = $("<div class=\"modal fade\">");
+		$(document.body).append(div);
+		var params = {
+			downloadType: "single",
+			allowCheckouts: true,
+			poid: poid,
+			roid: roid
+		};
+		div.load(Global.baseDir + "download.html", function(){
+			new Download($(this), params);
+		}).modal({keyboard:true});
+	};
+	
+	this.addMenuItem = function(mainTitle, title, callback){
+		var navbar = $(".nav.navbar-nav");
+		var parentA = navbar.find("a." + mainTitle);
+		var li = $("<li></li>");
+		var a = $("<a>");
+		a.html(title);
+		a.click(callback);
+		li.append(a);
+		parentA.parent().find("ul").append(li);
+	};
+	
 	$(".changePasswordLink").click(othis.changePasswordClick);
 	
 	$(".dashboardLink").click(function(){othis.showDashboard(null, true)});
-	$(".projectsLink").click(function(event){othis.showProjects(null, true)});
-	$(".usersLink").click(function(event){othis.showUsers(null, true)});
+	$(".btnShowProjects").click(function(event){othis.showProjects(null, true)});
+	$(".btnListUsers").click(function(event){othis.showUsers(null, true)});
 	$(".usersettingsLink").click(function(event){othis.showUserSettings(null, true)});
 	$(".serverinfoLink").click(function(event){othis.showServerInfo(null, true)});
-	$(".serversettingsLink").click(function(event){othis.showServerSettings(null, true)});
+	$(".btnBasicServerSettings").click(function(event){othis.showServerSettings(function(){
+		this.showBasicServerSettings();
+	}, true)});
+	$(".btnSystem").click(function(event){othis.showServerInfo(function(){
+		this.showSystem();
+	}, true)});
+	$(".btnJava").click(function(event){othis.showServerInfo(function(){
+		this.showJava();
+	}, true)});
+	$(".btnBimServer").click(function(event){othis.showServerInfo(function(){
+		this.showBimServer();
+	}, true)});
+	$(".btnWebServices").click(function(event){othis.showServerInfo(function(){
+		this.showWebServices();
+	}, true)});
+	$(".btnDatabase").click(function(event){othis.showServerInfo(function(){
+		this.showDatabase();
+	}, true)});
+	$(".btnLog").click(function(event){othis.showServerInfo(function(){
+		this.showLog();
+	}, true)});
 	$(".gettingStartedLink").click(function(event){othis.showGettingStarted(null, true)});
 	$(".testingLink").click(function(event){othis.showTesting(null, true)});
 	$(".logoutLink").click(othis.logout);
+	$(".btnAddUser").click(function(){othis.showAddUser()});
+	
+	$(".btnAddProject").click(function(){othis.showAddProject()});
+	$(".btnBasicSettings").click(function(){
+		othis.showUserSettings(function(){
+			this.showBasicUserSettings();
+		});
+	});
+	$(".btnSerializers").click(function(){
+		othis.showUserSettings(function(){
+			this.showSerializers();
+		});
+	});
+	$(".btnDeserializers").click(function(){
+		othis.showUserSettings(function(){
+			this.showDeserializers();
+		});
+	});
+	$(".btnRenderEngines").click(function(){
+		othis.showUserSettings(function(){
+			this.showRenderEngines();
+		});
+	});
+	$(".btnQueryEngines").click(function(){
+		othis.showUserSettings(function(){
+			this.showQueryEngines();
+		});
+	});
+	$(".btnObjectIDMs").click(function(){
+		othis.showUserSettings(function(){
+			this.showObjectIdms();
+		});
+	});
+	$(".btnModelMergers").click(function(){
+		othis.showUserSettings(function(){
+			this.showModelMergers();
+		});
+	});
+	$(".btnModelCompareEngines").click(function(){
+		othis.showUserSettings(function(){
+			this.showModelCompares();
+		});
+	});
+	$(".btnInternalServices").click(function(){
+		othis.showUserSettings(function(){
+			this.showInternalServices();
+		});
+	});
+	$(".btnMigrations").click(function(){
+		othis.showServerSettings(function(){
+			this.showMigrations();
+		});
+	});
+	$(".btnPlugins").click(function(){
+		othis.showServerSettings(function(){
+			this.showPlugins();
+		});
+	});
+	$(".btnWebModules").click(function(){
+		othis.showServerSettings(function(){
+			this.showWebModules();
+		});
+	});
+	$(".btnExtendedDataSchemas").click(function(){
+		othis.showServerSettings(function(){
+			this.showExtendedDataSchemas();
+		});
+	});
+	$(".btnModelCheckers").click(function(){
+		othis.showServerSettings(function(){
+			this.showModelCheckers();
+		});
+	});
+	
+	$(".btnAddSubProject").click(function(){
+		showAddProject(null, parentProject);
+	});
+	$(".btnShow3D").click(othis.show3dView);
+	
+	$(".btnBrand").click(function(){
+		Settings.createStartPage($(".main .maincontainer"));
+	});
 	
 	$(".userButton").click(function(){
 		Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(user){
