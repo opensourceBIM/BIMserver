@@ -1,0 +1,21 @@
+ul.BIMSURFER-Control-LayerList, ul.BIMSURFER-Control-LayerList-Revisions, ul.BIMSURFER-Control-LayerList-ifcTypes
+{
+	padding: 0 0 0 15px;
+	list-style: none;
+}
+
+span.BIMSURFER-Control-LayerList-Project-Title
+{
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+span.BIMSURFER-Control-LayerList-Revision-Title
+{
+	font-weight: bold;
+	font-size: 1.1em;
+}
+input.BIMSURFER-Control-LayerList-ifcType-Checkbox
+{
+	margin-right: 10px;
+}

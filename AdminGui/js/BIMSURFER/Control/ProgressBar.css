@@ -1,0 +1,31 @@
+div.BIMSURFER-Control-ProgressBar
+{
+	height: 25px;
+	outline: 1px #00F solid;
+	width: 1024px;
+	position: relative;
+	display: none;
+	overflow: hidden;
+}
+
+div.BIMSURFER-Control-ProgressBar-progress
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: #00F;
+	height: 100%;
+	width: 0%;
+}
+
+div.BIMSURFER-Control-ProgressBar-text
+{
+	position: absolute;
+	vertical-align: bottom;
+	color: #CCC;
+	text-align: center;
+	width: 100%;
+	top: 5px;
+	left: 0px;
+	font-size: 15px;
+}
