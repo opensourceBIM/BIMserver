@@ -51,11 +51,7 @@ public class WebSocketImpl {
     }
  
 	public void close() {
-		try {
-			session.close();
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		}
+		session.close();
 	}
 	
     public void waitForEndpointId() {
