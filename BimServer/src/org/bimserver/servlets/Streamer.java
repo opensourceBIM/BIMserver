@@ -73,6 +73,7 @@ public class Streamer implements EndPoint {
 	}
 	
 	public static class WebSocketifier extends OutputStream implements AligningOutputStream {
+		private static final int HARD_LIMIT = 262144;
 		private byte[] buffer = new byte[1024 * 1024 * 100];
 		private int pos = 0;
 		private StreamingSocketInterface streamingSocketInterface;
@@ -93,12 +94,18 @@ public class Streamer implements EndPoint {
 
 		@Override
 		public void write(int val) throws IOException {
+			if (pos + 1 >= HARD_LIMIT) {
+				flush();
+			}
 			buffer[pos] = (byte) val;
 			pos++;
 		}
 
 		@Override
 		public void write(byte[] b, int off, int len) throws IOException {
+			if (pos + len >= HARD_LIMIT) {
+				flush();
+			}
 			System.arraycopy(b, off, buffer, pos, len);
 			pos += len;
 		}
