@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.BimServer;
-import org.eclipse.jetty.websocket.api.UpgradeRequest;
-import org.eclipse.jetty.websocket.api.UpgradeResponse;
+import org.eclipse.jetty.websocket.servlet.ServletUpgradeRequest;
+import org.eclipse.jetty.websocket.servlet.ServletUpgradeResponse;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
@@ -37,7 +37,7 @@ public class StreamingServlet extends org.eclipse.jetty.websocket.servlet.WebSoc
 	public void configure(WebSocketServletFactory factory) {
 		factory.setCreator(new WebSocketCreator() {
 			@Override
-			public Object createWebSocket(UpgradeRequest arg0, UpgradeResponse arg1) {
+			public Object createWebSocket(ServletUpgradeRequest arg0, ServletUpgradeResponse arg1) {
 				StreamingSocket streamingSocket = new StreamingSocket();
 				Streamer streamer = new Streamer(streamingSocket, (BimServer)getServletContext().getAttribute("bimserver"));
 				streamingSocket.setStreamer(streamer);
