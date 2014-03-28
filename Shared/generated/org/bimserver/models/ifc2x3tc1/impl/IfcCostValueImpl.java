@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCostValueImpl extends IfcAppliedValueImpl implements
-		IfcCostValue {
+public class IfcCostValueImpl extends IfcAppliedValueImpl implements IfcCostValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcCostValueImpl extends IfcAppliedValueImpl implements
 	 * @generated
 	 */
 	public String getCostType() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_COST_VALUE__COST_TYPE, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_COST_VALUE__COST_TYPE, true);
 	}
 
 	/**
@@ -80,8 +78,7 @@ public class IfcCostValueImpl extends IfcAppliedValueImpl implements
 	 * @generated
 	 */
 	public String getCondition() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_COST_VALUE__CONDITION, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_COST_VALUE__CONDITION, true);
 	}
 
 	/**

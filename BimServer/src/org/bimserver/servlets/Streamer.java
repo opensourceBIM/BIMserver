@@ -94,18 +94,18 @@ public class Streamer implements EndPoint {
 
 		@Override
 		public void write(int val) throws IOException {
-			if (pos + 1 >= HARD_LIMIT) {
-				flush();
-			}
+//			if (pos + 1 >= HARD_LIMIT) {
+//				flush();
+//			}
 			buffer[pos] = (byte) val;
 			pos++;
 		}
 
 		@Override
 		public void write(byte[] b, int off, int len) throws IOException {
-			if (pos + len >= HARD_LIMIT) {
-				flush();
-			}
+//			if (pos + len >= HARD_LIMIT) {
+//				flush();
+//			}
 			System.arraycopy(b, off, buffer, pos, len);
 			pos += len;
 		}

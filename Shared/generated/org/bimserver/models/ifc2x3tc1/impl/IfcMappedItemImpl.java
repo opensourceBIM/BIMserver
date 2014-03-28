@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements
-		IfcMappedItem {
+public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements IfcMappedItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements
 	 * @generated
 	 */
 	public IfcRepresentationMap getMappingSource() {
-		return (IfcRepresentationMap) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_SOURCE, true);
+		return (IfcRepresentationMap) eGet(Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_SOURCE, true);
 	}
 
 	/**
@@ -73,8 +71,7 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements
 	 * @generated
 	 */
 	public void setMappingSource(IfcRepresentationMap newMappingSource) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_SOURCE,
-				newMappingSource);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_SOURCE, newMappingSource);
 	}
 
 	/**
@@ -83,8 +80,7 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements
 	 * @generated
 	 */
 	public IfcCartesianTransformationOperator getMappingTarget() {
-		return (IfcCartesianTransformationOperator) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET, true);
+		return (IfcCartesianTransformationOperator) eGet(Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET, true);
 	}
 
 	/**
@@ -92,10 +88,8 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMappingTarget(
-			IfcCartesianTransformationOperator newMappingTarget) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET,
-				newMappingTarget);
+	public void setMappingTarget(IfcCartesianTransformationOperator newMappingTarget) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET, newMappingTarget);
 	}
 
 } //IfcMappedItemImpl

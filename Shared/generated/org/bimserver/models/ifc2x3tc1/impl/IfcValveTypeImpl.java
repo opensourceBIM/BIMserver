@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcValveTypeImpl extends IfcFlowControllerTypeImpl implements
-		IfcValveType {
+public class IfcValveTypeImpl extends IfcFlowControllerTypeImpl implements IfcValveType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcValveTypeImpl extends IfcFlowControllerTypeImpl implements
 	 * @generated
 	 */
 	public IfcValveTypeEnum getPredefinedType() {
-		return (IfcValveTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_VALVE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcValveTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_VALVE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -71,8 +69,7 @@ public class IfcValveTypeImpl extends IfcFlowControllerTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcValveTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_VALVE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_VALVE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcValveTypeImpl

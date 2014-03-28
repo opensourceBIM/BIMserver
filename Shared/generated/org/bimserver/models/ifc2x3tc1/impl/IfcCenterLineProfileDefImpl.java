@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCenterLineProfileDefImpl extends IfcArbitraryOpenProfileDefImpl
-		implements IfcCenterLineProfileDef {
+public class IfcCenterLineProfileDefImpl extends IfcArbitraryOpenProfileDefImpl implements IfcCenterLineProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcCenterLineProfileDefImpl extends IfcArbitraryOpenProfileDefImpl
 	 * @generated
 	 */
 	public double getThickness() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcCenterLineProfileDefImpl extends IfcArbitraryOpenProfileDefImpl
 	 * @generated
 	 */
 	public void setThickness(double newThickness) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS,
-				newThickness);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS, newThickness);
 	}
 
 	/**
@@ -82,9 +78,7 @@ public class IfcCenterLineProfileDefImpl extends IfcArbitraryOpenProfileDefImpl
 	 * @generated
 	 */
 	public String getThicknessAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS_AS_STRING, true);
 	}
 
 	/**
@@ -93,8 +87,7 @@ public class IfcCenterLineProfileDefImpl extends IfcArbitraryOpenProfileDefImpl
 	 * @generated
 	 */
 	public void setThicknessAsString(String newThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS_AS_STRING,
-				newThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CENTER_LINE_PROFILE_DEF__THICKNESS_AS_STRING, newThicknessAsString);
 	}
 
 } //IfcCenterLineProfileDefImpl

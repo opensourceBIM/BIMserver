@@ -66,8 +66,7 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGridAxis> getUAxes() {
-		return (EList<IfcGridAxis>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_GRID__UAXES, true);
+		return (EList<IfcGridAxis>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID__UAXES, true);
 	}
 
 	/**
@@ -77,8 +76,7 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGridAxis> getVAxes() {
-		return (EList<IfcGridAxis>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_GRID__VAXES, true);
+		return (EList<IfcGridAxis>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID__VAXES, true);
 	}
 
 	/**
@@ -88,8 +86,7 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGridAxis> getWAxes() {
-		return (EList<IfcGridAxis>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_GRID__WAXES, true);
+		return (EList<IfcGridAxis>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID__WAXES, true);
 	}
 
 	/**
@@ -117,9 +114,7 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelContainedInSpatialStructure> getContainedInStructure() {
-		return (EList<IfcRelContainedInSpatialStructure>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_GRID__CONTAINED_IN_STRUCTURE,
-				true);
+		return (EList<IfcRelContainedInSpatialStructure>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID__CONTAINED_IN_STRUCTURE, true);
 	}
 
 	/**

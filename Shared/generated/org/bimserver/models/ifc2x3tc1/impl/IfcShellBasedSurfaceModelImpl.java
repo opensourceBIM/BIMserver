@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcShellBasedSurfaceModelImpl extends
-		IfcGeometricRepresentationItemImpl implements IfcShellBasedSurfaceModel {
+public class IfcShellBasedSurfaceModelImpl extends IfcGeometricRepresentationItemImpl implements IfcShellBasedSurfaceModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcShellBasedSurfaceModelImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcShell> getSbsmBoundary() {
-		return (EList<IfcShell>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__SBSM_BOUNDARY,
-				true);
+		return (EList<IfcShell>) eGet(Ifc2x3tc1Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__SBSM_BOUNDARY, true);
 	}
 
 	/**
@@ -75,9 +72,7 @@ public class IfcShellBasedSurfaceModelImpl extends
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM,
-				true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM, true);
 	}
 
 	/**
@@ -86,8 +81,7 @@ public class IfcShellBasedSurfaceModelImpl extends
 	 * @generated
 	 */
 	public void setDim(int newDim) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM,
-				newDim);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM, newDim);
 	}
 
 	/**

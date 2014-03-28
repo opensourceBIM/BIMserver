@@ -33,8 +33,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLaborResourceImpl extends IfcConstructionResourceImpl implements
-		IfcLaborResource {
+public class IfcLaborResourceImpl extends IfcConstructionResourceImpl implements IfcLaborResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,8 +59,7 @@ public class IfcLaborResourceImpl extends IfcConstructionResourceImpl implements
 	 * @generated
 	 */
 	public String getSkillSet() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_LABOR_RESOURCE__SKILL_SET, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LABOR_RESOURCE__SKILL_SET, true);
 	}
 
 	/**
@@ -70,8 +68,7 @@ public class IfcLaborResourceImpl extends IfcConstructionResourceImpl implements
 	 * @generated
 	 */
 	public void setSkillSet(String newSkillSet) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LABOR_RESOURCE__SKILL_SET,
-				newSkillSet);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LABOR_RESOURCE__SKILL_SET, newSkillSet);
 	}
 
 	/**

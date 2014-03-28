@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPreDefinedDimensionSymbolImpl extends IfcPreDefinedSymbolImpl
-		implements IfcPreDefinedDimensionSymbol {
+public class IfcPreDefinedDimensionSymbolImpl extends IfcPreDefinedSymbolImpl implements IfcPreDefinedDimensionSymbol {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

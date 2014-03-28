@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcClassificationImpl extends IdEObjectImpl implements
-		IfcClassification {
+public class IfcClassificationImpl extends IdEObjectImpl implements IfcClassification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,8 +77,7 @@ public class IfcClassificationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getSource() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__SOURCE, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__SOURCE, true);
 	}
 
 	/**
@@ -97,8 +95,7 @@ public class IfcClassificationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getEdition() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__EDITION, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__EDITION, true);
 	}
 
 	/**
@@ -116,9 +113,7 @@ public class IfcClassificationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcCalendarDate getEditionDate() {
-		return (IfcCalendarDate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__EDITION_DATE,
-				true);
+		return (IfcCalendarDate) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__EDITION_DATE, true);
 	}
 
 	/**
@@ -127,8 +122,7 @@ public class IfcClassificationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setEditionDate(IfcCalendarDate newEditionDate) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__EDITION_DATE,
-				newEditionDate);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__EDITION_DATE, newEditionDate);
 	}
 
 	/**
@@ -155,8 +149,7 @@ public class IfcClassificationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__NAME, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__NAME, true);
 	}
 
 	/**
@@ -175,8 +168,7 @@ public class IfcClassificationImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItem> getContains() {
-		return (EList<IfcClassificationItem>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__CONTAINS, true);
+		return (EList<IfcClassificationItem>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION__CONTAINS, true);
 	}
 
 	/**

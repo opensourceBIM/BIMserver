@@ -47,7 +47,7 @@ public class ExecutableIfcEngineInstance implements RenderEngineInstance {
 			ifcEngine.writeInt(modelId);
 			ifcEngine.writeInt(instanceId);
 			ifcEngine.flush();
-			return new RenderEngineInstanceVisualisationProperties(ifcEngine.readInt(), ifcEngine.readInt(), ifcEngine.readInt());
+			return new RenderEngineInstanceVisualisationProperties(ifcEngine.readInt(), ifcEngine.readInt(), ifcEngine.readInt(), 0, 0, 0);
 		}
 	}
 

@@ -76,8 +76,7 @@ public class IfcDerivedUnitImpl extends IdEObjectImpl implements IfcDerivedUnit 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDerivedUnitElement> getElements() {
-		return (EList<IfcDerivedUnitElement>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT__ELEMENTS, true);
+		return (EList<IfcDerivedUnitElement>) eGet(Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT__ELEMENTS, true);
 	}
 
 	/**
@@ -86,8 +85,7 @@ public class IfcDerivedUnitImpl extends IdEObjectImpl implements IfcDerivedUnit 
 	 * @generated
 	 */
 	public IfcDerivedUnitEnum getUnitType() {
-		return (IfcDerivedUnitEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT__UNIT_TYPE, true);
+		return (IfcDerivedUnitEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT__UNIT_TYPE, true);
 	}
 
 	/**
@@ -105,9 +103,7 @@ public class IfcDerivedUnitImpl extends IdEObjectImpl implements IfcDerivedUnit 
 	 * @generated
 	 */
 	public String getUserDefinedType() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT__USER_DEFINED_TYPE,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT__USER_DEFINED_TYPE, true);
 	}
 
 	/**
@@ -116,8 +112,7 @@ public class IfcDerivedUnitImpl extends IdEObjectImpl implements IfcDerivedUnit 
 	 * @generated
 	 */
 	public void setUserDefinedType(String newUserDefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT__USER_DEFINED_TYPE,
-				newUserDefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT__USER_DEFINED_TYPE, newUserDefinedType);
 	}
 
 	/**

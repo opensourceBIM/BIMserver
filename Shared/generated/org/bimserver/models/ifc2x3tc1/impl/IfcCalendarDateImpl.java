@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCalendarDateImpl extends IdEObjectImpl implements
-		IfcCalendarDate {
+public class IfcCalendarDateImpl extends IdEObjectImpl implements IfcCalendarDate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,9 +72,7 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public int getDayComponent() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__DAY_COMPONENT,
-				true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__DAY_COMPONENT, true);
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDayComponent(int newDayComponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__DAY_COMPONENT,
-				newDayComponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__DAY_COMPONENT, newDayComponent);
 	}
 
 	/**
@@ -94,9 +90,7 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public int getMonthComponent() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__MONTH_COMPONENT,
-				true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__MONTH_COMPONENT, true);
 	}
 
 	/**
@@ -105,8 +99,7 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setMonthComponent(int newMonthComponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__MONTH_COMPONENT,
-				newMonthComponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__MONTH_COMPONENT, newMonthComponent);
 	}
 
 	/**
@@ -115,9 +108,7 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public int getYearComponent() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__YEAR_COMPONENT,
-				true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__YEAR_COMPONENT, true);
 	}
 
 	/**
@@ -126,8 +117,7 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setYearComponent(int newYearComponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__YEAR_COMPONENT,
-				newYearComponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__YEAR_COMPONENT, newYearComponent);
 	}
 
 } //IfcCalendarDateImpl

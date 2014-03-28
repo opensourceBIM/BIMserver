@@ -117,7 +117,7 @@ public class ExecutableIfcEngineModel implements RenderEngineModel {
 			for (int i = 0; i < normals.length; i++) {
 				normals[i] = ifcEngine.readFloat();
 			}
-			return new RenderEngineGeometry(indices, vertices, normals);
+			return new RenderEngineGeometry(indices, vertices, normals, new float[0], new int[0]);
 		}
 	}
 

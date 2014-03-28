@@ -26,6 +26,5 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcSurface extends IfcGeometricRepresentationItem,
-		IfcGeometricSetSelect, IfcSurfaceOrFaceSurface {
+public interface IfcSurface extends IfcGeometricRepresentationItem, IfcGeometricSetSelect, IfcSurfaceOrFaceSurface {
 } // IfcSurface

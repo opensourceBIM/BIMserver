@@ -29,6 +29,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryData#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryData#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryData#getNormals <em>Normals</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryData#getMaterials <em>Materials</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryData#getMaterialIndices <em>Material Indices</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,5 +117,57 @@ public interface GeometryData extends IdEObject {
 	 * @generated
 	 */
 	void setNormals(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Materials</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Materials</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Materials</em>' attribute.
+	 * @see #setMaterials(byte[])
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryData_Materials()
+	 * @model
+	 * @generated
+	 */
+	byte[] getMaterials();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryData#getMaterials <em>Materials</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Materials</em>' attribute.
+	 * @see #getMaterials()
+	 * @generated
+	 */
+	void setMaterials(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Material Indices</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Material Indices</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Material Indices</em>' attribute.
+	 * @see #setMaterialIndices(byte[])
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryData_MaterialIndices()
+	 * @model
+	 * @generated
+	 */
+	byte[] getMaterialIndices();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryData#getMaterialIndices <em>Material Indices</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Material Indices</em>' attribute.
+	 * @see #getMaterialIndices()
+	 * @generated
+	 */
+	void setMaterialIndices(byte[] value);
 
 } // GeometryData

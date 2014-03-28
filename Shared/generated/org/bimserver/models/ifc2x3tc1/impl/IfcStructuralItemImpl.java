@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralItemImpl extends IfcProductImpl implements
-		IfcStructuralItem {
+public class IfcStructuralItemImpl extends IfcProductImpl implements IfcStructuralItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcStructuralItemImpl extends IfcProductImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralActivity> getAssignedStructuralActivity() {
-		return (EList<IfcRelConnectsStructuralActivity>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY,
-				true);
+		return (EList<IfcRelConnectsStructuralActivity>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY, true);
 	}
 
 	/**

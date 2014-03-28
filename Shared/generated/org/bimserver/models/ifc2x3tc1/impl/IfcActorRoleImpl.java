@@ -73,8 +73,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 * @generated
 	 */
 	public IfcRoleEnum getRole() {
-		return (IfcRoleEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__ROLE, true);
+		return (IfcRoleEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__ROLE, true);
 	}
 
 	/**
@@ -92,9 +91,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 * @generated
 	 */
 	public String getUserDefinedRole() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE, true);
 	}
 
 	/**
@@ -103,8 +100,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 * @generated
 	 */
 	public void setUserDefinedRole(String newUserDefinedRole) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE,
-				newUserDefinedRole);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE, newUserDefinedRole);
 	}
 
 	/**
@@ -131,8 +127,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION, true);
 	}
 
 	/**
@@ -141,8 +136,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION,
-				newDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION, newDescription);
 	}
 
 	/**

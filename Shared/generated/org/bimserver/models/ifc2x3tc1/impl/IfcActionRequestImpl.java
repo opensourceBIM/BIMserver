@@ -33,8 +33,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcActionRequestImpl extends IfcControlImpl implements
-		IfcActionRequest {
+public class IfcActionRequestImpl extends IfcControlImpl implements IfcActionRequest {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,8 +59,7 @@ public class IfcActionRequestImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getRequestID() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ACTION_REQUEST__REQUEST_ID, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ACTION_REQUEST__REQUEST_ID, true);
 	}
 
 	/**
@@ -70,8 +68,7 @@ public class IfcActionRequestImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setRequestID(String newRequestID) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ACTION_REQUEST__REQUEST_ID,
-				newRequestID);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ACTION_REQUEST__REQUEST_ID, newRequestID);
 	}
 
 } //IfcActionRequestImpl

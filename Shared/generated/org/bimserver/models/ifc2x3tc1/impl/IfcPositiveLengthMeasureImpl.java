@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPositiveLengthMeasureImpl extends IfcLengthMeasureImpl
-		implements IfcPositiveLengthMeasure {
+public class IfcPositiveLengthMeasureImpl extends IfcLengthMeasureImpl implements IfcPositiveLengthMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyBoundedValueImpl extends IfcSimplePropertyImpl
-		implements IfcPropertyBoundedValue {
+public class IfcPropertyBoundedValueImpl extends IfcSimplePropertyImpl implements IfcPropertyBoundedValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcPropertyBoundedValueImpl extends IfcSimplePropertyImpl
 	 * @generated
 	 */
 	public IfcValue getUpperBoundValue() {
-		return (IfcValue) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__UPPER_BOUND_VALUE,
-				true);
+		return (IfcValue) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__UPPER_BOUND_VALUE, true);
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class IfcPropertyBoundedValueImpl extends IfcSimplePropertyImpl
 	 * @generated
 	 */
 	public void setUpperBoundValue(IfcValue newUpperBoundValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__UPPER_BOUND_VALUE,
-				newUpperBoundValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__UPPER_BOUND_VALUE, newUpperBoundValue);
 	}
 
 	/**
@@ -103,9 +99,7 @@ public class IfcPropertyBoundedValueImpl extends IfcSimplePropertyImpl
 	 * @generated
 	 */
 	public IfcValue getLowerBoundValue() {
-		return (IfcValue) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__LOWER_BOUND_VALUE,
-				true);
+		return (IfcValue) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__LOWER_BOUND_VALUE, true);
 	}
 
 	/**
@@ -114,8 +108,7 @@ public class IfcPropertyBoundedValueImpl extends IfcSimplePropertyImpl
 	 * @generated
 	 */
 	public void setLowerBoundValue(IfcValue newLowerBoundValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__LOWER_BOUND_VALUE,
-				newLowerBoundValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__LOWER_BOUND_VALUE, newLowerBoundValue);
 	}
 
 	/**
@@ -142,9 +135,7 @@ public class IfcPropertyBoundedValueImpl extends IfcSimplePropertyImpl
 	 * @generated
 	 */
 	public IfcUnit getUnit() {
-		return (IfcUnit) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__UNIT,
-				true);
+		return (IfcUnit) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__UNIT, true);
 	}
 
 	/**
@@ -153,8 +144,7 @@ public class IfcPropertyBoundedValueImpl extends IfcSimplePropertyImpl
 	 * @generated
 	 */
 	public void setUnit(IfcUnit newUnit) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__UNIT,
-				newUnit);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_BOUNDED_VALUE__UNIT, newUnit);
 	}
 
 	/**

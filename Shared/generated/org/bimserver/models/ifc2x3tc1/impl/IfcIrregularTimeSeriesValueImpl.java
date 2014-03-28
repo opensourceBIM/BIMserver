@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcIrregularTimeSeriesValueImpl extends IdEObjectImpl implements
-		IfcIrregularTimeSeriesValue {
+public class IfcIrregularTimeSeriesValueImpl extends IdEObjectImpl implements IfcIrregularTimeSeriesValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,9 +74,7 @@ public class IfcIrregularTimeSeriesValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcDateTimeSelect getTimeStamp() {
-		return (IfcDateTimeSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_IRREGULAR_TIME_SERIES_VALUE__TIME_STAMP,
-				true);
+		return (IfcDateTimeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_IRREGULAR_TIME_SERIES_VALUE__TIME_STAMP, true);
 	}
 
 	/**
@@ -86,8 +83,7 @@ public class IfcIrregularTimeSeriesValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setTimeStamp(IfcDateTimeSelect newTimeStamp) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_IRREGULAR_TIME_SERIES_VALUE__TIME_STAMP,
-				newTimeStamp);
+		eSet(Ifc2x3tc1Package.Literals.IFC_IRREGULAR_TIME_SERIES_VALUE__TIME_STAMP, newTimeStamp);
 	}
 
 	/**
@@ -97,9 +93,7 @@ public class IfcIrregularTimeSeriesValueImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getListValues() {
-		return (EList<IfcValue>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_IRREGULAR_TIME_SERIES_VALUE__LIST_VALUES,
-				true);
+		return (EList<IfcValue>) eGet(Ifc2x3tc1Package.Literals.IFC_IRREGULAR_TIME_SERIES_VALUE__LIST_VALUES, true);
 	}
 
 } //IfcIrregularTimeSeriesValueImpl

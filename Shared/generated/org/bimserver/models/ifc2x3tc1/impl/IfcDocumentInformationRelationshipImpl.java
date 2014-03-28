@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl
-		implements IfcDocumentInformationRelationship {
+public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl implements IfcDocumentInformationRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,9 +74,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public IfcDocumentInformation getRelatingDocument() {
-		return (IfcDocumentInformation) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT,
-				true);
+		return (IfcDocumentInformation) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT, true);
 	}
 
 	/**
@@ -86,8 +83,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public void setRelatingDocument(IfcDocumentInformation newRelatingDocument) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT,
-				newRelatingDocument);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT, newRelatingDocument);
 	}
 
 	/**
@@ -97,9 +93,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentInformation> getRelatedDocuments() {
-		return (EList<IfcDocumentInformation>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATED_DOCUMENTS,
-				true);
+		return (EList<IfcDocumentInformation>) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATED_DOCUMENTS, true);
 	}
 
 	/**
@@ -108,9 +102,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public String getRelationshipType() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE, true);
 	}
 
 	/**
@@ -119,8 +111,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public void setRelationshipType(String newRelationshipType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE,
-				newRelationshipType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE, newRelationshipType);
 	}
 
 	/**

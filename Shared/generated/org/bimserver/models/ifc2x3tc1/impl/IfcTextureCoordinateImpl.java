@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextureCoordinateImpl extends IdEObjectImpl implements
-		IfcTextureCoordinate {
+public class IfcTextureCoordinateImpl extends IdEObjectImpl implements IfcTextureCoordinate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,9 +73,7 @@ public class IfcTextureCoordinateImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAnnotationSurface> getAnnotatedSurface() {
-		return (EList<IfcAnnotationSurface>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXTURE_COORDINATE__ANNOTATED_SURFACE,
-				true);
+		return (EList<IfcAnnotationSurface>) eGet(Ifc2x3tc1Package.Literals.IFC_TEXTURE_COORDINATE__ANNOTATED_SURFACE, true);
 	}
 
 	/**

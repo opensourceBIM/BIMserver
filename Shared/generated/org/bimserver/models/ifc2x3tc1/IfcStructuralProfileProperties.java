@@ -63,8 +63,7 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcStructuralProfileProperties extends
-		IfcGeneralProfileProperties {
+public interface IfcStructuralProfileProperties extends IfcGeneralProfileProperties {
 	/**
 	 * Returns the value of the '<em><b>Torsional Constant X</b></em>' attribute.
 	 * <!-- begin-user-doc -->

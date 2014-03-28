@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBuildingElementTypeImpl extends IfcElementTypeImpl implements
-		IfcBuildingElementType {
+public class IfcBuildingElementTypeImpl extends IfcElementTypeImpl implements IfcBuildingElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

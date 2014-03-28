@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSweptAreaSolidImpl extends IfcSolidModelImpl implements
-		IfcSweptAreaSolid {
+public class IfcSweptAreaSolidImpl extends IfcSolidModelImpl implements IfcSweptAreaSolid {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcSweptAreaSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public IfcProfileDef getSweptArea() {
-		return (IfcProfileDef) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SWEPT_AREA_SOLID__SWEPT_AREA,
-				true);
+		return (IfcProfileDef) eGet(Ifc2x3tc1Package.Literals.IFC_SWEPT_AREA_SOLID__SWEPT_AREA, true);
 	}
 
 	/**
@@ -74,8 +71,7 @@ public class IfcSweptAreaSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public void setSweptArea(IfcProfileDef newSweptArea) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SWEPT_AREA_SOLID__SWEPT_AREA,
-				newSweptArea);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SWEPT_AREA_SOLID__SWEPT_AREA, newSweptArea);
 	}
 
 	/**
@@ -84,8 +80,7 @@ public class IfcSweptAreaSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public IfcAxis2Placement3D getPosition() {
-		return (IfcAxis2Placement3D) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SWEPT_AREA_SOLID__POSITION, true);
+		return (IfcAxis2Placement3D) eGet(Ifc2x3tc1Package.Literals.IFC_SWEPT_AREA_SOLID__POSITION, true);
 	}
 
 	/**
@@ -94,8 +89,7 @@ public class IfcSweptAreaSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public void setPosition(IfcAxis2Placement3D newPosition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SWEPT_AREA_SOLID__POSITION,
-				newPosition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SWEPT_AREA_SOLID__POSITION, newPosition);
 	}
 
 } //IfcSweptAreaSolidImpl

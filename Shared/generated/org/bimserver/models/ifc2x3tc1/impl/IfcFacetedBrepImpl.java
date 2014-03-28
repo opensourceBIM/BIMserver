@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFacetedBrepImpl extends IfcManifoldSolidBrepImpl implements
-		IfcFacetedBrep {
+public class IfcFacetedBrepImpl extends IfcManifoldSolidBrepImpl implements IfcFacetedBrep {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

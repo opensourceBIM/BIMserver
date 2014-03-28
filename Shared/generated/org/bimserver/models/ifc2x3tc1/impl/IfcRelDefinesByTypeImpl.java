@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelDefinesByTypeImpl extends IfcRelDefinesImpl implements
-		IfcRelDefinesByType {
+public class IfcRelDefinesByTypeImpl extends IfcRelDefinesImpl implements IfcRelDefinesByType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcRelDefinesByTypeImpl extends IfcRelDefinesImpl implements
 	 * @generated
 	 */
 	public IfcTypeObject getRelatingType() {
-		return (IfcTypeObject) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATING_TYPE,
-				true);
+		return (IfcTypeObject) eGet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATING_TYPE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcRelDefinesByTypeImpl extends IfcRelDefinesImpl implements
 	 * @generated
 	 */
 	public void setRelatingType(IfcTypeObject newRelatingType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATING_TYPE,
-				newRelatingType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATING_TYPE, newRelatingType);
 	}
 
 } //IfcRelDefinesByTypeImpl

@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAirTerminalBoxTypeImpl extends IfcFlowControllerTypeImpl
-		implements IfcAirTerminalBoxType {
+public class IfcAirTerminalBoxTypeImpl extends IfcFlowControllerTypeImpl implements IfcAirTerminalBoxType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcAirTerminalBoxTypeImpl extends IfcFlowControllerTypeImpl
 	 * @generated
 	 */
 	public IfcAirTerminalBoxTypeEnum getPredefinedType() {
-		return (IfcAirTerminalBoxTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_AIR_TERMINAL_BOX_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcAirTerminalBoxTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_AIR_TERMINAL_BOX_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcAirTerminalBoxTypeImpl extends IfcFlowControllerTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcAirTerminalBoxTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_AIR_TERMINAL_BOX_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_AIR_TERMINAL_BOX_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcAirTerminalBoxTypeImpl

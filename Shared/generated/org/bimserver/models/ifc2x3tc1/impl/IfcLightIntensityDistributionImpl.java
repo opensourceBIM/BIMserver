@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements
-		IfcLightIntensityDistribution {
+public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements IfcLightIntensityDistribution {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,9 +74,7 @@ public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcLightDistributionCurveEnum getLightDistributionCurve() {
-		return (IfcLightDistributionCurveEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE,
-				true);
+		return (IfcLightDistributionCurveEnum) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE, true);
 	}
 
 	/**
@@ -85,10 +82,8 @@ public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLightDistributionCurve(
-			IfcLightDistributionCurveEnum newLightDistributionCurve) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE,
-				newLightDistributionCurve);
+	public void setLightDistributionCurve(IfcLightDistributionCurveEnum newLightDistributionCurve) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE, newLightDistributionCurve);
 	}
 
 	/**
@@ -98,9 +93,7 @@ public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLightDistributionData> getDistributionData() {
-		return (EList<IfcLightDistributionData>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__DISTRIBUTION_DATA,
-				true);
+		return (EList<IfcLightDistributionData>) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__DISTRIBUTION_DATA, true);
 	}
 
 } //IfcLightIntensityDistributionImpl

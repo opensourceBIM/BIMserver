@@ -41,8 +41,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcOrganization extends IfcActorSelect,
-		IfcObjectReferenceSelect {
+public interface IfcOrganization extends IfcActorSelect, IfcObjectReferenceSelect {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->

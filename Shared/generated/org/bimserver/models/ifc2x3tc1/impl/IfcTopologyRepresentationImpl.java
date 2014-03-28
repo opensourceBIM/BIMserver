@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTopologyRepresentationImpl extends IfcShapeModelImpl implements
-		IfcTopologyRepresentation {
+public class IfcTopologyRepresentationImpl extends IfcShapeModelImpl implements IfcTopologyRepresentation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

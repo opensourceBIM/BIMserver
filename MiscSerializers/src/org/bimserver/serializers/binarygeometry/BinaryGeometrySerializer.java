@@ -21,6 +21,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -124,19 +127,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		for (IfcProduct ifcProduct : products) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
 			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
-				String materialName = ifcProduct.eClass().getName();
-				if  (ifcProduct instanceof IfcSlab && ((IfcSlab)ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-					materialName = "IfcRoof";
-				}
-//				try {
-//					materialName = getMaterial(ifcProduct);
-//				} catch (Exception e) {
-//				}
-				dataOutputStream.writeUTF(materialName);
-				String type = null;
-				type = ifcProduct.eClass().getName();
-				dataOutputStream.writeUTF(type);
-				
+				dataOutputStream.writeUTF(ifcProduct.eClass().getName());
 				dataOutputStream.writeLong(ifcProduct.getOid());
 
 				GeometryData geometryData = geometryInfo.getData();
@@ -165,11 +156,13 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				} else {
 					ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
 					dataOutputStream.writeLong(geometryData.getOid());
-					
-					dataOutputStream.writeInt(geometryInfo.getPrimitiveCount() * 3);
-					
+
 					Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
 					objectBounds.writeTo(dataOutputStream);
+
+					ByteBuffer indicesBuffer = ByteBuffer.wrap(geometryData.getIndices());
+					dataOutputStream.writeInt(indicesBuffer.capacity() / 4);
+					dataOutputStream.write(indicesBuffer.array());
 					
 					dataOutputStream.writeInt(vertexByteBuffer.capacity() / 4);
 					dataOutputStream.write(vertexByteBuffer.array());
@@ -177,6 +170,44 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
 					dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
 					dataOutputStream.write(normalsBuffer.array());
+
+					ByteBuffer materialIndexByteBuffer = ByteBuffer.wrap(geometryData.getMaterialIndices());
+					materialIndexByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+					IntBuffer materialIndicesBuffer = materialIndexByteBuffer.asIntBuffer();
+					ByteBuffer materialsByteBuffer = ByteBuffer.wrap(geometryData.getMaterials());
+					materialsByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+					FloatBuffer materialsBuffer = materialsByteBuffer.asFloatBuffer();
+					dataOutputStream.writeInt(materialIndicesBuffer.capacity() * 3);
+					for (int i=0; i<materialIndicesBuffer.capacity(); i++) {
+						int materialIndex = materialIndicesBuffer.get(i);
+						if (materialIndex == -1) {
+							ByteBuffer test = ByteBuffer.wrap(new byte[16]);
+							test.order(ByteOrder.LITTLE_ENDIAN);
+							FloatBuffer fl = test.asFloatBuffer();
+							fl.put(1f);
+							fl.put(0f);
+							fl.put(0f);
+							fl.put(1f);
+							for (int j=0; j<3; j++) {
+								dataOutputStream.write(test.array());
+							}
+						} else {
+							float r = materialsBuffer.get(materialIndex);
+							float g = materialsBuffer.get(materialIndex + 1);
+							float b = materialsBuffer.get(materialIndex + 2);
+							float a = materialsBuffer.get(materialIndex + 3);
+							ByteBuffer test = ByteBuffer.wrap(new byte[16]);
+							test.order(ByteOrder.LITTLE_ENDIAN);
+							FloatBuffer fl = test.asFloatBuffer();
+							fl.put(r);
+							fl.put(g);
+							fl.put(b);
+							fl.put(a);
+							for (int j=0; j<3; j++) {
+								dataOutputStream.write(test.array());
+							}
+						}
+					}
 					
 					concreteGeometrySent.add(geometryData.getOid());
 				}

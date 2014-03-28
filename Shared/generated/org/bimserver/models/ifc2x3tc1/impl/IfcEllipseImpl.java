@@ -62,8 +62,7 @@ public class IfcEllipseImpl extends IfcConicImpl implements IfcEllipse {
 	 * @generated
 	 */
 	public double getSemiAxis1() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS1,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS1, true);
 	}
 
 	/**
@@ -81,9 +80,7 @@ public class IfcEllipseImpl extends IfcConicImpl implements IfcEllipse {
 	 * @generated
 	 */
 	public String getSemiAxis1AsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS1_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS1_AS_STRING, true);
 	}
 
 	/**
@@ -92,8 +89,7 @@ public class IfcEllipseImpl extends IfcConicImpl implements IfcEllipse {
 	 * @generated
 	 */
 	public void setSemiAxis1AsString(String newSemiAxis1AsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS1_AS_STRING,
-				newSemiAxis1AsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS1_AS_STRING, newSemiAxis1AsString);
 	}
 
 	/**
@@ -102,8 +98,7 @@ public class IfcEllipseImpl extends IfcConicImpl implements IfcEllipse {
 	 * @generated
 	 */
 	public double getSemiAxis2() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS2,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS2, true);
 	}
 
 	/**
@@ -121,9 +116,7 @@ public class IfcEllipseImpl extends IfcConicImpl implements IfcEllipse {
 	 * @generated
 	 */
 	public String getSemiAxis2AsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS2_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS2_AS_STRING, true);
 	}
 
 	/**
@@ -132,8 +125,7 @@ public class IfcEllipseImpl extends IfcConicImpl implements IfcEllipse {
 	 * @generated
 	 */
 	public void setSemiAxis2AsString(String newSemiAxis2AsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS2_AS_STRING,
-				newSemiAxis2AsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELLIPSE__SEMI_AXIS2_AS_STRING, newSemiAxis2AsString);
 	}
 
 } //IfcEllipseImpl

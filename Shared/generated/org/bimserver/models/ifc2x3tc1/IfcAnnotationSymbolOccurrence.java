@@ -26,6 +26,5 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcAnnotationSymbolOccurrence extends IfcAnnotationOccurrence,
-		IfcDraughtingCalloutElement {
+public interface IfcAnnotationSymbolOccurrence extends IfcAnnotationOccurrence, IfcDraughtingCalloutElement {
 } // IfcAnnotationSymbolOccurrence

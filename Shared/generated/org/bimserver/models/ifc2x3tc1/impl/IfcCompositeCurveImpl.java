@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements
-		IfcCompositeCurve {
+public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCompositeCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCompositeCurveSegment> getSegments() {
-		return (EList<IfcCompositeCurveSegment>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE__SEGMENTS, true);
+		return (EList<IfcCompositeCurveSegment>) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE__SEGMENTS, true);
 	}
 
 	/**
@@ -74,9 +72,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements
 	 * @generated
 	 */
 	public boolean isSelfIntersect() {
-		return (Boolean) eGet(
-				Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT,
-				true);
+		return (Boolean) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT, true);
 	}
 
 	/**
@@ -85,8 +81,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements
 	 * @generated
 	 */
 	public void setSelfIntersect(boolean newSelfIntersect) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT,
-				newSelfIntersect);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT, newSelfIntersect);
 	}
 
 } //IfcCompositeCurveImpl

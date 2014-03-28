@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceOfRevolutionImpl extends IfcSweptSurfaceImpl implements
-		IfcSurfaceOfRevolution {
+public class IfcSurfaceOfRevolutionImpl extends IfcSweptSurfaceImpl implements IfcSurfaceOfRevolution {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcSurfaceOfRevolutionImpl extends IfcSweptSurfaceImpl implements
 	 * @generated
 	 */
 	public IfcAxis1Placement getAxisPosition() {
-		return (IfcAxis1Placement) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_OF_REVOLUTION__AXIS_POSITION,
-				true);
+		return (IfcAxis1Placement) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_OF_REVOLUTION__AXIS_POSITION, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcSurfaceOfRevolutionImpl extends IfcSweptSurfaceImpl implements
 	 * @generated
 	 */
 	public void setAxisPosition(IfcAxis1Placement newAxisPosition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_OF_REVOLUTION__AXIS_POSITION,
-				newAxisPosition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_OF_REVOLUTION__AXIS_POSITION, newAxisPosition);
 	}
 
 } //IfcSurfaceOfRevolutionImpl

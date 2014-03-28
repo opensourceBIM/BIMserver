@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcArbitraryClosedProfileDefImpl extends IfcProfileDefImpl
-		implements IfcArbitraryClosedProfileDef {
+public class IfcArbitraryClosedProfileDefImpl extends IfcProfileDefImpl implements IfcArbitraryClosedProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcArbitraryClosedProfileDefImpl extends IfcProfileDefImpl
 	 * @generated
 	 */
 	public IfcCurve getOuterCurve() {
-		return (IfcCurve) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ARBITRARY_CLOSED_PROFILE_DEF__OUTER_CURVE,
-				true);
+		return (IfcCurve) eGet(Ifc2x3tc1Package.Literals.IFC_ARBITRARY_CLOSED_PROFILE_DEF__OUTER_CURVE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcArbitraryClosedProfileDefImpl extends IfcProfileDefImpl
 	 * @generated
 	 */
 	public void setOuterCurve(IfcCurve newOuterCurve) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ARBITRARY_CLOSED_PROFILE_DEF__OUTER_CURVE,
-				newOuterCurve);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ARBITRARY_CLOSED_PROFILE_DEF__OUTER_CURVE, newOuterCurve);
 	}
 
 } //IfcArbitraryClosedProfileDefImpl

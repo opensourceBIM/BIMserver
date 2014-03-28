@@ -44,7 +44,7 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.writeInt(instanceId);
 			failSafeIfcEngine.flush();
-			return new RenderEngineInstanceVisualisationProperties(failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt());
+			return new RenderEngineInstanceVisualisationProperties(failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt(), 0, 0, 0);
 		}
 	}
 

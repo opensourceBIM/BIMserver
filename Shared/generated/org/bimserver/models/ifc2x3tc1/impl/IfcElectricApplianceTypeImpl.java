@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricApplianceTypeImpl extends IfcFlowTerminalTypeImpl
-		implements IfcElectricApplianceType {
+public class IfcElectricApplianceTypeImpl extends IfcFlowTerminalTypeImpl implements IfcElectricApplianceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcElectricApplianceTypeImpl extends IfcFlowTerminalTypeImpl
 	 * @generated
 	 */
 	public IfcElectricApplianceTypeEnum getPredefinedType() {
-		return (IfcElectricApplianceTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ELECTRIC_APPLIANCE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcElectricApplianceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_APPLIANCE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcElectricApplianceTypeImpl extends IfcFlowTerminalTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcElectricApplianceTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_APPLIANCE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_APPLIANCE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcElectricApplianceTypeImpl

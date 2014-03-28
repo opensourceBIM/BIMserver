@@ -33,8 +33,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPerformanceHistoryImpl extends IfcControlImpl implements
-		IfcPerformanceHistory {
+public class IfcPerformanceHistoryImpl extends IfcControlImpl implements IfcPerformanceHistory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,9 +59,7 @@ public class IfcPerformanceHistoryImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getLifeCyclePhase() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PERFORMANCE_HISTORY__LIFE_CYCLE_PHASE,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PERFORMANCE_HISTORY__LIFE_CYCLE_PHASE, true);
 	}
 
 	/**
@@ -71,8 +68,7 @@ public class IfcPerformanceHistoryImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setLifeCyclePhase(String newLifeCyclePhase) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PERFORMANCE_HISTORY__LIFE_CYCLE_PHASE,
-				newLifeCyclePhase);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PERFORMANCE_HISTORY__LIFE_CYCLE_PHASE, newLifeCyclePhase);
 	}
 
 } //IfcPerformanceHistoryImpl

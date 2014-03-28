@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRepresentationContextImpl extends IdEObjectImpl implements
-		IfcRepresentationContext {
+public class IfcRepresentationContextImpl extends IdEObjectImpl implements IfcRepresentationContext {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,9 +74,7 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getContextIdentifier() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_IDENTIFIER,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_IDENTIFIER, true);
 	}
 
 	/**
@@ -86,8 +83,7 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setContextIdentifier(String newContextIdentifier) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_IDENTIFIER,
-				newContextIdentifier);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_IDENTIFIER, newContextIdentifier);
 	}
 
 	/**
@@ -114,9 +110,7 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getContextType() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_TYPE,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_TYPE, true);
 	}
 
 	/**
@@ -125,8 +119,7 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setContextType(String newContextType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_TYPE,
-				newContextType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_TYPE, newContextType);
 	}
 
 	/**
@@ -154,9 +147,7 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentation> getRepresentationsInContext() {
-		return (EList<IfcRepresentation>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__REPRESENTATIONS_IN_CONTEXT,
-				true);
+		return (EList<IfcRepresentation>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__REPRESENTATIONS_IN_CONTEXT, true);
 	}
 
 	/**

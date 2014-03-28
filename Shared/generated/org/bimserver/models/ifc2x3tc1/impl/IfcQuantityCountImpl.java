@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcQuantityCountImpl extends IfcPhysicalSimpleQuantityImpl
-		implements IfcQuantityCount {
+public class IfcQuantityCountImpl extends IfcPhysicalSimpleQuantityImpl implements IfcQuantityCount {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcQuantityCountImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public double getCountValue() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE, true);
 	}
 
 	/**
@@ -71,8 +69,7 @@ public class IfcQuantityCountImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public void setCountValue(double newCountValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE,
-				newCountValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE, newCountValue);
 	}
 
 	/**
@@ -81,9 +78,7 @@ public class IfcQuantityCountImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public String getCountValueAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -92,8 +87,7 @@ public class IfcQuantityCountImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public void setCountValueAsString(String newCountValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE_AS_STRING,
-				newCountValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_COUNT__COUNT_VALUE_AS_STRING, newCountValueAsString);
 	}
 
 } //IfcQuantityCountImpl

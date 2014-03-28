@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class Ifc2DCompositeCurveImpl extends IfcCompositeCurveImpl implements
-		Ifc2DCompositeCurve {
+public class Ifc2DCompositeCurveImpl extends IfcCompositeCurveImpl implements Ifc2DCompositeCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

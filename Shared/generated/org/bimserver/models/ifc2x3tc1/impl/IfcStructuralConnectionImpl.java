@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl
-		implements IfcStructuralConnection {
+public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implements IfcStructuralConnection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl
 	 * @generated
 	 */
 	public IfcBoundaryCondition getAppliedCondition() {
-		return (IfcBoundaryCondition) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION,
-				true);
+		return (IfcBoundaryCondition) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION, true);
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl
 	 * @generated
 	 */
 	public void setAppliedCondition(IfcBoundaryCondition newAppliedCondition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION,
-				newAppliedCondition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION, newAppliedCondition);
 	}
 
 	/**
@@ -104,9 +100,7 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralMember> getConnectsStructuralMembers() {
-		return (EList<IfcRelConnectsStructuralMember>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS,
-				true);
+		return (EList<IfcRelConnectsStructuralMember>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS, true);
 	}
 
 	/**

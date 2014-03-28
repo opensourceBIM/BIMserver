@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelConnectsElementsImpl extends IfcRelConnectsImpl implements
-		IfcRelConnectsElements {
+public class IfcRelConnectsElementsImpl extends IfcRelConnectsImpl implements IfcRelConnectsElements {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcRelConnectsElementsImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcConnectionGeometry getConnectionGeometry() {
-		return (IfcConnectionGeometry) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__CONNECTION_GEOMETRY,
-				true);
+		return (IfcConnectionGeometry) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__CONNECTION_GEOMETRY, true);
 	}
 
 	/**
@@ -74,10 +71,8 @@ public class IfcRelConnectsElementsImpl extends IfcRelConnectsImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConnectionGeometry(
-			IfcConnectionGeometry newConnectionGeometry) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__CONNECTION_GEOMETRY,
-				newConnectionGeometry);
+	public void setConnectionGeometry(IfcConnectionGeometry newConnectionGeometry) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__CONNECTION_GEOMETRY, newConnectionGeometry);
 	}
 
 	/**
@@ -104,9 +99,7 @@ public class IfcRelConnectsElementsImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcElement getRelatingElement() {
-		return (IfcElement) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__RELATING_ELEMENT,
-				true);
+		return (IfcElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__RELATING_ELEMENT, true);
 	}
 
 	/**
@@ -115,8 +108,7 @@ public class IfcRelConnectsElementsImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public void setRelatingElement(IfcElement newRelatingElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__RELATING_ELEMENT,
-				newRelatingElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__RELATING_ELEMENT, newRelatingElement);
 	}
 
 	/**
@@ -125,9 +117,7 @@ public class IfcRelConnectsElementsImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcElement getRelatedElement() {
-		return (IfcElement) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__RELATED_ELEMENT,
-				true);
+		return (IfcElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__RELATED_ELEMENT, true);
 	}
 
 	/**
@@ -136,8 +126,7 @@ public class IfcRelConnectsElementsImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public void setRelatedElement(IfcElement newRelatedElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__RELATED_ELEMENT,
-				newRelatedElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__RELATED_ELEMENT, newRelatedElement);
 	}
 
 } //IfcRelConnectsElementsImpl

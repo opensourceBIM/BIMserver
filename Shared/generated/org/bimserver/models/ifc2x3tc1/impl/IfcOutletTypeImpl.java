@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcOutletTypeImpl extends IfcFlowTerminalTypeImpl implements
-		IfcOutletType {
+public class IfcOutletTypeImpl extends IfcFlowTerminalTypeImpl implements IfcOutletType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcOutletTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public IfcOutletTypeEnum getPredefinedType() {
-		return (IfcOutletTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_OUTLET_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcOutletTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_OUTLET_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcOutletTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcOutletTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_OUTLET_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_OUTLET_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcOutletTypeImpl

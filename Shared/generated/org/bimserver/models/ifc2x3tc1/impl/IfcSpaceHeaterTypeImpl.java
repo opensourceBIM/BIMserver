@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSpaceHeaterTypeImpl extends IfcEnergyConversionDeviceTypeImpl
-		implements IfcSpaceHeaterType {
+public class IfcSpaceHeaterTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcSpaceHeaterType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcSpaceHeaterTypeImpl extends IfcEnergyConversionDeviceTypeImpl
 	 * @generated
 	 */
 	public IfcSpaceHeaterTypeEnum getPredefinedType() {
-		return (IfcSpaceHeaterTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SPACE_HEATER_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcSpaceHeaterTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SPACE_HEATER_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcSpaceHeaterTypeImpl extends IfcEnergyConversionDeviceTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSpaceHeaterTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE_HEATER_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE_HEATER_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcSpaceHeaterTypeImpl

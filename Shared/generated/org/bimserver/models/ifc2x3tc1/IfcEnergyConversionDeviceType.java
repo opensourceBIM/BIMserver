@@ -26,6 +26,5 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcEnergyConversionDeviceType extends
-		IfcDistributionFlowElementType {
+public interface IfcEnergyConversionDeviceType extends IfcDistributionFlowElementType {
 } // IfcEnergyConversionDeviceType
