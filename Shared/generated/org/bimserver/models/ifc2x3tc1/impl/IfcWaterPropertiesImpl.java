@@ -46,8 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
-		IfcWaterProperties {
+public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements IfcWaterProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,9 +72,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public Tristate getIsPotable() {
-		return (Tristate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IS_POTABLE,
-				true);
+		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IS_POTABLE, true);
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setIsPotable(Tristate newIsPotable) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IS_POTABLE,
-				newIsPotable);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IS_POTABLE, newIsPotable);
 	}
 
 	/**
@@ -112,8 +108,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public double getHardness() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__HARDNESS, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__HARDNESS, true);
 	}
 
 	/**
@@ -122,8 +117,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setHardness(double newHardness) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__HARDNESS,
-				newHardness);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__HARDNESS, newHardness);
 	}
 
 	/**
@@ -150,9 +144,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public String getHardnessAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__HARDNESS_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__HARDNESS_AS_STRING, true);
 	}
 
 	/**
@@ -161,8 +153,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setHardnessAsString(String newHardnessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__HARDNESS_AS_STRING,
-				newHardnessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__HARDNESS_AS_STRING, newHardnessAsString);
 	}
 
 	/**
@@ -189,9 +180,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public double getAlkalinityConcentration() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION, true);
 	}
 
 	/**
@@ -200,8 +189,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setAlkalinityConcentration(double newAlkalinityConcentration) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION,
-				newAlkalinityConcentration);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION, newAlkalinityConcentration);
 	}
 
 	/**
@@ -228,9 +216,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public String getAlkalinityConcentrationAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION_AS_STRING, true);
 	}
 
 	/**
@@ -238,10 +224,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAlkalinityConcentrationAsString(
-			String newAlkalinityConcentrationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION_AS_STRING,
-				newAlkalinityConcentrationAsString);
+	public void setAlkalinityConcentrationAsString(String newAlkalinityConcentrationAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION_AS_STRING, newAlkalinityConcentrationAsString);
 	}
 
 	/**
@@ -268,9 +252,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public double getAcidityConcentration() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION, true);
 	}
 
 	/**
@@ -279,8 +261,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setAcidityConcentration(double newAcidityConcentration) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION,
-				newAcidityConcentration);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION, newAcidityConcentration);
 	}
 
 	/**
@@ -307,9 +288,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public String getAcidityConcentrationAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION_AS_STRING, true);
 	}
 
 	/**
@@ -317,10 +296,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAcidityConcentrationAsString(
-			String newAcidityConcentrationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION_AS_STRING,
-				newAcidityConcentrationAsString);
+	public void setAcidityConcentrationAsString(String newAcidityConcentrationAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION_AS_STRING, newAcidityConcentrationAsString);
 	}
 
 	/**
@@ -347,9 +324,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public double getImpuritiesContent() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT, true);
 	}
 
 	/**
@@ -358,8 +333,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setImpuritiesContent(double newImpuritiesContent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT,
-				newImpuritiesContent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT, newImpuritiesContent);
 	}
 
 	/**
@@ -386,9 +360,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public String getImpuritiesContentAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT_AS_STRING, true);
 	}
 
 	/**
@@ -397,8 +369,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setImpuritiesContentAsString(String newImpuritiesContentAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT_AS_STRING,
-				newImpuritiesContentAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT_AS_STRING, newImpuritiesContentAsString);
 	}
 
 	/**
@@ -425,8 +396,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public double getPHLevel() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__PH_LEVEL, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__PH_LEVEL, true);
 	}
 
 	/**
@@ -435,8 +405,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setPHLevel(double newPHLevel) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__PH_LEVEL,
-				newPHLevel);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__PH_LEVEL, newPHLevel);
 	}
 
 	/**
@@ -463,9 +432,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public String getPHLevelAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__PH_LEVEL_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__PH_LEVEL_AS_STRING, true);
 	}
 
 	/**
@@ -474,8 +441,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setPHLevelAsString(String newPHLevelAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__PH_LEVEL_AS_STRING,
-				newPHLevelAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__PH_LEVEL_AS_STRING, newPHLevelAsString);
 	}
 
 	/**
@@ -502,9 +468,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public double getDissolvedSolidsContent() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT, true);
 	}
 
 	/**
@@ -513,8 +477,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setDissolvedSolidsContent(double newDissolvedSolidsContent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT,
-				newDissolvedSolidsContent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT, newDissolvedSolidsContent);
 	}
 
 	/**
@@ -541,9 +504,7 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public String getDissolvedSolidsContentAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT_AS_STRING, true);
 	}
 
 	/**
@@ -551,10 +512,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDissolvedSolidsContentAsString(
-			String newDissolvedSolidsContentAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT_AS_STRING,
-				newDissolvedSolidsContentAsString);
+	public void setDissolvedSolidsContentAsString(String newDissolvedSolidsContentAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT_AS_STRING, newDissolvedSolidsContentAsString);
 	}
 
 	/**

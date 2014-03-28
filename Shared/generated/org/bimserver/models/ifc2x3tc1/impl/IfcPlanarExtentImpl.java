@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcPlanarExtent {
+public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl implements IfcPlanarExtent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public double getSizeInX() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_X, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_X, true);
 	}
 
 	/**
@@ -82,9 +80,7 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public String getSizeInXAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_XAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_XAS_STRING, true);
 	}
 
 	/**
@@ -93,8 +89,7 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setSizeInXAsString(String newSizeInXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_XAS_STRING,
-				newSizeInXAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_XAS_STRING, newSizeInXAsString);
 	}
 
 	/**
@@ -103,8 +98,7 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public double getSizeInY() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_Y, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_Y, true);
 	}
 
 	/**
@@ -122,9 +116,7 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public String getSizeInYAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_YAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_YAS_STRING, true);
 	}
 
 	/**
@@ -133,8 +125,7 @@ public class IfcPlanarExtentImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setSizeInYAsString(String newSizeInYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_YAS_STRING,
-				newSizeInYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PLANAR_EXTENT__SIZE_IN_YAS_STRING, newSizeInYAsString);
 	}
 
 } //IfcPlanarExtentImpl

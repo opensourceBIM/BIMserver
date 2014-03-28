@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelOccupiesSpacesImpl extends IfcRelAssignsToActorImpl
-		implements IfcRelOccupiesSpaces {
+public class IfcRelOccupiesSpacesImpl extends IfcRelAssignsToActorImpl implements IfcRelOccupiesSpaces {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

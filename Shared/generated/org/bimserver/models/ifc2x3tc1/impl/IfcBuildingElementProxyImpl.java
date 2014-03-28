@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBuildingElementProxyImpl extends IfcBuildingElementImpl
-		implements IfcBuildingElementProxy {
+public class IfcBuildingElementProxyImpl extends IfcBuildingElementImpl implements IfcBuildingElementProxy {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcBuildingElementProxyImpl extends IfcBuildingElementImpl
 	 * @generated
 	 */
 	public IfcElementCompositionEnum getCompositionType() {
-		return (IfcElementCompositionEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BUILDING_ELEMENT_PROXY__COMPOSITION_TYPE,
-				true);
+		return (IfcElementCompositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING_ELEMENT_PROXY__COMPOSITION_TYPE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcBuildingElementProxyImpl extends IfcBuildingElementImpl
 	 * @generated
 	 */
 	public void setCompositionType(IfcElementCompositionEnum newCompositionType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING_ELEMENT_PROXY__COMPOSITION_TYPE,
-				newCompositionType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING_ELEMENT_PROXY__COMPOSITION_TYPE, newCompositionType);
 	}
 
 	/**

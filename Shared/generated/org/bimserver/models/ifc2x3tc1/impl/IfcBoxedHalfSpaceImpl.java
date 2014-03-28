@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBoxedHalfSpaceImpl extends IfcHalfSpaceSolidImpl implements
-		IfcBoxedHalfSpace {
+public class IfcBoxedHalfSpaceImpl extends IfcHalfSpaceSolidImpl implements IfcBoxedHalfSpace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcBoxedHalfSpaceImpl extends IfcHalfSpaceSolidImpl implements
 	 * @generated
 	 */
 	public IfcBoundingBox getEnclosure() {
-		return (IfcBoundingBox) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOXED_HALF_SPACE__ENCLOSURE, true);
+		return (IfcBoundingBox) eGet(Ifc2x3tc1Package.Literals.IFC_BOXED_HALF_SPACE__ENCLOSURE, true);
 	}
 
 	/**
@@ -71,8 +69,7 @@ public class IfcBoxedHalfSpaceImpl extends IfcHalfSpaceSolidImpl implements
 	 * @generated
 	 */
 	public void setEnclosure(IfcBoundingBox newEnclosure) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOXED_HALF_SPACE__ENCLOSURE,
-				newEnclosure);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOXED_HALF_SPACE__ENCLOSURE, newEnclosure);
 	}
 
 } //IfcBoxedHalfSpaceImpl

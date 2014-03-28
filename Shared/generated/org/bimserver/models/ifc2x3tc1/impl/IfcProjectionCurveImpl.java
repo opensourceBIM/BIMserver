@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProjectionCurveImpl extends IfcAnnotationCurveOccurrenceImpl
-		implements IfcProjectionCurve {
+public class IfcProjectionCurveImpl extends IfcAnnotationCurveOccurrenceImpl implements IfcProjectionCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

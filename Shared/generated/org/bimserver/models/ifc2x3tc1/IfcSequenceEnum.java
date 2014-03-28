@@ -188,9 +188,7 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSequenceEnum[] VALUES_ARRAY = new IfcSequenceEnum[] {
-			NULL, FINISH_START, NOTDEFINED, FINISH_FINISH, START_START,
-			START_FINISH, };
+	private static final IfcSequenceEnum[] VALUES_ARRAY = new IfcSequenceEnum[] { NULL, FINISH_START, NOTDEFINED, FINISH_FINISH, START_START, START_FINISH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sequence Enum</b></em>' enumerators.
@@ -198,8 +196,7 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSequenceEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSequenceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Sequence Enum</b></em>' literal with the specified literal value.

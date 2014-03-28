@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFastenerTypeImpl extends IfcElementComponentTypeImpl implements
-		IfcFastenerType {
+public class IfcFastenerTypeImpl extends IfcElementComponentTypeImpl implements IfcFastenerType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

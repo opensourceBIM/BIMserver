@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLightSourceAmbientImpl extends IfcLightSourceImpl implements
-		IfcLightSourceAmbient {
+public class IfcLightSourceAmbientImpl extends IfcLightSourceImpl implements IfcLightSourceAmbient {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

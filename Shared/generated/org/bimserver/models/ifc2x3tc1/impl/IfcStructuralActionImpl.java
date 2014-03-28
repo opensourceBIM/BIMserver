@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralActionImpl extends IfcStructuralActivityImpl
-		implements IfcStructuralAction {
+public class IfcStructuralActionImpl extends IfcStructuralActivityImpl implements IfcStructuralAction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcStructuralActionImpl extends IfcStructuralActivityImpl
 	 * @generated
 	 */
 	public Tristate getDestabilizingLoad() {
-		return (Tristate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTION__DESTABILIZING_LOAD,
-				true);
+		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTION__DESTABILIZING_LOAD, true);
 	}
 
 	/**
@@ -74,8 +71,7 @@ public class IfcStructuralActionImpl extends IfcStructuralActivityImpl
 	 * @generated
 	 */
 	public void setDestabilizingLoad(Tristate newDestabilizingLoad) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTION__DESTABILIZING_LOAD,
-				newDestabilizingLoad);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTION__DESTABILIZING_LOAD, newDestabilizingLoad);
 	}
 
 	/**
@@ -84,9 +80,7 @@ public class IfcStructuralActionImpl extends IfcStructuralActivityImpl
 	 * @generated
 	 */
 	public IfcStructuralReaction getCausedBy() {
-		return (IfcStructuralReaction) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTION__CAUSED_BY,
-				true);
+		return (IfcStructuralReaction) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTION__CAUSED_BY, true);
 	}
 
 	/**
@@ -95,8 +89,7 @@ public class IfcStructuralActionImpl extends IfcStructuralActivityImpl
 	 * @generated
 	 */
 	public void setCausedBy(IfcStructuralReaction newCausedBy) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTION__CAUSED_BY,
-				newCausedBy);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTION__CAUSED_BY, newCausedBy);
 	}
 
 	/**

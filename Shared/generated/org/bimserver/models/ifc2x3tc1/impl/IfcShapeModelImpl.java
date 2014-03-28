@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcShapeModelImpl extends IfcRepresentationImpl implements
-		IfcShapeModel {
+public class IfcShapeModelImpl extends IfcRepresentationImpl implements IfcShapeModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcShapeModelImpl extends IfcRepresentationImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcShapeAspect> getOfShapeAspect() {
-		return (EList<IfcShapeAspect>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SHAPE_MODEL__OF_SHAPE_ASPECT,
-				true);
+		return (EList<IfcShapeAspect>) eGet(Ifc2x3tc1Package.Literals.IFC_SHAPE_MODEL__OF_SHAPE_ASPECT, true);
 	}
 
 	/**

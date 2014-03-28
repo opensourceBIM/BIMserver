@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssociatesProfilePropertiesImpl extends IfcRelAssociatesImpl
-		implements IfcRelAssociatesProfileProperties {
+public class IfcRelAssociatesProfilePropertiesImpl extends IfcRelAssociatesImpl implements IfcRelAssociatesProfileProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcRelAssociatesProfilePropertiesImpl extends IfcRelAssociatesImpl
 	 * @generated
 	 */
 	public IfcProfileProperties getRelatingProfileProperties() {
-		return (IfcProfileProperties) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__RELATING_PROFILE_PROPERTIES,
-				true);
+		return (IfcProfileProperties) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__RELATING_PROFILE_PROPERTIES, true);
 	}
 
 	/**
@@ -75,10 +72,8 @@ public class IfcRelAssociatesProfilePropertiesImpl extends IfcRelAssociatesImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatingProfileProperties(
-			IfcProfileProperties newRelatingProfileProperties) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__RELATING_PROFILE_PROPERTIES,
-				newRelatingProfileProperties);
+	public void setRelatingProfileProperties(IfcProfileProperties newRelatingProfileProperties) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__RELATING_PROFILE_PROPERTIES, newRelatingProfileProperties);
 	}
 
 	/**
@@ -87,9 +82,7 @@ public class IfcRelAssociatesProfilePropertiesImpl extends IfcRelAssociatesImpl
 	 * @generated
 	 */
 	public IfcShapeAspect getProfileSectionLocation() {
-		return (IfcShapeAspect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__PROFILE_SECTION_LOCATION,
-				true);
+		return (IfcShapeAspect) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__PROFILE_SECTION_LOCATION, true);
 	}
 
 	/**
@@ -97,10 +90,8 @@ public class IfcRelAssociatesProfilePropertiesImpl extends IfcRelAssociatesImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProfileSectionLocation(
-			IfcShapeAspect newProfileSectionLocation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__PROFILE_SECTION_LOCATION,
-				newProfileSectionLocation);
+	public void setProfileSectionLocation(IfcShapeAspect newProfileSectionLocation) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__PROFILE_SECTION_LOCATION, newProfileSectionLocation);
 	}
 
 	/**
@@ -127,9 +118,7 @@ public class IfcRelAssociatesProfilePropertiesImpl extends IfcRelAssociatesImpl
 	 * @generated
 	 */
 	public IfcOrientationSelect getProfileOrientation() {
-		return (IfcOrientationSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__PROFILE_ORIENTATION,
-				true);
+		return (IfcOrientationSelect) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__PROFILE_ORIENTATION, true);
 	}
 
 	/**
@@ -138,8 +127,7 @@ public class IfcRelAssociatesProfilePropertiesImpl extends IfcRelAssociatesImpl
 	 * @generated
 	 */
 	public void setProfileOrientation(IfcOrientationSelect newProfileOrientation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__PROFILE_ORIENTATION,
-				newProfileOrientation);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES__PROFILE_ORIENTATION, newProfileOrientation);
 	}
 
 	/**

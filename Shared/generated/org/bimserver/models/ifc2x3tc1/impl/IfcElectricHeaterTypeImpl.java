@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricHeaterTypeImpl extends IfcFlowTerminalTypeImpl
-		implements IfcElectricHeaterType {
+public class IfcElectricHeaterTypeImpl extends IfcFlowTerminalTypeImpl implements IfcElectricHeaterType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcElectricHeaterTypeImpl extends IfcFlowTerminalTypeImpl
 	 * @generated
 	 */
 	public IfcElectricHeaterTypeEnum getPredefinedType() {
-		return (IfcElectricHeaterTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ELECTRIC_HEATER_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcElectricHeaterTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_HEATER_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcElectricHeaterTypeImpl extends IfcFlowTerminalTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcElectricHeaterTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_HEATER_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_HEATER_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcElectricHeaterTypeImpl

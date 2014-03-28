@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements
-		IfcTextStyleForDefinedFont {
+public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements IfcTextStyleForDefinedFont {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,9 +72,7 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcColour getColour() {
-		return (IfcColour) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__COLOUR,
-				true);
+		return (IfcColour) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__COLOUR, true);
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setColour(IfcColour newColour) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__COLOUR,
-				newColour);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__COLOUR, newColour);
 	}
 
 	/**
@@ -94,9 +90,7 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcColour getBackgroundColour() {
-		return (IfcColour) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__BACKGROUND_COLOUR,
-				true);
+		return (IfcColour) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__BACKGROUND_COLOUR, true);
 	}
 
 	/**
@@ -105,8 +99,7 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setBackgroundColour(IfcColour newBackgroundColour) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__BACKGROUND_COLOUR,
-				newBackgroundColour);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__BACKGROUND_COLOUR, newBackgroundColour);
 	}
 
 	/**

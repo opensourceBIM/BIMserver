@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFeatureElementSubtractionImpl extends IfcFeatureElementImpl
-		implements IfcFeatureElementSubtraction {
+public class IfcFeatureElementSubtractionImpl extends IfcFeatureElementImpl implements IfcFeatureElementSubtraction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcFeatureElementSubtractionImpl extends IfcFeatureElementImpl
 	 * @generated
 	 */
 	public IfcRelVoidsElement getVoidsElements() {
-		return (IfcRelVoidsElement) eGet(
-				Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS,
-				true);
+		return (IfcRelVoidsElement) eGet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcFeatureElementSubtractionImpl extends IfcFeatureElementImpl
 	 * @generated
 	 */
 	public void setVoidsElements(IfcRelVoidsElement newVoidsElements) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS,
-				newVoidsElements);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS, newVoidsElements);
 	}
 
 	/**

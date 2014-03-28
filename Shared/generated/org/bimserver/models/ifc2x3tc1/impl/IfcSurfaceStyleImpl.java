@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceStyleImpl extends IfcPresentationStyleImpl implements
-		IfcSurfaceStyle {
+public class IfcSurfaceStyleImpl extends IfcPresentationStyleImpl implements IfcSurfaceStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class IfcSurfaceStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public IfcSurfaceSide getSide() {
-		return (IfcSurfaceSide) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE__SIDE, true);
+		return (IfcSurfaceSide) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE__SIDE, true);
 	}
 
 	/**
@@ -84,8 +82,7 @@ public class IfcSurfaceStyleImpl extends IfcPresentationStyleImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSurfaceStyleElementSelect> getStyles() {
-		return (EList<IfcSurfaceStyleElementSelect>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE__STYLES, true);
+		return (EList<IfcSurfaceStyleElementSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE__STYLES, true);
 	}
 
 } //IfcSurfaceStyleImpl

@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl
-		implements IfcQuantityArea {
+public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implements IfcQuantityArea {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public double getAreaValue() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE, true);
 	}
 
 	/**
@@ -71,8 +69,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public void setAreaValue(double newAreaValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE,
-				newAreaValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE, newAreaValue);
 	}
 
 	/**
@@ -81,9 +78,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public String getAreaValueAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -92,8 +87,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public void setAreaValueAsString(String newAreaValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE_AS_STRING,
-				newAreaValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE_AS_STRING, newAreaValueAsString);
 	}
 
 } //IfcQuantityAreaImpl

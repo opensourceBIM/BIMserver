@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFurnitureStandardImpl extends IfcControlImpl implements
-		IfcFurnitureStandard {
+public class IfcFurnitureStandardImpl extends IfcControlImpl implements IfcFurnitureStandard {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

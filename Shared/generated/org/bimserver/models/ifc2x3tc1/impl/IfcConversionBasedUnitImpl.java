@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements
-		IfcConversionBasedUnit {
+public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcConversionBasedUnit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CONVERSION_BASED_UNIT__NAME, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CONVERSION_BASED_UNIT__NAME, true);
 	}
 
 	/**
@@ -81,9 +79,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements
 	 * @generated
 	 */
 	public IfcMeasureWithUnit getConversionFactor() {
-		return (IfcMeasureWithUnit) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR,
-				true);
+		return (IfcMeasureWithUnit) eGet(Ifc2x3tc1Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR, true);
 	}
 
 	/**
@@ -92,8 +88,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements
 	 * @generated
 	 */
 	public void setConversionFactor(IfcMeasureWithUnit newConversionFactor) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR,
-				newConversionFactor);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR, newConversionFactor);
 	}
 
 } //IfcConversionBasedUnitImpl

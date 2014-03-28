@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl
-		implements IfcApprovalPropertyRelationship {
+public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl implements IfcApprovalPropertyRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,9 +75,7 @@ public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getApprovedProperties() {
-		return (EList<IfcProperty>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVED_PROPERTIES,
-				true);
+		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVED_PROPERTIES, true);
 	}
 
 	/**
@@ -87,9 +84,7 @@ public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public IfcApproval getApproval() {
-		return (IfcApproval) eGet(
-				Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL,
-				true);
+		return (IfcApproval) eGet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL, true);
 	}
 
 	/**
@@ -98,8 +93,7 @@ public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public void setApproval(IfcApproval newApproval) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL,
-				newApproval);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL, newApproval);
 	}
 
 } //IfcApprovalPropertyRelationshipImpl

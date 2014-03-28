@@ -60,8 +60,7 @@ public class IfcGroupImpl extends IfcObjectImpl implements IfcGroup {
 	 * @generated
 	 */
 	public IfcRelAssignsToGroup getIsGroupedBy() {
-		return (IfcRelAssignsToGroup) eGet(
-				Ifc2x3tc1Package.Literals.IFC_GROUP__IS_GROUPED_BY, true);
+		return (IfcRelAssignsToGroup) eGet(Ifc2x3tc1Package.Literals.IFC_GROUP__IS_GROUPED_BY, true);
 	}
 
 	/**

@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDirectionImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcDirection {
+public class IfcDirectionImpl extends IfcGeometricRepresentationItemImpl implements IfcDirection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class IfcDirectionImpl extends IfcGeometricRepresentationItemImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getDirectionRatios() {
-		return (EList<Double>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DIRECTION__DIRECTION_RATIOS, true);
+		return (EList<Double>) eGet(Ifc2x3tc1Package.Literals.IFC_DIRECTION__DIRECTION_RATIOS, true);
 	}
 
 	/**
@@ -75,9 +73,7 @@ public class IfcDirectionImpl extends IfcGeometricRepresentationItemImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getDirectionRatiosAsString() {
-		return (EList<String>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DIRECTION__DIRECTION_RATIOS_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_DIRECTION__DIRECTION_RATIOS_AS_STRING, true);
 	}
 
 	/**
@@ -86,8 +82,7 @@ public class IfcDirectionImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_DIRECTION__DIM,
-				true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_DIRECTION__DIM, true);
 	}
 
 	/**

@@ -643,7 +643,7 @@ public class IfcEngine {
 		int startVertex = pV.getValue();
 		int startIndex = pI.getValue();
 		int primitiveCount = pC.getValue();
-		return new RenderEngineInstanceVisualisationProperties(startVertex, startIndex, primitiveCount);
+		return new RenderEngineInstanceVisualisationProperties(startVertex, startIndex, primitiveCount, 0, 0, 0);
 	}
 
 	/**

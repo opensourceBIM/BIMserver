@@ -46,8 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
-		IfcStructuralLoadGroup {
+public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements IfcStructuralLoadGroup {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,9 +72,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public IfcLoadGroupTypeEnum getPredefinedType() {
-		return (IfcLoadGroupTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__PREDEFINED_TYPE,
-				true);
+		return (IfcLoadGroupTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcLoadGroupTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -94,9 +90,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public IfcActionTypeEnum getActionType() {
-		return (IfcActionTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_TYPE,
-				true);
+		return (IfcActionTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_TYPE, true);
 	}
 
 	/**
@@ -105,8 +99,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public void setActionType(IfcActionTypeEnum newActionType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_TYPE,
-				newActionType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_TYPE, newActionType);
 	}
 
 	/**
@@ -115,9 +108,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public IfcActionSourceTypeEnum getActionSource() {
-		return (IfcActionSourceTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_SOURCE,
-				true);
+		return (IfcActionSourceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_SOURCE, true);
 	}
 
 	/**
@@ -126,8 +117,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public void setActionSource(IfcActionSourceTypeEnum newActionSource) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_SOURCE,
-				newActionSource);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__ACTION_SOURCE, newActionSource);
 	}
 
 	/**
@@ -136,9 +126,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public double getCoefficient() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__COEFFICIENT,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__COEFFICIENT, true);
 	}
 
 	/**
@@ -147,8 +135,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public void setCoefficient(double newCoefficient) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__COEFFICIENT,
-				newCoefficient);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__COEFFICIENT, newCoefficient);
 	}
 
 	/**
@@ -175,9 +162,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public String getCoefficientAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__COEFFICIENT_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__COEFFICIENT_AS_STRING, true);
 	}
 
 	/**
@@ -186,8 +171,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public void setCoefficientAsString(String newCoefficientAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__COEFFICIENT_AS_STRING,
-				newCoefficientAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__COEFFICIENT_AS_STRING, newCoefficientAsString);
 	}
 
 	/**
@@ -214,9 +198,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public String getPurpose() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__PURPOSE,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__PURPOSE, true);
 	}
 
 	/**
@@ -225,8 +207,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 * @generated
 	 */
 	public void setPurpose(String newPurpose) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__PURPOSE,
-				newPurpose);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__PURPOSE, newPurpose);
 	}
 
 	/**
@@ -254,9 +235,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralResultGroup> getSourceOfResultGroup() {
-		return (EList<IfcStructuralResultGroup>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__SOURCE_OF_RESULT_GROUP,
-				true);
+		return (EList<IfcStructuralResultGroup>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__SOURCE_OF_RESULT_GROUP, true);
 	}
 
 	/**
@@ -284,9 +263,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralAnalysisModel> getLoadGroupFor() {
-		return (EList<IfcStructuralAnalysisModel>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__LOAD_GROUP_FOR,
-				true);
+		return (EList<IfcStructuralAnalysisModel>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__LOAD_GROUP_FOR, true);
 	}
 
 	/**

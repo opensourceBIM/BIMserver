@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDoorStyleImpl extends IfcTypeProductImpl implements
-		IfcDoorStyle {
+public class IfcDoorStyleImpl extends IfcTypeProductImpl implements IfcDoorStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,8 +65,7 @@ public class IfcDoorStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public IfcDoorStyleOperationEnum getOperationType() {
-		return (IfcDoorStyleOperationEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__OPERATION_TYPE, true);
+		return (IfcDoorStyleOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__OPERATION_TYPE, true);
 	}
 
 	/**
@@ -76,8 +74,7 @@ public class IfcDoorStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public void setOperationType(IfcDoorStyleOperationEnum newOperationType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__OPERATION_TYPE,
-				newOperationType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__OPERATION_TYPE, newOperationType);
 	}
 
 	/**
@@ -86,9 +83,7 @@ public class IfcDoorStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public IfcDoorStyleConstructionEnum getConstructionType() {
-		return (IfcDoorStyleConstructionEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__CONSTRUCTION_TYPE,
-				true);
+		return (IfcDoorStyleConstructionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__CONSTRUCTION_TYPE, true);
 	}
 
 	/**
@@ -96,10 +91,8 @@ public class IfcDoorStyleImpl extends IfcTypeProductImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConstructionType(
-			IfcDoorStyleConstructionEnum newConstructionType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__CONSTRUCTION_TYPE,
-				newConstructionType);
+	public void setConstructionType(IfcDoorStyleConstructionEnum newConstructionType) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__CONSTRUCTION_TYPE, newConstructionType);
 	}
 
 	/**
@@ -108,9 +101,7 @@ public class IfcDoorStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public Tristate getParameterTakesPrecedence() {
-		return (Tristate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__PARAMETER_TAKES_PRECEDENCE,
-				true);
+		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__PARAMETER_TAKES_PRECEDENCE, true);
 	}
 
 	/**
@@ -119,8 +110,7 @@ public class IfcDoorStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public void setParameterTakesPrecedence(Tristate newParameterTakesPrecedence) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__PARAMETER_TAKES_PRECEDENCE,
-				newParameterTakesPrecedence);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__PARAMETER_TAKES_PRECEDENCE, newParameterTakesPrecedence);
 	}
 
 	/**
@@ -129,8 +119,7 @@ public class IfcDoorStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public Tristate getSizeable() {
-		return (Tristate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__SIZEABLE, true);
+		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_STYLE__SIZEABLE, true);
 	}
 
 	/**

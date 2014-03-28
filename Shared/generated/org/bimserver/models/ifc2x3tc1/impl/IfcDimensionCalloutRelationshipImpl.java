@@ -29,9 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDimensionCalloutRelationshipImpl extends
-		IfcDraughtingCalloutRelationshipImpl implements
-		IfcDimensionCalloutRelationship {
+public class IfcDimensionCalloutRelationshipImpl extends IfcDraughtingCalloutRelationshipImpl implements IfcDimensionCalloutRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

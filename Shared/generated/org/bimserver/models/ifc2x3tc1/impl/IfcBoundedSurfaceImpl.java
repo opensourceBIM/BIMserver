@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBoundedSurfaceImpl extends IfcSurfaceImpl implements
-		IfcBoundedSurface {
+public class IfcBoundedSurfaceImpl extends IfcSurfaceImpl implements IfcBoundedSurface {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

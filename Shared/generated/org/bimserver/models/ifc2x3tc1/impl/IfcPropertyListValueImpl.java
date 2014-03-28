@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements
-		IfcPropertyListValue {
+public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements IfcPropertyListValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getListValues() {
-		return (EList<IfcValue>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROPERTY_LIST_VALUE__LIST_VALUES,
-				true);
+		return (EList<IfcValue>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_LIST_VALUE__LIST_VALUES, true);
 	}
 
 	/**
@@ -76,8 +73,7 @@ public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements
 	 * @generated
 	 */
 	public IfcUnit getUnit() {
-		return (IfcUnit) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROPERTY_LIST_VALUE__UNIT, true);
+		return (IfcUnit) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_LIST_VALUE__UNIT, true);
 	}
 
 	/**

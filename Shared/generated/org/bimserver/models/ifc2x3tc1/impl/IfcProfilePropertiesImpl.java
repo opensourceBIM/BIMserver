@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProfilePropertiesImpl extends IdEObjectImpl implements
-		IfcProfileProperties {
+public class IfcProfilePropertiesImpl extends IdEObjectImpl implements IfcProfileProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,9 +72,7 @@ public class IfcProfilePropertiesImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getProfileName() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_NAME,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_NAME, true);
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class IfcProfilePropertiesImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setProfileName(String newProfileName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_NAME,
-				newProfileName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_NAME, newProfileName);
 	}
 
 	/**
@@ -112,9 +108,7 @@ public class IfcProfilePropertiesImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcProfileDef getProfileDefinition() {
-		return (IfcProfileDef) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION,
-				true);
+		return (IfcProfileDef) eGet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION, true);
 	}
 
 	/**
@@ -123,8 +117,7 @@ public class IfcProfilePropertiesImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setProfileDefinition(IfcProfileDef newProfileDefinition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION,
-				newProfileDefinition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION, newProfileDefinition);
 	}
 
 	/**

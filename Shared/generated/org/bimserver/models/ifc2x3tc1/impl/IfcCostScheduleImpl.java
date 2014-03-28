@@ -44,8 +44,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCostScheduleImpl extends IfcControlImpl implements
-		IfcCostSchedule {
+public class IfcCostScheduleImpl extends IfcControlImpl implements IfcCostSchedule {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,8 +70,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public IfcActorSelect getSubmittedBy() {
-		return (IfcActorSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_BY, true);
+		return (IfcActorSelect) eGet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_BY, true);
 	}
 
 	/**
@@ -81,8 +79,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setSubmittedBy(IfcActorSelect newSubmittedBy) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_BY,
-				newSubmittedBy);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_BY, newSubmittedBy);
 	}
 
 	/**
@@ -109,8 +106,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public IfcActorSelect getPreparedBy() {
-		return (IfcActorSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__PREPARED_BY, true);
+		return (IfcActorSelect) eGet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__PREPARED_BY, true);
 	}
 
 	/**
@@ -119,8 +115,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setPreparedBy(IfcActorSelect newPreparedBy) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__PREPARED_BY,
-				newPreparedBy);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__PREPARED_BY, newPreparedBy);
 	}
 
 	/**
@@ -147,8 +142,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public IfcDateTimeSelect getSubmittedOn() {
-		return (IfcDateTimeSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_ON, true);
+		return (IfcDateTimeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_ON, true);
 	}
 
 	/**
@@ -157,8 +151,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setSubmittedOn(IfcDateTimeSelect newSubmittedOn) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_ON,
-				newSubmittedOn);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_ON, newSubmittedOn);
 	}
 
 	/**
@@ -185,8 +178,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getStatus() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__STATUS, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__STATUS, true);
 	}
 
 	/**
@@ -223,8 +215,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcActorSelect> getTargetUsers() {
-		return (EList<IfcActorSelect>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__TARGET_USERS, true);
+		return (EList<IfcActorSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__TARGET_USERS, true);
 	}
 
 	/**
@@ -251,8 +242,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public IfcDateTimeSelect getUpdateDate() {
-		return (IfcDateTimeSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__UPDATE_DATE, true);
+		return (IfcDateTimeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__UPDATE_DATE, true);
 	}
 
 	/**
@@ -261,8 +251,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setUpdateDate(IfcDateTimeSelect newUpdateDate) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__UPDATE_DATE,
-				newUpdateDate);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__UPDATE_DATE, newUpdateDate);
 	}
 
 	/**
@@ -289,8 +278,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getID() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__ID,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__ID, true);
 	}
 
 	/**
@@ -308,9 +296,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public IfcCostScheduleTypeEnum getPredefinedType() {
-		return (IfcCostScheduleTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE,
-				true);
+		return (IfcCostScheduleTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -319,8 +305,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCostScheduleTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcCostScheduleImpl

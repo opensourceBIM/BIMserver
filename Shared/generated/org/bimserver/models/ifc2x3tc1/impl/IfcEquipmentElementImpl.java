@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEquipmentElementImpl extends IfcElementImpl implements
-		IfcEquipmentElement {
+public class IfcEquipmentElementImpl extends IfcElementImpl implements IfcEquipmentElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

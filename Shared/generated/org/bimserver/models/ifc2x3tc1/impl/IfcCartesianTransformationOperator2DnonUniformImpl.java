@@ -34,9 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCartesianTransformationOperator2DnonUniformImpl extends
-		IfcCartesianTransformationOperator2DImpl implements
-		IfcCartesianTransformationOperator2DnonUniform {
+public class IfcCartesianTransformationOperator2DnonUniformImpl extends IfcCartesianTransformationOperator2DImpl implements IfcCartesianTransformationOperator2DnonUniform {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +60,7 @@ public class IfcCartesianTransformationOperator2DnonUniformImpl extends
 	 * @generated
 	 */
 	public double getScale2() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2, true);
 	}
 
 	/**
@@ -73,8 +69,7 @@ public class IfcCartesianTransformationOperator2DnonUniformImpl extends
 	 * @generated
 	 */
 	public void setScale2(double newScale2) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2,
-				newScale2);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2, newScale2);
 	}
 
 	/**
@@ -101,9 +96,7 @@ public class IfcCartesianTransformationOperator2DnonUniformImpl extends
 	 * @generated
 	 */
 	public String getScale2AsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING, true);
 	}
 
 	/**
@@ -112,8 +105,7 @@ public class IfcCartesianTransformationOperator2DnonUniformImpl extends
 	 * @generated
 	 */
 	public void setScale2AsString(String newScale2AsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING,
-				newScale2AsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING, newScale2AsString);
 	}
 
 	/**

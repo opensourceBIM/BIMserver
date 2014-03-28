@@ -44,8 +44,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
-		implements IfcBoundaryEdgeCondition {
+public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl implements IfcBoundaryEdgeCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,9 +70,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public double getLinearStiffnessByLengthX() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_X,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_X, true);
 	}
 
 	/**
@@ -82,8 +79,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public void setLinearStiffnessByLengthX(double newLinearStiffnessByLengthX) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_X,
-				newLinearStiffnessByLengthX);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_X, newLinearStiffnessByLengthX);
 	}
 
 	/**
@@ -110,9 +106,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public String getLinearStiffnessByLengthXAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_XAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_XAS_STRING, true);
 	}
 
 	/**
@@ -120,10 +114,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLinearStiffnessByLengthXAsString(
-			String newLinearStiffnessByLengthXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_XAS_STRING,
-				newLinearStiffnessByLengthXAsString);
+	public void setLinearStiffnessByLengthXAsString(String newLinearStiffnessByLengthXAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_XAS_STRING, newLinearStiffnessByLengthXAsString);
 	}
 
 	/**
@@ -150,9 +142,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public double getLinearStiffnessByLengthY() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_Y,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_Y, true);
 	}
 
 	/**
@@ -161,8 +151,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public void setLinearStiffnessByLengthY(double newLinearStiffnessByLengthY) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_Y,
-				newLinearStiffnessByLengthY);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_Y, newLinearStiffnessByLengthY);
 	}
 
 	/**
@@ -189,9 +178,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public String getLinearStiffnessByLengthYAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_YAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_YAS_STRING, true);
 	}
 
 	/**
@@ -199,10 +186,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLinearStiffnessByLengthYAsString(
-			String newLinearStiffnessByLengthYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_YAS_STRING,
-				newLinearStiffnessByLengthYAsString);
+	public void setLinearStiffnessByLengthYAsString(String newLinearStiffnessByLengthYAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_YAS_STRING, newLinearStiffnessByLengthYAsString);
 	}
 
 	/**
@@ -229,9 +214,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public double getLinearStiffnessByLengthZ() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_Z,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_Z, true);
 	}
 
 	/**
@@ -240,8 +223,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public void setLinearStiffnessByLengthZ(double newLinearStiffnessByLengthZ) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_Z,
-				newLinearStiffnessByLengthZ);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_Z, newLinearStiffnessByLengthZ);
 	}
 
 	/**
@@ -268,9 +250,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public String getLinearStiffnessByLengthZAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_ZAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_ZAS_STRING, true);
 	}
 
 	/**
@@ -278,10 +258,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLinearStiffnessByLengthZAsString(
-			String newLinearStiffnessByLengthZAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_ZAS_STRING,
-				newLinearStiffnessByLengthZAsString);
+	public void setLinearStiffnessByLengthZAsString(String newLinearStiffnessByLengthZAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__LINEAR_STIFFNESS_BY_LENGTH_ZAS_STRING, newLinearStiffnessByLengthZAsString);
 	}
 
 	/**
@@ -308,9 +286,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public double getRotationalStiffnessByLengthX() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_X,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_X, true);
 	}
 
 	/**
@@ -318,10 +294,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRotationalStiffnessByLengthX(
-			double newRotationalStiffnessByLengthX) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_X,
-				newRotationalStiffnessByLengthX);
+	public void setRotationalStiffnessByLengthX(double newRotationalStiffnessByLengthX) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_X, newRotationalStiffnessByLengthX);
 	}
 
 	/**
@@ -348,9 +322,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public String getRotationalStiffnessByLengthXAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_XAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_XAS_STRING, true);
 	}
 
 	/**
@@ -358,10 +330,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRotationalStiffnessByLengthXAsString(
-			String newRotationalStiffnessByLengthXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_XAS_STRING,
-				newRotationalStiffnessByLengthXAsString);
+	public void setRotationalStiffnessByLengthXAsString(String newRotationalStiffnessByLengthXAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_XAS_STRING, newRotationalStiffnessByLengthXAsString);
 	}
 
 	/**
@@ -388,9 +358,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public double getRotationalStiffnessByLengthY() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_Y,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_Y, true);
 	}
 
 	/**
@@ -398,10 +366,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRotationalStiffnessByLengthY(
-			double newRotationalStiffnessByLengthY) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_Y,
-				newRotationalStiffnessByLengthY);
+	public void setRotationalStiffnessByLengthY(double newRotationalStiffnessByLengthY) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_Y, newRotationalStiffnessByLengthY);
 	}
 
 	/**
@@ -428,9 +394,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public String getRotationalStiffnessByLengthYAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_YAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_YAS_STRING, true);
 	}
 
 	/**
@@ -438,10 +402,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRotationalStiffnessByLengthYAsString(
-			String newRotationalStiffnessByLengthYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_YAS_STRING,
-				newRotationalStiffnessByLengthYAsString);
+	public void setRotationalStiffnessByLengthYAsString(String newRotationalStiffnessByLengthYAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_YAS_STRING, newRotationalStiffnessByLengthYAsString);
 	}
 
 	/**
@@ -468,9 +430,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public double getRotationalStiffnessByLengthZ() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_Z,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_Z, true);
 	}
 
 	/**
@@ -478,10 +438,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRotationalStiffnessByLengthZ(
-			double newRotationalStiffnessByLengthZ) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_Z,
-				newRotationalStiffnessByLengthZ);
+	public void setRotationalStiffnessByLengthZ(double newRotationalStiffnessByLengthZ) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_Z, newRotationalStiffnessByLengthZ);
 	}
 
 	/**
@@ -508,9 +466,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * @generated
 	 */
 	public String getRotationalStiffnessByLengthZAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_ZAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_ZAS_STRING, true);
 	}
 
 	/**
@@ -518,10 +474,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRotationalStiffnessByLengthZAsString(
-			String newRotationalStiffnessByLengthZAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_ZAS_STRING,
-				newRotationalStiffnessByLengthZAsString);
+	public void setRotationalStiffnessByLengthZAsString(String newRotationalStiffnessByLengthZAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__ROTATIONAL_STIFFNESS_BY_LENGTH_ZAS_STRING, newRotationalStiffnessByLengthZAsString);
 	}
 
 	/**

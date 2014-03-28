@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAxis2Placement2DImpl extends IfcPlacementImpl implements
-		IfcAxis2Placement2D {
+public class IfcAxis2Placement2DImpl extends IfcPlacementImpl implements IfcAxis2Placement2D {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcAxis2Placement2DImpl extends IfcPlacementImpl implements
 	 * @generated
 	 */
 	public IfcDirection getRefDirection() {
-		return (IfcDirection) eGet(
-				Ifc2x3tc1Package.Literals.IFC_AXIS2_PLACEMENT2_D__REF_DIRECTION,
-				true);
+		return (IfcDirection) eGet(Ifc2x3tc1Package.Literals.IFC_AXIS2_PLACEMENT2_D__REF_DIRECTION, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcAxis2Placement2DImpl extends IfcPlacementImpl implements
 	 * @generated
 	 */
 	public void setRefDirection(IfcDirection newRefDirection) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_AXIS2_PLACEMENT2_D__REF_DIRECTION,
-				newRefDirection);
+		eSet(Ifc2x3tc1Package.Literals.IFC_AXIS2_PLACEMENT2_D__REF_DIRECTION, newRefDirection);
 	}
 
 	/**

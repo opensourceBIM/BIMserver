@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDefinedSymbolImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcDefinedSymbol {
+public class IfcDefinedSymbolImpl extends IfcGeometricRepresentationItemImpl implements IfcDefinedSymbol {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class IfcDefinedSymbolImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public IfcDefinedSymbolSelect getDefinition() {
-		return (IfcDefinedSymbolSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DEFINED_SYMBOL__DEFINITION, true);
+		return (IfcDefinedSymbolSelect) eGet(Ifc2x3tc1Package.Literals.IFC_DEFINED_SYMBOL__DEFINITION, true);
 	}
 
 	/**
@@ -73,8 +71,7 @@ public class IfcDefinedSymbolImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setDefinition(IfcDefinedSymbolSelect newDefinition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DEFINED_SYMBOL__DEFINITION,
-				newDefinition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DEFINED_SYMBOL__DEFINITION, newDefinition);
 	}
 
 	/**
@@ -83,8 +80,7 @@ public class IfcDefinedSymbolImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public IfcCartesianTransformationOperator2D getTarget() {
-		return (IfcCartesianTransformationOperator2D) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DEFINED_SYMBOL__TARGET, true);
+		return (IfcCartesianTransformationOperator2D) eGet(Ifc2x3tc1Package.Literals.IFC_DEFINED_SYMBOL__TARGET, true);
 	}
 
 	/**

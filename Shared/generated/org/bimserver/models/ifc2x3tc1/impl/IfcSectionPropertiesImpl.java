@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSectionPropertiesImpl extends IdEObjectImpl implements
-		IfcSectionProperties {
+public class IfcSectionPropertiesImpl extends IdEObjectImpl implements IfcSectionProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,9 +74,7 @@ public class IfcSectionPropertiesImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcSectionTypeEnum getSectionType() {
-		return (IfcSectionTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__SECTION_TYPE,
-				true);
+		return (IfcSectionTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__SECTION_TYPE, true);
 	}
 
 	/**
@@ -86,8 +83,7 @@ public class IfcSectionPropertiesImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setSectionType(IfcSectionTypeEnum newSectionType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__SECTION_TYPE,
-				newSectionType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__SECTION_TYPE, newSectionType);
 	}
 
 	/**
@@ -96,9 +92,7 @@ public class IfcSectionPropertiesImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcProfileDef getStartProfile() {
-		return (IfcProfileDef) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__START_PROFILE,
-				true);
+		return (IfcProfileDef) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__START_PROFILE, true);
 	}
 
 	/**
@@ -107,8 +101,7 @@ public class IfcSectionPropertiesImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setStartProfile(IfcProfileDef newStartProfile) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__START_PROFILE,
-				newStartProfile);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__START_PROFILE, newStartProfile);
 	}
 
 	/**
@@ -117,9 +110,7 @@ public class IfcSectionPropertiesImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcProfileDef getEndProfile() {
-		return (IfcProfileDef) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__END_PROFILE,
-				true);
+		return (IfcProfileDef) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__END_PROFILE, true);
 	}
 
 	/**
@@ -128,8 +119,7 @@ public class IfcSectionPropertiesImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setEndProfile(IfcProfileDef newEndProfile) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__END_PROFILE,
-				newEndProfile);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_PROPERTIES__END_PROFILE, newEndProfile);
 	}
 
 	/**

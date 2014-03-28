@@ -386,11 +386,8 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDamperTypeEnum[] VALUES_ARRAY = new IfcDamperTypeEnum[] {
-			NULL, BLASTDAMPER, FIRESMOKEDAMPER, NOTDEFINED, BALANCINGDAMPER,
-			FIREDAMPER, SMOKEDAMPER, RELIEFDAMPER, GRAVITYRELIEFDAMPER,
-			BACKDRAFTDAMPER, GRAVITYDAMPER, FUMEHOODEXHAUST, USERDEFINED,
-			CONTROLDAMPER, };
+	private static final IfcDamperTypeEnum[] VALUES_ARRAY = new IfcDamperTypeEnum[] { NULL, BLASTDAMPER, FIRESMOKEDAMPER, NOTDEFINED, BALANCINGDAMPER, FIREDAMPER, SMOKEDAMPER,
+			RELIEFDAMPER, GRAVITYRELIEFDAMPER, BACKDRAFTDAMPER, GRAVITYDAMPER, FUMEHOODEXHAUST, USERDEFINED, CONTROLDAMPER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Damper Type Enum</b></em>' enumerators.
@@ -398,8 +395,7 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDamperTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDamperTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Damper Type Enum</b></em>' literal with the specified literal value.

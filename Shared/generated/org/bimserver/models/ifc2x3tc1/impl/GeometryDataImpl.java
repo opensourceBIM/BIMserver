@@ -31,6 +31,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryDataImpl#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryDataImpl#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryDataImpl#getNormals <em>Normals</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryDataImpl#getMaterials <em>Materials</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryDataImpl#getMaterialIndices <em>Material Indices</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,8 +74,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getIndices() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__INDICES,
-				true);
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__INDICES, true);
 	}
 
 	/**
@@ -91,8 +92,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getVertices() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__VERTICES,
-				true);
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__VERTICES, true);
 	}
 
 	/**
@@ -110,8 +110,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getNormals() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__NORMALS,
-				true);
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__NORMALS, true);
 	}
 
 	/**
@@ -121,6 +120,42 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 */
 	public void setNormals(byte[] newNormals) {
 		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__NORMALS, newNormals);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public byte[] getMaterials() {
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIALS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaterials(byte[] newMaterials) {
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIALS, newMaterials);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public byte[] getMaterialIndices() {
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIAL_INDICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaterialIndices(byte[] newMaterialIndices) {
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIAL_INDICES, newMaterialIndices);
 	}
 
 } //GeometryDataImpl

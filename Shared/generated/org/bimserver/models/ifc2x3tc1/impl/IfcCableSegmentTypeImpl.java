@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCableSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements
-		IfcCableSegmentType {
+public class IfcCableSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements IfcCableSegmentType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcCableSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements
 	 * @generated
 	 */
 	public IfcCableSegmentTypeEnum getPredefinedType() {
-		return (IfcCableSegmentTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CABLE_SEGMENT_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcCableSegmentTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_CABLE_SEGMENT_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcCableSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCableSegmentTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CABLE_SEGMENT_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CABLE_SEGMENT_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcCableSegmentTypeImpl

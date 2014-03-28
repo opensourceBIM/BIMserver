@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSoundPropertiesImpl extends IfcPropertySetDefinitionImpl
-		implements IfcSoundProperties {
+public class IfcSoundPropertiesImpl extends IfcPropertySetDefinitionImpl implements IfcSoundProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +65,7 @@ public class IfcSoundPropertiesImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public Tristate getIsAttenuating() {
-		return (Tristate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SOUND_PROPERTIES__IS_ATTENUATING,
-				true);
+		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_SOUND_PROPERTIES__IS_ATTENUATING, true);
 	}
 
 	/**
@@ -77,8 +74,7 @@ public class IfcSoundPropertiesImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public void setIsAttenuating(Tristate newIsAttenuating) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SOUND_PROPERTIES__IS_ATTENUATING,
-				newIsAttenuating);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SOUND_PROPERTIES__IS_ATTENUATING, newIsAttenuating);
 	}
 
 	/**
@@ -87,9 +83,7 @@ public class IfcSoundPropertiesImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public IfcSoundScaleEnum getSoundScale() {
-		return (IfcSoundScaleEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SOUND_PROPERTIES__SOUND_SCALE,
-				true);
+		return (IfcSoundScaleEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SOUND_PROPERTIES__SOUND_SCALE, true);
 	}
 
 	/**
@@ -98,8 +92,7 @@ public class IfcSoundPropertiesImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public void setSoundScale(IfcSoundScaleEnum newSoundScale) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SOUND_PROPERTIES__SOUND_SCALE,
-				newSoundScale);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SOUND_PROPERTIES__SOUND_SCALE, newSoundScale);
 	}
 
 	/**
@@ -127,9 +120,7 @@ public class IfcSoundPropertiesImpl extends IfcPropertySetDefinitionImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSoundValue> getSoundValues() {
-		return (EList<IfcSoundValue>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SOUND_PROPERTIES__SOUND_VALUES,
-				true);
+		return (EList<IfcSoundValue>) eGet(Ifc2x3tc1Package.Literals.IFC_SOUND_PROPERTIES__SOUND_VALUES, true);
 	}
 
 } //IfcSoundPropertiesImpl

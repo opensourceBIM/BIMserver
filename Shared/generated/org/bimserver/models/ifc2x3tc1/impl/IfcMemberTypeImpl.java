@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMemberTypeImpl extends IfcBuildingElementTypeImpl implements
-		IfcMemberType {
+public class IfcMemberTypeImpl extends IfcBuildingElementTypeImpl implements IfcMemberType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcMemberTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcMemberTypeEnum getPredefinedType() {
-		return (IfcMemberTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MEMBER_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcMemberTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_MEMBER_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcMemberTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcMemberTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MEMBER_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MEMBER_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcMemberTypeImpl

@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFlowMovingDeviceTypeImpl extends
-		IfcDistributionFlowElementTypeImpl implements IfcFlowMovingDeviceType {
+public class IfcFlowMovingDeviceTypeImpl extends IfcDistributionFlowElementTypeImpl implements IfcFlowMovingDeviceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

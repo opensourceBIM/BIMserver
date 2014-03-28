@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEdgeImpl extends IfcTopologicalRepresentationItemImpl implements
-		IfcEdge {
+public class IfcEdgeImpl extends IfcTopologicalRepresentationItemImpl implements IfcEdge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcEdgeImpl extends IfcTopologicalRepresentationItemImpl implements
 	 * @generated
 	 */
 	public IfcVertex getEdgeStart() {
-		return (IfcVertex) eGet(Ifc2x3tc1Package.Literals.IFC_EDGE__EDGE_START,
-				true);
+		return (IfcVertex) eGet(Ifc2x3tc1Package.Literals.IFC_EDGE__EDGE_START, true);
 	}
 
 	/**
@@ -81,8 +79,7 @@ public class IfcEdgeImpl extends IfcTopologicalRepresentationItemImpl implements
 	 * @generated
 	 */
 	public IfcVertex getEdgeEnd() {
-		return (IfcVertex) eGet(Ifc2x3tc1Package.Literals.IFC_EDGE__EDGE_END,
-				true);
+		return (IfcVertex) eGet(Ifc2x3tc1Package.Literals.IFC_EDGE__EDGE_END, true);
 	}
 
 	/**

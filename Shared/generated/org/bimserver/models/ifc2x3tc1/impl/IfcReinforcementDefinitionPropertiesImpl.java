@@ -36,9 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcReinforcementDefinitionPropertiesImpl extends
-		IfcPropertySetDefinitionImpl implements
-		IfcReinforcementDefinitionProperties {
+public class IfcReinforcementDefinitionPropertiesImpl extends IfcPropertySetDefinitionImpl implements IfcReinforcementDefinitionProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +62,7 @@ public class IfcReinforcementDefinitionPropertiesImpl extends
 	 * @generated
 	 */
 	public String getDefinitionType() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__DEFINITION_TYPE,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__DEFINITION_TYPE, true);
 	}
 
 	/**
@@ -75,8 +71,7 @@ public class IfcReinforcementDefinitionPropertiesImpl extends
 	 * @generated
 	 */
 	public void setDefinitionType(String newDefinitionType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__DEFINITION_TYPE,
-				newDefinitionType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__DEFINITION_TYPE, newDefinitionType);
 	}
 
 	/**
@@ -104,9 +99,7 @@ public class IfcReinforcementDefinitionPropertiesImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSectionReinforcementProperties> getReinforcementSectionDefinitions() {
-		return (EList<IfcSectionReinforcementProperties>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__REINFORCEMENT_SECTION_DEFINITIONS,
-				true);
+		return (EList<IfcSectionReinforcementProperties>) eGet(Ifc2x3tc1Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__REINFORCEMENT_SECTION_DEFINITIONS, true);
 	}
 
 } //IfcReinforcementDefinitionPropertiesImpl

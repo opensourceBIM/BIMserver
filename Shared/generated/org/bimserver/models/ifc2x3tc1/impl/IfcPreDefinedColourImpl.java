@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPreDefinedColourImpl extends IfcPreDefinedItemImpl implements
-		IfcPreDefinedColour {
+public class IfcPreDefinedColourImpl extends IfcPreDefinedItemImpl implements IfcPreDefinedColour {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

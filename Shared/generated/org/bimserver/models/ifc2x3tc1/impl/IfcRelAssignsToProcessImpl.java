@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements
-		IfcRelAssignsToProcess {
+public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements IfcRelAssignsToProcess {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements
 	 * @generated
 	 */
 	public IfcProcess getRelatingProcess() {
-		return (IfcProcess) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS,
-				true);
+		return (IfcProcess) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS, true);
 	}
 
 	/**
@@ -74,8 +71,7 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements
 	 * @generated
 	 */
 	public void setRelatingProcess(IfcProcess newRelatingProcess) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS,
-				newRelatingProcess);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS, newRelatingProcess);
 	}
 
 	/**
@@ -84,9 +80,7 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements
 	 * @generated
 	 */
 	public IfcMeasureWithUnit getQuantityInProcess() {
-		return (IfcMeasureWithUnit) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS,
-				true);
+		return (IfcMeasureWithUnit) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS, true);
 	}
 
 	/**
@@ -95,8 +89,7 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements
 	 * @generated
 	 */
 	public void setQuantityInProcess(IfcMeasureWithUnit newQuantityInProcess) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS,
-				newQuantityInProcess);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS, newQuantityInProcess);
 	}
 
 	/**

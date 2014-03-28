@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcHalfSpaceSolidImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcHalfSpaceSolid {
+public class IfcHalfSpaceSolidImpl extends IfcGeometricRepresentationItemImpl implements IfcHalfSpaceSolid {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcHalfSpaceSolidImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public IfcSurface getBaseSurface() {
-		return (IfcSurface) eGet(
-				Ifc2x3tc1Package.Literals.IFC_HALF_SPACE_SOLID__BASE_SURFACE,
-				true);
+		return (IfcSurface) eGet(Ifc2x3tc1Package.Literals.IFC_HALF_SPACE_SOLID__BASE_SURFACE, true);
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class IfcHalfSpaceSolidImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setBaseSurface(IfcSurface newBaseSurface) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_HALF_SPACE_SOLID__BASE_SURFACE,
-				newBaseSurface);
+		eSet(Ifc2x3tc1Package.Literals.IFC_HALF_SPACE_SOLID__BASE_SURFACE, newBaseSurface);
 	}
 
 	/**
@@ -85,9 +81,7 @@ public class IfcHalfSpaceSolidImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public Tristate getAgreementFlag() {
-		return (Tristate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_HALF_SPACE_SOLID__AGREEMENT_FLAG,
-				true);
+		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_HALF_SPACE_SOLID__AGREEMENT_FLAG, true);
 	}
 
 	/**
@@ -96,8 +90,7 @@ public class IfcHalfSpaceSolidImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setAgreementFlag(Tristate newAgreementFlag) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_HALF_SPACE_SOLID__AGREEMENT_FLAG,
-				newAgreementFlag);
+		eSet(Ifc2x3tc1Package.Literals.IFC_HALF_SPACE_SOLID__AGREEMENT_FLAG, newAgreementFlag);
 	}
 
 	/**
@@ -106,8 +99,7 @@ public class IfcHalfSpaceSolidImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_HALF_SPACE_SOLID__DIM, true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_HALF_SPACE_SOLID__DIM, true);
 	}
 
 	/**

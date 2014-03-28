@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
-		IfcCurveStyle {
+public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCurveStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public IfcCurveFontOrScaledCurveFontSelect getCurveFont() {
-		return (IfcCurveFontOrScaledCurveFontSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_FONT, true);
+		return (IfcCurveFontOrScaledCurveFontSelect) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_FONT, true);
 	}
 
 	/**
@@ -75,8 +73,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public void setCurveFont(IfcCurveFontOrScaledCurveFontSelect newCurveFont) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_FONT,
-				newCurveFont);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_FONT, newCurveFont);
 	}
 
 	/**
@@ -103,8 +100,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public IfcSizeSelect getCurveWidth() {
-		return (IfcSizeSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH, true);
+		return (IfcSizeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH, true);
 	}
 
 	/**
@@ -113,8 +109,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public void setCurveWidth(IfcSizeSelect newCurveWidth) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH,
-				newCurveWidth);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH, newCurveWidth);
 	}
 
 	/**
@@ -141,8 +136,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public IfcColour getCurveColour() {
-		return (IfcColour) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR, true);
+		return (IfcColour) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR, true);
 	}
 
 	/**
@@ -151,8 +145,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public void setCurveColour(IfcColour newCurveColour) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR,
-				newCurveColour);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR, newCurveColour);
 	}
 
 	/**

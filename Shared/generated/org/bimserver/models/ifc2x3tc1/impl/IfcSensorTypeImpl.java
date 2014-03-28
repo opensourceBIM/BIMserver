@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSensorTypeImpl extends IfcDistributionControlElementTypeImpl
-		implements IfcSensorType {
+public class IfcSensorTypeImpl extends IfcDistributionControlElementTypeImpl implements IfcSensorType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcSensorTypeImpl extends IfcDistributionControlElementTypeImpl
 	 * @generated
 	 */
 	public IfcSensorTypeEnum getPredefinedType() {
-		return (IfcSensorTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SENSOR_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcSensorTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SENSOR_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcSensorTypeImpl extends IfcDistributionControlElementTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSensorTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SENSOR_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SENSOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcSensorTypeImpl

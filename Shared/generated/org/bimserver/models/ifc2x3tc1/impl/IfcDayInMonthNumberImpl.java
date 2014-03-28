@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDayInMonthNumberImpl extends IdEObjectImpl implements
-		IfcDayInMonthNumber {
+public class IfcDayInMonthNumberImpl extends IdEObjectImpl implements IfcDayInMonthNumber {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,9 +70,7 @@ public class IfcDayInMonthNumberImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public int getWrappedValue() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DAY_IN_MONTH_NUMBER__WRAPPED_VALUE,
-				true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_DAY_IN_MONTH_NUMBER__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -82,8 +79,7 @@ public class IfcDayInMonthNumberImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setWrappedValue(int newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DAY_IN_MONTH_NUMBER__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DAY_IN_MONTH_NUMBER__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**

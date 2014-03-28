@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcVirtualElementImpl extends IfcElementImpl implements
-		IfcVirtualElement {
+public class IfcVirtualElementImpl extends IfcElementImpl implements IfcVirtualElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

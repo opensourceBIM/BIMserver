@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements
-		IfcBuilding {
+public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements IfcBuilding {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements
 	 * @generated
 	 */
 	public double getElevationOfRefHeight() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT, true);
 	}
 
 	/**
@@ -76,8 +73,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements
 	 * @generated
 	 */
 	public void setElevationOfRefHeight(double newElevationOfRefHeight) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT,
-				newElevationOfRefHeight);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT, newElevationOfRefHeight);
 	}
 
 	/**
@@ -104,9 +100,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements
 	 * @generated
 	 */
 	public String getElevationOfRefHeightAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING, true);
 	}
 
 	/**
@@ -114,10 +108,8 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElevationOfRefHeightAsString(
-			String newElevationOfRefHeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING,
-				newElevationOfRefHeightAsString);
+	public void setElevationOfRefHeightAsString(String newElevationOfRefHeightAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING, newElevationOfRefHeightAsString);
 	}
 
 	/**
@@ -144,9 +136,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements
 	 * @generated
 	 */
 	public double getElevationOfTerrain() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN, true);
 	}
 
 	/**
@@ -155,8 +145,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements
 	 * @generated
 	 */
 	public void setElevationOfTerrain(double newElevationOfTerrain) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN,
-				newElevationOfTerrain);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN, newElevationOfTerrain);
 	}
 
 	/**
@@ -183,9 +172,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements
 	 * @generated
 	 */
 	public String getElevationOfTerrainAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING, true);
 	}
 
 	/**
@@ -193,10 +180,8 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElevationOfTerrainAsString(
-			String newElevationOfTerrainAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING,
-				newElevationOfTerrainAsString);
+	public void setElevationOfTerrainAsString(String newElevationOfTerrainAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING, newElevationOfTerrainAsString);
 	}
 
 	/**
@@ -223,8 +208,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements
 	 * @generated
 	 */
 	public IfcPostalAddress getBuildingAddress() {
-		return (IfcPostalAddress) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BUILDING__BUILDING_ADDRESS, true);
+		return (IfcPostalAddress) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING__BUILDING_ADDRESS, true);
 	}
 
 	/**
@@ -233,8 +217,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements
 	 * @generated
 	 */
 	public void setBuildingAddress(IfcPostalAddress newBuildingAddress) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__BUILDING_ADDRESS,
-				newBuildingAddress);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__BUILDING_ADDRESS, newBuildingAddress);
 	}
 
 	/**

@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcNormalisedRatioMeasureImpl extends IfcRatioMeasureImpl
-		implements IfcNormalisedRatioMeasure {
+public class IfcNormalisedRatioMeasureImpl extends IfcRatioMeasureImpl implements IfcNormalisedRatioMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

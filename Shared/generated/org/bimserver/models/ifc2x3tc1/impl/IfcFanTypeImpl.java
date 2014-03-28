@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFanTypeImpl extends IfcFlowMovingDeviceTypeImpl implements
-		IfcFanType {
+public class IfcFanTypeImpl extends IfcFlowMovingDeviceTypeImpl implements IfcFanType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcFanTypeImpl extends IfcFlowMovingDeviceTypeImpl implements
 	 * @generated
 	 */
 	public IfcFanTypeEnum getPredefinedType() {
-		return (IfcFanTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_FAN_TYPE__PREDEFINED_TYPE, true);
+		return (IfcFanTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_FAN_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -71,8 +69,7 @@ public class IfcFanTypeImpl extends IfcFlowMovingDeviceTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcFanTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FAN_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FAN_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcFanTypeImpl

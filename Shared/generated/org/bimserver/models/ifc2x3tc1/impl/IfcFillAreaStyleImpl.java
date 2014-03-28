@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements
-		IfcFillAreaStyle {
+public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements IfcFillAreaStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcFillStyleSelect> getFillStyles() {
-		return (EList<IfcFillStyleSelect>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE__FILL_STYLES,
-				true);
+		return (EList<IfcFillStyleSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE__FILL_STYLES, true);
 	}
 
 } //IfcFillAreaStyleImpl

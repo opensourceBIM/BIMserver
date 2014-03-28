@@ -62,8 +62,7 @@ public class IfcFaceSurfaceImpl extends IfcFaceImpl implements IfcFaceSurface {
 	 * @generated
 	 */
 	public IfcSurface getFaceSurface() {
-		return (IfcSurface) eGet(
-				Ifc2x3tc1Package.Literals.IFC_FACE_SURFACE__FACE_SURFACE, true);
+		return (IfcSurface) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_SURFACE__FACE_SURFACE, true);
 	}
 
 	/**
@@ -72,8 +71,7 @@ public class IfcFaceSurfaceImpl extends IfcFaceImpl implements IfcFaceSurface {
 	 * @generated
 	 */
 	public void setFaceSurface(IfcSurface newFaceSurface) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FACE_SURFACE__FACE_SURFACE,
-				newFaceSurface);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FACE_SURFACE__FACE_SURFACE, newFaceSurface);
 	}
 
 	/**
@@ -82,8 +80,7 @@ public class IfcFaceSurfaceImpl extends IfcFaceImpl implements IfcFaceSurface {
 	 * @generated
 	 */
 	public Tristate getSameSense() {
-		return (Tristate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_FACE_SURFACE__SAME_SENSE, true);
+		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_SURFACE__SAME_SENSE, true);
 	}
 
 	/**
@@ -92,8 +89,7 @@ public class IfcFaceSurfaceImpl extends IfcFaceImpl implements IfcFaceSurface {
 	 * @generated
 	 */
 	public void setSameSense(Tristate newSameSense) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FACE_SURFACE__SAME_SENSE,
-				newSameSense);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FACE_SURFACE__SAME_SENSE, newSameSense);
 	}
 
 } //IfcFaceSurfaceImpl

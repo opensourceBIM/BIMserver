@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextTransformationImpl extends IdEObjectImpl implements
-		IfcTextTransformation {
+public class IfcTextTransformationImpl extends IdEObjectImpl implements IfcTextTransformation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,9 +70,7 @@ public class IfcTextTransformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXT_TRANSFORMATION__WRAPPED_VALUE,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_TRANSFORMATION__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -82,8 +79,7 @@ public class IfcTextTransformationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setWrappedValue(String newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_TRANSFORMATION__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_TRANSFORMATION__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**

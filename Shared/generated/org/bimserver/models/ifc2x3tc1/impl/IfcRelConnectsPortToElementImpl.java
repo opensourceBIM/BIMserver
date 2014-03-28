@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelConnectsPortToElementImpl extends IfcRelConnectsImpl
-		implements IfcRelConnectsPortToElement {
+public class IfcRelConnectsPortToElementImpl extends IfcRelConnectsImpl implements IfcRelConnectsPortToElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcRelConnectsPortToElementImpl extends IfcRelConnectsImpl
 	 * @generated
 	 */
 	public IfcPort getRelatingPort() {
-		return (IfcPort) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATING_PORT,
-				true);
+		return (IfcPort) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATING_PORT, true);
 	}
 
 	/**
@@ -74,8 +71,7 @@ public class IfcRelConnectsPortToElementImpl extends IfcRelConnectsImpl
 	 * @generated
 	 */
 	public void setRelatingPort(IfcPort newRelatingPort) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATING_PORT,
-				newRelatingPort);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATING_PORT, newRelatingPort);
 	}
 
 	/**
@@ -84,9 +80,7 @@ public class IfcRelConnectsPortToElementImpl extends IfcRelConnectsImpl
 	 * @generated
 	 */
 	public IfcElement getRelatedElement() {
-		return (IfcElement) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATED_ELEMENT,
-				true);
+		return (IfcElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATED_ELEMENT, true);
 	}
 
 	/**
@@ -95,8 +89,7 @@ public class IfcRelConnectsPortToElementImpl extends IfcRelConnectsImpl
 	 * @generated
 	 */
 	public void setRelatedElement(IfcElement newRelatedElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATED_ELEMENT,
-				newRelatedElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATED_ELEMENT, newRelatedElement);
 	}
 
 } //IfcRelConnectsPortToElementImpl

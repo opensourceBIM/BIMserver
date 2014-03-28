@@ -63,8 +63,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * @generated
 	 */
 	public IfcBenchmarkEnum getBenchmark() {
-		return (IfcBenchmarkEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_METRIC__BENCHMARK, true);
+		return (IfcBenchmarkEnum) eGet(Ifc2x3tc1Package.Literals.IFC_METRIC__BENCHMARK, true);
 	}
 
 	/**
@@ -82,8 +81,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * @generated
 	 */
 	public String getValueSource() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_METRIC__VALUE_SOURCE, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_METRIC__VALUE_SOURCE, true);
 	}
 
 	/**
@@ -119,8 +117,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * @generated
 	 */
 	public IfcMetricValueSelect getDataValue() {
-		return (IfcMetricValueSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_METRIC__DATA_VALUE, true);
+		return (IfcMetricValueSelect) eGet(Ifc2x3tc1Package.Literals.IFC_METRIC__DATA_VALUE, true);
 	}
 
 	/**

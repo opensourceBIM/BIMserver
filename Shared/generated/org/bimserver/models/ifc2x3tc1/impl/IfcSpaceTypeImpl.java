@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSpaceTypeImpl extends IfcSpatialStructureElementTypeImpl
-		implements IfcSpaceType {
+public class IfcSpaceTypeImpl extends IfcSpatialStructureElementTypeImpl implements IfcSpaceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcSpaceTypeImpl extends IfcSpatialStructureElementTypeImpl
 	 * @generated
 	 */
 	public IfcSpaceTypeEnum getPredefinedType() {
-		return (IfcSpaceTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SPACE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcSpaceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SPACE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -71,8 +69,7 @@ public class IfcSpaceTypeImpl extends IfcSpatialStructureElementTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSpaceTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcSpaceTypeImpl

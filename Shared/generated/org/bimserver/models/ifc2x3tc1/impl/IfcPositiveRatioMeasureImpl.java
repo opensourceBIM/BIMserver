@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPositiveRatioMeasureImpl extends IfcRatioMeasureImpl implements
-		IfcPositiveRatioMeasure {
+public class IfcPositiveRatioMeasureImpl extends IfcRatioMeasureImpl implements IfcPositiveRatioMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

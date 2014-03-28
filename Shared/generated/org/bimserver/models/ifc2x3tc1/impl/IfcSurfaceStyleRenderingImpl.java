@@ -44,8 +44,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
-		implements IfcSurfaceStyleRendering {
+public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl implements IfcSurfaceStyleRendering {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,9 +70,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public double getTransparency() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY, true);
 	}
 
 	/**
@@ -82,8 +79,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public void setTransparency(double newTransparency) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY,
-				newTransparency);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY, newTransparency);
 	}
 
 	/**
@@ -110,9 +106,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public String getTransparencyAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY_AS_STRING, true);
 	}
 
 	/**
@@ -121,8 +115,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public void setTransparencyAsString(String newTransparencyAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY_AS_STRING,
-				newTransparencyAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY_AS_STRING, newTransparencyAsString);
 	}
 
 	/**
@@ -149,9 +142,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public IfcColourOrFactor getDiffuseColour() {
-		return (IfcColourOrFactor) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__DIFFUSE_COLOUR,
-				true);
+		return (IfcColourOrFactor) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__DIFFUSE_COLOUR, true);
 	}
 
 	/**
@@ -160,8 +151,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public void setDiffuseColour(IfcColourOrFactor newDiffuseColour) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__DIFFUSE_COLOUR,
-				newDiffuseColour);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__DIFFUSE_COLOUR, newDiffuseColour);
 	}
 
 	/**
@@ -188,9 +178,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public IfcColourOrFactor getTransmissionColour() {
-		return (IfcColourOrFactor) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSMISSION_COLOUR,
-				true);
+		return (IfcColourOrFactor) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSMISSION_COLOUR, true);
 	}
 
 	/**
@@ -199,8 +187,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public void setTransmissionColour(IfcColourOrFactor newTransmissionColour) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSMISSION_COLOUR,
-				newTransmissionColour);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSMISSION_COLOUR, newTransmissionColour);
 	}
 
 	/**
@@ -227,9 +214,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public IfcColourOrFactor getDiffuseTransmissionColour() {
-		return (IfcColourOrFactor) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__DIFFUSE_TRANSMISSION_COLOUR,
-				true);
+		return (IfcColourOrFactor) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__DIFFUSE_TRANSMISSION_COLOUR, true);
 	}
 
 	/**
@@ -237,10 +222,8 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDiffuseTransmissionColour(
-			IfcColourOrFactor newDiffuseTransmissionColour) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__DIFFUSE_TRANSMISSION_COLOUR,
-				newDiffuseTransmissionColour);
+	public void setDiffuseTransmissionColour(IfcColourOrFactor newDiffuseTransmissionColour) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__DIFFUSE_TRANSMISSION_COLOUR, newDiffuseTransmissionColour);
 	}
 
 	/**
@@ -267,9 +250,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public IfcColourOrFactor getReflectionColour() {
-		return (IfcColourOrFactor) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__REFLECTION_COLOUR,
-				true);
+		return (IfcColourOrFactor) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__REFLECTION_COLOUR, true);
 	}
 
 	/**
@@ -278,8 +259,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public void setReflectionColour(IfcColourOrFactor newReflectionColour) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__REFLECTION_COLOUR,
-				newReflectionColour);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__REFLECTION_COLOUR, newReflectionColour);
 	}
 
 	/**
@@ -306,9 +286,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public IfcColourOrFactor getSpecularColour() {
-		return (IfcColourOrFactor) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__SPECULAR_COLOUR,
-				true);
+		return (IfcColourOrFactor) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__SPECULAR_COLOUR, true);
 	}
 
 	/**
@@ -317,8 +295,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public void setSpecularColour(IfcColourOrFactor newSpecularColour) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__SPECULAR_COLOUR,
-				newSpecularColour);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__SPECULAR_COLOUR, newSpecularColour);
 	}
 
 	/**
@@ -345,9 +322,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public IfcSpecularHighlightSelect getSpecularHighlight() {
-		return (IfcSpecularHighlightSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__SPECULAR_HIGHLIGHT,
-				true);
+		return (IfcSpecularHighlightSelect) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__SPECULAR_HIGHLIGHT, true);
 	}
 
 	/**
@@ -355,10 +330,8 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecularHighlight(
-			IfcSpecularHighlightSelect newSpecularHighlight) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__SPECULAR_HIGHLIGHT,
-				newSpecularHighlight);
+	public void setSpecularHighlight(IfcSpecularHighlightSelect newSpecularHighlight) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__SPECULAR_HIGHLIGHT, newSpecularHighlight);
 	}
 
 	/**
@@ -385,9 +358,7 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * @generated
 	 */
 	public IfcReflectanceMethodEnum getReflectanceMethod() {
-		return (IfcReflectanceMethodEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__REFLECTANCE_METHOD,
-				true);
+		return (IfcReflectanceMethodEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__REFLECTANCE_METHOD, true);
 	}
 
 	/**
@@ -395,10 +366,8 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReflectanceMethod(
-			IfcReflectanceMethodEnum newReflectanceMethod) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__REFLECTANCE_METHOD,
-				newReflectanceMethod);
+	public void setReflectanceMethod(IfcReflectanceMethodEnum newReflectanceMethod) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_RENDERING__REFLECTANCE_METHOD, newReflectanceMethod);
 	}
 
 } //IfcSurfaceStyleRenderingImpl

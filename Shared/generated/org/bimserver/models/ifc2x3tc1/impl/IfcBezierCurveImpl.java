@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBezierCurveImpl extends IfcBSplineCurveImpl implements
-		IfcBezierCurve {
+public class IfcBezierCurveImpl extends IfcBSplineCurveImpl implements IfcBezierCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

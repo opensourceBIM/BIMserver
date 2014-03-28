@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelDefinesImpl extends IfcRelationshipImpl implements
-		IfcRelDefines {
+public class IfcRelDefinesImpl extends IfcRelationshipImpl implements IfcRelDefines {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcRelDefinesImpl extends IfcRelationshipImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcObject> getRelatedObjects() {
-		return (EList<IfcObject>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_DEFINES__RELATED_OBJECTS,
-				true);
+		return (EList<IfcObject>) eGet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES__RELATED_OBJECTS, true);
 	}
 
 } //IfcRelDefinesImpl

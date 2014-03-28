@@ -61,8 +61,7 @@ public class IfcProxyImpl extends IfcProductImpl implements IfcProxy {
 	 * @generated
 	 */
 	public IfcObjectTypeEnum getProxyType() {
-		return (IfcObjectTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROXY__PROXY_TYPE, true);
+		return (IfcObjectTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PROXY__PROXY_TYPE, true);
 	}
 
 	/**

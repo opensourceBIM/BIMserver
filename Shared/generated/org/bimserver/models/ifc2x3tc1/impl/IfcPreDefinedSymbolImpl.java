@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPreDefinedSymbolImpl extends IfcPreDefinedItemImpl implements
-		IfcPreDefinedSymbol {
+public class IfcPreDefinedSymbolImpl extends IfcPreDefinedItemImpl implements IfcPreDefinedSymbol {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

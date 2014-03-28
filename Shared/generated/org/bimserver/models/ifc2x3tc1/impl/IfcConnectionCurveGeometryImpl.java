@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConnectionCurveGeometryImpl extends IfcConnectionGeometryImpl
-		implements IfcConnectionCurveGeometry {
+public class IfcConnectionCurveGeometryImpl extends IfcConnectionGeometryImpl implements IfcConnectionCurveGeometry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcConnectionCurveGeometryImpl extends IfcConnectionGeometryImpl
 	 * @generated
 	 */
 	public IfcCurveOrEdgeCurve getCurveOnRelatingElement() {
-		return (IfcCurveOrEdgeCurve) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATING_ELEMENT,
-				true);
+		return (IfcCurveOrEdgeCurve) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATING_ELEMENT, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcConnectionCurveGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCurveOnRelatingElement(
-			IfcCurveOrEdgeCurve newCurveOnRelatingElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATING_ELEMENT,
-				newCurveOnRelatingElement);
+	public void setCurveOnRelatingElement(IfcCurveOrEdgeCurve newCurveOnRelatingElement) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATING_ELEMENT, newCurveOnRelatingElement);
 	}
 
 	/**
@@ -84,9 +79,7 @@ public class IfcConnectionCurveGeometryImpl extends IfcConnectionGeometryImpl
 	 * @generated
 	 */
 	public IfcCurveOrEdgeCurve getCurveOnRelatedElement() {
-		return (IfcCurveOrEdgeCurve) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATED_ELEMENT,
-				true);
+		return (IfcCurveOrEdgeCurve) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATED_ELEMENT, true);
 	}
 
 	/**
@@ -94,10 +87,8 @@ public class IfcConnectionCurveGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCurveOnRelatedElement(
-			IfcCurveOrEdgeCurve newCurveOnRelatedElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATED_ELEMENT,
-				newCurveOnRelatedElement);
+	public void setCurveOnRelatedElement(IfcCurveOrEdgeCurve newCurveOnRelatedElement) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATED_ELEMENT, newCurveOnRelatedElement);
 	}
 
 	/**

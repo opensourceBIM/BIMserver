@@ -70,8 +70,7 @@ public class IfcLabelImpl extends IdEObjectImpl implements IfcLabel {
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_LABEL__WRAPPED_VALUE, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LABEL__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -80,8 +79,7 @@ public class IfcLabelImpl extends IdEObjectImpl implements IfcLabel {
 	 * @generated
 	 */
 	public void setWrappedValue(String newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LABEL__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LABEL__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**

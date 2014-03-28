@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRampFlightImpl extends IfcBuildingElementImpl implements
-		IfcRampFlight {
+public class IfcRampFlightImpl extends IfcBuildingElementImpl implements IfcRampFlight {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
