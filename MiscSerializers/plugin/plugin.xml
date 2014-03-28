@@ -6,6 +6,10 @@
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.serializers.objectcsv.ObjectCSVSerializerPlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin</implementationClass>
 	</PluginImplementation>
 </PluginDescriptor>
