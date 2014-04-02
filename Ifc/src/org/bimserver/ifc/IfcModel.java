@@ -38,10 +38,8 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.models.log.LogPackage;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -51,7 +49,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -60,8 +57,6 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class IfcModel implements IfcModelInterface {
-
-	private static final BiMap<EClass, Class<?>> eClassClassMap = initEClassClassMap();
 
 	private final ModelMetaData modelMetaData = new ModelMetaData();
 	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
@@ -79,25 +74,15 @@ public class IfcModel implements IfcModelInterface {
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
 	private long oidCounter = 1;
 	private boolean useDoubleStrings = true;
+	private PackageMetaData packageMetaData;
 
-	private static BiMap<EClass, Class<?>> initEClassClassMap() {
-		BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
-		for (EPackage ePackage : new EPackage[] { Ifc2x3tc1Package.eINSTANCE, StorePackage.eINSTANCE, LogPackage.eINSTANCE }) {
-			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-				if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass) eClassifier;
-					eClassClassMap.put(eClass, eClass.getInstanceClass());
-				}
-			}
-		}
-		return eClassClassMap;
-	}
-
-	public IfcModel() {
+	public IfcModel(PackageMetaData packageMetaData) {
+		this.packageMetaData = packageMetaData;
 		this.objects = HashBiMap.create();
 	}
 
-	public IfcModel(int size) {
+	public IfcModel(PackageMetaData packageMetaData, int size) {
+		this.packageMetaData = packageMetaData;
 		this.objects = HashBiMap.create(size);
 	}
 
@@ -133,7 +118,7 @@ public class IfcModel implements IfcModelInterface {
 
 	private void buildIndexWithSubTypes() {
 		indexPerClassWithSubTypes = new HashMap<EClass, List<? extends IdEObject>>();
-		for (EClass eClass : eClassClassMap.keySet()) {
+		for (EClass eClass : packageMetaData.getEClasses()) {
 			indexPerClassWithSubTypes.put((EClass) eClass, new ArrayList<IdEObject>());
 		}
 		for (Long key : objects.keySet()) {
@@ -275,7 +260,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	public <T extends IdEObject> List<T> getAll(Class<T> interfaceClass) {
-		return getAll(eClassClassMap.inverse().get(interfaceClass));
+		return getAll(packageMetaData.getEClass(interfaceClass));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -293,7 +278,7 @@ public class IfcModel implements IfcModelInterface {
 
 	@Override
 	public <T extends IdEObject> List<T> getAllWithSubTypes(Class<T> interfaceClass)  {
-		return getAllWithSubTypes(eClassClassMap.inverse().get(interfaceClass));
+		return getAllWithSubTypes(packageMetaData.getEClass(interfaceClass));
 	}
 
 	public Set<String> getGuids(EClass eClass) {
@@ -835,13 +820,13 @@ public class IfcModel implements IfcModelInterface {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
-		return (T) create(eClassClassMap.inverse().get(clazz));
+		return (T) create(packageMetaData.getEClass(clazz));
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(Class<T> clazz, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
-		return (T) create(eClassClassMap.inverse().get(clazz), oidProvider);
+		return (T) create(packageMetaData.getEClass(clazz), oidProvider);
 	}
 	
 	@Override
@@ -881,5 +866,10 @@ public class IfcModel implements IfcModelInterface {
 	@Override
 	public long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public PackageMetaData getPackageMetaData() {
+		return packageMetaData;
 	}
 }

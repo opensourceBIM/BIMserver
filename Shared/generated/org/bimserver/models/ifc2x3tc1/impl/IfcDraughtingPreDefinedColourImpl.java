@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDraughtingPreDefinedColour;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDraughtingPreDefinedColourImpl extends IfcPreDefinedColourImpl implements IfcDraughtingPreDefinedColour {
+public class IfcDraughtingPreDefinedColourImpl extends IfcPreDefinedColourImpl
+		implements IfcDraughtingPreDefinedColour {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

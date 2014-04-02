@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotationFillArea;
 import org.bimserver.models.ifc2x3tc1.IfcCurve;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAnnotationFillAreaImpl extends IfcGeometricRepresentationItemImpl implements IfcAnnotationFillArea {
+public class IfcAnnotationFillAreaImpl extends
+		IfcGeometricRepresentationItemImpl implements IfcAnnotationFillArea {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,9 @@ public class IfcAnnotationFillAreaImpl extends IfcGeometricRepresentationItemImp
 	 * @generated
 	 */
 	public IfcCurve getOuterBoundary() {
-		return (IfcCurve) eGet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA__OUTER_BOUNDARY, true);
+		return (IfcCurve) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA__OUTER_BOUNDARY,
+				true);
 	}
 
 	/**
@@ -71,7 +76,8 @@ public class IfcAnnotationFillAreaImpl extends IfcGeometricRepresentationItemImp
 	 * @generated
 	 */
 	public void setOuterBoundary(IfcCurve newOuterBoundary) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA__OUTER_BOUNDARY, newOuterBoundary);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA__OUTER_BOUNDARY,
+				newOuterBoundary);
 	}
 
 	/**
@@ -81,7 +87,9 @@ public class IfcAnnotationFillAreaImpl extends IfcGeometricRepresentationItemImp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCurve> getInnerBoundaries() {
-		return (EList<IfcCurve>) eGet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA__INNER_BOUNDARIES, true);
+		return (EList<IfcCurve>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA__INNER_BOUNDARIES,
+				true);
 	}
 
 	/**

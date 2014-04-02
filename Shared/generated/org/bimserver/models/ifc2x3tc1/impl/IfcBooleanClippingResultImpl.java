@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcBooleanClippingResult;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBooleanClippingResultImpl extends IfcBooleanResultImpl implements IfcBooleanClippingResult {
+public class IfcBooleanClippingResultImpl extends IfcBooleanResultImpl
+		implements IfcBooleanClippingResult {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

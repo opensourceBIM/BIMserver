@@ -24,49 +24,22 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
-import org.bimserver.models.ifc2x3tc1.IfcMaterial;
-import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;
-import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet;
-import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSetUsage;
-import org.bimserver.models.ifc2x3tc1.IfcMaterialSelect;
-import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
-import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
-import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
-import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesMaterial;
-import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
-import org.bimserver.models.ifc2x3tc1.IfcSlab;
-import org.bimserver.models.ifc2x3tc1.IfcSlabTypeEnum;
-import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
-import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.AligningOutputStream;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometrySerializer.class);
 	private static final byte FORMAT_VERSION = 4;
-	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
 	private static final byte GEOMETRY_TYPE_TRIANGLES = 0;
 	private static final byte GEOMETRY_TYPE_INSTANCE = 1;
 
@@ -223,168 +196,5 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		}
 		long end = System.nanoTime();
 		LOGGER.debug(((end - start) / 1000000) + " ms");
-	}
-	
-	private void add(Set<IfcProduct> alreadySent, IfcObjectDefinition parent) {
-		if (alreadySent.contains(parent)) {
-			return;
-		}
-		if (parent instanceof IfcProduct) {
-			alreadySent.add((IfcProduct) parent);
-		}
-		EList<IfcRelDecomposes> isDecomposedBy = parent.getIsDecomposedBy();
-		for (IfcRelDecomposes ifcRelDecomposes : isDecomposedBy) {
-			for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
-				add(alreadySent, ifcObjectDefinition);
-			}
-		}
-	}
-	
-	@SuppressWarnings("unused")
-	private Set<IfcProduct> getNicelyOrdered(IfcModelInterface model) {
-		Set<IfcProduct> alreadySent = new LinkedHashSet<>();
-		List<IfcBuildingStorey> stories = model.getAllWithSubTypes(IfcBuildingStorey.class);
-		Collections.sort(stories, new Comparator<IfcBuildingStorey>(){
-			@Override
-			public int compare(IfcBuildingStorey o1, IfcBuildingStorey o2) {
-				return (int) (o1.getElevation() - o2.getElevation());
-			}
-		});
-		for (IfcBuildingStorey ifcBuildingStorey : stories) {
-			add(alreadySent, ifcBuildingStorey);
-		}
-		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-			if (!alreadySent.contains(ifcProduct)) {
-				alreadySent.add(ifcProduct);
-			}
-		}
-		return alreadySent;
-	}
-
-	public String getMaterial(IfcProduct ifcProduct) throws Exception {
-		boolean materialFound = false;
-		String material = ifcProduct.eClass().getName();
-		if (ifcProduct instanceof IfcSlab && ((IfcSlab)ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-			material = Ifc2x3tc1Package.eINSTANCE.getIfcRoof().getName();
-		}
-		
-		IfcMaterialSelect relatingMaterial = null;
-		for (IfcRelAssociates ifcRelAssociates : ifcProduct.getHasAssociations()) {
-			if (ifcRelAssociates instanceof IfcRelAssociatesMaterial) {
-				IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (IfcRelAssociatesMaterial)ifcRelAssociates;
-				relatingMaterial = ifcRelAssociatesMaterial.getRelatingMaterial();
-			}
-		}
-
-		// Try to find the IFC material name
-		if (relatingMaterial instanceof IfcMaterialLayerSetUsage) {
-			IfcMaterialLayerSetUsage mlsu = (IfcMaterialLayerSetUsage) relatingMaterial;
-			IfcMaterialLayerSet forLayerSet = mlsu.getForLayerSet();
-			if (forLayerSet != null) {
-				EList<IfcMaterialLayer> materialLayers = forLayerSet.getMaterialLayers();
-				for (IfcMaterialLayer ml : materialLayers) {
-					IfcMaterial ifcMaterial = ml.getMaterial();
-					if (ifcMaterial != null) {
-						String name = ifcMaterial.getName();
-						String filterSpaces = fitNameForQualifiedName(name);
-//						materialFound = surfaceStyleIds.contains(filterSpaces);
-//						if (materialFound) {
-							material = filterSpaces;
-//						}
-					}
-				}
-			}
-		} else if (relatingMaterial instanceof IfcMaterial) {
-			IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
-			String name = ifcMaterial.getName();
-			String filterSpaces = fitNameForQualifiedName(name);
-//			materialFound = surfaceStyleIds.contains(filterSpaces);
-//			if (materialFound) {
-				material = filterSpaces;
-//			}
-		}
-
-		// If no material was found then derive one from the presentation style
-		if (!materialFound) {
-			IfcProductRepresentation representation = ifcProduct.getRepresentation();
-			if (representation != null) {
-				EList<IfcRepresentation> representations = representation.getRepresentations();
-				for (IfcRepresentation rep : representations) {
-					EList<IfcRepresentationItem> items = rep.getItems();
-					for (IfcRepresentationItem item : items) {
-						if (item instanceof IfcStyledItem) {
-							material = processStyledItem(material, (IfcStyledItem) item);
-						} else {
-							EList<IfcStyledItem> styledByItem = item.getStyledByItem();
-							for (IfcStyledItem sItem : styledByItem) {
-								material = processStyledItem(material, sItem);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		HashMap<String, HashSet<Long>> materialGeometryRel = typeMaterialGeometryRel.get(ifcProduct.eClass().getName());
-		if (materialGeometryRel == null) {
-			materialGeometryRel = new HashMap<String, HashSet<Long>>();
-			typeMaterialGeometryRel.put(ifcProduct.eClass().getName(), materialGeometryRel);
-		}
-
-		HashSet<Long> hashSet = materialGeometryRel.get(material);
-		if (hashSet == null) {
-			hashSet = new HashSet<Long>();
-			materialGeometryRel.put(material, hashSet);
-		}
-		hashSet.add(ifcProduct.getOid());
-		if (material == null) {
-			return "UNKNOWN";
-		}
-		return material;
-	}
-	
-	private String processStyledItem(String material, IfcStyledItem sItem) {
-		for (IfcStyledItem ifc : sItem.getStyledByItem()) {
-			processStyledItem(material, ifc);
-		}
-		EList<IfcPresentationStyleAssignment> styles = sItem.getStyles();
-		for (IfcPresentationStyleAssignment sa : styles) {
-			EList<IfcPresentationStyleSelect> styles2 = sa.getStyles();
-			for (IfcPresentationStyleSelect pss : styles2) {
-				if (pss instanceof IfcSurfaceStyle) {
-					IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
-					material = "" + ss.getOid();
-				}
-			}
-		}
-		return material;
-	}
-	
-	private String fitNameForQualifiedName(String name) {
-		if (name == null) {
-			return "Null";
-		}
-		StringBuilder builder = new StringBuilder(name);
-		int indexOfChar = builder.indexOf(" ");
-		while (indexOfChar >= 0) {
-			builder.deleteCharAt(indexOfChar);
-			indexOfChar = builder.indexOf(" ");
-		}
-		indexOfChar = builder.indexOf(",");
-		while (indexOfChar >= 0) {
-			builder.setCharAt(indexOfChar, '_');
-			indexOfChar = builder.indexOf(",");
-		}
-		indexOfChar = builder.indexOf("/");
-		while (indexOfChar >= 0) {
-			builder.setCharAt(indexOfChar, '_');
-			indexOfChar = builder.indexOf("/");
-		}
-		indexOfChar = builder.indexOf("*");
-		while (indexOfChar >= 0) {
-			builder.setCharAt(indexOfChar, '_');
-			indexOfChar = builder.indexOf("/");
-		}
-		return builder.toString();
 	}
 }

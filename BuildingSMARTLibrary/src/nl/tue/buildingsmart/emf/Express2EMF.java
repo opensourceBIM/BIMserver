@@ -79,7 +79,7 @@ public class Express2EMF {
 	private final Map<String, EDataType> simpleTypeReplacementMap = new HashMap<String, EDataType>();
 	private EEnum tristate;
 
-	public Express2EMF(File schemaFileName, String modelName) {
+	public Express2EMF(File schemaFileName, String modelName, String nsUri) {
 		schema = new SchemaLoader(schemaFileName.getAbsolutePath()).getSchema();
 		eFactory = EcoreFactory.eINSTANCE;
 		ePackage = EcorePackage.eINSTANCE;
@@ -91,7 +91,7 @@ public class Express2EMF {
 		}
 		schemaPack.setName(modelName);
 		schemaPack.setNsPrefix("iai");
-		schemaPack.setNsURI("http:///buildingsmart.ifc.ecore");
+		schemaPack.setNsURI(nsUri);
 
 		createTristate();
 
@@ -382,6 +382,9 @@ public class Express2EMF {
 		Iterator<EntityDefinition> entIter = schema.getEntities().iterator();
 		while (entIter.hasNext()) {
 			EntityDefinition ent = (EntityDefinition) entIter.next();
+			if (ent.getName().equalsIgnoreCase("IfcRelConnectsPathElements")) {
+				System.out.println();
+			}
 			Iterator<Attribute> attribIter = ent.getAttributes(false).iterator();
 			while (attribIter.hasNext()) {
 				Attribute attrib = (Attribute) attribIter.next();
@@ -528,6 +531,14 @@ public class Express2EMF {
 				doubleStringAttribute.setUnique(false);
 				cls.getEStructuralFeatures().add(doubleStringAttribute);
 			} else if (bt instanceof IntegerType) {
+				EAttribute eAttribute = eFactory.createEAttribute();
+				eAttribute.setName(attrib.getName());
+				eAttribute.setUpperBound(-1);
+				eAttribute.setUnique(false);
+				eAttribute.setEType(EcorePackage.eINSTANCE.getEInt());
+				eAttribute.setUnsettable(expAttrib.isOptional());
+				cls.getEStructuralFeatures().add(eAttribute);
+			} else if (bt instanceof NumberType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
 				eAttribute.setName(attrib.getName());
 				eAttribute.setUpperBound(-1);

@@ -17,10 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGridAxis;
 import org.bimserver.models.ifc2x3tc1.IfcVirtualGridIntersection;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -38,7 +41,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcVirtualGridIntersectionImpl extends IdEObjectImpl implements IfcVirtualGridIntersection {
+public class IfcVirtualGridIntersectionImpl extends IdEObjectImpl implements
+		IfcVirtualGridIntersection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,7 +79,9 @@ public class IfcVirtualGridIntersectionImpl extends IdEObjectImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGridAxis> getIntersectingAxes() {
-		return (EList<IfcGridAxis>) eGet(Ifc2x3tc1Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__INTERSECTING_AXES, true);
+		return (EList<IfcGridAxis>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__INTERSECTING_AXES,
+				true);
 	}
 
 	/**
@@ -85,7 +91,9 @@ public class IfcVirtualGridIntersectionImpl extends IdEObjectImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getOffsetDistances() {
-		return (EList<Double>) eGet(Ifc2x3tc1Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES, true);
+		return (EList<Double>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES,
+				true);
 	}
 
 	/**
@@ -95,7 +103,9 @@ public class IfcVirtualGridIntersectionImpl extends IdEObjectImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getOffsetDistancesAsString() {
-		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES_AS_STRING, true);
+		return (EList<String>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES_AS_STRING,
+				true);
 	}
 
 } //IfcVirtualGridIntersectionImpl

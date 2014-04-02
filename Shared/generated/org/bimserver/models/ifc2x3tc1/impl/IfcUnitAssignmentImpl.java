@@ -17,10 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcUnit;
 import org.bimserver.models.ifc2x3tc1.IfcUnitAssignment;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +39,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcUnitAssignmentImpl extends IdEObjectImpl implements IfcUnitAssignment {
+public class IfcUnitAssignmentImpl extends IdEObjectImpl implements
+		IfcUnitAssignment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +77,8 @@ public class IfcUnitAssignmentImpl extends IdEObjectImpl implements IfcUnitAssig
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcUnit> getUnits() {
-		return (EList<IfcUnit>) eGet(Ifc2x3tc1Package.Literals.IFC_UNIT_ASSIGNMENT__UNITS, true);
+		return (EList<IfcUnit>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_UNIT_ASSIGNMENT__UNITS, true);
 	}
 
 } //IfcUnitAssignmentImpl

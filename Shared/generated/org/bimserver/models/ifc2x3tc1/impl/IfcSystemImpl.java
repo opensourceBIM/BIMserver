@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRelServicesBuildings;
 import org.bimserver.models.ifc2x3tc1.IfcSystem;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -62,7 +64,8 @@ public class IfcSystemImpl extends IfcGroupImpl implements IfcSystem {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelServicesBuildings> getServicesBuildings() {
-		return (EList<IfcRelServicesBuildings>) eGet(Ifc2x3tc1Package.Literals.IFC_SYSTEM__SERVICES_BUILDINGS, true);
+		return (EList<IfcRelServicesBuildings>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SYSTEM__SERVICES_BUILDINGS, true);
 	}
 
 	/**

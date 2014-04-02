@@ -33,7 +33,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcPlaneAngleMeasure extends IfcMeasureValue, IfcOrientationSelect {
+public interface IfcPlaneAngleMeasure extends IfcMeasureValue,
+		IfcOrientationSelect {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

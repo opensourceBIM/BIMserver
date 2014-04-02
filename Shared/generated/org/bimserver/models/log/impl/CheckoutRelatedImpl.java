@@ -18,7 +18,9 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.CheckoutRelated;
 import org.bimserver.models.log.LogPackage;
+
 import org.bimserver.models.store.Checkout;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class CheckoutRelatedImpl extends LogActionImpl implements CheckoutRelated {
+public class CheckoutRelatedImpl extends LogActionImpl implements
+		CheckoutRelated {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +63,8 @@ public class CheckoutRelatedImpl extends LogActionImpl implements CheckoutRelate
 	 * @generated
 	 */
 	public Checkout getCheckout() {
-		return (Checkout) eGet(LogPackage.Literals.CHECKOUT_RELATED__CHECKOUT, true);
+		return (Checkout) eGet(LogPackage.Literals.CHECKOUT_RELATED__CHECKOUT,
+				true);
 	}
 
 	/**

@@ -27,5 +27,4 @@ package org.bimserver.models.log;
  * @generated
  */
 public interface ProjectDeleted extends ProjectRelated {
-
 } // ProjectDeleted

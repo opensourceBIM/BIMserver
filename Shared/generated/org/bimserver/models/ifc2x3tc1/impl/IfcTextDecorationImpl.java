@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcTextDecoration;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextDecorationImpl extends IdEObjectImpl implements IfcTextDecoration {
+public class IfcTextDecorationImpl extends IdEObjectImpl implements
+		IfcTextDecoration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +73,9 @@ public class IfcTextDecorationImpl extends IdEObjectImpl implements IfcTextDecor
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_DECORATION__WRAPPED_VALUE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXT_DECORATION__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -79,7 +84,8 @@ public class IfcTextDecorationImpl extends IdEObjectImpl implements IfcTextDecor
 	 * @generated
 	 */
 	public void setWrappedValue(String newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_DECORATION__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_DECORATION__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**

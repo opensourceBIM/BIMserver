@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcStackTerminalType;
 import org.bimserver.models.ifc2x3tc1.IfcStackTerminalTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStackTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements IfcStackTerminalType {
+public class IfcStackTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements
+		IfcStackTerminalType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcStackTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public IfcStackTerminalTypeEnum getPredefinedType() {
-		return (IfcStackTerminalTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STACK_TERMINAL_TYPE__PREDEFINED_TYPE, true);
+		return (IfcStackTerminalTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STACK_TERMINAL_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcStackTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcStackTerminalTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STACK_TERMINAL_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STACK_TERMINAL_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcStackTerminalTypeImpl

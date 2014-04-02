@@ -130,14 +130,16 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TEMPERATURESENSOR(9, "TEMPERATURESENSOR", "TEMPERATURESENSOR"), /**
-																	 * The '<em><b>GASSENSOR</b></em>' literal object.
-																	 * <!-- begin-user-doc -->
-																	 * <!-- end-user-doc -->
-																	 * @see #GASSENSOR_VALUE
-																	 * @generated
-																	 * @ordered
-																	 */
+	TEMPERATURESENSOR(9, "TEMPERATURESENSOR", "TEMPERATURESENSOR"),
+
+	/**
+	 * The '<em><b>GASSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #GASSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	GASSENSOR(10, "GASSENSOR", "GASSENSOR"),
 
 	/**
@@ -436,8 +438,11 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSensorTypeEnum[] VALUES_ARRAY = new IfcSensorTypeEnum[] { NULL, FIRESENSOR, NOTDEFINED, HEATSENSOR, MOVEMENTSENSOR, FLOWSENSOR, MOISTURESENSOR,
-			LIGHTSENSOR, SMOKESENSOR, TEMPERATURESENSOR, GASSENSOR, PRESSURESENSOR, USERDEFINED, HUMIDITYSENSOR, CO2SENSOR, SOUNDSENSOR, };
+	private static final IfcSensorTypeEnum[] VALUES_ARRAY = new IfcSensorTypeEnum[] {
+			NULL, FIRESENSOR, NOTDEFINED, HEATSENSOR, MOVEMENTSENSOR,
+			FLOWSENSOR, MOISTURESENSOR, LIGHTSENSOR, SMOKESENSOR,
+			TEMPERATURESENSOR, GASSENSOR, PRESSURESENSOR, USERDEFINED,
+			HUMIDITYSENSOR, CO2SENSOR, SOUNDSENSOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sensor Type Enum</b></em>' enumerators.
@@ -445,7 +450,8 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSensorTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSensorTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Sensor Type Enum</b></em>' literal with the specified literal value.

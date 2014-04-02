@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcControl;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToControl;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsToControlImpl extends IfcRelAssignsImpl implements IfcRelAssignsToControl {
+public class IfcRelAssignsToControlImpl extends IfcRelAssignsImpl implements
+		IfcRelAssignsToControl {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcRelAssignsToControlImpl extends IfcRelAssignsImpl implements Ifc
 	 * @generated
 	 */
 	public IfcControl getRelatingControl() {
-		return (IfcControl) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_CONTROL__RELATING_CONTROL, true);
+		return (IfcControl) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_CONTROL__RELATING_CONTROL,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcRelAssignsToControlImpl extends IfcRelAssignsImpl implements Ifc
 	 * @generated
 	 */
 	public void setRelatingControl(IfcControl newRelatingControl) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_CONTROL__RELATING_CONTROL, newRelatingControl);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_CONTROL__RELATING_CONTROL,
+				newRelatingControl);
 	}
 
 } //IfcRelAssignsToControlImpl

@@ -27,5 +27,4 @@ package org.bimserver.models.log;
  * @generated
  */
 public interface RevisionUpdated extends RevisionRelated {
-
 } // RevisionUpdated

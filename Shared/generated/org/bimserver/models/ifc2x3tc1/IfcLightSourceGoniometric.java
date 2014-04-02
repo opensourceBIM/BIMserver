@@ -276,6 +276,7 @@ public interface IfcLightSourceGoniometric extends IfcLightSource {
 	 * @see #getLightDistributionDataSource()
 	 * @generated
 	 */
-	void setLightDistributionDataSource(IfcLightDistributionDataSourceSelect value);
+	void setLightDistributionDataSource(
+			IfcLightDistributionDataSourceSelect value);
 
 } // IfcLightSourceGoniometric

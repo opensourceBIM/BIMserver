@@ -17,9 +17,11 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleShading;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceStyleShadingImpl extends IdEObjectImpl implements IfcSurfaceStyleShading {
+public class IfcSurfaceStyleShadingImpl extends IdEObjectImpl implements
+		IfcSurfaceStyleShading {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +74,9 @@ public class IfcSurfaceStyleShadingImpl extends IdEObjectImpl implements IfcSurf
 	 * @generated
 	 */
 	public IfcColourRgb getSurfaceColour() {
-		return (IfcColourRgb) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_SHADING__SURFACE_COLOUR, true);
+		return (IfcColourRgb) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_SHADING__SURFACE_COLOUR,
+				true);
 	}
 
 	/**
@@ -80,7 +85,8 @@ public class IfcSurfaceStyleShadingImpl extends IdEObjectImpl implements IfcSurf
 	 * @generated
 	 */
 	public void setSurfaceColour(IfcColourRgb newSurfaceColour) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_SHADING__SURFACE_COLOUR, newSurfaceColour);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_SHADING__SURFACE_COLOUR,
+				newSurfaceColour);
 	}
 
 } //IfcSurfaceStyleShadingImpl

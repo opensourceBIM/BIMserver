@@ -18,7 +18,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcTelecomAddress;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -38,7 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTelecomAddressImpl extends IfcAddressImpl implements IfcTelecomAddress {
+public class IfcTelecomAddressImpl extends IfcAddressImpl implements
+		IfcTelecomAddress {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,7 +68,9 @@ public class IfcTelecomAddressImpl extends IfcAddressImpl implements IfcTelecomA
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getTelephoneNumbers() {
-		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__TELEPHONE_NUMBERS, true);
+		return (EList<String>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__TELEPHONE_NUMBERS,
+				true);
 	}
 
 	/**
@@ -93,7 +98,9 @@ public class IfcTelecomAddressImpl extends IfcAddressImpl implements IfcTelecomA
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getFacsimileNumbers() {
-		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__FACSIMILE_NUMBERS, true);
+		return (EList<String>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__FACSIMILE_NUMBERS,
+				true);
 	}
 
 	/**
@@ -120,7 +127,9 @@ public class IfcTelecomAddressImpl extends IfcAddressImpl implements IfcTelecomA
 	 * @generated
 	 */
 	public String getPagerNumber() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__PAGER_NUMBER, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__PAGER_NUMBER,
+				true);
 	}
 
 	/**
@@ -129,7 +138,8 @@ public class IfcTelecomAddressImpl extends IfcAddressImpl implements IfcTelecomA
 	 * @generated
 	 */
 	public void setPagerNumber(String newPagerNumber) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__PAGER_NUMBER, newPagerNumber);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__PAGER_NUMBER,
+				newPagerNumber);
 	}
 
 	/**
@@ -157,7 +167,9 @@ public class IfcTelecomAddressImpl extends IfcAddressImpl implements IfcTelecomA
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getElectronicMailAddresses() {
-		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__ELECTRONIC_MAIL_ADDRESSES, true);
+		return (EList<String>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__ELECTRONIC_MAIL_ADDRESSES,
+				true);
 	}
 
 	/**
@@ -184,7 +196,9 @@ public class IfcTelecomAddressImpl extends IfcAddressImpl implements IfcTelecomA
 	 * @generated
 	 */
 	public String getWWWHomePageURL() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__WWW_HOME_PAGE_URL, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__WWW_HOME_PAGE_URL,
+				true);
 	}
 
 	/**
@@ -193,7 +207,8 @@ public class IfcTelecomAddressImpl extends IfcAddressImpl implements IfcTelecomA
 	 * @generated
 	 */
 	public void setWWWHomePageURL(String newWWWHomePageURL) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__WWW_HOME_PAGE_URL, newWWWHomePageURL);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TELECOM_ADDRESS__WWW_HOME_PAGE_URL,
+				newWWWHomePageURL);
 	}
 
 	/**

@@ -188,7 +188,9 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcOutletTypeEnum[] VALUES_ARRAY = new IfcOutletTypeEnum[] { NULL, NOTDEFINED, AUDIOVISUALOUTLET, COMMUNICATIONSOUTLET, USERDEFINED, POWEROUTLET, };
+	private static final IfcOutletTypeEnum[] VALUES_ARRAY = new IfcOutletTypeEnum[] {
+			NULL, NOTDEFINED, AUDIOVISUALOUTLET, COMMUNICATIONSOUTLET,
+			USERDEFINED, POWEROUTLET, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Outlet Type Enum</b></em>' enumerators.
@@ -196,7 +198,8 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcOutletTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcOutletTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Outlet Type Enum</b></em>' literal with the specified literal value.

@@ -22,7 +22,9 @@ import org.bimserver.models.ifc2x3tc1.IfcCompositeCurveSegment;
 import org.bimserver.models.ifc2x3tc1.IfcCurve;
 import org.bimserver.models.ifc2x3tc1.IfcTransitionCode;
 import org.bimserver.models.ifc2x3tc1.Tristate;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -42,7 +44,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItemImpl implements IfcCompositeCurveSegment {
+public class IfcCompositeCurveSegmentImpl extends
+		IfcGeometricRepresentationItemImpl implements IfcCompositeCurveSegment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,7 +71,9 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * @generated
 	 */
 	public IfcTransitionCode getTransition() {
-		return (IfcTransitionCode) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__TRANSITION, true);
+		return (IfcTransitionCode) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__TRANSITION,
+				true);
 	}
 
 	/**
@@ -77,7 +82,8 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * @generated
 	 */
 	public void setTransition(IfcTransitionCode newTransition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__TRANSITION, newTransition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__TRANSITION,
+				newTransition);
 	}
 
 	/**
@@ -86,7 +92,9 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * @generated
 	 */
 	public Tristate getSameSense() {
-		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE, true);
+		return (Tristate) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE,
+				true);
 	}
 
 	/**
@@ -95,7 +103,8 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * @generated
 	 */
 	public void setSameSense(Tristate newSameSense) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE, newSameSense);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE,
+				newSameSense);
 	}
 
 	/**
@@ -104,7 +113,9 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * @generated
 	 */
 	public IfcCurve getParentCurve() {
-		return (IfcCurve) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE, true);
+		return (IfcCurve) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE,
+				true);
 	}
 
 	/**
@@ -113,7 +124,8 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * @generated
 	 */
 	public void setParentCurve(IfcCurve newParentCurve) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE, newParentCurve);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE,
+				newParentCurve);
 	}
 
 	/**
@@ -123,7 +135,9 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCompositeCurve> getUsingCurves() {
-		return (EList<IfcCompositeCurve>) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__USING_CURVES, true);
+		return (EList<IfcCompositeCurve>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__USING_CURVES,
+				true);
 	}
 
 	/**
@@ -150,7 +164,9 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__DIM, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__DIM,
+				true);
 	}
 
 	/**

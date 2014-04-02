@@ -17,10 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCurveStyleFont;
 import org.bimserver.models.ifc2x3tc1.IfcCurveStyleFontPattern;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -37,7 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCurveStyleFontImpl extends IdEObjectImpl implements IfcCurveStyleFont {
+public class IfcCurveStyleFontImpl extends IdEObjectImpl implements
+		IfcCurveStyleFont {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +77,8 @@ public class IfcCurveStyleFontImpl extends IdEObjectImpl implements IfcCurveStyl
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT__NAME, true);
 	}
 
 	/**
@@ -110,7 +115,9 @@ public class IfcCurveStyleFontImpl extends IdEObjectImpl implements IfcCurveStyl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCurveStyleFontPattern> getPatternList() {
-		return (EList<IfcCurveStyleFontPattern>) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST, true);
+		return (EList<IfcCurveStyleFontPattern>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST,
+				true);
 	}
 
 } //IfcCurveStyleFontImpl

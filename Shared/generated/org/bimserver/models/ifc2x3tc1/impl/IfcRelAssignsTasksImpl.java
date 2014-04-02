@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsTasks;
 import org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsTasksImpl extends IfcRelAssignsToControlImpl implements IfcRelAssignsTasks {
+public class IfcRelAssignsTasksImpl extends IfcRelAssignsToControlImpl
+		implements IfcRelAssignsTasks {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcRelAssignsTasksImpl extends IfcRelAssignsToControlImpl implement
 	 * @generated
 	 */
 	public IfcScheduleTimeControl getTimeForTask() {
-		return (IfcScheduleTimeControl) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TASKS__TIME_FOR_TASK, true);
+		return (IfcScheduleTimeControl) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TASKS__TIME_FOR_TASK,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcRelAssignsTasksImpl extends IfcRelAssignsToControlImpl implement
 	 * @generated
 	 */
 	public void setTimeForTask(IfcScheduleTimeControl newTimeForTask) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TASKS__TIME_FOR_TASK, newTimeForTask);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TASKS__TIME_FOR_TASK,
+				newTimeForTask);
 	}
 
 	/**

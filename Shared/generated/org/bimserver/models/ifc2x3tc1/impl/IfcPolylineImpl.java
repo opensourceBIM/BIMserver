@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcPolyline;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -62,7 +64,8 @@ public class IfcPolylineImpl extends IfcBoundedCurveImpl implements IfcPolyline 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCartesianPoint> getPoints() {
-		return (EList<IfcCartesianPoint>) eGet(Ifc2x3tc1Package.Literals.IFC_POLYLINE__POINTS, true);
+		return (EList<IfcCartesianPoint>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_POLYLINE__POINTS, true);
 	}
 
 } //IfcPolylineImpl

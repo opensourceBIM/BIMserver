@@ -39,7 +39,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfileProperties {
+public interface IfcStructuralSteelProfileProperties extends
+		IfcStructuralProfileProperties {
 	/**
 	 * Returns the value of the '<em><b>Shear Area Z</b></em>' attribute.
 	 * <!-- begin-user-doc -->

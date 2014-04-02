@@ -50,7 +50,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICRESISTANCEUNIT(1, "ELECTRICRESISTANCEUNIT", "ELECTRICRESISTANCEUNIT"),
+	ELECTRICRESISTANCEUNIT(1, "ELECTRICRESISTANCEUNIT",
+			"ELECTRICRESISTANCEUNIT"),
 
 	/**
 	 * The '<em><b>ELECTRICCURRENTUNIT</b></em>' literal object.
@@ -80,14 +81,16 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AREAUNIT(4, "AREAUNIT", "AREAUNIT"), /**
-											 * The '<em><b>FREQUENCYUNIT</b></em>' literal object.
-											 * <!-- begin-user-doc -->
-											 * <!-- end-user-doc -->
-											 * @see #FREQUENCYUNIT_VALUE
-											 * @generated
-											 * @ordered
-											 */
+	AREAUNIT(4, "AREAUNIT", "AREAUNIT"),
+
+	/**
+	 * The '<em><b>FREQUENCYUNIT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #FREQUENCYUNIT_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	FREQUENCYUNIT(5, "FREQUENCYUNIT", "FREQUENCYUNIT"),
 
 	/**
@@ -128,14 +131,16 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RADIOACTIVITYUNIT(9, "RADIOACTIVITYUNIT", "RADIOACTIVITYUNIT"), /**
-																	 * The '<em><b>LENGTHUNIT</b></em>' literal object.
-																	 * <!-- begin-user-doc -->
-																	 * <!-- end-user-doc -->
-																	 * @see #LENGTHUNIT_VALUE
-																	 * @generated
-																	 * @ordered
-																	 */
+	RADIOACTIVITYUNIT(9, "RADIOACTIVITYUNIT", "RADIOACTIVITYUNIT"),
+
+	/**
+	 * The '<em><b>LENGTHUNIT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LENGTHUNIT_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	LENGTHUNIT(10, "LENGTHUNIT", "LENGTHUNIT"),
 
 	/**
@@ -166,7 +171,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MAGNETICFLUXDENSITYUNIT(13, "MAGNETICFLUXDENSITYUNIT", "MAGNETICFLUXDENSITYUNIT"),
+	MAGNETICFLUXDENSITYUNIT(13, "MAGNETICFLUXDENSITYUNIT",
+			"MAGNETICFLUXDENSITYUNIT"),
 
 	/**
 	 * The '<em><b>LUMINOUSINTENSITYUNIT</b></em>' literal object.
@@ -206,7 +212,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICCONDUCTANCEUNIT(17, "ELECTRICCONDUCTANCEUNIT", "ELECTRICCONDUCTANCEUNIT"),
+	ELECTRICCONDUCTANCEUNIT(17, "ELECTRICCONDUCTANCEUNIT",
+			"ELECTRICCONDUCTANCEUNIT"),
 
 	/**
 	 * The '<em><b>AMOUNTOFSUBSTANCEUNIT</b></em>' literal object.
@@ -266,7 +273,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICCAPACITANCEUNIT(23, "ELECTRICCAPACITANCEUNIT", "ELECTRICCAPACITANCEUNIT"),
+	ELECTRICCAPACITANCEUNIT(23, "ELECTRICCAPACITANCEUNIT",
+			"ELECTRICCAPACITANCEUNIT"),
 
 	/**
 	 * The '<em><b>PRESSUREUNIT</b></em>' literal object.
@@ -286,7 +294,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THERMODYNAMICTEMPERATUREUNIT(25, "THERMODYNAMICTEMPERATUREUNIT", "THERMODYNAMICTEMPERATUREUNIT"),
+	THERMODYNAMICTEMPERATUREUNIT(25, "THERMODYNAMICTEMPERATUREUNIT",
+			"THERMODYNAMICTEMPERATUREUNIT"),
 
 	/**
 	 * The '<em><b>MASSUNIT</b></em>' literal object.
@@ -809,10 +818,16 @@ public enum IfcUnitEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcUnitEnum[] VALUES_ARRAY = new IfcUnitEnum[] { NULL, ELECTRICRESISTANCEUNIT, ELECTRICCURRENTUNIT, ILLUMINANCEUNIT, AREAUNIT, FREQUENCYUNIT, TIMEUNIT,
-			ELECTRICCHARGEUNIT, FORCEUNIT, RADIOACTIVITYUNIT, LENGTHUNIT, DOSEEQUIVALENTUNIT, INDUCTANCEUNIT, MAGNETICFLUXDENSITYUNIT, LUMINOUSINTENSITYUNIT, LUMINOUSFLUXUNIT,
-			VOLUMEUNIT, ELECTRICCONDUCTANCEUNIT, AMOUNTOFSUBSTANCEUNIT, ENERGYUNIT, POWERUNIT, SOLIDANGLEUNIT, ELECTRICVOLTAGEUNIT, ELECTRICCAPACITANCEUNIT, PRESSUREUNIT,
-			THERMODYNAMICTEMPERATUREUNIT, MASSUNIT, USERDEFINED, ABSORBEDDOSEUNIT, MAGNETICFLUXUNIT, PLANEANGLEUNIT, };
+	private static final IfcUnitEnum[] VALUES_ARRAY = new IfcUnitEnum[] { NULL,
+			ELECTRICRESISTANCEUNIT, ELECTRICCURRENTUNIT, ILLUMINANCEUNIT,
+			AREAUNIT, FREQUENCYUNIT, TIMEUNIT, ELECTRICCHARGEUNIT, FORCEUNIT,
+			RADIOACTIVITYUNIT, LENGTHUNIT, DOSEEQUIVALENTUNIT, INDUCTANCEUNIT,
+			MAGNETICFLUXDENSITYUNIT, LUMINOUSINTENSITYUNIT, LUMINOUSFLUXUNIT,
+			VOLUMEUNIT, ELECTRICCONDUCTANCEUNIT, AMOUNTOFSUBSTANCEUNIT,
+			ENERGYUNIT, POWERUNIT, SOLIDANGLEUNIT, ELECTRICVOLTAGEUNIT,
+			ELECTRICCAPACITANCEUNIT, PRESSUREUNIT,
+			THERMODYNAMICTEMPERATUREUNIT, MASSUNIT, USERDEFINED,
+			ABSORBEDDOSEUNIT, MAGNETICFLUXUNIT, PLANEANGLEUNIT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Unit Enum</b></em>' enumerators.
@@ -820,7 +835,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcUnitEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcUnitEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Unit Enum</b></em>' literal with the specified literal value.

@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcStructuredDimensionCallout;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuredDimensionCalloutImpl extends IfcDraughtingCalloutImpl implements IfcStructuredDimensionCallout {
+public class IfcStructuredDimensionCalloutImpl extends IfcDraughtingCalloutImpl
+		implements IfcStructuredDimensionCallout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

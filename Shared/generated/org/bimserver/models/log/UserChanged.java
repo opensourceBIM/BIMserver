@@ -27,5 +27,4 @@ package org.bimserver.models.log;
  * @generated
  */
 public interface UserChanged extends UserRelated {
-
 } // UserChanged

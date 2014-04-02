@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMove;
 import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -63,7 +65,8 @@ public class IfcMoveImpl extends IfcTaskImpl implements IfcMove {
 	 * @generated
 	 */
 	public IfcSpatialStructureElement getMoveFrom() {
-		return (IfcSpatialStructureElement) eGet(Ifc2x3tc1Package.Literals.IFC_MOVE__MOVE_FROM, true);
+		return (IfcSpatialStructureElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MOVE__MOVE_FROM, true);
 	}
 
 	/**
@@ -81,7 +84,8 @@ public class IfcMoveImpl extends IfcTaskImpl implements IfcMove {
 	 * @generated
 	 */
 	public IfcSpatialStructureElement getMoveTo() {
-		return (IfcSpatialStructureElement) eGet(Ifc2x3tc1Package.Literals.IFC_MOVE__MOVE_TO, true);
+		return (IfcSpatialStructureElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MOVE__MOVE_TO, true);
 	}
 
 	/**
@@ -100,7 +104,8 @@ public class IfcMoveImpl extends IfcTaskImpl implements IfcMove {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getPunchList() {
-		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_MOVE__PUNCH_LIST, true);
+		return (EList<String>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MOVE__PUNCH_LIST, true);
 	}
 
 	/**

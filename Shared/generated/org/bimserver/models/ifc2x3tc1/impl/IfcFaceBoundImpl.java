@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcFaceBound;
 import org.bimserver.models.ifc2x3tc1.IfcLoop;
 import org.bimserver.models.ifc2x3tc1.Tristate;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl implements IfcFaceBound {
+public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl
+		implements IfcFaceBound {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,8 @@ public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl imple
 	 * @generated
 	 */
 	public IfcLoop getBound() {
-		return (IfcLoop) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__BOUND, true);
+		return (IfcLoop) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__BOUND,
+				true);
 	}
 
 	/**
@@ -80,7 +83,8 @@ public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl imple
 	 * @generated
 	 */
 	public Tristate getOrientation() {
-		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__ORIENTATION, true);
+		return (Tristate) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__ORIENTATION, true);
 	}
 
 	/**
@@ -89,7 +93,8 @@ public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl imple
 	 * @generated
 	 */
 	public void setOrientation(Tristate newOrientation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__ORIENTATION, newOrientation);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__ORIENTATION,
+				newOrientation);
 	}
 
 } //IfcFaceBoundImpl

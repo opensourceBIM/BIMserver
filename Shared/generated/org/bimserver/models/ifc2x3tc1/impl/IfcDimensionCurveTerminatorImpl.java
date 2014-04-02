@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDimensionCurveTerminator;
 import org.bimserver.models.ifc2x3tc1.IfcDimensionExtentUsage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDimensionCurveTerminatorImpl extends IfcTerminatorSymbolImpl implements IfcDimensionCurveTerminator {
+public class IfcDimensionCurveTerminatorImpl extends IfcTerminatorSymbolImpl
+		implements IfcDimensionCurveTerminator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcDimensionCurveTerminatorImpl extends IfcTerminatorSymbolImpl imp
 	 * @generated
 	 */
 	public IfcDimensionExtentUsage getRole() {
-		return (IfcDimensionExtentUsage) eGet(Ifc2x3tc1Package.Literals.IFC_DIMENSION_CURVE_TERMINATOR__ROLE, true);
+		return (IfcDimensionExtentUsage) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DIMENSION_CURVE_TERMINATOR__ROLE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcDimensionCurveTerminatorImpl extends IfcTerminatorSymbolImpl imp
 	 * @generated
 	 */
 	public void setRole(IfcDimensionExtentUsage newRole) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSION_CURVE_TERMINATOR__ROLE, newRole);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSION_CURVE_TERMINATOR__ROLE,
+				newRole);
 	}
 
 } //IfcDimensionCurveTerminatorImpl

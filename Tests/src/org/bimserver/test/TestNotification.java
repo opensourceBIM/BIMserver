@@ -46,7 +46,7 @@ public class TestNotification {
 			
 			for (int i=0; i<100; i++) {
 				final CountDownLatch countDownLatch = new CountDownLatch(1);
-				final Long downloadByTypes = client.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(project.getLastRevisionId()), Collections.singleton("IfcWindow"), geometrySerializer.getOid(), true, false, false, false);
+				final Long downloadByTypes = client.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(project.getLastRevisionId()), "ifc2x3tc1", Collections.singleton("IfcWindow"), geometrySerializer.getOid(), true, false, false, false);
 				final ProgressHandler progressHandler = new ProgressHandler() {
 					@Override
 					public void progress(SLongActionState state) {

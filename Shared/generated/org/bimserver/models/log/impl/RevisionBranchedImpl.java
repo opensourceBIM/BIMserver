@@ -18,7 +18,9 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.RevisionBranched;
+
 import org.bimserver.models.store.Revision;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RevisionBranchedImpl extends LogActionImpl implements RevisionBranched {
+public class RevisionBranchedImpl extends LogActionImpl implements
+		RevisionBranched {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +64,8 @@ public class RevisionBranchedImpl extends LogActionImpl implements RevisionBranc
 	 * @generated
 	 */
 	public Revision getOldrevision() {
-		return (Revision) eGet(LogPackage.Literals.REVISION_BRANCHED__OLDREVISION, true);
+		return (Revision) eGet(
+				LogPackage.Literals.REVISION_BRANCHED__OLDREVISION, true);
 	}
 
 	/**
@@ -79,7 +83,8 @@ public class RevisionBranchedImpl extends LogActionImpl implements RevisionBranc
 	 * @generated
 	 */
 	public Revision getNewrevision() {
-		return (Revision) eGet(LogPackage.Literals.REVISION_BRANCHED__NEWREVISION, true);
+		return (Revision) eGet(
+				LogPackage.Literals.REVISION_BRANCHED__NEWREVISION, true);
 	}
 
 	/**

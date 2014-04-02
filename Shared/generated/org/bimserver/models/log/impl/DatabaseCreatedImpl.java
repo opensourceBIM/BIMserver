@@ -18,6 +18,7 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.LogPackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreated {
+public class DatabaseCreatedImpl extends LogActionImpl implements
+		DatabaseCreated {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,7 +80,8 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	 * @generated
 	 */
 	public Integer getVersion() {
-		return (Integer) eGet(LogPackage.Literals.DATABASE_CREATED__VERSION, true);
+		return (Integer) eGet(LogPackage.Literals.DATABASE_CREATED__VERSION,
+				true);
 	}
 
 	/**

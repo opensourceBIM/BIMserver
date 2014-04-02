@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWallType;
 import org.bimserver.models.ifc2x3tc1.IfcWallTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWallTypeImpl extends IfcBuildingElementTypeImpl implements IfcWallType {
+public class IfcWallTypeImpl extends IfcBuildingElementTypeImpl implements
+		IfcWallType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,8 @@ public class IfcWallTypeImpl extends IfcBuildingElementTypeImpl implements IfcWa
 	 * @generated
 	 */
 	public IfcWallTypeEnum getPredefinedType() {
-		return (IfcWallTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WALL_TYPE__PREDEFINED_TYPE, true);
+		return (IfcWallTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_WALL_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcWallTypeImpl extends IfcBuildingElementTypeImpl implements IfcWa
 	 * @generated
 	 */
 	public void setPredefinedType(IfcWallTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WALL_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WALL_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcWallTypeImpl

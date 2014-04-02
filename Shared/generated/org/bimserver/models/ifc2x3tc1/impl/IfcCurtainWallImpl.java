@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCurtainWall;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCurtainWallImpl extends IfcBuildingElementImpl implements IfcCurtainWall {
+public class IfcCurtainWallImpl extends IfcBuildingElementImpl implements
+		IfcCurtainWall {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

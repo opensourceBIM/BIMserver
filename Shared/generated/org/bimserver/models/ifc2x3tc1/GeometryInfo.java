@@ -17,7 +17,6 @@
 package org.bimserver.models.ifc2x3tc1;
 
 import org.bimserver.emf.IdEObject;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -230,7 +229,7 @@ public interface GeometryInfo extends IdEObject {
 	 * Returns the value of the '<em><b>Transformation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Transformation</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>Transformation</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

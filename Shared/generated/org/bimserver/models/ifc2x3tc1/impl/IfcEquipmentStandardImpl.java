@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcEquipmentStandard;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEquipmentStandardImpl extends IfcControlImpl implements IfcEquipmentStandard {
+public class IfcEquipmentStandardImpl extends IfcControlImpl implements
+		IfcEquipmentStandard {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

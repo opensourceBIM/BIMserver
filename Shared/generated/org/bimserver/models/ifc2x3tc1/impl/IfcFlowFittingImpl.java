@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcFlowFitting;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFlowFittingImpl extends IfcDistributionFlowElementImpl implements IfcFlowFitting {
+public class IfcFlowFittingImpl extends IfcDistributionFlowElementImpl
+		implements IfcFlowFitting {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

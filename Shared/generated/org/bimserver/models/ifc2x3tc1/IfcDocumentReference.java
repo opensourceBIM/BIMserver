@@ -34,7 +34,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcDocumentReference extends IfcExternalReference, IfcDocumentSelect {
+public interface IfcDocumentReference extends IfcExternalReference,
+		IfcDocumentSelect {
 	/**
 	 * Returns the value of the '<em><b>Reference To Document</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc2x3tc1.IfcDocumentInformation}.

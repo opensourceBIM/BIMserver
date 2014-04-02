@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcColourSpecification;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcColourSpecificationImpl extends IdEObjectImpl implements IfcColourSpecification {
+public class IfcColourSpecificationImpl extends IdEObjectImpl implements
+		IfcColourSpecification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +73,8 @@ public class IfcColourSpecificationImpl extends IdEObjectImpl implements IfcColo
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_COLOUR_SPECIFICATION__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COLOUR_SPECIFICATION__NAME, true);
 	}
 
 	/**

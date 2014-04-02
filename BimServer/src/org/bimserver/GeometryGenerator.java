@@ -63,8 +63,6 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.java_cup.internal.runtime.virtual_parse_stack;
-
 public class GeometryGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryGenerator.class);
 	private BimServer bimServer;
@@ -125,7 +123,7 @@ public class GeometryGenerator {
 			// Make sure we have minimal express ids
 			model.generateMinimalExpressIds();
 
-			serializer.init(model, null, pluginManager, null, false);
+			serializer.init(model, null, pluginManager, null, bimServer.getDatabase().getMetaDataManager().getEPackage(Ifc2x3tc1Package.eINSTANCE.getName()), false);
 			
 			// TODO This is not streaming. SerializerInputstream has to be fixed first, then the IfcEngine wrapper should be able to handle streams without knowing the size in advance
 			

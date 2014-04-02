@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCoilType;
 import org.bimserver.models.ifc2x3tc1.IfcCoilTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCoilTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcCoilType {
+public class IfcCoilTypeImpl extends IfcEnergyConversionDeviceTypeImpl
+		implements IfcCoilType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,8 @@ public class IfcCoilTypeImpl extends IfcEnergyConversionDeviceTypeImpl implement
 	 * @generated
 	 */
 	public IfcCoilTypeEnum getPredefinedType() {
-		return (IfcCoilTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_COIL_TYPE__PREDEFINED_TYPE, true);
+		return (IfcCoilTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COIL_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcCoilTypeImpl extends IfcEnergyConversionDeviceTypeImpl implement
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCoilTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COIL_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COIL_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcCoilTypeImpl

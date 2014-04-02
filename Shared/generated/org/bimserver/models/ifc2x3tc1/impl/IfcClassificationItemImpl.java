@@ -17,12 +17,15 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcClassification;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationItem;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationItemRelationship;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationNotationFacet;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -42,7 +45,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClassificationItem {
+public class IfcClassificationItemImpl extends IdEObjectImpl implements
+		IfcClassificationItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,7 +82,9 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 * @generated
 	 */
 	public IfcClassificationNotationFacet getNotation() {
-		return (IfcClassificationNotationFacet) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__NOTATION, true);
+		return (IfcClassificationNotationFacet) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__NOTATION,
+				true);
 	}
 
 	/**
@@ -87,7 +93,8 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 * @generated
 	 */
 	public void setNotation(IfcClassificationNotationFacet newNotation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__NOTATION, newNotation);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__NOTATION,
+				newNotation);
 	}
 
 	/**
@@ -96,7 +103,9 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 * @generated
 	 */
 	public IfcClassification getItemOf() {
-		return (IfcClassification) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__ITEM_OF, true);
+		return (IfcClassification) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__ITEM_OF,
+				true);
 	}
 
 	/**
@@ -105,7 +114,8 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 * @generated
 	 */
 	public void setItemOf(IfcClassification newItemOf) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__ITEM_OF, newItemOf);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__ITEM_OF,
+				newItemOf);
 	}
 
 	/**
@@ -132,7 +142,8 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 * @generated
 	 */
 	public String getTitle() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__TITLE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__TITLE, true);
 	}
 
 	/**
@@ -151,7 +162,9 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItemRelationship> getIsClassifiedItemIn() {
-		return (EList<IfcClassificationItemRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFIED_ITEM_IN, true);
+		return (EList<IfcClassificationItemRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFIED_ITEM_IN,
+				true);
 	}
 
 	/**
@@ -179,7 +192,9 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItemRelationship> getIsClassifyingItemIn() {
-		return (EList<IfcClassificationItemRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFYING_ITEM_IN, true);
+		return (EList<IfcClassificationItemRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFYING_ITEM_IN,
+				true);
 	}
 
 	/**

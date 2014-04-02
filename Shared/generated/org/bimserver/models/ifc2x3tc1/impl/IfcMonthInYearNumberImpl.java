@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMonthInYearNumber;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMonthInYearNumberImpl extends IdEObjectImpl implements IfcMonthInYearNumber {
+public class IfcMonthInYearNumberImpl extends IdEObjectImpl implements
+		IfcMonthInYearNumber {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +73,9 @@ public class IfcMonthInYearNumberImpl extends IdEObjectImpl implements IfcMonthI
 	 * @generated
 	 */
 	public int getWrappedValue() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_MONTH_IN_YEAR_NUMBER__WRAPPED_VALUE, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MONTH_IN_YEAR_NUMBER__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -79,7 +84,8 @@ public class IfcMonthInYearNumberImpl extends IdEObjectImpl implements IfcMonthI
 	 * @generated
 	 */
 	public void setWrappedValue(int newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MONTH_IN_YEAR_NUMBER__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MONTH_IN_YEAR_NUMBER__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**

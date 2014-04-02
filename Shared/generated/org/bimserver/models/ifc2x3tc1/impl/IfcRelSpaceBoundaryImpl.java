@@ -23,6 +23,7 @@ import org.bimserver.models.ifc2x3tc1.IfcInternalOrExternalEnum;
 import org.bimserver.models.ifc2x3tc1.IfcPhysicalOrVirtualEnum;
 import org.bimserver.models.ifc2x3tc1.IfcRelSpaceBoundary;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -42,7 +43,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRelSpaceBoundary {
+public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements
+		IfcRelSpaceBoundary {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,7 +70,9 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcSpace getRelatingSpace() {
-		return (IfcSpace) eGet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__RELATING_SPACE, true);
+		return (IfcSpace) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__RELATING_SPACE,
+				true);
 	}
 
 	/**
@@ -77,7 +81,8 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * @generated
 	 */
 	public void setRelatingSpace(IfcSpace newRelatingSpace) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__RELATING_SPACE, newRelatingSpace);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__RELATING_SPACE,
+				newRelatingSpace);
 	}
 
 	/**
@@ -86,7 +91,9 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcElement getRelatedBuildingElement() {
-		return (IfcElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__RELATED_BUILDING_ELEMENT, true);
+		return (IfcElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__RELATED_BUILDING_ELEMENT,
+				true);
 	}
 
 	/**
@@ -95,7 +102,8 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * @generated
 	 */
 	public void setRelatedBuildingElement(IfcElement newRelatedBuildingElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__RELATED_BUILDING_ELEMENT, newRelatedBuildingElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__RELATED_BUILDING_ELEMENT,
+				newRelatedBuildingElement);
 	}
 
 	/**
@@ -122,7 +130,9 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcConnectionGeometry getConnectionGeometry() {
-		return (IfcConnectionGeometry) eGet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__CONNECTION_GEOMETRY, true);
+		return (IfcConnectionGeometry) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__CONNECTION_GEOMETRY,
+				true);
 	}
 
 	/**
@@ -130,8 +140,10 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConnectionGeometry(IfcConnectionGeometry newConnectionGeometry) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__CONNECTION_GEOMETRY, newConnectionGeometry);
+	public void setConnectionGeometry(
+			IfcConnectionGeometry newConnectionGeometry) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__CONNECTION_GEOMETRY,
+				newConnectionGeometry);
 	}
 
 	/**
@@ -158,7 +170,9 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcPhysicalOrVirtualEnum getPhysicalOrVirtualBoundary() {
-		return (IfcPhysicalOrVirtualEnum) eGet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__PHYSICAL_OR_VIRTUAL_BOUNDARY, true);
+		return (IfcPhysicalOrVirtualEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__PHYSICAL_OR_VIRTUAL_BOUNDARY,
+				true);
 	}
 
 	/**
@@ -166,8 +180,10 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPhysicalOrVirtualBoundary(IfcPhysicalOrVirtualEnum newPhysicalOrVirtualBoundary) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__PHYSICAL_OR_VIRTUAL_BOUNDARY, newPhysicalOrVirtualBoundary);
+	public void setPhysicalOrVirtualBoundary(
+			IfcPhysicalOrVirtualEnum newPhysicalOrVirtualBoundary) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__PHYSICAL_OR_VIRTUAL_BOUNDARY,
+				newPhysicalOrVirtualBoundary);
 	}
 
 	/**
@@ -176,7 +192,9 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcInternalOrExternalEnum getInternalOrExternalBoundary() {
-		return (IfcInternalOrExternalEnum) eGet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY, true);
+		return (IfcInternalOrExternalEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY,
+				true);
 	}
 
 	/**
@@ -184,8 +202,10 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInternalOrExternalBoundary(IfcInternalOrExternalEnum newInternalOrExternalBoundary) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY, newInternalOrExternalBoundary);
+	public void setInternalOrExternalBoundary(
+			IfcInternalOrExternalEnum newInternalOrExternalBoundary) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY,
+				newInternalOrExternalBoundary);
 	}
 
 } //IfcRelSpaceBoundaryImpl

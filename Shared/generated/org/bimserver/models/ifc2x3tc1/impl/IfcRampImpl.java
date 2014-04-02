@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRamp;
 import org.bimserver.models.ifc2x3tc1.IfcRampTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -60,7 +61,8 @@ public class IfcRampImpl extends IfcBuildingElementImpl implements IfcRamp {
 	 * @generated
 	 */
 	public IfcRampTypeEnum getShapeType() {
-		return (IfcRampTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_RAMP__SHAPE_TYPE, true);
+		return (IfcRampTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RAMP__SHAPE_TYPE, true);
 	}
 
 	/**

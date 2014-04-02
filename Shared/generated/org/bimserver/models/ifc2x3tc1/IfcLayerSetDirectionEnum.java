@@ -138,7 +138,8 @@ public enum IfcLayerSetDirectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLayerSetDirectionEnum[] VALUES_ARRAY = new IfcLayerSetDirectionEnum[] { NULL, AXIS2, AXIS1, AXIS3, };
+	private static final IfcLayerSetDirectionEnum[] VALUES_ARRAY = new IfcLayerSetDirectionEnum[] {
+			NULL, AXIS2, AXIS1, AXIS3, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Layer Set Direction Enum</b></em>' enumerators.
@@ -146,7 +147,8 @@ public enum IfcLayerSetDirectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcLayerSetDirectionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcLayerSetDirectionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Layer Set Direction Enum</b></em>' literal with the specified literal value.

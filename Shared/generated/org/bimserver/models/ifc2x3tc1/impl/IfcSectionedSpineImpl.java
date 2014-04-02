@@ -21,7 +21,9 @@ import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcCompositeCurve;
 import org.bimserver.models.ifc2x3tc1.IfcProfileDef;
 import org.bimserver.models.ifc2x3tc1.IfcSectionedSpine;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -40,7 +42,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl implements IfcSectionedSpine {
+public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcSectionedSpine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,7 +69,9 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 * @generated
 	 */
 	public IfcCompositeCurve getSpineCurve() {
-		return (IfcCompositeCurve) eGet(Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__SPINE_CURVE, true);
+		return (IfcCompositeCurve) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__SPINE_CURVE,
+				true);
 	}
 
 	/**
@@ -75,7 +80,8 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 * @generated
 	 */
 	public void setSpineCurve(IfcCompositeCurve newSpineCurve) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__SPINE_CURVE, newSpineCurve);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__SPINE_CURVE,
+				newSpineCurve);
 	}
 
 	/**
@@ -85,7 +91,9 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProfileDef> getCrossSections() {
-		return (EList<IfcProfileDef>) eGet(Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTIONS, true);
+		return (EList<IfcProfileDef>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTIONS,
+				true);
 	}
 
 	/**
@@ -95,7 +103,9 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAxis2Placement3D> getCrossSectionPositions() {
-		return (EList<IfcAxis2Placement3D>) eGet(Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTION_POSITIONS, true);
+		return (EList<IfcAxis2Placement3D>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTION_POSITIONS,
+				true);
 	}
 
 	/**
@@ -104,7 +114,8 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__DIM, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__DIM, true);
 	}
 
 	/**

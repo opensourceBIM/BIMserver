@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAppliedValue;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesAppliedValue;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssociatesAppliedValueImpl extends IfcRelAssociatesImpl implements IfcRelAssociatesAppliedValue {
+public class IfcRelAssociatesAppliedValueImpl extends IfcRelAssociatesImpl
+		implements IfcRelAssociatesAppliedValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcRelAssociatesAppliedValueImpl extends IfcRelAssociatesImpl imple
 	 * @generated
 	 */
 	public IfcAppliedValue getRelatingAppliedValue() {
-		return (IfcAppliedValue) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE, true);
+		return (IfcAppliedValue) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcRelAssociatesAppliedValueImpl extends IfcRelAssociatesImpl imple
 	 * @generated
 	 */
 	public void setRelatingAppliedValue(IfcAppliedValue newRelatingAppliedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE, newRelatingAppliedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE,
+				newRelatingAppliedValue);
 	}
 
 } //IfcRelAssociatesAppliedValueImpl

@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianTransformationOperator2D;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,9 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCartesianTransformationOperator2DImpl extends IfcCartesianTransformationOperatorImpl implements IfcCartesianTransformationOperator2D {
+public class IfcCartesianTransformationOperator2DImpl extends
+		IfcCartesianTransformationOperatorImpl implements
+		IfcCartesianTransformationOperator2D {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

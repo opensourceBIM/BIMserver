@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGeometricSet;
 import org.bimserver.models.ifc2x3tc1.IfcGeometricSetSelect;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl implements IfcGeometricSet {
+public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcGeometricSet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,7 +66,8 @@ public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGeometricSetSelect> getElements() {
-		return (EList<IfcGeometricSetSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_SET__ELEMENTS, true);
+		return (EList<IfcGeometricSetSelect>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_SET__ELEMENTS, true);
 	}
 
 	/**
@@ -72,7 +76,8 @@ public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl impl
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_SET__DIM, true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_SET__DIM,
+				true);
 	}
 
 	/**

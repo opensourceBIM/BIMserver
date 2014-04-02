@@ -263,13 +263,22 @@ public interface StorePackage extends EPackage {
 	int PROJECT__MODEL_CHECKERS = 19;
 
 	/**
+	 * The feature id for the '<em><b>Schema</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__SCHEMA = 20;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 20;
+	int PROJECT_FEATURE_COUNT = 21;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
@@ -2595,13 +2604,22 @@ public interface StorePackage extends EPackage {
 	int REVISION_SUMMARY_TYPE__COUNT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Schema</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_SUMMARY_TYPE__SCHEMA = 2;
+
+	/**
 	 * The number of structural features of the '<em>Revision Summary Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_SUMMARY_TYPE_FEATURE_COUNT = 2;
+	int REVISION_SUMMARY_TYPE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionSummaryContainerImpl <em>Revision Summary Container</em>}' class.
@@ -6919,6 +6937,17 @@ public interface StorePackage extends EPackage {
 	EReference getProject_ModelCheckers();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Project#getSchema <em>Schema</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Schema</em>'.
+	 * @see org.bimserver.models.store.Project#getSchema()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_Schema();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8935,6 +8964,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRevisionSummaryType_Count();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.RevisionSummaryType#getSchema <em>Schema</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Schema</em>'.
+	 * @see org.bimserver.models.store.RevisionSummaryType#getSchema()
+	 * @see #getRevisionSummaryType()
+	 * @generated
+	 */
+	EAttribute getRevisionSummaryType_Schema();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.RevisionSummaryContainer <em>Revision Summary Container</em>}'.
@@ -12311,6 +12351,14 @@ public interface StorePackage extends EPackage {
 				.getProject_ModelCheckers();
 
 		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__SCHEMA = eINSTANCE.getProject_Schema();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -13962,6 +14010,15 @@ public interface StorePackage extends EPackage {
 		 */
 		EAttribute REVISION_SUMMARY_TYPE__COUNT = eINSTANCE
 				.getRevisionSummaryType_Count();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REVISION_SUMMARY_TYPE__SCHEMA = eINSTANCE
+				.getRevisionSummaryType_Schema();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionSummaryContainerImpl <em>Revision Summary Container</em>}' class.

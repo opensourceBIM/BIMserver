@@ -67,7 +67,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 				QueryEnginePlugin queryEnginePlugin = getBimServer().getPluginManager().getQueryEngine(queryEngineObject.getPluginDescriptor().getPluginClassName(), true);
 				if (queryEnginePlugin != null) {
 					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(new PluginConfiguration(queryEngineObject.getSettings()));
-					IfcModelInterface result = new IfcModel();
+					IfcModelInterface result = new IfcModel(null); // TODO
 					return queryEngine.query(ifcModel, code, new Reporter(){
 
 						@Override

@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement;
 import org.bimserver.models.ifc2x3tc1.IfcPlanarBox;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPlanarBoxImpl extends IfcPlanarExtentImpl implements IfcPlanarBox {
+public class IfcPlanarBoxImpl extends IfcPlanarExtentImpl implements
+		IfcPlanarBox {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,8 @@ public class IfcPlanarBoxImpl extends IfcPlanarExtentImpl implements IfcPlanarBo
 	 * @generated
 	 */
 	public IfcAxis2Placement getPlacement() {
-		return (IfcAxis2Placement) eGet(Ifc2x3tc1Package.Literals.IFC_PLANAR_BOX__PLACEMENT, true);
+		return (IfcAxis2Placement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PLANAR_BOX__PLACEMENT, true);
 	}
 
 	/**

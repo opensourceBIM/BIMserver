@@ -17,9 +17,11 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcApproval;
 import org.bimserver.models.ifc2x3tc1.IfcApprovalRelationship;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -38,7 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements IfcApprovalRelationship {
+public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements
+		IfcApprovalRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,7 +77,9 @@ public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements IfcApp
 	 * @generated
 	 */
 	public IfcApproval getRelatedApproval() {
-		return (IfcApproval) eGet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATED_APPROVAL, true);
+		return (IfcApproval) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATED_APPROVAL,
+				true);
 	}
 
 	/**
@@ -83,7 +88,8 @@ public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements IfcApp
 	 * @generated
 	 */
 	public void setRelatedApproval(IfcApproval newRelatedApproval) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATED_APPROVAL, newRelatedApproval);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATED_APPROVAL,
+				newRelatedApproval);
 	}
 
 	/**
@@ -92,7 +98,9 @@ public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements IfcApp
 	 * @generated
 	 */
 	public IfcApproval getRelatingApproval() {
-		return (IfcApproval) eGet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATING_APPROVAL, true);
+		return (IfcApproval) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATING_APPROVAL,
+				true);
 	}
 
 	/**
@@ -101,7 +109,8 @@ public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements IfcApp
 	 * @generated
 	 */
 	public void setRelatingApproval(IfcApproval newRelatingApproval) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATING_APPROVAL, newRelatingApproval);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__RELATING_APPROVAL,
+				newRelatingApproval);
 	}
 
 	/**
@@ -110,7 +119,9 @@ public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements IfcApp
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__DESCRIPTION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__DESCRIPTION,
+				true);
 	}
 
 	/**
@@ -119,7 +130,8 @@ public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements IfcApp
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__DESCRIPTION, newDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__DESCRIPTION,
+				newDescription);
 	}
 
 	/**
@@ -146,7 +158,8 @@ public class IfcApprovalRelationshipImpl extends IdEObjectImpl implements IfcApp
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPROVAL_RELATIONSHIP__NAME, true);
 	}
 
 	/**

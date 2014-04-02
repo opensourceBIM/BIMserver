@@ -17,6 +17,7 @@ package org.bimserver.geometry.json;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -76,5 +77,10 @@ public class JsonGeometrySerializerPlugin extends AbstractSerializerPlugin {
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
 		return super.getSettingsDefinition();
+	}
+
+	@Override
+	public Schema[] getSupportedSchemas() {
+		return new Schema[]{Schema.IFC2X3TC1};
 	}
 }

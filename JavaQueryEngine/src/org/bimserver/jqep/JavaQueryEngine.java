@@ -41,7 +41,7 @@ public class JavaQueryEngine implements QueryEngine {
 	public IfcModelInterface query(IfcModelInterface model, String code, Reporter reporter, ModelHelper modelHelper) {
 		try {
 			QueryInterface queryInterface = createQueryInterface(code);
-			IfcModelInterface dest = new IfcModel();
+			IfcModelInterface dest = new IfcModel(null); // TODO
 			queryInterface.query(model, dest, reporter, modelHelper);
 			return dest;
 		} catch (Exception e) {

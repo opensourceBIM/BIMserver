@@ -105,7 +105,7 @@ public class TestIfcEngineEmbedded {
 			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
 						
 			// Create a project
-			SProject project = client.getBimsie1ServiceInterface().addProject("test" + Math.random());
+			SProject project = client.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
 
 			// This is the test file
 			File testIfcFile = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");

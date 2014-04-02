@@ -2501,7 +2501,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LOG_ACTION__ACCESS_METHOD = eINSTANCE.getLogAction_AccessMethod();
+		EAttribute LOG_ACTION__ACCESS_METHOD = eINSTANCE
+				.getLogAction_AccessMethod();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ServerLogImpl <em>Server Log</em>}' class.
@@ -2537,7 +2538,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROJECT_RELATED__PROJECT = eINSTANCE.getProjectRelated_Project();
+		EReference PROJECT_RELATED__PROJECT = eINSTANCE
+				.getProjectRelated_Project();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.CheckoutRelatedImpl <em>Checkout Related</em>}' class.
@@ -2555,7 +2557,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHECKOUT_RELATED__CHECKOUT = eINSTANCE.getCheckoutRelated_Checkout();
+		EReference CHECKOUT_RELATED__CHECKOUT = eINSTANCE
+				.getCheckoutRelated_Checkout();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.RevisionRelatedImpl <em>Revision Related</em>}' class.
@@ -2573,7 +2576,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REVISION_RELATED__REVISION = eINSTANCE.getRevisionRelated_Revision();
+		EReference REVISION_RELATED__REVISION = eINSTANCE
+				.getRevisionRelated_Revision();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.UserRelatedImpl <em>User Related</em>}' class.
@@ -2619,7 +2623,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NEW_PROJECT_ADDED__PARENT_PROJECT = eINSTANCE.getNewProjectAdded_ParentProject();
+		EReference NEW_PROJECT_ADDED__PARENT_PROJECT = eINSTANCE
+				.getNewProjectAdded_ParentProject();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.RevisionBranchedImpl <em>Revision Branched</em>}' class.
@@ -2637,7 +2642,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REVISION_BRANCHED__OLDREVISION = eINSTANCE.getRevisionBranched_Oldrevision();
+		EReference REVISION_BRANCHED__OLDREVISION = eINSTANCE
+				.getRevisionBranched_Oldrevision();
 
 		/**
 		 * The meta object literal for the '<em><b>Newrevision</b></em>' reference feature.
@@ -2645,7 +2651,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REVISION_BRANCHED__NEWREVISION = eINSTANCE.getRevisionBranched_Newrevision();
+		EReference REVISION_BRANCHED__NEWREVISION = eINSTANCE
+				.getRevisionBranched_Newrevision();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.NewRevisionAddedImpl <em>New Revision Added</em>}' class.
@@ -2663,7 +2670,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NEW_REVISION_ADDED__PROJECT = eINSTANCE.getNewRevisionAdded_Project();
+		EReference NEW_REVISION_ADDED__PROJECT = eINSTANCE
+				.getNewRevisionAdded_Project();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.NewCheckoutAddedImpl <em>New Checkout Added</em>}' class.
@@ -2701,7 +2709,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USER_ADDED_TO_PROJECT__PROJECT = eINSTANCE.getUserAddedToProject_Project();
+		EReference USER_ADDED_TO_PROJECT__PROJECT = eINSTANCE
+				.getUserAddedToProject_Project();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.NewObjectIDMUploadedImpl <em>New Object IDM Uploaded</em>}' class.
@@ -2731,7 +2740,8 @@ public interface LogPackage extends EPackage {
 		 * @see org.bimserver.models.log.impl.LogPackageImpl#getUserRemovedFromProject()
 		 * @generated
 		 */
-		EClass USER_REMOVED_FROM_PROJECT = eINSTANCE.getUserRemovedFromProject();
+		EClass USER_REMOVED_FROM_PROJECT = eINSTANCE
+				.getUserRemovedFromProject();
 
 		/**
 		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
@@ -2739,7 +2749,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USER_REMOVED_FROM_PROJECT__PROJECT = eINSTANCE.getUserRemovedFromProject_Project();
+		EReference USER_REMOVED_FROM_PROJECT__PROJECT = eINSTANCE
+				.getUserRemovedFromProject_Project();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ProjectDeletedImpl <em>Project Deleted</em>}' class.
@@ -2795,7 +2806,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATABASE_CREATED__VERSION = eINSTANCE.getDatabaseCreated_Version();
+		EAttribute DATABASE_CREATED__VERSION = eINSTANCE
+				.getDatabaseCreated_Version();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ServerStartedImpl <em>Server Started</em>}' class.
@@ -2863,7 +2875,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GEO_TAG_UPDATED__GEO_TAG = eINSTANCE.getGeoTagUpdated_GeoTag();
+		EReference GEO_TAG_UPDATED__GEO_TAG = eINSTANCE
+				.getGeoTagUpdated_GeoTag();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.PasswordChangedImpl <em>Password Changed</em>}' class.
@@ -2893,7 +2906,8 @@ public interface LogPackage extends EPackage {
 		 * @see org.bimserver.models.log.impl.LogPackageImpl#getExtendedDataAddedToRevision()
 		 * @generated
 		 */
-		EClass EXTENDED_DATA_ADDED_TO_REVISION = eINSTANCE.getExtendedDataAddedToRevision();
+		EClass EXTENDED_DATA_ADDED_TO_REVISION = eINSTANCE
+				.getExtendedDataAddedToRevision();
 
 		/**
 		 * The meta object literal for the '<em><b>Revision</b></em>' reference feature.
@@ -2901,7 +2915,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTENDED_DATA_ADDED_TO_REVISION__REVISION = eINSTANCE.getExtendedDataAddedToRevision_Revision();
+		EReference EXTENDED_DATA_ADDED_TO_REVISION__REVISION = eINSTANCE
+				.getExtendedDataAddedToRevision_Revision();
 
 		/**
 		 * The meta object literal for the '<em><b>Extended Data</b></em>' reference feature.
@@ -2909,7 +2924,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTENDED_DATA_ADDED_TO_REVISION__EXTENDED_DATA = eINSTANCE.getExtendedDataAddedToRevision_ExtendedData();
+		EReference EXTENDED_DATA_ADDED_TO_REVISION__EXTENDED_DATA = eINSTANCE
+				.getExtendedDataAddedToRevision_ExtendedData();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ExtendedDataAddedToProjectImpl <em>Extended Data Added To Project</em>}' class.
@@ -2919,7 +2935,8 @@ public interface LogPackage extends EPackage {
 		 * @see org.bimserver.models.log.impl.LogPackageImpl#getExtendedDataAddedToProject()
 		 * @generated
 		 */
-		EClass EXTENDED_DATA_ADDED_TO_PROJECT = eINSTANCE.getExtendedDataAddedToProject();
+		EClass EXTENDED_DATA_ADDED_TO_PROJECT = eINSTANCE
+				.getExtendedDataAddedToProject();
 
 		/**
 		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
@@ -2927,7 +2944,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTENDED_DATA_ADDED_TO_PROJECT__PROJECT = eINSTANCE.getExtendedDataAddedToProject_Project();
+		EReference EXTENDED_DATA_ADDED_TO_PROJECT__PROJECT = eINSTANCE
+				.getExtendedDataAddedToProject_Project();
 
 		/**
 		 * The meta object literal for the '<em><b>Extended Data</b></em>' reference feature.
@@ -2935,7 +2953,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA = eINSTANCE.getExtendedDataAddedToProject_ExtendedData();
+		EReference EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA = eINSTANCE
+				.getExtendedDataAddedToProject_ExtendedData();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.impl.RemoteServiceCalledImpl <em>Remote Service Called</em>}' class.
@@ -2953,7 +2972,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REMOTE_SERVICE_CALLED__SERVICE = eINSTANCE.getRemoteServiceCalled_Service();
+		EReference REMOTE_SERVICE_CALLED__SERVICE = eINSTANCE
+				.getRemoteServiceCalled_Service();
 
 		/**
 		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
@@ -2961,7 +2981,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REMOTE_SERVICE_CALLED__STATE = eINSTANCE.getRemoteServiceCalled_State();
+		EAttribute REMOTE_SERVICE_CALLED__STATE = eINSTANCE
+				.getRemoteServiceCalled_State();
 
 		/**
 		 * The meta object literal for the '<em><b>Percentage</b></em>' attribute feature.
@@ -2969,7 +2990,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REMOTE_SERVICE_CALLED__PERCENTAGE = eINSTANCE.getRemoteServiceCalled_Percentage();
+		EAttribute REMOTE_SERVICE_CALLED__PERCENTAGE = eINSTANCE
+				.getRemoteServiceCalled_Percentage();
 
 		/**
 		 * The meta object literal for the '<em><b>Infos</b></em>' attribute list feature.
@@ -2977,7 +2999,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REMOTE_SERVICE_CALLED__INFOS = eINSTANCE.getRemoteServiceCalled_Infos();
+		EAttribute REMOTE_SERVICE_CALLED__INFOS = eINSTANCE
+				.getRemoteServiceCalled_Infos();
 
 		/**
 		 * The meta object literal for the '<em><b>Warnings</b></em>' attribute list feature.
@@ -2985,7 +3008,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REMOTE_SERVICE_CALLED__WARNINGS = eINSTANCE.getRemoteServiceCalled_Warnings();
+		EAttribute REMOTE_SERVICE_CALLED__WARNINGS = eINSTANCE
+				.getRemoteServiceCalled_Warnings();
 
 		/**
 		 * The meta object literal for the '<em><b>Errors</b></em>' attribute list feature.
@@ -2993,7 +3017,8 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REMOTE_SERVICE_CALLED__ERRORS = eINSTANCE.getRemoteServiceCalled_Errors();
+		EAttribute REMOTE_SERVICE_CALLED__ERRORS = eINSTANCE
+				.getRemoteServiceCalled_Errors();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.AccessMethod <em>Access Method</em>}' enum.

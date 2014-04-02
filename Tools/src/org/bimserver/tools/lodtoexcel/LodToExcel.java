@@ -84,7 +84,7 @@ public class LodToExcel {
 				if (roid != -1) {
 					SRevision revision = bimServerClient.getBimsie1ServiceInterface().getRevision(roid);
 					System.out.println(revision.getComment());
-					IfcModelInterface model = bimServerClient.getModel(project.getOid(), roid, true);
+					IfcModelInterface model = bimServerClient.getModel(project, roid, true);
 					
 					float scaleFactorToMeter = 1;
 					

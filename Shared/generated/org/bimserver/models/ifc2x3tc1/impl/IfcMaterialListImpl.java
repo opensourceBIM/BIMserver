@@ -17,10 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialList;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +39,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialListImpl extends IdEObjectImpl implements IfcMaterialList {
+public class IfcMaterialListImpl extends IdEObjectImpl implements
+		IfcMaterialList {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +77,8 @@ public class IfcMaterialListImpl extends IdEObjectImpl implements IfcMaterialLis
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterial> getMaterials() {
-		return (EList<IfcMaterial>) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_LIST__MATERIALS, true);
+		return (EList<IfcMaterial>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MATERIAL_LIST__MATERIALS, true);
 	}
 
 } //IfcMaterialListImpl

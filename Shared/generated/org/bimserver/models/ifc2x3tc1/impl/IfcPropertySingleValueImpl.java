@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
 import org.bimserver.models.ifc2x3tc1.IfcUnit;
 import org.bimserver.models.ifc2x3tc1.IfcValue;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements IfcPropertySingleValue {
+public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
+		IfcPropertySingleValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,9 @@ public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
 	 * @generated
 	 */
 	public IfcValue getNominalValue() {
-		return (IfcValue) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_SINGLE_VALUE__NOMINAL_VALUE, true);
+		return (IfcValue) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_SINGLE_VALUE__NOMINAL_VALUE,
+				true);
 	}
 
 	/**
@@ -71,7 +75,8 @@ public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
 	 * @generated
 	 */
 	public void setNominalValue(IfcValue newNominalValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_SINGLE_VALUE__NOMINAL_VALUE, newNominalValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_SINGLE_VALUE__NOMINAL_VALUE,
+				newNominalValue);
 	}
 
 	/**
@@ -98,7 +103,8 @@ public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
 	 * @generated
 	 */
 	public IfcUnit getUnit() {
-		return (IfcUnit) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_SINGLE_VALUE__UNIT, true);
+		return (IfcUnit) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_SINGLE_VALUE__UNIT, true);
 	}
 
 	/**

@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcColumnType;
 import org.bimserver.models.ifc2x3tc1.IfcColumnTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcColumnTypeImpl extends IfcBuildingElementTypeImpl implements IfcColumnType {
+public class IfcColumnTypeImpl extends IfcBuildingElementTypeImpl implements
+		IfcColumnType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcColumnTypeImpl extends IfcBuildingElementTypeImpl implements Ifc
 	 * @generated
 	 */
 	public IfcColumnTypeEnum getPredefinedType() {
-		return (IfcColumnTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_COLUMN_TYPE__PREDEFINED_TYPE, true);
+		return (IfcColumnTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COLUMN_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcColumnTypeImpl extends IfcBuildingElementTypeImpl implements Ifc
 	 * @generated
 	 */
 	public void setPredefinedType(IfcColumnTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COLUMN_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COLUMN_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcColumnTypeImpl

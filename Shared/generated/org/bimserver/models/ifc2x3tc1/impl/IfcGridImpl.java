@@ -20,7 +20,9 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGrid;
 import org.bimserver.models.ifc2x3tc1.IfcGridAxis;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -66,7 +68,8 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGridAxis> getUAxes() {
-		return (EList<IfcGridAxis>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID__UAXES, true);
+		return (EList<IfcGridAxis>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GRID__UAXES, true);
 	}
 
 	/**
@@ -76,7 +79,8 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGridAxis> getVAxes() {
-		return (EList<IfcGridAxis>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID__VAXES, true);
+		return (EList<IfcGridAxis>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GRID__VAXES, true);
 	}
 
 	/**
@@ -86,7 +90,8 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGridAxis> getWAxes() {
-		return (EList<IfcGridAxis>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID__WAXES, true);
+		return (EList<IfcGridAxis>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GRID__WAXES, true);
 	}
 
 	/**
@@ -114,7 +119,9 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelContainedInSpatialStructure> getContainedInStructure() {
-		return (EList<IfcRelContainedInSpatialStructure>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID__CONTAINED_IN_STRUCTURE, true);
+		return (EList<IfcRelContainedInSpatialStructure>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GRID__CONTAINED_IN_STRUCTURE,
+				true);
 	}
 
 	/**

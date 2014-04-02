@@ -188,7 +188,8 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTransportElementTypeEnum[] VALUES_ARRAY = new IfcTransportElementTypeEnum[] { NULL, NOTDEFINED, ESCALATOR, MOVINGWALKWAY, USERDEFINED, ELEVATOR, };
+	private static final IfcTransportElementTypeEnum[] VALUES_ARRAY = new IfcTransportElementTypeEnum[] {
+			NULL, NOTDEFINED, ESCALATOR, MOVINGWALKWAY, USERDEFINED, ELEVATOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Transport Element Type Enum</b></em>' enumerators.
@@ -196,7 +197,8 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcTransportElementTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcTransportElementTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Transport Element Type Enum</b></em>' literal with the specified literal value.

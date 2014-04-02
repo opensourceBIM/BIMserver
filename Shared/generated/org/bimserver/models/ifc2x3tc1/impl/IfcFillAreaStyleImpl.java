@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcFillAreaStyle;
 import org.bimserver.models.ifc2x3tc1.IfcFillStyleSelect;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements IfcFillAreaStyle {
+public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements
+		IfcFillAreaStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,9 @@ public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcFillStyleSelect> getFillStyles() {
-		return (EList<IfcFillStyleSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE__FILL_STYLES, true);
+		return (EList<IfcFillStyleSelect>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE__FILL_STYLES,
+				true);
 	}
 
 } //IfcFillAreaStyleImpl

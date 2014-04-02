@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCompoundPlaneAngleMeasure;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCompoundPlaneAngleMeasureImpl extends IdEObjectImpl implements IfcCompoundPlaneAngleMeasure {
+public class IfcCompoundPlaneAngleMeasureImpl extends IdEObjectImpl implements
+		IfcCompoundPlaneAngleMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +73,9 @@ public class IfcCompoundPlaneAngleMeasureImpl extends IdEObjectImpl implements I
 	 * @generated
 	 */
 	public int getWrappedValue() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOUND_PLANE_ANGLE_MEASURE__WRAPPED_VALUE, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COMPOUND_PLANE_ANGLE_MEASURE__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -79,7 +84,8 @@ public class IfcCompoundPlaneAngleMeasureImpl extends IdEObjectImpl implements I
 	 * @generated
 	 */
 	public void setWrappedValue(int newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COMPOUND_PLANE_ANGLE_MEASURE__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COMPOUND_PLANE_ANGLE_MEASURE__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**

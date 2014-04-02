@@ -120,14 +120,16 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INDIRECTWATERHEATER(8, "INDIRECTWATERHEATER", "INDIRECTWATERHEATER"), /**
-																			 * The '<em><b>PHOTOCOPIER</b></em>' literal object.
-																			 * <!-- begin-user-doc -->
-																			 * <!-- end-user-doc -->
-																			 * @see #PHOTOCOPIER_VALUE
-																			 * @generated
-																			 * @ordered
-																			 */
+	INDIRECTWATERHEATER(8, "INDIRECTWATERHEATER", "INDIRECTWATERHEATER"),
+
+	/**
+	 * The '<em><b>PHOTOCOPIER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PHOTOCOPIER_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	PHOTOCOPIER(9, "PHOTOCOPIER", "PHOTOCOPIER"),
 
 	/**
@@ -711,9 +713,13 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] { NULL, FRIDGE_FREEZER, REFRIGERATOR, NOTDEFINED, WASHINGMACHINE,
-			SCANNER, FREEZER, COMPUTER, INDIRECTWATERHEATER, PHOTOCOPIER, FACSIMILE, VENDINGMACHINE, DISHWASHER, HANDDRYER, MICROWAVE, FREESTANDINGFAN, PRINTER, RADIANTHEATER,
-			ELECTRICHEATER, WATERCOOLER, TELEPHONE, WATERHEATER, DIRECTWATERHEATER, TUMBLEDRYER, USERDEFINED, ELECTRICCOOKER, TV, };
+	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] {
+			NULL, FRIDGE_FREEZER, REFRIGERATOR, NOTDEFINED, WASHINGMACHINE,
+			SCANNER, FREEZER, COMPUTER, INDIRECTWATERHEATER, PHOTOCOPIER,
+			FACSIMILE, VENDINGMACHINE, DISHWASHER, HANDDRYER, MICROWAVE,
+			FREESTANDINGFAN, PRINTER, RADIANTHEATER, ELECTRICHEATER,
+			WATERCOOLER, TELEPHONE, WATERHEATER, DIRECTWATERHEATER,
+			TUMBLEDRYER, USERDEFINED, ELECTRICCOOKER, TV, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Appliance Type Enum</b></em>' enumerators.
@@ -721,7 +727,8 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricApplianceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricApplianceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Appliance Type Enum</b></em>' literal with the specified literal value.

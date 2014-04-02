@@ -17,9 +17,11 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcOwnerHistory;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -74,7 +76,8 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * @generated
 	 */
 	public String getGlobalId() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ROOT__GLOBAL_ID, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ROOT__GLOBAL_ID,
+				true);
 	}
 
 	/**
@@ -92,7 +95,8 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * @generated
 	 */
 	public IfcOwnerHistory getOwnerHistory() {
-		return (IfcOwnerHistory) eGet(Ifc2x3tc1Package.Literals.IFC_ROOT__OWNER_HISTORY, true);
+		return (IfcOwnerHistory) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ROOT__OWNER_HISTORY, true);
 	}
 
 	/**
@@ -146,7 +150,8 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ROOT__DESCRIPTION, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ROOT__DESCRIPTION,
+				true);
 	}
 
 	/**

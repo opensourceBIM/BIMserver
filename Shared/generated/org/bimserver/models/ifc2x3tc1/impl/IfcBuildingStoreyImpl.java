@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl implements IfcBuildingStorey {
+public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl
+		implements IfcBuildingStorey {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,8 @@ public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl implem
 	 * @generated
 	 */
 	public double getElevation() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING_STOREY__ELEVATION, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_BUILDING_STOREY__ELEVATION, true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl implem
 	 * @generated
 	 */
 	public void setElevation(double newElevation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING_STOREY__ELEVATION, newElevation);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING_STOREY__ELEVATION,
+				newElevation);
 	}
 
 	/**
@@ -96,7 +100,9 @@ public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl implem
 	 * @generated
 	 */
 	public String getElevationAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING_STOREY__ELEVATION_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_BUILDING_STOREY__ELEVATION_AS_STRING,
+				true);
 	}
 
 	/**
@@ -105,7 +111,8 @@ public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl implem
 	 * @generated
 	 */
 	public void setElevationAsString(String newElevationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING_STOREY__ELEVATION_AS_STRING, newElevationAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING_STOREY__ELEVATION_AS_STRING,
+				newElevationAsString);
 	}
 
 	/**

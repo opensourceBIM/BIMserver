@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProjectedOrTrueLengthEnum;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralLinearAction;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLinearActionImpl extends IfcStructuralActionImpl implements IfcStructuralLinearAction {
+public class IfcStructuralLinearActionImpl extends IfcStructuralActionImpl
+		implements IfcStructuralLinearAction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcStructuralLinearActionImpl extends IfcStructuralActionImpl imple
 	 * @generated
 	 */
 	public IfcProjectedOrTrueLengthEnum getProjectedOrTrue() {
-		return (IfcProjectedOrTrueLengthEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION__PROJECTED_OR_TRUE, true);
+		return (IfcProjectedOrTrueLengthEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION__PROJECTED_OR_TRUE,
+				true);
 	}
 
 	/**
@@ -68,8 +72,10 @@ public class IfcStructuralLinearActionImpl extends IfcStructuralActionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProjectedOrTrue(IfcProjectedOrTrueLengthEnum newProjectedOrTrue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION__PROJECTED_OR_TRUE, newProjectedOrTrue);
+	public void setProjectedOrTrue(
+			IfcProjectedOrTrueLengthEnum newProjectedOrTrue) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION__PROJECTED_OR_TRUE,
+				newProjectedOrTrue);
 	}
 
 } //IfcStructuralLinearActionImpl

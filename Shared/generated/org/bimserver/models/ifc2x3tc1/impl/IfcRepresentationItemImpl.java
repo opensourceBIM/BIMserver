@@ -17,11 +17,14 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationLayerAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -38,7 +41,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRepresentationItemImpl extends IdEObjectImpl implements IfcRepresentationItem {
+public class IfcRepresentationItemImpl extends IdEObjectImpl implements
+		IfcRepresentationItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,7 +79,9 @@ public class IfcRepresentationItemImpl extends IdEObjectImpl implements IfcRepre
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationLayerAssignment> getLayerAssignments() {
-		return (EList<IfcPresentationLayerAssignment>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENTS, true);
+		return (EList<IfcPresentationLayerAssignment>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENTS,
+				true);
 	}
 
 	/**
@@ -103,7 +109,9 @@ public class IfcRepresentationItemImpl extends IdEObjectImpl implements IfcRepre
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStyledItem> getStyledByItem() {
-		return (EList<IfcStyledItem>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__STYLED_BY_ITEM, true);
+		return (EList<IfcStyledItem>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__STYLED_BY_ITEM,
+				true);
 	}
 
 	/**

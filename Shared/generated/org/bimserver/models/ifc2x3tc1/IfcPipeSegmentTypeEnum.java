@@ -213,7 +213,9 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPipeSegmentTypeEnum[] VALUES_ARRAY = new IfcPipeSegmentTypeEnum[] { NULL, SPOOL, FLEXIBLESEGMENT, NOTDEFINED, GUTTER, RIGIDSEGMENT, USERDEFINED, };
+	private static final IfcPipeSegmentTypeEnum[] VALUES_ARRAY = new IfcPipeSegmentTypeEnum[] {
+			NULL, SPOOL, FLEXIBLESEGMENT, NOTDEFINED, GUTTER, RIGIDSEGMENT,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pipe Segment Type Enum</b></em>' enumerators.
@@ -221,7 +223,8 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPipeSegmentTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPipeSegmentTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Pipe Segment Type Enum</b></em>' literal with the specified literal value.

@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcSIPrefix;
 import org.bimserver.models.ifc2x3tc1.IfcSIUnit;
 import org.bimserver.models.ifc2x3tc1.IfcSIUnitName;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -62,7 +63,8 @@ public class IfcSIUnitImpl extends IfcNamedUnitImpl implements IfcSIUnit {
 	 * @generated
 	 */
 	public IfcSIPrefix getPrefix() {
-		return (IfcSIPrefix) eGet(Ifc2x3tc1Package.Literals.IFC_SI_UNIT__PREFIX, true);
+		return (IfcSIPrefix) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SI_UNIT__PREFIX, true);
 	}
 
 	/**
@@ -98,7 +100,8 @@ public class IfcSIUnitImpl extends IfcNamedUnitImpl implements IfcSIUnit {
 	 * @generated
 	 */
 	public IfcSIUnitName getName() {
-		return (IfcSIUnitName) eGet(Ifc2x3tc1Package.Literals.IFC_SI_UNIT__NAME, true);
+		return (IfcSIUnitName) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SI_UNIT__NAME, true);
 	}
 
 	/**

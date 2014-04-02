@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
@@ -37,12 +37,13 @@ public class AbstractObjectIDM implements ObjectIDM {
 
 	private final Set<EClass> includedClasses = new HashSet<EClass>();
 	private final Map<EClass, Set<EStructuralFeature>> includedFeatures = new HashMap<EClass, Set<EStructuralFeature>>();
-	private final MetaDataManager metaDataManager = new MetaDataManager();
 	private final Map<EClass, AbstractObjectIDM> originMap = new HashMap<EClass, AbstractObjectIDM>();
 	private final SchemaDefinition schema;
+	private PackageMetaData packageMetaData;
 
-	public AbstractObjectIDM(SchemaDefinition schema) {
+	public AbstractObjectIDM(SchemaDefinition schema, PackageMetaData packageMetaData) {
 		this.schema = schema;
+		this.packageMetaData = packageMetaData;
 	}
 	
 	public void includeAllClasses() {
@@ -55,7 +56,7 @@ public class AbstractObjectIDM implements ObjectIDM {
 	
 	public void exclude(EClass eClass) {
 		includedClasses.remove(eClass);
-		for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
+		for (EClass subClass : packageMetaData.getDirectSubClasses(eClass)) {
 			exclude(subClass);
 		}
 	}
@@ -66,14 +67,14 @@ public class AbstractObjectIDM implements ObjectIDM {
 	
 	public void include(EClass eClass) {
 		includedClasses.add(eClass);
-		for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
+		for (EClass subClass : packageMetaData.getDirectSubClasses(eClass)) {
 			include(subClass);
 		}
 	}
 
 	public AbstractObjectIDM getOrigin(EClass originalClass) {
 		if (!originMap.containsKey(originalClass)) {
-			AbstractObjectIDM originObjectIdm = new AbstractObjectIDM(getSchema());
+			AbstractObjectIDM originObjectIdm = new AbstractObjectIDM(getSchema(), packageMetaData);
 			originMap.put(originalClass, originObjectIdm);
 			return originObjectIdm;
 		}
@@ -101,7 +102,7 @@ public class AbstractObjectIDM implements ObjectIDM {
 			includedFeatures.put(eClass, new HashSet<EStructuralFeature>());
 		}
 		includedFeatures.get(eClass).add(eStructuralFeature);
-		for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
+		for (EClass subClass : packageMetaData.getDirectSubClasses(eClass)) {
 			include(subClass, eStructuralFeature);
 		}
 	}
@@ -110,7 +111,7 @@ public class AbstractObjectIDM implements ObjectIDM {
 		if (includedFeatures.containsKey(eClass)) {
 			includedFeatures.get(eClass).remove(eStructuralFeature);
 		}
-		for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
+		for (EClass subClass : packageMetaData.getDirectSubClasses(eClass)) {
 			exclude(subClass, eStructuralFeature);
 		}
 	}

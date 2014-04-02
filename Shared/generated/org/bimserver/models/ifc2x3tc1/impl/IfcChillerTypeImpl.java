@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcChillerType;
 import org.bimserver.models.ifc2x3tc1.IfcChillerTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcChillerTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcChillerType {
+public class IfcChillerTypeImpl extends IfcEnergyConversionDeviceTypeImpl
+		implements IfcChillerType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcChillerTypeImpl extends IfcEnergyConversionDeviceTypeImpl implem
 	 * @generated
 	 */
 	public IfcChillerTypeEnum getPredefinedType() {
-		return (IfcChillerTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_CHILLER_TYPE__PREDEFINED_TYPE, true);
+		return (IfcChillerTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CHILLER_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcChillerTypeImpl extends IfcEnergyConversionDeviceTypeImpl implem
 	 * @generated
 	 */
 	public void setPredefinedType(IfcChillerTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CHILLER_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CHILLER_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcChillerTypeImpl

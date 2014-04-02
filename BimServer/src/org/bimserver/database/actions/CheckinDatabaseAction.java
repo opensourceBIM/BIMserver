@@ -28,15 +28,10 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.Query;
-import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.IfcModelInterfaceException;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.mail.MailSystem;
-import org.bimserver.merging.RevisionMerger;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
@@ -48,12 +43,8 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewRevisionNotification;
-import org.bimserver.plugins.IfcModelSet;
-import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
-import org.bimserver.plugins.modelmerger.MergeException;
-import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
@@ -209,45 +200,47 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	}
 	
 	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
-		IfcModelSet ifcModelSet = new IfcModelSet();
-		for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
-			if (concreteRevision != subRevision) {
-				IfcModel subModel = new IfcModel();
-				Query query = new Query(subRevision.getProject().getId(), subRevision.getId(), Deep.YES);
-				getDatabaseSession().getMap(subModel, query);
-				subModel.getModelMetaData().setDate(subRevision.getDate());
-				ifcModelSet.add(subModel);
-			}
-		}
-		IfcModelInterface newModel = new IfcModel();
-		newModel.getModelMetaData().setDate(new Date());
-		IfcModelInterface oldModel = new IfcModel();
-		try {
-			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper(oldModel));
-		} catch (MergeException e) {
-			throw new UserException(e);
-		}
-
-		oldModel.setObjectOids();
-		newModel.setObjectOids();
-		oldModel.indexGuids();
-		newModel.indexGuids();
-		newModel.fixOids(new IncrementingOidProvider(oldModel.getHighestOid() + 1));
-
-		RevisionMerger revisionMerger = new RevisionMerger(oldModel, (IfcModel) newModel);
-		IfcModelInterface ifcModel;
-		try {
-			ifcModel = revisionMerger.merge();
-		} catch (IfcModelInterfaceException e) {
-			throw new UserException(e);
-		}
-		revisionMerger.cleanupUnmodified();
-
-		for (IdEObject idEObject : ifcModel.getValues()) {
-			((IdEObjectImpl) idEObject).setRid(concreteRevision.getId());
-			((IdEObjectImpl) idEObject).setPid(concreteRevision.getProject().getId());
-		}
-		return ifcModel;
+		throw new RuntimeException("Not implemented");
+//		IfcModelSet ifcModelSet = new IfcModelSet();
+//		for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
+//			if (concreteRevision != subRevision) {
+//				PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+//				IfcModel subModel = new IfcModel(packageMetaData);
+//				Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), Deep.YES);
+//				getDatabaseSession().getMap(subModel, query);
+//				subModel.getModelMetaData().setDate(subRevision.getDate());
+//				ifcModelSet.add(subModel);
+//			}
+//		}
+//		IfcModelInterface newModel = new IfcModel();
+//		newModel.getModelMetaData().setDate(new Date());
+//		IfcModelInterface oldModel = new IfcModel();
+//		try {
+//			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper(oldModel));
+//		} catch (MergeException e) {
+//			throw new UserException(e);
+//		}
+//
+//		oldModel.setObjectOids();
+//		newModel.setObjectOids();
+//		oldModel.indexGuids();
+//		newModel.indexGuids();
+//		newModel.fixOids(new IncrementingOidProvider(oldModel.getHighestOid() + 1));
+//
+//		RevisionMerger revisionMerger = new RevisionMerger(oldModel, (IfcModel) newModel);
+//		IfcModelInterface ifcModel;
+//		try {
+//			ifcModel = revisionMerger.merge();
+//		} catch (IfcModelInterfaceException e) {
+//			throw new UserException(e);
+//		}
+//		revisionMerger.cleanupUnmodified();
+//
+//		for (IdEObject idEObject : ifcModel.getValues()) {
+//			((IdEObjectImpl) idEObject).setRid(concreteRevision.getId());
+//			((IdEObjectImpl) idEObject).setPid(concreteRevision.getProject().getId());
+//		}
+//		return ifcModel;
 	}
 
 	public ConcreteRevision getConcreteRevision() {

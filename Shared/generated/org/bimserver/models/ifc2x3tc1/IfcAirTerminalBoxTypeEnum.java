@@ -60,7 +60,8 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VARIABLEFLOWPRESSUREINDEPENDANT(2, "VARIABLEFLOWPRESSUREINDEPENDANT", "VARIABLEFLOWPRESSUREINDEPENDANT"),
+	VARIABLEFLOWPRESSUREINDEPENDANT(2, "VARIABLEFLOWPRESSUREINDEPENDANT",
+			"VARIABLEFLOWPRESSUREINDEPENDANT"),
 
 	/**
 	 * The '<em><b>CONSTANTFLOW</b></em>' literal object.
@@ -90,7 +91,8 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VARIABLEFLOWPRESSUREDEPENDANT(5, "VARIABLEFLOWPRESSUREDEPENDANT", "VARIABLEFLOWPRESSUREDEPENDANT");
+	VARIABLEFLOWPRESSUREDEPENDANT(5, "VARIABLEFLOWPRESSUREDEPENDANT",
+			"VARIABLEFLOWPRESSUREDEPENDANT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -188,8 +190,9 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAirTerminalBoxTypeEnum[] VALUES_ARRAY = new IfcAirTerminalBoxTypeEnum[] { NULL, NOTDEFINED, VARIABLEFLOWPRESSUREINDEPENDANT, CONSTANTFLOW, USERDEFINED,
-			VARIABLEFLOWPRESSUREDEPENDANT, };
+	private static final IfcAirTerminalBoxTypeEnum[] VALUES_ARRAY = new IfcAirTerminalBoxTypeEnum[] {
+			NULL, NOTDEFINED, VARIABLEFLOWPRESSUREINDEPENDANT, CONSTANTFLOW,
+			USERDEFINED, VARIABLEFLOWPRESSUREDEPENDANT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Air Terminal Box Type Enum</b></em>' enumerators.
@@ -197,7 +200,8 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAirTerminalBoxTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAirTerminalBoxTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Air Terminal Box Type Enum</b></em>' literal with the specified literal value.

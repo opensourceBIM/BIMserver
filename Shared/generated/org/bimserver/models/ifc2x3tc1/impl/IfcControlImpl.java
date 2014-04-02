@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcControl;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToControl;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -62,7 +64,8 @@ public class IfcControlImpl extends IfcObjectImpl implements IfcControl {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToControl> getControls() {
-		return (EList<IfcRelAssignsToControl>) eGet(Ifc2x3tc1Package.Literals.IFC_CONTROL__CONTROLS, true);
+		return (EList<IfcRelAssignsToControl>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONTROL__CONTROLS, true);
 	}
 
 	/**

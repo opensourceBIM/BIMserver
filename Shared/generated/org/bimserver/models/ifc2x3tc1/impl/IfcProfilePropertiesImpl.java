@@ -17,9 +17,11 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProfileDef;
 import org.bimserver.models.ifc2x3tc1.IfcProfileProperties;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProfilePropertiesImpl extends IdEObjectImpl implements IfcProfileProperties {
+public class IfcProfilePropertiesImpl extends IdEObjectImpl implements
+		IfcProfileProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,7 +75,9 @@ public class IfcProfilePropertiesImpl extends IdEObjectImpl implements IfcProfil
 	 * @generated
 	 */
 	public String getProfileName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_NAME,
+				true);
 	}
 
 	/**
@@ -81,7 +86,8 @@ public class IfcProfilePropertiesImpl extends IdEObjectImpl implements IfcProfil
 	 * @generated
 	 */
 	public void setProfileName(String newProfileName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_NAME, newProfileName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_NAME,
+				newProfileName);
 	}
 
 	/**
@@ -108,7 +114,9 @@ public class IfcProfilePropertiesImpl extends IdEObjectImpl implements IfcProfil
 	 * @generated
 	 */
 	public IfcProfileDef getProfileDefinition() {
-		return (IfcProfileDef) eGet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION, true);
+		return (IfcProfileDef) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION,
+				true);
 	}
 
 	/**
@@ -117,7 +125,8 @@ public class IfcProfilePropertiesImpl extends IdEObjectImpl implements IfcProfil
 	 * @generated
 	 */
 	public void setProfileDefinition(IfcProfileDef newProfileDefinition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION, newProfileDefinition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION,
+				newProfileDefinition);
 	}
 
 	/**

@@ -145,7 +145,6 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.notifications.NewExtendedDataOnRevisionNotification;
 import org.bimserver.notifications.NewRevisionNotification;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
@@ -186,6 +185,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String userUsername = "Unknown";
 		try {
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
+			Project project = session.get(poid, Query.getDefault());
 			username = user.getName();
 			userUsername = user.getUsername();
 			File homeDirIncoming = new File(getBimServer().getHomeDir(), "incoming");
@@ -212,11 +212,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 				}
 				Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
-				try {
-					deserializer.init(getBimServer().getPluginManager().requireSchemaDefinition());
-				} catch (PluginException e) {
-					throw new UserException(e);
-				}
+				deserializer.init(getBimServer().getDatabase().getMetaDataManager().getEPackage(project.getSchema()));
 				IfcModelInterface model = deserializer.read(inputStream, cacheFileName, fileSize);
 				if (model.size() == 0) {
 					throw new DeserializeException("Cannot checkin empty model");
@@ -284,11 +280,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 				}
 				Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
-				try {
-					deserializer.init(getBimServer().getPluginManager().requireSchemaDefinition());
-				} catch (PluginException e) {
-					throw new UserException(e);
-				}
+				deserializer.init(getBimServer().getDatabase().getMetaDataManager().getEPackage("ifc2x3tc1"));
 				IfcModelInterface model = deserializer.read(inputStream, fileName, 0);
 				if (model.size() == 0) {
 					throw new DeserializeException("Cannot checkin empty model");
@@ -899,7 +891,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<List<String>> action = new GetAvailableClassesInRevisionDatabaseAction(session, getInternalAccessMethod(), roid);
+			BimDatabaseAction<List<String>> action = new GetAvailableClassesInRevisionDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid);
 			return session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -1002,7 +994,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public SServiceDescriptor getServiceDescriptor(String baseUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(baseUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory());
+			BimServerClientFactory factory = new JsonBimServerClientFactory(baseUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getDatabase().getMetaDataManager());
 			BimServerClientInterface client = factory.create();
 			SServiceDescriptor service = client.getRemoteServiceInterface().getService(serviceIdentifier);
 			if (service == null) {
@@ -1187,7 +1179,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory());
+			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getDatabase().getMetaDataManager());
 			BimServerClientInterface client = factory.create();
 			return client.getRemoteServiceInterface().getPublicProfiles(serviceIdentifier);
 		} catch (Exception e) {
@@ -1199,7 +1191,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier, String token) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory());
+			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getDatabase().getMetaDataManager());
 			BimServerClientInterface client = factory.create();
 			return client.getRemoteServiceInterface().getPrivateProfiles(serviceIdentifier, token);
 		} catch (Exception e) {

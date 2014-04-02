@@ -17,9 +17,11 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcActorRole;
 import org.bimserver.models.ifc2x3tc1.IfcRoleEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -73,7 +75,8 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 * @generated
 	 */
 	public IfcRoleEnum getRole() {
-		return (IfcRoleEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__ROLE, true);
+		return (IfcRoleEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__ROLE, true);
 	}
 
 	/**
@@ -91,7 +94,9 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 * @generated
 	 */
 	public String getUserDefinedRole() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE,
+				true);
 	}
 
 	/**
@@ -100,7 +105,8 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 * @generated
 	 */
 	public void setUserDefinedRole(String newUserDefinedRole) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE, newUserDefinedRole);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE,
+				newUserDefinedRole);
 	}
 
 	/**
@@ -127,7 +133,8 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION, true);
 	}
 
 	/**
@@ -136,7 +143,8 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION, newDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION,
+				newDescription);
 	}
 
 	/**

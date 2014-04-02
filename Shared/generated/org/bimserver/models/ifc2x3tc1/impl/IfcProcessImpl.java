@@ -20,7 +20,9 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProcess;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToProcess;
 import org.bimserver.models.ifc2x3tc1.IfcRelSequence;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -65,7 +67,8 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToProcess> getOperatesOn() {
-		return (EList<IfcRelAssignsToProcess>) eGet(Ifc2x3tc1Package.Literals.IFC_PROCESS__OPERATES_ON, true);
+		return (EList<IfcRelAssignsToProcess>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROCESS__OPERATES_ON, true);
 	}
 
 	/**
@@ -93,7 +96,8 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSequence> getIsSuccessorFrom() {
-		return (EList<IfcRelSequence>) eGet(Ifc2x3tc1Package.Literals.IFC_PROCESS__IS_SUCCESSOR_FROM, true);
+		return (EList<IfcRelSequence>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROCESS__IS_SUCCESSOR_FROM, true);
 	}
 
 	/**
@@ -121,7 +125,8 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSequence> getIsPredecessorTo() {
-		return (EList<IfcRelSequence>) eGet(Ifc2x3tc1Package.Literals.IFC_PROCESS__IS_PREDECESSOR_TO, true);
+		return (EList<IfcRelSequence>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROCESS__IS_PREDECESSOR_TO, true);
 	}
 
 	/**

@@ -17,10 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcTable;
 import org.bimserver.models.ifc2x3tc1.IfcTableRow;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -92,7 +95,8 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTableRow> getRows() {
-		return (EList<IfcTableRow>) eGet(Ifc2x3tc1Package.Literals.IFC_TABLE__ROWS, true);
+		return (EList<IfcTableRow>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TABLE__ROWS, true);
 	}
 
 } //IfcTableImpl

@@ -17,10 +17,13 @@
 package org.bimserver.models.log.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.ServerLog;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -73,7 +76,8 @@ public class ServerLogImpl extends IdEObjectImpl implements ServerLog {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<LogAction> getActions() {
-		return (EList<LogAction>) eGet(LogPackage.Literals.SERVER_LOG__ACTIONS, true);
+		return (EList<LogAction>) eGet(LogPackage.Literals.SERVER_LOG__ACTIONS,
+				true);
 	}
 
 } //ServerLogImpl

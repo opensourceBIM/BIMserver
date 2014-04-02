@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcStair;
 import org.bimserver.models.ifc2x3tc1.IfcStairTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -60,7 +61,8 @@ public class IfcStairImpl extends IfcBuildingElementImpl implements IfcStair {
 	 * @generated
 	 */
 	public IfcStairTypeEnum getShapeType() {
-		return (IfcStairTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STAIR__SHAPE_TYPE, true);
+		return (IfcStairTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STAIR__SHAPE_TYPE, true);
 	}
 
 	/**

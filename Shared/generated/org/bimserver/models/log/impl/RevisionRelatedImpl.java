@@ -18,7 +18,9 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.RevisionRelated;
+
 import org.bimserver.models.store.Revision;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RevisionRelatedImpl extends LogActionImpl implements RevisionRelated {
+public class RevisionRelatedImpl extends LogActionImpl implements
+		RevisionRelated {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +63,8 @@ public class RevisionRelatedImpl extends LogActionImpl implements RevisionRelate
 	 * @generated
 	 */
 	public Revision getRevision() {
-		return (Revision) eGet(LogPackage.Literals.REVISION_RELATED__REVISION, true);
+		return (Revision) eGet(LogPackage.Literals.REVISION_RELATED__REVISION,
+				true);
 	}
 
 	/**

@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDistributionPort;
 import org.bimserver.models.ifc2x3tc1.IfcFlowDirectionEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDistributionPortImpl extends IfcPortImpl implements IfcDistributionPort {
+public class IfcDistributionPortImpl extends IfcPortImpl implements
+		IfcDistributionPort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcDistributionPortImpl extends IfcPortImpl implements IfcDistribut
 	 * @generated
 	 */
 	public IfcFlowDirectionEnum getFlowDirection() {
-		return (IfcFlowDirectionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_PORT__FLOW_DIRECTION, true);
+		return (IfcFlowDirectionEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_PORT__FLOW_DIRECTION,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcDistributionPortImpl extends IfcPortImpl implements IfcDistribut
 	 * @generated
 	 */
 	public void setFlowDirection(IfcFlowDirectionEnum newFlowDirection) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_PORT__FLOW_DIRECTION, newFlowDirection);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_PORT__FLOW_DIRECTION,
+				newFlowDirection);
 	}
 
 	/**

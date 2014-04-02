@@ -110,14 +110,16 @@ public enum IfcSIUnitName implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GRAM(7, "GRAM", "GRAM"), /**
-								 * The '<em><b>KELVIN</b></em>' literal object.
-								 * <!-- begin-user-doc -->
-								 * <!-- end-user-doc -->
-								 * @see #KELVIN_VALUE
-								 * @generated
-								 * @ordered
-								 */
+	GRAM(7, "GRAM", "GRAM"),
+
+	/**
+	 * The '<em><b>KELVIN</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #KELVIN_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	KELVIN(8, "KELVIN", "KELVIN"),
 
 	/**
@@ -811,8 +813,11 @@ public enum IfcSIUnitName implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSIUnitName[] VALUES_ARRAY = new IfcSIUnitName[] { NULL, TESLA, HENRY, METRE, SECOND, AMPERE, JOULE, GRAM, KELVIN, LUMEN, FARAD, STERADIAN, LUX,
-			DEGREE_CELSIUS, SIEVERT, CUBIC_METRE, NEWTON, WATT, CANDELA, RADIAN, PASCAL, VOLT, WEBER, COULOMB, SQUARE_METRE, HERTZ, SIEMENS, BECQUEREL, MOLE, OHM, GRAY, };
+	private static final IfcSIUnitName[] VALUES_ARRAY = new IfcSIUnitName[] {
+			NULL, TESLA, HENRY, METRE, SECOND, AMPERE, JOULE, GRAM, KELVIN,
+			LUMEN, FARAD, STERADIAN, LUX, DEGREE_CELSIUS, SIEVERT, CUBIC_METRE,
+			NEWTON, WATT, CANDELA, RADIAN, PASCAL, VOLT, WEBER, COULOMB,
+			SQUARE_METRE, HERTZ, SIEMENS, BECQUEREL, MOLE, OHM, GRAY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc SI Unit Name</b></em>' enumerators.
@@ -820,7 +825,8 @@ public enum IfcSIUnitName implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSIUnitName> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSIUnitName> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc SI Unit Name</b></em>' literal with the specified literal value.

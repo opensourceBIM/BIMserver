@@ -17,11 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCurrencyRelationship;
 import org.bimserver.models.ifc2x3tc1.IfcDateAndTime;
 import org.bimserver.models.ifc2x3tc1.IfcLibraryInformation;
 import org.bimserver.models.ifc2x3tc1.IfcMonetaryUnit;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -42,7 +44,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCurrencyRelationship {
+public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements
+		IfcCurrencyRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,7 +81,9 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public IfcMonetaryUnit getRelatingMonetaryUnit() {
-		return (IfcMonetaryUnit) eGet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATING_MONETARY_UNIT, true);
+		return (IfcMonetaryUnit) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATING_MONETARY_UNIT,
+				true);
 	}
 
 	/**
@@ -87,7 +92,8 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public void setRelatingMonetaryUnit(IfcMonetaryUnit newRelatingMonetaryUnit) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATING_MONETARY_UNIT, newRelatingMonetaryUnit);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATING_MONETARY_UNIT,
+				newRelatingMonetaryUnit);
 	}
 
 	/**
@@ -96,7 +102,9 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public IfcMonetaryUnit getRelatedMonetaryUnit() {
-		return (IfcMonetaryUnit) eGet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATED_MONETARY_UNIT, true);
+		return (IfcMonetaryUnit) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATED_MONETARY_UNIT,
+				true);
 	}
 
 	/**
@@ -105,7 +113,8 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public void setRelatedMonetaryUnit(IfcMonetaryUnit newRelatedMonetaryUnit) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATED_MONETARY_UNIT, newRelatedMonetaryUnit);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATED_MONETARY_UNIT,
+				newRelatedMonetaryUnit);
 	}
 
 	/**
@@ -114,7 +123,9 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public double getExchangeRate() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE,
+				true);
 	}
 
 	/**
@@ -123,7 +134,8 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public void setExchangeRate(double newExchangeRate) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE, newExchangeRate);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE,
+				newExchangeRate);
 	}
 
 	/**
@@ -132,7 +144,9 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public String getExchangeRateAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -141,7 +155,8 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public void setExchangeRateAsString(String newExchangeRateAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE_AS_STRING, newExchangeRateAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__EXCHANGE_RATE_AS_STRING,
+				newExchangeRateAsString);
 	}
 
 	/**
@@ -150,7 +165,9 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public IfcDateAndTime getRateDateTime() {
-		return (IfcDateAndTime) eGet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_DATE_TIME, true);
+		return (IfcDateAndTime) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_DATE_TIME,
+				true);
 	}
 
 	/**
@@ -159,7 +176,8 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public void setRateDateTime(IfcDateAndTime newRateDateTime) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_DATE_TIME, newRateDateTime);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_DATE_TIME,
+				newRateDateTime);
 	}
 
 	/**
@@ -168,7 +186,9 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public IfcLibraryInformation getRateSource() {
-		return (IfcLibraryInformation) eGet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_SOURCE, true);
+		return (IfcLibraryInformation) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_SOURCE,
+				true);
 	}
 
 	/**
@@ -177,7 +197,8 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public void setRateSource(IfcLibraryInformation newRateSource) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_SOURCE, newRateSource);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RATE_SOURCE,
+				newRateSource);
 	}
 
 	/**

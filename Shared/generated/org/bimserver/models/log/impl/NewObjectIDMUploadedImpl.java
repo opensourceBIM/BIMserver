@@ -18,6 +18,7 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.NewObjectIDMUploaded;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class NewObjectIDMUploadedImpl extends LogActionImpl implements NewObjectIDMUploaded {
+public class NewObjectIDMUploadedImpl extends LogActionImpl implements
+		NewObjectIDMUploaded {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

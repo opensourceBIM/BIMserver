@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPreDefinedItem;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPreDefinedItemImpl extends IdEObjectImpl implements IfcPreDefinedItem {
+public class IfcPreDefinedItemImpl extends IdEObjectImpl implements
+		IfcPreDefinedItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +73,8 @@ public class IfcPreDefinedItemImpl extends IdEObjectImpl implements IfcPreDefine
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PRE_DEFINED_ITEM__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRE_DEFINED_ITEM__NAME, true);
 	}
 
 	/**

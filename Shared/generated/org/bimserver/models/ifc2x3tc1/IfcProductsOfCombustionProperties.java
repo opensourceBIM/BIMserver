@@ -39,7 +39,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcProductsOfCombustionProperties extends IfcMaterialProperties {
+public interface IfcProductsOfCombustionProperties extends
+		IfcMaterialProperties {
 	/**
 	 * Returns the value of the '<em><b>Specific Heat Capacity</b></em>' attribute.
 	 * <!-- begin-user-doc -->

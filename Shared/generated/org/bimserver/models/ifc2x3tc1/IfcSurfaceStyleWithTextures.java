@@ -34,7 +34,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcSurfaceStyleWithTextures extends IfcSurfaceStyleElementSelect {
+public interface IfcSurfaceStyleWithTextures extends
+		IfcSurfaceStyleElementSelect {
 	/**
 	 * Returns the value of the '<em><b>Textures</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc2x3tc1.IfcSurfaceTexture}.

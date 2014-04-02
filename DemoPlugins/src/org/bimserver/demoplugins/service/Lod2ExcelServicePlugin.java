@@ -23,6 +23,7 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
@@ -122,7 +123,8 @@ public class Lod2ExcelServicePlugin extends ServicePlugin {
 					state.setStart(startDate);
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
-					IfcModelInterface model = bimServerClientInterface.getModel(poid, roid, true);
+					SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
+					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true);
 					
 					try {
 					    WorkbookSettings wbSettings = new WorkbookSettings();

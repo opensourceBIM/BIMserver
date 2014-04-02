@@ -17,10 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationNotation;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationNotationFacet;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +39,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcClassificationNotationImpl extends IdEObjectImpl implements IfcClassificationNotation {
+public class IfcClassificationNotationImpl extends IdEObjectImpl implements
+		IfcClassificationNotation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +77,9 @@ public class IfcClassificationNotationImpl extends IdEObjectImpl implements IfcC
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationNotationFacet> getNotationFacets() {
-		return (EList<IfcClassificationNotationFacet>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_NOTATION__NOTATION_FACETS, true);
+		return (EList<IfcClassificationNotationFacet>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_NOTATION__NOTATION_FACETS,
+				true);
 	}
 
 } //IfcClassificationNotationImpl

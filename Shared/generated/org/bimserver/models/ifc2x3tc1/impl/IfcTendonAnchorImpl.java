@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcTendonAnchor;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTendonAnchorImpl extends IfcReinforcingElementImpl implements IfcTendonAnchor {
+public class IfcTendonAnchorImpl extends IfcReinforcingElementImpl implements
+		IfcTendonAnchor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

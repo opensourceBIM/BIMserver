@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcElementQuantity;
 import org.bimserver.models.ifc2x3tc1.IfcPhysicalQuantity;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElementQuantityImpl extends IfcPropertySetDefinitionImpl implements IfcElementQuantity {
+public class IfcElementQuantityImpl extends IfcPropertySetDefinitionImpl
+		implements IfcElementQuantity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,9 @@ public class IfcElementQuantityImpl extends IfcPropertySetDefinitionImpl impleme
 	 * @generated
 	 */
 	public String getMethodOfMeasurement() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT_QUANTITY__METHOD_OF_MEASUREMENT, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT_QUANTITY__METHOD_OF_MEASUREMENT,
+				true);
 	}
 
 	/**
@@ -71,7 +76,8 @@ public class IfcElementQuantityImpl extends IfcPropertySetDefinitionImpl impleme
 	 * @generated
 	 */
 	public void setMethodOfMeasurement(String newMethodOfMeasurement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELEMENT_QUANTITY__METHOD_OF_MEASUREMENT, newMethodOfMeasurement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELEMENT_QUANTITY__METHOD_OF_MEASUREMENT,
+				newMethodOfMeasurement);
 	}
 
 	/**
@@ -99,7 +105,9 @@ public class IfcElementQuantityImpl extends IfcPropertySetDefinitionImpl impleme
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPhysicalQuantity> getQuantities() {
-		return (EList<IfcPhysicalQuantity>) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENT_QUANTITY__QUANTITIES, true);
+		return (EList<IfcPhysicalQuantity>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENT_QUANTITY__QUANTITIES,
+				true);
 	}
 
 } //IfcElementQuantityImpl

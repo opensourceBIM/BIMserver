@@ -23,15 +23,23 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.emf.PackageMetaData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class EmfDeserializer implements Deserializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfDeserializer.class);
-	public abstract void init(SchemaDefinition schema);
+	private PackageMetaData packageMetaData;
+	
+	public void init(PackageMetaData packageMetaData) {
+		this.packageMetaData = packageMetaData;
+	}
 
+	public PackageMetaData getPackageMetaData() {
+		return packageMetaData;
+	}
+	
 	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException;
 
 	public IfcModelInterface read(File file) throws DeserializeException {

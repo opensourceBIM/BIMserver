@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcActorSelect;
 import org.bimserver.models.ifc2x3tc1.IfcConstructionMaterialResource;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -37,7 +39,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstructionMaterialResourceImpl extends IfcConstructionResourceImpl implements IfcConstructionMaterialResource {
+public class IfcConstructionMaterialResourceImpl extends
+		IfcConstructionResourceImpl implements IfcConstructionMaterialResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +67,9 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcActorSelect> getSuppliers() {
-		return (EList<IfcActorSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__SUPPLIERS, true);
+		return (EList<IfcActorSelect>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__SUPPLIERS,
+				true);
 	}
 
 	/**
@@ -91,7 +96,9 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 * @generated
 	 */
 	public double getUsageRatio() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO,
+				true);
 	}
 
 	/**
@@ -100,7 +107,8 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 * @generated
 	 */
 	public void setUsageRatio(double newUsageRatio) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO, newUsageRatio);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO,
+				newUsageRatio);
 	}
 
 	/**
@@ -127,7 +135,9 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 * @generated
 	 */
 	public String getUsageRatioAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO_AS_STRING,
+				true);
 	}
 
 	/**
@@ -136,7 +146,8 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 * @generated
 	 */
 	public void setUsageRatioAsString(String newUsageRatioAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO_AS_STRING, newUsageRatioAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO_AS_STRING,
+				newUsageRatioAsString);
 	}
 
 	/**

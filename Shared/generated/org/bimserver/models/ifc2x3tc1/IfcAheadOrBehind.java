@@ -113,7 +113,8 @@ public enum IfcAheadOrBehind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAheadOrBehind[] VALUES_ARRAY = new IfcAheadOrBehind[] { NULL, AHEAD, BEHIND, };
+	private static final IfcAheadOrBehind[] VALUES_ARRAY = new IfcAheadOrBehind[] {
+			NULL, AHEAD, BEHIND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Ahead Or Behind</b></em>' enumerators.
@@ -121,7 +122,8 @@ public enum IfcAheadOrBehind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAheadOrBehind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAheadOrBehind> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Ahead Or Behind</b></em>' literal with the specified literal value.

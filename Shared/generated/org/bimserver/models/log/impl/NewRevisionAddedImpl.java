@@ -18,7 +18,9 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.NewRevisionAdded;
+
 import org.bimserver.models.store.Project;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class NewRevisionAddedImpl extends RevisionRelatedImpl implements NewRevisionAdded {
+public class NewRevisionAddedImpl extends RevisionRelatedImpl implements
+		NewRevisionAdded {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +63,8 @@ public class NewRevisionAddedImpl extends RevisionRelatedImpl implements NewRevi
 	 * @generated
 	 */
 	public Project getProject() {
-		return (Project) eGet(LogPackage.Literals.NEW_REVISION_ADDED__PROJECT, true);
+		return (Project) eGet(LogPackage.Literals.NEW_REVISION_ADDED__PROJECT,
+				true);
 	}
 
 	/**

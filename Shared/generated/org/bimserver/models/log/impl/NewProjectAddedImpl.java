@@ -18,7 +18,9 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.NewProjectAdded;
+
 import org.bimserver.models.store.Project;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class NewProjectAddedImpl extends ProjectRelatedImpl implements NewProjectAdded {
+public class NewProjectAddedImpl extends ProjectRelatedImpl implements
+		NewProjectAdded {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +63,8 @@ public class NewProjectAddedImpl extends ProjectRelatedImpl implements NewProjec
 	 * @generated
 	 */
 	public Project getParentProject() {
-		return (Project) eGet(LogPackage.Literals.NEW_PROJECT_ADDED__PARENT_PROJECT, true);
+		return (Project) eGet(
+				LogPackage.Literals.NEW_PROJECT_ADDED__PARENT_PROJECT, true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class NewProjectAddedImpl extends ProjectRelatedImpl implements NewProjec
 	 * @generated
 	 */
 	public void setParentProject(Project newParentProject) {
-		eSet(LogPackage.Literals.NEW_PROJECT_ADDED__PARENT_PROJECT, newParentProject);
+		eSet(LogPackage.Literals.NEW_PROJECT_ADDED__PARENT_PROJECT,
+				newParentProject);
 	}
 
 } //NewProjectAddedImpl

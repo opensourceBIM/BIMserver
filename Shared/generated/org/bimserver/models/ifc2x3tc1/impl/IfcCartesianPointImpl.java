@@ -18,7 +18,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCartesianPointImpl extends IfcPointImpl implements IfcCartesianPoint {
+public class IfcCartesianPointImpl extends IfcPointImpl implements
+		IfcCartesianPoint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,7 +66,9 @@ public class IfcCartesianPointImpl extends IfcPointImpl implements IfcCartesianP
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getCoordinates() {
-		return (EList<Double>) eGet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_POINT__COORDINATES, true);
+		return (EList<Double>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CARTESIAN_POINT__COORDINATES,
+				true);
 	}
 
 	/**
@@ -73,7 +78,9 @@ public class IfcCartesianPointImpl extends IfcPointImpl implements IfcCartesianP
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getCoordinatesAsString() {
-		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_POINT__COORDINATES_AS_STRING, true);
+		return (EList<String>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CARTESIAN_POINT__COORDINATES_AS_STRING,
+				true);
 	}
 
 	/**
@@ -82,7 +89,8 @@ public class IfcCartesianPointImpl extends IfcPointImpl implements IfcCartesianP
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_POINT__DIM, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CARTESIAN_POINT__DIM, true);
 	}
 
 	/**

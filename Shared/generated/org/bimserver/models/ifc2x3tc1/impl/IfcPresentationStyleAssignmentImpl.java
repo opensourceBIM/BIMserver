@@ -17,10 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +39,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPresentationStyleAssignmentImpl extends IdEObjectImpl implements IfcPresentationStyleAssignment {
+public class IfcPresentationStyleAssignmentImpl extends IdEObjectImpl implements
+		IfcPresentationStyleAssignment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +77,9 @@ public class IfcPresentationStyleAssignmentImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationStyleSelect> getStyles() {
-		return (EList<IfcPresentationStyleSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_STYLE_ASSIGNMENT__STYLES, true);
+		return (EList<IfcPresentationStyleSelect>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRESENTATION_STYLE_ASSIGNMENT__STYLES,
+				true);
 	}
 
 } //IfcPresentationStyleAssignmentImpl

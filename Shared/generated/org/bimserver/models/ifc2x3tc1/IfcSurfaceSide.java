@@ -138,7 +138,8 @@ public enum IfcSurfaceSide implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSurfaceSide[] VALUES_ARRAY = new IfcSurfaceSide[] { NULL, BOTH, POSITIVE, NEGATIVE, };
+	private static final IfcSurfaceSide[] VALUES_ARRAY = new IfcSurfaceSide[] {
+			NULL, BOTH, POSITIVE, NEGATIVE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Surface Side</b></em>' enumerators.
@@ -146,7 +147,8 @@ public enum IfcSurfaceSide implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSurfaceSide> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSurfaceSide> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Surface Side</b></em>' literal with the specified literal value.

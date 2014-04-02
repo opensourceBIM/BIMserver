@@ -17,11 +17,14 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialClassificationRelationship;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialDefinitionRepresentation;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -94,7 +97,9 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialDefinitionRepresentation> getHasRepresentation() {
-		return (EList<IfcMaterialDefinitionRepresentation>) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION, true);
+		return (EList<IfcMaterialDefinitionRepresentation>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION,
+				true);
 	}
 
 	/**
@@ -122,7 +127,8 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialClassificationRelationship> getClassifiedAs() {
-		return (EList<IfcMaterialClassificationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL__CLASSIFIED_AS, true);
+		return (EList<IfcMaterialClassificationRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MATERIAL__CLASSIFIED_AS, true);
 	}
 
 	/**

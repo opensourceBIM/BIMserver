@@ -61,7 +61,8 @@ public interface IfcElectricDistributionPoint extends IfcFlowController {
 	 * @see #getDistributionPointFunction()
 	 * @generated
 	 */
-	void setDistributionPointFunction(IfcElectricDistributionPointFunctionEnum value);
+	void setDistributionPointFunction(
+			IfcElectricDistributionPointFunctionEnum value);
 
 	/**
 	 * Returns the value of the '<em><b>User Defined Function</b></em>' attribute.

@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPropertyDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyDefinitionImpl extends IfcRootImpl implements IfcPropertyDefinition {
+public class IfcPropertyDefinitionImpl extends IfcRootImpl implements
+		IfcPropertyDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,9 @@ public class IfcPropertyDefinitionImpl extends IfcRootImpl implements IfcPropert
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociates> getHasAssociations() {
-		return (EList<IfcRelAssociates>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_DEFINITION__HAS_ASSOCIATIONS, true);
+		return (EList<IfcRelAssociates>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_DEFINITION__HAS_ASSOCIATIONS,
+				true);
 	}
 
 	/**

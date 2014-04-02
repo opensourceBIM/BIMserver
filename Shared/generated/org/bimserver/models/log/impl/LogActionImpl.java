@@ -19,10 +19,13 @@ package org.bimserver.models.log.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.log.LogPackage;
+
 import org.bimserver.models.store.User;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -112,7 +115,8 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	 * @generated
 	 */
 	public AccessMethod getAccessMethod() {
-		return (AccessMethod) eGet(LogPackage.Literals.LOG_ACTION__ACCESS_METHOD, true);
+		return (AccessMethod) eGet(
+				LogPackage.Literals.LOG_ACTION__ACCESS_METHOD, true);
 	}
 
 	/**

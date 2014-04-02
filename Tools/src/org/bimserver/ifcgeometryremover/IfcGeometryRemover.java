@@ -37,9 +37,9 @@ public class IfcGeometryRemover {
 	public IfcGeometryRemover() {
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			schema = pluginManager.requireSchemaDefinition();
+			schema = pluginManager.requireSchemaDefinition("ifc2x3tc1");
 			ifcDoc = new IfcDoc(new File("C:\\Users\\Ruben\\git\\BootstrapBIM\\BootstrapBIM\\docs\\R2x3_TC1"));
-			metaDataManager = new MetaDataManager();
+			metaDataManager = new MetaDataManager(null);
 			metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE);
 		} catch (PluginException e) {
 			e.printStackTrace();
@@ -64,7 +64,7 @@ public class IfcGeometryRemover {
 		Set<IdEObject> toRemove = new HashSet<IdEObject>();
 		while (iterator.hasNext()) {
 			String classname = iterator.next();
-			EClassifier eClassifier = metaDataManager.getEClassifierCaseInsensitive(classname);
+			EClassifier eClassifier = metaDataManager.getEPackage("ifc2x3tc1").getEClassifierCaseInsensitive(classname);
 			if (eClassifier instanceof EClass) {
 				toRemove.addAll(model.getAllWithSubTypes((EClass)eClassifier));
 			}
@@ -92,7 +92,7 @@ public class IfcGeometryRemover {
 		Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 		try {
 			model.resetExpressIds();
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), true);
+			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, true);
 			serializer.writeToFile(outFile);
 		} catch (SerializerException e) {
 			e.printStackTrace();
@@ -105,7 +105,7 @@ public class IfcGeometryRemover {
 		try {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(schema);
+//			deserializer.init(schema, null, null); // TODO
 			IfcModelInterface model = deserializer.read(file);
 			return model;
 		} catch (PluginException e) {

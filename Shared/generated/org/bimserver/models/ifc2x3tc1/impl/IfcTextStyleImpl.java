@@ -21,6 +21,7 @@ import org.bimserver.models.ifc2x3tc1.IfcCharacterStyleSelect;
 import org.bimserver.models.ifc2x3tc1.IfcTextFontSelect;
 import org.bimserver.models.ifc2x3tc1.IfcTextStyle;
 import org.bimserver.models.ifc2x3tc1.IfcTextStyleSelect;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -38,7 +39,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTextStyle {
+public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements
+		IfcTextStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +66,9 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 * @generated
 	 */
 	public IfcCharacterStyleSelect getTextCharacterAppearance() {
-		return (IfcCharacterStyleSelect) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE, true);
+		return (IfcCharacterStyleSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE,
+				true);
 	}
 
 	/**
@@ -72,8 +76,10 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTextCharacterAppearance(IfcCharacterStyleSelect newTextCharacterAppearance) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE, newTextCharacterAppearance);
+	public void setTextCharacterAppearance(
+			IfcCharacterStyleSelect newTextCharacterAppearance) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE,
+				newTextCharacterAppearance);
 	}
 
 	/**
@@ -100,7 +106,8 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 * @generated
 	 */
 	public IfcTextStyleSelect getTextStyle() {
-		return (IfcTextStyleSelect) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_STYLE, true);
+		return (IfcTextStyleSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_STYLE, true);
 	}
 
 	/**
@@ -136,7 +143,8 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 * @generated
 	 */
 	public IfcTextFontSelect getTextFontStyle() {
-		return (IfcTextFontSelect) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE, true);
+		return (IfcTextFontSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE, true);
 	}
 
 	/**
@@ -145,7 +153,8 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 * @generated
 	 */
 	public void setTextFontStyle(IfcTextFontSelect newTextFontStyle) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE, newTextFontStyle);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE,
+				newTextFontStyle);
 	}
 
 } //IfcTextStyleImpl

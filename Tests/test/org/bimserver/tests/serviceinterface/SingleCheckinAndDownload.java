@@ -33,7 +33,7 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 			boolean useChannel = false; // Using the channel is slower
 
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
 			
 			// This is the file we will be checking in
 			File ifcFile = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");

@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPlateType;
 import org.bimserver.models.ifc2x3tc1.IfcPlateTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPlateTypeImpl extends IfcBuildingElementTypeImpl implements IfcPlateType {
+public class IfcPlateTypeImpl extends IfcBuildingElementTypeImpl implements
+		IfcPlateType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,8 @@ public class IfcPlateTypeImpl extends IfcBuildingElementTypeImpl implements IfcP
 	 * @generated
 	 */
 	public IfcPlateTypeEnum getPredefinedType() {
-		return (IfcPlateTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PLATE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcPlateTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PLATE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcPlateTypeImpl extends IfcBuildingElementTypeImpl implements IfcP
 	 * @generated
 	 */
 	public void setPredefinedType(IfcPlateTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PLATE_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PLATE_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcPlateTypeImpl

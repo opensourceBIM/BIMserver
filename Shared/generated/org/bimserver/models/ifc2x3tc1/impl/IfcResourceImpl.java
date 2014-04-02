@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToResource;
 import org.bimserver.models.ifc2x3tc1.IfcResource;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -62,7 +64,8 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToResource> getResourceOf() {
-		return (EList<IfcRelAssignsToResource>) eGet(Ifc2x3tc1Package.Literals.IFC_RESOURCE__RESOURCE_OF, true);
+		return (EList<IfcRelAssignsToResource>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RESOURCE__RESOURCE_OF, true);
 	}
 
 	/**

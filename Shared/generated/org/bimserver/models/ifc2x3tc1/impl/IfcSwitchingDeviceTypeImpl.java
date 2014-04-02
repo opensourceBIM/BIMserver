@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcSwitchingDeviceType;
 import org.bimserver.models.ifc2x3tc1.IfcSwitchingDeviceTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSwitchingDeviceTypeImpl extends IfcFlowControllerTypeImpl implements IfcSwitchingDeviceType {
+public class IfcSwitchingDeviceTypeImpl extends IfcFlowControllerTypeImpl
+		implements IfcSwitchingDeviceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcSwitchingDeviceTypeImpl extends IfcFlowControllerTypeImpl implem
 	 * @generated
 	 */
 	public IfcSwitchingDeviceTypeEnum getPredefinedType() {
-		return (IfcSwitchingDeviceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcSwitchingDeviceTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcSwitchingDeviceTypeImpl extends IfcFlowControllerTypeImpl implem
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSwitchingDeviceTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcSwitchingDeviceTypeImpl

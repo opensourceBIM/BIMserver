@@ -213,7 +213,9 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEnergySequenceEnum[] VALUES_ARRAY = new IfcEnergySequenceEnum[] { NULL, SECONDARY, NOTDEFINED, PRIMARY, TERTIARY, USERDEFINED, AUXILIARY, };
+	private static final IfcEnergySequenceEnum[] VALUES_ARRAY = new IfcEnergySequenceEnum[] {
+			NULL, SECONDARY, NOTDEFINED, PRIMARY, TERTIARY, USERDEFINED,
+			AUXILIARY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Energy Sequence Enum</b></em>' enumerators.
@@ -221,7 +223,8 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcEnergySequenceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcEnergySequenceEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Energy Sequence Enum</b></em>' literal with the specified literal value.

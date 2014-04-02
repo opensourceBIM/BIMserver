@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcElectricFlowStorageDeviceType;
 import org.bimserver.models.ifc2x3tc1.IfcElectricFlowStorageDeviceTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,9 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricFlowStorageDeviceTypeImpl extends IfcFlowStorageDeviceTypeImpl implements IfcElectricFlowStorageDeviceType {
+public class IfcElectricFlowStorageDeviceTypeImpl extends
+		IfcFlowStorageDeviceTypeImpl implements
+		IfcElectricFlowStorageDeviceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +63,9 @@ public class IfcElectricFlowStorageDeviceTypeImpl extends IfcFlowStorageDeviceTy
 	 * @generated
 	 */
 	public IfcElectricFlowStorageDeviceTypeEnum getPredefinedType() {
-		return (IfcElectricFlowStorageDeviceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcElectricFlowStorageDeviceTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -68,8 +73,10 @@ public class IfcElectricFlowStorageDeviceTypeImpl extends IfcFlowStorageDeviceTy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(IfcElectricFlowStorageDeviceTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE__PREDEFINED_TYPE, newPredefinedType);
+	public void setPredefinedType(
+			IfcElectricFlowStorageDeviceTypeEnum newPredefinedType) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcElectricFlowStorageDeviceTypeImpl

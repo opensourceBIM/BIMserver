@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcHumidifierType;
 import org.bimserver.models.ifc2x3tc1.IfcHumidifierTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcHumidifierTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcHumidifierType {
+public class IfcHumidifierTypeImpl extends IfcEnergyConversionDeviceTypeImpl
+		implements IfcHumidifierType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcHumidifierTypeImpl extends IfcEnergyConversionDeviceTypeImpl imp
 	 * @generated
 	 */
 	public IfcHumidifierTypeEnum getPredefinedType() {
-		return (IfcHumidifierTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_HUMIDIFIER_TYPE__PREDEFINED_TYPE, true);
+		return (IfcHumidifierTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_HUMIDIFIER_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcHumidifierTypeImpl extends IfcEnergyConversionDeviceTypeImpl imp
 	 * @generated
 	 */
 	public void setPredefinedType(IfcHumidifierTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_HUMIDIFIER_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_HUMIDIFIER_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcHumidifierTypeImpl

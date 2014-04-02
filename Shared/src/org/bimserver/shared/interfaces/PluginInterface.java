@@ -18,6 +18,7 @@ package org.bimserver.shared.interfaces;
  *****************************************************************************/
 
 import java.util.List;
+import java.util.Set;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -215,6 +216,16 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getAllSerializers")
 	List<SSerializerPluginConfiguration> getAllSerializers(
 		@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+
+	/**
+	 * @param onlyEnabled Whether to only include enabled serializers
+	 * @return A list of Serializers
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllSerializersForRoids")
+	List<SSerializerPluginConfiguration> getAllSerializersForRoids(
+		@WebParam(name = "onlyEnabled", partName = "getAllSerializersForRoids.onlyEnabled") Boolean onlyEnabled,
+		@WebParam(name = "roids", partName = "getAllSerializersForRoids.roids") Set<Long> roids) throws ServerException, UserException;
 
 	/**
 	 * @param onlyEnabled Whether to only include enabled IFC engines
@@ -521,6 +532,16 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getAllDeserializers")
 	List<SDeserializerPluginConfiguration> getAllDeserializers(
 		@WebParam(name = "onlyEnabled", partName = "getAllDeserializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+
+	/**
+	 * @param onlyEnabled Whether to only include enabled deserializers
+	 * @return A list of all available deserializers
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllDeserializersForProject")
+	List<SDeserializerPluginConfiguration> getAllDeserializersForProject (
+		@WebParam(name = "onlyEnabled", partName = "getAllDeserializersForProject.onlyEnabled") Boolean onlyEnabled,
+		@WebParam(name = "poid", partName = "getAllDeserializersForProject.poid") Long poid) throws ServerException, UserException;
 	
 	/**
 	 * @param contentType The ContentType

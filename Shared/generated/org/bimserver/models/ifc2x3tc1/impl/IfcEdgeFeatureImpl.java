@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcEdgeFeature;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEdgeFeatureImpl extends IfcFeatureElementSubtractionImpl implements IfcEdgeFeature {
+public class IfcEdgeFeatureImpl extends IfcFeatureElementSubtractionImpl
+		implements IfcEdgeFeature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcEdgeFeatureImpl extends IfcFeatureElementSubtractionImpl impleme
 	 * @generated
 	 */
 	public double getFeatureLength() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_EDGE_FEATURE__FEATURE_LENGTH, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_EDGE_FEATURE__FEATURE_LENGTH,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcEdgeFeatureImpl extends IfcFeatureElementSubtractionImpl impleme
 	 * @generated
 	 */
 	public void setFeatureLength(double newFeatureLength) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_EDGE_FEATURE__FEATURE_LENGTH, newFeatureLength);
+		eSet(Ifc2x3tc1Package.Literals.IFC_EDGE_FEATURE__FEATURE_LENGTH,
+				newFeatureLength);
 	}
 
 	/**
@@ -96,7 +101,9 @@ public class IfcEdgeFeatureImpl extends IfcFeatureElementSubtractionImpl impleme
 	 * @generated
 	 */
 	public String getFeatureLengthAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_EDGE_FEATURE__FEATURE_LENGTH_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_EDGE_FEATURE__FEATURE_LENGTH_AS_STRING,
+				true);
 	}
 
 	/**
@@ -105,7 +112,8 @@ public class IfcEdgeFeatureImpl extends IfcFeatureElementSubtractionImpl impleme
 	 * @generated
 	 */
 	public void setFeatureLengthAsString(String newFeatureLengthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_EDGE_FEATURE__FEATURE_LENGTH_AS_STRING, newFeatureLengthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_EDGE_FEATURE__FEATURE_LENGTH_AS_STRING,
+				newFeatureLengthAsString);
 	}
 
 	/**

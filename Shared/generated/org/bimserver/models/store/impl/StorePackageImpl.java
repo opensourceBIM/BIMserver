@@ -17,16 +17,27 @@
 package org.bimserver.models.store.impl;
 
 import java.io.IOException;
+
 import java.net.URL;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+
 import org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1PackageImpl;
+
+import org.bimserver.models.ifc4.Ifc4Package;
+
+import org.bimserver.models.ifc4.impl.Ifc4PackageImpl;
+
 import org.bimserver.models.log.LogPackage;
+
 import org.bimserver.models.log.impl.LogPackageImpl;
+
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -34,8 +45,11 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.emf.ecore.resource.Resource;
+
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 
 /**
@@ -868,6 +882,9 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 				.getEPackage(Ifc2x3tc1Package.eNS_URI) instanceof Ifc2x3tc1PackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(Ifc2x3tc1Package.eNS_URI)
 				: Ifc2x3tc1Package.eINSTANCE);
+		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(Ifc4Package.eNS_URI) instanceof Ifc4PackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(Ifc4Package.eNS_URI) : Ifc4Package.eINSTANCE);
 		LogPackageImpl theLogPackage = (LogPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(LogPackage.eNS_URI) instanceof LogPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(LogPackage.eNS_URI) : LogPackage.eINSTANCE);
@@ -875,11 +892,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		// Load packages
 		theStorePackage.loadPackage();
 		theIfc2x3tc1Package.loadPackage();
+		theIfc4Package.loadPackage();
 		theLogPackage.loadPackage();
 
 		// Fix loaded packages
 		theStorePackage.fixPackageContents();
 		theIfc2x3tc1Package.fixPackageContents();
+		theIfc4Package.fixPackageContents();
 		theLogPackage.fixPackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -1081,6 +1100,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getProject_ModelCheckers() {
 		return (EReference) getProject().getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProject_Schema() {
+		return (EAttribute) getProject().getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -2954,6 +2982,16 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	public EAttribute getRevisionSummaryType_Count() {
 		return (EAttribute) getRevisionSummaryType().getEStructuralFeatures()
 				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRevisionSummaryType_Schema() {
+		return (EAttribute) getRevisionSummaryType().getEStructuralFeatures()
+				.get(2);
 	}
 
 	/**

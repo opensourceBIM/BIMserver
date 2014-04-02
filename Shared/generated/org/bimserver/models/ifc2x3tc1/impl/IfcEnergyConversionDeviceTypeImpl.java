@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcEnergyConversionDeviceType;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,9 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEnergyConversionDeviceTypeImpl extends IfcDistributionFlowElementTypeImpl implements IfcEnergyConversionDeviceType {
+public class IfcEnergyConversionDeviceTypeImpl extends
+		IfcDistributionFlowElementTypeImpl implements
+		IfcEnergyConversionDeviceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1370,6 +1370,7 @@ function Model(bimServerApi, poid, roid) {
 					bimServerApi.call("Bimsie1ServiceInterface", "downloadByTypes", {
 						roids: [othis.roid],
 						classNames: [type],
+						schema: "ifc2x3tc1",
 						includeAllSubtypes: includeAllSubTypes,
 						serializerOid: jsonSerializerOid,
 						useObjectIDM: false,

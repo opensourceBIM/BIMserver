@@ -22,7 +22,9 @@ import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToProduct;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -67,7 +69,8 @@ public class IfcProductImpl extends IfcObjectImpl implements IfcProduct {
 	 * @generated
 	 */
 	public IfcObjectPlacement getObjectPlacement() {
-		return (IfcObjectPlacement) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__OBJECT_PLACEMENT, true);
+		return (IfcObjectPlacement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRODUCT__OBJECT_PLACEMENT, true);
 	}
 
 	/**
@@ -76,7 +79,8 @@ public class IfcProductImpl extends IfcObjectImpl implements IfcProduct {
 	 * @generated
 	 */
 	public void setObjectPlacement(IfcObjectPlacement newObjectPlacement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__OBJECT_PLACEMENT, newObjectPlacement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__OBJECT_PLACEMENT,
+				newObjectPlacement);
 	}
 
 	/**
@@ -103,7 +107,8 @@ public class IfcProductImpl extends IfcObjectImpl implements IfcProduct {
 	 * @generated
 	 */
 	public IfcProductRepresentation getRepresentation() {
-		return (IfcProductRepresentation) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__REPRESENTATION, true);
+		return (IfcProductRepresentation) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRODUCT__REPRESENTATION, true);
 	}
 
 	/**
@@ -112,7 +117,8 @@ public class IfcProductImpl extends IfcObjectImpl implements IfcProduct {
 	 * @generated
 	 */
 	public void setRepresentation(IfcProductRepresentation newRepresentation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__REPRESENTATION, newRepresentation);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__REPRESENTATION,
+				newRepresentation);
 	}
 
 	/**
@@ -140,7 +146,8 @@ public class IfcProductImpl extends IfcObjectImpl implements IfcProduct {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToProduct> getReferencedBy() {
-		return (EList<IfcRelAssignsToProduct>) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__REFERENCED_BY, true);
+		return (EList<IfcRelAssignsToProduct>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRODUCT__REFERENCED_BY, true);
 	}
 
 	/**
@@ -167,7 +174,8 @@ public class IfcProductImpl extends IfcObjectImpl implements IfcProduct {
 	 * @generated
 	 */
 	public GeometryInfo getGeometry() {
-		return (GeometryInfo) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__GEOMETRY, true);
+		return (GeometryInfo) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRODUCT__GEOMETRY, true);
 	}
 
 	/**

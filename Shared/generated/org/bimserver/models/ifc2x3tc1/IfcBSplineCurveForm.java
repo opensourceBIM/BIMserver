@@ -213,8 +213,9 @@ public enum IfcBSplineCurveForm implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBSplineCurveForm[] VALUES_ARRAY = new IfcBSplineCurveForm[] { NULL, PARABOLIC_ARC, ELLIPTIC_ARC, HYPERBOLIC_ARC, UNSPECIFIED, POLYLINE_FORM,
-			CIRCULAR_ARC, };
+	private static final IfcBSplineCurveForm[] VALUES_ARRAY = new IfcBSplineCurveForm[] {
+			NULL, PARABOLIC_ARC, ELLIPTIC_ARC, HYPERBOLIC_ARC, UNSPECIFIED,
+			POLYLINE_FORM, CIRCULAR_ARC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc BSpline Curve Form</b></em>' enumerators.
@@ -222,7 +223,8 @@ public enum IfcBSplineCurveForm implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcBSplineCurveForm> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcBSplineCurveForm> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc BSpline Curve Form</b></em>' literal with the specified literal value.

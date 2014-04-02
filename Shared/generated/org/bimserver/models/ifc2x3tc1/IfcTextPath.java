@@ -163,7 +163,8 @@ public enum IfcTextPath implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTextPath[] VALUES_ARRAY = new IfcTextPath[] { NULL, RIGHT, DOWN, UP, LEFT, };
+	private static final IfcTextPath[] VALUES_ARRAY = new IfcTextPath[] { NULL,
+			RIGHT, DOWN, UP, LEFT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Text Path</b></em>' enumerators.
@@ -171,7 +172,8 @@ public enum IfcTextPath implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcTextPath> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcTextPath> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Text Path</b></em>' literal with the specified literal value.

@@ -33,7 +33,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcLuminousIntensityDistributionMeasure extends IfcDerivedMeasureValue {
+public interface IfcLuminousIntensityDistributionMeasure extends
+		IfcDerivedMeasureValue {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

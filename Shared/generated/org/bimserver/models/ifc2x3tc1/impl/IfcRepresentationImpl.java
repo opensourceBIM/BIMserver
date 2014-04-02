@@ -17,6 +17,7 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationLayerAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
@@ -24,7 +25,9 @@ import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationContext;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationMap;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -46,7 +49,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresentation {
+public class IfcRepresentationImpl extends IdEObjectImpl implements
+		IfcRepresentation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,7 +86,9 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 * @generated
 	 */
 	public IfcRepresentationContext getContextOfItems() {
-		return (IfcRepresentationContext) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__CONTEXT_OF_ITEMS, true);
+		return (IfcRepresentationContext) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__CONTEXT_OF_ITEMS,
+				true);
 	}
 
 	/**
@@ -91,7 +97,8 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 * @generated
 	 */
 	public void setContextOfItems(IfcRepresentationContext newContextOfItems) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__CONTEXT_OF_ITEMS, newContextOfItems);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__CONTEXT_OF_ITEMS,
+				newContextOfItems);
 	}
 
 	/**
@@ -100,7 +107,9 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 * @generated
 	 */
 	public String getRepresentationIdentifier() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__REPRESENTATION_IDENTIFIER, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__REPRESENTATION_IDENTIFIER,
+				true);
 	}
 
 	/**
@@ -109,7 +118,8 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 * @generated
 	 */
 	public void setRepresentationIdentifier(String newRepresentationIdentifier) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__REPRESENTATION_IDENTIFIER, newRepresentationIdentifier);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__REPRESENTATION_IDENTIFIER,
+				newRepresentationIdentifier);
 	}
 
 	/**
@@ -136,7 +146,9 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 * @generated
 	 */
 	public String getRepresentationType() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__REPRESENTATION_TYPE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__REPRESENTATION_TYPE,
+				true);
 	}
 
 	/**
@@ -145,7 +157,8 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 * @generated
 	 */
 	public void setRepresentationType(String newRepresentationType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__REPRESENTATION_TYPE, newRepresentationType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__REPRESENTATION_TYPE,
+				newRepresentationType);
 	}
 
 	/**
@@ -173,7 +186,8 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentationItem> getItems() {
-		return (EList<IfcRepresentationItem>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__ITEMS, true);
+		return (EList<IfcRepresentationItem>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__ITEMS, true);
 	}
 
 	/**
@@ -183,7 +197,9 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentationMap> getRepresentationMap() {
-		return (EList<IfcRepresentationMap>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__REPRESENTATION_MAP, true);
+		return (EList<IfcRepresentationMap>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__REPRESENTATION_MAP,
+				true);
 	}
 
 	/**
@@ -211,7 +227,9 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationLayerAssignment> getLayerAssignments() {
-		return (EList<IfcPresentationLayerAssignment>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__LAYER_ASSIGNMENTS, true);
+		return (EList<IfcPresentationLayerAssignment>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__LAYER_ASSIGNMENTS,
+				true);
 	}
 
 	/**
@@ -239,7 +257,9 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProductRepresentation> getOfProductRepresentation() {
-		return (EList<IfcProductRepresentation>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__OF_PRODUCT_REPRESENTATION, true);
+		return (EList<IfcProductRepresentation>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION__OF_PRODUCT_REPRESENTATION,
+				true);
 	}
 
 	/**

@@ -35,9 +35,7 @@ import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.schema.EntityDefinition;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.StringUtils;
 import org.bimserver.utils.UTF8PrintWriter;
@@ -54,7 +52,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 
-public class IfcStepSerializer extends IfcSerializer {
+public abstract class IfcStepSerializer extends IfcSerializer {
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(IfcStepSerializer.class);
 	private static final boolean useIso8859_1 = false;
 	private static final EcorePackage ECORE_PACKAGE_INSTANCE = EcorePackage.eINSTANCE;
@@ -79,11 +77,15 @@ public class IfcStepSerializer extends IfcSerializer {
 	
 	private Iterator<IdEObject> iterator;
 	private UTF8PrintWriter out;
-	private SchemaDefinition schema;
+	private String headerSchema;
 
 	public IfcStepSerializer(PluginConfiguration pluginConfiguration) {
 	}
 
+	protected void setHeaderSchema(String headerSchema) {
+		this.headerSchema = headerSchema;
+	}
+	
 	@Override
 	public void reset() {
 		setMode(Mode.HEADER);
@@ -96,11 +98,6 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 		if (getMode() == Mode.HEADER) {
 			writeHeader(out);
-			try {
-				schema = getPluginManager().requireSchemaDefinition();
-			} catch (PluginException e) {
-				throw new SerializerException(e);
-			}
 			setMode(Mode.BODY);
 			iterator = model.getValues().iterator();
 			out.flush();
@@ -139,16 +136,15 @@ public class IfcStepSerializer extends IfcSerializer {
 			Date date = new Date();
 			out.println("FILE_DESCRIPTION ((''), '2;1');");
 			out.println("FILE_NAME ('', '" + dateFormatter.format(date) + "', (''), (''), '', 'BIMserver', '');");
-			out.println("FILE_SCHEMA (('IFC2X3'));");
+			out.println("FILE_SCHEMA (('" + headerSchema + "'));");
 		} else {
 			out.print("FILE_DESCRIPTION ((");
 			out.print(StringUtils.concat(ifcHeader.getDescription(), "'", ", "));
 			out.println("), '" + ifcHeader.getImplementationLevel() + "');");
 			out.println("FILE_NAME ('" + ifcHeader.getFilename() + "', '" + dateFormatter.format(ifcHeader.getTimeStamp()) + "', (" + StringUtils.concat(ifcHeader.getAuthor(), "'", ", ") + "), (" + StringUtils.concat(ifcHeader.getOrganization(), "'", ", ") + "), '" + ifcHeader.getPreProcessorVersion() + "', '" + ifcHeader.getOriginatingSystem() + "', '"	+ ifcHeader.getAuthorization() + "');");
 
-			// TODO For now forcing IFC2x3, maybe make this a setting?
 			//	out.println("FILE_SCHEMA (('" + ifcHeader.getIfcSchemaVersion() + "'));");
-			out.println("FILE_SCHEMA (('IFC2X3'));");
+			out.println("FILE_SCHEMA (('" + headerSchema + "'));");
 		}
 		out.println("ENDSEC;");
 		out.println("DATA;");
@@ -255,14 +251,14 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 		out.print(String.valueOf(convertedKey));
 		out.print("= ");
-		String upperCase = upperCases.get(eClass);
+		String upperCase = getPackageMetaData().getUpperCase(eClass);
 		if (upperCase == null) {
 			throw new SerializerException("Type not found: " + eClass.getName());
 		}
 		out.print(upperCase);
 		out.print(OPEN_PAREN);
 		boolean isFirst = true;
-		EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName());
+		EntityDefinition entityBN = getSchemaDefinition().getEntityBN(object.eClass().getName());
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 			if (feature.getEAnnotation("hidden") == null && (!entityBN.isDerived(feature.getName()) || entityBN.isDerivedOverride(feature.getName()))) {
 				EClassifier type = feature.getEType();
@@ -273,7 +269,7 @@ public class IfcStepSerializer extends IfcSerializer {
 					writeEnum(out, object, feature);
 					isFirst = false;
 				} else if (type instanceof EClass) {
-					if (!isInverse(feature)) {
+					if (!getPackageMetaData().isInverse(feature)) {
 						if (!isFirst) {
 							out.print(COMMA);
 						}
@@ -311,7 +307,7 @@ public class IfcStepSerializer extends IfcSerializer {
 				out.print(DASH);
 				out.print(String.valueOf(getExpressId((IdEObject) referencedObject)));
 			} else {
-				EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName());
+				EntityDefinition entityBN = getSchemaDefinition().getEntityBN(object.eClass().getName());
 				if (entityBN != null && entityBN.isDerived(feature.getName())) {
 					out.print(ASTERISK);
 				} else if (feature.isMany()) {
@@ -366,7 +362,7 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private void writeEmbedded(PrintWriter out, EObject eObject) throws SerializerException {
 		EClass class1 = eObject.eClass();
-		out.print(upperCases.get(class1));
+		out.print(getPackageMetaData().getUpperCase(class1));
 		out.print(OPEN_PAREN);
 		EStructuralFeature structuralFeature = class1.getEStructuralFeature(WRAPPED_VALUE);
 		if (structuralFeature != null) {
@@ -441,7 +437,7 @@ public class IfcStepSerializer extends IfcSerializer {
 							EStructuralFeature structuralFeature = class1.getEStructuralFeature(WRAPPED_VALUE);
 							if (structuralFeature != null) {
 								Object realVal = eObject.eGet(structuralFeature);
-								out.print(upperCases.get(class1));
+								out.print(getPackageMetaData().getUpperCase(class1));
 								out.print(OPEN_PAREN);
 								if (realVal instanceof Double) {
 									Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
@@ -538,10 +534,10 @@ public class IfcStepSerializer extends IfcSerializer {
 		} else {
 			if (get == null) {
 				EClassifier type = structuralFeature.getEType();
-				if (type == IFC_PACKAGE_INSTANCE.getIfcBoolean() || type == IFC_PACKAGE_INSTANCE.getIfcLogical() || type == ECORE_PACKAGE_INSTANCE.getEBoolean()) {
+				if (type.getName().equals("IfcBoolean") || type.getName().equals("IfcLogical") || type == ECORE_PACKAGE_INSTANCE.getEBoolean()) {
 					out.print(BOOLEAN_UNDEFINED);
 				} else {
-					EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName());
+					EntityDefinition entityBN = getSchemaDefinition().getEntityBN(object.eClass().getName());
 					if (entityBN != null && entityBN.isDerived(feature.getName())) {
 						out.print(ASTERISK);
 					} else {

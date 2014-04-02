@@ -33,7 +33,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcDateAndTime extends IfcDateTimeSelect, IfcObjectReferenceSelect {
+public interface IfcDateAndTime extends IfcDateTimeSelect,
+		IfcObjectReferenceSelect {
 	/**
 	 * Returns the value of the '<em><b>Date Component</b></em>' reference.
 	 * <!-- begin-user-doc -->

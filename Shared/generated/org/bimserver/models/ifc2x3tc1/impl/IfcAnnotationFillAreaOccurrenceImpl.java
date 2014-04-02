@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotationFillAreaOccurrence;
 import org.bimserver.models.ifc2x3tc1.IfcGlobalOrLocalEnum;
 import org.bimserver.models.ifc2x3tc1.IfcPoint;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAnnotationFillAreaOccurrenceImpl extends IfcAnnotationOccurrenceImpl implements IfcAnnotationFillAreaOccurrence {
+public class IfcAnnotationFillAreaOccurrenceImpl extends
+		IfcAnnotationOccurrenceImpl implements IfcAnnotationFillAreaOccurrence {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,9 @@ public class IfcAnnotationFillAreaOccurrenceImpl extends IfcAnnotationOccurrence
 	 * @generated
 	 */
 	public IfcPoint getFillStyleTarget() {
-		return (IfcPoint) eGet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__FILL_STYLE_TARGET, true);
+		return (IfcPoint) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__FILL_STYLE_TARGET,
+				true);
 	}
 
 	/**
@@ -71,7 +75,8 @@ public class IfcAnnotationFillAreaOccurrenceImpl extends IfcAnnotationOccurrence
 	 * @generated
 	 */
 	public void setFillStyleTarget(IfcPoint newFillStyleTarget) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__FILL_STYLE_TARGET, newFillStyleTarget);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__FILL_STYLE_TARGET,
+				newFillStyleTarget);
 	}
 
 	/**
@@ -98,7 +103,9 @@ public class IfcAnnotationFillAreaOccurrenceImpl extends IfcAnnotationOccurrence
 	 * @generated
 	 */
 	public IfcGlobalOrLocalEnum getGlobalOrLocal() {
-		return (IfcGlobalOrLocalEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__GLOBAL_OR_LOCAL, true);
+		return (IfcGlobalOrLocalEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__GLOBAL_OR_LOCAL,
+				true);
 	}
 
 	/**
@@ -107,7 +114,8 @@ public class IfcAnnotationFillAreaOccurrenceImpl extends IfcAnnotationOccurrence
 	 * @generated
 	 */
 	public void setGlobalOrLocal(IfcGlobalOrLocalEnum newGlobalOrLocal) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__GLOBAL_OR_LOCAL, newGlobalOrLocal);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__GLOBAL_OR_LOCAL,
+				newGlobalOrLocal);
 	}
 
 	/**

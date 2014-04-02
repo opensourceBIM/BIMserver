@@ -46,7 +46,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcMechanicalSteelMaterialProperties extends IfcMechanicalMaterialProperties {
+public interface IfcMechanicalSteelMaterialProperties extends
+		IfcMechanicalMaterialProperties {
 	/**
 	 * Returns the value of the '<em><b>Yield Stress</b></em>' attribute.
 	 * <!-- begin-user-doc -->

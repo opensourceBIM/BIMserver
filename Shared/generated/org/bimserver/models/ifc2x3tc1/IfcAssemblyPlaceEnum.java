@@ -138,7 +138,8 @@ public enum IfcAssemblyPlaceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAssemblyPlaceEnum[] VALUES_ARRAY = new IfcAssemblyPlaceEnum[] { NULL, SITE, NOTDEFINED, FACTORY, };
+	private static final IfcAssemblyPlaceEnum[] VALUES_ARRAY = new IfcAssemblyPlaceEnum[] {
+			NULL, SITE, NOTDEFINED, FACTORY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Assembly Place Enum</b></em>' enumerators.
@@ -146,7 +147,8 @@ public enum IfcAssemblyPlaceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAssemblyPlaceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAssemblyPlaceEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Assembly Place Enum</b></em>' literal with the specified literal value.

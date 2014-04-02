@@ -238,8 +238,9 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTimeSeriesDataTypeEnum[] VALUES_ARRAY = new IfcTimeSeriesDataTypeEnum[] { NULL, NOTDEFINED, CONTINUOUS, DISCRETE, DISCRETEBINARY, PIECEWISEBINARY,
-			PIECEWISECONSTANT, PIECEWISECONTINUOUS, };
+	private static final IfcTimeSeriesDataTypeEnum[] VALUES_ARRAY = new IfcTimeSeriesDataTypeEnum[] {
+			NULL, NOTDEFINED, CONTINUOUS, DISCRETE, DISCRETEBINARY,
+			PIECEWISEBINARY, PIECEWISECONSTANT, PIECEWISECONTINUOUS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Time Series Data Type Enum</b></em>' enumerators.
@@ -247,7 +248,8 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcTimeSeriesDataTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcTimeSeriesDataTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Time Series Data Type Enum</b></em>' literal with the specified literal value.

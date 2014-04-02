@@ -35,7 +35,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcShellBasedSurfaceModel extends IfcGeometricRepresentationItem {
+public interface IfcShellBasedSurfaceModel extends
+		IfcGeometricRepresentationItem {
 	/**
 	 * Returns the value of the '<em><b>Sbsm Boundary</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc2x3tc1.IfcShell}.

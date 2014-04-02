@@ -17,11 +17,14 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcApproval;
 import org.bimserver.models.ifc2x3tc1.IfcApprovalPropertyRelationship;
 import org.bimserver.models.ifc2x3tc1.IfcProperty;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -38,7 +41,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl implements IfcApprovalPropertyRelationship {
+public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl
+		implements IfcApprovalPropertyRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,7 +79,9 @@ public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl implement
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getApprovedProperties() {
-		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVED_PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVED_PROPERTIES,
+				true);
 	}
 
 	/**
@@ -84,7 +90,9 @@ public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl implement
 	 * @generated
 	 */
 	public IfcApproval getApproval() {
-		return (IfcApproval) eGet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL, true);
+		return (IfcApproval) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL,
+				true);
 	}
 
 	/**
@@ -93,7 +101,8 @@ public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl implement
 	 * @generated
 	 */
 	public void setApproval(IfcApproval newApproval) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL, newApproval);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVAL,
+				newApproval);
 	}
 
 } //IfcApprovalPropertyRelationshipImpl

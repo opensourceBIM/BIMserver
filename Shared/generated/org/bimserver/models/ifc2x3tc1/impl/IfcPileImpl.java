@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPile;
 import org.bimserver.models.ifc2x3tc1.IfcPileConstructionEnum;
 import org.bimserver.models.ifc2x3tc1.IfcPileTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -62,7 +63,8 @@ public class IfcPileImpl extends IfcBuildingElementImpl implements IfcPile {
 	 * @generated
 	 */
 	public IfcPileTypeEnum getPredefinedType() {
-		return (IfcPileTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PILE__PREDEFINED_TYPE, true);
+		return (IfcPileTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PILE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -71,7 +73,8 @@ public class IfcPileImpl extends IfcBuildingElementImpl implements IfcPile {
 	 * @generated
 	 */
 	public void setPredefinedType(IfcPileTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PILE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PILE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 	/**
@@ -80,7 +83,8 @@ public class IfcPileImpl extends IfcBuildingElementImpl implements IfcPile {
 	 * @generated
 	 */
 	public IfcPileConstructionEnum getConstructionType() {
-		return (IfcPileConstructionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PILE__CONSTRUCTION_TYPE, true);
+		return (IfcPileConstructionEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PILE__CONSTRUCTION_TYPE, true);
 	}
 
 	/**
@@ -89,7 +93,8 @@ public class IfcPileImpl extends IfcBuildingElementImpl implements IfcPile {
 	 * @generated
 	 */
 	public void setConstructionType(IfcPileConstructionEnum newConstructionType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PILE__CONSTRUCTION_TYPE, newConstructionType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PILE__CONSTRUCTION_TYPE,
+				newConstructionType);
 	}
 
 	/**

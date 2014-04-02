@@ -188,7 +188,8 @@ public enum IfcDataOriginEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDataOriginEnum[] VALUES_ARRAY = new IfcDataOriginEnum[] { NULL, NOTDEFINED, PREDICTED, MEASURED, USERDEFINED, SIMULATED, };
+	private static final IfcDataOriginEnum[] VALUES_ARRAY = new IfcDataOriginEnum[] {
+			NULL, NOTDEFINED, PREDICTED, MEASURED, USERDEFINED, SIMULATED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Data Origin Enum</b></em>' enumerators.
@@ -196,7 +197,8 @@ public enum IfcDataOriginEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDataOriginEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDataOriginEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Data Origin Enum</b></em>' literal with the specified literal value.

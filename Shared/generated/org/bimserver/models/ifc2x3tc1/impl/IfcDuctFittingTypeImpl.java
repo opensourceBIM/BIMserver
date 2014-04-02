@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDuctFittingType;
 import org.bimserver.models.ifc2x3tc1.IfcDuctFittingTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDuctFittingTypeImpl extends IfcFlowFittingTypeImpl implements IfcDuctFittingType {
+public class IfcDuctFittingTypeImpl extends IfcFlowFittingTypeImpl implements
+		IfcDuctFittingType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcDuctFittingTypeImpl extends IfcFlowFittingTypeImpl implements If
 	 * @generated
 	 */
 	public IfcDuctFittingTypeEnum getPredefinedType() {
-		return (IfcDuctFittingTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DUCT_FITTING_TYPE__PREDEFINED_TYPE, true);
+		return (IfcDuctFittingTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DUCT_FITTING_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcDuctFittingTypeImpl extends IfcFlowFittingTypeImpl implements If
 	 * @generated
 	 */
 	public void setPredefinedType(IfcDuctFittingTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DUCT_FITTING_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DUCT_FITTING_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcDuctFittingTypeImpl

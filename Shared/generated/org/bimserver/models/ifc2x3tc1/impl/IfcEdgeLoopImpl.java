@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcEdgeLoop;
 import org.bimserver.models.ifc2x3tc1.IfcOrientedEdge;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -62,7 +64,8 @@ public class IfcEdgeLoopImpl extends IfcLoopImpl implements IfcEdgeLoop {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrientedEdge> getEdgeList() {
-		return (EList<IfcOrientedEdge>) eGet(Ifc2x3tc1Package.Literals.IFC_EDGE_LOOP__EDGE_LIST, true);
+		return (EList<IfcOrientedEdge>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_EDGE_LOOP__EDGE_LIST, true);
 	}
 
 } //IfcEdgeLoopImpl

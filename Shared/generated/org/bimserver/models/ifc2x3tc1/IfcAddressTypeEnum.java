@@ -188,7 +188,8 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAddressTypeEnum[] VALUES_ARRAY = new IfcAddressTypeEnum[] { NULL, SITE, HOME, OFFICE, DISTRIBUTIONPOINT, USERDEFINED, };
+	private static final IfcAddressTypeEnum[] VALUES_ARRAY = new IfcAddressTypeEnum[] {
+			NULL, SITE, HOME, OFFICE, DISTRIBUTIONPOINT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Address Type Enum</b></em>' enumerators.
@@ -196,7 +197,8 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAddressTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAddressTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Address Type Enum</b></em>' literal with the specified literal value.

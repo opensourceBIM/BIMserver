@@ -113,7 +113,8 @@ public enum IfcRibPlateDirectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRibPlateDirectionEnum[] VALUES_ARRAY = new IfcRibPlateDirectionEnum[] { NULL, DIRECTION_Y, DIRECTION_X, };
+	private static final IfcRibPlateDirectionEnum[] VALUES_ARRAY = new IfcRibPlateDirectionEnum[] {
+			NULL, DIRECTION_Y, DIRECTION_X, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Rib Plate Direction Enum</b></em>' enumerators.
@@ -121,7 +122,8 @@ public enum IfcRibPlateDirectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcRibPlateDirectionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcRibPlateDirectionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Rib Plate Direction Enum</b></em>' literal with the specified literal value.

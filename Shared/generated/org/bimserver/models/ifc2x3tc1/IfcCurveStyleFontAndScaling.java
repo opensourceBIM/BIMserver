@@ -35,7 +35,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcCurveStyleFontAndScaling extends IfcCurveFontOrScaledCurveFontSelect {
+public interface IfcCurveStyleFontAndScaling extends
+		IfcCurveFontOrScaledCurveFontSelect {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

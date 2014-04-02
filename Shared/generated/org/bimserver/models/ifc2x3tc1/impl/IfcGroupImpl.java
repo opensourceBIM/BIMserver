@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGroup;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToGroup;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -60,7 +61,8 @@ public class IfcGroupImpl extends IfcObjectImpl implements IfcGroup {
 	 * @generated
 	 */
 	public IfcRelAssignsToGroup getIsGroupedBy() {
-		return (IfcRelAssignsToGroup) eGet(Ifc2x3tc1Package.Literals.IFC_GROUP__IS_GROUPED_BY, true);
+		return (IfcRelAssignsToGroup) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GROUP__IS_GROUPED_BY, true);
 	}
 
 	/**

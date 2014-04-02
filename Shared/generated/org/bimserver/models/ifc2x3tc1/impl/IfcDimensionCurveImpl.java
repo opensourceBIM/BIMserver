@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDimensionCurve;
 import org.bimserver.models.ifc2x3tc1.IfcTerminatorSymbol;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDimensionCurveImpl extends IfcAnnotationCurveOccurrenceImpl implements IfcDimensionCurve {
+public class IfcDimensionCurveImpl extends IfcAnnotationCurveOccurrenceImpl
+		implements IfcDimensionCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,9 @@ public class IfcDimensionCurveImpl extends IfcAnnotationCurveOccurrenceImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTerminatorSymbol> getAnnotatedBySymbols() {
-		return (EList<IfcTerminatorSymbol>) eGet(Ifc2x3tc1Package.Literals.IFC_DIMENSION_CURVE__ANNOTATED_BY_SYMBOLS, true);
+		return (EList<IfcTerminatorSymbol>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DIMENSION_CURVE__ANNOTATED_BY_SYMBOLS,
+				true);
 	}
 
 	/**

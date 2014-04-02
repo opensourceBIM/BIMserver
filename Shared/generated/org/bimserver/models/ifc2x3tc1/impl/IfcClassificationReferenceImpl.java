@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcClassification;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationReference;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl implements IfcClassificationReference {
+public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
+		implements IfcClassificationReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl imp
 	 * @generated
 	 */
 	public IfcClassification getReferencedSource() {
-		return (IfcClassification) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE, true);
+		return (IfcClassification) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl imp
 	 * @generated
 	 */
 	public void setReferencedSource(IfcClassification newReferencedSource) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE, newReferencedSource);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE,
+				newReferencedSource);
 	}
 
 	/**
