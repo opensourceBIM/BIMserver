@@ -17,12 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.GeometryInstance;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
-import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -81,7 +82,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public Vector3f getMinBounds() {
-		return (Vector3f) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__MIN_BOUNDS, true);
+		return (Vector3f) eGet(
+				Ifc2x3tc1Package.Literals.GEOMETRY_INFO__MIN_BOUNDS, true);
 	}
 
 	/**
@@ -99,7 +101,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public Vector3f getMaxBounds() {
-		return (Vector3f) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__MAX_BOUNDS, true);
+		return (Vector3f) eGet(
+				Ifc2x3tc1Package.Literals.GEOMETRY_INFO__MAX_BOUNDS, true);
 	}
 
 	/**
@@ -117,7 +120,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public Integer getStartVertex() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_VERTEX, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_VERTEX, true);
 	}
 
 	/**
@@ -126,7 +130,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setStartVertex(Integer newStartVertex) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_VERTEX, newStartVertex);
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_VERTEX,
+				newStartVertex);
 	}
 
 	/**
@@ -135,7 +140,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public Integer getStartIndex() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_INDEX, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_INDEX, true);
 	}
 
 	/**
@@ -144,7 +150,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setStartIndex(Integer newStartIndex) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_INDEX, newStartIndex);
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_INDEX,
+				newStartIndex);
 	}
 
 	/**
@@ -153,7 +160,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public Integer getPrimitiveCount() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__PRIMITIVE_COUNT, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.GEOMETRY_INFO__PRIMITIVE_COUNT, true);
 	}
 
 	/**
@@ -162,7 +170,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setPrimitiveCount(Integer newPrimitiveCount) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__PRIMITIVE_COUNT, newPrimitiveCount);
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__PRIMITIVE_COUNT,
+				newPrimitiveCount);
 	}
 
 	/**
@@ -171,7 +180,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public GeometryData getData() {
-		return (GeometryData) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__DATA, true);
+		return (GeometryData) eGet(
+				Ifc2x3tc1Package.Literals.GEOMETRY_INFO__DATA, true);
 	}
 
 	/**
@@ -189,7 +199,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public GeometryInstance getInstance() {
-		return (GeometryInstance) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__INSTANCE, true);
+		return (GeometryInstance) eGet(
+				Ifc2x3tc1Package.Literals.GEOMETRY_INFO__INSTANCE, true);
 	}
 
 	/**
@@ -206,9 +217,9 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	public byte[] getTransformation() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__TRANSFORMATION, true);
+		return (byte[]) eGet(
+				Ifc2x3tc1Package.Literals.GEOMETRY_INFO__TRANSFORMATION, true);
 	}
 
 	/**
@@ -217,7 +228,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setTransformation(byte[] newTransformation) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__TRANSFORMATION, newTransformation);
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__TRANSFORMATION,
+				newTransformation);
 	}
 
 } //GeometryInfoImpl

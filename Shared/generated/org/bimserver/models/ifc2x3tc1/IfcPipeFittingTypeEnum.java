@@ -288,8 +288,9 @@ public enum IfcPipeFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPipeFittingTypeEnum[] VALUES_ARRAY = new IfcPipeFittingTypeEnum[] { NULL, EXIT, NOTDEFINED, TRANSITION, OBSTRUCTION, ENTRY, JUNCTION, USERDEFINED,
-			CONNECTOR, BEND, };
+	private static final IfcPipeFittingTypeEnum[] VALUES_ARRAY = new IfcPipeFittingTypeEnum[] {
+			NULL, EXIT, NOTDEFINED, TRANSITION, OBSTRUCTION, ENTRY, JUNCTION,
+			USERDEFINED, CONNECTOR, BEND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pipe Fitting Type Enum</b></em>' enumerators.
@@ -297,7 +298,8 @@ public enum IfcPipeFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPipeFittingTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPipeFittingTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Pipe Fitting Type Enum</b></em>' literal with the specified literal value.

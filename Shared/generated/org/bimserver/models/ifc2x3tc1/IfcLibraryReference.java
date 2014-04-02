@@ -34,7 +34,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcLibraryReference extends IfcExternalReference, IfcLibrarySelect {
+public interface IfcLibraryReference extends IfcExternalReference,
+		IfcLibrarySelect {
 	/**
 	 * Returns the value of the '<em><b>Reference Into Library</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc2x3tc1.IfcLibraryInformation}.

@@ -32,7 +32,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcClassificationReference extends IfcExternalReference, IfcClassificationNotationSelect {
+public interface IfcClassificationReference extends IfcExternalReference,
+		IfcClassificationNotationSelect {
 	/**
 	 * Returns the value of the '<em><b>Referenced Source</b></em>' reference.
 	 * <!-- begin-user-doc -->

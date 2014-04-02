@@ -42,7 +42,7 @@ public class TestColor {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.requireSchemaDefinition("ifc2x3tc1"));
 //			IfcModelInterface model = deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 			IfcModelInterface model = deserializer.read(new File("D:\\Dropbox\\Shared\\BIMserver\\IFC modellen\\top secret statsbygg\\SB_11873_6_ARK_PNN_2012.02.13.ifc"));
 			model.fixOidCounter();

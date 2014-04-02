@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcConstructionResource;
 import org.bimserver.models.ifc2x3tc1.IfcMeasureWithUnit;
 import org.bimserver.models.ifc2x3tc1.IfcResourceConsumptionEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -38,7 +39,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcConstructionResource {
+public class IfcConstructionResourceImpl extends IfcResourceImpl implements
+		IfcConstructionResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +66,9 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcC
 	 * @generated
 	 */
 	public String getResourceIdentifier() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_IDENTIFIER, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_IDENTIFIER,
+				true);
 	}
 
 	/**
@@ -73,7 +77,8 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcC
 	 * @generated
 	 */
 	public void setResourceIdentifier(String newResourceIdentifier) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_IDENTIFIER, newResourceIdentifier);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_IDENTIFIER,
+				newResourceIdentifier);
 	}
 
 	/**
@@ -100,7 +105,9 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcC
 	 * @generated
 	 */
 	public String getResourceGroup() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_GROUP, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_GROUP,
+				true);
 	}
 
 	/**
@@ -109,7 +116,8 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcC
 	 * @generated
 	 */
 	public void setResourceGroup(String newResourceGroup) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_GROUP, newResourceGroup);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_GROUP,
+				newResourceGroup);
 	}
 
 	/**
@@ -136,7 +144,9 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcC
 	 * @generated
 	 */
 	public IfcResourceConsumptionEnum getResourceConsumption() {
-		return (IfcResourceConsumptionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_CONSUMPTION, true);
+		return (IfcResourceConsumptionEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_CONSUMPTION,
+				true);
 	}
 
 	/**
@@ -144,8 +154,10 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResourceConsumption(IfcResourceConsumptionEnum newResourceConsumption) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_CONSUMPTION, newResourceConsumption);
+	public void setResourceConsumption(
+			IfcResourceConsumptionEnum newResourceConsumption) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_CONSUMPTION,
+				newResourceConsumption);
 	}
 
 	/**
@@ -172,7 +184,9 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcC
 	 * @generated
 	 */
 	public IfcMeasureWithUnit getBaseQuantity() {
-		return (IfcMeasureWithUnit) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__BASE_QUANTITY, true);
+		return (IfcMeasureWithUnit) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__BASE_QUANTITY,
+				true);
 	}
 
 	/**
@@ -181,7 +195,8 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcC
 	 * @generated
 	 */
 	public void setBaseQuantity(IfcMeasureWithUnit newBaseQuantity) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__BASE_QUANTITY, newBaseQuantity);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__BASE_QUANTITY,
+				newBaseQuantity);
 	}
 
 	/**

@@ -16,45 +16,15 @@
  */
 package org.bimserver.models.log.impl;
 
-import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.CheckoutRelated;
-import org.bimserver.models.log.DatabaseCreated;
-import org.bimserver.models.log.Download;
-import org.bimserver.models.log.ExtendedDataAddedToProject;
-import org.bimserver.models.log.ExtendedDataAddedToRevision;
-import org.bimserver.models.log.GeoTagUpdated;
-import org.bimserver.models.log.LogAction;
-import org.bimserver.models.log.LogFactory;
-import org.bimserver.models.log.LogPackage;
-import org.bimserver.models.log.NewCheckoutAdded;
-import org.bimserver.models.log.NewObjectIDMUploaded;
-import org.bimserver.models.log.NewProjectAdded;
-import org.bimserver.models.log.NewRevisionAdded;
-import org.bimserver.models.log.NewUserAdded;
-import org.bimserver.models.log.PasswordChanged;
-import org.bimserver.models.log.PasswordReset;
-import org.bimserver.models.log.ProjectDeleted;
-import org.bimserver.models.log.ProjectRelated;
-import org.bimserver.models.log.ProjectUndeleted;
-import org.bimserver.models.log.ProjectUpdated;
-import org.bimserver.models.log.RemoteServiceCalled;
-import org.bimserver.models.log.RevisionBranched;
-import org.bimserver.models.log.RevisionRelated;
-import org.bimserver.models.log.RevisionUpdated;
-import org.bimserver.models.log.ServerLog;
-import org.bimserver.models.log.ServerStarted;
-import org.bimserver.models.log.SettingsSaved;
-import org.bimserver.models.log.UserAddedToProject;
-import org.bimserver.models.log.UserChanged;
-import org.bimserver.models.log.UserDeleted;
-import org.bimserver.models.log.UserRelated;
-import org.bimserver.models.log.UserRemovedFromProject;
-import org.bimserver.models.log.UserUndeleted;
+import org.bimserver.models.log.*;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -72,7 +42,8 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 */
 	public static LogFactory init() {
 		try {
-			LogFactory theLogFactory = (LogFactory) EPackage.Registry.INSTANCE.getEFactory(LogPackage.eNS_URI);
+			LogFactory theLogFactory = (LogFactory) EPackage.Registry.INSTANCE
+					.getEFactory(LogPackage.eNS_URI);
 			if (theLogFactory != null) {
 				return theLogFactory;
 			}
@@ -163,7 +134,8 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 		case LogPackage.REMOTE_SERVICE_CALLED:
 			return (EObject) createRemoteServiceCalled();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -178,7 +150,8 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 		case LogPackage.ACCESS_METHOD:
 			return createAccessMethodFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -193,7 +166,8 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 		case LogPackage.ACCESS_METHOD:
 			return convertAccessMethodToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -512,10 +486,13 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AccessMethod createAccessMethodFromString(EDataType eDataType, String initialValue) {
+	public AccessMethod createAccessMethodFromString(EDataType eDataType,
+			String initialValue) {
 		AccessMethod result = AccessMethod.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
 		return result;
 	}
 
@@ -524,7 +501,8 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertAccessMethodToString(EDataType eDataType, Object instanceValue) {
+	public String convertAccessMethodToString(EDataType eDataType,
+			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

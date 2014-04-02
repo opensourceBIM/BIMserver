@@ -17,10 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotationSurface;
 import org.bimserver.models.ifc2x3tc1.IfcTextureCoordinate;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +39,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextureCoordinateImpl extends IdEObjectImpl implements IfcTextureCoordinate {
+public class IfcTextureCoordinateImpl extends IdEObjectImpl implements
+		IfcTextureCoordinate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +77,9 @@ public class IfcTextureCoordinateImpl extends IdEObjectImpl implements IfcTextur
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAnnotationSurface> getAnnotatedSurface() {
-		return (EList<IfcAnnotationSurface>) eGet(Ifc2x3tc1Package.Literals.IFC_TEXTURE_COORDINATE__ANNOTATED_SURFACE, true);
+		return (EList<IfcAnnotationSurface>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXTURE_COORDINATE__ANNOTATED_SURFACE,
+				true);
 	}
 
 	/**

@@ -239,11 +239,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void addProject(final java.lang.String projectName, final AddProjectCallback callback) {
+	public void addProject(final java.lang.String projectName, final java.lang.String schema, final AddProjectCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.addProject(projectName));
+					callback.success(syncService.addProject(projectName, schema));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -251,11 +251,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void addProjectAsSubProject(final java.lang.String projectName, final java.lang.Long parentPoid, final AddProjectAsSubProjectCallback callback) {
+	public void addProjectAsSubProject(final java.lang.String projectName, final java.lang.Long parentPoid, final java.lang.String schema, final AddProjectAsSubProjectCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.addProjectAsSubProject(projectName, parentPoid));
+					callback.success(syncService.addProjectAsSubProject(projectName, parentPoid, schema));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -395,11 +395,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void downloadByTypes(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> classNames, final java.lang.Long serializerOid, final java.lang.Boolean includeAllSubtypes, final java.lang.Boolean useObjectIDM, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByTypesCallback callback) {
+	public void downloadByTypes(final java.util.Set<java.lang.Long> roids, final java.lang.String schema, final java.util.Set<java.lang.String> classNames, final java.lang.Long serializerOid, final java.lang.Boolean includeAllSubtypes, final java.lang.Boolean useObjectIDM, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByTypesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.downloadByTypes(roids, classNames, serializerOid, includeAllSubtypes, useObjectIDM, deep, sync));
+					callback.success(syncService.downloadByTypes(roids, schema, classNames, serializerOid, includeAllSubtypes, useObjectIDM, deep, sync));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcOccupant;
 import org.bimserver.models.ifc2x3tc1.IfcOccupantTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -60,7 +61,8 @@ public class IfcOccupantImpl extends IfcActorImpl implements IfcOccupant {
 	 * @generated
 	 */
 	public IfcOccupantTypeEnum getPredefinedType() {
-		return (IfcOccupantTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_OCCUPANT__PREDEFINED_TYPE, true);
+		return (IfcOccupantTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_OCCUPANT__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -69,7 +71,8 @@ public class IfcOccupantImpl extends IfcActorImpl implements IfcOccupant {
 	 * @generated
 	 */
 	public void setPredefinedType(IfcOccupantTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_OCCUPANT__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_OCCUPANT__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcOccupantImpl

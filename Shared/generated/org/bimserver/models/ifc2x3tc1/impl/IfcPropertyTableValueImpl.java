@@ -20,7 +20,9 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPropertyTableValue;
 import org.bimserver.models.ifc2x3tc1.IfcUnit;
 import org.bimserver.models.ifc2x3tc1.IfcValue;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -40,7 +42,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements IfcPropertyTableValue {
+public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
+		IfcPropertyTableValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,7 +70,9 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getDefiningValues() {
-		return (EList<IfcValue>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_VALUES, true);
+		return (EList<IfcValue>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_VALUES,
+				true);
 	}
 
 	/**
@@ -77,7 +82,9 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getDefinedValues() {
-		return (EList<IfcValue>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_VALUES, true);
+		return (EList<IfcValue>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_VALUES,
+				true);
 	}
 
 	/**
@@ -86,7 +93,9 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 * @generated
 	 */
 	public String getExpression() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION,
+				true);
 	}
 
 	/**
@@ -95,7 +104,8 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 * @generated
 	 */
 	public void setExpression(String newExpression) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION, newExpression);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION,
+				newExpression);
 	}
 
 	/**
@@ -122,7 +132,9 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 * @generated
 	 */
 	public IfcUnit getDefiningUnit() {
-		return (IfcUnit) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT, true);
+		return (IfcUnit) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT,
+				true);
 	}
 
 	/**
@@ -131,7 +143,8 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 * @generated
 	 */
 	public void setDefiningUnit(IfcUnit newDefiningUnit) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT, newDefiningUnit);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT,
+				newDefiningUnit);
 	}
 
 	/**
@@ -158,7 +171,9 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 * @generated
 	 */
 	public IfcUnit getDefinedUnit() {
-		return (IfcUnit) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT, true);
+		return (IfcUnit) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT,
+				true);
 	}
 
 	/**
@@ -167,7 +182,8 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 * @generated
 	 */
 	public void setDefinedUnit(IfcUnit newDefinedUnit) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT, newDefinedUnit);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT,
+				newDefinedUnit);
 	}
 
 	/**

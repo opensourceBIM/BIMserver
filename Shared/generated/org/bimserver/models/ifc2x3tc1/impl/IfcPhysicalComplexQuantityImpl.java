@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPhysicalComplexQuantity;
 import org.bimserver.models.ifc2x3tc1.IfcPhysicalQuantity;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -38,7 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl implements IfcPhysicalComplexQuantity {
+public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl
+		implements IfcPhysicalComplexQuantity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,7 +68,9 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPhysicalQuantity> getHasQuantities() {
-		return (EList<IfcPhysicalQuantity>) eGet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__HAS_QUANTITIES, true);
+		return (EList<IfcPhysicalQuantity>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__HAS_QUANTITIES,
+				true);
 	}
 
 	/**
@@ -74,7 +79,9 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl impl
 	 * @generated
 	 */
 	public String getDiscrimination() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION,
+				true);
 	}
 
 	/**
@@ -83,7 +90,8 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl impl
 	 * @generated
 	 */
 	public void setDiscrimination(String newDiscrimination) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION, newDiscrimination);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION,
+				newDiscrimination);
 	}
 
 	/**
@@ -92,7 +100,9 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl impl
 	 * @generated
 	 */
 	public String getQuality() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__QUALITY, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__QUALITY,
+				true);
 	}
 
 	/**
@@ -101,7 +111,8 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl impl
 	 * @generated
 	 */
 	public void setQuality(String newQuality) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__QUALITY, newQuality);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__QUALITY,
+				newQuality);
 	}
 
 	/**
@@ -128,7 +139,9 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl impl
 	 * @generated
 	 */
 	public String getUsage() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__USAGE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__USAGE,
+				true);
 	}
 
 	/**
@@ -137,7 +150,8 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl impl
 	 * @generated
 	 */
 	public void setUsage(String newUsage) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__USAGE, newUsage);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__USAGE,
+				newUsage);
 	}
 
 	/**

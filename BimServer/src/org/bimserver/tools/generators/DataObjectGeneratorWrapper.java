@@ -65,7 +65,7 @@ public class DataObjectGeneratorWrapper {
 					Object[] arguments = new Object[]{
 						eClassifier,
 						new ImportManager(),
-						new MetaDataManager(ePackages)
+						new MetaDataManager(ePackages, null)
 					};
 					String generated = dataObjectGenerator.generate(arguments);
 					String fileName = "S" + eClassifier.getName() + ".java";

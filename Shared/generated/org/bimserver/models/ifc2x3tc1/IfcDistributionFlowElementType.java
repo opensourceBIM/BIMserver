@@ -26,5 +26,6 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcDistributionFlowElementType extends IfcDistributionElementType {
+public interface IfcDistributionFlowElementType extends
+		IfcDistributionElementType {
 } // IfcDistributionFlowElementType

@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCsgSelect;
 import org.bimserver.models.ifc2x3tc1.IfcCsgSolid;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -60,7 +61,9 @@ public class IfcCsgSolidImpl extends IfcSolidModelImpl implements IfcCsgSolid {
 	 * @generated
 	 */
 	public IfcCsgSelect getTreeRootExpression() {
-		return (IfcCsgSelect) eGet(Ifc2x3tc1Package.Literals.IFC_CSG_SOLID__TREE_ROOT_EXPRESSION, true);
+		return (IfcCsgSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CSG_SOLID__TREE_ROOT_EXPRESSION,
+				true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcCsgSolidImpl extends IfcSolidModelImpl implements IfcCsgSolid {
 	 * @generated
 	 */
 	public void setTreeRootExpression(IfcCsgSelect newTreeRootExpression) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CSG_SOLID__TREE_ROOT_EXPRESSION, newTreeRootExpression);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CSG_SOLID__TREE_ROOT_EXPRESSION,
+				newTreeRootExpression);
 	}
 
 } //IfcCsgSolidImpl

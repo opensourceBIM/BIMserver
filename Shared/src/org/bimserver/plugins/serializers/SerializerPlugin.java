@@ -17,6 +17,7 @@ package org.bimserver.plugins.serializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 
@@ -34,4 +35,9 @@ public interface SerializerPlugin extends Plugin {
 	 * @return Whether this plugin will be needing geometry
 	 */
 	boolean needsGeometry();
+	
+	/**
+	 * @return The schema supported by this serializer
+	 */
+	Schema[] getSupportedSchemas();
 }

@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcContextDependentUnit;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -33,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcContextDependentUnitImpl extends IfcNamedUnitImpl implements IfcContextDependentUnit {
+public class IfcContextDependentUnitImpl extends IfcNamedUnitImpl implements
+		IfcContextDependentUnit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59,7 +61,9 @@ public class IfcContextDependentUnitImpl extends IfcNamedUnitImpl implements Ifc
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__NAME,
+				true);
 	}
 
 	/**
@@ -68,7 +72,8 @@ public class IfcContextDependentUnitImpl extends IfcNamedUnitImpl implements Ifc
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__NAME, newName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__NAME,
+				newName);
 	}
 
 } //IfcContextDependentUnitImpl

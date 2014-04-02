@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProperty;
 import org.bimserver.models.ifc2x3tc1.IfcRelOverridesProperties;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelOverridesPropertiesImpl extends IfcRelDefinesByPropertiesImpl implements IfcRelOverridesProperties {
+public class IfcRelOverridesPropertiesImpl extends
+		IfcRelDefinesByPropertiesImpl implements IfcRelOverridesProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,9 @@ public class IfcRelOverridesPropertiesImpl extends IfcRelDefinesByPropertiesImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getOverridingProperties() {
-		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_REL_OVERRIDES_PROPERTIES__OVERRIDING_PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_OVERRIDES_PROPERTIES__OVERRIDING_PROPERTIES,
+				true);
 	}
 
 } //IfcRelOverridesPropertiesImpl

@@ -113,7 +113,8 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProjectedOrTrueLengthEnum[] VALUES_ARRAY = new IfcProjectedOrTrueLengthEnum[] { NULL, TRUE_LENGTH, PROJECTED_LENGTH, };
+	private static final IfcProjectedOrTrueLengthEnum[] VALUES_ARRAY = new IfcProjectedOrTrueLengthEnum[] {
+			NULL, TRUE_LENGTH, PROJECTED_LENGTH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Projected Or True Length Enum</b></em>' enumerators.
@@ -121,7 +122,8 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProjectedOrTrueLengthEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProjectedOrTrueLengthEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Projected Or True Length Enum</b></em>' literal with the specified literal value.

@@ -17,12 +17,15 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCalendarDate;
 import org.bimserver.models.ifc2x3tc1.IfcLibraryInformation;
 import org.bimserver.models.ifc2x3tc1.IfcLibraryReference;
 import org.bimserver.models.ifc2x3tc1.IfcOrganization;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -42,7 +45,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibraryInformation {
+public class IfcLibraryInformationImpl extends IdEObjectImpl implements
+		IfcLibraryInformation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,7 +82,8 @@ public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibra
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__NAME, true);
 	}
 
 	/**
@@ -96,7 +101,9 @@ public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibra
 	 * @generated
 	 */
 	public String getVersion() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__VERSION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__VERSION,
+				true);
 	}
 
 	/**
@@ -105,7 +112,8 @@ public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibra
 	 * @generated
 	 */
 	public void setVersion(String newVersion) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__VERSION, newVersion);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__VERSION,
+				newVersion);
 	}
 
 	/**
@@ -132,7 +140,9 @@ public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibra
 	 * @generated
 	 */
 	public IfcOrganization getPublisher() {
-		return (IfcOrganization) eGet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__PUBLISHER, true);
+		return (IfcOrganization) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__PUBLISHER,
+				true);
 	}
 
 	/**
@@ -141,7 +151,8 @@ public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibra
 	 * @generated
 	 */
 	public void setPublisher(IfcOrganization newPublisher) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__PUBLISHER, newPublisher);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__PUBLISHER,
+				newPublisher);
 	}
 
 	/**
@@ -168,7 +179,9 @@ public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibra
 	 * @generated
 	 */
 	public IfcCalendarDate getVersionDate() {
-		return (IfcCalendarDate) eGet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__VERSION_DATE, true);
+		return (IfcCalendarDate) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__VERSION_DATE,
+				true);
 	}
 
 	/**
@@ -177,7 +190,8 @@ public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibra
 	 * @generated
 	 */
 	public void setVersionDate(IfcCalendarDate newVersionDate) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__VERSION_DATE, newVersionDate);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__VERSION_DATE,
+				newVersionDate);
 	}
 
 	/**
@@ -205,7 +219,9 @@ public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibra
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLibraryReference> getLibraryReference() {
-		return (EList<IfcLibraryReference>) eGet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_REFERENCE, true);
+		return (EList<IfcLibraryReference>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_REFERENCE,
+				true);
 	}
 
 	/**

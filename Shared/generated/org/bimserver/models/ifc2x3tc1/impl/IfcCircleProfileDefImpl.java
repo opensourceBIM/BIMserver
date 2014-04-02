@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCircleProfileDef;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCircleProfileDefImpl extends IfcParameterizedProfileDefImpl implements IfcCircleProfileDef {
+public class IfcCircleProfileDefImpl extends IfcParameterizedProfileDefImpl
+		implements IfcCircleProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,8 @@ public class IfcCircleProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public double getRadius() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS, true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcCircleProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setRadius(double newRadius) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS, newRadius);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS,
+				newRadius);
 	}
 
 	/**
@@ -78,7 +82,9 @@ public class IfcCircleProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public String getRadiusAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -87,7 +93,8 @@ public class IfcCircleProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setRadiusAsString(String newRadiusAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS_AS_STRING, newRadiusAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_PROFILE_DEF__RADIUS_AS_STRING,
+				newRadiusAsString);
 	}
 
 } //IfcCircleProfileDefImpl

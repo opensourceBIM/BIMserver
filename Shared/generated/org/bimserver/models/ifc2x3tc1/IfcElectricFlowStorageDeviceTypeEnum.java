@@ -238,7 +238,8 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricFlowStorageDeviceTypeEnum[] VALUES_ARRAY = new IfcElectricFlowStorageDeviceTypeEnum[] { NULL, NOTDEFINED, BATTERY, USERDEFINED, INDUCTORBANK,
+	private static final IfcElectricFlowStorageDeviceTypeEnum[] VALUES_ARRAY = new IfcElectricFlowStorageDeviceTypeEnum[] {
+			NULL, NOTDEFINED, BATTERY, USERDEFINED, INDUCTORBANK,
 			HARMONICFILTER, UPS, CAPACITORBANK, };
 
 	/**
@@ -247,7 +248,8 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricFlowStorageDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricFlowStorageDeviceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Flow Storage Device Type Enum</b></em>' literal with the specified literal value.
@@ -336,7 +338,8 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcElectricFlowStorageDeviceTypeEnum(int value, String name, String literal) {
+	private IfcElectricFlowStorageDeviceTypeEnum(int value, String name,
+			String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

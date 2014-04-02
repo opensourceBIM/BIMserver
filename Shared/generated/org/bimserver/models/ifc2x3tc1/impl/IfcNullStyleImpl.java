@@ -17,9 +17,11 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcNullStyle;
 import org.bimserver.models.ifc2x3tc1.IfcNullStyleEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -71,7 +73,8 @@ public class IfcNullStyleImpl extends IdEObjectImpl implements IfcNullStyle {
 	 * @generated
 	 */
 	public IfcNullStyleEnum getWrappedValue() {
-		return (IfcNullStyleEnum) eGet(Ifc2x3tc1Package.Literals.IFC_NULL_STYLE__WRAPPED_VALUE, true);
+		return (IfcNullStyleEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_NULL_STYLE__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -80,7 +83,8 @@ public class IfcNullStyleImpl extends IdEObjectImpl implements IfcNullStyle {
 	 * @generated
 	 */
 	public void setWrappedValue(IfcNullStyleEnum newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_NULL_STYLE__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_NULL_STYLE__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 } //IfcNullStyleImpl

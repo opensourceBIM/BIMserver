@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcBeamType;
 import org.bimserver.models.ifc2x3tc1.IfcBeamTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBeamTypeImpl extends IfcBuildingElementTypeImpl implements IfcBeamType {
+public class IfcBeamTypeImpl extends IfcBuildingElementTypeImpl implements
+		IfcBeamType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,8 @@ public class IfcBeamTypeImpl extends IfcBuildingElementTypeImpl implements IfcBe
 	 * @generated
 	 */
 	public IfcBeamTypeEnum getPredefinedType() {
-		return (IfcBeamTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_BEAM_TYPE__PREDEFINED_TYPE, true);
+		return (IfcBeamTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_BEAM_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcBeamTypeImpl extends IfcBuildingElementTypeImpl implements IfcBe
 	 * @generated
 	 */
 	public void setPredefinedType(IfcBeamTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BEAM_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BEAM_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcBeamTypeImpl

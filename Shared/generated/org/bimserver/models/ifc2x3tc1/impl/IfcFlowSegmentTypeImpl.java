@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcFlowSegmentType;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFlowSegmentTypeImpl extends IfcDistributionFlowElementTypeImpl implements IfcFlowSegmentType {
+public class IfcFlowSegmentTypeImpl extends IfcDistributionFlowElementTypeImpl
+		implements IfcFlowSegmentType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

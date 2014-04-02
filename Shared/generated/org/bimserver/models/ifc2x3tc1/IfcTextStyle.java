@@ -34,7 +34,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcTextStyle extends IfcPresentationStyle, IfcPresentationStyleSelect {
+public interface IfcTextStyle extends IfcPresentationStyle,
+		IfcPresentationStyleSelect {
 	/**
 	 * Returns the value of the '<em><b>Text Character Appearance</b></em>' reference.
 	 * <!-- begin-user-doc -->

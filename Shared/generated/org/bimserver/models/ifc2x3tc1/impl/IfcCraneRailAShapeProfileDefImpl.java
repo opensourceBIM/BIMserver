@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCraneRailAShapeProfileDef;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -56,7 +57,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDefImpl implements IfcCraneRailAShapeProfileDef {
+public class IfcCraneRailAShapeProfileDefImpl extends
+		IfcParameterizedProfileDefImpl implements IfcCraneRailAShapeProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,7 +84,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getOverallHeight() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT,
+				true);
 	}
 
 	/**
@@ -91,7 +95,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setOverallHeight(double newOverallHeight) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT, newOverallHeight);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT,
+				newOverallHeight);
 	}
 
 	/**
@@ -100,7 +105,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getOverallHeightAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -109,7 +116,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setOverallHeightAsString(String newOverallHeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT_AS_STRING, newOverallHeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT_AS_STRING,
+				newOverallHeightAsString);
 	}
 
 	/**
@@ -118,7 +126,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getBaseWidth2() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH2, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH2,
+				true);
 	}
 
 	/**
@@ -127,7 +137,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setBaseWidth2(double newBaseWidth2) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH2, newBaseWidth2);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH2,
+				newBaseWidth2);
 	}
 
 	/**
@@ -136,7 +147,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getBaseWidth2AsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH2_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH2_AS_STRING,
+				true);
 	}
 
 	/**
@@ -145,7 +158,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setBaseWidth2AsString(String newBaseWidth2AsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH2_AS_STRING, newBaseWidth2AsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH2_AS_STRING,
+				newBaseWidth2AsString);
 	}
 
 	/**
@@ -154,7 +168,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getRadius() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__RADIUS, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__RADIUS,
+				true);
 	}
 
 	/**
@@ -163,7 +179,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setRadius(double newRadius) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__RADIUS, newRadius);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__RADIUS,
+				newRadius);
 	}
 
 	/**
@@ -190,7 +207,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getRadiusAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__RADIUS_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__RADIUS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -199,7 +218,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setRadiusAsString(String newRadiusAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__RADIUS_AS_STRING, newRadiusAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__RADIUS_AS_STRING,
+				newRadiusAsString);
 	}
 
 	/**
@@ -226,7 +246,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getHeadWidth() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_WIDTH, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_WIDTH,
+				true);
 	}
 
 	/**
@@ -235,7 +257,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setHeadWidth(double newHeadWidth) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_WIDTH, newHeadWidth);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_WIDTH,
+				newHeadWidth);
 	}
 
 	/**
@@ -244,7 +267,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getHeadWidthAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_WIDTH_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_WIDTH_AS_STRING,
+				true);
 	}
 
 	/**
@@ -253,7 +278,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setHeadWidthAsString(String newHeadWidthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_WIDTH_AS_STRING, newHeadWidthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_WIDTH_AS_STRING,
+				newHeadWidthAsString);
 	}
 
 	/**
@@ -262,7 +288,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getHeadDepth2() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH2, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH2,
+				true);
 	}
 
 	/**
@@ -271,7 +299,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setHeadDepth2(double newHeadDepth2) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH2, newHeadDepth2);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH2,
+				newHeadDepth2);
 	}
 
 	/**
@@ -280,7 +309,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getHeadDepth2AsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH2_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH2_AS_STRING,
+				true);
 	}
 
 	/**
@@ -289,7 +320,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setHeadDepth2AsString(String newHeadDepth2AsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH2_AS_STRING, newHeadDepth2AsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH2_AS_STRING,
+				newHeadDepth2AsString);
 	}
 
 	/**
@@ -298,7 +330,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getHeadDepth3() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH3, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH3,
+				true);
 	}
 
 	/**
@@ -307,7 +341,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setHeadDepth3(double newHeadDepth3) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH3, newHeadDepth3);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH3,
+				newHeadDepth3);
 	}
 
 	/**
@@ -316,7 +351,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getHeadDepth3AsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH3_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH3_AS_STRING,
+				true);
 	}
 
 	/**
@@ -325,7 +362,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setHeadDepth3AsString(String newHeadDepth3AsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH3_AS_STRING, newHeadDepth3AsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__HEAD_DEPTH3_AS_STRING,
+				newHeadDepth3AsString);
 	}
 
 	/**
@@ -334,7 +372,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getWebThickness() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS,
+				true);
 	}
 
 	/**
@@ -343,7 +383,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setWebThickness(double newWebThickness) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS, newWebThickness);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS,
+				newWebThickness);
 	}
 
 	/**
@@ -352,7 +393,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getWebThicknessAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -361,7 +404,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setWebThicknessAsString(String newWebThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING, newWebThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING,
+				newWebThicknessAsString);
 	}
 
 	/**
@@ -370,7 +414,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getBaseWidth4() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH4, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH4,
+				true);
 	}
 
 	/**
@@ -379,7 +425,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setBaseWidth4(double newBaseWidth4) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH4, newBaseWidth4);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH4,
+				newBaseWidth4);
 	}
 
 	/**
@@ -388,7 +435,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getBaseWidth4AsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH4_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH4_AS_STRING,
+				true);
 	}
 
 	/**
@@ -397,7 +446,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setBaseWidth4AsString(String newBaseWidth4AsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH4_AS_STRING, newBaseWidth4AsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_WIDTH4_AS_STRING,
+				newBaseWidth4AsString);
 	}
 
 	/**
@@ -406,7 +456,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getBaseDepth1() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH1, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH1,
+				true);
 	}
 
 	/**
@@ -415,7 +467,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setBaseDepth1(double newBaseDepth1) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH1, newBaseDepth1);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH1,
+				newBaseDepth1);
 	}
 
 	/**
@@ -424,7 +477,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getBaseDepth1AsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH1_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH1_AS_STRING,
+				true);
 	}
 
 	/**
@@ -433,7 +488,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setBaseDepth1AsString(String newBaseDepth1AsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH1_AS_STRING, newBaseDepth1AsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH1_AS_STRING,
+				newBaseDepth1AsString);
 	}
 
 	/**
@@ -442,7 +498,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getBaseDepth2() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH2, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH2,
+				true);
 	}
 
 	/**
@@ -451,7 +509,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setBaseDepth2(double newBaseDepth2) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH2, newBaseDepth2);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH2,
+				newBaseDepth2);
 	}
 
 	/**
@@ -460,7 +519,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getBaseDepth2AsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH2_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH2_AS_STRING,
+				true);
 	}
 
 	/**
@@ -469,7 +530,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setBaseDepth2AsString(String newBaseDepth2AsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH2_AS_STRING, newBaseDepth2AsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH2_AS_STRING,
+				newBaseDepth2AsString);
 	}
 
 	/**
@@ -478,7 +540,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getBaseDepth3() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH3, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH3,
+				true);
 	}
 
 	/**
@@ -487,7 +551,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setBaseDepth3(double newBaseDepth3) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH3, newBaseDepth3);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH3,
+				newBaseDepth3);
 	}
 
 	/**
@@ -496,7 +561,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getBaseDepth3AsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH3_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH3_AS_STRING,
+				true);
 	}
 
 	/**
@@ -505,7 +572,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setBaseDepth3AsString(String newBaseDepth3AsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH3_AS_STRING, newBaseDepth3AsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__BASE_DEPTH3_AS_STRING,
+				newBaseDepth3AsString);
 	}
 
 	/**
@@ -514,7 +582,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public double getCentreOfGravityInY() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_Y, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_Y,
+				true);
 	}
 
 	/**
@@ -523,7 +593,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setCentreOfGravityInY(double newCentreOfGravityInY) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_Y, newCentreOfGravityInY);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_Y,
+				newCentreOfGravityInY);
 	}
 
 	/**
@@ -550,7 +621,9 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getCentreOfGravityInYAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING,
+				true);
 	}
 
 	/**
@@ -558,8 +631,10 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCentreOfGravityInYAsString(String newCentreOfGravityInYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING, newCentreOfGravityInYAsString);
+	public void setCentreOfGravityInYAsString(
+			String newCentreOfGravityInYAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING,
+				newCentreOfGravityInYAsString);
 	}
 
 	/**

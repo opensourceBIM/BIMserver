@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcText;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -70,7 +72,8 @@ public class IfcTextImpl extends IdEObjectImpl implements IfcText {
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT__WRAPPED_VALUE, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT__WRAPPED_VALUE,
+				true);
 	}
 
 	/**

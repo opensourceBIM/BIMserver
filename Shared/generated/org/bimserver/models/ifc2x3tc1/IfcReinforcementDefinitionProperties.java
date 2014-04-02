@@ -35,7 +35,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcReinforcementDefinitionProperties extends IfcPropertySetDefinition {
+public interface IfcReinforcementDefinitionProperties extends
+		IfcPropertySetDefinition {
 	/**
 	 * Returns the value of the '<em><b>Definition Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->

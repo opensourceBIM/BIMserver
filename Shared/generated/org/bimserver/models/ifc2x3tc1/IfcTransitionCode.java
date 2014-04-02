@@ -60,7 +60,8 @@ public enum IfcTransitionCode implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONTSAMEGRADIENTSAMECURVATURE(2, "CONTSAMEGRADIENTSAMECURVATURE", "CONTSAMEGRADIENTSAMECURVATURE"),
+	CONTSAMEGRADIENTSAMECURVATURE(2, "CONTSAMEGRADIENTSAMECURVATURE",
+			"CONTSAMEGRADIENTSAMECURVATURE"),
 
 	/**
 	 * The '<em><b>CONTINUOUS</b></em>' literal object.
@@ -163,7 +164,9 @@ public enum IfcTransitionCode implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] { NULL, CONTSAMEGRADIENT, CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS, DISCONTINUOUS, };
+	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] {
+			NULL, CONTSAMEGRADIENT, CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS,
+			DISCONTINUOUS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Transition Code</b></em>' enumerators.
@@ -171,7 +174,8 @@ public enum IfcTransitionCode implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcTransitionCode> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcTransitionCode> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Transition Code</b></em>' literal with the specified literal value.

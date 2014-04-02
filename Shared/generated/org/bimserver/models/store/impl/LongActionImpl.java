@@ -19,9 +19,11 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

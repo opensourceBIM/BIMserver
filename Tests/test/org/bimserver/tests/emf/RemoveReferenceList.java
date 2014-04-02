@@ -23,7 +23,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			bimServerClient.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
 			
 			IfcModelInterface model = bimServerClient.newModel(newProject);
 			

@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcTextureMap;
 import org.bimserver.models.ifc2x3tc1.IfcVertexBasedTextureMap;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextureMapImpl extends IfcTextureCoordinateImpl implements IfcTextureMap {
+public class IfcTextureMapImpl extends IfcTextureCoordinateImpl implements
+		IfcTextureMap {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,8 @@ public class IfcTextureMapImpl extends IfcTextureCoordinateImpl implements IfcTe
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcVertexBasedTextureMap> getTextureMaps() {
-		return (EList<IfcVertexBasedTextureMap>) eGet(Ifc2x3tc1Package.Literals.IFC_TEXTURE_MAP__TEXTURE_MAPS, true);
+		return (EList<IfcVertexBasedTextureMap>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXTURE_MAP__TEXTURE_MAPS, true);
 	}
 
 } //IfcTextureMapImpl

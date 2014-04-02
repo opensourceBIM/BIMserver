@@ -124,6 +124,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetAllDeserializersForProjectCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginConfiguration> result);
+		void error(Throwable e);
+	}
+	
 	public interface GetAllInternalServicesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> result);
 		void error(Throwable e);
@@ -190,6 +195,11 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface GetAllSerializersCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> result);
+		void error(Throwable e);
+	}
+	
+	public interface GetAllSerializersForRoidsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> result);
 		void error(Throwable e);
 	}
@@ -656,6 +666,18 @@ public class AsyncPluginInterface {
 		});
 	}
 	
+	public void getAllDeserializersForProject(final java.lang.Boolean onlyEnabled, final java.lang.Long poid, final GetAllDeserializersForProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllDeserializersForProject(onlyEnabled, poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getAllInternalServices(final java.lang.Boolean onlyEnabled, final GetAllInternalServicesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -817,6 +839,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllSerializers(onlyEnabled));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllSerializersForRoids(final java.lang.Boolean onlyEnabled, final java.util.Set<java.lang.Long> roids, final GetAllSerializersForRoidsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllSerializersForRoids(onlyEnabled, roids));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProjectOrder;
 import org.bimserver.models.ifc2x3tc1.IfcProjectOrderTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrder {
+public class IfcProjectOrderImpl extends IfcControlImpl implements
+		IfcProjectOrder {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,8 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 * @generated
 	 */
 	public String getID() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER__ID, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER__ID,
+				true);
 	}
 
 	/**
@@ -80,7 +83,9 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 * @generated
 	 */
 	public IfcProjectOrderTypeEnum getPredefinedType() {
-		return (IfcProjectOrderTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER__PREDEFINED_TYPE, true);
+		return (IfcProjectOrderTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -89,7 +94,8 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 * @generated
 	 */
 	public void setPredefinedType(IfcProjectOrderTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 	/**
@@ -98,7 +104,8 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 * @generated
 	 */
 	public String getStatus() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER__STATUS, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER__STATUS, true);
 	}
 
 	/**

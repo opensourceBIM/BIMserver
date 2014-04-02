@@ -37,7 +37,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcSlippageConnectionCondition extends IfcStructuralConnectionCondition {
+public interface IfcSlippageConnectionCondition extends
+		IfcStructuralConnectionCondition {
 	/**
 	 * Returns the value of the '<em><b>Slippage X</b></em>' attribute.
 	 * <!-- begin-user-doc -->

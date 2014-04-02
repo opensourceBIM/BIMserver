@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcConditionCriterion;
 import org.bimserver.models.ifc2x3tc1.IfcConditionCriterionSelect;
 import org.bimserver.models.ifc2x3tc1.IfcDateTimeSelect;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConditionCriterionImpl extends IfcControlImpl implements IfcConditionCriterion {
+public class IfcConditionCriterionImpl extends IfcControlImpl implements
+		IfcConditionCriterion {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,9 @@ public class IfcConditionCriterionImpl extends IfcControlImpl implements IfcCond
 	 * @generated
 	 */
 	public IfcConditionCriterionSelect getCriterion() {
-		return (IfcConditionCriterionSelect) eGet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION, true);
+		return (IfcConditionCriterionSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION,
+				true);
 	}
 
 	/**
@@ -71,7 +75,8 @@ public class IfcConditionCriterionImpl extends IfcControlImpl implements IfcCond
 	 * @generated
 	 */
 	public void setCriterion(IfcConditionCriterionSelect newCriterion) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION, newCriterion);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION,
+				newCriterion);
 	}
 
 	/**
@@ -80,7 +85,9 @@ public class IfcConditionCriterionImpl extends IfcControlImpl implements IfcCond
 	 * @generated
 	 */
 	public IfcDateTimeSelect getCriterionDateTime() {
-		return (IfcDateTimeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME, true);
+		return (IfcDateTimeSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME,
+				true);
 	}
 
 	/**
@@ -89,7 +96,8 @@ public class IfcConditionCriterionImpl extends IfcControlImpl implements IfcCond
 	 * @generated
 	 */
 	public void setCriterionDateTime(IfcDateTimeSelect newCriterionDateTime) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME, newCriterionDateTime);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME,
+				newCriterionDateTime);
 	}
 
 } //IfcConditionCriterionImpl

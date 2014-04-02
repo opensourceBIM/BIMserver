@@ -138,7 +138,8 @@ public enum IfcTrimmingPreference implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTrimmingPreference[] VALUES_ARRAY = new IfcTrimmingPreference[] { NULL, CARTESIAN, UNSPECIFIED, PARAMETER, };
+	private static final IfcTrimmingPreference[] VALUES_ARRAY = new IfcTrimmingPreference[] {
+			NULL, CARTESIAN, UNSPECIFIED, PARAMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Trimming Preference</b></em>' enumerators.
@@ -146,7 +147,8 @@ public enum IfcTrimmingPreference implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcTrimmingPreference> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcTrimmingPreference> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Trimming Preference</b></em>' literal with the specified literal value.

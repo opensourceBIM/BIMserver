@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcArbitraryProfileDefWithVoids;
 import org.bimserver.models.ifc2x3tc1.IfcCurve;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,9 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcArbitraryProfileDefWithVoidsImpl extends IfcArbitraryClosedProfileDefImpl implements IfcArbitraryProfileDefWithVoids {
+public class IfcArbitraryProfileDefWithVoidsImpl extends
+		IfcArbitraryClosedProfileDefImpl implements
+		IfcArbitraryProfileDefWithVoids {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +66,9 @@ public class IfcArbitraryProfileDefWithVoidsImpl extends IfcArbitraryClosedProfi
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCurve> getInnerCurves() {
-		return (EList<IfcCurve>) eGet(Ifc2x3tc1Package.Literals.IFC_ARBITRARY_PROFILE_DEF_WITH_VOIDS__INNER_CURVES, true);
+		return (EList<IfcCurve>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ARBITRARY_PROFILE_DEF_WITH_VOIDS__INNER_CURVES,
+				true);
 	}
 
 } //IfcArbitraryProfileDefWithVoidsImpl

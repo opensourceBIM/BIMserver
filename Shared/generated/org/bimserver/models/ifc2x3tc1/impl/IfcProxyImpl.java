@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcObjectTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcProxy;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -61,7 +62,8 @@ public class IfcProxyImpl extends IfcProductImpl implements IfcProxy {
 	 * @generated
 	 */
 	public IfcObjectTypeEnum getProxyType() {
-		return (IfcObjectTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PROXY__PROXY_TYPE, true);
+		return (IfcObjectTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROXY__PROXY_TYPE, true);
 	}
 
 	/**

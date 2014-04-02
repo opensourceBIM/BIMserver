@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDoor;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -62,7 +63,8 @@ public class IfcDoorImpl extends IfcBuildingElementImpl implements IfcDoor {
 	 * @generated
 	 */
 	public double getOverallHeight() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_HEIGHT, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_HEIGHT, true);
 	}
 
 	/**
@@ -71,7 +73,8 @@ public class IfcDoorImpl extends IfcBuildingElementImpl implements IfcDoor {
 	 * @generated
 	 */
 	public void setOverallHeight(double newOverallHeight) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_HEIGHT, newOverallHeight);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_HEIGHT,
+				newOverallHeight);
 	}
 
 	/**
@@ -98,7 +101,9 @@ public class IfcDoorImpl extends IfcBuildingElementImpl implements IfcDoor {
 	 * @generated
 	 */
 	public String getOverallHeightAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_HEIGHT_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_HEIGHT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -107,7 +112,8 @@ public class IfcDoorImpl extends IfcBuildingElementImpl implements IfcDoor {
 	 * @generated
 	 */
 	public void setOverallHeightAsString(String newOverallHeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_HEIGHT_AS_STRING, newOverallHeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_HEIGHT_AS_STRING,
+				newOverallHeightAsString);
 	}
 
 	/**
@@ -134,7 +140,8 @@ public class IfcDoorImpl extends IfcBuildingElementImpl implements IfcDoor {
 	 * @generated
 	 */
 	public double getOverallWidth() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_WIDTH, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_WIDTH,
+				true);
 	}
 
 	/**
@@ -170,7 +177,9 @@ public class IfcDoorImpl extends IfcBuildingElementImpl implements IfcDoor {
 	 * @generated
 	 */
 	public String getOverallWidthAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_WIDTH_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_WIDTH_AS_STRING,
+				true);
 	}
 
 	/**
@@ -179,7 +188,8 @@ public class IfcDoorImpl extends IfcBuildingElementImpl implements IfcDoor {
 	 * @generated
 	 */
 	public void setOverallWidthAsString(String newOverallWidthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_WIDTH_AS_STRING, newOverallWidthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR__OVERALL_WIDTH_AS_STRING,
+				newOverallWidthAsString);
 	}
 
 	/**

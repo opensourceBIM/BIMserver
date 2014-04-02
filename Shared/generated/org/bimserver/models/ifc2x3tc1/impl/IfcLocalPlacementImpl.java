@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLocalPlacementImpl extends IfcObjectPlacementImpl implements IfcLocalPlacement {
+public class IfcLocalPlacementImpl extends IfcObjectPlacementImpl implements
+		IfcLocalPlacement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,9 @@ public class IfcLocalPlacementImpl extends IfcObjectPlacementImpl implements Ifc
 	 * @generated
 	 */
 	public IfcObjectPlacement getPlacementRelTo() {
-		return (IfcObjectPlacement) eGet(Ifc2x3tc1Package.Literals.IFC_LOCAL_PLACEMENT__PLACEMENT_REL_TO, true);
+		return (IfcObjectPlacement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LOCAL_PLACEMENT__PLACEMENT_REL_TO,
+				true);
 	}
 
 	/**
@@ -71,7 +75,8 @@ public class IfcLocalPlacementImpl extends IfcObjectPlacementImpl implements Ifc
 	 * @generated
 	 */
 	public void setPlacementRelTo(IfcObjectPlacement newPlacementRelTo) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LOCAL_PLACEMENT__PLACEMENT_REL_TO, newPlacementRelTo);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LOCAL_PLACEMENT__PLACEMENT_REL_TO,
+				newPlacementRelTo);
 	}
 
 	/**
@@ -98,7 +103,9 @@ public class IfcLocalPlacementImpl extends IfcObjectPlacementImpl implements Ifc
 	 * @generated
 	 */
 	public IfcAxis2Placement getRelativePlacement() {
-		return (IfcAxis2Placement) eGet(Ifc2x3tc1Package.Literals.IFC_LOCAL_PLACEMENT__RELATIVE_PLACEMENT, true);
+		return (IfcAxis2Placement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LOCAL_PLACEMENT__RELATIVE_PLACEMENT,
+				true);
 	}
 
 	/**
@@ -107,7 +114,8 @@ public class IfcLocalPlacementImpl extends IfcObjectPlacementImpl implements Ifc
 	 * @generated
 	 */
 	public void setRelativePlacement(IfcAxis2Placement newRelativePlacement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LOCAL_PLACEMENT__RELATIVE_PLACEMENT, newRelativePlacement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LOCAL_PLACEMENT__RELATIVE_PLACEMENT,
+				newRelativePlacement);
 	}
 
 } //IfcLocalPlacementImpl

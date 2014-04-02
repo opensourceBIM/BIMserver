@@ -17,12 +17,15 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcTable;
 import org.bimserver.models.ifc2x3tc1.IfcTableRow;
 import org.bimserver.models.ifc2x3tc1.IfcValue;
 import org.bimserver.models.ifc2x3tc1.Tristate;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -77,7 +80,8 @@ public class IfcTableRowImpl extends IdEObjectImpl implements IfcTableRow {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getRowCells() {
-		return (EList<IfcValue>) eGet(Ifc2x3tc1Package.Literals.IFC_TABLE_ROW__ROW_CELLS, true);
+		return (EList<IfcValue>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TABLE_ROW__ROW_CELLS, true);
 	}
 
 	/**
@@ -86,7 +90,8 @@ public class IfcTableRowImpl extends IdEObjectImpl implements IfcTableRow {
 	 * @generated
 	 */
 	public Tristate getIsHeading() {
-		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_TABLE_ROW__IS_HEADING, true);
+		return (Tristate) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TABLE_ROW__IS_HEADING, true);
 	}
 
 	/**
@@ -104,7 +109,8 @@ public class IfcTableRowImpl extends IdEObjectImpl implements IfcTableRow {
 	 * @generated
 	 */
 	public IfcTable getOfTable() {
-		return (IfcTable) eGet(Ifc2x3tc1Package.Literals.IFC_TABLE_ROW__OF_TABLE, true);
+		return (IfcTable) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TABLE_ROW__OF_TABLE, true);
 	}
 
 	/**

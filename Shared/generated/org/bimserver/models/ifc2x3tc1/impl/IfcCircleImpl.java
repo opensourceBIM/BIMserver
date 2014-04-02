@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCircle;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -78,7 +79,8 @@ public class IfcCircleImpl extends IfcConicImpl implements IfcCircle {
 	 * @generated
 	 */
 	public String getRadiusAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CIRCLE__RADIUS_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CIRCLE__RADIUS_AS_STRING, true);
 	}
 
 	/**
@@ -87,7 +89,8 @@ public class IfcCircleImpl extends IfcConicImpl implements IfcCircle {
 	 * @generated
 	 */
 	public void setRadiusAsString(String newRadiusAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE__RADIUS_AS_STRING, newRadiusAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE__RADIUS_AS_STRING,
+				newRadiusAsString);
 	}
 
 } //IfcCircleImpl

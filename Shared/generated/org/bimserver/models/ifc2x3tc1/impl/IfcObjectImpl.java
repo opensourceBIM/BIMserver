@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcObject;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -62,7 +64,8 @@ public class IfcObjectImpl extends IfcObjectDefinitionImpl implements IfcObject 
 	 * @generated
 	 */
 	public String getObjectType() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT__OBJECT_TYPE, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT__OBJECT_TYPE,
+				true);
 	}
 
 	/**
@@ -99,7 +102,8 @@ public class IfcObjectImpl extends IfcObjectDefinitionImpl implements IfcObject 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefines> getIsDefinedBy() {
-		return (EList<IfcRelDefines>) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT__IS_DEFINED_BY, true);
+		return (EList<IfcRelDefines>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_OBJECT__IS_DEFINED_BY, true);
 	}
 
 	/**

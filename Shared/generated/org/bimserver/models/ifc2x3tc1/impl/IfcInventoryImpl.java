@@ -23,7 +23,9 @@ import org.bimserver.models.ifc2x3tc1.IfcCostValue;
 import org.bimserver.models.ifc2x3tc1.IfcInventory;
 import org.bimserver.models.ifc2x3tc1.IfcInventoryTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcPerson;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -70,7 +72,8 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public IfcInventoryTypeEnum getInventoryType() {
-		return (IfcInventoryTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__INVENTORY_TYPE, true);
+		return (IfcInventoryTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_INVENTORY__INVENTORY_TYPE, true);
 	}
 
 	/**
@@ -79,7 +82,8 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public void setInventoryType(IfcInventoryTypeEnum newInventoryType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__INVENTORY_TYPE, newInventoryType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__INVENTORY_TYPE,
+				newInventoryType);
 	}
 
 	/**
@@ -88,7 +92,8 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public IfcActorSelect getJurisdiction() {
-		return (IfcActorSelect) eGet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__JURISDICTION, true);
+		return (IfcActorSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_INVENTORY__JURISDICTION, true);
 	}
 
 	/**
@@ -97,7 +102,8 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public void setJurisdiction(IfcActorSelect newJurisdiction) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__JURISDICTION, newJurisdiction);
+		eSet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__JURISDICTION,
+				newJurisdiction);
 	}
 
 	/**
@@ -107,7 +113,9 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPerson> getResponsiblePersons() {
-		return (EList<IfcPerson>) eGet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__RESPONSIBLE_PERSONS, true);
+		return (EList<IfcPerson>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_INVENTORY__RESPONSIBLE_PERSONS,
+				true);
 	}
 
 	/**
@@ -116,7 +124,8 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public IfcCalendarDate getLastUpdateDate() {
-		return (IfcCalendarDate) eGet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE, true);
+		return (IfcCalendarDate) eGet(
+				Ifc2x3tc1Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE, true);
 	}
 
 	/**
@@ -125,7 +134,8 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public void setLastUpdateDate(IfcCalendarDate newLastUpdateDate) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE, newLastUpdateDate);
+		eSet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE,
+				newLastUpdateDate);
 	}
 
 	/**
@@ -134,7 +144,8 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public IfcCostValue getCurrentValue() {
-		return (IfcCostValue) eGet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__CURRENT_VALUE, true);
+		return (IfcCostValue) eGet(
+				Ifc2x3tc1Package.Literals.IFC_INVENTORY__CURRENT_VALUE, true);
 	}
 
 	/**
@@ -143,7 +154,8 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public void setCurrentValue(IfcCostValue newCurrentValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__CURRENT_VALUE, newCurrentValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__CURRENT_VALUE,
+				newCurrentValue);
 	}
 
 	/**
@@ -170,7 +182,8 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public IfcCostValue getOriginalValue() {
-		return (IfcCostValue) eGet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE, true);
+		return (IfcCostValue) eGet(
+				Ifc2x3tc1Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE, true);
 	}
 
 	/**
@@ -179,7 +192,8 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public void setOriginalValue(IfcCostValue newOriginalValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE, newOriginalValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE,
+				newOriginalValue);
 	}
 
 	/**

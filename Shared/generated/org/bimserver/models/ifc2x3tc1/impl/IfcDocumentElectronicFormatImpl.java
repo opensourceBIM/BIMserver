@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDocumentElectronicFormat;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDocumentElectronicFormatImpl extends IdEObjectImpl implements IfcDocumentElectronicFormat {
+public class IfcDocumentElectronicFormatImpl extends IdEObjectImpl implements
+		IfcDocumentElectronicFormat {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,7 +75,9 @@ public class IfcDocumentElectronicFormatImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public String getFileExtension() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__FILE_EXTENSION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__FILE_EXTENSION,
+				true);
 	}
 
 	/**
@@ -81,7 +86,8 @@ public class IfcDocumentElectronicFormatImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public void setFileExtension(String newFileExtension) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__FILE_EXTENSION, newFileExtension);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__FILE_EXTENSION,
+				newFileExtension);
 	}
 
 	/**
@@ -108,7 +114,9 @@ public class IfcDocumentElectronicFormatImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public String getMimeContentType() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__MIME_CONTENT_TYPE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__MIME_CONTENT_TYPE,
+				true);
 	}
 
 	/**
@@ -117,7 +125,8 @@ public class IfcDocumentElectronicFormatImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public void setMimeContentType(String newMimeContentType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__MIME_CONTENT_TYPE, newMimeContentType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__MIME_CONTENT_TYPE,
+				newMimeContentType);
 	}
 
 	/**
@@ -144,7 +153,9 @@ public class IfcDocumentElectronicFormatImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public String getMimeSubtype() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__MIME_SUBTYPE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__MIME_SUBTYPE,
+				true);
 	}
 
 	/**
@@ -153,7 +164,8 @@ public class IfcDocumentElectronicFormatImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public void setMimeSubtype(String newMimeSubtype) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__MIME_SUBTYPE, newMimeSubtype);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_ELECTRONIC_FORMAT__MIME_SUBTYPE,
+				newMimeSubtype);
 	}
 
 	/**

@@ -188,7 +188,8 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricTimeControlTypeEnum[] VALUES_ARRAY = new IfcElectricTimeControlTypeEnum[] { NULL, TIMEDELAY, NOTDEFINED, USERDEFINED, TIMECLOCK, RELAY, };
+	private static final IfcElectricTimeControlTypeEnum[] VALUES_ARRAY = new IfcElectricTimeControlTypeEnum[] {
+			NULL, TIMEDELAY, NOTDEFINED, USERDEFINED, TIMECLOCK, RELAY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Time Control Type Enum</b></em>' enumerators.
@@ -196,7 +197,8 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricTimeControlTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricTimeControlTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Time Control Type Enum</b></em>' literal with the specified literal value.
@@ -281,7 +283,8 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcElectricTimeControlTypeEnum(int value, String name, String literal) {
+	private IfcElectricTimeControlTypeEnum(int value, String name,
+			String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

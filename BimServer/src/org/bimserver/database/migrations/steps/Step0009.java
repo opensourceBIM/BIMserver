@@ -41,7 +41,7 @@ public class Step0009 extends Migration {
 				IfcModelInterface projects = databaseSession.getAllOfType(StorePackage.eINSTANCE.getProject(), Query.getDefault());
 				for (Project project : projects.getAll(Project.class)) {
 					for (Revision revision : project.getRevisions()) {
-						IfcModelInterface allOfType = databaseSession.getAllOfType(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), new Query(project.getId(), revision.getId()));
+						IfcModelInterface allOfType = databaseSession.getAllOfType(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), new Query(databaseSession.getMetaDataManager().getEPackage(project.getSchema()), project.getId(), revision.getId()));
 						for (GeometryData geometryData : allOfType.getAll(GeometryData.class)) {
 							System.out.println("Updating geometry data for " + geometryData.getOid());
 							ByteBuffer buffer = ByteBuffer.wrap(geometryData.getVertices());

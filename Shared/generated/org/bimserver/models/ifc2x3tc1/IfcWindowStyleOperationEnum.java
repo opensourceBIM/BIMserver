@@ -100,7 +100,8 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRIPLE_PANEL_HORIZONTAL(6, "TRIPLE_PANEL_HORIZONTAL", "TRIPLE_PANEL_HORIZONTAL"),
+	TRIPLE_PANEL_HORIZONTAL(6, "TRIPLE_PANEL_HORIZONTAL",
+			"TRIPLE_PANEL_HORIZONTAL"),
 
 	/**
 	 * The '<em><b>TRIPLE PANEL TOP</b></em>' literal object.
@@ -150,7 +151,8 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_PANEL_HORIZONTAL(11, "DOUBLE_PANEL_HORIZONTAL", "DOUBLE_PANEL_HORIZONTAL");
+	DOUBLE_PANEL_HORIZONTAL(11, "DOUBLE_PANEL_HORIZONTAL",
+			"DOUBLE_PANEL_HORIZONTAL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -338,8 +340,11 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowStyleOperationEnum[] VALUES_ARRAY = new IfcWindowStyleOperationEnum[] { NULL, TRIPLE_PANEL_RIGHT, TRIPLE_PANEL_VERTICAL, TRIPLE_PANEL_LEFT,
-			NOTDEFINED, TRIPLE_PANEL_BOTTOM, TRIPLE_PANEL_HORIZONTAL, TRIPLE_PANEL_TOP, DOUBLE_PANEL_VERTICAL, SINGLE_PANEL, USERDEFINED, DOUBLE_PANEL_HORIZONTAL, };
+	private static final IfcWindowStyleOperationEnum[] VALUES_ARRAY = new IfcWindowStyleOperationEnum[] {
+			NULL, TRIPLE_PANEL_RIGHT, TRIPLE_PANEL_VERTICAL, TRIPLE_PANEL_LEFT,
+			NOTDEFINED, TRIPLE_PANEL_BOTTOM, TRIPLE_PANEL_HORIZONTAL,
+			TRIPLE_PANEL_TOP, DOUBLE_PANEL_VERTICAL, SINGLE_PANEL, USERDEFINED,
+			DOUBLE_PANEL_HORIZONTAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Style Operation Enum</b></em>' enumerators.
@@ -347,7 +352,8 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWindowStyleOperationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWindowStyleOperationEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Window Style Operation Enum</b></em>' literal with the specified literal value.

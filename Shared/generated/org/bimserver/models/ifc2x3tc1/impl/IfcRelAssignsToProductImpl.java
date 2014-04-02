@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToProduct;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsToProductImpl extends IfcRelAssignsImpl implements IfcRelAssignsToProduct {
+public class IfcRelAssignsToProductImpl extends IfcRelAssignsImpl implements
+		IfcRelAssignsToProduct {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcRelAssignsToProductImpl extends IfcRelAssignsImpl implements Ifc
 	 * @generated
 	 */
 	public IfcProduct getRelatingProduct() {
-		return (IfcProduct) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PRODUCT__RELATING_PRODUCT, true);
+		return (IfcProduct) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PRODUCT__RELATING_PRODUCT,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcRelAssignsToProductImpl extends IfcRelAssignsImpl implements Ifc
 	 * @generated
 	 */
 	public void setRelatingProduct(IfcProduct newRelatingProduct) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PRODUCT__RELATING_PRODUCT, newRelatingProduct);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PRODUCT__RELATING_PRODUCT,
+				newRelatingProduct);
 	}
 
 } //IfcRelAssignsToProductImpl

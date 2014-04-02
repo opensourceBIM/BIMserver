@@ -213,7 +213,8 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBeamTypeEnum[] VALUES_ARRAY = new IfcBeamTypeEnum[] { NULL, LINTEL, NOTDEFINED, TBEAM, USERDEFINED, JOIST, BEAM, };
+	private static final IfcBeamTypeEnum[] VALUES_ARRAY = new IfcBeamTypeEnum[] {
+			NULL, LINTEL, NOTDEFINED, TBEAM, USERDEFINED, JOIST, BEAM, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Beam Type Enum</b></em>' enumerators.
@@ -221,7 +222,8 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcBeamTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcBeamTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Beam Type Enum</b></em>' literal with the specified literal value.

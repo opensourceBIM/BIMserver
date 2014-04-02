@@ -113,7 +113,8 @@ public enum Tristate implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final Tristate[] VALUES_ARRAY = new Tristate[] { TRUE, FALSE, UNDEFINED, };
+	private static final Tristate[] VALUES_ARRAY = new Tristate[] { TRUE,
+			FALSE, UNDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Tristate</b></em>' enumerators.
@@ -121,7 +122,8 @@ public enum Tristate implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<Tristate> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<Tristate> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Tristate</b></em>' literal with the specified literal value.

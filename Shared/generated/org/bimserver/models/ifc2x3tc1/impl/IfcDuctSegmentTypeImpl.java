@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDuctSegmentType;
 import org.bimserver.models.ifc2x3tc1.IfcDuctSegmentTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDuctSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements IfcDuctSegmentType {
+public class IfcDuctSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements
+		IfcDuctSegmentType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcDuctSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements If
 	 * @generated
 	 */
 	public IfcDuctSegmentTypeEnum getPredefinedType() {
-		return (IfcDuctSegmentTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DUCT_SEGMENT_TYPE__PREDEFINED_TYPE, true);
+		return (IfcDuctSegmentTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DUCT_SEGMENT_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcDuctSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements If
 	 * @generated
 	 */
 	public void setPredefinedType(IfcDuctSegmentTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DUCT_SEGMENT_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DUCT_SEGMENT_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcDuctSegmentTypeImpl

@@ -110,22 +110,26 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FREEFORM(7, "FREEFORM", "FREEFORM"), /**
-											 * The '<em><b>GABLE ROOF</b></em>' literal object.
-											 * <!-- begin-user-doc -->
-											 * <!-- end-user-doc -->
-											 * @see #GABLE_ROOF_VALUE
-											 * @generated
-											 * @ordered
-											 */
-	GABLE_ROOF(8, "GABLE_ROOF", "GABLE_ROOF"), /**
-												 * The '<em><b>BARREL ROOF</b></em>' literal object.
-												 * <!-- begin-user-doc -->
-												 * <!-- end-user-doc -->
-												 * @see #BARREL_ROOF_VALUE
-												 * @generated
-												 * @ordered
-												 */
+	FREEFORM(7, "FREEFORM", "FREEFORM"),
+
+	/**
+	 * The '<em><b>GABLE ROOF</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #GABLE_ROOF_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	GABLE_ROOF(8, "GABLE_ROOF", "GABLE_ROOF"),
+
+	/**
+	 * The '<em><b>BARREL ROOF</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BARREL_ROOF_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	BARREL_ROOF(9, "BARREL_ROOF", "BARREL_ROOF"),
 
 	/**
@@ -409,8 +413,11 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRoofTypeEnum[] VALUES_ARRAY = new IfcRoofTypeEnum[] { NULL, HIPPED_GABLE_ROOF, NOTDEFINED, SHED_ROOF, HIP_ROOF, DOME_ROOF, PAVILION_ROOF, FREEFORM,
-			GABLE_ROOF, BARREL_ROOF, MANSARD_ROOF, FLAT_ROOF, RAINBOW_ROOF, GAMBREL_ROOF, BUTTERFLY_ROOF, };
+	private static final IfcRoofTypeEnum[] VALUES_ARRAY = new IfcRoofTypeEnum[] {
+			NULL, HIPPED_GABLE_ROOF, NOTDEFINED, SHED_ROOF, HIP_ROOF,
+			DOME_ROOF, PAVILION_ROOF, FREEFORM, GABLE_ROOF, BARREL_ROOF,
+			MANSARD_ROOF, FLAT_ROOF, RAINBOW_ROOF, GAMBREL_ROOF,
+			BUTTERFLY_ROOF, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Roof Type Enum</b></em>' enumerators.
@@ -418,7 +425,8 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcRoofTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcRoofTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Roof Type Enum</b></em>' literal with the specified literal value.

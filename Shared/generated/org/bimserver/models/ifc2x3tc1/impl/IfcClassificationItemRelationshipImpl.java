@@ -17,10 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationItem;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationItemRelationship;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -37,7 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcClassificationItemRelationshipImpl extends IdEObjectImpl implements IfcClassificationItemRelationship {
+public class IfcClassificationItemRelationshipImpl extends IdEObjectImpl
+		implements IfcClassificationItemRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +77,9 @@ public class IfcClassificationItemRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public IfcClassificationItem getRelatingItem() {
-		return (IfcClassificationItem) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATING_ITEM, true);
+		return (IfcClassificationItem) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATING_ITEM,
+				true);
 	}
 
 	/**
@@ -82,7 +88,8 @@ public class IfcClassificationItemRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setRelatingItem(IfcClassificationItem newRelatingItem) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATING_ITEM, newRelatingItem);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATING_ITEM,
+				newRelatingItem);
 	}
 
 	/**
@@ -92,7 +99,9 @@ public class IfcClassificationItemRelationshipImpl extends IdEObjectImpl impleme
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItem> getRelatedItems() {
-		return (EList<IfcClassificationItem>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATED_ITEMS, true);
+		return (EList<IfcClassificationItem>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATED_ITEMS,
+				true);
 	}
 
 } //IfcClassificationItemRelationshipImpl

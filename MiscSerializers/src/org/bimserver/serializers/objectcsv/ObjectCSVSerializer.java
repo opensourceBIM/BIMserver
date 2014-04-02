@@ -35,7 +35,6 @@ import org.bimserver.models.ifc2x3tc1.IfcQuantityLength;
 import org.bimserver.models.ifc2x3tc1.IfcQuantityTime;
 import org.bimserver.models.ifc2x3tc1.IfcQuantityVolume;
 import org.bimserver.models.ifc2x3tc1.IfcQuantityWeight;
-import org.bimserver.models.ifc2x3tc1.IfcRelAssigns;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
 import org.bimserver.models.ifc2x3tc1.IfcValue;

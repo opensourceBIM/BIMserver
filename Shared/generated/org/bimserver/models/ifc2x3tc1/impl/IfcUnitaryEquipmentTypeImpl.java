@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcUnitaryEquipmentType;
 import org.bimserver.models.ifc2x3tc1.IfcUnitaryEquipmentTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcUnitaryEquipmentTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcUnitaryEquipmentType {
+public class IfcUnitaryEquipmentTypeImpl extends
+		IfcEnergyConversionDeviceTypeImpl implements IfcUnitaryEquipmentType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcUnitaryEquipmentTypeImpl extends IfcEnergyConversionDeviceTypeIm
 	 * @generated
 	 */
 	public IfcUnitaryEquipmentTypeEnum getPredefinedType() {
-		return (IfcUnitaryEquipmentTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_UNITARY_EQUIPMENT_TYPE__PREDEFINED_TYPE, true);
+		return (IfcUnitaryEquipmentTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_UNITARY_EQUIPMENT_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcUnitaryEquipmentTypeImpl extends IfcEnergyConversionDeviceTypeIm
 	 * @generated
 	 */
 	public void setPredefinedType(IfcUnitaryEquipmentTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_UNITARY_EQUIPMENT_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_UNITARY_EQUIPMENT_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcUnitaryEquipmentTypeImpl

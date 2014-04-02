@@ -17,10 +17,12 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMeasureWithUnit;
 import org.bimserver.models.ifc2x3tc1.IfcUnit;
 import org.bimserver.models.ifc2x3tc1.IfcValue;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -37,7 +39,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMeasureWithUnitImpl extends IdEObjectImpl implements IfcMeasureWithUnit {
+public class IfcMeasureWithUnitImpl extends IdEObjectImpl implements
+		IfcMeasureWithUnit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,7 +76,9 @@ public class IfcMeasureWithUnitImpl extends IdEObjectImpl implements IfcMeasureW
 	 * @generated
 	 */
 	public IfcValue getValueComponent() {
-		return (IfcValue) eGet(Ifc2x3tc1Package.Literals.IFC_MEASURE_WITH_UNIT__VALUE_COMPONENT, true);
+		return (IfcValue) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MEASURE_WITH_UNIT__VALUE_COMPONENT,
+				true);
 	}
 
 	/**
@@ -82,7 +87,8 @@ public class IfcMeasureWithUnitImpl extends IdEObjectImpl implements IfcMeasureW
 	 * @generated
 	 */
 	public void setValueComponent(IfcValue newValueComponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MEASURE_WITH_UNIT__VALUE_COMPONENT, newValueComponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MEASURE_WITH_UNIT__VALUE_COMPONENT,
+				newValueComponent);
 	}
 
 	/**
@@ -91,7 +97,9 @@ public class IfcMeasureWithUnitImpl extends IdEObjectImpl implements IfcMeasureW
 	 * @generated
 	 */
 	public IfcUnit getUnitComponent() {
-		return (IfcUnit) eGet(Ifc2x3tc1Package.Literals.IFC_MEASURE_WITH_UNIT__UNIT_COMPONENT, true);
+		return (IfcUnit) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MEASURE_WITH_UNIT__UNIT_COMPONENT,
+				true);
 	}
 
 	/**
@@ -100,7 +108,8 @@ public class IfcMeasureWithUnitImpl extends IdEObjectImpl implements IfcMeasureW
 	 * @generated
 	 */
 	public void setUnitComponent(IfcUnit newUnitComponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MEASURE_WITH_UNIT__UNIT_COMPONENT, newUnitComponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MEASURE_WITH_UNIT__UNIT_COMPONENT,
+				newUnitComponent);
 	}
 
 } //IfcMeasureWithUnitImpl

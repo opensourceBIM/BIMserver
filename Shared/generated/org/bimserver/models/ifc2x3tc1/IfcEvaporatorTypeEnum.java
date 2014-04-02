@@ -70,7 +70,8 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEXPANSIONTUBEINTUBE(3, "DIRECTEXPANSIONTUBEINTUBE", "DIRECTEXPANSIONTUBEINTUBE"),
+	DIRECTEXPANSIONTUBEINTUBE(3, "DIRECTEXPANSIONTUBEINTUBE",
+			"DIRECTEXPANSIONTUBEINTUBE"),
 
 	/**
 	 * The '<em><b>DIRECTEXPANSIONBRAZEDPLATE</b></em>' literal object.
@@ -80,7 +81,8 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEXPANSIONBRAZEDPLATE(4, "DIRECTEXPANSIONBRAZEDPLATE", "DIRECTEXPANSIONBRAZEDPLATE"),
+	DIRECTEXPANSIONBRAZEDPLATE(4, "DIRECTEXPANSIONBRAZEDPLATE",
+			"DIRECTEXPANSIONBRAZEDPLATE"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -100,7 +102,8 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEXPANSIONSHELLANDTUBE(6, "DIRECTEXPANSIONSHELLANDTUBE", "DIRECTEXPANSIONSHELLANDTUBE"),
+	DIRECTEXPANSIONSHELLANDTUBE(6, "DIRECTEXPANSIONSHELLANDTUBE",
+			"DIRECTEXPANSIONSHELLANDTUBE"),
 
 	/**
 	 * The '<em><b>SHELLANDCOIL</b></em>' literal object.
@@ -238,8 +241,10 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEvaporatorTypeEnum[] VALUES_ARRAY = new IfcEvaporatorTypeEnum[] { NULL, NOTDEFINED, FLOODEDSHELLANDTUBE, DIRECTEXPANSIONTUBEINTUBE,
-			DIRECTEXPANSIONBRAZEDPLATE, USERDEFINED, DIRECTEXPANSIONSHELLANDTUBE, SHELLANDCOIL, };
+	private static final IfcEvaporatorTypeEnum[] VALUES_ARRAY = new IfcEvaporatorTypeEnum[] {
+			NULL, NOTDEFINED, FLOODEDSHELLANDTUBE, DIRECTEXPANSIONTUBEINTUBE,
+			DIRECTEXPANSIONBRAZEDPLATE, USERDEFINED,
+			DIRECTEXPANSIONSHELLANDTUBE, SHELLANDCOIL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Evaporator Type Enum</b></em>' enumerators.
@@ -247,7 +252,8 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcEvaporatorTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcEvaporatorTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Evaporator Type Enum</b></em>' literal with the specified literal value.

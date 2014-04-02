@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianTransformationOperator3D;
 import org.bimserver.models.ifc2x3tc1.IfcDirection;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,9 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCartesianTransformationOperator3DImpl extends IfcCartesianTransformationOperatorImpl implements IfcCartesianTransformationOperator3D {
+public class IfcCartesianTransformationOperator3DImpl extends
+		IfcCartesianTransformationOperatorImpl implements
+		IfcCartesianTransformationOperator3D {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +63,9 @@ public class IfcCartesianTransformationOperator3DImpl extends IfcCartesianTransf
 	 * @generated
 	 */
 	public IfcDirection getAxis3() {
-		return (IfcDirection) eGet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_D__AXIS3, true);
+		return (IfcDirection) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_D__AXIS3,
+				true);
 	}
 
 	/**
@@ -69,7 +74,8 @@ public class IfcCartesianTransformationOperator3DImpl extends IfcCartesianTransf
 	 * @generated
 	 */
 	public void setAxis3(IfcDirection newAxis3) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_D__AXIS3, newAxis3);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_D__AXIS3,
+				newAxis3);
 	}
 
 	/**

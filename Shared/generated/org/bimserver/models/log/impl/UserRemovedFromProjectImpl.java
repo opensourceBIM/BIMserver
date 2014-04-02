@@ -18,7 +18,9 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.UserRemovedFromProject;
+
 import org.bimserver.models.store.Project;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class UserRemovedFromProjectImpl extends UserRelatedImpl implements UserRemovedFromProject {
+public class UserRemovedFromProjectImpl extends UserRelatedImpl implements
+		UserRemovedFromProject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +63,8 @@ public class UserRemovedFromProjectImpl extends UserRelatedImpl implements UserR
 	 * @generated
 	 */
 	public Project getProject() {
-		return (Project) eGet(LogPackage.Literals.USER_REMOVED_FROM_PROJECT__PROJECT, true);
+		return (Project) eGet(
+				LogPackage.Literals.USER_REMOVED_FROM_PROJECT__PROJECT, true);
 	}
 
 	/**

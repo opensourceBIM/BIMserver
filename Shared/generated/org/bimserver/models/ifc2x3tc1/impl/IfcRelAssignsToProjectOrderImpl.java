@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToProjectOrder;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsToProjectOrderImpl extends IfcRelAssignsToControlImpl implements IfcRelAssignsToProjectOrder {
+public class IfcRelAssignsToProjectOrderImpl extends IfcRelAssignsToControlImpl
+		implements IfcRelAssignsToProjectOrder {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -17,9 +17,11 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCurrencyEnum;
 import org.bimserver.models.ifc2x3tc1.IfcMonetaryUnit;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMonetaryUnitImpl extends IdEObjectImpl implements IfcMonetaryUnit {
+public class IfcMonetaryUnitImpl extends IdEObjectImpl implements
+		IfcMonetaryUnit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +74,8 @@ public class IfcMonetaryUnitImpl extends IdEObjectImpl implements IfcMonetaryUni
 	 * @generated
 	 */
 	public IfcCurrencyEnum getCurrency() {
-		return (IfcCurrencyEnum) eGet(Ifc2x3tc1Package.Literals.IFC_MONETARY_UNIT__CURRENCY, true);
+		return (IfcCurrencyEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MONETARY_UNIT__CURRENCY, true);
 	}
 
 	/**

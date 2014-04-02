@@ -24,11 +24,11 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 	public void addExtendedDataToRevision(java.lang.Long roid, org.bimserver.interfaces.objects.SExtendedData extendedData) throws UserException, ServerException {
 	}
 	
-	public org.bimserver.interfaces.objects.SProject addProject(java.lang.String projectName) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SProject addProject(java.lang.String projectName, java.lang.String schema) throws UserException, ServerException {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SProject addProjectAsSubProject(java.lang.String projectName, java.lang.Long parentPoid) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SProject addProjectAsSubProject(java.lang.String projectName, java.lang.Long parentPoid, java.lang.String schema) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -76,7 +76,7 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 		return null;
 	}
 	
-	public java.lang.Long downloadByTypes(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> classNames, java.lang.Long serializerOid, java.lang.Boolean includeAllSubtypes, java.lang.Boolean useObjectIDM, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
+	public java.lang.Long downloadByTypes(java.util.Set<java.lang.Long> roids, java.lang.String schema, java.util.Set<java.lang.String> classNames, java.lang.Long serializerOid, java.lang.Boolean includeAllSubtypes, java.lang.Boolean useObjectIDM, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	

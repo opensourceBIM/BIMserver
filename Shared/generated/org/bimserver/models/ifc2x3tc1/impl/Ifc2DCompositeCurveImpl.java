@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2DCompositeCurve;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class Ifc2DCompositeCurveImpl extends IfcCompositeCurveImpl implements Ifc2DCompositeCurve {
+public class Ifc2DCompositeCurveImpl extends IfcCompositeCurveImpl implements
+		Ifc2DCompositeCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

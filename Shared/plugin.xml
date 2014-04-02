@@ -27,6 +27,13 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated models -->
+      <package
+            uri="http://buildingsmart.ifc4.ecore"
+            class="org.bimserver.models.ifc4.Ifc4Package"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="log"
             class="org.bimserver.models.log.LogPackage"/>

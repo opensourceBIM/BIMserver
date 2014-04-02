@@ -33,7 +33,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcCsgPrimitive3D extends IfcGeometricRepresentationItem, IfcBooleanOperand, IfcCsgSelect {
+public interface IfcCsgPrimitive3D extends IfcGeometricRepresentationItem,
+		IfcBooleanOperand, IfcCsgSelect {
 	/**
 	 * Returns the value of the '<em><b>Position</b></em>' reference.
 	 * <!-- begin-user-doc -->

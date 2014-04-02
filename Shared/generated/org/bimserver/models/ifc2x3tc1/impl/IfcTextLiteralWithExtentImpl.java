@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPlanarExtent;
 import org.bimserver.models.ifc2x3tc1.IfcTextLiteralWithExtent;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements IfcTextLiteralWithExtent {
+public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements
+		IfcTextLiteralWithExtent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +63,9 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	 * @generated
 	 */
 	public IfcPlanarExtent getExtent() {
-		return (IfcPlanarExtent) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__EXTENT, true);
+		return (IfcPlanarExtent) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__EXTENT,
+				true);
 	}
 
 	/**
@@ -70,7 +74,8 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	 * @generated
 	 */
 	public void setExtent(IfcPlanarExtent newExtent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__EXTENT, newExtent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__EXTENT,
+				newExtent);
 	}
 
 	/**
@@ -79,7 +84,9 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	 * @generated
 	 */
 	public String getBoxAlignment() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__BOX_ALIGNMENT, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__BOX_ALIGNMENT,
+				true);
 	}
 
 	/**
@@ -88,7 +95,8 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	 * @generated
 	 */
 	public void setBoxAlignment(String newBoxAlignment) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__BOX_ALIGNMENT, newBoxAlignment);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__BOX_ALIGNMENT,
+				newBoxAlignment);
 	}
 
 } //IfcTextLiteralWithExtentImpl

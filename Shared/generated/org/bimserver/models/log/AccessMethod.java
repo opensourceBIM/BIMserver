@@ -213,7 +213,9 @@ public enum AccessMethod implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final AccessMethod[] VALUES_ARRAY = new AccessMethod[] { SOAP, WEB_INTERFACE, INTERNAL, REST, SYNDICATION, JSON, PROTOCOL_BUFFERS, };
+	private static final AccessMethod[] VALUES_ARRAY = new AccessMethod[] {
+			SOAP, WEB_INTERFACE, INTERNAL, REST, SYNDICATION, JSON,
+			PROTOCOL_BUFFERS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Access Method</b></em>' enumerators.
@@ -221,7 +223,8 @@ public enum AccessMethod implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<AccessMethod> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<AccessMethod> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Access Method</b></em>' literal with the specified literal value.

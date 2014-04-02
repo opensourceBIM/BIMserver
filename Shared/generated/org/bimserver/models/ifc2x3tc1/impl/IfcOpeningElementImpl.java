@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcOpeningElement;
 import org.bimserver.models.ifc2x3tc1.IfcRelFillsElement;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl implements IfcOpeningElement {
+public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl
+		implements IfcOpeningElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,9 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelFillsElement> getHasFillings() {
-		return (EList<IfcRelFillsElement>) eGet(Ifc2x3tc1Package.Literals.IFC_OPENING_ELEMENT__HAS_FILLINGS, true);
+		return (EList<IfcRelFillsElement>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_OPENING_ELEMENT__HAS_FILLINGS,
+				true);
 	}
 
 	/**

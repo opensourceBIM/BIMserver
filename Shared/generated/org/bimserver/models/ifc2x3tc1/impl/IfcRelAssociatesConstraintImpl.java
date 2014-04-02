@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcConstraint;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesConstraint;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl implements IfcRelAssociatesConstraint {
+public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl
+		implements IfcRelAssociatesConstraint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +63,9 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 * @generated
 	 */
 	public String getIntent() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__INTENT, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__INTENT,
+				true);
 	}
 
 	/**
@@ -70,7 +74,8 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 * @generated
 	 */
 	public void setIntent(String newIntent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__INTENT, newIntent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__INTENT,
+				newIntent);
 	}
 
 	/**
@@ -79,7 +84,9 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 * @generated
 	 */
 	public IfcConstraint getRelatingConstraint() {
-		return (IfcConstraint) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__RELATING_CONSTRAINT, true);
+		return (IfcConstraint) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__RELATING_CONSTRAINT,
+				true);
 	}
 
 	/**
@@ -88,7 +95,8 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 * @generated
 	 */
 	public void setRelatingConstraint(IfcConstraint newRelatingConstraint) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__RELATING_CONSTRAINT, newRelatingConstraint);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__RELATING_CONSTRAINT,
+				newRelatingConstraint);
 	}
 
 } //IfcRelAssociatesConstraintImpl

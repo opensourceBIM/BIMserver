@@ -188,7 +188,8 @@ public enum IfcRailingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRailingTypeEnum[] VALUES_ARRAY = new IfcRailingTypeEnum[] { NULL, NOTDEFINED, HANDRAIL, GUARDRAIL, USERDEFINED, BALUSTRADE, };
+	private static final IfcRailingTypeEnum[] VALUES_ARRAY = new IfcRailingTypeEnum[] {
+			NULL, NOTDEFINED, HANDRAIL, GUARDRAIL, USERDEFINED, BALUSTRADE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Railing Type Enum</b></em>' enumerators.
@@ -196,7 +197,8 @@ public enum IfcRailingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcRailingTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcRailingTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Railing Type Enum</b></em>' literal with the specified literal value.

@@ -16,6 +16,9 @@ import jxl.write.biff.RowsExceededException;
 import nl.tue.buildingsmart.emf.SchemaLoader;
 
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.emf.Schema;
+import org.bimserver.ifc.step.deserializer.Ifc2x3tc1StepDeserializer;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.ifcengine.JvmIfcEngine;
 import org.bimserver.ifcengine.JvmIfcEngineModel;
@@ -133,8 +136,8 @@ public class LodToExcel2 {
 	
 			    	RenderEngineGeometry geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
 			    	
-			    	IfcStepDeserializer deserializer = new IfcStepDeserializer();
-					deserializer.init(schema);
+			    	IfcStepDeserializer deserializer = new Ifc2x3tc1StepDeserializer(Schema.IFC2X3TC1);
+					deserializer.init(null); // TODO
 			    	IfcModelInterface model = deserializer.read(f);
 					float scaleFactorToMeter = 1;
 					

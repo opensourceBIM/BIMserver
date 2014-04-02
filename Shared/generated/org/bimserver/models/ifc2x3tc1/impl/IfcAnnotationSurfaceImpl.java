@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotationSurface;
 import org.bimserver.models.ifc2x3tc1.IfcGeometricRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcTextureCoordinate;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAnnotationSurfaceImpl extends IfcGeometricRepresentationItemImpl implements IfcAnnotationSurface {
+public class IfcAnnotationSurfaceImpl extends
+		IfcGeometricRepresentationItemImpl implements IfcAnnotationSurface {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,8 @@ public class IfcAnnotationSurfaceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public IfcGeometricRepresentationItem getItem() {
-		return (IfcGeometricRepresentationItem) eGet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_SURFACE__ITEM, true);
+		return (IfcGeometricRepresentationItem) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ANNOTATION_SURFACE__ITEM, true);
 	}
 
 	/**
@@ -80,7 +83,9 @@ public class IfcAnnotationSurfaceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public IfcTextureCoordinate getTextureCoordinates() {
-		return (IfcTextureCoordinate) eGet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_SURFACE__TEXTURE_COORDINATES, true);
+		return (IfcTextureCoordinate) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ANNOTATION_SURFACE__TEXTURE_COORDINATES,
+				true);
 	}
 
 	/**
@@ -89,7 +94,8 @@ public class IfcAnnotationSurfaceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setTextureCoordinates(IfcTextureCoordinate newTextureCoordinates) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_SURFACE__TEXTURE_COORDINATES, newTextureCoordinates);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_SURFACE__TEXTURE_COORDINATES,
+				newTextureCoordinates);
 	}
 
 	/**

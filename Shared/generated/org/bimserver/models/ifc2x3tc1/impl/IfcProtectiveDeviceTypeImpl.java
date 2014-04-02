@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProtectiveDeviceType;
 import org.bimserver.models.ifc2x3tc1.IfcProtectiveDeviceTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProtectiveDeviceTypeImpl extends IfcFlowControllerTypeImpl implements IfcProtectiveDeviceType {
+public class IfcProtectiveDeviceTypeImpl extends IfcFlowControllerTypeImpl
+		implements IfcProtectiveDeviceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcProtectiveDeviceTypeImpl extends IfcFlowControllerTypeImpl imple
 	 * @generated
 	 */
 	public IfcProtectiveDeviceTypeEnum getPredefinedType() {
-		return (IfcProtectiveDeviceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PROTECTIVE_DEVICE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcProtectiveDeviceTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROTECTIVE_DEVICE_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcProtectiveDeviceTypeImpl extends IfcFlowControllerTypeImpl imple
 	 * @generated
 	 */
 	public void setPredefinedType(IfcProtectiveDeviceTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROTECTIVE_DEVICE_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROTECTIVE_DEVICE_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcProtectiveDeviceTypeImpl

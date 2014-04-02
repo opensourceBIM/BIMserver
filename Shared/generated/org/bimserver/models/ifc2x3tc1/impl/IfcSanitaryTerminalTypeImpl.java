@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcSanitaryTerminalType;
 import org.bimserver.models.ifc2x3tc1.IfcSanitaryTerminalTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSanitaryTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements IfcSanitaryTerminalType {
+public class IfcSanitaryTerminalTypeImpl extends IfcFlowTerminalTypeImpl
+		implements IfcSanitaryTerminalType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcSanitaryTerminalTypeImpl extends IfcFlowTerminalTypeImpl impleme
 	 * @generated
 	 */
 	public IfcSanitaryTerminalTypeEnum getPredefinedType() {
-		return (IfcSanitaryTerminalTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SANITARY_TERMINAL_TYPE__PREDEFINED_TYPE, true);
+		return (IfcSanitaryTerminalTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SANITARY_TERMINAL_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcSanitaryTerminalTypeImpl extends IfcFlowTerminalTypeImpl impleme
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSanitaryTerminalTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SANITARY_TERMINAL_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SANITARY_TERMINAL_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcSanitaryTerminalTypeImpl

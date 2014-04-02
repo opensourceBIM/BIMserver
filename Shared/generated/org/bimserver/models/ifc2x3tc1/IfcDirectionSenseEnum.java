@@ -113,7 +113,8 @@ public enum IfcDirectionSenseEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDirectionSenseEnum[] VALUES_ARRAY = new IfcDirectionSenseEnum[] { NULL, POSITIVE, NEGATIVE, };
+	private static final IfcDirectionSenseEnum[] VALUES_ARRAY = new IfcDirectionSenseEnum[] {
+			NULL, POSITIVE, NEGATIVE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Direction Sense Enum</b></em>' enumerators.
@@ -121,7 +122,8 @@ public enum IfcDirectionSenseEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDirectionSenseEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDirectionSenseEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Direction Sense Enum</b></em>' literal with the specified literal value.

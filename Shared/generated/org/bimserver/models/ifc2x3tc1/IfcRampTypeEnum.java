@@ -263,8 +263,10 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRampTypeEnum[] VALUES_ARRAY = new IfcRampTypeEnum[] { NULL, QUARTER_TURN_RAMP, SPIRAL_RAMP, NOTDEFINED, STRAIGHT_RUN_RAMP, TWO_STRAIGHT_RUN_RAMP,
-			HALF_TURN_RAMP, USERDEFINED, TWO_QUARTER_TURN_RAMP, };
+	private static final IfcRampTypeEnum[] VALUES_ARRAY = new IfcRampTypeEnum[] {
+			NULL, QUARTER_TURN_RAMP, SPIRAL_RAMP, NOTDEFINED,
+			STRAIGHT_RUN_RAMP, TWO_STRAIGHT_RUN_RAMP, HALF_TURN_RAMP,
+			USERDEFINED, TWO_QUARTER_TURN_RAMP, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Ramp Type Enum</b></em>' enumerators.
@@ -272,7 +274,8 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcRampTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcRampTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Ramp Type Enum</b></em>' literal with the specified literal value.

@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAirTerminalType;
 import org.bimserver.models.ifc2x3tc1.IfcAirTerminalTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAirTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements IfcAirTerminalType {
+public class IfcAirTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements
+		IfcAirTerminalType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcAirTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements I
 	 * @generated
 	 */
 	public IfcAirTerminalTypeEnum getPredefinedType() {
-		return (IfcAirTerminalTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_AIR_TERMINAL_TYPE__PREDEFINED_TYPE, true);
+		return (IfcAirTerminalTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_AIR_TERMINAL_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcAirTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements I
 	 * @generated
 	 */
 	public void setPredefinedType(IfcAirTerminalTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_AIR_TERMINAL_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_AIR_TERMINAL_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcAirTerminalTypeImpl

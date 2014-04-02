@@ -17,9 +17,11 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDerivedUnitElement;
 import org.bimserver.models.ifc2x3tc1.IfcNamedUnit;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements IfcDerivedUnitElement {
+public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements
+		IfcDerivedUnitElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,7 +75,8 @@ public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements IfcDeriv
 	 * @generated
 	 */
 	public IfcNamedUnit getUnit() {
-		return (IfcNamedUnit) eGet(Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT_ELEMENT__UNIT, true);
+		return (IfcNamedUnit) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT_ELEMENT__UNIT, true);
 	}
 
 	/**
@@ -90,7 +94,9 @@ public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements IfcDeriv
 	 * @generated
 	 */
 	public int getExponent() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT,
+				true);
 	}
 
 	/**
@@ -99,7 +105,8 @@ public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements IfcDeriv
 	 * @generated
 	 */
 	public void setExponent(int newExponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT, newExponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT,
+				newExponent);
 	}
 
 } //IfcDerivedUnitElementImpl

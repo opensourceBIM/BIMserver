@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcTankType;
 import org.bimserver.models.ifc2x3tc1.IfcTankTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTankTypeImpl extends IfcFlowStorageDeviceTypeImpl implements IfcTankType {
+public class IfcTankTypeImpl extends IfcFlowStorageDeviceTypeImpl implements
+		IfcTankType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,8 @@ public class IfcTankTypeImpl extends IfcFlowStorageDeviceTypeImpl implements Ifc
 	 * @generated
 	 */
 	public IfcTankTypeEnum getPredefinedType() {
-		return (IfcTankTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_TANK_TYPE__PREDEFINED_TYPE, true);
+		return (IfcTankTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TANK_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -69,7 +72,8 @@ public class IfcTankTypeImpl extends IfcFlowStorageDeviceTypeImpl implements Ifc
 	 * @generated
 	 */
 	public void setPredefinedType(IfcTankTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TANK_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TANK_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcTankTypeImpl

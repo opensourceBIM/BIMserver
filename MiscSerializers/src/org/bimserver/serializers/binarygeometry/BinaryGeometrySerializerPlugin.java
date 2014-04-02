@@ -17,6 +17,7 @@ package org.bimserver.serializers.binarygeometry;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -70,5 +71,10 @@ public class BinaryGeometrySerializerPlugin extends AbstractSerializerPlugin {
 	@Override
 	public String getDefaultContentType() {
 		return "binarygeometry";
+	}
+
+	@Override
+	public Schema[] getSupportedSchemas() {
+		return new Schema[]{Schema.IFC2X3TC1, Schema.IFC4};
 	}
 }

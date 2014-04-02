@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcEnergyProperties;
 import org.bimserver.models.ifc2x3tc1.IfcEnergySequenceEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implements IfcEnergyProperties {
+public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl
+		implements IfcEnergyProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +63,9 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 * @generated
 	 */
 	public IfcEnergySequenceEnum getEnergySequence() {
-		return (IfcEnergySequenceEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__ENERGY_SEQUENCE, true);
+		return (IfcEnergySequenceEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__ENERGY_SEQUENCE,
+				true);
 	}
 
 	/**
@@ -70,7 +74,8 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 * @generated
 	 */
 	public void setEnergySequence(IfcEnergySequenceEnum newEnergySequence) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__ENERGY_SEQUENCE, newEnergySequence);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__ENERGY_SEQUENCE,
+				newEnergySequence);
 	}
 
 	/**
@@ -97,7 +102,9 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 * @generated
 	 */
 	public String getUserDefinedEnergySequence() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE,
+				true);
 	}
 
 	/**
@@ -106,7 +113,8 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 * @generated
 	 */
 	public void setUserDefinedEnergySequence(String newUserDefinedEnergySequence) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE, newUserDefinedEnergySequence);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE,
+				newUserDefinedEnergySequence);
 	}
 
 	/**

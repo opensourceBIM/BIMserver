@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
 import org.bimserver.models.ifc2x3tc1.IfcFeatureElementSubtraction;
 import org.bimserver.models.ifc2x3tc1.IfcRelVoidsElement;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelVoidsElementImpl extends IfcRelConnectsImpl implements IfcRelVoidsElement {
+public class IfcRelVoidsElementImpl extends IfcRelConnectsImpl implements
+		IfcRelVoidsElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,9 @@ public class IfcRelVoidsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * @generated
 	 */
 	public IfcElement getRelatingBuildingElement() {
-		return (IfcElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT, true);
+		return (IfcElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT,
+				true);
 	}
 
 	/**
@@ -71,7 +75,8 @@ public class IfcRelVoidsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * @generated
 	 */
 	public void setRelatingBuildingElement(IfcElement newRelatingBuildingElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT, newRelatingBuildingElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT,
+				newRelatingBuildingElement);
 	}
 
 	/**
@@ -80,7 +85,9 @@ public class IfcRelVoidsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * @generated
 	 */
 	public IfcFeatureElementSubtraction getRelatedOpeningElement() {
-		return (IfcFeatureElementSubtraction) eGet(Ifc2x3tc1Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT, true);
+		return (IfcFeatureElementSubtraction) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT,
+				true);
 	}
 
 	/**
@@ -88,8 +95,10 @@ public class IfcRelVoidsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatedOpeningElement(IfcFeatureElementSubtraction newRelatedOpeningElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT, newRelatedOpeningElement);
+	public void setRelatedOpeningElement(
+			IfcFeatureElementSubtraction newRelatedOpeningElement) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT,
+				newRelatedOpeningElement);
 	}
 
 } //IfcRelVoidsElementImpl

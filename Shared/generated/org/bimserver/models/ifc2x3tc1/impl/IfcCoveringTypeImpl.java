@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCoveringType;
 import org.bimserver.models.ifc2x3tc1.IfcCoveringTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCoveringTypeImpl extends IfcBuildingElementTypeImpl implements IfcCoveringType {
+public class IfcCoveringTypeImpl extends IfcBuildingElementTypeImpl implements
+		IfcCoveringType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcCoveringTypeImpl extends IfcBuildingElementTypeImpl implements I
 	 * @generated
 	 */
 	public IfcCoveringTypeEnum getPredefinedType() {
-		return (IfcCoveringTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_COVERING_TYPE__PREDEFINED_TYPE, true);
+		return (IfcCoveringTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_COVERING_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcCoveringTypeImpl extends IfcBuildingElementTypeImpl implements I
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCoveringTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_COVERING_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_COVERING_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcCoveringTypeImpl

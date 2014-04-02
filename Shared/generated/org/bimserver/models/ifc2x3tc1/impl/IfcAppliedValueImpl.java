@@ -17,6 +17,7 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAppliedValue;
 import org.bimserver.models.ifc2x3tc1.IfcAppliedValueRelationship;
@@ -24,7 +25,9 @@ import org.bimserver.models.ifc2x3tc1.IfcAppliedValueSelect;
 import org.bimserver.models.ifc2x3tc1.IfcDateTimeSelect;
 import org.bimserver.models.ifc2x3tc1.IfcMeasureWithUnit;
 import org.bimserver.models.ifc2x3tc1.IfcReferencesValueDocument;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -48,7 +51,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValue {
+public class IfcAppliedValueImpl extends IdEObjectImpl implements
+		IfcAppliedValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,7 +88,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__NAME, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__NAME,
+				true);
 	}
 
 	/**
@@ -120,7 +125,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION, true);
 	}
 
 	/**
@@ -129,7 +135,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION, newDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION,
+				newDescription);
 	}
 
 	/**
@@ -156,7 +163,9 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	public IfcAppliedValueSelect getAppliedValue() {
-		return (IfcAppliedValueSelect) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE, true);
+		return (IfcAppliedValueSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE,
+				true);
 	}
 
 	/**
@@ -165,7 +174,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	public void setAppliedValue(IfcAppliedValueSelect newAppliedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE, newAppliedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE,
+				newAppliedValue);
 	}
 
 	/**
@@ -192,7 +202,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	public IfcMeasureWithUnit getUnitBasis() {
-		return (IfcMeasureWithUnit) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS, true);
+		return (IfcMeasureWithUnit) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS, true);
 	}
 
 	/**
@@ -201,7 +212,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	public void setUnitBasis(IfcMeasureWithUnit newUnitBasis) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS, newUnitBasis);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS,
+				newUnitBasis);
 	}
 
 	/**
@@ -228,7 +240,9 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	public IfcDateTimeSelect getApplicableDate() {
-		return (IfcDateTimeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE, true);
+		return (IfcDateTimeSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE,
+				true);
 	}
 
 	/**
@@ -237,7 +251,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	public void setApplicableDate(IfcDateTimeSelect newApplicableDate) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE, newApplicableDate);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE,
+				newApplicableDate);
 	}
 
 	/**
@@ -264,7 +279,9 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	public IfcDateTimeSelect getFixedUntilDate() {
-		return (IfcDateTimeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE, true);
+		return (IfcDateTimeSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE,
+				true);
 	}
 
 	/**
@@ -273,7 +290,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	public void setFixedUntilDate(IfcDateTimeSelect newFixedUntilDate) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE, newFixedUntilDate);
+		eSet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE,
+				newFixedUntilDate);
 	}
 
 	/**
@@ -301,7 +319,9 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcReferencesValueDocument> getValuesReferenced() {
-		return (EList<IfcReferencesValueDocument>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUES_REFERENCED, true);
+		return (EList<IfcReferencesValueDocument>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUES_REFERENCED,
+				true);
 	}
 
 	/**
@@ -329,7 +349,9 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValueRelationship> getValueOfComponents() {
-		return (EList<IfcAppliedValueRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUE_OF_COMPONENTS, true);
+		return (EList<IfcAppliedValueRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUE_OF_COMPONENTS,
+				true);
 	}
 
 	/**
@@ -357,7 +379,9 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValueRelationship> getIsComponentIn() {
-		return (EList<IfcAppliedValueRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__IS_COMPONENT_IN, true);
+		return (EList<IfcAppliedValueRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__IS_COMPONENT_IN,
+				true);
 	}
 
 	/**

@@ -188,7 +188,8 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPermeableCoveringOperationEnum[] VALUES_ARRAY = new IfcPermeableCoveringOperationEnum[] { NULL, NOTDEFINED, SCREEN, USERDEFINED, LOUVER, GRILL, };
+	private static final IfcPermeableCoveringOperationEnum[] VALUES_ARRAY = new IfcPermeableCoveringOperationEnum[] {
+			NULL, NOTDEFINED, SCREEN, USERDEFINED, LOUVER, GRILL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Permeable Covering Operation Enum</b></em>' enumerators.
@@ -196,7 +197,8 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPermeableCoveringOperationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPermeableCoveringOperationEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Permeable Covering Operation Enum</b></em>' literal with the specified literal value.
@@ -281,7 +283,8 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcPermeableCoveringOperationEnum(int value, String name, String literal) {
+	private IfcPermeableCoveringOperationEnum(int value, String name,
+			String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

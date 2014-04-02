@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyle;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPresentationStyleImpl extends IdEObjectImpl implements IfcPresentationStyle {
+public class IfcPresentationStyleImpl extends IdEObjectImpl implements
+		IfcPresentationStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +73,8 @@ public class IfcPresentationStyleImpl extends IdEObjectImpl implements IfcPresen
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_STYLE__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRESENTATION_STYLE__NAME, true);
 	}
 
 	/**

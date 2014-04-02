@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProperty;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertySetImpl extends IfcPropertySetDefinitionImpl implements IfcPropertySet {
+public class IfcPropertySetImpl extends IfcPropertySetDefinitionImpl implements
+		IfcPropertySet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,9 @@ public class IfcPropertySetImpl extends IfcPropertySetDefinitionImpl implements 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getHasProperties() {
-		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_SET__HAS_PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_SET__HAS_PROPERTIES,
+				true);
 	}
 
 } //IfcPropertySetImpl

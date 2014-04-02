@@ -34,7 +34,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcExternalReference extends IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect {
+public interface IfcExternalReference extends
+		IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect {
 	/**
 	 * Returns the value of the '<em><b>Location</b></em>' attribute.
 	 * <!-- begin-user-doc -->

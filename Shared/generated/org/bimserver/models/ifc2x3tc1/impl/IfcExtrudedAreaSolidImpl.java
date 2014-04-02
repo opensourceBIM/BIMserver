@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDirection;
 import org.bimserver.models.ifc2x3tc1.IfcExtrudedAreaSolid;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements IfcExtrudedAreaSolid {
+public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements
+		IfcExtrudedAreaSolid {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,9 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * @generated
 	 */
 	public IfcDirection getExtrudedDirection() {
-		return (IfcDirection) eGet(Ifc2x3tc1Package.Literals.IFC_EXTRUDED_AREA_SOLID__EXTRUDED_DIRECTION, true);
+		return (IfcDirection) eGet(
+				Ifc2x3tc1Package.Literals.IFC_EXTRUDED_AREA_SOLID__EXTRUDED_DIRECTION,
+				true);
 	}
 
 	/**
@@ -71,7 +75,8 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * @generated
 	 */
 	public void setExtrudedDirection(IfcDirection newExtrudedDirection) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_EXTRUDED_AREA_SOLID__EXTRUDED_DIRECTION, newExtrudedDirection);
+		eSet(Ifc2x3tc1Package.Literals.IFC_EXTRUDED_AREA_SOLID__EXTRUDED_DIRECTION,
+				newExtrudedDirection);
 	}
 
 	/**
@@ -80,7 +85,8 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * @generated
 	 */
 	public double getDepth() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH, true);
 	}
 
 	/**
@@ -98,7 +104,9 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * @generated
 	 */
 	public String getDepthAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING,
+				true);
 	}
 
 	/**
@@ -107,7 +115,8 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * @generated
 	 */
 	public void setDepthAsString(String newDepthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING, newDepthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING,
+				newDepthAsString);
 	}
 
 } //IfcExtrudedAreaSolidImpl

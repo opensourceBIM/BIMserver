@@ -18,8 +18,10 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.ExtendedDataAddedToProject;
 import org.bimserver.models.log.LogPackage;
+
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Project;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ExtendedDataAddedToProjectImpl extends LogActionImpl implements ExtendedDataAddedToProject {
+public class ExtendedDataAddedToProjectImpl extends LogActionImpl implements
+		ExtendedDataAddedToProject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,9 @@ public class ExtendedDataAddedToProjectImpl extends LogActionImpl implements Ext
 	 * @generated
 	 */
 	public Project getProject() {
-		return (Project) eGet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__PROJECT, true);
+		return (Project) eGet(
+				LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__PROJECT,
+				true);
 	}
 
 	/**
@@ -71,7 +76,8 @@ public class ExtendedDataAddedToProjectImpl extends LogActionImpl implements Ext
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
-		eSet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__PROJECT, newProject);
+		eSet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__PROJECT,
+				newProject);
 	}
 
 	/**
@@ -80,7 +86,9 @@ public class ExtendedDataAddedToProjectImpl extends LogActionImpl implements Ext
 	 * @generated
 	 */
 	public ExtendedData getExtendedData() {
-		return (ExtendedData) eGet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA, true);
+		return (ExtendedData) eGet(
+				LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA,
+				true);
 	}
 
 	/**
@@ -89,7 +97,8 @@ public class ExtendedDataAddedToProjectImpl extends LogActionImpl implements Ext
 	 * @generated
 	 */
 	public void setExtendedData(ExtendedData newExtendedData) {
-		eSet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA, newExtendedData);
+		eSet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA,
+				newExtendedData);
 	}
 
 } //ExtendedDataAddedToProjectImpl

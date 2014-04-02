@@ -17,6 +17,10 @@ package org.bimserver.ifc.xml.deserializer;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Collections;
+import java.util.Set;
+
+import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -46,7 +50,7 @@ public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		initialized = true;
-		pluginManager.requireSchemaDefinition();
+		pluginManager.requireSchemaDefinition("ifc2x3tc1");
 	}
 
 	@Override
@@ -67,5 +71,10 @@ public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
 		return null;
+	}
+
+	@Override
+	public Set<Schema> getSupportedSchemas() {
+		return Collections.singleton(Schema.IFC2X3TC1);
 	}
 }

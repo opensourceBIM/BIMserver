@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralActivity;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralActivity;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralActivityAssignmentSelect;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl implements IfcRelConnectsStructuralActivity {
+public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl
+		implements IfcRelConnectsStructuralActivity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,9 @@ public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl imp
 	 * @generated
 	 */
 	public IfcStructuralActivityAssignmentSelect getRelatingElement() {
-		return (IfcStructuralActivityAssignmentSelect) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATING_ELEMENT, true);
+		return (IfcStructuralActivityAssignmentSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATING_ELEMENT,
+				true);
 	}
 
 	/**
@@ -70,8 +74,10 @@ public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatingElement(IfcStructuralActivityAssignmentSelect newRelatingElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATING_ELEMENT, newRelatingElement);
+	public void setRelatingElement(
+			IfcStructuralActivityAssignmentSelect newRelatingElement) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATING_ELEMENT,
+				newRelatingElement);
 	}
 
 	/**
@@ -80,7 +86,9 @@ public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl imp
 	 * @generated
 	 */
 	public IfcStructuralActivity getRelatedStructuralActivity() {
-		return (IfcStructuralActivity) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY, true);
+		return (IfcStructuralActivity) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY,
+				true);
 	}
 
 	/**
@@ -88,8 +96,10 @@ public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatedStructuralActivity(IfcStructuralActivity newRelatedStructuralActivity) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY, newRelatedStructuralActivity);
+	public void setRelatedStructuralActivity(
+			IfcStructuralActivity newRelatedStructuralActivity) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY,
+				newRelatedStructuralActivity);
 	}
 
 } //IfcRelConnectsStructuralActivityImpl

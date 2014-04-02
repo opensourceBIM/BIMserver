@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcSectionalAreaIntegralMeasure;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSectionalAreaIntegralMeasureImpl extends IdEObjectImpl implements IfcSectionalAreaIntegralMeasure {
+public class IfcSectionalAreaIntegralMeasureImpl extends IdEObjectImpl
+		implements IfcSectionalAreaIntegralMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +74,9 @@ public class IfcSectionalAreaIntegralMeasureImpl extends IdEObjectImpl implement
 	 * @generated
 	 */
 	public double getWrappedValue() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -80,7 +85,8 @@ public class IfcSectionalAreaIntegralMeasureImpl extends IdEObjectImpl implement
 	 * @generated
 	 */
 	public void setWrappedValue(double newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**
@@ -107,7 +113,9 @@ public class IfcSectionalAreaIntegralMeasureImpl extends IdEObjectImpl implement
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -116,7 +124,8 @@ public class IfcSectionalAreaIntegralMeasureImpl extends IdEObjectImpl implement
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**

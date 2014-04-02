@@ -18,6 +18,7 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.ProjectDeleted;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ProjectDeletedImpl extends ProjectRelatedImpl implements ProjectDeleted {
+public class ProjectDeletedImpl extends ProjectRelatedImpl implements
+		ProjectDeleted {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

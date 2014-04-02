@@ -138,7 +138,8 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcColumnTypeEnum[] VALUES_ARRAY = new IfcColumnTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, COLUMN, };
+	private static final IfcColumnTypeEnum[] VALUES_ARRAY = new IfcColumnTypeEnum[] {
+			NULL, NOTDEFINED, USERDEFINED, COLUMN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Column Type Enum</b></em>' enumerators.
@@ -146,7 +147,8 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcColumnTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcColumnTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Column Type Enum</b></em>' literal with the specified literal value.

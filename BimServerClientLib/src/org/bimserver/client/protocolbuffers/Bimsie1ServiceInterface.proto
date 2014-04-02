@@ -116,6 +116,7 @@ message AddExtendedDataToRevisionRequest {
 
 message AddProjectRequest {
 	optional string projectName = 1;
+	optional string schema = 2;
 }
 
 message AddProjectResponse {
@@ -126,6 +127,7 @@ message AddProjectResponse {
 message AddProjectAsSubProjectRequest {
 	optional string projectName = 1;
 	optional int64 parentPoid = 2;
+	optional string schema = 3;
 }
 
 message AddProjectAsSubProjectResponse {
@@ -242,12 +244,13 @@ message DownloadByOidsResponse {
 
 message DownloadByTypesRequest {
 	repeated int64 roids = 1;
-	repeated string classNames = 2;
-	optional int64 serializerOid = 3;
-	optional bool includeAllSubtypes = 4;
-	optional bool useObjectIDM = 5;
-	optional bool deep = 6;
-	optional bool sync = 7;
+	optional string schema = 2;
+	repeated string classNames = 3;
+	optional int64 serializerOid = 4;
+	optional bool includeAllSubtypes = 5;
+	optional bool useObjectIDM = 6;
+	optional bool deep = 7;
+	optional bool sync = 8;
 }
 
 message DownloadByTypesResponse {

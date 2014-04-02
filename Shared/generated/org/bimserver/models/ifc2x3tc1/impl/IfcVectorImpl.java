@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDirection;
 import org.bimserver.models.ifc2x3tc1.IfcVector;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -37,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements IfcVector {
+public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
+		IfcVector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,7 +65,8 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * @generated
 	 */
 	public IfcDirection getOrientation() {
-		return (IfcDirection) eGet(Ifc2x3tc1Package.Literals.IFC_VECTOR__ORIENTATION, true);
+		return (IfcDirection) eGet(
+				Ifc2x3tc1Package.Literals.IFC_VECTOR__ORIENTATION, true);
 	}
 
 	/**
@@ -81,7 +84,8 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * @generated
 	 */
 	public double getMagnitude() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_VECTOR__MAGNITUDE, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_VECTOR__MAGNITUDE,
+				true);
 	}
 
 	/**
@@ -99,7 +103,8 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * @generated
 	 */
 	public String getMagnitudeAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING, true);
 	}
 
 	/**
@@ -108,7 +113,8 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * @generated
 	 */
 	public void setMagnitudeAsString(String newMagnitudeAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING, newMagnitudeAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING,
+				newMagnitudeAsString);
 	}
 
 	/**

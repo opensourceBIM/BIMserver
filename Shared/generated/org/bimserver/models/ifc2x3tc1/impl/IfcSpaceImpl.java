@@ -21,7 +21,9 @@ import org.bimserver.models.ifc2x3tc1.IfcInternalOrExternalEnum;
 import org.bimserver.models.ifc2x3tc1.IfcRelCoversSpaces;
 import org.bimserver.models.ifc2x3tc1.IfcRelSpaceBoundary;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -41,7 +43,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcSpace {
+public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements
+		IfcSpace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,7 +70,9 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * @generated
 	 */
 	public IfcInternalOrExternalEnum getInteriorOrExteriorSpace() {
-		return (IfcInternalOrExternalEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SPACE__INTERIOR_OR_EXTERIOR_SPACE, true);
+		return (IfcInternalOrExternalEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SPACE__INTERIOR_OR_EXTERIOR_SPACE,
+				true);
 	}
 
 	/**
@@ -75,8 +80,10 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInteriorOrExteriorSpace(IfcInternalOrExternalEnum newInteriorOrExteriorSpace) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE__INTERIOR_OR_EXTERIOR_SPACE, newInteriorOrExteriorSpace);
+	public void setInteriorOrExteriorSpace(
+			IfcInternalOrExternalEnum newInteriorOrExteriorSpace) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE__INTERIOR_OR_EXTERIOR_SPACE,
+				newInteriorOrExteriorSpace);
 	}
 
 	/**
@@ -85,7 +92,9 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * @generated
 	 */
 	public double getElevationWithFlooring() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING,
+				true);
 	}
 
 	/**
@@ -94,7 +103,8 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * @generated
 	 */
 	public void setElevationWithFlooring(double newElevationWithFlooring) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING, newElevationWithFlooring);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING,
+				newElevationWithFlooring);
 	}
 
 	/**
@@ -121,7 +131,9 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * @generated
 	 */
 	public String getElevationWithFlooringAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING_AS_STRING,
+				true);
 	}
 
 	/**
@@ -129,8 +141,10 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElevationWithFlooringAsString(String newElevationWithFlooringAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING_AS_STRING, newElevationWithFlooringAsString);
+	public void setElevationWithFlooringAsString(
+			String newElevationWithFlooringAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING_AS_STRING,
+				newElevationWithFlooringAsString);
 	}
 
 	/**
@@ -158,7 +172,8 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelCoversSpaces> getHasCoverings() {
-		return (EList<IfcRelCoversSpaces>) eGet(Ifc2x3tc1Package.Literals.IFC_SPACE__HAS_COVERINGS, true);
+		return (EList<IfcRelCoversSpaces>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SPACE__HAS_COVERINGS, true);
 	}
 
 	/**
@@ -186,7 +201,8 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSpaceBoundary> getBoundedBy() {
-		return (EList<IfcRelSpaceBoundary>) eGet(Ifc2x3tc1Package.Literals.IFC_SPACE__BOUNDED_BY, true);
+		return (EList<IfcRelSpaceBoundary>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SPACE__BOUNDED_BY, true);
 	}
 
 	/**

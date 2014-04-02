@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralAction;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralReaction;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralReactionImpl extends IfcStructuralActivityImpl implements IfcStructuralReaction {
+public class IfcStructuralReactionImpl extends IfcStructuralActivityImpl
+		implements IfcStructuralReaction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,8 @@ public class IfcStructuralReactionImpl extends IfcStructuralActivityImpl impleme
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralAction> getCauses() {
-		return (EList<IfcStructuralAction>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_REACTION__CAUSES, true);
+		return (EList<IfcStructuralAction>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_REACTION__CAUSES, true);
 	}
 
 	/**

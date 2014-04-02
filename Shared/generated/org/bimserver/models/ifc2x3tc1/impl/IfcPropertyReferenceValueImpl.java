@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcObjectReferenceSelect;
 import org.bimserver.models.ifc2x3tc1.IfcPropertyReferenceValue;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyReferenceValueImpl extends IfcSimplePropertyImpl implements IfcPropertyReferenceValue {
+public class IfcPropertyReferenceValueImpl extends IfcSimplePropertyImpl
+		implements IfcPropertyReferenceValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +63,9 @@ public class IfcPropertyReferenceValueImpl extends IfcSimplePropertyImpl impleme
 	 * @generated
 	 */
 	public String getUsageName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__USAGE_NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__USAGE_NAME,
+				true);
 	}
 
 	/**
@@ -70,7 +74,8 @@ public class IfcPropertyReferenceValueImpl extends IfcSimplePropertyImpl impleme
 	 * @generated
 	 */
 	public void setUsageName(String newUsageName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__USAGE_NAME, newUsageName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__USAGE_NAME,
+				newUsageName);
 	}
 
 	/**
@@ -97,7 +102,9 @@ public class IfcPropertyReferenceValueImpl extends IfcSimplePropertyImpl impleme
 	 * @generated
 	 */
 	public IfcObjectReferenceSelect getPropertyReference() {
-		return (IfcObjectReferenceSelect) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE, true);
+		return (IfcObjectReferenceSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE,
+				true);
 	}
 
 	/**
@@ -105,8 +112,10 @@ public class IfcPropertyReferenceValueImpl extends IfcSimplePropertyImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPropertyReference(IfcObjectReferenceSelect newPropertyReference) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE, newPropertyReference);
+	public void setPropertyReference(
+			IfcObjectReferenceSelect newPropertyReference) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE,
+				newPropertyReference);
 	}
 
 } //IfcPropertyReferenceValueImpl

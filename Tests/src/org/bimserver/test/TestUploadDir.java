@@ -45,9 +45,9 @@ public class TestUploadDir {
 		if (directory.isDirectory()) {
 			SProject project = null;
 			if (parentProject == null) {
-				project = client.getBimsie1ServiceInterface().addProject(directory.getName());
+				project = client.getBimsie1ServiceInterface().addProject(directory.getName(), "ifc4");
 			} else {
-				project = client.getBimsie1ServiceInterface().addProjectAsSubProject(directory.getName(), parentProject.getOid());
+				project = client.getBimsie1ServiceInterface().addProjectAsSubProject(directory.getName(), parentProject.getOid(), "ifc4");
 			}
 			for (File file : directory.listFiles()) {
 				process(file, project);

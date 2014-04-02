@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPipeFittingType;
 import org.bimserver.models.ifc2x3tc1.IfcPipeFittingTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPipeFittingTypeImpl extends IfcFlowFittingTypeImpl implements IfcPipeFittingType {
+public class IfcPipeFittingTypeImpl extends IfcFlowFittingTypeImpl implements
+		IfcPipeFittingType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcPipeFittingTypeImpl extends IfcFlowFittingTypeImpl implements If
 	 * @generated
 	 */
 	public IfcPipeFittingTypeEnum getPredefinedType() {
-		return (IfcPipeFittingTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PIPE_FITTING_TYPE__PREDEFINED_TYPE, true);
+		return (IfcPipeFittingTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PIPE_FITTING_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcPipeFittingTypeImpl extends IfcFlowFittingTypeImpl implements If
 	 * @generated
 	 */
 	public void setPredefinedType(IfcPipeFittingTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PIPE_FITTING_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PIPE_FITTING_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcPipeFittingTypeImpl

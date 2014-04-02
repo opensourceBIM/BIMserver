@@ -32,7 +32,8 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcOneDirectionRepeatFactor extends IfcGeometricRepresentationItem, IfcHatchLineDistanceSelect {
+public interface IfcOneDirectionRepeatFactor extends
+		IfcGeometricRepresentationItem, IfcHatchLineDistanceSelect {
 	/**
 	 * Returns the value of the '<em><b>Repeat Factor</b></em>' reference.
 	 * <!-- begin-user-doc -->

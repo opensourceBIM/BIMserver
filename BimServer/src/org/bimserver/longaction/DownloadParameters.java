@@ -34,6 +34,7 @@ public class DownloadParameters extends LongActionKey {
 
 	private Set<Long> roids;
 	private boolean includeAllSubtypes;
+	private String schema;
 	private Set<Long> oids;
 	private Set<String> guids;
 	private Set<String> names;
@@ -114,15 +115,20 @@ public class DownloadParameters extends LongActionKey {
 		return downloadParameters;
 	}
 
-	public static DownloadParameters fromClassNames(BimServer bimServer, Set<Long> roids, Set<String> classNames, Boolean includeAllSubtypes, long serializerOid, Boolean deep) {
+	public static DownloadParameters fromClassNames(BimServer bimServer, Set<Long> roids, String schema, Set<String> classNames, Boolean includeAllSubtypes, long serializerOid, Boolean deep) {
 		DownloadParameters downloadParameters = new DownloadParameters(bimServer);
 		downloadParameters.setIncludeAllSubtypes(includeAllSubtypes);
+		downloadParameters.setSchema(schema);
 		downloadParameters.setRoids(roids);
 		downloadParameters.setClassNames(classNames);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_OF_TYPE);
 		downloadParameters.setSerializerOid(serializerOid);
 		downloadParameters.setDeep(deep ? Deep.YES : Deep.NO);
 		return downloadParameters;
+	}
+
+	private void setSchema(String schema) {
+		this.schema = schema;
 	}
 
 	public static DownloadParameters fromJsonQuery(BimServer bimServer, Set<Long> roids, String jsonQuery, long serializerOid) {
@@ -158,6 +164,10 @@ public class DownloadParameters extends LongActionKey {
 		this.roids = roids;
 	}
 
+	public String getSchema() {
+		return schema;
+	}
+	
 	public Long getRoid() {
 		if (roids == null) {
 			return null;

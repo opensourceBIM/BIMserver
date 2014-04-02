@@ -17,11 +17,14 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcConstraint;
 import org.bimserver.models.ifc2x3tc1.IfcProperty;
 import org.bimserver.models.ifc2x3tc1.IfcPropertyConstraintRelationship;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -40,7 +43,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl implements IfcPropertyConstraintRelationship {
+public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl
+		implements IfcPropertyConstraintRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,7 +80,9 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public IfcConstraint getRelatingConstraint() {
-		return (IfcConstraint) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT, true);
+		return (IfcConstraint) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT,
+				true);
 	}
 
 	/**
@@ -85,7 +91,8 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setRelatingConstraint(IfcConstraint newRelatingConstraint) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT, newRelatingConstraint);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT,
+				newRelatingConstraint);
 	}
 
 	/**
@@ -95,7 +102,9 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getRelatedProperties() {
-		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATED_PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATED_PROPERTIES,
+				true);
 	}
 
 	/**
@@ -104,7 +113,9 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__NAME,
+				true);
 	}
 
 	/**
@@ -113,7 +124,8 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__NAME, newName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__NAME,
+				newName);
 	}
 
 	/**
@@ -140,7 +152,9 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__DESCRIPTION, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__DESCRIPTION,
+				true);
 	}
 
 	/**
@@ -149,7 +163,8 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__DESCRIPTION, newDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__DESCRIPTION,
+				newDescription);
 	}
 
 	/**

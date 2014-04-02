@@ -80,7 +80,8 @@ public enum IfcHumidifierTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ADIABATICWETTEDELEMENT(4, "ADIABATICWETTEDELEMENT", "ADIABATICWETTEDELEMENT"),
+	ADIABATICWETTEDELEMENT(4, "ADIABATICWETTEDELEMENT",
+			"ADIABATICWETTEDELEMENT"),
 
 	/**
 	 * The '<em><b>ASSISTEDSTEAM</b></em>' literal object.
@@ -170,7 +171,8 @@ public enum IfcHumidifierTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ADIABATICCOMPRESSEDAIRNOZZLE(13, "ADIABATICCOMPRESSEDAIRNOZZLE", "ADIABATICCOMPRESSEDAIRNOZZLE"),
+	ADIABATICCOMPRESSEDAIRNOZZLE(13, "ADIABATICCOMPRESSEDAIRNOZZLE",
+			"ADIABATICCOMPRESSEDAIRNOZZLE"),
 
 	/**
 	 * The '<em><b>ADIABATICAIRWASHER</b></em>' literal object.
@@ -438,8 +440,11 @@ public enum IfcHumidifierTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcHumidifierTypeEnum[] VALUES_ARRAY = new IfcHumidifierTypeEnum[] { NULL, NOTDEFINED, ADIABATICULTRASONIC, STEAMINJECTION, ADIABATICWETTEDELEMENT,
-			ASSISTEDSTEAM, ADIABATICATOMIZING, ADIABATICPAN, ASSISTEDELECTRIC, ASSISTEDBUTANE, ASSISTEDPROPANE, ADIABATICRIGIDMEDIA, USERDEFINED, ADIABATICCOMPRESSEDAIRNOZZLE,
+	private static final IfcHumidifierTypeEnum[] VALUES_ARRAY = new IfcHumidifierTypeEnum[] {
+			NULL, NOTDEFINED, ADIABATICULTRASONIC, STEAMINJECTION,
+			ADIABATICWETTEDELEMENT, ASSISTEDSTEAM, ADIABATICATOMIZING,
+			ADIABATICPAN, ASSISTEDELECTRIC, ASSISTEDBUTANE, ASSISTEDPROPANE,
+			ADIABATICRIGIDMEDIA, USERDEFINED, ADIABATICCOMPRESSEDAIRNOZZLE,
 			ADIABATICAIRWASHER, ASSISTEDNATURALGAS, };
 
 	/**
@@ -448,7 +453,8 @@ public enum IfcHumidifierTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcHumidifierTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcHumidifierTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Humidifier Type Enum</b></em>' literal with the specified literal value.

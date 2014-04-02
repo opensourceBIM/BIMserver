@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRelInteractionRequirements;
 import org.bimserver.models.ifc2x3tc1.IfcSpaceProgram;
 import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -41,7 +42,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implements IfcRelInteractionRequirements {
+public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl
+		implements IfcRelInteractionRequirements {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,7 +69,9 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public double getDailyInteraction() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION,
+				true);
 	}
 
 	/**
@@ -76,7 +80,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public void setDailyInteraction(double newDailyInteraction) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION, newDailyInteraction);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION,
+				newDailyInteraction);
 	}
 
 	/**
@@ -103,7 +108,9 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public String getDailyInteractionAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING,
+				true);
 	}
 
 	/**
@@ -112,7 +119,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public void setDailyInteractionAsString(String newDailyInteractionAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING, newDailyInteractionAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING,
+				newDailyInteractionAsString);
 	}
 
 	/**
@@ -139,7 +147,9 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public double getImportanceRating() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING,
+				true);
 	}
 
 	/**
@@ -148,7 +158,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public void setImportanceRating(double newImportanceRating) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING, newImportanceRating);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING,
+				newImportanceRating);
 	}
 
 	/**
@@ -175,7 +186,9 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public String getImportanceRatingAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING,
+				true);
 	}
 
 	/**
@@ -184,7 +197,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public void setImportanceRatingAsString(String newImportanceRatingAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING, newImportanceRatingAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING,
+				newImportanceRatingAsString);
 	}
 
 	/**
@@ -211,7 +225,9 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public IfcSpatialStructureElement getLocationOfInteraction() {
-		return (IfcSpatialStructureElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION, true);
+		return (IfcSpatialStructureElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION,
+				true);
 	}
 
 	/**
@@ -219,8 +235,10 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLocationOfInteraction(IfcSpatialStructureElement newLocationOfInteraction) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION, newLocationOfInteraction);
+	public void setLocationOfInteraction(
+			IfcSpatialStructureElement newLocationOfInteraction) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION,
+				newLocationOfInteraction);
 	}
 
 	/**
@@ -247,7 +265,9 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public IfcSpaceProgram getRelatedSpaceProgram() {
-		return (IfcSpaceProgram) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATED_SPACE_PROGRAM, true);
+		return (IfcSpaceProgram) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATED_SPACE_PROGRAM,
+				true);
 	}
 
 	/**
@@ -256,7 +276,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public void setRelatedSpaceProgram(IfcSpaceProgram newRelatedSpaceProgram) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATED_SPACE_PROGRAM, newRelatedSpaceProgram);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATED_SPACE_PROGRAM,
+				newRelatedSpaceProgram);
 	}
 
 	/**
@@ -265,7 +286,9 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public IfcSpaceProgram getRelatingSpaceProgram() {
-		return (IfcSpaceProgram) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM, true);
+		return (IfcSpaceProgram) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM,
+				true);
 	}
 
 	/**
@@ -274,7 +297,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public void setRelatingSpaceProgram(IfcSpaceProgram newRelatingSpaceProgram) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM, newRelatingSpaceProgram);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM,
+				newRelatingSpaceProgram);
 	}
 
 } //IfcRelInteractionRequirementsImpl

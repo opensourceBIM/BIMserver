@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRailingType;
 import org.bimserver.models.ifc2x3tc1.IfcRailingTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRailingTypeImpl extends IfcBuildingElementTypeImpl implements IfcRailingType {
+public class IfcRailingTypeImpl extends IfcBuildingElementTypeImpl implements
+		IfcRailingType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcRailingTypeImpl extends IfcBuildingElementTypeImpl implements If
 	 * @generated
 	 */
 	public IfcRailingTypeEnum getPredefinedType() {
-		return (IfcRailingTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_RAILING_TYPE__PREDEFINED_TYPE, true);
+		return (IfcRailingTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RAILING_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcRailingTypeImpl extends IfcBuildingElementTypeImpl implements If
 	 * @generated
 	 */
 	public void setPredefinedType(IfcRailingTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_RAILING_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_RAILING_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcRailingTypeImpl

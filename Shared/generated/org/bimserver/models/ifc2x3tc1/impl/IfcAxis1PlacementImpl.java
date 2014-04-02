@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis1Placement;
 import org.bimserver.models.ifc2x3tc1.IfcDirection;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAxis1PlacementImpl extends IfcPlacementImpl implements IfcAxis1Placement {
+public class IfcAxis1PlacementImpl extends IfcPlacementImpl implements
+		IfcAxis1Placement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,8 @@ public class IfcAxis1PlacementImpl extends IfcPlacementImpl implements IfcAxis1P
 	 * @generated
 	 */
 	public IfcDirection getAxis() {
-		return (IfcDirection) eGet(Ifc2x3tc1Package.Literals.IFC_AXIS1_PLACEMENT__AXIS, true);
+		return (IfcDirection) eGet(
+				Ifc2x3tc1Package.Literals.IFC_AXIS1_PLACEMENT__AXIS, true);
 	}
 
 	/**

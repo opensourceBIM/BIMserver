@@ -288,8 +288,9 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorStyleConstructionEnum[] VALUES_ARRAY = new IfcDoorStyleConstructionEnum[] { NULL, ALUMINIUM_WOOD, HIGH_GRADE_STEEL, NOTDEFINED, ALUMINIUM_PLASTIC,
-			USERDEFINED, PLASTIC, WOOD, ALUMINIUM, STEEL, };
+	private static final IfcDoorStyleConstructionEnum[] VALUES_ARRAY = new IfcDoorStyleConstructionEnum[] {
+			NULL, ALUMINIUM_WOOD, HIGH_GRADE_STEEL, NOTDEFINED,
+			ALUMINIUM_PLASTIC, USERDEFINED, PLASTIC, WOOD, ALUMINIUM, STEEL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Style Construction Enum</b></em>' enumerators.
@@ -297,7 +298,8 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDoorStyleConstructionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDoorStyleConstructionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Door Style Construction Enum</b></em>' literal with the specified literal value.

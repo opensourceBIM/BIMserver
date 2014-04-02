@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcFontWeight;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -70,7 +72,8 @@ public class IfcFontWeightImpl extends IdEObjectImpl implements IfcFontWeight {
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_FONT_WEIGHT__WRAPPED_VALUE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FONT_WEIGHT__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -79,7 +82,8 @@ public class IfcFontWeightImpl extends IdEObjectImpl implements IfcFontWeight {
 	 * @generated
 	 */
 	public void setWrappedValue(String newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FONT_WEIGHT__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FONT_WEIGHT__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**

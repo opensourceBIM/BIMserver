@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcConnectionPointGeometry;
 import org.bimserver.models.ifc2x3tc1.IfcPointOrVertexPoint;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl implements IfcConnectionPointGeometry {
+public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl
+		implements IfcConnectionPointGeometry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +63,9 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * @generated
 	 */
 	public IfcPointOrVertexPoint getPointOnRelatingElement() {
-		return (IfcPointOrVertexPoint) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT, true);
+		return (IfcPointOrVertexPoint) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT,
+				true);
 	}
 
 	/**
@@ -69,8 +73,10 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPointOnRelatingElement(IfcPointOrVertexPoint newPointOnRelatingElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT, newPointOnRelatingElement);
+	public void setPointOnRelatingElement(
+			IfcPointOrVertexPoint newPointOnRelatingElement) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT,
+				newPointOnRelatingElement);
 	}
 
 	/**
@@ -79,7 +85,9 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * @generated
 	 */
 	public IfcPointOrVertexPoint getPointOnRelatedElement() {
-		return (IfcPointOrVertexPoint) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT, true);
+		return (IfcPointOrVertexPoint) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT,
+				true);
 	}
 
 	/**
@@ -87,8 +95,10 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPointOnRelatedElement(IfcPointOrVertexPoint newPointOnRelatedElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT, newPointOnRelatedElement);
+	public void setPointOnRelatedElement(
+			IfcPointOrVertexPoint newPointOnRelatedElement) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT,
+				newPointOnRelatedElement);
 	}
 
 	/**

@@ -17,8 +17,10 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.RevisionSummaryType;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -30,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getCount <em>Count</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,6 +105,25 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements
 	 */
 	public void setCount(Integer newCount) {
 		eSet(StorePackage.Literals.REVISION_SUMMARY_TYPE__COUNT, newCount);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSchema() {
+		return (String) eGet(
+				StorePackage.Literals.REVISION_SUMMARY_TYPE__SCHEMA, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSchema(String newSchema) {
+		eSet(StorePackage.Literals.REVISION_SUMMARY_TYPE__SCHEMA, newSchema);
 	}
 
 } //RevisionSummaryTypeImpl

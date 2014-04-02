@@ -29,6 +29,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
@@ -61,10 +62,12 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 	private long serializerOid;
 	private boolean useObjectIDM;
 	private Deep deep;
+	private String schema;
 
-	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, long serializerOid, boolean includeAllSubtypes, boolean useObjectIDM, Authorization authorization, ObjectIDM objectIDM, Deep deep) {
+	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, String schema, Set<String> classNames, long serializerOid, boolean includeAllSubtypes, boolean useObjectIDM, Authorization authorization, ObjectIDM objectIDM, Deep deep) {
 		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roids = roids;
+		this.schema = schema;
 		this.serializerOid = serializerOid;
 		this.includeAllSubtypes = includeAllSubtypes;
 		this.useObjectIDM = useObjectIDM;
@@ -81,16 +84,17 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		Set<EClass> eClasses = new HashSet<EClass>();
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		for (String className : classNames) {
-			eClasses.add(getDatabaseSession().getEClassForName(className));
+			eClasses.add(getDatabaseSession().getEClass(schema, className));
 			if (includeAllSubtypes) {
 				EClassifier eClassifier = Ifc2x3tc1Package.eINSTANCE.getEClassifier(className);
 				if (eClassifier == null) {
 					throw new UserException("Class " + className + " not found");
 				}
-				eClasses.addAll(getBimServer().getDatabase().getMetaDataManager().getAllSubClasses((EClass)eClassifier));
+				eClasses.addAll(getBimServer().getDatabase().getMetaDataManager().getEPackage(schema).getAllSubClasses((EClass)eClassifier));
 			}
 		}
 		String name = "";
+		int size = 0;
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
 			project = virtualRevision.getProject();
@@ -105,10 +109,11 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					throw new UserException("User has insufficient rights to download revisions from this project");
 				}
 			}
-			int size = 0;
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 				try {
-					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getBimServer().getPluginManager().requireSchemaDefinition());
+					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getBimServer().getPluginManager().requireSchemaDefinition("ifc2x3tc1"));
+					
+					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 					
 					// This hack makes sure the JsonGeometrySerializer can look at the styles, probably more subtypes of getIfcRepresentationItem should be added (not ignored), also this code should not be here at all...
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(new StructuralFeatureIdentifier(Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem().getName(), Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_StyledByItem().getName()));
@@ -117,7 +122,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_IsDecomposedBy());
 					
 					int highestStopId = findHighestStopRid(project, concreteRevision);
-					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, deep, highestStopId));
+					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, deep, highestStopId));
 					size += subModel.size();
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());
 					checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
@@ -128,25 +133,8 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					throw new UserException(e);
 				}
 			}
-			IfcModelInterface ifcModel = new IfcModel(size);
-			if (ifcModelSet.size() > 1) {
-				try {
-					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
-				} catch (MergeException e) {
-					throw new UserException(e);
-				}
-			} else {
-				ifcModel = ifcModelSet.iterator().next();
-			}
-			ifcModel.getModelMetaData().setName("Unknown");
-			ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(virtualRevision) + 1);
-			if (getAuthorization().getUoid() != -1) {
-				ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(getAuthorization().getUoid()).getName());
-			}
-			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
-		// TODO check, double merging??
-		IfcModelInterface ifcModel = new IfcModel();
+		IfcModelInterface ifcModel = new IfcModel(null, size); // TODO
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
@@ -156,6 +144,12 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		} else {
 			ifcModel = ifcModelSet.iterator().next();
 		}
+		ifcModel.getModelMetaData().setName("Unknown");
+//		ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(virtualRevision) + 1);
+		if (getAuthorization().getUoid() != -1) {
+			ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(getAuthorization().getUoid()).getName());
+		}
+//		ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		if (name.endsWith("-")) {
 			name = name.substring(0, name.length()-1);
 		}

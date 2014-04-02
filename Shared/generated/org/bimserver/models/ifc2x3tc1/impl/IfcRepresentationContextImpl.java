@@ -17,10 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationContext;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -38,7 +41,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRepresentationContextImpl extends IdEObjectImpl implements IfcRepresentationContext {
+public class IfcRepresentationContextImpl extends IdEObjectImpl implements
+		IfcRepresentationContext {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,7 +78,9 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements IfcRe
 	 * @generated
 	 */
 	public String getContextIdentifier() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_IDENTIFIER, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_IDENTIFIER,
+				true);
 	}
 
 	/**
@@ -83,7 +89,8 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements IfcRe
 	 * @generated
 	 */
 	public void setContextIdentifier(String newContextIdentifier) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_IDENTIFIER, newContextIdentifier);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_IDENTIFIER,
+				newContextIdentifier);
 	}
 
 	/**
@@ -110,7 +117,9 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements IfcRe
 	 * @generated
 	 */
 	public String getContextType() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_TYPE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_TYPE,
+				true);
 	}
 
 	/**
@@ -119,7 +128,8 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements IfcRe
 	 * @generated
 	 */
 	public void setContextType(String newContextType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_TYPE, newContextType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__CONTEXT_TYPE,
+				newContextType);
 	}
 
 	/**
@@ -147,7 +157,9 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements IfcRe
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentation> getRepresentationsInContext() {
-		return (EList<IfcRepresentation>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__REPRESENTATIONS_IN_CONTEXT, true);
+		return (EList<IfcRepresentation>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_CONTEXT__REPRESENTATIONS_IN_CONTEXT,
+				true);
 	}
 
 	/**

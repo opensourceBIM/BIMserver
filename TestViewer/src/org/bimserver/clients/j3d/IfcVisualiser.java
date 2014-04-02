@@ -198,7 +198,7 @@ public class IfcVisualiser extends JFrame {
 
 		DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 		Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-		deserializer.init(pluginManager.requireSchemaDefinition());
+//		deserializer.init(pluginManager.requireSchemaDefinition("ifc2x3tc1"), null, null); TODO
 		File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
 
 		try {

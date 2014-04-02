@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcEdge;
 import org.bimserver.models.ifc2x3tc1.IfcSubedge;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -60,7 +61,8 @@ public class IfcSubedgeImpl extends IfcEdgeImpl implements IfcSubedge {
 	 * @generated
 	 */
 	public IfcEdge getParentEdge() {
-		return (IfcEdge) eGet(Ifc2x3tc1Package.Literals.IFC_SUBEDGE__PARENT_EDGE, true);
+		return (IfcEdge) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SUBEDGE__PARENT_EDGE, true);
 	}
 
 	/**

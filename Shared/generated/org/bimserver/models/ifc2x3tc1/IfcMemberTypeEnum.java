@@ -413,8 +413,9 @@ public enum IfcMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcMemberTypeEnum[] VALUES_ARRAY = new IfcMemberTypeEnum[] { NULL, CHORD, NOTDEFINED, MEMBER, PLATE, STUD, MULLION, COLLAR, PURLIN, POST, RAFTER,
-			USERDEFINED, BRACE, STRUT, STRINGER, };
+	private static final IfcMemberTypeEnum[] VALUES_ARRAY = new IfcMemberTypeEnum[] {
+			NULL, CHORD, NOTDEFINED, MEMBER, PLATE, STUD, MULLION, COLLAR,
+			PURLIN, POST, RAFTER, USERDEFINED, BRACE, STRUT, STRINGER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Member Type Enum</b></em>' enumerators.
@@ -422,7 +423,8 @@ public enum IfcMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcMemberTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcMemberTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Member Type Enum</b></em>' literal with the specified literal value.

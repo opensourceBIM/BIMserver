@@ -138,7 +138,8 @@ public enum IfcBooleanOperator implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBooleanOperator[] VALUES_ARRAY = new IfcBooleanOperator[] { NULL, DIFFERENCE, INTERSECTION, UNION, };
+	private static final IfcBooleanOperator[] VALUES_ARRAY = new IfcBooleanOperator[] {
+			NULL, DIFFERENCE, INTERSECTION, UNION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Boolean Operator</b></em>' enumerators.
@@ -146,7 +147,8 @@ public enum IfcBooleanOperator implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcBooleanOperator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcBooleanOperator> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Boolean Operator</b></em>' literal with the specified literal value.

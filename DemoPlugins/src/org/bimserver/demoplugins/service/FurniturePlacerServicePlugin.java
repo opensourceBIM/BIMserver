@@ -11,6 +11,7 @@ import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
@@ -111,15 +112,13 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					state.setStart(startDate);
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
-					IfcModelInterface model = bimServerClientInterface.getModel(poid, roid, true);
+					SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
+					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true);
 					
 					DeserializerPlugin deserializerPlugin = getPluginManager().getFirstDeserializer("ifc", true);
 					
 					Deserializer deserializer = deserializerPlugin.createDeserializer(null);
-					deserializer.init(getPluginManager().requireSchemaDefinition());
-
-					deserializer = deserializerPlugin.createDeserializer(null);
-					deserializer.init(getPluginManager().requireSchemaDefinition());
+					deserializer.init(model.getPackageMetaData());
 					InputStream resourceAsInputStream = getPluginManager().getPluginContext(FurniturePlacerServicePlugin.this).getResourceAsInputStream("data/picknicktable.ifc");
 					ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 					IOUtils.copy(resourceAsInputStream, byteArrayOutputStream);
@@ -127,7 +126,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					
 					IfcFurnishingElement picknick = (IfcFurnishingElement) furnishingModel.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
 
-					ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getPluginManager().requireSchemaDefinition()), model);
+					ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getPluginManager().requireSchemaDefinition("ifc2x3tc1")), model);
 
 					modelHelper.setTargetModel(model);
 					modelHelper.setObjectFactory(model);

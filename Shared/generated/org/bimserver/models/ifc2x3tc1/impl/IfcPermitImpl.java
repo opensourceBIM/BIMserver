@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPermit;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -59,7 +60,8 @@ public class IfcPermitImpl extends IfcControlImpl implements IfcPermit {
 	 * @generated
 	 */
 	public String getPermitID() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PERMIT__PERMIT_ID, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PERMIT__PERMIT_ID,
+				true);
 	}
 
 	/**

@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcParameterValue;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcParameterValueImpl extends IdEObjectImpl implements IfcParameterValue {
+public class IfcParameterValueImpl extends IdEObjectImpl implements
+		IfcParameterValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +74,9 @@ public class IfcParameterValueImpl extends IdEObjectImpl implements IfcParameter
 	 * @generated
 	 */
 	public double getWrappedValue() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_PARAMETER_VALUE__WRAPPED_VALUE, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PARAMETER_VALUE__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -80,7 +85,8 @@ public class IfcParameterValueImpl extends IdEObjectImpl implements IfcParameter
 	 * @generated
 	 */
 	public void setWrappedValue(double newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PARAMETER_VALUE__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PARAMETER_VALUE__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**
@@ -107,7 +113,9 @@ public class IfcParameterValueImpl extends IdEObjectImpl implements IfcParameter
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PARAMETER_VALUE__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PARAMETER_VALUE__WRAPPED_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -116,7 +124,8 @@ public class IfcParameterValueImpl extends IdEObjectImpl implements IfcParameter
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PARAMETER_VALUE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PARAMETER_VALUE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**

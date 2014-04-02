@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRightCircularCone;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRightCircularConeImpl extends IfcCsgPrimitive3DImpl implements IfcRightCircularCone {
+public class IfcRightCircularConeImpl extends IfcCsgPrimitive3DImpl implements
+		IfcRightCircularCone {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,8 @@ public class IfcRightCircularConeImpl extends IfcCsgPrimitive3DImpl implements I
 	 * @generated
 	 */
 	public double getHeight() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__HEIGHT, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__HEIGHT, true);
 	}
 
 	/**
@@ -71,7 +74,8 @@ public class IfcRightCircularConeImpl extends IfcCsgPrimitive3DImpl implements I
 	 * @generated
 	 */
 	public void setHeight(double newHeight) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__HEIGHT, newHeight);
+		eSet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__HEIGHT,
+				newHeight);
 	}
 
 	/**
@@ -80,7 +84,9 @@ public class IfcRightCircularConeImpl extends IfcCsgPrimitive3DImpl implements I
 	 * @generated
 	 */
 	public String getHeightAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__HEIGHT_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__HEIGHT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -89,7 +95,8 @@ public class IfcRightCircularConeImpl extends IfcCsgPrimitive3DImpl implements I
 	 * @generated
 	 */
 	public void setHeightAsString(String newHeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__HEIGHT_AS_STRING, newHeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__HEIGHT_AS_STRING,
+				newHeightAsString);
 	}
 
 	/**
@@ -98,7 +105,9 @@ public class IfcRightCircularConeImpl extends IfcCsgPrimitive3DImpl implements I
 	 * @generated
 	 */
 	public double getBottomRadius() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__BOTTOM_RADIUS, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__BOTTOM_RADIUS,
+				true);
 	}
 
 	/**
@@ -107,7 +116,8 @@ public class IfcRightCircularConeImpl extends IfcCsgPrimitive3DImpl implements I
 	 * @generated
 	 */
 	public void setBottomRadius(double newBottomRadius) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__BOTTOM_RADIUS, newBottomRadius);
+		eSet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__BOTTOM_RADIUS,
+				newBottomRadius);
 	}
 
 	/**
@@ -116,7 +126,9 @@ public class IfcRightCircularConeImpl extends IfcCsgPrimitive3DImpl implements I
 	 * @generated
 	 */
 	public String getBottomRadiusAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__BOTTOM_RADIUS_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__BOTTOM_RADIUS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -125,7 +137,8 @@ public class IfcRightCircularConeImpl extends IfcCsgPrimitive3DImpl implements I
 	 * @generated
 	 */
 	public void setBottomRadiusAsString(String newBottomRadiusAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__BOTTOM_RADIUS_AS_STRING, newBottomRadiusAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_RIGHT_CIRCULAR_CONE__BOTTOM_RADIUS_AS_STRING,
+				newBottomRadiusAsString);
 	}
 
 } //IfcRightCircularConeImpl

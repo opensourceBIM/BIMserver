@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcTextFontName;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextFontNameImpl extends IdEObjectImpl implements IfcTextFontName {
+public class IfcTextFontNameImpl extends IdEObjectImpl implements
+		IfcTextFontName {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +73,9 @@ public class IfcTextFontNameImpl extends IdEObjectImpl implements IfcTextFontNam
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_FONT_NAME__WRAPPED_VALUE, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TEXT_FONT_NAME__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -79,7 +84,8 @@ public class IfcTextFontNameImpl extends IdEObjectImpl implements IfcTextFontNam
 	 * @generated
 	 */
 	public void setWrappedValue(String newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_FONT_NAME__WRAPPED_VALUE, newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_FONT_NAME__WRAPPED_VALUE,
+				newWrappedValue);
 	}
 
 	/**

@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcBoundaryCondition;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBoundaryConditionImpl extends IdEObjectImpl implements IfcBoundaryCondition {
+public class IfcBoundaryConditionImpl extends IdEObjectImpl implements
+		IfcBoundaryCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +73,8 @@ public class IfcBoundaryConditionImpl extends IdEObjectImpl implements IfcBounda
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_CONDITION__NAME, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_CONDITION__NAME, true);
 	}
 
 	/**

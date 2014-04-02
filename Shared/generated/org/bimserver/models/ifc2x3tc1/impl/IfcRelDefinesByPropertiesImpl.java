@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements IfcRelDefinesByProperties {
+public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements
+		IfcRelDefinesByProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements 
 	 * @generated
 	 */
 	public IfcPropertySetDefinition getRelatingPropertyDefinition() {
-		return (IfcPropertySetDefinition) eGet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, true);
+		return (IfcPropertySetDefinition) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION,
+				true);
 	}
 
 	/**
@@ -68,8 +72,10 @@ public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatingPropertyDefinition(IfcPropertySetDefinition newRelatingPropertyDefinition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, newRelatingPropertyDefinition);
+	public void setRelatingPropertyDefinition(
+			IfcPropertySetDefinition newRelatingPropertyDefinition) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION,
+				newRelatingPropertyDefinition);
 	}
 
 } //IfcRelDefinesByPropertiesImpl

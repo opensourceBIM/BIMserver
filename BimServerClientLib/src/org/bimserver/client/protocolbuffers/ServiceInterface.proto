@@ -728,9 +728,10 @@ message SProject {
 	optional int64 parentId = 17;
 	repeated int64 revisions = 18;
 	optional int32 rid = 19;
-	repeated int64 services = 20;
-	optional SObjectState state = 21;
-	repeated int64 subProjects = 22;
+	optional string schema = 20;
+	repeated int64 services = 21;
+	optional SObjectState state = 22;
+	repeated int64 subProjects = 23;
 }
 
 message GetAllNonAuthorizedProjectsOfUserResponse {
@@ -984,6 +985,7 @@ message SRevisionSummaryType {
 	optional string name = 2;
 	optional int64 oid = 3;
 	optional int32 rid = 4;
+	optional string schema = 5;
 }
 
 message SRevisionSummaryContainer {

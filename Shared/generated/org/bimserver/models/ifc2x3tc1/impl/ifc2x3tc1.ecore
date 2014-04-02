@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ifc2x3tc1" nsURI="http:///buildingsmart.ifc.ecore" nsPrefix="iai">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ifc2x3tc1" nsURI="http://buildingsmart.ifc2x3tc1.ecore" nsPrefix="iai">
   <eClassifiers xsi:type="ecore:EEnum" name="Tristate">
     <eLiterals name="TRUE"/>
     <eLiterals name="FALSE" value="1"/>

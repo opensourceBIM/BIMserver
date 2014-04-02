@@ -57,12 +57,12 @@ public class AddFurniture {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			
 			Deserializer deserializer = deserializerPlugin.createDeserializer(null);
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.requireSchemaDefinition("ifc2x3tc1"));
 			
 			IfcModelInterface model = deserializer.read(new File("../TestData/data/AC9R1-Haus-G-H-Ver2-2x3.ifc"));
 
 			deserializer = deserializerPlugin.createDeserializer(null);
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.requireSchemaDefinition("ifc2x3tc1"));
 			IfcModelInterface furnishingModel = deserializer.read(new File("test.ifc"));
 			
 			model.fixOids(new IncrementingOidProvider());
@@ -71,7 +71,7 @@ public class AddFurniture {
 
 			IfcFurnishingElement picknick = (IfcFurnishingElement) furnishingModel.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
 
-			ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition()), model);
+			ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition("ifc2x3tc1")), model);
 
 			IfcProductDefinitionShape representation = (IfcProductDefinitionShape) picknick.getRepresentation();
 			IfcRepresentation surfaceModel = null;

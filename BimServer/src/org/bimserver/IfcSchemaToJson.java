@@ -37,10 +37,15 @@ import com.google.gson.stream.JsonWriter;
 
 public class IfcSchemaToJson {
 	public static void main(String[] args) {
+		generateIfc2x3tc1();
+		generateIfc4();
+	}
+
+	private static void generateIfc4() {
 		FileOutputStream fos = null;
 		try {
-			fos = new FileOutputStream(new File("www/js/ifc2x3tc1.json"));
-			new IfcSchemaToJson().convert(fos);
+			fos = new FileOutputStream(new File("www/js/ifc4.js"));
+			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\20130305_IFC4_HTML_distribution\\IFC4"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -56,8 +61,28 @@ public class IfcSchemaToJson {
 		}
 	}
 
-	private void convert(OutputStream outputStream) throws IOException {
-		IfcDoc ifcDoc = new IfcDoc(new File("C:\\Users\\Ruben de Laat\\Downloads\\IFC2x3_TC1_HTML_distribution-pset_errata\\R2x3_TC1"));
+	private static void generateIfc2x3tc1() {
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(new File("www/js/ifc2x3tc1.js"));
+			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\IFC2x3_TC1_HTML_distribution-pset_errata\\R2x3_TC1"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	private void convert(OutputStream outputStream, File docs) throws IOException {
+		IfcDoc ifcDoc = new IfcDoc(docs);
 		
 		JsonWriter jsonWriter = new JsonWriter(new OutputStreamWriter(outputStream));
 		jsonWriter.setIndent("  ");

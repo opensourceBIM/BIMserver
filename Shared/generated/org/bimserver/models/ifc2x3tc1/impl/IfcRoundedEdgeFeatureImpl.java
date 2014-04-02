@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRoundedEdgeFeature;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRoundedEdgeFeatureImpl extends IfcEdgeFeatureImpl implements IfcRoundedEdgeFeature {
+public class IfcRoundedEdgeFeatureImpl extends IfcEdgeFeatureImpl implements
+		IfcRoundedEdgeFeature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcRoundedEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public double getRadius() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_ROUNDED_EDGE_FEATURE__RADIUS, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ROUNDED_EDGE_FEATURE__RADIUS,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcRoundedEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public void setRadius(double newRadius) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ROUNDED_EDGE_FEATURE__RADIUS, newRadius);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ROUNDED_EDGE_FEATURE__RADIUS,
+				newRadius);
 	}
 
 	/**
@@ -96,7 +101,9 @@ public class IfcRoundedEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public String getRadiusAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ROUNDED_EDGE_FEATURE__RADIUS_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ROUNDED_EDGE_FEATURE__RADIUS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -105,7 +112,8 @@ public class IfcRoundedEdgeFeatureImpl extends IfcEdgeFeatureImpl implements Ifc
 	 * @generated
 	 */
 	public void setRadiusAsString(String newRadiusAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ROUNDED_EDGE_FEATURE__RADIUS_AS_STRING, newRadiusAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ROUNDED_EDGE_FEATURE__RADIUS_AS_STRING,
+				newRadiusAsString);
 	}
 
 	/**

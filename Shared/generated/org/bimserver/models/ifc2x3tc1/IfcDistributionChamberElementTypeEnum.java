@@ -313,8 +313,10 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDistributionChamberElementTypeEnum[] VALUES_ARRAY = new IfcDistributionChamberElementTypeEnum[] { NULL, METERCHAMBER, MANHOLE, NOTDEFINED,
-			VALVECHAMBER, INSPECTIONPIT, USERDEFINED, SUMP, TRENCH, INSPECTIONCHAMBER, FORMEDDUCT, };
+	private static final IfcDistributionChamberElementTypeEnum[] VALUES_ARRAY = new IfcDistributionChamberElementTypeEnum[] {
+			NULL, METERCHAMBER, MANHOLE, NOTDEFINED, VALVECHAMBER,
+			INSPECTIONPIT, USERDEFINED, SUMP, TRENCH, INSPECTIONCHAMBER,
+			FORMEDDUCT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Distribution Chamber Element Type Enum</b></em>' enumerators.
@@ -322,7 +324,8 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDistributionChamberElementTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDistributionChamberElementTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Distribution Chamber Element Type Enum</b></em>' literal with the specified literal value.
@@ -417,7 +420,8 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcDistributionChamberElementTypeEnum(int value, String name, String literal) {
+	private IfcDistributionChamberElementTypeEnum(int value, String name,
+			String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

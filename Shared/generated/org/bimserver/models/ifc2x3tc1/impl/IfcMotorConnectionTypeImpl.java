@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMotorConnectionType;
 import org.bimserver.models.ifc2x3tc1.IfcMotorConnectionTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMotorConnectionTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcMotorConnectionType {
+public class IfcMotorConnectionTypeImpl extends
+		IfcEnergyConversionDeviceTypeImpl implements IfcMotorConnectionType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcMotorConnectionTypeImpl extends IfcEnergyConversionDeviceTypeImp
 	 * @generated
 	 */
 	public IfcMotorConnectionTypeEnum getPredefinedType() {
-		return (IfcMotorConnectionTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_MOTOR_CONNECTION_TYPE__PREDEFINED_TYPE, true);
+		return (IfcMotorConnectionTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MOTOR_CONNECTION_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcMotorConnectionTypeImpl extends IfcEnergyConversionDeviceTypeImp
 	 * @generated
 	 */
 	public void setPredefinedType(IfcMotorConnectionTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MOTOR_CONNECTION_TYPE__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MOTOR_CONNECTION_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcMotorConnectionTypeImpl

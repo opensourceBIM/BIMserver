@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDistributionChamberElementType;
 import org.bimserver.models.ifc2x3tc1.IfcDistributionChamberElementTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,9 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDistributionChamberElementTypeImpl extends IfcDistributionFlowElementTypeImpl implements IfcDistributionChamberElementType {
+public class IfcDistributionChamberElementTypeImpl extends
+		IfcDistributionFlowElementTypeImpl implements
+		IfcDistributionChamberElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +63,9 @@ public class IfcDistributionChamberElementTypeImpl extends IfcDistributionFlowEl
 	 * @generated
 	 */
 	public IfcDistributionChamberElementTypeEnum getPredefinedType() {
-		return (IfcDistributionChamberElementTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_CHAMBER_ELEMENT_TYPE__PREDEFINED_TYPE, true);
+		return (IfcDistributionChamberElementTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_CHAMBER_ELEMENT_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -68,8 +73,10 @@ public class IfcDistributionChamberElementTypeImpl extends IfcDistributionFlowEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(IfcDistributionChamberElementTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_CHAMBER_ELEMENT_TYPE__PREDEFINED_TYPE, newPredefinedType);
+	public void setPredefinedType(
+			IfcDistributionChamberElementTypeEnum newPredefinedType) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_DISTRIBUTION_CHAMBER_ELEMENT_TYPE__PREDEFINED_TYPE,
+				newPredefinedType);
 	}
 
 } //IfcDistributionChamberElementTypeImpl

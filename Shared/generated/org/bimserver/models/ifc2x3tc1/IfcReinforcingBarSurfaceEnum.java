@@ -113,7 +113,8 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcReinforcingBarSurfaceEnum[] VALUES_ARRAY = new IfcReinforcingBarSurfaceEnum[] { NULL, TEXTURED, PLAIN, };
+	private static final IfcReinforcingBarSurfaceEnum[] VALUES_ARRAY = new IfcReinforcingBarSurfaceEnum[] {
+			NULL, TEXTURED, PLAIN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Reinforcing Bar Surface Enum</b></em>' enumerators.
@@ -121,7 +122,8 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcReinforcingBarSurfaceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcReinforcingBarSurfaceEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Reinforcing Bar Surface Enum</b></em>' literal with the specified literal value.

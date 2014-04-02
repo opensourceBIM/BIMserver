@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcClosedShell;
 import org.bimserver.models.ifc2x3tc1.IfcFacetedBrepWithVoids;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFacetedBrepWithVoidsImpl extends IfcManifoldSolidBrepImpl implements IfcFacetedBrepWithVoids {
+public class IfcFacetedBrepWithVoidsImpl extends IfcManifoldSolidBrepImpl
+		implements IfcFacetedBrepWithVoids {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +65,9 @@ public class IfcFacetedBrepWithVoidsImpl extends IfcManifoldSolidBrepImpl implem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClosedShell> getVoids() {
-		return (EList<IfcClosedShell>) eGet(Ifc2x3tc1Package.Literals.IFC_FACETED_BREP_WITH_VOIDS__VOIDS, true);
+		return (EList<IfcClosedShell>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FACETED_BREP_WITH_VOIDS__VOIDS,
+				true);
 	}
 
 } //IfcFacetedBrepWithVoidsImpl

@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcElementarySurface;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,7 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements IfcElementarySurface {
+public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements
+		IfcElementarySurface {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +63,9 @@ public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements IfcEleme
 	 * @generated
 	 */
 	public IfcAxis2Placement3D getPosition() {
-		return (IfcAxis2Placement3D) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION, true);
+		return (IfcAxis2Placement3D) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION,
+				true);
 	}
 
 	/**
@@ -70,7 +74,8 @@ public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements IfcEleme
 	 * @generated
 	 */
 	public void setPosition(IfcAxis2Placement3D newPosition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION, newPosition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION,
+				newPosition);
 	}
 
 	/**
@@ -79,7 +84,8 @@ public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements IfcEleme
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_ELEMENTARY_SURFACE__DIM, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELEMENTARY_SURFACE__DIM, true);
 	}
 
 	/**

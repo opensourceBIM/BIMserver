@@ -18,6 +18,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcBlock;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -82,7 +83,8 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * @generated
 	 */
 	public String getXLengthAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BLOCK__XLENGTH_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_BLOCK__XLENGTH_AS_STRING, true);
 	}
 
 	/**
@@ -91,7 +93,8 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * @generated
 	 */
 	public void setXLengthAsString(String newXLengthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BLOCK__XLENGTH_AS_STRING, newXLengthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BLOCK__XLENGTH_AS_STRING,
+				newXLengthAsString);
 	}
 
 	/**
@@ -118,7 +121,8 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * @generated
 	 */
 	public String getYLengthAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BLOCK__YLENGTH_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_BLOCK__YLENGTH_AS_STRING, true);
 	}
 
 	/**
@@ -127,7 +131,8 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * @generated
 	 */
 	public void setYLengthAsString(String newYLengthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BLOCK__YLENGTH_AS_STRING, newYLengthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BLOCK__YLENGTH_AS_STRING,
+				newYLengthAsString);
 	}
 
 	/**
@@ -154,7 +159,8 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * @generated
 	 */
 	public String getZLengthAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BLOCK__ZLENGTH_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_BLOCK__ZLENGTH_AS_STRING, true);
 	}
 
 	/**
@@ -163,7 +169,8 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * @generated
 	 */
 	public void setZLengthAsString(String newZLengthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BLOCK__ZLENGTH_AS_STRING, newZLengthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BLOCK__ZLENGTH_AS_STRING,
+				newZLengthAsString);
 	}
 
 } //IfcBlockImpl

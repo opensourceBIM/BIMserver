@@ -113,7 +113,8 @@ public enum IfcProfileTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProfileTypeEnum[] VALUES_ARRAY = new IfcProfileTypeEnum[] { NULL, AREA, CURVE, };
+	private static final IfcProfileTypeEnum[] VALUES_ARRAY = new IfcProfileTypeEnum[] {
+			NULL, AREA, CURVE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Profile Type Enum</b></em>' enumerators.
@@ -121,7 +122,8 @@ public enum IfcProfileTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProfileTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProfileTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Profile Type Enum</b></em>' literal with the specified literal value.

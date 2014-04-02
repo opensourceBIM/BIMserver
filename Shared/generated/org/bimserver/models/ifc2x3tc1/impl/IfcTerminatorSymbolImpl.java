@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotationCurveOccurrence;
 import org.bimserver.models.ifc2x3tc1.IfcTerminatorSymbol;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTerminatorSymbolImpl extends IfcAnnotationSymbolOccurrenceImpl implements IfcTerminatorSymbol {
+public class IfcTerminatorSymbolImpl extends IfcAnnotationSymbolOccurrenceImpl
+		implements IfcTerminatorSymbol {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcTerminatorSymbolImpl extends IfcAnnotationSymbolOccurrenceImpl i
 	 * @generated
 	 */
 	public IfcAnnotationCurveOccurrence getAnnotatedCurve() {
-		return (IfcAnnotationCurveOccurrence) eGet(Ifc2x3tc1Package.Literals.IFC_TERMINATOR_SYMBOL__ANNOTATED_CURVE, true);
+		return (IfcAnnotationCurveOccurrence) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TERMINATOR_SYMBOL__ANNOTATED_CURVE,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcTerminatorSymbolImpl extends IfcAnnotationSymbolOccurrenceImpl i
 	 * @generated
 	 */
 	public void setAnnotatedCurve(IfcAnnotationCurveOccurrence newAnnotatedCurve) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TERMINATOR_SYMBOL__ANNOTATED_CURVE, newAnnotatedCurve);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TERMINATOR_SYMBOL__ANNOTATED_CURVE,
+				newAnnotatedCurve);
 	}
 
 } //IfcTerminatorSymbolImpl

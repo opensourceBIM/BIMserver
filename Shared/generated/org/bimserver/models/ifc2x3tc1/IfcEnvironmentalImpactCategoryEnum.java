@@ -263,7 +263,8 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEnvironmentalImpactCategoryEnum[] VALUES_ARRAY = new IfcEnvironmentalImpactCategoryEnum[] { NULL, COMBINEDVALUE, NOTDEFINED, MANUFACTURE, INSTALLATION,
+	private static final IfcEnvironmentalImpactCategoryEnum[] VALUES_ARRAY = new IfcEnvironmentalImpactCategoryEnum[] {
+			NULL, COMBINEDVALUE, NOTDEFINED, MANUFACTURE, INSTALLATION,
 			EXTRACTION, DISPOSAL, USERDEFINED, TRANSPORTATION, };
 
 	/**
@@ -272,7 +273,8 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcEnvironmentalImpactCategoryEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcEnvironmentalImpactCategoryEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Environmental Impact Category Enum</b></em>' literal with the specified literal value.
@@ -363,7 +365,8 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcEnvironmentalImpactCategoryEnum(int value, String name, String literal) {
+	private IfcEnvironmentalImpactCategoryEnum(int value, String name,
+			String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

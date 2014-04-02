@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMeasureWithUnit;
 import org.bimserver.models.ifc2x3tc1.IfcProcess;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToProcess;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements IfcRelAssignsToProcess {
+public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements
+		IfcRelAssignsToProcess {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +64,9 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * @generated
 	 */
 	public IfcProcess getRelatingProcess() {
-		return (IfcProcess) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS, true);
+		return (IfcProcess) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS,
+				true);
 	}
 
 	/**
@@ -71,7 +75,8 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * @generated
 	 */
 	public void setRelatingProcess(IfcProcess newRelatingProcess) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS, newRelatingProcess);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS,
+				newRelatingProcess);
 	}
 
 	/**
@@ -80,7 +85,9 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * @generated
 	 */
 	public IfcMeasureWithUnit getQuantityInProcess() {
-		return (IfcMeasureWithUnit) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS, true);
+		return (IfcMeasureWithUnit) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS,
+				true);
 	}
 
 	/**
@@ -89,7 +96,8 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * @generated
 	 */
 	public void setQuantityInProcess(IfcMeasureWithUnit newQuantityInProcess) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS, newQuantityInProcess);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS,
+				newQuantityInProcess);
 	}
 
 	/**

@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcFeatureElementSubtraction;
 import org.bimserver.models.ifc2x3tc1.IfcRelVoidsElement;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFeatureElementSubtractionImpl extends IfcFeatureElementImpl implements IfcFeatureElementSubtraction {
+public class IfcFeatureElementSubtractionImpl extends IfcFeatureElementImpl
+		implements IfcFeatureElementSubtraction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +62,9 @@ public class IfcFeatureElementSubtractionImpl extends IfcFeatureElementImpl impl
 	 * @generated
 	 */
 	public IfcRelVoidsElement getVoidsElements() {
-		return (IfcRelVoidsElement) eGet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS, true);
+		return (IfcRelVoidsElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS,
+				true);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class IfcFeatureElementSubtractionImpl extends IfcFeatureElementImpl impl
 	 * @generated
 	 */
 	public void setVoidsElements(IfcRelVoidsElement newVoidsElements) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS, newVoidsElements);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS,
+				newVoidsElements);
 	}
 
 	/**

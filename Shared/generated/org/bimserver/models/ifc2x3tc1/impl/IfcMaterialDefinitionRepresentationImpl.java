@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialDefinitionRepresentation;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,9 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresentationImpl implements IfcMaterialDefinitionRepresentation {
+public class IfcMaterialDefinitionRepresentationImpl extends
+		IfcProductRepresentationImpl implements
+		IfcMaterialDefinitionRepresentation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +63,9 @@ public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresent
 	 * @generated
 	 */
 	public IfcMaterial getRepresentedMaterial() {
-		return (IfcMaterial) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL, true);
+		return (IfcMaterial) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL,
+				true);
 	}
 
 	/**
@@ -69,7 +74,8 @@ public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresent
 	 * @generated
 	 */
 	public void setRepresentedMaterial(IfcMaterial newRepresentedMaterial) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL, newRepresentedMaterial);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL,
+				newRepresentedMaterial);
 	}
 
 } //IfcMaterialDefinitionRepresentationImpl
