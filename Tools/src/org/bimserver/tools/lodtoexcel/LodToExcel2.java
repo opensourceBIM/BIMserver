@@ -201,7 +201,7 @@ public class LodToExcel2 {
 					
 					for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 						RenderEngineInstance instance = ifcEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
-						int nrTriangles = instance.getVisualisationProperties().getPrimitiveCount() / 12;
+						int nrTriangles = instance.getVisualisationProperties().getIndices().length / 3;
 						Bounds bounds = getBounds(geometry, instance);
 						System.out.println("Product bounds: " + bounds);
 						totalBounds.integrate(bounds);
@@ -273,30 +273,30 @@ public class LodToExcel2 {
 	private Bounds getBounds(RenderEngineGeometry geometry, RenderEngineInstance instance) throws RenderEngineException {
 		RenderEngineInstanceVisualisationProperties visualisationProperties = instance.getVisualisationProperties();
 		Bounds bounds = new Bounds();
-		for (int i=visualisationProperties.getStartIndex(); i<visualisationProperties.getStartIndex() + visualisationProperties.getPrimitiveCount() * 3; i++) {
-			int index = geometry.getIndex(i) * 3;
-			float x = geometry.getVertex(index);
-			float y = geometry.getVertex(index + 1);
-			float z = geometry.getVertex(index + 2);
-			if (x < bounds.minX) {
-				bounds.minX = x;
-			}
-			if (y < bounds.minY) {
-				bounds.minY = y;
-			}
-			if (z < bounds.minZ) {
-				bounds.minZ = z;
-			}
-			if (x > bounds.maxX) {
-				bounds.maxX = x;
-			}
-			if (y > bounds.maxY) {
-				bounds.maxY = y;
-			}
-			if (z > bounds.maxZ) {
-				bounds.maxZ = z;
-			}
-		}
+//		for (int i=visualisationProperties.getStartIndex(); i<visualisationProperties.getStartIndex() + visualisationProperties.getPrimitiveCount() * 3; i++) {
+//			int index = geometry.getIndex(i) * 3;
+//			float x = geometry.getVertex(index);
+//			float y = geometry.getVertex(index + 1);
+//			float z = geometry.getVertex(index + 2);
+//			if (x < bounds.minX) {
+//				bounds.minX = x;
+//			}
+//			if (y < bounds.minY) {
+//				bounds.minY = y;
+//			}
+//			if (z < bounds.minZ) {
+//				bounds.minZ = z;
+//			}
+//			if (x > bounds.maxX) {
+//				bounds.maxX = x;
+//			}
+//			if (y > bounds.maxY) {
+//				bounds.maxY = y;
+//			}
+//			if (z > bounds.maxZ) {
+//				bounds.maxZ = z;
+//			}
+//		}
 		return bounds;
 	}
 
