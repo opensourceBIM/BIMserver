@@ -288,8 +288,7 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStructuralCurveActivityTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveActivityTypeEnum[] {
-			NULL, PARABOLA, EQUIDISTANT, LINEAR, NOTDEFINED, DISCRETE,
+	private static final IfcStructuralCurveActivityTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveActivityTypeEnum[] { NULL, PARABOLA, EQUIDISTANT, LINEAR, NOTDEFINED, DISCRETE,
 			USERDEFINED, CONST, SINUS, POLYGONAL, };
 
 	/**
@@ -298,8 +297,7 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcStructuralCurveActivityTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcStructuralCurveActivityTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Structural Curve Activity Type Enum</b></em>' literal with the specified literal value.
@@ -392,8 +390,7 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcStructuralCurveActivityTypeEnum(int value, String name,
-			String literal) {
+	private IfcStructuralCurveActivityTypeEnum(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

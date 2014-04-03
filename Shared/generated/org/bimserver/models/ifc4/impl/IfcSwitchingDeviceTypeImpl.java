@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSwitchingDeviceTypeImpl extends IfcFlowControllerTypeImpl
-		implements IfcSwitchingDeviceType {
+public class IfcSwitchingDeviceTypeImpl extends IfcFlowControllerTypeImpl implements IfcSwitchingDeviceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcSwitchingDeviceTypeImpl extends IfcFlowControllerTypeImpl
 	 * @generated
 	 */
 	public IfcSwitchingDeviceTypeEnum getPredefinedType() {
-		return (IfcSwitchingDeviceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcSwitchingDeviceTypeEnum) eGet(Ifc4Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcSwitchingDeviceTypeImpl extends IfcFlowControllerTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSwitchingDeviceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcSwitchingDeviceTypeImpl

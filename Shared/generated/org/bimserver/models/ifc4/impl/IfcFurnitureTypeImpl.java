@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl
-		implements IfcFurnitureType {
+public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl implements IfcFurnitureType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl
 	 * @generated
 	 */
 	public IfcAssemblyPlaceEnum getAssemblyPlace() {
-		return (IfcAssemblyPlaceEnum) eGet(
-				Ifc4Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE, true);
+		return (IfcAssemblyPlaceEnum) eGet(Ifc4Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE, true);
 	}
 
 	/**
@@ -74,8 +72,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl
 	 * @generated
 	 */
 	public void setAssemblyPlace(IfcAssemblyPlaceEnum newAssemblyPlace) {
-		eSet(Ifc4Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE,
-				newAssemblyPlace);
+		eSet(Ifc4Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE, newAssemblyPlace);
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl
 	 * @generated
 	 */
 	public IfcFurnitureTypeEnum getPredefinedType() {
-		return (IfcFurnitureTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_FURNITURE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcFurnitureTypeEnum) eGet(Ifc4Package.Literals.IFC_FURNITURE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -94,8 +90,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcFurnitureTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_FURNITURE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_FURNITURE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

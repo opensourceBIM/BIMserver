@@ -72,8 +72,7 @@ public class IfcFontWeightImpl extends IdEObjectImpl implements IfcFontWeight {
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_FONT_WEIGHT__WRAPPED_VALUE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_FONT_WEIGHT__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -82,8 +81,7 @@ public class IfcFontWeightImpl extends IdEObjectImpl implements IfcFontWeight {
 	 * @generated
 	 */
 	public void setWrappedValue(String newWrappedValue) {
-		eSet(Ifc4Package.Literals.IFC_FONT_WEIGHT__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc4Package.Literals.IFC_FONT_WEIGHT__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**

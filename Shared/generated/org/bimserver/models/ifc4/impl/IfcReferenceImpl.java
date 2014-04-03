@@ -78,8 +78,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * @generated
 	 */
 	public String getTypeIdentifier() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_REFERENCE__TYPE_IDENTIFIER, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_REFERENCE__TYPE_IDENTIFIER, true);
 	}
 
 	/**
@@ -88,8 +87,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * @generated
 	 */
 	public void setTypeIdentifier(String newTypeIdentifier) {
-		eSet(Ifc4Package.Literals.IFC_REFERENCE__TYPE_IDENTIFIER,
-				newTypeIdentifier);
+		eSet(Ifc4Package.Literals.IFC_REFERENCE__TYPE_IDENTIFIER, newTypeIdentifier);
 	}
 
 	/**
@@ -116,8 +114,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * @generated
 	 */
 	public String getAttributeIdentifier() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_REFERENCE__ATTRIBUTE_IDENTIFIER, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_REFERENCE__ATTRIBUTE_IDENTIFIER, true);
 	}
 
 	/**
@@ -126,8 +123,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * @generated
 	 */
 	public void setAttributeIdentifier(String newAttributeIdentifier) {
-		eSet(Ifc4Package.Literals.IFC_REFERENCE__ATTRIBUTE_IDENTIFIER,
-				newAttributeIdentifier);
+		eSet(Ifc4Package.Literals.IFC_REFERENCE__ATTRIBUTE_IDENTIFIER, newAttributeIdentifier);
 	}
 
 	/**
@@ -154,8 +150,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * @generated
 	 */
 	public String getInstanceName() {
-		return (String) eGet(Ifc4Package.Literals.IFC_REFERENCE__INSTANCE_NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_REFERENCE__INSTANCE_NAME, true);
 	}
 
 	/**
@@ -192,8 +187,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Integer> getListPositions() {
-		return (EList<Integer>) eGet(
-				Ifc4Package.Literals.IFC_REFERENCE__LIST_POSITIONS, true);
+		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_REFERENCE__LIST_POSITIONS, true);
 	}
 
 	/**
@@ -220,8 +214,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * @generated
 	 */
 	public IfcReference getInnerReference() {
-		return (IfcReference) eGet(
-				Ifc4Package.Literals.IFC_REFERENCE__INNER_REFERENCE, true);
+		return (IfcReference) eGet(Ifc4Package.Literals.IFC_REFERENCE__INNER_REFERENCE, true);
 	}
 
 	/**
@@ -230,8 +223,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * @generated
 	 */
 	public void setInnerReference(IfcReference newInnerReference) {
-		eSet(Ifc4Package.Literals.IFC_REFERENCE__INNER_REFERENCE,
-				newInnerReference);
+		eSet(Ifc4Package.Literals.IFC_REFERENCE__INNER_REFERENCE, newInnerReference);
 	}
 
 	/**

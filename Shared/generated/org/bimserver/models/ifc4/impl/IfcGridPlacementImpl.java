@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcGridPlacementImpl extends IfcObjectPlacementImpl implements
-		IfcGridPlacement {
+public class IfcGridPlacementImpl extends IfcObjectPlacementImpl implements IfcGridPlacement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcGridPlacementImpl extends IfcObjectPlacementImpl implements
 	 * @generated
 	 */
 	public IfcVirtualGridIntersection getPlacementLocation() {
-		return (IfcVirtualGridIntersection) eGet(
-				Ifc4Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_LOCATION,
-				true);
+		return (IfcVirtualGridIntersection) eGet(Ifc4Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_LOCATION, true);
 	}
 
 	/**
@@ -74,10 +71,8 @@ public class IfcGridPlacementImpl extends IfcObjectPlacementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPlacementLocation(
-			IfcVirtualGridIntersection newPlacementLocation) {
-		eSet(Ifc4Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_LOCATION,
-				newPlacementLocation);
+	public void setPlacementLocation(IfcVirtualGridIntersection newPlacementLocation) {
+		eSet(Ifc4Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_LOCATION, newPlacementLocation);
 	}
 
 	/**
@@ -86,9 +81,7 @@ public class IfcGridPlacementImpl extends IfcObjectPlacementImpl implements
 	 * @generated
 	 */
 	public IfcGridPlacementDirectionSelect getPlacementRefDirection() {
-		return (IfcGridPlacementDirectionSelect) eGet(
-				Ifc4Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_REF_DIRECTION,
-				true);
+		return (IfcGridPlacementDirectionSelect) eGet(Ifc4Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_REF_DIRECTION, true);
 	}
 
 	/**
@@ -96,10 +89,8 @@ public class IfcGridPlacementImpl extends IfcObjectPlacementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPlacementRefDirection(
-			IfcGridPlacementDirectionSelect newPlacementRefDirection) {
-		eSet(Ifc4Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_REF_DIRECTION,
-				newPlacementRefDirection);
+	public void setPlacementRefDirection(IfcGridPlacementDirectionSelect newPlacementRefDirection) {
+		eSet(Ifc4Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_REF_DIRECTION, newPlacementRefDirection);
 	}
 
 	/**

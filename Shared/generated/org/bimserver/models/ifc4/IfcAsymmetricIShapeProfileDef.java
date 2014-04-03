@@ -55,8 +55,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcAsymmetricIShapeProfileDef extends
-		IfcParameterizedProfileDef {
+public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDef {
 	/**
 	 * Returns the value of the '<em><b>Bottom Flange Width</b></em>' attribute.
 	 * <!-- begin-user-doc -->

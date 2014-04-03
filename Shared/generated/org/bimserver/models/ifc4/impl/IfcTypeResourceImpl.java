@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements
-		IfcTypeResource {
+public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public String getIdentification() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TYPE_RESOURCE__IDENTIFICATION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__IDENTIFICATION, true);
 	}
 
 	/**
@@ -77,8 +75,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public void setIdentification(String newIdentification) {
-		eSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__IDENTIFICATION,
-				newIdentification);
+		eSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__IDENTIFICATION, newIdentification);
 	}
 
 	/**
@@ -105,8 +102,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public String getLongDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TYPE_RESOURCE__LONG_DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__LONG_DESCRIPTION, true);
 	}
 
 	/**
@@ -115,8 +111,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public void setLongDescription(String newLongDescription) {
-		eSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__LONG_DESCRIPTION,
-				newLongDescription);
+		eSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__LONG_DESCRIPTION, newLongDescription);
 	}
 
 	/**
@@ -143,8 +138,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public String getResourceType() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_TYPE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_TYPE, true);
 	}
 
 	/**
@@ -153,8 +147,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public void setResourceType(String newResourceType) {
-		eSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_TYPE,
-				newResourceType);
+		eSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_TYPE, newResourceType);
 	}
 
 	/**
@@ -182,8 +175,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToResource> getResourceOf() {
-		return (EList<IfcRelAssignsToResource>) eGet(
-				Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_OF, true);
+		return (EList<IfcRelAssignsToResource>) eGet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_OF, true);
 	}
 
 	/**

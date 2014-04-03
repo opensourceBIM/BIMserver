@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSolidModelImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcSolidModel {
+public class IfcSolidModelImpl extends IfcGeometricRepresentationItemImpl implements IfcSolidModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

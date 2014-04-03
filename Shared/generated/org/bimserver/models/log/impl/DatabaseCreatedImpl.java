@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class DatabaseCreatedImpl extends LogActionImpl implements
-		DatabaseCreated {
+public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreated {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,8 +79,7 @@ public class DatabaseCreatedImpl extends LogActionImpl implements
 	 * @generated
 	 */
 	public Integer getVersion() {
-		return (Integer) eGet(LogPackage.Literals.DATABASE_CREATED__VERSION,
-				true);
+		return (Integer) eGet(LogPackage.Literals.DATABASE_CREATED__VERSION, true);
 	}
 
 	/**

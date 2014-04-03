@@ -63,8 +63,7 @@ public class IfcWindowImpl extends IfcBuildingElementImpl implements IfcWindow {
 	 * @generated
 	 */
 	public double getOverallHeight() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_HEIGHT, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_HEIGHT, true);
 	}
 
 	/**
@@ -73,8 +72,7 @@ public class IfcWindowImpl extends IfcBuildingElementImpl implements IfcWindow {
 	 * @generated
 	 */
 	public void setOverallHeight(double newOverallHeight) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_HEIGHT,
-				newOverallHeight);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_HEIGHT, newOverallHeight);
 	}
 
 	/**
@@ -101,9 +99,7 @@ public class IfcWindowImpl extends IfcBuildingElementImpl implements IfcWindow {
 	 * @generated
 	 */
 	public String getOverallHeightAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_HEIGHT_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_HEIGHT_AS_STRING, true);
 	}
 
 	/**
@@ -112,8 +108,7 @@ public class IfcWindowImpl extends IfcBuildingElementImpl implements IfcWindow {
 	 * @generated
 	 */
 	public void setOverallHeightAsString(String newOverallHeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_HEIGHT_AS_STRING,
-				newOverallHeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_HEIGHT_AS_STRING, newOverallHeightAsString);
 	}
 
 	/**
@@ -140,8 +135,7 @@ public class IfcWindowImpl extends IfcBuildingElementImpl implements IfcWindow {
 	 * @generated
 	 */
 	public double getOverallWidth() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_WIDTH, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_WIDTH, true);
 	}
 
 	/**
@@ -150,8 +144,7 @@ public class IfcWindowImpl extends IfcBuildingElementImpl implements IfcWindow {
 	 * @generated
 	 */
 	public void setOverallWidth(double newOverallWidth) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_WIDTH,
-				newOverallWidth);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_WIDTH, newOverallWidth);
 	}
 
 	/**
@@ -178,9 +171,7 @@ public class IfcWindowImpl extends IfcBuildingElementImpl implements IfcWindow {
 	 * @generated
 	 */
 	public String getOverallWidthAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_WIDTH_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_WIDTH_AS_STRING, true);
 	}
 
 	/**
@@ -189,8 +180,7 @@ public class IfcWindowImpl extends IfcBuildingElementImpl implements IfcWindow {
 	 * @generated
 	 */
 	public void setOverallWidthAsString(String newOverallWidthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_WIDTH_AS_STRING,
-				newOverallWidthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW__OVERALL_WIDTH_AS_STRING, newOverallWidthAsString);
 	}
 
 	/**

@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialLayerWithOffsetsImpl extends IfcMaterialLayerImpl
-		implements IfcMaterialLayerWithOffsets {
+public class IfcMaterialLayerWithOffsetsImpl extends IfcMaterialLayerImpl implements IfcMaterialLayerWithOffsets {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +65,7 @@ public class IfcMaterialLayerWithOffsetsImpl extends IfcMaterialLayerImpl
 	 * @generated
 	 */
 	public IfcLayerSetDirectionEnum getOffsetDirection() {
-		return (IfcLayerSetDirectionEnum) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_DIRECTION,
-				true);
+		return (IfcLayerSetDirectionEnum) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_DIRECTION, true);
 	}
 
 	/**
@@ -77,8 +74,7 @@ public class IfcMaterialLayerWithOffsetsImpl extends IfcMaterialLayerImpl
 	 * @generated
 	 */
 	public void setOffsetDirection(IfcLayerSetDirectionEnum newOffsetDirection) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_DIRECTION,
-				newOffsetDirection);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_DIRECTION, newOffsetDirection);
 	}
 
 	/**
@@ -88,9 +84,7 @@ public class IfcMaterialLayerWithOffsetsImpl extends IfcMaterialLayerImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getOffsetValues() {
-		return (EList<Double>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_VALUES,
-				true);
+		return (EList<Double>) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_VALUES, true);
 	}
 
 	/**
@@ -100,9 +94,7 @@ public class IfcMaterialLayerWithOffsetsImpl extends IfcMaterialLayerImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getOffsetValuesAsString() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_VALUES_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_VALUES_AS_STRING, true);
 	}
 
 } //IfcMaterialLayerWithOffsetsImpl

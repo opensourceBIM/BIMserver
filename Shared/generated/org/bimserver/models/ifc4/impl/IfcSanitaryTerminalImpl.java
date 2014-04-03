@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSanitaryTerminalImpl extends IfcFlowTerminalImpl implements
-		IfcSanitaryTerminal {
+public class IfcSanitaryTerminalImpl extends IfcFlowTerminalImpl implements IfcSanitaryTerminal {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcSanitaryTerminalImpl extends IfcFlowTerminalImpl implements
 	 * @generated
 	 */
 	public IfcSanitaryTerminalTypeEnum getPredefinedType() {
-		return (IfcSanitaryTerminalTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SANITARY_TERMINAL__PREDEFINED_TYPE,
-				true);
+		return (IfcSanitaryTerminalTypeEnum) eGet(Ifc4Package.Literals.IFC_SANITARY_TERMINAL__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcSanitaryTerminalImpl extends IfcFlowTerminalImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSanitaryTerminalTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_SANITARY_TERMINAL__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_SANITARY_TERMINAL__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

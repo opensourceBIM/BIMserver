@@ -39,9 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcResourceConstraintRelationshipImpl extends
-		IfcResourceLevelRelationshipImpl implements
-		IfcResourceConstraintRelationship {
+public class IfcResourceConstraintRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcResourceConstraintRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +65,7 @@ public class IfcResourceConstraintRelationshipImpl extends
 	 * @generated
 	 */
 	public IfcConstraint getRelatingConstraint() {
-		return (IfcConstraint) eGet(
-				Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT,
-				true);
+		return (IfcConstraint) eGet(Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT, true);
 	}
 
 	/**
@@ -78,8 +74,7 @@ public class IfcResourceConstraintRelationshipImpl extends
 	 * @generated
 	 */
 	public void setRelatingConstraint(IfcConstraint newRelatingConstraint) {
-		eSet(Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT,
-				newRelatingConstraint);
+		eSet(Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT, newRelatingConstraint);
 	}
 
 	/**
@@ -89,9 +84,7 @@ public class IfcResourceConstraintRelationshipImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcResourceObjectSelect> getRelatedResourceObjects() {
-		return (EList<IfcResourceObjectSelect>) eGet(
-				Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATED_RESOURCE_OBJECTS,
-				true);
+		return (EList<IfcResourceObjectSelect>) eGet(Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
 	}
 
 } //IfcResourceConstraintRelationshipImpl

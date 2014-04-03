@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcIndexedTextureMapImpl extends IfcTextureCoordinateImpl
-		implements IfcIndexedTextureMap {
+public class IfcIndexedTextureMapImpl extends IfcTextureCoordinateImpl implements IfcIndexedTextureMap {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class IfcIndexedTextureMapImpl extends IfcTextureCoordinateImpl
 	 * @generated
 	 */
 	public IfcTessellatedFaceSet getMappedTo() {
-		return (IfcTessellatedFaceSet) eGet(
-				Ifc4Package.Literals.IFC_INDEXED_TEXTURE_MAP__MAPPED_TO, true);
+		return (IfcTessellatedFaceSet) eGet(Ifc4Package.Literals.IFC_INDEXED_TEXTURE_MAP__MAPPED_TO, true);
 	}
 
 	/**
@@ -74,8 +72,7 @@ public class IfcIndexedTextureMapImpl extends IfcTextureCoordinateImpl
 	 * @generated
 	 */
 	public void setMappedTo(IfcTessellatedFaceSet newMappedTo) {
-		eSet(Ifc4Package.Literals.IFC_INDEXED_TEXTURE_MAP__MAPPED_TO,
-				newMappedTo);
+		eSet(Ifc4Package.Literals.IFC_INDEXED_TEXTURE_MAP__MAPPED_TO, newMappedTo);
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class IfcIndexedTextureMapImpl extends IfcTextureCoordinateImpl
 	 * @generated
 	 */
 	public IfcTextureVertexList getTexCoords() {
-		return (IfcTextureVertexList) eGet(
-				Ifc4Package.Literals.IFC_INDEXED_TEXTURE_MAP__TEX_COORDS, true);
+		return (IfcTextureVertexList) eGet(Ifc4Package.Literals.IFC_INDEXED_TEXTURE_MAP__TEX_COORDS, true);
 	}
 
 	/**
@@ -94,8 +90,7 @@ public class IfcIndexedTextureMapImpl extends IfcTextureCoordinateImpl
 	 * @generated
 	 */
 	public void setTexCoords(IfcTextureVertexList newTexCoords) {
-		eSet(Ifc4Package.Literals.IFC_INDEXED_TEXTURE_MAP__TEX_COORDS,
-				newTexCoords);
+		eSet(Ifc4Package.Literals.IFC_INDEXED_TEXTURE_MAP__TEX_COORDS, newTexCoords);
 	}
 
 } //IfcIndexedTextureMapImpl

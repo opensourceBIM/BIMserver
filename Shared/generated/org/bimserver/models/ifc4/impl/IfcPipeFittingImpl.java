@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPipeFittingImpl extends IfcFlowFittingImpl implements
-		IfcPipeFitting {
+public class IfcPipeFittingImpl extends IfcFlowFittingImpl implements IfcPipeFitting {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcPipeFittingImpl extends IfcFlowFittingImpl implements
 	 * @generated
 	 */
 	public IfcPipeFittingTypeEnum getPredefinedType() {
-		return (IfcPipeFittingTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PIPE_FITTING__PREDEFINED_TYPE, true);
+		return (IfcPipeFittingTypeEnum) eGet(Ifc4Package.Literals.IFC_PIPE_FITTING__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcPipeFittingImpl extends IfcFlowFittingImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcPipeFittingTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_PIPE_FITTING__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_PIPE_FITTING__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

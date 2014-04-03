@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcRationalBSplineSurfaceWithKnots extends
-		IfcBSplineSurfaceWithKnots {
+public interface IfcRationalBSplineSurfaceWithKnots extends IfcBSplineSurfaceWithKnots {
 } // IfcRationalBSplineSurfaceWithKnots

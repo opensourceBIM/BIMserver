@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialRelationshipImpl extends
-		IfcResourceLevelRelationshipImpl implements IfcMaterialRelationship {
+public class IfcMaterialRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcMaterialRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +65,7 @@ public class IfcMaterialRelationshipImpl extends
 	 * @generated
 	 */
 	public IfcMaterial getRelatingMaterial() {
-		return (IfcMaterial) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_RELATIONSHIP__RELATING_MATERIAL,
-				true);
+		return (IfcMaterial) eGet(Ifc4Package.Literals.IFC_MATERIAL_RELATIONSHIP__RELATING_MATERIAL, true);
 	}
 
 	/**
@@ -77,8 +74,7 @@ public class IfcMaterialRelationshipImpl extends
 	 * @generated
 	 */
 	public void setRelatingMaterial(IfcMaterial newRelatingMaterial) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_RELATIONSHIP__RELATING_MATERIAL,
-				newRelatingMaterial);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_RELATIONSHIP__RELATING_MATERIAL, newRelatingMaterial);
 	}
 
 	/**
@@ -88,9 +84,7 @@ public class IfcMaterialRelationshipImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterial> getRelatedMaterials() {
-		return (EList<IfcMaterial>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_RELATIONSHIP__RELATED_MATERIALS,
-				true);
+		return (EList<IfcMaterial>) eGet(Ifc4Package.Literals.IFC_MATERIAL_RELATIONSHIP__RELATED_MATERIALS, true);
 	}
 
 	/**
@@ -99,9 +93,7 @@ public class IfcMaterialRelationshipImpl extends
 	 * @generated
 	 */
 	public String getExpression() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_RELATIONSHIP__EXPRESSION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_RELATIONSHIP__EXPRESSION, true);
 	}
 
 	/**
@@ -110,8 +102,7 @@ public class IfcMaterialRelationshipImpl extends
 	 * @generated
 	 */
 	public void setExpression(String newExpression) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_RELATIONSHIP__EXPRESSION,
-				newExpression);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_RELATIONSHIP__EXPRESSION, newExpression);
 	}
 
 	/**

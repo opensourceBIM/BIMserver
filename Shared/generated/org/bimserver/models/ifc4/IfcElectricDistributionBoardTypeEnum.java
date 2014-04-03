@@ -213,9 +213,8 @@ public enum IfcElectricDistributionBoardTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricDistributionBoardTypeEnum[] VALUES_ARRAY = new IfcElectricDistributionBoardTypeEnum[] {
-			NULL, CONSUMERUNIT, NOTDEFINED, SWITCHBOARD, MOTORCONTROLCENTRE,
-			USERDEFINED, DISTRIBUTIONBOARD, };
+	private static final IfcElectricDistributionBoardTypeEnum[] VALUES_ARRAY = new IfcElectricDistributionBoardTypeEnum[] { NULL, CONSUMERUNIT, NOTDEFINED, SWITCHBOARD,
+			MOTORCONTROLCENTRE, USERDEFINED, DISTRIBUTIONBOARD, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Distribution Board Type Enum</b></em>' enumerators.
@@ -223,8 +222,7 @@ public enum IfcElectricDistributionBoardTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricDistributionBoardTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricDistributionBoardTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Distribution Board Type Enum</b></em>' literal with the specified literal value.
@@ -311,8 +309,7 @@ public enum IfcElectricDistributionBoardTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcElectricDistributionBoardTypeEnum(int value, String name,
-			String literal) {
+	private IfcElectricDistributionBoardTypeEnum(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

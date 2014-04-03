@@ -36,8 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcVirtualGridIntersection extends
-		IfcGridPlacementDirectionSelect {
+public interface IfcVirtualGridIntersection extends IfcGridPlacementDirectionSelect {
 	/**
 	 * Returns the value of the '<em><b>Intersecting Axes</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcGridAxis}.

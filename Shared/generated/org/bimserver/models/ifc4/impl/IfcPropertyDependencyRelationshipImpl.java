@@ -37,9 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyDependencyRelationshipImpl extends
-		IfcResourceLevelRelationshipImpl implements
-		IfcPropertyDependencyRelationship {
+public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcPropertyDependencyRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +63,7 @@ public class IfcPropertyDependencyRelationshipImpl extends
 	 * @generated
 	 */
 	public IfcProperty getDependingProperty() {
-		return (IfcProperty) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDING_PROPERTY,
-				true);
+		return (IfcProperty) eGet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDING_PROPERTY, true);
 	}
 
 	/**
@@ -76,8 +72,7 @@ public class IfcPropertyDependencyRelationshipImpl extends
 	 * @generated
 	 */
 	public void setDependingProperty(IfcProperty newDependingProperty) {
-		eSet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDING_PROPERTY,
-				newDependingProperty);
+		eSet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDING_PROPERTY, newDependingProperty);
 	}
 
 	/**
@@ -86,9 +81,7 @@ public class IfcPropertyDependencyRelationshipImpl extends
 	 * @generated
 	 */
 	public IfcProperty getDependantProperty() {
-		return (IfcProperty) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY,
-				true);
+		return (IfcProperty) eGet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY, true);
 	}
 
 	/**
@@ -97,8 +90,7 @@ public class IfcPropertyDependencyRelationshipImpl extends
 	 * @generated
 	 */
 	public void setDependantProperty(IfcProperty newDependantProperty) {
-		eSet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY,
-				newDependantProperty);
+		eSet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY, newDependantProperty);
 	}
 
 	/**
@@ -107,9 +99,7 @@ public class IfcPropertyDependencyRelationshipImpl extends
 	 * @generated
 	 */
 	public String getExpression() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__EXPRESSION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__EXPRESSION, true);
 	}
 
 	/**
@@ -118,8 +108,7 @@ public class IfcPropertyDependencyRelationshipImpl extends
 	 * @generated
 	 */
 	public void setExpression(String newExpression) {
-		eSet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__EXPRESSION,
-				newExpression);
+		eSet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__EXPRESSION, newExpression);
 	}
 
 	/**

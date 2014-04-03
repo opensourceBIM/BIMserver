@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
-		implements IfcClassificationReference {
+public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl implements IfcClassificationReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
 	 * @generated
 	 */
 	public IfcClassification getReferencedSource() {
-		return (IfcClassification) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE,
-				true);
+		return (IfcClassification) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
 	 * @generated
 	 */
 	public void setReferencedSource(IfcClassification newReferencedSource) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE,
-				newReferencedSource);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE, newReferencedSource);
 	}
 
 	/**

@@ -73,8 +73,7 @@ public class IfcBooleanImpl extends IdEObjectImpl implements IfcBoolean {
 	 * @generated
 	 */
 	public Tristate getWrappedValue() {
-		return (Tristate) eGet(Ifc4Package.Literals.IFC_BOOLEAN__WRAPPED_VALUE,
-				true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_BOOLEAN__WRAPPED_VALUE, true);
 	}
 
 	/**

@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl
-		implements IfcPropertySetDefinition {
+public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl implements IfcPropertySetDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,9 +68,7 @@ public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTypeObject> getDefinesType() {
-		return (EList<IfcTypeObject>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_TYPE,
-				true);
+		return (EList<IfcTypeObject>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_TYPE, true);
 	}
 
 	/**
@@ -99,9 +96,7 @@ public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByTemplate> getIsDefinedBy() {
-		return (EList<IfcRelDefinesByTemplate>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__IS_DEFINED_BY,
-				true);
+		return (EList<IfcRelDefinesByTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__IS_DEFINED_BY, true);
 	}
 
 	/**
@@ -129,9 +124,7 @@ public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByProperties> getDefinesOccurrence() {
-		return (EList<IfcRelDefinesByProperties>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_OCCURRENCE,
-				true);
+		return (EList<IfcRelDefinesByProperties>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_OCCURRENCE, true);
 	}
 
 	/**

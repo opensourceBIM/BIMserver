@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements
-		IfcOffsetCurve2D {
+public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve2D {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements
 	 * @generated
 	 */
 	public IfcCurve getBasisCurve() {
-		return (IfcCurve) eGet(
-				Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__BASIS_CURVE,
-				true);
+		return (IfcCurve) eGet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__BASIS_CURVE, true);
 	}
 
 	/**
@@ -76,8 +73,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements
 	 * @generated
 	 */
 	public void setBasisCurve(IfcCurve newBasisCurve) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__BASIS_CURVE,
-				newBasisCurve);
+		eSet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__BASIS_CURVE, newBasisCurve);
 	}
 
 	/**
@@ -86,8 +82,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements
 	 * @generated
 	 */
 	public double getDistance() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE, true);
 	}
 
 	/**
@@ -96,8 +91,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements
 	 * @generated
 	 */
 	public void setDistance(double newDistance) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE,
-				newDistance);
+		eSet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE, newDistance);
 	}
 
 	/**
@@ -106,9 +100,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements
 	 * @generated
 	 */
 	public String getDistanceAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE_AS_STRING, true);
 	}
 
 	/**
@@ -117,8 +109,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements
 	 * @generated
 	 */
 	public void setDistanceAsString(String newDistanceAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE_AS_STRING,
-				newDistanceAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE_AS_STRING, newDistanceAsString);
 	}
 
 	/**
@@ -127,9 +118,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements
 	 * @generated
 	 */
 	public boolean isSelfIntersect() {
-		return (Boolean) eGet(
-				Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__SELF_INTERSECT,
-				true);
+		return (Boolean) eGet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__SELF_INTERSECT, true);
 	}
 
 	/**
@@ -138,8 +127,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements
 	 * @generated
 	 */
 	public void setSelfIntersect(boolean newSelfIntersect) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__SELF_INTERSECT,
-				newSelfIntersect);
+		eSet(Ifc2x3tc1Package.Literals.IFC_OFFSET_CURVE2_D__SELF_INTERSECT, newSelfIntersect);
 	}
 
 } //IfcOffsetCurve2DImpl

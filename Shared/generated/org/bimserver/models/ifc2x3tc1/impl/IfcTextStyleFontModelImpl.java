@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl
-		implements IfcTextStyleFontModel {
+public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl implements IfcTextStyleFontModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,9 +68,7 @@ public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getFontFamily() {
-		return (EList<String>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_FAMILY,
-				true);
+		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_FAMILY, true);
 	}
 
 	/**
@@ -98,9 +95,7 @@ public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl
 	 * @generated
 	 */
 	public String getFontStyle() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_STYLE,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_STYLE, true);
 	}
 
 	/**
@@ -109,8 +104,7 @@ public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl
 	 * @generated
 	 */
 	public void setFontStyle(String newFontStyle) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_STYLE,
-				newFontStyle);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_STYLE, newFontStyle);
 	}
 
 	/**
@@ -137,9 +131,7 @@ public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl
 	 * @generated
 	 */
 	public String getFontVariant() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_VARIANT,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_VARIANT, true);
 	}
 
 	/**
@@ -148,8 +140,7 @@ public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl
 	 * @generated
 	 */
 	public void setFontVariant(String newFontVariant) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_VARIANT,
-				newFontVariant);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_VARIANT, newFontVariant);
 	}
 
 	/**
@@ -176,9 +167,7 @@ public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl
 	 * @generated
 	 */
 	public String getFontWeight() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_WEIGHT,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_WEIGHT, true);
 	}
 
 	/**
@@ -187,8 +176,7 @@ public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl
 	 * @generated
 	 */
 	public void setFontWeight(String newFontWeight) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_WEIGHT,
-				newFontWeight);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_WEIGHT, newFontWeight);
 	}
 
 	/**
@@ -215,9 +203,7 @@ public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl
 	 * @generated
 	 */
 	public IfcSizeSelect getFontSize() {
-		return (IfcSizeSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_SIZE,
-				true);
+		return (IfcSizeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_SIZE, true);
 	}
 
 	/**
@@ -226,8 +212,7 @@ public class IfcTextStyleFontModelImpl extends IfcPreDefinedTextFontImpl
 	 * @generated
 	 */
 	public void setFontSize(IfcSizeSelect newFontSize) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_SIZE,
-				newFontSize);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_FONT_MODEL__FONT_SIZE, newFontSize);
 	}
 
 } //IfcTextStyleFontModelImpl

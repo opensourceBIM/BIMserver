@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcVolumeMeasureImpl extends IdEObjectImpl implements
-		IfcVolumeMeasure {
+public class IfcVolumeMeasureImpl extends IdEObjectImpl implements IfcVolumeMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,8 +73,7 @@ public class IfcVolumeMeasureImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public double getWrappedValue() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_VOLUME_MEASURE__WRAPPED_VALUE, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_VOLUME_MEASURE__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -84,8 +82,7 @@ public class IfcVolumeMeasureImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setWrappedValue(double newWrappedValue) {
-		eSet(Ifc4Package.Literals.IFC_VOLUME_MEASURE__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc4Package.Literals.IFC_VOLUME_MEASURE__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**
@@ -112,9 +109,7 @@ public class IfcVolumeMeasureImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_VOLUME_MEASURE__WRAPPED_VALUE_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_VOLUME_MEASURE__WRAPPED_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -123,8 +118,7 @@ public class IfcVolumeMeasureImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_VOLUME_MEASURE__WRAPPED_VALUE_AS_STRING,
-				newWrappedValueAsString);
+		eSet(Ifc4Package.Literals.IFC_VOLUME_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
 	}
 
 	/**

@@ -35,8 +35,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcSurfaceStyleRefraction extends IfcPresentationItem,
-		IfcSurfaceStyleElementSelect {
+public interface IfcSurfaceStyleRefraction extends IfcPresentationItem, IfcSurfaceStyleElementSelect {
 	/**
 	 * Returns the value of the '<em><b>Refraction Index</b></em>' attribute.
 	 * <!-- begin-user-doc -->

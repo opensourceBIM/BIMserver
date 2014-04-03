@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralSurfaceActionImpl extends IfcStructuralActionImpl
-		implements IfcStructuralSurfaceAction {
+public class IfcStructuralSurfaceActionImpl extends IfcStructuralActionImpl implements IfcStructuralSurfaceAction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcStructuralSurfaceActionImpl extends IfcStructuralActionImpl
 	 * @generated
 	 */
 	public IfcProjectedOrTrueLengthEnum getProjectedOrTrue() {
-		return (IfcProjectedOrTrueLengthEnum) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PROJECTED_OR_TRUE,
-				true);
+		return (IfcProjectedOrTrueLengthEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PROJECTED_OR_TRUE, true);
 	}
 
 	/**
@@ -74,10 +71,8 @@ public class IfcStructuralSurfaceActionImpl extends IfcStructuralActionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProjectedOrTrue(
-			IfcProjectedOrTrueLengthEnum newProjectedOrTrue) {
-		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PROJECTED_OR_TRUE,
-				newProjectedOrTrue);
+	public void setProjectedOrTrue(IfcProjectedOrTrueLengthEnum newProjectedOrTrue) {
+		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PROJECTED_OR_TRUE, newProjectedOrTrue);
 	}
 
 	/**
@@ -104,9 +99,7 @@ public class IfcStructuralSurfaceActionImpl extends IfcStructuralActionImpl
 	 * @generated
 	 */
 	public IfcStructuralSurfaceActivityTypeEnum getPredefinedType() {
-		return (IfcStructuralSurfaceActivityTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PREDEFINED_TYPE,
-				true);
+		return (IfcStructuralSurfaceActivityTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -114,10 +107,8 @@ public class IfcStructuralSurfaceActionImpl extends IfcStructuralActionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcStructuralSurfaceActivityTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcStructuralSurfaceActivityTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcStructuralSurfaceActionImpl

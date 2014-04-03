@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcQuantitySetImpl extends IfcPropertySetDefinitionImpl implements
-		IfcQuantitySet {
+public class IfcQuantitySetImpl extends IfcPropertySetDefinitionImpl implements IfcQuantitySet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

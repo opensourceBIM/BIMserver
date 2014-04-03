@@ -71,8 +71,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public IfcInventoryTypeEnum getPredefinedType() {
-		return (IfcInventoryTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_INVENTORY__PREDEFINED_TYPE, true);
+		return (IfcInventoryTypeEnum) eGet(Ifc4Package.Literals.IFC_INVENTORY__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -81,8 +80,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public void setPredefinedType(IfcInventoryTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_INVENTORY__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_INVENTORY__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -109,8 +107,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public IfcActorSelect getJurisdiction() {
-		return (IfcActorSelect) eGet(
-				Ifc4Package.Literals.IFC_INVENTORY__JURISDICTION, true);
+		return (IfcActorSelect) eGet(Ifc4Package.Literals.IFC_INVENTORY__JURISDICTION, true);
 	}
 
 	/**
@@ -147,8 +144,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPerson> getResponsiblePersons() {
-		return (EList<IfcPerson>) eGet(
-				Ifc4Package.Literals.IFC_INVENTORY__RESPONSIBLE_PERSONS, true);
+		return (EList<IfcPerson>) eGet(Ifc4Package.Literals.IFC_INVENTORY__RESPONSIBLE_PERSONS, true);
 	}
 
 	/**
@@ -175,8 +171,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public String getLastUpdateDate() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE, true);
 	}
 
 	/**
@@ -185,8 +180,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public void setLastUpdateDate(String newLastUpdateDate) {
-		eSet(Ifc4Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE,
-				newLastUpdateDate);
+		eSet(Ifc4Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE, newLastUpdateDate);
 	}
 
 	/**
@@ -213,8 +207,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public IfcCostValue getCurrentValue() {
-		return (IfcCostValue) eGet(
-				Ifc4Package.Literals.IFC_INVENTORY__CURRENT_VALUE, true);
+		return (IfcCostValue) eGet(Ifc4Package.Literals.IFC_INVENTORY__CURRENT_VALUE, true);
 	}
 
 	/**
@@ -250,8 +243,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public IfcCostValue getOriginalValue() {
-		return (IfcCostValue) eGet(
-				Ifc4Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE, true);
+		return (IfcCostValue) eGet(Ifc4Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE, true);
 	}
 
 	/**
@@ -260,8 +252,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory {
 	 * @generated
 	 */
 	public void setOriginalValue(IfcCostValue newOriginalValue) {
-		eSet(Ifc4Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE,
-				newOriginalValue);
+		eSet(Ifc4Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE, newOriginalValue);
 	}
 
 	/**

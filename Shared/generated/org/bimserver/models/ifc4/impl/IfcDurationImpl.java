@@ -72,8 +72,7 @@ public class IfcDurationImpl extends IdEObjectImpl implements IfcDuration {
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(Ifc4Package.Literals.IFC_DURATION__WRAPPED_VALUE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_DURATION__WRAPPED_VALUE, true);
 	}
 
 	/**

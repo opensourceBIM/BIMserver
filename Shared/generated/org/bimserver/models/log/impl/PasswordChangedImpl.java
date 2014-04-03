@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PasswordChangedImpl extends UserRelatedImpl implements
-		PasswordChanged {
+public class PasswordChangedImpl extends UserRelatedImpl implements PasswordChanged {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

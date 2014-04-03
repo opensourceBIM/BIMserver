@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class InternalServicePluginConfigurationImpl extends
-		PluginConfigurationImpl implements InternalServicePluginConfiguration {
+public class InternalServicePluginConfigurationImpl extends PluginConfigurationImpl implements InternalServicePluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public boolean isRemoteAccessible() {
-		return (Boolean) eGet(
-				StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE, true);
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public void setRemoteAccessible(boolean newRemoteAccessible) {
-		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE,
-				newRemoteAccessible);
+		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE, newRemoteAccessible);
 	}
 
 	/**
@@ -85,9 +81,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(
-				StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				true);
+		return (UserSettings) eGet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
 
 	/**
@@ -96,8 +90,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public void setUserSettings(UserSettings newUserSettings) {
-		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				newUserSettings);
+		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
 
 	/**
@@ -106,9 +99,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public boolean isPublicProfile() {
-		return (Boolean) eGet(
-				StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE, true);
 	}
 
 	/**
@@ -117,8 +108,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public void setPublicProfile(boolean newPublicProfile) {
-		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE,
-				newPublicProfile);
+		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE, newPublicProfile);
 	}
 
 } //InternalServicePluginConfigurationImpl

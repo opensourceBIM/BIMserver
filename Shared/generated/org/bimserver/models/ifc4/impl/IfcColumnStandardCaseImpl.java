@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcColumnStandardCaseImpl extends IfcColumnImpl implements
-		IfcColumnStandardCase {
+public class IfcColumnStandardCaseImpl extends IfcColumnImpl implements IfcColumnStandardCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

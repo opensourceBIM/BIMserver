@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPresentationStyleImpl extends IdEObjectImpl implements
-		IfcPresentationStyle {
+public class IfcPresentationStyleImpl extends IdEObjectImpl implements IfcPresentationStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,8 +72,7 @@ public class IfcPresentationStyleImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc4Package.Literals.IFC_PRESENTATION_STYLE__NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PRESENTATION_STYLE__NAME, true);
 	}
 
 	/**

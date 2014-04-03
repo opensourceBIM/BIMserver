@@ -72,8 +72,7 @@ public class IfcDateTimeImpl extends IdEObjectImpl implements IfcDateTime {
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(Ifc4Package.Literals.IFC_DATE_TIME__WRAPPED_VALUE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_DATE_TIME__WRAPPED_VALUE, true);
 	}
 
 	/**

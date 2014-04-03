@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDoorStandardCaseImpl extends IfcDoorImpl implements
-		IfcDoorStandardCase {
+public class IfcDoorStandardCaseImpl extends IfcDoorImpl implements IfcDoorStandardCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

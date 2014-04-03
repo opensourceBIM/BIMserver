@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl
-		implements IfcFaceBound {
+public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl implements IfcFaceBound {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl
 	 * @generated
 	 */
 	public IfcLoop getBound() {
-		return (IfcLoop) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__BOUND,
-				true);
+		return (IfcLoop) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__BOUND, true);
 	}
 
 	/**
@@ -83,8 +81,7 @@ public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl
 	 * @generated
 	 */
 	public Tristate getOrientation() {
-		return (Tristate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__ORIENTATION, true);
+		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__ORIENTATION, true);
 	}
 
 	/**
@@ -93,8 +90,7 @@ public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl
 	 * @generated
 	 */
 	public void setOrientation(Tristate newOrientation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__ORIENTATION,
-				newOrientation);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FACE_BOUND__ORIENTATION, newOrientation);
 	}
 
 } //IfcFaceBoundImpl

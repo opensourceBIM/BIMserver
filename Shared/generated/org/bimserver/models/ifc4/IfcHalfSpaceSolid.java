@@ -34,8 +34,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcHalfSpaceSolid extends IfcGeometricRepresentationItem,
-		IfcBooleanOperand {
+public interface IfcHalfSpaceSolid extends IfcGeometricRepresentationItem, IfcBooleanOperand {
 	/**
 	 * Returns the value of the '<em><b>Base Surface</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelContainedInSpatialStructureImpl extends IfcRelConnectsImpl
-		implements IfcRelContainedInSpatialStructure {
+public class IfcRelContainedInSpatialStructureImpl extends IfcRelConnectsImpl implements IfcRelContainedInSpatialStructure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +66,7 @@ public class IfcRelContainedInSpatialStructureImpl extends IfcRelConnectsImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProduct> getRelatedElements() {
-		return (EList<IfcProduct>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE__RELATED_ELEMENTS,
-				true);
+		return (EList<IfcProduct>) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE__RELATED_ELEMENTS, true);
 	}
 
 	/**
@@ -78,9 +75,7 @@ public class IfcRelContainedInSpatialStructureImpl extends IfcRelConnectsImpl
 	 * @generated
 	 */
 	public IfcSpatialStructureElement getRelatingStructure() {
-		return (IfcSpatialStructureElement) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE,
-				true);
+		return (IfcSpatialStructureElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE, true);
 	}
 
 	/**
@@ -88,10 +83,8 @@ public class IfcRelContainedInSpatialStructureImpl extends IfcRelConnectsImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatingStructure(
-			IfcSpatialStructureElement newRelatingStructure) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE,
-				newRelatingStructure);
+	public void setRelatingStructure(IfcSpatialStructureElement newRelatingStructure) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE, newRelatingStructure);
 	}
 
 } //IfcRelContainedInSpatialStructureImpl

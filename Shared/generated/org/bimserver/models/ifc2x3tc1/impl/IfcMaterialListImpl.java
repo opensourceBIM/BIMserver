@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialListImpl extends IdEObjectImpl implements
-		IfcMaterialList {
+public class IfcMaterialListImpl extends IdEObjectImpl implements IfcMaterialList {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,8 +76,7 @@ public class IfcMaterialListImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterial> getMaterials() {
-		return (EList<IfcMaterial>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MATERIAL_LIST__MATERIALS, true);
+		return (EList<IfcMaterial>) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_LIST__MATERIALS, true);
 	}
 
 } //IfcMaterialListImpl

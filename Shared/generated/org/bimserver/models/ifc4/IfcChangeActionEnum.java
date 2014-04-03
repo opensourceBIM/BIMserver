@@ -188,8 +188,7 @@ public enum IfcChangeActionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcChangeActionEnum[] VALUES_ARRAY = new IfcChangeActionEnum[] {
-			NULL, NOCHANGE, MODIFIED, NOTDEFINED, ADDED, DELETED, };
+	private static final IfcChangeActionEnum[] VALUES_ARRAY = new IfcChangeActionEnum[] { NULL, NOCHANGE, MODIFIED, NOTDEFINED, ADDED, DELETED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Change Action Enum</b></em>' enumerators.
@@ -197,8 +196,7 @@ public enum IfcChangeActionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcChangeActionEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcChangeActionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Change Action Enum</b></em>' literal with the specified literal value.

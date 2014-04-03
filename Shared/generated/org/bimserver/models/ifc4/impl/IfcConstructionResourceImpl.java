@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstructionResourceImpl extends IfcResourceImpl implements
-		IfcConstructionResource {
+public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcConstructionResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,8 +67,7 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements
 	 * @generated
 	 */
 	public IfcResourceTime getUsage() {
-		return (IfcResourceTime) eGet(
-				Ifc4Package.Literals.IFC_CONSTRUCTION_RESOURCE__USAGE, true);
+		return (IfcResourceTime) eGet(Ifc4Package.Literals.IFC_CONSTRUCTION_RESOURCE__USAGE, true);
 	}
 
 	/**
@@ -106,9 +104,7 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValue> getBaseCosts() {
-		return (EList<IfcAppliedValue>) eGet(
-				Ifc4Package.Literals.IFC_CONSTRUCTION_RESOURCE__BASE_COSTS,
-				true);
+		return (EList<IfcAppliedValue>) eGet(Ifc4Package.Literals.IFC_CONSTRUCTION_RESOURCE__BASE_COSTS, true);
 	}
 
 	/**
@@ -135,9 +131,7 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements
 	 * @generated
 	 */
 	public IfcPhysicalQuantity getBaseQuantity() {
-		return (IfcPhysicalQuantity) eGet(
-				Ifc4Package.Literals.IFC_CONSTRUCTION_RESOURCE__BASE_QUANTITY,
-				true);
+		return (IfcPhysicalQuantity) eGet(Ifc4Package.Literals.IFC_CONSTRUCTION_RESOURCE__BASE_QUANTITY, true);
 	}
 
 	/**
@@ -146,8 +140,7 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements
 	 * @generated
 	 */
 	public void setBaseQuantity(IfcPhysicalQuantity newBaseQuantity) {
-		eSet(Ifc4Package.Literals.IFC_CONSTRUCTION_RESOURCE__BASE_QUANTITY,
-				newBaseQuantity);
+		eSet(Ifc4Package.Literals.IFC_CONSTRUCTION_RESOURCE__BASE_QUANTITY, newBaseQuantity);
 	}
 
 	/**

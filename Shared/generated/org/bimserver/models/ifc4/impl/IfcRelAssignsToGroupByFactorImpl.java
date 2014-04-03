@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsToGroupByFactorImpl extends IfcRelAssignsToGroupImpl
-		implements IfcRelAssignsToGroupByFactor {
+public class IfcRelAssignsToGroupByFactorImpl extends IfcRelAssignsToGroupImpl implements IfcRelAssignsToGroupByFactor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcRelAssignsToGroupByFactorImpl extends IfcRelAssignsToGroupImpl
 	 * @generated
 	 */
 	public double getFactor() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_GROUP_BY_FACTOR__FACTOR,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_GROUP_BY_FACTOR__FACTOR, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcRelAssignsToGroupByFactorImpl extends IfcRelAssignsToGroupImpl
 	 * @generated
 	 */
 	public void setFactor(double newFactor) {
-		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_GROUP_BY_FACTOR__FACTOR,
-				newFactor);
+		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_GROUP_BY_FACTOR__FACTOR, newFactor);
 	}
 
 	/**
@@ -83,9 +79,7 @@ public class IfcRelAssignsToGroupByFactorImpl extends IfcRelAssignsToGroupImpl
 	 * @generated
 	 */
 	public String getFactorAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_GROUP_BY_FACTOR__FACTOR_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_GROUP_BY_FACTOR__FACTOR_AS_STRING, true);
 	}
 
 	/**
@@ -94,8 +88,7 @@ public class IfcRelAssignsToGroupByFactorImpl extends IfcRelAssignsToGroupImpl
 	 * @generated
 	 */
 	public void setFactorAsString(String newFactorAsString) {
-		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_GROUP_BY_FACTOR__FACTOR_AS_STRING,
-				newFactorAsString);
+		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_GROUP_BY_FACTOR__FACTOR_AS_STRING, newFactorAsString);
 	}
 
 } //IfcRelAssignsToGroupByFactorImpl

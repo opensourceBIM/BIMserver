@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProfilePropertiesImpl extends IfcExtendedPropertiesImpl
-		implements IfcProfileProperties {
+public class IfcProfilePropertiesImpl extends IfcExtendedPropertiesImpl implements IfcProfileProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcProfilePropertiesImpl extends IfcExtendedPropertiesImpl
 	 * @generated
 	 */
 	public IfcProfileDef getProfileDefinition() {
-		return (IfcProfileDef) eGet(
-				Ifc4Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION,
-				true);
+		return (IfcProfileDef) eGet(Ifc4Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcProfilePropertiesImpl extends IfcExtendedPropertiesImpl
 	 * @generated
 	 */
 	public void setProfileDefinition(IfcProfileDef newProfileDefinition) {
-		eSet(Ifc4Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION,
-				newProfileDefinition);
+		eSet(Ifc4Package.Literals.IFC_PROFILE_PROPERTIES__PROFILE_DEFINITION, newProfileDefinition);
 	}
 
 } //IfcProfilePropertiesImpl

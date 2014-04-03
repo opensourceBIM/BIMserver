@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPathImpl extends IfcTopologicalRepresentationItemImpl implements
-		IfcPath {
+public class IfcPathImpl extends IfcTopologicalRepresentationItemImpl implements IfcPath {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcPathImpl extends IfcTopologicalRepresentationItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrientedEdge> getEdgeList() {
-		return (EList<IfcOrientedEdge>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PATH__EDGE_LIST, true);
+		return (EList<IfcOrientedEdge>) eGet(Ifc2x3tc1Package.Literals.IFC_PATH__EDGE_LIST, true);
 	}
 
 } //IfcPathImpl

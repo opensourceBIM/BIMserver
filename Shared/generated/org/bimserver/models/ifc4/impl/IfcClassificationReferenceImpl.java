@@ -42,8 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
-		implements IfcClassificationReference {
+public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl implements IfcClassificationReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,9 +68,7 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
 	 * @generated
 	 */
 	public IfcClassificationReferenceSelect getReferencedSource() {
-		return (IfcClassificationReferenceSelect) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE,
-				true);
+		return (IfcClassificationReferenceSelect) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE, true);
 	}
 
 	/**
@@ -79,10 +76,8 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReferencedSource(
-			IfcClassificationReferenceSelect newReferencedSource) {
-		eSet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE,
-				newReferencedSource);
+	public void setReferencedSource(IfcClassificationReferenceSelect newReferencedSource) {
+		eSet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE, newReferencedSource);
 	}
 
 	/**
@@ -109,9 +104,7 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__DESCRIPTION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__DESCRIPTION, true);
 	}
 
 	/**
@@ -120,8 +113,7 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -148,8 +140,7 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
 	 * @generated
 	 */
 	public String getSort() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__SORT, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__SORT, true);
 	}
 
 	/**
@@ -186,9 +177,7 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesClassification> getClassificationRefForObjects() {
-		return (EList<IfcRelAssociatesClassification>) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__CLASSIFICATION_REF_FOR_OBJECTS,
-				true);
+		return (EList<IfcRelAssociatesClassification>) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__CLASSIFICATION_REF_FOR_OBJECTS, true);
 	}
 
 	/**
@@ -216,9 +205,7 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationReference> getHasReferences() {
-		return (EList<IfcClassificationReference>) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__HAS_REFERENCES,
-				true);
+		return (EList<IfcClassificationReference>) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__HAS_REFERENCES, true);
 	}
 
 	/**

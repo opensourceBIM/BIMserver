@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPreDefinedItemImpl extends IfcPresentationItemImpl implements
-		IfcPreDefinedItem {
+public class IfcPreDefinedItemImpl extends IfcPresentationItemImpl implements IfcPreDefinedItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcPreDefinedItemImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc4Package.Literals.IFC_PRE_DEFINED_ITEM__NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PRE_DEFINED_ITEM__NAME, true);
 	}
 
 	/**

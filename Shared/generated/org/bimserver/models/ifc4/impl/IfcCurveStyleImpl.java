@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
-		IfcCurveStyle {
+public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCurveStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,8 +67,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public IfcCurveFontOrScaledCurveFontSelect getCurveFont() {
-		return (IfcCurveFontOrScaledCurveFontSelect) eGet(
-				Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_FONT, true);
+		return (IfcCurveFontOrScaledCurveFontSelect) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_FONT, true);
 	}
 
 	/**
@@ -105,8 +103,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public IfcSizeSelect getCurveWidth() {
-		return (IfcSizeSelect) eGet(
-				Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH, true);
+		return (IfcSizeSelect) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH, true);
 	}
 
 	/**
@@ -142,8 +139,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public IfcColour getCurveColour() {
-		return (IfcColour) eGet(
-				Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR, true);
+		return (IfcColour) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR, true);
 	}
 
 	/**
@@ -179,8 +175,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public Tristate getModelOrDraughting() {
-		return (Tristate) eGet(
-				Ifc4Package.Literals.IFC_CURVE_STYLE__MODEL_OR_DRAUGHTING, true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE__MODEL_OR_DRAUGHTING, true);
 	}
 
 	/**
@@ -189,8 +184,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public void setModelOrDraughting(Tristate newModelOrDraughting) {
-		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE__MODEL_OR_DRAUGHTING,
-				newModelOrDraughting);
+		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE__MODEL_OR_DRAUGHTING, newModelOrDraughting);
 	}
 
 	/**

@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcPoint extends IfcGeometricRepresentationItem,
-		IfcGeometricSetSelect, IfcPointOrVertexPoint {
+public interface IfcPoint extends IfcGeometricRepresentationItem, IfcGeometricSetSelect, IfcPointOrVertexPoint {
 } // IfcPoint

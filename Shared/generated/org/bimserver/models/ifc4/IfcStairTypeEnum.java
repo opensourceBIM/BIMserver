@@ -150,8 +150,7 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TWO_QUARTER_WINDING_STAIR(11, "TWO_QUARTER_WINDING_STAIR",
-			"TWO_QUARTER_WINDING_STAIR"),
+	TWO_QUARTER_WINDING_STAIR(11, "TWO_QUARTER_WINDING_STAIR", "TWO_QUARTER_WINDING_STAIR"),
 
 	/**
 	 * The '<em><b>TWO QUARTER TURN STAIR</b></em>' literal object.
@@ -161,8 +160,7 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TWO_QUARTER_TURN_STAIR(12, "TWO_QUARTER_TURN_STAIR",
-			"TWO_QUARTER_TURN_STAIR"),
+	TWO_QUARTER_TURN_STAIR(12, "TWO_QUARTER_TURN_STAIR", "TWO_QUARTER_TURN_STAIR"),
 
 	/**
 	 * The '<em><b>THREE QUARTER TURN STAIR</b></em>' literal object.
@@ -172,8 +170,7 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THREE_QUARTER_TURN_STAIR(13, "THREE_QUARTER_TURN_STAIR",
-			"THREE_QUARTER_TURN_STAIR"),
+	THREE_QUARTER_TURN_STAIR(13, "THREE_QUARTER_TURN_STAIR", "THREE_QUARTER_TURN_STAIR"),
 
 	/**
 	 * The '<em><b>TWO STRAIGHT RUN STAIR</b></em>' literal object.
@@ -183,8 +180,7 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TWO_STRAIGHT_RUN_STAIR(14, "TWO_STRAIGHT_RUN_STAIR",
-			"TWO_STRAIGHT_RUN_STAIR"),
+	TWO_STRAIGHT_RUN_STAIR(14, "TWO_STRAIGHT_RUN_STAIR", "TWO_STRAIGHT_RUN_STAIR"),
 
 	/**
 	 * The '<em><b>THREE QUARTER WINDING STAIR</b></em>' literal object.
@@ -194,8 +190,7 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THREE_QUARTER_WINDING_STAIR(15, "THREE_QUARTER_WINDING_STAIR",
-			"THREE_QUARTER_WINDING_STAIR"),
+	THREE_QUARTER_WINDING_STAIR(15, "THREE_QUARTER_WINDING_STAIR", "THREE_QUARTER_WINDING_STAIR"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -468,13 +463,9 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStairTypeEnum[] VALUES_ARRAY = new IfcStairTypeEnum[] {
-			NULL, SPIRAL_STAIR, NOTDEFINED, QUARTER_WINDING_STAIR,
-			HALF_WINDING_STAIR, STRAIGHT_RUN_STAIR, TWO_CURVED_RUN_STAIR,
-			HALF_TURN_STAIR, CURVED_RUN_STAIR, DOUBLE_RETURN_STAIR,
-			QUARTER_TURN_STAIR, TWO_QUARTER_WINDING_STAIR,
-			TWO_QUARTER_TURN_STAIR, THREE_QUARTER_TURN_STAIR,
-			TWO_STRAIGHT_RUN_STAIR, THREE_QUARTER_WINDING_STAIR, USERDEFINED, };
+	private static final IfcStairTypeEnum[] VALUES_ARRAY = new IfcStairTypeEnum[] { NULL, SPIRAL_STAIR, NOTDEFINED, QUARTER_WINDING_STAIR, HALF_WINDING_STAIR, STRAIGHT_RUN_STAIR,
+			TWO_CURVED_RUN_STAIR, HALF_TURN_STAIR, CURVED_RUN_STAIR, DOUBLE_RETURN_STAIR, QUARTER_TURN_STAIR, TWO_QUARTER_WINDING_STAIR, TWO_QUARTER_TURN_STAIR,
+			THREE_QUARTER_TURN_STAIR, TWO_STRAIGHT_RUN_STAIR, THREE_QUARTER_WINDING_STAIR, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Stair Type Enum</b></em>' enumerators.
@@ -482,8 +473,7 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcStairTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcStairTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Stair Type Enum</b></em>' literal with the specified literal value.

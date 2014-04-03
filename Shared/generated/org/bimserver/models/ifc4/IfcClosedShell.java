@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcClosedShell extends IfcConnectedFaceSet, IfcShell,
-		IfcSolidOrShell {
+public interface IfcClosedShell extends IfcConnectedFaceSet, IfcShell, IfcSolidOrShell {
 } // IfcClosedShell

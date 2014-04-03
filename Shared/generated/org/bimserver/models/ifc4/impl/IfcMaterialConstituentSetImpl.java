@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialConstituentSetImpl extends IfcMaterialDefinitionImpl
-		implements IfcMaterialConstituentSet {
+public class IfcMaterialConstituentSetImpl extends IfcMaterialDefinitionImpl implements IfcMaterialConstituentSet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,8 +65,7 @@ public class IfcMaterialConstituentSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__NAME, true);
 	}
 
 	/**
@@ -103,9 +101,7 @@ public class IfcMaterialConstituentSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__DESCRIPTION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__DESCRIPTION, true);
 	}
 
 	/**
@@ -114,8 +110,7 @@ public class IfcMaterialConstituentSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -143,9 +138,7 @@ public class IfcMaterialConstituentSetImpl extends IfcMaterialDefinitionImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialConstituent> getMaterialConstituents() {
-		return (EList<IfcMaterialConstituent>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__MATERIAL_CONSTITUENTS,
-				true);
+		return (EList<IfcMaterialConstituent>) eGet(Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__MATERIAL_CONSTITUENTS, true);
 	}
 
 	/**

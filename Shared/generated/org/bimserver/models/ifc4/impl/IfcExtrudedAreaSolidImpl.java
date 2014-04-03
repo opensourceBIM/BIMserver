@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements
-		IfcExtrudedAreaSolid {
+public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements IfcExtrudedAreaSolid {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements
 	 * @generated
 	 */
 	public IfcDirection getExtrudedDirection() {
-		return (IfcDirection) eGet(
-				Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID__EXTRUDED_DIRECTION,
-				true);
+		return (IfcDirection) eGet(Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID__EXTRUDED_DIRECTION, true);
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements
 	 * @generated
 	 */
 	public void setExtrudedDirection(IfcDirection newExtrudedDirection) {
-		eSet(Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID__EXTRUDED_DIRECTION,
-				newExtrudedDirection);
+		eSet(Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID__EXTRUDED_DIRECTION, newExtrudedDirection);
 	}
 
 	/**
@@ -85,8 +81,7 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements
 	 * @generated
 	 */
 	public double getDepth() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH, true);
 	}
 
 	/**
@@ -104,9 +99,7 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements
 	 * @generated
 	 */
 	public String getDepthAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING, true);
 	}
 
 	/**
@@ -115,8 +108,7 @@ public class IfcExtrudedAreaSolidImpl extends IfcSweptAreaSolidImpl implements
 	 * @generated
 	 */
 	public void setDepthAsString(String newDepthAsString) {
-		eSet(Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING,
-				newDepthAsString);
+		eSet(Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID__DEPTH_AS_STRING, newDepthAsString);
 	}
 
 } //IfcExtrudedAreaSolidImpl

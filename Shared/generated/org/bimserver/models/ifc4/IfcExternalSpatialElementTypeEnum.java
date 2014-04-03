@@ -213,8 +213,7 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcExternalSpatialElementTypeEnum[] VALUES_ARRAY = new IfcExternalSpatialElementTypeEnum[] {
-			NULL, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_EARTH, USERDEFINED,
+	private static final IfcExternalSpatialElementTypeEnum[] VALUES_ARRAY = new IfcExternalSpatialElementTypeEnum[] { NULL, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_EARTH, USERDEFINED,
 			EXTERNAL_WATER, NOTDEFIEND, };
 
 	/**
@@ -223,8 +222,7 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcExternalSpatialElementTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcExternalSpatialElementTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc External Spatial Element Type Enum</b></em>' literal with the specified literal value.
@@ -311,8 +309,7 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcExternalSpatialElementTypeEnum(int value, String name,
-			String literal) {
+	private IfcExternalSpatialElementTypeEnum(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

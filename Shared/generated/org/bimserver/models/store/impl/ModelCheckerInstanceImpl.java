@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelCheckerInstanceImpl extends IdEObjectImpl implements
-		ModelCheckerInstance {
+public class ModelCheckerInstanceImpl extends IdEObjectImpl implements ModelCheckerInstance {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,8 +77,7 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				StorePackage.Literals.MODEL_CHECKER_INSTANCE__NAME, true);
+		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__NAME, true);
 	}
 
 	/**
@@ -97,8 +95,7 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				StorePackage.Literals.MODEL_CHECKER_INSTANCE__DESCRIPTION, true);
+		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__DESCRIPTION, true);
 	}
 
 	/**
@@ -107,8 +104,7 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__DESCRIPTION,
-				newDescription);
+		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -117,8 +113,7 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getCode() {
-		return (String) eGet(
-				StorePackage.Literals.MODEL_CHECKER_INSTANCE__CODE, true);
+		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__CODE, true);
 	}
 
 	/**
@@ -136,8 +131,7 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public byte[] getCompiled() {
-		return (byte[]) eGet(
-				StorePackage.Literals.MODEL_CHECKER_INSTANCE__COMPILED, true);
+		return (byte[]) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__COMPILED, true);
 	}
 
 	/**
@@ -146,8 +140,7 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setCompiled(byte[] newCompiled) {
-		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__COMPILED,
-				newCompiled);
+		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__COMPILED, newCompiled);
 	}
 
 	/**
@@ -156,8 +149,7 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public boolean isValid() {
-		return (Boolean) eGet(
-				StorePackage.Literals.MODEL_CHECKER_INSTANCE__VALID, true);
+		return (Boolean) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__VALID, true);
 	}
 
 	/**
@@ -175,9 +167,7 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getModelCheckerPluginClassName() {
-		return (String) eGet(
-				StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME,
-				true);
+		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME, true);
 	}
 
 	/**
@@ -185,10 +175,8 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModelCheckerPluginClassName(
-			String newModelCheckerPluginClassName) {
-		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME,
-				newModelCheckerPluginClassName);
+	public void setModelCheckerPluginClassName(String newModelCheckerPluginClassName) {
+		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME, newModelCheckerPluginClassName);
 	}
 
 } //ModelCheckerInstanceImpl

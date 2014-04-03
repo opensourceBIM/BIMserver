@@ -35,8 +35,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcCurveStyleFontAndScaling extends IfcPresentationItem,
-		IfcCurveFontOrScaledCurveFontSelect {
+public interface IfcCurveStyleFontAndScaling extends IfcPresentationItem, IfcCurveFontOrScaledCurveFontSelect {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

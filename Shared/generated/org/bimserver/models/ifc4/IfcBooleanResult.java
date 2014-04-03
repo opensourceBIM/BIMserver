@@ -35,8 +35,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcBooleanResult extends IfcGeometricRepresentationItem,
-		IfcBooleanOperand, IfcCsgSelect {
+public interface IfcBooleanResult extends IfcGeometricRepresentationItem, IfcBooleanOperand, IfcCsgSelect {
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.IfcBooleanOperator}.

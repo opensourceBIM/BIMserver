@@ -61,8 +61,7 @@ public class IfcPlateImpl extends IfcBuildingElementImpl implements IfcPlate {
 	 * @generated
 	 */
 	public IfcPlateTypeEnum getPredefinedType() {
-		return (IfcPlateTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PLATE__PREDEFINED_TYPE, true);
+		return (IfcPlateTypeEnum) eGet(Ifc4Package.Literals.IFC_PLATE__PREDEFINED_TYPE, true);
 	}
 
 	/**

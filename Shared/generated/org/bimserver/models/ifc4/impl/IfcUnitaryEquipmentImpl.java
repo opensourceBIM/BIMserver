@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcUnitaryEquipmentImpl extends IfcEnergyConversionDeviceImpl
-		implements IfcUnitaryEquipment {
+public class IfcUnitaryEquipmentImpl extends IfcEnergyConversionDeviceImpl implements IfcUnitaryEquipment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcUnitaryEquipmentImpl extends IfcEnergyConversionDeviceImpl
 	 * @generated
 	 */
 	public IfcUnitaryEquipmentTypeEnum getPredefinedType() {
-		return (IfcUnitaryEquipmentTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_UNITARY_EQUIPMENT__PREDEFINED_TYPE,
-				true);
+		return (IfcUnitaryEquipmentTypeEnum) eGet(Ifc4Package.Literals.IFC_UNITARY_EQUIPMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcUnitaryEquipmentImpl extends IfcEnergyConversionDeviceImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcUnitaryEquipmentTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_UNITARY_EQUIPMENT__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_UNITARY_EQUIPMENT__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCompositeCurveOnSurfaceImpl extends IfcCompositeCurveImpl
-		implements IfcCompositeCurveOnSurface {
+public class IfcCompositeCurveOnSurfaceImpl extends IfcCompositeCurveImpl implements IfcCompositeCurveOnSurface {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

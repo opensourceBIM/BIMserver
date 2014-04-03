@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRepresentationMapImpl extends IdEObjectImpl implements
-		IfcRepresentationMap {
+public class IfcRepresentationMapImpl extends IdEObjectImpl implements IfcRepresentationMap {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,9 +79,7 @@ public class IfcRepresentationMapImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcAxis2Placement getMappingOrigin() {
-		return (IfcAxis2Placement) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_MAP__MAPPING_ORIGIN,
-				true);
+		return (IfcAxis2Placement) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_MAP__MAPPING_ORIGIN, true);
 	}
 
 	/**
@@ -91,8 +88,7 @@ public class IfcRepresentationMapImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setMappingOrigin(IfcAxis2Placement newMappingOrigin) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_MAP__MAPPING_ORIGIN,
-				newMappingOrigin);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_MAP__MAPPING_ORIGIN, newMappingOrigin);
 	}
 
 	/**
@@ -101,9 +97,7 @@ public class IfcRepresentationMapImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcRepresentation getMappedRepresentation() {
-		return (IfcRepresentation) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_MAP__MAPPED_REPRESENTATION,
-				true);
+		return (IfcRepresentation) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_MAP__MAPPED_REPRESENTATION, true);
 	}
 
 	/**
@@ -111,10 +105,8 @@ public class IfcRepresentationMapImpl extends IdEObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMappedRepresentation(
-			IfcRepresentation newMappedRepresentation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_MAP__MAPPED_REPRESENTATION,
-				newMappedRepresentation);
+	public void setMappedRepresentation(IfcRepresentation newMappedRepresentation) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_MAP__MAPPED_REPRESENTATION, newMappedRepresentation);
 	}
 
 	/**
@@ -124,9 +116,7 @@ public class IfcRepresentationMapImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMappedItem> getMapUsage() {
-		return (EList<IfcMappedItem>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_MAP__MAP_USAGE,
-				true);
+		return (EList<IfcMappedItem>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_MAP__MAP_USAGE, true);
 	}
 
 	/**

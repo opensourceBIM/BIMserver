@@ -88,8 +88,7 @@ public enum SmtpProtocol implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final SmtpProtocol[] VALUES_ARRAY = new SmtpProtocol[] {
-			SMTP, SMTPS, };
+	private static final SmtpProtocol[] VALUES_ARRAY = new SmtpProtocol[] { SMTP, SMTPS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Smtp Protocol</b></em>' enumerators.
@@ -97,8 +96,7 @@ public enum SmtpProtocol implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<SmtpProtocol> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<SmtpProtocol> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Smtp Protocol</b></em>' literal with the specified literal value.

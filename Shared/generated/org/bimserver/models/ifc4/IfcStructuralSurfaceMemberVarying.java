@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcStructuralSurfaceMemberVarying extends
-		IfcStructuralSurfaceMember {
+public interface IfcStructuralSurfaceMemberVarying extends IfcStructuralSurfaceMember {
 } // IfcStructuralSurfaceMemberVarying

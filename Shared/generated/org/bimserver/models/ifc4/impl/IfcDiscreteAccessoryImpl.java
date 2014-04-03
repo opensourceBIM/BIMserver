@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDiscreteAccessoryImpl extends IfcElementComponentImpl implements
-		IfcDiscreteAccessory {
+public class IfcDiscreteAccessoryImpl extends IfcElementComponentImpl implements IfcDiscreteAccessory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcDiscreteAccessoryImpl extends IfcElementComponentImpl implements
 	 * @generated
 	 */
 	public IfcDiscreteAccessoryTypeEnum getPredefinedType() {
-		return (IfcDiscreteAccessoryTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_DISCRETE_ACCESSORY__PREDEFINED_TYPE,
-				true);
+		return (IfcDiscreteAccessoryTypeEnum) eGet(Ifc4Package.Literals.IFC_DISCRETE_ACCESSORY__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcDiscreteAccessoryImpl extends IfcElementComponentImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcDiscreteAccessoryTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_DISCRETE_ACCESSORY__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_DISCRETE_ACCESSORY__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

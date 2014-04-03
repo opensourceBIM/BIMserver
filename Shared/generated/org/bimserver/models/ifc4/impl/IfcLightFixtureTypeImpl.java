@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLightFixtureTypeImpl extends IfcFlowTerminalTypeImpl implements
-		IfcLightFixtureType {
+public class IfcLightFixtureTypeImpl extends IfcFlowTerminalTypeImpl implements IfcLightFixtureType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcLightFixtureTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public IfcLightFixtureTypeEnum getPredefinedType() {
-		return (IfcLightFixtureTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_LIGHT_FIXTURE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcLightFixtureTypeEnum) eGet(Ifc4Package.Literals.IFC_LIGHT_FIXTURE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcLightFixtureTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcLightFixtureTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_LIGHT_FIXTURE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_LIGHT_FIXTURE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcLightFixtureTypeImpl

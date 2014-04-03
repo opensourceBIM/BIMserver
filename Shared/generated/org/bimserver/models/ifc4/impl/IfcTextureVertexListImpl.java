@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextureVertexListImpl extends IfcPresentationItemImpl implements
-		IfcTextureVertexList {
+public class IfcTextureVertexListImpl extends IfcPresentationItemImpl implements IfcTextureVertexList {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

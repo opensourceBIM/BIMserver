@@ -36,8 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcDocumentReference extends IfcExternalReference,
-		IfcDocumentSelect {
+public interface IfcDocumentReference extends IfcExternalReference, IfcDocumentSelect {
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->

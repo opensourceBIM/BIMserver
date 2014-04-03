@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements
-		IfcTypeObject {
+public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTypeObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +66,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements
 	 * @generated
 	 */
 	public String getApplicableOccurrence() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE, true);
 	}
 
 	/**
@@ -78,8 +75,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements
 	 * @generated
 	 */
 	public void setApplicableOccurrence(String newApplicableOccurrence) {
-		eSet(Ifc4Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE,
-				newApplicableOccurrence);
+		eSet(Ifc4Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE, newApplicableOccurrence);
 	}
 
 	/**
@@ -107,8 +103,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertySetDefinition> getHasPropertySets() {
-		return (EList<IfcPropertySetDefinition>) eGet(
-				Ifc4Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS, true);
+		return (EList<IfcPropertySetDefinition>) eGet(Ifc4Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS, true);
 	}
 
 	/**
@@ -136,8 +131,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByType> getTypes() {
-		return (EList<IfcRelDefinesByType>) eGet(
-				Ifc4Package.Literals.IFC_TYPE_OBJECT__TYPES, true);
+		return (EList<IfcRelDefinesByType>) eGet(Ifc4Package.Literals.IFC_TYPE_OBJECT__TYPES, true);
 	}
 
 	/**

@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWindowTypeImpl extends IfcBuildingElementTypeImpl implements
-		IfcWindowType {
+public class IfcWindowTypeImpl extends IfcBuildingElementTypeImpl implements IfcWindowType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcWindowTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcWindowTypeEnum getPredefinedType() {
-		return (IfcWindowTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_WINDOW_TYPE__PREDEFINED_TYPE, true);
+		return (IfcWindowTypeEnum) eGet(Ifc4Package.Literals.IFC_WINDOW_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -77,8 +75,7 @@ public class IfcWindowTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcWindowTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_WINDOW_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_WINDOW_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -87,8 +84,7 @@ public class IfcWindowTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcWindowTypePartitioningEnum getPartitioningType() {
-		return (IfcWindowTypePartitioningEnum) eGet(
-				Ifc4Package.Literals.IFC_WINDOW_TYPE__PARTITIONING_TYPE, true);
+		return (IfcWindowTypePartitioningEnum) eGet(Ifc4Package.Literals.IFC_WINDOW_TYPE__PARTITIONING_TYPE, true);
 	}
 
 	/**
@@ -96,10 +92,8 @@ public class IfcWindowTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPartitioningType(
-			IfcWindowTypePartitioningEnum newPartitioningType) {
-		eSet(Ifc4Package.Literals.IFC_WINDOW_TYPE__PARTITIONING_TYPE,
-				newPartitioningType);
+	public void setPartitioningType(IfcWindowTypePartitioningEnum newPartitioningType) {
+		eSet(Ifc4Package.Literals.IFC_WINDOW_TYPE__PARTITIONING_TYPE, newPartitioningType);
 	}
 
 	/**
@@ -108,9 +102,7 @@ public class IfcWindowTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public Tristate getParameterTakesPrecedence() {
-		return (Tristate) eGet(
-				Ifc4Package.Literals.IFC_WINDOW_TYPE__PARAMETER_TAKES_PRECEDENCE,
-				true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_WINDOW_TYPE__PARAMETER_TAKES_PRECEDENCE, true);
 	}
 
 	/**
@@ -119,8 +111,7 @@ public class IfcWindowTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setParameterTakesPrecedence(Tristate newParameterTakesPrecedence) {
-		eSet(Ifc4Package.Literals.IFC_WINDOW_TYPE__PARAMETER_TAKES_PRECEDENCE,
-				newParameterTakesPrecedence);
+		eSet(Ifc4Package.Literals.IFC_WINDOW_TYPE__PARAMETER_TAKES_PRECEDENCE, newParameterTakesPrecedence);
 	}
 
 	/**
@@ -147,9 +138,7 @@ public class IfcWindowTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public String getUserDefinedPartitioningType() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_WINDOW_TYPE__USER_DEFINED_PARTITIONING_TYPE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_WINDOW_TYPE__USER_DEFINED_PARTITIONING_TYPE, true);
 	}
 
 	/**
@@ -157,10 +146,8 @@ public class IfcWindowTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUserDefinedPartitioningType(
-			String newUserDefinedPartitioningType) {
-		eSet(Ifc4Package.Literals.IFC_WINDOW_TYPE__USER_DEFINED_PARTITIONING_TYPE,
-				newUserDefinedPartitioningType);
+	public void setUserDefinedPartitioningType(String newUserDefinedPartitioningType) {
+		eSet(Ifc4Package.Literals.IFC_WINDOW_TYPE__USER_DEFINED_PARTITIONING_TYPE, newUserDefinedPartitioningType);
 	}
 
 	/**

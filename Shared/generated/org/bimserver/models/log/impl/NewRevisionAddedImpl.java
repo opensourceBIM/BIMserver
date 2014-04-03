@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class NewRevisionAddedImpl extends RevisionRelatedImpl implements
-		NewRevisionAdded {
+public class NewRevisionAddedImpl extends RevisionRelatedImpl implements NewRevisionAdded {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class NewRevisionAddedImpl extends RevisionRelatedImpl implements
 	 * @generated
 	 */
 	public Project getProject() {
-		return (Project) eGet(LogPackage.Literals.NEW_REVISION_ADDED__PROJECT,
-				true);
+		return (Project) eGet(LogPackage.Literals.NEW_REVISION_ADDED__PROJECT, true);
 	}
 
 	/**

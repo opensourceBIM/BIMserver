@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcContextDependentUnitImpl extends IfcNamedUnitImpl implements
-		IfcContextDependentUnit {
+public class IfcContextDependentUnitImpl extends IfcNamedUnitImpl implements IfcContextDependentUnit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcContextDependentUnitImpl extends IfcNamedUnitImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__NAME, true);
 	}
 
 	/**
@@ -85,9 +83,7 @@ public class IfcContextDependentUnitImpl extends IfcNamedUnitImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__HAS_EXTERNAL_REFERENCE,
-				true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

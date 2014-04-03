@@ -70,8 +70,7 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MECHANICALINDUCEDDRAFT(3, "MECHANICALINDUCEDDRAFT",
-			"MECHANICALINDUCEDDRAFT"),
+	MECHANICALINDUCEDDRAFT(3, "MECHANICALINDUCEDDRAFT", "MECHANICALINDUCEDDRAFT"),
 
 	/**
 	 * The '<em><b>MECHANICALFORCEDDRAFT</b></em>' literal object.
@@ -189,9 +188,8 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCoolingTowerTypeEnum[] VALUES_ARRAY = new IfcCoolingTowerTypeEnum[] {
-			NULL, NATURALDRAFT, NOTDEFINED, MECHANICALINDUCEDDRAFT,
-			MECHANICALFORCEDDRAFT, USERDEFINED, };
+	private static final IfcCoolingTowerTypeEnum[] VALUES_ARRAY = new IfcCoolingTowerTypeEnum[] { NULL, NATURALDRAFT, NOTDEFINED, MECHANICALINDUCEDDRAFT, MECHANICALFORCEDDRAFT,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cooling Tower Type Enum</b></em>' enumerators.
@@ -199,8 +197,7 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCoolingTowerTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCoolingTowerTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Cooling Tower Type Enum</b></em>' literal with the specified literal value.

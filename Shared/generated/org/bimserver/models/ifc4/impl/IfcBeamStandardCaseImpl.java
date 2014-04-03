@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBeamStandardCaseImpl extends IfcBeamImpl implements
-		IfcBeamStandardCase {
+public class IfcBeamStandardCaseImpl extends IfcBeamImpl implements IfcBeamStandardCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

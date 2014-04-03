@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcResourceLevelRelationshipImpl extends IdEObjectImpl implements
-		IfcResourceLevelRelationship {
+public class IfcResourceLevelRelationshipImpl extends IdEObjectImpl implements IfcResourceLevelRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,9 +73,7 @@ public class IfcResourceLevelRelationshipImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_RESOURCE_LEVEL_RELATIONSHIP__NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_RESOURCE_LEVEL_RELATIONSHIP__NAME, true);
 	}
 
 	/**
@@ -85,8 +82,7 @@ public class IfcResourceLevelRelationshipImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(Ifc4Package.Literals.IFC_RESOURCE_LEVEL_RELATIONSHIP__NAME,
-				newName);
+		eSet(Ifc4Package.Literals.IFC_RESOURCE_LEVEL_RELATIONSHIP__NAME, newName);
 	}
 
 	/**
@@ -113,9 +109,7 @@ public class IfcResourceLevelRelationshipImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_RESOURCE_LEVEL_RELATIONSHIP__DESCRIPTION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_RESOURCE_LEVEL_RELATIONSHIP__DESCRIPTION, true);
 	}
 
 	/**
@@ -124,8 +118,7 @@ public class IfcResourceLevelRelationshipImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_RESOURCE_LEVEL_RELATIONSHIP__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_RESOURCE_LEVEL_RELATIONSHIP__DESCRIPTION, newDescription);
 	}
 
 	/**

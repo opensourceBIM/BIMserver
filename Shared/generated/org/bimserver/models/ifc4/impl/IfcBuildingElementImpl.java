@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBuildingElementImpl extends IfcElementImpl implements
-		IfcBuildingElement {
+public class IfcBuildingElementImpl extends IfcElementImpl implements IfcBuildingElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcBuildingElementImpl extends IfcElementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelCoversBldgElements> getHasCoverings() {
-		return (EList<IfcRelCoversBldgElements>) eGet(
-				Ifc4Package.Literals.IFC_BUILDING_ELEMENT__HAS_COVERINGS, true);
+		return (EList<IfcRelCoversBldgElements>) eGet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT__HAS_COVERINGS, true);
 	}
 
 	/**

@@ -338,9 +338,8 @@ public enum IfcConstructionMaterialResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcConstructionMaterialResourceTypeEnum[] VALUES_ARRAY = new IfcConstructionMaterialResourceTypeEnum[] {
-			NULL, METAL, CONCRETE, NOTDEFINED, GYPSUM, AGGREGATES, DRYWALL,
-			FUEL, USERDEFINED, WOOD, PLASTIC, MASONRY, };
+	private static final IfcConstructionMaterialResourceTypeEnum[] VALUES_ARRAY = new IfcConstructionMaterialResourceTypeEnum[] { NULL, METAL, CONCRETE, NOTDEFINED, GYPSUM,
+			AGGREGATES, DRYWALL, FUEL, USERDEFINED, WOOD, PLASTIC, MASONRY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Construction Material Resource Type Enum</b></em>' enumerators.
@@ -348,8 +347,7 @@ public enum IfcConstructionMaterialResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcConstructionMaterialResourceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcConstructionMaterialResourceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Construction Material Resource Type Enum</b></em>' literal with the specified literal value.
@@ -446,8 +444,7 @@ public enum IfcConstructionMaterialResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcConstructionMaterialResourceTypeEnum(int value, String name,
-			String literal) {
+	private IfcConstructionMaterialResourceTypeEnum(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

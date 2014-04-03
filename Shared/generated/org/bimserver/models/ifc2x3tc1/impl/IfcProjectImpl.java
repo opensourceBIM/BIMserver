@@ -67,8 +67,7 @@ public class IfcProjectImpl extends IfcObjectImpl implements IfcProject {
 	 * @generated
 	 */
 	public String getLongName() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT__LONG_NAME,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT__LONG_NAME, true);
 	}
 
 	/**
@@ -141,9 +140,7 @@ public class IfcProjectImpl extends IfcObjectImpl implements IfcProject {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentationContext> getRepresentationContexts() {
-		return (EList<IfcRepresentationContext>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROJECT__REPRESENTATION_CONTEXTS,
-				true);
+		return (EList<IfcRepresentationContext>) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT__REPRESENTATION_CONTEXTS, true);
 	}
 
 	/**
@@ -152,8 +149,7 @@ public class IfcProjectImpl extends IfcObjectImpl implements IfcProject {
 	 * @generated
 	 */
 	public IfcUnitAssignment getUnitsInContext() {
-		return (IfcUnitAssignment) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROJECT__UNITS_IN_CONTEXT, true);
+		return (IfcUnitAssignment) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT__UNITS_IN_CONTEXT, true);
 	}
 
 	/**
@@ -162,8 +158,7 @@ public class IfcProjectImpl extends IfcObjectImpl implements IfcProject {
 	 * @generated
 	 */
 	public void setUnitsInContext(IfcUnitAssignment newUnitsInContext) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROJECT__UNITS_IN_CONTEXT,
-				newUnitsInContext);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROJECT__UNITS_IN_CONTEXT, newUnitsInContext);
 	}
 
 } //IfcProjectImpl

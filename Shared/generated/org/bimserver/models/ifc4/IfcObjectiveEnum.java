@@ -388,10 +388,8 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcObjectiveEnum[] VALUES_ARRAY = new IfcObjectiveEnum[] {
-			NULL, DESIGNINTENT, EXTERNAL, NOTDEFINED, TRIGGERCONDITION,
-			CODECOMPLIANCE, PARAMETER, MERGECONFLICT, HEALTHANDSAFETY,
-			CODEWAIVER, SPECIFICATION, USERDEFINED, REQUIREMENT, MODELVIEW, };
+	private static final IfcObjectiveEnum[] VALUES_ARRAY = new IfcObjectiveEnum[] { NULL, DESIGNINTENT, EXTERNAL, NOTDEFINED, TRIGGERCONDITION, CODECOMPLIANCE, PARAMETER,
+			MERGECONFLICT, HEALTHANDSAFETY, CODEWAIVER, SPECIFICATION, USERDEFINED, REQUIREMENT, MODELVIEW, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Objective Enum</b></em>' enumerators.
@@ -399,8 +397,7 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcObjectiveEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcObjectiveEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Objective Enum</b></em>' literal with the specified literal value.

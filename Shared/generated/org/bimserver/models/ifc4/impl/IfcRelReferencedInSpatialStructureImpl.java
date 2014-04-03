@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl
-		implements IfcRelReferencedInSpatialStructure {
+public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl implements IfcRelReferencedInSpatialStructure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +66,7 @@ public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProduct> getRelatedElements() {
-		return (EList<IfcProduct>) eGet(
-				Ifc4Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATED_ELEMENTS,
-				true);
+		return (EList<IfcProduct>) eGet(Ifc4Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATED_ELEMENTS, true);
 	}
 
 	/**
@@ -78,9 +75,7 @@ public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl
 	 * @generated
 	 */
 	public IfcSpatialElement getRelatingStructure() {
-		return (IfcSpatialElement) eGet(
-				Ifc4Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE,
-				true);
+		return (IfcSpatialElement) eGet(Ifc4Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE, true);
 	}
 
 	/**
@@ -89,8 +84,7 @@ public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl
 	 * @generated
 	 */
 	public void setRelatingStructure(IfcSpatialElement newRelatingStructure) {
-		eSet(Ifc4Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE,
-				newRelatingStructure);
+		eSet(Ifc4Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE, newRelatingStructure);
 	}
 
 } //IfcRelReferencedInSpatialStructureImpl

@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAirToAirHeatRecoveryImpl extends IfcEnergyConversionDeviceImpl
-		implements IfcAirToAirHeatRecovery {
+public class IfcAirToAirHeatRecoveryImpl extends IfcEnergyConversionDeviceImpl implements IfcAirToAirHeatRecovery {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcAirToAirHeatRecoveryImpl extends IfcEnergyConversionDeviceImpl
 	 * @generated
 	 */
 	public IfcAirToAirHeatRecoveryTypeEnum getPredefinedType() {
-		return (IfcAirToAirHeatRecoveryTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_AIR_TO_AIR_HEAT_RECOVERY__PREDEFINED_TYPE,
-				true);
+		return (IfcAirToAirHeatRecoveryTypeEnum) eGet(Ifc4Package.Literals.IFC_AIR_TO_AIR_HEAT_RECOVERY__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcAirToAirHeatRecoveryImpl extends IfcEnergyConversionDeviceImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcAirToAirHeatRecoveryTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_AIR_TO_AIR_HEAT_RECOVERY__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcAirToAirHeatRecoveryTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_AIR_TO_AIR_HEAT_RECOVERY__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

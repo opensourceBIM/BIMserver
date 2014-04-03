@@ -32,8 +32,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcSurface extends IfcGeometricRepresentationItem,
-		IfcGeometricSetSelect, IfcSurfaceOrFaceSurface {
+public interface IfcSurface extends IfcGeometricRepresentationItem, IfcGeometricSetSelect, IfcSurfaceOrFaceSurface {
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.
 	 * <!-- begin-user-doc -->

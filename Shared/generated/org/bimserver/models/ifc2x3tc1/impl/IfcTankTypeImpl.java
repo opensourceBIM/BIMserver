@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTankTypeImpl extends IfcFlowStorageDeviceTypeImpl implements
-		IfcTankType {
+public class IfcTankTypeImpl extends IfcFlowStorageDeviceTypeImpl implements IfcTankType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcTankTypeImpl extends IfcFlowStorageDeviceTypeImpl implements
 	 * @generated
 	 */
 	public IfcTankTypeEnum getPredefinedType() {
-		return (IfcTankTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TANK_TYPE__PREDEFINED_TYPE, true);
+		return (IfcTankTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_TANK_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcTankTypeImpl extends IfcFlowStorageDeviceTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcTankTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TANK_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TANK_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcTankTypeImpl

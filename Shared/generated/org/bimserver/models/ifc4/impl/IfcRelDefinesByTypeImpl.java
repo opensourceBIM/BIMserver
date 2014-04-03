@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelDefinesByTypeImpl extends IfcRelDefinesImpl implements
-		IfcRelDefinesByType {
+public class IfcRelDefinesByTypeImpl extends IfcRelDefinesImpl implements IfcRelDefinesByType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +66,7 @@ public class IfcRelDefinesByTypeImpl extends IfcRelDefinesImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcObject> getRelatedObjects() {
-		return (EList<IfcObject>) eGet(
-				Ifc4Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATED_OBJECTS,
-				true);
+		return (EList<IfcObject>) eGet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATED_OBJECTS, true);
 	}
 
 	/**
@@ -78,9 +75,7 @@ public class IfcRelDefinesByTypeImpl extends IfcRelDefinesImpl implements
 	 * @generated
 	 */
 	public IfcTypeObject getRelatingType() {
-		return (IfcTypeObject) eGet(
-				Ifc4Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATING_TYPE,
-				true);
+		return (IfcTypeObject) eGet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATING_TYPE, true);
 	}
 
 	/**
@@ -89,8 +84,7 @@ public class IfcRelDefinesByTypeImpl extends IfcRelDefinesImpl implements
 	 * @generated
 	 */
 	public void setRelatingType(IfcTypeObject newRelatingType) {
-		eSet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATING_TYPE,
-				newRelatingType);
+		eSet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_TYPE__RELATING_TYPE, newRelatingType);
 	}
 
 } //IfcRelDefinesByTypeImpl

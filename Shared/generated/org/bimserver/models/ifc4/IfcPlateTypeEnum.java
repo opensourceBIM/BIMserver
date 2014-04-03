@@ -163,8 +163,7 @@ public enum IfcPlateTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPlateTypeEnum[] VALUES_ARRAY = new IfcPlateTypeEnum[] {
-			NULL, NOTDEFINED, CURTAIN_PANEL, SHEET, USERDEFINED, };
+	private static final IfcPlateTypeEnum[] VALUES_ARRAY = new IfcPlateTypeEnum[] { NULL, NOTDEFINED, CURTAIN_PANEL, SHEET, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Plate Type Enum</b></em>' enumerators.
@@ -172,8 +171,7 @@ public enum IfcPlateTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPlateTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPlateTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Plate Type Enum</b></em>' literal with the specified literal value.

@@ -160,8 +160,7 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FIELDCONSTRUCTIONMANAGER(12, "FIELDCONSTRUCTIONMANAGER",
-			"FIELDCONSTRUCTIONMANAGER"),
+	FIELDCONSTRUCTIONMANAGER(12, "FIELDCONSTRUCTIONMANAGER", "FIELDCONSTRUCTIONMANAGER"),
 
 	/**
 	 * The '<em><b>FACILITIESMANAGER</b></em>' literal object.
@@ -639,13 +638,9 @@ public enum IfcRoleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRoleEnum[] VALUES_ARRAY = new IfcRoleEnum[] { NULL,
-			COSTENGINEER, BUILDINGOPERATOR, RESELLER, ENGINEER, ARCHITECT,
-			PROJECTMANAGER, CLIENT, ELECTRICALENGINEER, CIVILENGINEER,
-			SUPPLIER, CONTRACTOR, FIELDCONSTRUCTIONMANAGER, FACILITIESMANAGER,
-			OWNER, CONSTRUCTIONMANAGER, STRUCTURALENGINEER, MECHANICALENGINEER,
-			COMMISSIONINGENGINEER, USERDEFINED, CONSULTANT, MANUFACTURER,
-			SUBCONTRACTOR, BUILDINGOWNER, };
+	private static final IfcRoleEnum[] VALUES_ARRAY = new IfcRoleEnum[] { NULL, COSTENGINEER, BUILDINGOPERATOR, RESELLER, ENGINEER, ARCHITECT, PROJECTMANAGER, CLIENT,
+			ELECTRICALENGINEER, CIVILENGINEER, SUPPLIER, CONTRACTOR, FIELDCONSTRUCTIONMANAGER, FACILITIESMANAGER, OWNER, CONSTRUCTIONMANAGER, STRUCTURALENGINEER,
+			MECHANICALENGINEER, COMMISSIONINGENGINEER, USERDEFINED, CONSULTANT, MANUFACTURER, SUBCONTRACTOR, BUILDINGOWNER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Role Enum</b></em>' enumerators.
@@ -653,8 +648,7 @@ public enum IfcRoleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcRoleEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcRoleEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Role Enum</b></em>' literal with the specified literal value.

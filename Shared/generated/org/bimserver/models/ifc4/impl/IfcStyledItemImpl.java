@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements
-		IfcStyledItem {
+public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcStyledItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements
 	 * @generated
 	 */
 	public IfcRepresentationItem getItem() {
-		return (IfcRepresentationItem) eGet(
-				Ifc4Package.Literals.IFC_STYLED_ITEM__ITEM, true);
+		return (IfcRepresentationItem) eGet(Ifc4Package.Literals.IFC_STYLED_ITEM__ITEM, true);
 	}
 
 	/**
@@ -105,8 +103,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStyleAssignmentSelect> getStyles() {
-		return (EList<IfcStyleAssignmentSelect>) eGet(
-				Ifc4Package.Literals.IFC_STYLED_ITEM__STYLES, true);
+		return (EList<IfcStyleAssignmentSelect>) eGet(Ifc4Package.Literals.IFC_STYLED_ITEM__STYLES, true);
 	}
 
 	/**

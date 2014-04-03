@@ -213,9 +213,8 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProtectiveDeviceTrippingUnitTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTrippingUnitTypeEnum[] {
-			NULL, THERMAL, ELECTRONIC, NOTDEFINED, ELECTROMAGNETIC,
-			RESIDUALCURRENT, USERDEFINED, };
+	private static final IfcProtectiveDeviceTrippingUnitTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTrippingUnitTypeEnum[] { NULL, THERMAL, ELECTRONIC, NOTDEFINED,
+			ELECTROMAGNETIC, RESIDUALCURRENT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Protective Device Tripping Unit Type Enum</b></em>' enumerators.
@@ -223,8 +222,7 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProtectiveDeviceTrippingUnitTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProtectiveDeviceTrippingUnitTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Protective Device Tripping Unit Type Enum</b></em>' literal with the specified literal value.
@@ -311,8 +309,7 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcProtectiveDeviceTrippingUnitTypeEnum(int value, String name,
-			String literal) {
+	private IfcProtectiveDeviceTrippingUnitTypeEnum(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

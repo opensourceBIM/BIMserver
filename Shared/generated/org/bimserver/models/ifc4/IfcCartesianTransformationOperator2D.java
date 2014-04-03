@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcCartesianTransformationOperator2D extends
-		IfcCartesianTransformationOperator {
+public interface IfcCartesianTransformationOperator2D extends IfcCartesianTransformationOperator {
 } // IfcCartesianTransformationOperator2D

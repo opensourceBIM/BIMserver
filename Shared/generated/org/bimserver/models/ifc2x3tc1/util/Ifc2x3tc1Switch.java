@@ -11621,8 +11621,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcAnnotationCurveOccurrence(
-			IfcAnnotationCurveOccurrence object) {
+	public T caseIfcAnnotationCurveOccurrence(IfcAnnotationCurveOccurrence object) {
 		return null;
 	}
 
@@ -11652,8 +11651,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcAnnotationFillAreaOccurrence(
-			IfcAnnotationFillAreaOccurrence object) {
+	public T caseIfcAnnotationFillAreaOccurrence(IfcAnnotationFillAreaOccurrence object) {
 		return null;
 	}
 
@@ -11698,8 +11696,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcAnnotationSurfaceOccurrence(
-			IfcAnnotationSurfaceOccurrence object) {
+	public T caseIfcAnnotationSurfaceOccurrence(IfcAnnotationSurfaceOccurrence object) {
 		return null;
 	}
 
@@ -11714,8 +11711,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcAnnotationSymbolOccurrence(
-			IfcAnnotationSymbolOccurrence object) {
+	public T caseIfcAnnotationSymbolOccurrence(IfcAnnotationSymbolOccurrence object) {
 		return null;
 	}
 
@@ -11805,8 +11801,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcApprovalActorRelationship(
-			IfcApprovalActorRelationship object) {
+	public T caseIfcApprovalActorRelationship(IfcApprovalActorRelationship object) {
 		return null;
 	}
 
@@ -11821,8 +11816,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcApprovalPropertyRelationship(
-			IfcApprovalPropertyRelationship object) {
+	public T caseIfcApprovalPropertyRelationship(IfcApprovalPropertyRelationship object) {
 		return null;
 	}
 
@@ -11852,8 +11846,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcArbitraryClosedProfileDef(
-			IfcArbitraryClosedProfileDef object) {
+	public T caseIfcArbitraryClosedProfileDef(IfcArbitraryClosedProfileDef object) {
 		return null;
 	}
 
@@ -11883,8 +11876,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcArbitraryProfileDefWithVoids(
-			IfcArbitraryProfileDefWithVoids object) {
+	public T caseIfcArbitraryProfileDefWithVoids(IfcArbitraryProfileDefWithVoids object) {
 		return null;
 	}
 
@@ -11914,8 +11906,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcAsymmetricIShapeProfileDef(
-			IfcAsymmetricIShapeProfileDef object) {
+	public T caseIfcAsymmetricIShapeProfileDef(IfcAsymmetricIShapeProfileDef object) {
 		return null;
 	}
 
@@ -12170,8 +12161,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcBoundaryNodeConditionWarping(
-			IfcBoundaryNodeConditionWarping object) {
+	public T caseIfcBoundaryNodeConditionWarping(IfcBoundaryNodeConditionWarping object) {
 		return null;
 	}
 
@@ -12456,8 +12446,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcCartesianTransformationOperator(
-			IfcCartesianTransformationOperator object) {
+	public T caseIfcCartesianTransformationOperator(IfcCartesianTransformationOperator object) {
 		return null;
 	}
 
@@ -12472,8 +12461,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcCartesianTransformationOperator2D(
-			IfcCartesianTransformationOperator2D object) {
+	public T caseIfcCartesianTransformationOperator2D(IfcCartesianTransformationOperator2D object) {
 		return null;
 	}
 
@@ -12488,8 +12476,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcCartesianTransformationOperator2DnonUniform(
-			IfcCartesianTransformationOperator2DnonUniform object) {
+	public T caseIfcCartesianTransformationOperator2DnonUniform(IfcCartesianTransformationOperator2DnonUniform object) {
 		return null;
 	}
 
@@ -12504,8 +12491,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcCartesianTransformationOperator3D(
-			IfcCartesianTransformationOperator3D object) {
+	public T caseIfcCartesianTransformationOperator3D(IfcCartesianTransformationOperator3D object) {
 		return null;
 	}
 
@@ -12520,8 +12506,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcCartesianTransformationOperator3DnonUniform(
-			IfcCartesianTransformationOperator3DnonUniform object) {
+	public T caseIfcCartesianTransformationOperator3DnonUniform(IfcCartesianTransformationOperator3DnonUniform object) {
 		return null;
 	}
 
@@ -12656,8 +12641,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcClassificationItemRelationship(
-			IfcClassificationItemRelationship object) {
+	public T caseIfcClassificationItemRelationship(IfcClassificationItemRelationship object) {
 		return null;
 	}
 
@@ -12687,8 +12671,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcClassificationNotationFacet(
-			IfcClassificationNotationFacet object) {
+	public T caseIfcClassificationNotationFacet(IfcClassificationNotationFacet object) {
 		return null;
 	}
 
@@ -12988,8 +12971,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcConnectionPointEccentricity(
-			IfcConnectionPointEccentricity object) {
+	public T caseIfcConnectionPointEccentricity(IfcConnectionPointEccentricity object) {
 		return null;
 	}
 
@@ -13034,8 +13016,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcConnectionSurfaceGeometry(
-			IfcConnectionSurfaceGeometry object) {
+	public T caseIfcConnectionSurfaceGeometry(IfcConnectionSurfaceGeometry object) {
 		return null;
 	}
 
@@ -13065,8 +13046,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcConstraintAggregationRelationship(
-			IfcConstraintAggregationRelationship object) {
+	public T caseIfcConstraintAggregationRelationship(IfcConstraintAggregationRelationship object) {
 		return null;
 	}
 
@@ -13081,8 +13061,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcConstraintClassificationRelationship(
-			IfcConstraintClassificationRelationship object) {
+	public T caseIfcConstraintClassificationRelationship(IfcConstraintClassificationRelationship object) {
 		return null;
 	}
 
@@ -13112,8 +13091,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcConstructionEquipmentResource(
-			IfcConstructionEquipmentResource object) {
+	public T caseIfcConstructionEquipmentResource(IfcConstructionEquipmentResource object) {
 		return null;
 	}
 
@@ -13128,8 +13106,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcConstructionMaterialResource(
-			IfcConstructionMaterialResource object) {
+	public T caseIfcConstructionMaterialResource(IfcConstructionMaterialResource object) {
 		return null;
 	}
 
@@ -13144,8 +13121,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcConstructionProductResource(
-			IfcConstructionProductResource object) {
+	public T caseIfcConstructionProductResource(IfcConstructionProductResource object) {
 		return null;
 	}
 
@@ -13265,8 +13241,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcCoordinatedUniversalTimeOffset(
-			IfcCoordinatedUniversalTimeOffset object) {
+	public T caseIfcCoordinatedUniversalTimeOffset(IfcCoordinatedUniversalTimeOffset object) {
 		return null;
 	}
 
@@ -13356,8 +13331,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcCraneRailAShapeProfileDef(
-			IfcCraneRailAShapeProfileDef object) {
+	public T caseIfcCraneRailAShapeProfileDef(IfcCraneRailAShapeProfileDef object) {
 		return null;
 	}
 
@@ -13372,8 +13346,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcCraneRailFShapeProfileDef(
-			IfcCraneRailFShapeProfileDef object) {
+	public T caseIfcCraneRailFShapeProfileDef(IfcCraneRailFShapeProfileDef object) {
 		return null;
 	}
 
@@ -13673,8 +13646,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDimensionCalloutRelationship(
-			IfcDimensionCalloutRelationship object) {
+	public T caseIfcDimensionCalloutRelationship(IfcDimensionCalloutRelationship object) {
 		return null;
 	}
 
@@ -13704,8 +13676,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDimensionCurveDirectedCallout(
-			IfcDimensionCurveDirectedCallout object) {
+	public T caseIfcDimensionCurveDirectedCallout(IfcDimensionCurveDirectedCallout object) {
 		return null;
 	}
 
@@ -13810,8 +13781,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDistributionChamberElement(
-			IfcDistributionChamberElement object) {
+	public T caseIfcDistributionChamberElement(IfcDistributionChamberElement object) {
 		return null;
 	}
 
@@ -13826,8 +13796,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDistributionChamberElementType(
-			IfcDistributionChamberElementType object) {
+	public T caseIfcDistributionChamberElementType(IfcDistributionChamberElementType object) {
 		return null;
 	}
 
@@ -13842,8 +13811,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDistributionControlElement(
-			IfcDistributionControlElement object) {
+	public T caseIfcDistributionControlElement(IfcDistributionControlElement object) {
 		return null;
 	}
 
@@ -13858,8 +13826,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDistributionControlElementType(
-			IfcDistributionControlElementType object) {
+	public T caseIfcDistributionControlElementType(IfcDistributionControlElementType object) {
 		return null;
 	}
 
@@ -13919,8 +13886,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDistributionFlowElementType(
-			IfcDistributionFlowElementType object) {
+	public T caseIfcDistributionFlowElementType(IfcDistributionFlowElementType object) {
 		return null;
 	}
 
@@ -13980,8 +13946,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDocumentInformationRelationship(
-			IfcDocumentInformationRelationship object) {
+	public T caseIfcDocumentInformationRelationship(IfcDocumentInformationRelationship object) {
 		return null;
 	}
 
@@ -14086,8 +14051,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDraughtingCalloutRelationship(
-			IfcDraughtingCalloutRelationship object) {
+	public T caseIfcDraughtingCalloutRelationship(IfcDraughtingCalloutRelationship object) {
 		return null;
 	}
 
@@ -14102,8 +14066,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDraughtingPreDefinedColour(
-			IfcDraughtingPreDefinedColour object) {
+	public T caseIfcDraughtingPreDefinedColour(IfcDraughtingPreDefinedColour object) {
 		return null;
 	}
 
@@ -14118,8 +14081,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDraughtingPreDefinedCurveFont(
-			IfcDraughtingPreDefinedCurveFont object) {
+	public T caseIfcDraughtingPreDefinedCurveFont(IfcDraughtingPreDefinedCurveFont object) {
 		return null;
 	}
 
@@ -14134,8 +14096,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcDraughtingPreDefinedTextFont(
-			IfcDraughtingPreDefinedTextFont object) {
+	public T caseIfcDraughtingPreDefinedTextFont(IfcDraughtingPreDefinedTextFont object) {
 		return null;
 	}
 
@@ -14270,8 +14231,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcElectricDistributionPoint(
-			IfcElectricDistributionPoint object) {
+	public T caseIfcElectricDistributionPoint(IfcElectricDistributionPoint object) {
 		return null;
 	}
 
@@ -14286,8 +14246,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcElectricFlowStorageDeviceType(
-			IfcElectricFlowStorageDeviceType object) {
+	public T caseIfcElectricFlowStorageDeviceType(IfcElectricFlowStorageDeviceType object) {
 		return null;
 	}
 
@@ -14557,8 +14516,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcEnergyConversionDeviceType(
-			IfcEnergyConversionDeviceType object) {
+	public T caseIfcEnergyConversionDeviceType(IfcEnergyConversionDeviceType object) {
 		return null;
 	}
 
@@ -14663,8 +14621,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcExtendedMaterialProperties(
-			IfcExtendedMaterialProperties object) {
+	public T caseIfcExtendedMaterialProperties(IfcExtendedMaterialProperties object) {
 		return null;
 	}
 
@@ -14694,8 +14651,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcExternallyDefinedHatchStyle(
-			IfcExternallyDefinedHatchStyle object) {
+	public T caseIfcExternallyDefinedHatchStyle(IfcExternallyDefinedHatchStyle object) {
 		return null;
 	}
 
@@ -14710,8 +14666,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcExternallyDefinedSurfaceStyle(
-			IfcExternallyDefinedSurfaceStyle object) {
+	public T caseIfcExternallyDefinedSurfaceStyle(IfcExternallyDefinedSurfaceStyle object) {
 		return null;
 	}
 
@@ -14741,8 +14696,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcExternallyDefinedTextFont(
-			IfcExternallyDefinedTextFont object) {
+	public T caseIfcExternallyDefinedTextFont(IfcExternallyDefinedTextFont object) {
 		return null;
 	}
 
@@ -14877,8 +14831,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcFailureConnectionCondition(
-			IfcFailureConnectionCondition object) {
+	public T caseIfcFailureConnectionCondition(IfcFailureConnectionCondition object) {
 		return null;
 	}
 
@@ -14968,8 +14921,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcFeatureElementSubtraction(
-			IfcFeatureElementSubtraction object) {
+	public T caseIfcFeatureElementSubtraction(IfcFeatureElementSubtraction object) {
 		return null;
 	}
 
@@ -15014,8 +14966,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcFillAreaStyleTileSymbolWithStyle(
-			IfcFillAreaStyleTileSymbolWithStyle object) {
+	public T caseIfcFillAreaStyleTileSymbolWithStyle(IfcFillAreaStyleTileSymbolWithStyle object) {
 		return null;
 	}
 
@@ -15060,8 +15011,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcFireSuppressionTerminalType(
-			IfcFireSuppressionTerminalType object) {
+	public T caseIfcFireSuppressionTerminalType(IfcFireSuppressionTerminalType object) {
 		return null;
 	}
 
@@ -15436,8 +15386,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcGeneralMaterialProperties(
-			IfcGeneralMaterialProperties object) {
+	public T caseIfcGeneralMaterialProperties(IfcGeneralMaterialProperties object) {
 		return null;
 	}
 
@@ -15482,8 +15431,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcGeometricRepresentationContext(
-			IfcGeometricRepresentationContext object) {
+	public T caseIfcGeometricRepresentationContext(IfcGeometricRepresentationContext object) {
 		return null;
 	}
 
@@ -15498,8 +15446,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcGeometricRepresentationItem(
-			IfcGeometricRepresentationItem object) {
+	public T caseIfcGeometricRepresentationItem(IfcGeometricRepresentationItem object) {
 		return null;
 	}
 
@@ -15514,8 +15461,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcGeometricRepresentationSubContext(
-			IfcGeometricRepresentationSubContext object) {
+	public T caseIfcGeometricRepresentationSubContext(IfcGeometricRepresentationSubContext object) {
 		return null;
 	}
 
@@ -15650,8 +15596,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcHygroscopicMaterialProperties(
-			IfcHygroscopicMaterialProperties object) {
+	public T caseIfcHygroscopicMaterialProperties(IfcHygroscopicMaterialProperties object) {
 		return null;
 	}
 
@@ -15861,8 +15806,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcLightIntensityDistribution(
-			IfcLightIntensityDistribution object) {
+	public T caseIfcLightIntensityDistribution(IfcLightIntensityDistribution object) {
 		return null;
 	}
 
@@ -16087,8 +16031,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcMaterialClassificationRelationship(
-			IfcMaterialClassificationRelationship object) {
+	public T caseIfcMaterialClassificationRelationship(IfcMaterialClassificationRelationship object) {
 		return null;
 	}
 
@@ -16103,8 +16046,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcMaterialDefinitionRepresentation(
-			IfcMaterialDefinitionRepresentation object) {
+	public T caseIfcMaterialDefinitionRepresentation(IfcMaterialDefinitionRepresentation object) {
 		return null;
 	}
 
@@ -16209,8 +16151,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcMechanicalConcreteMaterialProperties(
-			IfcMechanicalConcreteMaterialProperties object) {
+	public T caseIfcMechanicalConcreteMaterialProperties(IfcMechanicalConcreteMaterialProperties object) {
 		return null;
 	}
 
@@ -16255,8 +16196,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcMechanicalMaterialProperties(
-			IfcMechanicalMaterialProperties object) {
+	public T caseIfcMechanicalMaterialProperties(IfcMechanicalMaterialProperties object) {
 		return null;
 	}
 
@@ -16271,8 +16211,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcMechanicalSteelMaterialProperties(
-			IfcMechanicalSteelMaterialProperties object) {
+	public T caseIfcMechanicalSteelMaterialProperties(IfcMechanicalSteelMaterialProperties object) {
 		return null;
 	}
 
@@ -16542,8 +16481,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcOpticalMaterialProperties(
-			IfcOpticalMaterialProperties object) {
+	public T caseIfcOpticalMaterialProperties(IfcOpticalMaterialProperties object) {
 		return null;
 	}
 
@@ -16693,8 +16631,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcPermeableCoveringProperties(
-			IfcPermeableCoveringProperties object) {
+	public T caseIfcPermeableCoveringProperties(IfcPermeableCoveringProperties object) {
 		return null;
 	}
 
@@ -17009,8 +16946,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcPolygonalBoundedHalfSpace(
-			IfcPolygonalBoundedHalfSpace object) {
+	public T caseIfcPolygonalBoundedHalfSpace(IfcPolygonalBoundedHalfSpace object) {
 		return null;
 	}
 
@@ -17100,8 +17036,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcPreDefinedDimensionSymbol(
-			IfcPreDefinedDimensionSymbol object) {
+	public T caseIfcPreDefinedDimensionSymbol(IfcPreDefinedDimensionSymbol object) {
 		return null;
 	}
 
@@ -17131,8 +17066,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcPreDefinedPointMarkerSymbol(
-			IfcPreDefinedPointMarkerSymbol object) {
+	public T caseIfcPreDefinedPointMarkerSymbol(IfcPreDefinedPointMarkerSymbol object) {
 		return null;
 	}
 
@@ -17162,8 +17096,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcPreDefinedTerminatorSymbol(
-			IfcPreDefinedTerminatorSymbol object) {
+	public T caseIfcPreDefinedTerminatorSymbol(IfcPreDefinedTerminatorSymbol object) {
 		return null;
 	}
 
@@ -17193,8 +17126,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcPresentationLayerAssignment(
-			IfcPresentationLayerAssignment object) {
+	public T caseIfcPresentationLayerAssignment(IfcPresentationLayerAssignment object) {
 		return null;
 	}
 
@@ -17209,8 +17141,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcPresentationLayerWithStyle(
-			IfcPresentationLayerWithStyle object) {
+	public T caseIfcPresentationLayerWithStyle(IfcPresentationLayerWithStyle object) {
 		return null;
 	}
 
@@ -17240,8 +17171,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcPresentationStyleAssignment(
-			IfcPresentationStyleAssignment object) {
+	public T caseIfcPresentationStyleAssignment(IfcPresentationStyleAssignment object) {
 		return null;
 	}
 
@@ -17331,8 +17261,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcProductsOfCombustionProperties(
-			IfcProductsOfCombustionProperties object) {
+	public T caseIfcProductsOfCombustionProperties(IfcProductsOfCombustionProperties object) {
 		return null;
 	}
 
@@ -17482,8 +17411,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcPropertyConstraintRelationship(
-			IfcPropertyConstraintRelationship object) {
+	public T caseIfcPropertyConstraintRelationship(IfcPropertyConstraintRelationship object) {
 		return null;
 	}
 
@@ -17513,8 +17441,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcPropertyDependencyRelationship(
-			IfcPropertyDependencyRelationship object) {
+	public T caseIfcPropertyDependencyRelationship(IfcPropertyDependencyRelationship object) {
 		return null;
 	}
 
@@ -17889,8 +17816,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRectangleHollowProfileDef(
-			IfcRectangleHollowProfileDef object) {
+	public T caseIfcRectangleHollowProfileDef(IfcRectangleHollowProfileDef object) {
 		return null;
 	}
 
@@ -17935,8 +17861,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRectangularTrimmedSurface(
-			IfcRectangularTrimmedSurface object) {
+	public T caseIfcRectangularTrimmedSurface(IfcRectangularTrimmedSurface object) {
 		return null;
 	}
 
@@ -17981,8 +17906,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcReinforcementBarProperties(
-			IfcReinforcementBarProperties object) {
+	public T caseIfcReinforcementBarProperties(IfcReinforcementBarProperties object) {
 		return null;
 	}
 
@@ -17997,8 +17921,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcReinforcementDefinitionProperties(
-			IfcReinforcementDefinitionProperties object) {
+	public T caseIfcReinforcementDefinitionProperties(IfcReinforcementDefinitionProperties object) {
 		return null;
 	}
 
@@ -18223,8 +18146,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRelAssociatesAppliedValue(
-			IfcRelAssociatesAppliedValue object) {
+	public T caseIfcRelAssociatesAppliedValue(IfcRelAssociatesAppliedValue object) {
 		return null;
 	}
 
@@ -18254,8 +18176,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRelAssociatesClassification(
-			IfcRelAssociatesClassification object) {
+	public T caseIfcRelAssociatesClassification(IfcRelAssociatesClassification object) {
 		return null;
 	}
 
@@ -18330,8 +18251,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRelAssociatesProfileProperties(
-			IfcRelAssociatesProfileProperties object) {
+	public T caseIfcRelAssociatesProfileProperties(IfcRelAssociatesProfileProperties object) {
 		return null;
 	}
 
@@ -18421,8 +18341,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRelConnectsStructuralActivity(
-			IfcRelConnectsStructuralActivity object) {
+	public T caseIfcRelConnectsStructuralActivity(IfcRelConnectsStructuralActivity object) {
 		return null;
 	}
 
@@ -18437,8 +18356,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRelConnectsStructuralElement(
-			IfcRelConnectsStructuralElement object) {
+	public T caseIfcRelConnectsStructuralElement(IfcRelConnectsStructuralElement object) {
 		return null;
 	}
 
@@ -18453,8 +18371,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRelConnectsStructuralMember(
-			IfcRelConnectsStructuralMember object) {
+	public T caseIfcRelConnectsStructuralMember(IfcRelConnectsStructuralMember object) {
 		return null;
 	}
 
@@ -18469,8 +18386,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRelConnectsWithEccentricity(
-			IfcRelConnectsWithEccentricity object) {
+	public T caseIfcRelConnectsWithEccentricity(IfcRelConnectsWithEccentricity object) {
 		return null;
 	}
 
@@ -18485,8 +18401,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRelConnectsWithRealizingElements(
-			IfcRelConnectsWithRealizingElements object) {
+	public T caseIfcRelConnectsWithRealizingElements(IfcRelConnectsWithRealizingElements object) {
 		return null;
 	}
 
@@ -18501,8 +18416,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRelContainedInSpatialStructure(
-			IfcRelContainedInSpatialStructure object) {
+	public T caseIfcRelContainedInSpatialStructure(IfcRelContainedInSpatialStructure object) {
 		return null;
 	}
 
@@ -18637,8 +18551,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRelInteractionRequirements(
-			IfcRelInteractionRequirements object) {
+	public T caseIfcRelInteractionRequirements(IfcRelInteractionRequirements object) {
 		return null;
 	}
 
@@ -18713,8 +18626,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRelReferencedInSpatialStructure(
-			IfcRelReferencedInSpatialStructure object) {
+	public T caseIfcRelReferencedInSpatialStructure(IfcRelReferencedInSpatialStructure object) {
 		return null;
 	}
 
@@ -18924,8 +18836,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRibPlateProfileProperties(
-			IfcRibPlateProfileProperties object) {
+	public T caseIfcRibPlateProfileProperties(IfcRibPlateProfileProperties object) {
 		return null;
 	}
 
@@ -19015,8 +18926,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRoundedRectangleProfileDef(
-			IfcRoundedRectangleProfileDef object) {
+	public T caseIfcRoundedRectangleProfileDef(IfcRoundedRectangleProfileDef object) {
 		return null;
 	}
 
@@ -19091,8 +19001,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcSectionReinforcementProperties(
-			IfcSectionReinforcementProperties object) {
+	public T caseIfcSectionReinforcementProperties(IfcSectionReinforcementProperties object) {
 		return null;
 	}
 
@@ -19287,8 +19196,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcSlippageConnectionCondition(
-			IfcSlippageConnectionCondition object) {
+	public T caseIfcSlippageConnectionCondition(IfcSlippageConnectionCondition object) {
 		return null;
 	}
 
@@ -19393,8 +19301,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcSpaceThermalLoadProperties(
-			IfcSpaceThermalLoadProperties object) {
+	public T caseIfcSpaceThermalLoadProperties(IfcSpaceThermalLoadProperties object) {
 		return null;
 	}
 
@@ -19439,8 +19346,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcSpatialStructureElementType(
-			IfcSpatialStructureElementType object) {
+	public T caseIfcSpatialStructureElementType(IfcSpatialStructureElementType object) {
 		return null;
 	}
 
@@ -19590,8 +19496,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralConnectionCondition(
-			IfcStructuralConnectionCondition object) {
+	public T caseIfcStructuralConnectionCondition(IfcStructuralConnectionCondition object) {
 		return null;
 	}
 
@@ -19606,8 +19511,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralCurveConnection(
-			IfcStructuralCurveConnection object) {
+	public T caseIfcStructuralCurveConnection(IfcStructuralCurveConnection object) {
 		return null;
 	}
 
@@ -19637,8 +19541,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralCurveMemberVarying(
-			IfcStructuralCurveMemberVarying object) {
+	public T caseIfcStructuralCurveMemberVarying(IfcStructuralCurveMemberVarying object) {
 		return null;
 	}
 
@@ -19683,8 +19586,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralLinearActionVarying(
-			IfcStructuralLinearActionVarying object) {
+	public T caseIfcStructuralLinearActionVarying(IfcStructuralLinearActionVarying object) {
 		return null;
 	}
 
@@ -19729,8 +19631,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralLoadLinearForce(
-			IfcStructuralLoadLinearForce object) {
+	public T caseIfcStructuralLoadLinearForce(IfcStructuralLoadLinearForce object) {
 		return null;
 	}
 
@@ -19745,8 +19646,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralLoadPlanarForce(
-			IfcStructuralLoadPlanarForce object) {
+	public T caseIfcStructuralLoadPlanarForce(IfcStructuralLoadPlanarForce object) {
 		return null;
 	}
 
@@ -19761,8 +19661,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralLoadSingleDisplacement(
-			IfcStructuralLoadSingleDisplacement object) {
+	public T caseIfcStructuralLoadSingleDisplacement(IfcStructuralLoadSingleDisplacement object) {
 		return null;
 	}
 
@@ -19777,8 +19676,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralLoadSingleDisplacementDistortion(
-			IfcStructuralLoadSingleDisplacementDistortion object) {
+	public T caseIfcStructuralLoadSingleDisplacementDistortion(IfcStructuralLoadSingleDisplacementDistortion object) {
 		return null;
 	}
 
@@ -19793,8 +19691,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralLoadSingleForce(
-			IfcStructuralLoadSingleForce object) {
+	public T caseIfcStructuralLoadSingleForce(IfcStructuralLoadSingleForce object) {
 		return null;
 	}
 
@@ -19809,8 +19706,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralLoadSingleForceWarping(
-			IfcStructuralLoadSingleForceWarping object) {
+	public T caseIfcStructuralLoadSingleForceWarping(IfcStructuralLoadSingleForceWarping object) {
 		return null;
 	}
 
@@ -19840,8 +19736,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralLoadTemperature(
-			IfcStructuralLoadTemperature object) {
+	public T caseIfcStructuralLoadTemperature(IfcStructuralLoadTemperature object) {
 		return null;
 	}
 
@@ -19886,8 +19781,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralPlanarActionVarying(
-			IfcStructuralPlanarActionVarying object) {
+	public T caseIfcStructuralPlanarActionVarying(IfcStructuralPlanarActionVarying object) {
 		return null;
 	}
 
@@ -19917,8 +19811,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralPointConnection(
-			IfcStructuralPointConnection object) {
+	public T caseIfcStructuralPointConnection(IfcStructuralPointConnection object) {
 		return null;
 	}
 
@@ -19948,8 +19841,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralProfileProperties(
-			IfcStructuralProfileProperties object) {
+	public T caseIfcStructuralProfileProperties(IfcStructuralProfileProperties object) {
 		return null;
 	}
 
@@ -19994,8 +19886,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralSteelProfileProperties(
-			IfcStructuralSteelProfileProperties object) {
+	public T caseIfcStructuralSteelProfileProperties(IfcStructuralSteelProfileProperties object) {
 		return null;
 	}
 
@@ -20010,8 +19901,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralSurfaceConnection(
-			IfcStructuralSurfaceConnection object) {
+	public T caseIfcStructuralSurfaceConnection(IfcStructuralSurfaceConnection object) {
 		return null;
 	}
 
@@ -20041,8 +19931,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralSurfaceMemberVarying(
-			IfcStructuralSurfaceMemberVarying object) {
+	public T caseIfcStructuralSurfaceMemberVarying(IfcStructuralSurfaceMemberVarying object) {
 		return null;
 	}
 
@@ -20057,8 +19946,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuredDimensionCallout(
-			IfcStructuredDimensionCallout object) {
+	public T caseIfcStructuredDimensionCallout(IfcStructuredDimensionCallout object) {
 		return null;
 	}
 
@@ -20163,8 +20051,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcSurfaceCurveSweptAreaSolid(
-			IfcSurfaceCurveSweptAreaSolid object) {
+	public T caseIfcSurfaceCurveSweptAreaSolid(IfcSurfaceCurveSweptAreaSolid object) {
 		return null;
 	}
 
@@ -20404,8 +20291,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcSystemFurnitureElementType(
-			IfcSystemFurnitureElementType object) {
+	public T caseIfcSystemFurnitureElementType(IfcSystemFurnitureElementType object) {
 		return null;
 	}
 
@@ -20645,8 +20531,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcTextStyleWithBoxCharacteristics(
-			IfcTextStyleWithBoxCharacteristics object) {
+	public T caseIfcTextStyleWithBoxCharacteristics(IfcTextStyleWithBoxCharacteristics object) {
 		return null;
 	}
 
@@ -20676,8 +20561,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcTextureCoordinateGenerator(
-			IfcTextureCoordinateGenerator object) {
+	public T caseIfcTextureCoordinateGenerator(IfcTextureCoordinateGenerator object) {
 		return null;
 	}
 
@@ -20722,8 +20606,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcThermalMaterialProperties(
-			IfcThermalMaterialProperties object) {
+	public T caseIfcThermalMaterialProperties(IfcThermalMaterialProperties object) {
 		return null;
 	}
 
@@ -20753,8 +20636,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcTimeSeriesReferenceRelationship(
-			IfcTimeSeriesReferenceRelationship object) {
+	public T caseIfcTimeSeriesReferenceRelationship(IfcTimeSeriesReferenceRelationship object) {
 		return null;
 	}
 
@@ -20799,8 +20681,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcTopologicalRepresentationItem(
-			IfcTopologicalRepresentationItem object) {
+	public T caseIfcTopologicalRepresentationItem(IfcTopologicalRepresentationItem object) {
 		return null;
 	}
 
@@ -21580,8 +21461,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcElectricCapacitanceMeasure(
-			IfcElectricCapacitanceMeasure object) {
+	public T caseIfcElectricCapacitanceMeasure(IfcElectricCapacitanceMeasure object) {
 		return null;
 	}
 
@@ -21611,8 +21491,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcElectricConductanceMeasure(
-			IfcElectricConductanceMeasure object) {
+	public T caseIfcElectricConductanceMeasure(IfcElectricConductanceMeasure object) {
 		return null;
 	}
 
@@ -21642,8 +21521,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcElectricResistanceMeasure(
-			IfcElectricResistanceMeasure object) {
+	public T caseIfcElectricResistanceMeasure(IfcElectricResistanceMeasure object) {
 		return null;
 	}
 
@@ -21913,8 +21791,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcIsothermalMoistureCapacityMeasure(
-			IfcIsothermalMoistureCapacityMeasure object) {
+	public T caseIfcIsothermalMoistureCapacityMeasure(IfcIsothermalMoistureCapacityMeasure object) {
 		return null;
 	}
 
@@ -21929,8 +21806,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcKinematicViscosityMeasure(
-			IfcKinematicViscosityMeasure object) {
+	public T caseIfcKinematicViscosityMeasure(IfcKinematicViscosityMeasure object) {
 		return null;
 	}
 
@@ -22065,8 +21941,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcLuminousIntensityDistributionMeasure(
-			IfcLuminousIntensityDistributionMeasure object) {
+	public T caseIfcLuminousIntensityDistributionMeasure(IfcLuminousIntensityDistributionMeasure object) {
 		return null;
 	}
 
@@ -22096,8 +21971,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcMagneticFluxDensityMeasure(
-			IfcMagneticFluxDensityMeasure object) {
+	public T caseIfcMagneticFluxDensityMeasure(IfcMagneticFluxDensityMeasure object) {
 		return null;
 	}
 
@@ -22202,8 +22076,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcModulusOfElasticityMeasure(
-			IfcModulusOfElasticityMeasure object) {
+	public T caseIfcModulusOfElasticityMeasure(IfcModulusOfElasticityMeasure object) {
 		return null;
 	}
 
@@ -22218,8 +22091,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcModulusOfLinearSubgradeReactionMeasure(
-			IfcModulusOfLinearSubgradeReactionMeasure object) {
+	public T caseIfcModulusOfLinearSubgradeReactionMeasure(IfcModulusOfLinearSubgradeReactionMeasure object) {
 		return null;
 	}
 
@@ -22234,8 +22106,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcModulusOfRotationalSubgradeReactionMeasure(
-			IfcModulusOfRotationalSubgradeReactionMeasure object) {
+	public T caseIfcModulusOfRotationalSubgradeReactionMeasure(IfcModulusOfRotationalSubgradeReactionMeasure object) {
 		return null;
 	}
 
@@ -22250,8 +22121,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcModulusOfSubgradeReactionMeasure(
-			IfcModulusOfSubgradeReactionMeasure object) {
+	public T caseIfcModulusOfSubgradeReactionMeasure(IfcModulusOfSubgradeReactionMeasure object) {
 		return null;
 	}
 
@@ -22266,8 +22136,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcMoistureDiffusivityMeasure(
-			IfcMoistureDiffusivityMeasure object) {
+	public T caseIfcMoistureDiffusivityMeasure(IfcMoistureDiffusivityMeasure object) {
 		return null;
 	}
 
@@ -22507,8 +22376,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRotationalFrequencyMeasure(
-			IfcRotationalFrequencyMeasure object) {
+	public T caseIfcRotationalFrequencyMeasure(IfcRotationalFrequencyMeasure object) {
 		return null;
 	}
 
@@ -22538,8 +22406,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcRotationalStiffnessMeasure(
-			IfcRotationalStiffnessMeasure object) {
+	public T caseIfcRotationalStiffnessMeasure(IfcRotationalStiffnessMeasure object) {
 		return null;
 	}
 
@@ -22584,8 +22451,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcSectionalAreaIntegralMeasure(
-			IfcSectionalAreaIntegralMeasure object) {
+	public T caseIfcSectionalAreaIntegralMeasure(IfcSectionalAreaIntegralMeasure object) {
 		return null;
 	}
 
@@ -22660,8 +22526,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcSpecificHeatCapacityMeasure(
-			IfcSpecificHeatCapacityMeasure object) {
+	public T caseIfcSpecificHeatCapacityMeasure(IfcSpecificHeatCapacityMeasure object) {
 		return null;
 	}
 
@@ -22706,8 +22571,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcTemperatureGradientMeasure(
-			IfcTemperatureGradientMeasure object) {
+	public T caseIfcTemperatureGradientMeasure(IfcTemperatureGradientMeasure object) {
 		return null;
 	}
 
@@ -22812,8 +22676,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcThermalConductivityMeasure(
-			IfcThermalConductivityMeasure object) {
+	public T caseIfcThermalConductivityMeasure(IfcThermalConductivityMeasure object) {
 		return null;
 	}
 
@@ -22828,8 +22691,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcThermalExpansionCoefficientMeasure(
-			IfcThermalExpansionCoefficientMeasure object) {
+	public T caseIfcThermalExpansionCoefficientMeasure(IfcThermalExpansionCoefficientMeasure object) {
 		return null;
 	}
 
@@ -22859,8 +22721,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcThermalTransmittanceMeasure(
-			IfcThermalTransmittanceMeasure object) {
+	public T caseIfcThermalTransmittanceMeasure(IfcThermalTransmittanceMeasure object) {
 		return null;
 	}
 
@@ -22875,8 +22736,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcThermodynamicTemperatureMeasure(
-			IfcThermodynamicTemperatureMeasure object) {
+	public T caseIfcThermodynamicTemperatureMeasure(IfcThermodynamicTemperatureMeasure object) {
 		return null;
 	}
 
@@ -22966,8 +22826,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcVolumetricFlowRateMeasure(
-			IfcVolumetricFlowRateMeasure object) {
+	public T caseIfcVolumetricFlowRateMeasure(IfcVolumetricFlowRateMeasure object) {
 		return null;
 	}
 
@@ -23042,8 +22901,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcCompoundPlaneAngleMeasure(
-			IfcCompoundPlaneAngleMeasure object) {
+	public T caseIfcCompoundPlaneAngleMeasure(IfcCompoundPlaneAngleMeasure object) {
 		return null;
 	}
 
@@ -23088,8 +22946,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcPositivePlaneAngleMeasure(
-			IfcPositivePlaneAngleMeasure object) {
+	public T caseIfcPositivePlaneAngleMeasure(IfcPositivePlaneAngleMeasure object) {
 		return null;
 	}
 
@@ -23224,8 +23081,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcClassificationNotationSelect(
-			IfcClassificationNotationSelect object) {
+	public T caseIfcClassificationNotationSelect(IfcClassificationNotationSelect object) {
 		return null;
 	}
 
@@ -23300,8 +23156,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcCurveFontOrScaledCurveFontSelect(
-			IfcCurveFontOrScaledCurveFontSelect object) {
+	public T caseIfcCurveFontOrScaledCurveFontSelect(IfcCurveFontOrScaledCurveFontSelect object) {
 		return null;
 	}
 
@@ -23421,8 +23276,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcFillAreaStyleTileShapeSelect(
-			IfcFillAreaStyleTileShapeSelect object) {
+	public T caseIfcFillAreaStyleTileShapeSelect(IfcFillAreaStyleTileShapeSelect object) {
 		return null;
 	}
 
@@ -23512,8 +23366,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcLightDistributionDataSourceSelect(
-			IfcLightDistributionDataSourceSelect object) {
+	public T caseIfcLightDistributionDataSourceSelect(IfcLightDistributionDataSourceSelect object) {
 		return null;
 	}
 
@@ -23693,8 +23546,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcStructuralActivityAssignmentSelect(
-			IfcStructuralActivityAssignmentSelect object) {
+	public T caseIfcStructuralActivityAssignmentSelect(IfcStructuralActivityAssignmentSelect object) {
 		return null;
 	}
 
@@ -23724,8 +23576,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcSurfaceStyleElementSelect(
-			IfcSurfaceStyleElementSelect object) {
+	public T caseIfcSurfaceStyleElementSelect(IfcSurfaceStyleElementSelect object) {
 		return null;
 	}
 

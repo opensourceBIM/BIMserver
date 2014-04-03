@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPlateTypeImpl extends IfcBuildingElementTypeImpl implements
-		IfcPlateType {
+public class IfcPlateTypeImpl extends IfcBuildingElementTypeImpl implements IfcPlateType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcPlateTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcPlateTypeEnum getPredefinedType() {
-		return (IfcPlateTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PLATE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcPlateTypeEnum) eGet(Ifc4Package.Literals.IFC_PLATE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcPlateTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcPlateTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_PLATE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_PLATE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcPlateTypeImpl

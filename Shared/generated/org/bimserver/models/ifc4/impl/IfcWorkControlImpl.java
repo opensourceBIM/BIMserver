@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWorkControlImpl extends IfcControlImpl implements
-		IfcWorkControl {
+public class IfcWorkControlImpl extends IfcControlImpl implements IfcWorkControl {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,8 +69,7 @@ public class IfcWorkControlImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getCreationDate() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_WORK_CONTROL__CREATION_DATE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_WORK_CONTROL__CREATION_DATE, true);
 	}
 
 	/**
@@ -80,8 +78,7 @@ public class IfcWorkControlImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setCreationDate(String newCreationDate) {
-		eSet(Ifc4Package.Literals.IFC_WORK_CONTROL__CREATION_DATE,
-				newCreationDate);
+		eSet(Ifc4Package.Literals.IFC_WORK_CONTROL__CREATION_DATE, newCreationDate);
 	}
 
 	/**
@@ -91,8 +88,7 @@ public class IfcWorkControlImpl extends IfcControlImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPerson> getCreators() {
-		return (EList<IfcPerson>) eGet(
-				Ifc4Package.Literals.IFC_WORK_CONTROL__CREATORS, true);
+		return (EList<IfcPerson>) eGet(Ifc4Package.Literals.IFC_WORK_CONTROL__CREATORS, true);
 	}
 
 	/**
@@ -119,8 +115,7 @@ public class IfcWorkControlImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getPurpose() {
-		return (String) eGet(Ifc4Package.Literals.IFC_WORK_CONTROL__PURPOSE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_WORK_CONTROL__PURPOSE, true);
 	}
 
 	/**
@@ -156,8 +151,7 @@ public class IfcWorkControlImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getDuration() {
-		return (String) eGet(Ifc4Package.Literals.IFC_WORK_CONTROL__DURATION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_WORK_CONTROL__DURATION, true);
 	}
 
 	/**
@@ -193,8 +187,7 @@ public class IfcWorkControlImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getTotalFloat() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_WORK_CONTROL__TOTAL_FLOAT, true);
 	}
 
 	/**
@@ -230,8 +223,7 @@ public class IfcWorkControlImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getStartTime() {
-		return (String) eGet(Ifc4Package.Literals.IFC_WORK_CONTROL__START_TIME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_WORK_CONTROL__START_TIME, true);
 	}
 
 	/**
@@ -249,8 +241,7 @@ public class IfcWorkControlImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getFinishTime() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_WORK_CONTROL__FINISH_TIME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_WORK_CONTROL__FINISH_TIME, true);
 	}
 
 	/**

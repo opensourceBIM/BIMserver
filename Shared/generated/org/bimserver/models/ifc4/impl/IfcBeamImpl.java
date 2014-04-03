@@ -61,8 +61,7 @@ public class IfcBeamImpl extends IfcBuildingElementImpl implements IfcBeam {
 	 * @generated
 	 */
 	public IfcBeamTypeEnum getPredefinedType() {
-		return (IfcBeamTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_BEAM__PREDEFINED_TYPE, true);
+		return (IfcBeamTypeEnum) eGet(Ifc4Package.Literals.IFC_BEAM__PREDEFINED_TYPE, true);
 	}
 
 	/**

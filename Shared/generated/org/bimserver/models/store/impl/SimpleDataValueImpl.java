@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class SimpleDataValueImpl extends DataValueImpl implements
-		SimpleDataValue {
+public class SimpleDataValueImpl extends DataValueImpl implements SimpleDataValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class SimpleDataValueImpl extends DataValueImpl implements
 	 * @generated
 	 */
 	public String getStringValue() {
-		return (String) eGet(
-				StorePackage.Literals.SIMPLE_DATA_VALUE__STRING_VALUE, true);
+		return (String) eGet(StorePackage.Literals.SIMPLE_DATA_VALUE__STRING_VALUE, true);
 	}
 
 	/**
@@ -71,8 +69,7 @@ public class SimpleDataValueImpl extends DataValueImpl implements
 	 * @generated
 	 */
 	public void setStringValue(String newStringValue) {
-		eSet(StorePackage.Literals.SIMPLE_DATA_VALUE__STRING_VALUE,
-				newStringValue);
+		eSet(StorePackage.Literals.SIMPLE_DATA_VALUE__STRING_VALUE, newStringValue);
 	}
 
 } //SimpleDataValueImpl

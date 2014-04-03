@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAdvancedBrepImpl extends IfcManifoldSolidBrepImpl implements
-		IfcAdvancedBrep {
+public class IfcAdvancedBrepImpl extends IfcManifoldSolidBrepImpl implements IfcAdvancedBrep {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

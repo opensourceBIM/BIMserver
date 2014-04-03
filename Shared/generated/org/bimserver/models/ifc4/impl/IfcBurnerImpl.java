@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBurnerImpl extends IfcEnergyConversionDeviceImpl implements
-		IfcBurner {
+public class IfcBurnerImpl extends IfcEnergyConversionDeviceImpl implements IfcBurner {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcBurnerImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public IfcBurnerTypeEnum getPredefinedType() {
-		return (IfcBurnerTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_BURNER__PREDEFINED_TYPE, true);
+		return (IfcBurnerTypeEnum) eGet(Ifc4Package.Literals.IFC_BURNER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcBurnerImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcBurnerTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_BURNER__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_BURNER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

@@ -55,8 +55,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ConcreteRevisionImpl extends IdEObjectImpl implements
-		ConcreteRevision {
+public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevision {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,8 +109,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Project getProject() {
-		return (Project) eGet(StorePackage.Literals.CONCRETE_REVISION__PROJECT,
-				true);
+		return (Project) eGet(StorePackage.Literals.CONCRETE_REVISION__PROJECT, true);
 	}
 
 	/**
@@ -129,8 +127,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public byte[] getChecksum() {
-		return (byte[]) eGet(StorePackage.Literals.CONCRETE_REVISION__CHECKSUM,
-				true);
+		return (byte[]) eGet(StorePackage.Literals.CONCRETE_REVISION__CHECKSUM, true);
 	}
 
 	/**
@@ -149,8 +146,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Revision> getRevisions() {
-		return (EList<Revision>) eGet(
-				StorePackage.Literals.CONCRETE_REVISION__REVISIONS, true);
+		return (EList<Revision>) eGet(StorePackage.Literals.CONCRETE_REVISION__REVISIONS, true);
 	}
 
 	/**
@@ -195,8 +191,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getLastError() {
-		return (String) eGet(
-				StorePackage.Literals.CONCRETE_REVISION__LAST_ERROR, true);
+		return (String) eGet(StorePackage.Literals.CONCRETE_REVISION__LAST_ERROR, true);
 	}
 
 	/**
@@ -214,8 +209,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public boolean isClear() {
-		return (Boolean) eGet(StorePackage.Literals.CONCRETE_REVISION__CLEAR,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.CONCRETE_REVISION__CLEAR, true);
 	}
 
 	/**
@@ -233,8 +227,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public RevisionSummary getSummary() {
-		return (RevisionSummary) eGet(
-				StorePackage.Literals.CONCRETE_REVISION__SUMMARY, true);
+		return (RevisionSummary) eGet(StorePackage.Literals.CONCRETE_REVISION__SUMMARY, true);
 	}
 
 	/**
@@ -270,8 +263,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcHeader getIfcHeader() {
-		return (IfcHeader) eGet(
-				StorePackage.Literals.CONCRETE_REVISION__IFC_HEADER, true);
+		return (IfcHeader) eGet(StorePackage.Literals.CONCRETE_REVISION__IFC_HEADER, true);
 	}
 
 	/**

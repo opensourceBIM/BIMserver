@@ -94,8 +94,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * @generated
 	 */
 	public IfcOwnerHistory getOwnerHistory() {
-		return (IfcOwnerHistory) eGet(
-				Ifc4Package.Literals.IFC_ROOT__OWNER_HISTORY, true);
+		return (IfcOwnerHistory) eGet(Ifc4Package.Literals.IFC_ROOT__OWNER_HISTORY, true);
 	}
 
 	/**

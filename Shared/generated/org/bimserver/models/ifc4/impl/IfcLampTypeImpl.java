@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLampTypeImpl extends IfcFlowTerminalTypeImpl implements
-		IfcLampType {
+public class IfcLampTypeImpl extends IfcFlowTerminalTypeImpl implements IfcLampType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcLampTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public IfcLampTypeEnum getPredefinedType() {
-		return (IfcLampTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_LAMP_TYPE__PREDEFINED_TYPE, true);
+		return (IfcLampTypeEnum) eGet(Ifc4Package.Literals.IFC_LAMP_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcLampTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcLampTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_LAMP_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_LAMP_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcLampTypeImpl

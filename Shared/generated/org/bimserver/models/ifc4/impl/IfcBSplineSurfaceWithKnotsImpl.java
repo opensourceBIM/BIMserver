@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl
-		implements IfcBSplineSurfaceWithKnots {
+public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl implements IfcBSplineSurfaceWithKnots {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,9 +70,7 @@ public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Integer> getUMultiplicities() {
-		return (EList<Integer>) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__UMULTIPLICITIES,
-				true);
+		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__UMULTIPLICITIES, true);
 	}
 
 	/**
@@ -83,9 +80,7 @@ public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Integer> getVMultiplicities() {
-		return (EList<Integer>) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__VMULTIPLICITIES,
-				true);
+		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__VMULTIPLICITIES, true);
 	}
 
 	/**
@@ -95,9 +90,7 @@ public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getUKnots() {
-		return (EList<Double>) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__UKNOTS,
-				true);
+		return (EList<Double>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__UKNOTS, true);
 	}
 
 	/**
@@ -107,9 +100,7 @@ public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getUKnotsAsString() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__UKNOTS_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__UKNOTS_AS_STRING, true);
 	}
 
 	/**
@@ -119,9 +110,7 @@ public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getVKnots() {
-		return (EList<Double>) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__VKNOTS,
-				true);
+		return (EList<Double>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__VKNOTS, true);
 	}
 
 	/**
@@ -131,9 +120,7 @@ public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getVKnotsAsString() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__VKNOTS_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__VKNOTS_AS_STRING, true);
 	}
 
 	/**
@@ -142,9 +129,7 @@ public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl
 	 * @generated
 	 */
 	public IfcKnotType getKnotSpec() {
-		return (IfcKnotType) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_SPEC,
-				true);
+		return (IfcKnotType) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_SPEC, true);
 	}
 
 	/**
@@ -153,8 +138,7 @@ public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl
 	 * @generated
 	 */
 	public void setKnotSpec(IfcKnotType newKnotSpec) {
-		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_SPEC,
-				newKnotSpec);
+		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_SPEC, newKnotSpec);
 	}
 
 } //IfcBSplineSurfaceWithKnotsImpl

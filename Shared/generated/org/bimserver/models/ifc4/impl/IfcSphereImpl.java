@@ -79,8 +79,7 @@ public class IfcSphereImpl extends IfcCsgPrimitive3DImpl implements IfcSphere {
 	 * @generated
 	 */
 	public String getRadiusAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_SPHERE__RADIUS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SPHERE__RADIUS_AS_STRING, true);
 	}
 
 	/**
@@ -89,8 +88,7 @@ public class IfcSphereImpl extends IfcCsgPrimitive3DImpl implements IfcSphere {
 	 * @generated
 	 */
 	public void setRadiusAsString(String newRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_SPHERE__RADIUS_AS_STRING,
-				newRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_SPHERE__RADIUS_AS_STRING, newRadiusAsString);
 	}
 
 } //IfcSphereImpl

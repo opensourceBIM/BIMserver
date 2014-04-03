@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl
-		implements IfcDocumentReference {
+public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implements IfcDocumentReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DESCRIPTION, true);
 	}
 
 	/**
@@ -77,8 +75,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -105,9 +102,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl
 	 * @generated
 	 */
 	public IfcDocumentInformation getReferencedDocument() {
-		return (IfcDocumentInformation) eGet(
-				Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCED_DOCUMENT,
-				true);
+		return (IfcDocumentInformation) eGet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCED_DOCUMENT, true);
 	}
 
 	/**
@@ -115,10 +110,8 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReferencedDocument(
-			IfcDocumentInformation newReferencedDocument) {
-		eSet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCED_DOCUMENT,
-				newReferencedDocument);
+	public void setReferencedDocument(IfcDocumentInformation newReferencedDocument) {
+		eSet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCED_DOCUMENT, newReferencedDocument);
 	}
 
 	/**
@@ -146,9 +139,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesDocument> getDocumentRefForObjects() {
-		return (EList<IfcRelAssociatesDocument>) eGet(
-				Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DOCUMENT_REF_FOR_OBJECTS,
-				true);
+		return (EList<IfcRelAssociatesDocument>) eGet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DOCUMENT_REF_FOR_OBJECTS, true);
 	}
 
 	/**

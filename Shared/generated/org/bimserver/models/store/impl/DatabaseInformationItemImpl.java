@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class DatabaseInformationItemImpl extends IdEObjectImpl implements
-		DatabaseInformationItem {
+public class DatabaseInformationItemImpl extends IdEObjectImpl implements DatabaseInformationItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,8 +73,7 @@ public class DatabaseInformationItemImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getKey() {
-		return (String) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION_ITEM__KEY, true);
+		return (String) eGet(StorePackage.Literals.DATABASE_INFORMATION_ITEM__KEY, true);
 	}
 
 	/**
@@ -93,8 +91,7 @@ public class DatabaseInformationItemImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getValue() {
-		return (String) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION_ITEM__VALUE, true);
+		return (String) eGet(StorePackage.Literals.DATABASE_INFORMATION_ITEM__VALUE, true);
 	}
 
 	/**

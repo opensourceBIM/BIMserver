@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements
-		IfcConversionBasedUnit {
+public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcConversionBasedUnit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__NAME, true);
 	}
 
 	/**
@@ -86,9 +84,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements
 	 * @generated
 	 */
 	public IfcMeasureWithUnit getConversionFactor() {
-		return (IfcMeasureWithUnit) eGet(
-				Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR,
-				true);
+		return (IfcMeasureWithUnit) eGet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR, true);
 	}
 
 	/**
@@ -97,8 +93,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements
 	 * @generated
 	 */
 	public void setConversionFactor(IfcMeasureWithUnit newConversionFactor) {
-		eSet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR,
-				newConversionFactor);
+		eSet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR, newConversionFactor);
 	}
 
 	/**
@@ -108,9 +103,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__HAS_EXTERNAL_REFERENCE,
-				true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

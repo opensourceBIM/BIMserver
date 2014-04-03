@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements
-		IfcEventTime {
+public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventTime {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getActualDate() {
-		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TIME__ACTUAL_DATE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TIME__ACTUAL_DATE, true);
 	}
 
 	/**
@@ -101,8 +99,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getEarlyDate() {
-		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TIME__EARLY_DATE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TIME__EARLY_DATE, true);
 	}
 
 	/**
@@ -138,8 +135,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getLateDate() {
-		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TIME__LATE_DATE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TIME__LATE_DATE, true);
 	}
 
 	/**
@@ -175,8 +171,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getScheduleDate() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_EVENT_TIME__SCHEDULE_DATE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TIME__SCHEDULE_DATE, true);
 	}
 
 	/**
@@ -185,8 +180,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public void setScheduleDate(String newScheduleDate) {
-		eSet(Ifc4Package.Literals.IFC_EVENT_TIME__SCHEDULE_DATE,
-				newScheduleDate);
+		eSet(Ifc4Package.Literals.IFC_EVENT_TIME__SCHEDULE_DATE, newScheduleDate);
 	}
 
 	/**

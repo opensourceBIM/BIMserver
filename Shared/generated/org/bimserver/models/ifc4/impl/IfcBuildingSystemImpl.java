@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBuildingSystemImpl extends IfcSystemImpl implements
-		IfcBuildingSystem {
+public class IfcBuildingSystemImpl extends IfcSystemImpl implements IfcBuildingSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcBuildingSystemImpl extends IfcSystemImpl implements
 	 * @generated
 	 */
 	public IfcBuildingSystemTypeEnum getPredefinedType() {
-		return (IfcBuildingSystemTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_BUILDING_SYSTEM__PREDEFINED_TYPE, true);
+		return (IfcBuildingSystemTypeEnum) eGet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcBuildingSystemImpl extends IfcSystemImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcBuildingSystemTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

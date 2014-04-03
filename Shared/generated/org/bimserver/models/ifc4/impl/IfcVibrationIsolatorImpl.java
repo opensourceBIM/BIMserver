@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcVibrationIsolatorImpl extends IfcElementComponentImpl implements
-		IfcVibrationIsolator {
+public class IfcVibrationIsolatorImpl extends IfcElementComponentImpl implements IfcVibrationIsolator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcVibrationIsolatorImpl extends IfcElementComponentImpl implements
 	 * @generated
 	 */
 	public IfcVibrationIsolatorTypeEnum getPredefinedType() {
-		return (IfcVibrationIsolatorTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_VIBRATION_ISOLATOR__PREDEFINED_TYPE,
-				true);
+		return (IfcVibrationIsolatorTypeEnum) eGet(Ifc4Package.Literals.IFC_VIBRATION_ISOLATOR__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcVibrationIsolatorImpl extends IfcElementComponentImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcVibrationIsolatorTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_VIBRATION_ISOLATOR__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_VIBRATION_ISOLATOR__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

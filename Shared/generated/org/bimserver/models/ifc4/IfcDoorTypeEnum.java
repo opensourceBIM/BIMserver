@@ -188,8 +188,7 @@ public enum IfcDoorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorTypeEnum[] VALUES_ARRAY = new IfcDoorTypeEnum[] {
-			NULL, NOTDEFINED, DOOR, USERDEFINED, GATE, TRAPDOOR, };
+	private static final IfcDoorTypeEnum[] VALUES_ARRAY = new IfcDoorTypeEnum[] { NULL, NOTDEFINED, DOOR, USERDEFINED, GATE, TRAPDOOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Type Enum</b></em>' enumerators.
@@ -197,8 +196,7 @@ public enum IfcDoorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDoorTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDoorTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Door Type Enum</b></em>' literal with the specified literal value.

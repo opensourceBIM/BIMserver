@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSolarDeviceTypeImpl extends IfcEnergyConversionDeviceTypeImpl
-		implements IfcSolarDeviceType {
+public class IfcSolarDeviceTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcSolarDeviceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcSolarDeviceTypeImpl extends IfcEnergyConversionDeviceTypeImpl
 	 * @generated
 	 */
 	public IfcSolarDeviceTypeEnum getPredefinedType() {
-		return (IfcSolarDeviceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SOLAR_DEVICE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcSolarDeviceTypeEnum) eGet(Ifc4Package.Literals.IFC_SOLAR_DEVICE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcSolarDeviceTypeImpl extends IfcEnergyConversionDeviceTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSolarDeviceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_SOLAR_DEVICE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_SOLAR_DEVICE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcSolarDeviceTypeImpl

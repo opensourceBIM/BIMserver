@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialLayerSetUsageImpl extends
-		IfcMaterialUsageDefinitionImpl implements IfcMaterialLayerSetUsage {
+public class IfcMaterialLayerSetUsageImpl extends IfcMaterialUsageDefinitionImpl implements IfcMaterialLayerSetUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,9 +69,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public IfcMaterialLayerSet getForLayerSet() {
-		return (IfcMaterialLayerSet) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__FOR_LAYER_SET,
-				true);
+		return (IfcMaterialLayerSet) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__FOR_LAYER_SET, true);
 	}
 
 	/**
@@ -81,8 +78,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public void setForLayerSet(IfcMaterialLayerSet newForLayerSet) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__FOR_LAYER_SET,
-				newForLayerSet);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__FOR_LAYER_SET, newForLayerSet);
 	}
 
 	/**
@@ -91,9 +87,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public IfcLayerSetDirectionEnum getLayerSetDirection() {
-		return (IfcLayerSetDirectionEnum) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__LAYER_SET_DIRECTION,
-				true);
+		return (IfcLayerSetDirectionEnum) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__LAYER_SET_DIRECTION, true);
 	}
 
 	/**
@@ -101,10 +95,8 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLayerSetDirection(
-			IfcLayerSetDirectionEnum newLayerSetDirection) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__LAYER_SET_DIRECTION,
-				newLayerSetDirection);
+	public void setLayerSetDirection(IfcLayerSetDirectionEnum newLayerSetDirection) {
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__LAYER_SET_DIRECTION, newLayerSetDirection);
 	}
 
 	/**
@@ -113,9 +105,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public IfcDirectionSenseEnum getDirectionSense() {
-		return (IfcDirectionSenseEnum) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__DIRECTION_SENSE,
-				true);
+		return (IfcDirectionSenseEnum) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__DIRECTION_SENSE, true);
 	}
 
 	/**
@@ -124,8 +114,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public void setDirectionSense(IfcDirectionSenseEnum newDirectionSense) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__DIRECTION_SENSE,
-				newDirectionSense);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__DIRECTION_SENSE, newDirectionSense);
 	}
 
 	/**
@@ -134,9 +123,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public double getOffsetFromReferenceLine() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE, true);
 	}
 
 	/**
@@ -145,8 +132,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public void setOffsetFromReferenceLine(double newOffsetFromReferenceLine) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE,
-				newOffsetFromReferenceLine);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE, newOffsetFromReferenceLine);
 	}
 
 	/**
@@ -155,9 +141,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public String getOffsetFromReferenceLineAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING, true);
 	}
 
 	/**
@@ -165,10 +149,8 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOffsetFromReferenceLineAsString(
-			String newOffsetFromReferenceLineAsString) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING,
-				newOffsetFromReferenceLineAsString);
+	public void setOffsetFromReferenceLineAsString(String newOffsetFromReferenceLineAsString) {
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING, newOffsetFromReferenceLineAsString);
 	}
 
 	/**
@@ -177,9 +159,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public double getReferenceExtent() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__REFERENCE_EXTENT,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__REFERENCE_EXTENT, true);
 	}
 
 	/**
@@ -188,8 +168,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public void setReferenceExtent(double newReferenceExtent) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__REFERENCE_EXTENT,
-				newReferenceExtent);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__REFERENCE_EXTENT, newReferenceExtent);
 	}
 
 	/**
@@ -216,9 +195,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public String getReferenceExtentAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__REFERENCE_EXTENT_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__REFERENCE_EXTENT_AS_STRING, true);
 	}
 
 	/**
@@ -227,8 +204,7 @@ public class IfcMaterialLayerSetUsageImpl extends
 	 * @generated
 	 */
 	public void setReferenceExtentAsString(String newReferenceExtentAsString) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__REFERENCE_EXTENT_AS_STRING,
-				newReferenceExtentAsString);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__REFERENCE_EXTENT_AS_STRING, newReferenceExtentAsString);
 	}
 
 	/**

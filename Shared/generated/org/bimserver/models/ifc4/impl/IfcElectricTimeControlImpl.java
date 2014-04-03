@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricTimeControlImpl extends IfcFlowControllerImpl implements
-		IfcElectricTimeControl {
+public class IfcElectricTimeControlImpl extends IfcFlowControllerImpl implements IfcElectricTimeControl {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcElectricTimeControlImpl extends IfcFlowControllerImpl implements
 	 * @generated
 	 */
 	public IfcElectricTimeControlTypeEnum getPredefinedType() {
-		return (IfcElectricTimeControlTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_ELECTRIC_TIME_CONTROL__PREDEFINED_TYPE,
-				true);
+		return (IfcElectricTimeControlTypeEnum) eGet(Ifc4Package.Literals.IFC_ELECTRIC_TIME_CONTROL__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcElectricTimeControlImpl extends IfcFlowControllerImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcElectricTimeControlTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_ELECTRIC_TIME_CONTROL__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcElectricTimeControlTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_ELECTRIC_TIME_CONTROL__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

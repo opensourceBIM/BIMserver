@@ -32,8 +32,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcConstructionMaterialResource extends
-		IfcConstructionResource {
+public interface IfcConstructionMaterialResource extends IfcConstructionResource {
 	/**
 	 * Returns the value of the '<em><b>Predefined Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.IfcConstructionMaterialResourceTypeEnum}.

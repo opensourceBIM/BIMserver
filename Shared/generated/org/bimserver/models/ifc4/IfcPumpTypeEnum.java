@@ -288,10 +288,8 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPumpTypeEnum[] VALUES_ARRAY = new IfcPumpTypeEnum[] {
-			NULL, VERTICALTURBINE, ENDSUCTION, SUMPPUMP, NOTDEFINED,
-			SUBMERSIBLEPUMP, SPLITCASE, VERTICALINLINE, USERDEFINED,
-			CIRCULATOR, };
+	private static final IfcPumpTypeEnum[] VALUES_ARRAY = new IfcPumpTypeEnum[] { NULL, VERTICALTURBINE, ENDSUCTION, SUMPPUMP, NOTDEFINED, SUBMERSIBLEPUMP, SPLITCASE,
+			VERTICALINLINE, USERDEFINED, CIRCULATOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pump Type Enum</b></em>' enumerators.
@@ -299,8 +297,7 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPumpTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPumpTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Pump Type Enum</b></em>' literal with the specified literal value.

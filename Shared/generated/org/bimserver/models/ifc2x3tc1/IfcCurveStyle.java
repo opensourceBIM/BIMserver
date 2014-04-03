@@ -34,8 +34,7 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcCurveStyle extends IfcPresentationStyle,
-		IfcPresentationStyleSelect {
+public interface IfcCurveStyle extends IfcPresentationStyle, IfcPresentationStyleSelect {
 	/**
 	 * Returns the value of the '<em><b>Curve Font</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPointOnCurveImpl extends IfcPointImpl implements
-		IfcPointOnCurve {
+public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements
 	 * @generated
 	 */
 	public IfcCurve getBasisCurve() {
-		return (IfcCurve) eGet(
-				Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__BASIS_CURVE, true);
+		return (IfcCurve) eGet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__BASIS_CURVE, true);
 	}
 
 	/**
@@ -75,8 +73,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements
 	 * @generated
 	 */
 	public void setBasisCurve(IfcCurve newBasisCurve) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__BASIS_CURVE,
-				newBasisCurve);
+		eSet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__BASIS_CURVE, newBasisCurve);
 	}
 
 	/**
@@ -85,9 +82,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements
 	 * @generated
 	 */
 	public double getPointParameter() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER, true);
 	}
 
 	/**
@@ -96,8 +91,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements
 	 * @generated
 	 */
 	public void setPointParameter(double newPointParameter) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER,
-				newPointParameter);
+		eSet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER, newPointParameter);
 	}
 
 	/**
@@ -106,9 +100,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements
 	 * @generated
 	 */
 	public String getPointParameterAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER_AS_STRING, true);
 	}
 
 	/**
@@ -117,8 +109,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements
 	 * @generated
 	 */
 	public void setPointParameterAsString(String newPointParameterAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER_AS_STRING,
-				newPointParameterAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER_AS_STRING, newPointParameterAsString);
 	}
 
 	/**
@@ -127,8 +118,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__DIM, true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_CURVE__DIM, true);
 	}
 
 	/**

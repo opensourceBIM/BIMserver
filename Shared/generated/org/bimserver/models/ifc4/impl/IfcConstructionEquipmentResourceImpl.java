@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstructionEquipmentResourceImpl extends
-		IfcConstructionResourceImpl implements IfcConstructionEquipmentResource {
+public class IfcConstructionEquipmentResourceImpl extends IfcConstructionResourceImpl implements IfcConstructionEquipmentResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcConstructionEquipmentResourceImpl extends
 	 * @generated
 	 */
 	public IfcConstructionEquipmentResourceTypeEnum getPredefinedType() {
-		return (IfcConstructionEquipmentResourceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_CONSTRUCTION_EQUIPMENT_RESOURCE__PREDEFINED_TYPE,
-				true);
+		return (IfcConstructionEquipmentResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_CONSTRUCTION_EQUIPMENT_RESOURCE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcConstructionEquipmentResourceImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcConstructionEquipmentResourceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_CONSTRUCTION_EQUIPMENT_RESOURCE__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcConstructionEquipmentResourceTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_CONSTRUCTION_EQUIPMENT_RESOURCE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

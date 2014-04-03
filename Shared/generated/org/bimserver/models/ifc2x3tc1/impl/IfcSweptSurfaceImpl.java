@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements
-		IfcSweptSurface {
+public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements IfcSweptSurface {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements
 	 * @generated
 	 */
 	public IfcProfileDef getSweptCurve() {
-		return (IfcProfileDef) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SWEPT_SURFACE__SWEPT_CURVE, true);
+		return (IfcProfileDef) eGet(Ifc2x3tc1Package.Literals.IFC_SWEPT_SURFACE__SWEPT_CURVE, true);
 	}
 
 	/**
@@ -75,8 +73,7 @@ public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements
 	 * @generated
 	 */
 	public void setSweptCurve(IfcProfileDef newSweptCurve) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SWEPT_SURFACE__SWEPT_CURVE,
-				newSweptCurve);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SWEPT_SURFACE__SWEPT_CURVE, newSweptCurve);
 	}
 
 	/**
@@ -85,8 +82,7 @@ public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements
 	 * @generated
 	 */
 	public IfcAxis2Placement3D getPosition() {
-		return (IfcAxis2Placement3D) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SWEPT_SURFACE__POSITION, true);
+		return (IfcAxis2Placement3D) eGet(Ifc2x3tc1Package.Literals.IFC_SWEPT_SURFACE__POSITION, true);
 	}
 
 	/**
@@ -104,8 +100,7 @@ public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_SWEPT_SURFACE__DIM,
-				true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_SWEPT_SURFACE__DIM, true);
 	}
 
 	/**

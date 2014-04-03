@@ -313,9 +313,8 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpatialZoneTypeEnum[] VALUES_ARRAY = new IfcSpatialZoneTypeEnum[] {
-			NULL, THERMAL, OCCUPANCY, TRANSPORT, CONSTRUCTION, NOTDEFINED,
-			VENTILATION, FIRESAFETY, USERDEFINED, SECURITY, LIGHTING, };
+	private static final IfcSpatialZoneTypeEnum[] VALUES_ARRAY = new IfcSpatialZoneTypeEnum[] { NULL, THERMAL, OCCUPANCY, TRANSPORT, CONSTRUCTION, NOTDEFINED, VENTILATION,
+			FIRESAFETY, USERDEFINED, SECURITY, LIGHTING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Spatial Zone Type Enum</b></em>' enumerators.
@@ -323,8 +322,7 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSpatialZoneTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSpatialZoneTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Spatial Zone Type Enum</b></em>' literal with the specified literal value.

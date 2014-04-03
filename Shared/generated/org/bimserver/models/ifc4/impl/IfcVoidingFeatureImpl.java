@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcVoidingFeatureImpl extends IfcFeatureElementSubtractionImpl
-		implements IfcVoidingFeature {
+public class IfcVoidingFeatureImpl extends IfcFeatureElementSubtractionImpl implements IfcVoidingFeature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcVoidingFeatureImpl extends IfcFeatureElementSubtractionImpl
 	 * @generated
 	 */
 	public IfcVoidingFeatureTypeEnum getPredefinedType() {
-		return (IfcVoidingFeatureTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_VOIDING_FEATURE__PREDEFINED_TYPE, true);
+		return (IfcVoidingFeatureTypeEnum) eGet(Ifc4Package.Literals.IFC_VOIDING_FEATURE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcVoidingFeatureImpl extends IfcFeatureElementSubtractionImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcVoidingFeatureTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_VOIDING_FEATURE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_VOIDING_FEATURE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

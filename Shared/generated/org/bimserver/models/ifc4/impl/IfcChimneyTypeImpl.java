@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcChimneyTypeImpl extends IfcBuildingElementTypeImpl implements
-		IfcChimneyType {
+public class IfcChimneyTypeImpl extends IfcBuildingElementTypeImpl implements IfcChimneyType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcChimneyTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcChimneyTypeEnum getPredefinedType() {
-		return (IfcChimneyTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_CHIMNEY_TYPE__PREDEFINED_TYPE, true);
+		return (IfcChimneyTypeEnum) eGet(Ifc4Package.Literals.IFC_CHIMNEY_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcChimneyTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcChimneyTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_CHIMNEY_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_CHIMNEY_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcChimneyTypeImpl

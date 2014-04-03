@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWorkTimeImpl extends IfcSchedulingTimeImpl implements
-		IfcWorkTime {
+public class IfcWorkTimeImpl extends IfcSchedulingTimeImpl implements IfcWorkTime {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class IfcWorkTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public IfcRecurrencePattern getRecurrencePattern() {
-		return (IfcRecurrencePattern) eGet(
-				Ifc4Package.Literals.IFC_WORK_TIME__RECURRENCE_PATTERN, true);
+		return (IfcRecurrencePattern) eGet(Ifc4Package.Literals.IFC_WORK_TIME__RECURRENCE_PATTERN, true);
 	}
 
 	/**
@@ -74,8 +72,7 @@ public class IfcWorkTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public void setRecurrencePattern(IfcRecurrencePattern newRecurrencePattern) {
-		eSet(Ifc4Package.Literals.IFC_WORK_TIME__RECURRENCE_PATTERN,
-				newRecurrencePattern);
+		eSet(Ifc4Package.Literals.IFC_WORK_TIME__RECURRENCE_PATTERN, newRecurrencePattern);
 	}
 
 	/**

@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl
-		implements IfcQuantityVolume {
+public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl implements IfcQuantityVolume {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public double getVolumeValue() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE, true);
 	}
 
 	/**
@@ -73,8 +71,7 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public void setVolumeValue(double newVolumeValue) {
-		eSet(Ifc4Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE,
-				newVolumeValue);
+		eSet(Ifc4Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE, newVolumeValue);
 	}
 
 	/**
@@ -83,9 +80,7 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public String getVolumeValueAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -94,8 +89,7 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public void setVolumeValueAsString(String newVolumeValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING,
-				newVolumeValueAsString);
+		eSet(Ifc4Package.Literals.IFC_QUANTITY_VOLUME__VOLUME_VALUE_AS_STRING, newVolumeValueAsString);
 	}
 
 	/**
@@ -104,8 +98,7 @@ public class IfcQuantityVolumeImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public String getFormula() {
-		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_VOLUME__FORMULA,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_VOLUME__FORMULA, true);
 	}
 
 	/**

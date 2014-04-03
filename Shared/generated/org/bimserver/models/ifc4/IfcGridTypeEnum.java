@@ -213,9 +213,7 @@ public enum IfcGridTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcGridTypeEnum[] VALUES_ARRAY = new IfcGridTypeEnum[] {
-			NULL, TRIANGULAR, NOTDEFINED, RADIAL, USERDEFINED, IRREGULAR,
-			RECTANGULAR, };
+	private static final IfcGridTypeEnum[] VALUES_ARRAY = new IfcGridTypeEnum[] { NULL, TRIANGULAR, NOTDEFINED, RADIAL, USERDEFINED, IRREGULAR, RECTANGULAR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Grid Type Enum</b></em>' enumerators.
@@ -223,8 +221,7 @@ public enum IfcGridTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcGridTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcGridTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Grid Type Enum</b></em>' literal with the specified literal value.

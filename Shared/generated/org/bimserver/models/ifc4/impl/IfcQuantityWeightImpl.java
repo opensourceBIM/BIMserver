@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl
-		implements IfcQuantityWeight {
+public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl implements IfcQuantityWeight {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public double getWeightValue() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE, true);
 	}
 
 	/**
@@ -73,8 +71,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public void setWeightValue(double newWeightValue) {
-		eSet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE,
-				newWeightValue);
+		eSet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE, newWeightValue);
 	}
 
 	/**
@@ -83,9 +80,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public String getWeightValueAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -94,8 +89,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public void setWeightValueAsString(String newWeightValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING,
-				newWeightValueAsString);
+		eSet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING, newWeightValueAsString);
 	}
 
 	/**
@@ -104,8 +98,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public String getFormula() {
-		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__FORMULA,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__FORMULA, true);
 	}
 
 	/**

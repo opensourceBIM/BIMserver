@@ -63,8 +63,7 @@ public class IfcSIUnitImpl extends IfcNamedUnitImpl implements IfcSIUnit {
 	 * @generated
 	 */
 	public IfcSIPrefix getPrefix() {
-		return (IfcSIPrefix) eGet(Ifc4Package.Literals.IFC_SI_UNIT__PREFIX,
-				true);
+		return (IfcSIPrefix) eGet(Ifc4Package.Literals.IFC_SI_UNIT__PREFIX, true);
 	}
 
 	/**
@@ -100,8 +99,7 @@ public class IfcSIUnitImpl extends IfcNamedUnitImpl implements IfcSIUnit {
 	 * @generated
 	 */
 	public IfcSIUnitName getName() {
-		return (IfcSIUnitName) eGet(Ifc4Package.Literals.IFC_SI_UNIT__NAME,
-				true);
+		return (IfcSIUnitName) eGet(Ifc4Package.Literals.IFC_SI_UNIT__NAME, true);
 	}
 
 	/**

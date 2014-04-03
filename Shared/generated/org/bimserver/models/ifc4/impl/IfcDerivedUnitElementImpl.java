@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements
-		IfcDerivedUnitElement {
+public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements IfcDerivedUnitElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,8 +74,7 @@ public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcNamedUnit getUnit() {
-		return (IfcNamedUnit) eGet(
-				Ifc4Package.Literals.IFC_DERIVED_UNIT_ELEMENT__UNIT, true);
+		return (IfcNamedUnit) eGet(Ifc4Package.Literals.IFC_DERIVED_UNIT_ELEMENT__UNIT, true);
 	}
 
 	/**
@@ -94,8 +92,7 @@ public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public int getExponent() {
-		return (Integer) eGet(
-				Ifc4Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT, true);
+		return (Integer) eGet(Ifc4Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT, true);
 	}
 
 	/**
@@ -104,8 +101,7 @@ public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setExponent(int newExponent) {
-		eSet(Ifc4Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT,
-				newExponent);
+		eSet(Ifc4Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT, newExponent);
 	}
 
 } //IfcDerivedUnitElementImpl

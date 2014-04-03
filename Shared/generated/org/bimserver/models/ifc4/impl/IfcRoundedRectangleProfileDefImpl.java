@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRoundedRectangleProfileDefImpl extends
-		IfcRectangleProfileDefImpl implements IfcRoundedRectangleProfileDef {
+public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImpl implements IfcRoundedRectangleProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcRoundedRectangleProfileDefImpl extends
 	 * @generated
 	 */
 	public double getRoundingRadius() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcRoundedRectangleProfileDefImpl extends
 	 * @generated
 	 */
 	public void setRoundingRadius(double newRoundingRadius) {
-		eSet(Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS,
-				newRoundingRadius);
+		eSet(Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS, newRoundingRadius);
 	}
 
 	/**
@@ -83,9 +79,7 @@ public class IfcRoundedRectangleProfileDefImpl extends
 	 * @generated
 	 */
 	public String getRoundingRadiusAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING, true);
 	}
 
 	/**
@@ -94,8 +88,7 @@ public class IfcRoundedRectangleProfileDefImpl extends
 	 * @generated
 	 */
 	public void setRoundingRadiusAsString(String newRoundingRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING,
-				newRoundingRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING, newRoundingRadiusAsString);
 	}
 
 } //IfcRoundedRectangleProfileDefImpl

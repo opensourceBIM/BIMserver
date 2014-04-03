@@ -288,9 +288,7 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFurnitureTypeEnum[] VALUES_ARRAY = new IfcFurnitureTypeEnum[] {
-			NULL, SOFA, TABLE, NOTDEFINED, BED, FILECABINET, SHELF, CHAIR,
-			USERDEFINED, DESK, };
+	private static final IfcFurnitureTypeEnum[] VALUES_ARRAY = new IfcFurnitureTypeEnum[] { NULL, SOFA, TABLE, NOTDEFINED, BED, FILECABINET, SHELF, CHAIR, USERDEFINED, DESK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Furniture Type Enum</b></em>' enumerators.
@@ -298,8 +296,7 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcFurnitureTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcFurnitureTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Furniture Type Enum</b></em>' literal with the specified literal value.

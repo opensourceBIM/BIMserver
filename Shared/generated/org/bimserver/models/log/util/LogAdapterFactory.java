@@ -221,14 +221,12 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseExtendedDataAddedToRevision(
-				ExtendedDataAddedToRevision object) {
+		public Adapter caseExtendedDataAddedToRevision(ExtendedDataAddedToRevision object) {
 			return createExtendedDataAddedToRevisionAdapter();
 		}
 
 		@Override
-		public Adapter caseExtendedDataAddedToProject(
-				ExtendedDataAddedToProject object) {
+		public Adapter caseExtendedDataAddedToProject(ExtendedDataAddedToProject object) {
 			return createExtendedDataAddedToProjectAdapter();
 		}
 

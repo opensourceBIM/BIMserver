@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCylindricalSurfaceImpl extends IfcElementarySurfaceImpl
-		implements IfcCylindricalSurface {
+public class IfcCylindricalSurfaceImpl extends IfcElementarySurfaceImpl implements IfcCylindricalSurface {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcCylindricalSurfaceImpl extends IfcElementarySurfaceImpl
 	 * @generated
 	 */
 	public double getRadius() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_CYLINDRICAL_SURFACE__RADIUS, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_CYLINDRICAL_SURFACE__RADIUS, true);
 	}
 
 	/**
@@ -81,9 +79,7 @@ public class IfcCylindricalSurfaceImpl extends IfcElementarySurfaceImpl
 	 * @generated
 	 */
 	public String getRadiusAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_CYLINDRICAL_SURFACE__RADIUS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CYLINDRICAL_SURFACE__RADIUS_AS_STRING, true);
 	}
 
 	/**
@@ -92,8 +88,7 @@ public class IfcCylindricalSurfaceImpl extends IfcElementarySurfaceImpl
 	 * @generated
 	 */
 	public void setRadiusAsString(String newRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_CYLINDRICAL_SURFACE__RADIUS_AS_STRING,
-				newRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_CYLINDRICAL_SURFACE__RADIUS_AS_STRING, newRadiusAsString);
 	}
 
 } //IfcCylindricalSurfaceImpl

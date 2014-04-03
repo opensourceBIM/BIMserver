@@ -263,9 +263,7 @@ public enum IfcPileTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPileTypeEnum[] VALUES_ARRAY = new IfcPileTypeEnum[] {
-			NULL, DRIVEN, SUPPORT, NOTDEFINED, JETGROUTING, USERDEFINED,
-			FRICTION, COHESION, BORED, };
+	private static final IfcPileTypeEnum[] VALUES_ARRAY = new IfcPileTypeEnum[] { NULL, DRIVEN, SUPPORT, NOTDEFINED, JETGROUTING, USERDEFINED, FRICTION, COHESION, BORED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pile Type Enum</b></em>' enumerators.
@@ -273,8 +271,7 @@ public enum IfcPileTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPileTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPileTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Pile Type Enum</b></em>' literal with the specified literal value.

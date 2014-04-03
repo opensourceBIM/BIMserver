@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcLightSource {
+public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl implements IfcLightSource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,8 +102,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public IfcColourRgb getLightColour() {
-		return (IfcColourRgb) eGet(
-				Ifc4Package.Literals.IFC_LIGHT_SOURCE__LIGHT_COLOUR, true);
+		return (IfcColourRgb) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__LIGHT_COLOUR, true);
 	}
 
 	/**
@@ -113,8 +111,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setLightColour(IfcColourRgb newLightColour) {
-		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__LIGHT_COLOUR,
-				newLightColour);
+		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__LIGHT_COLOUR, newLightColour);
 	}
 
 	/**
@@ -123,8 +120,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public double getAmbientIntensity() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY, true);
 	}
 
 	/**
@@ -133,8 +129,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setAmbientIntensity(double newAmbientIntensity) {
-		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY,
-				newAmbientIntensity);
+		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY, newAmbientIntensity);
 	}
 
 	/**
@@ -161,9 +156,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public String getAmbientIntensityAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY_AS_STRING, true);
 	}
 
 	/**
@@ -172,8 +165,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setAmbientIntensityAsString(String newAmbientIntensityAsString) {
-		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY_AS_STRING,
-				newAmbientIntensityAsString);
+		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY_AS_STRING, newAmbientIntensityAsString);
 	}
 
 	/**
@@ -200,8 +192,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public double getIntensity() {
-		return (Double) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY, true);
 	}
 
 	/**
@@ -237,9 +228,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public String getIntensityAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY_AS_STRING, true);
 	}
 
 	/**
@@ -248,8 +237,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setIntensityAsString(String newIntensityAsString) {
-		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY_AS_STRING,
-				newIntensityAsString);
+		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY_AS_STRING, newIntensityAsString);
 	}
 
 	/**

@@ -35,8 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcResourceApprovalRelationship extends
-		IfcResourceLevelRelationship {
+public interface IfcResourceApprovalRelationship extends IfcResourceLevelRelationship {
 	/**
 	 * Returns the value of the '<em><b>Related Resource Objects</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcResourceObjectSelect}.

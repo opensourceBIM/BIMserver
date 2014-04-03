@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCurveImpl extends IfcGeometricRepresentationItemImpl implements
-		IfcCurve {
+public class IfcCurveImpl extends IfcGeometricRepresentationItemImpl implements IfcCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

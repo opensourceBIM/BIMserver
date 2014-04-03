@@ -119,8 +119,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask {
 	 * @generated
 	 */
 	public String getWorkMethod() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TASK__WORK_METHOD,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TASK__WORK_METHOD, true);
 	}
 
 	/**
@@ -156,8 +155,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask {
 	 * @generated
 	 */
 	public Tristate getIsMilestone() {
-		return (Tristate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TASK__IS_MILESTONE, true);
+		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_TASK__IS_MILESTONE, true);
 	}
 
 	/**
@@ -175,8 +173,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask {
 	 * @generated
 	 */
 	public int getPriority() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_TASK__PRIORITY,
-				true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_TASK__PRIORITY, true);
 	}
 
 	/**

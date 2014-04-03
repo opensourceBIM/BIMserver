@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSchedulingTimeImpl extends IdEObjectImpl implements
-		IfcSchedulingTime {
+public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulingTime {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,8 +75,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__NAME, true);
 	}
 
 	/**
@@ -113,8 +111,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcDataOriginEnum getDataOrigin() {
-		return (IfcDataOriginEnum) eGet(
-				Ifc4Package.Literals.IFC_SCHEDULING_TIME__DATA_ORIGIN, true);
+		return (IfcDataOriginEnum) eGet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__DATA_ORIGIN, true);
 	}
 
 	/**
@@ -123,8 +120,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDataOrigin(IfcDataOriginEnum newDataOrigin) {
-		eSet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__DATA_ORIGIN,
-				newDataOrigin);
+		eSet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__DATA_ORIGIN, newDataOrigin);
 	}
 
 	/**
@@ -151,9 +147,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getUserDefinedDataOrigin() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SCHEDULING_TIME__USER_DEFINED_DATA_ORIGIN,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__USER_DEFINED_DATA_ORIGIN, true);
 	}
 
 	/**
@@ -162,8 +156,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setUserDefinedDataOrigin(String newUserDefinedDataOrigin) {
-		eSet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__USER_DEFINED_DATA_ORIGIN,
-				newUserDefinedDataOrigin);
+		eSet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__USER_DEFINED_DATA_ORIGIN, newUserDefinedDataOrigin);
 	}
 
 	/**

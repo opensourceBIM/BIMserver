@@ -61,8 +61,7 @@ public class IfcLampImpl extends IfcFlowTerminalImpl implements IfcLamp {
 	 * @generated
 	 */
 	public IfcLampTypeEnum getPredefinedType() {
-		return (IfcLampTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_LAMP__PREDEFINED_TYPE, true);
+		return (IfcLampTypeEnum) eGet(Ifc4Package.Literals.IFC_LAMP__PREDEFINED_TYPE, true);
 	}
 
 	/**

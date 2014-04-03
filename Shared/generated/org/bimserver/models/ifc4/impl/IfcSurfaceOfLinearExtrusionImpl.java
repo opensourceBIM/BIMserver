@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl
-		implements IfcSurfaceOfLinearExtrusion {
+public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl implements IfcSurfaceOfLinearExtrusion {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl
 	 * @generated
 	 */
 	public IfcDirection getExtrudedDirection() {
-		return (IfcDirection) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__EXTRUDED_DIRECTION,
-				true);
+		return (IfcDirection) eGet(Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__EXTRUDED_DIRECTION, true);
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl
 	 * @generated
 	 */
 	public void setExtrudedDirection(IfcDirection newExtrudedDirection) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__EXTRUDED_DIRECTION,
-				newExtrudedDirection);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__EXTRUDED_DIRECTION, newExtrudedDirection);
 	}
 
 	/**
@@ -85,9 +81,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl
 	 * @generated
 	 */
 	public double getDepth() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH, true);
 	}
 
 	/**
@@ -96,8 +90,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl
 	 * @generated
 	 */
 	public void setDepth(double newDepth) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH,
-				newDepth);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH, newDepth);
 	}
 
 	/**
@@ -106,9 +99,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl
 	 * @generated
 	 */
 	public String getDepthAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH_AS_STRING, true);
 	}
 
 	/**
@@ -117,8 +108,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl
 	 * @generated
 	 */
 	public void setDepthAsString(String newDepthAsString) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH_AS_STRING,
-				newDepthAsString);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH_AS_STRING, newDepthAsString);
 	}
 
 } //IfcSurfaceOfLinearExtrusionImpl

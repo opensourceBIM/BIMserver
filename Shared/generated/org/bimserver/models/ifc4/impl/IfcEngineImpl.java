@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEngineImpl extends IfcEnergyConversionDeviceImpl implements
-		IfcEngine {
+public class IfcEngineImpl extends IfcEnergyConversionDeviceImpl implements IfcEngine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcEngineImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public IfcEngineTypeEnum getPredefinedType() {
-		return (IfcEngineTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_ENGINE__PREDEFINED_TYPE, true);
+		return (IfcEngineTypeEnum) eGet(Ifc4Package.Literals.IFC_ENGINE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcEngineImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcEngineTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_ENGINE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_ENGINE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDistributionCircuitImpl extends IfcDistributionSystemImpl
-		implements IfcDistributionCircuit {
+public class IfcDistributionCircuitImpl extends IfcDistributionSystemImpl implements IfcDistributionCircuit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

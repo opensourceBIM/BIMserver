@@ -78,8 +78,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * @generated
 	 */
 	public String getIdentifier() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TABLE_COLUMN__IDENTIFIER,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TABLE_COLUMN__IDENTIFIER, true);
 	}
 
 	/**
@@ -151,8 +150,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TABLE_COLUMN__DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TABLE_COLUMN__DESCRIPTION, true);
 	}
 
 	/**
@@ -224,8 +222,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * @generated
 	 */
 	public IfcReference getReferencePath() {
-		return (IfcReference) eGet(
-				Ifc4Package.Literals.IFC_TABLE_COLUMN__REFERENCE_PATH, true);
+		return (IfcReference) eGet(Ifc4Package.Literals.IFC_TABLE_COLUMN__REFERENCE_PATH, true);
 	}
 
 	/**
@@ -234,8 +231,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * @generated
 	 */
 	public void setReferencePath(IfcReference newReferencePath) {
-		eSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__REFERENCE_PATH,
-				newReferencePath);
+		eSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__REFERENCE_PATH, newReferencePath);
 	}
 
 	/**

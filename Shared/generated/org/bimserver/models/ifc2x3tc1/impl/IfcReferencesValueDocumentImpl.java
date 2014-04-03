@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements
-		IfcReferencesValueDocument {
+public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements IfcReferencesValueDocument {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,9 +79,7 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcDocumentSelect getReferencedDocument() {
-		return (IfcDocumentSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCED_DOCUMENT,
-				true);
+		return (IfcDocumentSelect) eGet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCED_DOCUMENT, true);
 	}
 
 	/**
@@ -91,8 +88,7 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setReferencedDocument(IfcDocumentSelect newReferencedDocument) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCED_DOCUMENT,
-				newReferencedDocument);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCED_DOCUMENT, newReferencedDocument);
 	}
 
 	/**
@@ -102,9 +98,7 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValue> getReferencingValues() {
-		return (EList<IfcAppliedValue>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCING_VALUES,
-				true);
+		return (EList<IfcAppliedValue>) eGet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCING_VALUES, true);
 	}
 
 	/**
@@ -113,9 +107,7 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__NAME,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__NAME, true);
 	}
 
 	/**
@@ -124,8 +116,7 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__NAME,
-				newName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__NAME, newName);
 	}
 
 	/**
@@ -152,9 +143,7 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__DESCRIPTION,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__DESCRIPTION, true);
 	}
 
 	/**
@@ -163,8 +152,7 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__DESCRIPTION,
-				newDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__DESCRIPTION, newDescription);
 	}
 
 	/**

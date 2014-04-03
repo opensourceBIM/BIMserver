@@ -38,8 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcReference extends IfcAppliedValueSelect,
-		IfcMetricValueSelect {
+public interface IfcReference extends IfcAppliedValueSelect, IfcMetricValueSelect {
 	/**
 	 * Returns the value of the '<em><b>Type Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->

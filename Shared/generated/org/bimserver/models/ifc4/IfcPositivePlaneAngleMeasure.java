@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcPositivePlaneAngleMeasure extends IfcPlaneAngleMeasure,
-		IfcMeasureValue {
+public interface IfcPositivePlaneAngleMeasure extends IfcPlaneAngleMeasure, IfcMeasureValue {
 } // IfcPositivePlaneAngleMeasure

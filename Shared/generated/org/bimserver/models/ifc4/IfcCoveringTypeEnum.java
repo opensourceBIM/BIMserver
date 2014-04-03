@@ -363,10 +363,8 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCoveringTypeEnum[] VALUES_ARRAY = new IfcCoveringTypeEnum[] {
-			NULL, SKIRTINGBOARD, MOLDING, NOTDEFINED, CEILING, MEMBRANE,
-			ROOFING, CLADDING, USERDEFINED, WRAPPING, FLOORING, SLEEVING,
-			INSULATION, };
+	private static final IfcCoveringTypeEnum[] VALUES_ARRAY = new IfcCoveringTypeEnum[] { NULL, SKIRTINGBOARD, MOLDING, NOTDEFINED, CEILING, MEMBRANE, ROOFING, CLADDING,
+			USERDEFINED, WRAPPING, FLOORING, SLEEVING, INSULATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Covering Type Enum</b></em>' enumerators.
@@ -374,8 +372,7 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCoveringTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCoveringTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Covering Type Enum</b></em>' literal with the specified literal value.

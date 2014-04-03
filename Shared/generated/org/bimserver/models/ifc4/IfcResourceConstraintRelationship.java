@@ -35,8 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcResourceConstraintRelationship extends
-		IfcResourceLevelRelationship {
+public interface IfcResourceConstraintRelationship extends IfcResourceLevelRelationship {
 	/**
 	 * Returns the value of the '<em><b>Relating Constraint</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc4.IfcConstraint#getPropertiesForConstraint <em>Properties For Constraint</em>}'.

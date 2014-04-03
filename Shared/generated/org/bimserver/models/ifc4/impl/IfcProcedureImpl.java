@@ -61,8 +61,7 @@ public class IfcProcedureImpl extends IfcProcessImpl implements IfcProcedure {
 	 * @generated
 	 */
 	public IfcProcedureTypeEnum getPredefinedType() {
-		return (IfcProcedureTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PROCEDURE__PREDEFINED_TYPE, true);
+		return (IfcProcedureTypeEnum) eGet(Ifc4Package.Literals.IFC_PROCEDURE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -71,8 +70,7 @@ public class IfcProcedureImpl extends IfcProcessImpl implements IfcProcedure {
 	 * @generated
 	 */
 	public void setPredefinedType(IfcProcedureTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_PROCEDURE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_PROCEDURE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

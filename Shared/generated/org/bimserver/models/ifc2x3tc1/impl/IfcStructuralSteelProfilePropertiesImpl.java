@@ -41,9 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralSteelProfilePropertiesImpl extends
-		IfcStructuralProfilePropertiesImpl implements
-		IfcStructuralSteelProfileProperties {
+public class IfcStructuralSteelProfilePropertiesImpl extends IfcStructuralProfilePropertiesImpl implements IfcStructuralSteelProfileProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,9 +67,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public double getShearAreaZ() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_Z,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_Z, true);
 	}
 
 	/**
@@ -80,8 +76,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public void setShearAreaZ(double newShearAreaZ) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_Z,
-				newShearAreaZ);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_Z, newShearAreaZ);
 	}
 
 	/**
@@ -108,9 +103,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public String getShearAreaZAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_ZAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_ZAS_STRING, true);
 	}
 
 	/**
@@ -119,8 +112,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public void setShearAreaZAsString(String newShearAreaZAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_ZAS_STRING,
-				newShearAreaZAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_ZAS_STRING, newShearAreaZAsString);
 	}
 
 	/**
@@ -147,9 +139,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public double getShearAreaY() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_Y,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_Y, true);
 	}
 
 	/**
@@ -158,8 +148,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public void setShearAreaY(double newShearAreaY) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_Y,
-				newShearAreaY);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_Y, newShearAreaY);
 	}
 
 	/**
@@ -186,9 +175,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public String getShearAreaYAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_YAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_YAS_STRING, true);
 	}
 
 	/**
@@ -197,8 +184,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public void setShearAreaYAsString(String newShearAreaYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_YAS_STRING,
-				newShearAreaYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__SHEAR_AREA_YAS_STRING, newShearAreaYAsString);
 	}
 
 	/**
@@ -225,9 +211,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public double getPlasticShapeFactorY() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_Y,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_Y, true);
 	}
 
 	/**
@@ -236,8 +220,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public void setPlasticShapeFactorY(double newPlasticShapeFactorY) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_Y,
-				newPlasticShapeFactorY);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_Y, newPlasticShapeFactorY);
 	}
 
 	/**
@@ -264,9 +247,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public String getPlasticShapeFactorYAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_YAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_YAS_STRING, true);
 	}
 
 	/**
@@ -274,10 +255,8 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPlasticShapeFactorYAsString(
-			String newPlasticShapeFactorYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_YAS_STRING,
-				newPlasticShapeFactorYAsString);
+	public void setPlasticShapeFactorYAsString(String newPlasticShapeFactorYAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_YAS_STRING, newPlasticShapeFactorYAsString);
 	}
 
 	/**
@@ -304,9 +283,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public double getPlasticShapeFactorZ() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_Z,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_Z, true);
 	}
 
 	/**
@@ -315,8 +292,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public void setPlasticShapeFactorZ(double newPlasticShapeFactorZ) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_Z,
-				newPlasticShapeFactorZ);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_Z, newPlasticShapeFactorZ);
 	}
 
 	/**
@@ -343,9 +319,7 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * @generated
 	 */
 	public String getPlasticShapeFactorZAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_ZAS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_ZAS_STRING, true);
 	}
 
 	/**
@@ -353,10 +327,8 @@ public class IfcStructuralSteelProfilePropertiesImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPlasticShapeFactorZAsString(
-			String newPlasticShapeFactorZAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_ZAS_STRING,
-				newPlasticShapeFactorZAsString);
+	public void setPlasticShapeFactorZAsString(String newPlasticShapeFactorZAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES__PLASTIC_SHAPE_FACTOR_ZAS_STRING, newPlasticShapeFactorZAsString);
 	}
 
 	/**

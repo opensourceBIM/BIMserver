@@ -106,8 +106,7 @@ public class IfcObjectImpl extends IfcObjectDefinitionImpl implements IfcObject 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByObject> getIsDeclaredBy() {
-		return (EList<IfcRelDefinesByObject>) eGet(
-				Ifc4Package.Literals.IFC_OBJECT__IS_DECLARED_BY, true);
+		return (EList<IfcRelDefinesByObject>) eGet(Ifc4Package.Literals.IFC_OBJECT__IS_DECLARED_BY, true);
 	}
 
 	/**
@@ -135,8 +134,7 @@ public class IfcObjectImpl extends IfcObjectDefinitionImpl implements IfcObject 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByObject> getDeclares() {
-		return (EList<IfcRelDefinesByObject>) eGet(
-				Ifc4Package.Literals.IFC_OBJECT__DECLARES, true);
+		return (EList<IfcRelDefinesByObject>) eGet(Ifc4Package.Literals.IFC_OBJECT__DECLARES, true);
 	}
 
 	/**
@@ -164,8 +162,7 @@ public class IfcObjectImpl extends IfcObjectDefinitionImpl implements IfcObject 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByType> getIsTypedBy() {
-		return (EList<IfcRelDefinesByType>) eGet(
-				Ifc4Package.Literals.IFC_OBJECT__IS_TYPED_BY, true);
+		return (EList<IfcRelDefinesByType>) eGet(Ifc4Package.Literals.IFC_OBJECT__IS_TYPED_BY, true);
 	}
 
 	/**
@@ -193,8 +190,7 @@ public class IfcObjectImpl extends IfcObjectDefinitionImpl implements IfcObject 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByProperties> getIsDefinedBy() {
-		return (EList<IfcRelDefinesByProperties>) eGet(
-				Ifc4Package.Literals.IFC_OBJECT__IS_DEFINED_BY, true);
+		return (EList<IfcRelDefinesByProperties>) eGet(Ifc4Package.Literals.IFC_OBJECT__IS_DEFINED_BY, true);
 	}
 
 	/**

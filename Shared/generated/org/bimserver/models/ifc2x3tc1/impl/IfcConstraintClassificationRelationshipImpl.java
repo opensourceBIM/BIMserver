@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstraintClassificationRelationshipImpl extends IdEObjectImpl
-		implements IfcConstraintClassificationRelationship {
+public class IfcConstraintClassificationRelationshipImpl extends IdEObjectImpl implements IfcConstraintClassificationRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,9 +77,7 @@ public class IfcConstraintClassificationRelationshipImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public IfcConstraint getClassifiedConstraint() {
-		return (IfcConstraint) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_CONSTRAINT,
-				true);
+		return (IfcConstraint) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_CONSTRAINT, true);
 	}
 
 	/**
@@ -89,8 +86,7 @@ public class IfcConstraintClassificationRelationshipImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public void setClassifiedConstraint(IfcConstraint newClassifiedConstraint) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_CONSTRAINT,
-				newClassifiedConstraint);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_CONSTRAINT, newClassifiedConstraint);
 	}
 
 	/**
@@ -100,9 +96,7 @@ public class IfcConstraintClassificationRelationshipImpl extends IdEObjectImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationNotationSelect> getRelatedClassifications() {
-		return (EList<IfcClassificationNotationSelect>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP__RELATED_CLASSIFICATIONS,
-				true);
+		return (EList<IfcClassificationNotationSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP__RELATED_CLASSIFICATIONS, true);
 	}
 
 } //IfcConstraintClassificationRelationshipImpl

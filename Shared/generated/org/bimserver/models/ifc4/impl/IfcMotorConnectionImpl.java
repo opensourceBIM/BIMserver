@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMotorConnectionImpl extends IfcEnergyConversionDeviceImpl
-		implements IfcMotorConnection {
+public class IfcMotorConnectionImpl extends IfcEnergyConversionDeviceImpl implements IfcMotorConnection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcMotorConnectionImpl extends IfcEnergyConversionDeviceImpl
 	 * @generated
 	 */
 	public IfcMotorConnectionTypeEnum getPredefinedType() {
-		return (IfcMotorConnectionTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_MOTOR_CONNECTION__PREDEFINED_TYPE,
-				true);
+		return (IfcMotorConnectionTypeEnum) eGet(Ifc4Package.Literals.IFC_MOTOR_CONNECTION__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcMotorConnectionImpl extends IfcEnergyConversionDeviceImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcMotorConnectionTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_MOTOR_CONNECTION__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_MOTOR_CONNECTION__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConditionCriterionImpl extends IfcControlImpl implements
-		IfcConditionCriterion {
+public class IfcConditionCriterionImpl extends IfcControlImpl implements IfcConditionCriterion {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcConditionCriterionImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public IfcConditionCriterionSelect getCriterion() {
-		return (IfcConditionCriterionSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION,
-				true);
+		return (IfcConditionCriterionSelect) eGet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION, true);
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class IfcConditionCriterionImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setCriterion(IfcConditionCriterionSelect newCriterion) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION,
-				newCriterion);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION, newCriterion);
 	}
 
 	/**
@@ -85,9 +81,7 @@ public class IfcConditionCriterionImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public IfcDateTimeSelect getCriterionDateTime() {
-		return (IfcDateTimeSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME,
-				true);
+		return (IfcDateTimeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME, true);
 	}
 
 	/**
@@ -96,8 +90,7 @@ public class IfcConditionCriterionImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setCriterionDateTime(IfcDateTimeSelect newCriterionDateTime) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME,
-				newCriterionDateTime);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONDITION_CRITERION__CRITERION_DATE_TIME, newCriterionDateTime);
 	}
 
 } //IfcConditionCriterionImpl

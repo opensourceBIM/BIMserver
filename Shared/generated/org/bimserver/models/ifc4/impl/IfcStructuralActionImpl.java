@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralActionImpl extends IfcStructuralActivityImpl
-		implements IfcStructuralAction {
+public class IfcStructuralActionImpl extends IfcStructuralActivityImpl implements IfcStructuralAction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcStructuralActionImpl extends IfcStructuralActivityImpl
 	 * @generated
 	 */
 	public Tristate getDestabilizingLoad() {
-		return (Tristate) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_ACTION__DESTABILIZING_LOAD,
-				true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ACTION__DESTABILIZING_LOAD, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcStructuralActionImpl extends IfcStructuralActivityImpl
 	 * @generated
 	 */
 	public void setDestabilizingLoad(Tristate newDestabilizingLoad) {
-		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_ACTION__DESTABILIZING_LOAD,
-				newDestabilizingLoad);
+		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_ACTION__DESTABILIZING_LOAD, newDestabilizingLoad);
 	}
 
 	/**

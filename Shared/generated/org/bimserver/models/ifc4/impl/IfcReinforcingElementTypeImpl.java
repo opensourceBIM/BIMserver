@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcReinforcingElementTypeImpl extends IfcElementComponentTypeImpl
-		implements IfcReinforcingElementType {
+public class IfcReinforcingElementTypeImpl extends IfcElementComponentTypeImpl implements IfcReinforcingElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

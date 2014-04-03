@@ -44,8 +44,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcAppliedValue extends IfcMetricValueSelect,
-		IfcObjectReferenceSelect, IfcResourceObjectSelect {
+public interface IfcAppliedValue extends IfcMetricValueSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

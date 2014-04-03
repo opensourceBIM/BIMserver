@@ -33,8 +33,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcReparametrisedCompositeCurveSegment extends
-		IfcCompositeCurveSegment {
+public interface IfcReparametrisedCompositeCurveSegment extends IfcCompositeCurveSegment {
 	/**
 	 * Returns the value of the '<em><b>Param Length</b></em>' attribute.
 	 * <!-- begin-user-doc -->

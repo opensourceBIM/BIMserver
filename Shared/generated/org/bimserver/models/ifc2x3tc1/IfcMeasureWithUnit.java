@@ -33,8 +33,7 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcMeasureWithUnit extends IfcAppliedValueSelect,
-		IfcConditionCriterionSelect, IfcMetricValueSelect {
+public interface IfcMeasureWithUnit extends IfcAppliedValueSelect, IfcConditionCriterionSelect, IfcMetricValueSelect {
 	/**
 	 * Returns the value of the '<em><b>Value Component</b></em>' reference.
 	 * <!-- begin-user-doc -->

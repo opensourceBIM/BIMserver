@@ -33,8 +33,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcConversionBasedUnitWithOffset extends
-		IfcConversionBasedUnit {
+public interface IfcConversionBasedUnitWithOffset extends IfcConversionBasedUnit {
 	/**
 	 * Returns the value of the '<em><b>Conversion Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRationalBezierCurveImpl extends IfcBezierCurveImpl implements
-		IfcRationalBezierCurve {
+public class IfcRationalBezierCurveImpl extends IfcBezierCurveImpl implements IfcRationalBezierCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcRationalBezierCurveImpl extends IfcBezierCurveImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getWeightsData() {
-		return (EList<Double>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_RATIONAL_BEZIER_CURVE__WEIGHTS_DATA,
-				true);
+		return (EList<Double>) eGet(Ifc2x3tc1Package.Literals.IFC_RATIONAL_BEZIER_CURVE__WEIGHTS_DATA, true);
 	}
 
 	/**
@@ -77,9 +74,7 @@ public class IfcRationalBezierCurveImpl extends IfcBezierCurveImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getWeightsDataAsString() {
-		return (EList<String>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_RATIONAL_BEZIER_CURVE__WEIGHTS_DATA_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_RATIONAL_BEZIER_CURVE__WEIGHTS_DATA_AS_STRING, true);
 	}
 
 } //IfcRationalBezierCurveImpl

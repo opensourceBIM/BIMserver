@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPreDefinedPropertySetImpl extends IfcPropertySetDefinitionImpl
-		implements IfcPreDefinedPropertySet {
+public class IfcPreDefinedPropertySetImpl extends IfcPropertySetDefinitionImpl implements IfcPreDefinedPropertySet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

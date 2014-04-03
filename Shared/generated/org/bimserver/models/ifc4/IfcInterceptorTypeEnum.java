@@ -213,8 +213,7 @@ public enum IfcInterceptorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcInterceptorTypeEnum[] VALUES_ARRAY = new IfcInterceptorTypeEnum[] {
-			NULL, GREASE, NOTDEFINED, OIL, PETROL, CYCLONIC, USERDEFINED, };
+	private static final IfcInterceptorTypeEnum[] VALUES_ARRAY = new IfcInterceptorTypeEnum[] { NULL, GREASE, NOTDEFINED, OIL, PETROL, CYCLONIC, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Interceptor Type Enum</b></em>' enumerators.
@@ -222,8 +221,7 @@ public enum IfcInterceptorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcInterceptorTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcInterceptorTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Interceptor Type Enum</b></em>' literal with the specified literal value.

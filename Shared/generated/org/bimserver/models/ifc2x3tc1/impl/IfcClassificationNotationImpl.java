@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcClassificationNotationImpl extends IdEObjectImpl implements
-		IfcClassificationNotation {
+public class IfcClassificationNotationImpl extends IdEObjectImpl implements IfcClassificationNotation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,9 +76,7 @@ public class IfcClassificationNotationImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationNotationFacet> getNotationFacets() {
-		return (EList<IfcClassificationNotationFacet>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_NOTATION__NOTATION_FACETS,
-				true);
+		return (EList<IfcClassificationNotationFacet>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_NOTATION__NOTATION_FACETS, true);
 	}
 
 } //IfcClassificationNotationImpl

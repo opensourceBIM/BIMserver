@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcReinforcingElementImpl extends IfcBuildingElementComponentImpl
-		implements IfcReinforcingElement {
+public class IfcReinforcingElementImpl extends IfcBuildingElementComponentImpl implements IfcReinforcingElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcReinforcingElementImpl extends IfcBuildingElementComponentImpl
 	 * @generated
 	 */
 	public String getSteelGrade() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCING_ELEMENT__STEEL_GRADE,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_ELEMENT__STEEL_GRADE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcReinforcingElementImpl extends IfcBuildingElementComponentImpl
 	 * @generated
 	 */
 	public void setSteelGrade(String newSteelGrade) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_ELEMENT__STEEL_GRADE,
-				newSteelGrade);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_ELEMENT__STEEL_GRADE, newSteelGrade);
 	}
 
 	/**

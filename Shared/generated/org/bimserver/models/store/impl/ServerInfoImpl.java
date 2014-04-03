@@ -74,8 +74,7 @@ public class ServerInfoImpl extends IdEObjectImpl implements ServerInfo {
 	 * @generated
 	 */
 	public ServerState getServerState() {
-		return (ServerState) eGet(
-				StorePackage.Literals.SERVER_INFO__SERVER_STATE, true);
+		return (ServerState) eGet(StorePackage.Literals.SERVER_INFO__SERVER_STATE, true);
 	}
 
 	/**
@@ -93,8 +92,7 @@ public class ServerInfoImpl extends IdEObjectImpl implements ServerInfo {
 	 * @generated
 	 */
 	public String getErrorMessage() {
-		return (String) eGet(StorePackage.Literals.SERVER_INFO__ERROR_MESSAGE,
-				true);
+		return (String) eGet(StorePackage.Literals.SERVER_INFO__ERROR_MESSAGE, true);
 	}
 
 	/**

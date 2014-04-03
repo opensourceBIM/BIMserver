@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPhysicalSimpleQuantityImpl extends IfcPhysicalQuantityImpl
-		implements IfcPhysicalSimpleQuantity {
+public class IfcPhysicalSimpleQuantityImpl extends IfcPhysicalQuantityImpl implements IfcPhysicalSimpleQuantity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcPhysicalSimpleQuantityImpl extends IfcPhysicalQuantityImpl
 	 * @generated
 	 */
 	public IfcNamedUnit getUnit() {
-		return (IfcNamedUnit) eGet(
-				Ifc4Package.Literals.IFC_PHYSICAL_SIMPLE_QUANTITY__UNIT, true);
+		return (IfcNamedUnit) eGet(Ifc4Package.Literals.IFC_PHYSICAL_SIMPLE_QUANTITY__UNIT, true);
 	}
 
 	/**

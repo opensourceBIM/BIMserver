@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPipeSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements
-		IfcPipeSegmentType {
+public class IfcPipeSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements IfcPipeSegmentType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcPipeSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements
 	 * @generated
 	 */
 	public IfcPipeSegmentTypeEnum getPredefinedType() {
-		return (IfcPipeSegmentTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PIPE_SEGMENT_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcPipeSegmentTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PIPE_SEGMENT_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcPipeSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcPipeSegmentTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PIPE_SEGMENT_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PIPE_SEGMENT_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcPipeSegmentTypeImpl

@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLinearActionImpl extends IfcStructuralCurveActionImpl
-		implements IfcStructuralLinearAction {
+public class IfcStructuralLinearActionImpl extends IfcStructuralCurveActionImpl implements IfcStructuralLinearAction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

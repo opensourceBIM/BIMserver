@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDimensionCurveImpl extends IfcAnnotationCurveOccurrenceImpl
-		implements IfcDimensionCurve {
+public class IfcDimensionCurveImpl extends IfcAnnotationCurveOccurrenceImpl implements IfcDimensionCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcDimensionCurveImpl extends IfcAnnotationCurveOccurrenceImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTerminatorSymbol> getAnnotatedBySymbols() {
-		return (EList<IfcTerminatorSymbol>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DIMENSION_CURVE__ANNOTATED_BY_SYMBOLS,
-				true);
+		return (EList<IfcTerminatorSymbol>) eGet(Ifc2x3tc1Package.Literals.IFC_DIMENSION_CURVE__ANNOTATED_BY_SYMBOLS, true);
 	}
 
 	/**

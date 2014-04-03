@@ -413,10 +413,8 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTaskTypeEnum[] VALUES_ARRAY = new IfcTaskTypeEnum[] {
-			NULL, CONSTRUCTION, NOTDEFINED, MAINTENANCE, LOGISTIC, MOVE,
-			REMOVAL, DISMANTLE, DEMOLITION, INSTALLATION, ATTENDANCE,
-			OPERATION, DISPOSAL, USERDEFINED, RENOVATION, };
+	private static final IfcTaskTypeEnum[] VALUES_ARRAY = new IfcTaskTypeEnum[] { NULL, CONSTRUCTION, NOTDEFINED, MAINTENANCE, LOGISTIC, MOVE, REMOVAL, DISMANTLE, DEMOLITION,
+			INSTALLATION, ATTENDANCE, OPERATION, DISPOSAL, USERDEFINED, RENOVATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Task Type Enum</b></em>' enumerators.
@@ -424,8 +422,7 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcTaskTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcTaskTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Task Type Enum</b></em>' literal with the specified literal value.

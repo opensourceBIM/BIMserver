@@ -44,8 +44,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
-		IfcMaterialProfile {
+public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements IfcMaterialProfile {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,8 +70,7 @@ public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__NAME, true);
 	}
 
 	/**
@@ -108,8 +106,7 @@ public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE__DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__DESCRIPTION, true);
 	}
 
 	/**
@@ -118,8 +115,7 @@ public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -146,8 +142,7 @@ public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
 	 * @generated
 	 */
 	public IfcMaterial getMaterial() {
-		return (IfcMaterial) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE__MATERIAL, true);
+		return (IfcMaterial) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__MATERIAL, true);
 	}
 
 	/**
@@ -183,8 +178,7 @@ public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
 	 * @generated
 	 */
 	public IfcProfileDef getProfile() {
-		return (IfcProfileDef) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE__PROFILE, true);
+		return (IfcProfileDef) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__PROFILE, true);
 	}
 
 	/**
@@ -202,8 +196,7 @@ public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
 	 * @generated
 	 */
 	public double getPriority() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE__PRIORITY, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__PRIORITY, true);
 	}
 
 	/**
@@ -239,9 +232,7 @@ public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
 	 * @generated
 	 */
 	public String getPriorityAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE__PRIORITY_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__PRIORITY_AS_STRING, true);
 	}
 
 	/**
@@ -250,8 +241,7 @@ public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
 	 * @generated
 	 */
 	public void setPriorityAsString(String newPriorityAsString) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__PRIORITY_AS_STRING,
-				newPriorityAsString);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__PRIORITY_AS_STRING, newPriorityAsString);
 	}
 
 	/**
@@ -278,8 +268,7 @@ public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
 	 * @generated
 	 */
 	public String getCategory() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE__CATEGORY, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__CATEGORY, true);
 	}
 
 	/**
@@ -315,9 +304,7 @@ public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
 	 * @generated
 	 */
 	public IfcMaterialProfileSet getToMaterialProfileSet() {
-		return (IfcMaterialProfileSet) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE__TO_MATERIAL_PROFILE_SET,
-				true);
+		return (IfcMaterialProfileSet) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__TO_MATERIAL_PROFILE_SET, true);
 	}
 
 	/**
@@ -325,10 +312,8 @@ public class IfcMaterialProfileImpl extends IfcMaterialDefinitionImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setToMaterialProfileSet(
-			IfcMaterialProfileSet newToMaterialProfileSet) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__TO_MATERIAL_PROFILE_SET,
-				newToMaterialProfileSet);
+	public void setToMaterialProfileSet(IfcMaterialProfileSet newToMaterialProfileSet) {
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE__TO_MATERIAL_PROFILE_SET, newToMaterialProfileSet);
 	}
 
 	/**

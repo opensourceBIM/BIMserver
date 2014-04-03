@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcActuatorImpl extends IfcDistributionControlElementImpl
-		implements IfcActuator {
+public class IfcActuatorImpl extends IfcDistributionControlElementImpl implements IfcActuator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcActuatorImpl extends IfcDistributionControlElementImpl
 	 * @generated
 	 */
 	public IfcActuatorTypeEnum getPredefinedType() {
-		return (IfcActuatorTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_ACTUATOR__PREDEFINED_TYPE, true);
+		return (IfcActuatorTypeEnum) eGet(Ifc4Package.Literals.IFC_ACTUATOR__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcActuatorImpl extends IfcDistributionControlElementImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcActuatorTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_ACTUATOR__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_ACTUATOR__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

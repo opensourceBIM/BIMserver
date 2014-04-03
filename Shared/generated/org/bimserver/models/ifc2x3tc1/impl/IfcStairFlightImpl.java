@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
-		IfcStairFlight {
+public class IfcStairFlightImpl extends IfcBuildingElementImpl implements IfcStairFlight {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +65,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public int getNumberOfRiser() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER,
-				true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER, true);
 	}
 
 	/**
@@ -77,8 +74,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public void setNumberOfRiser(int newNumberOfRiser) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER,
-				newNumberOfRiser);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER, newNumberOfRiser);
 	}
 
 	/**
@@ -105,9 +101,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public int getNumberOfTreads() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_TREADS,
-				true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_TREADS, true);
 	}
 
 	/**
@@ -116,8 +110,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public void setNumberOfTreads(int newNumberOfTreads) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_TREADS,
-				newNumberOfTreads);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_TREADS, newNumberOfTreads);
 	}
 
 	/**
@@ -144,8 +137,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public double getRiserHeight() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__RISER_HEIGHT, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__RISER_HEIGHT, true);
 	}
 
 	/**
@@ -154,8 +146,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public void setRiserHeight(double newRiserHeight) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__RISER_HEIGHT,
-				newRiserHeight);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__RISER_HEIGHT, newRiserHeight);
 	}
 
 	/**
@@ -182,9 +173,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public String getRiserHeightAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__RISER_HEIGHT_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__RISER_HEIGHT_AS_STRING, true);
 	}
 
 	/**
@@ -193,8 +182,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public void setRiserHeightAsString(String newRiserHeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__RISER_HEIGHT_AS_STRING,
-				newRiserHeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__RISER_HEIGHT_AS_STRING, newRiserHeightAsString);
 	}
 
 	/**
@@ -221,8 +209,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public double getTreadLength() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__TREAD_LENGTH, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__TREAD_LENGTH, true);
 	}
 
 	/**
@@ -231,8 +218,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public void setTreadLength(double newTreadLength) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__TREAD_LENGTH,
-				newTreadLength);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__TREAD_LENGTH, newTreadLength);
 	}
 
 	/**
@@ -259,9 +245,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public String getTreadLengthAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__TREAD_LENGTH_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__TREAD_LENGTH_AS_STRING, true);
 	}
 
 	/**
@@ -270,8 +254,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public void setTreadLengthAsString(String newTreadLengthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__TREAD_LENGTH_AS_STRING,
-				newTreadLengthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__TREAD_LENGTH_AS_STRING, newTreadLengthAsString);
 	}
 
 	/**

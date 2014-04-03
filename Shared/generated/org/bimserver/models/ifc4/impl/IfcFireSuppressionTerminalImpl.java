@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFireSuppressionTerminalImpl extends IfcFlowTerminalImpl
-		implements IfcFireSuppressionTerminal {
+public class IfcFireSuppressionTerminalImpl extends IfcFlowTerminalImpl implements IfcFireSuppressionTerminal {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcFireSuppressionTerminalImpl extends IfcFlowTerminalImpl
 	 * @generated
 	 */
 	public IfcFireSuppressionTerminalTypeEnum getPredefinedType() {
-		return (IfcFireSuppressionTerminalTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_FIRE_SUPPRESSION_TERMINAL__PREDEFINED_TYPE,
-				true);
+		return (IfcFireSuppressionTerminalTypeEnum) eGet(Ifc4Package.Literals.IFC_FIRE_SUPPRESSION_TERMINAL__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcFireSuppressionTerminalImpl extends IfcFlowTerminalImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcFireSuppressionTerminalTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_FIRE_SUPPRESSION_TERMINAL__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcFireSuppressionTerminalTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_FIRE_SUPPRESSION_TERMINAL__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

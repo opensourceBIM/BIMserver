@@ -116,8 +116,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcAdvancedBrepWithVoids(
-				IfcAdvancedBrepWithVoids object) {
+		public Adapter caseIfcAdvancedBrepWithVoids(IfcAdvancedBrepWithVoids object) {
 			return createIfcAdvancedBrepWithVoidsAdapter();
 		}
 
@@ -147,14 +146,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcAirToAirHeatRecovery(
-				IfcAirToAirHeatRecovery object) {
+		public Adapter caseIfcAirToAirHeatRecovery(IfcAirToAirHeatRecovery object) {
 			return createIfcAirToAirHeatRecoveryAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcAirToAirHeatRecoveryType(
-				IfcAirToAirHeatRecoveryType object) {
+		public Adapter caseIfcAirToAirHeatRecoveryType(IfcAirToAirHeatRecoveryType object) {
 			return createIfcAirToAirHeatRecoveryTypeAdapter();
 		}
 
@@ -194,26 +191,22 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcApprovalRelationship(
-				IfcApprovalRelationship object) {
+		public Adapter caseIfcApprovalRelationship(IfcApprovalRelationship object) {
 			return createIfcApprovalRelationshipAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcArbitraryClosedProfileDef(
-				IfcArbitraryClosedProfileDef object) {
+		public Adapter caseIfcArbitraryClosedProfileDef(IfcArbitraryClosedProfileDef object) {
 			return createIfcArbitraryClosedProfileDefAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcArbitraryOpenProfileDef(
-				IfcArbitraryOpenProfileDef object) {
+		public Adapter caseIfcArbitraryOpenProfileDef(IfcArbitraryOpenProfileDef object) {
 			return createIfcArbitraryOpenProfileDefAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcArbitraryProfileDefWithVoids(
-				IfcArbitraryProfileDefWithVoids object) {
+		public Adapter caseIfcArbitraryProfileDefWithVoids(IfcArbitraryProfileDefWithVoids object) {
 			return createIfcArbitraryProfileDefWithVoidsAdapter();
 		}
 
@@ -223,20 +216,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcAsymmetricIShapeProfileDef(
-				IfcAsymmetricIShapeProfileDef object) {
+		public Adapter caseIfcAsymmetricIShapeProfileDef(IfcAsymmetricIShapeProfileDef object) {
 			return createIfcAsymmetricIShapeProfileDefAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcAudioVisualAppliance(
-				IfcAudioVisualAppliance object) {
+		public Adapter caseIfcAudioVisualAppliance(IfcAudioVisualAppliance object) {
 			return createIfcAudioVisualApplianceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcAudioVisualApplianceType(
-				IfcAudioVisualApplianceType object) {
+		public Adapter caseIfcAudioVisualApplianceType(IfcAudioVisualApplianceType object) {
 			return createIfcAudioVisualApplianceTypeAdapter();
 		}
 
@@ -261,8 +251,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcBSplineCurveWithKnots(
-				IfcBSplineCurveWithKnots object) {
+		public Adapter caseIfcBSplineCurveWithKnots(IfcBSplineCurveWithKnots object) {
 			return createIfcBSplineCurveWithKnotsAdapter();
 		}
 
@@ -272,8 +261,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcBSplineSurfaceWithKnots(
-				IfcBSplineSurfaceWithKnots object) {
+		public Adapter caseIfcBSplineSurfaceWithKnots(IfcBSplineSurfaceWithKnots object) {
 			return createIfcBSplineSurfaceWithKnotsAdapter();
 		}
 
@@ -313,8 +301,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcBooleanClippingResult(
-				IfcBooleanClippingResult object) {
+		public Adapter caseIfcBooleanClippingResult(IfcBooleanClippingResult object) {
 			return createIfcBooleanClippingResultAdapter();
 		}
 
@@ -334,26 +321,22 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcBoundaryEdgeCondition(
-				IfcBoundaryEdgeCondition object) {
+		public Adapter caseIfcBoundaryEdgeCondition(IfcBoundaryEdgeCondition object) {
 			return createIfcBoundaryEdgeConditionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcBoundaryFaceCondition(
-				IfcBoundaryFaceCondition object) {
+		public Adapter caseIfcBoundaryFaceCondition(IfcBoundaryFaceCondition object) {
 			return createIfcBoundaryFaceConditionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcBoundaryNodeCondition(
-				IfcBoundaryNodeCondition object) {
+		public Adapter caseIfcBoundaryNodeCondition(IfcBoundaryNodeCondition object) {
 			return createIfcBoundaryNodeConditionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcBoundaryNodeConditionWarping(
-				IfcBoundaryNodeConditionWarping object) {
+		public Adapter caseIfcBoundaryNodeConditionWarping(IfcBoundaryNodeConditionWarping object) {
 			return createIfcBoundaryNodeConditionWarpingAdapter();
 		}
 
@@ -393,20 +376,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcBuildingElementPartType(
-				IfcBuildingElementPartType object) {
+		public Adapter caseIfcBuildingElementPartType(IfcBuildingElementPartType object) {
 			return createIfcBuildingElementPartTypeAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcBuildingElementProxy(
-				IfcBuildingElementProxy object) {
+		public Adapter caseIfcBuildingElementProxy(IfcBuildingElementProxy object) {
 			return createIfcBuildingElementProxyAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcBuildingElementProxyType(
-				IfcBuildingElementProxyType object) {
+		public Adapter caseIfcBuildingElementProxyType(IfcBuildingElementProxyType object) {
 			return createIfcBuildingElementProxyTypeAdapter();
 		}
 
@@ -446,8 +426,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCableCarrierFittingType(
-				IfcCableCarrierFittingType object) {
+		public Adapter caseIfcCableCarrierFittingType(IfcCableCarrierFittingType object) {
 			return createIfcCableCarrierFittingTypeAdapter();
 		}
 
@@ -457,8 +436,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCableCarrierSegmentType(
-				IfcCableCarrierSegmentType object) {
+		public Adapter caseIfcCableCarrierSegmentType(IfcCableCarrierSegmentType object) {
 			return createIfcCableCarrierSegmentTypeAdapter();
 		}
 
@@ -493,44 +471,37 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCartesianPointList3D(
-				IfcCartesianPointList3D object) {
+		public Adapter caseIfcCartesianPointList3D(IfcCartesianPointList3D object) {
 			return createIfcCartesianPointList3DAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcCartesianTransformationOperator(
-				IfcCartesianTransformationOperator object) {
+		public Adapter caseIfcCartesianTransformationOperator(IfcCartesianTransformationOperator object) {
 			return createIfcCartesianTransformationOperatorAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcCartesianTransformationOperator2D(
-				IfcCartesianTransformationOperator2D object) {
+		public Adapter caseIfcCartesianTransformationOperator2D(IfcCartesianTransformationOperator2D object) {
 			return createIfcCartesianTransformationOperator2DAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcCartesianTransformationOperator2DnonUniform(
-				IfcCartesianTransformationOperator2DnonUniform object) {
+		public Adapter caseIfcCartesianTransformationOperator2DnonUniform(IfcCartesianTransformationOperator2DnonUniform object) {
 			return createIfcCartesianTransformationOperator2DnonUniformAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcCartesianTransformationOperator3D(
-				IfcCartesianTransformationOperator3D object) {
+		public Adapter caseIfcCartesianTransformationOperator3D(IfcCartesianTransformationOperator3D object) {
 			return createIfcCartesianTransformationOperator3DAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcCartesianTransformationOperator3DnonUniform(
-				IfcCartesianTransformationOperator3DnonUniform object) {
+		public Adapter caseIfcCartesianTransformationOperator3DnonUniform(IfcCartesianTransformationOperator3DnonUniform object) {
 			return createIfcCartesianTransformationOperator3DnonUniformAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcCenterLineProfileDef(
-				IfcCenterLineProfileDef object) {
+		public Adapter caseIfcCenterLineProfileDef(IfcCenterLineProfileDef object) {
 			return createIfcCenterLineProfileDefAdapter();
 		}
 
@@ -560,8 +531,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCircleHollowProfileDef(
-				IfcCircleHollowProfileDef object) {
+		public Adapter caseIfcCircleHollowProfileDef(IfcCircleHollowProfileDef object) {
 			return createIfcCircleHollowProfileDefAdapter();
 		}
 
@@ -586,8 +556,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcClassificationReference(
-				IfcClassificationReference object) {
+		public Adapter caseIfcClassificationReference(IfcClassificationReference object) {
 			return createIfcClassificationReferenceAdapter();
 		}
 
@@ -637,14 +606,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCommunicationsAppliance(
-				IfcCommunicationsAppliance object) {
+		public Adapter caseIfcCommunicationsAppliance(IfcCommunicationsAppliance object) {
 			return createIfcCommunicationsApplianceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcCommunicationsApplianceType(
-				IfcCommunicationsApplianceType object) {
+		public Adapter caseIfcCommunicationsApplianceType(IfcCommunicationsApplianceType object) {
 			return createIfcCommunicationsApplianceTypeAdapter();
 		}
 
@@ -654,8 +621,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcComplexPropertyTemplate(
-				IfcComplexPropertyTemplate object) {
+		public Adapter caseIfcComplexPropertyTemplate(IfcComplexPropertyTemplate object) {
 			return createIfcComplexPropertyTemplateAdapter();
 		}
 
@@ -665,14 +631,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCompositeCurveOnSurface(
-				IfcCompositeCurveOnSurface object) {
+		public Adapter caseIfcCompositeCurveOnSurface(IfcCompositeCurveOnSurface object) {
 			return createIfcCompositeCurveOnSurfaceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcCompositeCurveSegment(
-				IfcCompositeCurveSegment object) {
+		public Adapter caseIfcCompositeCurveSegment(IfcCompositeCurveSegment object) {
 			return createIfcCompositeCurveSegmentAdapter();
 		}
 
@@ -712,8 +676,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcConnectionCurveGeometry(
-				IfcConnectionCurveGeometry object) {
+		public Adapter caseIfcConnectionCurveGeometry(IfcConnectionCurveGeometry object) {
 			return createIfcConnectionCurveGeometryAdapter();
 		}
 
@@ -723,26 +686,22 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcConnectionPointEccentricity(
-				IfcConnectionPointEccentricity object) {
+		public Adapter caseIfcConnectionPointEccentricity(IfcConnectionPointEccentricity object) {
 			return createIfcConnectionPointEccentricityAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcConnectionPointGeometry(
-				IfcConnectionPointGeometry object) {
+		public Adapter caseIfcConnectionPointGeometry(IfcConnectionPointGeometry object) {
 			return createIfcConnectionPointGeometryAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcConnectionSurfaceGeometry(
-				IfcConnectionSurfaceGeometry object) {
+		public Adapter caseIfcConnectionSurfaceGeometry(IfcConnectionSurfaceGeometry object) {
 			return createIfcConnectionSurfaceGeometryAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcConnectionVolumeGeometry(
-				IfcConnectionVolumeGeometry object) {
+		public Adapter caseIfcConnectionVolumeGeometry(IfcConnectionVolumeGeometry object) {
 			return createIfcConnectionVolumeGeometryAdapter();
 		}
 
@@ -752,50 +711,42 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcConstructionEquipmentResource(
-				IfcConstructionEquipmentResource object) {
+		public Adapter caseIfcConstructionEquipmentResource(IfcConstructionEquipmentResource object) {
 			return createIfcConstructionEquipmentResourceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcConstructionEquipmentResourceType(
-				IfcConstructionEquipmentResourceType object) {
+		public Adapter caseIfcConstructionEquipmentResourceType(IfcConstructionEquipmentResourceType object) {
 			return createIfcConstructionEquipmentResourceTypeAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcConstructionMaterialResource(
-				IfcConstructionMaterialResource object) {
+		public Adapter caseIfcConstructionMaterialResource(IfcConstructionMaterialResource object) {
 			return createIfcConstructionMaterialResourceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcConstructionMaterialResourceType(
-				IfcConstructionMaterialResourceType object) {
+		public Adapter caseIfcConstructionMaterialResourceType(IfcConstructionMaterialResourceType object) {
 			return createIfcConstructionMaterialResourceTypeAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcConstructionProductResource(
-				IfcConstructionProductResource object) {
+		public Adapter caseIfcConstructionProductResource(IfcConstructionProductResource object) {
 			return createIfcConstructionProductResourceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcConstructionProductResourceType(
-				IfcConstructionProductResourceType object) {
+		public Adapter caseIfcConstructionProductResourceType(IfcConstructionProductResourceType object) {
 			return createIfcConstructionProductResourceTypeAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcConstructionResource(
-				IfcConstructionResource object) {
+		public Adapter caseIfcConstructionResource(IfcConstructionResource object) {
 			return createIfcConstructionResourceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcConstructionResourceType(
-				IfcConstructionResourceType object) {
+		public Adapter caseIfcConstructionResourceType(IfcConstructionResourceType object) {
 			return createIfcConstructionResourceTypeAdapter();
 		}
 
@@ -805,8 +756,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcContextDependentUnit(
-				IfcContextDependentUnit object) {
+		public Adapter caseIfcContextDependentUnit(IfcContextDependentUnit object) {
 			return createIfcContextDependentUnitAdapter();
 		}
 
@@ -831,8 +781,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcConversionBasedUnitWithOffset(
-				IfcConversionBasedUnitWithOffset object) {
+		public Adapter caseIfcConversionBasedUnitWithOffset(IfcConversionBasedUnitWithOffset object) {
 			return createIfcConversionBasedUnitWithOffsetAdapter();
 		}
 
@@ -862,8 +811,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCoordinateReferenceSystem(
-				IfcCoordinateReferenceSystem object) {
+		public Adapter caseIfcCoordinateReferenceSystem(IfcCoordinateReferenceSystem object) {
 			return createIfcCoordinateReferenceSystemAdapter();
 		}
 
@@ -913,8 +861,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCurrencyRelationship(
-				IfcCurrencyRelationship object) {
+		public Adapter caseIfcCurrencyRelationship(IfcCurrencyRelationship object) {
 			return createIfcCurrencyRelationshipAdapter();
 		}
 
@@ -954,14 +901,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCurveStyleFontAndScaling(
-				IfcCurveStyleFontAndScaling object) {
+		public Adapter caseIfcCurveStyleFontAndScaling(IfcCurveStyleFontAndScaling object) {
 			return createIfcCurveStyleFontAndScalingAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcCurveStyleFontPattern(
-				IfcCurveStyleFontPattern object) {
+		public Adapter caseIfcCurveStyleFontPattern(IfcCurveStyleFontPattern object) {
 			return createIfcCurveStyleFontPatternAdapter();
 		}
 
@@ -996,8 +941,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcDimensionalExponents(
-				IfcDimensionalExponents object) {
+		public Adapter caseIfcDimensionalExponents(IfcDimensionalExponents object) {
 			return createIfcDimensionalExponentsAdapter();
 		}
 
@@ -1012,20 +956,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcDiscreteAccessoryType(
-				IfcDiscreteAccessoryType object) {
+		public Adapter caseIfcDiscreteAccessoryType(IfcDiscreteAccessoryType object) {
 			return createIfcDiscreteAccessoryTypeAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcDistributionChamberElement(
-				IfcDistributionChamberElement object) {
+		public Adapter caseIfcDistributionChamberElement(IfcDistributionChamberElement object) {
 			return createIfcDistributionChamberElementAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcDistributionChamberElementType(
-				IfcDistributionChamberElementType object) {
+		public Adapter caseIfcDistributionChamberElementType(IfcDistributionChamberElementType object) {
 			return createIfcDistributionChamberElementTypeAdapter();
 		}
 
@@ -1035,14 +976,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcDistributionControlElement(
-				IfcDistributionControlElement object) {
+		public Adapter caseIfcDistributionControlElement(IfcDistributionControlElement object) {
 			return createIfcDistributionControlElementAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcDistributionControlElementType(
-				IfcDistributionControlElementType object) {
+		public Adapter caseIfcDistributionControlElementType(IfcDistributionControlElementType object) {
 			return createIfcDistributionControlElementTypeAdapter();
 		}
 
@@ -1052,20 +991,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcDistributionElementType(
-				IfcDistributionElementType object) {
+		public Adapter caseIfcDistributionElementType(IfcDistributionElementType object) {
 			return createIfcDistributionElementTypeAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcDistributionFlowElement(
-				IfcDistributionFlowElement object) {
+		public Adapter caseIfcDistributionFlowElement(IfcDistributionFlowElement object) {
 			return createIfcDistributionFlowElementAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcDistributionFlowElementType(
-				IfcDistributionFlowElementType object) {
+		public Adapter caseIfcDistributionFlowElementType(IfcDistributionFlowElementType object) {
 			return createIfcDistributionFlowElementTypeAdapter();
 		}
 
@@ -1085,8 +1021,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcDocumentInformationRelationship(
-				IfcDocumentInformationRelationship object) {
+		public Adapter caseIfcDocumentInformationRelationship(IfcDocumentInformationRelationship object) {
 			return createIfcDocumentInformationRelationshipAdapter();
 		}
 
@@ -1101,8 +1036,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcDoorLiningProperties(
-				IfcDoorLiningProperties object) {
+		public Adapter caseIfcDoorLiningProperties(IfcDoorLiningProperties object) {
 			return createIfcDoorLiningPropertiesAdapter();
 		}
 
@@ -1127,14 +1061,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcDraughtingPreDefinedColour(
-				IfcDraughtingPreDefinedColour object) {
+		public Adapter caseIfcDraughtingPreDefinedColour(IfcDraughtingPreDefinedColour object) {
 			return createIfcDraughtingPreDefinedColourAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcDraughtingPreDefinedCurveFont(
-				IfcDraughtingPreDefinedCurveFont object) {
+		public Adapter caseIfcDraughtingPreDefinedCurveFont(IfcDraughtingPreDefinedCurveFont object) {
 			return createIfcDraughtingPreDefinedCurveFontAdapter();
 		}
 
@@ -1189,32 +1121,27 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcElectricApplianceType(
-				IfcElectricApplianceType object) {
+		public Adapter caseIfcElectricApplianceType(IfcElectricApplianceType object) {
 			return createIfcElectricApplianceTypeAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcElectricDistributionBoard(
-				IfcElectricDistributionBoard object) {
+		public Adapter caseIfcElectricDistributionBoard(IfcElectricDistributionBoard object) {
 			return createIfcElectricDistributionBoardAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcElectricDistributionBoardType(
-				IfcElectricDistributionBoardType object) {
+		public Adapter caseIfcElectricDistributionBoardType(IfcElectricDistributionBoardType object) {
 			return createIfcElectricDistributionBoardTypeAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcElectricFlowStorageDevice(
-				IfcElectricFlowStorageDevice object) {
+		public Adapter caseIfcElectricFlowStorageDevice(IfcElectricFlowStorageDevice object) {
 			return createIfcElectricFlowStorageDeviceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcElectricFlowStorageDeviceType(
-				IfcElectricFlowStorageDeviceType object) {
+		public Adapter caseIfcElectricFlowStorageDeviceType(IfcElectricFlowStorageDeviceType object) {
 			return createIfcElectricFlowStorageDeviceTypeAdapter();
 		}
 
@@ -1224,8 +1151,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcElectricGeneratorType(
-				IfcElectricGeneratorType object) {
+		public Adapter caseIfcElectricGeneratorType(IfcElectricGeneratorType object) {
 			return createIfcElectricGeneratorTypeAdapter();
 		}
 
@@ -1245,8 +1171,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcElectricTimeControlType(
-				IfcElectricTimeControlType object) {
+		public Adapter caseIfcElectricTimeControlType(IfcElectricTimeControlType object) {
 			return createIfcElectricTimeControlTypeAdapter();
 		}
 
@@ -1271,8 +1196,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcElementComponentType(
-				IfcElementComponentType object) {
+		public Adapter caseIfcElementComponentType(IfcElementComponentType object) {
 			return createIfcElementComponentTypeAdapter();
 		}
 
@@ -1302,14 +1226,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcEnergyConversionDevice(
-				IfcEnergyConversionDevice object) {
+		public Adapter caseIfcEnergyConversionDevice(IfcEnergyConversionDevice object) {
 			return createIfcEnergyConversionDeviceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcEnergyConversionDeviceType(
-				IfcEnergyConversionDeviceType object) {
+		public Adapter caseIfcEnergyConversionDeviceType(IfcEnergyConversionDeviceType object) {
 			return createIfcEnergyConversionDeviceTypeAdapter();
 		}
 
@@ -1329,8 +1251,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcEvaporativeCoolerType(
-				IfcEvaporativeCoolerType object) {
+		public Adapter caseIfcEvaporativeCoolerType(IfcEvaporativeCoolerType object) {
 			return createIfcEvaporativeCoolerTypeAdapter();
 		}
 
@@ -1375,38 +1296,32 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcExternalReferenceRelationship(
-				IfcExternalReferenceRelationship object) {
+		public Adapter caseIfcExternalReferenceRelationship(IfcExternalReferenceRelationship object) {
 			return createIfcExternalReferenceRelationshipAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcExternalSpatialElement(
-				IfcExternalSpatialElement object) {
+		public Adapter caseIfcExternalSpatialElement(IfcExternalSpatialElement object) {
 			return createIfcExternalSpatialElementAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcExternalSpatialStructureElement(
-				IfcExternalSpatialStructureElement object) {
+		public Adapter caseIfcExternalSpatialStructureElement(IfcExternalSpatialStructureElement object) {
 			return createIfcExternalSpatialStructureElementAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcExternallyDefinedHatchStyle(
-				IfcExternallyDefinedHatchStyle object) {
+		public Adapter caseIfcExternallyDefinedHatchStyle(IfcExternallyDefinedHatchStyle object) {
 			return createIfcExternallyDefinedHatchStyleAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcExternallyDefinedSurfaceStyle(
-				IfcExternallyDefinedSurfaceStyle object) {
+		public Adapter caseIfcExternallyDefinedSurfaceStyle(IfcExternallyDefinedSurfaceStyle object) {
 			return createIfcExternallyDefinedSurfaceStyleAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcExternallyDefinedTextFont(
-				IfcExternallyDefinedTextFont object) {
+		public Adapter caseIfcExternallyDefinedTextFont(IfcExternallyDefinedTextFont object) {
 			return createIfcExternallyDefinedTextFontAdapter();
 		}
 
@@ -1416,8 +1331,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcExtrudedAreaSolidTapered(
-				IfcExtrudedAreaSolidTapered object) {
+		public Adapter caseIfcExtrudedAreaSolidTapered(IfcExtrudedAreaSolidTapered object) {
 			return createIfcExtrudedAreaSolidTaperedAdapter();
 		}
 
@@ -1427,8 +1341,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcFaceBasedSurfaceModel(
-				IfcFaceBasedSurfaceModel object) {
+		public Adapter caseIfcFaceBasedSurfaceModel(IfcFaceBasedSurfaceModel object) {
 			return createIfcFaceBasedSurfaceModelAdapter();
 		}
 
@@ -1453,14 +1366,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcFacetedBrepWithVoids(
-				IfcFacetedBrepWithVoids object) {
+		public Adapter caseIfcFacetedBrepWithVoids(IfcFacetedBrepWithVoids object) {
 			return createIfcFacetedBrepWithVoidsAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcFailureConnectionCondition(
-				IfcFailureConnectionCondition object) {
+		public Adapter caseIfcFailureConnectionCondition(IfcFailureConnectionCondition object) {
 			return createIfcFailureConnectionConditionAdapter();
 		}
 
@@ -1490,14 +1401,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcFeatureElementAddition(
-				IfcFeatureElementAddition object) {
+		public Adapter caseIfcFeatureElementAddition(IfcFeatureElementAddition object) {
 			return createIfcFeatureElementAdditionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcFeatureElementSubtraction(
-				IfcFeatureElementSubtraction object) {
+		public Adapter caseIfcFeatureElementSubtraction(IfcFeatureElementSubtraction object) {
 			return createIfcFeatureElementSubtractionAdapter();
 		}
 
@@ -1507,8 +1416,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcFillAreaStyleHatching(
-				IfcFillAreaStyleHatching object) {
+		public Adapter caseIfcFillAreaStyleHatching(IfcFillAreaStyleHatching object) {
 			return createIfcFillAreaStyleHatchingAdapter();
 		}
 
@@ -1528,20 +1436,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcFireSuppressionTerminal(
-				IfcFireSuppressionTerminal object) {
+		public Adapter caseIfcFireSuppressionTerminal(IfcFireSuppressionTerminal object) {
 			return createIfcFireSuppressionTerminalAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcFireSuppressionTerminalType(
-				IfcFireSuppressionTerminalType object) {
+		public Adapter caseIfcFireSuppressionTerminalType(IfcFireSuppressionTerminalType object) {
 			return createIfcFireSuppressionTerminalTypeAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcFixedReferenceSweptAreaSolid(
-				IfcFixedReferenceSweptAreaSolid object) {
+		public Adapter caseIfcFixedReferenceSweptAreaSolid(IfcFixedReferenceSweptAreaSolid object) {
 			return createIfcFixedReferenceSweptAreaSolidAdapter();
 		}
 
@@ -1591,8 +1496,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcFlowMovingDeviceType(
-				IfcFlowMovingDeviceType object) {
+		public Adapter caseIfcFlowMovingDeviceType(IfcFlowMovingDeviceType object) {
 			return createIfcFlowMovingDeviceTypeAdapter();
 		}
 
@@ -1612,8 +1516,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcFlowStorageDeviceType(
-				IfcFlowStorageDeviceType object) {
+		public Adapter caseIfcFlowStorageDeviceType(IfcFlowStorageDeviceType object) {
 			return createIfcFlowStorageDeviceTypeAdapter();
 		}
 
@@ -1633,8 +1536,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcFlowTreatmentDeviceType(
-				IfcFlowTreatmentDeviceType object) {
+		public Adapter caseIfcFlowTreatmentDeviceType(IfcFlowTreatmentDeviceType object) {
 			return createIfcFlowTreatmentDeviceTypeAdapter();
 		}
 
@@ -1654,8 +1556,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcFurnishingElementType(
-				IfcFurnishingElementType object) {
+		public Adapter caseIfcFurnishingElementType(IfcFurnishingElementType object) {
 			return createIfcFurnishingElementTypeAdapter();
 		}
 
@@ -1675,8 +1576,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcGeographicElementType(
-				IfcGeographicElementType object) {
+		public Adapter caseIfcGeographicElementType(IfcGeographicElementType object) {
 			return createIfcGeographicElementTypeAdapter();
 		}
 
@@ -1686,20 +1586,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcGeometricRepresentationContext(
-				IfcGeometricRepresentationContext object) {
+		public Adapter caseIfcGeometricRepresentationContext(IfcGeometricRepresentationContext object) {
 			return createIfcGeometricRepresentationContextAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcGeometricRepresentationItem(
-				IfcGeometricRepresentationItem object) {
+		public Adapter caseIfcGeometricRepresentationItem(IfcGeometricRepresentationItem object) {
 			return createIfcGeometricRepresentationItemAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcGeometricRepresentationSubContext(
-				IfcGeometricRepresentationSubContext object) {
+		public Adapter caseIfcGeometricRepresentationSubContext(IfcGeometricRepresentationSubContext object) {
 			return createIfcGeometricRepresentationSubContextAdapter();
 		}
 
@@ -1774,8 +1671,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcIndexedTriangleTextureMap(
-				IfcIndexedTriangleTextureMap object) {
+		public Adapter caseIfcIndexedTriangleTextureMap(IfcIndexedTriangleTextureMap object) {
 			return createIfcIndexedTriangleTextureMapAdapter();
 		}
 
@@ -1800,8 +1696,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcIrregularTimeSeriesValue(
-				IfcIrregularTimeSeriesValue object) {
+		public Adapter caseIfcIrregularTimeSeriesValue(IfcIrregularTimeSeriesValue object) {
 			return createIfcIrregularTimeSeriesValueAdapter();
 		}
 
@@ -1856,8 +1751,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcLightDistributionData(
-				IfcLightDistributionData object) {
+		public Adapter caseIfcLightDistributionData(IfcLightDistributionData object) {
 			return createIfcLightDistributionDataAdapter();
 		}
 
@@ -1872,8 +1766,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcLightIntensityDistribution(
-				IfcLightIntensityDistribution object) {
+		public Adapter caseIfcLightIntensityDistribution(IfcLightIntensityDistribution object) {
 			return createIfcLightIntensityDistributionAdapter();
 		}
 
@@ -1888,20 +1781,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcLightSourceDirectional(
-				IfcLightSourceDirectional object) {
+		public Adapter caseIfcLightSourceDirectional(IfcLightSourceDirectional object) {
 			return createIfcLightSourceDirectionalAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcLightSourceGoniometric(
-				IfcLightSourceGoniometric object) {
+		public Adapter caseIfcLightSourceGoniometric(IfcLightSourceGoniometric object) {
 			return createIfcLightSourceGoniometricAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcLightSourcePositional(
-				IfcLightSourcePositional object) {
+		public Adapter caseIfcLightSourcePositional(IfcLightSourcePositional object) {
 			return createIfcLightSourcePositionalAdapter();
 		}
 
@@ -1946,8 +1836,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcMaterialClassificationRelationship(
-				IfcMaterialClassificationRelationship object) {
+		public Adapter caseIfcMaterialClassificationRelationship(IfcMaterialClassificationRelationship object) {
 			return createIfcMaterialClassificationRelationshipAdapter();
 		}
 
@@ -1957,8 +1846,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcMaterialConstituentSet(
-				IfcMaterialConstituentSet object) {
+		public Adapter caseIfcMaterialConstituentSet(IfcMaterialConstituentSet object) {
 			return createIfcMaterialConstituentSetAdapter();
 		}
 
@@ -1968,8 +1856,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcMaterialDefinitionRepresentation(
-				IfcMaterialDefinitionRepresentation object) {
+		public Adapter caseIfcMaterialDefinitionRepresentation(IfcMaterialDefinitionRepresentation object) {
 			return createIfcMaterialDefinitionRepresentationAdapter();
 		}
 
@@ -1984,14 +1871,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcMaterialLayerSetUsage(
-				IfcMaterialLayerSetUsage object) {
+		public Adapter caseIfcMaterialLayerSetUsage(IfcMaterialLayerSetUsage object) {
 			return createIfcMaterialLayerSetUsageAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcMaterialLayerWithOffsets(
-				IfcMaterialLayerWithOffsets object) {
+		public Adapter caseIfcMaterialLayerWithOffsets(IfcMaterialLayerWithOffsets object) {
 			return createIfcMaterialLayerWithOffsetsAdapter();
 		}
 
@@ -2011,20 +1896,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcMaterialProfileSetUsage(
-				IfcMaterialProfileSetUsage object) {
+		public Adapter caseIfcMaterialProfileSetUsage(IfcMaterialProfileSetUsage object) {
 			return createIfcMaterialProfileSetUsageAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcMaterialProfileSetUsageTapering(
-				IfcMaterialProfileSetUsageTapering object) {
+		public Adapter caseIfcMaterialProfileSetUsageTapering(IfcMaterialProfileSetUsageTapering object) {
 			return createIfcMaterialProfileSetUsageTaperingAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcMaterialProfileWithOffsets(
-				IfcMaterialProfileWithOffsets object) {
+		public Adapter caseIfcMaterialProfileWithOffsets(IfcMaterialProfileWithOffsets object) {
 			return createIfcMaterialProfileWithOffsetsAdapter();
 		}
 
@@ -2034,14 +1916,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcMaterialRelationship(
-				IfcMaterialRelationship object) {
+		public Adapter caseIfcMaterialRelationship(IfcMaterialRelationship object) {
 			return createIfcMaterialRelationshipAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcMaterialUsageDefinition(
-				IfcMaterialUsageDefinition object) {
+		public Adapter caseIfcMaterialUsageDefinition(IfcMaterialUsageDefinition object) {
 			return createIfcMaterialUsageDefinitionAdapter();
 		}
 
@@ -2056,8 +1936,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcMechanicalFastenerType(
-				IfcMechanicalFastenerType object) {
+		public Adapter caseIfcMechanicalFastenerType(IfcMechanicalFastenerType object) {
 			return createIfcMechanicalFastenerTypeAdapter();
 		}
 
@@ -2172,8 +2051,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcOrganizationRelationship(
-				IfcOrganizationRelationship object) {
+		public Adapter caseIfcOrganizationRelationship(IfcOrganizationRelationship object) {
 			return createIfcOrganizationRelationshipAdapter();
 		}
 
@@ -2203,8 +2081,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcParameterizedProfileDef(
-				IfcParameterizedProfileDef object) {
+		public Adapter caseIfcParameterizedProfileDef(IfcParameterizedProfileDef object) {
 			return createIfcParameterizedProfileDefAdapter();
 		}
 
@@ -2224,8 +2101,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPermeableCoveringProperties(
-				IfcPermeableCoveringProperties object) {
+		public Adapter caseIfcPermeableCoveringProperties(IfcPermeableCoveringProperties object) {
 			return createIfcPermeableCoveringPropertiesAdapter();
 		}
 
@@ -2240,14 +2116,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPersonAndOrganization(
-				IfcPersonAndOrganization object) {
+		public Adapter caseIfcPersonAndOrganization(IfcPersonAndOrganization object) {
 			return createIfcPersonAndOrganizationAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcPhysicalComplexQuantity(
-				IfcPhysicalComplexQuantity object) {
+		public Adapter caseIfcPhysicalComplexQuantity(IfcPhysicalComplexQuantity object) {
 			return createIfcPhysicalComplexQuantityAdapter();
 		}
 
@@ -2257,8 +2131,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPhysicalSimpleQuantity(
-				IfcPhysicalSimpleQuantity object) {
+		public Adapter caseIfcPhysicalSimpleQuantity(IfcPhysicalSimpleQuantity object) {
 			return createIfcPhysicalSimpleQuantityAdapter();
 		}
 
@@ -2353,8 +2226,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPolygonalBoundedHalfSpace(
-				IfcPolygonalBoundedHalfSpace object) {
+		public Adapter caseIfcPolygonalBoundedHalfSpace(IfcPolygonalBoundedHalfSpace object) {
 			return createIfcPolygonalBoundedHalfSpaceAdapter();
 		}
 
@@ -2389,14 +2261,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPreDefinedProperties(
-				IfcPreDefinedProperties object) {
+		public Adapter caseIfcPreDefinedProperties(IfcPreDefinedProperties object) {
 			return createIfcPreDefinedPropertiesAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcPreDefinedPropertySet(
-				IfcPreDefinedPropertySet object) {
+		public Adapter caseIfcPreDefinedPropertySet(IfcPreDefinedPropertySet object) {
 			return createIfcPreDefinedPropertySetAdapter();
 		}
 
@@ -2411,14 +2281,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPresentationLayerAssignment(
-				IfcPresentationLayerAssignment object) {
+		public Adapter caseIfcPresentationLayerAssignment(IfcPresentationLayerAssignment object) {
 			return createIfcPresentationLayerAssignmentAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcPresentationLayerWithStyle(
-				IfcPresentationLayerWithStyle object) {
+		public Adapter caseIfcPresentationLayerWithStyle(IfcPresentationLayerWithStyle object) {
 			return createIfcPresentationLayerWithStyleAdapter();
 		}
 
@@ -2428,8 +2296,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPresentationStyleAssignment(
-				IfcPresentationStyleAssignment object) {
+		public Adapter caseIfcPresentationStyleAssignment(IfcPresentationStyleAssignment object) {
 			return createIfcPresentationStyleAssignmentAdapter();
 		}
 
@@ -2454,14 +2321,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcProductDefinitionShape(
-				IfcProductDefinitionShape object) {
+		public Adapter caseIfcProductDefinitionShape(IfcProductDefinitionShape object) {
 			return createIfcProductDefinitionShapeAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcProductRepresentation(
-				IfcProductRepresentation object) {
+		public Adapter caseIfcProductRepresentation(IfcProductRepresentation object) {
 			return createIfcProductRepresentationAdapter();
 		}
 
@@ -2511,8 +2376,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPropertyBoundedValue(
-				IfcPropertyBoundedValue object) {
+		public Adapter caseIfcPropertyBoundedValue(IfcPropertyBoundedValue object) {
 			return createIfcPropertyBoundedValueAdapter();
 		}
 
@@ -2522,14 +2386,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPropertyDependencyRelationship(
-				IfcPropertyDependencyRelationship object) {
+		public Adapter caseIfcPropertyDependencyRelationship(IfcPropertyDependencyRelationship object) {
 			return createIfcPropertyDependencyRelationshipAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcPropertyEnumeratedValue(
-				IfcPropertyEnumeratedValue object) {
+		public Adapter caseIfcPropertyEnumeratedValue(IfcPropertyEnumeratedValue object) {
 			return createIfcPropertyEnumeratedValueAdapter();
 		}
 
@@ -2544,8 +2406,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPropertyReferenceValue(
-				IfcPropertyReferenceValue object) {
+		public Adapter caseIfcPropertyReferenceValue(IfcPropertyReferenceValue object) {
 			return createIfcPropertyReferenceValueAdapter();
 		}
 
@@ -2555,8 +2416,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPropertySetDefinition(
-				IfcPropertySetDefinition object) {
+		public Adapter caseIfcPropertySetDefinition(IfcPropertySetDefinition object) {
 			return createIfcPropertySetDefinitionAdapter();
 		}
 
@@ -2581,8 +2441,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPropertyTemplateDefinition(
-				IfcPropertyTemplateDefinition object) {
+		public Adapter caseIfcPropertyTemplateDefinition(IfcPropertyTemplateDefinition object) {
 			return createIfcPropertyTemplateDefinitionAdapter();
 		}
 
@@ -2592,20 +2451,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcProtectiveDeviceTrippingUnit(
-				IfcProtectiveDeviceTrippingUnit object) {
+		public Adapter caseIfcProtectiveDeviceTrippingUnit(IfcProtectiveDeviceTrippingUnit object) {
 			return createIfcProtectiveDeviceTrippingUnitAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcProtectiveDeviceTrippingUnitType(
-				IfcProtectiveDeviceTrippingUnitType object) {
+		public Adapter caseIfcProtectiveDeviceTrippingUnitType(IfcProtectiveDeviceTrippingUnitType object) {
 			return createIfcProtectiveDeviceTrippingUnitTypeAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcProtectiveDeviceType(
-				IfcProtectiveDeviceType object) {
+		public Adapter caseIfcProtectiveDeviceType(IfcProtectiveDeviceType object) {
 			return createIfcProtectiveDeviceTypeAdapter();
 		}
 
@@ -2690,20 +2546,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRationalBSplineCurveWithKnots(
-				IfcRationalBSplineCurveWithKnots object) {
+		public Adapter caseIfcRationalBSplineCurveWithKnots(IfcRationalBSplineCurveWithKnots object) {
 			return createIfcRationalBSplineCurveWithKnotsAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRationalBSplineSurfaceWithKnots(
-				IfcRationalBSplineSurfaceWithKnots object) {
+		public Adapter caseIfcRationalBSplineSurfaceWithKnots(IfcRationalBSplineSurfaceWithKnots object) {
 			return createIfcRationalBSplineSurfaceWithKnotsAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRectangleHollowProfileDef(
-				IfcRectangleHollowProfileDef object) {
+		public Adapter caseIfcRectangleHollowProfileDef(IfcRectangleHollowProfileDef object) {
 			return createIfcRectangleHollowProfileDefAdapter();
 		}
 
@@ -2718,8 +2571,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRectangularTrimmedSurface(
-				IfcRectangularTrimmedSurface object) {
+		public Adapter caseIfcRectangularTrimmedSurface(IfcRectangularTrimmedSurface object) {
 			return createIfcRectangularTrimmedSurfaceAdapter();
 		}
 
@@ -2739,14 +2591,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcReinforcementBarProperties(
-				IfcReinforcementBarProperties object) {
+		public Adapter caseIfcReinforcementBarProperties(IfcReinforcementBarProperties object) {
 			return createIfcReinforcementBarPropertiesAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcReinforcementDefinitionProperties(
-				IfcReinforcementDefinitionProperties object) {
+		public Adapter caseIfcReinforcementDefinitionProperties(IfcReinforcementDefinitionProperties object) {
 			return createIfcReinforcementDefinitionPropertiesAdapter();
 		}
 
@@ -2766,8 +2616,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcReinforcingElementType(
-				IfcReinforcingElementType object) {
+		public Adapter caseIfcReinforcingElementType(IfcReinforcingElementType object) {
 			return createIfcReinforcingElementTypeAdapter();
 		}
 
@@ -2807,8 +2656,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRelAssignsToGroupByFactor(
-				IfcRelAssignsToGroupByFactor object) {
+		public Adapter caseIfcRelAssignsToGroupByFactor(IfcRelAssignsToGroupByFactor object) {
 			return createIfcRelAssignsToGroupByFactorAdapter();
 		}
 
@@ -2823,8 +2671,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRelAssignsToResource(
-				IfcRelAssignsToResource object) {
+		public Adapter caseIfcRelAssignsToResource(IfcRelAssignsToResource object) {
 			return createIfcRelAssignsToResourceAdapter();
 		}
 
@@ -2834,38 +2681,32 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRelAssociatesApproval(
-				IfcRelAssociatesApproval object) {
+		public Adapter caseIfcRelAssociatesApproval(IfcRelAssociatesApproval object) {
 			return createIfcRelAssociatesApprovalAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelAssociatesClassification(
-				IfcRelAssociatesClassification object) {
+		public Adapter caseIfcRelAssociatesClassification(IfcRelAssociatesClassification object) {
 			return createIfcRelAssociatesClassificationAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelAssociatesConstraint(
-				IfcRelAssociatesConstraint object) {
+		public Adapter caseIfcRelAssociatesConstraint(IfcRelAssociatesConstraint object) {
 			return createIfcRelAssociatesConstraintAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelAssociatesDocument(
-				IfcRelAssociatesDocument object) {
+		public Adapter caseIfcRelAssociatesDocument(IfcRelAssociatesDocument object) {
 			return createIfcRelAssociatesDocumentAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelAssociatesLibrary(
-				IfcRelAssociatesLibrary object) {
+		public Adapter caseIfcRelAssociatesLibrary(IfcRelAssociatesLibrary object) {
 			return createIfcRelAssociatesLibraryAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelAssociatesMaterial(
-				IfcRelAssociatesMaterial object) {
+		public Adapter caseIfcRelAssociatesMaterial(IfcRelAssociatesMaterial object) {
 			return createIfcRelAssociatesMaterialAdapter();
 		}
 
@@ -2880,14 +2721,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRelConnectsPathElements(
-				IfcRelConnectsPathElements object) {
+		public Adapter caseIfcRelConnectsPathElements(IfcRelConnectsPathElements object) {
 			return createIfcRelConnectsPathElementsAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelConnectsPortToElement(
-				IfcRelConnectsPortToElement object) {
+		public Adapter caseIfcRelConnectsPortToElement(IfcRelConnectsPortToElement object) {
 			return createIfcRelConnectsPortToElementAdapter();
 		}
 
@@ -2897,38 +2736,32 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRelConnectsStructuralActivity(
-				IfcRelConnectsStructuralActivity object) {
+		public Adapter caseIfcRelConnectsStructuralActivity(IfcRelConnectsStructuralActivity object) {
 			return createIfcRelConnectsStructuralActivityAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelConnectsStructuralMember(
-				IfcRelConnectsStructuralMember object) {
+		public Adapter caseIfcRelConnectsStructuralMember(IfcRelConnectsStructuralMember object) {
 			return createIfcRelConnectsStructuralMemberAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelConnectsWithEccentricity(
-				IfcRelConnectsWithEccentricity object) {
+		public Adapter caseIfcRelConnectsWithEccentricity(IfcRelConnectsWithEccentricity object) {
 			return createIfcRelConnectsWithEccentricityAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelConnectsWithRealizingElements(
-				IfcRelConnectsWithRealizingElements object) {
+		public Adapter caseIfcRelConnectsWithRealizingElements(IfcRelConnectsWithRealizingElements object) {
 			return createIfcRelConnectsWithRealizingElementsAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelContainedInSpatialStructure(
-				IfcRelContainedInSpatialStructure object) {
+		public Adapter caseIfcRelContainedInSpatialStructure(IfcRelContainedInSpatialStructure object) {
 			return createIfcRelContainedInSpatialStructureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelCoversBldgElements(
-				IfcRelCoversBldgElements object) {
+		public Adapter caseIfcRelCoversBldgElements(IfcRelCoversBldgElements object) {
 			return createIfcRelCoversBldgElementsAdapter();
 		}
 
@@ -2958,14 +2791,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRelDefinesByProperties(
-				IfcRelDefinesByProperties object) {
+		public Adapter caseIfcRelDefinesByProperties(IfcRelDefinesByProperties object) {
 			return createIfcRelDefinesByPropertiesAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelDefinesByTemplate(
-				IfcRelDefinesByTemplate object) {
+		public Adapter caseIfcRelDefinesByTemplate(IfcRelDefinesByTemplate object) {
 			return createIfcRelDefinesByTemplateAdapter();
 		}
 
@@ -2980,14 +2811,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRelFlowControlElements(
-				IfcRelFlowControlElements object) {
+		public Adapter caseIfcRelFlowControlElements(IfcRelFlowControlElements object) {
 			return createIfcRelFlowControlElementsAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelInterferesElements(
-				IfcRelInterferesElements object) {
+		public Adapter caseIfcRelInterferesElements(IfcRelInterferesElements object) {
 			return createIfcRelInterferesElementsAdapter();
 		}
 
@@ -3002,8 +2831,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRelReferencedInSpatialStructure(
-				IfcRelReferencedInSpatialStructure object) {
+		public Adapter caseIfcRelReferencedInSpatialStructure(IfcRelReferencedInSpatialStructure object) {
 			return createIfcRelReferencedInSpatialStructureAdapter();
 		}
 
@@ -3013,8 +2841,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRelServicesBuildings(
-				IfcRelServicesBuildings object) {
+		public Adapter caseIfcRelServicesBuildings(IfcRelServicesBuildings object) {
 			return createIfcRelServicesBuildingsAdapter();
 		}
 
@@ -3024,14 +2851,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRelSpaceBoundary1stLevel(
-				IfcRelSpaceBoundary1stLevel object) {
+		public Adapter caseIfcRelSpaceBoundary1stLevel(IfcRelSpaceBoundary1stLevel object) {
 			return createIfcRelSpaceBoundary1stLevelAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRelSpaceBoundary2ndLevel(
-				IfcRelSpaceBoundary2ndLevel object) {
+		public Adapter caseIfcRelSpaceBoundary2ndLevel(IfcRelSpaceBoundary2ndLevel object) {
 			return createIfcRelSpaceBoundary2ndLevelAdapter();
 		}
 
@@ -3046,8 +2871,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcReparametrisedCompositeCurveSegment(
-				IfcReparametrisedCompositeCurveSegment object) {
+		public Adapter caseIfcReparametrisedCompositeCurveSegment(IfcReparametrisedCompositeCurveSegment object) {
 			return createIfcReparametrisedCompositeCurveSegmentAdapter();
 		}
 
@@ -3057,8 +2881,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRepresentationContext(
-				IfcRepresentationContext object) {
+		public Adapter caseIfcRepresentationContext(IfcRepresentationContext object) {
 			return createIfcRepresentationContextAdapter();
 		}
 
@@ -3078,20 +2901,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcResourceApprovalRelationship(
-				IfcResourceApprovalRelationship object) {
+		public Adapter caseIfcResourceApprovalRelationship(IfcResourceApprovalRelationship object) {
 			return createIfcResourceApprovalRelationshipAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcResourceConstraintRelationship(
-				IfcResourceConstraintRelationship object) {
+		public Adapter caseIfcResourceConstraintRelationship(IfcResourceConstraintRelationship object) {
 			return createIfcResourceConstraintRelationshipAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcResourceLevelRelationship(
-				IfcResourceLevelRelationship object) {
+		public Adapter caseIfcResourceLevelRelationship(IfcResourceLevelRelationship object) {
 			return createIfcResourceLevelRelationshipAdapter();
 		}
 
@@ -3106,8 +2926,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRevolvedAreaSolidTapered(
-				IfcRevolvedAreaSolidTapered object) {
+		public Adapter caseIfcRevolvedAreaSolidTapered(IfcRevolvedAreaSolidTapered object) {
 			return createIfcRevolvedAreaSolidTaperedAdapter();
 		}
 
@@ -3117,8 +2936,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRightCircularCylinder(
-				IfcRightCircularCylinder object) {
+		public Adapter caseIfcRightCircularCylinder(IfcRightCircularCylinder object) {
 			return createIfcRightCircularCylinderAdapter();
 		}
 
@@ -3138,8 +2956,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRoundedRectangleProfileDef(
-				IfcRoundedRectangleProfileDef object) {
+		public Adapter caseIfcRoundedRectangleProfileDef(IfcRoundedRectangleProfileDef object) {
 			return createIfcRoundedRectangleProfileDefAdapter();
 		}
 
@@ -3154,8 +2971,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSanitaryTerminalType(
-				IfcSanitaryTerminalType object) {
+		public Adapter caseIfcSanitaryTerminalType(IfcSanitaryTerminalType object) {
 			return createIfcSanitaryTerminalTypeAdapter();
 		}
 
@@ -3170,8 +2986,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSectionReinforcementProperties(
-				IfcSectionReinforcementProperties object) {
+		public Adapter caseIfcSectionReinforcementProperties(IfcSectionReinforcementProperties object) {
 			return createIfcSectionReinforcementPropertiesAdapter();
 		}
 
@@ -3216,8 +3031,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcShellBasedSurfaceModel(
-				IfcShellBasedSurfaceModel object) {
+		public Adapter caseIfcShellBasedSurfaceModel(IfcShellBasedSurfaceModel object) {
 			return createIfcShellBasedSurfaceModelAdapter();
 		}
 
@@ -3227,8 +3041,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSimplePropertyTemplate(
-				IfcSimplePropertyTemplate object) {
+		public Adapter caseIfcSimplePropertyTemplate(IfcSimplePropertyTemplate object) {
 			return createIfcSimplePropertyTemplateAdapter();
 		}
 
@@ -3258,8 +3071,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSlippageConnectionCondition(
-				IfcSlippageConnectionCondition object) {
+		public Adapter caseIfcSlippageConnectionCondition(IfcSlippageConnectionCondition object) {
 			return createIfcSlippageConnectionConditionAdapter();
 		}
 
@@ -3309,14 +3121,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSpatialStructureElement(
-				IfcSpatialStructureElement object) {
+		public Adapter caseIfcSpatialStructureElement(IfcSpatialStructureElement object) {
 			return createIfcSpatialStructureElementAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcSpatialStructureElementType(
-				IfcSpatialStructureElementType object) {
+		public Adapter caseIfcSpatialStructureElementType(IfcSpatialStructureElementType object) {
 			return createIfcSpatialStructureElementTypeAdapter();
 		}
 
@@ -3376,50 +3186,42 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcStructuralAnalysisModel(
-				IfcStructuralAnalysisModel object) {
+		public Adapter caseIfcStructuralAnalysisModel(IfcStructuralAnalysisModel object) {
 			return createIfcStructuralAnalysisModelAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralConnection(
-				IfcStructuralConnection object) {
+		public Adapter caseIfcStructuralConnection(IfcStructuralConnection object) {
 			return createIfcStructuralConnectionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralConnectionCondition(
-				IfcStructuralConnectionCondition object) {
+		public Adapter caseIfcStructuralConnectionCondition(IfcStructuralConnectionCondition object) {
 			return createIfcStructuralConnectionConditionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralCurveAction(
-				IfcStructuralCurveAction object) {
+		public Adapter caseIfcStructuralCurveAction(IfcStructuralCurveAction object) {
 			return createIfcStructuralCurveActionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralCurveConnection(
-				IfcStructuralCurveConnection object) {
+		public Adapter caseIfcStructuralCurveConnection(IfcStructuralCurveConnection object) {
 			return createIfcStructuralCurveConnectionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralCurveMember(
-				IfcStructuralCurveMember object) {
+		public Adapter caseIfcStructuralCurveMember(IfcStructuralCurveMember object) {
 			return createIfcStructuralCurveMemberAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralCurveMemberVarying(
-				IfcStructuralCurveMemberVarying object) {
+		public Adapter caseIfcStructuralCurveMemberVarying(IfcStructuralCurveMemberVarying object) {
 			return createIfcStructuralCurveMemberVaryingAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralCurveReaction(
-				IfcStructuralCurveReaction object) {
+		public Adapter caseIfcStructuralCurveReaction(IfcStructuralCurveReaction object) {
 			return createIfcStructuralCurveReactionAdapter();
 		}
 
@@ -3429,8 +3231,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLinearAction(
-				IfcStructuralLinearAction object) {
+		public Adapter caseIfcStructuralLinearAction(IfcStructuralLinearAction object) {
 			return createIfcStructuralLinearActionAdapter();
 		}
 
@@ -3445,8 +3246,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadConfiguration(
-				IfcStructuralLoadConfiguration object) {
+		public Adapter caseIfcStructuralLoadConfiguration(IfcStructuralLoadConfiguration object) {
 			return createIfcStructuralLoadConfigurationAdapter();
 		}
 
@@ -3456,56 +3256,47 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadLinearForce(
-				IfcStructuralLoadLinearForce object) {
+		public Adapter caseIfcStructuralLoadLinearForce(IfcStructuralLoadLinearForce object) {
 			return createIfcStructuralLoadLinearForceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadOrResult(
-				IfcStructuralLoadOrResult object) {
+		public Adapter caseIfcStructuralLoadOrResult(IfcStructuralLoadOrResult object) {
 			return createIfcStructuralLoadOrResultAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadPlanarForce(
-				IfcStructuralLoadPlanarForce object) {
+		public Adapter caseIfcStructuralLoadPlanarForce(IfcStructuralLoadPlanarForce object) {
 			return createIfcStructuralLoadPlanarForceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadSingleDisplacement(
-				IfcStructuralLoadSingleDisplacement object) {
+		public Adapter caseIfcStructuralLoadSingleDisplacement(IfcStructuralLoadSingleDisplacement object) {
 			return createIfcStructuralLoadSingleDisplacementAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(
-				IfcStructuralLoadSingleDisplacementDistortion object) {
+		public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(IfcStructuralLoadSingleDisplacementDistortion object) {
 			return createIfcStructuralLoadSingleDisplacementDistortionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadSingleForce(
-				IfcStructuralLoadSingleForce object) {
+		public Adapter caseIfcStructuralLoadSingleForce(IfcStructuralLoadSingleForce object) {
 			return createIfcStructuralLoadSingleForceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadSingleForceWarping(
-				IfcStructuralLoadSingleForceWarping object) {
+		public Adapter caseIfcStructuralLoadSingleForceWarping(IfcStructuralLoadSingleForceWarping object) {
 			return createIfcStructuralLoadSingleForceWarpingAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadStatic(
-				IfcStructuralLoadStatic object) {
+		public Adapter caseIfcStructuralLoadStatic(IfcStructuralLoadStatic object) {
 			return createIfcStructuralLoadStaticAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadTemperature(
-				IfcStructuralLoadTemperature object) {
+		public Adapter caseIfcStructuralLoadTemperature(IfcStructuralLoadTemperature object) {
 			return createIfcStructuralLoadTemperatureAdapter();
 		}
 
@@ -3515,26 +3306,22 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcStructuralPlanarAction(
-				IfcStructuralPlanarAction object) {
+		public Adapter caseIfcStructuralPlanarAction(IfcStructuralPlanarAction object) {
 			return createIfcStructuralPlanarActionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralPointAction(
-				IfcStructuralPointAction object) {
+		public Adapter caseIfcStructuralPointAction(IfcStructuralPointAction object) {
 			return createIfcStructuralPointActionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralPointConnection(
-				IfcStructuralPointConnection object) {
+		public Adapter caseIfcStructuralPointConnection(IfcStructuralPointConnection object) {
 			return createIfcStructuralPointConnectionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralPointReaction(
-				IfcStructuralPointReaction object) {
+		public Adapter caseIfcStructuralPointReaction(IfcStructuralPointReaction object) {
 			return createIfcStructuralPointReactionAdapter();
 		}
 
@@ -3544,38 +3331,32 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcStructuralResultGroup(
-				IfcStructuralResultGroup object) {
+		public Adapter caseIfcStructuralResultGroup(IfcStructuralResultGroup object) {
 			return createIfcStructuralResultGroupAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralSurfaceAction(
-				IfcStructuralSurfaceAction object) {
+		public Adapter caseIfcStructuralSurfaceAction(IfcStructuralSurfaceAction object) {
 			return createIfcStructuralSurfaceActionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralSurfaceConnection(
-				IfcStructuralSurfaceConnection object) {
+		public Adapter caseIfcStructuralSurfaceConnection(IfcStructuralSurfaceConnection object) {
 			return createIfcStructuralSurfaceConnectionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralSurfaceMember(
-				IfcStructuralSurfaceMember object) {
+		public Adapter caseIfcStructuralSurfaceMember(IfcStructuralSurfaceMember object) {
 			return createIfcStructuralSurfaceMemberAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralSurfaceMemberVarying(
-				IfcStructuralSurfaceMemberVarying object) {
+		public Adapter caseIfcStructuralSurfaceMemberVarying(IfcStructuralSurfaceMemberVarying object) {
 			return createIfcStructuralSurfaceMemberVaryingAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralSurfaceReaction(
-				IfcStructuralSurfaceReaction object) {
+		public Adapter caseIfcStructuralSurfaceReaction(IfcStructuralSurfaceReaction object) {
 			return createIfcStructuralSurfaceReactionAdapter();
 		}
 
@@ -3590,8 +3371,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcStyledRepresentation(
-				IfcStyledRepresentation object) {
+		public Adapter caseIfcStyledRepresentation(IfcStyledRepresentation object) {
 			return createIfcStyledRepresentationAdapter();
 		}
 
@@ -3601,8 +3381,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSubContractResourceType(
-				IfcSubContractResourceType object) {
+		public Adapter caseIfcSubContractResourceType(IfcSubContractResourceType object) {
 			return createIfcSubContractResourceTypeAdapter();
 		}
 
@@ -3617,8 +3396,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSurfaceCurveSweptAreaSolid(
-				IfcSurfaceCurveSweptAreaSolid object) {
+		public Adapter caseIfcSurfaceCurveSweptAreaSolid(IfcSurfaceCurveSweptAreaSolid object) {
 			return createIfcSurfaceCurveSweptAreaSolidAdapter();
 		}
 
@@ -3628,8 +3406,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSurfaceOfLinearExtrusion(
-				IfcSurfaceOfLinearExtrusion object) {
+		public Adapter caseIfcSurfaceOfLinearExtrusion(IfcSurfaceOfLinearExtrusion object) {
 			return createIfcSurfaceOfLinearExtrusionAdapter();
 		}
 
@@ -3639,8 +3416,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSurfaceReinforcementArea(
-				IfcSurfaceReinforcementArea object) {
+		public Adapter caseIfcSurfaceReinforcementArea(IfcSurfaceReinforcementArea object) {
 			return createIfcSurfaceReinforcementAreaAdapter();
 		}
 
@@ -3650,20 +3426,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSurfaceStyleLighting(
-				IfcSurfaceStyleLighting object) {
+		public Adapter caseIfcSurfaceStyleLighting(IfcSurfaceStyleLighting object) {
 			return createIfcSurfaceStyleLightingAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcSurfaceStyleRefraction(
-				IfcSurfaceStyleRefraction object) {
+		public Adapter caseIfcSurfaceStyleRefraction(IfcSurfaceStyleRefraction object) {
 			return createIfcSurfaceStyleRefractionAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcSurfaceStyleRendering(
-				IfcSurfaceStyleRendering object) {
+		public Adapter caseIfcSurfaceStyleRendering(IfcSurfaceStyleRendering object) {
 			return createIfcSurfaceStyleRenderingAdapter();
 		}
 
@@ -3673,8 +3446,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSurfaceStyleWithTextures(
-				IfcSurfaceStyleWithTextures object) {
+		public Adapter caseIfcSurfaceStyleWithTextures(IfcSurfaceStyleWithTextures object) {
 			return createIfcSurfaceStyleWithTexturesAdapter();
 		}
 
@@ -3694,8 +3466,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSweptDiskSolidPolygonal(
-				IfcSweptDiskSolidPolygonal object) {
+		public Adapter caseIfcSweptDiskSolidPolygonal(IfcSweptDiskSolidPolygonal object) {
 			return createIfcSweptDiskSolidPolygonalAdapter();
 		}
 
@@ -3720,14 +3491,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSystemFurnitureElement(
-				IfcSystemFurnitureElement object) {
+		public Adapter caseIfcSystemFurnitureElement(IfcSystemFurnitureElement object) {
 			return createIfcSystemFurnitureElementAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcSystemFurnitureElementType(
-				IfcSystemFurnitureElementType object) {
+		public Adapter caseIfcSystemFurnitureElementType(IfcSystemFurnitureElementType object) {
 			return createIfcSystemFurnitureElementTypeAdapter();
 		}
 
@@ -3822,8 +3591,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcTextLiteralWithExtent(
-				IfcTextLiteralWithExtent object) {
+		public Adapter caseIfcTextLiteralWithExtent(IfcTextLiteralWithExtent object) {
 			return createIfcTextLiteralWithExtentAdapter();
 		}
 
@@ -3838,8 +3606,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcTextStyleForDefinedFont(
-				IfcTextStyleForDefinedFont object) {
+		public Adapter caseIfcTextStyleForDefinedFont(IfcTextStyleForDefinedFont object) {
 			return createIfcTextStyleForDefinedFontAdapter();
 		}
 
@@ -3854,8 +3621,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcTextureCoordinateGenerator(
-				IfcTextureCoordinateGenerator object) {
+		public Adapter caseIfcTextureCoordinateGenerator(IfcTextureCoordinateGenerator object) {
 			return createIfcTextureCoordinateGeneratorAdapter();
 		}
 
@@ -3890,14 +3656,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcTopologicalRepresentationItem(
-				IfcTopologicalRepresentationItem object) {
+		public Adapter caseIfcTopologicalRepresentationItem(IfcTopologicalRepresentationItem object) {
 			return createIfcTopologicalRepresentationItemAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcTopologyRepresentation(
-				IfcTopologyRepresentation object) {
+		public Adapter caseIfcTopologyRepresentation(IfcTopologyRepresentation object) {
 			return createIfcTopologyRepresentationAdapter();
 		}
 
@@ -3917,8 +3681,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcTransportElementType(
-				IfcTransportElementType object) {
+		public Adapter caseIfcTransportElementType(IfcTransportElementType object) {
 			return createIfcTransportElementTypeAdapter();
 		}
 
@@ -3978,14 +3741,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcUnitaryControlElement(
-				IfcUnitaryControlElement object) {
+		public Adapter caseIfcUnitaryControlElement(IfcUnitaryControlElement object) {
 			return createIfcUnitaryControlElementAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcUnitaryControlElementType(
-				IfcUnitaryControlElementType object) {
+		public Adapter caseIfcUnitaryControlElementType(IfcUnitaryControlElementType object) {
 			return createIfcUnitaryControlElementTypeAdapter();
 		}
 
@@ -3995,8 +3756,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcUnitaryEquipmentType(
-				IfcUnitaryEquipmentType object) {
+		public Adapter caseIfcUnitaryEquipmentType(IfcUnitaryEquipmentType object) {
 			return createIfcUnitaryEquipmentTypeAdapter();
 		}
 
@@ -4036,8 +3796,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcVibrationIsolatorType(
-				IfcVibrationIsolatorType object) {
+		public Adapter caseIfcVibrationIsolatorType(IfcVibrationIsolatorType object) {
 			return createIfcVibrationIsolatorTypeAdapter();
 		}
 
@@ -4047,8 +3806,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcVirtualGridIntersection(
-				IfcVirtualGridIntersection object) {
+		public Adapter caseIfcVirtualGridIntersection(IfcVirtualGridIntersection object) {
 			return createIfcVirtualGridIntersectionAdapter();
 		}
 
@@ -4093,14 +3851,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcWindowLiningProperties(
-				IfcWindowLiningProperties object) {
+		public Adapter caseIfcWindowLiningProperties(IfcWindowLiningProperties object) {
 			return createIfcWindowLiningPropertiesAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcWindowPanelProperties(
-				IfcWindowPanelProperties object) {
+		public Adapter caseIfcWindowPanelProperties(IfcWindowPanelProperties object) {
 			return createIfcWindowPanelPropertiesAdapter();
 		}
 
@@ -4165,14 +3921,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcAmountOfSubstanceMeasure(
-				IfcAmountOfSubstanceMeasure object) {
+		public Adapter caseIfcAmountOfSubstanceMeasure(IfcAmountOfSubstanceMeasure object) {
 			return createIfcAmountOfSubstanceMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcAngularVelocityMeasure(
-				IfcAngularVelocityMeasure object) {
+		public Adapter caseIfcAngularVelocityMeasure(IfcAngularVelocityMeasure object) {
 			return createIfcAngularVelocityMeasureAdapter();
 		}
 
@@ -4192,14 +3946,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCardinalPointReference(
-				IfcCardinalPointReference object) {
+		public Adapter caseIfcCardinalPointReference(IfcCardinalPointReference object) {
 			return createIfcCardinalPointReferenceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcContextDependentMeasure(
-				IfcContextDependentMeasure object) {
+		public Adapter caseIfcContextDependentMeasure(IfcContextDependentMeasure object) {
 			return createIfcContextDependentMeasureAdapter();
 		}
 
@@ -4244,8 +3996,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcDoseEquivalentMeasure(
-				IfcDoseEquivalentMeasure object) {
+		public Adapter caseIfcDoseEquivalentMeasure(IfcDoseEquivalentMeasure object) {
 			return createIfcDoseEquivalentMeasureAdapter();
 		}
 
@@ -4255,44 +4006,37 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcDynamicViscosityMeasure(
-				IfcDynamicViscosityMeasure object) {
+		public Adapter caseIfcDynamicViscosityMeasure(IfcDynamicViscosityMeasure object) {
 			return createIfcDynamicViscosityMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcElectricCapacitanceMeasure(
-				IfcElectricCapacitanceMeasure object) {
+		public Adapter caseIfcElectricCapacitanceMeasure(IfcElectricCapacitanceMeasure object) {
 			return createIfcElectricCapacitanceMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcElectricChargeMeasure(
-				IfcElectricChargeMeasure object) {
+		public Adapter caseIfcElectricChargeMeasure(IfcElectricChargeMeasure object) {
 			return createIfcElectricChargeMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcElectricConductanceMeasure(
-				IfcElectricConductanceMeasure object) {
+		public Adapter caseIfcElectricConductanceMeasure(IfcElectricConductanceMeasure object) {
 			return createIfcElectricConductanceMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcElectricCurrentMeasure(
-				IfcElectricCurrentMeasure object) {
+		public Adapter caseIfcElectricCurrentMeasure(IfcElectricCurrentMeasure object) {
 			return createIfcElectricCurrentMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcElectricResistanceMeasure(
-				IfcElectricResistanceMeasure object) {
+		public Adapter caseIfcElectricResistanceMeasure(IfcElectricResistanceMeasure object) {
 			return createIfcElectricResistanceMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcElectricVoltageMeasure(
-				IfcElectricVoltageMeasure object) {
+		public Adapter caseIfcElectricVoltageMeasure(IfcElectricVoltageMeasure object) {
 			return createIfcElectricVoltageMeasureAdapter();
 		}
 
@@ -4332,8 +4076,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcHeatFluxDensityMeasure(
-				IfcHeatFluxDensityMeasure object) {
+		public Adapter caseIfcHeatFluxDensityMeasure(IfcHeatFluxDensityMeasure object) {
 			return createIfcHeatFluxDensityMeasureAdapter();
 		}
 
@@ -4363,26 +4106,22 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcIntegerCountRateMeasure(
-				IfcIntegerCountRateMeasure object) {
+		public Adapter caseIfcIntegerCountRateMeasure(IfcIntegerCountRateMeasure object) {
 			return createIfcIntegerCountRateMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcIonConcentrationMeasure(
-				IfcIonConcentrationMeasure object) {
+		public Adapter caseIfcIonConcentrationMeasure(IfcIonConcentrationMeasure object) {
 			return createIfcIonConcentrationMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcIsothermalMoistureCapacityMeasure(
-				IfcIsothermalMoistureCapacityMeasure object) {
+		public Adapter caseIfcIsothermalMoistureCapacityMeasure(IfcIsothermalMoistureCapacityMeasure object) {
 			return createIfcIsothermalMoistureCapacityMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcKinematicViscosityMeasure(
-				IfcKinematicViscosityMeasure object) {
+		public Adapter caseIfcKinematicViscosityMeasure(IfcKinematicViscosityMeasure object) {
 			return createIfcKinematicViscosityMeasureAdapter();
 		}
 
@@ -4407,14 +4146,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcLinearStiffnessMeasure(
-				IfcLinearStiffnessMeasure object) {
+		public Adapter caseIfcLinearStiffnessMeasure(IfcLinearStiffnessMeasure object) {
 			return createIfcLinearStiffnessMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcLinearVelocityMeasure(
-				IfcLinearVelocityMeasure object) {
+		public Adapter caseIfcLinearVelocityMeasure(IfcLinearVelocityMeasure object) {
 			return createIfcLinearVelocityMeasureAdapter();
 		}
 
@@ -4429,20 +4166,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcLuminousIntensityDistributionMeasure(
-				IfcLuminousIntensityDistributionMeasure object) {
+		public Adapter caseIfcLuminousIntensityDistributionMeasure(IfcLuminousIntensityDistributionMeasure object) {
 			return createIfcLuminousIntensityDistributionMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcLuminousIntensityMeasure(
-				IfcLuminousIntensityMeasure object) {
+		public Adapter caseIfcLuminousIntensityMeasure(IfcLuminousIntensityMeasure object) {
 			return createIfcLuminousIntensityMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcMagneticFluxDensityMeasure(
-				IfcMagneticFluxDensityMeasure object) {
+		public Adapter caseIfcMagneticFluxDensityMeasure(IfcMagneticFluxDensityMeasure object) {
 			return createIfcMagneticFluxDensityMeasureAdapter();
 		}
 
@@ -4467,50 +4201,42 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcMassPerLengthMeasure(
-				IfcMassPerLengthMeasure object) {
+		public Adapter caseIfcMassPerLengthMeasure(IfcMassPerLengthMeasure object) {
 			return createIfcMassPerLengthMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfElasticityMeasure(
-				IfcModulusOfElasticityMeasure object) {
+		public Adapter caseIfcModulusOfElasticityMeasure(IfcModulusOfElasticityMeasure object) {
 			return createIfcModulusOfElasticityMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfLinearSubgradeReactionMeasure(
-				IfcModulusOfLinearSubgradeReactionMeasure object) {
+		public Adapter caseIfcModulusOfLinearSubgradeReactionMeasure(IfcModulusOfLinearSubgradeReactionMeasure object) {
 			return createIfcModulusOfLinearSubgradeReactionMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(
-				IfcModulusOfRotationalSubgradeReactionMeasure object) {
+		public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(IfcModulusOfRotationalSubgradeReactionMeasure object) {
 			return createIfcModulusOfRotationalSubgradeReactionMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfSubgradeReactionMeasure(
-				IfcModulusOfSubgradeReactionMeasure object) {
+		public Adapter caseIfcModulusOfSubgradeReactionMeasure(IfcModulusOfSubgradeReactionMeasure object) {
 			return createIfcModulusOfSubgradeReactionMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcMoistureDiffusivityMeasure(
-				IfcMoistureDiffusivityMeasure object) {
+		public Adapter caseIfcMoistureDiffusivityMeasure(IfcMoistureDiffusivityMeasure object) {
 			return createIfcMoistureDiffusivityMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcMolecularWeightMeasure(
-				IfcMolecularWeightMeasure object) {
+		public Adapter caseIfcMolecularWeightMeasure(IfcMolecularWeightMeasure object) {
 			return createIfcMolecularWeightMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcMomentOfInertiaMeasure(
-				IfcMomentOfInertiaMeasure object) {
+		public Adapter caseIfcMomentOfInertiaMeasure(IfcMomentOfInertiaMeasure object) {
 			return createIfcMomentOfInertiaMeasureAdapter();
 		}
 
@@ -4565,8 +4291,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRadioActivityMeasure(
-				IfcRadioActivityMeasure object) {
+		public Adapter caseIfcRadioActivityMeasure(IfcRadioActivityMeasure object) {
 			return createIfcRadioActivityMeasureAdapter();
 		}
 
@@ -4581,32 +4306,27 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRotationalFrequencyMeasure(
-				IfcRotationalFrequencyMeasure object) {
+		public Adapter caseIfcRotationalFrequencyMeasure(IfcRotationalFrequencyMeasure object) {
 			return createIfcRotationalFrequencyMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRotationalMassMeasure(
-				IfcRotationalMassMeasure object) {
+		public Adapter caseIfcRotationalMassMeasure(IfcRotationalMassMeasure object) {
 			return createIfcRotationalMassMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcRotationalStiffnessMeasure(
-				IfcRotationalStiffnessMeasure object) {
+		public Adapter caseIfcRotationalStiffnessMeasure(IfcRotationalStiffnessMeasure object) {
 			return createIfcRotationalStiffnessMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcSectionModulusMeasure(
-				IfcSectionModulusMeasure object) {
+		public Adapter caseIfcSectionModulusMeasure(IfcSectionModulusMeasure object) {
 			return createIfcSectionModulusMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcSectionalAreaIntegralMeasure(
-				IfcSectionalAreaIntegralMeasure object) {
+		public Adapter caseIfcSectionalAreaIntegralMeasure(IfcSectionalAreaIntegralMeasure object) {
 			return createIfcSectionalAreaIntegralMeasureAdapter();
 		}
 
@@ -4621,8 +4341,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSoundPowerLevelMeasure(
-				IfcSoundPowerLevelMeasure object) {
+		public Adapter caseIfcSoundPowerLevelMeasure(IfcSoundPowerLevelMeasure object) {
 			return createIfcSoundPowerLevelMeasureAdapter();
 		}
 
@@ -4632,20 +4351,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSoundPressureLevelMeasure(
-				IfcSoundPressureLevelMeasure object) {
+		public Adapter caseIfcSoundPressureLevelMeasure(IfcSoundPressureLevelMeasure object) {
 			return createIfcSoundPressureLevelMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcSoundPressureMeasure(
-				IfcSoundPressureMeasure object) {
+		public Adapter caseIfcSoundPressureMeasure(IfcSoundPressureMeasure object) {
 			return createIfcSoundPressureMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcSpecificHeatCapacityMeasure(
-				IfcSpecificHeatCapacityMeasure object) {
+		public Adapter caseIfcSpecificHeatCapacityMeasure(IfcSpecificHeatCapacityMeasure object) {
 			return createIfcSpecificHeatCapacityMeasureAdapter();
 		}
 
@@ -4660,14 +4376,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcTemperatureGradientMeasure(
-				IfcTemperatureGradientMeasure object) {
+		public Adapter caseIfcTemperatureGradientMeasure(IfcTemperatureGradientMeasure object) {
 			return createIfcTemperatureGradientMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcTemperatureRateOfChangeMeasure(
-				IfcTemperatureRateOfChangeMeasure object) {
+		public Adapter caseIfcTemperatureRateOfChangeMeasure(IfcTemperatureRateOfChangeMeasure object) {
 			return createIfcTemperatureRateOfChangeMeasureAdapter();
 		}
 
@@ -4697,38 +4411,32 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcThermalAdmittanceMeasure(
-				IfcThermalAdmittanceMeasure object) {
+		public Adapter caseIfcThermalAdmittanceMeasure(IfcThermalAdmittanceMeasure object) {
 			return createIfcThermalAdmittanceMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcThermalConductivityMeasure(
-				IfcThermalConductivityMeasure object) {
+		public Adapter caseIfcThermalConductivityMeasure(IfcThermalConductivityMeasure object) {
 			return createIfcThermalConductivityMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcThermalExpansionCoefficientMeasure(
-				IfcThermalExpansionCoefficientMeasure object) {
+		public Adapter caseIfcThermalExpansionCoefficientMeasure(IfcThermalExpansionCoefficientMeasure object) {
 			return createIfcThermalExpansionCoefficientMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcThermalResistanceMeasure(
-				IfcThermalResistanceMeasure object) {
+		public Adapter caseIfcThermalResistanceMeasure(IfcThermalResistanceMeasure object) {
 			return createIfcThermalResistanceMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcThermalTransmittanceMeasure(
-				IfcThermalTransmittanceMeasure object) {
+		public Adapter caseIfcThermalTransmittanceMeasure(IfcThermalTransmittanceMeasure object) {
 			return createIfcThermalTransmittanceMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcThermodynamicTemperatureMeasure(
-				IfcThermodynamicTemperatureMeasure object) {
+		public Adapter caseIfcThermodynamicTemperatureMeasure(IfcThermodynamicTemperatureMeasure object) {
 			return createIfcThermodynamicTemperatureMeasureAdapter();
 		}
 
@@ -4758,8 +4466,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcVaporPermeabilityMeasure(
-				IfcVaporPermeabilityMeasure object) {
+		public Adapter caseIfcVaporPermeabilityMeasure(IfcVaporPermeabilityMeasure object) {
 			return createIfcVaporPermeabilityMeasureAdapter();
 		}
 
@@ -4769,20 +4476,17 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcVolumetricFlowRateMeasure(
-				IfcVolumetricFlowRateMeasure object) {
+		public Adapter caseIfcVolumetricFlowRateMeasure(IfcVolumetricFlowRateMeasure object) {
 			return createIfcVolumetricFlowRateMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcWarpingConstantMeasure(
-				IfcWarpingConstantMeasure object) {
+		public Adapter caseIfcWarpingConstantMeasure(IfcWarpingConstantMeasure object) {
 			return createIfcWarpingConstantMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcWarpingMomentMeasure(
-				IfcWarpingMomentMeasure object) {
+		public Adapter caseIfcWarpingMomentMeasure(IfcWarpingMomentMeasure object) {
 			return createIfcWarpingMomentMeasureAdapter();
 		}
 
@@ -4792,8 +4496,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCompoundPlaneAngleMeasure(
-				IfcCompoundPlaneAngleMeasure object) {
+		public Adapter caseIfcCompoundPlaneAngleMeasure(IfcCompoundPlaneAngleMeasure object) {
 			return createIfcCompoundPlaneAngleMeasureAdapter();
 		}
 
@@ -4803,32 +4506,27 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcNonNegativeLengthMeasure(
-				IfcNonNegativeLengthMeasure object) {
+		public Adapter caseIfcNonNegativeLengthMeasure(IfcNonNegativeLengthMeasure object) {
 			return createIfcNonNegativeLengthMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcNormalisedRatioMeasure(
-				IfcNormalisedRatioMeasure object) {
+		public Adapter caseIfcNormalisedRatioMeasure(IfcNormalisedRatioMeasure object) {
 			return createIfcNormalisedRatioMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcPositiveLengthMeasure(
-				IfcPositiveLengthMeasure object) {
+		public Adapter caseIfcPositiveLengthMeasure(IfcPositiveLengthMeasure object) {
 			return createIfcPositiveLengthMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcPositivePlaneAngleMeasure(
-				IfcPositivePlaneAngleMeasure object) {
+		public Adapter caseIfcPositivePlaneAngleMeasure(IfcPositivePlaneAngleMeasure object) {
 			return createIfcPositivePlaneAngleMeasureAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcPositiveRatioMeasure(
-				IfcPositiveRatioMeasure object) {
+		public Adapter caseIfcPositiveRatioMeasure(IfcPositiveRatioMeasure object) {
 			return createIfcPositiveRatioMeasureAdapter();
 		}
 
@@ -4858,8 +4556,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcBendingParameterSelect(
-				IfcBendingParameterSelect object) {
+		public Adapter caseIfcBendingParameterSelect(IfcBendingParameterSelect object) {
 			return createIfcBendingParameterSelectAdapter();
 		}
 
@@ -4869,14 +4566,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcClassificationReferenceSelect(
-				IfcClassificationReferenceSelect object) {
+		public Adapter caseIfcClassificationReferenceSelect(IfcClassificationReferenceSelect object) {
 			return createIfcClassificationReferenceSelectAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcClassificationSelect(
-				IfcClassificationSelect object) {
+		public Adapter caseIfcClassificationSelect(IfcClassificationSelect object) {
 			return createIfcClassificationSelectAdapter();
 		}
 
@@ -4891,8 +4586,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCoordinateReferenceSystemSelect(
-				IfcCoordinateReferenceSystemSelect object) {
+		public Adapter caseIfcCoordinateReferenceSystemSelect(IfcCoordinateReferenceSystemSelect object) {
 			return createIfcCoordinateReferenceSystemSelectAdapter();
 		}
 
@@ -4902,8 +4596,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCurveFontOrScaledCurveFontSelect(
-				IfcCurveFontOrScaledCurveFontSelect object) {
+		public Adapter caseIfcCurveFontOrScaledCurveFontSelect(IfcCurveFontOrScaledCurveFontSelect object) {
 			return createIfcCurveFontOrScaledCurveFontSelectAdapter();
 		}
 
@@ -4918,8 +4611,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCurveStyleFontSelect(
-				IfcCurveStyleFontSelect object) {
+		public Adapter caseIfcCurveStyleFontSelect(IfcCurveStyleFontSelect object) {
 			return createIfcCurveStyleFontSelectAdapter();
 		}
 
@@ -4949,14 +4641,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcGridPlacementDirectionSelect(
-				IfcGridPlacementDirectionSelect object) {
+		public Adapter caseIfcGridPlacementDirectionSelect(IfcGridPlacementDirectionSelect object) {
 			return createIfcGridPlacementDirectionSelectAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcHatchLineDistanceSelect(
-				IfcHatchLineDistanceSelect object) {
+		public Adapter caseIfcHatchLineDistanceSelect(IfcHatchLineDistanceSelect object) {
 			return createIfcHatchLineDistanceSelectAdapter();
 		}
 
@@ -4971,8 +4661,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcLightDistributionDataSourceSelect(
-				IfcLightDistributionDataSourceSelect object) {
+		public Adapter caseIfcLightDistributionDataSourceSelect(IfcLightDistributionDataSourceSelect object) {
 			return createIfcLightDistributionDataSourceSelectAdapter();
 		}
 
@@ -4992,26 +4681,22 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfRotationalSubgradeReactionSelect(
-				IfcModulusOfRotationalSubgradeReactionSelect object) {
+		public Adapter caseIfcModulusOfRotationalSubgradeReactionSelect(IfcModulusOfRotationalSubgradeReactionSelect object) {
 			return createIfcModulusOfRotationalSubgradeReactionSelectAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfSubgradeReactionSelect(
-				IfcModulusOfSubgradeReactionSelect object) {
+		public Adapter caseIfcModulusOfSubgradeReactionSelect(IfcModulusOfSubgradeReactionSelect object) {
 			return createIfcModulusOfSubgradeReactionSelectAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfTranslationalSubgradeReactionSelect(
-				IfcModulusOfTranslationalSubgradeReactionSelect object) {
+		public Adapter caseIfcModulusOfTranslationalSubgradeReactionSelect(IfcModulusOfTranslationalSubgradeReactionSelect object) {
 			return createIfcModulusOfTranslationalSubgradeReactionSelectAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcObjectReferenceSelect(
-				IfcObjectReferenceSelect object) {
+		public Adapter caseIfcObjectReferenceSelect(IfcObjectReferenceSelect object) {
 			return createIfcObjectReferenceSelectAdapter();
 		}
 
@@ -5021,8 +4706,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPresentationStyleSelect(
-				IfcPresentationStyleSelect object) {
+		public Adapter caseIfcPresentationStyleSelect(IfcPresentationStyleSelect object) {
 			return createIfcPresentationStyleSelectAdapter();
 		}
 
@@ -5032,8 +4716,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcProductRepresentationSelect(
-				IfcProductRepresentationSelect object) {
+		public Adapter caseIfcProductRepresentationSelect(IfcProductRepresentationSelect object) {
 			return createIfcProductRepresentationSelectAdapter();
 		}
 
@@ -5043,14 +4726,12 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcPropertySetDefinitionSelect(
-				IfcPropertySetDefinitionSelect object) {
+		public Adapter caseIfcPropertySetDefinitionSelect(IfcPropertySetDefinitionSelect object) {
 			return createIfcPropertySetDefinitionSelectAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcResourceObjectSelect(
-				IfcResourceObjectSelect object) {
+		public Adapter caseIfcResourceObjectSelect(IfcResourceObjectSelect object) {
 			return createIfcResourceObjectSelectAdapter();
 		}
 
@@ -5060,8 +4741,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcRotationalStiffnessSelect(
-				IfcRotationalStiffnessSelect object) {
+		public Adapter caseIfcRotationalStiffnessSelect(IfcRotationalStiffnessSelect object) {
 			return createIfcRotationalStiffnessSelectAdapter();
 		}
 
@@ -5091,32 +4771,27 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcSpecularHighlightSelect(
-				IfcSpecularHighlightSelect object) {
+		public Adapter caseIfcSpecularHighlightSelect(IfcSpecularHighlightSelect object) {
 			return createIfcSpecularHighlightSelectAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStructuralActivityAssignmentSelect(
-				IfcStructuralActivityAssignmentSelect object) {
+		public Adapter caseIfcStructuralActivityAssignmentSelect(IfcStructuralActivityAssignmentSelect object) {
 			return createIfcStructuralActivityAssignmentSelectAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcStyleAssignmentSelect(
-				IfcStyleAssignmentSelect object) {
+		public Adapter caseIfcStyleAssignmentSelect(IfcStyleAssignmentSelect object) {
 			return createIfcStyleAssignmentSelectAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcSurfaceOrFaceSurface(
-				IfcSurfaceOrFaceSurface object) {
+		public Adapter caseIfcSurfaceOrFaceSurface(IfcSurfaceOrFaceSurface object) {
 			return createIfcSurfaceOrFaceSurfaceAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcSurfaceStyleElementSelect(
-				IfcSurfaceStyleElementSelect object) {
+		public Adapter caseIfcSurfaceStyleElementSelect(IfcSurfaceStyleElementSelect object) {
 			return createIfcSurfaceStyleElementSelectAdapter();
 		}
 
@@ -5131,8 +4806,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcTranslationalStiffnessSelect(
-				IfcTranslationalStiffnessSelect object) {
+		public Adapter caseIfcTranslationalStiffnessSelect(IfcTranslationalStiffnessSelect object) {
 			return createIfcTranslationalStiffnessSelectAdapter();
 		}
 
@@ -5157,8 +4831,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcWarpingStiffnessSelect(
-				IfcWarpingStiffnessSelect object) {
+		public Adapter caseIfcWarpingStiffnessSelect(IfcWarpingStiffnessSelect object) {
 			return createIfcWarpingStiffnessSelectAdapter();
 		}
 

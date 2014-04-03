@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTransportElementImpl extends IfcElementImpl implements
-		IfcTransportElement {
+public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransportElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcTransportElementImpl extends IfcElementImpl implements
 	 * @generated
 	 */
 	public IfcTransportElementTypeEnum getPredefinedType() {
-		return (IfcTransportElementTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_TRANSPORT_ELEMENT__PREDEFINED_TYPE,
-				true);
+		return (IfcTransportElementTypeEnum) eGet(Ifc4Package.Literals.IFC_TRANSPORT_ELEMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcTransportElementImpl extends IfcElementImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcTransportElementTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_TRANSPORT_ELEMENT__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_TRANSPORT_ELEMENT__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

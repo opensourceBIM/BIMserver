@@ -35,8 +35,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcSurfaceStyleLighting extends IfcPresentationItem,
-		IfcSurfaceStyleElementSelect {
+public interface IfcSurfaceStyleLighting extends IfcPresentationItem, IfcSurfaceStyleElementSelect {
 	/**
 	 * Returns the value of the '<em><b>Diffuse Transmission Colour</b></em>' reference.
 	 * <!-- begin-user-doc -->

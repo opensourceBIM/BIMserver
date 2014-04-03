@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl
-		implements IfcPropertyEnumeration {
+public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl implements IfcPropertyEnumeration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__NAME, true);
 	}
 
 	/**
@@ -87,9 +85,7 @@ public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getEnumerationValues() {
-		return (EList<IfcValue>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__ENUMERATION_VALUES,
-				true);
+		return (EList<IfcValue>) eGet(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__ENUMERATION_VALUES, true);
 	}
 
 	/**
@@ -98,8 +94,7 @@ public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl
 	 * @generated
 	 */
 	public IfcUnit getUnit() {
-		return (IfcUnit) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__UNIT, true);
+		return (IfcUnit) eGet(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__UNIT, true);
 	}
 
 	/**

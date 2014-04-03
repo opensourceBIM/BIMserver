@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl
-		implements IfcOpeningElement {
+public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl implements IfcOpeningElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,8 +65,7 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl
 	 * @generated
 	 */
 	public IfcOpeningElementTypeEnum getPredefinedType() {
-		return (IfcOpeningElementTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_OPENING_ELEMENT__PREDEFINED_TYPE, true);
+		return (IfcOpeningElementTypeEnum) eGet(Ifc4Package.Literals.IFC_OPENING_ELEMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -76,8 +74,7 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcOpeningElementTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_OPENING_ELEMENT__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_OPENING_ELEMENT__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -105,8 +102,7 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelFillsElement> getHasFillings() {
-		return (EList<IfcRelFillsElement>) eGet(
-				Ifc4Package.Literals.IFC_OPENING_ELEMENT__HAS_FILLINGS, true);
+		return (EList<IfcRelFillsElement>) eGet(Ifc4Package.Literals.IFC_OPENING_ELEMENT__HAS_FILLINGS, true);
 	}
 
 	/**

@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAggregatesImpl extends IfcRelDecomposesImpl implements
-		IfcRelAggregates {
+public class IfcRelAggregatesImpl extends IfcRelDecomposesImpl implements IfcRelAggregates {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcRelAggregatesImpl extends IfcRelDecomposesImpl implements
 	 * @generated
 	 */
 	public IfcObjectDefinition getRelatingObject() {
-		return (IfcObjectDefinition) eGet(
-				Ifc4Package.Literals.IFC_REL_AGGREGATES__RELATING_OBJECT, true);
+		return (IfcObjectDefinition) eGet(Ifc4Package.Literals.IFC_REL_AGGREGATES__RELATING_OBJECT, true);
 	}
 
 	/**
@@ -75,8 +73,7 @@ public class IfcRelAggregatesImpl extends IfcRelDecomposesImpl implements
 	 * @generated
 	 */
 	public void setRelatingObject(IfcObjectDefinition newRelatingObject) {
-		eSet(Ifc4Package.Literals.IFC_REL_AGGREGATES__RELATING_OBJECT,
-				newRelatingObject);
+		eSet(Ifc4Package.Literals.IFC_REL_AGGREGATES__RELATING_OBJECT, newRelatingObject);
 	}
 
 	/**
@@ -86,8 +83,7 @@ public class IfcRelAggregatesImpl extends IfcRelDecomposesImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcObjectDefinition> getRelatedObjects() {
-		return (EList<IfcObjectDefinition>) eGet(
-				Ifc4Package.Literals.IFC_REL_AGGREGATES__RELATED_OBJECTS, true);
+		return (EList<IfcObjectDefinition>) eGet(Ifc4Package.Literals.IFC_REL_AGGREGATES__RELATED_OBJECTS, true);
 	}
 
 } //IfcRelAggregatesImpl

@@ -61,8 +61,7 @@ public class IfcWorkPlanImpl extends IfcWorkControlImpl implements IfcWorkPlan {
 	 * @generated
 	 */
 	public IfcWorkPlanTypeEnum getPredefinedType() {
-		return (IfcWorkPlanTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_WORK_PLAN__PREDEFINED_TYPE, true);
+		return (IfcWorkPlanTypeEnum) eGet(Ifc4Package.Literals.IFC_WORK_PLAN__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -71,8 +70,7 @@ public class IfcWorkPlanImpl extends IfcWorkControlImpl implements IfcWorkPlan {
 	 * @generated
 	 */
 	public void setPredefinedType(IfcWorkPlanTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_WORK_PLAN__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_WORK_PLAN__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

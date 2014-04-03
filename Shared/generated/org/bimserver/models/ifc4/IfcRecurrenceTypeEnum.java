@@ -80,8 +80,7 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	YEARLY_BY_DAY_OF_MONTH(4, "YEARLY_BY_DAY_OF_MONTH",
-			"YEARLY_BY_DAY_OF_MONTH"),
+	YEARLY_BY_DAY_OF_MONTH(4, "YEARLY_BY_DAY_OF_MONTH", "YEARLY_BY_DAY_OF_MONTH"),
 
 	/**
 	 * The '<em><b>WEEKLY</b></em>' literal object.
@@ -101,8 +100,7 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MONTHLY_BY_DAY_OF_MONTH(6, "MONTHLY_BY_DAY_OF_MONTH",
-			"MONTHLY_BY_DAY_OF_MONTH"),
+	MONTHLY_BY_DAY_OF_MONTH(6, "MONTHLY_BY_DAY_OF_MONTH", "MONTHLY_BY_DAY_OF_MONTH"),
 
 	/**
 	 * The '<em><b>DAILY</b></em>' literal object.
@@ -265,10 +263,8 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRecurrenceTypeEnum[] VALUES_ARRAY = new IfcRecurrenceTypeEnum[] {
-			NULL, MONTHLY_BY_POSITION, BY_DAY_COUNT, YEARLY_BY_POSITION,
-			YEARLY_BY_DAY_OF_MONTH, WEEKLY, MONTHLY_BY_DAY_OF_MONTH, DAILY,
-			BY_WEEKDAY_COUNT, };
+	private static final IfcRecurrenceTypeEnum[] VALUES_ARRAY = new IfcRecurrenceTypeEnum[] { NULL, MONTHLY_BY_POSITION, BY_DAY_COUNT, YEARLY_BY_POSITION, YEARLY_BY_DAY_OF_MONTH,
+			WEEKLY, MONTHLY_BY_DAY_OF_MONTH, DAILY, BY_WEEKDAY_COUNT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Recurrence Type Enum</b></em>' enumerators.
@@ -276,8 +272,7 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcRecurrenceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcRecurrenceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Recurrence Type Enum</b></em>' literal with the specified literal value.

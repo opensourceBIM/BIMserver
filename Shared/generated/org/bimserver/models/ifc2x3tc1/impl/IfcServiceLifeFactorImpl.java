@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl
-		implements IfcServiceLifeFactor {
+public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl implements IfcServiceLifeFactor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +65,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public IfcServiceLifeFactorTypeEnum getPredefinedType() {
-		return (IfcServiceLifeFactorTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE,
-				true);
+		return (IfcServiceLifeFactorTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -77,8 +74,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcServiceLifeFactorTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -87,9 +83,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public IfcMeasureValue getUpperValue() {
-		return (IfcMeasureValue) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__UPPER_VALUE,
-				true);
+		return (IfcMeasureValue) eGet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__UPPER_VALUE, true);
 	}
 
 	/**
@@ -98,8 +92,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public void setUpperValue(IfcMeasureValue newUpperValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__UPPER_VALUE,
-				newUpperValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__UPPER_VALUE, newUpperValue);
 	}
 
 	/**
@@ -126,9 +119,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public IfcMeasureValue getMostUsedValue() {
-		return (IfcMeasureValue) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__MOST_USED_VALUE,
-				true);
+		return (IfcMeasureValue) eGet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__MOST_USED_VALUE, true);
 	}
 
 	/**
@@ -137,8 +128,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public void setMostUsedValue(IfcMeasureValue newMostUsedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__MOST_USED_VALUE,
-				newMostUsedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__MOST_USED_VALUE, newMostUsedValue);
 	}
 
 	/**
@@ -147,9 +137,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public IfcMeasureValue getLowerValue() {
-		return (IfcMeasureValue) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__LOWER_VALUE,
-				true);
+		return (IfcMeasureValue) eGet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__LOWER_VALUE, true);
 	}
 
 	/**
@@ -158,8 +146,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl
 	 * @generated
 	 */
 	public void setLowerValue(IfcMeasureValue newLowerValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__LOWER_VALUE,
-				newLowerValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__LOWER_VALUE, newLowerValue);
 	}
 
 	/**

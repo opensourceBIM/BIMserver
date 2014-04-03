@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBoilerImpl extends IfcEnergyConversionDeviceImpl implements
-		IfcBoiler {
+public class IfcBoilerImpl extends IfcEnergyConversionDeviceImpl implements IfcBoiler {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcBoilerImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public IfcBoilerTypeEnum getPredefinedType() {
-		return (IfcBoilerTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_BOILER__PREDEFINED_TYPE, true);
+		return (IfcBoilerTypeEnum) eGet(Ifc4Package.Literals.IFC_BOILER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcBoilerImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcBoilerTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_BOILER__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_BOILER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

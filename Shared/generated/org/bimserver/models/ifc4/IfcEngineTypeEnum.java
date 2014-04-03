@@ -163,9 +163,7 @@ public enum IfcEngineTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEngineTypeEnum[] VALUES_ARRAY = new IfcEngineTypeEnum[] {
-			NULL, NOTDEFINED, USERDEFINED, INTERNALCOMBUSTION,
-			EXTERNALCOMBUSTION, };
+	private static final IfcEngineTypeEnum[] VALUES_ARRAY = new IfcEngineTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, INTERNALCOMBUSTION, EXTERNALCOMBUSTION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Engine Type Enum</b></em>' enumerators.
@@ -173,8 +171,7 @@ public enum IfcEngineTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcEngineTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcEngineTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Engine Type Enum</b></em>' literal with the specified literal value.

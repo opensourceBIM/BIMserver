@@ -44,8 +44,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
-		IfcPropertyTableValue {
+public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements IfcPropertyTableValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,9 +71,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getDefiningValues() {
-		return (EList<IfcValue>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_VALUES,
-				true);
+		return (EList<IfcValue>) eGet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_VALUES, true);
 	}
 
 	/**
@@ -102,9 +99,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getDefinedValues() {
-		return (EList<IfcValue>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_VALUES,
-				true);
+		return (EList<IfcValue>) eGet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_VALUES, true);
 	}
 
 	/**
@@ -131,8 +126,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
 	 * @generated
 	 */
 	public String getExpression() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION, true);
 	}
 
 	/**
@@ -141,8 +135,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
 	 * @generated
 	 */
 	public void setExpression(String newExpression) {
-		eSet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION,
-				newExpression);
+		eSet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION, newExpression);
 	}
 
 	/**
@@ -169,9 +162,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
 	 * @generated
 	 */
 	public IfcUnit getDefiningUnit() {
-		return (IfcUnit) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT,
-				true);
+		return (IfcUnit) eGet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT, true);
 	}
 
 	/**
@@ -180,8 +171,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
 	 * @generated
 	 */
 	public void setDefiningUnit(IfcUnit newDefiningUnit) {
-		eSet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT,
-				newDefiningUnit);
+		eSet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT, newDefiningUnit);
 	}
 
 	/**
@@ -208,9 +198,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
 	 * @generated
 	 */
 	public IfcUnit getDefinedUnit() {
-		return (IfcUnit) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT,
-				true);
+		return (IfcUnit) eGet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT, true);
 	}
 
 	/**
@@ -219,8 +207,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
 	 * @generated
 	 */
 	public void setDefinedUnit(IfcUnit newDefinedUnit) {
-		eSet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT,
-				newDefinedUnit);
+		eSet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT, newDefinedUnit);
 	}
 
 	/**
@@ -247,9 +234,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
 	 * @generated
 	 */
 	public IfcCurveInterpolationEnum getCurveInterpolation() {
-		return (IfcCurveInterpolationEnum) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__CURVE_INTERPOLATION,
-				true);
+		return (IfcCurveInterpolationEnum) eGet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__CURVE_INTERPOLATION, true);
 	}
 
 	/**
@@ -257,10 +242,8 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCurveInterpolation(
-			IfcCurveInterpolationEnum newCurveInterpolation) {
-		eSet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__CURVE_INTERPOLATION,
-				newCurveInterpolation);
+	public void setCurveInterpolation(IfcCurveInterpolationEnum newCurveInterpolation) {
+		eSet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__CURVE_INTERPOLATION, newCurveInterpolation);
 	}
 
 	/**

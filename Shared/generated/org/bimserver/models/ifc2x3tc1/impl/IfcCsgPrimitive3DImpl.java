@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCsgPrimitive3DImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcCsgPrimitive3D {
+public class IfcCsgPrimitive3DImpl extends IfcGeometricRepresentationItemImpl implements IfcCsgPrimitive3D {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class IfcCsgPrimitive3DImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public IfcAxis2Placement3D getPosition() {
-		return (IfcAxis2Placement3D) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CSG_PRIMITIVE3_D__POSITION, true);
+		return (IfcAxis2Placement3D) eGet(Ifc2x3tc1Package.Literals.IFC_CSG_PRIMITIVE3_D__POSITION, true);
 	}
 
 	/**
@@ -73,8 +71,7 @@ public class IfcCsgPrimitive3DImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setPosition(IfcAxis2Placement3D newPosition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CSG_PRIMITIVE3_D__POSITION,
-				newPosition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CSG_PRIMITIVE3_D__POSITION, newPosition);
 	}
 
 	/**
@@ -83,8 +80,7 @@ public class IfcCsgPrimitive3DImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CSG_PRIMITIVE3_D__DIM, true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_CSG_PRIMITIVE3_D__DIM, true);
 	}
 
 	/**

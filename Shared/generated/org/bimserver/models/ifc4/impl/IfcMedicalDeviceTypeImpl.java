@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMedicalDeviceTypeImpl extends IfcFlowTerminalTypeImpl implements
-		IfcMedicalDeviceType {
+public class IfcMedicalDeviceTypeImpl extends IfcFlowTerminalTypeImpl implements IfcMedicalDeviceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcMedicalDeviceTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public IfcMedicalDeviceTypeEnum getPredefinedType() {
-		return (IfcMedicalDeviceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_MEDICAL_DEVICE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcMedicalDeviceTypeEnum) eGet(Ifc4Package.Literals.IFC_MEDICAL_DEVICE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcMedicalDeviceTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcMedicalDeviceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_MEDICAL_DEVICE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_MEDICAL_DEVICE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcMedicalDeviceTypeImpl

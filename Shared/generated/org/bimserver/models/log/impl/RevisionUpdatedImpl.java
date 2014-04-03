@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RevisionUpdatedImpl extends RevisionRelatedImpl implements
-		RevisionUpdated {
+public class RevisionUpdatedImpl extends RevisionRelatedImpl implements RevisionUpdated {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

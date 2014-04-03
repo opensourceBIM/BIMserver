@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProjectedCRSImpl extends IfcCoordinateReferenceSystemImpl
-		implements IfcProjectedCRS {
+public class IfcProjectedCRSImpl extends IfcCoordinateReferenceSystemImpl implements IfcProjectedCRS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class IfcProjectedCRSImpl extends IfcCoordinateReferenceSystemImpl
 	 * @generated
 	 */
 	public String getMapProjection() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PROJECTED_CRS__MAP_PROJECTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PROJECTED_CRS__MAP_PROJECTION, true);
 	}
 
 	/**
@@ -74,8 +72,7 @@ public class IfcProjectedCRSImpl extends IfcCoordinateReferenceSystemImpl
 	 * @generated
 	 */
 	public void setMapProjection(String newMapProjection) {
-		eSet(Ifc4Package.Literals.IFC_PROJECTED_CRS__MAP_PROJECTION,
-				newMapProjection);
+		eSet(Ifc4Package.Literals.IFC_PROJECTED_CRS__MAP_PROJECTION, newMapProjection);
 	}
 
 	/**
@@ -102,8 +99,7 @@ public class IfcProjectedCRSImpl extends IfcCoordinateReferenceSystemImpl
 	 * @generated
 	 */
 	public String getMapZone() {
-		return (String) eGet(Ifc4Package.Literals.IFC_PROJECTED_CRS__MAP_ZONE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PROJECTED_CRS__MAP_ZONE, true);
 	}
 
 	/**
@@ -139,8 +135,7 @@ public class IfcProjectedCRSImpl extends IfcCoordinateReferenceSystemImpl
 	 * @generated
 	 */
 	public IfcNamedUnit getMapUnit() {
-		return (IfcNamedUnit) eGet(
-				Ifc4Package.Literals.IFC_PROJECTED_CRS__MAP_UNIT, true);
+		return (IfcNamedUnit) eGet(Ifc4Package.Literals.IFC_PROJECTED_CRS__MAP_UNIT, true);
 	}
 
 	/**

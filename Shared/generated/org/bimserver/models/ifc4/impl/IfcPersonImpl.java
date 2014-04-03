@@ -85,8 +85,7 @@ public class IfcPersonImpl extends IdEObjectImpl implements IfcPerson {
 	 * @generated
 	 */
 	public String getIdentification() {
-		return (String) eGet(Ifc4Package.Literals.IFC_PERSON__IDENTIFICATION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PERSON__IDENTIFICATION, true);
 	}
 
 	/**
@@ -195,8 +194,7 @@ public class IfcPersonImpl extends IdEObjectImpl implements IfcPerson {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getMiddleNames() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_PERSON__MIDDLE_NAMES, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_PERSON__MIDDLE_NAMES, true);
 	}
 
 	/**
@@ -224,8 +222,7 @@ public class IfcPersonImpl extends IdEObjectImpl implements IfcPerson {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getPrefixTitles() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_PERSON__PREFIX_TITLES, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_PERSON__PREFIX_TITLES, true);
 	}
 
 	/**
@@ -253,8 +250,7 @@ public class IfcPersonImpl extends IdEObjectImpl implements IfcPerson {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getSuffixTitles() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_PERSON__SUFFIX_TITLES, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_PERSON__SUFFIX_TITLES, true);
 	}
 
 	/**
@@ -282,8 +278,7 @@ public class IfcPersonImpl extends IdEObjectImpl implements IfcPerson {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcActorRole> getRoles() {
-		return (EList<IfcActorRole>) eGet(
-				Ifc4Package.Literals.IFC_PERSON__ROLES, true);
+		return (EList<IfcActorRole>) eGet(Ifc4Package.Literals.IFC_PERSON__ROLES, true);
 	}
 
 	/**
@@ -311,8 +306,7 @@ public class IfcPersonImpl extends IdEObjectImpl implements IfcPerson {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAddress> getAddresses() {
-		return (EList<IfcAddress>) eGet(
-				Ifc4Package.Literals.IFC_PERSON__ADDRESSES, true);
+		return (EList<IfcAddress>) eGet(Ifc4Package.Literals.IFC_PERSON__ADDRESSES, true);
 	}
 
 	/**
@@ -340,8 +334,7 @@ public class IfcPersonImpl extends IdEObjectImpl implements IfcPerson {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPersonAndOrganization> getEngagedIn() {
-		return (EList<IfcPersonAndOrganization>) eGet(
-				Ifc4Package.Literals.IFC_PERSON__ENGAGED_IN, true);
+		return (EList<IfcPersonAndOrganization>) eGet(Ifc4Package.Literals.IFC_PERSON__ENGAGED_IN, true);
 	}
 
 	/**

@@ -35,9 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstructionProductResourceTypeImpl extends
-		IfcConstructionResourceTypeImpl implements
-		IfcConstructionProductResourceType {
+public class IfcConstructionProductResourceTypeImpl extends IfcConstructionResourceTypeImpl implements IfcConstructionProductResourceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +61,7 @@ public class IfcConstructionProductResourceTypeImpl extends
 	 * @generated
 	 */
 	public IfcConstructionProductResourceTypeEnum getPredefinedType() {
-		return (IfcConstructionProductResourceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_CONSTRUCTION_PRODUCT_RESOURCE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcConstructionProductResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_CONSTRUCTION_PRODUCT_RESOURCE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,10 +69,8 @@ public class IfcConstructionProductResourceTypeImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcConstructionProductResourceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_CONSTRUCTION_PRODUCT_RESOURCE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcConstructionProductResourceTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_CONSTRUCTION_PRODUCT_RESOURCE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcConstructionProductResourceTypeImpl

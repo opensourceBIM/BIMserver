@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
-		IfcLibraryReference {
+public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements IfcLibraryReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,8 +67,7 @@ public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__DESCRIPTION, true);
 	}
 
 	/**
@@ -78,8 +76,7 @@ public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -106,8 +103,7 @@ public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
 	 * @generated
 	 */
 	public String getLanguage() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__LANGUAGE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__LANGUAGE, true);
 	}
 
 	/**
@@ -143,9 +139,7 @@ public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
 	 * @generated
 	 */
 	public IfcLibraryInformation getReferencedLibrary() {
-		return (IfcLibraryInformation) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__REFERENCED_LIBRARY,
-				true);
+		return (IfcLibraryInformation) eGet(Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__REFERENCED_LIBRARY, true);
 	}
 
 	/**
@@ -154,8 +148,7 @@ public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
 	 * @generated
 	 */
 	public void setReferencedLibrary(IfcLibraryInformation newReferencedLibrary) {
-		eSet(Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__REFERENCED_LIBRARY,
-				newReferencedLibrary);
+		eSet(Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__REFERENCED_LIBRARY, newReferencedLibrary);
 	}
 
 	/**
@@ -183,9 +176,7 @@ public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesLibrary> getLibraryRefForObjects() {
-		return (EList<IfcRelAssociatesLibrary>) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__LIBRARY_REF_FOR_OBJECTS,
-				true);
+		return (EList<IfcRelAssociatesLibrary>) eGet(Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__LIBRARY_REF_FOR_OBJECTS, true);
 	}
 
 	/**

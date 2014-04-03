@@ -46,8 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcContextImpl extends IfcObjectDefinitionImpl implements
-		IfcContext {
+public class IfcContextImpl extends IfcObjectDefinitionImpl implements IfcContext {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,8 +72,7 @@ public class IfcContextImpl extends IfcObjectDefinitionImpl implements
 	 * @generated
 	 */
 	public String getObjectType() {
-		return (String) eGet(Ifc4Package.Literals.IFC_CONTEXT__OBJECT_TYPE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CONTEXT__OBJECT_TYPE, true);
 	}
 
 	/**
@@ -183,8 +181,7 @@ public class IfcContextImpl extends IfcObjectDefinitionImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentationContext> getRepresentationContexts() {
-		return (EList<IfcRepresentationContext>) eGet(
-				Ifc4Package.Literals.IFC_CONTEXT__REPRESENTATION_CONTEXTS, true);
+		return (EList<IfcRepresentationContext>) eGet(Ifc4Package.Literals.IFC_CONTEXT__REPRESENTATION_CONTEXTS, true);
 	}
 
 	/**
@@ -211,8 +208,7 @@ public class IfcContextImpl extends IfcObjectDefinitionImpl implements
 	 * @generated
 	 */
 	public IfcUnitAssignment getUnitsInContext() {
-		return (IfcUnitAssignment) eGet(
-				Ifc4Package.Literals.IFC_CONTEXT__UNITS_IN_CONTEXT, true);
+		return (IfcUnitAssignment) eGet(Ifc4Package.Literals.IFC_CONTEXT__UNITS_IN_CONTEXT, true);
 	}
 
 	/**
@@ -221,8 +217,7 @@ public class IfcContextImpl extends IfcObjectDefinitionImpl implements
 	 * @generated
 	 */
 	public void setUnitsInContext(IfcUnitAssignment newUnitsInContext) {
-		eSet(Ifc4Package.Literals.IFC_CONTEXT__UNITS_IN_CONTEXT,
-				newUnitsInContext);
+		eSet(Ifc4Package.Literals.IFC_CONTEXT__UNITS_IN_CONTEXT, newUnitsInContext);
 	}
 
 	/**
@@ -250,8 +245,7 @@ public class IfcContextImpl extends IfcObjectDefinitionImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByProperties> getIsDefinedBy() {
-		return (EList<IfcRelDefinesByProperties>) eGet(
-				Ifc4Package.Literals.IFC_CONTEXT__IS_DEFINED_BY, true);
+		return (EList<IfcRelDefinesByProperties>) eGet(Ifc4Package.Literals.IFC_CONTEXT__IS_DEFINED_BY, true);
 	}
 
 	/**
@@ -279,8 +273,7 @@ public class IfcContextImpl extends IfcObjectDefinitionImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDeclares> getDeclares() {
-		return (EList<IfcRelDeclares>) eGet(
-				Ifc4Package.Literals.IFC_CONTEXT__DECLARES, true);
+		return (EList<IfcRelDeclares>) eGet(Ifc4Package.Literals.IFC_CONTEXT__DECLARES, true);
 	}
 
 	/**

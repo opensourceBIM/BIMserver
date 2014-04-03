@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class NewProjectAddedImpl extends ProjectRelatedImpl implements
-		NewProjectAdded {
+public class NewProjectAddedImpl extends ProjectRelatedImpl implements NewProjectAdded {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class NewProjectAddedImpl extends ProjectRelatedImpl implements
 	 * @generated
 	 */
 	public Project getParentProject() {
-		return (Project) eGet(
-				LogPackage.Literals.NEW_PROJECT_ADDED__PARENT_PROJECT, true);
+		return (Project) eGet(LogPackage.Literals.NEW_PROJECT_ADDED__PARENT_PROJECT, true);
 	}
 
 	/**
@@ -73,8 +71,7 @@ public class NewProjectAddedImpl extends ProjectRelatedImpl implements
 	 * @generated
 	 */
 	public void setParentProject(Project newParentProject) {
-		eSet(LogPackage.Literals.NEW_PROJECT_ADDED__PARENT_PROJECT,
-				newParentProject);
+		eSet(LogPackage.Literals.NEW_PROJECT_ADDED__PARENT_PROJECT, newParentProject);
 	}
 
 } //NewProjectAddedImpl

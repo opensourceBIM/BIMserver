@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PrimitiveDefinitionImpl extends TypeDefinitionImpl implements
-		PrimitiveDefinition {
+public class PrimitiveDefinitionImpl extends TypeDefinitionImpl implements PrimitiveDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class PrimitiveDefinitionImpl extends TypeDefinitionImpl implements
 	 * @generated
 	 */
 	public PrimitiveEnum getType() {
-		return (PrimitiveEnum) eGet(
-				StorePackage.Literals.PRIMITIVE_DEFINITION__TYPE, true);
+		return (PrimitiveEnum) eGet(StorePackage.Literals.PRIMITIVE_DEFINITION__TYPE, true);
 	}
 
 	/**

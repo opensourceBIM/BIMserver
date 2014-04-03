@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAudioVisualApplianceImpl extends IfcFlowTerminalImpl implements
-		IfcAudioVisualAppliance {
+public class IfcAudioVisualApplianceImpl extends IfcFlowTerminalImpl implements IfcAudioVisualAppliance {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcAudioVisualApplianceImpl extends IfcFlowTerminalImpl implements
 	 * @generated
 	 */
 	public IfcAudioVisualApplianceTypeEnum getPredefinedType() {
-		return (IfcAudioVisualApplianceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE__PREDEFINED_TYPE,
-				true);
+		return (IfcAudioVisualApplianceTypeEnum) eGet(Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcAudioVisualApplianceImpl extends IfcFlowTerminalImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcAudioVisualApplianceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcAudioVisualApplianceTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

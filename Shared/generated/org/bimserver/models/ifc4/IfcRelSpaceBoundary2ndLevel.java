@@ -35,8 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcRelSpaceBoundary2ndLevel extends
-		IfcRelSpaceBoundary1stLevel {
+public interface IfcRelSpaceBoundary2ndLevel extends IfcRelSpaceBoundary1stLevel {
 	/**
 	 * Returns the value of the '<em><b>Corresponding Boundary</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc4.IfcRelSpaceBoundary2ndLevel#getCorresponds <em>Corresponds</em>}'.

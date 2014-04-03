@@ -188,8 +188,7 @@ public enum IfcFastenerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFastenerTypeEnum[] VALUES_ARRAY = new IfcFastenerTypeEnum[] {
-			NULL, NOTDEFINED, MORTAR, USERDEFINED, GLUE, WELD, };
+	private static final IfcFastenerTypeEnum[] VALUES_ARRAY = new IfcFastenerTypeEnum[] { NULL, NOTDEFINED, MORTAR, USERDEFINED, GLUE, WELD, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Fastener Type Enum</b></em>' enumerators.
@@ -197,8 +196,7 @@ public enum IfcFastenerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcFastenerTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcFastenerTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Fastener Type Enum</b></em>' literal with the specified literal value.

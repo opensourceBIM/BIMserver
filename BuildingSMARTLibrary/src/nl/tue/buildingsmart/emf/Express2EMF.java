@@ -398,6 +398,18 @@ public class Express2EMF {
 	private void processAttribute(EntityDefinition ent, Attribute attrib) {
 		ExplicitAttribute expAttrib = (ExplicitAttribute) attrib;
 		BaseType domain = expAttrib.getDomain();
+		if (ent.getName().equals("IfcRelConnectsPathElements") && (attrib.getName().equals("RelatingPriorities") || attrib.getName().equals("RelatedPriorities"))) {
+			// HACK, express parser does not recognize LIST [0:?] OF NUMBER
+			EClass cls = (EClass) schemaPack.getEClassifier(ent.getName());			
+			EAttribute eAttribute = eFactory.createEAttribute();
+			eAttribute.setName(attrib.getName());
+			eAttribute.setUpperBound(-1);
+			eAttribute.setUnique(false);
+			eAttribute.setEType(EcorePackage.eINSTANCE.getEInt());
+			eAttribute.setUnsettable(expAttrib.isOptional());
+			cls.getEStructuralFeatures().add(eAttribute);
+			return;
+		}
 		if (domain instanceof NamedType) {
 			NamedType nt = (NamedType) domain;
 			if (nt instanceof EnumerationType) {

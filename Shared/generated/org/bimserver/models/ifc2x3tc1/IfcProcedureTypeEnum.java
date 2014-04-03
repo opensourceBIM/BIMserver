@@ -288,9 +288,8 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProcedureTypeEnum[] VALUES_ARRAY = new IfcProcedureTypeEnum[] {
-			NULL, ADVICE_NOTE, NOTDEFINED, SHUTDOWN, ADVICE_CAUTION,
-			CALIBRATION, USERDEFINED, STARTUP, ADVICE_WARNING, DIAGNOSTIC, };
+	private static final IfcProcedureTypeEnum[] VALUES_ARRAY = new IfcProcedureTypeEnum[] { NULL, ADVICE_NOTE, NOTDEFINED, SHUTDOWN, ADVICE_CAUTION, CALIBRATION, USERDEFINED,
+			STARTUP, ADVICE_WARNING, DIAGNOSTIC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Procedure Type Enum</b></em>' enumerators.
@@ -298,8 +297,7 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProcedureTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProcedureTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Procedure Type Enum</b></em>' literal with the specified literal value.

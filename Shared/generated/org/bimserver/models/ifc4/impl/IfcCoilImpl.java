@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCoilImpl extends IfcEnergyConversionDeviceImpl implements
-		IfcCoil {
+public class IfcCoilImpl extends IfcEnergyConversionDeviceImpl implements IfcCoil {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcCoilImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public IfcCoilTypeEnum getPredefinedType() {
-		return (IfcCoilTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_COIL__PREDEFINED_TYPE, true);
+		return (IfcCoilTypeEnum) eGet(Ifc4Package.Literals.IFC_COIL__PREDEFINED_TYPE, true);
 	}
 
 	/**

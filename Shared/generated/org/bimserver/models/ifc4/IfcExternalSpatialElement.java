@@ -35,8 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcExternalSpatialElement extends
-		IfcExternalSpatialStructureElement, IfcSpaceBoundarySelect {
+public interface IfcExternalSpatialElement extends IfcExternalSpatialStructureElement, IfcSpaceBoundarySelect {
 	/**
 	 * Returns the value of the '<em><b>Predefined Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.IfcExternalSpatialElementTypeEnum}.

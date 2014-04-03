@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFaceImpl extends IfcTopologicalRepresentationItemImpl implements
-		IfcFace {
+public class IfcFaceImpl extends IfcTopologicalRepresentationItemImpl implements IfcFace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcFaceImpl extends IfcTopologicalRepresentationItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcFaceBound> getBounds() {
-		return (EList<IfcFaceBound>) eGet(
-				Ifc4Package.Literals.IFC_FACE__BOUNDS, true);
+		return (EList<IfcFaceBound>) eGet(Ifc4Package.Literals.IFC_FACE__BOUNDS, true);
 	}
 
 	/**
@@ -78,8 +76,7 @@ public class IfcFaceImpl extends IfcTopologicalRepresentationItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTextureMap> getHasTextureMaps() {
-		return (EList<IfcTextureMap>) eGet(
-				Ifc4Package.Literals.IFC_FACE__HAS_TEXTURE_MAPS, true);
+		return (EList<IfcTextureMap>) eGet(Ifc4Package.Literals.IFC_FACE__HAS_TEXTURE_MAPS, true);
 	}
 
 	/**

@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDuctFittingTypeImpl extends IfcFlowFittingTypeImpl implements
-		IfcDuctFittingType {
+public class IfcDuctFittingTypeImpl extends IfcFlowFittingTypeImpl implements IfcDuctFittingType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcDuctFittingTypeImpl extends IfcFlowFittingTypeImpl implements
 	 * @generated
 	 */
 	public IfcDuctFittingTypeEnum getPredefinedType() {
-		return (IfcDuctFittingTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DUCT_FITTING_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcDuctFittingTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DUCT_FITTING_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcDuctFittingTypeImpl extends IfcFlowFittingTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcDuctFittingTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DUCT_FITTING_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DUCT_FITTING_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcDuctFittingTypeImpl

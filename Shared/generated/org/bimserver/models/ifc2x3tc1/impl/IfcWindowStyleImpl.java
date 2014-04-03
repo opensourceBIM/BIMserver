@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWindowStyleImpl extends IfcTypeProductImpl implements
-		IfcWindowStyle {
+public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +66,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public IfcWindowStyleConstructionEnum getConstructionType() {
-		return (IfcWindowStyleConstructionEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE,
-				true);
+		return (IfcWindowStyleConstructionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE, true);
 	}
 
 	/**
@@ -77,10 +74,8 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConstructionType(
-			IfcWindowStyleConstructionEnum newConstructionType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE,
-				newConstructionType);
+	public void setConstructionType(IfcWindowStyleConstructionEnum newConstructionType) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE, newConstructionType);
 	}
 
 	/**
@@ -89,9 +84,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public IfcWindowStyleOperationEnum getOperationType() {
-		return (IfcWindowStyleOperationEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__OPERATION_TYPE,
-				true);
+		return (IfcWindowStyleOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__OPERATION_TYPE, true);
 	}
 
 	/**
@@ -100,8 +93,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public void setOperationType(IfcWindowStyleOperationEnum newOperationType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__OPERATION_TYPE,
-				newOperationType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__OPERATION_TYPE, newOperationType);
 	}
 
 	/**
@@ -110,9 +102,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public Tristate getParameterTakesPrecedence() {
-		return (Tristate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__PARAMETER_TAKES_PRECEDENCE,
-				true);
+		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__PARAMETER_TAKES_PRECEDENCE, true);
 	}
 
 	/**
@@ -121,8 +111,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public void setParameterTakesPrecedence(Tristate newParameterTakesPrecedence) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__PARAMETER_TAKES_PRECEDENCE,
-				newParameterTakesPrecedence);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__PARAMETER_TAKES_PRECEDENCE, newParameterTakesPrecedence);
 	}
 
 	/**
@@ -131,8 +120,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public Tristate getSizeable() {
-		return (Tristate) eGet(
-				Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__SIZEABLE, true);
+		return (Tristate) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__SIZEABLE, true);
 	}
 
 	/**

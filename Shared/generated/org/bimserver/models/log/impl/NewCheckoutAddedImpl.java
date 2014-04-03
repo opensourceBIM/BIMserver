@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class NewCheckoutAddedImpl extends CheckoutRelatedImpl implements
-		NewCheckoutAdded {
+public class NewCheckoutAddedImpl extends CheckoutRelatedImpl implements NewCheckoutAdded {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

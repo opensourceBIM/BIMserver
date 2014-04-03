@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralPlanarActionImpl extends
-		IfcStructuralSurfaceActionImpl implements IfcStructuralPlanarAction {
+public class IfcStructuralPlanarActionImpl extends IfcStructuralSurfaceActionImpl implements IfcStructuralPlanarAction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

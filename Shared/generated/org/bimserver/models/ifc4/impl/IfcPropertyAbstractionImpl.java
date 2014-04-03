@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyAbstractionImpl extends IdEObjectImpl implements
-		IfcPropertyAbstraction {
+public class IfcPropertyAbstractionImpl extends IdEObjectImpl implements IfcPropertyAbstraction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,9 +76,7 @@ public class IfcPropertyAbstractionImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReferences() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_ABSTRACTION__HAS_EXTERNAL_REFERENCES,
-				true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_PROPERTY_ABSTRACTION__HAS_EXTERNAL_REFERENCES, true);
 	}
 
 	/**

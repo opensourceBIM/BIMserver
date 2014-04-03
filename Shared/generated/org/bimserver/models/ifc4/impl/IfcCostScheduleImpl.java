@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCostScheduleImpl extends IfcControlImpl implements
-		IfcCostSchedule {
+public class IfcCostScheduleImpl extends IfcControlImpl implements IfcCostSchedule {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public IfcCostScheduleTypeEnum getPredefinedType() {
-		return (IfcCostScheduleTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE, true);
+		return (IfcCostScheduleTypeEnum) eGet(Ifc4Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -75,8 +73,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCostScheduleTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_COST_SCHEDULE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -103,8 +100,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getStatus() {
-		return (String) eGet(Ifc4Package.Literals.IFC_COST_SCHEDULE__STATUS,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_COST_SCHEDULE__STATUS, true);
 	}
 
 	/**
@@ -140,8 +136,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getSubmittedOn() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_ON, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_ON, true);
 	}
 
 	/**
@@ -150,8 +145,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setSubmittedOn(String newSubmittedOn) {
-		eSet(Ifc4Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_ON,
-				newSubmittedOn);
+		eSet(Ifc4Package.Literals.IFC_COST_SCHEDULE__SUBMITTED_ON, newSubmittedOn);
 	}
 
 	/**
@@ -178,8 +172,7 @@ public class IfcCostScheduleImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getUpdateDate() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_COST_SCHEDULE__UPDATE_DATE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_COST_SCHEDULE__UPDATE_DATE, true);
 	}
 
 	/**

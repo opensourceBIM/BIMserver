@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDuctSilencerImpl extends IfcFlowTreatmentDeviceImpl implements
-		IfcDuctSilencer {
+public class IfcDuctSilencerImpl extends IfcFlowTreatmentDeviceImpl implements IfcDuctSilencer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcDuctSilencerImpl extends IfcFlowTreatmentDeviceImpl implements
 	 * @generated
 	 */
 	public IfcDuctSilencerTypeEnum getPredefinedType() {
-		return (IfcDuctSilencerTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_DUCT_SILENCER__PREDEFINED_TYPE, true);
+		return (IfcDuctSilencerTypeEnum) eGet(Ifc4Package.Literals.IFC_DUCT_SILENCER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcDuctSilencerImpl extends IfcFlowTreatmentDeviceImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcDuctSilencerTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_DUCT_SILENCER__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_DUCT_SILENCER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

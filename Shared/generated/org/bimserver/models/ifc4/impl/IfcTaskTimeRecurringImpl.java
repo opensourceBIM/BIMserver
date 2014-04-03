@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTaskTimeRecurringImpl extends IfcTaskTimeImpl implements
-		IfcTaskTimeRecurring {
+public class IfcTaskTimeRecurringImpl extends IfcTaskTimeImpl implements IfcTaskTimeRecurring {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcTaskTimeRecurringImpl extends IfcTaskTimeImpl implements
 	 * @generated
 	 */
 	public IfcRecurrencePattern getRecurrance() {
-		return (IfcRecurrencePattern) eGet(
-				Ifc4Package.Literals.IFC_TASK_TIME_RECURRING__RECURRANCE, true);
+		return (IfcRecurrencePattern) eGet(Ifc4Package.Literals.IFC_TASK_TIME_RECURRING__RECURRANCE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcTaskTimeRecurringImpl extends IfcTaskTimeImpl implements
 	 * @generated
 	 */
 	public void setRecurrance(IfcRecurrencePattern newRecurrance) {
-		eSet(Ifc4Package.Literals.IFC_TASK_TIME_RECURRING__RECURRANCE,
-				newRecurrance);
+		eSet(Ifc4Package.Literals.IFC_TASK_TIME_RECURRING__RECURRANCE, newRecurrance);
 	}
 
 } //IfcTaskTimeRecurringImpl

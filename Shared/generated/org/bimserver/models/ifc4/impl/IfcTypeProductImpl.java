@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTypeProductImpl extends IfcTypeObjectImpl implements
-		IfcTypeProduct {
+public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProduct {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,9 +67,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentationMap> getRepresentationMaps() {
-		return (EList<IfcRepresentationMap>) eGet(
-				Ifc4Package.Literals.IFC_TYPE_PRODUCT__REPRESENTATION_MAPS,
-				true);
+		return (EList<IfcRepresentationMap>) eGet(Ifc4Package.Literals.IFC_TYPE_PRODUCT__REPRESENTATION_MAPS, true);
 	}
 
 	/**
@@ -134,8 +131,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToProduct> getReferencedBy() {
-		return (EList<IfcRelAssignsToProduct>) eGet(
-				Ifc4Package.Literals.IFC_TYPE_PRODUCT__REFERENCED_BY, true);
+		return (EList<IfcRelAssignsToProduct>) eGet(Ifc4Package.Literals.IFC_TYPE_PRODUCT__REFERENCED_BY, true);
 	}
 
 	/**

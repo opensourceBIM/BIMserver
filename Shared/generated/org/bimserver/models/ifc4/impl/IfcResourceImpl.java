@@ -65,8 +65,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * @generated
 	 */
 	public String getIdentification() {
-		return (String) eGet(Ifc4Package.Literals.IFC_RESOURCE__IDENTIFICATION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_RESOURCE__IDENTIFICATION, true);
 	}
 
 	/**
@@ -75,8 +74,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * @generated
 	 */
 	public void setIdentification(String newIdentification) {
-		eSet(Ifc4Package.Literals.IFC_RESOURCE__IDENTIFICATION,
-				newIdentification);
+		eSet(Ifc4Package.Literals.IFC_RESOURCE__IDENTIFICATION, newIdentification);
 	}
 
 	/**
@@ -103,8 +101,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * @generated
 	 */
 	public String getLongDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_RESOURCE__LONG_DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_RESOURCE__LONG_DESCRIPTION, true);
 	}
 
 	/**
@@ -113,8 +110,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * @generated
 	 */
 	public void setLongDescription(String newLongDescription) {
-		eSet(Ifc4Package.Literals.IFC_RESOURCE__LONG_DESCRIPTION,
-				newLongDescription);
+		eSet(Ifc4Package.Literals.IFC_RESOURCE__LONG_DESCRIPTION, newLongDescription);
 	}
 
 	/**
@@ -142,8 +138,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToResource> getResourceOf() {
-		return (EList<IfcRelAssignsToResource>) eGet(
-				Ifc4Package.Literals.IFC_RESOURCE__RESOURCE_OF, true);
+		return (EList<IfcRelAssignsToResource>) eGet(Ifc4Package.Literals.IFC_RESOURCE__RESOURCE_OF, true);
 	}
 
 	/**

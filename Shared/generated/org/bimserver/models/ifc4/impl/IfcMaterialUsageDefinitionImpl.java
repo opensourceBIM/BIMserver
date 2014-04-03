@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialUsageDefinitionImpl extends IdEObjectImpl implements
-		IfcMaterialUsageDefinition {
+public class IfcMaterialUsageDefinitionImpl extends IdEObjectImpl implements IfcMaterialUsageDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,9 +76,7 @@ public class IfcMaterialUsageDefinitionImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesMaterial> getAssociatedTo() {
-		return (EList<IfcRelAssociatesMaterial>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_USAGE_DEFINITION__ASSOCIATED_TO,
-				true);
+		return (EList<IfcRelAssociatesMaterial>) eGet(Ifc4Package.Literals.IFC_MATERIAL_USAGE_DEFINITION__ASSOCIATED_TO, true);
 	}
 
 	/**

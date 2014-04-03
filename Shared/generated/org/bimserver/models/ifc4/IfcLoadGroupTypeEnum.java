@@ -188,9 +188,7 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLoadGroupTypeEnum[] VALUES_ARRAY = new IfcLoadGroupTypeEnum[] {
-			NULL, LOAD_COMBINATION, NOTDEFINED, USERDEFINED, LOAD_GROUP,
-			LOAD_CASE, };
+	private static final IfcLoadGroupTypeEnum[] VALUES_ARRAY = new IfcLoadGroupTypeEnum[] { NULL, LOAD_COMBINATION, NOTDEFINED, USERDEFINED, LOAD_GROUP, LOAD_CASE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Load Group Type Enum</b></em>' enumerators.
@@ -198,8 +196,7 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcLoadGroupTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcLoadGroupTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Load Group Type Enum</b></em>' literal with the specified literal value.

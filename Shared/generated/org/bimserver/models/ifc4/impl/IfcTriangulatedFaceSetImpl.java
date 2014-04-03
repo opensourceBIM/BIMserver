@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl
-		implements IfcTriangulatedFaceSet {
+public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implements IfcTriangulatedFaceSet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

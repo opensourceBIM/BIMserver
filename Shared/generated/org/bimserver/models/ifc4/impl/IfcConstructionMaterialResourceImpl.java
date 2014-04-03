@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstructionMaterialResourceImpl extends
-		IfcConstructionResourceImpl implements IfcConstructionMaterialResource {
+public class IfcConstructionMaterialResourceImpl extends IfcConstructionResourceImpl implements IfcConstructionMaterialResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcConstructionMaterialResourceImpl extends
 	 * @generated
 	 */
 	public IfcConstructionMaterialResourceTypeEnum getPredefinedType() {
-		return (IfcConstructionMaterialResourceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__PREDEFINED_TYPE,
-				true);
+		return (IfcConstructionMaterialResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcConstructionMaterialResourceImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcConstructionMaterialResourceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcConstructionMaterialResourceTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

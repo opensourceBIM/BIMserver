@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements
-		IfcColourRgb {
+public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcColourRgb {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,8 +83,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements
 	 * @generated
 	 */
 	public String getRedAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING, true);
 	}
 
 	/**
@@ -121,8 +119,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements
 	 * @generated
 	 */
 	public String getGreenAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, true);
 	}
 
 	/**
@@ -131,8 +128,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements
 	 * @generated
 	 */
 	public void setGreenAsString(String newGreenAsString) {
-		eSet(Ifc4Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING,
-				newGreenAsString);
+		eSet(Ifc4Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, newGreenAsString);
 	}
 
 	/**
@@ -159,8 +155,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements
 	 * @generated
 	 */
 	public String getBlueAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, true);
 	}
 
 	/**
@@ -169,8 +164,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements
 	 * @generated
 	 */
 	public void setBlueAsString(String newBlueAsString) {
-		eSet(Ifc4Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING,
-				newBlueAsString);
+		eSet(Ifc4Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, newBlueAsString);
 	}
 
 } //IfcColourRgbImpl

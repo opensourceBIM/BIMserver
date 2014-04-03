@@ -61,8 +61,7 @@ public class IfcFanImpl extends IfcFlowMovingDeviceImpl implements IfcFan {
 	 * @generated
 	 */
 	public IfcFanTypeEnum getPredefinedType() {
-		return (IfcFanTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_FAN__PREDEFINED_TYPE, true);
+		return (IfcFanTypeEnum) eGet(Ifc4Package.Literals.IFC_FAN__PREDEFINED_TYPE, true);
 	}
 
 	/**

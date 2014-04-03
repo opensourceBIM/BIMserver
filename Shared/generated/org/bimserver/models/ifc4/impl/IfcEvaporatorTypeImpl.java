@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEvaporatorTypeImpl extends IfcEnergyConversionDeviceTypeImpl
-		implements IfcEvaporatorType {
+public class IfcEvaporatorTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcEvaporatorType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcEvaporatorTypeImpl extends IfcEnergyConversionDeviceTypeImpl
 	 * @generated
 	 */
 	public IfcEvaporatorTypeEnum getPredefinedType() {
-		return (IfcEvaporatorTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_EVAPORATOR_TYPE__PREDEFINED_TYPE, true);
+		return (IfcEvaporatorTypeEnum) eGet(Ifc4Package.Literals.IFC_EVAPORATOR_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcEvaporatorTypeImpl extends IfcEnergyConversionDeviceTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcEvaporatorTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_EVAPORATOR_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_EVAPORATOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcEvaporatorTypeImpl

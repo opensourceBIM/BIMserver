@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCoveringImpl extends IfcBuildingElementImpl implements
-		IfcCovering {
+public class IfcCoveringImpl extends IfcBuildingElementImpl implements IfcCovering {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,8 +67,7 @@ public class IfcCoveringImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public IfcCoveringTypeEnum getPredefinedType() {
-		return (IfcCoveringTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_COVERING__PREDEFINED_TYPE, true);
+		return (IfcCoveringTypeEnum) eGet(Ifc4Package.Literals.IFC_COVERING__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -78,8 +76,7 @@ public class IfcCoveringImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCoveringTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_COVERING__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_COVERING__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -107,8 +104,7 @@ public class IfcCoveringImpl extends IfcBuildingElementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelCoversSpaces> getCoversSpaces() {
-		return (EList<IfcRelCoversSpaces>) eGet(
-				Ifc4Package.Literals.IFC_COVERING__COVERS_SPACES, true);
+		return (EList<IfcRelCoversSpaces>) eGet(Ifc4Package.Literals.IFC_COVERING__COVERS_SPACES, true);
 	}
 
 	/**
@@ -136,8 +132,7 @@ public class IfcCoveringImpl extends IfcBuildingElementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelCoversBldgElements> getCoversElements() {
-		return (EList<IfcRelCoversBldgElements>) eGet(
-				Ifc4Package.Literals.IFC_COVERING__COVERS_ELEMENTS, true);
+		return (EList<IfcRelCoversBldgElements>) eGet(Ifc4Package.Literals.IFC_COVERING__COVERS_ELEMENTS, true);
 	}
 
 	/**

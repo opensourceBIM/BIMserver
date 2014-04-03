@@ -977,8 +977,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSerializerPluginConfiguration(
-			SerializerPluginConfiguration object) {
+	public T caseSerializerPluginConfiguration(SerializerPluginConfiguration object) {
 		return null;
 	}
 
@@ -993,8 +992,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseObjectIDMPluginConfiguration(
-			ObjectIDMPluginConfiguration object) {
+	public T caseObjectIDMPluginConfiguration(ObjectIDMPluginConfiguration object) {
 		return null;
 	}
 
@@ -1009,8 +1007,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRenderEnginePluginConfiguration(
-			RenderEnginePluginConfiguration object) {
+	public T caseRenderEnginePluginConfiguration(RenderEnginePluginConfiguration object) {
 		return null;
 	}
 
@@ -1025,8 +1022,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDeserializerPluginConfiguration(
-			DeserializerPluginConfiguration object) {
+	public T caseDeserializerPluginConfiguration(DeserializerPluginConfiguration object) {
 		return null;
 	}
 
@@ -1251,8 +1247,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDeserializerPluginDescriptor(
-			DeserializerPluginDescriptor object) {
+	public T caseDeserializerPluginDescriptor(DeserializerPluginDescriptor object) {
 		return null;
 	}
 
@@ -1477,8 +1472,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRenderEnginePluginDescriptor(
-			RenderEnginePluginDescriptor object) {
+	public T caseRenderEnginePluginDescriptor(RenderEnginePluginDescriptor object) {
 		return null;
 	}
 
@@ -1553,8 +1547,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQueryEnginePluginConfiguration(
-			QueryEnginePluginConfiguration object) {
+	public T caseQueryEnginePluginConfiguration(QueryEnginePluginConfiguration object) {
 		return null;
 	}
 
@@ -1584,8 +1577,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseWebModulePluginConfiguration(
-			WebModulePluginConfiguration object) {
+	public T caseWebModulePluginConfiguration(WebModulePluginConfiguration object) {
 		return null;
 	}
 
@@ -1615,8 +1607,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelMergerPluginConfiguration(
-			ModelMergerPluginConfiguration object) {
+	public T caseModelMergerPluginConfiguration(ModelMergerPluginConfiguration object) {
 		return null;
 	}
 
@@ -1631,8 +1622,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelComparePluginDescriptor(
-			ModelComparePluginDescriptor object) {
+	public T caseModelComparePluginDescriptor(ModelComparePluginDescriptor object) {
 		return null;
 	}
 
@@ -1647,8 +1637,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelComparePluginConfiguration(
-			ModelComparePluginConfiguration object) {
+	public T caseModelComparePluginConfiguration(ModelComparePluginConfiguration object) {
 		return null;
 	}
 
@@ -1738,8 +1727,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInternalServicePluginConfiguration(
-			InternalServicePluginConfiguration object) {
+	public T caseInternalServicePluginConfiguration(InternalServicePluginConfiguration object) {
 		return null;
 	}
 
@@ -2249,8 +2237,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelCheckerPluginDescriptor(
-			ModelCheckerPluginDescriptor object) {
+	public T caseModelCheckerPluginDescriptor(ModelCheckerPluginDescriptor object) {
 		return null;
 	}
 

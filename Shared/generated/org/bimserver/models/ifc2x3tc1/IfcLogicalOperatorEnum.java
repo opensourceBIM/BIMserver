@@ -113,8 +113,7 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLogicalOperatorEnum[] VALUES_ARRAY = new IfcLogicalOperatorEnum[] {
-			NULL, LOGICALOR, LOGICALAND, };
+	private static final IfcLogicalOperatorEnum[] VALUES_ARRAY = new IfcLogicalOperatorEnum[] { NULL, LOGICALOR, LOGICALAND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Logical Operator Enum</b></em>' enumerators.
@@ -122,8 +121,7 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcLogicalOperatorEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcLogicalOperatorEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Logical Operator Enum</b></em>' literal with the specified literal value.

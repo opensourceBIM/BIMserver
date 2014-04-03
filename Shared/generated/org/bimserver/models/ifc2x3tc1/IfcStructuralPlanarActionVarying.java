@@ -35,8 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcStructuralPlanarActionVarying extends
-		IfcStructuralPlanarAction {
+public interface IfcStructuralPlanarActionVarying extends IfcStructuralPlanarAction {
 	/**
 	 * Returns the value of the '<em><b>Varying Applied Load Location</b></em>' reference.
 	 * <!-- begin-user-doc -->

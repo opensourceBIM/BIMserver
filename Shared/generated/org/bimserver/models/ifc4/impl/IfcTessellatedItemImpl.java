@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTessellatedItemImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcTessellatedItem {
+public class IfcTessellatedItemImpl extends IfcGeometricRepresentationItemImpl implements IfcTessellatedItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

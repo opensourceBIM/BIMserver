@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProcedureTypeImpl extends IfcTypeProcessImpl implements
-		IfcProcedureType {
+public class IfcProcedureTypeImpl extends IfcTypeProcessImpl implements IfcProcedureType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcProcedureTypeImpl extends IfcTypeProcessImpl implements
 	 * @generated
 	 */
 	public IfcProcedureTypeEnum getPredefinedType() {
-		return (IfcProcedureTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PROCEDURE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcProcedureTypeEnum) eGet(Ifc4Package.Literals.IFC_PROCEDURE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcProcedureTypeImpl extends IfcTypeProcessImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcProcedureTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_PROCEDURE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_PROCEDURE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcProcedureTypeImpl

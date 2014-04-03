@@ -50,8 +50,7 @@ public enum IfcKnotType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PIECEWISE_BEZIER_KNOTS(1, "PIECEWISE_BEZIER_KNOTS",
-			"PIECEWISE_BEZIER_KNOTS"),
+	PIECEWISE_BEZIER_KNOTS(1, "PIECEWISE_BEZIER_KNOTS", "PIECEWISE_BEZIER_KNOTS"),
 
 	/**
 	 * The '<em><b>UNIFORM KNOTS</b></em>' literal object.
@@ -164,9 +163,7 @@ public enum IfcKnotType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcKnotType[] VALUES_ARRAY = new IfcKnotType[] { NULL,
-			PIECEWISE_BEZIER_KNOTS, UNIFORM_KNOTS, UNSPECIFIED,
-			QUASI_UNIFORM_KNOTS, };
+	private static final IfcKnotType[] VALUES_ARRAY = new IfcKnotType[] { NULL, PIECEWISE_BEZIER_KNOTS, UNIFORM_KNOTS, UNSPECIFIED, QUASI_UNIFORM_KNOTS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Knot Type</b></em>' enumerators.
@@ -174,8 +171,7 @@ public enum IfcKnotType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcKnotType> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcKnotType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Knot Type</b></em>' literal with the specified literal value.

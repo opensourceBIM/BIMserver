@@ -163,8 +163,7 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] {
-			NULL, RADIATOR, NOTDEFINED, CONVECTOR, USERDEFINED, };
+	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] { NULL, RADIATOR, NOTDEFINED, CONVECTOR, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Space Heater Type Enum</b></em>' enumerators.
@@ -172,8 +171,7 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSpaceHeaterTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSpaceHeaterTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Space Heater Type Enum</b></em>' literal with the specified literal value.

@@ -140,8 +140,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask {
 	 * @generated
 	 */
 	public Tristate getIsMilestone() {
-		return (Tristate) eGet(Ifc4Package.Literals.IFC_TASK__IS_MILESTONE,
-				true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_TASK__IS_MILESTONE, true);
 	}
 
 	/**
@@ -195,8 +194,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask {
 	 * @generated
 	 */
 	public IfcTaskTime getTaskTime() {
-		return (IfcTaskTime) eGet(Ifc4Package.Literals.IFC_TASK__TASK_TIME,
-				true);
+		return (IfcTaskTime) eGet(Ifc4Package.Literals.IFC_TASK__TASK_TIME, true);
 	}
 
 	/**
@@ -232,8 +230,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask {
 	 * @generated
 	 */
 	public IfcTaskTypeEnum getPredefinedType() {
-		return (IfcTaskTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_TASK__PREDEFINED_TYPE, true);
+		return (IfcTaskTypeEnum) eGet(Ifc4Package.Literals.IFC_TASK__PREDEFINED_TYPE, true);
 	}
 
 	/**

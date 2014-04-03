@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl
-		implements IfcStructuralCurveMember {
+public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl implements IfcStructuralCurveMember {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl
 	 * @generated
 	 */
 	public IfcStructuralCurveMemberTypeEnum getPredefinedType() {
-		return (IfcStructuralCurveMemberTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE,
-				true);
+		return (IfcStructuralCurveMemberTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -74,10 +71,8 @@ public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcStructuralCurveMemberTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcStructuralCurveMemberTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -86,8 +81,7 @@ public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl
 	 * @generated
 	 */
 	public IfcDirection getAxis() {
-		return (IfcDirection) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__AXIS, true);
+		return (IfcDirection) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__AXIS, true);
 	}
 
 	/**

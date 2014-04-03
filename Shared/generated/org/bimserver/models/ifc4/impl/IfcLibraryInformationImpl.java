@@ -46,8 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
-		implements IfcLibraryInformation {
+public class IfcLibraryInformationImpl extends IfcExternalInformationImpl implements IfcLibraryInformation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,8 +72,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__NAME, true);
 	}
 
 	/**
@@ -92,8 +90,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 * @generated
 	 */
 	public String getVersion() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__VERSION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__VERSION, true);
 	}
 
 	/**
@@ -129,8 +126,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 * @generated
 	 */
 	public IfcActorSelect getPublisher() {
-		return (IfcActorSelect) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__PUBLISHER, true);
+		return (IfcActorSelect) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__PUBLISHER, true);
 	}
 
 	/**
@@ -139,8 +135,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 * @generated
 	 */
 	public void setPublisher(IfcActorSelect newPublisher) {
-		eSet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__PUBLISHER,
-				newPublisher);
+		eSet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__PUBLISHER, newPublisher);
 	}
 
 	/**
@@ -167,9 +162,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 * @generated
 	 */
 	public String getVersionDate() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__VERSION_DATE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__VERSION_DATE, true);
 	}
 
 	/**
@@ -178,8 +171,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 * @generated
 	 */
 	public void setVersionDate(String newVersionDate) {
-		eSet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__VERSION_DATE,
-				newVersionDate);
+		eSet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__VERSION_DATE, newVersionDate);
 	}
 
 	/**
@@ -206,8 +198,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 * @generated
 	 */
 	public String getLocation() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__LOCATION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__LOCATION, true);
 	}
 
 	/**
@@ -216,8 +207,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 * @generated
 	 */
 	public void setLocation(String newLocation) {
-		eSet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__LOCATION,
-				newLocation);
+		eSet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__LOCATION, newLocation);
 	}
 
 	/**
@@ -244,8 +234,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__DESCRIPTION, true);
 	}
 
 	/**
@@ -254,8 +243,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -283,9 +271,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesLibrary> getLibraryInfoForObjects() {
-		return (EList<IfcRelAssociatesLibrary>) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_INFO_FOR_OBJECTS,
-				true);
+		return (EList<IfcRelAssociatesLibrary>) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_INFO_FOR_OBJECTS, true);
 	}
 
 	/**
@@ -313,9 +299,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLibraryReference> getHasLibraryReferences() {
-		return (EList<IfcLibraryReference>) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__HAS_LIBRARY_REFERENCES,
-				true);
+		return (EList<IfcLibraryReference>) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__HAS_LIBRARY_REFERENCES, true);
 	}
 
 	/**

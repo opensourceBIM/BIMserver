@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
-		IfcTessellatedFaceSet {
+public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements IfcTessellatedFaceSet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,9 +69,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * @generated
 	 */
 	public IfcCartesianPointList3D getCoordinates() {
-		return (IfcCartesianPointList3D) eGet(
-				Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__COORDINATES,
-				true);
+		return (IfcCartesianPointList3D) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__COORDINATES, true);
 	}
 
 	/**
@@ -81,8 +78,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * @generated
 	 */
 	public void setCoordinates(IfcCartesianPointList3D newCoordinates) {
-		eSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__COORDINATES,
-				newCoordinates);
+		eSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__COORDINATES, newCoordinates);
 	}
 
 	/**
@@ -91,8 +87,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * @generated
 	 */
 	public Tristate getClosed() {
-		return (Tristate) eGet(
-				Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__CLOSED, true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__CLOSED, true);
 	}
 
 	/**
@@ -129,9 +124,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcIndexedColourMap> getHasColours() {
-		return (EList<IfcIndexedColourMap>) eGet(
-				Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__HAS_COLOURS,
-				true);
+		return (EList<IfcIndexedColourMap>) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__HAS_COLOURS, true);
 	}
 
 	/**
@@ -159,9 +152,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcIndexedTextureMap> getHasTextures() {
-		return (EList<IfcIndexedTextureMap>) eGet(
-				Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__HAS_TEXTURES,
-				true);
+		return (EList<IfcIndexedTextureMap>) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__HAS_TEXTURES, true);
 	}
 
 	/**

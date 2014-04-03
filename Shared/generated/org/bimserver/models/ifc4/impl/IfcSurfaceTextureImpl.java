@@ -46,8 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements
-		IfcSurfaceTexture {
+public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements IfcSurfaceTexture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,8 +72,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	public Tristate getRepeatS() {
-		return (Tristate) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_S, true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_S, true);
 	}
 
 	/**
@@ -92,8 +90,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	public Tristate getRepeatT() {
-		return (Tristate) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_T, true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_T, true);
 	}
 
 	/**
@@ -111,8 +108,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	public String getMode() {
-		return (String) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__MODE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__MODE, true);
 	}
 
 	/**
@@ -148,9 +144,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	public IfcCartesianTransformationOperator2D getTextureTransform() {
-		return (IfcCartesianTransformationOperator2D) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM,
-				true);
+		return (IfcCartesianTransformationOperator2D) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM, true);
 	}
 
 	/**
@@ -158,10 +152,8 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTextureTransform(
-			IfcCartesianTransformationOperator2D newTextureTransform) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM,
-				newTextureTransform);
+	public void setTextureTransform(IfcCartesianTransformationOperator2D newTextureTransform) {
+		eSet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM, newTextureTransform);
 	}
 
 	/**
@@ -189,8 +181,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getParameter() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_TEXTURE__PARAMETER, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__PARAMETER, true);
 	}
 
 	/**
@@ -218,8 +209,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTextureCoordinate> getIsMappedBy() {
-		return (EList<IfcTextureCoordinate>) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_TEXTURE__IS_MAPPED_BY, true);
+		return (EList<IfcTextureCoordinate>) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__IS_MAPPED_BY, true);
 	}
 
 	/**
@@ -247,8 +237,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSurfaceStyleWithTextures> getUsedInStyles() {
-		return (EList<IfcSurfaceStyleWithTextures>) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_TEXTURE__USED_IN_STYLES, true);
+		return (EList<IfcSurfaceStyleWithTextures>) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__USED_IN_STYLES, true);
 	}
 
 	/**

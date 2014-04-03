@@ -42,8 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements
-		IfcBSplineCurve {
+public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements IfcBSplineCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,8 +68,7 @@ public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements
 	 * @generated
 	 */
 	public int getDegree() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__DEGREE, true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__DEGREE, true);
 	}
 
 	/**
@@ -89,9 +87,7 @@ public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCartesianPoint> getControlPointsList() {
-		return (EList<IfcCartesianPoint>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__CONTROL_POINTS_LIST,
-				true);
+		return (EList<IfcCartesianPoint>) eGet(Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__CONTROL_POINTS_LIST, true);
 	}
 
 	/**
@@ -100,8 +96,7 @@ public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements
 	 * @generated
 	 */
 	public IfcBSplineCurveForm getCurveForm() {
-		return (IfcBSplineCurveForm) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__CURVE_FORM, true);
+		return (IfcBSplineCurveForm) eGet(Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__CURVE_FORM, true);
 	}
 
 	/**
@@ -110,8 +105,7 @@ public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements
 	 * @generated
 	 */
 	public void setCurveForm(IfcBSplineCurveForm newCurveForm) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__CURVE_FORM,
-				newCurveForm);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__CURVE_FORM, newCurveForm);
 	}
 
 	/**
@@ -120,8 +114,7 @@ public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements
 	 * @generated
 	 */
 	public boolean isClosedCurve() {
-		return (Boolean) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__CLOSED_CURVE, true);
+		return (Boolean) eGet(Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__CLOSED_CURVE, true);
 	}
 
 	/**
@@ -130,8 +123,7 @@ public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements
 	 * @generated
 	 */
 	public void setClosedCurve(boolean newClosedCurve) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__CLOSED_CURVE,
-				newClosedCurve);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__CLOSED_CURVE, newClosedCurve);
 	}
 
 	/**
@@ -140,9 +132,7 @@ public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements
 	 * @generated
 	 */
 	public boolean isSelfIntersect() {
-		return (Boolean) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__SELF_INTERSECT,
-				true);
+		return (Boolean) eGet(Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__SELF_INTERSECT, true);
 	}
 
 	/**
@@ -151,8 +141,7 @@ public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements
 	 * @generated
 	 */
 	public void setSelfIntersect(boolean newSelfIntersect) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__SELF_INTERSECT,
-				newSelfIntersect);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BSPLINE_CURVE__SELF_INTERSECT, newSelfIntersect);
 	}
 
 } //IfcBSplineCurveImpl

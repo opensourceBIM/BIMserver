@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFurnishingElementTypeImpl extends IfcElementTypeImpl implements
-		IfcFurnishingElementType {
+public class IfcFurnishingElementTypeImpl extends IfcElementTypeImpl implements IfcFurnishingElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

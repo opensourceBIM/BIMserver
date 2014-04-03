@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBoundaryConditionImpl extends IdEObjectImpl implements
-		IfcBoundaryCondition {
+public class IfcBoundaryConditionImpl extends IdEObjectImpl implements IfcBoundaryCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,8 +72,7 @@ public class IfcBoundaryConditionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_BOUNDARY_CONDITION__NAME, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_CONDITION__NAME, true);
 	}
 
 	/**

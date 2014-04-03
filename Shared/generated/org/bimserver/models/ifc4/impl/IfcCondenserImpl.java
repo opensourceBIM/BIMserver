@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCondenserImpl extends IfcEnergyConversionDeviceImpl implements
-		IfcCondenser {
+public class IfcCondenserImpl extends IfcEnergyConversionDeviceImpl implements IfcCondenser {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcCondenserImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public IfcCondenserTypeEnum getPredefinedType() {
-		return (IfcCondenserTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_CONDENSER__PREDEFINED_TYPE, true);
+		return (IfcCondenserTypeEnum) eGet(Ifc4Package.Literals.IFC_CONDENSER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcCondenserImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCondenserTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_CONDENSER__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_CONDENSER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

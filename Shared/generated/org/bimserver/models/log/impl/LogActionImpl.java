@@ -115,8 +115,7 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	 * @generated
 	 */
 	public AccessMethod getAccessMethod() {
-		return (AccessMethod) eGet(
-				LogPackage.Literals.LOG_ACTION__ACCESS_METHOD, true);
+		return (AccessMethod) eGet(LogPackage.Literals.LOG_ACTION__ACCESS_METHOD, true);
 	}
 
 	/**

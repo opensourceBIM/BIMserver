@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSlabTypeImpl extends IfcBuildingElementTypeImpl implements
-		IfcSlabType {
+public class IfcSlabTypeImpl extends IfcBuildingElementTypeImpl implements IfcSlabType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcSlabTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcSlabTypeEnum getPredefinedType() {
-		return (IfcSlabTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SLAB_TYPE__PREDEFINED_TYPE, true);
+		return (IfcSlabTypeEnum) eGet(Ifc4Package.Literals.IFC_SLAB_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcSlabTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSlabTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_SLAB_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_SLAB_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcSlabTypeImpl

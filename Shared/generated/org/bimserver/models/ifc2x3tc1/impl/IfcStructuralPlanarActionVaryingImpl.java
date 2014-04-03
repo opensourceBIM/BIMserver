@@ -39,9 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralPlanarActionVaryingImpl extends
-		IfcStructuralPlanarActionImpl implements
-		IfcStructuralPlanarActionVarying {
+public class IfcStructuralPlanarActionVaryingImpl extends IfcStructuralPlanarActionImpl implements IfcStructuralPlanarActionVarying {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +65,7 @@ public class IfcStructuralPlanarActionVaryingImpl extends
 	 * @generated
 	 */
 	public IfcShapeAspect getVaryingAppliedLoadLocation() {
-		return (IfcShapeAspect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_PLANAR_ACTION_VARYING__VARYING_APPLIED_LOAD_LOCATION,
-				true);
+		return (IfcShapeAspect) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_PLANAR_ACTION_VARYING__VARYING_APPLIED_LOAD_LOCATION, true);
 	}
 
 	/**
@@ -77,10 +73,8 @@ public class IfcStructuralPlanarActionVaryingImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVaryingAppliedLoadLocation(
-			IfcShapeAspect newVaryingAppliedLoadLocation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_PLANAR_ACTION_VARYING__VARYING_APPLIED_LOAD_LOCATION,
-				newVaryingAppliedLoadLocation);
+	public void setVaryingAppliedLoadLocation(IfcShapeAspect newVaryingAppliedLoadLocation) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_PLANAR_ACTION_VARYING__VARYING_APPLIED_LOAD_LOCATION, newVaryingAppliedLoadLocation);
 	}
 
 	/**
@@ -90,9 +84,7 @@ public class IfcStructuralPlanarActionVaryingImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralLoad> getSubsequentAppliedLoads() {
-		return (EList<IfcStructuralLoad>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_PLANAR_ACTION_VARYING__SUBSEQUENT_APPLIED_LOADS,
-				true);
+		return (EList<IfcStructuralLoad>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_PLANAR_ACTION_VARYING__SUBSEQUENT_APPLIED_LOADS, true);
 	}
 
 } //IfcStructuralPlanarActionVaryingImpl

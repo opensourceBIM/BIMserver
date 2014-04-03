@@ -113,8 +113,7 @@ public enum IfcCostItemTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCostItemTypeEnum[] VALUES_ARRAY = new IfcCostItemTypeEnum[] {
-			NULL, NOTDEFINED, USERDEFINED, };
+	private static final IfcCostItemTypeEnum[] VALUES_ARRAY = new IfcCostItemTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cost Item Type Enum</b></em>' enumerators.
@@ -122,8 +121,7 @@ public enum IfcCostItemTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCostItemTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCostItemTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Cost Item Type Enum</b></em>' literal with the specified literal value.

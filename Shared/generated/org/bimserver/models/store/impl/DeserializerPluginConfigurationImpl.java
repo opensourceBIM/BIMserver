@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class DeserializerPluginConfigurationImpl extends
-		PluginConfigurationImpl implements DeserializerPluginConfiguration {
+public class DeserializerPluginConfigurationImpl extends PluginConfigurationImpl implements DeserializerPluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class DeserializerPluginConfigurationImpl extends
 	 * @generated
 	 */
 	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(
-				StorePackage.Literals.DESERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				true);
+		return (UserSettings) eGet(StorePackage.Literals.DESERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class DeserializerPluginConfigurationImpl extends
 	 * @generated
 	 */
 	public void setUserSettings(UserSettings newUserSettings) {
-		eSet(StorePackage.Literals.DESERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				newUserSettings);
+		eSet(StorePackage.Literals.DESERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
 
 } //DeserializerPluginConfigurationImpl

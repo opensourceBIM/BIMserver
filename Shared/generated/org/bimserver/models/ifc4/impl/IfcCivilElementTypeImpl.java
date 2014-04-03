@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCivilElementTypeImpl extends IfcElementTypeImpl implements
-		IfcCivilElementType {
+public class IfcCivilElementTypeImpl extends IfcElementTypeImpl implements IfcCivilElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

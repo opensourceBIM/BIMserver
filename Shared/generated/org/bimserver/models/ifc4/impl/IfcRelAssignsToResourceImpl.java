@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsToResourceImpl extends IfcRelAssignsImpl implements
-		IfcRelAssignsToResource {
+public class IfcRelAssignsToResourceImpl extends IfcRelAssignsImpl implements IfcRelAssignsToResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcRelAssignsToResourceImpl extends IfcRelAssignsImpl implements
 	 * @generated
 	 */
 	public IfcResourceSelect getRelatingResource() {
-		return (IfcResourceSelect) eGet(
-				Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_RESOURCE__RELATING_RESOURCE,
-				true);
+		return (IfcResourceSelect) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_RESOURCE__RELATING_RESOURCE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcRelAssignsToResourceImpl extends IfcRelAssignsImpl implements
 	 * @generated
 	 */
 	public void setRelatingResource(IfcResourceSelect newRelatingResource) {
-		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_RESOURCE__RELATING_RESOURCE,
-				newRelatingResource);
+		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_RESOURCE__RELATING_RESOURCE, newRelatingResource);
 	}
 
 } //IfcRelAssignsToResourceImpl

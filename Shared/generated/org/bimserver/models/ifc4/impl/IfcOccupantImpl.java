@@ -61,8 +61,7 @@ public class IfcOccupantImpl extends IfcActorImpl implements IfcOccupant {
 	 * @generated
 	 */
 	public IfcOccupantTypeEnum getPredefinedType() {
-		return (IfcOccupantTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_OCCUPANT__PREDEFINED_TYPE, true);
+		return (IfcOccupantTypeEnum) eGet(Ifc4Package.Literals.IFC_OCCUPANT__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -71,8 +70,7 @@ public class IfcOccupantImpl extends IfcActorImpl implements IfcOccupant {
 	 * @generated
 	 */
 	public void setPredefinedType(IfcOccupantTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_OCCUPANT__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_OCCUPANT__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements
-		IfcFillAreaStyle {
+public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements IfcFillAreaStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcFillStyleSelect> getFillStyles() {
-		return (EList<IfcFillStyleSelect>) eGet(
-				Ifc4Package.Literals.IFC_FILL_AREA_STYLE__FILL_STYLES, true);
+		return (EList<IfcFillStyleSelect>) eGet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE__FILL_STYLES, true);
 	}
 
 	/**
@@ -77,9 +75,7 @@ public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public Tristate getModelorDraughting() {
-		return (Tristate) eGet(
-				Ifc4Package.Literals.IFC_FILL_AREA_STYLE__MODELOR_DRAUGHTING,
-				true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE__MODELOR_DRAUGHTING, true);
 	}
 
 	/**
@@ -88,8 +84,7 @@ public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public void setModelorDraughting(Tristate newModelorDraughting) {
-		eSet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE__MODELOR_DRAUGHTING,
-				newModelorDraughting);
+		eSet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE__MODELOR_DRAUGHTING, newModelorDraughting);
 	}
 
 	/**

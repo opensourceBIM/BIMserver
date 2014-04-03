@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProjectLibraryImpl extends IfcContextImpl implements
-		IfcProjectLibrary {
+public class IfcProjectLibraryImpl extends IfcContextImpl implements IfcProjectLibrary {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

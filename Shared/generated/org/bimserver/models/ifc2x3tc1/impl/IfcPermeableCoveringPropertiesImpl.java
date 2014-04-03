@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPermeableCoveringPropertiesImpl extends
-		IfcPropertySetDefinitionImpl implements IfcPermeableCoveringProperties {
+public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinitionImpl implements IfcPermeableCoveringProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,9 +69,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public IfcPermeableCoveringOperationEnum getOperationType() {
-		return (IfcPermeableCoveringOperationEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__OPERATION_TYPE,
-				true);
+		return (IfcPermeableCoveringOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__OPERATION_TYPE, true);
 	}
 
 	/**
@@ -80,10 +77,8 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperationType(
-			IfcPermeableCoveringOperationEnum newOperationType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__OPERATION_TYPE,
-				newOperationType);
+	public void setOperationType(IfcPermeableCoveringOperationEnum newOperationType) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__OPERATION_TYPE, newOperationType);
 	}
 
 	/**
@@ -92,9 +87,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public IfcWindowPanelPositionEnum getPanelPosition() {
-		return (IfcWindowPanelPositionEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__PANEL_POSITION,
-				true);
+		return (IfcWindowPanelPositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__PANEL_POSITION, true);
 	}
 
 	/**
@@ -103,8 +96,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public void setPanelPosition(IfcWindowPanelPositionEnum newPanelPosition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__PANEL_POSITION,
-				newPanelPosition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__PANEL_POSITION, newPanelPosition);
 	}
 
 	/**
@@ -113,9 +105,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public double getFrameDepth() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH, true);
 	}
 
 	/**
@@ -124,8 +114,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public void setFrameDepth(double newFrameDepth) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH,
-				newFrameDepth);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH, newFrameDepth);
 	}
 
 	/**
@@ -152,9 +141,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public String getFrameDepthAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH_AS_STRING, true);
 	}
 
 	/**
@@ -163,8 +150,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public void setFrameDepthAsString(String newFrameDepthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH_AS_STRING,
-				newFrameDepthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH_AS_STRING, newFrameDepthAsString);
 	}
 
 	/**
@@ -191,9 +177,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public double getFrameThickness() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS, true);
 	}
 
 	/**
@@ -202,8 +186,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public void setFrameThickness(double newFrameThickness) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS,
-				newFrameThickness);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS, newFrameThickness);
 	}
 
 	/**
@@ -230,9 +213,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public String getFrameThicknessAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING, true);
 	}
 
 	/**
@@ -241,8 +222,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public void setFrameThicknessAsString(String newFrameThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING,
-				newFrameThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING, newFrameThicknessAsString);
 	}
 
 	/**
@@ -269,9 +249,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public IfcShapeAspect getShapeAspectStyle() {
-		return (IfcShapeAspect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__SHAPE_ASPECT_STYLE,
-				true);
+		return (IfcShapeAspect) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__SHAPE_ASPECT_STYLE, true);
 	}
 
 	/**
@@ -280,8 +258,7 @@ public class IfcPermeableCoveringPropertiesImpl extends
 	 * @generated
 	 */
 	public void setShapeAspectStyle(IfcShapeAspect newShapeAspectStyle) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__SHAPE_ASPECT_STYLE,
-				newShapeAspectStyle);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__SHAPE_ASPECT_STYLE, newShapeAspectStyle);
 	}
 
 	/**

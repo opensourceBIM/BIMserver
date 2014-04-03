@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements
-		IfcBSplineSurface {
+public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements IfcBSplineSurface {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements
 	 * @generated
 	 */
 	public int getUDegree() {
-		return (Integer) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE__UDEGREE, true);
+		return (Integer) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__UDEGREE, true);
 	}
 
 	/**
@@ -86,8 +84,7 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements
 	 * @generated
 	 */
 	public int getVDegree() {
-		return (Integer) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VDEGREE, true);
+		return (Integer) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VDEGREE, true);
 	}
 
 	/**
@@ -105,8 +102,7 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements
 	 * @generated
 	 */
 	public IfcBSplineSurfaceForm getSurfaceForm() {
-		return (IfcBSplineSurfaceForm) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE__SURFACE_FORM, true);
+		return (IfcBSplineSurfaceForm) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__SURFACE_FORM, true);
 	}
 
 	/**
@@ -115,8 +111,7 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements
 	 * @generated
 	 */
 	public void setSurfaceForm(IfcBSplineSurfaceForm newSurfaceForm) {
-		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__SURFACE_FORM,
-				newSurfaceForm);
+		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__SURFACE_FORM, newSurfaceForm);
 	}
 
 	/**
@@ -125,8 +120,7 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements
 	 * @generated
 	 */
 	public boolean isUClosed() {
-		return (Boolean) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE__UCLOSED, true);
+		return (Boolean) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__UCLOSED, true);
 	}
 
 	/**
@@ -144,8 +138,7 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements
 	 * @generated
 	 */
 	public boolean isVClosed() {
-		return (Boolean) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VCLOSED, true);
+		return (Boolean) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VCLOSED, true);
 	}
 
 	/**
@@ -163,8 +156,7 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements
 	 * @generated
 	 */
 	public boolean isSelfIntersect() {
-		return (Boolean) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_SURFACE__SELF_INTERSECT, true);
+		return (Boolean) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__SELF_INTERSECT, true);
 	}
 
 	/**
@@ -173,8 +165,7 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements
 	 * @generated
 	 */
 	public void setSelfIntersect(boolean newSelfIntersect) {
-		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__SELF_INTERSECT,
-				newSelfIntersect);
+		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__SELF_INTERSECT, newSelfIntersect);
 	}
 
 } //IfcBSplineSurfaceImpl

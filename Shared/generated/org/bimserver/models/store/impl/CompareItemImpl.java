@@ -73,8 +73,7 @@ public class CompareItemImpl extends IdEObjectImpl implements CompareItem {
 	 * @generated
 	 */
 	public DataObject getDataObject() {
-		return (DataObject) eGet(
-				StorePackage.Literals.COMPARE_ITEM__DATA_OBJECT, true);
+		return (DataObject) eGet(StorePackage.Literals.COMPARE_ITEM__DATA_OBJECT, true);
 	}
 
 	/**

@@ -80,8 +80,7 @@ public class IfcProfileDefImpl extends IdEObjectImpl implements IfcProfileDef {
 	 * @generated
 	 */
 	public IfcProfileTypeEnum getProfileType() {
-		return (IfcProfileTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PROFILE_DEF__PROFILE_TYPE, true);
+		return (IfcProfileTypeEnum) eGet(Ifc4Package.Literals.IFC_PROFILE_DEF__PROFILE_TYPE, true);
 	}
 
 	/**
@@ -99,8 +98,7 @@ public class IfcProfileDefImpl extends IdEObjectImpl implements IfcProfileDef {
 	 * @generated
 	 */
 	public String getProfileName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PROFILE_DEF__PROFILE_NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PROFILE_DEF__PROFILE_NAME, true);
 	}
 
 	/**
@@ -137,9 +135,7 @@ public class IfcProfileDefImpl extends IdEObjectImpl implements IfcProfileDef {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_PROFILE_DEF__HAS_EXTERNAL_REFERENCE,
-				true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_PROFILE_DEF__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**
@@ -167,8 +163,7 @@ public class IfcProfileDefImpl extends IdEObjectImpl implements IfcProfileDef {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProfileProperties> getHasProperties() {
-		return (EList<IfcProfileProperties>) eGet(
-				Ifc4Package.Literals.IFC_PROFILE_DEF__HAS_PROPERTIES, true);
+		return (EList<IfcProfileProperties>) eGet(Ifc4Package.Literals.IFC_PROFILE_DEF__HAS_PROPERTIES, true);
 	}
 
 	/**

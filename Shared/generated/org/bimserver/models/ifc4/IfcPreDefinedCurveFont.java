@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcPreDefinedCurveFont extends IfcPreDefinedItem,
-		IfcCurveStyleFontSelect {
+public interface IfcPreDefinedCurveFont extends IfcPreDefinedItem, IfcCurveStyleFontSelect {
 } // IfcPreDefinedCurveFont

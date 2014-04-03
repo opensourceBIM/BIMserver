@@ -104,8 +104,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__DESCRIPTION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__DESCRIPTION, true);
 	}
 
 	/**
@@ -141,8 +140,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 * @generated
 	 */
 	public String getStartTime() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__START_TIME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__START_TIME, true);
 	}
 
 	/**
@@ -160,8 +158,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 * @generated
 	 */
 	public String getEndTime() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__END_TIME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__END_TIME, true);
 	}
 
 	/**
@@ -179,9 +176,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 * @generated
 	 */
 	public IfcTimeSeriesDataTypeEnum getTimeSeriesDataType() {
-		return (IfcTimeSeriesDataTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_TIME_SERIES__TIME_SERIES_DATA_TYPE,
-				true);
+		return (IfcTimeSeriesDataTypeEnum) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__TIME_SERIES_DATA_TYPE, true);
 	}
 
 	/**
@@ -189,10 +184,8 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTimeSeriesDataType(
-			IfcTimeSeriesDataTypeEnum newTimeSeriesDataType) {
-		eSet(Ifc4Package.Literals.IFC_TIME_SERIES__TIME_SERIES_DATA_TYPE,
-				newTimeSeriesDataType);
+	public void setTimeSeriesDataType(IfcTimeSeriesDataTypeEnum newTimeSeriesDataType) {
+		eSet(Ifc4Package.Literals.IFC_TIME_SERIES__TIME_SERIES_DATA_TYPE, newTimeSeriesDataType);
 	}
 
 	/**
@@ -201,8 +194,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 * @generated
 	 */
 	public IfcDataOriginEnum getDataOrigin() {
-		return (IfcDataOriginEnum) eGet(
-				Ifc4Package.Literals.IFC_TIME_SERIES__DATA_ORIGIN, true);
+		return (IfcDataOriginEnum) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__DATA_ORIGIN, true);
 	}
 
 	/**
@@ -220,9 +212,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 * @generated
 	 */
 	public String getUserDefinedDataOrigin() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TIME_SERIES__USER_DEFINED_DATA_ORIGIN,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__USER_DEFINED_DATA_ORIGIN, true);
 	}
 
 	/**
@@ -231,8 +221,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 * @generated
 	 */
 	public void setUserDefinedDataOrigin(String newUserDefinedDataOrigin) {
-		eSet(Ifc4Package.Literals.IFC_TIME_SERIES__USER_DEFINED_DATA_ORIGIN,
-				newUserDefinedDataOrigin);
+		eSet(Ifc4Package.Literals.IFC_TIME_SERIES__USER_DEFINED_DATA_ORIGIN, newUserDefinedDataOrigin);
 	}
 
 	/**
@@ -296,9 +285,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_TIME_SERIES__HAS_EXTERNAL_REFERENCE,
-				true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

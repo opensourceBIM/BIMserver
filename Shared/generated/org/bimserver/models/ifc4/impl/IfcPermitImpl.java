@@ -63,8 +63,7 @@ public class IfcPermitImpl extends IfcControlImpl implements IfcPermit {
 	 * @generated
 	 */
 	public IfcPermitTypeEnum getPredefinedType() {
-		return (IfcPermitTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PERMIT__PREDEFINED_TYPE, true);
+		return (IfcPermitTypeEnum) eGet(Ifc4Package.Literals.IFC_PERMIT__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +72,7 @@ public class IfcPermitImpl extends IfcControlImpl implements IfcPermit {
 	 * @generated
 	 */
 	public void setPredefinedType(IfcPermitTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_PERMIT__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_PERMIT__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -137,8 +135,7 @@ public class IfcPermitImpl extends IfcControlImpl implements IfcPermit {
 	 * @generated
 	 */
 	public String getLongDescription() {
-		return (String) eGet(Ifc4Package.Literals.IFC_PERMIT__LONG_DESCRIPTION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PERMIT__LONG_DESCRIPTION, true);
 	}
 
 	/**
@@ -147,8 +144,7 @@ public class IfcPermitImpl extends IfcControlImpl implements IfcPermit {
 	 * @generated
 	 */
 	public void setLongDescription(String newLongDescription) {
-		eSet(Ifc4Package.Literals.IFC_PERMIT__LONG_DESCRIPTION,
-				newLongDescription);
+		eSet(Ifc4Package.Literals.IFC_PERMIT__LONG_DESCRIPTION, newLongDescription);
 	}
 
 	/**

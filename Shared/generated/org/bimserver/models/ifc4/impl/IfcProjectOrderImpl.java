@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProjectOrderImpl extends IfcControlImpl implements
-		IfcProjectOrder {
+public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrder {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public IfcProjectOrderTypeEnum getPredefinedType() {
-		return (IfcProjectOrderTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PROJECT_ORDER__PREDEFINED_TYPE, true);
+		return (IfcProjectOrderTypeEnum) eGet(Ifc4Package.Literals.IFC_PROJECT_ORDER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -74,8 +72,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcProjectOrderTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_PROJECT_ORDER__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_PROJECT_ORDER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -102,8 +99,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getStatus() {
-		return (String) eGet(Ifc4Package.Literals.IFC_PROJECT_ORDER__STATUS,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PROJECT_ORDER__STATUS, true);
 	}
 
 	/**
@@ -139,8 +135,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getLongDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PROJECT_ORDER__LONG_DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PROJECT_ORDER__LONG_DESCRIPTION, true);
 	}
 
 	/**
@@ -149,8 +144,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setLongDescription(String newLongDescription) {
-		eSet(Ifc4Package.Literals.IFC_PROJECT_ORDER__LONG_DESCRIPTION,
-				newLongDescription);
+		eSet(Ifc4Package.Literals.IFC_PROJECT_ORDER__LONG_DESCRIPTION, newLongDescription);
 	}
 
 	/**

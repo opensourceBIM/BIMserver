@@ -35,9 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelConnectsWithEccentricityImpl extends
-		IfcRelConnectsStructuralMemberImpl implements
-		IfcRelConnectsWithEccentricity {
+public class IfcRelConnectsWithEccentricityImpl extends IfcRelConnectsStructuralMemberImpl implements IfcRelConnectsWithEccentricity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +61,7 @@ public class IfcRelConnectsWithEccentricityImpl extends
 	 * @generated
 	 */
 	public IfcConnectionGeometry getConnectionConstraint() {
-		return (IfcConnectionGeometry) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_WITH_ECCENTRICITY__CONNECTION_CONSTRAINT,
-				true);
+		return (IfcConnectionGeometry) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_WITH_ECCENTRICITY__CONNECTION_CONSTRAINT, true);
 	}
 
 	/**
@@ -73,10 +69,8 @@ public class IfcRelConnectsWithEccentricityImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConnectionConstraint(
-			IfcConnectionGeometry newConnectionConstraint) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_WITH_ECCENTRICITY__CONNECTION_CONSTRAINT,
-				newConnectionConstraint);
+	public void setConnectionConstraint(IfcConnectionGeometry newConnectionConstraint) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_WITH_ECCENTRICITY__CONNECTION_CONSTRAINT, newConnectionConstraint);
 	}
 
 } //IfcRelConnectsWithEccentricityImpl

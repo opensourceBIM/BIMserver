@@ -363,10 +363,8 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcMechanicalFastenerTypeEnum[] VALUES_ARRAY = new IfcMechanicalFastenerTypeEnum[] {
-			NULL, STUDSHEARCONNECTOR, STAPLE, NOTDEFINED, NAILPLATE,
-			SHEARCONNECTOR, NAIL, DOWEL, BOLT, SCREW, USERDEFINED, ANCHORBOLT,
-			RIVET, };
+	private static final IfcMechanicalFastenerTypeEnum[] VALUES_ARRAY = new IfcMechanicalFastenerTypeEnum[] { NULL, STUDSHEARCONNECTOR, STAPLE, NOTDEFINED, NAILPLATE,
+			SHEARCONNECTOR, NAIL, DOWEL, BOLT, SCREW, USERDEFINED, ANCHORBOLT, RIVET, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Mechanical Fastener Type Enum</b></em>' enumerators.
@@ -374,8 +372,7 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcMechanicalFastenerTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcMechanicalFastenerTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Mechanical Fastener Type Enum</b></em>' literal with the specified literal value.

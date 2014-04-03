@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPolygonalBoundedHalfSpaceImpl extends IfcHalfSpaceSolidImpl
-		implements IfcPolygonalBoundedHalfSpace {
+public class IfcPolygonalBoundedHalfSpaceImpl extends IfcHalfSpaceSolidImpl implements IfcPolygonalBoundedHalfSpace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcPolygonalBoundedHalfSpaceImpl extends IfcHalfSpaceSolidImpl
 	 * @generated
 	 */
 	public IfcAxis2Placement3D getPosition() {
-		return (IfcAxis2Placement3D) eGet(
-				Ifc4Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POSITION,
-				true);
+		return (IfcAxis2Placement3D) eGet(Ifc4Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POSITION, true);
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class IfcPolygonalBoundedHalfSpaceImpl extends IfcHalfSpaceSolidImpl
 	 * @generated
 	 */
 	public void setPosition(IfcAxis2Placement3D newPosition) {
-		eSet(Ifc4Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POSITION,
-				newPosition);
+		eSet(Ifc4Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POSITION, newPosition);
 	}
 
 	/**
@@ -85,9 +81,7 @@ public class IfcPolygonalBoundedHalfSpaceImpl extends IfcHalfSpaceSolidImpl
 	 * @generated
 	 */
 	public IfcBoundedCurve getPolygonalBoundary() {
-		return (IfcBoundedCurve) eGet(
-				Ifc4Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY,
-				true);
+		return (IfcBoundedCurve) eGet(Ifc4Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY, true);
 	}
 
 	/**
@@ -96,8 +90,7 @@ public class IfcPolygonalBoundedHalfSpaceImpl extends IfcHalfSpaceSolidImpl
 	 * @generated
 	 */
 	public void setPolygonalBoundary(IfcBoundedCurve newPolygonalBoundary) {
-		eSet(Ifc4Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY,
-				newPolygonalBoundary);
+		eSet(Ifc4Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY, newPolygonalBoundary);
 	}
 
 } //IfcPolygonalBoundedHalfSpaceImpl

@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
-		IfcSweptDiskSolid {
+public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements IfcSweptDiskSolid {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,8 +69,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public IfcCurve getDirectrix() {
-		return (IfcCurve) eGet(
-				Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__DIRECTRIX, true);
+		return (IfcCurve) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__DIRECTRIX, true);
 	}
 
 	/**
@@ -89,8 +87,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public double getRadius() {
-		return (Double) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__RADIUS,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__RADIUS, true);
 	}
 
 	/**
@@ -108,9 +105,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public String getRadiusAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__RADIUS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__RADIUS_AS_STRING, true);
 	}
 
 	/**
@@ -119,8 +114,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public void setRadiusAsString(String newRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__RADIUS_AS_STRING,
-				newRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__RADIUS_AS_STRING, newRadiusAsString);
 	}
 
 	/**
@@ -129,8 +123,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public double getInnerRadius() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__INNER_RADIUS, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__INNER_RADIUS, true);
 	}
 
 	/**
@@ -139,8 +132,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public void setInnerRadius(double newInnerRadius) {
-		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__INNER_RADIUS,
-				newInnerRadius);
+		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__INNER_RADIUS, newInnerRadius);
 	}
 
 	/**
@@ -167,9 +159,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public String getInnerRadiusAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__INNER_RADIUS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__INNER_RADIUS_AS_STRING, true);
 	}
 
 	/**
@@ -178,8 +168,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public void setInnerRadiusAsString(String newInnerRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__INNER_RADIUS_AS_STRING,
-				newInnerRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__INNER_RADIUS_AS_STRING, newInnerRadiusAsString);
 	}
 
 	/**
@@ -206,8 +195,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public double getStartParam() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__START_PARAM, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__START_PARAM, true);
 	}
 
 	/**
@@ -216,8 +204,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public void setStartParam(double newStartParam) {
-		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__START_PARAM,
-				newStartParam);
+		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__START_PARAM, newStartParam);
 	}
 
 	/**
@@ -244,9 +231,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public String getStartParamAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__START_PARAM_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__START_PARAM_AS_STRING, true);
 	}
 
 	/**
@@ -255,8 +240,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public void setStartParamAsString(String newStartParamAsString) {
-		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__START_PARAM_AS_STRING,
-				newStartParamAsString);
+		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__START_PARAM_AS_STRING, newStartParamAsString);
 	}
 
 	/**
@@ -283,8 +267,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public double getEndParam() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__END_PARAM, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__END_PARAM, true);
 	}
 
 	/**
@@ -320,9 +303,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public String getEndParamAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__END_PARAM_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__END_PARAM_AS_STRING, true);
 	}
 
 	/**
@@ -331,8 +312,7 @@ public class IfcSweptDiskSolidImpl extends IfcSolidModelImpl implements
 	 * @generated
 	 */
 	public void setEndParamAsString(String newEndParamAsString) {
-		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__END_PARAM_AS_STRING,
-				newEndParamAsString);
+		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID__END_PARAM_AS_STRING, newEndParamAsString);
 	}
 
 	/**

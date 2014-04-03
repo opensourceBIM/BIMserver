@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProjectionElementImpl extends IfcFeatureElementAdditionImpl
-		implements IfcProjectionElement {
+public class IfcProjectionElementImpl extends IfcFeatureElementAdditionImpl implements IfcProjectionElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcProjectionElementImpl extends IfcFeatureElementAdditionImpl
 	 * @generated
 	 */
 	public IfcProjectionElementTypeEnum getPredefinedType() {
-		return (IfcProjectionElementTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PROJECTION_ELEMENT__PREDEFINED_TYPE,
-				true);
+		return (IfcProjectionElementTypeEnum) eGet(Ifc4Package.Literals.IFC_PROJECTION_ELEMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcProjectionElementImpl extends IfcFeatureElementAdditionImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcProjectionElementTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_PROJECTION_ELEMENT__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_PROJECTION_ELEMENT__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
