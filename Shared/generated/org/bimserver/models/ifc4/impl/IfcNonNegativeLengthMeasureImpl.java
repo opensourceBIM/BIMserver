@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcNonNegativeLengthMeasureImpl extends IfcLengthMeasureImpl
-		implements IfcNonNegativeLengthMeasure {
+public class IfcNonNegativeLengthMeasureImpl extends IfcLengthMeasureImpl implements IfcNonNegativeLengthMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

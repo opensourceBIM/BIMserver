@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricGeneratorImpl extends IfcEnergyConversionDeviceImpl
-		implements IfcElectricGenerator {
+public class IfcElectricGeneratorImpl extends IfcEnergyConversionDeviceImpl implements IfcElectricGenerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcElectricGeneratorImpl extends IfcEnergyConversionDeviceImpl
 	 * @generated
 	 */
 	public IfcElectricGeneratorTypeEnum getPredefinedType() {
-		return (IfcElectricGeneratorTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_ELECTRIC_GENERATOR__PREDEFINED_TYPE,
-				true);
+		return (IfcElectricGeneratorTypeEnum) eGet(Ifc4Package.Literals.IFC_ELECTRIC_GENERATOR__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcElectricGeneratorImpl extends IfcEnergyConversionDeviceImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcElectricGeneratorTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_ELECTRIC_GENERATOR__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_ELECTRIC_GENERATOR__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

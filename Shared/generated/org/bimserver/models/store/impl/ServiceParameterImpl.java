@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ServiceParameterImpl extends IdEObjectImpl implements
-		ServiceParameter {
+public class ServiceParameterImpl extends IdEObjectImpl implements ServiceParameter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,8 +76,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(StorePackage.Literals.SERVICE_PARAMETER__NAME,
-				true);
+		return (String) eGet(StorePackage.Literals.SERVICE_PARAMETER__NAME, true);
 	}
 
 	/**
@@ -114,8 +112,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public ServiceType getType() {
-		return (ServiceType) eGet(
-				StorePackage.Literals.SERVICE_PARAMETER__TYPE, true);
+		return (ServiceType) eGet(StorePackage.Literals.SERVICE_PARAMETER__TYPE, true);
 	}
 
 	/**
@@ -133,8 +130,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public ServiceType getGenericType() {
-		return (ServiceType) eGet(
-				StorePackage.Literals.SERVICE_PARAMETER__GENERIC_TYPE, true);
+		return (ServiceType) eGet(StorePackage.Literals.SERVICE_PARAMETER__GENERIC_TYPE, true);
 	}
 
 	/**
@@ -143,8 +139,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setGenericType(ServiceType newGenericType) {
-		eSet(StorePackage.Literals.SERVICE_PARAMETER__GENERIC_TYPE,
-				newGenericType);
+		eSet(StorePackage.Literals.SERVICE_PARAMETER__GENERIC_TYPE, newGenericType);
 	}
 
 } //ServiceParameterImpl

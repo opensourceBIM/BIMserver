@@ -49,8 +49,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcOrganizationImpl extends IdEObjectImpl implements
-		IfcOrganization {
+public class IfcOrganizationImpl extends IdEObjectImpl implements IfcOrganization {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,8 +85,7 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getIdentification() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_ORGANIZATION__IDENTIFICATION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_ORGANIZATION__IDENTIFICATION, true);
 	}
 
 	/**
@@ -96,8 +94,7 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setIdentification(String newIdentification) {
-		eSet(Ifc4Package.Literals.IFC_ORGANIZATION__IDENTIFICATION,
-				newIdentification);
+		eSet(Ifc4Package.Literals.IFC_ORGANIZATION__IDENTIFICATION, newIdentification);
 	}
 
 	/**
@@ -142,8 +139,7 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_ORGANIZATION__DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_ORGANIZATION__DESCRIPTION, true);
 	}
 
 	/**
@@ -180,8 +176,7 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcActorRole> getRoles() {
-		return (EList<IfcActorRole>) eGet(
-				Ifc4Package.Literals.IFC_ORGANIZATION__ROLES, true);
+		return (EList<IfcActorRole>) eGet(Ifc4Package.Literals.IFC_ORGANIZATION__ROLES, true);
 	}
 
 	/**
@@ -209,8 +204,7 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAddress> getAddresses() {
-		return (EList<IfcAddress>) eGet(
-				Ifc4Package.Literals.IFC_ORGANIZATION__ADDRESSES, true);
+		return (EList<IfcAddress>) eGet(Ifc4Package.Literals.IFC_ORGANIZATION__ADDRESSES, true);
 	}
 
 	/**
@@ -238,8 +232,7 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganizationRelationship> getIsRelatedBy() {
-		return (EList<IfcOrganizationRelationship>) eGet(
-				Ifc4Package.Literals.IFC_ORGANIZATION__IS_RELATED_BY, true);
+		return (EList<IfcOrganizationRelationship>) eGet(Ifc4Package.Literals.IFC_ORGANIZATION__IS_RELATED_BY, true);
 	}
 
 	/**
@@ -267,8 +260,7 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganizationRelationship> getRelates() {
-		return (EList<IfcOrganizationRelationship>) eGet(
-				Ifc4Package.Literals.IFC_ORGANIZATION__RELATES, true);
+		return (EList<IfcOrganizationRelationship>) eGet(Ifc4Package.Literals.IFC_ORGANIZATION__RELATES, true);
 	}
 
 	/**
@@ -296,8 +288,7 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPersonAndOrganization> getEngages() {
-		return (EList<IfcPersonAndOrganization>) eGet(
-				Ifc4Package.Literals.IFC_ORGANIZATION__ENGAGES, true);
+		return (EList<IfcPersonAndOrganization>) eGet(Ifc4Package.Literals.IFC_ORGANIZATION__ENGAGES, true);
 	}
 
 	/**

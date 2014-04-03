@@ -36,8 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcDocumentInformationRelationship extends
-		IfcResourceLevelRelationship {
+public interface IfcDocumentInformationRelationship extends IfcResourceLevelRelationship {
 	/**
 	 * Returns the value of the '<em><b>Relating Document</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc4.IfcDocumentInformation#getIsPointer <em>Is Pointer</em>}'.

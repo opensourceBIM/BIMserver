@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcExternallyDefinedSurfaceStyle extends IfcExternalReference,
-		IfcSurfaceStyleElementSelect {
+public interface IfcExternallyDefinedSurfaceStyle extends IfcExternalReference, IfcSurfaceStyleElementSelect {
 } // IfcExternallyDefinedSurfaceStyle

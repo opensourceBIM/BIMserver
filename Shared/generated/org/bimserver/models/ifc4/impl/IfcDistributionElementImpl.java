@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDistributionElementImpl extends IfcElementImpl implements
-		IfcDistributionElement {
+public class IfcDistributionElementImpl extends IfcElementImpl implements IfcDistributionElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcDistributionElementImpl extends IfcElementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsPortToElement> getHasPorts() {
-		return (EList<IfcRelConnectsPortToElement>) eGet(
-				Ifc4Package.Literals.IFC_DISTRIBUTION_ELEMENT__HAS_PORTS, true);
+		return (EList<IfcRelConnectsPortToElement>) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_ELEMENT__HAS_PORTS, true);
 	}
 
 	/**

@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProtectiveDeviceImpl extends IfcFlowControllerImpl implements
-		IfcProtectiveDevice {
+public class IfcProtectiveDeviceImpl extends IfcFlowControllerImpl implements IfcProtectiveDevice {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcProtectiveDeviceImpl extends IfcFlowControllerImpl implements
 	 * @generated
 	 */
 	public IfcProtectiveDeviceTypeEnum getPredefinedType() {
-		return (IfcProtectiveDeviceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE__PREDEFINED_TYPE,
-				true);
+		return (IfcProtectiveDeviceTypeEnum) eGet(Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcProtectiveDeviceImpl extends IfcFlowControllerImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcProtectiveDeviceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

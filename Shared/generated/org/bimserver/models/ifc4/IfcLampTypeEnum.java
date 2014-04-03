@@ -338,10 +338,8 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLampTypeEnum[] VALUES_ARRAY = new IfcLampTypeEnum[] {
-			NULL, OLED, HIGHPRESSUREMERCURY, COMPACTFLUORESCENT, NOTDEFINED,
-			TUNGSTENFILAMENT, METALHALIDE, USERDEFINED, LED,
-			HIGHPRESSURESODIUM, HALOGEN, FLUORESCENT, };
+	private static final IfcLampTypeEnum[] VALUES_ARRAY = new IfcLampTypeEnum[] { NULL, OLED, HIGHPRESSUREMERCURY, COMPACTFLUORESCENT, NOTDEFINED, TUNGSTENFILAMENT, METALHALIDE,
+			USERDEFINED, LED, HIGHPRESSURESODIUM, HALOGEN, FLUORESCENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Lamp Type Enum</b></em>' enumerators.
@@ -349,8 +347,7 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcLampTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcLampTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Lamp Type Enum</b></em>' literal with the specified literal value.

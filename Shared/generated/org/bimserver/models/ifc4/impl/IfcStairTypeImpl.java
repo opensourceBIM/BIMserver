@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStairTypeImpl extends IfcBuildingElementTypeImpl implements
-		IfcStairType {
+public class IfcStairTypeImpl extends IfcBuildingElementTypeImpl implements IfcStairType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcStairTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcStairTypeEnum getPredefinedType() {
-		return (IfcStairTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_STAIR_TYPE__PREDEFINED_TYPE, true);
+		return (IfcStairTypeEnum) eGet(Ifc4Package.Literals.IFC_STAIR_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcStairTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcStairTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_STAIR_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_STAIR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcStairTypeImpl

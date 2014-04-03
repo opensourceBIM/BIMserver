@@ -72,8 +72,7 @@ public class IfcIntegerImpl extends IdEObjectImpl implements IfcInteger {
 	 * @generated
 	 */
 	public int getWrappedValue() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_INTEGER__WRAPPED_VALUE,
-				true);
+		return (Integer) eGet(Ifc4Package.Literals.IFC_INTEGER__WRAPPED_VALUE, true);
 	}
 
 	/**

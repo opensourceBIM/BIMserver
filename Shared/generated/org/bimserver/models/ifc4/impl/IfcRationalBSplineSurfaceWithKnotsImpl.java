@@ -30,9 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRationalBSplineSurfaceWithKnotsImpl extends
-		IfcBSplineSurfaceWithKnotsImpl implements
-		IfcRationalBSplineSurfaceWithKnots {
+public class IfcRationalBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceWithKnotsImpl implements IfcRationalBSplineSurfaceWithKnots {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

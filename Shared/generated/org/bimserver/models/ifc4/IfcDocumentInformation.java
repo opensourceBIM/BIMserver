@@ -54,8 +54,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcDocumentInformation extends IfcExternalInformation,
-		IfcDocumentSelect {
+public interface IfcDocumentInformation extends IfcExternalInformation, IfcDocumentSelect {
 	/**
 	 * Returns the value of the '<em><b>Identification</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelDefinesImpl extends IfcRelationshipImpl implements
-		IfcRelDefines {
+public class IfcRelDefinesImpl extends IfcRelationshipImpl implements IfcRelDefines {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

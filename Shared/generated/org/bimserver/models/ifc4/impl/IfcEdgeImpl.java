@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEdgeImpl extends IfcTopologicalRepresentationItemImpl implements
-		IfcEdge {
+public class IfcEdgeImpl extends IfcTopologicalRepresentationItemImpl implements IfcEdge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

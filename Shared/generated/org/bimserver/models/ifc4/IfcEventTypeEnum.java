@@ -188,9 +188,7 @@ public enum IfcEventTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEventTypeEnum[] VALUES_ARRAY = new IfcEventTypeEnum[] {
-			NULL, NOTDEFINED, ENDEVENT, STARTEVENT, USERDEFINED,
-			INTERMEDIATEEVENT, };
+	private static final IfcEventTypeEnum[] VALUES_ARRAY = new IfcEventTypeEnum[] { NULL, NOTDEFINED, ENDEVENT, STARTEVENT, USERDEFINED, INTERMEDIATEEVENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Event Type Enum</b></em>' enumerators.
@@ -198,8 +196,7 @@ public enum IfcEventTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcEventTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcEventTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Event Type Enum</b></em>' literal with the specified literal value.

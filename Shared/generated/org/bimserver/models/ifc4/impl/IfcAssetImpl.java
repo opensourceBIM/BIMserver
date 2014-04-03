@@ -71,8 +71,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public String getIdentification() {
-		return (String) eGet(Ifc4Package.Literals.IFC_ASSET__IDENTIFICATION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_ASSET__IDENTIFICATION, true);
 	}
 
 	/**
@@ -108,8 +107,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public IfcCostValue getOriginalValue() {
-		return (IfcCostValue) eGet(
-				Ifc4Package.Literals.IFC_ASSET__ORIGINAL_VALUE, true);
+		return (IfcCostValue) eGet(Ifc4Package.Literals.IFC_ASSET__ORIGINAL_VALUE, true);
 	}
 
 	/**
@@ -145,8 +143,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public IfcCostValue getCurrentValue() {
-		return (IfcCostValue) eGet(
-				Ifc4Package.Literals.IFC_ASSET__CURRENT_VALUE, true);
+		return (IfcCostValue) eGet(Ifc4Package.Literals.IFC_ASSET__CURRENT_VALUE, true);
 	}
 
 	/**
@@ -182,8 +179,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public IfcCostValue getTotalReplacementCost() {
-		return (IfcCostValue) eGet(
-				Ifc4Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST, true);
+		return (IfcCostValue) eGet(Ifc4Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST, true);
 	}
 
 	/**
@@ -192,8 +188,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public void setTotalReplacementCost(IfcCostValue newTotalReplacementCost) {
-		eSet(Ifc4Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST,
-				newTotalReplacementCost);
+		eSet(Ifc4Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST, newTotalReplacementCost);
 	}
 
 	/**
@@ -220,8 +215,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public IfcActorSelect getOwner() {
-		return (IfcActorSelect) eGet(Ifc4Package.Literals.IFC_ASSET__OWNER,
-				true);
+		return (IfcActorSelect) eGet(Ifc4Package.Literals.IFC_ASSET__OWNER, true);
 	}
 
 	/**
@@ -293,8 +287,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public IfcPerson getResponsiblePerson() {
-		return (IfcPerson) eGet(
-				Ifc4Package.Literals.IFC_ASSET__RESPONSIBLE_PERSON, true);
+		return (IfcPerson) eGet(Ifc4Package.Literals.IFC_ASSET__RESPONSIBLE_PERSON, true);
 	}
 
 	/**
@@ -303,8 +296,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public void setResponsiblePerson(IfcPerson newResponsiblePerson) {
-		eSet(Ifc4Package.Literals.IFC_ASSET__RESPONSIBLE_PERSON,
-				newResponsiblePerson);
+		eSet(Ifc4Package.Literals.IFC_ASSET__RESPONSIBLE_PERSON, newResponsiblePerson);
 	}
 
 	/**
@@ -331,8 +323,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public String getIncorporationDate() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_ASSET__INCORPORATION_DATE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_ASSET__INCORPORATION_DATE, true);
 	}
 
 	/**
@@ -341,8 +332,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public void setIncorporationDate(String newIncorporationDate) {
-		eSet(Ifc4Package.Literals.IFC_ASSET__INCORPORATION_DATE,
-				newIncorporationDate);
+		eSet(Ifc4Package.Literals.IFC_ASSET__INCORPORATION_DATE, newIncorporationDate);
 	}
 
 	/**
@@ -369,8 +359,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public IfcCostValue getDepreciatedValue() {
-		return (IfcCostValue) eGet(
-				Ifc4Package.Literals.IFC_ASSET__DEPRECIATED_VALUE, true);
+		return (IfcCostValue) eGet(Ifc4Package.Literals.IFC_ASSET__DEPRECIATED_VALUE, true);
 	}
 
 	/**
@@ -379,8 +368,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * @generated
 	 */
 	public void setDepreciatedValue(IfcCostValue newDepreciatedValue) {
-		eSet(Ifc4Package.Literals.IFC_ASSET__DEPRECIATED_VALUE,
-				newDepreciatedValue);
+		eSet(Ifc4Package.Literals.IFC_ASSET__DEPRECIATED_VALUE, newDepreciatedValue);
 	}
 
 	/**

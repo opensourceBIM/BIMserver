@@ -35,8 +35,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcVector extends IfcGeometricRepresentationItem,
-		IfcHatchLineDistanceSelect, IfcVectorOrDirection {
+public interface IfcVector extends IfcGeometricRepresentationItem, IfcHatchLineDistanceSelect, IfcVectorOrDirection {
 	/**
 	 * Returns the value of the '<em><b>Orientation</b></em>' reference.
 	 * <!-- begin-user-doc -->

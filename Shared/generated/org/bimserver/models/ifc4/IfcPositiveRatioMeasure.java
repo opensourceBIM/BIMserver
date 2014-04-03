@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcPositiveRatioMeasure extends IfcRatioMeasure,
-		IfcMeasureValue, IfcSizeSelect {
+public interface IfcPositiveRatioMeasure extends IfcRatioMeasure, IfcMeasureValue, IfcSizeSelect {
 } // IfcPositiveRatioMeasure

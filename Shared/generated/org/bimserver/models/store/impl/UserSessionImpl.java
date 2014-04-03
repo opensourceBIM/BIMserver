@@ -157,8 +157,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * @generated
 	 */
 	public String getRemoteAddress() {
-		return (String) eGet(
-				StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS, true);
+		return (String) eGet(StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS, true);
 	}
 
 	/**
@@ -167,8 +166,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * @generated
 	 */
 	public void setRemoteAddress(String newRemoteAddress) {
-		eSet(StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS,
-				newRemoteAddress);
+		eSet(StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS, newRemoteAddress);
 	}
 
 	/**
@@ -177,8 +175,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * @generated
 	 */
 	public Date getActiveSince() {
-		return (Date) eGet(StorePackage.Literals.USER_SESSION__ACTIVE_SINCE,
-				true);
+		return (Date) eGet(StorePackage.Literals.USER_SESSION__ACTIVE_SINCE, true);
 	}
 
 	/**
@@ -196,8 +193,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * @generated
 	 */
 	public Date getLastActive() {
-		return (Date) eGet(StorePackage.Literals.USER_SESSION__LAST_ACTIVE,
-				true);
+		return (Date) eGet(StorePackage.Literals.USER_SESSION__LAST_ACTIVE, true);
 	}
 
 	/**
@@ -215,8 +211,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * @generated
 	 */
 	public AccessMethod getAccessMethod() {
-		return (AccessMethod) eGet(
-				StorePackage.Literals.USER_SESSION__ACCESS_METHOD, true);
+		return (AccessMethod) eGet(StorePackage.Literals.USER_SESSION__ACCESS_METHOD, true);
 	}
 
 	/**

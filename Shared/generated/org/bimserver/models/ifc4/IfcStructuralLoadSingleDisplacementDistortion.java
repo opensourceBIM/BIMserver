@@ -33,8 +33,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcStructuralLoadSingleDisplacementDistortion extends
-		IfcStructuralLoadSingleDisplacement {
+public interface IfcStructuralLoadSingleDisplacementDistortion extends IfcStructuralLoadSingleDisplacement {
 	/**
 	 * Returns the value of the '<em><b>Distortion</b></em>' attribute.
 	 * <!-- begin-user-doc -->

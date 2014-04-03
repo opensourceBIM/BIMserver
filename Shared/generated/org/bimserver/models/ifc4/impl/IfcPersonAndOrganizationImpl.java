@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPersonAndOrganizationImpl extends IdEObjectImpl implements
-		IfcPersonAndOrganization {
+public class IfcPersonAndOrganizationImpl extends IdEObjectImpl implements IfcPersonAndOrganization {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,9 +79,7 @@ public class IfcPersonAndOrganizationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcPerson getThePerson() {
-		return (IfcPerson) eGet(
-				Ifc4Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_PERSON,
-				true);
+		return (IfcPerson) eGet(Ifc4Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_PERSON, true);
 	}
 
 	/**
@@ -91,8 +88,7 @@ public class IfcPersonAndOrganizationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setThePerson(IfcPerson newThePerson) {
-		eSet(Ifc4Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_PERSON,
-				newThePerson);
+		eSet(Ifc4Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_PERSON, newThePerson);
 	}
 
 	/**
@@ -101,9 +97,7 @@ public class IfcPersonAndOrganizationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcOrganization getTheOrganization() {
-		return (IfcOrganization) eGet(
-				Ifc4Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_ORGANIZATION,
-				true);
+		return (IfcOrganization) eGet(Ifc4Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_ORGANIZATION, true);
 	}
 
 	/**
@@ -112,8 +106,7 @@ public class IfcPersonAndOrganizationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setTheOrganization(IfcOrganization newTheOrganization) {
-		eSet(Ifc4Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_ORGANIZATION,
-				newTheOrganization);
+		eSet(Ifc4Package.Literals.IFC_PERSON_AND_ORGANIZATION__THE_ORGANIZATION, newTheOrganization);
 	}
 
 	/**
@@ -123,8 +116,7 @@ public class IfcPersonAndOrganizationImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcActorRole> getRoles() {
-		return (EList<IfcActorRole>) eGet(
-				Ifc4Package.Literals.IFC_PERSON_AND_ORGANIZATION__ROLES, true);
+		return (EList<IfcActorRole>) eGet(Ifc4Package.Literals.IFC_PERSON_AND_ORGANIZATION__ROLES, true);
 	}
 
 	/**

@@ -29,6 +29,5 @@ import org.bimserver.emf.IdEObject;
  * @extends IdEObject
  * @generated
  */
-public interface IfcModulusOfTranslationalSubgradeReactionSelect extends
-		IdEObject {
+public interface IfcModulusOfTranslationalSubgradeReactionSelect extends IdEObject {
 } // IfcModulusOfTranslationalSubgradeReactionSelect

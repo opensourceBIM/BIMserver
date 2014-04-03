@@ -110,8 +110,7 @@ public class ServiceMethodImpl extends IdEObjectImpl implements ServiceMethod {
 	 * @generated
 	 */
 	public String getReturnDoc() {
-		return (String) eGet(StorePackage.Literals.SERVICE_METHOD__RETURN_DOC,
-				true);
+		return (String) eGet(StorePackage.Literals.SERVICE_METHOD__RETURN_DOC, true);
 	}
 
 	/**

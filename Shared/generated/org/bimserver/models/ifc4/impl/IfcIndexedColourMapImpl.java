@@ -42,8 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements
-		IfcIndexedColourMap {
+public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements IfcIndexedColourMap {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,8 +68,7 @@ public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	public IfcTessellatedFaceSet getMappedTo() {
-		return (IfcTessellatedFaceSet) eGet(
-				Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__MAPPED_TO, true);
+		return (IfcTessellatedFaceSet) eGet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__MAPPED_TO, true);
 	}
 
 	/**
@@ -79,8 +77,7 @@ public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	public void setMappedTo(IfcTessellatedFaceSet newMappedTo) {
-		eSet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__MAPPED_TO,
-				newMappedTo);
+		eSet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__MAPPED_TO, newMappedTo);
 	}
 
 	/**
@@ -89,8 +86,7 @@ public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	public IfcSurfaceStyleShading getOverrides() {
-		return (IfcSurfaceStyleShading) eGet(
-				Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OVERRIDES, true);
+		return (IfcSurfaceStyleShading) eGet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OVERRIDES, true);
 	}
 
 	/**
@@ -99,8 +95,7 @@ public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	public void setOverrides(IfcSurfaceStyleShading newOverrides) {
-		eSet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OVERRIDES,
-				newOverrides);
+		eSet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OVERRIDES, newOverrides);
 	}
 
 	/**
@@ -127,8 +122,7 @@ public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	public IfcColourRgbList getColours() {
-		return (IfcColourRgbList) eGet(
-				Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__COLOURS, true);
+		return (IfcColourRgbList) eGet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__COLOURS, true);
 	}
 
 	/**
@@ -147,8 +141,7 @@ public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Integer> getColourIndex() {
-		return (EList<Integer>) eGet(
-				Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__COLOUR_INDEX, true);
+		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__COLOUR_INDEX, true);
 	}
 
 } //IfcIndexedColourMapImpl

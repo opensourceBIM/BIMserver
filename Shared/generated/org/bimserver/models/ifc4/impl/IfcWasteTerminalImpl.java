@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWasteTerminalImpl extends IfcFlowTerminalImpl implements
-		IfcWasteTerminal {
+public class IfcWasteTerminalImpl extends IfcFlowTerminalImpl implements IfcWasteTerminal {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcWasteTerminalImpl extends IfcFlowTerminalImpl implements
 	 * @generated
 	 */
 	public IfcWasteTerminalTypeEnum getPredefinedType() {
-		return (IfcWasteTerminalTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_WASTE_TERMINAL__PREDEFINED_TYPE, true);
+		return (IfcWasteTerminalTypeEnum) eGet(Ifc4Package.Literals.IFC_WASTE_TERMINAL__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcWasteTerminalImpl extends IfcFlowTerminalImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcWasteTerminalTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_WASTE_TERMINAL__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_WASTE_TERMINAL__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

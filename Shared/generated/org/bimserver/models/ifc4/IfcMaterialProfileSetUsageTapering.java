@@ -33,8 +33,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcMaterialProfileSetUsageTapering extends
-		IfcMaterialProfileSetUsage {
+public interface IfcMaterialProfileSetUsageTapering extends IfcMaterialProfileSetUsage {
 	/**
 	 * Returns the value of the '<em><b>For Profile End Set</b></em>' reference.
 	 * <!-- begin-user-doc -->

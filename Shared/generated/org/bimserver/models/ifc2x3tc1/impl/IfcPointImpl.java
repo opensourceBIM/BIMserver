@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPointImpl extends IfcGeometricRepresentationItemImpl implements
-		IfcPoint {
+public class IfcPointImpl extends IfcGeometricRepresentationItemImpl implements IfcPoint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

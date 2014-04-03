@@ -62,8 +62,7 @@ public class IfcTaskTypeImpl extends IfcTypeProcessImpl implements IfcTaskType {
 	 * @generated
 	 */
 	public IfcTaskTypeEnum getPredefinedType() {
-		return (IfcTaskTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_TASK_TYPE__PREDEFINED_TYPE, true);
+		return (IfcTaskTypeEnum) eGet(Ifc4Package.Literals.IFC_TASK_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +71,7 @@ public class IfcTaskTypeImpl extends IfcTypeProcessImpl implements IfcTaskType {
 	 * @generated
 	 */
 	public void setPredefinedType(IfcTaskTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_TASK_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_TASK_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -82,8 +80,7 @@ public class IfcTaskTypeImpl extends IfcTypeProcessImpl implements IfcTaskType {
 	 * @generated
 	 */
 	public String getWorkMethod() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TYPE__WORK_METHOD,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TYPE__WORK_METHOD, true);
 	}
 
 	/**

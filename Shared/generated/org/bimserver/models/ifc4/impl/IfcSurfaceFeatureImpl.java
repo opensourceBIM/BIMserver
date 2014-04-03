@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceFeatureImpl extends IfcFeatureElementImpl implements
-		IfcSurfaceFeature {
+public class IfcSurfaceFeatureImpl extends IfcFeatureElementImpl implements IfcSurfaceFeature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcSurfaceFeatureImpl extends IfcFeatureElementImpl implements
 	 * @generated
 	 */
 	public IfcSurfaceFeatureTypeEnum getPredefinedType() {
-		return (IfcSurfaceFeatureTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_FEATURE__PREDEFINED_TYPE, true);
+		return (IfcSurfaceFeatureTypeEnum) eGet(Ifc4Package.Literals.IFC_SURFACE_FEATURE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcSurfaceFeatureImpl extends IfcFeatureElementImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSurfaceFeatureTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_FEATURE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_FEATURE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

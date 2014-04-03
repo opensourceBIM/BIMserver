@@ -97,8 +97,7 @@ public class ServiceTypeImpl extends IdEObjectImpl implements ServiceType {
 	 * @generated
 	 */
 	public String getSimpleName() {
-		return (String) eGet(StorePackage.Literals.SERVICE_TYPE__SIMPLE_NAME,
-				true);
+		return (String) eGet(StorePackage.Literals.SERVICE_TYPE__SIMPLE_NAME, true);
 	}
 
 	/**
@@ -117,8 +116,7 @@ public class ServiceTypeImpl extends IdEObjectImpl implements ServiceType {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ServiceField> getFields() {
-		return (EList<ServiceField>) eGet(
-				StorePackage.Literals.SERVICE_TYPE__FIELDS, true);
+		return (EList<ServiceField>) eGet(StorePackage.Literals.SERVICE_TYPE__FIELDS, true);
 	}
 
 	/**
@@ -127,8 +125,7 @@ public class ServiceTypeImpl extends IdEObjectImpl implements ServiceType {
 	 * @generated
 	 */
 	public ServiceSimpleType getSimpleType() {
-		return (ServiceSimpleType) eGet(
-				StorePackage.Literals.SERVICE_TYPE__SIMPLE_TYPE, true);
+		return (ServiceSimpleType) eGet(StorePackage.Literals.SERVICE_TYPE__SIMPLE_TYPE, true);
 	}
 
 	/**

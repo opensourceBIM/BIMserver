@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcArbitraryOpenProfileDefImpl extends IfcProfileDefImpl implements
-		IfcArbitraryOpenProfileDef {
+public class IfcArbitraryOpenProfileDefImpl extends IfcProfileDefImpl implements IfcArbitraryOpenProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcArbitraryOpenProfileDefImpl extends IfcProfileDefImpl implements
 	 * @generated
 	 */
 	public IfcBoundedCurve getCurve() {
-		return (IfcBoundedCurve) eGet(
-				Ifc4Package.Literals.IFC_ARBITRARY_OPEN_PROFILE_DEF__CURVE,
-				true);
+		return (IfcBoundedCurve) eGet(Ifc4Package.Literals.IFC_ARBITRARY_OPEN_PROFILE_DEF__CURVE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcArbitraryOpenProfileDefImpl extends IfcProfileDefImpl implements
 	 * @generated
 	 */
 	public void setCurve(IfcBoundedCurve newCurve) {
-		eSet(Ifc4Package.Literals.IFC_ARBITRARY_OPEN_PROFILE_DEF__CURVE,
-				newCurve);
+		eSet(Ifc4Package.Literals.IFC_ARBITRARY_OPEN_PROFILE_DEF__CURVE, newCurve);
 	}
 
 } //IfcArbitraryOpenProfileDefImpl

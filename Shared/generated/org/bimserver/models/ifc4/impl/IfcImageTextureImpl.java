@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcImageTextureImpl extends IfcSurfaceTextureImpl implements
-		IfcImageTexture {
+public class IfcImageTextureImpl extends IfcSurfaceTextureImpl implements IfcImageTexture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcImageTextureImpl extends IfcSurfaceTextureImpl implements
 	 * @generated
 	 */
 	public String getURLReference() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_IMAGE_TEXTURE__URL_REFERENCE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_IMAGE_TEXTURE__URL_REFERENCE, true);
 	}
 
 	/**
@@ -71,8 +69,7 @@ public class IfcImageTextureImpl extends IfcSurfaceTextureImpl implements
 	 * @generated
 	 */
 	public void setURLReference(String newURLReference) {
-		eSet(Ifc4Package.Literals.IFC_IMAGE_TEXTURE__URL_REFERENCE,
-				newURLReference);
+		eSet(Ifc4Package.Literals.IFC_IMAGE_TEXTURE__URL_REFERENCE, newURLReference);
 	}
 
 } //IfcImageTextureImpl

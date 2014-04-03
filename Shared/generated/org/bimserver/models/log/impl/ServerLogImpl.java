@@ -76,8 +76,7 @@ public class ServerLogImpl extends IdEObjectImpl implements ServerLog {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<LogAction> getActions() {
-		return (EList<LogAction>) eGet(LogPackage.Literals.SERVER_LOG__ACTIONS,
-				true);
+		return (EList<LogAction>) eGet(LogPackage.Literals.SERVER_LOG__ACTIONS, true);
 	}
 
 } //ServerLogImpl

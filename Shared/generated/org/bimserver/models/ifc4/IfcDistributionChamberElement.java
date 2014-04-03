@@ -32,8 +32,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcDistributionChamberElement extends
-		IfcDistributionFlowElement {
+public interface IfcDistributionChamberElement extends IfcDistributionFlowElement {
 	/**
 	 * Returns the value of the '<em><b>Predefined Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.IfcDistributionChamberElementTypeEnum}.

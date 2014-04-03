@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class CompareContainerImpl extends IdEObjectImpl implements
-		CompareContainer {
+public class CompareContainerImpl extends IdEObjectImpl implements CompareContainer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,8 +76,7 @@ public class CompareContainerImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getType() {
-		return (String) eGet(StorePackage.Literals.COMPARE_CONTAINER__TYPE,
-				true);
+		return (String) eGet(StorePackage.Literals.COMPARE_CONTAINER__TYPE, true);
 	}
 
 	/**
@@ -97,8 +95,7 @@ public class CompareContainerImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<CompareItem> getItems() {
-		return (EList<CompareItem>) eGet(
-				StorePackage.Literals.COMPARE_CONTAINER__ITEMS, true);
+		return (EList<CompareItem>) eGet(StorePackage.Literals.COMPARE_CONTAINER__ITEMS, true);
 	}
 
 } //CompareContainerImpl

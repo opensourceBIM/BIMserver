@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RevisionSummaryImpl extends IdEObjectImpl implements
-		RevisionSummary {
+public class RevisionSummaryImpl extends IdEObjectImpl implements RevisionSummary {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,8 +76,7 @@ public class RevisionSummaryImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<RevisionSummaryContainer> getList() {
-		return (EList<RevisionSummaryContainer>) eGet(
-				StorePackage.Literals.REVISION_SUMMARY__LIST, true);
+		return (EList<RevisionSummaryContainer>) eGet(StorePackage.Literals.REVISION_SUMMARY__LIST, true);
 	}
 
 } //RevisionSummaryImpl

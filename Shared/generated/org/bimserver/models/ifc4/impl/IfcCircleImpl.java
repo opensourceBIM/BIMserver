@@ -79,8 +79,7 @@ public class IfcCircleImpl extends IfcConicImpl implements IfcCircle {
 	 * @generated
 	 */
 	public String getRadiusAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_CIRCLE__RADIUS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CIRCLE__RADIUS_AS_STRING, true);
 	}
 
 	/**
@@ -89,8 +88,7 @@ public class IfcCircleImpl extends IfcConicImpl implements IfcCircle {
 	 * @generated
 	 */
 	public void setRadiusAsString(String newRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_CIRCLE__RADIUS_AS_STRING,
-				newRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_CIRCLE__RADIUS_AS_STRING, newRadiusAsString);
 	}
 
 } //IfcCircleImpl

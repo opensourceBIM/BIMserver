@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RevisionSummaryContainerImpl extends IdEObjectImpl implements
-		RevisionSummaryContainer {
+public class RevisionSummaryContainerImpl extends IdEObjectImpl implements RevisionSummaryContainer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,8 +76,7 @@ public class RevisionSummaryContainerImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				StorePackage.Literals.REVISION_SUMMARY_CONTAINER__NAME, true);
+		return (String) eGet(StorePackage.Literals.REVISION_SUMMARY_CONTAINER__NAME, true);
 	}
 
 	/**
@@ -97,8 +95,7 @@ public class RevisionSummaryContainerImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<RevisionSummaryType> getTypes() {
-		return (EList<RevisionSummaryType>) eGet(
-				StorePackage.Literals.REVISION_SUMMARY_CONTAINER__TYPES, true);
+		return (EList<RevisionSummaryType>) eGet(StorePackage.Literals.REVISION_SUMMARY_CONTAINER__TYPES, true);
 	}
 
 } //RevisionSummaryContainerImpl

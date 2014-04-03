@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcOuterBoundaryCurveImpl extends IfcBoundaryCurveImpl implements
-		IfcOuterBoundaryCurve {
+public class IfcOuterBoundaryCurveImpl extends IfcBoundaryCurveImpl implements IfcOuterBoundaryCurve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

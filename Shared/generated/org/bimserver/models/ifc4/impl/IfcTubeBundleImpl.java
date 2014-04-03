@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTubeBundleImpl extends IfcEnergyConversionDeviceImpl implements
-		IfcTubeBundle {
+public class IfcTubeBundleImpl extends IfcEnergyConversionDeviceImpl implements IfcTubeBundle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcTubeBundleImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public IfcTubeBundleTypeEnum getPredefinedType() {
-		return (IfcTubeBundleTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_TUBE_BUNDLE__PREDEFINED_TYPE, true);
+		return (IfcTubeBundleTypeEnum) eGet(Ifc4Package.Literals.IFC_TUBE_BUNDLE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcTubeBundleImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcTubeBundleTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_TUBE_BUNDLE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_TUBE_BUNDLE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcDistributionControlElementType extends
-		IfcDistributionElementType {
+public interface IfcDistributionControlElementType extends IfcDistributionElementType {
 } // IfcDistributionControlElementType

@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricFlowStorageDeviceImpl extends IfcFlowStorageDeviceImpl
-		implements IfcElectricFlowStorageDevice {
+public class IfcElectricFlowStorageDeviceImpl extends IfcFlowStorageDeviceImpl implements IfcElectricFlowStorageDevice {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcElectricFlowStorageDeviceImpl extends IfcFlowStorageDeviceImpl
 	 * @generated
 	 */
 	public IfcElectricFlowStorageDeviceTypeEnum getPredefinedType() {
-		return (IfcElectricFlowStorageDeviceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE__PREDEFINED_TYPE,
-				true);
+		return (IfcElectricFlowStorageDeviceTypeEnum) eGet(Ifc4Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcElectricFlowStorageDeviceImpl extends IfcFlowStorageDeviceImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcElectricFlowStorageDeviceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcElectricFlowStorageDeviceTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

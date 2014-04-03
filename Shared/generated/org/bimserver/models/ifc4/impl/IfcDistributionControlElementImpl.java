@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDistributionControlElementImpl extends
-		IfcDistributionElementImpl implements IfcDistributionControlElement {
+public class IfcDistributionControlElementImpl extends IfcDistributionElementImpl implements IfcDistributionControlElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcDistributionControlElementImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelFlowControlElements> getAssignedToFlowElement() {
-		return (EList<IfcRelFlowControlElements>) eGet(
-				Ifc4Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT,
-				true);
+		return (EList<IfcRelFlowControlElements>) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT, true);
 	}
 
 	/**

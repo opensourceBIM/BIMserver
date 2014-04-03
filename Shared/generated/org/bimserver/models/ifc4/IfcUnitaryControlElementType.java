@@ -32,8 +32,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcUnitaryControlElementType extends
-		IfcDistributionControlElementType {
+public interface IfcUnitaryControlElementType extends IfcDistributionControlElementType {
 	/**
 	 * Returns the value of the '<em><b>Predefined Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.IfcUnitaryControlElementTypeEnum}.

@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcGloballyUniqueIdImpl extends IdEObjectImpl implements
-		IfcGloballyUniqueId {
+public class IfcGloballyUniqueIdImpl extends IdEObjectImpl implements IfcGloballyUniqueId {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,9 +72,7 @@ public class IfcGloballyUniqueIdImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_GLOBALLY_UNIQUE_ID__WRAPPED_VALUE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_GLOBALLY_UNIQUE_ID__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class IfcGloballyUniqueIdImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setWrappedValue(String newWrappedValue) {
-		eSet(Ifc4Package.Literals.IFC_GLOBALLY_UNIQUE_ID__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc4Package.Literals.IFC_GLOBALLY_UNIQUE_ID__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**

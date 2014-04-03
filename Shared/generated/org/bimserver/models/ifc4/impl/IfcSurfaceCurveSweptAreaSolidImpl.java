@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
-		implements IfcSurfaceCurveSweptAreaSolid {
+public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl implements IfcSurfaceCurveSweptAreaSolid {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,9 +67,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public IfcCurve getDirectrix() {
-		return (IfcCurve) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__DIRECTRIX,
-				true);
+		return (IfcCurve) eGet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__DIRECTRIX, true);
 	}
 
 	/**
@@ -79,8 +76,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public void setDirectrix(IfcCurve newDirectrix) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__DIRECTRIX,
-				newDirectrix);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__DIRECTRIX, newDirectrix);
 	}
 
 	/**
@@ -89,9 +85,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public double getStartParam() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM, true);
 	}
 
 	/**
@@ -100,8 +94,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public void setStartParam(double newStartParam) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM,
-				newStartParam);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM, newStartParam);
 	}
 
 	/**
@@ -128,9 +121,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public String getStartParamAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM_AS_STRING, true);
 	}
 
 	/**
@@ -139,8 +130,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public void setStartParamAsString(String newStartParamAsString) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM_AS_STRING,
-				newStartParamAsString);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM_AS_STRING, newStartParamAsString);
 	}
 
 	/**
@@ -167,9 +157,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public double getEndParam() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM, true);
 	}
 
 	/**
@@ -178,8 +166,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public void setEndParam(double newEndParam) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM,
-				newEndParam);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM, newEndParam);
 	}
 
 	/**
@@ -206,9 +193,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public String getEndParamAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM_AS_STRING, true);
 	}
 
 	/**
@@ -217,8 +202,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public void setEndParamAsString(String newEndParamAsString) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM_AS_STRING,
-				newEndParamAsString);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__END_PARAM_AS_STRING, newEndParamAsString);
 	}
 
 	/**
@@ -245,9 +229,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public IfcSurface getReferenceSurface() {
-		return (IfcSurface) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__REFERENCE_SURFACE,
-				true);
+		return (IfcSurface) eGet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__REFERENCE_SURFACE, true);
 	}
 
 	/**
@@ -256,8 +238,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
 	 * @generated
 	 */
 	public void setReferenceSurface(IfcSurface newReferenceSurface) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__REFERENCE_SURFACE,
-				newReferenceSurface);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__REFERENCE_SURFACE, newReferenceSurface);
 	}
 
 } //IfcSurfaceCurveSweptAreaSolidImpl

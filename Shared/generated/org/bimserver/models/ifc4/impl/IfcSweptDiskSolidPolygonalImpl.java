@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl
-		implements IfcSweptDiskSolidPolygonal {
+public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl implements IfcSweptDiskSolidPolygonal {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl
 	 * @generated
 	 */
 	public double getFilletRadius() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl
 	 * @generated
 	 */
 	public void setFilletRadius(double newFilletRadius) {
-		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS,
-				newFilletRadius);
+		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS, newFilletRadius);
 	}
 
 	/**
@@ -101,9 +97,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl
 	 * @generated
 	 */
 	public String getFilletRadiusAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS_AS_STRING, true);
 	}
 
 	/**
@@ -112,8 +106,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl
 	 * @generated
 	 */
 	public void setFilletRadiusAsString(String newFilletRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS_AS_STRING,
-				newFilletRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS_AS_STRING, newFilletRadiusAsString);
 	}
 
 	/**

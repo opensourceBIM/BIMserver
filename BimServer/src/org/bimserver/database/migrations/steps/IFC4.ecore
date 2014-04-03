@@ -4235,6 +4235,12 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcRelConnectsPathElements" eSuperTypes="//IfcRelConnectsElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RelatingPriorities" unique="false" upperBound="-1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RelatedPriorities" unique="false" upperBound="-1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="RelatedConnectionType" eType="//IfcConnectionTypeEnum"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="RelatingConnectionType" eType="//IfcConnectionTypeEnum"/>
   </eClassifiers>

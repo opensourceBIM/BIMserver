@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialProfileSetUsageImpl extends
-		IfcMaterialUsageDefinitionImpl implements IfcMaterialProfileSetUsage {
+public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionImpl implements IfcMaterialProfileSetUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcMaterialProfileSetUsageImpl extends
 	 * @generated
 	 */
 	public IfcMaterialProfileSet getForProfileSet() {
-		return (IfcMaterialProfileSet) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__FOR_PROFILE_SET,
-				true);
+		return (IfcMaterialProfileSet) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__FOR_PROFILE_SET, true);
 	}
 
 	/**
@@ -76,8 +73,7 @@ public class IfcMaterialProfileSetUsageImpl extends
 	 * @generated
 	 */
 	public void setForProfileSet(IfcMaterialProfileSet newForProfileSet) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__FOR_PROFILE_SET,
-				newForProfileSet);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__FOR_PROFILE_SET, newForProfileSet);
 	}
 
 	/**
@@ -86,9 +82,7 @@ public class IfcMaterialProfileSetUsageImpl extends
 	 * @generated
 	 */
 	public int getCardinalPoint() {
-		return (Integer) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__CARDINAL_POINT,
-				true);
+		return (Integer) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__CARDINAL_POINT, true);
 	}
 
 	/**
@@ -97,8 +91,7 @@ public class IfcMaterialProfileSetUsageImpl extends
 	 * @generated
 	 */
 	public void setCardinalPoint(int newCardinalPoint) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__CARDINAL_POINT,
-				newCardinalPoint);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__CARDINAL_POINT, newCardinalPoint);
 	}
 
 	/**
@@ -125,9 +118,7 @@ public class IfcMaterialProfileSetUsageImpl extends
 	 * @generated
 	 */
 	public double getReferenceExtent() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT, true);
 	}
 
 	/**
@@ -136,8 +127,7 @@ public class IfcMaterialProfileSetUsageImpl extends
 	 * @generated
 	 */
 	public void setReferenceExtent(double newReferenceExtent) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT,
-				newReferenceExtent);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT, newReferenceExtent);
 	}
 
 	/**
@@ -164,9 +154,7 @@ public class IfcMaterialProfileSetUsageImpl extends
 	 * @generated
 	 */
 	public String getReferenceExtentAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT_AS_STRING, true);
 	}
 
 	/**
@@ -175,8 +163,7 @@ public class IfcMaterialProfileSetUsageImpl extends
 	 * @generated
 	 */
 	public void setReferenceExtentAsString(String newReferenceExtentAsString) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT_AS_STRING,
-				newReferenceExtentAsString);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT_AS_STRING, newReferenceExtentAsString);
 	}
 
 	/**

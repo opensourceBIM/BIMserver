@@ -33,8 +33,7 @@ public interface Ifc4Factory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	Ifc4Factory eINSTANCE = org.bimserver.models.ifc4.impl.Ifc4FactoryImpl
-			.init();
+	Ifc4Factory eINSTANCE = org.bimserver.models.ifc4.impl.Ifc4FactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Action Request</em>'.

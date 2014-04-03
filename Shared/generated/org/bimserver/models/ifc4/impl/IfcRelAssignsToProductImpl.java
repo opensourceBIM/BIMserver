@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsToProductImpl extends IfcRelAssignsImpl implements
-		IfcRelAssignsToProduct {
+public class IfcRelAssignsToProductImpl extends IfcRelAssignsImpl implements IfcRelAssignsToProduct {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcRelAssignsToProductImpl extends IfcRelAssignsImpl implements
 	 * @generated
 	 */
 	public IfcProductSelect getRelatingProduct() {
-		return (IfcProductSelect) eGet(
-				Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_PRODUCT__RELATING_PRODUCT,
-				true);
+		return (IfcProductSelect) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_PRODUCT__RELATING_PRODUCT, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcRelAssignsToProductImpl extends IfcRelAssignsImpl implements
 	 * @generated
 	 */
 	public void setRelatingProduct(IfcProductSelect newRelatingProduct) {
-		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_PRODUCT__RELATING_PRODUCT,
-				newRelatingProduct);
+		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_PRODUCT__RELATING_PRODUCT, newRelatingProduct);
 	}
 
 } //IfcRelAssignsToProductImpl

@@ -338,10 +338,8 @@ public enum IfcWallTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWallTypeEnum[] VALUES_ARRAY = new IfcWallTypeEnum[] {
-			NULL, NOTDEFINED, PLUMBINGWALL, MOVABLE, SHEAR, STANDARD,
-			USERDEFINED, SOLIDWALL, PARAPET, PARTITIONING, POLYGONAL,
-			ELEMENTEDWALL, };
+	private static final IfcWallTypeEnum[] VALUES_ARRAY = new IfcWallTypeEnum[] { NULL, NOTDEFINED, PLUMBINGWALL, MOVABLE, SHEAR, STANDARD, USERDEFINED, SOLIDWALL, PARAPET,
+			PARTITIONING, POLYGONAL, ELEMENTEDWALL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Wall Type Enum</b></em>' enumerators.
@@ -349,8 +347,7 @@ public enum IfcWallTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWallTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWallTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Wall Type Enum</b></em>' literal with the specified literal value.

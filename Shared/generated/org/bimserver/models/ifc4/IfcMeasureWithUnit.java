@@ -33,8 +33,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcMeasureWithUnit extends IfcAppliedValueSelect,
-		IfcMetricValueSelect {
+public interface IfcMeasureWithUnit extends IfcAppliedValueSelect, IfcMetricValueSelect {
 	/**
 	 * Returns the value of the '<em><b>Value Component</b></em>' reference.
 	 * <!-- begin-user-doc -->

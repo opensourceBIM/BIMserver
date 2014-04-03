@@ -33,8 +33,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcPlaneAngleMeasure extends IfcBendingParameterSelect,
-		IfcMeasureValue {
+public interface IfcPlaneAngleMeasure extends IfcBendingParameterSelect, IfcMeasureValue {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

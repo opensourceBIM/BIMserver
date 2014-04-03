@@ -76,8 +76,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getIndices() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__INDICES,
-				true);
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__INDICES, true);
 	}
 
 	/**
@@ -95,8 +94,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getVertices() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__VERTICES,
-				true);
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__VERTICES, true);
 	}
 
 	/**
@@ -114,8 +112,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getNormals() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__NORMALS,
-				true);
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__NORMALS, true);
 	}
 
 	/**
@@ -133,8 +130,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getMaterials() {
-		return (byte[]) eGet(
-				Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIALS, true);
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIALS, true);
 	}
 
 	/**
@@ -152,8 +148,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getMaterialIndices() {
-		return (byte[]) eGet(
-				Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIAL_INDICES, true);
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIAL_INDICES, true);
 	}
 
 	/**
@@ -162,8 +157,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public void setMaterialIndices(byte[] newMaterialIndices) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIAL_INDICES,
-				newMaterialIndices);
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIAL_INDICES, newMaterialIndices);
 	}
 
 } //GeometryDataImpl

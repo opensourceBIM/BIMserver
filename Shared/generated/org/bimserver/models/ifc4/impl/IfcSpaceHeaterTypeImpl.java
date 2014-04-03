@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSpaceHeaterTypeImpl extends IfcFlowTerminalTypeImpl implements
-		IfcSpaceHeaterType {
+public class IfcSpaceHeaterTypeImpl extends IfcFlowTerminalTypeImpl implements IfcSpaceHeaterType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcSpaceHeaterTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public IfcSpaceHeaterTypeEnum getPredefinedType() {
-		return (IfcSpaceHeaterTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SPACE_HEATER_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcSpaceHeaterTypeEnum) eGet(Ifc4Package.Literals.IFC_SPACE_HEATER_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcSpaceHeaterTypeImpl extends IfcFlowTerminalTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSpaceHeaterTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_SPACE_HEATER_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_SPACE_HEATER_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcSpaceHeaterTypeImpl

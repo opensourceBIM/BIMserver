@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcComplexPropertyImpl extends IfcPropertyImpl implements
-		IfcComplexProperty {
+public class IfcComplexPropertyImpl extends IfcPropertyImpl implements IfcComplexProperty {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcComplexPropertyImpl extends IfcPropertyImpl implements
 	 * @generated
 	 */
 	public String getUsageName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_COMPLEX_PROPERTY__USAGE_NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_COMPLEX_PROPERTY__USAGE_NAME, true);
 	}
 
 	/**
@@ -75,8 +73,7 @@ public class IfcComplexPropertyImpl extends IfcPropertyImpl implements
 	 * @generated
 	 */
 	public void setUsageName(String newUsageName) {
-		eSet(Ifc4Package.Literals.IFC_COMPLEX_PROPERTY__USAGE_NAME,
-				newUsageName);
+		eSet(Ifc4Package.Literals.IFC_COMPLEX_PROPERTY__USAGE_NAME, newUsageName);
 	}
 
 	/**
@@ -86,8 +83,7 @@ public class IfcComplexPropertyImpl extends IfcPropertyImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getHasProperties() {
-		return (EList<IfcProperty>) eGet(
-				Ifc4Package.Literals.IFC_COMPLEX_PROPERTY__HAS_PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(Ifc4Package.Literals.IFC_COMPLEX_PROPERTY__HAS_PROPERTIES, true);
 	}
 
 } //IfcComplexPropertyImpl

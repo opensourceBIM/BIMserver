@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSpatialZoneImpl extends IfcSpatialElementImpl implements
-		IfcSpatialZone {
+public class IfcSpatialZoneImpl extends IfcSpatialElementImpl implements IfcSpatialZone {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcSpatialZoneImpl extends IfcSpatialElementImpl implements
 	 * @generated
 	 */
 	public IfcSpatialZoneTypeEnum getPredefinedType() {
-		return (IfcSpatialZoneTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SPATIAL_ZONE__PREDEFINED_TYPE, true);
+		return (IfcSpatialZoneTypeEnum) eGet(Ifc4Package.Literals.IFC_SPATIAL_ZONE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcSpatialZoneImpl extends IfcSpatialElementImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSpatialZoneTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_SPATIAL_ZONE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_SPATIAL_ZONE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

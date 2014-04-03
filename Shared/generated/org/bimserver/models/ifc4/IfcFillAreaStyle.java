@@ -35,8 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcFillAreaStyle extends IfcPresentationStyle,
-		IfcPresentationStyleSelect {
+public interface IfcFillAreaStyle extends IfcPresentationStyle, IfcPresentationStyleSelect {
 	/**
 	 * Returns the value of the '<em><b>Fill Styles</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcFillStyleSelect}.

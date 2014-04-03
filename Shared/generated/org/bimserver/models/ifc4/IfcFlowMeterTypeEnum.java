@@ -213,9 +213,7 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFlowMeterTypeEnum[] VALUES_ARRAY = new IfcFlowMeterTypeEnum[] {
-			NULL, WATERMETER, NOTDEFINED, GASMETER, USERDEFINED, ENERGYMETER,
-			OILMETER, };
+	private static final IfcFlowMeterTypeEnum[] VALUES_ARRAY = new IfcFlowMeterTypeEnum[] { NULL, WATERMETER, NOTDEFINED, GASMETER, USERDEFINED, ENERGYMETER, OILMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Flow Meter Type Enum</b></em>' enumerators.
@@ -223,8 +221,7 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcFlowMeterTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcFlowMeterTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Flow Meter Type Enum</b></em>' literal with the specified literal value.

@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDynamicViscosityMeasureImpl extends IdEObjectImpl implements
-		IfcDynamicViscosityMeasure {
+public class IfcDynamicViscosityMeasureImpl extends IdEObjectImpl implements IfcDynamicViscosityMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,9 +73,7 @@ public class IfcDynamicViscosityMeasureImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public double getWrappedValue() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DYNAMIC_VISCOSITY_MEASURE__WRAPPED_VALUE,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_DYNAMIC_VISCOSITY_MEASURE__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -85,8 +82,7 @@ public class IfcDynamicViscosityMeasureImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setWrappedValue(double newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DYNAMIC_VISCOSITY_MEASURE__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DYNAMIC_VISCOSITY_MEASURE__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**
@@ -113,9 +109,7 @@ public class IfcDynamicViscosityMeasureImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DYNAMIC_VISCOSITY_MEASURE__WRAPPED_VALUE_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DYNAMIC_VISCOSITY_MEASURE__WRAPPED_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -124,8 +118,7 @@ public class IfcDynamicViscosityMeasureImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DYNAMIC_VISCOSITY_MEASURE__WRAPPED_VALUE_AS_STRING,
-				newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DYNAMIC_VISCOSITY_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
 	}
 
 	/**

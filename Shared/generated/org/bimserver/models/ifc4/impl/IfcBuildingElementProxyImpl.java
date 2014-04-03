@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBuildingElementProxyImpl extends IfcBuildingElementImpl
-		implements IfcBuildingElementProxy {
+public class IfcBuildingElementProxyImpl extends IfcBuildingElementImpl implements IfcBuildingElementProxy {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcBuildingElementProxyImpl extends IfcBuildingElementImpl
 	 * @generated
 	 */
 	public IfcBuildingElementProxyTypeEnum getPredefinedType() {
-		return (IfcBuildingElementProxyTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PROXY__PREDEFINED_TYPE,
-				true);
+		return (IfcBuildingElementProxyTypeEnum) eGet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PROXY__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcBuildingElementProxyImpl extends IfcBuildingElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcBuildingElementProxyTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PROXY__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcBuildingElementProxyTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PROXY__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

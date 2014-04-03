@@ -52,8 +52,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAppliedValueImpl extends IdEObjectImpl implements
-		IfcAppliedValue {
+public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -125,8 +124,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION, true);
 	}
 
 	/**
@@ -135,8 +133,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -163,8 +160,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcAppliedValueSelect getAppliedValue() {
-		return (IfcAppliedValueSelect) eGet(
-				Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE, true);
+		return (IfcAppliedValueSelect) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE, true);
 	}
 
 	/**
@@ -173,8 +169,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setAppliedValue(IfcAppliedValueSelect newAppliedValue) {
-		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE,
-				newAppliedValue);
+		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE, newAppliedValue);
 	}
 
 	/**
@@ -201,8 +196,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcMeasureWithUnit getUnitBasis() {
-		return (IfcMeasureWithUnit) eGet(
-				Ifc4Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS, true);
+		return (IfcMeasureWithUnit) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS, true);
 	}
 
 	/**
@@ -238,8 +232,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getApplicableDate() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE, true);
 	}
 
 	/**
@@ -248,8 +241,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setApplicableDate(String newApplicableDate) {
-		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE,
-				newApplicableDate);
+		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE, newApplicableDate);
 	}
 
 	/**
@@ -276,8 +268,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getFixedUntilDate() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE, true);
 	}
 
 	/**
@@ -286,8 +277,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setFixedUntilDate(String newFixedUntilDate) {
-		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE,
-				newFixedUntilDate);
+		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE, newFixedUntilDate);
 	}
 
 	/**
@@ -314,8 +304,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getCategory() {
-		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__CATEGORY,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__CATEGORY, true);
 	}
 
 	/**
@@ -351,8 +340,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getCondition() {
-		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__CONDITION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__CONDITION, true);
 	}
 
 	/**
@@ -388,9 +376,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcArithmeticOperatorEnum getArithmeticOperator() {
-		return (IfcArithmeticOperatorEnum) eGet(
-				Ifc4Package.Literals.IFC_APPLIED_VALUE__ARITHMETIC_OPERATOR,
-				true);
+		return (IfcArithmeticOperatorEnum) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__ARITHMETIC_OPERATOR, true);
 	}
 
 	/**
@@ -398,10 +384,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setArithmeticOperator(
-			IfcArithmeticOperatorEnum newArithmeticOperator) {
-		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__ARITHMETIC_OPERATOR,
-				newArithmeticOperator);
+	public void setArithmeticOperator(IfcArithmeticOperatorEnum newArithmeticOperator) {
+		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__ARITHMETIC_OPERATOR, newArithmeticOperator);
 	}
 
 	/**
@@ -429,8 +413,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValue> getComponents() {
-		return (EList<IfcAppliedValue>) eGet(
-				Ifc4Package.Literals.IFC_APPLIED_VALUE__COMPONENTS, true);
+		return (EList<IfcAppliedValue>) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__COMPONENTS, true);
 	}
 
 	/**
@@ -458,9 +441,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_APPLIED_VALUE__HAS_EXTERNAL_REFERENCE,
-				true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

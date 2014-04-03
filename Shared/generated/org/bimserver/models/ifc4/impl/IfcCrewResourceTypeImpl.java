@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCrewResourceTypeImpl extends IfcConstructionResourceTypeImpl
-		implements IfcCrewResourceType {
+public class IfcCrewResourceTypeImpl extends IfcConstructionResourceTypeImpl implements IfcCrewResourceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcCrewResourceTypeImpl extends IfcConstructionResourceTypeImpl
 	 * @generated
 	 */
 	public IfcCrewResourceTypeEnum getPredefinedType() {
-		return (IfcCrewResourceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_CREW_RESOURCE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcCrewResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_CREW_RESOURCE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcCrewResourceTypeImpl extends IfcConstructionResourceTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCrewResourceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_CREW_RESOURCE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_CREW_RESOURCE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcCrewResourceTypeImpl

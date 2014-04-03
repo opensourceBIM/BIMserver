@@ -45,8 +45,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
-		IfcMapConversion {
+public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements IfcMapConversion {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,8 +71,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public double getEastings() {
-		return (Double) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__EASTINGS,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__EASTINGS, true);
 	}
 
 	/**
@@ -91,9 +89,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public String getEastingsAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MAP_CONVERSION__EASTINGS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__EASTINGS_AS_STRING, true);
 	}
 
 	/**
@@ -102,8 +98,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public void setEastingsAsString(String newEastingsAsString) {
-		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__EASTINGS_AS_STRING,
-				newEastingsAsString);
+		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__EASTINGS_AS_STRING, newEastingsAsString);
 	}
 
 	/**
@@ -112,8 +107,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public double getNorthings() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_MAP_CONVERSION__NORTHINGS, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__NORTHINGS, true);
 	}
 
 	/**
@@ -131,9 +125,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public String getNorthingsAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MAP_CONVERSION__NORTHINGS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__NORTHINGS_AS_STRING, true);
 	}
 
 	/**
@@ -142,8 +134,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public void setNorthingsAsString(String newNorthingsAsString) {
-		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__NORTHINGS_AS_STRING,
-				newNorthingsAsString);
+		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__NORTHINGS_AS_STRING, newNorthingsAsString);
 	}
 
 	/**
@@ -152,9 +143,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public double getOrthogonalHeight() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_MAP_CONVERSION__ORTHOGONAL_HEIGHT,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__ORTHOGONAL_HEIGHT, true);
 	}
 
 	/**
@@ -163,8 +152,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public void setOrthogonalHeight(double newOrthogonalHeight) {
-		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__ORTHOGONAL_HEIGHT,
-				newOrthogonalHeight);
+		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__ORTHOGONAL_HEIGHT, newOrthogonalHeight);
 	}
 
 	/**
@@ -173,9 +161,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public String getOrthogonalHeightAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MAP_CONVERSION__ORTHOGONAL_HEIGHT_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__ORTHOGONAL_HEIGHT_AS_STRING, true);
 	}
 
 	/**
@@ -184,8 +170,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public void setOrthogonalHeightAsString(String newOrthogonalHeightAsString) {
-		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__ORTHOGONAL_HEIGHT_AS_STRING,
-				newOrthogonalHeightAsString);
+		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__ORTHOGONAL_HEIGHT_AS_STRING, newOrthogonalHeightAsString);
 	}
 
 	/**
@@ -194,8 +179,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public double getXAxisAbscissa() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ABSCISSA, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ABSCISSA, true);
 	}
 
 	/**
@@ -204,8 +188,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public void setXAxisAbscissa(double newXAxisAbscissa) {
-		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ABSCISSA,
-				newXAxisAbscissa);
+		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ABSCISSA, newXAxisAbscissa);
 	}
 
 	/**
@@ -232,9 +215,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public String getXAxisAbscissaAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ABSCISSA_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ABSCISSA_AS_STRING, true);
 	}
 
 	/**
@@ -243,8 +224,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public void setXAxisAbscissaAsString(String newXAxisAbscissaAsString) {
-		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ABSCISSA_AS_STRING,
-				newXAxisAbscissaAsString);
+		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ABSCISSA_AS_STRING, newXAxisAbscissaAsString);
 	}
 
 	/**
@@ -271,8 +251,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public double getXAxisOrdinate() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ORDINATE, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ORDINATE, true);
 	}
 
 	/**
@@ -281,8 +260,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public void setXAxisOrdinate(double newXAxisOrdinate) {
-		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ORDINATE,
-				newXAxisOrdinate);
+		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ORDINATE, newXAxisOrdinate);
 	}
 
 	/**
@@ -309,9 +287,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public String getXAxisOrdinateAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ORDINATE_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ORDINATE_AS_STRING, true);
 	}
 
 	/**
@@ -320,8 +296,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public void setXAxisOrdinateAsString(String newXAxisOrdinateAsString) {
-		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ORDINATE_AS_STRING,
-				newXAxisOrdinateAsString);
+		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__XAXIS_ORDINATE_AS_STRING, newXAxisOrdinateAsString);
 	}
 
 	/**
@@ -348,8 +323,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public double getScale() {
-		return (Double) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__SCALE,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__SCALE, true);
 	}
 
 	/**
@@ -385,8 +359,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public String getScaleAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MAP_CONVERSION__SCALE_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MAP_CONVERSION__SCALE_AS_STRING, true);
 	}
 
 	/**
@@ -395,8 +368,7 @@ public class IfcMapConversionImpl extends IfcCoordinateOperationImpl implements
 	 * @generated
 	 */
 	public void setScaleAsString(String newScaleAsString) {
-		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__SCALE_AS_STRING,
-				newScaleAsString);
+		eSet(Ifc4Package.Literals.IFC_MAP_CONVERSION__SCALE_AS_STRING, newScaleAsString);
 	}
 
 	/**

@@ -32,8 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExternalInformationImpl extends IdEObjectImpl implements
-		IfcExternalInformation {
+public class IfcExternalInformationImpl extends IdEObjectImpl implements IfcExternalInformation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

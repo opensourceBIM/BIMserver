@@ -33,8 +33,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcLinearStiffnessMeasure extends IfcDerivedMeasureValue,
-		IfcTranslationalStiffnessSelect {
+public interface IfcLinearStiffnessMeasure extends IfcDerivedMeasureValue, IfcTranslationalStiffnessSelect {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -188,8 +188,7 @@ public enum IfcWorkPlanTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWorkPlanTypeEnum[] VALUES_ARRAY = new IfcWorkPlanTypeEnum[] {
-			NULL, NOTDEFINED, BASELINE, PLANNED, USERDEFINED, ACTUAL, };
+	private static final IfcWorkPlanTypeEnum[] VALUES_ARRAY = new IfcWorkPlanTypeEnum[] { NULL, NOTDEFINED, BASELINE, PLANNED, USERDEFINED, ACTUAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Work Plan Type Enum</b></em>' enumerators.
@@ -197,8 +196,7 @@ public enum IfcWorkPlanTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWorkPlanTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWorkPlanTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Work Plan Type Enum</b></em>' literal with the specified literal value.

@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
-		implements IfcTextStyleTextModel {
+public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl implements IfcTextStyleTextModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,9 +67,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public IfcSizeSelect getTextIndent() {
-		return (IfcSizeSelect) eGet(
-				Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_INDENT,
-				true);
+		return (IfcSizeSelect) eGet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_INDENT, true);
 	}
 
 	/**
@@ -79,8 +76,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setTextIndent(IfcSizeSelect newTextIndent) {
-		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_INDENT,
-				newTextIndent);
+		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_INDENT, newTextIndent);
 	}
 
 	/**
@@ -107,9 +103,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public String getTextAlign() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_ALIGN,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_ALIGN, true);
 	}
 
 	/**
@@ -118,8 +112,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setTextAlign(String newTextAlign) {
-		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_ALIGN,
-				newTextAlign);
+		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_ALIGN, newTextAlign);
 	}
 
 	/**
@@ -146,9 +139,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public String getTextDecoration() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_DECORATION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_DECORATION, true);
 	}
 
 	/**
@@ -157,8 +148,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setTextDecoration(String newTextDecoration) {
-		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_DECORATION,
-				newTextDecoration);
+		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_DECORATION, newTextDecoration);
 	}
 
 	/**
@@ -185,9 +175,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public IfcSizeSelect getLetterSpacing() {
-		return (IfcSizeSelect) eGet(
-				Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LETTER_SPACING,
-				true);
+		return (IfcSizeSelect) eGet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LETTER_SPACING, true);
 	}
 
 	/**
@@ -196,8 +184,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setLetterSpacing(IfcSizeSelect newLetterSpacing) {
-		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LETTER_SPACING,
-				newLetterSpacing);
+		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LETTER_SPACING, newLetterSpacing);
 	}
 
 	/**
@@ -224,9 +211,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public IfcSizeSelect getWordSpacing() {
-		return (IfcSizeSelect) eGet(
-				Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__WORD_SPACING,
-				true);
+		return (IfcSizeSelect) eGet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__WORD_SPACING, true);
 	}
 
 	/**
@@ -235,8 +220,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setWordSpacing(IfcSizeSelect newWordSpacing) {
-		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__WORD_SPACING,
-				newWordSpacing);
+		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__WORD_SPACING, newWordSpacing);
 	}
 
 	/**
@@ -263,9 +247,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public String getTextTransform() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_TRANSFORM,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_TRANSFORM, true);
 	}
 
 	/**
@@ -274,8 +256,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setTextTransform(String newTextTransform) {
-		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_TRANSFORM,
-				newTextTransform);
+		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_TRANSFORM, newTextTransform);
 	}
 
 	/**
@@ -302,9 +283,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public IfcSizeSelect getLineHeight() {
-		return (IfcSizeSelect) eGet(
-				Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LINE_HEIGHT,
-				true);
+		return (IfcSizeSelect) eGet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LINE_HEIGHT, true);
 	}
 
 	/**
@@ -313,8 +292,7 @@ public class IfcTextStyleTextModelImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setLineHeight(IfcSizeSelect newLineHeight) {
-		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LINE_HEIGHT,
-				newLineHeight);
+		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LINE_HEIGHT, newLineHeight);
 	}
 
 	/**

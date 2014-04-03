@@ -35,8 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcOrganizationRelationship extends
-		IfcResourceLevelRelationship {
+public interface IfcOrganizationRelationship extends IfcResourceLevelRelationship {
 	/**
 	 * Returns the value of the '<em><b>Relating Organization</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc4.IfcOrganization#getRelates <em>Relates</em>}'.

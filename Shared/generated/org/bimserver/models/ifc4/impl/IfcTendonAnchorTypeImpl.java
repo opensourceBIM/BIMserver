@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTendonAnchorTypeImpl extends IfcReinforcingElementTypeImpl
-		implements IfcTendonAnchorType {
+public class IfcTendonAnchorTypeImpl extends IfcReinforcingElementTypeImpl implements IfcTendonAnchorType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcTendonAnchorTypeImpl extends IfcReinforcingElementTypeImpl
 	 * @generated
 	 */
 	public IfcTendonAnchorTypeEnum getPredefinedType() {
-		return (IfcTendonAnchorTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_TENDON_ANCHOR_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcTendonAnchorTypeEnum) eGet(Ifc4Package.Literals.IFC_TENDON_ANCHOR_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcTendonAnchorTypeImpl extends IfcReinforcingElementTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcTendonAnchorTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_TENDON_ANCHOR_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_TENDON_ANCHOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcTendonAnchorTypeImpl

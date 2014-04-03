@@ -34,8 +34,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcPropertyDependencyRelationship extends
-		IfcResourceLevelRelationship {
+public interface IfcPropertyDependencyRelationship extends IfcResourceLevelRelationship {
 	/**
 	 * Returns the value of the '<em><b>Depending Property</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc4.IfcProperty#getPropertyForDependance <em>Property For Dependance</em>}'.

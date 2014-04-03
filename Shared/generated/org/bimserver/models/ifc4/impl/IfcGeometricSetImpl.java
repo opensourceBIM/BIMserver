@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcGeometricSet {
+public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl implements IfcGeometricSet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,8 +65,7 @@ public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGeometricSetSelect> getElements() {
-		return (EList<IfcGeometricSetSelect>) eGet(
-				Ifc4Package.Literals.IFC_GEOMETRIC_SET__ELEMENTS, true);
+		return (EList<IfcGeometricSetSelect>) eGet(Ifc4Package.Literals.IFC_GEOMETRIC_SET__ELEMENTS, true);
 	}
 
 	/**

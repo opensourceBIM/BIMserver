@@ -66,8 +66,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * @generated
 	 */
 	public IfcEventTypeEnum getPredefinedType() {
-		return (IfcEventTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_EVENT__PREDEFINED_TYPE, true);
+		return (IfcEventTypeEnum) eGet(Ifc4Package.Literals.IFC_EVENT__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -103,8 +102,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * @generated
 	 */
 	public IfcEventTriggerTypeEnum getEventTriggerType() {
-		return (IfcEventTriggerTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_EVENT__EVENT_TRIGGER_TYPE, true);
+		return (IfcEventTriggerTypeEnum) eGet(Ifc4Package.Literals.IFC_EVENT__EVENT_TRIGGER_TYPE, true);
 	}
 
 	/**
@@ -113,8 +111,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * @generated
 	 */
 	public void setEventTriggerType(IfcEventTriggerTypeEnum newEventTriggerType) {
-		eSet(Ifc4Package.Literals.IFC_EVENT__EVENT_TRIGGER_TYPE,
-				newEventTriggerType);
+		eSet(Ifc4Package.Literals.IFC_EVENT__EVENT_TRIGGER_TYPE, newEventTriggerType);
 	}
 
 	/**
@@ -141,9 +138,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * @generated
 	 */
 	public String getUserDefinedEventTriggerType() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_EVENT__USER_DEFINED_EVENT_TRIGGER_TYPE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_EVENT__USER_DEFINED_EVENT_TRIGGER_TYPE, true);
 	}
 
 	/**
@@ -151,10 +146,8 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUserDefinedEventTriggerType(
-			String newUserDefinedEventTriggerType) {
-		eSet(Ifc4Package.Literals.IFC_EVENT__USER_DEFINED_EVENT_TRIGGER_TYPE,
-				newUserDefinedEventTriggerType);
+	public void setUserDefinedEventTriggerType(String newUserDefinedEventTriggerType) {
+		eSet(Ifc4Package.Literals.IFC_EVENT__USER_DEFINED_EVENT_TRIGGER_TYPE, newUserDefinedEventTriggerType);
 	}
 
 	/**
@@ -181,8 +174,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * @generated
 	 */
 	public IfcEventTime getEventOccurenceTime() {
-		return (IfcEventTime) eGet(
-				Ifc4Package.Literals.IFC_EVENT__EVENT_OCCURENCE_TIME, true);
+		return (IfcEventTime) eGet(Ifc4Package.Literals.IFC_EVENT__EVENT_OCCURENCE_TIME, true);
 	}
 
 	/**
@@ -191,8 +183,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * @generated
 	 */
 	public void setEventOccurenceTime(IfcEventTime newEventOccurenceTime) {
-		eSet(Ifc4Package.Literals.IFC_EVENT__EVENT_OCCURENCE_TIME,
-				newEventOccurenceTime);
+		eSet(Ifc4Package.Literals.IFC_EVENT__EVENT_OCCURENCE_TIME, newEventOccurenceTime);
 	}
 
 	/**

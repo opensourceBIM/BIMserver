@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFootingImpl extends IfcBuildingElementImpl implements
-		IfcFooting {
+public class IfcFootingImpl extends IfcBuildingElementImpl implements IfcFooting {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcFootingImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public IfcFootingTypeEnum getPredefinedType() {
-		return (IfcFootingTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_FOOTING__PREDEFINED_TYPE, true);
+		return (IfcFootingTypeEnum) eGet(Ifc4Package.Literals.IFC_FOOTING__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcFootingImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcFootingTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_FOOTING__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_FOOTING__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

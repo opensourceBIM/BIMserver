@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
-		IfcReinforcingBar {
+public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements IfcReinforcingBar {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,9 +69,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public double getNominalDiameter() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER, true);
 	}
 
 	/**
@@ -81,8 +78,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public void setNominalDiameter(double newNominalDiameter) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER,
-				newNominalDiameter);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER, newNominalDiameter);
 	}
 
 	/**
@@ -91,9 +87,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public String getNominalDiameterAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER_AS_STRING, true);
 	}
 
 	/**
@@ -102,8 +96,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public void setNominalDiameterAsString(String newNominalDiameterAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER_AS_STRING,
-				newNominalDiameterAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER_AS_STRING, newNominalDiameterAsString);
 	}
 
 	/**
@@ -112,9 +105,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public double getCrossSectionArea() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA, true);
 	}
 
 	/**
@@ -123,8 +114,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public void setCrossSectionArea(double newCrossSectionArea) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA,
-				newCrossSectionArea);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA, newCrossSectionArea);
 	}
 
 	/**
@@ -133,9 +123,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public String getCrossSectionAreaAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA_AS_STRING, true);
 	}
 
 	/**
@@ -144,8 +132,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public void setCrossSectionAreaAsString(String newCrossSectionAreaAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA_AS_STRING,
-				newCrossSectionAreaAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA_AS_STRING, newCrossSectionAreaAsString);
 	}
 
 	/**
@@ -154,8 +141,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public double getBarLength() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH, true);
 	}
 
 	/**
@@ -164,8 +150,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public void setBarLength(double newBarLength) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH,
-				newBarLength);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH, newBarLength);
 	}
 
 	/**
@@ -192,9 +177,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public String getBarLengthAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH_AS_STRING, true);
 	}
 
 	/**
@@ -203,8 +186,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public void setBarLengthAsString(String newBarLengthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH_AS_STRING,
-				newBarLengthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH_AS_STRING, newBarLengthAsString);
 	}
 
 	/**
@@ -231,8 +213,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public IfcReinforcingBarRoleEnum getBarRole() {
-		return (IfcReinforcingBarRoleEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_ROLE, true);
+		return (IfcReinforcingBarRoleEnum) eGet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_ROLE, true);
 	}
 
 	/**
@@ -241,8 +222,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public void setBarRole(IfcReinforcingBarRoleEnum newBarRole) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_ROLE,
-				newBarRole);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_ROLE, newBarRole);
 	}
 
 	/**
@@ -251,9 +231,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public IfcReinforcingBarSurfaceEnum getBarSurface() {
-		return (IfcReinforcingBarSurfaceEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_SURFACE,
-				true);
+		return (IfcReinforcingBarSurfaceEnum) eGet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_SURFACE, true);
 	}
 
 	/**
@@ -262,8 +240,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements
 	 * @generated
 	 */
 	public void setBarSurface(IfcReinforcingBarSurfaceEnum newBarSurface) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_SURFACE,
-				newBarSurface);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REINFORCING_BAR__BAR_SURFACE, newBarSurface);
 	}
 
 	/**

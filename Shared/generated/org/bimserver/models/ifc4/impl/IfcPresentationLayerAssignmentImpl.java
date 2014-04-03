@@ -42,8 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
-		IfcPresentationLayerAssignment {
+public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements IfcPresentationLayerAssignment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,9 +78,7 @@ public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__NAME, true);
 	}
 
 	/**
@@ -90,8 +87,7 @@ public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__NAME,
-				newName);
+		eSet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__NAME, newName);
 	}
 
 	/**
@@ -100,9 +96,7 @@ public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__DESCRIPTION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__DESCRIPTION, true);
 	}
 
 	/**
@@ -111,8 +105,7 @@ public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -140,9 +133,7 @@ public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLayeredItem> getAssignedItems() {
-		return (EList<IfcLayeredItem>) eGet(
-				Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__ASSIGNED_ITEMS,
-				true);
+		return (EList<IfcLayeredItem>) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__ASSIGNED_ITEMS, true);
 	}
 
 	/**
@@ -151,9 +142,7 @@ public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getIdentifier() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__IDENTIFIER,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__IDENTIFIER, true);
 	}
 
 	/**
@@ -162,8 +151,7 @@ public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setIdentifier(String newIdentifier) {
-		eSet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__IDENTIFIER,
-				newIdentifier);
+		eSet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__IDENTIFIER, newIdentifier);
 	}
 
 	/**

@@ -66,8 +66,7 @@ public interface IfcBoundaryEdgeCondition extends IfcBoundaryCondition {
 	 * @see #getTranslationalStiffnessByLengthX()
 	 * @generated
 	 */
-	void setTranslationalStiffnessByLengthX(
-			IfcModulusOfTranslationalSubgradeReactionSelect value);
+	void setTranslationalStiffnessByLengthX(IfcModulusOfTranslationalSubgradeReactionSelect value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBoundaryEdgeCondition#getTranslationalStiffnessByLengthX <em>Translational Stiffness By Length X</em>}' reference.
@@ -120,8 +119,7 @@ public interface IfcBoundaryEdgeCondition extends IfcBoundaryCondition {
 	 * @see #getTranslationalStiffnessByLengthY()
 	 * @generated
 	 */
-	void setTranslationalStiffnessByLengthY(
-			IfcModulusOfTranslationalSubgradeReactionSelect value);
+	void setTranslationalStiffnessByLengthY(IfcModulusOfTranslationalSubgradeReactionSelect value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBoundaryEdgeCondition#getTranslationalStiffnessByLengthY <em>Translational Stiffness By Length Y</em>}' reference.
@@ -174,8 +172,7 @@ public interface IfcBoundaryEdgeCondition extends IfcBoundaryCondition {
 	 * @see #getTranslationalStiffnessByLengthZ()
 	 * @generated
 	 */
-	void setTranslationalStiffnessByLengthZ(
-			IfcModulusOfTranslationalSubgradeReactionSelect value);
+	void setTranslationalStiffnessByLengthZ(IfcModulusOfTranslationalSubgradeReactionSelect value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBoundaryEdgeCondition#getTranslationalStiffnessByLengthZ <em>Translational Stiffness By Length Z</em>}' reference.
@@ -228,8 +225,7 @@ public interface IfcBoundaryEdgeCondition extends IfcBoundaryCondition {
 	 * @see #getRotationalStiffnessByLengthX()
 	 * @generated
 	 */
-	void setRotationalStiffnessByLengthX(
-			IfcModulusOfRotationalSubgradeReactionSelect value);
+	void setRotationalStiffnessByLengthX(IfcModulusOfRotationalSubgradeReactionSelect value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBoundaryEdgeCondition#getRotationalStiffnessByLengthX <em>Rotational Stiffness By Length X</em>}' reference.
@@ -282,8 +278,7 @@ public interface IfcBoundaryEdgeCondition extends IfcBoundaryCondition {
 	 * @see #getRotationalStiffnessByLengthY()
 	 * @generated
 	 */
-	void setRotationalStiffnessByLengthY(
-			IfcModulusOfRotationalSubgradeReactionSelect value);
+	void setRotationalStiffnessByLengthY(IfcModulusOfRotationalSubgradeReactionSelect value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBoundaryEdgeCondition#getRotationalStiffnessByLengthY <em>Rotational Stiffness By Length Y</em>}' reference.
@@ -336,8 +331,7 @@ public interface IfcBoundaryEdgeCondition extends IfcBoundaryCondition {
 	 * @see #getRotationalStiffnessByLengthZ()
 	 * @generated
 	 */
-	void setRotationalStiffnessByLengthZ(
-			IfcModulusOfRotationalSubgradeReactionSelect value);
+	void setRotationalStiffnessByLengthZ(IfcModulusOfRotationalSubgradeReactionSelect value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBoundaryEdgeCondition#getRotationalStiffnessByLengthZ <em>Rotational Stiffness By Length Z</em>}' reference.

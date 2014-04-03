@@ -288,9 +288,8 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTankTypeEnum[] VALUES_ARRAY = new IfcTankTypeEnum[] {
-			NULL, STORAGE, NOTDEFINED, VESSEL, BREAKPRESSURE, PRESSUREVESSEL,
-			BASIN, USERDEFINED, FEEDANDEXPANSION, EXPANSION, };
+	private static final IfcTankTypeEnum[] VALUES_ARRAY = new IfcTankTypeEnum[] { NULL, STORAGE, NOTDEFINED, VESSEL, BREAKPRESSURE, PRESSUREVESSEL, BASIN, USERDEFINED,
+			FEEDANDEXPANSION, EXPANSION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Tank Type Enum</b></em>' enumerators.
@@ -298,8 +297,7 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcTankTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcTankTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Tank Type Enum</b></em>' literal with the specified literal value.

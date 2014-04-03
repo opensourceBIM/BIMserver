@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class UserAddedToProjectImpl extends UserRelatedImpl implements
-		UserAddedToProject {
+public class UserAddedToProjectImpl extends UserRelatedImpl implements UserAddedToProject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class UserAddedToProjectImpl extends UserRelatedImpl implements
 	 * @generated
 	 */
 	public Project getProject() {
-		return (Project) eGet(
-				LogPackage.Literals.USER_ADDED_TO_PROJECT__PROJECT, true);
+		return (Project) eGet(LogPackage.Literals.USER_ADDED_TO_PROJECT__PROJECT, true);
 	}
 
 	/**

@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl
-		implements IfcConnectionPointGeometry {
+public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl implements IfcConnectionPointGeometry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl
 	 * @generated
 	 */
 	public IfcPointOrVertexPoint getPointOnRelatingElement() {
-		return (IfcPointOrVertexPoint) eGet(
-				Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT,
-				true);
+		return (IfcPointOrVertexPoint) eGet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT, true);
 	}
 
 	/**
@@ -73,10 +70,8 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPointOnRelatingElement(
-			IfcPointOrVertexPoint newPointOnRelatingElement) {
-		eSet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT,
-				newPointOnRelatingElement);
+	public void setPointOnRelatingElement(IfcPointOrVertexPoint newPointOnRelatingElement) {
+		eSet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT, newPointOnRelatingElement);
 	}
 
 	/**
@@ -85,9 +80,7 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl
 	 * @generated
 	 */
 	public IfcPointOrVertexPoint getPointOnRelatedElement() {
-		return (IfcPointOrVertexPoint) eGet(
-				Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT,
-				true);
+		return (IfcPointOrVertexPoint) eGet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT, true);
 	}
 
 	/**
@@ -95,10 +88,8 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPointOnRelatedElement(
-			IfcPointOrVertexPoint newPointOnRelatedElement) {
-		eSet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT,
-				newPointOnRelatedElement);
+	public void setPointOnRelatedElement(IfcPointOrVertexPoint newPointOnRelatedElement) {
+		eSet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT, newPointOnRelatedElement);
 	}
 
 	/**

@@ -35,8 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcExternalReferenceRelationship extends
-		IfcResourceLevelRelationship {
+public interface IfcExternalReferenceRelationship extends IfcResourceLevelRelationship {
 	/**
 	 * Returns the value of the '<em><b>Relating Reference</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc4.IfcExternalReference#getExternalReferenceForResources <em>External Reference For Resources</em>}'.

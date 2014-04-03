@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl
-		implements IfcMaterialLayerSet {
+public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implements IfcMaterialLayerSet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,9 +68,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialLayer> getMaterialLayers() {
-		return (EList<IfcMaterialLayer>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__MATERIAL_LAYERS,
-				true);
+		return (EList<IfcMaterialLayer>) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__MATERIAL_LAYERS, true);
 	}
 
 	/**
@@ -80,9 +77,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public String getLayerSetName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__LAYER_SET_NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__LAYER_SET_NAME, true);
 	}
 
 	/**
@@ -91,8 +86,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public void setLayerSetName(String newLayerSetName) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__LAYER_SET_NAME,
-				newLayerSetName);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__LAYER_SET_NAME, newLayerSetName);
 	}
 
 	/**
@@ -119,8 +113,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__DESCRIPTION, true);
 	}
 
 	/**
@@ -129,8 +122,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -157,9 +149,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public double getTotalThickness() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS, true);
 	}
 
 	/**
@@ -168,8 +158,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public void setTotalThickness(double newTotalThickness) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS,
-				newTotalThickness);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS, newTotalThickness);
 	}
 
 	/**
@@ -196,9 +185,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public String getTotalThicknessAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING, true);
 	}
 
 	/**
@@ -207,8 +194,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public void setTotalThicknessAsString(String newTotalThicknessAsString) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING,
-				newTotalThicknessAsString);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING, newTotalThicknessAsString);
 	}
 
 	/**

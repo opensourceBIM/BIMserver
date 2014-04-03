@@ -33,8 +33,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcStructuralLoadSingleForceWarping extends
-		IfcStructuralLoadSingleForce {
+public interface IfcStructuralLoadSingleForceWarping extends IfcStructuralLoadSingleForce {
 	/**
 	 * Returns the value of the '<em><b>Warping Moment</b></em>' attribute.
 	 * <!-- begin-user-doc -->

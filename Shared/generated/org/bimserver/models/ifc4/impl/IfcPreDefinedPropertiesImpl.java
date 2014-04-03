@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPreDefinedPropertiesImpl extends IfcPropertyAbstractionImpl
-		implements IfcPreDefinedProperties {
+public class IfcPreDefinedPropertiesImpl extends IfcPropertyAbstractionImpl implements IfcPreDefinedProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

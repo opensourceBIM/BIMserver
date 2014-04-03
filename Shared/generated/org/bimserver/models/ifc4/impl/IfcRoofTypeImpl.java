@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRoofTypeImpl extends IfcBuildingElementTypeImpl implements
-		IfcRoofType {
+public class IfcRoofTypeImpl extends IfcBuildingElementTypeImpl implements IfcRoofType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcRoofTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcRoofTypeEnum getPredefinedType() {
-		return (IfcRoofTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_ROOF_TYPE__PREDEFINED_TYPE, true);
+		return (IfcRoofTypeEnum) eGet(Ifc4Package.Literals.IFC_ROOF_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcRoofTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcRoofTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_ROOF_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_ROOF_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcRoofTypeImpl

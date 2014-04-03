@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcOrganizationRelationshipImpl extends
-		IfcResourceLevelRelationshipImpl implements IfcOrganizationRelationship {
+public class IfcOrganizationRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcOrganizationRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcOrganizationRelationshipImpl extends
 	 * @generated
 	 */
 	public IfcOrganization getRelatingOrganization() {
-		return (IfcOrganization) eGet(
-				Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION,
-				true);
+		return (IfcOrganization) eGet(Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION, true);
 	}
 
 	/**
@@ -76,8 +73,7 @@ public class IfcOrganizationRelationshipImpl extends
 	 * @generated
 	 */
 	public void setRelatingOrganization(IfcOrganization newRelatingOrganization) {
-		eSet(Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION,
-				newRelatingOrganization);
+		eSet(Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION, newRelatingOrganization);
 	}
 
 	/**
@@ -87,9 +83,7 @@ public class IfcOrganizationRelationshipImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganization> getRelatedOrganizations() {
-		return (EList<IfcOrganization>) eGet(
-				Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS,
-				true);
+		return (EList<IfcOrganization>) eGet(Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS, true);
 	}
 
 } //IfcOrganizationRelationshipImpl

@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCurveStyleFontImpl extends IfcPresentationItemImpl implements
-		IfcCurveStyleFont {
+public class IfcCurveStyleFontImpl extends IfcPresentationItemImpl implements IfcCurveStyleFont {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcCurveStyleFontImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT__NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT__NAME, true);
 	}
 
 	/**
@@ -103,8 +101,7 @@ public class IfcCurveStyleFontImpl extends IfcPresentationItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCurveStyleFontPattern> getPatternList() {
-		return (EList<IfcCurveStyleFontPattern>) eGet(
-				Ifc4Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST, true);
+		return (EList<IfcCurveStyleFontPattern>) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST, true);
 	}
 
 } //IfcCurveStyleFontImpl

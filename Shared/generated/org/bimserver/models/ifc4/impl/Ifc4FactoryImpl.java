@@ -42,8 +42,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 */
 	public static Ifc4Factory init() {
 		try {
-			Ifc4Factory theIfc4Factory = (Ifc4Factory) EPackage.Registry.INSTANCE
-					.getEFactory(Ifc4Package.eNS_URI);
+			Ifc4Factory theIfc4Factory = (Ifc4Factory) EPackage.Registry.INSTANCE.getEFactory(Ifc4Package.eNS_URI);
 			if (theIfc4Factory != null) {
 				return theIfc4Factory;
 			}
@@ -1856,8 +1855,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_NULL_STYLE:
 			return (EObject) createIfcNullStyle();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -1872,11 +1870,9 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.TRISTATE:
 			return createTristateFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ACTION_REQUEST_TYPE_ENUM:
-			return createIfcActionRequestTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcActionRequestTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ACTION_SOURCE_TYPE_ENUM:
-			return createIfcActionSourceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcActionSourceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ACTION_TYPE_ENUM:
 			return createIfcActionTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ACTUATOR_TYPE_ENUM:
@@ -1884,35 +1880,27 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_ADDRESS_TYPE_ENUM:
 			return createIfcAddressTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_AIR_TERMINAL_BOX_TYPE_ENUM:
-			return createIfcAirTerminalBoxTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcAirTerminalBoxTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_AIR_TERMINAL_TYPE_ENUM:
-			return createIfcAirTerminalTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcAirTerminalTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_AIR_TO_AIR_HEAT_RECOVERY_TYPE_ENUM:
-			return createIfcAirToAirHeatRecoveryTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcAirToAirHeatRecoveryTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ALARM_TYPE_ENUM:
 			return createIfcAlarmTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ANALYSIS_MODEL_TYPE_ENUM:
-			return createIfcAnalysisModelTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcAnalysisModelTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ANALYSIS_THEORY_TYPE_ENUM:
-			return createIfcAnalysisTheoryTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcAnalysisTheoryTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ARITHMETIC_OPERATOR_ENUM:
-			return createIfcArithmeticOperatorEnumFromString(eDataType,
-					initialValue);
+			return createIfcArithmeticOperatorEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ASSEMBLY_PLACE_ENUM:
 			return createIfcAssemblyPlaceEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_AUDIO_VISUAL_APPLIANCE_TYPE_ENUM:
-			return createIfcAudioVisualApplianceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcAudioVisualApplianceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_BSPLINE_CURVE_FORM:
 			return createIfcBSplineCurveFormFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_BSPLINE_SURFACE_FORM:
-			return createIfcBSplineSurfaceFormFromString(eDataType,
-					initialValue);
+			return createIfcBSplineSurfaceFormFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_BEAM_TYPE_ENUM:
 			return createIfcBeamTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_BENCHMARK_ENUM:
@@ -1922,28 +1910,21 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_BOOLEAN_OPERATOR:
 			return createIfcBooleanOperatorFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_BUILDING_ELEMENT_PART_TYPE_ENUM:
-			return createIfcBuildingElementPartTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcBuildingElementPartTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_BUILDING_ELEMENT_PROXY_TYPE_ENUM:
-			return createIfcBuildingElementProxyTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcBuildingElementProxyTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_BUILDING_SYSTEM_TYPE_ENUM:
-			return createIfcBuildingSystemTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcBuildingSystemTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_BURNER_TYPE_ENUM:
 			return createIfcBurnerTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CABLE_CARRIER_FITTING_TYPE_ENUM:
-			return createIfcCableCarrierFittingTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcCableCarrierFittingTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CABLE_CARRIER_SEGMENT_TYPE_ENUM:
-			return createIfcCableCarrierSegmentTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcCableCarrierSegmentTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CABLE_FITTING_TYPE_ENUM:
-			return createIfcCableFittingTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcCableFittingTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CABLE_SEGMENT_TYPE_ENUM:
-			return createIfcCableSegmentTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcCableSegmentTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CHANGE_ACTION_ENUM:
 			return createIfcChangeActionEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CHILLER_TYPE_ENUM:
@@ -1955,55 +1936,41 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_COLUMN_TYPE_ENUM:
 			return createIfcColumnTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_COMMUNICATIONS_APPLIANCE_TYPE_ENUM:
-			return createIfcCommunicationsApplianceTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcCommunicationsApplianceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_COMPLEX_PROPERTY_TEMPLATE_TYPE_ENUM:
-			return createIfcComplexPropertyTemplateTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcComplexPropertyTemplateTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_COMPRESSOR_TYPE_ENUM:
-			return createIfcCompressorTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcCompressorTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CONDENSER_TYPE_ENUM:
 			return createIfcCondenserTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CONNECTION_TYPE_ENUM:
-			return createIfcConnectionTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcConnectionTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CONSTRAINT_ENUM:
 			return createIfcConstraintEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CONSTRUCTION_EQUIPMENT_RESOURCE_TYPE_ENUM:
-			return createIfcConstructionEquipmentResourceTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcConstructionEquipmentResourceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CONSTRUCTION_MATERIAL_RESOURCE_TYPE_ENUM:
-			return createIfcConstructionMaterialResourceTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcConstructionMaterialResourceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CONSTRUCTION_PRODUCT_RESOURCE_TYPE_ENUM:
-			return createIfcConstructionProductResourceTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcConstructionProductResourceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CONTROLLER_TYPE_ENUM:
-			return createIfcControllerTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcControllerTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_COOLED_BEAM_TYPE_ENUM:
-			return createIfcCooledBeamTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcCooledBeamTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_COOLING_TOWER_TYPE_ENUM:
-			return createIfcCoolingTowerTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcCoolingTowerTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_COST_ITEM_TYPE_ENUM:
 			return createIfcCostItemTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_COST_SCHEDULE_TYPE_ENUM:
-			return createIfcCostScheduleTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcCostScheduleTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_COVERING_TYPE_ENUM:
 			return createIfcCoveringTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CREW_RESOURCE_TYPE_ENUM:
-			return createIfcCrewResourceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcCrewResourceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CURTAIN_WALL_TYPE_ENUM:
-			return createIfcCurtainWallTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcCurtainWallTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_CURVE_INTERPOLATION_ENUM:
-			return createIfcCurveInterpolationEnumFromString(eDataType,
-					initialValue);
+			return createIfcCurveInterpolationEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DAMPER_TYPE_ENUM:
 			return createIfcDamperTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DATA_ORIGIN_ENUM:
@@ -2011,92 +1978,65 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_DERIVED_UNIT_ENUM:
 			return createIfcDerivedUnitEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DIRECTION_SENSE_ENUM:
-			return createIfcDirectionSenseEnumFromString(eDataType,
-					initialValue);
+			return createIfcDirectionSenseEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DISCRETE_ACCESSORY_TYPE_ENUM:
-			return createIfcDiscreteAccessoryTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcDiscreteAccessoryTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DISTRIBUTION_CHAMBER_ELEMENT_TYPE_ENUM:
-			return createIfcDistributionChamberElementTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcDistributionChamberElementTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DISTRIBUTION_PORT_TYPE_ENUM:
-			return createIfcDistributionPortTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcDistributionPortTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DISTRIBUTION_SYSTEM_ENUM:
-			return createIfcDistributionSystemEnumFromString(eDataType,
-					initialValue);
+			return createIfcDistributionSystemEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DOCUMENT_CONFIDENTIALITY_ENUM:
-			return createIfcDocumentConfidentialityEnumFromString(eDataType,
-					initialValue);
+			return createIfcDocumentConfidentialityEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DOCUMENT_STATUS_ENUM:
-			return createIfcDocumentStatusEnumFromString(eDataType,
-					initialValue);
+			return createIfcDocumentStatusEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DOOR_PANEL_OPERATION_ENUM:
-			return createIfcDoorPanelOperationEnumFromString(eDataType,
-					initialValue);
+			return createIfcDoorPanelOperationEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DOOR_PANEL_POSITION_ENUM:
-			return createIfcDoorPanelPositionEnumFromString(eDataType,
-					initialValue);
+			return createIfcDoorPanelPositionEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DOOR_STYLE_CONSTRUCTION_ENUM:
-			return createIfcDoorStyleConstructionEnumFromString(eDataType,
-					initialValue);
+			return createIfcDoorStyleConstructionEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DOOR_STYLE_OPERATION_ENUM:
-			return createIfcDoorStyleOperationEnumFromString(eDataType,
-					initialValue);
+			return createIfcDoorStyleOperationEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DOOR_TYPE_ENUM:
 			return createIfcDoorTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DOOR_TYPE_OPERATION_ENUM:
-			return createIfcDoorTypeOperationEnumFromString(eDataType,
-					initialValue);
+			return createIfcDoorTypeOperationEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DUCT_FITTING_TYPE_ENUM:
-			return createIfcDuctFittingTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcDuctFittingTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DUCT_SEGMENT_TYPE_ENUM:
-			return createIfcDuctSegmentTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcDuctSegmentTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_DUCT_SILENCER_TYPE_ENUM:
-			return createIfcDuctSilencerTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcDuctSilencerTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ELECTRIC_APPLIANCE_TYPE_ENUM:
-			return createIfcElectricApplianceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcElectricApplianceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ELECTRIC_DISTRIBUTION_BOARD_TYPE_ENUM:
-			return createIfcElectricDistributionBoardTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcElectricDistributionBoardTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE_ENUM:
-			return createIfcElectricFlowStorageDeviceTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcElectricFlowStorageDeviceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ELECTRIC_GENERATOR_TYPE_ENUM:
-			return createIfcElectricGeneratorTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcElectricGeneratorTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ELECTRIC_MOTOR_TYPE_ENUM:
-			return createIfcElectricMotorTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcElectricMotorTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ELECTRIC_TIME_CONTROL_TYPE_ENUM:
-			return createIfcElectricTimeControlTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcElectricTimeControlTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ELEMENT_ASSEMBLY_TYPE_ENUM:
-			return createIfcElementAssemblyTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcElementAssemblyTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ELEMENT_COMPOSITION_ENUM:
-			return createIfcElementCompositionEnumFromString(eDataType,
-					initialValue);
+			return createIfcElementCompositionEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ENGINE_TYPE_ENUM:
 			return createIfcEngineTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_EVAPORATIVE_COOLER_TYPE_ENUM:
-			return createIfcEvaporativeCoolerTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcEvaporativeCoolerTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_EVAPORATOR_TYPE_ENUM:
-			return createIfcEvaporatorTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcEvaporatorTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_EVENT_TRIGGER_TYPE_ENUM:
-			return createIfcEventTriggerTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcEventTriggerTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_EVENT_TYPE_ENUM:
 			return createIfcEventTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_EXTERNAL_SPATIAL_ELEMENT_TYPE_ENUM:
-			return createIfcExternalSpatialElementTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcExternalSpatialElementTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_FAN_TYPE_ENUM:
 			return createIfcFanTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_FASTENER_TYPE_ENUM:
@@ -2104,13 +2044,11 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_FILTER_TYPE_ENUM:
 			return createIfcFilterTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_FIRE_SUPPRESSION_TERMINAL_TYPE_ENUM:
-			return createIfcFireSuppressionTerminalTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcFireSuppressionTerminalTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_FLOW_DIRECTION_ENUM:
 			return createIfcFlowDirectionEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_FLOW_INSTRUMENT_TYPE_ENUM:
-			return createIfcFlowInstrumentTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcFlowInstrumentTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_FLOW_METER_TYPE_ENUM:
 			return createIfcFlowMeterTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_FOOTING_TYPE_ENUM:
@@ -2118,67 +2056,51 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_FURNITURE_TYPE_ENUM:
 			return createIfcFurnitureTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_GEOGRAPHIC_ELEMENT_TYPE_ENUM:
-			return createIfcGeographicElementTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcGeographicElementTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_GEOMETRIC_PROJECTION_ENUM:
-			return createIfcGeometricProjectionEnumFromString(eDataType,
-					initialValue);
+			return createIfcGeometricProjectionEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_GLOBAL_OR_LOCAL_ENUM:
 			return createIfcGlobalOrLocalEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_GRID_TYPE_ENUM:
 			return createIfcGridTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_HEAT_EXCHANGER_TYPE_ENUM:
-			return createIfcHeatExchangerTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcHeatExchangerTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_HUMIDIFIER_TYPE_ENUM:
-			return createIfcHumidifierTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcHumidifierTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_INTERCEPTOR_TYPE_ENUM:
-			return createIfcInterceptorTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcInterceptorTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_INTERNAL_OR_EXTERNAL_ENUM:
-			return createIfcInternalOrExternalEnumFromString(eDataType,
-					initialValue);
+			return createIfcInternalOrExternalEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_INVENTORY_TYPE_ENUM:
 			return createIfcInventoryTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_JUNCTION_BOX_TYPE_ENUM:
-			return createIfcJunctionBoxTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcJunctionBoxTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_KNOT_TYPE:
 			return createIfcKnotTypeFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_LABOR_RESOURCE_TYPE_ENUM:
-			return createIfcLaborResourceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcLaborResourceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_LAMP_TYPE_ENUM:
 			return createIfcLampTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_LAYER_SET_DIRECTION_ENUM:
-			return createIfcLayerSetDirectionEnumFromString(eDataType,
-					initialValue);
+			return createIfcLayerSetDirectionEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_LIGHT_DISTRIBUTION_CURVE_ENUM:
-			return createIfcLightDistributionCurveEnumFromString(eDataType,
-					initialValue);
+			return createIfcLightDistributionCurveEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_LIGHT_EMISSION_SOURCE_ENUM:
-			return createIfcLightEmissionSourceEnumFromString(eDataType,
-					initialValue);
+			return createIfcLightEmissionSourceEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_LIGHT_FIXTURE_TYPE_ENUM:
-			return createIfcLightFixtureTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcLightFixtureTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_LOAD_GROUP_TYPE_ENUM:
 			return createIfcLoadGroupTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_LOGICAL_OPERATOR_ENUM:
-			return createIfcLogicalOperatorEnumFromString(eDataType,
-					initialValue);
+			return createIfcLogicalOperatorEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_MECHANICAL_FASTENER_TYPE_ENUM:
-			return createIfcMechanicalFastenerTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcMechanicalFastenerTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_MEDICAL_DEVICE_TYPE_ENUM:
-			return createIfcMedicalDeviceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcMedicalDeviceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_MEMBER_TYPE_ENUM:
 			return createIfcMemberTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_MOTOR_CONNECTION_TYPE_ENUM:
-			return createIfcMotorConnectionTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcMotorConnectionTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_NULL_STYLE_ENUM:
 			return createIfcNullStyleEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_OBJECT_TYPE_ENUM:
@@ -2188,32 +2110,25 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_OCCUPANT_TYPE_ENUM:
 			return createIfcOccupantTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_OPENING_ELEMENT_TYPE_ENUM:
-			return createIfcOpeningElementTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcOpeningElementTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_OUTLET_TYPE_ENUM:
 			return createIfcOutletTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PERFORMANCE_HISTORY_TYPE_ENUM:
-			return createIfcPerformanceHistoryTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcPerformanceHistoryTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PERMEABLE_COVERING_OPERATION_ENUM:
-			return createIfcPermeableCoveringOperationEnumFromString(eDataType,
-					initialValue);
+			return createIfcPermeableCoveringOperationEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PERMIT_TYPE_ENUM:
 			return createIfcPermitTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PHYSICAL_OR_VIRTUAL_ENUM:
-			return createIfcPhysicalOrVirtualEnumFromString(eDataType,
-					initialValue);
+			return createIfcPhysicalOrVirtualEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PILE_CONSTRUCTION_ENUM:
-			return createIfcPileConstructionEnumFromString(eDataType,
-					initialValue);
+			return createIfcPileConstructionEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PILE_TYPE_ENUM:
 			return createIfcPileTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PIPE_FITTING_TYPE_ENUM:
-			return createIfcPipeFittingTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcPipeFittingTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PIPE_SEGMENT_TYPE_ENUM:
-			return createIfcPipeSegmentTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcPipeSegmentTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PLATE_TYPE_ENUM:
 			return createIfcPlateTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PROCEDURE_TYPE_ENUM:
@@ -2221,50 +2136,37 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_PROFILE_TYPE_ENUM:
 			return createIfcProfileTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PROJECT_ORDER_TYPE_ENUM:
-			return createIfcProjectOrderTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcProjectOrderTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PROJECTED_OR_TRUE_LENGTH_ENUM:
-			return createIfcProjectedOrTrueLengthEnumFromString(eDataType,
-					initialValue);
+			return createIfcProjectedOrTrueLengthEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PROJECTION_ELEMENT_TYPE_ENUM:
-			return createIfcProjectionElementTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcProjectionElementTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PROPERTY_SET_TEMPLATE_TYPE_ENUM:
-			return createIfcPropertySetTemplateTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcPropertySetTemplateTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE_ENUM:
-			return createIfcProtectiveDeviceTrippingUnitTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcProtectiveDeviceTrippingUnitTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PROTECTIVE_DEVICE_TYPE_ENUM:
-			return createIfcProtectiveDeviceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcProtectiveDeviceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PUMP_TYPE_ENUM:
 			return createIfcPumpTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_RAILING_TYPE_ENUM:
 			return createIfcRailingTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_RAMP_FLIGHT_TYPE_ENUM:
-			return createIfcRampFlightTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcRampFlightTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_RAMP_TYPE_ENUM:
 			return createIfcRampTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_RECURRENCE_TYPE_ENUM:
-			return createIfcRecurrenceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcRecurrenceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_REFLECTANCE_METHOD_ENUM:
-			return createIfcReflectanceMethodEnumFromString(eDataType,
-					initialValue);
+			return createIfcReflectanceMethodEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_REINFORCING_BAR_ROLE_ENUM:
-			return createIfcReinforcingBarRoleEnumFromString(eDataType,
-					initialValue);
+			return createIfcReinforcingBarRoleEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_REINFORCING_BAR_SURFACE_ENUM:
-			return createIfcReinforcingBarSurfaceEnumFromString(eDataType,
-					initialValue);
+			return createIfcReinforcingBarSurfaceEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_REINFORCING_BAR_TYPE_ENUM:
-			return createIfcReinforcingBarTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcReinforcingBarTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_REINFORCING_MESH_TYPE_ENUM:
-			return createIfcReinforcingMeshTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcReinforcingMeshTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ROLE_ENUM:
 			return createIfcRoleEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_ROOF_TYPE_ENUM:
@@ -2274,8 +2176,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_SI_UNIT_NAME:
 			return createIfcSIUnitNameFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SANITARY_TERMINAL_TYPE_ENUM:
-			return createIfcSanitaryTerminalTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcSanitaryTerminalTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SECTION_TYPE_ENUM:
 			return createIfcSectionTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SENSOR_TYPE_ENUM:
@@ -2283,60 +2184,45 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_SEQUENCE_ENUM:
 			return createIfcSequenceEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SHADING_DEVICE_TYPE_ENUM:
-			return createIfcShadingDeviceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcShadingDeviceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SIMPLE_PROPERTY_TEMPLATE_TYPE_ENUM:
-			return createIfcSimplePropertyTemplateTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcSimplePropertyTemplateTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SLAB_TYPE_ENUM:
 			return createIfcSlabTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SOLAR_DEVICE_TYPE_ENUM:
-			return createIfcSolarDeviceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcSolarDeviceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SPACE_HEATER_TYPE_ENUM:
-			return createIfcSpaceHeaterTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcSpaceHeaterTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SPACE_TYPE_ENUM:
 			return createIfcSpaceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SPATIAL_ZONE_TYPE_ENUM:
-			return createIfcSpatialZoneTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcSpatialZoneTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_STACK_TERMINAL_TYPE_ENUM:
-			return createIfcStackTerminalTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcStackTerminalTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_STAIR_FLIGHT_TYPE_ENUM:
-			return createIfcStairFlightTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcStairFlightTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_STAIR_TYPE_ENUM:
 			return createIfcStairTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_STATE_ENUM:
 			return createIfcStateEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_STRUCTURAL_CURVE_ACTIVITY_TYPE_ENUM:
-			return createIfcStructuralCurveActivityTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcStructuralCurveActivityTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_STRUCTURAL_CURVE_MEMBER_TYPE_ENUM:
-			return createIfcStructuralCurveMemberTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcStructuralCurveMemberTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_STRUCTURAL_SURFACE_ACTIVITY_TYPE_ENUM:
-			return createIfcStructuralSurfaceActivityTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcStructuralSurfaceActivityTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_STRUCTURAL_SURFACE_MEMBER_TYPE_ENUM:
-			return createIfcStructuralSurfaceMemberTypeEnumFromString(
-					eDataType, initialValue);
+			return createIfcStructuralSurfaceMemberTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SUB_CONTRACT_RESOURCE_TYPE_ENUM:
-			return createIfcSubContractResourceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcSubContractResourceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SURFACE_FEATURE_TYPE_ENUM:
-			return createIfcSurfaceFeatureTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcSurfaceFeatureTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SURFACE_SIDE:
 			return createIfcSurfaceSideFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SWITCHING_DEVICE_TYPE_ENUM:
-			return createIfcSwitchingDeviceTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcSwitchingDeviceTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_SYSTEM_FURNITURE_ELEMENT_TYPE_ENUM:
-			return createIfcSystemFurnitureElementTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcSystemFurnitureElementTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_TANK_TYPE_ENUM:
 			return createIfcTankTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_TASK_DURATION_ENUM:
@@ -2344,78 +2230,59 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_TASK_TYPE_ENUM:
 			return createIfcTaskTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_TENDON_ANCHOR_TYPE_ENUM:
-			return createIfcTendonAnchorTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcTendonAnchorTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_TENDON_TYPE_ENUM:
 			return createIfcTendonTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_TEXT_PATH:
 			return createIfcTextPathFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_TIME_SERIES_DATA_TYPE_ENUM:
-			return createIfcTimeSeriesDataTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcTimeSeriesDataTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_TRANSFORMER_TYPE_ENUM:
-			return createIfcTransformerTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcTransformerTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_TRANSITION_CODE:
 			return createIfcTransitionCodeFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_TRANSPORT_ELEMENT_TYPE_ENUM:
-			return createIfcTransportElementTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcTransportElementTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_TRIMMING_PREFERENCE:
-			return createIfcTrimmingPreferenceFromString(eDataType,
-					initialValue);
+			return createIfcTrimmingPreferenceFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_TUBE_BUNDLE_TYPE_ENUM:
-			return createIfcTubeBundleTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcTubeBundleTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_UNIT_ENUM:
 			return createIfcUnitEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_UNITARY_CONTROL_ELEMENT_TYPE_ENUM:
-			return createIfcUnitaryControlElementTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcUnitaryControlElementTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_UNITARY_EQUIPMENT_TYPE_ENUM:
-			return createIfcUnitaryEquipmentTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcUnitaryEquipmentTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_VALVE_TYPE_ENUM:
 			return createIfcValveTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_VIBRATION_ISOLATOR_TYPE_ENUM:
-			return createIfcVibrationIsolatorTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcVibrationIsolatorTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_VOIDING_FEATURE_TYPE_ENUM:
-			return createIfcVoidingFeatureTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcVoidingFeatureTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_WALL_TYPE_ENUM:
 			return createIfcWallTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_WASTE_TERMINAL_TYPE_ENUM:
-			return createIfcWasteTerminalTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcWasteTerminalTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_WINDOW_PANEL_OPERATION_ENUM:
-			return createIfcWindowPanelOperationEnumFromString(eDataType,
-					initialValue);
+			return createIfcWindowPanelOperationEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_WINDOW_PANEL_POSITION_ENUM:
-			return createIfcWindowPanelPositionEnumFromString(eDataType,
-					initialValue);
+			return createIfcWindowPanelPositionEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_WINDOW_STYLE_CONSTRUCTION_ENUM:
-			return createIfcWindowStyleConstructionEnumFromString(eDataType,
-					initialValue);
+			return createIfcWindowStyleConstructionEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_WINDOW_STYLE_OPERATION_ENUM:
-			return createIfcWindowStyleOperationEnumFromString(eDataType,
-					initialValue);
+			return createIfcWindowStyleOperationEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_WINDOW_TYPE_ENUM:
 			return createIfcWindowTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_WINDOW_TYPE_PARTITIONING_ENUM:
-			return createIfcWindowTypePartitioningEnumFromString(eDataType,
-					initialValue);
+			return createIfcWindowTypePartitioningEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_WORK_CALENDAR_TYPE_ENUM:
-			return createIfcWorkCalendarTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcWorkCalendarTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_WORK_PLAN_TYPE_ENUM:
 			return createIfcWorkPlanTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_WORK_SCHEDULE_TYPE_ENUM:
-			return createIfcWorkScheduleTypeEnumFromString(eDataType,
-					initialValue);
+			return createIfcWorkScheduleTypeEnumFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -2430,11 +2297,9 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.TRISTATE:
 			return convertTristateToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ACTION_REQUEST_TYPE_ENUM:
-			return convertIfcActionRequestTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcActionRequestTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ACTION_SOURCE_TYPE_ENUM:
-			return convertIfcActionSourceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcActionSourceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ACTION_TYPE_ENUM:
 			return convertIfcActionTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ACTUATOR_TYPE_ENUM:
@@ -2442,35 +2307,27 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_ADDRESS_TYPE_ENUM:
 			return convertIfcAddressTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_AIR_TERMINAL_BOX_TYPE_ENUM:
-			return convertIfcAirTerminalBoxTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcAirTerminalBoxTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_AIR_TERMINAL_TYPE_ENUM:
-			return convertIfcAirTerminalTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcAirTerminalTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_AIR_TO_AIR_HEAT_RECOVERY_TYPE_ENUM:
-			return convertIfcAirToAirHeatRecoveryTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcAirToAirHeatRecoveryTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ALARM_TYPE_ENUM:
 			return convertIfcAlarmTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ANALYSIS_MODEL_TYPE_ENUM:
-			return convertIfcAnalysisModelTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcAnalysisModelTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ANALYSIS_THEORY_TYPE_ENUM:
-			return convertIfcAnalysisTheoryTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcAnalysisTheoryTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ARITHMETIC_OPERATOR_ENUM:
-			return convertIfcArithmeticOperatorEnumToString(eDataType,
-					instanceValue);
+			return convertIfcArithmeticOperatorEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ASSEMBLY_PLACE_ENUM:
 			return convertIfcAssemblyPlaceEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_AUDIO_VISUAL_APPLIANCE_TYPE_ENUM:
-			return convertIfcAudioVisualApplianceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcAudioVisualApplianceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_BSPLINE_CURVE_FORM:
 			return convertIfcBSplineCurveFormToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_BSPLINE_SURFACE_FORM:
-			return convertIfcBSplineSurfaceFormToString(eDataType,
-					instanceValue);
+			return convertIfcBSplineSurfaceFormToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_BEAM_TYPE_ENUM:
 			return convertIfcBeamTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_BENCHMARK_ENUM:
@@ -2480,28 +2337,21 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_BOOLEAN_OPERATOR:
 			return convertIfcBooleanOperatorToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_BUILDING_ELEMENT_PART_TYPE_ENUM:
-			return convertIfcBuildingElementPartTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcBuildingElementPartTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_BUILDING_ELEMENT_PROXY_TYPE_ENUM:
-			return convertIfcBuildingElementProxyTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcBuildingElementProxyTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_BUILDING_SYSTEM_TYPE_ENUM:
-			return convertIfcBuildingSystemTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcBuildingSystemTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_BURNER_TYPE_ENUM:
 			return convertIfcBurnerTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CABLE_CARRIER_FITTING_TYPE_ENUM:
-			return convertIfcCableCarrierFittingTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCableCarrierFittingTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CABLE_CARRIER_SEGMENT_TYPE_ENUM:
-			return convertIfcCableCarrierSegmentTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCableCarrierSegmentTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CABLE_FITTING_TYPE_ENUM:
-			return convertIfcCableFittingTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCableFittingTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CABLE_SEGMENT_TYPE_ENUM:
-			return convertIfcCableSegmentTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCableSegmentTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CHANGE_ACTION_ENUM:
 			return convertIfcChangeActionEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CHILLER_TYPE_ENUM:
@@ -2513,55 +2363,41 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_COLUMN_TYPE_ENUM:
 			return convertIfcColumnTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_COMMUNICATIONS_APPLIANCE_TYPE_ENUM:
-			return convertIfcCommunicationsApplianceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCommunicationsApplianceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_COMPLEX_PROPERTY_TEMPLATE_TYPE_ENUM:
-			return convertIfcComplexPropertyTemplateTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcComplexPropertyTemplateTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_COMPRESSOR_TYPE_ENUM:
-			return convertIfcCompressorTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCompressorTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CONDENSER_TYPE_ENUM:
 			return convertIfcCondenserTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CONNECTION_TYPE_ENUM:
-			return convertIfcConnectionTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcConnectionTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CONSTRAINT_ENUM:
 			return convertIfcConstraintEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CONSTRUCTION_EQUIPMENT_RESOURCE_TYPE_ENUM:
-			return convertIfcConstructionEquipmentResourceTypeEnumToString(
-					eDataType, instanceValue);
+			return convertIfcConstructionEquipmentResourceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CONSTRUCTION_MATERIAL_RESOURCE_TYPE_ENUM:
-			return convertIfcConstructionMaterialResourceTypeEnumToString(
-					eDataType, instanceValue);
+			return convertIfcConstructionMaterialResourceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CONSTRUCTION_PRODUCT_RESOURCE_TYPE_ENUM:
-			return convertIfcConstructionProductResourceTypeEnumToString(
-					eDataType, instanceValue);
+			return convertIfcConstructionProductResourceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CONTROLLER_TYPE_ENUM:
-			return convertIfcControllerTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcControllerTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_COOLED_BEAM_TYPE_ENUM:
-			return convertIfcCooledBeamTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCooledBeamTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_COOLING_TOWER_TYPE_ENUM:
-			return convertIfcCoolingTowerTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCoolingTowerTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_COST_ITEM_TYPE_ENUM:
 			return convertIfcCostItemTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_COST_SCHEDULE_TYPE_ENUM:
-			return convertIfcCostScheduleTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCostScheduleTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_COVERING_TYPE_ENUM:
 			return convertIfcCoveringTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CREW_RESOURCE_TYPE_ENUM:
-			return convertIfcCrewResourceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCrewResourceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CURTAIN_WALL_TYPE_ENUM:
-			return convertIfcCurtainWallTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCurtainWallTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_CURVE_INTERPOLATION_ENUM:
-			return convertIfcCurveInterpolationEnumToString(eDataType,
-					instanceValue);
+			return convertIfcCurveInterpolationEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DAMPER_TYPE_ENUM:
 			return convertIfcDamperTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DATA_ORIGIN_ENUM:
@@ -2569,92 +2405,65 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_DERIVED_UNIT_ENUM:
 			return convertIfcDerivedUnitEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DIRECTION_SENSE_ENUM:
-			return convertIfcDirectionSenseEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDirectionSenseEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DISCRETE_ACCESSORY_TYPE_ENUM:
-			return convertIfcDiscreteAccessoryTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDiscreteAccessoryTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DISTRIBUTION_CHAMBER_ELEMENT_TYPE_ENUM:
-			return convertIfcDistributionChamberElementTypeEnumToString(
-					eDataType, instanceValue);
+			return convertIfcDistributionChamberElementTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DISTRIBUTION_PORT_TYPE_ENUM:
-			return convertIfcDistributionPortTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDistributionPortTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DISTRIBUTION_SYSTEM_ENUM:
-			return convertIfcDistributionSystemEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDistributionSystemEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DOCUMENT_CONFIDENTIALITY_ENUM:
-			return convertIfcDocumentConfidentialityEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDocumentConfidentialityEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DOCUMENT_STATUS_ENUM:
-			return convertIfcDocumentStatusEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDocumentStatusEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DOOR_PANEL_OPERATION_ENUM:
-			return convertIfcDoorPanelOperationEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDoorPanelOperationEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DOOR_PANEL_POSITION_ENUM:
-			return convertIfcDoorPanelPositionEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDoorPanelPositionEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DOOR_STYLE_CONSTRUCTION_ENUM:
-			return convertIfcDoorStyleConstructionEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDoorStyleConstructionEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DOOR_STYLE_OPERATION_ENUM:
-			return convertIfcDoorStyleOperationEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDoorStyleOperationEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DOOR_TYPE_ENUM:
 			return convertIfcDoorTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DOOR_TYPE_OPERATION_ENUM:
-			return convertIfcDoorTypeOperationEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDoorTypeOperationEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DUCT_FITTING_TYPE_ENUM:
-			return convertIfcDuctFittingTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDuctFittingTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DUCT_SEGMENT_TYPE_ENUM:
-			return convertIfcDuctSegmentTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDuctSegmentTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_DUCT_SILENCER_TYPE_ENUM:
-			return convertIfcDuctSilencerTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcDuctSilencerTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ELECTRIC_APPLIANCE_TYPE_ENUM:
-			return convertIfcElectricApplianceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcElectricApplianceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ELECTRIC_DISTRIBUTION_BOARD_TYPE_ENUM:
-			return convertIfcElectricDistributionBoardTypeEnumToString(
-					eDataType, instanceValue);
+			return convertIfcElectricDistributionBoardTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE_ENUM:
-			return convertIfcElectricFlowStorageDeviceTypeEnumToString(
-					eDataType, instanceValue);
+			return convertIfcElectricFlowStorageDeviceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ELECTRIC_GENERATOR_TYPE_ENUM:
-			return convertIfcElectricGeneratorTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcElectricGeneratorTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ELECTRIC_MOTOR_TYPE_ENUM:
-			return convertIfcElectricMotorTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcElectricMotorTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ELECTRIC_TIME_CONTROL_TYPE_ENUM:
-			return convertIfcElectricTimeControlTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcElectricTimeControlTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ELEMENT_ASSEMBLY_TYPE_ENUM:
-			return convertIfcElementAssemblyTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcElementAssemblyTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ELEMENT_COMPOSITION_ENUM:
-			return convertIfcElementCompositionEnumToString(eDataType,
-					instanceValue);
+			return convertIfcElementCompositionEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ENGINE_TYPE_ENUM:
 			return convertIfcEngineTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_EVAPORATIVE_COOLER_TYPE_ENUM:
-			return convertIfcEvaporativeCoolerTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcEvaporativeCoolerTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_EVAPORATOR_TYPE_ENUM:
-			return convertIfcEvaporatorTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcEvaporatorTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_EVENT_TRIGGER_TYPE_ENUM:
-			return convertIfcEventTriggerTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcEventTriggerTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_EVENT_TYPE_ENUM:
 			return convertIfcEventTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_EXTERNAL_SPATIAL_ELEMENT_TYPE_ENUM:
-			return convertIfcExternalSpatialElementTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcExternalSpatialElementTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_FAN_TYPE_ENUM:
 			return convertIfcFanTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_FASTENER_TYPE_ENUM:
@@ -2662,13 +2471,11 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_FILTER_TYPE_ENUM:
 			return convertIfcFilterTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_FIRE_SUPPRESSION_TERMINAL_TYPE_ENUM:
-			return convertIfcFireSuppressionTerminalTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcFireSuppressionTerminalTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_FLOW_DIRECTION_ENUM:
 			return convertIfcFlowDirectionEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_FLOW_INSTRUMENT_TYPE_ENUM:
-			return convertIfcFlowInstrumentTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcFlowInstrumentTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_FLOW_METER_TYPE_ENUM:
 			return convertIfcFlowMeterTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_FOOTING_TYPE_ENUM:
@@ -2676,67 +2483,51 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_FURNITURE_TYPE_ENUM:
 			return convertIfcFurnitureTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_GEOGRAPHIC_ELEMENT_TYPE_ENUM:
-			return convertIfcGeographicElementTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcGeographicElementTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_GEOMETRIC_PROJECTION_ENUM:
-			return convertIfcGeometricProjectionEnumToString(eDataType,
-					instanceValue);
+			return convertIfcGeometricProjectionEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_GLOBAL_OR_LOCAL_ENUM:
 			return convertIfcGlobalOrLocalEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_GRID_TYPE_ENUM:
 			return convertIfcGridTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_HEAT_EXCHANGER_TYPE_ENUM:
-			return convertIfcHeatExchangerTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcHeatExchangerTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_HUMIDIFIER_TYPE_ENUM:
-			return convertIfcHumidifierTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcHumidifierTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_INTERCEPTOR_TYPE_ENUM:
-			return convertIfcInterceptorTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcInterceptorTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_INTERNAL_OR_EXTERNAL_ENUM:
-			return convertIfcInternalOrExternalEnumToString(eDataType,
-					instanceValue);
+			return convertIfcInternalOrExternalEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_INVENTORY_TYPE_ENUM:
 			return convertIfcInventoryTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_JUNCTION_BOX_TYPE_ENUM:
-			return convertIfcJunctionBoxTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcJunctionBoxTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_KNOT_TYPE:
 			return convertIfcKnotTypeToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_LABOR_RESOURCE_TYPE_ENUM:
-			return convertIfcLaborResourceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcLaborResourceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_LAMP_TYPE_ENUM:
 			return convertIfcLampTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_LAYER_SET_DIRECTION_ENUM:
-			return convertIfcLayerSetDirectionEnumToString(eDataType,
-					instanceValue);
+			return convertIfcLayerSetDirectionEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_LIGHT_DISTRIBUTION_CURVE_ENUM:
-			return convertIfcLightDistributionCurveEnumToString(eDataType,
-					instanceValue);
+			return convertIfcLightDistributionCurveEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_LIGHT_EMISSION_SOURCE_ENUM:
-			return convertIfcLightEmissionSourceEnumToString(eDataType,
-					instanceValue);
+			return convertIfcLightEmissionSourceEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_LIGHT_FIXTURE_TYPE_ENUM:
-			return convertIfcLightFixtureTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcLightFixtureTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_LOAD_GROUP_TYPE_ENUM:
 			return convertIfcLoadGroupTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_LOGICAL_OPERATOR_ENUM:
-			return convertIfcLogicalOperatorEnumToString(eDataType,
-					instanceValue);
+			return convertIfcLogicalOperatorEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_MECHANICAL_FASTENER_TYPE_ENUM:
-			return convertIfcMechanicalFastenerTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcMechanicalFastenerTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_MEDICAL_DEVICE_TYPE_ENUM:
-			return convertIfcMedicalDeviceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcMedicalDeviceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_MEMBER_TYPE_ENUM:
 			return convertIfcMemberTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_MOTOR_CONNECTION_TYPE_ENUM:
-			return convertIfcMotorConnectionTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcMotorConnectionTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_NULL_STYLE_ENUM:
 			return convertIfcNullStyleEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_OBJECT_TYPE_ENUM:
@@ -2746,32 +2537,25 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_OCCUPANT_TYPE_ENUM:
 			return convertIfcOccupantTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_OPENING_ELEMENT_TYPE_ENUM:
-			return convertIfcOpeningElementTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcOpeningElementTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_OUTLET_TYPE_ENUM:
 			return convertIfcOutletTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PERFORMANCE_HISTORY_TYPE_ENUM:
-			return convertIfcPerformanceHistoryTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcPerformanceHistoryTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PERMEABLE_COVERING_OPERATION_ENUM:
-			return convertIfcPermeableCoveringOperationEnumToString(eDataType,
-					instanceValue);
+			return convertIfcPermeableCoveringOperationEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PERMIT_TYPE_ENUM:
 			return convertIfcPermitTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PHYSICAL_OR_VIRTUAL_ENUM:
-			return convertIfcPhysicalOrVirtualEnumToString(eDataType,
-					instanceValue);
+			return convertIfcPhysicalOrVirtualEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PILE_CONSTRUCTION_ENUM:
-			return convertIfcPileConstructionEnumToString(eDataType,
-					instanceValue);
+			return convertIfcPileConstructionEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PILE_TYPE_ENUM:
 			return convertIfcPileTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PIPE_FITTING_TYPE_ENUM:
-			return convertIfcPipeFittingTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcPipeFittingTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PIPE_SEGMENT_TYPE_ENUM:
-			return convertIfcPipeSegmentTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcPipeSegmentTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PLATE_TYPE_ENUM:
 			return convertIfcPlateTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PROCEDURE_TYPE_ENUM:
@@ -2779,50 +2563,37 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_PROFILE_TYPE_ENUM:
 			return convertIfcProfileTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PROJECT_ORDER_TYPE_ENUM:
-			return convertIfcProjectOrderTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcProjectOrderTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PROJECTED_OR_TRUE_LENGTH_ENUM:
-			return convertIfcProjectedOrTrueLengthEnumToString(eDataType,
-					instanceValue);
+			return convertIfcProjectedOrTrueLengthEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PROJECTION_ELEMENT_TYPE_ENUM:
-			return convertIfcProjectionElementTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcProjectionElementTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PROPERTY_SET_TEMPLATE_TYPE_ENUM:
-			return convertIfcPropertySetTemplateTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcPropertySetTemplateTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE_ENUM:
-			return convertIfcProtectiveDeviceTrippingUnitTypeEnumToString(
-					eDataType, instanceValue);
+			return convertIfcProtectiveDeviceTrippingUnitTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PROTECTIVE_DEVICE_TYPE_ENUM:
-			return convertIfcProtectiveDeviceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcProtectiveDeviceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PUMP_TYPE_ENUM:
 			return convertIfcPumpTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_RAILING_TYPE_ENUM:
 			return convertIfcRailingTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_RAMP_FLIGHT_TYPE_ENUM:
-			return convertIfcRampFlightTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcRampFlightTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_RAMP_TYPE_ENUM:
 			return convertIfcRampTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_RECURRENCE_TYPE_ENUM:
-			return convertIfcRecurrenceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcRecurrenceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_REFLECTANCE_METHOD_ENUM:
-			return convertIfcReflectanceMethodEnumToString(eDataType,
-					instanceValue);
+			return convertIfcReflectanceMethodEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_REINFORCING_BAR_ROLE_ENUM:
-			return convertIfcReinforcingBarRoleEnumToString(eDataType,
-					instanceValue);
+			return convertIfcReinforcingBarRoleEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_REINFORCING_BAR_SURFACE_ENUM:
-			return convertIfcReinforcingBarSurfaceEnumToString(eDataType,
-					instanceValue);
+			return convertIfcReinforcingBarSurfaceEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_REINFORCING_BAR_TYPE_ENUM:
-			return convertIfcReinforcingBarTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcReinforcingBarTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_REINFORCING_MESH_TYPE_ENUM:
-			return convertIfcReinforcingMeshTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcReinforcingMeshTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ROLE_ENUM:
 			return convertIfcRoleEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_ROOF_TYPE_ENUM:
@@ -2832,8 +2603,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_SI_UNIT_NAME:
 			return convertIfcSIUnitNameToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SANITARY_TERMINAL_TYPE_ENUM:
-			return convertIfcSanitaryTerminalTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcSanitaryTerminalTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SECTION_TYPE_ENUM:
 			return convertIfcSectionTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SENSOR_TYPE_ENUM:
@@ -2841,60 +2611,45 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_SEQUENCE_ENUM:
 			return convertIfcSequenceEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SHADING_DEVICE_TYPE_ENUM:
-			return convertIfcShadingDeviceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcShadingDeviceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SIMPLE_PROPERTY_TEMPLATE_TYPE_ENUM:
-			return convertIfcSimplePropertyTemplateTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcSimplePropertyTemplateTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SLAB_TYPE_ENUM:
 			return convertIfcSlabTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SOLAR_DEVICE_TYPE_ENUM:
-			return convertIfcSolarDeviceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcSolarDeviceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SPACE_HEATER_TYPE_ENUM:
-			return convertIfcSpaceHeaterTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcSpaceHeaterTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SPACE_TYPE_ENUM:
 			return convertIfcSpaceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SPATIAL_ZONE_TYPE_ENUM:
-			return convertIfcSpatialZoneTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcSpatialZoneTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_STACK_TERMINAL_TYPE_ENUM:
-			return convertIfcStackTerminalTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcStackTerminalTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_STAIR_FLIGHT_TYPE_ENUM:
-			return convertIfcStairFlightTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcStairFlightTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_STAIR_TYPE_ENUM:
 			return convertIfcStairTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_STATE_ENUM:
 			return convertIfcStateEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_STRUCTURAL_CURVE_ACTIVITY_TYPE_ENUM:
-			return convertIfcStructuralCurveActivityTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcStructuralCurveActivityTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_STRUCTURAL_CURVE_MEMBER_TYPE_ENUM:
-			return convertIfcStructuralCurveMemberTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcStructuralCurveMemberTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_STRUCTURAL_SURFACE_ACTIVITY_TYPE_ENUM:
-			return convertIfcStructuralSurfaceActivityTypeEnumToString(
-					eDataType, instanceValue);
+			return convertIfcStructuralSurfaceActivityTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_STRUCTURAL_SURFACE_MEMBER_TYPE_ENUM:
-			return convertIfcStructuralSurfaceMemberTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcStructuralSurfaceMemberTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SUB_CONTRACT_RESOURCE_TYPE_ENUM:
-			return convertIfcSubContractResourceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcSubContractResourceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SURFACE_FEATURE_TYPE_ENUM:
-			return convertIfcSurfaceFeatureTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcSurfaceFeatureTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SURFACE_SIDE:
 			return convertIfcSurfaceSideToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SWITCHING_DEVICE_TYPE_ENUM:
-			return convertIfcSwitchingDeviceTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcSwitchingDeviceTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_SYSTEM_FURNITURE_ELEMENT_TYPE_ENUM:
-			return convertIfcSystemFurnitureElementTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcSystemFurnitureElementTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_TANK_TYPE_ENUM:
 			return convertIfcTankTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_TASK_DURATION_ENUM:
@@ -2902,78 +2657,59 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 		case Ifc4Package.IFC_TASK_TYPE_ENUM:
 			return convertIfcTaskTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_TENDON_ANCHOR_TYPE_ENUM:
-			return convertIfcTendonAnchorTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcTendonAnchorTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_TENDON_TYPE_ENUM:
 			return convertIfcTendonTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_TEXT_PATH:
 			return convertIfcTextPathToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_TIME_SERIES_DATA_TYPE_ENUM:
-			return convertIfcTimeSeriesDataTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcTimeSeriesDataTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_TRANSFORMER_TYPE_ENUM:
-			return convertIfcTransformerTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcTransformerTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_TRANSITION_CODE:
 			return convertIfcTransitionCodeToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_TRANSPORT_ELEMENT_TYPE_ENUM:
-			return convertIfcTransportElementTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcTransportElementTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_TRIMMING_PREFERENCE:
-			return convertIfcTrimmingPreferenceToString(eDataType,
-					instanceValue);
+			return convertIfcTrimmingPreferenceToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_TUBE_BUNDLE_TYPE_ENUM:
-			return convertIfcTubeBundleTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcTubeBundleTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_UNIT_ENUM:
 			return convertIfcUnitEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_UNITARY_CONTROL_ELEMENT_TYPE_ENUM:
-			return convertIfcUnitaryControlElementTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcUnitaryControlElementTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_UNITARY_EQUIPMENT_TYPE_ENUM:
-			return convertIfcUnitaryEquipmentTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcUnitaryEquipmentTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_VALVE_TYPE_ENUM:
 			return convertIfcValveTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_VIBRATION_ISOLATOR_TYPE_ENUM:
-			return convertIfcVibrationIsolatorTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcVibrationIsolatorTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_VOIDING_FEATURE_TYPE_ENUM:
-			return convertIfcVoidingFeatureTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcVoidingFeatureTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_WALL_TYPE_ENUM:
 			return convertIfcWallTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_WASTE_TERMINAL_TYPE_ENUM:
-			return convertIfcWasteTerminalTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcWasteTerminalTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_WINDOW_PANEL_OPERATION_ENUM:
-			return convertIfcWindowPanelOperationEnumToString(eDataType,
-					instanceValue);
+			return convertIfcWindowPanelOperationEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_WINDOW_PANEL_POSITION_ENUM:
-			return convertIfcWindowPanelPositionEnumToString(eDataType,
-					instanceValue);
+			return convertIfcWindowPanelPositionEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_WINDOW_STYLE_CONSTRUCTION_ENUM:
-			return convertIfcWindowStyleConstructionEnumToString(eDataType,
-					instanceValue);
+			return convertIfcWindowStyleConstructionEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_WINDOW_STYLE_OPERATION_ENUM:
-			return convertIfcWindowStyleOperationEnumToString(eDataType,
-					instanceValue);
+			return convertIfcWindowStyleOperationEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_WINDOW_TYPE_ENUM:
 			return convertIfcWindowTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_WINDOW_TYPE_PARTITIONING_ENUM:
-			return convertIfcWindowTypePartitioningEnumToString(eDataType,
-					instanceValue);
+			return convertIfcWindowTypePartitioningEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_WORK_CALENDAR_TYPE_ENUM:
-			return convertIfcWorkCalendarTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcWorkCalendarTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_WORK_PLAN_TYPE_ENUM:
 			return convertIfcWorkPlanTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_WORK_SCHEDULE_TYPE_ENUM:
-			return convertIfcWorkScheduleTypeEnumToString(eDataType,
-					instanceValue);
+			return convertIfcWorkScheduleTypeEnumToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -11902,13 +11638,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Tristate createTristateFromString(EDataType eDataType,
-			String initialValue) {
+	public Tristate createTristateFromString(EDataType eDataType, String initialValue) {
 		Tristate result = Tristate.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11917,8 +11650,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertTristateToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertTristateToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11927,14 +11659,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcActionRequestTypeEnum createIfcActionRequestTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcActionRequestTypeEnum result = IfcActionRequestTypeEnum
-				.get(initialValue);
+	public IfcActionRequestTypeEnum createIfcActionRequestTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcActionRequestTypeEnum result = IfcActionRequestTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11943,8 +11671,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcActionRequestTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcActionRequestTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11953,14 +11680,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcActionSourceTypeEnum createIfcActionSourceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcActionSourceTypeEnum result = IfcActionSourceTypeEnum
-				.get(initialValue);
+	public IfcActionSourceTypeEnum createIfcActionSourceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcActionSourceTypeEnum result = IfcActionSourceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11969,8 +11692,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcActionSourceTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcActionSourceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11979,13 +11701,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcActionTypeEnum createIfcActionTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcActionTypeEnum createIfcActionTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcActionTypeEnum result = IfcActionTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11994,8 +11713,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcActionTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcActionTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12004,13 +11722,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcActuatorTypeEnum createIfcActuatorTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcActuatorTypeEnum createIfcActuatorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcActuatorTypeEnum result = IfcActuatorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12019,8 +11734,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcActuatorTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcActuatorTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12029,13 +11743,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAddressTypeEnum createIfcAddressTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcAddressTypeEnum createIfcAddressTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcAddressTypeEnum result = IfcAddressTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12044,8 +11755,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAddressTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcAddressTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12054,14 +11764,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAirTerminalBoxTypeEnum createIfcAirTerminalBoxTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcAirTerminalBoxTypeEnum result = IfcAirTerminalBoxTypeEnum
-				.get(initialValue);
+	public IfcAirTerminalBoxTypeEnum createIfcAirTerminalBoxTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcAirTerminalBoxTypeEnum result = IfcAirTerminalBoxTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12070,8 +11776,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAirTerminalBoxTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcAirTerminalBoxTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12080,14 +11785,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAirTerminalTypeEnum createIfcAirTerminalTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcAirTerminalTypeEnum result = IfcAirTerminalTypeEnum
-				.get(initialValue);
+	public IfcAirTerminalTypeEnum createIfcAirTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcAirTerminalTypeEnum result = IfcAirTerminalTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12096,8 +11797,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAirTerminalTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcAirTerminalTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12106,14 +11806,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAirToAirHeatRecoveryTypeEnum createIfcAirToAirHeatRecoveryTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcAirToAirHeatRecoveryTypeEnum result = IfcAirToAirHeatRecoveryTypeEnum
-				.get(initialValue);
+	public IfcAirToAirHeatRecoveryTypeEnum createIfcAirToAirHeatRecoveryTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcAirToAirHeatRecoveryTypeEnum result = IfcAirToAirHeatRecoveryTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12122,8 +11818,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAirToAirHeatRecoveryTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcAirToAirHeatRecoveryTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12132,13 +11827,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAlarmTypeEnum createIfcAlarmTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcAlarmTypeEnum createIfcAlarmTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcAlarmTypeEnum result = IfcAlarmTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12147,8 +11839,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAlarmTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcAlarmTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12157,14 +11848,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnalysisModelTypeEnum createIfcAnalysisModelTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcAnalysisModelTypeEnum result = IfcAnalysisModelTypeEnum
-				.get(initialValue);
+	public IfcAnalysisModelTypeEnum createIfcAnalysisModelTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcAnalysisModelTypeEnum result = IfcAnalysisModelTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12173,8 +11860,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAnalysisModelTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcAnalysisModelTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12183,14 +11869,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnalysisTheoryTypeEnum createIfcAnalysisTheoryTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcAnalysisTheoryTypeEnum result = IfcAnalysisTheoryTypeEnum
-				.get(initialValue);
+	public IfcAnalysisTheoryTypeEnum createIfcAnalysisTheoryTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcAnalysisTheoryTypeEnum result = IfcAnalysisTheoryTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12199,8 +11881,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAnalysisTheoryTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcAnalysisTheoryTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12209,14 +11890,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcArithmeticOperatorEnum createIfcArithmeticOperatorEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcArithmeticOperatorEnum result = IfcArithmeticOperatorEnum
-				.get(initialValue);
+	public IfcArithmeticOperatorEnum createIfcArithmeticOperatorEnumFromString(EDataType eDataType, String initialValue) {
+		IfcArithmeticOperatorEnum result = IfcArithmeticOperatorEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12225,8 +11902,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcArithmeticOperatorEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcArithmeticOperatorEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12235,13 +11911,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAssemblyPlaceEnum createIfcAssemblyPlaceEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcAssemblyPlaceEnum createIfcAssemblyPlaceEnumFromString(EDataType eDataType, String initialValue) {
 		IfcAssemblyPlaceEnum result = IfcAssemblyPlaceEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12250,8 +11923,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAssemblyPlaceEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcAssemblyPlaceEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12260,14 +11932,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAudioVisualApplianceTypeEnum createIfcAudioVisualApplianceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcAudioVisualApplianceTypeEnum result = IfcAudioVisualApplianceTypeEnum
-				.get(initialValue);
+	public IfcAudioVisualApplianceTypeEnum createIfcAudioVisualApplianceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcAudioVisualApplianceTypeEnum result = IfcAudioVisualApplianceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12276,8 +11944,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAudioVisualApplianceTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcAudioVisualApplianceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12286,13 +11953,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBSplineCurveForm createIfcBSplineCurveFormFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcBSplineCurveForm createIfcBSplineCurveFormFromString(EDataType eDataType, String initialValue) {
 		IfcBSplineCurveForm result = IfcBSplineCurveForm.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12301,8 +11965,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBSplineCurveFormToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcBSplineCurveFormToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12311,13 +11974,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBSplineSurfaceForm createIfcBSplineSurfaceFormFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcBSplineSurfaceForm createIfcBSplineSurfaceFormFromString(EDataType eDataType, String initialValue) {
 		IfcBSplineSurfaceForm result = IfcBSplineSurfaceForm.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12326,8 +11986,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBSplineSurfaceFormToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcBSplineSurfaceFormToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12336,13 +11995,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBeamTypeEnum createIfcBeamTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcBeamTypeEnum createIfcBeamTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcBeamTypeEnum result = IfcBeamTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12351,8 +12007,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBeamTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcBeamTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12361,13 +12016,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBenchmarkEnum createIfcBenchmarkEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcBenchmarkEnum createIfcBenchmarkEnumFromString(EDataType eDataType, String initialValue) {
 		IfcBenchmarkEnum result = IfcBenchmarkEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12376,8 +12028,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBenchmarkEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcBenchmarkEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12386,13 +12037,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoilerTypeEnum createIfcBoilerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcBoilerTypeEnum createIfcBoilerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcBoilerTypeEnum result = IfcBoilerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12401,8 +12049,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBoilerTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcBoilerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12411,13 +12058,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBooleanOperator createIfcBooleanOperatorFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcBooleanOperator createIfcBooleanOperatorFromString(EDataType eDataType, String initialValue) {
 		IfcBooleanOperator result = IfcBooleanOperator.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12426,8 +12070,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBooleanOperatorToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcBooleanOperatorToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12436,14 +12079,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingElementPartTypeEnum createIfcBuildingElementPartTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcBuildingElementPartTypeEnum result = IfcBuildingElementPartTypeEnum
-				.get(initialValue);
+	public IfcBuildingElementPartTypeEnum createIfcBuildingElementPartTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcBuildingElementPartTypeEnum result = IfcBuildingElementPartTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12452,8 +12091,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBuildingElementPartTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcBuildingElementPartTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12462,14 +12100,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingElementProxyTypeEnum createIfcBuildingElementProxyTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcBuildingElementProxyTypeEnum result = IfcBuildingElementProxyTypeEnum
-				.get(initialValue);
+	public IfcBuildingElementProxyTypeEnum createIfcBuildingElementProxyTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcBuildingElementProxyTypeEnum result = IfcBuildingElementProxyTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12478,8 +12112,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBuildingElementProxyTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcBuildingElementProxyTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12488,14 +12121,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingSystemTypeEnum createIfcBuildingSystemTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcBuildingSystemTypeEnum result = IfcBuildingSystemTypeEnum
-				.get(initialValue);
+	public IfcBuildingSystemTypeEnum createIfcBuildingSystemTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcBuildingSystemTypeEnum result = IfcBuildingSystemTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12504,8 +12133,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBuildingSystemTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcBuildingSystemTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12514,13 +12142,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBurnerTypeEnum createIfcBurnerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcBurnerTypeEnum createIfcBurnerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcBurnerTypeEnum result = IfcBurnerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12529,8 +12154,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBurnerTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcBurnerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12539,14 +12163,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableCarrierFittingTypeEnum createIfcCableCarrierFittingTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcCableCarrierFittingTypeEnum result = IfcCableCarrierFittingTypeEnum
-				.get(initialValue);
+	public IfcCableCarrierFittingTypeEnum createIfcCableCarrierFittingTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcCableCarrierFittingTypeEnum result = IfcCableCarrierFittingTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12555,8 +12175,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCableCarrierFittingTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcCableCarrierFittingTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12565,14 +12184,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableCarrierSegmentTypeEnum createIfcCableCarrierSegmentTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcCableCarrierSegmentTypeEnum result = IfcCableCarrierSegmentTypeEnum
-				.get(initialValue);
+	public IfcCableCarrierSegmentTypeEnum createIfcCableCarrierSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcCableCarrierSegmentTypeEnum result = IfcCableCarrierSegmentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12581,8 +12196,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCableCarrierSegmentTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcCableCarrierSegmentTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12591,14 +12205,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableFittingTypeEnum createIfcCableFittingTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcCableFittingTypeEnum result = IfcCableFittingTypeEnum
-				.get(initialValue);
+	public IfcCableFittingTypeEnum createIfcCableFittingTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcCableFittingTypeEnum result = IfcCableFittingTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12607,8 +12217,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCableFittingTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCableFittingTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12617,14 +12226,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableSegmentTypeEnum createIfcCableSegmentTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcCableSegmentTypeEnum result = IfcCableSegmentTypeEnum
-				.get(initialValue);
+	public IfcCableSegmentTypeEnum createIfcCableSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcCableSegmentTypeEnum result = IfcCableSegmentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12633,8 +12238,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCableSegmentTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCableSegmentTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12643,13 +12247,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcChangeActionEnum createIfcChangeActionEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcChangeActionEnum createIfcChangeActionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcChangeActionEnum result = IfcChangeActionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12658,8 +12259,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcChangeActionEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcChangeActionEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12668,13 +12268,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcChillerTypeEnum createIfcChillerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcChillerTypeEnum createIfcChillerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcChillerTypeEnum result = IfcChillerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12683,8 +12280,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcChillerTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcChillerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12693,13 +12289,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcChimneyTypeEnum createIfcChimneyTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcChimneyTypeEnum createIfcChimneyTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcChimneyTypeEnum result = IfcChimneyTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12708,8 +12301,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcChimneyTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcChimneyTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12718,13 +12310,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCoilTypeEnum createIfcCoilTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcCoilTypeEnum createIfcCoilTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCoilTypeEnum result = IfcCoilTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12733,8 +12322,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCoilTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCoilTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12743,13 +12331,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcColumnTypeEnum createIfcColumnTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcColumnTypeEnum createIfcColumnTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcColumnTypeEnum result = IfcColumnTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12758,8 +12343,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcColumnTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcColumnTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12768,14 +12352,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCommunicationsApplianceTypeEnum createIfcCommunicationsApplianceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcCommunicationsApplianceTypeEnum result = IfcCommunicationsApplianceTypeEnum
-				.get(initialValue);
+	public IfcCommunicationsApplianceTypeEnum createIfcCommunicationsApplianceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcCommunicationsApplianceTypeEnum result = IfcCommunicationsApplianceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12784,8 +12364,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCommunicationsApplianceTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcCommunicationsApplianceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12794,14 +12373,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcComplexPropertyTemplateTypeEnum createIfcComplexPropertyTemplateTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcComplexPropertyTemplateTypeEnum result = IfcComplexPropertyTemplateTypeEnum
-				.get(initialValue);
+	public IfcComplexPropertyTemplateTypeEnum createIfcComplexPropertyTemplateTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcComplexPropertyTemplateTypeEnum result = IfcComplexPropertyTemplateTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12810,8 +12385,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcComplexPropertyTemplateTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcComplexPropertyTemplateTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12820,13 +12394,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCompressorTypeEnum createIfcCompressorTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcCompressorTypeEnum createIfcCompressorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCompressorTypeEnum result = IfcCompressorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12835,8 +12406,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCompressorTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCompressorTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12845,13 +12415,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCondenserTypeEnum createIfcCondenserTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcCondenserTypeEnum createIfcCondenserTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCondenserTypeEnum result = IfcCondenserTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12860,8 +12427,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCondenserTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCondenserTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12870,13 +12436,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConnectionTypeEnum createIfcConnectionTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcConnectionTypeEnum createIfcConnectionTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcConnectionTypeEnum result = IfcConnectionTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12885,8 +12448,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcConnectionTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcConnectionTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12895,13 +12457,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstraintEnum createIfcConstraintEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcConstraintEnum createIfcConstraintEnumFromString(EDataType eDataType, String initialValue) {
 		IfcConstraintEnum result = IfcConstraintEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12910,8 +12469,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcConstraintEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcConstraintEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12920,14 +12478,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstructionEquipmentResourceTypeEnum createIfcConstructionEquipmentResourceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcConstructionEquipmentResourceTypeEnum result = IfcConstructionEquipmentResourceTypeEnum
-				.get(initialValue);
+	public IfcConstructionEquipmentResourceTypeEnum createIfcConstructionEquipmentResourceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcConstructionEquipmentResourceTypeEnum result = IfcConstructionEquipmentResourceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12936,8 +12490,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcConstructionEquipmentResourceTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcConstructionEquipmentResourceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12946,14 +12499,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstructionMaterialResourceTypeEnum createIfcConstructionMaterialResourceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcConstructionMaterialResourceTypeEnum result = IfcConstructionMaterialResourceTypeEnum
-				.get(initialValue);
+	public IfcConstructionMaterialResourceTypeEnum createIfcConstructionMaterialResourceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcConstructionMaterialResourceTypeEnum result = IfcConstructionMaterialResourceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12962,8 +12511,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcConstructionMaterialResourceTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcConstructionMaterialResourceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12972,14 +12520,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstructionProductResourceTypeEnum createIfcConstructionProductResourceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcConstructionProductResourceTypeEnum result = IfcConstructionProductResourceTypeEnum
-				.get(initialValue);
+	public IfcConstructionProductResourceTypeEnum createIfcConstructionProductResourceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcConstructionProductResourceTypeEnum result = IfcConstructionProductResourceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12988,8 +12532,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcConstructionProductResourceTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcConstructionProductResourceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12998,13 +12541,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcControllerTypeEnum createIfcControllerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcControllerTypeEnum createIfcControllerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcControllerTypeEnum result = IfcControllerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13013,8 +12553,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcControllerTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcControllerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13023,13 +12562,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCooledBeamTypeEnum createIfcCooledBeamTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcCooledBeamTypeEnum createIfcCooledBeamTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCooledBeamTypeEnum result = IfcCooledBeamTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13038,8 +12574,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCooledBeamTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCooledBeamTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13048,14 +12583,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCoolingTowerTypeEnum createIfcCoolingTowerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcCoolingTowerTypeEnum result = IfcCoolingTowerTypeEnum
-				.get(initialValue);
+	public IfcCoolingTowerTypeEnum createIfcCoolingTowerTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcCoolingTowerTypeEnum result = IfcCoolingTowerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13064,8 +12595,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCoolingTowerTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCoolingTowerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13074,13 +12604,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCostItemTypeEnum createIfcCostItemTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcCostItemTypeEnum createIfcCostItemTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCostItemTypeEnum result = IfcCostItemTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13089,8 +12616,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCostItemTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCostItemTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13099,14 +12625,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCostScheduleTypeEnum createIfcCostScheduleTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcCostScheduleTypeEnum result = IfcCostScheduleTypeEnum
-				.get(initialValue);
+	public IfcCostScheduleTypeEnum createIfcCostScheduleTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcCostScheduleTypeEnum result = IfcCostScheduleTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13115,8 +12637,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCostScheduleTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCostScheduleTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13125,13 +12646,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCoveringTypeEnum createIfcCoveringTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcCoveringTypeEnum createIfcCoveringTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCoveringTypeEnum result = IfcCoveringTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13140,8 +12658,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCoveringTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCoveringTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13150,14 +12667,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCrewResourceTypeEnum createIfcCrewResourceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcCrewResourceTypeEnum result = IfcCrewResourceTypeEnum
-				.get(initialValue);
+	public IfcCrewResourceTypeEnum createIfcCrewResourceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcCrewResourceTypeEnum result = IfcCrewResourceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13166,8 +12679,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCrewResourceTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCrewResourceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13176,14 +12688,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurtainWallTypeEnum createIfcCurtainWallTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcCurtainWallTypeEnum result = IfcCurtainWallTypeEnum
-				.get(initialValue);
+	public IfcCurtainWallTypeEnum createIfcCurtainWallTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcCurtainWallTypeEnum result = IfcCurtainWallTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13192,8 +12700,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCurtainWallTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCurtainWallTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13202,14 +12709,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurveInterpolationEnum createIfcCurveInterpolationEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcCurveInterpolationEnum result = IfcCurveInterpolationEnum
-				.get(initialValue);
+	public IfcCurveInterpolationEnum createIfcCurveInterpolationEnumFromString(EDataType eDataType, String initialValue) {
+		IfcCurveInterpolationEnum result = IfcCurveInterpolationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13218,8 +12721,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCurveInterpolationEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcCurveInterpolationEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13228,13 +12730,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDamperTypeEnum createIfcDamperTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcDamperTypeEnum createIfcDamperTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDamperTypeEnum result = IfcDamperTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13243,8 +12742,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDamperTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDamperTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13253,13 +12751,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDataOriginEnum createIfcDataOriginEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcDataOriginEnum createIfcDataOriginEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDataOriginEnum result = IfcDataOriginEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13268,8 +12763,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDataOriginEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDataOriginEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13278,13 +12772,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDerivedUnitEnum createIfcDerivedUnitEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcDerivedUnitEnum createIfcDerivedUnitEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDerivedUnitEnum result = IfcDerivedUnitEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13293,8 +12784,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDerivedUnitEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDerivedUnitEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13303,13 +12793,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDirectionSenseEnum createIfcDirectionSenseEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcDirectionSenseEnum createIfcDirectionSenseEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDirectionSenseEnum result = IfcDirectionSenseEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13318,8 +12805,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDirectionSenseEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDirectionSenseEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13328,14 +12814,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDiscreteAccessoryTypeEnum createIfcDiscreteAccessoryTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDiscreteAccessoryTypeEnum result = IfcDiscreteAccessoryTypeEnum
-				.get(initialValue);
+	public IfcDiscreteAccessoryTypeEnum createIfcDiscreteAccessoryTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDiscreteAccessoryTypeEnum result = IfcDiscreteAccessoryTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13344,8 +12826,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDiscreteAccessoryTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcDiscreteAccessoryTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13354,14 +12835,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionChamberElementTypeEnum createIfcDistributionChamberElementTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDistributionChamberElementTypeEnum result = IfcDistributionChamberElementTypeEnum
-				.get(initialValue);
+	public IfcDistributionChamberElementTypeEnum createIfcDistributionChamberElementTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDistributionChamberElementTypeEnum result = IfcDistributionChamberElementTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13370,8 +12847,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDistributionChamberElementTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcDistributionChamberElementTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13380,14 +12856,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionPortTypeEnum createIfcDistributionPortTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDistributionPortTypeEnum result = IfcDistributionPortTypeEnum
-				.get(initialValue);
+	public IfcDistributionPortTypeEnum createIfcDistributionPortTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDistributionPortTypeEnum result = IfcDistributionPortTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13396,8 +12868,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDistributionPortTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcDistributionPortTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13406,14 +12877,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionSystemEnum createIfcDistributionSystemEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDistributionSystemEnum result = IfcDistributionSystemEnum
-				.get(initialValue);
+	public IfcDistributionSystemEnum createIfcDistributionSystemEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDistributionSystemEnum result = IfcDistributionSystemEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13422,8 +12889,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDistributionSystemEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDistributionSystemEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13432,14 +12898,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDocumentConfidentialityEnum createIfcDocumentConfidentialityEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDocumentConfidentialityEnum result = IfcDocumentConfidentialityEnum
-				.get(initialValue);
+	public IfcDocumentConfidentialityEnum createIfcDocumentConfidentialityEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDocumentConfidentialityEnum result = IfcDocumentConfidentialityEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13448,8 +12910,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDocumentConfidentialityEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcDocumentConfidentialityEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13458,13 +12919,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDocumentStatusEnum createIfcDocumentStatusEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcDocumentStatusEnum createIfcDocumentStatusEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDocumentStatusEnum result = IfcDocumentStatusEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13473,8 +12931,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDocumentStatusEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDocumentStatusEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13483,14 +12940,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorPanelOperationEnum createIfcDoorPanelOperationEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDoorPanelOperationEnum result = IfcDoorPanelOperationEnum
-				.get(initialValue);
+	public IfcDoorPanelOperationEnum createIfcDoorPanelOperationEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDoorPanelOperationEnum result = IfcDoorPanelOperationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13499,8 +12952,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDoorPanelOperationEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDoorPanelOperationEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13509,14 +12961,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorPanelPositionEnum createIfcDoorPanelPositionEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDoorPanelPositionEnum result = IfcDoorPanelPositionEnum
-				.get(initialValue);
+	public IfcDoorPanelPositionEnum createIfcDoorPanelPositionEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDoorPanelPositionEnum result = IfcDoorPanelPositionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13525,8 +12973,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDoorPanelPositionEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDoorPanelPositionEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13535,14 +12982,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorStyleConstructionEnum createIfcDoorStyleConstructionEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDoorStyleConstructionEnum result = IfcDoorStyleConstructionEnum
-				.get(initialValue);
+	public IfcDoorStyleConstructionEnum createIfcDoorStyleConstructionEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDoorStyleConstructionEnum result = IfcDoorStyleConstructionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13551,8 +12994,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDoorStyleConstructionEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcDoorStyleConstructionEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13561,14 +13003,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorStyleOperationEnum createIfcDoorStyleOperationEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDoorStyleOperationEnum result = IfcDoorStyleOperationEnum
-				.get(initialValue);
+	public IfcDoorStyleOperationEnum createIfcDoorStyleOperationEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDoorStyleOperationEnum result = IfcDoorStyleOperationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13577,8 +13015,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDoorStyleOperationEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDoorStyleOperationEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13587,13 +13024,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorTypeEnum createIfcDoorTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcDoorTypeEnum createIfcDoorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDoorTypeEnum result = IfcDoorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13602,8 +13036,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDoorTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDoorTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13612,14 +13045,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorTypeOperationEnum createIfcDoorTypeOperationEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDoorTypeOperationEnum result = IfcDoorTypeOperationEnum
-				.get(initialValue);
+	public IfcDoorTypeOperationEnum createIfcDoorTypeOperationEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDoorTypeOperationEnum result = IfcDoorTypeOperationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13628,8 +13057,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDoorTypeOperationEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDoorTypeOperationEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13638,14 +13066,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDuctFittingTypeEnum createIfcDuctFittingTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDuctFittingTypeEnum result = IfcDuctFittingTypeEnum
-				.get(initialValue);
+	public IfcDuctFittingTypeEnum createIfcDuctFittingTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDuctFittingTypeEnum result = IfcDuctFittingTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13654,8 +13078,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDuctFittingTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDuctFittingTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13664,14 +13087,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDuctSegmentTypeEnum createIfcDuctSegmentTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDuctSegmentTypeEnum result = IfcDuctSegmentTypeEnum
-				.get(initialValue);
+	public IfcDuctSegmentTypeEnum createIfcDuctSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDuctSegmentTypeEnum result = IfcDuctSegmentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13680,8 +13099,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDuctSegmentTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDuctSegmentTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13690,14 +13108,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDuctSilencerTypeEnum createIfcDuctSilencerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcDuctSilencerTypeEnum result = IfcDuctSilencerTypeEnum
-				.get(initialValue);
+	public IfcDuctSilencerTypeEnum createIfcDuctSilencerTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcDuctSilencerTypeEnum result = IfcDuctSilencerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13706,8 +13120,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDuctSilencerTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcDuctSilencerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13716,14 +13129,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricApplianceTypeEnum createIfcElectricApplianceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcElectricApplianceTypeEnum result = IfcElectricApplianceTypeEnum
-				.get(initialValue);
+	public IfcElectricApplianceTypeEnum createIfcElectricApplianceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcElectricApplianceTypeEnum result = IfcElectricApplianceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13732,8 +13141,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricApplianceTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricApplianceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13742,14 +13150,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricDistributionBoardTypeEnum createIfcElectricDistributionBoardTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcElectricDistributionBoardTypeEnum result = IfcElectricDistributionBoardTypeEnum
-				.get(initialValue);
+	public IfcElectricDistributionBoardTypeEnum createIfcElectricDistributionBoardTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcElectricDistributionBoardTypeEnum result = IfcElectricDistributionBoardTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13758,8 +13162,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricDistributionBoardTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricDistributionBoardTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13768,14 +13171,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricFlowStorageDeviceTypeEnum createIfcElectricFlowStorageDeviceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcElectricFlowStorageDeviceTypeEnum result = IfcElectricFlowStorageDeviceTypeEnum
-				.get(initialValue);
+	public IfcElectricFlowStorageDeviceTypeEnum createIfcElectricFlowStorageDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcElectricFlowStorageDeviceTypeEnum result = IfcElectricFlowStorageDeviceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13784,8 +13183,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricFlowStorageDeviceTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricFlowStorageDeviceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13794,14 +13192,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricGeneratorTypeEnum createIfcElectricGeneratorTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcElectricGeneratorTypeEnum result = IfcElectricGeneratorTypeEnum
-				.get(initialValue);
+	public IfcElectricGeneratorTypeEnum createIfcElectricGeneratorTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcElectricGeneratorTypeEnum result = IfcElectricGeneratorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13810,8 +13204,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricGeneratorTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricGeneratorTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13820,14 +13213,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricMotorTypeEnum createIfcElectricMotorTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcElectricMotorTypeEnum result = IfcElectricMotorTypeEnum
-				.get(initialValue);
+	public IfcElectricMotorTypeEnum createIfcElectricMotorTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcElectricMotorTypeEnum result = IfcElectricMotorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13836,8 +13225,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricMotorTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcElectricMotorTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13846,14 +13234,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricTimeControlTypeEnum createIfcElectricTimeControlTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcElectricTimeControlTypeEnum result = IfcElectricTimeControlTypeEnum
-				.get(initialValue);
+	public IfcElectricTimeControlTypeEnum createIfcElectricTimeControlTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcElectricTimeControlTypeEnum result = IfcElectricTimeControlTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13862,8 +13246,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricTimeControlTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricTimeControlTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13872,14 +13255,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementAssemblyTypeEnum createIfcElementAssemblyTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcElementAssemblyTypeEnum result = IfcElementAssemblyTypeEnum
-				.get(initialValue);
+	public IfcElementAssemblyTypeEnum createIfcElementAssemblyTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcElementAssemblyTypeEnum result = IfcElementAssemblyTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13888,8 +13267,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElementAssemblyTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcElementAssemblyTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13898,14 +13276,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementCompositionEnum createIfcElementCompositionEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcElementCompositionEnum result = IfcElementCompositionEnum
-				.get(initialValue);
+	public IfcElementCompositionEnum createIfcElementCompositionEnumFromString(EDataType eDataType, String initialValue) {
+		IfcElementCompositionEnum result = IfcElementCompositionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13914,8 +13288,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElementCompositionEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcElementCompositionEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13924,13 +13297,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEngineTypeEnum createIfcEngineTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcEngineTypeEnum createIfcEngineTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcEngineTypeEnum result = IfcEngineTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13939,8 +13309,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcEngineTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcEngineTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13949,14 +13318,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEvaporativeCoolerTypeEnum createIfcEvaporativeCoolerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcEvaporativeCoolerTypeEnum result = IfcEvaporativeCoolerTypeEnum
-				.get(initialValue);
+	public IfcEvaporativeCoolerTypeEnum createIfcEvaporativeCoolerTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcEvaporativeCoolerTypeEnum result = IfcEvaporativeCoolerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13965,8 +13330,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcEvaporativeCoolerTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcEvaporativeCoolerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -13975,13 +13339,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEvaporatorTypeEnum createIfcEvaporatorTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcEvaporatorTypeEnum createIfcEvaporatorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcEvaporatorTypeEnum result = IfcEvaporatorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13990,8 +13351,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcEvaporatorTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcEvaporatorTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14000,14 +13360,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEventTriggerTypeEnum createIfcEventTriggerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcEventTriggerTypeEnum result = IfcEventTriggerTypeEnum
-				.get(initialValue);
+	public IfcEventTriggerTypeEnum createIfcEventTriggerTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcEventTriggerTypeEnum result = IfcEventTriggerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14016,8 +13372,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcEventTriggerTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcEventTriggerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14026,13 +13381,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEventTypeEnum createIfcEventTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcEventTypeEnum createIfcEventTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcEventTypeEnum result = IfcEventTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14041,8 +13393,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcEventTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcEventTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14051,14 +13402,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcExternalSpatialElementTypeEnum createIfcExternalSpatialElementTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcExternalSpatialElementTypeEnum result = IfcExternalSpatialElementTypeEnum
-				.get(initialValue);
+	public IfcExternalSpatialElementTypeEnum createIfcExternalSpatialElementTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcExternalSpatialElementTypeEnum result = IfcExternalSpatialElementTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14067,8 +13414,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcExternalSpatialElementTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcExternalSpatialElementTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14077,13 +13423,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFanTypeEnum createIfcFanTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcFanTypeEnum createIfcFanTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFanTypeEnum result = IfcFanTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14092,8 +13435,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFanTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcFanTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14102,13 +13444,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFastenerTypeEnum createIfcFastenerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcFastenerTypeEnum createIfcFastenerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFastenerTypeEnum result = IfcFastenerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14117,8 +13456,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFastenerTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcFastenerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14127,13 +13465,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFilterTypeEnum createIfcFilterTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcFilterTypeEnum createIfcFilterTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFilterTypeEnum result = IfcFilterTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14142,8 +13477,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFilterTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcFilterTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14152,14 +13486,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFireSuppressionTerminalTypeEnum createIfcFireSuppressionTerminalTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcFireSuppressionTerminalTypeEnum result = IfcFireSuppressionTerminalTypeEnum
-				.get(initialValue);
+	public IfcFireSuppressionTerminalTypeEnum createIfcFireSuppressionTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcFireSuppressionTerminalTypeEnum result = IfcFireSuppressionTerminalTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14168,8 +13498,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFireSuppressionTerminalTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcFireSuppressionTerminalTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14178,13 +13507,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowDirectionEnum createIfcFlowDirectionEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcFlowDirectionEnum createIfcFlowDirectionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFlowDirectionEnum result = IfcFlowDirectionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14193,8 +13519,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFlowDirectionEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcFlowDirectionEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14203,14 +13528,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowInstrumentTypeEnum createIfcFlowInstrumentTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcFlowInstrumentTypeEnum result = IfcFlowInstrumentTypeEnum
-				.get(initialValue);
+	public IfcFlowInstrumentTypeEnum createIfcFlowInstrumentTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcFlowInstrumentTypeEnum result = IfcFlowInstrumentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14219,8 +13540,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFlowInstrumentTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcFlowInstrumentTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14229,13 +13549,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowMeterTypeEnum createIfcFlowMeterTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcFlowMeterTypeEnum createIfcFlowMeterTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFlowMeterTypeEnum result = IfcFlowMeterTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14244,8 +13561,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFlowMeterTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcFlowMeterTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14254,13 +13570,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFootingTypeEnum createIfcFootingTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcFootingTypeEnum createIfcFootingTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFootingTypeEnum result = IfcFootingTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14269,8 +13582,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFootingTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcFootingTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14279,13 +13591,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFurnitureTypeEnum createIfcFurnitureTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcFurnitureTypeEnum createIfcFurnitureTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFurnitureTypeEnum result = IfcFurnitureTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14294,8 +13603,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFurnitureTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcFurnitureTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14304,14 +13612,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGeographicElementTypeEnum createIfcGeographicElementTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcGeographicElementTypeEnum result = IfcGeographicElementTypeEnum
-				.get(initialValue);
+	public IfcGeographicElementTypeEnum createIfcGeographicElementTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcGeographicElementTypeEnum result = IfcGeographicElementTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14320,8 +13624,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcGeographicElementTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcGeographicElementTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14330,14 +13633,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGeometricProjectionEnum createIfcGeometricProjectionEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcGeometricProjectionEnum result = IfcGeometricProjectionEnum
-				.get(initialValue);
+	public IfcGeometricProjectionEnum createIfcGeometricProjectionEnumFromString(EDataType eDataType, String initialValue) {
+		IfcGeometricProjectionEnum result = IfcGeometricProjectionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14346,8 +13645,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcGeometricProjectionEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcGeometricProjectionEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14356,13 +13654,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGlobalOrLocalEnum createIfcGlobalOrLocalEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcGlobalOrLocalEnum createIfcGlobalOrLocalEnumFromString(EDataType eDataType, String initialValue) {
 		IfcGlobalOrLocalEnum result = IfcGlobalOrLocalEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14371,8 +13666,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcGlobalOrLocalEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcGlobalOrLocalEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14381,13 +13675,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGridTypeEnum createIfcGridTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcGridTypeEnum createIfcGridTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcGridTypeEnum result = IfcGridTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14396,8 +13687,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcGridTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcGridTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14406,14 +13696,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcHeatExchangerTypeEnum createIfcHeatExchangerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcHeatExchangerTypeEnum result = IfcHeatExchangerTypeEnum
-				.get(initialValue);
+	public IfcHeatExchangerTypeEnum createIfcHeatExchangerTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcHeatExchangerTypeEnum result = IfcHeatExchangerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14422,8 +13708,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcHeatExchangerTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcHeatExchangerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14432,13 +13717,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcHumidifierTypeEnum createIfcHumidifierTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcHumidifierTypeEnum createIfcHumidifierTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcHumidifierTypeEnum result = IfcHumidifierTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14447,8 +13729,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcHumidifierTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcHumidifierTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14457,14 +13738,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcInterceptorTypeEnum createIfcInterceptorTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcInterceptorTypeEnum result = IfcInterceptorTypeEnum
-				.get(initialValue);
+	public IfcInterceptorTypeEnum createIfcInterceptorTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcInterceptorTypeEnum result = IfcInterceptorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14473,8 +13750,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcInterceptorTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcInterceptorTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14483,14 +13759,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcInternalOrExternalEnum createIfcInternalOrExternalEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcInternalOrExternalEnum result = IfcInternalOrExternalEnum
-				.get(initialValue);
+	public IfcInternalOrExternalEnum createIfcInternalOrExternalEnumFromString(EDataType eDataType, String initialValue) {
+		IfcInternalOrExternalEnum result = IfcInternalOrExternalEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14499,8 +13771,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcInternalOrExternalEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcInternalOrExternalEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14509,13 +13780,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcInventoryTypeEnum createIfcInventoryTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcInventoryTypeEnum createIfcInventoryTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcInventoryTypeEnum result = IfcInventoryTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14524,8 +13792,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcInventoryTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcInventoryTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14534,14 +13801,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcJunctionBoxTypeEnum createIfcJunctionBoxTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcJunctionBoxTypeEnum result = IfcJunctionBoxTypeEnum
-				.get(initialValue);
+	public IfcJunctionBoxTypeEnum createIfcJunctionBoxTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcJunctionBoxTypeEnum result = IfcJunctionBoxTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14550,8 +13813,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcJunctionBoxTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcJunctionBoxTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14560,13 +13822,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcKnotType createIfcKnotTypeFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcKnotType createIfcKnotTypeFromString(EDataType eDataType, String initialValue) {
 		IfcKnotType result = IfcKnotType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14575,8 +13834,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcKnotTypeToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcKnotTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14585,14 +13843,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLaborResourceTypeEnum createIfcLaborResourceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcLaborResourceTypeEnum result = IfcLaborResourceTypeEnum
-				.get(initialValue);
+	public IfcLaborResourceTypeEnum createIfcLaborResourceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcLaborResourceTypeEnum result = IfcLaborResourceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14601,8 +13855,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLaborResourceTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcLaborResourceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14611,13 +13864,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLampTypeEnum createIfcLampTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcLampTypeEnum createIfcLampTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcLampTypeEnum result = IfcLampTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14626,8 +13876,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLampTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcLampTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14636,14 +13885,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLayerSetDirectionEnum createIfcLayerSetDirectionEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcLayerSetDirectionEnum result = IfcLayerSetDirectionEnum
-				.get(initialValue);
+	public IfcLayerSetDirectionEnum createIfcLayerSetDirectionEnumFromString(EDataType eDataType, String initialValue) {
+		IfcLayerSetDirectionEnum result = IfcLayerSetDirectionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14652,8 +13897,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLayerSetDirectionEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcLayerSetDirectionEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14662,14 +13906,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightDistributionCurveEnum createIfcLightDistributionCurveEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcLightDistributionCurveEnum result = IfcLightDistributionCurveEnum
-				.get(initialValue);
+	public IfcLightDistributionCurveEnum createIfcLightDistributionCurveEnumFromString(EDataType eDataType, String initialValue) {
+		IfcLightDistributionCurveEnum result = IfcLightDistributionCurveEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14678,8 +13918,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLightDistributionCurveEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcLightDistributionCurveEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14688,14 +13927,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightEmissionSourceEnum createIfcLightEmissionSourceEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcLightEmissionSourceEnum result = IfcLightEmissionSourceEnum
-				.get(initialValue);
+	public IfcLightEmissionSourceEnum createIfcLightEmissionSourceEnumFromString(EDataType eDataType, String initialValue) {
+		IfcLightEmissionSourceEnum result = IfcLightEmissionSourceEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14704,8 +13939,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLightEmissionSourceEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcLightEmissionSourceEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14714,14 +13948,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightFixtureTypeEnum createIfcLightFixtureTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcLightFixtureTypeEnum result = IfcLightFixtureTypeEnum
-				.get(initialValue);
+	public IfcLightFixtureTypeEnum createIfcLightFixtureTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcLightFixtureTypeEnum result = IfcLightFixtureTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14730,8 +13960,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLightFixtureTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcLightFixtureTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14740,13 +13969,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLoadGroupTypeEnum createIfcLoadGroupTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcLoadGroupTypeEnum createIfcLoadGroupTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcLoadGroupTypeEnum result = IfcLoadGroupTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14755,8 +13981,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLoadGroupTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcLoadGroupTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14765,14 +13990,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLogicalOperatorEnum createIfcLogicalOperatorEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcLogicalOperatorEnum result = IfcLogicalOperatorEnum
-				.get(initialValue);
+	public IfcLogicalOperatorEnum createIfcLogicalOperatorEnumFromString(EDataType eDataType, String initialValue) {
+		IfcLogicalOperatorEnum result = IfcLogicalOperatorEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14781,8 +14002,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLogicalOperatorEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcLogicalOperatorEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14791,14 +14011,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMechanicalFastenerTypeEnum createIfcMechanicalFastenerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcMechanicalFastenerTypeEnum result = IfcMechanicalFastenerTypeEnum
-				.get(initialValue);
+	public IfcMechanicalFastenerTypeEnum createIfcMechanicalFastenerTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcMechanicalFastenerTypeEnum result = IfcMechanicalFastenerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14807,8 +14023,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcMechanicalFastenerTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcMechanicalFastenerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14817,14 +14032,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMedicalDeviceTypeEnum createIfcMedicalDeviceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcMedicalDeviceTypeEnum result = IfcMedicalDeviceTypeEnum
-				.get(initialValue);
+	public IfcMedicalDeviceTypeEnum createIfcMedicalDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcMedicalDeviceTypeEnum result = IfcMedicalDeviceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14833,8 +14044,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcMedicalDeviceTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcMedicalDeviceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14843,13 +14053,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMemberTypeEnum createIfcMemberTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcMemberTypeEnum createIfcMemberTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcMemberTypeEnum result = IfcMemberTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14858,8 +14065,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcMemberTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcMemberTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14868,14 +14074,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMotorConnectionTypeEnum createIfcMotorConnectionTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcMotorConnectionTypeEnum result = IfcMotorConnectionTypeEnum
-				.get(initialValue);
+	public IfcMotorConnectionTypeEnum createIfcMotorConnectionTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcMotorConnectionTypeEnum result = IfcMotorConnectionTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14884,8 +14086,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcMotorConnectionTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcMotorConnectionTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14894,13 +14095,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcNullStyleEnum createIfcNullStyleEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcNullStyleEnum createIfcNullStyleEnumFromString(EDataType eDataType, String initialValue) {
 		IfcNullStyleEnum result = IfcNullStyleEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14909,8 +14107,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcNullStyleEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcNullStyleEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14919,13 +14116,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcObjectTypeEnum createIfcObjectTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcObjectTypeEnum createIfcObjectTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcObjectTypeEnum result = IfcObjectTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14934,8 +14128,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcObjectTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcObjectTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14944,13 +14137,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcObjectiveEnum createIfcObjectiveEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcObjectiveEnum createIfcObjectiveEnumFromString(EDataType eDataType, String initialValue) {
 		IfcObjectiveEnum result = IfcObjectiveEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14959,8 +14149,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcObjectiveEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcObjectiveEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14969,13 +14158,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOccupantTypeEnum createIfcOccupantTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcOccupantTypeEnum createIfcOccupantTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcOccupantTypeEnum result = IfcOccupantTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -14984,8 +14170,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcOccupantTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcOccupantTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -14994,14 +14179,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOpeningElementTypeEnum createIfcOpeningElementTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcOpeningElementTypeEnum result = IfcOpeningElementTypeEnum
-				.get(initialValue);
+	public IfcOpeningElementTypeEnum createIfcOpeningElementTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcOpeningElementTypeEnum result = IfcOpeningElementTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15010,8 +14191,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcOpeningElementTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcOpeningElementTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15020,13 +14200,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOutletTypeEnum createIfcOutletTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcOutletTypeEnum createIfcOutletTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcOutletTypeEnum result = IfcOutletTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15035,8 +14212,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcOutletTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcOutletTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15045,14 +14221,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPerformanceHistoryTypeEnum createIfcPerformanceHistoryTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcPerformanceHistoryTypeEnum result = IfcPerformanceHistoryTypeEnum
-				.get(initialValue);
+	public IfcPerformanceHistoryTypeEnum createIfcPerformanceHistoryTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcPerformanceHistoryTypeEnum result = IfcPerformanceHistoryTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15061,8 +14233,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPerformanceHistoryTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcPerformanceHistoryTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15071,14 +14242,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPermeableCoveringOperationEnum createIfcPermeableCoveringOperationEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcPermeableCoveringOperationEnum result = IfcPermeableCoveringOperationEnum
-				.get(initialValue);
+	public IfcPermeableCoveringOperationEnum createIfcPermeableCoveringOperationEnumFromString(EDataType eDataType, String initialValue) {
+		IfcPermeableCoveringOperationEnum result = IfcPermeableCoveringOperationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15087,8 +14254,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPermeableCoveringOperationEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcPermeableCoveringOperationEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15097,13 +14263,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPermitTypeEnum createIfcPermitTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcPermitTypeEnum createIfcPermitTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPermitTypeEnum result = IfcPermitTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15112,8 +14275,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPermitTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcPermitTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15122,14 +14284,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPhysicalOrVirtualEnum createIfcPhysicalOrVirtualEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcPhysicalOrVirtualEnum result = IfcPhysicalOrVirtualEnum
-				.get(initialValue);
+	public IfcPhysicalOrVirtualEnum createIfcPhysicalOrVirtualEnumFromString(EDataType eDataType, String initialValue) {
+		IfcPhysicalOrVirtualEnum result = IfcPhysicalOrVirtualEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15138,8 +14296,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPhysicalOrVirtualEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcPhysicalOrVirtualEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15148,14 +14305,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPileConstructionEnum createIfcPileConstructionEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcPileConstructionEnum result = IfcPileConstructionEnum
-				.get(initialValue);
+	public IfcPileConstructionEnum createIfcPileConstructionEnumFromString(EDataType eDataType, String initialValue) {
+		IfcPileConstructionEnum result = IfcPileConstructionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15164,8 +14317,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPileConstructionEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcPileConstructionEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15174,13 +14326,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPileTypeEnum createIfcPileTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcPileTypeEnum createIfcPileTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPileTypeEnum result = IfcPileTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15189,8 +14338,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPileTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcPileTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15199,14 +14347,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPipeFittingTypeEnum createIfcPipeFittingTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcPipeFittingTypeEnum result = IfcPipeFittingTypeEnum
-				.get(initialValue);
+	public IfcPipeFittingTypeEnum createIfcPipeFittingTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcPipeFittingTypeEnum result = IfcPipeFittingTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15215,8 +14359,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPipeFittingTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcPipeFittingTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15225,14 +14368,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPipeSegmentTypeEnum createIfcPipeSegmentTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcPipeSegmentTypeEnum result = IfcPipeSegmentTypeEnum
-				.get(initialValue);
+	public IfcPipeSegmentTypeEnum createIfcPipeSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcPipeSegmentTypeEnum result = IfcPipeSegmentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15241,8 +14380,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPipeSegmentTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcPipeSegmentTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15251,13 +14389,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPlateTypeEnum createIfcPlateTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcPlateTypeEnum createIfcPlateTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPlateTypeEnum result = IfcPlateTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15266,8 +14401,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPlateTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcPlateTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15276,13 +14410,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProcedureTypeEnum createIfcProcedureTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcProcedureTypeEnum createIfcProcedureTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcProcedureTypeEnum result = IfcProcedureTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15291,8 +14422,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProcedureTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcProcedureTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15301,13 +14431,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProfileTypeEnum createIfcProfileTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcProfileTypeEnum createIfcProfileTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcProfileTypeEnum result = IfcProfileTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15316,8 +14443,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProfileTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcProfileTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15326,14 +14452,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectOrderTypeEnum createIfcProjectOrderTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcProjectOrderTypeEnum result = IfcProjectOrderTypeEnum
-				.get(initialValue);
+	public IfcProjectOrderTypeEnum createIfcProjectOrderTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcProjectOrderTypeEnum result = IfcProjectOrderTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15342,8 +14464,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProjectOrderTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcProjectOrderTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15352,14 +14473,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectedOrTrueLengthEnum createIfcProjectedOrTrueLengthEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcProjectedOrTrueLengthEnum result = IfcProjectedOrTrueLengthEnum
-				.get(initialValue);
+	public IfcProjectedOrTrueLengthEnum createIfcProjectedOrTrueLengthEnumFromString(EDataType eDataType, String initialValue) {
+		IfcProjectedOrTrueLengthEnum result = IfcProjectedOrTrueLengthEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15368,8 +14485,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProjectedOrTrueLengthEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcProjectedOrTrueLengthEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15378,14 +14494,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectionElementTypeEnum createIfcProjectionElementTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcProjectionElementTypeEnum result = IfcProjectionElementTypeEnum
-				.get(initialValue);
+	public IfcProjectionElementTypeEnum createIfcProjectionElementTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcProjectionElementTypeEnum result = IfcProjectionElementTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15394,8 +14506,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProjectionElementTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcProjectionElementTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15404,14 +14515,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertySetTemplateTypeEnum createIfcPropertySetTemplateTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcPropertySetTemplateTypeEnum result = IfcPropertySetTemplateTypeEnum
-				.get(initialValue);
+	public IfcPropertySetTemplateTypeEnum createIfcPropertySetTemplateTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcPropertySetTemplateTypeEnum result = IfcPropertySetTemplateTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15420,8 +14527,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPropertySetTemplateTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcPropertySetTemplateTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15430,14 +14536,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProtectiveDeviceTrippingUnitTypeEnum createIfcProtectiveDeviceTrippingUnitTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcProtectiveDeviceTrippingUnitTypeEnum result = IfcProtectiveDeviceTrippingUnitTypeEnum
-				.get(initialValue);
+	public IfcProtectiveDeviceTrippingUnitTypeEnum createIfcProtectiveDeviceTrippingUnitTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcProtectiveDeviceTrippingUnitTypeEnum result = IfcProtectiveDeviceTrippingUnitTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15446,8 +14548,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProtectiveDeviceTrippingUnitTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcProtectiveDeviceTrippingUnitTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15456,14 +14557,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProtectiveDeviceTypeEnum createIfcProtectiveDeviceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcProtectiveDeviceTypeEnum result = IfcProtectiveDeviceTypeEnum
-				.get(initialValue);
+	public IfcProtectiveDeviceTypeEnum createIfcProtectiveDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcProtectiveDeviceTypeEnum result = IfcProtectiveDeviceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15472,8 +14569,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProtectiveDeviceTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcProtectiveDeviceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15482,13 +14578,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPumpTypeEnum createIfcPumpTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcPumpTypeEnum createIfcPumpTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPumpTypeEnum result = IfcPumpTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15497,8 +14590,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPumpTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcPumpTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15507,13 +14599,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRailingTypeEnum createIfcRailingTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcRailingTypeEnum createIfcRailingTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRailingTypeEnum result = IfcRailingTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15522,8 +14611,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRailingTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcRailingTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15532,13 +14620,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRampFlightTypeEnum createIfcRampFlightTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcRampFlightTypeEnum createIfcRampFlightTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRampFlightTypeEnum result = IfcRampFlightTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15547,8 +14632,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRampFlightTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcRampFlightTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15557,13 +14641,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRampTypeEnum createIfcRampTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcRampTypeEnum createIfcRampTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRampTypeEnum result = IfcRampTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15572,8 +14653,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRampTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcRampTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15582,13 +14662,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRecurrenceTypeEnum createIfcRecurrenceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcRecurrenceTypeEnum createIfcRecurrenceTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRecurrenceTypeEnum result = IfcRecurrenceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15597,8 +14674,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRecurrenceTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcRecurrenceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15607,14 +14683,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReflectanceMethodEnum createIfcReflectanceMethodEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcReflectanceMethodEnum result = IfcReflectanceMethodEnum
-				.get(initialValue);
+	public IfcReflectanceMethodEnum createIfcReflectanceMethodEnumFromString(EDataType eDataType, String initialValue) {
+		IfcReflectanceMethodEnum result = IfcReflectanceMethodEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15623,8 +14695,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcReflectanceMethodEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcReflectanceMethodEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15633,14 +14704,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcingBarRoleEnum createIfcReinforcingBarRoleEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcReinforcingBarRoleEnum result = IfcReinforcingBarRoleEnum
-				.get(initialValue);
+	public IfcReinforcingBarRoleEnum createIfcReinforcingBarRoleEnumFromString(EDataType eDataType, String initialValue) {
+		IfcReinforcingBarRoleEnum result = IfcReinforcingBarRoleEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15649,8 +14716,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcReinforcingBarRoleEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcReinforcingBarRoleEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15659,14 +14725,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcingBarSurfaceEnum createIfcReinforcingBarSurfaceEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcReinforcingBarSurfaceEnum result = IfcReinforcingBarSurfaceEnum
-				.get(initialValue);
+	public IfcReinforcingBarSurfaceEnum createIfcReinforcingBarSurfaceEnumFromString(EDataType eDataType, String initialValue) {
+		IfcReinforcingBarSurfaceEnum result = IfcReinforcingBarSurfaceEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15675,8 +14737,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcReinforcingBarSurfaceEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcReinforcingBarSurfaceEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15685,14 +14746,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcingBarTypeEnum createIfcReinforcingBarTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcReinforcingBarTypeEnum result = IfcReinforcingBarTypeEnum
-				.get(initialValue);
+	public IfcReinforcingBarTypeEnum createIfcReinforcingBarTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcReinforcingBarTypeEnum result = IfcReinforcingBarTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15701,8 +14758,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcReinforcingBarTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcReinforcingBarTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15711,14 +14767,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcingMeshTypeEnum createIfcReinforcingMeshTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcReinforcingMeshTypeEnum result = IfcReinforcingMeshTypeEnum
-				.get(initialValue);
+	public IfcReinforcingMeshTypeEnum createIfcReinforcingMeshTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcReinforcingMeshTypeEnum result = IfcReinforcingMeshTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15727,8 +14779,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcReinforcingMeshTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcReinforcingMeshTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15737,13 +14788,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRoleEnum createIfcRoleEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcRoleEnum createIfcRoleEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRoleEnum result = IfcRoleEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15752,8 +14800,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRoleEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcRoleEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15762,13 +14809,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRoofTypeEnum createIfcRoofTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcRoofTypeEnum createIfcRoofTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRoofTypeEnum result = IfcRoofTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15777,8 +14821,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRoofTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcRoofTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15787,13 +14830,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSIPrefix createIfcSIPrefixFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcSIPrefix createIfcSIPrefixFromString(EDataType eDataType, String initialValue) {
 		IfcSIPrefix result = IfcSIPrefix.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15802,8 +14842,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSIPrefixToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSIPrefixToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15812,13 +14851,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSIUnitName createIfcSIUnitNameFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcSIUnitName createIfcSIUnitNameFromString(EDataType eDataType, String initialValue) {
 		IfcSIUnitName result = IfcSIUnitName.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15827,8 +14863,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSIUnitNameToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSIUnitNameToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15837,14 +14872,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSanitaryTerminalTypeEnum createIfcSanitaryTerminalTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcSanitaryTerminalTypeEnum result = IfcSanitaryTerminalTypeEnum
-				.get(initialValue);
+	public IfcSanitaryTerminalTypeEnum createIfcSanitaryTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcSanitaryTerminalTypeEnum result = IfcSanitaryTerminalTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15853,8 +14884,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSanitaryTerminalTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcSanitaryTerminalTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15863,13 +14893,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSectionTypeEnum createIfcSectionTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcSectionTypeEnum createIfcSectionTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSectionTypeEnum result = IfcSectionTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15878,8 +14905,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSectionTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSectionTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15888,13 +14914,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSensorTypeEnum createIfcSensorTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcSensorTypeEnum createIfcSensorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSensorTypeEnum result = IfcSensorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15903,8 +14926,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSensorTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSensorTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15913,13 +14935,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSequenceEnum createIfcSequenceEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcSequenceEnum createIfcSequenceEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSequenceEnum result = IfcSequenceEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15928,8 +14947,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSequenceEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSequenceEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15938,14 +14956,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcShadingDeviceTypeEnum createIfcShadingDeviceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcShadingDeviceTypeEnum result = IfcShadingDeviceTypeEnum
-				.get(initialValue);
+	public IfcShadingDeviceTypeEnum createIfcShadingDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcShadingDeviceTypeEnum result = IfcShadingDeviceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15954,8 +14968,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcShadingDeviceTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcShadingDeviceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15964,14 +14977,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSimplePropertyTemplateTypeEnum createIfcSimplePropertyTemplateTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcSimplePropertyTemplateTypeEnum result = IfcSimplePropertyTemplateTypeEnum
-				.get(initialValue);
+	public IfcSimplePropertyTemplateTypeEnum createIfcSimplePropertyTemplateTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcSimplePropertyTemplateTypeEnum result = IfcSimplePropertyTemplateTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -15980,8 +14989,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSimplePropertyTemplateTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcSimplePropertyTemplateTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -15990,13 +14998,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSlabTypeEnum createIfcSlabTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcSlabTypeEnum createIfcSlabTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSlabTypeEnum result = IfcSlabTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16005,8 +15010,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSlabTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSlabTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16015,14 +15019,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSolarDeviceTypeEnum createIfcSolarDeviceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcSolarDeviceTypeEnum result = IfcSolarDeviceTypeEnum
-				.get(initialValue);
+	public IfcSolarDeviceTypeEnum createIfcSolarDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcSolarDeviceTypeEnum result = IfcSolarDeviceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16031,8 +15031,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSolarDeviceTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSolarDeviceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16041,14 +15040,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpaceHeaterTypeEnum createIfcSpaceHeaterTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcSpaceHeaterTypeEnum result = IfcSpaceHeaterTypeEnum
-				.get(initialValue);
+	public IfcSpaceHeaterTypeEnum createIfcSpaceHeaterTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcSpaceHeaterTypeEnum result = IfcSpaceHeaterTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16057,8 +15052,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSpaceHeaterTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSpaceHeaterTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16067,13 +15061,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpaceTypeEnum createIfcSpaceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcSpaceTypeEnum createIfcSpaceTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSpaceTypeEnum result = IfcSpaceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16082,8 +15073,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSpaceTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSpaceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16092,14 +15082,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpatialZoneTypeEnum createIfcSpatialZoneTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcSpatialZoneTypeEnum result = IfcSpatialZoneTypeEnum
-				.get(initialValue);
+	public IfcSpatialZoneTypeEnum createIfcSpatialZoneTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcSpatialZoneTypeEnum result = IfcSpatialZoneTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16108,8 +15094,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSpatialZoneTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSpatialZoneTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16118,14 +15103,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStackTerminalTypeEnum createIfcStackTerminalTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcStackTerminalTypeEnum result = IfcStackTerminalTypeEnum
-				.get(initialValue);
+	public IfcStackTerminalTypeEnum createIfcStackTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcStackTerminalTypeEnum result = IfcStackTerminalTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16134,8 +15115,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStackTerminalTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcStackTerminalTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16144,14 +15124,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStairFlightTypeEnum createIfcStairFlightTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcStairFlightTypeEnum result = IfcStairFlightTypeEnum
-				.get(initialValue);
+	public IfcStairFlightTypeEnum createIfcStairFlightTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcStairFlightTypeEnum result = IfcStairFlightTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16160,8 +15136,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStairFlightTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcStairFlightTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16170,13 +15145,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStairTypeEnum createIfcStairTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcStairTypeEnum createIfcStairTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcStairTypeEnum result = IfcStairTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16185,8 +15157,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStairTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcStairTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16195,13 +15166,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStateEnum createIfcStateEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcStateEnum createIfcStateEnumFromString(EDataType eDataType, String initialValue) {
 		IfcStateEnum result = IfcStateEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16210,8 +15178,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStateEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcStateEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16220,14 +15187,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralCurveActivityTypeEnum createIfcStructuralCurveActivityTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcStructuralCurveActivityTypeEnum result = IfcStructuralCurveActivityTypeEnum
-				.get(initialValue);
+	public IfcStructuralCurveActivityTypeEnum createIfcStructuralCurveActivityTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcStructuralCurveActivityTypeEnum result = IfcStructuralCurveActivityTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16236,8 +15199,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStructuralCurveActivityTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcStructuralCurveActivityTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16246,14 +15208,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralCurveMemberTypeEnum createIfcStructuralCurveMemberTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcStructuralCurveMemberTypeEnum result = IfcStructuralCurveMemberTypeEnum
-				.get(initialValue);
+	public IfcStructuralCurveMemberTypeEnum createIfcStructuralCurveMemberTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcStructuralCurveMemberTypeEnum result = IfcStructuralCurveMemberTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16262,8 +15220,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStructuralCurveMemberTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcStructuralCurveMemberTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16272,14 +15229,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralSurfaceActivityTypeEnum createIfcStructuralSurfaceActivityTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcStructuralSurfaceActivityTypeEnum result = IfcStructuralSurfaceActivityTypeEnum
-				.get(initialValue);
+	public IfcStructuralSurfaceActivityTypeEnum createIfcStructuralSurfaceActivityTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcStructuralSurfaceActivityTypeEnum result = IfcStructuralSurfaceActivityTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16288,8 +15241,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStructuralSurfaceActivityTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcStructuralSurfaceActivityTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16298,14 +15250,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralSurfaceMemberTypeEnum createIfcStructuralSurfaceMemberTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcStructuralSurfaceMemberTypeEnum result = IfcStructuralSurfaceMemberTypeEnum
-				.get(initialValue);
+	public IfcStructuralSurfaceMemberTypeEnum createIfcStructuralSurfaceMemberTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcStructuralSurfaceMemberTypeEnum result = IfcStructuralSurfaceMemberTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16314,8 +15262,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStructuralSurfaceMemberTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcStructuralSurfaceMemberTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16324,14 +15271,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSubContractResourceTypeEnum createIfcSubContractResourceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcSubContractResourceTypeEnum result = IfcSubContractResourceTypeEnum
-				.get(initialValue);
+	public IfcSubContractResourceTypeEnum createIfcSubContractResourceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcSubContractResourceTypeEnum result = IfcSubContractResourceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16340,8 +15283,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSubContractResourceTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcSubContractResourceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16350,14 +15292,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceFeatureTypeEnum createIfcSurfaceFeatureTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcSurfaceFeatureTypeEnum result = IfcSurfaceFeatureTypeEnum
-				.get(initialValue);
+	public IfcSurfaceFeatureTypeEnum createIfcSurfaceFeatureTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcSurfaceFeatureTypeEnum result = IfcSurfaceFeatureTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16366,8 +15304,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSurfaceFeatureTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSurfaceFeatureTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16376,13 +15313,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceSide createIfcSurfaceSideFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcSurfaceSide createIfcSurfaceSideFromString(EDataType eDataType, String initialValue) {
 		IfcSurfaceSide result = IfcSurfaceSide.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16391,8 +15325,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSurfaceSideToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcSurfaceSideToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16401,14 +15334,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSwitchingDeviceTypeEnum createIfcSwitchingDeviceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcSwitchingDeviceTypeEnum result = IfcSwitchingDeviceTypeEnum
-				.get(initialValue);
+	public IfcSwitchingDeviceTypeEnum createIfcSwitchingDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcSwitchingDeviceTypeEnum result = IfcSwitchingDeviceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16417,8 +15346,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSwitchingDeviceTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcSwitchingDeviceTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16427,14 +15355,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSystemFurnitureElementTypeEnum createIfcSystemFurnitureElementTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcSystemFurnitureElementTypeEnum result = IfcSystemFurnitureElementTypeEnum
-				.get(initialValue);
+	public IfcSystemFurnitureElementTypeEnum createIfcSystemFurnitureElementTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcSystemFurnitureElementTypeEnum result = IfcSystemFurnitureElementTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16443,8 +15367,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSystemFurnitureElementTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcSystemFurnitureElementTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16453,13 +15376,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTankTypeEnum createIfcTankTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcTankTypeEnum createIfcTankTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTankTypeEnum result = IfcTankTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16468,8 +15388,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTankTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcTankTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16478,13 +15397,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTaskDurationEnum createIfcTaskDurationEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcTaskDurationEnum createIfcTaskDurationEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTaskDurationEnum result = IfcTaskDurationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16493,8 +15409,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTaskDurationEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcTaskDurationEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16503,13 +15418,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTaskTypeEnum createIfcTaskTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcTaskTypeEnum createIfcTaskTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTaskTypeEnum result = IfcTaskTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16518,8 +15430,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTaskTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcTaskTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16528,14 +15439,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTendonAnchorTypeEnum createIfcTendonAnchorTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcTendonAnchorTypeEnum result = IfcTendonAnchorTypeEnum
-				.get(initialValue);
+	public IfcTendonAnchorTypeEnum createIfcTendonAnchorTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcTendonAnchorTypeEnum result = IfcTendonAnchorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16544,8 +15451,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTendonAnchorTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcTendonAnchorTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16554,13 +15460,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTendonTypeEnum createIfcTendonTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcTendonTypeEnum createIfcTendonTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTendonTypeEnum result = IfcTendonTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16569,8 +15472,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTendonTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcTendonTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16579,13 +15481,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextPath createIfcTextPathFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcTextPath createIfcTextPathFromString(EDataType eDataType, String initialValue) {
 		IfcTextPath result = IfcTextPath.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16594,8 +15493,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTextPathToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcTextPathToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16604,14 +15502,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTimeSeriesDataTypeEnum createIfcTimeSeriesDataTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcTimeSeriesDataTypeEnum result = IfcTimeSeriesDataTypeEnum
-				.get(initialValue);
+	public IfcTimeSeriesDataTypeEnum createIfcTimeSeriesDataTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcTimeSeriesDataTypeEnum result = IfcTimeSeriesDataTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16620,8 +15514,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTimeSeriesDataTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcTimeSeriesDataTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16630,14 +15523,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTransformerTypeEnum createIfcTransformerTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcTransformerTypeEnum result = IfcTransformerTypeEnum
-				.get(initialValue);
+	public IfcTransformerTypeEnum createIfcTransformerTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcTransformerTypeEnum result = IfcTransformerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16646,8 +15535,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTransformerTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcTransformerTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16656,13 +15544,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTransitionCode createIfcTransitionCodeFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcTransitionCode createIfcTransitionCodeFromString(EDataType eDataType, String initialValue) {
 		IfcTransitionCode result = IfcTransitionCode.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16671,8 +15556,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTransitionCodeToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcTransitionCodeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16681,14 +15565,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTransportElementTypeEnum createIfcTransportElementTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcTransportElementTypeEnum result = IfcTransportElementTypeEnum
-				.get(initialValue);
+	public IfcTransportElementTypeEnum createIfcTransportElementTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcTransportElementTypeEnum result = IfcTransportElementTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16697,8 +15577,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTransportElementTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcTransportElementTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16707,13 +15586,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTrimmingPreference createIfcTrimmingPreferenceFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcTrimmingPreference createIfcTrimmingPreferenceFromString(EDataType eDataType, String initialValue) {
 		IfcTrimmingPreference result = IfcTrimmingPreference.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16722,8 +15598,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTrimmingPreferenceToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcTrimmingPreferenceToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16732,13 +15607,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTubeBundleTypeEnum createIfcTubeBundleTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcTubeBundleTypeEnum createIfcTubeBundleTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTubeBundleTypeEnum result = IfcTubeBundleTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16747,8 +15619,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTubeBundleTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcTubeBundleTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16757,13 +15628,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcUnitEnum createIfcUnitEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcUnitEnum createIfcUnitEnumFromString(EDataType eDataType, String initialValue) {
 		IfcUnitEnum result = IfcUnitEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16772,8 +15640,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcUnitEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcUnitEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16782,14 +15649,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcUnitaryControlElementTypeEnum createIfcUnitaryControlElementTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcUnitaryControlElementTypeEnum result = IfcUnitaryControlElementTypeEnum
-				.get(initialValue);
+	public IfcUnitaryControlElementTypeEnum createIfcUnitaryControlElementTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcUnitaryControlElementTypeEnum result = IfcUnitaryControlElementTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16798,8 +15661,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcUnitaryControlElementTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcUnitaryControlElementTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16808,14 +15670,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcUnitaryEquipmentTypeEnum createIfcUnitaryEquipmentTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcUnitaryEquipmentTypeEnum result = IfcUnitaryEquipmentTypeEnum
-				.get(initialValue);
+	public IfcUnitaryEquipmentTypeEnum createIfcUnitaryEquipmentTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcUnitaryEquipmentTypeEnum result = IfcUnitaryEquipmentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16824,8 +15682,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcUnitaryEquipmentTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcUnitaryEquipmentTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16834,13 +15691,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcValveTypeEnum createIfcValveTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcValveTypeEnum createIfcValveTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcValveTypeEnum result = IfcValveTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16849,8 +15703,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcValveTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcValveTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16859,14 +15712,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVibrationIsolatorTypeEnum createIfcVibrationIsolatorTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcVibrationIsolatorTypeEnum result = IfcVibrationIsolatorTypeEnum
-				.get(initialValue);
+	public IfcVibrationIsolatorTypeEnum createIfcVibrationIsolatorTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcVibrationIsolatorTypeEnum result = IfcVibrationIsolatorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16875,8 +15724,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcVibrationIsolatorTypeEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcVibrationIsolatorTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16885,14 +15733,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVoidingFeatureTypeEnum createIfcVoidingFeatureTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcVoidingFeatureTypeEnum result = IfcVoidingFeatureTypeEnum
-				.get(initialValue);
+	public IfcVoidingFeatureTypeEnum createIfcVoidingFeatureTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcVoidingFeatureTypeEnum result = IfcVoidingFeatureTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16901,8 +15745,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcVoidingFeatureTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcVoidingFeatureTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16911,13 +15754,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWallTypeEnum createIfcWallTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcWallTypeEnum createIfcWallTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcWallTypeEnum result = IfcWallTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16926,8 +15766,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWallTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcWallTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16936,14 +15775,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWasteTerminalTypeEnum createIfcWasteTerminalTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcWasteTerminalTypeEnum result = IfcWasteTerminalTypeEnum
-				.get(initialValue);
+	public IfcWasteTerminalTypeEnum createIfcWasteTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcWasteTerminalTypeEnum result = IfcWasteTerminalTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16952,8 +15787,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWasteTerminalTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcWasteTerminalTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16962,14 +15796,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowPanelOperationEnum createIfcWindowPanelOperationEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcWindowPanelOperationEnum result = IfcWindowPanelOperationEnum
-				.get(initialValue);
+	public IfcWindowPanelOperationEnum createIfcWindowPanelOperationEnumFromString(EDataType eDataType, String initialValue) {
+		IfcWindowPanelOperationEnum result = IfcWindowPanelOperationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -16978,8 +15808,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWindowPanelOperationEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcWindowPanelOperationEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -16988,14 +15817,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowPanelPositionEnum createIfcWindowPanelPositionEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcWindowPanelPositionEnum result = IfcWindowPanelPositionEnum
-				.get(initialValue);
+	public IfcWindowPanelPositionEnum createIfcWindowPanelPositionEnumFromString(EDataType eDataType, String initialValue) {
+		IfcWindowPanelPositionEnum result = IfcWindowPanelPositionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -17004,8 +15829,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWindowPanelPositionEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcWindowPanelPositionEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -17014,14 +15838,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowStyleConstructionEnum createIfcWindowStyleConstructionEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcWindowStyleConstructionEnum result = IfcWindowStyleConstructionEnum
-				.get(initialValue);
+	public IfcWindowStyleConstructionEnum createIfcWindowStyleConstructionEnumFromString(EDataType eDataType, String initialValue) {
+		IfcWindowStyleConstructionEnum result = IfcWindowStyleConstructionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -17030,8 +15850,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWindowStyleConstructionEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcWindowStyleConstructionEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -17040,14 +15859,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowStyleOperationEnum createIfcWindowStyleOperationEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcWindowStyleOperationEnum result = IfcWindowStyleOperationEnum
-				.get(initialValue);
+	public IfcWindowStyleOperationEnum createIfcWindowStyleOperationEnumFromString(EDataType eDataType, String initialValue) {
+		IfcWindowStyleOperationEnum result = IfcWindowStyleOperationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -17056,8 +15871,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWindowStyleOperationEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcWindowStyleOperationEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -17066,13 +15880,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowTypeEnum createIfcWindowTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcWindowTypeEnum createIfcWindowTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcWindowTypeEnum result = IfcWindowTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -17081,8 +15892,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWindowTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcWindowTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -17091,14 +15901,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowTypePartitioningEnum createIfcWindowTypePartitioningEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcWindowTypePartitioningEnum result = IfcWindowTypePartitioningEnum
-				.get(initialValue);
+	public IfcWindowTypePartitioningEnum createIfcWindowTypePartitioningEnumFromString(EDataType eDataType, String initialValue) {
+		IfcWindowTypePartitioningEnum result = IfcWindowTypePartitioningEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -17107,8 +15913,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWindowTypePartitioningEnumToString(
-			EDataType eDataType, Object instanceValue) {
+	public String convertIfcWindowTypePartitioningEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -17117,14 +15922,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWorkCalendarTypeEnum createIfcWorkCalendarTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcWorkCalendarTypeEnum result = IfcWorkCalendarTypeEnum
-				.get(initialValue);
+	public IfcWorkCalendarTypeEnum createIfcWorkCalendarTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcWorkCalendarTypeEnum result = IfcWorkCalendarTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -17133,8 +15934,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWorkCalendarTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcWorkCalendarTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -17143,13 +15943,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWorkPlanTypeEnum createIfcWorkPlanTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcWorkPlanTypeEnum createIfcWorkPlanTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcWorkPlanTypeEnum result = IfcWorkPlanTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -17158,8 +15955,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWorkPlanTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcWorkPlanTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -17168,14 +15964,10 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWorkScheduleTypeEnum createIfcWorkScheduleTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
-		IfcWorkScheduleTypeEnum result = IfcWorkScheduleTypeEnum
-				.get(initialValue);
+	public IfcWorkScheduleTypeEnum createIfcWorkScheduleTypeEnumFromString(EDataType eDataType, String initialValue) {
+		IfcWorkScheduleTypeEnum result = IfcWorkScheduleTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -17184,8 +15976,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWorkScheduleTypeEnumToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertIfcWorkScheduleTypeEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

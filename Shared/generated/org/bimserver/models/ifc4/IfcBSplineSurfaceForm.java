@@ -140,8 +140,7 @@ public enum IfcBSplineSurfaceForm implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SURF_OF_LINEAR_EXTRUSION(10, "SURF_OF_LINEAR_EXTRUSION",
-			"SURF_OF_LINEAR_EXTRUSION"),
+	SURF_OF_LINEAR_EXTRUSION(10, "SURF_OF_LINEAR_EXTRUSION", "SURF_OF_LINEAR_EXTRUSION"),
 
 	/**
 	 * The '<em><b>CONICAL SURF</b></em>' literal object.
@@ -339,10 +338,8 @@ public enum IfcBSplineSurfaceForm implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBSplineSurfaceForm[] VALUES_ARRAY = new IfcBSplineSurfaceForm[] {
-			NULL, RULED_SURF, SPHERICAL_SURF, TOROIDAL_SURF, PLANE_SURF,
-			SURF_OF_REVOLUTION, GENERALISED_CONE, CYLINDRICAL_SURF,
-			UNSPECIFIED, QUADRIC_SURF, SURF_OF_LINEAR_EXTRUSION, CONICAL_SURF, };
+	private static final IfcBSplineSurfaceForm[] VALUES_ARRAY = new IfcBSplineSurfaceForm[] { NULL, RULED_SURF, SPHERICAL_SURF, TOROIDAL_SURF, PLANE_SURF, SURF_OF_REVOLUTION,
+			GENERALISED_CONE, CYLINDRICAL_SURF, UNSPECIFIED, QUADRIC_SURF, SURF_OF_LINEAR_EXTRUSION, CONICAL_SURF, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc BSpline Surface Form</b></em>' enumerators.
@@ -350,8 +347,7 @@ public enum IfcBSplineSurfaceForm implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcBSplineSurfaceForm> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcBSplineSurfaceForm> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc BSpline Surface Form</b></em>' literal with the specified literal value.

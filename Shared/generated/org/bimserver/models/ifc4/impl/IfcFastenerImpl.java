@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFastenerImpl extends IfcElementComponentImpl implements
-		IfcFastener {
+public class IfcFastenerImpl extends IfcElementComponentImpl implements IfcFastener {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcFastenerImpl extends IfcElementComponentImpl implements
 	 * @generated
 	 */
 	public IfcFastenerTypeEnum getPredefinedType() {
-		return (IfcFastenerTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_FASTENER__PREDEFINED_TYPE, true);
+		return (IfcFastenerTypeEnum) eGet(Ifc4Package.Literals.IFC_FASTENER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcFastenerImpl extends IfcElementComponentImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcFastenerTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_FASTENER__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_FASTENER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

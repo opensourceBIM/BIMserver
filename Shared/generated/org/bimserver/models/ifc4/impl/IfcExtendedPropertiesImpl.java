@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl
-		implements IfcExtendedProperties {
+public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl implements IfcExtendedProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,8 +65,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__NAME, true);
 	}
 
 	/**
@@ -103,8 +101,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__DESCRIPTION, true);
 	}
 
 	/**
@@ -113,8 +110,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -142,8 +138,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getProperties() {
-		return (EList<IfcProperty>) eGet(
-				Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__PROPERTIES, true);
 	}
 
 } //IfcExtendedPropertiesImpl

@@ -35,8 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcProductDefinitionShape extends IfcProductRepresentation,
-		IfcProductRepresentationSelect {
+public interface IfcProductDefinitionShape extends IfcProductRepresentation, IfcProductRepresentationSelect {
 	/**
 	 * Returns the value of the '<em><b>Shape Of Product</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcProduct}.

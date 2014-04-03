@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCardinalPointReferenceImpl extends IdEObjectImpl implements
-		IfcCardinalPointReference {
+public class IfcCardinalPointReferenceImpl extends IdEObjectImpl implements IfcCardinalPointReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,9 +72,7 @@ public class IfcCardinalPointReferenceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public int getWrappedValue() {
-		return (Integer) eGet(
-				Ifc4Package.Literals.IFC_CARDINAL_POINT_REFERENCE__WRAPPED_VALUE,
-				true);
+		return (Integer) eGet(Ifc4Package.Literals.IFC_CARDINAL_POINT_REFERENCE__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class IfcCardinalPointReferenceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setWrappedValue(int newWrappedValue) {
-		eSet(Ifc4Package.Literals.IFC_CARDINAL_POINT_REFERENCE__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc4Package.Literals.IFC_CARDINAL_POINT_REFERENCE__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**

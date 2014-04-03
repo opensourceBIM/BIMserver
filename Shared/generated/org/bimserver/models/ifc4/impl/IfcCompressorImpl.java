@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCompressorImpl extends IfcFlowMovingDeviceImpl implements
-		IfcCompressor {
+public class IfcCompressorImpl extends IfcFlowMovingDeviceImpl implements IfcCompressor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcCompressorImpl extends IfcFlowMovingDeviceImpl implements
 	 * @generated
 	 */
 	public IfcCompressorTypeEnum getPredefinedType() {
-		return (IfcCompressorTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_COMPRESSOR__PREDEFINED_TYPE, true);
+		return (IfcCompressorTypeEnum) eGet(Ifc4Package.Literals.IFC_COMPRESSOR__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcCompressorImpl extends IfcFlowMovingDeviceImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCompressorTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_COMPRESSOR__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_COMPRESSOR__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

@@ -26,6 +26,5 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcPreDefinedTextFont extends IfcPreDefinedItem,
-		IfcTextFontSelect {
+public interface IfcPreDefinedTextFont extends IfcPreDefinedItem, IfcTextFontSelect {
 } // IfcPreDefinedTextFont

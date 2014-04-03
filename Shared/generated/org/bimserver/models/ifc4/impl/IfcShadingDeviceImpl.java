@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcShadingDeviceImpl extends IfcBuildingElementImpl implements
-		IfcShadingDevice {
+public class IfcShadingDeviceImpl extends IfcBuildingElementImpl implements IfcShadingDevice {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcShadingDeviceImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public IfcShadingDeviceTypeEnum getPredefinedType() {
-		return (IfcShadingDeviceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SHADING_DEVICE__PREDEFINED_TYPE, true);
+		return (IfcShadingDeviceTypeEnum) eGet(Ifc4Package.Literals.IFC_SHADING_DEVICE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcShadingDeviceImpl extends IfcBuildingElementImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcShadingDeviceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_SHADING_DEVICE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_SHADING_DEVICE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

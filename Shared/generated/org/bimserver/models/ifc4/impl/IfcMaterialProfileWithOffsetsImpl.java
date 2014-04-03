@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialProfileWithOffsetsImpl extends IfcMaterialProfileImpl
-		implements IfcMaterialProfileWithOffsets {
+public class IfcMaterialProfileWithOffsetsImpl extends IfcMaterialProfileImpl implements IfcMaterialProfileWithOffsets {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcMaterialProfileWithOffsetsImpl extends IfcMaterialProfileImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getOffsetValues() {
-		return (EList<Double>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_WITH_OFFSETS__OFFSET_VALUES,
-				true);
+		return (EList<Double>) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_WITH_OFFSETS__OFFSET_VALUES, true);
 	}
 
 	/**
@@ -77,9 +74,7 @@ public class IfcMaterialProfileWithOffsetsImpl extends IfcMaterialProfileImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getOffsetValuesAsString() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_WITH_OFFSETS__OFFSET_VALUES_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_WITH_OFFSETS__OFFSET_VALUES_AS_STRING, true);
 	}
 
 } //IfcMaterialProfileWithOffsetsImpl

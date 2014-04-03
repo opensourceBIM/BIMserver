@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAdvancedFaceImpl extends IfcFaceSurfaceImpl implements
-		IfcAdvancedFace {
+public class IfcAdvancedFaceImpl extends IfcFaceSurfaceImpl implements IfcAdvancedFace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

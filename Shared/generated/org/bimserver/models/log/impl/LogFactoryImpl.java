@@ -42,8 +42,7 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 */
 	public static LogFactory init() {
 		try {
-			LogFactory theLogFactory = (LogFactory) EPackage.Registry.INSTANCE
-					.getEFactory(LogPackage.eNS_URI);
+			LogFactory theLogFactory = (LogFactory) EPackage.Registry.INSTANCE.getEFactory(LogPackage.eNS_URI);
 			if (theLogFactory != null) {
 				return theLogFactory;
 			}
@@ -134,8 +133,7 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 		case LogPackage.REMOTE_SERVICE_CALLED:
 			return (EObject) createRemoteServiceCalled();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -150,8 +148,7 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 		case LogPackage.ACCESS_METHOD:
 			return createAccessMethodFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -166,8 +163,7 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 		case LogPackage.ACCESS_METHOD:
 			return convertAccessMethodToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -486,13 +482,10 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AccessMethod createAccessMethodFromString(EDataType eDataType,
-			String initialValue) {
+	public AccessMethod createAccessMethodFromString(EDataType eDataType, String initialValue) {
 		AccessMethod result = AccessMethod.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -501,8 +494,7 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertAccessMethodToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertAccessMethodToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

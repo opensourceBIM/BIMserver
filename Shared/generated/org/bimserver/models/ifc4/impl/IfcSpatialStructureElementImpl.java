@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSpatialStructureElementImpl extends IfcSpatialElementImpl
-		implements IfcSpatialStructureElement {
+public class IfcSpatialStructureElementImpl extends IfcSpatialElementImpl implements IfcSpatialStructureElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcSpatialStructureElementImpl extends IfcSpatialElementImpl
 	 * @generated
 	 */
 	public IfcElementCompositionEnum getCompositionType() {
-		return (IfcElementCompositionEnum) eGet(
-				Ifc4Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE,
-				true);
+		return (IfcElementCompositionEnum) eGet(Ifc4Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcSpatialStructureElementImpl extends IfcSpatialElementImpl
 	 * @generated
 	 */
 	public void setCompositionType(IfcElementCompositionEnum newCompositionType) {
-		eSet(Ifc4Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE,
-				newCompositionType);
+		eSet(Ifc4Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE, newCompositionType);
 	}
 
 	/**

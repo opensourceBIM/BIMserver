@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTypeProcessImpl extends IfcTypeObjectImpl implements
-		IfcTypeProcess {
+public class IfcTypeProcessImpl extends IfcTypeObjectImpl implements IfcTypeProcess {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcTypeProcessImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public String getIdentification() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TYPE_PROCESS__IDENTIFICATION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_PROCESS__IDENTIFICATION, true);
 	}
 
 	/**
@@ -77,8 +75,7 @@ public class IfcTypeProcessImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public void setIdentification(String newIdentification) {
-		eSet(Ifc4Package.Literals.IFC_TYPE_PROCESS__IDENTIFICATION,
-				newIdentification);
+		eSet(Ifc4Package.Literals.IFC_TYPE_PROCESS__IDENTIFICATION, newIdentification);
 	}
 
 	/**
@@ -105,8 +102,7 @@ public class IfcTypeProcessImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public String getLongDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TYPE_PROCESS__LONG_DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_PROCESS__LONG_DESCRIPTION, true);
 	}
 
 	/**
@@ -115,8 +111,7 @@ public class IfcTypeProcessImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public void setLongDescription(String newLongDescription) {
-		eSet(Ifc4Package.Literals.IFC_TYPE_PROCESS__LONG_DESCRIPTION,
-				newLongDescription);
+		eSet(Ifc4Package.Literals.IFC_TYPE_PROCESS__LONG_DESCRIPTION, newLongDescription);
 	}
 
 	/**
@@ -143,8 +138,7 @@ public class IfcTypeProcessImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public String getProcessType() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TYPE_PROCESS__PROCESS_TYPE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_PROCESS__PROCESS_TYPE, true);
 	}
 
 	/**
@@ -153,8 +147,7 @@ public class IfcTypeProcessImpl extends IfcTypeObjectImpl implements
 	 * @generated
 	 */
 	public void setProcessType(String newProcessType) {
-		eSet(Ifc4Package.Literals.IFC_TYPE_PROCESS__PROCESS_TYPE,
-				newProcessType);
+		eSet(Ifc4Package.Literals.IFC_TYPE_PROCESS__PROCESS_TYPE, newProcessType);
 	}
 
 	/**
@@ -182,8 +175,7 @@ public class IfcTypeProcessImpl extends IfcTypeObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToProcess> getOperatesOn() {
-		return (EList<IfcRelAssignsToProcess>) eGet(
-				Ifc4Package.Literals.IFC_TYPE_PROCESS__OPERATES_ON, true);
+		return (EList<IfcRelAssignsToProcess>) eGet(Ifc4Package.Literals.IFC_TYPE_PROCESS__OPERATES_ON, true);
 	}
 
 	/**

@@ -81,9 +81,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcShapeModel> getShapeRepresentations() {
-		return (EList<IfcShapeModel>) eGet(
-				Ifc4Package.Literals.IFC_SHAPE_ASPECT__SHAPE_REPRESENTATIONS,
-				true);
+		return (EList<IfcShapeModel>) eGet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__SHAPE_REPRESENTATIONS, true);
 	}
 
 	/**
@@ -128,8 +126,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SHAPE_ASPECT__DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__DESCRIPTION, true);
 	}
 
 	/**
@@ -165,9 +162,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * @generated
 	 */
 	public boolean isProductDefinitional() {
-		return (Boolean) eGet(
-				Ifc4Package.Literals.IFC_SHAPE_ASPECT__PRODUCT_DEFINITIONAL,
-				true);
+		return (Boolean) eGet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__PRODUCT_DEFINITIONAL, true);
 	}
 
 	/**
@@ -176,8 +171,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * @generated
 	 */
 	public void setProductDefinitional(boolean newProductDefinitional) {
-		eSet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__PRODUCT_DEFINITIONAL,
-				newProductDefinitional);
+		eSet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__PRODUCT_DEFINITIONAL, newProductDefinitional);
 	}
 
 	/**
@@ -186,9 +180,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * @generated
 	 */
 	public IfcProductRepresentationSelect getPartOfProductDefinitionShape() {
-		return (IfcProductRepresentationSelect) eGet(
-				Ifc4Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE,
-				true);
+		return (IfcProductRepresentationSelect) eGet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, true);
 	}
 
 	/**
@@ -196,10 +188,8 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPartOfProductDefinitionShape(
-			IfcProductRepresentationSelect newPartOfProductDefinitionShape) {
-		eSet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE,
-				newPartOfProductDefinitionShape);
+	public void setPartOfProductDefinitionShape(IfcProductRepresentationSelect newPartOfProductDefinitionShape) {
+		eSet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, newPartOfProductDefinitionShape);
 	}
 
 	/**

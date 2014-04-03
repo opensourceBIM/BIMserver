@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssignsImpl extends IfcRelationshipImpl implements
-		IfcRelAssigns {
+public class IfcRelAssignsImpl extends IfcRelationshipImpl implements IfcRelAssigns {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcRelAssignsImpl extends IfcRelationshipImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcObjectDefinition> getRelatedObjects() {
-		return (EList<IfcObjectDefinition>) eGet(
-				Ifc4Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS, true);
+		return (EList<IfcObjectDefinition>) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS, true);
 	}
 
 	/**
@@ -77,9 +75,7 @@ public class IfcRelAssignsImpl extends IfcRelationshipImpl implements
 	 * @generated
 	 */
 	public IfcObjectTypeEnum getRelatedObjectsType() {
-		return (IfcObjectTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS_TYPE,
-				true);
+		return (IfcObjectTypeEnum) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS_TYPE, true);
 	}
 
 	/**
@@ -88,8 +84,7 @@ public class IfcRelAssignsImpl extends IfcRelationshipImpl implements
 	 * @generated
 	 */
 	public void setRelatedObjectsType(IfcObjectTypeEnum newRelatedObjectsType) {
-		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS_TYPE,
-				newRelatedObjectsType);
+		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS_TYPE, newRelatedObjectsType);
 	}
 
 	/**

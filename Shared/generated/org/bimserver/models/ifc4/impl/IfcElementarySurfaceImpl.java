@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements
-		IfcElementarySurface {
+public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements IfcElementarySurface {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements
 	 * @generated
 	 */
 	public IfcAxis2Placement3D getPosition() {
-		return (IfcAxis2Placement3D) eGet(
-				Ifc4Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION, true);
+		return (IfcAxis2Placement3D) eGet(Ifc4Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION, true);
 	}
 
 	/**

@@ -97,9 +97,7 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialDefinitionRepresentation> getHasRepresentation() {
-		return (EList<IfcMaterialDefinitionRepresentation>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION,
-				true);
+		return (EList<IfcMaterialDefinitionRepresentation>) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION, true);
 	}
 
 	/**
@@ -127,8 +125,7 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialClassificationRelationship> getClassifiedAs() {
-		return (EList<IfcMaterialClassificationRelationship>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MATERIAL__CLASSIFIED_AS, true);
+		return (EList<IfcMaterialClassificationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL__CLASSIFIED_AS, true);
 	}
 
 	/**

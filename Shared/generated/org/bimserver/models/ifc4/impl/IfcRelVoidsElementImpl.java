@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelVoidsElementImpl extends IfcRelDecomposesImpl implements
-		IfcRelVoidsElement {
+public class IfcRelVoidsElementImpl extends IfcRelDecomposesImpl implements IfcRelVoidsElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcRelVoidsElementImpl extends IfcRelDecomposesImpl implements
 	 * @generated
 	 */
 	public IfcElement getRelatingBuildingElement() {
-		return (IfcElement) eGet(
-				Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT,
-				true);
+		return (IfcElement) eGet(Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT, true);
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class IfcRelVoidsElementImpl extends IfcRelDecomposesImpl implements
 	 * @generated
 	 */
 	public void setRelatingBuildingElement(IfcElement newRelatingBuildingElement) {
-		eSet(Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT,
-				newRelatingBuildingElement);
+		eSet(Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT, newRelatingBuildingElement);
 	}
 
 	/**
@@ -85,9 +81,7 @@ public class IfcRelVoidsElementImpl extends IfcRelDecomposesImpl implements
 	 * @generated
 	 */
 	public IfcFeatureElementSubtraction getRelatedOpeningElement() {
-		return (IfcFeatureElementSubtraction) eGet(
-				Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT,
-				true);
+		return (IfcFeatureElementSubtraction) eGet(Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT, true);
 	}
 
 	/**
@@ -95,10 +89,8 @@ public class IfcRelVoidsElementImpl extends IfcRelDecomposesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatedOpeningElement(
-			IfcFeatureElementSubtraction newRelatedOpeningElement) {
-		eSet(Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT,
-				newRelatedOpeningElement);
+	public void setRelatedOpeningElement(IfcFeatureElementSubtraction newRelatedOpeningElement) {
+		eSet(Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT, newRelatedOpeningElement);
 	}
 
 } //IfcRelVoidsElementImpl

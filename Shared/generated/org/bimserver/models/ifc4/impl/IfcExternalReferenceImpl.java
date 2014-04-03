@@ -42,8 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExternalReferenceImpl extends IdEObjectImpl implements
-		IfcExternalReference {
+public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExternalReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,8 +78,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getLocation() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__LOCATION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__LOCATION, true);
 	}
 
 	/**
@@ -116,9 +114,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getIdentification() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__IDENTIFICATION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__IDENTIFICATION, true);
 	}
 
 	/**
@@ -127,8 +123,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setIdentification(String newIdentification) {
-		eSet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__IDENTIFICATION,
-				newIdentification);
+		eSet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__IDENTIFICATION, newIdentification);
 	}
 
 	/**
@@ -155,8 +150,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__NAME, true);
 	}
 
 	/**
@@ -193,9 +187,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getExternalReferenceForResources() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__EXTERNAL_REFERENCE_FOR_RESOURCES,
-				true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__EXTERNAL_REFERENCE_FOR_RESOURCES, true);
 	}
 
 	/**

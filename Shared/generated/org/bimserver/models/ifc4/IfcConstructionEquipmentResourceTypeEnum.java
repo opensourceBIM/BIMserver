@@ -313,9 +313,8 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcConstructionEquipmentResourceTypeEnum[] VALUES_ARRAY = new IfcConstructionEquipmentResourceTypeEnum[] {
-			NULL, NOTDEFINED, TRANSPORTING, EARTHMOVING, USERDEFINED, HEATING,
-			DEMOLISHING, PUMPING, PAVING, ERECTING, LIGHTING, };
+	private static final IfcConstructionEquipmentResourceTypeEnum[] VALUES_ARRAY = new IfcConstructionEquipmentResourceTypeEnum[] { NULL, NOTDEFINED, TRANSPORTING, EARTHMOVING,
+			USERDEFINED, HEATING, DEMOLISHING, PUMPING, PAVING, ERECTING, LIGHTING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Construction Equipment Resource Type Enum</b></em>' enumerators.
@@ -323,8 +322,7 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcConstructionEquipmentResourceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcConstructionEquipmentResourceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Construction Equipment Resource Type Enum</b></em>' literal with the specified literal value.
@@ -419,8 +417,7 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcConstructionEquipmentResourceTypeEnum(int value, String name,
-			String literal) {
+	private IfcConstructionEquipmentResourceTypeEnum(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ImmediateNotificationResultImpl extends IdEObjectImpl implements
-		ImmediateNotificationResult {
+public class ImmediateNotificationResultImpl extends IdEObjectImpl implements ImmediateNotificationResult {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,9 +74,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public NotifictionResultEnum getResult() {
-		return (NotifictionResultEnum) eGet(
-				StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__RESULT,
-				true);
+		return (NotifictionResultEnum) eGet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__RESULT, true);
 	}
 
 	/**
@@ -86,8 +83,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setResult(NotifictionResultEnum newResult) {
-		eSet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__RESULT,
-				newResult);
+		eSet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__RESULT, newResult);
 	}
 
 	/**
@@ -96,9 +92,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION,
-				true);
+		return (String) eGet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION, true);
 	}
 
 	/**
@@ -107,8 +101,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION,
-				newDescription);
+		eSet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION, newDescription);
 	}
 
 } //ImmediateNotificationResultImpl

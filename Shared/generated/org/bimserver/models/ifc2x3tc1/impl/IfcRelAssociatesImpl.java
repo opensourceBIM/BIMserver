@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssociatesImpl extends IfcRelationshipImpl implements
-		IfcRelAssociates {
+public class IfcRelAssociatesImpl extends IfcRelationshipImpl implements IfcRelAssociates {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcRelAssociatesImpl extends IfcRelationshipImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRoot> getRelatedObjects() {
-		return (EList<IfcRoot>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES__RELATED_OBJECTS,
-				true);
+		return (EList<IfcRoot>) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES__RELATED_OBJECTS, true);
 	}
 
 } //IfcRelAssociatesImpl

@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMemberStandardCaseImpl extends IfcMemberImpl implements
-		IfcMemberStandardCase {
+public class IfcMemberStandardCaseImpl extends IfcMemberImpl implements IfcMemberStandardCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

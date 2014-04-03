@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssociatesDocumentImpl extends IfcRelAssociatesImpl
-		implements IfcRelAssociatesDocument {
+public class IfcRelAssociatesDocumentImpl extends IfcRelAssociatesImpl implements IfcRelAssociatesDocument {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcRelAssociatesDocumentImpl extends IfcRelAssociatesImpl
 	 * @generated
 	 */
 	public IfcDocumentSelect getRelatingDocument() {
-		return (IfcDocumentSelect) eGet(
-				Ifc4Package.Literals.IFC_REL_ASSOCIATES_DOCUMENT__RELATING_DOCUMENT,
-				true);
+		return (IfcDocumentSelect) eGet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_DOCUMENT__RELATING_DOCUMENT, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcRelAssociatesDocumentImpl extends IfcRelAssociatesImpl
 	 * @generated
 	 */
 	public void setRelatingDocument(IfcDocumentSelect newRelatingDocument) {
-		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_DOCUMENT__RELATING_DOCUMENT,
-				newRelatingDocument);
+		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_DOCUMENT__RELATING_DOCUMENT, newRelatingDocument);
 	}
 
 } //IfcRelAssociatesDocumentImpl

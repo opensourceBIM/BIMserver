@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPerformanceHistoryImpl extends IfcControlImpl implements
-		IfcPerformanceHistory {
+public class IfcPerformanceHistoryImpl extends IfcControlImpl implements IfcPerformanceHistory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcPerformanceHistoryImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public String getLifeCyclePhase() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__LIFE_CYCLE_PHASE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__LIFE_CYCLE_PHASE, true);
 	}
 
 	/**
@@ -74,8 +71,7 @@ public class IfcPerformanceHistoryImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setLifeCyclePhase(String newLifeCyclePhase) {
-		eSet(Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__LIFE_CYCLE_PHASE,
-				newLifeCyclePhase);
+		eSet(Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__LIFE_CYCLE_PHASE, newLifeCyclePhase);
 	}
 
 	/**
@@ -84,9 +80,7 @@ public class IfcPerformanceHistoryImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public IfcPerformanceHistoryTypeEnum getPredefinedType() {
-		return (IfcPerformanceHistoryTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__PREDEFINED_TYPE,
-				true);
+		return (IfcPerformanceHistoryTypeEnum) eGet(Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -94,10 +88,8 @@ public class IfcPerformanceHistoryImpl extends IfcControlImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcPerformanceHistoryTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcPerformanceHistoryTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

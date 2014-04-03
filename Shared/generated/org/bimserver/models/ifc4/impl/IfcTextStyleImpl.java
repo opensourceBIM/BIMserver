@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements
-		IfcTextStyle {
+public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTextStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,9 +67,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public IfcTextStyleForDefinedFont getTextCharacterAppearance() {
-		return (IfcTextStyleForDefinedFont) eGet(
-				Ifc4Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE,
-				true);
+		return (IfcTextStyleForDefinedFont) eGet(Ifc4Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE, true);
 	}
 
 	/**
@@ -78,10 +75,8 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTextCharacterAppearance(
-			IfcTextStyleForDefinedFont newTextCharacterAppearance) {
-		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE,
-				newTextCharacterAppearance);
+	public void setTextCharacterAppearance(IfcTextStyleForDefinedFont newTextCharacterAppearance) {
+		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE, newTextCharacterAppearance);
 	}
 
 	/**
@@ -108,8 +103,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public IfcTextStyleTextModel getTextStyle() {
-		return (IfcTextStyleTextModel) eGet(
-				Ifc4Package.Literals.IFC_TEXT_STYLE__TEXT_STYLE, true);
+		return (IfcTextStyleTextModel) eGet(Ifc4Package.Literals.IFC_TEXT_STYLE__TEXT_STYLE, true);
 	}
 
 	/**
@@ -145,8 +139,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public IfcTextFontSelect getTextFontStyle() {
-		return (IfcTextFontSelect) eGet(
-				Ifc4Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE, true);
+		return (IfcTextFontSelect) eGet(Ifc4Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE, true);
 	}
 
 	/**
@@ -155,8 +148,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public void setTextFontStyle(IfcTextFontSelect newTextFontStyle) {
-		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE,
-				newTextFontStyle);
+		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE, newTextFontStyle);
 	}
 
 	/**
@@ -165,8 +157,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public Tristate getModelOrDraughting() {
-		return (Tristate) eGet(
-				Ifc4Package.Literals.IFC_TEXT_STYLE__MODEL_OR_DRAUGHTING, true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_TEXT_STYLE__MODEL_OR_DRAUGHTING, true);
 	}
 
 	/**
@@ -175,8 +166,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements
 	 * @generated
 	 */
 	public void setModelOrDraughting(Tristate newModelOrDraughting) {
-		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE__MODEL_OR_DRAUGHTING,
-				newModelOrDraughting);
+		eSet(Ifc4Package.Literals.IFC_TEXT_STYLE__MODEL_OR_DRAUGHTING, newModelOrDraughting);
 	}
 
 	/**

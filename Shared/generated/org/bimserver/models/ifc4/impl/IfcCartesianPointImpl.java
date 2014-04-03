@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCartesianPointImpl extends IfcPointImpl implements
-		IfcCartesianPoint {
+public class IfcCartesianPointImpl extends IfcPointImpl implements IfcCartesianPoint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,8 +65,7 @@ public class IfcCartesianPointImpl extends IfcPointImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getCoordinates() {
-		return (EList<Double>) eGet(
-				Ifc4Package.Literals.IFC_CARTESIAN_POINT__COORDINATES, true);
+		return (EList<Double>) eGet(Ifc4Package.Literals.IFC_CARTESIAN_POINT__COORDINATES, true);
 	}
 
 	/**
@@ -77,9 +75,7 @@ public class IfcCartesianPointImpl extends IfcPointImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getCoordinatesAsString() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_CARTESIAN_POINT__COORDINATES_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_CARTESIAN_POINT__COORDINATES_AS_STRING, true);
 	}
 
 	/**
@@ -88,8 +84,7 @@ public class IfcCartesianPointImpl extends IfcPointImpl implements
 	 * @generated
 	 */
 	public int getDim() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_CARTESIAN_POINT__DIM,
-				true);
+		return (Integer) eGet(Ifc4Package.Literals.IFC_CARTESIAN_POINT__DIM, true);
 	}
 
 	/**

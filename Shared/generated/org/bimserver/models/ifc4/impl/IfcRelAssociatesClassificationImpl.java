@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelAssociatesClassificationImpl extends IfcRelAssociatesImpl
-		implements IfcRelAssociatesClassification {
+public class IfcRelAssociatesClassificationImpl extends IfcRelAssociatesImpl implements IfcRelAssociatesClassification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcRelAssociatesClassificationImpl extends IfcRelAssociatesImpl
 	 * @generated
 	 */
 	public IfcClassificationSelect getRelatingClassification() {
-		return (IfcClassificationSelect) eGet(
-				Ifc4Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION,
-				true);
+		return (IfcClassificationSelect) eGet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcRelAssociatesClassificationImpl extends IfcRelAssociatesImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatingClassification(
-			IfcClassificationSelect newRelatingClassification) {
-		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION,
-				newRelatingClassification);
+	public void setRelatingClassification(IfcClassificationSelect newRelatingClassification) {
+		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION, newRelatingClassification);
 	}
 
 } //IfcRelAssociatesClassificationImpl

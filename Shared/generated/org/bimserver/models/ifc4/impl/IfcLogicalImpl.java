@@ -73,8 +73,7 @@ public class IfcLogicalImpl extends IdEObjectImpl implements IfcLogical {
 	 * @generated
 	 */
 	public Tristate getWrappedValue() {
-		return (Tristate) eGet(Ifc4Package.Literals.IFC_LOGICAL__WRAPPED_VALUE,
-				true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_LOGICAL__WRAPPED_VALUE, true);
 	}
 
 	/**

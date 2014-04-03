@@ -72,8 +72,7 @@ public class IfcLabelImpl extends IdEObjectImpl implements IfcLabel {
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(Ifc4Package.Literals.IFC_LABEL__WRAPPED_VALUE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LABEL__WRAPPED_VALUE, true);
 	}
 
 	/**

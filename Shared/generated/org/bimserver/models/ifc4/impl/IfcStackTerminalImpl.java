@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStackTerminalImpl extends IfcFlowTerminalImpl implements
-		IfcStackTerminal {
+public class IfcStackTerminalImpl extends IfcFlowTerminalImpl implements IfcStackTerminal {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcStackTerminalImpl extends IfcFlowTerminalImpl implements
 	 * @generated
 	 */
 	public IfcStackTerminalTypeEnum getPredefinedType() {
-		return (IfcStackTerminalTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_STACK_TERMINAL__PREDEFINED_TYPE, true);
+		return (IfcStackTerminalTypeEnum) eGet(Ifc4Package.Literals.IFC_STACK_TERMINAL__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcStackTerminalImpl extends IfcFlowTerminalImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcStackTerminalTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_STACK_TERMINAL__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_STACK_TERMINAL__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

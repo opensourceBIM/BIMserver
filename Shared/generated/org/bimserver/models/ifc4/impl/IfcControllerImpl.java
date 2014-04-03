@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcControllerImpl extends IfcDistributionControlElementImpl
-		implements IfcController {
+public class IfcControllerImpl extends IfcDistributionControlElementImpl implements IfcController {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcControllerImpl extends IfcDistributionControlElementImpl
 	 * @generated
 	 */
 	public IfcControllerTypeEnum getPredefinedType() {
-		return (IfcControllerTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_CONTROLLER__PREDEFINED_TYPE, true);
+		return (IfcControllerTypeEnum) eGet(Ifc4Package.Literals.IFC_CONTROLLER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcControllerImpl extends IfcDistributionControlElementImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcControllerTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_CONTROLLER__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_CONTROLLER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

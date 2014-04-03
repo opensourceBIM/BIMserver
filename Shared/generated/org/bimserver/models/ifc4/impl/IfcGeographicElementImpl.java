@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcGeographicElementImpl extends IfcElementImpl implements
-		IfcGeographicElement {
+public class IfcGeographicElementImpl extends IfcElementImpl implements IfcGeographicElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcGeographicElementImpl extends IfcElementImpl implements
 	 * @generated
 	 */
 	public IfcGeographicElementTypeEnum getPredefinedType() {
-		return (IfcGeographicElementTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_GEOGRAPHIC_ELEMENT__PREDEFINED_TYPE,
-				true);
+		return (IfcGeographicElementTypeEnum) eGet(Ifc4Package.Literals.IFC_GEOGRAPHIC_ELEMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcGeographicElementImpl extends IfcElementImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcGeographicElementTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_GEOGRAPHIC_ELEMENT__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_GEOGRAPHIC_ELEMENT__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

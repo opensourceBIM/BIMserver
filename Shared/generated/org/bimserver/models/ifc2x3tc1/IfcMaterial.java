@@ -36,8 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcMaterial extends IfcMaterialSelect,
-		IfcObjectReferenceSelect {
+public interface IfcMaterial extends IfcMaterialSelect, IfcObjectReferenceSelect {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

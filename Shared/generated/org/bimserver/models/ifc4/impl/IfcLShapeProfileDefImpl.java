@@ -45,8 +45,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
-		implements IfcLShapeProfileDef {
+public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl implements IfcLShapeProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,8 +71,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public double getDepth() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH, true);
 	}
 
 	/**
@@ -91,9 +89,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public String getDepthAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH_AS_STRING, true);
 	}
 
 	/**
@@ -102,8 +98,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public void setDepthAsString(String newDepthAsString) {
-		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH_AS_STRING,
-				newDepthAsString);
+		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__DEPTH_AS_STRING, newDepthAsString);
 	}
 
 	/**
@@ -112,8 +107,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public double getWidth() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__WIDTH, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__WIDTH, true);
 	}
 
 	/**
@@ -149,9 +143,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public String getWidthAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__WIDTH_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__WIDTH_AS_STRING, true);
 	}
 
 	/**
@@ -160,8 +152,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public void setWidthAsString(String newWidthAsString) {
-		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__WIDTH_AS_STRING,
-				newWidthAsString);
+		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__WIDTH_AS_STRING, newWidthAsString);
 	}
 
 	/**
@@ -188,8 +179,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public double getThickness() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS, true);
 	}
 
 	/**
@@ -198,8 +188,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public void setThickness(double newThickness) {
-		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS,
-				newThickness);
+		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS, newThickness);
 	}
 
 	/**
@@ -208,9 +197,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public String getThicknessAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS_AS_STRING, true);
 	}
 
 	/**
@@ -219,8 +206,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public void setThicknessAsString(String newThicknessAsString) {
-		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS_AS_STRING,
-				newThicknessAsString);
+		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__THICKNESS_AS_STRING, newThicknessAsString);
 	}
 
 	/**
@@ -229,9 +215,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public double getFilletRadius() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__FILLET_RADIUS,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__FILLET_RADIUS, true);
 	}
 
 	/**
@@ -240,8 +224,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public void setFilletRadius(double newFilletRadius) {
-		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__FILLET_RADIUS,
-				newFilletRadius);
+		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__FILLET_RADIUS, newFilletRadius);
 	}
 
 	/**
@@ -268,9 +251,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public String getFilletRadiusAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__FILLET_RADIUS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__FILLET_RADIUS_AS_STRING, true);
 	}
 
 	/**
@@ -279,8 +260,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public void setFilletRadiusAsString(String newFilletRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__FILLET_RADIUS_AS_STRING,
-				newFilletRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__FILLET_RADIUS_AS_STRING, newFilletRadiusAsString);
 	}
 
 	/**
@@ -307,8 +287,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public double getEdgeRadius() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__EDGE_RADIUS, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__EDGE_RADIUS, true);
 	}
 
 	/**
@@ -317,8 +296,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public void setEdgeRadius(double newEdgeRadius) {
-		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__EDGE_RADIUS,
-				newEdgeRadius);
+		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__EDGE_RADIUS, newEdgeRadius);
 	}
 
 	/**
@@ -345,9 +323,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public String getEdgeRadiusAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__EDGE_RADIUS_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__EDGE_RADIUS_AS_STRING, true);
 	}
 
 	/**
@@ -356,8 +332,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public void setEdgeRadiusAsString(String newEdgeRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__EDGE_RADIUS_AS_STRING,
-				newEdgeRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__EDGE_RADIUS_AS_STRING, newEdgeRadiusAsString);
 	}
 
 	/**
@@ -384,8 +359,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public double getLegSlope() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__LEG_SLOPE, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__LEG_SLOPE, true);
 	}
 
 	/**
@@ -394,8 +368,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public void setLegSlope(double newLegSlope) {
-		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__LEG_SLOPE,
-				newLegSlope);
+		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__LEG_SLOPE, newLegSlope);
 	}
 
 	/**
@@ -422,9 +395,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public String getLegSlopeAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__LEG_SLOPE_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__LEG_SLOPE_AS_STRING, true);
 	}
 
 	/**
@@ -433,8 +404,7 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
 	 * @generated
 	 */
 	public void setLegSlopeAsString(String newLegSlopeAsString) {
-		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__LEG_SLOPE_AS_STRING,
-				newLegSlopeAsString);
+		eSet(Ifc4Package.Literals.IFC_LSHAPE_PROFILE_DEF__LEG_SLOPE_AS_STRING, newLegSlopeAsString);
 	}
 
 	/**

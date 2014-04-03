@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWorkCalendarImpl extends IfcControlImpl implements
-		IfcWorkCalendar {
+public class IfcWorkCalendarImpl extends IfcControlImpl implements IfcWorkCalendar {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,8 +67,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcWorkTime> getWorkingTimes() {
-		return (EList<IfcWorkTime>) eGet(
-				Ifc4Package.Literals.IFC_WORK_CALENDAR__WORKING_TIMES, true);
+		return (EList<IfcWorkTime>) eGet(Ifc4Package.Literals.IFC_WORK_CALENDAR__WORKING_TIMES, true);
 	}
 
 	/**
@@ -97,8 +95,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcWorkTime> getExceptionTimes() {
-		return (EList<IfcWorkTime>) eGet(
-				Ifc4Package.Literals.IFC_WORK_CALENDAR__EXCEPTION_TIMES, true);
+		return (EList<IfcWorkTime>) eGet(Ifc4Package.Literals.IFC_WORK_CALENDAR__EXCEPTION_TIMES, true);
 	}
 
 	/**
@@ -125,8 +122,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public IfcWorkCalendarTypeEnum getPredefinedType() {
-		return (IfcWorkCalendarTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_WORK_CALENDAR__PREDEFINED_TYPE, true);
+		return (IfcWorkCalendarTypeEnum) eGet(Ifc4Package.Literals.IFC_WORK_CALENDAR__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -135,8 +131,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcWorkCalendarTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_WORK_CALENDAR__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_WORK_CALENDAR__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

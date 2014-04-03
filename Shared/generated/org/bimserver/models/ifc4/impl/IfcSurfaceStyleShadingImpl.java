@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceStyleShadingImpl extends IfcPresentationItemImpl
-		implements IfcSurfaceStyleShading {
+public class IfcSurfaceStyleShadingImpl extends IfcPresentationItemImpl implements IfcSurfaceStyleShading {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcSurfaceStyleShadingImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public IfcColourRgb getSurfaceColour() {
-		return (IfcColourRgb) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__SURFACE_COLOUR,
-				true);
+		return (IfcColourRgb) eGet(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__SURFACE_COLOUR, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcSurfaceStyleShadingImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setSurfaceColour(IfcColourRgb newSurfaceColour) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__SURFACE_COLOUR,
-				newSurfaceColour);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__SURFACE_COLOUR, newSurfaceColour);
 	}
 
 } //IfcSurfaceStyleShadingImpl

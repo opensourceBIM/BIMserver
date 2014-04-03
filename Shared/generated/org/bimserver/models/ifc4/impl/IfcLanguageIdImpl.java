@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLanguageIdImpl extends IfcIdentifierImpl implements
-		IfcLanguageId {
+public class IfcLanguageIdImpl extends IfcIdentifierImpl implements IfcLanguageId {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

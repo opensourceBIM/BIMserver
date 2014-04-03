@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements
-		IfcDerivedProfileDef {
+public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDerivedProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements
 	 * @generated
 	 */
 	public IfcProfileDef getParentProfile() {
-		return (IfcProfileDef) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__PARENT_PROFILE,
-				true);
+		return (IfcProfileDef) eGet(Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__PARENT_PROFILE, true);
 	}
 
 	/**
@@ -76,8 +73,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements
 	 * @generated
 	 */
 	public void setParentProfile(IfcProfileDef newParentProfile) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__PARENT_PROFILE,
-				newParentProfile);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__PARENT_PROFILE, newParentProfile);
 	}
 
 	/**
@@ -86,9 +82,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements
 	 * @generated
 	 */
 	public IfcCartesianTransformationOperator2D getOperator() {
-		return (IfcCartesianTransformationOperator2D) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR,
-				true);
+		return (IfcCartesianTransformationOperator2D) eGet(Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR, true);
 	}
 
 	/**
@@ -97,8 +91,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements
 	 * @generated
 	 */
 	public void setOperator(IfcCartesianTransformationOperator2D newOperator) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR,
-				newOperator);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR, newOperator);
 	}
 
 	/**
@@ -107,8 +100,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements
 	 * @generated
 	 */
 	public String getLabel() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__LABEL, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__LABEL, true);
 	}
 
 	/**

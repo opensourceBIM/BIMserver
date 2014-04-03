@@ -188,8 +188,7 @@ public enum IfcWindowTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowTypeEnum[] VALUES_ARRAY = new IfcWindowTypeEnum[] {
-			NULL, LIGHTDOME, WINDOW, NOTDEFINED, SKYLIGHT, USERDEFINED, };
+	private static final IfcWindowTypeEnum[] VALUES_ARRAY = new IfcWindowTypeEnum[] { NULL, LIGHTDOME, WINDOW, NOTDEFINED, SKYLIGHT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Type Enum</b></em>' enumerators.
@@ -197,8 +196,7 @@ public enum IfcWindowTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWindowTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWindowTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Window Type Enum</b></em>' literal with the specified literal value.

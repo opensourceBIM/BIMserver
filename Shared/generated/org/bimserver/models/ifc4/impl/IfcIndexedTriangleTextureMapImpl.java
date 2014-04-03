@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcIndexedTriangleTextureMapImpl extends IfcIndexedTextureMapImpl
-		implements IfcIndexedTriangleTextureMap {
+public class IfcIndexedTriangleTextureMapImpl extends IfcIndexedTextureMapImpl implements IfcIndexedTriangleTextureMap {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

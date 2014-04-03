@@ -63,8 +63,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @see #getTranslationalStiffnessByAreaX()
 	 * @generated
 	 */
-	void setTranslationalStiffnessByAreaX(
-			IfcModulusOfSubgradeReactionSelect value);
+	void setTranslationalStiffnessByAreaX(IfcModulusOfSubgradeReactionSelect value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBoundaryFaceCondition#getTranslationalStiffnessByAreaX <em>Translational Stiffness By Area X</em>}' reference.
@@ -117,8 +116,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @see #getTranslationalStiffnessByAreaY()
 	 * @generated
 	 */
-	void setTranslationalStiffnessByAreaY(
-			IfcModulusOfSubgradeReactionSelect value);
+	void setTranslationalStiffnessByAreaY(IfcModulusOfSubgradeReactionSelect value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBoundaryFaceCondition#getTranslationalStiffnessByAreaY <em>Translational Stiffness By Area Y</em>}' reference.
@@ -171,8 +169,7 @@ public interface IfcBoundaryFaceCondition extends IfcBoundaryCondition {
 	 * @see #getTranslationalStiffnessByAreaZ()
 	 * @generated
 	 */
-	void setTranslationalStiffnessByAreaZ(
-			IfcModulusOfSubgradeReactionSelect value);
+	void setTranslationalStiffnessByAreaZ(IfcModulusOfSubgradeReactionSelect value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBoundaryFaceCondition#getTranslationalStiffnessByAreaZ <em>Translational Stiffness By Area Z</em>}' reference.

@@ -73,8 +73,7 @@ public class IfcTimePeriodImpl extends IdEObjectImpl implements IfcTimePeriod {
 	 * @generated
 	 */
 	public String getStartTime() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TIME_PERIOD__START_TIME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TIME_PERIOD__START_TIME, true);
 	}
 
 	/**
@@ -92,8 +91,7 @@ public class IfcTimePeriodImpl extends IdEObjectImpl implements IfcTimePeriod {
 	 * @generated
 	 */
 	public String getEndTime() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TIME_PERIOD__END_TIME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TIME_PERIOD__END_TIME, true);
 	}
 
 	/**

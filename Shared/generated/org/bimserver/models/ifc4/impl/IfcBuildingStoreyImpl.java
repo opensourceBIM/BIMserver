@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl
-		implements IfcBuildingStorey {
+public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl implements IfcBuildingStorey {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl
 	 * @generated
 	 */
 	public double getElevation() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_BUILDING_STOREY__ELEVATION, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_BUILDING_STOREY__ELEVATION, true);
 	}
 
 	/**
@@ -99,9 +97,7 @@ public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl
 	 * @generated
 	 */
 	public String getElevationAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_BUILDING_STOREY__ELEVATION_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_BUILDING_STOREY__ELEVATION_AS_STRING, true);
 	}
 
 	/**
@@ -110,8 +106,7 @@ public class IfcBuildingStoreyImpl extends IfcSpatialStructureElementImpl
 	 * @generated
 	 */
 	public void setElevationAsString(String newElevationAsString) {
-		eSet(Ifc4Package.Literals.IFC_BUILDING_STOREY__ELEVATION_AS_STRING,
-				newElevationAsString);
+		eSet(Ifc4Package.Literals.IFC_BUILDING_STOREY__ELEVATION_AS_STRING, newElevationAsString);
 	}
 
 	/**

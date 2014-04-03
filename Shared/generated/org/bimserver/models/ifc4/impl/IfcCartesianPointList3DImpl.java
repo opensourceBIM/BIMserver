@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCartesianPointList3DImpl extends IfcCartesianPointListImpl
-		implements IfcCartesianPointList3D {
+public class IfcCartesianPointList3DImpl extends IfcCartesianPointListImpl implements IfcCartesianPointList3D {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

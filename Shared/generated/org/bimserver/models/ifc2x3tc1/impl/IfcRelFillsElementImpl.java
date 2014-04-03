@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements
-		IfcRelFillsElement {
+public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements IfcRelFillsElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcOpeningElement getRelatingOpeningElement() {
-		return (IfcOpeningElement) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_FILLS_ELEMENT__RELATING_OPENING_ELEMENT,
-				true);
+		return (IfcOpeningElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_FILLS_ELEMENT__RELATING_OPENING_ELEMENT, true);
 	}
 
 	/**
@@ -74,10 +71,8 @@ public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatingOpeningElement(
-			IfcOpeningElement newRelatingOpeningElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_FILLS_ELEMENT__RELATING_OPENING_ELEMENT,
-				newRelatingOpeningElement);
+	public void setRelatingOpeningElement(IfcOpeningElement newRelatingOpeningElement) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_FILLS_ELEMENT__RELATING_OPENING_ELEMENT, newRelatingOpeningElement);
 	}
 
 	/**
@@ -86,9 +81,7 @@ public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcElement getRelatedBuildingElement() {
-		return (IfcElement) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_FILLS_ELEMENT__RELATED_BUILDING_ELEMENT,
-				true);
+		return (IfcElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_FILLS_ELEMENT__RELATED_BUILDING_ELEMENT, true);
 	}
 
 	/**
@@ -97,8 +90,7 @@ public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public void setRelatedBuildingElement(IfcElement newRelatedBuildingElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_FILLS_ELEMENT__RELATED_BUILDING_ELEMENT,
-				newRelatedBuildingElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_FILLS_ELEMENT__RELATED_BUILDING_ELEMENT, newRelatedBuildingElement);
 	}
 
 } //IfcRelFillsElementImpl

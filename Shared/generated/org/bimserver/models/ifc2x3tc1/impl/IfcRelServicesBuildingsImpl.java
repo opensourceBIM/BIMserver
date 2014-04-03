@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelServicesBuildingsImpl extends IfcRelConnectsImpl implements
-		IfcRelServicesBuildings {
+public class IfcRelServicesBuildingsImpl extends IfcRelConnectsImpl implements IfcRelServicesBuildings {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +65,7 @@ public class IfcRelServicesBuildingsImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcSystem getRelatingSystem() {
-		return (IfcSystem) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATING_SYSTEM,
-				true);
+		return (IfcSystem) eGet(Ifc2x3tc1Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATING_SYSTEM, true);
 	}
 
 	/**
@@ -77,8 +74,7 @@ public class IfcRelServicesBuildingsImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public void setRelatingSystem(IfcSystem newRelatingSystem) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATING_SYSTEM,
-				newRelatingSystem);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATING_SYSTEM, newRelatingSystem);
 	}
 
 	/**
@@ -88,9 +84,7 @@ public class IfcRelServicesBuildingsImpl extends IfcRelConnectsImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSpatialStructureElement> getRelatedBuildings() {
-		return (EList<IfcSpatialStructureElement>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATED_BUILDINGS,
-				true);
+		return (EList<IfcSpatialStructureElement>) eGet(Ifc2x3tc1Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATED_BUILDINGS, true);
 	}
 
 } //IfcRelServicesBuildingsImpl

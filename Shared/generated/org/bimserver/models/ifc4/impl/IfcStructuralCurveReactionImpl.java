@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralCurveReactionImpl extends IfcStructuralReactionImpl
-		implements IfcStructuralCurveReaction {
+public class IfcStructuralCurveReactionImpl extends IfcStructuralReactionImpl implements IfcStructuralCurveReaction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcStructuralCurveReactionImpl extends IfcStructuralReactionImpl
 	 * @generated
 	 */
 	public IfcStructuralCurveActivityTypeEnum getPredefinedType() {
-		return (IfcStructuralCurveActivityTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_REACTION__PREDEFINED_TYPE,
-				true);
+		return (IfcStructuralCurveActivityTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_REACTION__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcStructuralCurveReactionImpl extends IfcStructuralReactionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcStructuralCurveActivityTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_REACTION__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcStructuralCurveActivityTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_REACTION__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcStructuralCurveReactionImpl

@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl
-		implements IfcFurnitureType {
+public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl implements IfcFurnitureType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl
 	 * @generated
 	 */
 	public IfcAssemblyPlaceEnum getAssemblyPlace() {
-		return (IfcAssemblyPlaceEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE,
-				true);
+		return (IfcAssemblyPlaceEnum) eGet(Ifc2x3tc1Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl
 	 * @generated
 	 */
 	public void setAssemblyPlace(IfcAssemblyPlaceEnum newAssemblyPlace) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE,
-				newAssemblyPlace);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE, newAssemblyPlace);
 	}
 
 } //IfcFurnitureTypeImpl

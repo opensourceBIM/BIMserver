@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSpaceTypeImpl extends IfcSpatialStructureElementTypeImpl
-		implements IfcSpaceType {
+public class IfcSpaceTypeImpl extends IfcSpatialStructureElementTypeImpl implements IfcSpaceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class IfcSpaceTypeImpl extends IfcSpatialStructureElementTypeImpl
 	 * @generated
 	 */
 	public IfcSpaceTypeEnum getPredefinedType() {
-		return (IfcSpaceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SPACE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcSpaceTypeEnum) eGet(Ifc4Package.Literals.IFC_SPACE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +71,7 @@ public class IfcSpaceTypeImpl extends IfcSpatialStructureElementTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSpaceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_SPACE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_SPACE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -83,8 +80,7 @@ public class IfcSpaceTypeImpl extends IfcSpatialStructureElementTypeImpl
 	 * @generated
 	 */
 	public String getLongName() {
-		return (String) eGet(Ifc4Package.Literals.IFC_SPACE_TYPE__LONG_NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SPACE_TYPE__LONG_NAME, true);
 	}
 
 	/**

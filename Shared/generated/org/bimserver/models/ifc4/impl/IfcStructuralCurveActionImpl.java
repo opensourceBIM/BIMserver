@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralCurveActionImpl extends IfcStructuralActionImpl
-		implements IfcStructuralCurveAction {
+public class IfcStructuralCurveActionImpl extends IfcStructuralActionImpl implements IfcStructuralCurveAction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcStructuralCurveActionImpl extends IfcStructuralActionImpl
 	 * @generated
 	 */
 	public IfcProjectedOrTrueLengthEnum getProjectedOrTrue() {
-		return (IfcProjectedOrTrueLengthEnum) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PROJECTED_OR_TRUE,
-				true);
+		return (IfcProjectedOrTrueLengthEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PROJECTED_OR_TRUE, true);
 	}
 
 	/**
@@ -74,10 +71,8 @@ public class IfcStructuralCurveActionImpl extends IfcStructuralActionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProjectedOrTrue(
-			IfcProjectedOrTrueLengthEnum newProjectedOrTrue) {
-		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PROJECTED_OR_TRUE,
-				newProjectedOrTrue);
+	public void setProjectedOrTrue(IfcProjectedOrTrueLengthEnum newProjectedOrTrue) {
+		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PROJECTED_OR_TRUE, newProjectedOrTrue);
 	}
 
 	/**
@@ -104,9 +99,7 @@ public class IfcStructuralCurveActionImpl extends IfcStructuralActionImpl
 	 * @generated
 	 */
 	public IfcStructuralCurveActivityTypeEnum getPredefinedType() {
-		return (IfcStructuralCurveActivityTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PREDEFINED_TYPE,
-				true);
+		return (IfcStructuralCurveActivityTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -114,10 +107,8 @@ public class IfcStructuralCurveActionImpl extends IfcStructuralActionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcStructuralCurveActivityTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcStructuralCurveActivityTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcStructuralCurveActionImpl

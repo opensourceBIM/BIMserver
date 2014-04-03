@@ -37,8 +37,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcCartesianTransformationOperator extends
-		IfcGeometricRepresentationItem {
+public interface IfcCartesianTransformationOperator extends IfcGeometricRepresentationItem {
 	/**
 	 * Returns the value of the '<em><b>Axis1</b></em>' reference.
 	 * <!-- begin-user-doc -->

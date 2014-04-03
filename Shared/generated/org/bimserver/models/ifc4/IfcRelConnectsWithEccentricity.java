@@ -32,8 +32,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcRelConnectsWithEccentricity extends
-		IfcRelConnectsStructuralMember {
+public interface IfcRelConnectsWithEccentricity extends IfcRelConnectsStructuralMember {
 	/**
 	 * Returns the value of the '<em><b>Connection Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->

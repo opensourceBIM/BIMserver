@@ -36,9 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialProfileSetUsageTaperingImpl extends
-		IfcMaterialProfileSetUsageImpl implements
-		IfcMaterialProfileSetUsageTapering {
+public class IfcMaterialProfileSetUsageTaperingImpl extends IfcMaterialProfileSetUsageImpl implements IfcMaterialProfileSetUsageTapering {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +62,7 @@ public class IfcMaterialProfileSetUsageTaperingImpl extends
 	 * @generated
 	 */
 	public IfcMaterialProfileSet getForProfileEndSet() {
-		return (IfcMaterialProfileSet) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__FOR_PROFILE_END_SET,
-				true);
+		return (IfcMaterialProfileSet) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__FOR_PROFILE_END_SET, true);
 	}
 
 	/**
@@ -75,8 +71,7 @@ public class IfcMaterialProfileSetUsageTaperingImpl extends
 	 * @generated
 	 */
 	public void setForProfileEndSet(IfcMaterialProfileSet newForProfileEndSet) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__FOR_PROFILE_END_SET,
-				newForProfileEndSet);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__FOR_PROFILE_END_SET, newForProfileEndSet);
 	}
 
 	/**
@@ -85,9 +80,7 @@ public class IfcMaterialProfileSetUsageTaperingImpl extends
 	 * @generated
 	 */
 	public int getCardinalEndPoint() {
-		return (Integer) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__CARDINAL_END_POINT,
-				true);
+		return (Integer) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__CARDINAL_END_POINT, true);
 	}
 
 	/**
@@ -96,8 +89,7 @@ public class IfcMaterialProfileSetUsageTaperingImpl extends
 	 * @generated
 	 */
 	public void setCardinalEndPoint(int newCardinalEndPoint) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__CARDINAL_END_POINT,
-				newCardinalEndPoint);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__CARDINAL_END_POINT, newCardinalEndPoint);
 	}
 
 	/**

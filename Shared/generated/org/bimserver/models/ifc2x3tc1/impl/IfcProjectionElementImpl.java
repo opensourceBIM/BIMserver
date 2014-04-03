@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProjectionElementImpl extends IfcFeatureElementAdditionImpl
-		implements IfcProjectionElement {
+public class IfcProjectionElementImpl extends IfcFeatureElementAdditionImpl implements IfcProjectionElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

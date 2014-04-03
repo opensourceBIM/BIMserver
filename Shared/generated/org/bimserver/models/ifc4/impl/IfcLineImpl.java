@@ -63,8 +63,7 @@ public class IfcLineImpl extends IfcCurveImpl implements IfcLine {
 	 * @generated
 	 */
 	public IfcCartesianPoint getPnt() {
-		return (IfcCartesianPoint) eGet(Ifc4Package.Literals.IFC_LINE__PNT,
-				true);
+		return (IfcCartesianPoint) eGet(Ifc4Package.Literals.IFC_LINE__PNT, true);
 	}
 
 	/**

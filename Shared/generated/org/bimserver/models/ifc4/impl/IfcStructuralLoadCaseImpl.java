@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadCaseImpl extends IfcStructuralLoadGroupImpl
-		implements IfcStructuralLoadCase {
+public class IfcStructuralLoadCaseImpl extends IfcStructuralLoadGroupImpl implements IfcStructuralLoadCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcStructuralLoadCaseImpl extends IfcStructuralLoadGroupImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getSelfWeightCoefficients() {
-		return (EList<Double>) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CASE__SELF_WEIGHT_COEFFICIENTS,
-				true);
+		return (EList<Double>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CASE__SELF_WEIGHT_COEFFICIENTS, true);
 	}
 
 	/**
@@ -95,9 +92,7 @@ public class IfcStructuralLoadCaseImpl extends IfcStructuralLoadGroupImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getSelfWeightCoefficientsAsString() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CASE__SELF_WEIGHT_COEFFICIENTS_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CASE__SELF_WEIGHT_COEFFICIENTS_AS_STRING, true);
 	}
 
 	/**

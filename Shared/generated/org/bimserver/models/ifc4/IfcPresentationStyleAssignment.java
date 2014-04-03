@@ -34,8 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcPresentationStyleAssignment extends
-		IfcStyleAssignmentSelect {
+public interface IfcPresentationStyleAssignment extends IfcStyleAssignmentSelect {
 	/**
 	 * Returns the value of the '<em><b>Styles</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcPresentationStyleSelect}.

@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMinuteInHourImpl extends IdEObjectImpl implements
-		IfcMinuteInHour {
+public class IfcMinuteInHourImpl extends IdEObjectImpl implements IfcMinuteInHour {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,9 +72,7 @@ public class IfcMinuteInHourImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public int getWrappedValue() {
-		return (Integer) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MINUTE_IN_HOUR__WRAPPED_VALUE,
-				true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_MINUTE_IN_HOUR__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class IfcMinuteInHourImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setWrappedValue(int newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MINUTE_IN_HOUR__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MINUTE_IN_HOUR__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**

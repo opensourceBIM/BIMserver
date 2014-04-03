@@ -188,8 +188,7 @@ public enum IfcStructuralSurfaceMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStructuralSurfaceMemberTypeEnum[] VALUES_ARRAY = new IfcStructuralSurfaceMemberTypeEnum[] {
-			NULL, SHELL, NOTDEFINED, MEMBRANE_ELEMENT, USERDEFINED,
+	private static final IfcStructuralSurfaceMemberTypeEnum[] VALUES_ARRAY = new IfcStructuralSurfaceMemberTypeEnum[] { NULL, SHELL, NOTDEFINED, MEMBRANE_ELEMENT, USERDEFINED,
 			BENDING_ELEMENT, };
 
 	/**
@@ -198,8 +197,7 @@ public enum IfcStructuralSurfaceMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcStructuralSurfaceMemberTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcStructuralSurfaceMemberTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Structural Surface Member Type Enum</b></em>' literal with the specified literal value.
@@ -284,8 +282,7 @@ public enum IfcStructuralSurfaceMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcStructuralSurfaceMemberTypeEnum(int value, String name,
-			String literal) {
+	private IfcStructuralSurfaceMemberTypeEnum(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

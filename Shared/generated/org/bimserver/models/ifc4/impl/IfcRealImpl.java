@@ -109,8 +109,7 @@ public class IfcRealImpl extends IdEObjectImpl implements IfcReal {
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_REAL__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_REAL__WRAPPED_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -119,8 +118,7 @@ public class IfcRealImpl extends IdEObjectImpl implements IfcReal {
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_REAL__WRAPPED_VALUE_AS_STRING,
-				newWrappedValueAsString);
+		eSet(Ifc4Package.Literals.IFC_REAL__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
 	}
 
 	/**

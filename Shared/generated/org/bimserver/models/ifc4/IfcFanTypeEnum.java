@@ -80,8 +80,7 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CENTRIFUGALBACKWARDINCLINEDCURVED(4, "CENTRIFUGALBACKWARDINCLINEDCURVED",
-			"CENTRIFUGALBACKWARDINCLINEDCURVED"),
+	CENTRIFUGALBACKWARDINCLINEDCURVED(4, "CENTRIFUGALBACKWARDINCLINEDCURVED", "CENTRIFUGALBACKWARDINCLINEDCURVED"),
 
 	/**
 	 * The '<em><b>TUBEAXIAL</b></em>' literal object.
@@ -111,8 +110,7 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CENTRIFUGALFORWARDCURVED(7, "CENTRIFUGALFORWARDCURVED",
-			"CENTRIFUGALFORWARDCURVED"),
+	CENTRIFUGALFORWARDCURVED(7, "CENTRIFUGALFORWARDCURVED", "CENTRIFUGALFORWARDCURVED"),
 
 	/**
 	 * The '<em><b>PROPELLORAXIAL</b></em>' literal object.
@@ -290,10 +288,8 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFanTypeEnum[] VALUES_ARRAY = new IfcFanTypeEnum[] {
-			NULL, CENTRIFUGALAIRFOIL, NOTDEFINED, CENTRIFUGALRADIAL,
-			CENTRIFUGALBACKWARDINCLINEDCURVED, TUBEAXIAL, USERDEFINED,
-			CENTRIFUGALFORWARDCURVED, PROPELLORAXIAL, VANEAXIAL, };
+	private static final IfcFanTypeEnum[] VALUES_ARRAY = new IfcFanTypeEnum[] { NULL, CENTRIFUGALAIRFOIL, NOTDEFINED, CENTRIFUGALRADIAL, CENTRIFUGALBACKWARDINCLINEDCURVED,
+			TUBEAXIAL, USERDEFINED, CENTRIFUGALFORWARDCURVED, PROPELLORAXIAL, VANEAXIAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Fan Type Enum</b></em>' enumerators.
@@ -301,8 +297,7 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcFanTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcFanTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Fan Type Enum</b></em>' literal with the specified literal value.

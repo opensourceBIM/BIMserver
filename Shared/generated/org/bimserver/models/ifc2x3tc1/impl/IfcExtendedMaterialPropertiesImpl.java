@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExtendedMaterialPropertiesImpl extends
-		IfcMaterialPropertiesImpl implements IfcExtendedMaterialProperties {
+public class IfcExtendedMaterialPropertiesImpl extends IfcMaterialPropertiesImpl implements IfcExtendedMaterialProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +66,7 @@ public class IfcExtendedMaterialPropertiesImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getExtendedProperties() {
-		return (EList<IfcProperty>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_EXTENDED_MATERIAL_PROPERTIES__EXTENDED_PROPERTIES,
-				true);
+		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_EXTENDED_MATERIAL_PROPERTIES__EXTENDED_PROPERTIES, true);
 	}
 
 	/**
@@ -78,9 +75,7 @@ public class IfcExtendedMaterialPropertiesImpl extends
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_EXTENDED_MATERIAL_PROPERTIES__DESCRIPTION,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_EXTENDED_MATERIAL_PROPERTIES__DESCRIPTION, true);
 	}
 
 	/**
@@ -89,8 +84,7 @@ public class IfcExtendedMaterialPropertiesImpl extends
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_EXTENDED_MATERIAL_PROPERTIES__DESCRIPTION,
-				newDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_EXTENDED_MATERIAL_PROPERTIES__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -117,9 +111,7 @@ public class IfcExtendedMaterialPropertiesImpl extends
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_EXTENDED_MATERIAL_PROPERTIES__NAME,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_EXTENDED_MATERIAL_PROPERTIES__NAME, true);
 	}
 
 	/**
@@ -128,8 +120,7 @@ public class IfcExtendedMaterialPropertiesImpl extends
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_EXTENDED_MATERIAL_PROPERTIES__NAME,
-				newName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_EXTENDED_MATERIAL_PROPERTIES__NAME, newName);
 	}
 
 } //IfcExtendedMaterialPropertiesImpl

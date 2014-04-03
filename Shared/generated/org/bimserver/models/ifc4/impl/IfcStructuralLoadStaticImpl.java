@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadStaticImpl extends IfcStructuralLoadOrResultImpl
-		implements IfcStructuralLoadStatic {
+public class IfcStructuralLoadStaticImpl extends IfcStructuralLoadOrResultImpl implements IfcStructuralLoadStatic {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

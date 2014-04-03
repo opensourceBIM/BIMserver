@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcNonNegativeLengthMeasure extends IfcLengthMeasure,
-		IfcMeasureValue {
+public interface IfcNonNegativeLengthMeasure extends IfcLengthMeasure, IfcMeasureValue {
 } // IfcNonNegativeLengthMeasure

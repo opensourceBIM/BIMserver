@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
-		IfcVector {
+public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements IfcVector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * @generated
 	 */
 	public IfcDirection getOrientation() {
-		return (IfcDirection) eGet(
-				Ifc4Package.Literals.IFC_VECTOR__ORIENTATION, true);
+		return (IfcDirection) eGet(Ifc4Package.Literals.IFC_VECTOR__ORIENTATION, true);
 	}
 
 	/**
@@ -102,8 +100,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * @generated
 	 */
 	public String getMagnitudeAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING, true);
 	}
 
 	/**
@@ -112,8 +109,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * @generated
 	 */
 	public void setMagnitudeAsString(String newMagnitudeAsString) {
-		eSet(Ifc4Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING,
-				newMagnitudeAsString);
+		eSet(Ifc4Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING, newMagnitudeAsString);
 	}
 
 	/**

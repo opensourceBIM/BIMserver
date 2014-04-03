@@ -313,10 +313,8 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcUnitaryControlElementTypeEnum[] VALUES_ARRAY = new IfcUnitaryControlElementTypeEnum[] {
-			NULL, THERMOSTAT, NOTDEFINED, WEATHERSTATION, HUMIDISTAT,
-			GASDETECTIONPANEL, MIMICPANEL, CONTROLPANEL, USERDEFINED,
-			INDICATORPANEL, ALARMPANEL, };
+	private static final IfcUnitaryControlElementTypeEnum[] VALUES_ARRAY = new IfcUnitaryControlElementTypeEnum[] { NULL, THERMOSTAT, NOTDEFINED, WEATHERSTATION, HUMIDISTAT,
+			GASDETECTIONPANEL, MIMICPANEL, CONTROLPANEL, USERDEFINED, INDICATORPANEL, ALARMPANEL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Unitary Control Element Type Enum</b></em>' enumerators.
@@ -324,8 +322,7 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcUnitaryControlElementTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcUnitaryControlElementTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Unitary Control Element Type Enum</b></em>' literal with the specified literal value.
@@ -420,8 +417,7 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcUnitaryControlElementTypeEnum(int value, String name,
-			String literal) {
+	private IfcUnitaryControlElementTypeEnum(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

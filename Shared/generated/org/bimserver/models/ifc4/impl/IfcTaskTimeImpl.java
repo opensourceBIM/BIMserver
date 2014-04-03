@@ -53,8 +53,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
-		IfcTaskTime {
+public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements IfcTaskTime {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,8 +79,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public IfcTaskDurationEnum getDurationType() {
-		return (IfcTaskDurationEnum) eGet(
-				Ifc4Package.Literals.IFC_TASK_TIME__DURATION_TYPE, true);
+		return (IfcTaskDurationEnum) eGet(Ifc4Package.Literals.IFC_TASK_TIME__DURATION_TYPE, true);
 	}
 
 	/**
@@ -117,8 +115,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getScheduleDuration() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_DURATION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_DURATION, true);
 	}
 
 	/**
@@ -127,8 +124,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public void setScheduleDuration(String newScheduleDuration) {
-		eSet(Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_DURATION,
-				newScheduleDuration);
+		eSet(Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_DURATION, newScheduleDuration);
 	}
 
 	/**
@@ -155,8 +151,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getScheduleStart() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_START, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_START, true);
 	}
 
 	/**
@@ -165,8 +160,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public void setScheduleStart(String newScheduleStart) {
-		eSet(Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_START,
-				newScheduleStart);
+		eSet(Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_START, newScheduleStart);
 	}
 
 	/**
@@ -193,8 +187,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getScheduleFinish() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_FINISH, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_FINISH, true);
 	}
 
 	/**
@@ -203,8 +196,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public void setScheduleFinish(String newScheduleFinish) {
-		eSet(Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_FINISH,
-				newScheduleFinish);
+		eSet(Ifc4Package.Literals.IFC_TASK_TIME__SCHEDULE_FINISH, newScheduleFinish);
 	}
 
 	/**
@@ -231,8 +223,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getEarlyStart() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__EARLY_START,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__EARLY_START, true);
 	}
 
 	/**
@@ -268,8 +259,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getEarlyFinish() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__EARLY_FINISH,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__EARLY_FINISH, true);
 	}
 
 	/**
@@ -305,8 +295,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getLateStart() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__LATE_START,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__LATE_START, true);
 	}
 
 	/**
@@ -342,8 +331,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getLateFinish() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__LATE_FINISH,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__LATE_FINISH, true);
 	}
 
 	/**
@@ -379,8 +367,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getFreeFloat() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__FREE_FLOAT,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__FREE_FLOAT, true);
 	}
 
 	/**
@@ -416,8 +403,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getTotalFloat() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__TOTAL_FLOAT,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__TOTAL_FLOAT, true);
 	}
 
 	/**
@@ -453,8 +439,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public Tristate getIsCritical() {
-		return (Tristate) eGet(Ifc4Package.Literals.IFC_TASK_TIME__IS_CRITICAL,
-				true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_TASK_TIME__IS_CRITICAL, true);
 	}
 
 	/**
@@ -490,8 +475,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getStatusTime() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__STATUS_TIME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__STATUS_TIME, true);
 	}
 
 	/**
@@ -527,8 +511,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getActualDuration() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TASK_TIME__ACTUAL_DURATION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__ACTUAL_DURATION, true);
 	}
 
 	/**
@@ -537,8 +520,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public void setActualDuration(String newActualDuration) {
-		eSet(Ifc4Package.Literals.IFC_TASK_TIME__ACTUAL_DURATION,
-				newActualDuration);
+		eSet(Ifc4Package.Literals.IFC_TASK_TIME__ACTUAL_DURATION, newActualDuration);
 	}
 
 	/**
@@ -565,8 +547,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getActualStart() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__ACTUAL_START,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__ACTUAL_START, true);
 	}
 
 	/**
@@ -602,8 +583,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getActualFinish() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__ACTUAL_FINISH,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__ACTUAL_FINISH, true);
 	}
 
 	/**
@@ -639,8 +619,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getRemainingTime() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TASK_TIME__REMAINING_TIME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__REMAINING_TIME, true);
 	}
 
 	/**
@@ -649,8 +628,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public void setRemainingTime(String newRemainingTime) {
-		eSet(Ifc4Package.Literals.IFC_TASK_TIME__REMAINING_TIME,
-				newRemainingTime);
+		eSet(Ifc4Package.Literals.IFC_TASK_TIME__REMAINING_TIME, newRemainingTime);
 	}
 
 	/**
@@ -677,8 +655,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public double getCompletion() {
-		return (Double) eGet(Ifc4Package.Literals.IFC_TASK_TIME__COMPLETION,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_TASK_TIME__COMPLETION, true);
 	}
 
 	/**
@@ -714,8 +691,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public String getCompletionAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_TASK_TIME__COMPLETION_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TIME__COMPLETION_AS_STRING, true);
 	}
 
 	/**
@@ -724,8 +700,7 @@ public class IfcTaskTimeImpl extends IfcSchedulingTimeImpl implements
 	 * @generated
 	 */
 	public void setCompletionAsString(String newCompletionAsString) {
-		eSet(Ifc4Package.Literals.IFC_TASK_TIME__COMPLETION_AS_STRING,
-				newCompletionAsString);
+		eSet(Ifc4Package.Literals.IFC_TASK_TIME__COMPLETION_AS_STRING, newCompletionAsString);
 	}
 
 	/**

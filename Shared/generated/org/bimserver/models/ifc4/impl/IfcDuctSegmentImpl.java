@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDuctSegmentImpl extends IfcFlowSegmentImpl implements
-		IfcDuctSegment {
+public class IfcDuctSegmentImpl extends IfcFlowSegmentImpl implements IfcDuctSegment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcDuctSegmentImpl extends IfcFlowSegmentImpl implements
 	 * @generated
 	 */
 	public IfcDuctSegmentTypeEnum getPredefinedType() {
-		return (IfcDuctSegmentTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_DUCT_SEGMENT__PREDEFINED_TYPE, true);
+		return (IfcDuctSegmentTypeEnum) eGet(Ifc4Package.Literals.IFC_DUCT_SEGMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcDuctSegmentImpl extends IfcFlowSegmentImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcDuctSegmentTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_DUCT_SEGMENT__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_DUCT_SEGMENT__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

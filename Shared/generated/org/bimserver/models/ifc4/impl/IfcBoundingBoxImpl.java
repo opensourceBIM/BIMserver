@@ -42,8 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcBoundingBox {
+public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl implements IfcBoundingBox {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,8 +68,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public IfcCartesianPoint getCorner() {
-		return (IfcCartesianPoint) eGet(
-				Ifc4Package.Literals.IFC_BOUNDING_BOX__CORNER, true);
+		return (IfcCartesianPoint) eGet(Ifc4Package.Literals.IFC_BOUNDING_BOX__CORNER, true);
 	}
 
 	/**
@@ -106,8 +104,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public String getXDimAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_BOUNDING_BOX__XDIM_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_BOUNDING_BOX__XDIM_AS_STRING, true);
 	}
 
 	/**
@@ -116,8 +113,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setXDimAsString(String newXDimAsString) {
-		eSet(Ifc4Package.Literals.IFC_BOUNDING_BOX__XDIM_AS_STRING,
-				newXDimAsString);
+		eSet(Ifc4Package.Literals.IFC_BOUNDING_BOX__XDIM_AS_STRING, newXDimAsString);
 	}
 
 	/**
@@ -144,8 +140,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public String getYDimAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_BOUNDING_BOX__YDIM_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_BOUNDING_BOX__YDIM_AS_STRING, true);
 	}
 
 	/**
@@ -154,8 +149,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setYDimAsString(String newYDimAsString) {
-		eSet(Ifc4Package.Literals.IFC_BOUNDING_BOX__YDIM_AS_STRING,
-				newYDimAsString);
+		eSet(Ifc4Package.Literals.IFC_BOUNDING_BOX__YDIM_AS_STRING, newYDimAsString);
 	}
 
 	/**
@@ -182,8 +176,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public String getZDimAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_BOUNDING_BOX__ZDIM_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_BOUNDING_BOX__ZDIM_AS_STRING, true);
 	}
 
 	/**
@@ -192,8 +185,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl
 	 * @generated
 	 */
 	public void setZDimAsString(String newZDimAsString) {
-		eSet(Ifc4Package.Literals.IFC_BOUNDING_BOX__ZDIM_AS_STRING,
-				newZDimAsString);
+		eSet(Ifc4Package.Literals.IFC_BOUNDING_BOX__ZDIM_AS_STRING, newZDimAsString);
 	}
 
 	/**

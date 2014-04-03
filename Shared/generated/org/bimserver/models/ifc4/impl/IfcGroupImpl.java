@@ -64,8 +64,7 @@ public class IfcGroupImpl extends IfcObjectImpl implements IfcGroup {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToGroup> getIsGroupedBy() {
-		return (EList<IfcRelAssignsToGroup>) eGet(
-				Ifc4Package.Literals.IFC_GROUP__IS_GROUPED_BY, true);
+		return (EList<IfcRelAssignsToGroup>) eGet(Ifc4Package.Literals.IFC_GROUP__IS_GROUPED_BY, true);
 	}
 
 	/**

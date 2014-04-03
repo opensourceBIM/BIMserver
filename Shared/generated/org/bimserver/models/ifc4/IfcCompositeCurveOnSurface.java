@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcCompositeCurveOnSurface extends IfcCompositeCurve,
-		IfcCurveOnSurface {
+public interface IfcCompositeCurveOnSurface extends IfcCompositeCurve, IfcCurveOnSurface {
 } // IfcCompositeCurveOnSurface

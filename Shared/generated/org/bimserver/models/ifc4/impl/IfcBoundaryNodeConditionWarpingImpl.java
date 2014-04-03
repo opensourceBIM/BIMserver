@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBoundaryNodeConditionWarpingImpl extends
-		IfcBoundaryNodeConditionImpl implements IfcBoundaryNodeConditionWarping {
+public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditionImpl implements IfcBoundaryNodeConditionWarping {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcBoundaryNodeConditionWarpingImpl extends
 	 * @generated
 	 */
 	public IfcWarpingStiffnessSelect getWarpingStiffness() {
-		return (IfcWarpingStiffnessSelect) eGet(
-				Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS,
-				true);
+		return (IfcWarpingStiffnessSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcBoundaryNodeConditionWarpingImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWarpingStiffness(
-			IfcWarpingStiffnessSelect newWarpingStiffness) {
-		eSet(Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS,
-				newWarpingStiffness);
+	public void setWarpingStiffness(IfcWarpingStiffnessSelect newWarpingStiffness) {
+		eSet(Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS, newWarpingStiffness);
 	}
 
 	/**

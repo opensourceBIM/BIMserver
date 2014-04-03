@@ -33,8 +33,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcThermalExpansionCoefficientMeasure extends
-		IfcDerivedMeasureValue {
+public interface IfcThermalExpansionCoefficientMeasure extends IfcDerivedMeasureValue {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFurnitureImpl extends IfcFurnishingElementImpl implements
-		IfcFurniture {
+public class IfcFurnitureImpl extends IfcFurnishingElementImpl implements IfcFurniture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcFurnitureImpl extends IfcFurnishingElementImpl implements
 	 * @generated
 	 */
 	public IfcFurnitureTypeEnum getPredefinedType() {
-		return (IfcFurnitureTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_FURNITURE__PREDEFINED_TYPE, true);
+		return (IfcFurnitureTypeEnum) eGet(Ifc4Package.Literals.IFC_FURNITURE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcFurnitureImpl extends IfcFurnishingElementImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcFurnitureTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_FURNITURE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_FURNITURE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

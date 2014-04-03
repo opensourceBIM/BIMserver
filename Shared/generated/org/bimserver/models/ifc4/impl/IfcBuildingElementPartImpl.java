@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBuildingElementPartImpl extends IfcElementComponentImpl
-		implements IfcBuildingElementPart {
+public class IfcBuildingElementPartImpl extends IfcElementComponentImpl implements IfcBuildingElementPart {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcBuildingElementPartImpl extends IfcElementComponentImpl
 	 * @generated
 	 */
 	public IfcBuildingElementPartTypeEnum getPredefinedType() {
-		return (IfcBuildingElementPartTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PART__PREDEFINED_TYPE,
-				true);
+		return (IfcBuildingElementPartTypeEnum) eGet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PART__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcBuildingElementPartImpl extends IfcElementComponentImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcBuildingElementPartTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PART__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcBuildingElementPartTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PART__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

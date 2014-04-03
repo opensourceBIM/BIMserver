@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcChillerImpl extends IfcEnergyConversionDeviceImpl implements
-		IfcChiller {
+public class IfcChillerImpl extends IfcEnergyConversionDeviceImpl implements IfcChiller {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcChillerImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public IfcChillerTypeEnum getPredefinedType() {
-		return (IfcChillerTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_CHILLER__PREDEFINED_TYPE, true);
+		return (IfcChillerTypeEnum) eGet(Ifc4Package.Literals.IFC_CHILLER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcChillerImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcChillerTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_CHILLER__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_CHILLER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

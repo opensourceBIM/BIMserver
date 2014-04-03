@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAlarmImpl extends IfcDistributionControlElementImpl implements
-		IfcAlarm {
+public class IfcAlarmImpl extends IfcDistributionControlElementImpl implements IfcAlarm {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcAlarmImpl extends IfcDistributionControlElementImpl implements
 	 * @generated
 	 */
 	public IfcAlarmTypeEnum getPredefinedType() {
-		return (IfcAlarmTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_ALARM__PREDEFINED_TYPE, true);
+		return (IfcAlarmTypeEnum) eGet(Ifc4Package.Literals.IFC_ALARM__PREDEFINED_TYPE, true);
 	}
 
 	/**

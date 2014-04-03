@@ -39,9 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcResourceApprovalRelationshipImpl extends
-		IfcResourceLevelRelationshipImpl implements
-		IfcResourceApprovalRelationship {
+public class IfcResourceApprovalRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcResourceApprovalRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,9 +66,7 @@ public class IfcResourceApprovalRelationshipImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcResourceObjectSelect> getRelatedResourceObjects() {
-		return (EList<IfcResourceObjectSelect>) eGet(
-				Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATED_RESOURCE_OBJECTS,
-				true);
+		return (EList<IfcResourceObjectSelect>) eGet(Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
 	}
 
 	/**
@@ -79,9 +75,7 @@ public class IfcResourceApprovalRelationshipImpl extends
 	 * @generated
 	 */
 	public IfcApproval getRelatingApproval() {
-		return (IfcApproval) eGet(
-				Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATING_APPROVAL,
-				true);
+		return (IfcApproval) eGet(Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATING_APPROVAL, true);
 	}
 
 	/**
@@ -90,8 +84,7 @@ public class IfcResourceApprovalRelationshipImpl extends
 	 * @generated
 	 */
 	public void setRelatingApproval(IfcApproval newRelatingApproval) {
-		eSet(Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATING_APPROVAL,
-				newRelatingApproval);
+		eSet(Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATING_APPROVAL, newRelatingApproval);
 	}
 
 } //IfcResourceApprovalRelationshipImpl

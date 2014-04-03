@@ -42,8 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPostalAddressImpl extends IfcAddressImpl implements
-		IfcPostalAddress {
+public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAddress {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,9 +68,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements
 	 * @generated
 	 */
 	public String getInternalLocation() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__INTERNAL_LOCATION,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__INTERNAL_LOCATION, true);
 	}
 
 	/**
@@ -80,8 +77,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements
 	 * @generated
 	 */
 	public void setInternalLocation(String newInternalLocation) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__INTERNAL_LOCATION,
-				newInternalLocation);
+		eSet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__INTERNAL_LOCATION, newInternalLocation);
 	}
 
 	/**
@@ -109,9 +105,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getAddressLines() {
-		return (EList<String>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__ADDRESS_LINES,
-				true);
+		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__ADDRESS_LINES, true);
 	}
 
 	/**
@@ -138,8 +132,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements
 	 * @generated
 	 */
 	public String getPostalBox() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_BOX, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_BOX, true);
 	}
 
 	/**
@@ -148,8 +141,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements
 	 * @generated
 	 */
 	public void setPostalBox(String newPostalBox) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_BOX,
-				newPostalBox);
+		eSet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_BOX, newPostalBox);
 	}
 
 	/**
@@ -176,8 +168,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements
 	 * @generated
 	 */
 	public String getTown() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__TOWN, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__TOWN, true);
 	}
 
 	/**
@@ -213,8 +204,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements
 	 * @generated
 	 */
 	public String getRegion() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__REGION, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__REGION, true);
 	}
 
 	/**
@@ -250,8 +240,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements
 	 * @generated
 	 */
 	public String getPostalCode() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_CODE, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_CODE, true);
 	}
 
 	/**
@@ -260,8 +249,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements
 	 * @generated
 	 */
 	public void setPostalCode(String newPostalCode) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_CODE,
-				newPostalCode);
+		eSet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_CODE, newPostalCode);
 	}
 
 	/**
@@ -288,8 +276,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements
 	 * @generated
 	 */
 	public String getCountry() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__COUNTRY, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_POSTAL_ADDRESS__COUNTRY, true);
 	}
 
 	/**

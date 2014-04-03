@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcColourRgbListImpl extends IfcPresentationItemImpl implements
-		IfcColourRgbList {
+public class IfcColourRgbListImpl extends IfcPresentationItemImpl implements IfcColourRgbList {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

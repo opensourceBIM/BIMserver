@@ -64,8 +64,7 @@ public class IfcControlImpl extends IfcObjectImpl implements IfcControl {
 	 * @generated
 	 */
 	public String getIdentification() {
-		return (String) eGet(Ifc4Package.Literals.IFC_CONTROL__IDENTIFICATION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CONTROL__IDENTIFICATION, true);
 	}
 
 	/**
@@ -74,8 +73,7 @@ public class IfcControlImpl extends IfcObjectImpl implements IfcControl {
 	 * @generated
 	 */
 	public void setIdentification(String newIdentification) {
-		eSet(Ifc4Package.Literals.IFC_CONTROL__IDENTIFICATION,
-				newIdentification);
+		eSet(Ifc4Package.Literals.IFC_CONTROL__IDENTIFICATION, newIdentification);
 	}
 
 	/**
@@ -103,8 +101,7 @@ public class IfcControlImpl extends IfcObjectImpl implements IfcControl {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToControl> getControls() {
-		return (EList<IfcRelAssignsToControl>) eGet(
-				Ifc4Package.Literals.IFC_CONTROL__CONTROLS, true);
+		return (EList<IfcRelAssignsToControl>) eGet(Ifc4Package.Literals.IFC_CONTROL__CONTROLS, true);
 	}
 
 	/**

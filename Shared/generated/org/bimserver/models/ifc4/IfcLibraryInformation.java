@@ -41,8 +41,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcLibraryInformation extends IfcExternalInformation,
-		IfcLibrarySelect {
+public interface IfcLibraryInformation extends IfcExternalInformation, IfcLibrarySelect {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

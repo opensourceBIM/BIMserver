@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelDefinesByObjectImpl extends IfcRelDefinesImpl implements
-		IfcRelDefinesByObject {
+public class IfcRelDefinesByObjectImpl extends IfcRelDefinesImpl implements IfcRelDefinesByObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +65,7 @@ public class IfcRelDefinesByObjectImpl extends IfcRelDefinesImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcObject> getRelatedObjects() {
-		return (EList<IfcObject>) eGet(
-				Ifc4Package.Literals.IFC_REL_DEFINES_BY_OBJECT__RELATED_OBJECTS,
-				true);
+		return (EList<IfcObject>) eGet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_OBJECT__RELATED_OBJECTS, true);
 	}
 
 	/**
@@ -77,9 +74,7 @@ public class IfcRelDefinesByObjectImpl extends IfcRelDefinesImpl implements
 	 * @generated
 	 */
 	public IfcObject getRelatingObject() {
-		return (IfcObject) eGet(
-				Ifc4Package.Literals.IFC_REL_DEFINES_BY_OBJECT__RELATING_OBJECT,
-				true);
+		return (IfcObject) eGet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_OBJECT__RELATING_OBJECT, true);
 	}
 
 	/**
@@ -88,8 +83,7 @@ public class IfcRelDefinesByObjectImpl extends IfcRelDefinesImpl implements
 	 * @generated
 	 */
 	public void setRelatingObject(IfcObject newRelatingObject) {
-		eSet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_OBJECT__RELATING_OBJECT,
-				newRelatingObject);
+		eSet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_OBJECT__RELATING_OBJECT, newRelatingObject);
 	}
 
 } //IfcRelDefinesByObjectImpl

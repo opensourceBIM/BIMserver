@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelCoversSpacesImpl extends IfcRelConnectsImpl implements
-		IfcRelCoversSpaces {
+public class IfcRelCoversSpacesImpl extends IfcRelConnectsImpl implements IfcRelCoversSpaces {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +65,7 @@ public class IfcRelCoversSpacesImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcSpace getRelatingSpace() {
-		return (IfcSpace) eGet(
-				Ifc4Package.Literals.IFC_REL_COVERS_SPACES__RELATING_SPACE,
-				true);
+		return (IfcSpace) eGet(Ifc4Package.Literals.IFC_REL_COVERS_SPACES__RELATING_SPACE, true);
 	}
 
 	/**
@@ -77,8 +74,7 @@ public class IfcRelCoversSpacesImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public void setRelatingSpace(IfcSpace newRelatingSpace) {
-		eSet(Ifc4Package.Literals.IFC_REL_COVERS_SPACES__RELATING_SPACE,
-				newRelatingSpace);
+		eSet(Ifc4Package.Literals.IFC_REL_COVERS_SPACES__RELATING_SPACE, newRelatingSpace);
 	}
 
 	/**
@@ -88,9 +84,7 @@ public class IfcRelCoversSpacesImpl extends IfcRelConnectsImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCovering> getRelatedCoverings() {
-		return (EList<IfcCovering>) eGet(
-				Ifc4Package.Literals.IFC_REL_COVERS_SPACES__RELATED_COVERINGS,
-				true);
+		return (EList<IfcCovering>) eGet(Ifc4Package.Literals.IFC_REL_COVERS_SPACES__RELATED_COVERINGS, true);
 	}
 
 } //IfcRelCoversSpacesImpl

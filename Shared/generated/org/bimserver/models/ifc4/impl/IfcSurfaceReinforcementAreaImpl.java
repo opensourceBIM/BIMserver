@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceReinforcementAreaImpl extends
-		IfcStructuralLoadOrResultImpl implements IfcSurfaceReinforcementArea {
+public class IfcSurfaceReinforcementAreaImpl extends IfcStructuralLoadOrResultImpl implements IfcSurfaceReinforcementArea {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,9 +68,7 @@ public class IfcSurfaceReinforcementAreaImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getSurfaceReinforcement1() {
-		return (EList<Double>) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT1,
-				true);
+		return (EList<Double>) eGet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT1, true);
 	}
 
 	/**
@@ -99,9 +96,7 @@ public class IfcSurfaceReinforcementAreaImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getSurfaceReinforcement1AsString() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT1_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT1_AS_STRING, true);
 	}
 
 	/**
@@ -129,9 +124,7 @@ public class IfcSurfaceReinforcementAreaImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getSurfaceReinforcement2() {
-		return (EList<Double>) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT2,
-				true);
+		return (EList<Double>) eGet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT2, true);
 	}
 
 	/**
@@ -159,9 +152,7 @@ public class IfcSurfaceReinforcementAreaImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getSurfaceReinforcement2AsString() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT2_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT2_AS_STRING, true);
 	}
 
 	/**
@@ -188,9 +179,7 @@ public class IfcSurfaceReinforcementAreaImpl extends
 	 * @generated
 	 */
 	public double getShearReinforcement() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SHEAR_REINFORCEMENT,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SHEAR_REINFORCEMENT, true);
 	}
 
 	/**
@@ -199,8 +188,7 @@ public class IfcSurfaceReinforcementAreaImpl extends
 	 * @generated
 	 */
 	public void setShearReinforcement(double newShearReinforcement) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SHEAR_REINFORCEMENT,
-				newShearReinforcement);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SHEAR_REINFORCEMENT, newShearReinforcement);
 	}
 
 	/**
@@ -227,9 +215,7 @@ public class IfcSurfaceReinforcementAreaImpl extends
 	 * @generated
 	 */
 	public String getShearReinforcementAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SHEAR_REINFORCEMENT_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SHEAR_REINFORCEMENT_AS_STRING, true);
 	}
 
 	/**
@@ -237,10 +223,8 @@ public class IfcSurfaceReinforcementAreaImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setShearReinforcementAsString(
-			String newShearReinforcementAsString) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SHEAR_REINFORCEMENT_AS_STRING,
-				newShearReinforcementAsString);
+	public void setShearReinforcementAsString(String newShearReinforcementAsString) {
+		eSet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SHEAR_REINFORCEMENT_AS_STRING, newShearReinforcementAsString);
 	}
 
 	/**

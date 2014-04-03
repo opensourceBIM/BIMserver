@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialProfileSetImpl extends IfcMaterialDefinitionImpl
-		implements IfcMaterialProfileSet {
+public class IfcMaterialProfileSetImpl extends IfcMaterialDefinitionImpl implements IfcMaterialProfileSet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,8 +67,7 @@ public class IfcMaterialProfileSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__NAME, true);
 	}
 
 	/**
@@ -105,9 +103,7 @@ public class IfcMaterialProfileSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__DESCRIPTION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__DESCRIPTION, true);
 	}
 
 	/**
@@ -116,8 +112,7 @@ public class IfcMaterialProfileSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -145,9 +140,7 @@ public class IfcMaterialProfileSetImpl extends IfcMaterialDefinitionImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialProfile> getMaterialProfiles() {
-		return (EList<IfcMaterialProfile>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__MATERIAL_PROFILES,
-				true);
+		return (EList<IfcMaterialProfile>) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__MATERIAL_PROFILES, true);
 	}
 
 	/**
@@ -156,9 +149,7 @@ public class IfcMaterialProfileSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public IfcCompositeProfileDef getCompositeProfile() {
-		return (IfcCompositeProfileDef) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__COMPOSITE_PROFILE,
-				true);
+		return (IfcCompositeProfileDef) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__COMPOSITE_PROFILE, true);
 	}
 
 	/**
@@ -167,8 +158,7 @@ public class IfcMaterialProfileSetImpl extends IfcMaterialDefinitionImpl
 	 * @generated
 	 */
 	public void setCompositeProfile(IfcCompositeProfileDef newCompositeProfile) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__COMPOSITE_PROFILE,
-				newCompositeProfile);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET__COMPOSITE_PROFILE, newCompositeProfile);
 	}
 
 	/**

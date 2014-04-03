@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCableFittingImpl extends IfcFlowFittingImpl implements
-		IfcCableFitting {
+public class IfcCableFittingImpl extends IfcFlowFittingImpl implements IfcCableFitting {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcCableFittingImpl extends IfcFlowFittingImpl implements
 	 * @generated
 	 */
 	public IfcCableFittingTypeEnum getPredefinedType() {
-		return (IfcCableFittingTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_CABLE_FITTING__PREDEFINED_TYPE, true);
+		return (IfcCableFittingTypeEnum) eGet(Ifc4Package.Literals.IFC_CABLE_FITTING__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcCableFittingImpl extends IfcFlowFittingImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCableFittingTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_CABLE_FITTING__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_CABLE_FITTING__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

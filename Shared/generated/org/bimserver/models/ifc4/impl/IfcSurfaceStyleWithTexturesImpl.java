@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceStyleWithTexturesImpl extends IfcPresentationItemImpl
-		implements IfcSurfaceStyleWithTextures {
+public class IfcSurfaceStyleWithTexturesImpl extends IfcPresentationItemImpl implements IfcSurfaceStyleWithTextures {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcSurfaceStyleWithTexturesImpl extends IfcPresentationItemImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSurfaceTexture> getTextures() {
-		return (EList<IfcSurfaceTexture>) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_STYLE_WITH_TEXTURES__TEXTURES,
-				true);
+		return (EList<IfcSurfaceTexture>) eGet(Ifc4Package.Literals.IFC_SURFACE_STYLE_WITH_TEXTURES__TEXTURES, true);
 	}
 
 } //IfcSurfaceStyleWithTexturesImpl

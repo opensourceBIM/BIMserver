@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTransformerTypeImpl extends IfcEnergyConversionDeviceTypeImpl
-		implements IfcTransformerType {
+public class IfcTransformerTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcTransformerType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcTransformerTypeImpl extends IfcEnergyConversionDeviceTypeImpl
 	 * @generated
 	 */
 	public IfcTransformerTypeEnum getPredefinedType() {
-		return (IfcTransformerTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_TRANSFORMER_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcTransformerTypeEnum) eGet(Ifc4Package.Literals.IFC_TRANSFORMER_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcTransformerTypeImpl extends IfcEnergyConversionDeviceTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcTransformerTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_TRANSFORMER_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_TRANSFORMER_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcTransformerTypeImpl

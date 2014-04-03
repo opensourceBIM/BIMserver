@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcQuantityLengthImpl extends IfcPhysicalSimpleQuantityImpl
-		implements IfcQuantityLength {
+public class IfcQuantityLengthImpl extends IfcPhysicalSimpleQuantityImpl implements IfcQuantityLength {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class IfcQuantityLengthImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public double getLengthValue() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE, true);
 	}
 
 	/**
@@ -73,8 +71,7 @@ public class IfcQuantityLengthImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public void setLengthValue(double newLengthValue) {
-		eSet(Ifc4Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE,
-				newLengthValue);
+		eSet(Ifc4Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE, newLengthValue);
 	}
 
 	/**
@@ -83,9 +80,7 @@ public class IfcQuantityLengthImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public String getLengthValueAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -94,8 +89,7 @@ public class IfcQuantityLengthImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public void setLengthValueAsString(String newLengthValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE_AS_STRING,
-				newLengthValueAsString);
+		eSet(Ifc4Package.Literals.IFC_QUANTITY_LENGTH__LENGTH_VALUE_AS_STRING, newLengthValueAsString);
 	}
 
 	/**
@@ -104,8 +98,7 @@ public class IfcQuantityLengthImpl extends IfcPhysicalSimpleQuantityImpl
 	 * @generated
 	 */
 	public String getFormula() {
-		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_LENGTH__FORMULA,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_LENGTH__FORMULA, true);
 	}
 
 	/**

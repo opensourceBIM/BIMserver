@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialImpl extends IfcMaterialDefinitionImpl implements
-		IfcMaterial {
+public class IfcMaterialImpl extends IfcMaterialDefinitionImpl implements IfcMaterial {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,8 +87,7 @@ public class IfcMaterialImpl extends IfcMaterialDefinitionImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL__DESCRIPTION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL__DESCRIPTION, true);
 	}
 
 	/**
@@ -162,8 +160,7 @@ public class IfcMaterialImpl extends IfcMaterialDefinitionImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialDefinitionRepresentation> getHasRepresentation() {
-		return (EList<IfcMaterialDefinitionRepresentation>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION, true);
+		return (EList<IfcMaterialDefinitionRepresentation>) eGet(Ifc4Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION, true);
 	}
 
 	/**
@@ -191,8 +188,7 @@ public class IfcMaterialImpl extends IfcMaterialDefinitionImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialRelationship> getIsRelatedWith() {
-		return (EList<IfcMaterialRelationship>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL__IS_RELATED_WITH, true);
+		return (EList<IfcMaterialRelationship>) eGet(Ifc4Package.Literals.IFC_MATERIAL__IS_RELATED_WITH, true);
 	}
 
 	/**
@@ -220,8 +216,7 @@ public class IfcMaterialImpl extends IfcMaterialDefinitionImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialRelationship> getRelatesTo() {
-		return (EList<IfcMaterialRelationship>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL__RELATES_TO, true);
+		return (EList<IfcMaterialRelationship>) eGet(Ifc4Package.Literals.IFC_MATERIAL__RELATES_TO, true);
 	}
 
 	/**

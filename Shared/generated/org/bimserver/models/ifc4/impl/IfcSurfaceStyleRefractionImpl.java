@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl
-		implements IfcSurfaceStyleRefraction {
+public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl implements IfcSurfaceStyleRefraction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public double getRefractionIndex() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX, true);
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setRefractionIndex(double newRefractionIndex) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX,
-				newRefractionIndex);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX, newRefractionIndex);
 	}
 
 	/**
@@ -103,9 +99,7 @@ public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public String getRefractionIndexAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX_AS_STRING, true);
 	}
 
 	/**
@@ -114,8 +108,7 @@ public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setRefractionIndexAsString(String newRefractionIndexAsString) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX_AS_STRING,
-				newRefractionIndexAsString);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX_AS_STRING, newRefractionIndexAsString);
 	}
 
 	/**
@@ -142,9 +135,7 @@ public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public double getDispersionFactor() {
-		return (Double) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR,
-				true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR, true);
 	}
 
 	/**
@@ -153,8 +144,7 @@ public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setDispersionFactor(double newDispersionFactor) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR,
-				newDispersionFactor);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR, newDispersionFactor);
 	}
 
 	/**
@@ -181,9 +171,7 @@ public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public String getDispersionFactorAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING, true);
 	}
 
 	/**
@@ -192,8 +180,7 @@ public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public void setDispersionFactorAsString(String newDispersionFactorAsString) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING,
-				newDispersionFactorAsString);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING, newDispersionFactorAsString);
 	}
 
 	/**

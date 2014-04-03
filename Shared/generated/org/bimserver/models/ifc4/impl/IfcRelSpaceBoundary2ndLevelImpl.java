@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelSpaceBoundary2ndLevelImpl extends
-		IfcRelSpaceBoundary1stLevelImpl implements IfcRelSpaceBoundary2ndLevel {
+public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevelImpl implements IfcRelSpaceBoundary2ndLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +63,7 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends
 	 * @generated
 	 */
 	public IfcRelSpaceBoundary2ndLevel getCorrespondingBoundary() {
-		return (IfcRelSpaceBoundary2ndLevel) eGet(
-				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDING_BOUNDARY,
-				true);
+		return (IfcRelSpaceBoundary2ndLevel) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDING_BOUNDARY, true);
 	}
 
 	/**
@@ -74,10 +71,8 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCorrespondingBoundary(
-			IfcRelSpaceBoundary2ndLevel newCorrespondingBoundary) {
-		eSet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDING_BOUNDARY,
-				newCorrespondingBoundary);
+	public void setCorrespondingBoundary(IfcRelSpaceBoundary2ndLevel newCorrespondingBoundary) {
+		eSet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDING_BOUNDARY, newCorrespondingBoundary);
 	}
 
 	/**
@@ -105,9 +100,7 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSpaceBoundary2ndLevel> getCorresponds() {
-		return (EList<IfcRelSpaceBoundary2ndLevel>) eGet(
-				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDS,
-				true);
+		return (EList<IfcRelSpaceBoundary2ndLevel>) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDS, true);
 	}
 
 	/**

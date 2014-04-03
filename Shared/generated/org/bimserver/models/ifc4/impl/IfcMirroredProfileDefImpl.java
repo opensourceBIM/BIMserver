@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMirroredProfileDefImpl extends IfcDerivedProfileDefImpl
-		implements IfcMirroredProfileDef {
+public class IfcMirroredProfileDefImpl extends IfcDerivedProfileDefImpl implements IfcMirroredProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

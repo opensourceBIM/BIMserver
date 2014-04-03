@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPresentationStyleAssignmentImpl extends IdEObjectImpl implements
-		IfcPresentationStyleAssignment {
+public class IfcPresentationStyleAssignmentImpl extends IdEObjectImpl implements IfcPresentationStyleAssignment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,9 +76,7 @@ public class IfcPresentationStyleAssignmentImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationStyleSelect> getStyles() {
-		return (EList<IfcPresentationStyleSelect>) eGet(
-				Ifc4Package.Literals.IFC_PRESENTATION_STYLE_ASSIGNMENT__STYLES,
-				true);
+		return (EList<IfcPresentationStyleSelect>) eGet(Ifc4Package.Literals.IFC_PRESENTATION_STYLE_ASSIGNMENT__STYLES, true);
 	}
 
 } //IfcPresentationStyleAssignmentImpl

@@ -195,8 +195,7 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 * @generated
 	 */
 	public ExtendedDataSchema getSchema() {
-		return (ExtendedDataSchema) eGet(
-				StorePackage.Literals.EXTENDED_DATA__SCHEMA, true);
+		return (ExtendedDataSchema) eGet(StorePackage.Literals.EXTENDED_DATA__SCHEMA, true);
 	}
 
 	/**
@@ -214,8 +213,7 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 * @generated
 	 */
 	public Revision getRevision() {
-		return (Revision) eGet(StorePackage.Literals.EXTENDED_DATA__REVISION,
-				true);
+		return (Revision) eGet(StorePackage.Literals.EXTENDED_DATA__REVISION, true);
 	}
 
 	/**
@@ -233,8 +231,7 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 * @generated
 	 */
 	public Project getProject() {
-		return (Project) eGet(StorePackage.Literals.EXTENDED_DATA__PROJECT,
-				true);
+		return (Project) eGet(StorePackage.Literals.EXTENDED_DATA__PROJECT, true);
 	}
 
 	/**

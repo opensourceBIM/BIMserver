@@ -61,8 +61,7 @@ public class IfcRampImpl extends IfcBuildingElementImpl implements IfcRamp {
 	 * @generated
 	 */
 	public IfcRampTypeEnum getPredefinedType() {
-		return (IfcRampTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_RAMP__PREDEFINED_TYPE, true);
+		return (IfcRampTypeEnum) eGet(Ifc4Package.Literals.IFC_RAMP__PREDEFINED_TYPE, true);
 	}
 
 	/**

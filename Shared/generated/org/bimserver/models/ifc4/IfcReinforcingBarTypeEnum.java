@@ -313,8 +313,7 @@ public enum IfcReinforcingBarTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcReinforcingBarTypeEnum[] VALUES_ARRAY = new IfcReinforcingBarTypeEnum[] {
-			NULL, ANCHORING, RING, MAIN, NOTDEFINED, LIGATURE, PUNCHING, SHEAR,
+	private static final IfcReinforcingBarTypeEnum[] VALUES_ARRAY = new IfcReinforcingBarTypeEnum[] { NULL, ANCHORING, RING, MAIN, NOTDEFINED, LIGATURE, PUNCHING, SHEAR,
 			USERDEFINED, STUD, EDGE, };
 
 	/**
@@ -323,8 +322,7 @@ public enum IfcReinforcingBarTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcReinforcingBarTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcReinforcingBarTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Reinforcing Bar Type Enum</b></em>' literal with the specified literal value.

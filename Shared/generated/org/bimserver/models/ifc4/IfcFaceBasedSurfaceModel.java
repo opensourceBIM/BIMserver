@@ -35,8 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcFaceBasedSurfaceModel extends
-		IfcGeometricRepresentationItem, IfcSurfaceOrFaceSurface {
+public interface IfcFaceBasedSurfaceModel extends IfcGeometricRepresentationItem, IfcSurfaceOrFaceSurface {
 	/**
 	 * Returns the value of the '<em><b>Fbsm Faces</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcConnectedFaceSet}.

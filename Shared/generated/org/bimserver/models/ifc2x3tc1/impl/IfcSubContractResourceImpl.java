@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSubContractResourceImpl extends IfcConstructionResourceImpl
-		implements IfcSubContractResource {
+public class IfcSubContractResourceImpl extends IfcConstructionResourceImpl implements IfcSubContractResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcSubContractResourceImpl extends IfcConstructionResourceImpl
 	 * @generated
 	 */
 	public IfcActorSelect getSubContractor() {
-		return (IfcActorSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SUB_CONTRACT_RESOURCE__SUB_CONTRACTOR,
-				true);
+		return (IfcActorSelect) eGet(Ifc2x3tc1Package.Literals.IFC_SUB_CONTRACT_RESOURCE__SUB_CONTRACTOR, true);
 	}
 
 	/**
@@ -74,8 +71,7 @@ public class IfcSubContractResourceImpl extends IfcConstructionResourceImpl
 	 * @generated
 	 */
 	public void setSubContractor(IfcActorSelect newSubContractor) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SUB_CONTRACT_RESOURCE__SUB_CONTRACTOR,
-				newSubContractor);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SUB_CONTRACT_RESOURCE__SUB_CONTRACTOR, newSubContractor);
 	}
 
 	/**
@@ -102,9 +98,7 @@ public class IfcSubContractResourceImpl extends IfcConstructionResourceImpl
 	 * @generated
 	 */
 	public String getJobDescription() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SUB_CONTRACT_RESOURCE__JOB_DESCRIPTION,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SUB_CONTRACT_RESOURCE__JOB_DESCRIPTION, true);
 	}
 
 	/**
@@ -113,8 +107,7 @@ public class IfcSubContractResourceImpl extends IfcConstructionResourceImpl
 	 * @generated
 	 */
 	public void setJobDescription(String newJobDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SUB_CONTRACT_RESOURCE__JOB_DESCRIPTION,
-				newJobDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SUB_CONTRACT_RESOURCE__JOB_DESCRIPTION, newJobDescription);
 	}
 
 	/**

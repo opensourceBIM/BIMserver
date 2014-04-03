@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSpatialZoneTypeImpl extends IfcSpatialElementTypeImpl implements
-		IfcSpatialZoneType {
+public class IfcSpatialZoneTypeImpl extends IfcSpatialElementTypeImpl implements IfcSpatialZoneType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcSpatialZoneTypeImpl extends IfcSpatialElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcSpatialZoneTypeEnum getPredefinedType() {
-		return (IfcSpatialZoneTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SPATIAL_ZONE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcSpatialZoneTypeEnum) eGet(Ifc4Package.Literals.IFC_SPATIAL_ZONE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -74,8 +71,7 @@ public class IfcSpatialZoneTypeImpl extends IfcSpatialElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcSpatialZoneTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_SPATIAL_ZONE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_SPATIAL_ZONE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -84,8 +80,7 @@ public class IfcSpatialZoneTypeImpl extends IfcSpatialElementTypeImpl implements
 	 * @generated
 	 */
 	public String getLongName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SPATIAL_ZONE_TYPE__LONG_NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SPATIAL_ZONE_TYPE__LONG_NAME, true);
 	}
 
 	/**

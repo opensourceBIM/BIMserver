@@ -61,8 +61,7 @@ public class IfcValveImpl extends IfcFlowControllerImpl implements IfcValve {
 	 * @generated
 	 */
 	public IfcValveTypeEnum getPredefinedType() {
-		return (IfcValveTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_VALVE__PREDEFINED_TYPE, true);
+		return (IfcValveTypeEnum) eGet(Ifc4Package.Literals.IFC_VALVE__PREDEFINED_TYPE, true);
 	}
 
 	/**

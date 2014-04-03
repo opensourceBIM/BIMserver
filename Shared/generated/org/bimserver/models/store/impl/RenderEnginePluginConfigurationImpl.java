@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RenderEnginePluginConfigurationImpl extends
-		PluginConfigurationImpl implements RenderEnginePluginConfiguration {
+public class RenderEnginePluginConfigurationImpl extends PluginConfigurationImpl implements RenderEnginePluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +66,7 @@ public class RenderEnginePluginConfigurationImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<SerializerPluginConfiguration> getSerializers() {
-		return (EList<SerializerPluginConfiguration>) eGet(
-				StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS,
-				true);
+		return (EList<SerializerPluginConfiguration>) eGet(StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS, true);
 	}
 
 	/**
@@ -78,9 +75,7 @@ public class RenderEnginePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(
-				StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				true);
+		return (UserSettings) eGet(StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
 
 	/**
@@ -89,8 +84,7 @@ public class RenderEnginePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public void setUserSettings(UserSettings newUserSettings) {
-		eSet(StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				newUserSettings);
+		eSet(StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
 
 } //RenderEnginePluginConfigurationImpl

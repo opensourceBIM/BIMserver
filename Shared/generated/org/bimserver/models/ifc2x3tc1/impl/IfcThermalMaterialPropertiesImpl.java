@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
-		implements IfcThermalMaterialProperties {
+public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl implements IfcThermalMaterialProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,9 +67,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public double getSpecificHeatCapacity() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__SPECIFIC_HEAT_CAPACITY,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__SPECIFIC_HEAT_CAPACITY, true);
 	}
 
 	/**
@@ -79,8 +76,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public void setSpecificHeatCapacity(double newSpecificHeatCapacity) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__SPECIFIC_HEAT_CAPACITY,
-				newSpecificHeatCapacity);
+		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__SPECIFIC_HEAT_CAPACITY, newSpecificHeatCapacity);
 	}
 
 	/**
@@ -107,9 +103,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public String getSpecificHeatCapacityAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__SPECIFIC_HEAT_CAPACITY_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__SPECIFIC_HEAT_CAPACITY_AS_STRING, true);
 	}
 
 	/**
@@ -117,10 +111,8 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecificHeatCapacityAsString(
-			String newSpecificHeatCapacityAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__SPECIFIC_HEAT_CAPACITY_AS_STRING,
-				newSpecificHeatCapacityAsString);
+	public void setSpecificHeatCapacityAsString(String newSpecificHeatCapacityAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__SPECIFIC_HEAT_CAPACITY_AS_STRING, newSpecificHeatCapacityAsString);
 	}
 
 	/**
@@ -147,9 +139,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public double getBoilingPoint() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__BOILING_POINT,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__BOILING_POINT, true);
 	}
 
 	/**
@@ -158,8 +148,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public void setBoilingPoint(double newBoilingPoint) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__BOILING_POINT,
-				newBoilingPoint);
+		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__BOILING_POINT, newBoilingPoint);
 	}
 
 	/**
@@ -186,9 +175,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public String getBoilingPointAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__BOILING_POINT_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__BOILING_POINT_AS_STRING, true);
 	}
 
 	/**
@@ -197,8 +184,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public void setBoilingPointAsString(String newBoilingPointAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__BOILING_POINT_AS_STRING,
-				newBoilingPointAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__BOILING_POINT_AS_STRING, newBoilingPointAsString);
 	}
 
 	/**
@@ -225,9 +211,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public double getFreezingPoint() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__FREEZING_POINT,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__FREEZING_POINT, true);
 	}
 
 	/**
@@ -236,8 +220,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public void setFreezingPoint(double newFreezingPoint) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__FREEZING_POINT,
-				newFreezingPoint);
+		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__FREEZING_POINT, newFreezingPoint);
 	}
 
 	/**
@@ -264,9 +247,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public String getFreezingPointAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__FREEZING_POINT_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__FREEZING_POINT_AS_STRING, true);
 	}
 
 	/**
@@ -275,8 +256,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public void setFreezingPointAsString(String newFreezingPointAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__FREEZING_POINT_AS_STRING,
-				newFreezingPointAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__FREEZING_POINT_AS_STRING, newFreezingPointAsString);
 	}
 
 	/**
@@ -303,9 +283,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public double getThermalConductivity() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__THERMAL_CONDUCTIVITY,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__THERMAL_CONDUCTIVITY, true);
 	}
 
 	/**
@@ -314,8 +292,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public void setThermalConductivity(double newThermalConductivity) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__THERMAL_CONDUCTIVITY,
-				newThermalConductivity);
+		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__THERMAL_CONDUCTIVITY, newThermalConductivity);
 	}
 
 	/**
@@ -342,9 +319,7 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * @generated
 	 */
 	public String getThermalConductivityAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__THERMAL_CONDUCTIVITY_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__THERMAL_CONDUCTIVITY_AS_STRING, true);
 	}
 
 	/**
@@ -352,10 +327,8 @@ public class IfcThermalMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThermalConductivityAsString(
-			String newThermalConductivityAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__THERMAL_CONDUCTIVITY_AS_STRING,
-				newThermalConductivityAsString);
+	public void setThermalConductivityAsString(String newThermalConductivityAsString) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_THERMAL_MATERIAL_PROPERTIES__THERMAL_CONDUCTIVITY_AS_STRING, newThermalConductivityAsString);
 	}
 
 	/**

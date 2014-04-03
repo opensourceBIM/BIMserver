@@ -36,8 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcMaterialDefinition extends IfcMaterialSelect,
-		IfcObjectReferenceSelect, IfcResourceObjectSelect {
+public interface IfcMaterialDefinition extends IfcMaterialSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect {
 	/**
 	 * Returns the value of the '<em><b>Associated To</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcRelAssociatesMaterial}.

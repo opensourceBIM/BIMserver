@@ -90,8 +90,7 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RESIDUALCURRENTCIRCUITBREAKER(5, "RESIDUALCURRENTCIRCUITBREAKER",
-			"RESIDUALCURRENTCIRCUITBREAKER"),
+	RESIDUALCURRENTCIRCUITBREAKER(5, "RESIDUALCURRENTCIRCUITBREAKER", "RESIDUALCURRENTCIRCUITBREAKER"),
 
 	/**
 	 * The '<em><b>EARTHLEAKAGECIRCUITBREAKER</b></em>' literal object.
@@ -101,8 +100,7 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EARTHLEAKAGECIRCUITBREAKER(6, "EARTHLEAKAGECIRCUITBREAKER",
-			"EARTHLEAKAGECIRCUITBREAKER"),
+	EARTHLEAKAGECIRCUITBREAKER(6, "EARTHLEAKAGECIRCUITBREAKER", "EARTHLEAKAGECIRCUITBREAKER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -290,10 +288,8 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] {
-			NULL, CIRCUITBREAKER, VARISTOR, NOTDEFINED, FUSEDISCONNECTOR,
-			RESIDUALCURRENTCIRCUITBREAKER, EARTHLEAKAGECIRCUITBREAKER,
-			USERDEFINED, RESIDUALCURRENTSWITCH, EARTHINGSWITCH, };
+	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] { NULL, CIRCUITBREAKER, VARISTOR, NOTDEFINED, FUSEDISCONNECTOR,
+			RESIDUALCURRENTCIRCUITBREAKER, EARTHLEAKAGECIRCUITBREAKER, USERDEFINED, RESIDUALCURRENTSWITCH, EARTHINGSWITCH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Protective Device Type Enum</b></em>' enumerators.
@@ -301,8 +297,7 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProtectiveDeviceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProtectiveDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Protective Device Type Enum</b></em>' literal with the specified literal value.

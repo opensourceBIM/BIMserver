@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWallElementedCaseImpl extends IfcWallImpl implements
-		IfcWallElementedCase {
+public class IfcWallElementedCaseImpl extends IfcWallImpl implements IfcWallElementedCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

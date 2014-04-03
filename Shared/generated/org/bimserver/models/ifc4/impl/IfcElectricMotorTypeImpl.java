@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricMotorTypeImpl extends IfcEnergyConversionDeviceTypeImpl
-		implements IfcElectricMotorType {
+public class IfcElectricMotorTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcElectricMotorType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcElectricMotorTypeImpl extends IfcEnergyConversionDeviceTypeImpl
 	 * @generated
 	 */
 	public IfcElectricMotorTypeEnum getPredefinedType() {
-		return (IfcElectricMotorTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_ELECTRIC_MOTOR_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcElectricMotorTypeEnum) eGet(Ifc4Package.Literals.IFC_ELECTRIC_MOTOR_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcElectricMotorTypeImpl extends IfcEnergyConversionDeviceTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcElectricMotorTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_ELECTRIC_MOTOR_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_ELECTRIC_MOTOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcElectricMotorTypeImpl

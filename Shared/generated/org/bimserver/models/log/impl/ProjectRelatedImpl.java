@@ -62,8 +62,7 @@ public class ProjectRelatedImpl extends LogActionImpl implements ProjectRelated 
 	 * @generated
 	 */
 	public Project getProject() {
-		return (Project) eGet(LogPackage.Literals.PROJECT_RELATED__PROJECT,
-				true);
+		return (Project) eGet(LogPackage.Literals.PROJECT_RELATED__PROJECT, true);
 	}
 
 	/**

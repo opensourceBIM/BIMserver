@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPresentableTextImpl extends IdEObjectImpl implements
-		IfcPresentableText {
+public class IfcPresentableTextImpl extends IdEObjectImpl implements IfcPresentableText {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,9 +72,7 @@ public class IfcPresentableTextImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PRESENTABLE_TEXT__WRAPPED_VALUE,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTABLE_TEXT__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class IfcPresentableTextImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setWrappedValue(String newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PRESENTABLE_TEXT__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRESENTABLE_TEXT__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**

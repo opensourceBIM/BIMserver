@@ -61,8 +61,7 @@ public class IfcRoofImpl extends IfcBuildingElementImpl implements IfcRoof {
 	 * @generated
 	 */
 	public IfcRoofTypeEnum getPredefinedType() {
-		return (IfcRoofTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_ROOF__PREDEFINED_TYPE, true);
+		return (IfcRoofTypeEnum) eGet(Ifc4Package.Literals.IFC_ROOF__PREDEFINED_TYPE, true);
 	}
 
 	/**

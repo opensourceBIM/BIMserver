@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricDistributionPointImpl extends IfcFlowControllerImpl
-		implements IfcElectricDistributionPoint {
+public class IfcElectricDistributionPointImpl extends IfcFlowControllerImpl implements IfcElectricDistributionPoint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcElectricDistributionPointImpl extends IfcFlowControllerImpl
 	 * @generated
 	 */
 	public IfcElectricDistributionPointFunctionEnum getDistributionPointFunction() {
-		return (IfcElectricDistributionPointFunctionEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__DISTRIBUTION_POINT_FUNCTION,
-				true);
+		return (IfcElectricDistributionPointFunctionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__DISTRIBUTION_POINT_FUNCTION, true);
 	}
 
 	/**
@@ -73,10 +70,8 @@ public class IfcElectricDistributionPointImpl extends IfcFlowControllerImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDistributionPointFunction(
-			IfcElectricDistributionPointFunctionEnum newDistributionPointFunction) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__DISTRIBUTION_POINT_FUNCTION,
-				newDistributionPointFunction);
+	public void setDistributionPointFunction(IfcElectricDistributionPointFunctionEnum newDistributionPointFunction) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__DISTRIBUTION_POINT_FUNCTION, newDistributionPointFunction);
 	}
 
 	/**
@@ -85,9 +80,7 @@ public class IfcElectricDistributionPointImpl extends IfcFlowControllerImpl
 	 * @generated
 	 */
 	public String getUserDefinedFunction() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__USER_DEFINED_FUNCTION,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__USER_DEFINED_FUNCTION, true);
 	}
 
 	/**
@@ -96,8 +89,7 @@ public class IfcElectricDistributionPointImpl extends IfcFlowControllerImpl
 	 * @generated
 	 */
 	public void setUserDefinedFunction(String newUserDefinedFunction) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__USER_DEFINED_FUNCTION,
-				newUserDefinedFunction);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__USER_DEFINED_FUNCTION, newUserDefinedFunction);
 	}
 
 	/**

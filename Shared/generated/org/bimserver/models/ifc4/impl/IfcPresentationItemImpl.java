@@ -32,8 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPresentationItemImpl extends IdEObjectImpl implements
-		IfcPresentationItem {
+public class IfcPresentationItemImpl extends IdEObjectImpl implements IfcPresentationItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

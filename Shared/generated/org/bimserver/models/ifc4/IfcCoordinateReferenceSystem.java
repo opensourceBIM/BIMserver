@@ -35,8 +35,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcCoordinateReferenceSystem extends
-		IfcCoordinateReferenceSystemSelect {
+public interface IfcCoordinateReferenceSystem extends IfcCoordinateReferenceSystemSelect {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

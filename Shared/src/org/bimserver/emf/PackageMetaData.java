@@ -66,7 +66,9 @@ public class PackageMetaData {
 		initUpperCases();
 		initEClassClassMap();
 		try {
-			schema = metaDataManager.getPluginManager().requireSchemaDefinition(ePackage.getName().toLowerCase());
+			if (metaDataManager.getPluginManager() != null) {
+				schema = metaDataManager.getPluginManager().requireSchemaDefinition(ePackage.getName().toLowerCase());
+			}
 		} catch (PluginException e) {
 		}
 	}
@@ -86,8 +88,10 @@ public class PackageMetaData {
 	private void initEClassClassMap() {
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
-				EClass eClass = (EClass) eClassifier;
-				eClassClassMap.put(eClass, eClass.getInstanceClass());
+				if (eClassifier.getInstanceClass() != null) {
+					EClass eClass = (EClass) eClassifier;
+					eClassClassMap.put(eClass, eClass.getInstanceClass());
+				}
 			}
 		}
 	}

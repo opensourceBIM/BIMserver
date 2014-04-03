@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSpatialElementTypeImpl extends IfcTypeProductImpl implements
-		IfcSpatialElementType {
+public class IfcSpatialElementTypeImpl extends IfcTypeProductImpl implements IfcSpatialElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +60,7 @@ public class IfcSpatialElementTypeImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public String getElementType() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_SPATIAL_ELEMENT_TYPE__ELEMENT_TYPE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT_TYPE__ELEMENT_TYPE, true);
 	}
 
 	/**
@@ -72,8 +69,7 @@ public class IfcSpatialElementTypeImpl extends IfcTypeProductImpl implements
 	 * @generated
 	 */
 	public void setElementType(String newElementType) {
-		eSet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT_TYPE__ELEMENT_TYPE,
-				newElementType);
+		eSet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT_TYPE__ELEMENT_TYPE, newElementType);
 	}
 
 	/**

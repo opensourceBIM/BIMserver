@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyDefinitionImpl extends IfcRootImpl implements
-		IfcPropertyDefinition {
+public class IfcPropertyDefinitionImpl extends IfcRootImpl implements IfcPropertyDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcPropertyDefinitionImpl extends IfcRootImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDeclares> getHasContext() {
-		return (EList<IfcRelDeclares>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_DEFINITION__HAS_CONTEXT, true);
+		return (EList<IfcRelDeclares>) eGet(Ifc4Package.Literals.IFC_PROPERTY_DEFINITION__HAS_CONTEXT, true);
 	}
 
 	/**
@@ -96,9 +94,7 @@ public class IfcPropertyDefinitionImpl extends IfcRootImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociates> getHasAssociations() {
-		return (EList<IfcRelAssociates>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_DEFINITION__HAS_ASSOCIATIONS,
-				true);
+		return (EList<IfcRelAssociates>) eGet(Ifc4Package.Literals.IFC_PROPERTY_DEFINITION__HAS_ASSOCIATIONS, true);
 	}
 
 	/**

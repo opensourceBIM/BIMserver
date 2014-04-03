@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelCheckerPluginDescriptorImpl extends PluginDescriptorImpl
-		implements ModelCheckerPluginDescriptor {
+public class ModelCheckerPluginDescriptorImpl extends PluginDescriptorImpl implements ModelCheckerPluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

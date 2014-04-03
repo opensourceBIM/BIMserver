@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcHumidifierImpl extends IfcEnergyConversionDeviceImpl implements
-		IfcHumidifier {
+public class IfcHumidifierImpl extends IfcEnergyConversionDeviceImpl implements IfcHumidifier {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcHumidifierImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public IfcHumidifierTypeEnum getPredefinedType() {
-		return (IfcHumidifierTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_HUMIDIFIER__PREDEFINED_TYPE, true);
+		return (IfcHumidifierTypeEnum) eGet(Ifc4Package.Literals.IFC_HUMIDIFIER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcHumidifierImpl extends IfcEnergyConversionDeviceImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcHumidifierTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_HUMIDIFIER__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_HUMIDIFIER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

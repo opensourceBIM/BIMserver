@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElementQuantityImpl extends IfcQuantitySetImpl implements
-		IfcElementQuantity {
+public class IfcElementQuantityImpl extends IfcQuantitySetImpl implements IfcElementQuantity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class IfcElementQuantityImpl extends IfcQuantitySetImpl implements
 	 * @generated
 	 */
 	public String getMethodOfMeasurement() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_ELEMENT_QUANTITY__METHOD_OF_MEASUREMENT,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_ELEMENT_QUANTITY__METHOD_OF_MEASUREMENT, true);
 	}
 
 	/**
@@ -76,8 +73,7 @@ public class IfcElementQuantityImpl extends IfcQuantitySetImpl implements
 	 * @generated
 	 */
 	public void setMethodOfMeasurement(String newMethodOfMeasurement) {
-		eSet(Ifc4Package.Literals.IFC_ELEMENT_QUANTITY__METHOD_OF_MEASUREMENT,
-				newMethodOfMeasurement);
+		eSet(Ifc4Package.Literals.IFC_ELEMENT_QUANTITY__METHOD_OF_MEASUREMENT, newMethodOfMeasurement);
 	}
 
 	/**
@@ -105,8 +101,7 @@ public class IfcElementQuantityImpl extends IfcQuantitySetImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPhysicalQuantity> getQuantities() {
-		return (EList<IfcPhysicalQuantity>) eGet(
-				Ifc4Package.Literals.IFC_ELEMENT_QUANTITY__QUANTITIES, true);
+		return (EList<IfcPhysicalQuantity>) eGet(Ifc4Package.Literals.IFC_ELEMENT_QUANTITY__QUANTITIES, true);
 	}
 
 } //IfcElementQuantityImpl

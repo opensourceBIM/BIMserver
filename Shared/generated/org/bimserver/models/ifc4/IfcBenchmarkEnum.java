@@ -313,10 +313,8 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBenchmarkEnum[] VALUES_ARRAY = new IfcBenchmarkEnum[] {
-			NULL, INCLUDES, LESSTHAN, GREATERTHANOREQUALTO, NOTINCLUDES,
-			EQUALTO, LESSTHANOREQUALTO, NOTINCLUDEDIN, NOTEQUALTO, INCLUDEDIN,
-			GREATERTHAN, };
+	private static final IfcBenchmarkEnum[] VALUES_ARRAY = new IfcBenchmarkEnum[] { NULL, INCLUDES, LESSTHAN, GREATERTHANOREQUALTO, NOTINCLUDES, EQUALTO, LESSTHANOREQUALTO,
+			NOTINCLUDEDIN, NOTEQUALTO, INCLUDEDIN, GREATERTHAN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Benchmark Enum</b></em>' enumerators.
@@ -324,8 +322,7 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcBenchmarkEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcBenchmarkEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Benchmark Enum</b></em>' literal with the specified literal value.

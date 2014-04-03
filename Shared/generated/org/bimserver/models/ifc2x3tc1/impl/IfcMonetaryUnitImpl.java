@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMonetaryUnitImpl extends IdEObjectImpl implements
-		IfcMonetaryUnit {
+public class IfcMonetaryUnitImpl extends IdEObjectImpl implements IfcMonetaryUnit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,8 +73,7 @@ public class IfcMonetaryUnitImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcCurrencyEnum getCurrency() {
-		return (IfcCurrencyEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MONETARY_UNIT__CURRENCY, true);
+		return (IfcCurrencyEnum) eGet(Ifc2x3tc1Package.Literals.IFC_MONETARY_UNIT__CURRENCY, true);
 	}
 
 	/**

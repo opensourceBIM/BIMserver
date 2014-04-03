@@ -61,8 +61,7 @@ public class IfcWallImpl extends IfcBuildingElementImpl implements IfcWall {
 	 * @generated
 	 */
 	public IfcWallTypeEnum getPredefinedType() {
-		return (IfcWallTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_WALL__PREDEFINED_TYPE, true);
+		return (IfcWallTypeEnum) eGet(Ifc4Package.Literals.IFC_WALL__PREDEFINED_TYPE, true);
 	}
 
 	/**

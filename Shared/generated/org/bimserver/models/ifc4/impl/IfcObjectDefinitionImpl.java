@@ -47,8 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcObjectDefinitionImpl extends IfcRootImpl implements
-		IfcObjectDefinition {
+public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,9 +74,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssigns> getHasAssignments() {
-		return (EList<IfcRelAssigns>) eGet(
-				Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSIGNMENTS,
-				true);
+		return (EList<IfcRelAssigns>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSIGNMENTS, true);
 	}
 
 	/**
@@ -105,8 +102,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelNests> getNests() {
-		return (EList<IfcRelNests>) eGet(
-				Ifc4Package.Literals.IFC_OBJECT_DEFINITION__NESTS, true);
+		return (EList<IfcRelNests>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__NESTS, true);
 	}
 
 	/**
@@ -134,8 +130,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelNests> getIsNestedBy() {
-		return (EList<IfcRelNests>) eGet(
-				Ifc4Package.Literals.IFC_OBJECT_DEFINITION__IS_NESTED_BY, true);
+		return (EList<IfcRelNests>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__IS_NESTED_BY, true);
 	}
 
 	/**
@@ -163,8 +158,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDeclares> getHasContext() {
-		return (EList<IfcRelDeclares>) eGet(
-				Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_CONTEXT, true);
+		return (EList<IfcRelDeclares>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_CONTEXT, true);
 	}
 
 	/**
@@ -192,9 +186,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAggregates> getIsDecomposedBy() {
-		return (EList<IfcRelAggregates>) eGet(
-				Ifc4Package.Literals.IFC_OBJECT_DEFINITION__IS_DECOMPOSED_BY,
-				true);
+		return (EList<IfcRelAggregates>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__IS_DECOMPOSED_BY, true);
 	}
 
 	/**
@@ -222,8 +214,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAggregates> getDecomposes() {
-		return (EList<IfcRelAggregates>) eGet(
-				Ifc4Package.Literals.IFC_OBJECT_DEFINITION__DECOMPOSES, true);
+		return (EList<IfcRelAggregates>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__DECOMPOSES, true);
 	}
 
 	/**
@@ -251,9 +242,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociates> getHasAssociations() {
-		return (EList<IfcRelAssociates>) eGet(
-				Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSOCIATIONS,
-				true);
+		return (EList<IfcRelAssociates>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSOCIATIONS, true);
 	}
 
 	/**

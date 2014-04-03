@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBSplineCurveWithKnotsImpl extends IfcBSplineCurveImpl implements
-		IfcBSplineCurveWithKnots {
+public class IfcBSplineCurveWithKnotsImpl extends IfcBSplineCurveImpl implements IfcBSplineCurveWithKnots {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,9 +67,7 @@ public class IfcBSplineCurveWithKnotsImpl extends IfcBSplineCurveImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Integer> getKnotMultiplicities() {
-		return (EList<Integer>) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOT_MULTIPLICITIES,
-				true);
+		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOT_MULTIPLICITIES, true);
 	}
 
 	/**
@@ -80,8 +77,7 @@ public class IfcBSplineCurveWithKnotsImpl extends IfcBSplineCurveImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Double> getKnots() {
-		return (EList<Double>) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOTS, true);
+		return (EList<Double>) eGet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOTS, true);
 	}
 
 	/**
@@ -91,9 +87,7 @@ public class IfcBSplineCurveWithKnotsImpl extends IfcBSplineCurveImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getKnotsAsString() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOTS_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOTS_AS_STRING, true);
 	}
 
 	/**
@@ -102,9 +96,7 @@ public class IfcBSplineCurveWithKnotsImpl extends IfcBSplineCurveImpl implements
 	 * @generated
 	 */
 	public IfcKnotType getKnotSpec() {
-		return (IfcKnotType) eGet(
-				Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOT_SPEC,
-				true);
+		return (IfcKnotType) eGet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOT_SPEC, true);
 	}
 
 	/**
@@ -113,8 +105,7 @@ public class IfcBSplineCurveWithKnotsImpl extends IfcBSplineCurveImpl implements
 	 * @generated
 	 */
 	public void setKnotSpec(IfcKnotType newKnotSpec) {
-		eSet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOT_SPEC,
-				newKnotSpec);
+		eSet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOT_SPEC, newKnotSpec);
 	}
 
 } //IfcBSplineCurveWithKnotsImpl

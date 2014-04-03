@@ -238,8 +238,7 @@ public enum IfcStructuralCurveMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStructuralCurveMemberTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveMemberTypeEnum[] {
-			NULL, NOTDEFINED, CABLE, TENSION_MEMBER, COMPRESSION_MEMBER,
+	private static final IfcStructuralCurveMemberTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveMemberTypeEnum[] { NULL, NOTDEFINED, CABLE, TENSION_MEMBER, COMPRESSION_MEMBER,
 			PIN_JOINED_MEMBER, USERDEFINED, RIGID_JOINED_MEMBER, };
 
 	/**
@@ -248,8 +247,7 @@ public enum IfcStructuralCurveMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcStructuralCurveMemberTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcStructuralCurveMemberTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Structural Curve Member Type Enum</b></em>' literal with the specified literal value.
@@ -338,8 +336,7 @@ public enum IfcStructuralCurveMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IfcStructuralCurveMemberTypeEnum(int value, String name,
-			String literal) {
+	private IfcStructuralCurveMemberTypeEnum(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

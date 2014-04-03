@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPlateStandardCaseImpl extends IfcPlateImpl implements
-		IfcPlateStandardCase {
+public class IfcPlateStandardCaseImpl extends IfcPlateImpl implements IfcPlateStandardCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

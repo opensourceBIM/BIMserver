@@ -42,8 +42,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcSectionReinforcementProperties extends
-		IfcPreDefinedProperties {
+public interface IfcSectionReinforcementProperties extends IfcPreDefinedProperties {
 	/**
 	 * Returns the value of the '<em><b>Longitudinal Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->

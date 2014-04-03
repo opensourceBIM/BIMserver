@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLightSourceDirectionalImpl extends IfcLightSourceImpl implements
-		IfcLightSourceDirectional {
+public class IfcLightSourceDirectionalImpl extends IfcLightSourceImpl implements IfcLightSourceDirectional {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcLightSourceDirectionalImpl extends IfcLightSourceImpl implements
 	 * @generated
 	 */
 	public IfcDirection getOrientation() {
-		return (IfcDirection) eGet(
-				Ifc4Package.Literals.IFC_LIGHT_SOURCE_DIRECTIONAL__ORIENTATION,
-				true);
+		return (IfcDirection) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_DIRECTIONAL__ORIENTATION, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcLightSourceDirectionalImpl extends IfcLightSourceImpl implements
 	 * @generated
 	 */
 	public void setOrientation(IfcDirection newOrientation) {
-		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_DIRECTIONAL__ORIENTATION,
-				newOrientation);
+		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_DIRECTIONAL__ORIENTATION, newOrientation);
 	}
 
 } //IfcLightSourceDirectionalImpl

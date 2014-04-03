@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextureMapImpl extends IfcTextureCoordinateImpl implements
-		IfcTextureMap {
+public class IfcTextureMapImpl extends IfcTextureCoordinateImpl implements IfcTextureMap {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcTextureMapImpl extends IfcTextureCoordinateImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTextureVertex> getVertices() {
-		return (EList<IfcTextureVertex>) eGet(
-				Ifc4Package.Literals.IFC_TEXTURE_MAP__VERTICES, true);
+		return (EList<IfcTextureVertex>) eGet(Ifc4Package.Literals.IFC_TEXTURE_MAP__VERTICES, true);
 	}
 
 	/**
@@ -77,8 +75,7 @@ public class IfcTextureMapImpl extends IfcTextureCoordinateImpl implements
 	 * @generated
 	 */
 	public IfcFace getMappedTo() {
-		return (IfcFace) eGet(Ifc4Package.Literals.IFC_TEXTURE_MAP__MAPPED_TO,
-				true);
+		return (IfcFace) eGet(Ifc4Package.Literals.IFC_TEXTURE_MAP__MAPPED_TO, true);
 	}
 
 	/**

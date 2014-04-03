@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ExtendedDataAddedToRevisionImpl extends LogActionImpl implements
-		ExtendedDataAddedToRevision {
+public class ExtendedDataAddedToRevisionImpl extends LogActionImpl implements ExtendedDataAddedToRevision {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +64,7 @@ public class ExtendedDataAddedToRevisionImpl extends LogActionImpl implements
 	 * @generated
 	 */
 	public Revision getRevision() {
-		return (Revision) eGet(
-				LogPackage.Literals.EXTENDED_DATA_ADDED_TO_REVISION__REVISION,
-				true);
+		return (Revision) eGet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_REVISION__REVISION, true);
 	}
 
 	/**
@@ -76,8 +73,7 @@ public class ExtendedDataAddedToRevisionImpl extends LogActionImpl implements
 	 * @generated
 	 */
 	public void setRevision(Revision newRevision) {
-		eSet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_REVISION__REVISION,
-				newRevision);
+		eSet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_REVISION__REVISION, newRevision);
 	}
 
 	/**
@@ -86,9 +82,7 @@ public class ExtendedDataAddedToRevisionImpl extends LogActionImpl implements
 	 * @generated
 	 */
 	public ExtendedData getExtendedData() {
-		return (ExtendedData) eGet(
-				LogPackage.Literals.EXTENDED_DATA_ADDED_TO_REVISION__EXTENDED_DATA,
-				true);
+		return (ExtendedData) eGet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_REVISION__EXTENDED_DATA, true);
 	}
 
 	/**
@@ -97,8 +91,7 @@ public class ExtendedDataAddedToRevisionImpl extends LogActionImpl implements
 	 * @generated
 	 */
 	public void setExtendedData(ExtendedData newExtendedData) {
-		eSet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_REVISION__EXTENDED_DATA,
-				newExtendedData);
+		eSet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_REVISION__EXTENDED_DATA, newExtendedData);
 	}
 
 } //ExtendedDataAddedToRevisionImpl

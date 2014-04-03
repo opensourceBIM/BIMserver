@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExtrudedAreaSolidTaperedImpl extends IfcExtrudedAreaSolidImpl
-		implements IfcExtrudedAreaSolidTapered {
+public class IfcExtrudedAreaSolidTaperedImpl extends IfcExtrudedAreaSolidImpl implements IfcExtrudedAreaSolidTapered {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcExtrudedAreaSolidTaperedImpl extends IfcExtrudedAreaSolidImpl
 	 * @generated
 	 */
 	public IfcProfileDef getEndSweptArea() {
-		return (IfcProfileDef) eGet(
-				Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID_TAPERED__END_SWEPT_AREA,
-				true);
+		return (IfcProfileDef) eGet(Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID_TAPERED__END_SWEPT_AREA, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcExtrudedAreaSolidTaperedImpl extends IfcExtrudedAreaSolidImpl
 	 * @generated
 	 */
 	public void setEndSweptArea(IfcProfileDef newEndSweptArea) {
-		eSet(Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID_TAPERED__END_SWEPT_AREA,
-				newEndSweptArea);
+		eSet(Ifc4Package.Literals.IFC_EXTRUDED_AREA_SOLID_TAPERED__END_SWEPT_AREA, newEndSweptArea);
 	}
 
 } //IfcExtrudedAreaSolidTaperedImpl

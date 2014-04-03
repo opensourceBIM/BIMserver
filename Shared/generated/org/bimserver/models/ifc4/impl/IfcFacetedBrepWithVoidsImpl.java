@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFacetedBrepWithVoidsImpl extends IfcFacetedBrepImpl implements
-		IfcFacetedBrepWithVoids {
+public class IfcFacetedBrepWithVoidsImpl extends IfcFacetedBrepImpl implements IfcFacetedBrepWithVoids {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcFacetedBrepWithVoidsImpl extends IfcFacetedBrepImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClosedShell> getVoids() {
-		return (EList<IfcClosedShell>) eGet(
-				Ifc4Package.Literals.IFC_FACETED_BREP_WITH_VOIDS__VOIDS, true);
+		return (EList<IfcClosedShell>) eGet(Ifc4Package.Literals.IFC_FACETED_BREP_WITH_VOIDS__VOIDS, true);
 	}
 
 } //IfcFacetedBrepWithVoidsImpl

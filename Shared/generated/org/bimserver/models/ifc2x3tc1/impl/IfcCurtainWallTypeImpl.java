@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCurtainWallTypeImpl extends IfcBuildingElementTypeImpl
-		implements IfcCurtainWallType {
+public class IfcCurtainWallTypeImpl extends IfcBuildingElementTypeImpl implements IfcCurtainWallType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcCurtainWallTypeImpl extends IfcBuildingElementTypeImpl
 	 * @generated
 	 */
 	public IfcCurtainWallTypeEnum getPredefinedType() {
-		return (IfcCurtainWallTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CURTAIN_WALL_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcCurtainWallTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_CURTAIN_WALL_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcCurtainWallTypeImpl extends IfcBuildingElementTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcCurtainWallTypeEnum newPredefinedType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURTAIN_WALL_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURTAIN_WALL_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcCurtainWallTypeImpl

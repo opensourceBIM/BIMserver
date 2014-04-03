@@ -26,6 +26,5 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcFlowStorageDeviceType extends
-		IfcDistributionFlowElementType {
+public interface IfcFlowStorageDeviceType extends IfcDistributionFlowElementType {
 } // IfcFlowStorageDeviceType

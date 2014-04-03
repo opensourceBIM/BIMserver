@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcLaborResourceTypeImpl extends IfcConstructionResourceTypeImpl
-		implements IfcLaborResourceType {
+public class IfcLaborResourceTypeImpl extends IfcConstructionResourceTypeImpl implements IfcLaborResourceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcLaborResourceTypeImpl extends IfcConstructionResourceTypeImpl
 	 * @generated
 	 */
 	public IfcLaborResourceTypeEnum getPredefinedType() {
-		return (IfcLaborResourceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_LABOR_RESOURCE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcLaborResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_LABOR_RESOURCE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcLaborResourceTypeImpl extends IfcConstructionResourceTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcLaborResourceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_LABOR_RESOURCE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_LABOR_RESOURCE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcLaborResourceTypeImpl

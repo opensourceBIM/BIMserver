@@ -46,8 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcClassificationImpl extends IfcExternalInformationImpl implements
-		IfcClassification {
+public class IfcClassificationImpl extends IfcExternalInformationImpl implements IfcClassification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,8 +72,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 * @generated
 	 */
 	public String getSource() {
-		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__SOURCE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__SOURCE, true);
 	}
 
 	/**
@@ -110,8 +108,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 * @generated
 	 */
 	public String getEdition() {
-		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__EDITION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__EDITION, true);
 	}
 
 	/**
@@ -147,8 +144,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 * @generated
 	 */
 	public String getEditionDate() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION__EDITION_DATE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__EDITION_DATE, true);
 	}
 
 	/**
@@ -157,8 +153,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 * @generated
 	 */
 	public void setEditionDate(String newEditionDate) {
-		eSet(Ifc4Package.Literals.IFC_CLASSIFICATION__EDITION_DATE,
-				newEditionDate);
+		eSet(Ifc4Package.Literals.IFC_CLASSIFICATION__EDITION_DATE, newEditionDate);
 	}
 
 	/**
@@ -185,8 +180,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__NAME,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__NAME, true);
 	}
 
 	/**
@@ -204,8 +198,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION__DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__DESCRIPTION, true);
 	}
 
 	/**
@@ -214,8 +207,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc4Package.Literals.IFC_CLASSIFICATION__DESCRIPTION,
-				newDescription);
+		eSet(Ifc4Package.Literals.IFC_CLASSIFICATION__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -242,8 +234,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 * @generated
 	 */
 	public String getLocation() {
-		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__LOCATION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__LOCATION, true);
 	}
 
 	/**
@@ -280,8 +271,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getReferenceTokens() {
-		return (EList<String>) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION__REFERENCE_TOKENS, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__REFERENCE_TOKENS, true);
 	}
 
 	/**
@@ -309,9 +299,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesClassification> getClassificationForObjects() {
-		return (EList<IfcRelAssociatesClassification>) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION__CLASSIFICATION_FOR_OBJECTS,
-				true);
+		return (EList<IfcRelAssociatesClassification>) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__CLASSIFICATION_FOR_OBJECTS, true);
 	}
 
 	/**
@@ -339,8 +327,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationReference> getHasReferences() {
-		return (EList<IfcClassificationReference>) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION__HAS_REFERENCES, true);
+		return (EList<IfcClassificationReference>) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__HAS_REFERENCES, true);
 	}
 
 	/**

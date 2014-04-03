@@ -42,8 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements
-		IfcOrganizationRelationship {
+public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements IfcOrganizationRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,9 +78,7 @@ public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__NAME,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__NAME, true);
 	}
 
 	/**
@@ -90,8 +87,7 @@ public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__NAME,
-				newName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__NAME, newName);
 	}
 
 	/**
@@ -100,9 +96,7 @@ public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__DESCRIPTION,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__DESCRIPTION, true);
 	}
 
 	/**
@@ -111,8 +105,7 @@ public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__DESCRIPTION,
-				newDescription);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -139,9 +132,7 @@ public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcOrganization getRelatingOrganization() {
-		return (IfcOrganization) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION,
-				true);
+		return (IfcOrganization) eGet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION, true);
 	}
 
 	/**
@@ -150,8 +141,7 @@ public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setRelatingOrganization(IfcOrganization newRelatingOrganization) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION,
-				newRelatingOrganization);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION, newRelatingOrganization);
 	}
 
 	/**
@@ -161,9 +151,7 @@ public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganization> getRelatedOrganizations() {
-		return (EList<IfcOrganization>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS,
-				true);
+		return (EList<IfcOrganization>) eGet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS, true);
 	}
 
 } //IfcOrganizationRelationshipImpl

@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralPointConnectionImpl extends
-		IfcStructuralConnectionImpl implements IfcStructuralPointConnection {
+public class IfcStructuralPointConnectionImpl extends IfcStructuralConnectionImpl implements IfcStructuralPointConnection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcStructuralPointConnectionImpl extends
 	 * @generated
 	 */
 	public IfcAxis2Placement3D getConditionCoordinateSystem() {
-		return (IfcAxis2Placement3D) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_POINT_CONNECTION__CONDITION_COORDINATE_SYSTEM,
-				true);
+		return (IfcAxis2Placement3D) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_POINT_CONNECTION__CONDITION_COORDINATE_SYSTEM, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcStructuralPointConnectionImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConditionCoordinateSystem(
-			IfcAxis2Placement3D newConditionCoordinateSystem) {
-		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_POINT_CONNECTION__CONDITION_COORDINATE_SYSTEM,
-				newConditionCoordinateSystem);
+	public void setConditionCoordinateSystem(IfcAxis2Placement3D newConditionCoordinateSystem) {
+		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_POINT_CONNECTION__CONDITION_COORDINATE_SYSTEM, newConditionCoordinateSystem);
 	}
 
 	/**

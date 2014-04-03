@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelNestsImpl extends IfcRelDecomposesImpl implements
-		IfcRelNests {
+public class IfcRelNestsImpl extends IfcRelDecomposesImpl implements IfcRelNests {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,8 +64,7 @@ public class IfcRelNestsImpl extends IfcRelDecomposesImpl implements
 	 * @generated
 	 */
 	public IfcObjectDefinition getRelatingObject() {
-		return (IfcObjectDefinition) eGet(
-				Ifc4Package.Literals.IFC_REL_NESTS__RELATING_OBJECT, true);
+		return (IfcObjectDefinition) eGet(Ifc4Package.Literals.IFC_REL_NESTS__RELATING_OBJECT, true);
 	}
 
 	/**
@@ -75,8 +73,7 @@ public class IfcRelNestsImpl extends IfcRelDecomposesImpl implements
 	 * @generated
 	 */
 	public void setRelatingObject(IfcObjectDefinition newRelatingObject) {
-		eSet(Ifc4Package.Literals.IFC_REL_NESTS__RELATING_OBJECT,
-				newRelatingObject);
+		eSet(Ifc4Package.Literals.IFC_REL_NESTS__RELATING_OBJECT, newRelatingObject);
 	}
 
 	/**
@@ -86,8 +83,7 @@ public class IfcRelNestsImpl extends IfcRelDecomposesImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcObjectDefinition> getRelatedObjects() {
-		return (EList<IfcObjectDefinition>) eGet(
-				Ifc4Package.Literals.IFC_REL_NESTS__RELATED_OBJECTS, true);
+		return (EList<IfcObjectDefinition>) eGet(Ifc4Package.Literals.IFC_REL_NESTS__RELATED_OBJECTS, true);
 	}
 
 } //IfcRelNestsImpl

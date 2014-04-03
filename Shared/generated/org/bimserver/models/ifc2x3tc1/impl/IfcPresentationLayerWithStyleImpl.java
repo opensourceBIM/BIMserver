@@ -40,9 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPresentationLayerWithStyleImpl extends
-		IfcPresentationLayerAssignmentImpl implements
-		IfcPresentationLayerWithStyle {
+public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssignmentImpl implements IfcPresentationLayerWithStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,9 +66,7 @@ public class IfcPresentationLayerWithStyleImpl extends
 	 * @generated
 	 */
 	public boolean isLayerOn() {
-		return (Boolean) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_ON,
-				true);
+		return (Boolean) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_ON, true);
 	}
 
 	/**
@@ -79,8 +75,7 @@ public class IfcPresentationLayerWithStyleImpl extends
 	 * @generated
 	 */
 	public void setLayerOn(boolean newLayerOn) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_ON,
-				newLayerOn);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_ON, newLayerOn);
 	}
 
 	/**
@@ -89,9 +84,7 @@ public class IfcPresentationLayerWithStyleImpl extends
 	 * @generated
 	 */
 	public boolean isLayerFrozen() {
-		return (Boolean) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN,
-				true);
+		return (Boolean) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN, true);
 	}
 
 	/**
@@ -100,8 +93,7 @@ public class IfcPresentationLayerWithStyleImpl extends
 	 * @generated
 	 */
 	public void setLayerFrozen(boolean newLayerFrozen) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN,
-				newLayerFrozen);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN, newLayerFrozen);
 	}
 
 	/**
@@ -110,9 +102,7 @@ public class IfcPresentationLayerWithStyleImpl extends
 	 * @generated
 	 */
 	public boolean isLayerBlocked() {
-		return (Boolean) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_BLOCKED,
-				true);
+		return (Boolean) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_BLOCKED, true);
 	}
 
 	/**
@@ -121,8 +111,7 @@ public class IfcPresentationLayerWithStyleImpl extends
 	 * @generated
 	 */
 	public void setLayerBlocked(boolean newLayerBlocked) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_BLOCKED,
-				newLayerBlocked);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_BLOCKED, newLayerBlocked);
 	}
 
 	/**
@@ -132,9 +121,7 @@ public class IfcPresentationLayerWithStyleImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationStyleSelect> getLayerStyles() {
-		return (EList<IfcPresentationStyleSelect>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_STYLES,
-				true);
+		return (EList<IfcPresentationStyleSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_STYLES, true);
 	}
 
 } //IfcPresentationLayerWithStyleImpl

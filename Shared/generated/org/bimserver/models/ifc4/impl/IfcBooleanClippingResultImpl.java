@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcBooleanClippingResultImpl extends IfcBooleanResultImpl
-		implements IfcBooleanClippingResult {
+public class IfcBooleanClippingResultImpl extends IfcBooleanResultImpl implements IfcBooleanClippingResult {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

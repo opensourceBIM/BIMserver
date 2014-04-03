@@ -36,8 +36,7 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcMaterialLayer extends IfcMaterialSelect,
-		IfcObjectReferenceSelect {
+public interface IfcMaterialLayer extends IfcMaterialSelect, IfcObjectReferenceSelect {
 	/**
 	 * Returns the value of the '<em><b>Material</b></em>' reference.
 	 * <!-- begin-user-doc -->

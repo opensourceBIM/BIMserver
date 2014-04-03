@@ -32,8 +32,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcSurfaceStyleShading extends IfcPresentationItem,
-		IfcSurfaceStyleElementSelect {
+public interface IfcSurfaceStyleShading extends IfcPresentationItem, IfcSurfaceStyleElementSelect {
 	/**
 	 * Returns the value of the '<em><b>Surface Colour</b></em>' reference.
 	 * <!-- begin-user-doc -->

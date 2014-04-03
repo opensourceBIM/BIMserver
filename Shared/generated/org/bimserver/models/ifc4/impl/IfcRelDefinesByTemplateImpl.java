@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelDefinesByTemplateImpl extends IfcRelDefinesImpl implements
-		IfcRelDefinesByTemplate {
+public class IfcRelDefinesByTemplateImpl extends IfcRelDefinesImpl implements IfcRelDefinesByTemplate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +66,7 @@ public class IfcRelDefinesByTemplateImpl extends IfcRelDefinesImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertySetDefinition> getRelatedPropertySets() {
-		return (EList<IfcPropertySetDefinition>) eGet(
-				Ifc4Package.Literals.IFC_REL_DEFINES_BY_TEMPLATE__RELATED_PROPERTY_SETS,
-				true);
+		return (EList<IfcPropertySetDefinition>) eGet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_TEMPLATE__RELATED_PROPERTY_SETS, true);
 	}
 
 	/**
@@ -78,9 +75,7 @@ public class IfcRelDefinesByTemplateImpl extends IfcRelDefinesImpl implements
 	 * @generated
 	 */
 	public IfcPropertySetTemplate getRelatingTemplate() {
-		return (IfcPropertySetTemplate) eGet(
-				Ifc4Package.Literals.IFC_REL_DEFINES_BY_TEMPLATE__RELATING_TEMPLATE,
-				true);
+		return (IfcPropertySetTemplate) eGet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_TEMPLATE__RELATING_TEMPLATE, true);
 	}
 
 	/**
@@ -89,8 +84,7 @@ public class IfcRelDefinesByTemplateImpl extends IfcRelDefinesImpl implements
 	 * @generated
 	 */
 	public void setRelatingTemplate(IfcPropertySetTemplate newRelatingTemplate) {
-		eSet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_TEMPLATE__RELATING_TEMPLATE,
-				newRelatingTemplate);
+		eSet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_TEMPLATE__RELATING_TEMPLATE, newRelatingTemplate);
 	}
 
 } //IfcRelDefinesByTemplateImpl

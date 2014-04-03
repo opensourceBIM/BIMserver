@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class NewObjectIDMUploadedImpl extends LogActionImpl implements
-		NewObjectIDMUploaded {
+public class NewObjectIDMUploadedImpl extends LogActionImpl implements NewObjectIDMUploaded {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

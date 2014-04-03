@@ -188,9 +188,7 @@ public enum IfcChillerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcChillerTypeEnum[] VALUES_ARRAY = new IfcChillerTypeEnum[] {
-			NULL, NOTDEFINED, USERDEFINED, WATERCOOLED, HEATRECOVERY,
-			AIRCOOLED, };
+	private static final IfcChillerTypeEnum[] VALUES_ARRAY = new IfcChillerTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, WATERCOOLED, HEATRECOVERY, AIRCOOLED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Chiller Type Enum</b></em>' enumerators.
@@ -198,8 +196,7 @@ public enum IfcChillerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcChillerTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcChillerTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Chiller Type Enum</b></em>' literal with the specified literal value.

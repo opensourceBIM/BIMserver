@@ -69,8 +69,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraint> getBenchmarkValues() {
-		return (EList<IfcConstraint>) eGet(
-				Ifc4Package.Literals.IFC_OBJECTIVE__BENCHMARK_VALUES, true);
+		return (EList<IfcConstraint>) eGet(Ifc4Package.Literals.IFC_OBJECTIVE__BENCHMARK_VALUES, true);
 	}
 
 	/**
@@ -97,8 +96,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective 
 	 * @generated
 	 */
 	public IfcLogicalOperatorEnum getLogicalAggregator() {
-		return (IfcLogicalOperatorEnum) eGet(
-				Ifc4Package.Literals.IFC_OBJECTIVE__LOGICAL_AGGREGATOR, true);
+		return (IfcLogicalOperatorEnum) eGet(Ifc4Package.Literals.IFC_OBJECTIVE__LOGICAL_AGGREGATOR, true);
 	}
 
 	/**
@@ -107,8 +105,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective 
 	 * @generated
 	 */
 	public void setLogicalAggregator(IfcLogicalOperatorEnum newLogicalAggregator) {
-		eSet(Ifc4Package.Literals.IFC_OBJECTIVE__LOGICAL_AGGREGATOR,
-				newLogicalAggregator);
+		eSet(Ifc4Package.Literals.IFC_OBJECTIVE__LOGICAL_AGGREGATOR, newLogicalAggregator);
 	}
 
 	/**
@@ -135,8 +132,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective 
 	 * @generated
 	 */
 	public IfcObjectiveEnum getObjectiveQualifier() {
-		return (IfcObjectiveEnum) eGet(
-				Ifc4Package.Literals.IFC_OBJECTIVE__OBJECTIVE_QUALIFIER, true);
+		return (IfcObjectiveEnum) eGet(Ifc4Package.Literals.IFC_OBJECTIVE__OBJECTIVE_QUALIFIER, true);
 	}
 
 	/**
@@ -145,8 +141,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective 
 	 * @generated
 	 */
 	public void setObjectiveQualifier(IfcObjectiveEnum newObjectiveQualifier) {
-		eSet(Ifc4Package.Literals.IFC_OBJECTIVE__OBJECTIVE_QUALIFIER,
-				newObjectiveQualifier);
+		eSet(Ifc4Package.Literals.IFC_OBJECTIVE__OBJECTIVE_QUALIFIER, newObjectiveQualifier);
 	}
 
 	/**
@@ -155,9 +150,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective 
 	 * @generated
 	 */
 	public String getUserDefinedQualifier() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_OBJECTIVE__USER_DEFINED_QUALIFIER,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_OBJECTIVE__USER_DEFINED_QUALIFIER, true);
 	}
 
 	/**
@@ -166,8 +159,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective 
 	 * @generated
 	 */
 	public void setUserDefinedQualifier(String newUserDefinedQualifier) {
-		eSet(Ifc4Package.Literals.IFC_OBJECTIVE__USER_DEFINED_QUALIFIER,
-				newUserDefinedQualifier);
+		eSet(Ifc4Package.Literals.IFC_OBJECTIVE__USER_DEFINED_QUALIFIER, newUserDefinedQualifier);
 	}
 
 	/**

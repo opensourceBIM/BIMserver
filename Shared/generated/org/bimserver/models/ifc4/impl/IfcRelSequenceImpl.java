@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements
-		IfcRelSequence {
+public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements IfcRelSequence {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,8 +67,7 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcProcess getRelatingProcess() {
-		return (IfcProcess) eGet(
-				Ifc4Package.Literals.IFC_REL_SEQUENCE__RELATING_PROCESS, true);
+		return (IfcProcess) eGet(Ifc4Package.Literals.IFC_REL_SEQUENCE__RELATING_PROCESS, true);
 	}
 
 	/**
@@ -78,8 +76,7 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public void setRelatingProcess(IfcProcess newRelatingProcess) {
-		eSet(Ifc4Package.Literals.IFC_REL_SEQUENCE__RELATING_PROCESS,
-				newRelatingProcess);
+		eSet(Ifc4Package.Literals.IFC_REL_SEQUENCE__RELATING_PROCESS, newRelatingProcess);
 	}
 
 	/**
@@ -88,8 +85,7 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcProcess getRelatedProcess() {
-		return (IfcProcess) eGet(
-				Ifc4Package.Literals.IFC_REL_SEQUENCE__RELATED_PROCESS, true);
+		return (IfcProcess) eGet(Ifc4Package.Literals.IFC_REL_SEQUENCE__RELATED_PROCESS, true);
 	}
 
 	/**
@@ -98,8 +94,7 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public void setRelatedProcess(IfcProcess newRelatedProcess) {
-		eSet(Ifc4Package.Literals.IFC_REL_SEQUENCE__RELATED_PROCESS,
-				newRelatedProcess);
+		eSet(Ifc4Package.Literals.IFC_REL_SEQUENCE__RELATED_PROCESS, newRelatedProcess);
 	}
 
 	/**
@@ -108,8 +103,7 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcLagTime getTimeLag() {
-		return (IfcLagTime) eGet(
-				Ifc4Package.Literals.IFC_REL_SEQUENCE__TIME_LAG, true);
+		return (IfcLagTime) eGet(Ifc4Package.Literals.IFC_REL_SEQUENCE__TIME_LAG, true);
 	}
 
 	/**
@@ -145,8 +139,7 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcSequenceEnum getSequenceType() {
-		return (IfcSequenceEnum) eGet(
-				Ifc4Package.Literals.IFC_REL_SEQUENCE__SEQUENCE_TYPE, true);
+		return (IfcSequenceEnum) eGet(Ifc4Package.Literals.IFC_REL_SEQUENCE__SEQUENCE_TYPE, true);
 	}
 
 	/**
@@ -155,8 +148,7 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public void setSequenceType(IfcSequenceEnum newSequenceType) {
-		eSet(Ifc4Package.Literals.IFC_REL_SEQUENCE__SEQUENCE_TYPE,
-				newSequenceType);
+		eSet(Ifc4Package.Literals.IFC_REL_SEQUENCE__SEQUENCE_TYPE, newSequenceType);
 	}
 
 	/**
@@ -183,9 +175,7 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public String getUserDefinedSequenceType() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_REL_SEQUENCE__USER_DEFINED_SEQUENCE_TYPE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_REL_SEQUENCE__USER_DEFINED_SEQUENCE_TYPE, true);
 	}
 
 	/**
@@ -194,8 +184,7 @@ public class IfcRelSequenceImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public void setUserDefinedSequenceType(String newUserDefinedSequenceType) {
-		eSet(Ifc4Package.Literals.IFC_REL_SEQUENCE__USER_DEFINED_SEQUENCE_TYPE,
-				newUserDefinedSequenceType);
+		eSet(Ifc4Package.Literals.IFC_REL_SEQUENCE__USER_DEFINED_SEQUENCE_TYPE, newUserDefinedSequenceType);
 	}
 
 	/**

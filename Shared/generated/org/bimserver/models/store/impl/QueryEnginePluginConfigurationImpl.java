@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class QueryEnginePluginConfigurationImpl extends PluginConfigurationImpl
-		implements QueryEnginePluginConfiguration {
+public class QueryEnginePluginConfigurationImpl extends PluginConfigurationImpl implements QueryEnginePluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class QueryEnginePluginConfigurationImpl extends PluginConfigurationImpl
 	 * @generated
 	 */
 	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(
-				StorePackage.Literals.QUERY_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				true);
+		return (UserSettings) eGet(StorePackage.Literals.QUERY_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class QueryEnginePluginConfigurationImpl extends PluginConfigurationImpl
 	 * @generated
 	 */
 	public void setUserSettings(UserSettings newUserSettings) {
-		eSet(StorePackage.Literals.QUERY_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				newUserSettings);
+		eSet(StorePackage.Literals.QUERY_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
 
 } //QueryEnginePluginConfigurationImpl

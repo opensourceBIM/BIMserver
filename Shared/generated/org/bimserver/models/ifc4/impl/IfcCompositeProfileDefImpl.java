@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements
-		IfcCompositeProfileDef {
+public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements IfcCompositeProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,8 +65,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProfileDef> getProfiles() {
-		return (EList<IfcProfileDef>) eGet(
-				Ifc4Package.Literals.IFC_COMPOSITE_PROFILE_DEF__PROFILES, true);
+		return (EList<IfcProfileDef>) eGet(Ifc4Package.Literals.IFC_COMPOSITE_PROFILE_DEF__PROFILES, true);
 	}
 
 	/**
@@ -76,8 +74,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements
 	 * @generated
 	 */
 	public String getLabel() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_COMPOSITE_PROFILE_DEF__LABEL, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_COMPOSITE_PROFILE_DEF__LABEL, true);
 	}
 
 	/**

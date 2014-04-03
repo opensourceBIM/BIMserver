@@ -74,8 +74,7 @@ public class IfcProfileDefImpl extends IdEObjectImpl implements IfcProfileDef {
 	 * @generated
 	 */
 	public IfcProfileTypeEnum getProfileType() {
-		return (IfcProfileTypeEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROFILE_DEF__PROFILE_TYPE, true);
+		return (IfcProfileTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PROFILE_DEF__PROFILE_TYPE, true);
 	}
 
 	/**
@@ -84,8 +83,7 @@ public class IfcProfileDefImpl extends IdEObjectImpl implements IfcProfileDef {
 	 * @generated
 	 */
 	public void setProfileType(IfcProfileTypeEnum newProfileType) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_DEF__PROFILE_TYPE,
-				newProfileType);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_DEF__PROFILE_TYPE, newProfileType);
 	}
 
 	/**
@@ -94,8 +92,7 @@ public class IfcProfileDefImpl extends IdEObjectImpl implements IfcProfileDef {
 	 * @generated
 	 */
 	public String getProfileName() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROFILE_DEF__PROFILE_NAME, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PROFILE_DEF__PROFILE_NAME, true);
 	}
 
 	/**
@@ -104,8 +101,7 @@ public class IfcProfileDefImpl extends IdEObjectImpl implements IfcProfileDef {
 	 * @generated
 	 */
 	public void setProfileName(String newProfileName) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_DEF__PROFILE_NAME,
-				newProfileName);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROFILE_DEF__PROFILE_NAME, newProfileName);
 	}
 
 	/**

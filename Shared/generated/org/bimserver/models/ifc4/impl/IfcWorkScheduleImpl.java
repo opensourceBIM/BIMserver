@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcWorkScheduleImpl extends IfcWorkControlImpl implements
-		IfcWorkSchedule {
+public class IfcWorkScheduleImpl extends IfcWorkControlImpl implements IfcWorkSchedule {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcWorkScheduleImpl extends IfcWorkControlImpl implements
 	 * @generated
 	 */
 	public IfcWorkScheduleTypeEnum getPredefinedType() {
-		return (IfcWorkScheduleTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_WORK_SCHEDULE__PREDEFINED_TYPE, true);
+		return (IfcWorkScheduleTypeEnum) eGet(Ifc4Package.Literals.IFC_WORK_SCHEDULE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcWorkScheduleImpl extends IfcWorkControlImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcWorkScheduleTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_WORK_SCHEDULE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_WORK_SCHEDULE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

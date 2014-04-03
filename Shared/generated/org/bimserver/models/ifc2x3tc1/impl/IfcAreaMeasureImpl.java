@@ -73,8 +73,7 @@ public class IfcAreaMeasureImpl extends IdEObjectImpl implements IfcAreaMeasure 
 	 * @generated
 	 */
 	public double getWrappedValue() {
-		return (Double) eGet(
-				Ifc2x3tc1Package.Literals.IFC_AREA_MEASURE__WRAPPED_VALUE, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_AREA_MEASURE__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -83,8 +82,7 @@ public class IfcAreaMeasureImpl extends IdEObjectImpl implements IfcAreaMeasure 
 	 * @generated
 	 */
 	public void setWrappedValue(double newWrappedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_AREA_MEASURE__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_AREA_MEASURE__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**
@@ -111,9 +109,7 @@ public class IfcAreaMeasureImpl extends IdEObjectImpl implements IfcAreaMeasure 
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_AREA_MEASURE__WRAPPED_VALUE_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_AREA_MEASURE__WRAPPED_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -122,8 +118,7 @@ public class IfcAreaMeasureImpl extends IdEObjectImpl implements IfcAreaMeasure 
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_AREA_MEASURE__WRAPPED_VALUE_AS_STRING,
-				newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_AREA_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
 	}
 
 	/**

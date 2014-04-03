@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFilterImpl extends IfcFlowTreatmentDeviceImpl implements
-		IfcFilter {
+public class IfcFilterImpl extends IfcFlowTreatmentDeviceImpl implements IfcFilter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcFilterImpl extends IfcFlowTreatmentDeviceImpl implements
 	 * @generated
 	 */
 	public IfcFilterTypeEnum getPredefinedType() {
-		return (IfcFilterTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_FILTER__PREDEFINED_TYPE, true);
+		return (IfcFilterTypeEnum) eGet(Ifc4Package.Literals.IFC_FILTER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcFilterImpl extends IfcFlowTreatmentDeviceImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcFilterTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_FILTER__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_FILTER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

@@ -42,8 +42,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcPerson extends IfcActorSelect, IfcObjectReferenceSelect,
-		IfcResourceObjectSelect {
+public interface IfcPerson extends IfcActorSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect {
 	/**
 	 * Returns the value of the '<em><b>Identification</b></em>' attribute.
 	 * <!-- begin-user-doc -->

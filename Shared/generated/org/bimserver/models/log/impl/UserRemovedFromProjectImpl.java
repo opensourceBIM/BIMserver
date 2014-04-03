@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class UserRemovedFromProjectImpl extends UserRelatedImpl implements
-		UserRemovedFromProject {
+public class UserRemovedFromProjectImpl extends UserRelatedImpl implements UserRemovedFromProject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class UserRemovedFromProjectImpl extends UserRelatedImpl implements
 	 * @generated
 	 */
 	public Project getProject() {
-		return (Project) eGet(
-				LogPackage.Literals.USER_REMOVED_FROM_PROJECT__PROJECT, true);
+		return (Project) eGet(LogPackage.Literals.USER_REMOVED_FROM_PROJECT__PROJECT, true);
 	}
 
 	/**

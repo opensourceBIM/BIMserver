@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcURIReferenceImpl extends IdEObjectImpl implements
-		IfcURIReference {
+public class IfcURIReferenceImpl extends IdEObjectImpl implements IfcURIReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,8 +72,7 @@ public class IfcURIReferenceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getWrappedValue() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_URI_REFERENCE__WRAPPED_VALUE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_URI_REFERENCE__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -83,8 +81,7 @@ public class IfcURIReferenceImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setWrappedValue(String newWrappedValue) {
-		eSet(Ifc4Package.Literals.IFC_URI_REFERENCE__WRAPPED_VALUE,
-				newWrappedValue);
+		eSet(Ifc4Package.Literals.IFC_URI_REFERENCE__WRAPPED_VALUE, newWrappedValue);
 	}
 
 	/**

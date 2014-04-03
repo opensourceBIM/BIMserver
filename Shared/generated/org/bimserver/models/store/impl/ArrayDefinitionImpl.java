@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ArrayDefinitionImpl extends TypeDefinitionImpl implements
-		ArrayDefinition {
+public class ArrayDefinitionImpl extends TypeDefinitionImpl implements ArrayDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class ArrayDefinitionImpl extends TypeDefinitionImpl implements
 	 * @generated
 	 */
 	public TypeDefinition getType() {
-		return (TypeDefinition) eGet(
-				StorePackage.Literals.ARRAY_DEFINITION__TYPE, true);
+		return (TypeDefinition) eGet(StorePackage.Literals.ARRAY_DEFINITION__TYPE, true);
 	}
 
 	/**

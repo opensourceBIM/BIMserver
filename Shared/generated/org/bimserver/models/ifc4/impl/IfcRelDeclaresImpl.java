@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelDeclaresImpl extends IfcRelationshipImpl implements
-		IfcRelDeclares {
+public class IfcRelDeclaresImpl extends IfcRelationshipImpl implements IfcRelDeclares {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,8 +65,7 @@ public class IfcRelDeclaresImpl extends IfcRelationshipImpl implements
 	 * @generated
 	 */
 	public IfcContext getRelatingContext() {
-		return (IfcContext) eGet(
-				Ifc4Package.Literals.IFC_REL_DECLARES__RELATING_CONTEXT, true);
+		return (IfcContext) eGet(Ifc4Package.Literals.IFC_REL_DECLARES__RELATING_CONTEXT, true);
 	}
 
 	/**
@@ -76,8 +74,7 @@ public class IfcRelDeclaresImpl extends IfcRelationshipImpl implements
 	 * @generated
 	 */
 	public void setRelatingContext(IfcContext newRelatingContext) {
-		eSet(Ifc4Package.Literals.IFC_REL_DECLARES__RELATING_CONTEXT,
-				newRelatingContext);
+		eSet(Ifc4Package.Literals.IFC_REL_DECLARES__RELATING_CONTEXT, newRelatingContext);
 	}
 
 	/**
@@ -87,9 +84,7 @@ public class IfcRelDeclaresImpl extends IfcRelationshipImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDefinitionSelect> getRelatedDefinitions() {
-		return (EList<IfcDefinitionSelect>) eGet(
-				Ifc4Package.Literals.IFC_REL_DECLARES__RELATED_DEFINITIONS,
-				true);
+		return (EList<IfcDefinitionSelect>) eGet(Ifc4Package.Literals.IFC_REL_DECLARES__RELATED_DEFINITIONS, true);
 	}
 
 } //IfcRelDeclaresImpl

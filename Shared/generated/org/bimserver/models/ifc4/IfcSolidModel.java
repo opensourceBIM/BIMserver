@@ -32,8 +32,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcSolidModel extends IfcGeometricRepresentationItem,
-		IfcBooleanOperand, IfcSolidOrShell {
+public interface IfcSolidModel extends IfcGeometricRepresentationItem, IfcBooleanOperand, IfcSolidOrShell {
 	/**
 	 * Returns the value of the '<em><b>Dim</b></em>' attribute.
 	 * <!-- begin-user-doc -->

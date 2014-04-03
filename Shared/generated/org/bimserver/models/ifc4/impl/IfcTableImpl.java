@@ -115,8 +115,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTableRow> getRows() {
-		return (EList<IfcTableRow>) eGet(Ifc4Package.Literals.IFC_TABLE__ROWS,
-				true);
+		return (EList<IfcTableRow>) eGet(Ifc4Package.Literals.IFC_TABLE__ROWS, true);
 	}
 
 	/**
@@ -144,8 +143,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTableColumn> getColumns() {
-		return (EList<IfcTableColumn>) eGet(
-				Ifc4Package.Literals.IFC_TABLE__COLUMNS, true);
+		return (EList<IfcTableColumn>) eGet(Ifc4Package.Literals.IFC_TABLE__COLUMNS, true);
 	}
 
 	/**

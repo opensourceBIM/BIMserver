@@ -140,8 +140,7 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FREESTANDINGWATERCOOLER(10, "FREESTANDINGWATERCOOLER",
-			"FREESTANDINGWATERCOOLER"),
+	FREESTANDINGWATERCOOLER(10, "FREESTANDINGWATERCOOLER", "FREESTANDINGWATERCOOLER"),
 
 	/**
 	 * The '<em><b>FREESTANDINGWATERHEATER</b></em>' literal object.
@@ -151,8 +150,7 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FREESTANDINGWATERHEATER(11, "FREESTANDINGWATERHEATER",
-			"FREESTANDINGWATERHEATER"),
+	FREESTANDINGWATERHEATER(11, "FREESTANDINGWATERHEATER", "FREESTANDINGWATERHEATER"),
 
 	/**
 	 * The '<em><b>PHOTOCOPIER</b></em>' literal object.
@@ -212,8 +210,7 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FREESTANDINGELECTRICHEATER(17, "FREESTANDINGELECTRICHEATER",
-			"FREESTANDINGELECTRICHEATER"),
+	FREESTANDINGELECTRICHEATER(17, "FREESTANDINGELECTRICHEATER", "FREESTANDINGELECTRICHEATER"),
 
 	/**
 	 * The '<em><b>ELECTRICCOOKER</b></em>' literal object.
@@ -516,12 +513,9 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] {
-			NULL, FRIDGE_FREEZER, MICROWAVE, REFRIGERATOR, NOTDEFINED,
-			FREESTANDINGFAN, WASHINGMACHINE, KITCHENMACHINE, FREEZER,
-			TUMBLEDRYER, FREESTANDINGWATERCOOLER, FREESTANDINGWATERHEATER,
-			PHOTOCOPIER, VENDINGMACHINE, DISHWASHER, HANDDRYER, USERDEFINED,
-			FREESTANDINGELECTRICHEATER, ELECTRICCOOKER, };
+	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] { NULL, FRIDGE_FREEZER, MICROWAVE, REFRIGERATOR, NOTDEFINED,
+			FREESTANDINGFAN, WASHINGMACHINE, KITCHENMACHINE, FREEZER, TUMBLEDRYER, FREESTANDINGWATERCOOLER, FREESTANDINGWATERHEATER, PHOTOCOPIER, VENDINGMACHINE, DISHWASHER,
+			HANDDRYER, USERDEFINED, FREESTANDINGELECTRICHEATER, ELECTRICCOOKER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Appliance Type Enum</b></em>' enumerators.
@@ -529,8 +523,7 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricApplianceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricApplianceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Appliance Type Enum</b></em>' literal with the specified literal value.

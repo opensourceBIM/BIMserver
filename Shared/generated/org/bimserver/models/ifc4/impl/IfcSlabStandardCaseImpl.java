@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSlabStandardCaseImpl extends IfcSlabImpl implements
-		IfcSlabStandardCase {
+public class IfcSlabStandardCaseImpl extends IfcSlabImpl implements IfcSlabStandardCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

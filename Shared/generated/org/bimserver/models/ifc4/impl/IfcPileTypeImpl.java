@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPileTypeImpl extends IfcBuildingElementTypeImpl implements
-		IfcPileType {
+public class IfcPileTypeImpl extends IfcBuildingElementTypeImpl implements IfcPileType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcPileTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcPileTypeEnum getPredefinedType() {
-		return (IfcPileTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PILE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcPileTypeEnum) eGet(Ifc4Package.Literals.IFC_PILE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcPileTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcPileTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_PILE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_PILE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcPileTypeImpl

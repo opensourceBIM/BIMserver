@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcHeatExchangerImpl extends IfcEnergyConversionDeviceImpl
-		implements IfcHeatExchanger {
+public class IfcHeatExchangerImpl extends IfcEnergyConversionDeviceImpl implements IfcHeatExchanger {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcHeatExchangerImpl extends IfcEnergyConversionDeviceImpl
 	 * @generated
 	 */
 	public IfcHeatExchangerTypeEnum getPredefinedType() {
-		return (IfcHeatExchangerTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_HEAT_EXCHANGER__PREDEFINED_TYPE, true);
+		return (IfcHeatExchangerTypeEnum) eGet(Ifc4Package.Literals.IFC_HEAT_EXCHANGER__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcHeatExchangerImpl extends IfcEnergyConversionDeviceImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcHeatExchangerTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_HEAT_EXCHANGER__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_HEAT_EXCHANGER__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

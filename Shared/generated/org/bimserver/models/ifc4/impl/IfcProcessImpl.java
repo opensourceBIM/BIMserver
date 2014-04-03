@@ -68,8 +68,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * @generated
 	 */
 	public String getIdentification() {
-		return (String) eGet(Ifc4Package.Literals.IFC_PROCESS__IDENTIFICATION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PROCESS__IDENTIFICATION, true);
 	}
 
 	/**
@@ -78,8 +77,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * @generated
 	 */
 	public void setIdentification(String newIdentification) {
-		eSet(Ifc4Package.Literals.IFC_PROCESS__IDENTIFICATION,
-				newIdentification);
+		eSet(Ifc4Package.Literals.IFC_PROCESS__IDENTIFICATION, newIdentification);
 	}
 
 	/**
@@ -106,8 +104,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * @generated
 	 */
 	public String getLongDescription() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PROCESS__LONG_DESCRIPTION, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PROCESS__LONG_DESCRIPTION, true);
 	}
 
 	/**
@@ -116,8 +113,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * @generated
 	 */
 	public void setLongDescription(String newLongDescription) {
-		eSet(Ifc4Package.Literals.IFC_PROCESS__LONG_DESCRIPTION,
-				newLongDescription);
+		eSet(Ifc4Package.Literals.IFC_PROCESS__LONG_DESCRIPTION, newLongDescription);
 	}
 
 	/**
@@ -145,8 +141,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSequence> getIsPredecessorTo() {
-		return (EList<IfcRelSequence>) eGet(
-				Ifc4Package.Literals.IFC_PROCESS__IS_PREDECESSOR_TO, true);
+		return (EList<IfcRelSequence>) eGet(Ifc4Package.Literals.IFC_PROCESS__IS_PREDECESSOR_TO, true);
 	}
 
 	/**
@@ -174,8 +169,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSequence> getIsSuccessorFrom() {
-		return (EList<IfcRelSequence>) eGet(
-				Ifc4Package.Literals.IFC_PROCESS__IS_SUCCESSOR_FROM, true);
+		return (EList<IfcRelSequence>) eGet(Ifc4Package.Literals.IFC_PROCESS__IS_SUCCESSOR_FROM, true);
 	}
 
 	/**
@@ -203,8 +197,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToProcess> getOperatesOn() {
-		return (EList<IfcRelAssignsToProcess>) eGet(
-				Ifc4Package.Literals.IFC_PROCESS__OPERATES_ON, true);
+		return (EList<IfcRelAssignsToProcess>) eGet(Ifc4Package.Literals.IFC_PROCESS__OPERATES_ON, true);
 	}
 
 	/**

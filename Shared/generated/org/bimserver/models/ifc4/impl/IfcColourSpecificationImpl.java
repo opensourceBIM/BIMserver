@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcColourSpecificationImpl extends IfcPresentationItemImpl
-		implements IfcColourSpecification {
+public class IfcColourSpecificationImpl extends IfcPresentationItemImpl implements IfcColourSpecification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcColourSpecificationImpl extends IfcPresentationItemImpl
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_COLOUR_SPECIFICATION__NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_COLOUR_SPECIFICATION__NAME, true);
 	}
 
 	/**

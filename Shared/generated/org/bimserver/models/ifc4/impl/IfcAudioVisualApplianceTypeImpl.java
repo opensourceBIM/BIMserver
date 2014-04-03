@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAudioVisualApplianceTypeImpl extends IfcFlowTerminalTypeImpl
-		implements IfcAudioVisualApplianceType {
+public class IfcAudioVisualApplianceTypeImpl extends IfcFlowTerminalTypeImpl implements IfcAudioVisualApplianceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcAudioVisualApplianceTypeImpl extends IfcFlowTerminalTypeImpl
 	 * @generated
 	 */
 	public IfcAudioVisualApplianceTypeEnum getPredefinedType() {
-		return (IfcAudioVisualApplianceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcAudioVisualApplianceTypeEnum) eGet(Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -72,10 +69,8 @@ public class IfcAudioVisualApplianceTypeImpl extends IfcFlowTerminalTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcAudioVisualApplianceTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcAudioVisualApplianceTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcAudioVisualApplianceTypeImpl

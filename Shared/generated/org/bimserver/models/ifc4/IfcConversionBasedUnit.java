@@ -36,8 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcConversionBasedUnit extends IfcNamedUnit,
-		IfcResourceObjectSelect {
+public interface IfcConversionBasedUnit extends IfcNamedUnit, IfcResourceObjectSelect {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRepresentationItemImpl extends IdEObjectImpl implements
-		IfcRepresentationItem {
+public class IfcRepresentationItemImpl extends IdEObjectImpl implements IfcRepresentationItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,9 +78,7 @@ public class IfcRepresentationItemImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationLayerAssignment> getLayerAssignments() {
-		return (EList<IfcPresentationLayerAssignment>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENTS,
-				true);
+		return (EList<IfcPresentationLayerAssignment>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENTS, true);
 	}
 
 	/**
@@ -109,9 +106,7 @@ public class IfcRepresentationItemImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStyledItem> getStyledByItem() {
-		return (EList<IfcStyledItem>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__STYLED_BY_ITEM,
-				true);
+		return (EList<IfcStyledItem>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__STYLED_BY_ITEM, true);
 	}
 
 	/**

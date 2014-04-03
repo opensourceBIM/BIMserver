@@ -115,8 +115,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public ObjectState getState() {
-		return (ObjectState) eGet(StorePackage.Literals.PROJECT_SMALL__STATE,
-				true);
+		return (ObjectState) eGet(StorePackage.Literals.PROJECT_SMALL__STATE, true);
 	}
 
 	/**
@@ -134,8 +133,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public int getNrRevisions() {
-		return (Integer) eGet(
-				StorePackage.Literals.PROJECT_SMALL__NR_REVISIONS, true);
+		return (Integer) eGet(StorePackage.Literals.PROJECT_SMALL__NR_REVISIONS, true);
 	}
 
 	/**
@@ -153,8 +151,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public int getNrSubProjects() {
-		return (Integer) eGet(
-				StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS, true);
+		return (Integer) eGet(StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS, true);
 	}
 
 	/**
@@ -163,8 +160,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public void setNrSubProjects(int newNrSubProjects) {
-		eSet(StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS,
-				newNrSubProjects);
+		eSet(StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS, newNrSubProjects);
 	}
 
 	/**
@@ -173,8 +169,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public boolean isHasCheckinRights() {
-		return (Boolean) eGet(
-				StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS, true);
+		return (Boolean) eGet(StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS, true);
 	}
 
 	/**
@@ -183,8 +178,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public void setHasCheckinRights(boolean newHasCheckinRights) {
-		eSet(StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS,
-				newHasCheckinRights);
+		eSet(StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS, newHasCheckinRights);
 	}
 
 	/**
@@ -193,8 +187,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public long getLastRevisionId() {
-		return (Long) eGet(
-				StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID, true);
+		return (Long) eGet(StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID, true);
 	}
 
 	/**
@@ -203,8 +196,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public void setLastRevisionId(long newLastRevisionId) {
-		eSet(StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID,
-				newLastRevisionId);
+		eSet(StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID, newLastRevisionId);
 	}
 
 } //ProjectSmallImpl

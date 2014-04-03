@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElementAssemblyTypeImpl extends IfcElementTypeImpl implements
-		IfcElementAssemblyType {
+public class IfcElementAssemblyTypeImpl extends IfcElementTypeImpl implements IfcElementAssemblyType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcElementAssemblyTypeImpl extends IfcElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcElementAssemblyTypeEnum getPredefinedType() {
-		return (IfcElementAssemblyTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_ELEMENT_ASSEMBLY_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcElementAssemblyTypeEnum) eGet(Ifc4Package.Literals.IFC_ELEMENT_ASSEMBLY_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcElementAssemblyTypeImpl extends IfcElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcElementAssemblyTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_ELEMENT_ASSEMBLY_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_ELEMENT_ASSEMBLY_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcElementAssemblyTypeImpl

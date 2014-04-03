@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcInterceptorTypeImpl extends IfcFlowTreatmentDeviceTypeImpl
-		implements IfcInterceptorType {
+public class IfcInterceptorTypeImpl extends IfcFlowTreatmentDeviceTypeImpl implements IfcInterceptorType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcInterceptorTypeImpl extends IfcFlowTreatmentDeviceTypeImpl
 	 * @generated
 	 */
 	public IfcInterceptorTypeEnum getPredefinedType() {
-		return (IfcInterceptorTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_INTERCEPTOR_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcInterceptorTypeEnum) eGet(Ifc4Package.Literals.IFC_INTERCEPTOR_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcInterceptorTypeImpl extends IfcFlowTreatmentDeviceTypeImpl
 	 * @generated
 	 */
 	public void setPredefinedType(IfcInterceptorTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_INTERCEPTOR_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_INTERCEPTOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcInterceptorTypeImpl

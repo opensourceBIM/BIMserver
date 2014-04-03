@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDistributionSystemImpl extends IfcSystemImpl implements
-		IfcDistributionSystem {
+public class IfcDistributionSystemImpl extends IfcSystemImpl implements IfcDistributionSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,7 @@ public class IfcDistributionSystemImpl extends IfcSystemImpl implements
 	 * @generated
 	 */
 	public String getLongName() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_DISTRIBUTION_SYSTEM__LONG_NAME, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_SYSTEM__LONG_NAME, true);
 	}
 
 	/**
@@ -73,8 +71,7 @@ public class IfcDistributionSystemImpl extends IfcSystemImpl implements
 	 * @generated
 	 */
 	public void setLongName(String newLongName) {
-		eSet(Ifc4Package.Literals.IFC_DISTRIBUTION_SYSTEM__LONG_NAME,
-				newLongName);
+		eSet(Ifc4Package.Literals.IFC_DISTRIBUTION_SYSTEM__LONG_NAME, newLongName);
 	}
 
 	/**
@@ -101,9 +98,7 @@ public class IfcDistributionSystemImpl extends IfcSystemImpl implements
 	 * @generated
 	 */
 	public IfcDistributionSystemEnum getPredefinedType() {
-		return (IfcDistributionSystemEnum) eGet(
-				Ifc4Package.Literals.IFC_DISTRIBUTION_SYSTEM__PREDEFINED_TYPE,
-				true);
+		return (IfcDistributionSystemEnum) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_SYSTEM__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -112,8 +107,7 @@ public class IfcDistributionSystemImpl extends IfcSystemImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcDistributionSystemEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_DISTRIBUTION_SYSTEM__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_DISTRIBUTION_SYSTEM__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**

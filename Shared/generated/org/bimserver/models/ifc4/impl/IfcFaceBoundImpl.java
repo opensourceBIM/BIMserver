@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl
-		implements IfcFaceBound {
+public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl implements IfcFaceBound {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,8 +81,7 @@ public class IfcFaceBoundImpl extends IfcTopologicalRepresentationItemImpl
 	 * @generated
 	 */
 	public Tristate getOrientation() {
-		return (Tristate) eGet(
-				Ifc4Package.Literals.IFC_FACE_BOUND__ORIENTATION, true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_FACE_BOUND__ORIENTATION, true);
 	}
 
 	/**

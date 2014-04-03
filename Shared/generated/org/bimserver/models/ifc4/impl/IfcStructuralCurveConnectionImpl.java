@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralCurveConnectionImpl extends
-		IfcStructuralConnectionImpl implements IfcStructuralCurveConnection {
+public class IfcStructuralCurveConnectionImpl extends IfcStructuralConnectionImpl implements IfcStructuralCurveConnection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,9 +61,7 @@ public class IfcStructuralCurveConnectionImpl extends
 	 * @generated
 	 */
 	public IfcDirection getAxis() {
-		return (IfcDirection) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_CONNECTION__AXIS,
-				true);
+		return (IfcDirection) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_CONNECTION__AXIS, true);
 	}
 
 	/**
@@ -73,8 +70,7 @@ public class IfcStructuralCurveConnectionImpl extends
 	 * @generated
 	 */
 	public void setAxis(IfcDirection newAxis) {
-		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_CONNECTION__AXIS,
-				newAxis);
+		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_CONNECTION__AXIS, newAxis);
 	}
 
 } //IfcStructuralCurveConnectionImpl

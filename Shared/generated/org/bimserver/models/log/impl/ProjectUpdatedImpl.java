@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ProjectUpdatedImpl extends ProjectRelatedImpl implements
-		ProjectUpdated {
+public class ProjectUpdatedImpl extends ProjectRelatedImpl implements ProjectUpdated {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

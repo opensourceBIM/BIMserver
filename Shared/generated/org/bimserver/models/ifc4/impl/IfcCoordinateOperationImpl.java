@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCoordinateOperationImpl extends IdEObjectImpl implements
-		IfcCoordinateOperation {
+public class IfcCoordinateOperationImpl extends IdEObjectImpl implements IfcCoordinateOperation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,8 +75,7 @@ public class IfcCoordinateOperationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcCoordinateReferenceSystemSelect getSourceCRS() {
-		return (IfcCoordinateReferenceSystemSelect) eGet(
-				Ifc4Package.Literals.IFC_COORDINATE_OPERATION__SOURCE_CRS, true);
+		return (IfcCoordinateReferenceSystemSelect) eGet(Ifc4Package.Literals.IFC_COORDINATE_OPERATION__SOURCE_CRS, true);
 	}
 
 	/**
@@ -86,8 +84,7 @@ public class IfcCoordinateOperationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setSourceCRS(IfcCoordinateReferenceSystemSelect newSourceCRS) {
-		eSet(Ifc4Package.Literals.IFC_COORDINATE_OPERATION__SOURCE_CRS,
-				newSourceCRS);
+		eSet(Ifc4Package.Literals.IFC_COORDINATE_OPERATION__SOURCE_CRS, newSourceCRS);
 	}
 
 	/**
@@ -96,8 +93,7 @@ public class IfcCoordinateOperationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public IfcCoordinateReferenceSystem getTargetCRS() {
-		return (IfcCoordinateReferenceSystem) eGet(
-				Ifc4Package.Literals.IFC_COORDINATE_OPERATION__TARGET_CRS, true);
+		return (IfcCoordinateReferenceSystem) eGet(Ifc4Package.Literals.IFC_COORDINATE_OPERATION__TARGET_CRS, true);
 	}
 
 	/**
@@ -106,8 +102,7 @@ public class IfcCoordinateOperationImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setTargetCRS(IfcCoordinateReferenceSystem newTargetCRS) {
-		eSet(Ifc4Package.Literals.IFC_COORDINATE_OPERATION__TARGET_CRS,
-				newTargetCRS);
+		eSet(Ifc4Package.Literals.IFC_COORDINATE_OPERATION__TARGET_CRS, newTargetCRS);
 	}
 
 } //IfcCoordinateOperationImpl

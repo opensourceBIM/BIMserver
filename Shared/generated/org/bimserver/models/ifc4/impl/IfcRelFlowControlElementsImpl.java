@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelFlowControlElementsImpl extends IfcRelConnectsImpl implements
-		IfcRelFlowControlElements {
+public class IfcRelFlowControlElementsImpl extends IfcRelConnectsImpl implements IfcRelFlowControlElements {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,9 +66,7 @@ public class IfcRelFlowControlElementsImpl extends IfcRelConnectsImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDistributionControlElement> getRelatedControlElements() {
-		return (EList<IfcDistributionControlElement>) eGet(
-				Ifc4Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATED_CONTROL_ELEMENTS,
-				true);
+		return (EList<IfcDistributionControlElement>) eGet(Ifc4Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATED_CONTROL_ELEMENTS, true);
 	}
 
 	/**
@@ -78,9 +75,7 @@ public class IfcRelFlowControlElementsImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	public IfcDistributionFlowElement getRelatingFlowElement() {
-		return (IfcDistributionFlowElement) eGet(
-				Ifc4Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATING_FLOW_ELEMENT,
-				true);
+		return (IfcDistributionFlowElement) eGet(Ifc4Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATING_FLOW_ELEMENT, true);
 	}
 
 	/**
@@ -88,10 +83,8 @@ public class IfcRelFlowControlElementsImpl extends IfcRelConnectsImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRelatingFlowElement(
-			IfcDistributionFlowElement newRelatingFlowElement) {
-		eSet(Ifc4Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATING_FLOW_ELEMENT,
-				newRelatingFlowElement);
+	public void setRelatingFlowElement(IfcDistributionFlowElement newRelatingFlowElement) {
+		eSet(Ifc4Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATING_FLOW_ELEMENT, newRelatingFlowElement);
 	}
 
 } //IfcRelFlowControlElementsImpl

@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCostValueImpl extends IfcAppliedValueImpl implements
-		IfcCostValue {
+public class IfcCostValueImpl extends IfcAppliedValueImpl implements IfcCostValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

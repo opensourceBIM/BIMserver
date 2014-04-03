@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDoorTypeImpl extends IfcBuildingElementTypeImpl implements
-		IfcDoorType {
+public class IfcDoorTypeImpl extends IfcBuildingElementTypeImpl implements IfcDoorType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,8 +66,7 @@ public class IfcDoorTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcDoorTypeEnum getPredefinedType() {
-		return (IfcDoorTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_DOOR_TYPE__PREDEFINED_TYPE, true);
+		return (IfcDoorTypeEnum) eGet(Ifc4Package.Literals.IFC_DOOR_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -77,8 +75,7 @@ public class IfcDoorTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcDoorTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_DOOR_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_DOOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -87,8 +84,7 @@ public class IfcDoorTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public IfcDoorTypeOperationEnum getOperationType() {
-		return (IfcDoorTypeOperationEnum) eGet(
-				Ifc4Package.Literals.IFC_DOOR_TYPE__OPERATION_TYPE, true);
+		return (IfcDoorTypeOperationEnum) eGet(Ifc4Package.Literals.IFC_DOOR_TYPE__OPERATION_TYPE, true);
 	}
 
 	/**
@@ -97,8 +93,7 @@ public class IfcDoorTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setOperationType(IfcDoorTypeOperationEnum newOperationType) {
-		eSet(Ifc4Package.Literals.IFC_DOOR_TYPE__OPERATION_TYPE,
-				newOperationType);
+		eSet(Ifc4Package.Literals.IFC_DOOR_TYPE__OPERATION_TYPE, newOperationType);
 	}
 
 	/**
@@ -107,9 +102,7 @@ public class IfcDoorTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public Tristate getParameterTakesPrecedence() {
-		return (Tristate) eGet(
-				Ifc4Package.Literals.IFC_DOOR_TYPE__PARAMETER_TAKES_PRECEDENCE,
-				true);
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_DOOR_TYPE__PARAMETER_TAKES_PRECEDENCE, true);
 	}
 
 	/**
@@ -118,8 +111,7 @@ public class IfcDoorTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setParameterTakesPrecedence(Tristate newParameterTakesPrecedence) {
-		eSet(Ifc4Package.Literals.IFC_DOOR_TYPE__PARAMETER_TAKES_PRECEDENCE,
-				newParameterTakesPrecedence);
+		eSet(Ifc4Package.Literals.IFC_DOOR_TYPE__PARAMETER_TAKES_PRECEDENCE, newParameterTakesPrecedence);
 	}
 
 	/**
@@ -146,9 +138,7 @@ public class IfcDoorTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public String getUserDefinedOperationType() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_DOOR_TYPE__USER_DEFINED_OPERATION_TYPE,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_DOOR_TYPE__USER_DEFINED_OPERATION_TYPE, true);
 	}
 
 	/**
@@ -157,8 +147,7 @@ public class IfcDoorTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * @generated
 	 */
 	public void setUserDefinedOperationType(String newUserDefinedOperationType) {
-		eSet(Ifc4Package.Literals.IFC_DOOR_TYPE__USER_DEFINED_OPERATION_TYPE,
-				newUserDefinedOperationType);
+		eSet(Ifc4Package.Literals.IFC_DOOR_TYPE__USER_DEFINED_OPERATION_TYPE, newUserDefinedOperationType);
 	}
 
 	/**

@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDistributionPortImpl extends IfcPortImpl implements
-		IfcDistributionPort {
+public class IfcDistributionPortImpl extends IfcPortImpl implements IfcDistributionPort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +65,7 @@ public class IfcDistributionPortImpl extends IfcPortImpl implements
 	 * @generated
 	 */
 	public IfcFlowDirectionEnum getFlowDirection() {
-		return (IfcFlowDirectionEnum) eGet(
-				Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__FLOW_DIRECTION,
-				true);
+		return (IfcFlowDirectionEnum) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__FLOW_DIRECTION, true);
 	}
 
 	/**
@@ -77,8 +74,7 @@ public class IfcDistributionPortImpl extends IfcPortImpl implements
 	 * @generated
 	 */
 	public void setFlowDirection(IfcFlowDirectionEnum newFlowDirection) {
-		eSet(Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__FLOW_DIRECTION,
-				newFlowDirection);
+		eSet(Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__FLOW_DIRECTION, newFlowDirection);
 	}
 
 	/**
@@ -105,9 +101,7 @@ public class IfcDistributionPortImpl extends IfcPortImpl implements
 	 * @generated
 	 */
 	public IfcDistributionPortTypeEnum getPredefinedType() {
-		return (IfcDistributionPortTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__PREDEFINED_TYPE,
-				true);
+		return (IfcDistributionPortTypeEnum) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -116,8 +110,7 @@ public class IfcDistributionPortImpl extends IfcPortImpl implements
 	 * @generated
 	 */
 	public void setPredefinedType(IfcDistributionPortTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__PREDEFINED_TYPE,
-				newPredefinedType);
+		eSet(Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 	/**
@@ -144,8 +137,7 @@ public class IfcDistributionPortImpl extends IfcPortImpl implements
 	 * @generated
 	 */
 	public IfcDistributionSystemEnum getSystemType() {
-		return (IfcDistributionSystemEnum) eGet(
-				Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__SYSTEM_TYPE, true);
+		return (IfcDistributionSystemEnum) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__SYSTEM_TYPE, true);
 	}
 
 	/**
@@ -154,8 +146,7 @@ public class IfcDistributionPortImpl extends IfcPortImpl implements
 	 * @generated
 	 */
 	public void setSystemType(IfcDistributionSystemEnum newSystemType) {
-		eSet(Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__SYSTEM_TYPE,
-				newSystemType);
+		eSet(Ifc4Package.Literals.IFC_DISTRIBUTION_PORT__SYSTEM_TYPE, newSystemType);
 	}
 
 	/**

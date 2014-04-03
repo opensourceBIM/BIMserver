@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelDecomposesImpl extends IfcRelationshipImpl implements
-		IfcRelDecomposes {
+public class IfcRelDecomposesImpl extends IfcRelationshipImpl implements IfcRelDecomposes {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

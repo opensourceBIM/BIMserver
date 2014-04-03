@@ -32,8 +32,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcConstructionEquipmentResourceType extends
-		IfcConstructionResourceType {
+public interface IfcConstructionEquipmentResourceType extends IfcConstructionResourceType {
 	/**
 	 * Returns the value of the '<em><b>Predefined Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.IfcConstructionEquipmentResourceTypeEnum}.

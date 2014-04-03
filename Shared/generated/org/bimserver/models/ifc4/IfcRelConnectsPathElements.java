@@ -16,6 +16,8 @@
  */
 package org.bimserver.models.ifc4;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc Rel Connects Path Elements</b></em>'.
@@ -24,6 +26,8 @@ package org.bimserver.models.ifc4;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.bimserver.models.ifc4.IfcRelConnectsPathElements#getRelatingPriorities <em>Relating Priorities</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcRelConnectsPathElements#getRelatedPriorities <em>Related Priorities</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelConnectsPathElements#getRelatedConnectionType <em>Related Connection Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelConnectsPathElements#getRelatingConnectionType <em>Relating Connection Type</em>}</li>
  * </ul>
@@ -34,6 +38,38 @@ package org.bimserver.models.ifc4;
  * @generated
  */
 public interface IfcRelConnectsPathElements extends IfcRelConnectsElements {
+	/**
+	 * Returns the value of the '<em><b>Relating Priorities</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Integer}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Relating Priorities</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Relating Priorities</em>' attribute list.
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelConnectsPathElements_RelatingPriorities()
+	 * @model unique="false"
+	 * @generated
+	 */
+	EList<Integer> getRelatingPriorities();
+
+	/**
+	 * Returns the value of the '<em><b>Related Priorities</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Integer}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Related Priorities</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Related Priorities</em>' attribute list.
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelConnectsPathElements_RelatedPriorities()
+	 * @model unique="false"
+	 * @generated
+	 */
+	EList<Integer> getRelatedPriorities();
+
 	/**
 	 * Returns the value of the '<em><b>Related Connection Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.IfcConnectionTypeEnum}.

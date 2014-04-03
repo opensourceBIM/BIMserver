@@ -35,9 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProtectiveDeviceTrippingUnitTypeImpl extends
-		IfcDistributionControlElementTypeImpl implements
-		IfcProtectiveDeviceTrippingUnitType {
+public class IfcProtectiveDeviceTrippingUnitTypeImpl extends IfcDistributionControlElementTypeImpl implements IfcProtectiveDeviceTrippingUnitType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +61,7 @@ public class IfcProtectiveDeviceTrippingUnitTypeImpl extends
 	 * @generated
 	 */
 	public IfcProtectiveDeviceTrippingUnitTypeEnum getPredefinedType() {
-		return (IfcProtectiveDeviceTrippingUnitTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcProtectiveDeviceTrippingUnitTypeEnum) eGet(Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
@@ -73,10 +69,8 @@ public class IfcProtectiveDeviceTrippingUnitTypeImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredefinedType(
-			IfcProtectiveDeviceTrippingUnitTypeEnum newPredefinedType) {
-		eSet(Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE__PREDEFINED_TYPE,
-				newPredefinedType);
+	public void setPredefinedType(IfcProtectiveDeviceTrippingUnitTypeEnum newPredefinedType) {
+		eSet(Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
 
 } //IfcProtectiveDeviceTrippingUnitTypeImpl

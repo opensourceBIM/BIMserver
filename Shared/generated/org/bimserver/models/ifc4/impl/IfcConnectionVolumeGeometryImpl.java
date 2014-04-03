@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConnectionVolumeGeometryImpl extends IfcConnectionGeometryImpl
-		implements IfcConnectionVolumeGeometry {
+public class IfcConnectionVolumeGeometryImpl extends IfcConnectionGeometryImpl implements IfcConnectionVolumeGeometry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +62,7 @@ public class IfcConnectionVolumeGeometryImpl extends IfcConnectionGeometryImpl
 	 * @generated
 	 */
 	public IfcSolidOrShell getVolumeOnRelatingElement() {
-		return (IfcSolidOrShell) eGet(
-				Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATING_ELEMENT,
-				true);
+		return (IfcSolidOrShell) eGet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATING_ELEMENT, true);
 	}
 
 	/**
@@ -73,10 +70,8 @@ public class IfcConnectionVolumeGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVolumeOnRelatingElement(
-			IfcSolidOrShell newVolumeOnRelatingElement) {
-		eSet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATING_ELEMENT,
-				newVolumeOnRelatingElement);
+	public void setVolumeOnRelatingElement(IfcSolidOrShell newVolumeOnRelatingElement) {
+		eSet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATING_ELEMENT, newVolumeOnRelatingElement);
 	}
 
 	/**
@@ -85,9 +80,7 @@ public class IfcConnectionVolumeGeometryImpl extends IfcConnectionGeometryImpl
 	 * @generated
 	 */
 	public IfcSolidOrShell getVolumeOnRelatedElement() {
-		return (IfcSolidOrShell) eGet(
-				Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATED_ELEMENT,
-				true);
+		return (IfcSolidOrShell) eGet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATED_ELEMENT, true);
 	}
 
 	/**
@@ -95,10 +88,8 @@ public class IfcConnectionVolumeGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVolumeOnRelatedElement(
-			IfcSolidOrShell newVolumeOnRelatedElement) {
-		eSet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATED_ELEMENT,
-				newVolumeOnRelatedElement);
+	public void setVolumeOnRelatedElement(IfcSolidOrShell newVolumeOnRelatedElement) {
+		eSet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATED_ELEMENT, newVolumeOnRelatedElement);
 	}
 
 	/**

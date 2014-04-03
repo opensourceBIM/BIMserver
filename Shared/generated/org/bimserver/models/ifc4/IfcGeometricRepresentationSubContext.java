@@ -36,8 +36,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcGeometricRepresentationSubContext extends
-		IfcGeometricRepresentationContext {
+public interface IfcGeometricRepresentationSubContext extends IfcGeometricRepresentationContext {
 	/**
 	 * Returns the value of the '<em><b>Parent Context</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getHasSubContexts <em>Has Sub Contexts</em>}'.

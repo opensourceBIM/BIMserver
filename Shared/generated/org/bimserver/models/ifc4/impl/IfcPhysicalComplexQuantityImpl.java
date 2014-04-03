@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl
-		implements IfcPhysicalComplexQuantity {
+public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl implements IfcPhysicalComplexQuantity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,9 +67,7 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPhysicalQuantity> getHasQuantities() {
-		return (EList<IfcPhysicalQuantity>) eGet(
-				Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__HAS_QUANTITIES,
-				true);
+		return (EList<IfcPhysicalQuantity>) eGet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__HAS_QUANTITIES, true);
 	}
 
 	/**
@@ -79,9 +76,7 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl
 	 * @generated
 	 */
 	public String getDiscrimination() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION, true);
 	}
 
 	/**
@@ -90,8 +85,7 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl
 	 * @generated
 	 */
 	public void setDiscrimination(String newDiscrimination) {
-		eSet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION,
-				newDiscrimination);
+		eSet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__DISCRIMINATION, newDiscrimination);
 	}
 
 	/**
@@ -100,9 +94,7 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl
 	 * @generated
 	 */
 	public String getQuality() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__QUALITY,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__QUALITY, true);
 	}
 
 	/**
@@ -111,8 +103,7 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl
 	 * @generated
 	 */
 	public void setQuality(String newQuality) {
-		eSet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__QUALITY,
-				newQuality);
+		eSet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__QUALITY, newQuality);
 	}
 
 	/**
@@ -139,8 +130,7 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl
 	 * @generated
 	 */
 	public String getUsage() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__USAGE, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__USAGE, true);
 	}
 
 	/**
@@ -149,8 +139,7 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl
 	 * @generated
 	 */
 	public void setUsage(String newUsage) {
-		eSet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__USAGE,
-				newUsage);
+		eSet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__USAGE, newUsage);
 	}
 
 	/**
