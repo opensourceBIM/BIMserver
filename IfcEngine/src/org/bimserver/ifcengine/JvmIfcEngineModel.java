@@ -42,6 +42,9 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JvmIfcEngineModel.class);
 	private final int modelId;
 	private final JvmIfcEngine failSafeIfcEngine;
+	public int[] indices;
+	public float[] vertices;
+	public float[] normals;
 
 	public JvmIfcEngineModel(JvmIfcEngine failSafeIfcEngine, int modelId) {
 		this.failSafeIfcEngine = failSafeIfcEngine;
@@ -95,9 +98,9 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 			failSafeIfcEngine.writeInt(surfaceProperties.getIndicesCount());
 			failSafeIfcEngine.writeInt(surfaceProperties.getVerticesCount());
 			failSafeIfcEngine.flush();
-			int[] indices = new int[surfaceProperties.getIndicesCount()];
-			float[] vertices = new float[surfaceProperties.getVerticesCount() * 3];
-			float[] normals = new float[surfaceProperties.getVerticesCount() * 3];
+			indices = new int[surfaceProperties.getIndicesCount()];
+			vertices = new float[surfaceProperties.getVerticesCount() * 3];
+			normals = new float[surfaceProperties.getVerticesCount() * 3];
 			for (int i = 0; i < indices.length; i++) {
 				indices[i] = failSafeIfcEngine.readInt();
 			}
@@ -120,7 +123,7 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 			int nrInstances = failSafeIfcEngine.readInt();
 			List<JvmIfcEngineInstance> instances = new ArrayList<JvmIfcEngineInstance>();
 			for (int i = 0; i < nrInstances; i++) {
-				instances.add(new JvmIfcEngineInstance(failSafeIfcEngine, modelId, failSafeIfcEngine.readInt()));
+				instances.add(new JvmIfcEngineInstance(this, failSafeIfcEngine, modelId, failSafeIfcEngine.readInt()));
 			}
 			return instances;
 		}
@@ -181,7 +184,7 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 			if (instanceId == -1) {
 				throw new RenderEngineException("Instance with express id " + oid + " not found");
 			}
-			return new JvmIfcEngineInstance(failSafeIfcEngine, modelId, instanceId);
+			return new JvmIfcEngineInstance(this, failSafeIfcEngine, modelId, instanceId);
 		}
 	}
 

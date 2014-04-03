@@ -18,68 +18,33 @@ package org.bimserver.plugins.renderengine;
  *****************************************************************************/
 
 public class RenderEngineInstanceVisualisationProperties {
-	private final int startVertex;
-	private final int startIndex;
-	private final int primitiveCount;
-	private final int nrMaterials;
-	private int materialStartIndex;
-	private int materialStart;
+	private final float[] vertices;
+	private final int[] indices;
+	private final float[] normals;
 
-	public RenderEngineInstanceVisualisationProperties(int startVertex, int startIndex, int primitiveCount, int materialStart, int materialStartIndex, int nrMaterials) {
-		this.startVertex = startVertex;
-		this.startIndex = startIndex;
-		this.primitiveCount = primitiveCount;
-		this.materialStart = materialStart;
-		this.materialStartIndex = materialStartIndex;
-		this.nrMaterials = nrMaterials;
+	public RenderEngineInstanceVisualisationProperties(int[] indices, float[] vertices, float[] normals) {
+		this.indices = indices;
+		this.vertices = vertices;
+		this.normals = normals;
 	}
 	
-	public int getMaterialStart() {
-		return materialStart;
-	}
-
-	public int getMaterialStartIndex() {
-		return materialStartIndex;
-	}
-	
-	public int getStartVertex() {
-		return startVertex;
-	}
-
-	public int getStartIndex() {
-		return startIndex;
-	}
-
-	public int getPrimitiveCount() {
-		return primitiveCount;
-	}
-
-	public int getNrMaterials() {
-		return nrMaterials;
-	}
-
 	public float[] getVertices() {
-		// TODO Auto-generated method stub
-		return null;
+		return vertices;
 	}
 
 	public int[] getIndices() {
-		// TODO Auto-generated method stub
-		return null;
+		return indices;
 	}
 
 	public float[] getMaterials() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public int[] getMaterialIndices() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public float[] getNormals() {
-		// TODO Auto-generated method stub
-		return null;
+		return normals;
 	}
 }

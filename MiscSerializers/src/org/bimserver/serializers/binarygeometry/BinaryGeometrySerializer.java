@@ -144,42 +144,46 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
 					dataOutputStream.write(normalsBuffer.array());
 
-					ByteBuffer materialIndexByteBuffer = ByteBuffer.wrap(geometryData.getMaterialIndices());
-					materialIndexByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
-					IntBuffer materialIndicesBuffer = materialIndexByteBuffer.asIntBuffer();
-					ByteBuffer materialsByteBuffer = ByteBuffer.wrap(geometryData.getMaterials());
-					materialsByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
-					FloatBuffer materialsBuffer = materialsByteBuffer.asFloatBuffer();
-					dataOutputStream.writeInt(materialIndicesBuffer.capacity() * 3);
-					for (int i=0; i<materialIndicesBuffer.capacity(); i++) {
-						int materialIndex = materialIndicesBuffer.get(i);
-						if (materialIndex == -1) {
-							ByteBuffer test = ByteBuffer.wrap(new byte[16]);
-							test.order(ByteOrder.LITTLE_ENDIAN);
-							FloatBuffer fl = test.asFloatBuffer();
-							fl.put(1f);
-							fl.put(0f);
-							fl.put(0f);
-							fl.put(1f);
-							for (int j=0; j<3; j++) {
-								dataOutputStream.write(test.array());
-							}
-						} else {
-							float r = materialsBuffer.get(materialIndex);
-							float g = materialsBuffer.get(materialIndex + 1);
-							float b = materialsBuffer.get(materialIndex + 2);
-							float a = materialsBuffer.get(materialIndex + 3);
-							ByteBuffer test = ByteBuffer.wrap(new byte[16]);
-							test.order(ByteOrder.LITTLE_ENDIAN);
-							FloatBuffer fl = test.asFloatBuffer();
-							fl.put(r);
-							fl.put(g);
-							fl.put(b);
-							fl.put(a);
-							for (int j=0; j<3; j++) {
-								dataOutputStream.write(test.array());
+					if (geometryData.getMaterialIndices() != null) {
+						ByteBuffer materialIndexByteBuffer = ByteBuffer.wrap(geometryData.getMaterialIndices());
+						materialIndexByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+						IntBuffer materialIndicesBuffer = materialIndexByteBuffer.asIntBuffer();
+						ByteBuffer materialsByteBuffer = ByteBuffer.wrap(geometryData.getMaterials());
+						materialsByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+						FloatBuffer materialsBuffer = materialsByteBuffer.asFloatBuffer();
+						dataOutputStream.writeInt(materialIndicesBuffer.capacity() * 3);
+						for (int i=0; i<materialIndicesBuffer.capacity(); i++) {
+							int materialIndex = materialIndicesBuffer.get(i);
+							if (materialIndex == -1) {
+								ByteBuffer test = ByteBuffer.wrap(new byte[16]);
+								test.order(ByteOrder.LITTLE_ENDIAN);
+								FloatBuffer fl = test.asFloatBuffer();
+								fl.put(1f);
+								fl.put(0f);
+								fl.put(0f);
+								fl.put(1f);
+								for (int j=0; j<3; j++) {
+									dataOutputStream.write(test.array());
+								}
+							} else {
+								float r = materialsBuffer.get(materialIndex);
+								float g = materialsBuffer.get(materialIndex + 1);
+								float b = materialsBuffer.get(materialIndex + 2);
+								float a = materialsBuffer.get(materialIndex + 3);
+								ByteBuffer test = ByteBuffer.wrap(new byte[16]);
+								test.order(ByteOrder.LITTLE_ENDIAN);
+								FloatBuffer fl = test.asFloatBuffer();
+								fl.put(r);
+								fl.put(g);
+								fl.put(b);
+								fl.put(a);
+								for (int j=0; j<3; j++) {
+									dataOutputStream.write(test.array());
+								}
 							}
 						}
+					} else {
+						dataOutputStream.writeInt(0);
 					}
 					
 					concreteGeometrySent.add(geometryData.getOid());

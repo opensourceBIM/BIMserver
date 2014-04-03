@@ -131,78 +131,78 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 							renderImage = false;
 						}
 
-						for (RenderEngineClash clash : clashes) {
-							RenderEngineInstanceVisualisationProperties vp = renderEngineModel.getInstanceFromExpressId((int) clash.getEid1()).getVisualisationProperties();
-							float x = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
-							float y = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
-							float z = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
-
-							String guid1 = ((IfcRoot) model.get(clash.getEid1())).getGlobalId();
-							String guid2 = ((IfcRoot) model.get(clash.getEid2())).getGlobalId();
-
-							UUID topicUuid = UUID.randomUUID();
-							Issue issue = new Issue(topicUuid);
-
-							Markup markup = new Markup();
-							Header header = new Header();
-							File file = new File();
-							file.setIfcProject(mainIfcProject.getGlobalId());
-							file.setDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar()));
-							file.setFilename("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc");
-
-							header.getFile().add(file);
-
-							markup.setHeader(header);
-
-							Topic topic = new Topic();
-							topic.setGuid(topicUuid.toString());
-							topic.setTitle("Clash");
-
-							// topic.setReferenceLink("project://projects/8d289643-c89a-4ffc-adec-2aedab679d6f");
-
-							markup.setTopic(topic);
-
-							VisualizationInfo visualizationInfo = new VisualizationInfo();
-
-							Component component1 = new Component();
-							component1.setIfcGuid(guid1);
-							component1.setOriginatingSystem("BIMserver");
-							component1.setAuthoringToolId("" + clash.getEid1());
-
-							Component component2 = new Component();
-							component2.setIfcGuid(guid2);
-							component2.setOriginatingSystem("BIMserver");
-							component2.setAuthoringToolId("" + clash.getEid2());
-
-							VisualizationInfo.Components components = new VisualizationInfo.Components();
-							visualizationInfo.setComponents(components);
-							components.getComponent().add(component1);
-							components.getComponent().add(component2);
-
-							PerspectiveCamera perspectiveCamera = new PerspectiveCamera();
-							perspectiveCamera.setFieldOfView(45.0);
-							perspectiveCamera.setCameraUpVector(newDirection(0, 0, 1));
-							perspectiveCamera.setCameraViewPoint(newPoint(x - 100, y, z));
-							perspectiveCamera.setCameraDirection(newDirection(x, y, z));
-
-							visualizationInfo.setPerspectiveCamera(perspectiveCamera);
-							visualizationInfo.setLines(new VisualizationInfo.Lines());
-							visualizationInfo.setClippingPlanes(new VisualizationInfo.ClippingPlanes());
-
-							if (renderImage) {
-								byte[] snapshot = stillImageRenderer.snapshot(new Vector3f(x - 100, y, z), new Vector3f(0, 0, 1), new Vector3f(x, y, z), 500, 500, null);
-								issue.setImageData(snapshot);
-							} else {
-								ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
-								ImageIO.write(new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB), "PNG", baos2);
-								issue.setImageData(baos2.toByteArray());
-							}
-
-							issue.setMarkup(markup);
-							issue.setVisualizationInfo(visualizationInfo);
-
-							bcf.addIssue(issue);
-						}
+//						for (RenderEngineClash clash : clashes) {
+//							RenderEngineInstanceVisualisationProperties vp = renderEngineModel.getInstanceFromExpressId((int) clash.getEid1()).getVisualisationProperties();
+//							float x = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
+//							float y = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
+//							float z = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
+//
+//							String guid1 = ((IfcRoot) model.get(clash.getEid1())).getGlobalId();
+//							String guid2 = ((IfcRoot) model.get(clash.getEid2())).getGlobalId();
+//
+//							UUID topicUuid = UUID.randomUUID();
+//							Issue issue = new Issue(topicUuid);
+//
+//							Markup markup = new Markup();
+//							Header header = new Header();
+//							File file = new File();
+//							file.setIfcProject(mainIfcProject.getGlobalId());
+//							file.setDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar()));
+//							file.setFilename("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc");
+//
+//							header.getFile().add(file);
+//
+//							markup.setHeader(header);
+//
+//							Topic topic = new Topic();
+//							topic.setGuid(topicUuid.toString());
+//							topic.setTitle("Clash");
+//
+//							// topic.setReferenceLink("project://projects/8d289643-c89a-4ffc-adec-2aedab679d6f");
+//
+//							markup.setTopic(topic);
+//
+//							VisualizationInfo visualizationInfo = new VisualizationInfo();
+//
+//							Component component1 = new Component();
+//							component1.setIfcGuid(guid1);
+//							component1.setOriginatingSystem("BIMserver");
+//							component1.setAuthoringToolId("" + clash.getEid1());
+//
+//							Component component2 = new Component();
+//							component2.setIfcGuid(guid2);
+//							component2.setOriginatingSystem("BIMserver");
+//							component2.setAuthoringToolId("" + clash.getEid2());
+//
+//							VisualizationInfo.Components components = new VisualizationInfo.Components();
+//							visualizationInfo.setComponents(components);
+//							components.getComponent().add(component1);
+//							components.getComponent().add(component2);
+//
+//							PerspectiveCamera perspectiveCamera = new PerspectiveCamera();
+//							perspectiveCamera.setFieldOfView(45.0);
+//							perspectiveCamera.setCameraUpVector(newDirection(0, 0, 1));
+//							perspectiveCamera.setCameraViewPoint(newPoint(x - 100, y, z));
+//							perspectiveCamera.setCameraDirection(newDirection(x, y, z));
+//
+//							visualizationInfo.setPerspectiveCamera(perspectiveCamera);
+//							visualizationInfo.setLines(new VisualizationInfo.Lines());
+//							visualizationInfo.setClippingPlanes(new VisualizationInfo.ClippingPlanes());
+//
+//							if (renderImage) {
+//								byte[] snapshot = stillImageRenderer.snapshot(new Vector3f(x - 100, y, z), new Vector3f(0, 0, 1), new Vector3f(x, y, z), 500, 500, null);
+//								issue.setImageData(snapshot);
+//							} else {
+//								ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
+//								ImageIO.write(new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB), "PNG", baos2);
+//								issue.setImageData(baos2.toByteArray());
+//							}
+//
+//							issue.setMarkup(markup);
+//							issue.setVisualizationInfo(visualizationInfo);
+//
+//							bcf.addIssue(issue);
+//						}
 					} catch (Exception e) {
 						LOGGER.error("", e);
 					}
