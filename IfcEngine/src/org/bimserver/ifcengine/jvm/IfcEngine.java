@@ -635,7 +635,7 @@ public class IfcEngine {
 	 *            bounding box representation.
 	 * @return
 	 */
-	public RenderEngineInstanceVisualisationProperties getInstanceInModelling(Pointer model, Pointer instance, int mode) {
+	public RenderEngineInstanceVisualisationPropertiesInternal getInstanceInModelling(Pointer model, Pointer instance, int mode) {
 		IntByReference pV = new IntByReference();
 		IntByReference pI = new IntByReference();
 		IntByReference pC = new IntByReference();
@@ -643,7 +643,7 @@ public class IfcEngine {
 		int startVertex = pV.getValue();
 		int startIndex = pI.getValue();
 		int primitiveCount = pC.getValue();
-		return new RenderEngineInstanceVisualisationProperties(startVertex, startIndex, primitiveCount, 0, 0, 0);
+		return new RenderEngineInstanceVisualisationPropertiesInternal(startVertex, startIndex, primitiveCount);
 	}
 
 	/**

@@ -31,8 +31,10 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 	private final JvmIfcEngine failSafeIfcEngine;
 	private final int instanceId;
 	private final int modelId;
+	private JvmIfcEngineModel jvmIfcEngineModel;
 
-	public JvmIfcEngineInstance(JvmIfcEngine failSafeIfcEngine, int modelId, int instanceId) {
+	public JvmIfcEngineInstance(JvmIfcEngineModel jvmIfcEngineModel, JvmIfcEngine failSafeIfcEngine, int modelId, int instanceId) {
+		this.jvmIfcEngineModel = jvmIfcEngineModel;
 		this.failSafeIfcEngine = failSafeIfcEngine;
 		this.modelId = modelId;
 		this.instanceId = instanceId;
@@ -44,8 +46,43 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.writeInt(instanceId);
 			failSafeIfcEngine.flush();
-			return new RenderEngineInstanceVisualisationProperties(failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt(), 0, 0, 0);
+			
+			int startVertex = failSafeIfcEngine.readInt();
+			int startIndex = failSafeIfcEngine.readInt();
+			int primitiveCount = failSafeIfcEngine.readInt();
+			
+			int[] indices = new int[primitiveCount * 3];
+			float[] vertices = new float[primitiveCount * 3 * 3];
+			float[] normals = new float[primitiveCount * 3 * 3];
+
+			int highestVertexIndexUsed = 0;
+			for (int i = startIndex; i < startIndex + primitiveCount * 3; i++) {
+				int vertex = jvmIfcEngineModel.indices[i] - startVertex;
+				indices[i - startIndex] = vertex;
+				vertices[vertex * 3] = jvmIfcEngineModel.vertices[jvmIfcEngineModel.indices[i] * 3];
+				vertices[vertex * 3 + 1] = jvmIfcEngineModel.vertices[jvmIfcEngineModel.indices[i] * 3 + 1];
+				vertices[vertex * 3 + 2] = jvmIfcEngineModel.vertices[jvmIfcEngineModel.indices[i] * 3 + 2];
+				normals[vertex * 3] = jvmIfcEngineModel.normals[jvmIfcEngineModel.indices[i] * 3];
+				normals[vertex * 3 + 1] = jvmIfcEngineModel.normals[jvmIfcEngineModel.indices[i] * 3 + 1];
+				normals[vertex * 3 + 2] = jvmIfcEngineModel.normals[jvmIfcEngineModel.indices[i] * 3 + 2];
+				if (vertex * 3 + 3 > highestVertexIndexUsed) {
+					highestVertexIndexUsed = vertex * 3 + 3;
+				}
+			}
+			if (highestVertexIndexUsed < primitiveCount * 3 * 3) {
+				// Reuse of vertices, lets trim the arrays
+				vertices = trim(vertices, highestVertexIndexUsed);
+				normals = trim(normals, highestVertexIndexUsed);
+			}
+			
+			return new RenderEngineInstanceVisualisationProperties(indices, vertices, normals);
 		}
+	}
+
+	private float[] trim(float[] vertices, int size) {
+		float[] newArray = new float[size];
+		System.arraycopy(vertices, 0, newArray, 0, size);
+		return newArray;
 	}
 
 	@Override
