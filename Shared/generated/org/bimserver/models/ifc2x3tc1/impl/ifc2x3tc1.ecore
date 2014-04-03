@@ -3194,7 +3194,7 @@
         eType="#//IfcRelAssignsToProduct" unsettable="true" eOpposite="#//IfcRelAssignsToProduct/RelatingProduct">
       <eAnnotations source="inverse"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#//GeometryInfo">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="ecore:EClass geometry#//GeometryInfo">
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
   </eClassifiers>

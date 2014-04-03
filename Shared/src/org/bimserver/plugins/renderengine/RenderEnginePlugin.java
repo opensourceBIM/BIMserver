@@ -23,8 +23,9 @@ import org.bimserver.plugins.PluginConfiguration;
 public interface RenderEnginePlugin extends Plugin {
 	/**
 	 * @param pluginConfiguration The user specific configuration for this plugin
+	 * @param string 
 	 * @return A RenderEngine instance
 	 * @throws RenderEngineException
 	 */
-	RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration) throws RenderEngineException;
+	RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration, String schema) throws RenderEngineException;
 }

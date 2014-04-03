@@ -790,7 +790,8 @@ message SProjectSmall {
 	optional int64 oid = 6;
 	optional int64 parentId = 7;
 	optional int32 rid = 8;
-	optional SObjectState state = 9;
+	optional string schema = 9;
+	optional SObjectState state = 10;
 }
 
 message GetAllRelatedProjectsResponse {

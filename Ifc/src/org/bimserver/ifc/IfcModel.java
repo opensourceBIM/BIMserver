@@ -118,9 +118,6 @@ public class IfcModel implements IfcModelInterface {
 
 	private void buildIndexWithSubTypes() {
 		indexPerClassWithSubTypes = new HashMap<EClass, List<? extends IdEObject>>();
-		for (EClass eClass : packageMetaData.getEClasses()) {
-			indexPerClassWithSubTypes.put((EClass) eClass, new ArrayList<IdEObject>());
-		}
 		for (Long key : objects.keySet()) {
 			IdEObject idEObject = objects.get(key);
 			if (idEObject != null) {
@@ -131,6 +128,9 @@ public class IfcModel implements IfcModelInterface {
 
 	@SuppressWarnings("unchecked")
 	private void buildIndexWithSuperTypes(IdEObject eObject, EClass eClass) {
+		if (!indexPerClassWithSubTypes.containsKey(eClass)) {
+			indexPerClassWithSubTypes.put(eClass, new ArrayList<IdEObject>());
+		}
 		((List<IdEObject>) indexPerClassWithSubTypes.get(eClass)).add(eObject);
 		for (EClass superClass : eClass.getESuperTypes()) {
 			buildIndexWithSuperTypes(eObject, superClass);

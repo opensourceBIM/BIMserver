@@ -39,6 +39,7 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.log.AccessMethod;
@@ -95,6 +96,7 @@ public class Database implements BimDatabase {
 		this.metaDataManager = metaDataManager;
 		this.emfPackages.put(StorePackage.eINSTANCE.getName(), StorePackage.eINSTANCE);
 		this.emfPackages.put(LogPackage.eINSTANCE.getName(), LogPackage.eINSTANCE);
+		this.emfPackages.put(GeometryPackage.eINSTANCE.getName(), GeometryPackage.eINSTANCE);
 		for (EPackage ePackage : emfPackages) {
 			this.emfPackages.put(ePackage.getName(), ePackage);
 		}

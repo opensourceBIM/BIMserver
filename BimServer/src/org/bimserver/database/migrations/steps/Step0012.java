@@ -27,9 +27,9 @@ public class Step0012 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
-		EClass geometryData = schema.getEClass("ifc2x3tc1", "GeometryData");
-		schema.createEAttribute(geometryData, "materials", EcorePackage.eINSTANCE.getEByteArray());
-		schema.createEAttribute(geometryData, "materialIndices", EcorePackage.eINSTANCE.getEByteArray());
+//		EClass geometryData = schema.getEClass("ifc2x3tc1", "GeometryData");
+//		schema.createEAttribute(geometryData, "materials", EcorePackage.eINSTANCE.getEByteArray());
+//		schema.createEAttribute(geometryData, "materialIndices", EcorePackage.eINSTANCE.getEByteArray());
 	}
 
 	@Override

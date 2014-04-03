@@ -16,6 +16,8 @@
  */
 package org.bimserver.models.ifc4.impl;
 
+import org.bimserver.models.geometry.GeometryInfo;
+
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcObjectPlacement;
 import org.bimserver.models.ifc4.IfcProduct;
@@ -36,6 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProductImpl#getObjectPlacement <em>Object Placement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProductImpl#getRepresentation <em>Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProductImpl#getReferencedBy <em>Referenced By</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcProductImpl#getGeometry <em>Geometry</em>}</li>
  * </ul>
  * </p>
  *
@@ -159,6 +162,24 @@ public class IfcProductImpl extends IfcObjectImpl implements IfcProduct {
 	 */
 	public boolean isSetReferencedBy() {
 		return eIsSet(Ifc4Package.Literals.IFC_PRODUCT__REFERENCED_BY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GeometryInfo getGeometry() {
+		return (GeometryInfo) eGet(Ifc4Package.Literals.IFC_PRODUCT__GEOMETRY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGeometry(GeometryInfo newGeometry) {
+		eSet(Ifc4Package.Literals.IFC_PRODUCT__GEOMETRY, newGeometry);
 	}
 
 } //IfcProductImpl

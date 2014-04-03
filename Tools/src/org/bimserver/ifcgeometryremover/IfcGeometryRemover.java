@@ -10,6 +10,7 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.Schema;
 import org.bimserver.ifc.ReferenceCounter;
 import org.bimserver.ifc.ReferenceCounter.Reference;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -40,7 +41,7 @@ public class IfcGeometryRemover {
 			schema = pluginManager.requireSchemaDefinition("ifc2x3tc1");
 			ifcDoc = new IfcDoc(new File("C:\\Users\\Ruben\\git\\BootstrapBIM\\BootstrapBIM\\docs\\R2x3_TC1"));
 			metaDataManager = new MetaDataManager(null);
-			metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE);
+			metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1);
 		} catch (PluginException e) {
 			e.printStackTrace();
 		}

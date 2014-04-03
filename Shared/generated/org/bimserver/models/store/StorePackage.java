@@ -6126,13 +6126,22 @@ public interface StorePackage extends EPackage {
 	int PROJECT_SMALL__LAST_REVISION_ID = 6;
 
 	/**
+	 * The feature id for the '<em><b>Schema</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SMALL__SCHEMA = 7;
+
+	/**
 	 * The number of structural features of the '<em>Project Small</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SMALL_FEATURE_COUNT = 7;
+	int PROJECT_SMALL_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.IfcHeaderImpl <em>Ifc Header</em>}' class.
@@ -11668,6 +11677,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getProjectSmall_LastRevisionId();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ProjectSmall#getSchema <em>Schema</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Schema</em>'.
+	 * @see org.bimserver.models.store.ProjectSmall#getSchema()
+	 * @see #getProjectSmall()
+	 * @generated
+	 */
+	EAttribute getProjectSmall_Schema();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.IfcHeader <em>Ifc Header</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16019,6 +16039,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROJECT_SMALL__LAST_REVISION_ID = eINSTANCE.getProjectSmall_LastRevisionId();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT_SMALL__SCHEMA = eINSTANCE.getProjectSmall_Schema();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.IfcHeaderImpl <em>Ifc Header</em>}' class.

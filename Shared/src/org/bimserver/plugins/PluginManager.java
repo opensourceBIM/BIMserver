@@ -480,16 +480,20 @@ public class PluginManager {
 		return allDeserializerPlugins.iterator().next();
 	}
 
-	public SchemaPlugin getFirstSchemaPlugin(boolean onlyEnabled) throws PluginException {
+	public SchemaPlugin getFirstSchemaPlugin(String schema, boolean onlyEnabled) throws PluginException {
 		Collection<SchemaPlugin> allSchemaPlugins = getAllSchemaPlugins(onlyEnabled);
 		if (allSchemaPlugins.size() == 0) {
 			throw new PluginException("No schema plugins found");
 		}
-		SchemaPlugin schemaPlugin = allSchemaPlugins.iterator().next();
-		if (!schemaPlugin.isInitialized()) {
-			schemaPlugin.init(this);
+		for (SchemaPlugin schemaPlugin : allSchemaPlugins) {
+			if (schemaPlugin.getSchemaVersion().equals(schema)) {
+				if (!schemaPlugin.isInitialized()) {
+					schemaPlugin.init(this);
+				}
+				return schemaPlugin;
+			}
 		}
-		return schemaPlugin;
+		return null;
 	}
 
 	public ObjectIDMPlugin getObjectIDMByName(String className, boolean onlyEnabled) {

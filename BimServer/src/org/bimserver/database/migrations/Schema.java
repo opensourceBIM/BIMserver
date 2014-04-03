@@ -314,4 +314,8 @@ public class Schema {
 	public EClass createEClass(String packageName, String className, EClass... superTypes) {
 		return createEClass(getEPackage(packageName), className, superTypes);
 	}
+
+	public void removeEReference(EClass eClass, String name) {
+		eClass.getEStructuralFeatures().remove(eClass.getEStructuralFeature(name));
+	}
 }

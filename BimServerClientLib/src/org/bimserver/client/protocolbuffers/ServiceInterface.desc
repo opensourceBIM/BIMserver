@@ -1,5 +1,5 @@
 
-ºÿ
+Êÿ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -405,7 +405,7 @@ $GetAllModelCheckersOfProjectResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject",
 GetAllRelatedProjectsRequest
-poid ("Ö
+poid ("æ
 SProjectSmall
 hasCheckinRights (
 lastRevisionId (
@@ -414,8 +414,10 @@ $GetAllModelCheckersOfProjectResponse
 nrSubProjects (
 oid (
 parentId (
-rid (-
-state	 (2.org.bimserver.pb.SObjectState"e
+rid (
+schema	 (	-
+state
+ (2.org.bimserver.pb.SObjectState"e
 GetAllRelatedProjectsResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SProjectSmall",

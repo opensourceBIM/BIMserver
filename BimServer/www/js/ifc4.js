@@ -1,20 +1,23 @@
 {
   "classes": {
     "Tristate": {},
-    "Ifc2DCompositeCurve": {
-      "domain": null,
-      "superclasses": [
-        "IfcCompositeCurve"
-      ],
-      "fields": {}
-    },
     "IfcActionRequest": {
       "domain": null,
       "superclasses": [
         "IfcControl"
       ],
       "fields": {
-        "RequestID": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "Status": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LongDescription": {
           "type": "string",
           "reference": false,
           "many": false
@@ -41,7 +44,9 @@
     },
     "IfcActorRole": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcResourceObjectSelect"
+      ],
       "fields": {
         "Role": {
           "type": "enum",
@@ -55,6 +60,24 @@
         },
         "Description": {
           "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "HasExternalReference": {
+          "type": "IfcExternalReferenceRelationship",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcActuator": {
+      "domain": null,
+      "superclasses": [
+        "IfcDistributionControlElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -106,6 +129,59 @@
         }
       }
     },
+    "IfcAdvancedBrep": {
+      "domain": null,
+      "superclasses": [
+        "IfcManifoldSolidBrep"
+      ],
+      "fields": {}
+    },
+    "IfcAdvancedBrepWithVoids": {
+      "domain": null,
+      "superclasses": [
+        "IfcAdvancedBrep"
+      ],
+      "fields": {
+        "Voids": {
+          "type": "IfcClosedShell",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcAdvancedFace": {
+      "domain": null,
+      "superclasses": [
+        "IfcFaceSurface"
+      ],
+      "fields": {}
+    },
+    "IfcAirTerminal": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminal"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcAirTerminalBox": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowController"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcAirTerminalBoxType": {
       "domain": null,
       "superclasses": [
@@ -132,10 +208,36 @@
         }
       }
     },
+    "IfcAirToAirHeatRecovery": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcAirToAirHeatRecoveryType": {
       "domain": null,
       "superclasses": [
         "IfcEnergyConversionDeviceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcAlarm": {
+      "domain": null,
+      "superclasses": [
+        "IfcDistributionControlElement"
       ],
       "fields": {
         "PredefinedType": {
@@ -158,13 +260,6 @@
         }
       }
     },
-    "IfcAngularDimension": {
-      "domain": null,
-      "superclasses": [
-        "IfcDimensionCurveDirectedCallout"
-      ],
-      "fields": {}
-    },
     "IfcAnnotation": {
       "domain": null,
       "superclasses": [
@@ -177,14 +272,6 @@
           "many": true
         }
       }
-    },
-    "IfcAnnotationCurveOccurrence": {
-      "domain": null,
-      "superclasses": [
-        "IfcAnnotationOccurrence",
-        "IfcDraughtingCalloutElement"
-      ],
-      "fields": {}
     },
     "IfcAnnotationFillArea": {
       "domain": null,
@@ -203,72 +290,6 @@
           "many": true
         }
       }
-    },
-    "IfcAnnotationFillAreaOccurrence": {
-      "domain": null,
-      "superclasses": [
-        "IfcAnnotationOccurrence"
-      ],
-      "fields": {
-        "FillStyleTarget": {
-          "type": "IfcPoint",
-          "reference": true,
-          "many": false
-        },
-        "GlobalOrLocal": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcAnnotationOccurrence": {
-      "domain": null,
-      "superclasses": [
-        "IfcStyledItem"
-      ],
-      "fields": {}
-    },
-    "IfcAnnotationSurface": {
-      "domain": null,
-      "superclasses": [
-        "IfcGeometricRepresentationItem"
-      ],
-      "fields": {
-        "Item": {
-          "type": "IfcGeometricRepresentationItem",
-          "reference": true,
-          "many": false
-        },
-        "TextureCoordinates": {
-          "type": "IfcTextureCoordinate",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
-    "IfcAnnotationSurfaceOccurrence": {
-      "domain": null,
-      "superclasses": [
-        "IfcAnnotationOccurrence"
-      ],
-      "fields": {}
-    },
-    "IfcAnnotationSymbolOccurrence": {
-      "domain": null,
-      "superclasses": [
-        "IfcAnnotationOccurrence",
-        "IfcDraughtingCalloutElement"
-      ],
-      "fields": {}
-    },
-    "IfcAnnotationTextOccurrence": {
-      "domain": null,
-      "superclasses": [
-        "IfcAnnotationOccurrence",
-        "IfcDraughtingCalloutElement"
-      ],
-      "fields": {}
     },
     "IfcApplication": {
       "domain": null,
@@ -299,7 +320,9 @@
     "IfcAppliedValue": {
       "domain": null,
       "superclasses": [
-        "IfcObjectReferenceSelect"
+        "IfcMetricValueSelect",
+        "IfcObjectReferenceSelect",
+        "IfcResourceObjectSelect"
       ],
       "fields": {
         "Name": {
@@ -323,39 +346,28 @@
           "many": false
         },
         "ApplicableDate": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "FixedUntilDate": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
-        "ValuesReferenced": {
-          "type": "IfcReferencesValueDocument",
-          "reference": true,
-          "many": true
+        "Category": {
+          "type": "string",
+          "reference": false,
+          "many": false
         },
-        "ValueOfComponents": {
-          "type": "IfcAppliedValueRelationship",
-          "reference": true,
-          "many": true
+        "Condition": {
+          "type": "string",
+          "reference": false,
+          "many": false
         },
-        "IsComponentIn": {
-          "type": "IfcAppliedValueRelationship",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcAppliedValueRelationship": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "ComponentOfTotal": {
-          "type": "IfcAppliedValue",
-          "reference": true,
+        "ArithmeticOperator": {
+          "type": "enum",
+          "reference": false,
           "many": false
         },
         "Components": {
@@ -363,48 +375,20 @@
           "reference": true,
           "many": true
         },
-        "ArithmeticOperator": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "Name": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Description": {
-          "type": "string",
-          "reference": false,
-          "many": false
+        "HasExternalReference": {
+          "type": "IfcExternalReferenceRelationship",
+          "reference": true,
+          "many": true
         }
       }
     },
     "IfcApproval": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcResourceObjectSelect"
+      ],
       "fields": {
-        "Description": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ApprovalDateTime": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "ApprovalStatus": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ApprovalLevel": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ApprovalQualifier": {
+        "Identifier": {
           "type": "string",
           "reference": false,
           "many": false
@@ -414,13 +398,53 @@
           "reference": false,
           "many": false
         },
-        "Identifier": {
+        "Description": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "Actors": {
-          "type": "IfcApprovalActorRelationship",
+        "TimeOfApproval": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Status": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Level": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Qualifier": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "RequestingApproval": {
+          "type": "IfcActorSelect",
+          "reference": true,
+          "many": false
+        },
+        "GivingApproval": {
+          "type": "IfcActorSelect",
+          "reference": true,
+          "many": false
+        },
+        "HasExternalReferences": {
+          "type": "IfcExternalReferenceRelationship",
+          "reference": true,
+          "many": true
+        },
+        "ApprovedObjects": {
+          "type": "IfcRelAssociatesApproval",
+          "reference": true,
+          "many": true
+        },
+        "ApprovedResources": {
+          "type": "IfcResourceApprovalRelationship",
           "reference": true,
           "many": true
         },
@@ -436,66 +460,21 @@
         }
       }
     },
-    "IfcApprovalActorRelationship": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "Actor": {
-          "type": "IfcActorSelect",
-          "reference": true,
-          "many": false
-        },
-        "Approval": {
-          "type": "IfcApproval",
-          "reference": true,
-          "many": false
-        },
-        "Role": {
-          "type": "IfcActorRole",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
-    "IfcApprovalPropertyRelationship": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "ApprovedProperties": {
-          "type": "IfcProperty",
-          "reference": true,
-          "many": true
-        },
-        "Approval": {
-          "type": "IfcApproval",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
     "IfcApprovalRelationship": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcResourceLevelRelationship"
+      ],
       "fields": {
-        "RelatedApproval": {
-          "type": "IfcApproval",
-          "reference": true,
-          "many": false
-        },
         "RelatingApproval": {
           "type": "IfcApproval",
           "reference": true,
           "many": false
         },
-        "Description": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Name": {
-          "type": "string",
-          "reference": false,
-          "many": false
+        "RelatedApprovals": {
+          "type": "IfcApproval",
+          "reference": true,
+          "many": true
         }
       }
     },
@@ -544,7 +523,7 @@
         "IfcGroup"
       ],
       "fields": {
-        "AssetID": {
+        "Identification": {
           "type": "string",
           "reference": false,
           "many": false
@@ -580,8 +559,8 @@
           "many": false
         },
         "IncorporationDate": {
-          "type": "IfcCalendarDate",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "DepreciatedValue": {
@@ -594,9 +573,59 @@
     "IfcAsymmetricIShapeProfileDef": {
       "domain": null,
       "superclasses": [
-        "IfcIShapeProfileDef"
+        "IfcParameterizedProfileDef"
       ],
       "fields": {
+        "BottomFlangeWidth": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "BottomFlangeWidthAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "OverallDepth": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "OverallDepthAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "WebThickness": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "WebThicknessAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "BottomFlangeThickness": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "BottomFlangeThicknessAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "BottomFlangeFilletRadius": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "BottomFlangeFilletRadiusAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
         "TopFlangeWidth": {
           "type": "double",
           "reference": false,
@@ -627,13 +656,69 @@
           "reference": false,
           "many": false
         },
-        "CentreOfGravityInY": {
+        "BottomFlangeEdgeRadius": {
           "type": "double",
           "reference": false,
           "many": false
         },
-        "CentreOfGravityInYAsString": {
+        "BottomFlangeEdgeRadiusAsString": {
           "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "BottomFlangeSlope": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "BottomFlangeSlopeAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "TopFlangeEdgeRadius": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "TopFlangeEdgeRadiusAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "TopFlangeSlope": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "TopFlangeSlopeAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcAudioVisualAppliance": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminal"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcAudioVisualApplianceType": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminalType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -718,10 +803,132 @@
         }
       }
     },
+    "IfcBSplineCurveWithKnots": {
+      "domain": null,
+      "superclasses": [
+        "IfcBSplineCurve"
+      ],
+      "fields": {
+        "KnotMultiplicities": {
+          "type": "int",
+          "reference": false,
+          "many": true
+        },
+        "Knots": {
+          "type": "double",
+          "reference": false,
+          "many": true
+        },
+        "KnotsAsString": {
+          "type": "string",
+          "reference": false,
+          "many": true
+        },
+        "KnotSpec": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcBSplineSurface": {
+      "domain": null,
+      "superclasses": [
+        "IfcBoundedSurface"
+      ],
+      "fields": {
+        "UDegree": {
+          "type": "int",
+          "reference": false,
+          "many": false
+        },
+        "VDegree": {
+          "type": "int",
+          "reference": false,
+          "many": false
+        },
+        "SurfaceForm": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "UClosed": {
+          "type": "boolean",
+          "reference": false,
+          "many": false
+        },
+        "VClosed": {
+          "type": "boolean",
+          "reference": false,
+          "many": false
+        },
+        "SelfIntersect": {
+          "type": "boolean",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcBSplineSurfaceWithKnots": {
+      "domain": null,
+      "superclasses": [
+        "IfcBSplineSurface"
+      ],
+      "fields": {
+        "UMultiplicities": {
+          "type": "int",
+          "reference": false,
+          "many": true
+        },
+        "VMultiplicities": {
+          "type": "int",
+          "reference": false,
+          "many": true
+        },
+        "UKnots": {
+          "type": "double",
+          "reference": false,
+          "many": true
+        },
+        "UKnotsAsString": {
+          "type": "string",
+          "reference": false,
+          "many": true
+        },
+        "VKnots": {
+          "type": "double",
+          "reference": false,
+          "many": true
+        },
+        "VKnotsAsString": {
+          "type": "string",
+          "reference": false,
+          "many": true
+        },
+        "KnotSpec": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcBeam": {
       "domain": null,
       "superclasses": [
         "IfcBuildingElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcBeamStandardCase": {
+      "domain": null,
+      "superclasses": [
+        "IfcBeam"
       ],
       "fields": {}
     },
@@ -738,13 +945,6 @@
         }
       }
     },
-    "IfcBezierCurve": {
-      "domain": null,
-      "superclasses": [
-        "IfcBSplineCurve"
-      ],
-      "fields": {}
-    },
     "IfcBlobTexture": {
       "domain": null,
       "superclasses": [
@@ -757,7 +957,7 @@
           "many": false
         },
         "RasterCode": {
-          "type": "enum",
+          "type": "bytearray",
           "reference": false,
           "many": false
         }
@@ -796,6 +996,19 @@
         },
         "ZLengthAsString": {
           "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcBoiler": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -862,70 +1075,47 @@
         }
       }
     },
+    "IfcBoundaryCurve": {
+      "domain": null,
+      "superclasses": [
+        "IfcCompositeCurveOnSurface"
+      ],
+      "fields": {}
+    },
     "IfcBoundaryEdgeCondition": {
       "domain": null,
       "superclasses": [
         "IfcBoundaryCondition"
       ],
       "fields": {
-        "LinearStiffnessByLengthX": {
-          "type": "double",
-          "reference": false,
+        "TranslationalStiffnessByLengthX": {
+          "type": "IfcModulusOfTranslationalSubgradeReactionSelect",
+          "reference": true,
           "many": false
         },
-        "LinearStiffnessByLengthXAsString": {
-          "type": "string",
-          "reference": false,
+        "TranslationalStiffnessByLengthY": {
+          "type": "IfcModulusOfTranslationalSubgradeReactionSelect",
+          "reference": true,
           "many": false
         },
-        "LinearStiffnessByLengthY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "LinearStiffnessByLengthYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "LinearStiffnessByLengthZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "LinearStiffnessByLengthZAsString": {
-          "type": "string",
-          "reference": false,
+        "TranslationalStiffnessByLengthZ": {
+          "type": "IfcModulusOfTranslationalSubgradeReactionSelect",
+          "reference": true,
           "many": false
         },
         "RotationalStiffnessByLengthX": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RotationalStiffnessByLengthXAsString": {
-          "type": "string",
-          "reference": false,
+          "type": "IfcModulusOfRotationalSubgradeReactionSelect",
+          "reference": true,
           "many": false
         },
         "RotationalStiffnessByLengthY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RotationalStiffnessByLengthYAsString": {
-          "type": "string",
-          "reference": false,
+          "type": "IfcModulusOfRotationalSubgradeReactionSelect",
+          "reference": true,
           "many": false
         },
         "RotationalStiffnessByLengthZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RotationalStiffnessByLengthZAsString": {
-          "type": "string",
-          "reference": false,
+          "type": "IfcModulusOfRotationalSubgradeReactionSelect",
+          "reference": true,
           "many": false
         }
       }
@@ -936,34 +1126,19 @@
         "IfcBoundaryCondition"
       ],
       "fields": {
-        "LinearStiffnessByAreaX": {
-          "type": "double",
-          "reference": false,
+        "TranslationalStiffnessByAreaX": {
+          "type": "IfcModulusOfSubgradeReactionSelect",
+          "reference": true,
           "many": false
         },
-        "LinearStiffnessByAreaXAsString": {
-          "type": "string",
-          "reference": false,
+        "TranslationalStiffnessByAreaY": {
+          "type": "IfcModulusOfSubgradeReactionSelect",
+          "reference": true,
           "many": false
         },
-        "LinearStiffnessByAreaY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "LinearStiffnessByAreaYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "LinearStiffnessByAreaZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "LinearStiffnessByAreaZAsString": {
-          "type": "string",
-          "reference": false,
+        "TranslationalStiffnessByAreaZ": {
+          "type": "IfcModulusOfSubgradeReactionSelect",
+          "reference": true,
           "many": false
         }
       }
@@ -974,64 +1149,34 @@
         "IfcBoundaryCondition"
       ],
       "fields": {
-        "LinearStiffnessX": {
-          "type": "double",
-          "reference": false,
+        "TranslationalStiffnessX": {
+          "type": "IfcTranslationalStiffnessSelect",
+          "reference": true,
           "many": false
         },
-        "LinearStiffnessXAsString": {
-          "type": "string",
-          "reference": false,
+        "TranslationalStiffnessY": {
+          "type": "IfcTranslationalStiffnessSelect",
+          "reference": true,
           "many": false
         },
-        "LinearStiffnessY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "LinearStiffnessYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "LinearStiffnessZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "LinearStiffnessZAsString": {
-          "type": "string",
-          "reference": false,
+        "TranslationalStiffnessZ": {
+          "type": "IfcTranslationalStiffnessSelect",
+          "reference": true,
           "many": false
         },
         "RotationalStiffnessX": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RotationalStiffnessXAsString": {
-          "type": "string",
-          "reference": false,
+          "type": "IfcRotationalStiffnessSelect",
+          "reference": true,
           "many": false
         },
         "RotationalStiffnessY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RotationalStiffnessYAsString": {
-          "type": "string",
-          "reference": false,
+          "type": "IfcRotationalStiffnessSelect",
+          "reference": true,
           "many": false
         },
         "RotationalStiffnessZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RotationalStiffnessZAsString": {
-          "type": "string",
-          "reference": false,
+          "type": "IfcRotationalStiffnessSelect",
+          "reference": true,
           "many": false
         }
       }
@@ -1043,13 +1188,8 @@
       ],
       "fields": {
         "WarpingStiffness": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "WarpingStiffnessAsString": {
-          "type": "string",
-          "reference": false,
+          "type": "IfcWarpingStiffnessSelect",
+          "reference": true,
           "many": false
         }
       }
@@ -1168,21 +1308,39 @@
       "superclasses": [
         "IfcElement"
       ],
-      "fields": {}
-    },
-    "IfcBuildingElementComponent": {
-      "domain": null,
-      "superclasses": [
-        "IfcBuildingElement"
-      ],
-      "fields": {}
+      "fields": {
+        "HasCoverings": {
+          "type": "IfcRelCoversBldgElements",
+          "reference": true,
+          "many": true
+        }
+      }
     },
     "IfcBuildingElementPart": {
       "domain": null,
       "superclasses": [
-        "IfcBuildingElementComponent"
+        "IfcElementComponent"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcBuildingElementPartType": {
+      "domain": null,
+      "superclasses": [
+        "IfcElementComponentType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcBuildingElementProxy": {
       "domain": null,
@@ -1190,7 +1348,7 @@
         "IfcBuildingElement"
       ],
       "fields": {
-        "CompositionType": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
@@ -1230,6 +1388,45 @@
         },
         "ElevationAsString": {
           "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcBuildingSystem": {
+      "domain": null,
+      "superclasses": [
+        "IfcSystem"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcBurner": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcBurnerType": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDeviceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -1290,14 +1487,17 @@
           "type": "string",
           "reference": false,
           "many": false
-        },
-        "CentreOfGravityInX": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInXAsString": {
-          "type": "string",
+        }
+      }
+    },
+    "IfcCableCarrierFitting": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowFitting"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -1307,6 +1507,19 @@
       "domain": null,
       "superclasses": [
         "IfcFlowFittingType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcCableCarrierSegment": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowSegment"
       ],
       "fields": {
         "PredefinedType": {
@@ -1329,10 +1542,10 @@
         }
       }
     },
-    "IfcCableSegmentType": {
+    "IfcCableFitting": {
       "domain": null,
       "superclasses": [
-        "IfcFlowSegmentType"
+        "IfcFlowFitting"
       ],
       "fields": {
         "PredefinedType": {
@@ -1342,25 +1555,40 @@
         }
       }
     },
-    "IfcCalendarDate": {
+    "IfcCableFittingType": {
       "domain": null,
       "superclasses": [
-        "IfcDateTimeSelect",
-        "IfcObjectReferenceSelect"
+        "IfcFlowFittingType"
       ],
       "fields": {
-        "DayComponent": {
-          "type": "int",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
-        },
-        "MonthComponent": {
-          "type": "int",
+        }
+      }
+    },
+    "IfcCableSegment": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowSegment"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
-        },
-        "YearComponent": {
-          "type": "int",
+        }
+      }
+    },
+    "IfcCableSegmentType": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowSegmentType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -1389,6 +1617,20 @@
           "many": false
         }
       }
+    },
+    "IfcCartesianPointList": {
+      "domain": null,
+      "superclasses": [
+        "IfcGeometricRepresentationItem"
+      ],
+      "fields": {}
+    },
+    "IfcCartesianPointList3D": {
+      "domain": null,
+      "superclasses": [
+        "IfcCartesianPointList"
+      ],
+      "fields": {}
     },
     "IfcCartesianTransformationOperator": {
       "domain": null,
@@ -1512,29 +1754,14 @@
         }
       }
     },
-    "IfcChamferEdgeFeature": {
+    "IfcChiller": {
       "domain": null,
       "superclasses": [
-        "IfcEdgeFeature"
+        "IfcEnergyConversionDevice"
       ],
       "fields": {
-        "Width": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "WidthAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Height": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "HeightAsString": {
-          "type": "string",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -1544,6 +1771,32 @@
       "domain": null,
       "superclasses": [
         "IfcEnergyConversionDeviceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcChimney": {
+      "domain": null,
+      "superclasses": [
+        "IfcBuildingElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcChimneyType": {
+      "domain": null,
+      "superclasses": [
+        "IfcBuildingElementType"
       ],
       "fields": {
         "PredefinedType": {
@@ -1607,9 +1860,27 @@
         }
       }
     },
+    "IfcCivilElement": {
+      "domain": null,
+      "superclasses": [
+        "IfcElement"
+      ],
+      "fields": {}
+    },
+    "IfcCivilElementType": {
+      "domain": null,
+      "superclasses": [
+        "IfcElementType"
+      ],
+      "fields": {}
+    },
     "IfcClassification": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcExternalInformation",
+        "IfcClassificationReferenceSelect",
+        "IfcClassificationSelect"
+      ],
       "fields": {
         "Source": {
           "type": "string",
@@ -1622,8 +1893,8 @@
           "many": false
         },
         "EditionDate": {
-          "type": "IfcCalendarDate",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "Name": {
@@ -1631,81 +1902,30 @@
           "reference": false,
           "many": false
         },
-        "Contains": {
-          "type": "IfcClassificationItem",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcClassificationItem": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "Notation": {
-          "type": "IfcClassificationNotationFacet",
-          "reference": true,
-          "many": false
-        },
-        "ItemOf": {
-          "type": "IfcClassification",
-          "reference": true,
-          "many": false
-        },
-        "Title": {
+        "Description": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "IsClassifiedItemIn": {
-          "type": "IfcClassificationItemRelationship",
-          "reference": true,
-          "many": true
-        },
-        "IsClassifyingItemIn": {
-          "type": "IfcClassificationItemRelationship",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcClassificationItemRelationship": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "RelatingItem": {
-          "type": "IfcClassificationItem",
-          "reference": true,
-          "many": false
-        },
-        "RelatedItems": {
-          "type": "IfcClassificationItem",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcClassificationNotation": {
-      "domain": null,
-      "superclasses": [
-        "IfcClassificationNotationSelect"
-      ],
-      "fields": {
-        "NotationFacets": {
-          "type": "IfcClassificationNotationFacet",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcClassificationNotationFacet": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "NotationValue": {
+        "Location": {
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "ReferenceTokens": {
+          "type": "string",
+          "reference": false,
+          "many": true
+        },
+        "ClassificationForObjects": {
+          "type": "IfcRelAssociatesClassification",
+          "reference": true,
+          "many": true
+        },
+        "HasReferences": {
+          "type": "IfcClassificationReference",
+          "reference": true,
+          "many": true
         }
       }
     },
@@ -1713,13 +1933,34 @@
       "domain": null,
       "superclasses": [
         "IfcExternalReference",
-        "IfcClassificationNotationSelect"
+        "IfcClassificationReferenceSelect",
+        "IfcClassificationSelect"
       ],
       "fields": {
         "ReferencedSource": {
-          "type": "IfcClassification",
+          "type": "IfcClassificationReferenceSelect",
           "reference": true,
           "many": false
+        },
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Sort": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ClassificationRefForObjects": {
+          "type": "IfcRelAssociatesClassification",
+          "reference": true,
+          "many": true
+        },
+        "HasReferences": {
+          "type": "IfcClassificationReference",
+          "reference": true,
+          "many": true
         }
       }
     },
@@ -1727,9 +1968,23 @@
       "domain": null,
       "superclasses": [
         "IfcConnectedFaceSet",
-        "IfcShell"
+        "IfcShell",
+        "IfcSolidOrShell"
       ],
       "fields": {}
+    },
+    "IfcCoil": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcCoilType": {
       "domain": null,
@@ -1783,9 +2038,17 @@
         }
       }
     },
+    "IfcColourRgbList": {
+      "domain": null,
+      "superclasses": [
+        "IfcPresentationItem"
+      ],
+      "fields": {}
+    },
     "IfcColourSpecification": {
       "domain": null,
       "superclasses": [
+        "IfcPresentationItem",
         "IfcColour"
       ],
       "fields": {
@@ -1801,12 +2064,51 @@
       "superclasses": [
         "IfcBuildingElement"
       ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcColumnStandardCase": {
+      "domain": null,
+      "superclasses": [
+        "IfcColumn"
+      ],
       "fields": {}
     },
     "IfcColumnType": {
       "domain": null,
       "superclasses": [
         "IfcBuildingElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcCommunicationsAppliance": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminal"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcCommunicationsApplianceType": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminalType"
       ],
       "fields": {
         "PredefinedType": {
@@ -1834,6 +2136,29 @@
         }
       }
     },
+    "IfcComplexPropertyTemplate": {
+      "domain": null,
+      "superclasses": [
+        "IfcPropertyTemplate"
+      ],
+      "fields": {
+        "UsageName": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "TemplateType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "HasPropertyTemplates": {
+          "type": "IfcPropertyTemplate",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
     "IfcCompositeCurve": {
       "domain": null,
       "superclasses": [
@@ -1851,6 +2176,14 @@
           "many": false
         }
       }
+    },
+    "IfcCompositeCurveOnSurface": {
+      "domain": null,
+      "superclasses": [
+        "IfcCompositeCurve",
+        "IfcCurveOnSurface"
+      ],
+      "fields": {}
     },
     "IfcCompositeCurveSegment": {
       "domain": null,
@@ -1903,10 +2236,36 @@
         }
       }
     },
+    "IfcCompressor": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowMovingDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcCompressorType": {
       "domain": null,
       "superclasses": [
         "IfcFlowMovingDeviceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcCondenser": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
       ],
       "fields": {
         "PredefinedType": {
@@ -1925,31 +2284,6 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcCondition": {
-      "domain": null,
-      "superclasses": [
-        "IfcGroup"
-      ],
-      "fields": {}
-    },
-    "IfcConditionCriterion": {
-      "domain": null,
-      "superclasses": [
-        "IfcControl"
-      ],
-      "fields": {
-        "Criterion": {
-          "type": "IfcConditionCriterionSelect",
-          "reference": true,
-          "many": false
-        },
-        "CriterionDateTime": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
           "many": false
         }
       }
@@ -2059,29 +2393,6 @@
         }
       }
     },
-    "IfcConnectionPortGeometry": {
-      "domain": null,
-      "superclasses": [
-        "IfcConnectionGeometry"
-      ],
-      "fields": {
-        "LocationAtRelatingElement": {
-          "type": "IfcAxis2Placement",
-          "reference": true,
-          "many": false
-        },
-        "LocationAtRelatedElement": {
-          "type": "IfcAxis2Placement",
-          "reference": true,
-          "many": false
-        },
-        "ProfileOfPort": {
-          "type": "IfcProfileDef",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
     "IfcConnectionSurfaceGeometry": {
       "domain": null,
       "superclasses": [
@@ -2100,9 +2411,29 @@
         }
       }
     },
+    "IfcConnectionVolumeGeometry": {
+      "domain": null,
+      "superclasses": [
+        "IfcConnectionGeometry"
+      ],
+      "fields": {
+        "VolumeOnRelatingElement": {
+          "type": "IfcSolidOrShell",
+          "reference": true,
+          "many": false
+        },
+        "VolumeOnRelatedElement": {
+          "type": "IfcSolidOrShell",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
     "IfcConstraint": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcResourceObjectSelect"
+      ],
       "fields": {
         "Name": {
           "type": "string",
@@ -2130,8 +2461,8 @@
           "many": false
         },
         "CreationTime": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "UserDefinedGrade": {
@@ -2139,106 +2470,13 @@
           "reference": false,
           "many": false
         },
-        "ClassifiedAs": {
-          "type": "IfcConstraintClassificationRelationship",
-          "reference": true,
-          "many": true
-        },
-        "RelatesConstraints": {
-          "type": "IfcConstraintRelationship",
-          "reference": true,
-          "many": true
-        },
-        "IsRelatedWith": {
-          "type": "IfcConstraintRelationship",
+        "HasExternalReferences": {
+          "type": "IfcExternalReferenceRelationship",
           "reference": true,
           "many": true
         },
         "PropertiesForConstraint": {
-          "type": "IfcPropertyConstraintRelationship",
-          "reference": true,
-          "many": true
-        },
-        "Aggregates": {
-          "type": "IfcConstraintAggregationRelationship",
-          "reference": true,
-          "many": true
-        },
-        "IsAggregatedIn": {
-          "type": "IfcConstraintAggregationRelationship",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcConstraintAggregationRelationship": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "Name": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Description": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "RelatingConstraint": {
-          "type": "IfcConstraint",
-          "reference": true,
-          "many": false
-        },
-        "RelatedConstraints": {
-          "type": "IfcConstraint",
-          "reference": true,
-          "many": true
-        },
-        "LogicalAggregator": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcConstraintClassificationRelationship": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "ClassifiedConstraint": {
-          "type": "IfcConstraint",
-          "reference": true,
-          "many": false
-        },
-        "RelatedClassifications": {
-          "type": "IfcClassificationNotationSelect",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcConstraintRelationship": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "Name": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Description": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "RelatingConstraint": {
-          "type": "IfcConstraint",
-          "reference": true,
-          "many": false
-        },
-        "RelatedConstraints": {
-          "type": "IfcConstraint",
+          "type": "IfcResourceConstraintRelationship",
           "reference": true,
           "many": true
         }
@@ -2249,7 +2487,26 @@
       "superclasses": [
         "IfcConstructionResource"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcConstructionEquipmentResourceType": {
+      "domain": null,
+      "superclasses": [
+        "IfcConstructionResourceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcConstructionMaterialResource": {
       "domain": null,
@@ -2257,18 +2514,21 @@
         "IfcConstructionResource"
       ],
       "fields": {
-        "Suppliers": {
-          "type": "IfcActorSelect",
-          "reference": true,
-          "many": true
-        },
-        "UsageRatio": {
-          "type": "double",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
-        },
-        "UsageRatioAsString": {
-          "type": "string",
+        }
+      }
+    },
+    "IfcConstructionMaterialResourceType": {
+      "domain": null,
+      "superclasses": [
+        "IfcConstructionResourceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -2279,7 +2539,26 @@
       "superclasses": [
         "IfcConstructionResource"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcConstructionProductResourceType": {
+      "domain": null,
+      "superclasses": [
+        "IfcConstructionResourceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcConstructionResource": {
       "domain": null,
@@ -2287,38 +2566,100 @@
         "IfcResource"
       ],
       "fields": {
-        "ResourceIdentifier": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ResourceGroup": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ResourceConsumption": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "BaseQuantity": {
-          "type": "IfcMeasureWithUnit",
+        "Usage": {
+          "type": "IfcResourceTime",
           "reference": true,
           "many": false
+        },
+        "BaseCosts": {
+          "type": "IfcAppliedValue",
+          "reference": true,
+          "many": true
+        },
+        "BaseQuantity": {
+          "type": "IfcPhysicalQuantity",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcConstructionResourceType": {
+      "domain": null,
+      "superclasses": [
+        "IfcTypeResource"
+      ],
+      "fields": {
+        "BaseCosts": {
+          "type": "IfcAppliedValue",
+          "reference": true,
+          "many": true
+        },
+        "BaseQuantity": {
+          "type": "IfcPhysicalQuantity",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcContext": {
+      "domain": null,
+      "superclasses": [
+        "IfcObjectDefinition"
+      ],
+      "fields": {
+        "ObjectType": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LongName": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Phase": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "RepresentationContexts": {
+          "type": "IfcRepresentationContext",
+          "reference": true,
+          "many": true
+        },
+        "UnitsInContext": {
+          "type": "IfcUnitAssignment",
+          "reference": true,
+          "many": false
+        },
+        "IsDefinedBy": {
+          "type": "IfcRelDefinesByProperties",
+          "reference": true,
+          "many": true
+        },
+        "Declares": {
+          "type": "IfcRelDeclares",
+          "reference": true,
+          "many": true
         }
       }
     },
     "IfcContextDependentUnit": {
       "domain": null,
       "superclasses": [
-        "IfcNamedUnit"
+        "IfcNamedUnit",
+        "IfcResourceObjectSelect"
       ],
       "fields": {
         "Name": {
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "HasExternalReference": {
+          "type": "IfcExternalReferenceRelationship",
+          "reference": true,
+          "many": true
         }
       }
     },
@@ -2328,10 +2669,28 @@
         "IfcObject"
       ],
       "fields": {
+        "Identification": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
         "Controls": {
           "type": "IfcRelAssignsToControl",
           "reference": true,
           "many": true
+        }
+      }
+    },
+    "IfcController": {
+      "domain": null,
+      "superclasses": [
+        "IfcDistributionControlElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
@@ -2351,7 +2710,8 @@
     "IfcConversionBasedUnit": {
       "domain": null,
       "superclasses": [
-        "IfcNamedUnit"
+        "IfcNamedUnit",
+        "IfcResourceObjectSelect"
       ],
       "fields": {
         "Name": {
@@ -2363,6 +2723,42 @@
           "type": "IfcMeasureWithUnit",
           "reference": true,
           "many": false
+        },
+        "HasExternalReference": {
+          "type": "IfcExternalReferenceRelationship",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcConversionBasedUnitWithOffset": {
+      "domain": null,
+      "superclasses": [
+        "IfcConversionBasedUnit"
+      ],
+      "fields": {
+        "ConversionOffset": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "ConversionOffsetAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcCooledBeam": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
@@ -2370,6 +2766,19 @@
       "domain": null,
       "superclasses": [
         "IfcEnergyConversionDeviceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcCoolingTower": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
       ],
       "fields": {
         "PredefinedType": {
@@ -2392,22 +2801,45 @@
         }
       }
     },
-    "IfcCoordinatedUniversalTimeOffset": {
+    "IfcCoordinateOperation": {
       "domain": null,
       "superclasses": [],
       "fields": {
-        "HourOffset": {
-          "type": "int",
+        "SourceCRS": {
+          "type": "IfcCoordinateReferenceSystemSelect",
+          "reference": true,
+          "many": false
+        },
+        "TargetCRS": {
+          "type": "IfcCoordinateReferenceSystem",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcCoordinateReferenceSystem": {
+      "domain": null,
+      "superclasses": [
+        "IfcCoordinateReferenceSystemSelect"
+      ],
+      "fields": {
+        "Name": {
+          "type": "string",
           "reference": false,
           "many": false
         },
-        "MinuteOffset": {
-          "type": "int",
+        "Description": {
+          "type": "string",
           "reference": false,
           "many": false
         },
-        "Sense": {
-          "type": "enum",
+        "GeodeticDatum": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "VerticalDatum": {
+          "type": "string",
           "reference": false,
           "many": false
         }
@@ -2418,7 +2850,23 @@
       "superclasses": [
         "IfcControl"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "CostValues": {
+          "type": "IfcCostValue",
+          "reference": true,
+          "many": true
+        },
+        "CostQuantities": {
+          "type": "IfcPhysicalQuantity",
+          "reference": true,
+          "many": true
+        }
+      }
     },
     "IfcCostSchedule": {
       "domain": null,
@@ -2426,19 +2874,9 @@
         "IfcControl"
       ],
       "fields": {
-        "SubmittedBy": {
-          "type": "IfcActorSelect",
-          "reference": true,
-          "many": false
-        },
-        "PreparedBy": {
-          "type": "IfcActorSelect",
-          "reference": true,
-          "many": false
-        },
-        "SubmittedOn": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
           "many": false
         },
         "Status": {
@@ -2446,23 +2884,13 @@
           "reference": false,
           "many": false
         },
-        "TargetUsers": {
-          "type": "IfcActorSelect",
-          "reference": true,
-          "many": true
-        },
-        "UpdateDate": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "ID": {
+        "SubmittedOn": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "PredefinedType": {
-          "type": "enum",
+        "UpdateDate": {
+          "type": "string",
           "reference": false,
           "many": false
         }
@@ -2471,21 +2899,9 @@
     "IfcCostValue": {
       "domain": null,
       "superclasses": [
-        "IfcAppliedValue",
-        "IfcMetricValueSelect"
+        "IfcAppliedValue"
       ],
-      "fields": {
-        "CostType": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Condition": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
+      "fields": {}
     },
     "IfcCovering": {
       "domain": null,
@@ -2503,7 +2919,7 @@
           "reference": true,
           "many": true
         },
-        "Covers": {
+        "CoversElements": {
           "type": "IfcRelCoversBldgElements",
           "reference": true,
           "many": true
@@ -2523,238 +2939,31 @@
         }
       }
     },
-    "IfcCraneRailAShapeProfileDef": {
-      "domain": null,
-      "superclasses": [
-        "IfcParameterizedProfileDef"
-      ],
-      "fields": {
-        "OverallHeight": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "OverallHeightAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "BaseWidth2": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BaseWidth2AsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Radius": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RadiusAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "HeadWidth": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "HeadWidthAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "HeadDepth2": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "HeadDepth2AsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "HeadDepth3": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "HeadDepth3AsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "WebThickness": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "WebThicknessAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "BaseWidth4": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BaseWidth4AsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "BaseDepth1": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BaseDepth1AsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "BaseDepth2": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BaseDepth2AsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "BaseDepth3": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BaseDepth3AsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcCraneRailFShapeProfileDef": {
-      "domain": null,
-      "superclasses": [
-        "IfcParameterizedProfileDef"
-      ],
-      "fields": {
-        "OverallHeight": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "OverallHeightAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "HeadWidth": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "HeadWidthAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Radius": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RadiusAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "HeadDepth2": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "HeadDepth2AsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "HeadDepth3": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "HeadDepth3AsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "WebThickness": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "WebThicknessAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "BaseDepth1": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BaseDepth1AsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "BaseDepth2": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BaseDepth2AsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
     "IfcCrewResource": {
       "domain": null,
       "superclasses": [
         "IfcConstructionResource"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcCrewResourceType": {
+      "domain": null,
+      "superclasses": [
+        "IfcConstructionResourceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcCsgPrimitive3D": {
       "domain": null,
@@ -2791,7 +3000,9 @@
     },
     "IfcCurrencyRelationship": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcResourceLevelRelationship"
+      ],
       "fields": {
         "RelatingMonetaryUnit": {
           "type": "IfcMonetaryUnit",
@@ -2814,8 +3025,8 @@
           "many": false
         },
         "RateDateTime": {
-          "type": "IfcDateAndTime",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "RateSource": {
@@ -2830,7 +3041,13 @@
       "superclasses": [
         "IfcBuildingElement"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcCurtainWallType": {
       "domain": null,
@@ -2879,9 +3096,27 @@
           "type": "IfcCurve",
           "reference": true,
           "many": true
+        }
+      }
+    },
+    "IfcCurveBoundedSurface": {
+      "domain": null,
+      "superclasses": [
+        "IfcBoundedSurface"
+      ],
+      "fields": {
+        "BasisSurface": {
+          "type": "IfcSurface",
+          "reference": true,
+          "many": false
         },
-        "Dim": {
-          "type": "int",
+        "Boundaries": {
+          "type": "IfcBoundaryCurve",
+          "reference": true,
+          "many": true
+        },
+        "ImplicitOuter": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -2908,12 +3143,18 @@
           "type": "IfcColour",
           "reference": true,
           "many": false
+        },
+        "ModelOrDraughting": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
     "IfcCurveStyleFont": {
       "domain": null,
       "superclasses": [
+        "IfcPresentationItem",
         "IfcCurveStyleFontSelect"
       ],
       "fields": {
@@ -2932,6 +3173,7 @@
     "IfcCurveStyleFontAndScaling": {
       "domain": null,
       "superclasses": [
+        "IfcPresentationItem",
         "IfcCurveFontOrScaledCurveFontSelect"
       ],
       "fields": {
@@ -2959,7 +3201,9 @@
     },
     "IfcCurveStyleFontPattern": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcPresentationItem"
+      ],
       "fields": {
         "VisibleSegmentLength": {
           "type": "double",
@@ -2983,10 +3227,28 @@
         }
       }
     },
-    "IfcDamperType": {
+    "IfcCylindricalSurface": {
       "domain": null,
       "superclasses": [
-        "IfcFlowControllerType"
+        "IfcElementarySurface"
+      ],
+      "fields": {
+        "Radius": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "RadiusAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcDamper": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowController"
       ],
       "fields": {
         "PredefinedType": {
@@ -2996,39 +3258,15 @@
         }
       }
     },
-    "IfcDateAndTime": {
+    "IfcDamperType": {
       "domain": null,
       "superclasses": [
-        "IfcDateTimeSelect",
-        "IfcObjectReferenceSelect"
+        "IfcFlowControllerType"
       ],
       "fields": {
-        "DateComponent": {
-          "type": "IfcCalendarDate",
-          "reference": true,
-          "many": false
-        },
-        "TimeComponent": {
-          "type": "IfcLocalTime",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
-    "IfcDefinedSymbol": {
-      "domain": null,
-      "superclasses": [
-        "IfcGeometricRepresentationItem"
-      ],
-      "fields": {
-        "Definition": {
-          "type": "IfcDefinedSymbolSelect",
-          "reference": true,
-          "many": false
-        },
-        "Target": {
-          "type": "IfcCartesianTransformationOperator2D",
-          "reference": true,
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
           "many": false
         }
       }
@@ -3095,60 +3333,6 @@
         }
       }
     },
-    "IfcDiameterDimension": {
-      "domain": null,
-      "superclasses": [
-        "IfcDimensionCurveDirectedCallout"
-      ],
-      "fields": {}
-    },
-    "IfcDimensionCalloutRelationship": {
-      "domain": null,
-      "superclasses": [
-        "IfcDraughtingCalloutRelationship"
-      ],
-      "fields": {}
-    },
-    "IfcDimensionCurve": {
-      "domain": null,
-      "superclasses": [
-        "IfcAnnotationCurveOccurrence"
-      ],
-      "fields": {
-        "AnnotatedBySymbols": {
-          "type": "IfcTerminatorSymbol",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcDimensionCurveDirectedCallout": {
-      "domain": null,
-      "superclasses": [
-        "IfcDraughtingCallout"
-      ],
-      "fields": {}
-    },
-    "IfcDimensionCurveTerminator": {
-      "domain": null,
-      "superclasses": [
-        "IfcTerminatorSymbol"
-      ],
-      "fields": {
-        "Role": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcDimensionPair": {
-      "domain": null,
-      "superclasses": [
-        "IfcDraughtingCalloutRelationship"
-      ],
-      "fields": {}
-    },
     "IfcDimensionalExponents": {
       "domain": null,
       "superclasses": [],
@@ -3194,7 +3378,7 @@
       "domain": null,
       "superclasses": [
         "IfcGeometricRepresentationItem",
-        "IfcOrientationSelect",
+        "IfcGridPlacementDirectionSelect",
         "IfcVectorOrDirection"
       ],
       "fields": {
@@ -3220,21 +3404,39 @@
       "superclasses": [
         "IfcElementComponent"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcDiscreteAccessoryType": {
       "domain": null,
       "superclasses": [
         "IfcElementComponentType"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcDistributionChamberElement": {
       "domain": null,
       "superclasses": [
         "IfcDistributionFlowElement"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcDistributionChamberElementType": {
       "domain": null,
@@ -3249,17 +3451,19 @@
         }
       }
     },
+    "IfcDistributionCircuit": {
+      "domain": null,
+      "superclasses": [
+        "IfcDistributionSystem"
+      ],
+      "fields": {}
+    },
     "IfcDistributionControlElement": {
       "domain": null,
       "superclasses": [
         "IfcDistributionElement"
       ],
       "fields": {
-        "ControlElementId": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
         "AssignedToFlowElement": {
           "type": "IfcRelFlowControlElements",
           "reference": true,
@@ -3279,7 +3483,13 @@
       "superclasses": [
         "IfcElement"
       ],
-      "fields": {}
+      "fields": {
+        "HasPorts": {
+          "type": "IfcRelConnectsPortToElement",
+          "reference": true,
+          "many": true
+        }
+      }
     },
     "IfcDistributionElementType": {
       "domain": null,
@@ -3318,25 +3528,32 @@
           "type": "enum",
           "reference": false,
           "many": false
+        },
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "SystemType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
-    "IfcDocumentElectronicFormat": {
+    "IfcDistributionSystem": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcSystem"
+      ],
       "fields": {
-        "FileExtension": {
+        "LongName": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "MimeContentType": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MimeSubtype": {
-          "type": "string",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -3345,10 +3562,11 @@
     "IfcDocumentInformation": {
       "domain": null,
       "superclasses": [
+        "IfcExternalInformation",
         "IfcDocumentSelect"
       ],
       "fields": {
-        "DocumentId": {
+        "Identification": {
           "type": "string",
           "reference": false,
           "many": false
@@ -3363,10 +3581,10 @@
           "reference": false,
           "many": false
         },
-        "DocumentReferences": {
-          "type": "IfcDocumentReference",
-          "reference": true,
-          "many": true
+        "Location": {
+          "type": "string",
+          "reference": false,
+          "many": false
         },
         "Purpose": {
           "type": "string",
@@ -3399,28 +3617,28 @@
           "many": true
         },
         "CreationTime": {
-          "type": "IfcDateAndTime",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "LastRevisionTime": {
-          "type": "IfcDateAndTime",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "ElectronicFormat": {
-          "type": "IfcDocumentElectronicFormat",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "ValidFrom": {
-          "type": "IfcCalendarDate",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "ValidUntil": {
-          "type": "IfcCalendarDate",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "Confidentiality": {
@@ -3432,6 +3650,16 @@
           "type": "enum",
           "reference": false,
           "many": false
+        },
+        "DocumentInfoForObjects": {
+          "type": "IfcRelAssociatesDocument",
+          "reference": true,
+          "many": true
+        },
+        "HasDocumentReferences": {
+          "type": "IfcDocumentReference",
+          "reference": true,
+          "many": true
         },
         "IsPointedTo": {
           "type": "IfcDocumentInformationRelationship",
@@ -3447,7 +3675,9 @@
     },
     "IfcDocumentInformationRelationship": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcResourceLevelRelationship"
+      ],
       "fields": {
         "RelatingDocument": {
           "type": "IfcDocumentInformation",
@@ -3473,8 +3703,18 @@
         "IfcDocumentSelect"
       ],
       "fields": {
-        "ReferenceToDocument": {
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ReferencedDocument": {
           "type": "IfcDocumentInformation",
+          "reference": true,
+          "many": false
+        },
+        "DocumentRefForObjects": {
+          "type": "IfcRelAssociatesDocument",
           "reference": true,
           "many": true
         }
@@ -3505,13 +3745,28 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "OperationType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "UserDefinedOperationType": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
     },
     "IfcDoorLiningProperties": {
       "domain": null,
       "superclasses": [
-        "IfcPropertySetDefinition"
+        "IfcPreDefinedPropertySet"
       ],
       "fields": {
         "LiningDepth": {
@@ -3618,13 +3873,33 @@
           "type": "IfcShapeAspect",
           "reference": true,
           "many": false
+        },
+        "LiningToPanelOffsetX": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "LiningToPanelOffsetXAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LiningToPanelOffsetY": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "LiningToPanelOffsetYAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
     },
     "IfcDoorPanelProperties": {
       "domain": null,
       "superclasses": [
-        "IfcPropertySetDefinition"
+        "IfcPreDefinedPropertySet"
       ],
       "fields": {
         "PanelDepth": {
@@ -3664,6 +3939,13 @@
         }
       }
     },
+    "IfcDoorStandardCase": {
+      "domain": null,
+      "superclasses": [
+        "IfcDoor"
+      ],
+      "fields": {}
+    },
     "IfcDoorStyle": {
       "domain": null,
       "superclasses": [
@@ -3692,51 +3974,30 @@
         }
       }
     },
-    "IfcDraughtingCallout": {
+    "IfcDoorType": {
       "domain": null,
       "superclasses": [
-        "IfcGeometricRepresentationItem"
+        "IfcBuildingElementType"
       ],
       "fields": {
-        "Contents": {
-          "type": "IfcDraughtingCalloutElement",
-          "reference": true,
-          "many": true
-        },
-        "IsRelatedFromCallout": {
-          "type": "IfcDraughtingCalloutRelationship",
-          "reference": true,
-          "many": true
-        },
-        "IsRelatedToCallout": {
-          "type": "IfcDraughtingCalloutRelationship",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcDraughtingCalloutRelationship": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "Name": {
-          "type": "string",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         },
-        "Description": {
-          "type": "string",
+        "OperationType": {
+          "type": "enum",
           "reference": false,
           "many": false
         },
-        "RelatingDraughtingCallout": {
-          "type": "IfcDraughtingCallout",
-          "reference": true,
+        "ParameterTakesPrecedence": {
+          "type": "enum",
+          "reference": false,
           "many": false
         },
-        "RelatedDraughtingCallout": {
-          "type": "IfcDraughtingCallout",
-          "reference": true,
+        "UserDefinedOperationType": {
+          "type": "string",
+          "reference": false,
           "many": false
         }
       }
@@ -3755,12 +4016,18 @@
       ],
       "fields": {}
     },
-    "IfcDraughtingPreDefinedTextFont": {
+    "IfcDuctFitting": {
       "domain": null,
       "superclasses": [
-        "IfcPreDefinedTextFont"
+        "IfcFlowFitting"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcDuctFittingType": {
       "domain": null,
@@ -3775,10 +4042,36 @@
         }
       }
     },
+    "IfcDuctSegment": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowSegment"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcDuctSegmentType": {
       "domain": null,
       "superclasses": [
         "IfcFlowSegmentType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcDuctSilencer": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTreatmentDevice"
       ],
       "fields": {
         "PredefinedType": {
@@ -3838,24 +4131,6 @@
         }
       }
     },
-    "IfcEdgeFeature": {
-      "domain": null,
-      "superclasses": [
-        "IfcFeatureElementSubtraction"
-      ],
-      "fields": {
-        "FeatureLength": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "FeatureLengthAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
     "IfcEdgeLoop": {
       "domain": null,
       "superclasses": [
@@ -3866,6 +4141,19 @@
           "type": "IfcOrientedEdge",
           "reference": true,
           "many": true
+        }
+      }
+    },
+    "IfcElectricAppliance": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminal"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
@@ -3882,19 +4170,40 @@
         }
       }
     },
-    "IfcElectricDistributionPoint": {
+    "IfcElectricDistributionBoard": {
       "domain": null,
       "superclasses": [
         "IfcFlowController"
       ],
       "fields": {
-        "DistributionPointFunction": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
-        },
-        "UserDefinedFunction": {
-          "type": "string",
+        }
+      }
+    },
+    "IfcElectricDistributionBoardType": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowControllerType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcElectricFlowStorageDevice": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowStorageDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -3904,6 +4213,19 @@
       "domain": null,
       "superclasses": [
         "IfcFlowStorageDeviceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcElectricGenerator": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
       ],
       "fields": {
         "PredefinedType": {
@@ -3926,10 +4248,10 @@
         }
       }
     },
-    "IfcElectricHeaterType": {
+    "IfcElectricMotor": {
       "domain": null,
       "superclasses": [
-        "IfcFlowTerminalType"
+        "IfcEnergyConversionDevice"
       ],
       "fields": {
         "PredefinedType": {
@@ -3952,6 +4274,19 @@
         }
       }
     },
+    "IfcElectricTimeControl": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowController"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcElectricTimeControlType": {
       "domain": null,
       "superclasses": [
@@ -3965,98 +4300,6 @@
         }
       }
     },
-    "IfcElectricalBaseProperties": {
-      "domain": null,
-      "superclasses": [
-        "IfcEnergyProperties"
-      ],
-      "fields": {
-        "ElectricCurrentType": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "InputVoltage": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "InputVoltageAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "InputFrequency": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "InputFrequencyAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "FullLoadCurrent": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "FullLoadCurrentAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MinimumCircuitCurrent": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MinimumCircuitCurrentAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MaximumPowerInput": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MaximumPowerInputAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "RatedPowerInput": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RatedPowerInputAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "InputPhase": {
-          "type": "int",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcElectricalCircuit": {
-      "domain": null,
-      "superclasses": [
-        "IfcSystem"
-      ],
-      "fields": {}
-    },
-    "IfcElectricalElement": {
-      "domain": null,
-      "superclasses": [
-        "IfcElement"
-      ],
-      "fields": {}
-    },
     "IfcElement": {
       "domain": null,
       "superclasses": [
@@ -4069,11 +4312,6 @@
           "reference": false,
           "many": false
         },
-        "HasStructuralMember": {
-          "type": "IfcRelConnectsStructuralElement",
-          "reference": true,
-          "many": true
-        },
         "FillsVoids": {
           "type": "IfcRelFillsElement",
           "reference": true,
@@ -4084,8 +4322,13 @@
           "reference": true,
           "many": true
         },
-        "HasCoverings": {
-          "type": "IfcRelCoversBldgElements",
+        "IsInterferedByElements": {
+          "type": "IfcRelInterferesElements",
+          "reference": true,
+          "many": true
+        },
+        "InterferesElements": {
+          "type": "IfcRelInterferesElements",
           "reference": true,
           "many": true
         },
@@ -4096,11 +4339,6 @@
         },
         "ReferencedInStructures": {
           "type": "IfcRelReferencedInSpatialStructure",
-          "reference": true,
-          "many": true
-        },
-        "HasPorts": {
-          "type": "IfcRelConnectsPortToElement",
           "reference": true,
           "many": true
         },
@@ -4149,6 +4387,19 @@
         }
       }
     },
+    "IfcElementAssemblyType": {
+      "domain": null,
+      "superclasses": [
+        "IfcElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcElementComponent": {
       "domain": null,
       "superclasses": [
@@ -4166,7 +4417,7 @@
     "IfcElementQuantity": {
       "domain": null,
       "superclasses": [
-        "IfcPropertySetDefinition"
+        "IfcQuantitySet"
       ],
       "fields": {
         "MethodOfMeasurement": {
@@ -4203,11 +4454,6 @@
         "Position": {
           "type": "IfcAxis2Placement3D",
           "reference": true,
-          "many": false
-        },
-        "Dim": {
-          "type": "int",
-          "reference": false,
           "many": false
         }
       }
@@ -4282,65 +4528,62 @@
       ],
       "fields": {}
     },
-    "IfcEnergyProperties": {
+    "IfcEngine": {
       "domain": null,
       "superclasses": [
-        "IfcPropertySetDefinition"
+        "IfcEnergyConversionDevice"
       ],
       "fields": {
-        "EnergySequence": {
+        "PredefinedType": {
           "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "UserDefinedEnergySequence": {
-          "type": "string",
           "reference": false,
           "many": false
         }
       }
     },
-    "IfcEnvironmentalImpactValue": {
+    "IfcEngineType": {
       "domain": null,
       "superclasses": [
-        "IfcAppliedValue"
+        "IfcEnergyConversionDeviceType"
       ],
       "fields": {
-        "ImpactType": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Category": {
+        "PredefinedType": {
           "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "UserDefinedCategory": {
-          "type": "string",
           "reference": false,
           "many": false
         }
       }
     },
-    "IfcEquipmentElement": {
+    "IfcEvaporativeCooler": {
       "domain": null,
       "superclasses": [
-        "IfcElement"
+        "IfcEnergyConversionDevice"
       ],
-      "fields": {}
-    },
-    "IfcEquipmentStandard": {
-      "domain": null,
-      "superclasses": [
-        "IfcControl"
-      ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcEvaporativeCoolerType": {
       "domain": null,
       "superclasses": [
         "IfcEnergyConversionDeviceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcEvaporator": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
       ],
       "fields": {
         "PredefinedType": {
@@ -4363,34 +4606,121 @@
         }
       }
     },
-    "IfcExtendedMaterialProperties": {
+    "IfcEvent": {
       "domain": null,
       "superclasses": [
-        "IfcMaterialProperties"
+        "IfcProcess"
       ],
       "fields": {
-        "ExtendedProperties": {
-          "type": "IfcProperty",
-          "reference": true,
-          "many": true
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         },
-        "Description": {
+        "EventTriggerType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "UserDefinedEventTriggerType": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "Name": {
+        "EventOccurenceTime": {
+          "type": "IfcEventTime",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcEventTime": {
+      "domain": null,
+      "superclasses": [
+        "IfcSchedulingTime"
+      ],
+      "fields": {
+        "ActualDate": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "EarlyDate": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LateDate": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ScheduleDate": {
           "type": "string",
           "reference": false,
           "many": false
         }
       }
     },
+    "IfcEventType": {
+      "domain": null,
+      "superclasses": [
+        "IfcTypeProcess"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "EventTriggerType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "UserDefinedEventTriggerType": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcExtendedProperties": {
+      "domain": null,
+      "superclasses": [
+        "IfcPropertyAbstraction"
+      ],
+      "fields": {
+        "Name": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Properties": {
+          "type": "IfcProperty",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcExternalInformation": {
+      "domain": null,
+      "superclasses": [
+        "IfcResourceObjectSelect"
+      ],
+      "fields": {}
+    },
     "IfcExternalReference": {
       "domain": null,
       "superclasses": [
         "IfcLightDistributionDataSourceSelect",
-        "IfcObjectReferenceSelect"
+        "IfcObjectReferenceSelect",
+        "IfcResourceObjectSelect"
       ],
       "fields": {
         "Location": {
@@ -4398,7 +4728,7 @@
           "reference": false,
           "many": false
         },
-        "ItemReference": {
+        "Identification": {
           "type": "string",
           "reference": false,
           "many": false
@@ -4407,8 +4737,57 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "ExternalReferenceForResources": {
+          "type": "IfcExternalReferenceRelationship",
+          "reference": true,
+          "many": true
         }
       }
+    },
+    "IfcExternalReferenceRelationship": {
+      "domain": null,
+      "superclasses": [
+        "IfcResourceLevelRelationship"
+      ],
+      "fields": {
+        "RelatingReference": {
+          "type": "IfcExternalReference",
+          "reference": true,
+          "many": false
+        },
+        "RelatedResourceObjects": {
+          "type": "IfcResourceObjectSelect",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcExternalSpatialElement": {
+      "domain": null,
+      "superclasses": [
+        "IfcExternalSpatialStructureElement",
+        "IfcSpaceBoundarySelect"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "BoundedBy": {
+          "type": "IfcRelSpaceBoundary",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcExternalSpatialStructureElement": {
+      "domain": null,
+      "superclasses": [
+        "IfcSpatialElement"
+      ],
+      "fields": {}
     },
     "IfcExternallyDefinedHatchStyle": {
       "domain": null,
@@ -4423,14 +4802,6 @@
       "superclasses": [
         "IfcExternalReference",
         "IfcSurfaceStyleElementSelect"
-      ],
-      "fields": {}
-    },
-    "IfcExternallyDefinedSymbol": {
-      "domain": null,
-      "superclasses": [
-        "IfcExternalReference",
-        "IfcDefinedSymbolSelect"
       ],
       "fields": {}
     },
@@ -4465,6 +4836,19 @@
         }
       }
     },
+    "IfcExtrudedAreaSolidTapered": {
+      "domain": null,
+      "superclasses": [
+        "IfcExtrudedAreaSolid"
+      ],
+      "fields": {
+        "EndSweptArea": {
+          "type": "IfcProfileDef",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
     "IfcFace": {
       "domain": null,
       "superclasses": [
@@ -4473,6 +4857,11 @@
       "fields": {
         "Bounds": {
           "type": "IfcFaceBound",
+          "reference": true,
+          "many": true
+        },
+        "HasTextureMaps": {
+          "type": "IfcTextureMap",
           "reference": true,
           "many": true
         }
@@ -4551,7 +4940,7 @@
     "IfcFacetedBrepWithVoids": {
       "domain": null,
       "superclasses": [
-        "IfcManifoldSolidBrep"
+        "IfcFacetedBrep"
       ],
       "fields": {
         "Voids": {
@@ -4629,6 +5018,19 @@
         }
       }
     },
+    "IfcFan": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowMovingDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcFanType": {
       "domain": null,
       "superclasses": [
@@ -4647,14 +5049,26 @@
       "superclasses": [
         "IfcElementComponent"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcFastenerType": {
       "domain": null,
       "superclasses": [
         "IfcElementComponentType"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcFeatureElement": {
       "domain": null,
@@ -4700,6 +5114,11 @@
           "type": "IfcFillStyleSelect",
           "reference": true,
           "many": true
+        },
+        "ModelorDraughting": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
@@ -4742,20 +5161,6 @@
         }
       }
     },
-    "IfcFillAreaStyleTileSymbolWithStyle": {
-      "domain": null,
-      "superclasses": [
-        "IfcGeometricRepresentationItem",
-        "IfcFillAreaStyleTileShapeSelect"
-      ],
-      "fields": {
-        "Symbol": {
-          "type": "IfcAnnotationSymbolOccurrence",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
     "IfcFillAreaStyleTiles": {
       "domain": null,
       "superclasses": [
@@ -4764,12 +5169,12 @@
       ],
       "fields": {
         "TilingPattern": {
-          "type": "IfcOneDirectionRepeatFactor",
+          "type": "IfcVector",
           "reference": true,
-          "many": false
+          "many": true
         },
         "Tiles": {
-          "type": "IfcFillAreaStyleTileShapeSelect",
+          "type": "IfcStyledItem",
           "reference": true,
           "many": true
         },
@@ -4780,6 +5185,19 @@
         },
         "TilingScaleAsString": {
           "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcFilter": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTreatmentDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -4798,6 +5216,19 @@
         }
       }
     },
+    "IfcFireSuppressionTerminal": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminal"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcFireSuppressionTerminalType": {
       "domain": null,
       "superclasses": [
@@ -4807,6 +5238,44 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcFixedReferenceSweptAreaSolid": {
+      "domain": null,
+      "superclasses": [
+        "IfcSweptAreaSolid"
+      ],
+      "fields": {
+        "Directrix": {
+          "type": "IfcCurve",
+          "reference": true,
+          "many": false
+        },
+        "StartParam": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "StartParamAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "EndParam": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "EndParamAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "FixedReference": {
+          "type": "IfcDirection",
+          "reference": true,
           "many": false
         }
       }
@@ -4839,10 +5308,36 @@
       ],
       "fields": {}
     },
+    "IfcFlowInstrument": {
+      "domain": null,
+      "superclasses": [
+        "IfcDistributionControlElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcFlowInstrumentType": {
       "domain": null,
       "superclasses": [
         "IfcDistributionControlElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcFlowMeter": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowController"
       ],
       "fields": {
         "PredefinedType": {
@@ -4935,114 +5430,6 @@
       ],
       "fields": {}
     },
-    "IfcFluidFlowProperties": {
-      "domain": null,
-      "superclasses": [
-        "IfcPropertySetDefinition"
-      ],
-      "fields": {
-        "PropertySource": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "FlowConditionTimeSeries": {
-          "type": "IfcTimeSeries",
-          "reference": true,
-          "many": false
-        },
-        "VelocityTimeSeries": {
-          "type": "IfcTimeSeries",
-          "reference": true,
-          "many": false
-        },
-        "FlowrateTimeSeries": {
-          "type": "IfcTimeSeries",
-          "reference": true,
-          "many": false
-        },
-        "Fluid": {
-          "type": "IfcMaterial",
-          "reference": true,
-          "many": false
-        },
-        "PressureTimeSeries": {
-          "type": "IfcTimeSeries",
-          "reference": true,
-          "many": false
-        },
-        "UserDefinedPropertySource": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "TemperatureSingleValue": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "TemperatureSingleValueAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "WetBulbTemperatureSingleValue": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "WetBulbTemperatureSingleValueAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "WetBulbTemperatureTimeSeries": {
-          "type": "IfcTimeSeries",
-          "reference": true,
-          "many": false
-        },
-        "TemperatureTimeSeries": {
-          "type": "IfcTimeSeries",
-          "reference": true,
-          "many": false
-        },
-        "FlowrateSingleValue": {
-          "type": "IfcDerivedMeasureValue",
-          "reference": true,
-          "many": false
-        },
-        "FlowConditionSingleValue": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "FlowConditionSingleValueAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "VelocitySingleValue": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "VelocitySingleValueAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "PressureSingleValue": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "PressureSingleValueAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
     "IfcFooting": {
       "domain": null,
       "superclasses": [
@@ -5056,49 +5443,14 @@
         }
       }
     },
-    "IfcFuelProperties": {
+    "IfcFootingType": {
       "domain": null,
       "superclasses": [
-        "IfcMaterialProperties"
+        "IfcBuildingElementType"
       ],
       "fields": {
-        "CombustionTemperature": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CombustionTemperatureAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "CarbonContent": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CarbonContentAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "LowerHeatingValue": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "LowerHeatingValueAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "HigherHeatingValue": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "HigherHeatingValueAsString": {
-          "type": "string",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -5118,12 +5470,18 @@
       ],
       "fields": {}
     },
-    "IfcFurnitureStandard": {
+    "IfcFurniture": {
       "domain": null,
       "superclasses": [
-        "IfcControl"
+        "IfcFurnishingElement"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcFurnitureType": {
       "domain": null,
@@ -5135,13 +5493,18 @@
           "type": "enum",
           "reference": false,
           "many": false
+        },
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
-    "IfcGasTerminalType": {
+    "IfcGeographicElement": {
       "domain": null,
       "superclasses": [
-        "IfcFlowTerminalType"
+        "IfcElement"
       ],
       "fields": {
         "PredefinedType": {
@@ -5151,97 +5514,14 @@
         }
       }
     },
-    "IfcGeneralMaterialProperties": {
+    "IfcGeographicElementType": {
       "domain": null,
       "superclasses": [
-        "IfcMaterialProperties"
+        "IfcElementType"
       ],
       "fields": {
-        "MolecularWeight": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MolecularWeightAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Porosity": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "PorosityAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MassDensity": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MassDensityAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcGeneralProfileProperties": {
-      "domain": null,
-      "superclasses": [
-        "IfcProfileProperties"
-      ],
-      "fields": {
-        "PhysicalWeight": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "PhysicalWeightAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Perimeter": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "PerimeterAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MinimumPlateThickness": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MinimumPlateThicknessAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MaximumPlateThickness": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MaximumPlateThicknessAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "CrossSectionArea": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CrossSectionAreaAsString": {
-          "type": "string",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -5257,7 +5537,8 @@
     "IfcGeometricRepresentationContext": {
       "domain": null,
       "superclasses": [
-        "IfcRepresentationContext"
+        "IfcRepresentationContext",
+        "IfcCoordinateReferenceSystemSelect"
       ],
       "fields": {
         "CoordinateSpaceDimension": {
@@ -5371,6 +5652,11 @@
           "reference": true,
           "many": true
         },
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
         "ContainedInStructure": {
           "type": "IfcRelContainedInSpatialStructure",
           "reference": true,
@@ -5431,7 +5717,7 @@
           "many": false
         },
         "PlacementRefDirection": {
-          "type": "IfcVirtualGridIntersection",
+          "type": "IfcGridPlacementDirectionSelect",
           "reference": true,
           "many": false
         }
@@ -5446,7 +5732,7 @@
         "IsGroupedBy": {
           "type": "IfcRelAssignsToGroup",
           "reference": true,
-          "many": false
+          "many": true
         }
       }
     },
@@ -5474,10 +5760,36 @@
         }
       }
     },
+    "IfcHeatExchanger": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcHeatExchangerType": {
       "domain": null,
       "superclasses": [
         "IfcEnergyConversionDeviceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcHumidifier": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
       ],
       "fields": {
         "PredefinedType": {
@@ -5495,64 +5807,6 @@
       "fields": {
         "PredefinedType": {
           "type": "enum",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcHygroscopicMaterialProperties": {
-      "domain": null,
-      "superclasses": [
-        "IfcMaterialProperties"
-      ],
-      "fields": {
-        "UpperVaporResistanceFactor": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "UpperVaporResistanceFactorAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "LowerVaporResistanceFactor": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "LowerVaporResistanceFactorAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "IsothermalMoistureCapacity": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "IsothermalMoistureCapacityAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "VaporPermeability": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "VaporPermeabilityAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MoistureDiffusivity": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MoistureDiffusivityAsString": {
-          "type": "string",
           "reference": false,
           "many": false
         }
@@ -5613,6 +5867,26 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "FlangeEdgeRadius": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "FlangeEdgeRadiusAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "FlangeSlope": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "FlangeSlopeAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
     },
@@ -5622,8 +5896,87 @@
         "IfcSurfaceTexture"
       ],
       "fields": {
-        "UrlReference": {
+        "URLReference": {
           "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcIndexedColourMap": {
+      "domain": null,
+      "superclasses": [
+        "IfcPresentationItem"
+      ],
+      "fields": {
+        "MappedTo": {
+          "type": "IfcTessellatedFaceSet",
+          "reference": true,
+          "many": false
+        },
+        "Overrides": {
+          "type": "IfcSurfaceStyleShading",
+          "reference": true,
+          "many": false
+        },
+        "Colours": {
+          "type": "IfcColourRgbList",
+          "reference": true,
+          "many": false
+        },
+        "ColourIndex": {
+          "type": "int",
+          "reference": false,
+          "many": true
+        }
+      }
+    },
+    "IfcIndexedTextureMap": {
+      "domain": null,
+      "superclasses": [
+        "IfcTextureCoordinate"
+      ],
+      "fields": {
+        "MappedTo": {
+          "type": "IfcTessellatedFaceSet",
+          "reference": true,
+          "many": false
+        },
+        "TexCoords": {
+          "type": "IfcTextureVertexList",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcIndexedTriangleTextureMap": {
+      "domain": null,
+      "superclasses": [
+        "IfcIndexedTextureMap"
+      ],
+      "fields": {}
+    },
+    "IfcInterceptor": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTreatmentDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcInterceptorType": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTreatmentDeviceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -5635,7 +5988,7 @@
         "IfcGroup"
       ],
       "fields": {
-        "InventoryType": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
@@ -5651,8 +6004,8 @@
           "many": true
         },
         "LastUpdateDate": {
-          "type": "IfcCalendarDate",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "CurrentValue": {
@@ -5685,14 +6038,27 @@
       "superclasses": [],
       "fields": {
         "TimeStamp": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "ListValues": {
           "type": "IfcValue",
           "reference": true,
           "many": true
+        }
+      }
+    },
+    "IfcJunctionBox": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowFitting"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
@@ -5774,26 +6140,6 @@
           "type": "string",
           "reference": false,
           "many": false
-        },
-        "CentreOfGravityInX": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInXAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
         }
       }
     },
@@ -5803,8 +6149,52 @@
         "IfcConstructionResource"
       ],
       "fields": {
-        "SkillSet": {
-          "type": "string",
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcLaborResourceType": {
+      "domain": null,
+      "superclasses": [
+        "IfcConstructionResourceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcLagTime": {
+      "domain": null,
+      "superclasses": [
+        "IfcSchedulingTime"
+      ],
+      "fields": {
+        "LagValue": {
+          "type": "IfcTimeOrRatioSelect",
+          "reference": true,
+          "many": false
+        },
+        "DurationType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcLamp": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminal"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -5826,6 +6216,7 @@
     "IfcLibraryInformation": {
       "domain": null,
       "superclasses": [
+        "IfcExternalInformation",
         "IfcLibrarySelect"
       ],
       "fields": {
@@ -5840,16 +6231,31 @@
           "many": false
         },
         "Publisher": {
-          "type": "IfcOrganization",
+          "type": "IfcActorSelect",
           "reference": true,
           "many": false
         },
         "VersionDate": {
-          "type": "IfcCalendarDate",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
-        "LibraryReference": {
+        "Location": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LibraryInfoForObjects": {
+          "type": "IfcRelAssociatesLibrary",
+          "reference": true,
+          "many": true
+        },
+        "HasLibraryReferences": {
           "type": "IfcLibraryReference",
           "reference": true,
           "many": true
@@ -5863,8 +6269,23 @@
         "IfcLibrarySelect"
       ],
       "fields": {
-        "ReferenceIntoLibrary": {
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Language": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ReferencedLibrary": {
           "type": "IfcLibraryInformation",
+          "reference": true,
+          "many": false
+        },
+        "LibraryRefForObjects": {
+          "type": "IfcRelAssociatesLibrary",
           "reference": true,
           "many": true
         }
@@ -5903,6 +6324,19 @@
           "type": "string",
           "reference": false,
           "many": true
+        }
+      }
+    },
+    "IfcLightFixture": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminal"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
@@ -6157,13 +6591,6 @@
         }
       }
     },
-    "IfcLinearDimension": {
-      "domain": null,
-      "superclasses": [
-        "IfcDimensionCurveDirectedCallout"
-      ],
-      "fields": {}
-    },
     "IfcLocalPlacement": {
       "domain": null,
       "superclasses": [
@@ -6178,45 +6605,6 @@
         "RelativePlacement": {
           "type": "IfcAxis2Placement",
           "reference": true,
-          "many": false
-        }
-      }
-    },
-    "IfcLocalTime": {
-      "domain": null,
-      "superclasses": [
-        "IfcDateTimeSelect",
-        "IfcObjectReferenceSelect"
-      ],
-      "fields": {
-        "HourComponent": {
-          "type": "int",
-          "reference": false,
-          "many": false
-        },
-        "MinuteComponent": {
-          "type": "int",
-          "reference": false,
-          "many": false
-        },
-        "SecondComponent": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "SecondComponentAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Zone": {
-          "type": "IfcCoordinatedUniversalTimeOffset",
-          "reference": true,
-          "many": false
-        },
-        "DaylightSavingOffset": {
-          "type": "int",
-          "reference": false,
           "many": false
         }
       }
@@ -6237,6 +6625,74 @@
         "Outer": {
           "type": "IfcClosedShell",
           "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcMapConversion": {
+      "domain": null,
+      "superclasses": [
+        "IfcCoordinateOperation"
+      ],
+      "fields": {
+        "Eastings": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "EastingsAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Northings": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "NorthingsAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "OrthogonalHeight": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "OrthogonalHeightAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "XAxisAbscissa": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "XAxisAbscissaAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "XAxisOrdinate": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "XAxisOrdinateAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Scale": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "ScaleAsString": {
+          "type": "string",
+          "reference": false,
           "many": false
         }
       }
@@ -6262,11 +6718,20 @@
     "IfcMaterial": {
       "domain": null,
       "superclasses": [
-        "IfcMaterialSelect",
-        "IfcObjectReferenceSelect"
+        "IfcMaterialDefinition"
       ],
       "fields": {
         "Name": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Category": {
           "type": "string",
           "reference": false,
           "many": false
@@ -6276,8 +6741,13 @@
           "reference": true,
           "many": true
         },
-        "ClassifiedAs": {
-          "type": "IfcMaterialClassificationRelationship",
+        "IsRelatedWith": {
+          "type": "IfcMaterialRelationship",
+          "reference": true,
+          "many": true
+        },
+        "RelatesTo": {
+          "type": "IfcMaterialRelationship",
           "reference": true,
           "many": true
         }
@@ -6288,7 +6758,7 @@
       "superclasses": [],
       "fields": {
         "MaterialClassifications": {
-          "type": "IfcClassificationNotationSelect",
+          "type": "IfcClassificationSelect",
           "reference": true,
           "many": true
         },
@@ -6296,6 +6766,97 @@
           "type": "IfcMaterial",
           "reference": true,
           "many": false
+        }
+      }
+    },
+    "IfcMaterialConstituent": {
+      "domain": null,
+      "superclasses": [
+        "IfcMaterialDefinition"
+      ],
+      "fields": {
+        "Name": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Material": {
+          "type": "IfcMaterial",
+          "reference": true,
+          "many": false
+        },
+        "Fraction": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "FractionAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Category": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ToMaterialConstituentSet": {
+          "type": "IfcMaterialConstituentSet",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcMaterialConstituentSet": {
+      "domain": null,
+      "superclasses": [
+        "IfcMaterialDefinition"
+      ],
+      "fields": {
+        "Name": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "MaterialConstituents": {
+          "type": "IfcMaterialConstituent",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcMaterialDefinition": {
+      "domain": null,
+      "superclasses": [
+        "IfcMaterialSelect",
+        "IfcObjectReferenceSelect",
+        "IfcResourceObjectSelect"
+      ],
+      "fields": {
+        "AssociatedTo": {
+          "type": "IfcRelAssociatesMaterial",
+          "reference": true,
+          "many": true
+        },
+        "HasExternalReferences": {
+          "type": "IfcExternalReferenceRelationship",
+          "reference": true,
+          "many": true
+        },
+        "HasProperties": {
+          "type": "IfcMaterialProperties",
+          "reference": true,
+          "many": true
         }
       }
     },
@@ -6315,8 +6876,7 @@
     "IfcMaterialLayer": {
       "domain": null,
       "superclasses": [
-        "IfcMaterialSelect",
-        "IfcObjectReferenceSelect"
+        "IfcMaterialDefinition"
       ],
       "fields": {
         "Material": {
@@ -6339,6 +6899,31 @@
           "reference": false,
           "many": false
         },
+        "Name": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Category": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Priority": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "PriorityAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
         "ToMaterialLayerSet": {
           "type": "IfcMaterialLayerSet",
           "reference": true,
@@ -6349,7 +6934,7 @@
     "IfcMaterialLayerSet": {
       "domain": null,
       "superclasses": [
-        "IfcMaterialSelect"
+        "IfcMaterialDefinition"
       ],
       "fields": {
         "MaterialLayers": {
@@ -6358,6 +6943,11 @@
           "many": true
         },
         "LayerSetName": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Description": {
           "type": "string",
           "reference": false,
           "many": false
@@ -6377,7 +6967,7 @@
     "IfcMaterialLayerSetUsage": {
       "domain": null,
       "superclasses": [
-        "IfcMaterialSelect"
+        "IfcMaterialUsageDefinition"
       ],
       "fields": {
         "ForLayerSet": {
@@ -6404,14 +6994,46 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "ReferenceExtent": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "ReferenceExtentAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcMaterialLayerWithOffsets": {
+      "domain": null,
+      "superclasses": [
+        "IfcMaterialLayer"
+      ],
+      "fields": {
+        "OffsetDirection": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "OffsetValues": {
+          "type": "double",
+          "reference": false,
+          "many": true
+        },
+        "OffsetValuesAsString": {
+          "type": "string",
+          "reference": false,
+          "many": true
         }
       }
     },
     "IfcMaterialList": {
       "domain": null,
       "superclasses": [
-        "IfcMaterialSelect",
-        "IfcObjectReferenceSelect"
+        "IfcMaterialSelect"
       ],
       "fields": {
         "Materials": {
@@ -6421,14 +7043,192 @@
         }
       }
     },
-    "IfcMaterialProperties": {
+    "IfcMaterialProfile": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcMaterialDefinition"
+      ],
       "fields": {
+        "Name": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
         "Material": {
           "type": "IfcMaterial",
           "reference": true,
           "many": false
+        },
+        "Profile": {
+          "type": "IfcProfileDef",
+          "reference": true,
+          "many": false
+        },
+        "Priority": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "PriorityAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Category": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ToMaterialProfileSet": {
+          "type": "IfcMaterialProfileSet",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcMaterialProfileSet": {
+      "domain": null,
+      "superclasses": [
+        "IfcMaterialDefinition"
+      ],
+      "fields": {
+        "Name": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "MaterialProfiles": {
+          "type": "IfcMaterialProfile",
+          "reference": true,
+          "many": true
+        },
+        "CompositeProfile": {
+          "type": "IfcCompositeProfileDef",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcMaterialProfileSetUsage": {
+      "domain": null,
+      "superclasses": [
+        "IfcMaterialUsageDefinition"
+      ],
+      "fields": {
+        "ForProfileSet": {
+          "type": "IfcMaterialProfileSet",
+          "reference": true,
+          "many": false
+        },
+        "CardinalPoint": {
+          "type": "int",
+          "reference": false,
+          "many": false
+        },
+        "ReferenceExtent": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "ReferenceExtentAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcMaterialProfileSetUsageTapering": {
+      "domain": null,
+      "superclasses": [
+        "IfcMaterialProfileSetUsage"
+      ],
+      "fields": {
+        "ForProfileEndSet": {
+          "type": "IfcMaterialProfileSet",
+          "reference": true,
+          "many": false
+        },
+        "CardinalEndPoint": {
+          "type": "int",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcMaterialProfileWithOffsets": {
+      "domain": null,
+      "superclasses": [
+        "IfcMaterialProfile"
+      ],
+      "fields": {
+        "OffsetValues": {
+          "type": "double",
+          "reference": false,
+          "many": true
+        },
+        "OffsetValuesAsString": {
+          "type": "string",
+          "reference": false,
+          "many": true
+        }
+      }
+    },
+    "IfcMaterialProperties": {
+      "domain": null,
+      "superclasses": [
+        "IfcExtendedProperties"
+      ],
+      "fields": {
+        "Material": {
+          "type": "IfcMaterialDefinition",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcMaterialRelationship": {
+      "domain": null,
+      "superclasses": [
+        "IfcResourceLevelRelationship"
+      ],
+      "fields": {
+        "RelatingMaterial": {
+          "type": "IfcMaterial",
+          "reference": true,
+          "many": false
+        },
+        "RelatedMaterials": {
+          "type": "IfcMaterial",
+          "reference": true,
+          "many": true
+        },
+        "Expression": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcMaterialUsageDefinition": {
+      "domain": null,
+      "superclasses": [
+        "IfcMaterialSelect"
+      ],
+      "fields": {
+        "AssociatedTo": {
+          "type": "IfcRelAssociatesMaterial",
+          "reference": true,
+          "many": true
         }
       }
     },
@@ -6436,7 +7236,6 @@
       "domain": null,
       "superclasses": [
         "IfcAppliedValueSelect",
-        "IfcConditionCriterionSelect",
         "IfcMetricValueSelect"
       ],
       "fields": {
@@ -6452,65 +7251,50 @@
         }
       }
     },
-    "IfcMechanicalConcreteMaterialProperties": {
+    "IfcMechanicalFastener": {
       "domain": null,
       "superclasses": [
-        "IfcMechanicalMaterialProperties"
+        "IfcElementComponent"
       ],
       "fields": {
-        "CompressiveStrength": {
+        "NominalDiameter": {
           "type": "double",
           "reference": false,
           "many": false
         },
-        "CompressiveStrengthAsString": {
+        "NominalDiameterAsString": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "MaxAggregateSize": {
+        "NominalLength": {
           "type": "double",
           "reference": false,
           "many": false
         },
-        "MaxAggregateSizeAsString": {
+        "NominalLengthAsString": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "AdmixturesDescription": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Workability": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ProtectivePoreRatio": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ProtectivePoreRatioAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "WaterImpermeability": {
-          "type": "string",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
       }
     },
-    "IfcMechanicalFastener": {
+    "IfcMechanicalFastenerType": {
       "domain": null,
       "superclasses": [
-        "IfcFastener"
+        "IfcElementComponentType"
       ],
       "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
         "NominalDiameter": {
           "type": "double",
           "reference": false,
@@ -6533,141 +7317,29 @@
         }
       }
     },
-    "IfcMechanicalFastenerType": {
+    "IfcMedicalDevice": {
       "domain": null,
       "superclasses": [
-        "IfcFastenerType"
-      ],
-      "fields": {}
-    },
-    "IfcMechanicalMaterialProperties": {
-      "domain": null,
-      "superclasses": [
-        "IfcMaterialProperties"
+        "IfcFlowTerminal"
       ],
       "fields": {
-        "DynamicViscosity": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "DynamicViscosityAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "YoungModulus": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "YoungModulusAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ShearModulus": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ShearModulusAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "PoissonRatio": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "PoissonRatioAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ThermalExpansionCoefficient": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ThermalExpansionCoefficientAsString": {
-          "type": "string",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
       }
     },
-    "IfcMechanicalSteelMaterialProperties": {
+    "IfcMedicalDeviceType": {
       "domain": null,
       "superclasses": [
-        "IfcMechanicalMaterialProperties"
+        "IfcFlowTerminalType"
       ],
       "fields": {
-        "YieldStress": {
-          "type": "double",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
-        },
-        "YieldStressAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "UltimateStress": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "UltimateStressAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "UltimateStrain": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "UltimateStrainAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "HardeningModule": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "HardeningModuleAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ProportionalStress": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ProportionalStressAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "PlasticStrain": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "PlasticStrainAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Relaxations": {
-          "type": "IfcRelaxation",
-          "reference": true,
-          "many": true
         }
       }
     },
@@ -6675,6 +7347,19 @@
       "domain": null,
       "superclasses": [
         "IfcBuildingElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcMemberStandardCase": {
+      "domain": null,
+      "superclasses": [
+        "IfcMember"
       ],
       "fields": {}
     },
@@ -6711,8 +7396,20 @@
           "type": "IfcMetricValueSelect",
           "reference": true,
           "many": false
+        },
+        "ReferencePath": {
+          "type": "IfcReference",
+          "reference": true,
+          "many": false
         }
       }
+    },
+    "IfcMirroredProfileDef": {
+      "domain": null,
+      "superclasses": [
+        "IfcDerivedProfileDef"
+      ],
+      "fields": {}
     },
     "IfcMonetaryUnit": {
       "domain": null,
@@ -6721,6 +7418,19 @@
       ],
       "fields": {
         "Currency": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcMotorConnection": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
@@ -6737,29 +7447,6 @@
           "type": "enum",
           "reference": false,
           "many": false
-        }
-      }
-    },
-    "IfcMove": {
-      "domain": null,
-      "superclasses": [
-        "IfcTask"
-      ],
-      "fields": {
-        "MoveFrom": {
-          "type": "IfcSpatialStructureElement",
-          "reference": true,
-          "many": false
-        },
-        "MoveTo": {
-          "type": "IfcSpatialStructureElement",
-          "reference": true,
-          "many": false
-        },
-        "PunchList": {
-          "type": "string",
-          "reference": false,
-          "many": true
         }
       }
     },
@@ -6792,8 +7479,23 @@
           "reference": false,
           "many": false
         },
+        "IsDeclaredBy": {
+          "type": "IfcRelDefinesByObject",
+          "reference": true,
+          "many": true
+        },
+        "Declares": {
+          "type": "IfcRelDefinesByObject",
+          "reference": true,
+          "many": true
+        },
+        "IsTypedBy": {
+          "type": "IfcRelDefinesByType",
+          "reference": true,
+          "many": true
+        },
         "IsDefinedBy": {
-          "type": "IfcRelDefines",
+          "type": "IfcRelDefinesByProperties",
           "reference": true,
           "many": true
         }
@@ -6802,7 +7504,8 @@
     "IfcObjectDefinition": {
       "domain": null,
       "superclasses": [
-        "IfcRoot"
+        "IfcRoot",
+        "IfcDefinitionSelect"
       ],
       "fields": {
         "HasAssignments": {
@@ -6810,13 +7513,28 @@
           "reference": true,
           "many": true
         },
+        "Nests": {
+          "type": "IfcRelNests",
+          "reference": true,
+          "many": true
+        },
+        "IsNestedBy": {
+          "type": "IfcRelNests",
+          "reference": true,
+          "many": true
+        },
+        "HasContext": {
+          "type": "IfcRelDeclares",
+          "reference": true,
+          "many": true
+        },
         "IsDecomposedBy": {
-          "type": "IfcRelDecomposes",
+          "type": "IfcRelAggregates",
           "reference": true,
           "many": true
         },
         "Decomposes": {
-          "type": "IfcRelDecomposes",
+          "type": "IfcRelAggregates",
           "reference": true,
           "many": true
         },
@@ -6850,13 +7568,13 @@
       ],
       "fields": {
         "BenchmarkValues": {
-          "type": "IfcMetric",
+          "type": "IfcConstraint",
           "reference": true,
-          "many": false
+          "many": true
         },
-        "ResultValues": {
-          "type": "IfcMetric",
-          "reference": true,
+        "LogicalAggregator": {
+          "type": "enum",
+          "reference": false,
           "many": false
         },
         "ObjectiveQualifier": {
@@ -6945,20 +7663,6 @@
         }
       }
     },
-    "IfcOneDirectionRepeatFactor": {
-      "domain": null,
-      "superclasses": [
-        "IfcGeometricRepresentationItem",
-        "IfcHatchLineDistanceSelect"
-      ],
-      "fields": {
-        "RepeatFactor": {
-          "type": "IfcVector",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
     "IfcOpenShell": {
       "domain": null,
       "superclasses": [
@@ -6973,6 +7677,11 @@
         "IfcFeatureElementSubtraction"
       ],
       "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
         "HasFillings": {
           "type": "IfcRelFillsElement",
           "reference": true,
@@ -6980,125 +7689,22 @@
         }
       }
     },
-    "IfcOpticalMaterialProperties": {
+    "IfcOpeningStandardCase": {
       "domain": null,
       "superclasses": [
-        "IfcMaterialProperties"
+        "IfcOpeningElement"
       ],
-      "fields": {
-        "VisibleTransmittance": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "VisibleTransmittanceAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "SolarTransmittance": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "SolarTransmittanceAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ThermalIrTransmittance": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ThermalIrTransmittanceAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ThermalIrEmissivityBack": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ThermalIrEmissivityBackAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ThermalIrEmissivityFront": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ThermalIrEmissivityFrontAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "VisibleReflectanceBack": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "VisibleReflectanceBackAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "VisibleReflectanceFront": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "VisibleReflectanceFrontAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "SolarReflectanceFront": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "SolarReflectanceFrontAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "SolarReflectanceBack": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "SolarReflectanceBackAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcOrderAction": {
-      "domain": null,
-      "superclasses": [
-        "IfcTask"
-      ],
-      "fields": {
-        "ActionID": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
+      "fields": {}
     },
     "IfcOrganization": {
       "domain": null,
       "superclasses": [
         "IfcActorSelect",
-        "IfcObjectReferenceSelect"
+        "IfcObjectReferenceSelect",
+        "IfcResourceObjectSelect"
       ],
       "fields": {
-        "Id": {
+        "Identification": {
           "type": "string",
           "reference": false,
           "many": false
@@ -7142,18 +7748,10 @@
     },
     "IfcOrganizationRelationship": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcResourceLevelRelationship"
+      ],
       "fields": {
-        "Name": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Description": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
         "RelatingOrganization": {
           "type": "IfcOrganization",
           "reference": true,
@@ -7178,6 +7776,26 @@
           "many": false
         },
         "Orientation": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcOuterBoundaryCurve": {
+      "domain": null,
+      "superclasses": [
+        "IfcBoundaryCurve"
+      ],
+      "fields": {}
+    },
+    "IfcOutlet": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminal"
+      ],
+      "fields": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
@@ -7269,6 +7887,25 @@
         }
       }
     },
+    "IfcPcurve": {
+      "domain": null,
+      "superclasses": [
+        "IfcCurve",
+        "IfcCurveOnSurface"
+      ],
+      "fields": {
+        "BasisSurface": {
+          "type": "IfcSurface",
+          "reference": true,
+          "many": false
+        },
+        "ReferenceCurve": {
+          "type": "IfcCurve",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
     "IfcPerformanceHistory": {
       "domain": null,
       "superclasses": [
@@ -7279,13 +7916,18 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
     "IfcPermeableCoveringProperties": {
       "domain": null,
       "superclasses": [
-        "IfcPropertySetDefinition"
+        "IfcPreDefinedPropertySet"
       ],
       "fields": {
         "OperationType": {
@@ -7331,7 +7973,17 @@
         "IfcControl"
       ],
       "fields": {
-        "PermitID": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "Status": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LongDescription": {
           "type": "string",
           "reference": false,
           "many": false
@@ -7342,10 +7994,11 @@
       "domain": null,
       "superclasses": [
         "IfcActorSelect",
-        "IfcObjectReferenceSelect"
+        "IfcObjectReferenceSelect",
+        "IfcResourceObjectSelect"
       ],
       "fields": {
-        "Id": {
+        "Identification": {
           "type": "string",
           "reference": false,
           "many": false
@@ -7396,7 +8049,8 @@
       "domain": null,
       "superclasses": [
         "IfcActorSelect",
-        "IfcObjectReferenceSelect"
+        "IfcObjectReferenceSelect",
+        "IfcResourceObjectSelect"
       ],
       "fields": {
         "ThePerson": {
@@ -7446,7 +8100,9 @@
     },
     "IfcPhysicalQuantity": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcResourceObjectSelect"
+      ],
       "fields": {
         "Name": {
           "type": "string",
@@ -7457,6 +8113,11 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "HasExternalReferences": {
+          "type": "IfcExternalReferenceRelationship",
+          "reference": true,
+          "many": true
         },
         "PartOfComplex": {
           "type": "IfcPhysicalComplexQuantity",
@@ -7496,10 +8157,49 @@
         }
       }
     },
+    "IfcPileType": {
+      "domain": null,
+      "superclasses": [
+        "IfcBuildingElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcPipeFitting": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowFitting"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcPipeFittingType": {
       "domain": null,
       "superclasses": [
         "IfcFlowFittingType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcPipeSegment": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowSegment"
       ],
       "fields": {
         "PredefinedType": {
@@ -7615,6 +8315,19 @@
       "domain": null,
       "superclasses": [
         "IfcBuildingElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcPlateStandardCase": {
+      "domain": null,
+      "superclasses": [
+        "IfcPlate"
       ],
       "fields": {}
     },
@@ -7759,7 +8472,7 @@
         "ContainedIn": {
           "type": "IfcRelConnectsPortToElement",
           "reference": true,
-          "many": false
+          "many": true
         },
         "ConnectedFrom": {
           "type": "IfcRelConnectsPorts",
@@ -7832,16 +8545,11 @@
       ],
       "fields": {}
     },
-    "IfcPreDefinedDimensionSymbol": {
-      "domain": null,
-      "superclasses": [
-        "IfcPreDefinedSymbol"
-      ],
-      "fields": {}
-    },
     "IfcPreDefinedItem": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcPresentationItem"
+      ],
       "fields": {
         "Name": {
           "type": "string",
@@ -7850,25 +8558,17 @@
         }
       }
     },
-    "IfcPreDefinedPointMarkerSymbol": {
+    "IfcPreDefinedProperties": {
       "domain": null,
       "superclasses": [
-        "IfcPreDefinedSymbol"
+        "IfcPropertyAbstraction"
       ],
       "fields": {}
     },
-    "IfcPreDefinedSymbol": {
+    "IfcPreDefinedPropertySet": {
       "domain": null,
       "superclasses": [
-        "IfcPreDefinedItem",
-        "IfcDefinedSymbolSelect"
-      ],
-      "fields": {}
-    },
-    "IfcPreDefinedTerminatorSymbol": {
-      "domain": null,
-      "superclasses": [
-        "IfcPreDefinedSymbol"
+        "IfcPropertySetDefinition"
       ],
       "fields": {}
     },
@@ -7878,6 +8578,11 @@
         "IfcPreDefinedItem",
         "IfcTextFontSelect"
       ],
+      "fields": {}
+    },
+    "IfcPresentationItem": {
+      "domain": null,
+      "superclasses": [],
       "fields": {}
     },
     "IfcPresentationLayerAssignment": {
@@ -7928,7 +8633,7 @@
           "many": false
         },
         "LayerStyles": {
-          "type": "IfcPresentationStyleSelect",
+          "type": "IfcPresentationStyle",
           "reference": true,
           "many": true
         }
@@ -7936,7 +8641,9 @@
     },
     "IfcPresentationStyle": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcStyleAssignmentSelect"
+      ],
       "fields": {
         "Name": {
           "type": "string",
@@ -7947,7 +8654,9 @@
     },
     "IfcPresentationStyleAssignment": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcStyleAssignmentSelect"
+      ],
       "fields": {
         "Styles": {
           "type": "IfcPresentationStyleSelect",
@@ -7962,18 +8671,21 @@
         "IfcProcess"
       ],
       "fields": {
-        "ProcedureID": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ProcedureType": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
-        },
-        "UserDefinedProcedureType": {
-          "type": "string",
+        }
+      }
+    },
+    "IfcProcedureType": {
+      "domain": null,
+      "superclasses": [
+        "IfcTypeProcess"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -7982,11 +8694,22 @@
     "IfcProcess": {
       "domain": null,
       "superclasses": [
-        "IfcObject"
+        "IfcObject",
+        "IfcProcessSelect"
       ],
       "fields": {
-        "OperatesOn": {
-          "type": "IfcRelAssignsToProcess",
+        "Identification": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LongDescription": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "IsPredecessorTo": {
+          "type": "IfcRelSequence",
           "reference": true,
           "many": true
         },
@@ -7995,8 +8718,8 @@
           "reference": true,
           "many": true
         },
-        "IsPredecessorTo": {
-          "type": "IfcRelSequence",
+        "OperatesOn": {
+          "type": "IfcRelAssignsToProcess",
           "reference": true,
           "many": true
         }
@@ -8005,7 +8728,8 @@
     "IfcProduct": {
       "domain": null,
       "superclasses": [
-        "IfcObject"
+        "IfcObject",
+        "IfcProductSelect"
       ],
       "fields": {
         "ObjectPlacement": {
@@ -8022,18 +8746,14 @@
           "type": "IfcRelAssignsToProduct",
           "reference": true,
           "many": true
-        },
-        "geometry": {
-          "type": "GeometryInfo",
-          "reference": true,
-          "many": false
         }
       }
     },
     "IfcProductDefinitionShape": {
       "domain": null,
       "superclasses": [
-        "IfcProductRepresentation"
+        "IfcProductRepresentation",
+        "IfcProductRepresentationSelect"
       ],
       "fields": {
         "ShapeOfProduct": {
@@ -8069,57 +8789,11 @@
         }
       }
     },
-    "IfcProductsOfCombustionProperties": {
-      "domain": null,
-      "superclasses": [
-        "IfcMaterialProperties"
-      ],
-      "fields": {
-        "SpecificHeatCapacity": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "SpecificHeatCapacityAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "N20Content": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "N20ContentAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "COContent": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "COContentAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "CO2Content": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CO2ContentAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
     "IfcProfileDef": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcResourceObjectSelect"
+      ],
       "fields": {
         "ProfileType": {
           "type": "enum",
@@ -8130,18 +8804,25 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "HasExternalReference": {
+          "type": "IfcExternalReferenceRelationship",
+          "reference": true,
+          "many": true
+        },
+        "HasProperties": {
+          "type": "IfcProfileProperties",
+          "reference": true,
+          "many": true
         }
       }
     },
     "IfcProfileProperties": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcExtendedProperties"
+      ],
       "fields": {
-        "ProfileName": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
         "ProfileDefinition": {
           "type": "IfcProfileDef",
           "reference": true,
@@ -8152,30 +8833,16 @@
     "IfcProject": {
       "domain": null,
       "superclasses": [
-        "IfcObject"
+        "IfcContext"
       ],
-      "fields": {
-        "LongName": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Phase": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "RepresentationContexts": {
-          "type": "IfcRepresentationContext",
-          "reference": true,
-          "many": true
-        },
-        "UnitsInContext": {
-          "type": "IfcUnitAssignment",
-          "reference": true,
-          "many": false
-        }
-      }
+      "fields": {}
+    },
+    "IfcProjectLibrary": {
+      "domain": null,
+      "superclasses": [
+        "IfcContext"
+      ],
+      "fields": {}
     },
     "IfcProjectOrder": {
       "domain": null,
@@ -8183,11 +8850,6 @@
         "IfcControl"
       ],
       "fields": {
-        "ID": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
         "PredefinedType": {
           "type": "enum",
           "reference": false,
@@ -8197,20 +8859,43 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "LongDescription": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
     },
-    "IfcProjectOrderRecord": {
+    "IfcProjectedCRS": {
       "domain": null,
       "superclasses": [
-        "IfcControl"
+        "IfcCoordinateReferenceSystem"
       ],
       "fields": {
-        "Records": {
-          "type": "IfcRelAssignsToProjectOrder",
-          "reference": true,
-          "many": true
+        "MapProjection": {
+          "type": "string",
+          "reference": false,
+          "many": false
         },
+        "MapZone": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "MapUnit": {
+          "type": "IfcNamedUnit",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcProjectionElement": {
+      "domain": null,
+      "superclasses": [
+        "IfcFeatureElementAddition"
+      ],
+      "fields": {
         "PredefinedType": {
           "type": "enum",
           "reference": false,
@@ -8218,23 +8903,11 @@
         }
       }
     },
-    "IfcProjectionCurve": {
-      "domain": null,
-      "superclasses": [
-        "IfcAnnotationCurveOccurrence"
-      ],
-      "fields": {}
-    },
-    "IfcProjectionElement": {
-      "domain": null,
-      "superclasses": [
-        "IfcFeatureElementAddition"
-      ],
-      "fields": {}
-    },
     "IfcProperty": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcPropertyAbstraction"
+      ],
       "fields": {
         "Name": {
           "type": "string",
@@ -8245,6 +8918,11 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "PartOfPset": {
+          "type": "IfcPropertySet",
+          "reference": true,
+          "many": true
         },
         "PropertyForDependance": {
           "type": "IfcPropertyDependencyRelationship",
@@ -8258,6 +8936,19 @@
         },
         "PartOfComplex": {
           "type": "IfcComplexProperty",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcPropertyAbstraction": {
+      "domain": null,
+      "superclasses": [
+        "IfcResourceObjectSelect"
+      ],
+      "fields": {
+        "HasExternalReferences": {
+          "type": "IfcExternalReferenceRelationship",
           "reference": true,
           "many": true
         }
@@ -8283,31 +8974,10 @@
           "type": "IfcUnit",
           "reference": true,
           "many": false
-        }
-      }
-    },
-    "IfcPropertyConstraintRelationship": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "RelatingConstraint": {
-          "type": "IfcConstraint",
+        },
+        "SetPointValue": {
+          "type": "IfcValue",
           "reference": true,
-          "many": false
-        },
-        "RelatedProperties": {
-          "type": "IfcProperty",
-          "reference": true,
-          "many": true
-        },
-        "Name": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Description": {
-          "type": "string",
-          "reference": false,
           "many": false
         }
       }
@@ -8315,9 +8985,15 @@
     "IfcPropertyDefinition": {
       "domain": null,
       "superclasses": [
-        "IfcRoot"
+        "IfcRoot",
+        "IfcDefinitionSelect"
       ],
       "fields": {
+        "HasContext": {
+          "type": "IfcRelDeclares",
+          "reference": true,
+          "many": true
+        },
         "HasAssociations": {
           "type": "IfcRelAssociates",
           "reference": true,
@@ -8327,7 +9003,9 @@
     },
     "IfcPropertyDependencyRelationship": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcResourceLevelRelationship"
+      ],
       "fields": {
         "DependingProperty": {
           "type": "IfcProperty",
@@ -8337,16 +9015,6 @@
         "DependantProperty": {
           "type": "IfcProperty",
           "reference": true,
-          "many": false
-        },
-        "Name": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Description": {
-          "type": "string",
-          "reference": false,
           "many": false
         },
         "Expression": {
@@ -8376,7 +9044,9 @@
     },
     "IfcPropertyEnumeration": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcPropertyAbstraction"
+      ],
       "fields": {
         "Name": {
           "type": "string",
@@ -8447,16 +9117,50 @@
     "IfcPropertySetDefinition": {
       "domain": null,
       "superclasses": [
-        "IfcPropertyDefinition"
+        "IfcPropertyDefinition",
+        "IfcPropertySetDefinitionSelect"
       ],
       "fields": {
-        "PropertyDefinitionOf": {
-          "type": "IfcRelDefinesByProperties",
+        "DefinesType": {
+          "type": "IfcTypeObject",
           "reference": true,
           "many": true
         },
-        "DefinesType": {
-          "type": "IfcTypeObject",
+        "IsDefinedBy": {
+          "type": "IfcRelDefinesByTemplate",
+          "reference": true,
+          "many": true
+        },
+        "DefinesOccurrence": {
+          "type": "IfcRelDefinesByProperties",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcPropertySetTemplate": {
+      "domain": null,
+      "superclasses": [
+        "IfcPropertyTemplateDefinition"
+      ],
+      "fields": {
+        "TemplateType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "ApplicableEntity": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "HasPropertyTemplates": {
+          "type": "IfcPropertyTemplate",
+          "reference": true,
+          "many": true
+        },
+        "Defines": {
+          "type": "IfcRelDefinesByTemplate",
           "reference": true,
           "many": true
         }
@@ -8510,6 +9214,75 @@
           "type": "IfcUnit",
           "reference": true,
           "many": false
+        },
+        "CurveInterpolation": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcPropertyTemplate": {
+      "domain": null,
+      "superclasses": [
+        "IfcPropertyTemplateDefinition"
+      ],
+      "fields": {
+        "PartOfComplexTemplate": {
+          "type": "IfcComplexPropertyTemplate",
+          "reference": true,
+          "many": true
+        },
+        "PartOfPsetTemplate": {
+          "type": "IfcPropertySetTemplate",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcPropertyTemplateDefinition": {
+      "domain": null,
+      "superclasses": [
+        "IfcPropertyDefinition"
+      ],
+      "fields": {}
+    },
+    "IfcProtectiveDevice": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowController"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcProtectiveDeviceTrippingUnit": {
+      "domain": null,
+      "superclasses": [
+        "IfcDistributionControlElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcProtectiveDeviceTrippingUnitType": {
+      "domain": null,
+      "superclasses": [
+        "IfcDistributionControlElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
@@ -8544,6 +9317,19 @@
         }
       }
     },
+    "IfcPump": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowMovingDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcPumpType": {
       "domain": null,
       "superclasses": [
@@ -8572,6 +9358,11 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "Formula": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
     },
@@ -8587,6 +9378,11 @@
           "many": false
         },
         "CountValueAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Formula": {
           "type": "string",
           "reference": false,
           "many": false
@@ -8608,8 +9404,20 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "Formula": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
+    },
+    "IfcQuantitySet": {
+      "domain": null,
+      "superclasses": [
+        "IfcPropertySetDefinition"
+      ],
+      "fields": {}
     },
     "IfcQuantityTime": {
       "domain": null,
@@ -8623,6 +9431,11 @@
           "many": false
         },
         "TimeValueAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Formula": {
           "type": "string",
           "reference": false,
           "many": false
@@ -8644,6 +9457,11 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "Formula": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
     },
@@ -8662,15 +9480,13 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "Formula": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
-    },
-    "IfcRadiusDimension": {
-      "domain": null,
-      "superclasses": [
-        "IfcDimensionCurveDirectedCallout"
-      ],
-      "fields": {}
     },
     "IfcRailing": {
       "domain": null,
@@ -8704,7 +9520,7 @@
         "IfcBuildingElement"
       ],
       "fields": {
-        "ShapeType": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
@@ -8716,7 +9532,13 @@
       "superclasses": [
         "IfcBuildingElement"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcRampFlightType": {
       "domain": null,
@@ -8731,10 +9553,23 @@
         }
       }
     },
-    "IfcRationalBezierCurve": {
+    "IfcRampType": {
       "domain": null,
       "superclasses": [
-        "IfcBezierCurve"
+        "IfcBuildingElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcRationalBSplineCurveWithKnots": {
+      "domain": null,
+      "superclasses": [
+        "IfcBSplineCurveWithKnots"
       ],
       "fields": {
         "WeightsData": {
@@ -8748,6 +9583,13 @@
           "many": true
         }
       }
+    },
+    "IfcRationalBSplineSurfaceWithKnots": {
+      "domain": null,
+      "superclasses": [
+        "IfcBSplineSurfaceWithKnots"
+      ],
+      "fields": {}
     },
     "IfcRectangleHollowProfileDef": {
       "domain": null,
@@ -8913,36 +9755,85 @@
           "type": "enum",
           "reference": false,
           "many": false
-        },
-        "Dim": {
-          "type": "int",
-          "reference": false,
-          "many": false
         }
       }
     },
-    "IfcReferencesValueDocument": {
+    "IfcRecurrencePattern": {
       "domain": null,
       "superclasses": [],
       "fields": {
-        "ReferencedDocument": {
-          "type": "IfcDocumentSelect",
-          "reference": true,
+        "RecurrenceType": {
+          "type": "enum",
+          "reference": false,
           "many": false
         },
-        "ReferencingValues": {
-          "type": "IfcAppliedValue",
-          "reference": true,
+        "DayComponent": {
+          "type": "int",
+          "reference": false,
           "many": true
         },
-        "Name": {
+        "WeekdayComponent": {
+          "type": "int",
+          "reference": false,
+          "many": true
+        },
+        "MonthComponent": {
+          "type": "int",
+          "reference": false,
+          "many": true
+        },
+        "Position": {
+          "type": "int",
+          "reference": false,
+          "many": false
+        },
+        "Interval": {
+          "type": "int",
+          "reference": false,
+          "many": false
+        },
+        "Occurrences": {
+          "type": "int",
+          "reference": false,
+          "many": false
+        },
+        "TimePeriods": {
+          "type": "IfcTimePeriod",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcReference": {
+      "domain": null,
+      "superclasses": [
+        "IfcAppliedValueSelect",
+        "IfcMetricValueSelect"
+      ],
+      "fields": {
+        "TypeIdentifier": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "Description": {
+        "AttributeIdentifier": {
           "type": "string",
           "reference": false,
+          "many": false
+        },
+        "InstanceName": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ListPositions": {
+          "type": "int",
+          "reference": false,
+          "many": true
+        },
+        "InnerReference": {
+          "type": "IfcReference",
+          "reference": true,
           "many": false
         }
       }
@@ -8972,7 +9863,9 @@
     },
     "IfcReinforcementBarProperties": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcPreDefinedProperties"
+      ],
       "fields": {
         "TotalCrossSectionArea": {
           "type": "double",
@@ -9029,7 +9922,7 @@
     "IfcReinforcementDefinitionProperties": {
       "domain": null,
       "superclasses": [
-        "IfcPropertySetDefinition"
+        "IfcPreDefinedPropertySet"
       ],
       "fields": {
         "DefinitionType": {
@@ -9080,7 +9973,7 @@
           "reference": false,
           "many": false
         },
-        "BarRole": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
@@ -9092,10 +9985,68 @@
         }
       }
     },
+    "IfcReinforcingBarType": {
+      "domain": null,
+      "superclasses": [
+        "IfcReinforcingElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "NominalDiameter": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "NominalDiameterAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "CrossSectionArea": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "CrossSectionAreaAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "BarLength": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "BarLengthAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "BarSurface": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "BendingShapeCode": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "BendingParameters": {
+          "type": "IfcBendingParameterSelect",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
     "IfcReinforcingElement": {
       "domain": null,
       "superclasses": [
-        "IfcBuildingElementComponent"
+        "IfcElementComponent"
       ],
       "fields": {
         "SteelGrade": {
@@ -9104,6 +10055,13 @@
           "many": false
         }
       }
+    },
+    "IfcReinforcingElementType": {
+      "domain": null,
+      "superclasses": [
+        "IfcElementComponentType"
+      ],
+      "fields": {}
     },
     "IfcReinforcingMesh": {
       "domain": null,
@@ -9190,6 +10148,114 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcReinforcingMeshType": {
+      "domain": null,
+      "superclasses": [
+        "IfcReinforcingElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "MeshLength": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "MeshLengthAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "MeshWidth": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "MeshWidthAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LongitudinalBarNominalDiameter": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "LongitudinalBarNominalDiameterAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "TransverseBarNominalDiameter": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "TransverseBarNominalDiameterAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LongitudinalBarCrossSectionArea": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "LongitudinalBarCrossSectionAreaAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "TransverseBarCrossSectionArea": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "TransverseBarCrossSectionAreaAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LongitudinalBarSpacing": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "LongitudinalBarSpacingAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "TransverseBarSpacing": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "TransverseBarSpacingAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "BendingShapeCode": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "BendingParameters": {
+          "type": "IfcBendingParameterSelect",
+          "reference": true,
+          "many": true
         }
       }
     },
@@ -9198,7 +10264,18 @@
       "superclasses": [
         "IfcRelDecomposes"
       ],
-      "fields": {}
+      "fields": {
+        "RelatingObject": {
+          "type": "IfcObjectDefinition",
+          "reference": true,
+          "many": false
+        },
+        "RelatedObjects": {
+          "type": "IfcObjectDefinition",
+          "reference": true,
+          "many": true
+        }
+      }
     },
     "IfcRelAssigns": {
       "domain": null,
@@ -9214,19 +10291,6 @@
         "RelatedObjectsType": {
           "type": "enum",
           "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcRelAssignsTasks": {
-      "domain": null,
-      "superclasses": [
-        "IfcRelAssignsToControl"
-      ],
-      "fields": {
-        "TimeForTask": {
-          "type": "IfcScheduleTimeControl",
-          "reference": true,
           "many": false
         }
       }
@@ -9275,6 +10339,24 @@
         }
       }
     },
+    "IfcRelAssignsToGroupByFactor": {
+      "domain": null,
+      "superclasses": [
+        "IfcRelAssignsToGroup"
+      ],
+      "fields": {
+        "Factor": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "FactorAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcRelAssignsToProcess": {
       "domain": null,
       "superclasses": [
@@ -9282,7 +10364,7 @@
       ],
       "fields": {
         "RelatingProcess": {
-          "type": "IfcProcess",
+          "type": "IfcProcessSelect",
           "reference": true,
           "many": false
         },
@@ -9300,18 +10382,11 @@
       ],
       "fields": {
         "RelatingProduct": {
-          "type": "IfcProduct",
+          "type": "IfcProductSelect",
           "reference": true,
           "many": false
         }
       }
-    },
-    "IfcRelAssignsToProjectOrder": {
-      "domain": null,
-      "superclasses": [
-        "IfcRelAssignsToControl"
-      ],
-      "fields": {}
     },
     "IfcRelAssignsToResource": {
       "domain": null,
@@ -9320,7 +10395,7 @@
       ],
       "fields": {
         "RelatingResource": {
-          "type": "IfcResource",
+          "type": "IfcResourceSelect",
           "reference": true,
           "many": false
         }
@@ -9333,22 +10408,9 @@
       ],
       "fields": {
         "RelatedObjects": {
-          "type": "IfcRoot",
+          "type": "IfcDefinitionSelect",
           "reference": true,
           "many": true
-        }
-      }
-    },
-    "IfcRelAssociatesAppliedValue": {
-      "domain": null,
-      "superclasses": [
-        "IfcRelAssociates"
-      ],
-      "fields": {
-        "RelatingAppliedValue": {
-          "type": "IfcAppliedValue",
-          "reference": true,
-          "many": false
         }
       }
     },
@@ -9372,7 +10434,7 @@
       ],
       "fields": {
         "RelatingClassification": {
-          "type": "IfcClassificationNotationSelect",
+          "type": "IfcClassificationSelect",
           "reference": true,
           "many": false
         }
@@ -9430,29 +10492,6 @@
       "fields": {
         "RelatingMaterial": {
           "type": "IfcMaterialSelect",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
-    "IfcRelAssociatesProfileProperties": {
-      "domain": null,
-      "superclasses": [
-        "IfcRelAssociates"
-      ],
-      "fields": {
-        "RelatingProfileProperties": {
-          "type": "IfcProfileProperties",
-          "reference": true,
-          "many": false
-        },
-        "ProfileSectionLocation": {
-          "type": "IfcShapeAspect",
-          "reference": true,
-          "many": false
-        },
-        "ProfileOrientation": {
-          "type": "IfcOrientationSelect",
           "reference": true,
           "many": false
         }
@@ -9528,7 +10567,7 @@
           "many": false
         },
         "RelatedElement": {
-          "type": "IfcElement",
+          "type": "IfcDistributionElement",
           "reference": true,
           "many": false
         }
@@ -9570,24 +10609,6 @@
         },
         "RelatedStructuralActivity": {
           "type": "IfcStructuralActivity",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
-    "IfcRelConnectsStructuralElement": {
-      "domain": null,
-      "superclasses": [
-        "IfcRelConnects"
-      ],
-      "fields": {
-        "RelatingElement": {
-          "type": "IfcElement",
-          "reference": true,
-          "many": false
-        },
-        "RelatedStructuralMember": {
-          "type": "IfcStructuralMember",
           "reference": true,
           "many": false
         }
@@ -9679,7 +10700,7 @@
           "many": true
         },
         "RelatingStructure": {
-          "type": "IfcSpatialStructureElement",
+          "type": "IfcSpatialElement",
           "reference": true,
           "many": false
         }
@@ -9709,7 +10730,7 @@
         "IfcRelConnects"
       ],
       "fields": {
-        "RelatedSpace": {
+        "RelatingSpace": {
           "type": "IfcSpace",
           "reference": true,
           "many": false
@@ -9721,34 +10742,53 @@
         }
       }
     },
-    "IfcRelDecomposes": {
+    "IfcRelDeclares": {
       "domain": null,
       "superclasses": [
         "IfcRelationship"
       ],
       "fields": {
-        "RelatingObject": {
-          "type": "IfcObjectDefinition",
+        "RelatingContext": {
+          "type": "IfcContext",
           "reference": true,
           "many": false
         },
-        "RelatedObjects": {
-          "type": "IfcObjectDefinition",
+        "RelatedDefinitions": {
+          "type": "IfcDefinitionSelect",
           "reference": true,
           "many": true
         }
       }
+    },
+    "IfcRelDecomposes": {
+      "domain": null,
+      "superclasses": [
+        "IfcRelationship"
+      ],
+      "fields": {}
     },
     "IfcRelDefines": {
       "domain": null,
       "superclasses": [
         "IfcRelationship"
       ],
+      "fields": {}
+    },
+    "IfcRelDefinesByObject": {
+      "domain": null,
+      "superclasses": [
+        "IfcRelDefines"
+      ],
       "fields": {
         "RelatedObjects": {
           "type": "IfcObject",
           "reference": true,
           "many": true
+        },
+        "RelatingObject": {
+          "type": "IfcObject",
+          "reference": true,
+          "many": false
         }
       }
     },
@@ -9758,8 +10798,31 @@
         "IfcRelDefines"
       ],
       "fields": {
+        "RelatedObjects": {
+          "type": "IfcObjectDefinition",
+          "reference": true,
+          "many": true
+        },
         "RelatingPropertyDefinition": {
+          "type": "IfcPropertySetDefinitionSelect",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcRelDefinesByTemplate": {
+      "domain": null,
+      "superclasses": [
+        "IfcRelDefines"
+      ],
+      "fields": {
+        "RelatedPropertySets": {
           "type": "IfcPropertySetDefinition",
+          "reference": true,
+          "many": true
+        },
+        "RelatingTemplate": {
+          "type": "IfcPropertySetTemplate",
           "reference": true,
           "many": false
         }
@@ -9771,6 +10834,11 @@
         "IfcRelDefines"
       ],
       "fields": {
+        "RelatedObjects": {
+          "type": "IfcObject",
+          "reference": true,
+          "many": true
+        },
         "RelatingType": {
           "type": "IfcTypeObject",
           "reference": true,
@@ -9814,45 +10882,35 @@
         }
       }
     },
-    "IfcRelInteractionRequirements": {
+    "IfcRelInterferesElements": {
       "domain": null,
       "superclasses": [
         "IfcRelConnects"
       ],
       "fields": {
-        "DailyInteraction": {
-          "type": "double",
-          "reference": false,
+        "RelatingElement": {
+          "type": "IfcElement",
+          "reference": true,
           "many": false
         },
-        "DailyInteractionAsString": {
+        "RelatedElement": {
+          "type": "IfcElement",
+          "reference": true,
+          "many": false
+        },
+        "InterferenceGeometry": {
+          "type": "IfcConnectionGeometry",
+          "reference": true,
+          "many": false
+        },
+        "InterferenceType": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "ImportanceRating": {
-          "type": "double",
+        "ImpliedOrder": {
+          "type": "boolean",
           "reference": false,
-          "many": false
-        },
-        "ImportanceRatingAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "LocationOfInteraction": {
-          "type": "IfcSpatialStructureElement",
-          "reference": true,
-          "many": false
-        },
-        "RelatedSpaceProgram": {
-          "type": "IfcSpaceProgram",
-          "reference": true,
-          "many": false
-        },
-        "RelatingSpaceProgram": {
-          "type": "IfcSpaceProgram",
-          "reference": true,
           "many": false
         }
       }
@@ -9862,23 +10920,14 @@
       "superclasses": [
         "IfcRelDecomposes"
       ],
-      "fields": {}
-    },
-    "IfcRelOccupiesSpaces": {
-      "domain": null,
-      "superclasses": [
-        "IfcRelAssignsToActor"
-      ],
-      "fields": {}
-    },
-    "IfcRelOverridesProperties": {
-      "domain": null,
-      "superclasses": [
-        "IfcRelDefinesByProperties"
-      ],
       "fields": {
-        "OverridingProperties": {
-          "type": "IfcProperty",
+        "RelatingObject": {
+          "type": "IfcObjectDefinition",
+          "reference": true,
+          "many": false
+        },
+        "RelatedObjects": {
+          "type": "IfcObjectDefinition",
           "reference": true,
           "many": true
         }
@@ -9887,7 +10936,7 @@
     "IfcRelProjectsElement": {
       "domain": null,
       "superclasses": [
-        "IfcRelConnects"
+        "IfcRelDecomposes"
       ],
       "fields": {
         "RelatingElement": {
@@ -9914,18 +10963,11 @@
           "many": true
         },
         "RelatingStructure": {
-          "type": "IfcSpatialStructureElement",
+          "type": "IfcSpatialElement",
           "reference": true,
           "many": false
         }
       }
-    },
-    "IfcRelSchedulesCostItems": {
-      "domain": null,
-      "superclasses": [
-        "IfcRelAssignsToControl"
-      ],
-      "fields": {}
     },
     "IfcRelSequence": {
       "domain": null,
@@ -9944,17 +10986,17 @@
           "many": false
         },
         "TimeLag": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "TimeLagAsString": {
-          "type": "string",
-          "reference": false,
+          "type": "IfcLagTime",
+          "reference": true,
           "many": false
         },
         "SequenceType": {
           "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "UserDefinedSequenceType": {
+          "type": "string",
           "reference": false,
           "many": false
         }
@@ -9972,7 +11014,7 @@
           "many": false
         },
         "RelatedBuildings": {
-          "type": "IfcSpatialStructureElement",
+          "type": "IfcSpatialElement",
           "reference": true,
           "many": true
         }
@@ -9985,7 +11027,7 @@
       ],
       "fields": {
         "RelatingSpace": {
-          "type": "IfcSpace",
+          "type": "IfcSpaceBoundarySelect",
           "reference": true,
           "many": false
         },
@@ -10011,10 +11053,46 @@
         }
       }
     },
+    "IfcRelSpaceBoundary1stLevel": {
+      "domain": null,
+      "superclasses": [
+        "IfcRelSpaceBoundary"
+      ],
+      "fields": {
+        "ParentBoundary": {
+          "type": "IfcRelSpaceBoundary1stLevel",
+          "reference": true,
+          "many": false
+        },
+        "InnerBoundaries": {
+          "type": "IfcRelSpaceBoundary1stLevel",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcRelSpaceBoundary2ndLevel": {
+      "domain": null,
+      "superclasses": [
+        "IfcRelSpaceBoundary1stLevel"
+      ],
+      "fields": {
+        "CorrespondingBoundary": {
+          "type": "IfcRelSpaceBoundary2ndLevel",
+          "reference": true,
+          "many": false
+        },
+        "Corresponds": {
+          "type": "IfcRelSpaceBoundary2ndLevel",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
     "IfcRelVoidsElement": {
       "domain": null,
       "superclasses": [
-        "IfcRelConnects"
+        "IfcRelDecomposes"
       ],
       "fields": {
         "RelatingBuildingElement": {
@@ -10036,26 +11114,18 @@
       ],
       "fields": {}
     },
-    "IfcRelaxation": {
+    "IfcReparametrisedCompositeCurveSegment": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcCompositeCurveSegment"
+      ],
       "fields": {
-        "RelaxationValue": {
+        "ParamLength": {
           "type": "double",
           "reference": false,
           "many": false
         },
-        "RelaxationValueAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "InitialStress": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "InitialStressAsString": {
+        "ParamLengthAsString": {
           "type": "string",
           "reference": false,
           "many": false
@@ -10132,7 +11202,7 @@
         "IfcLayeredItem"
       ],
       "fields": {
-        "LayerAssignments": {
+        "LayerAssignment": {
           "type": "IfcPresentationLayerAssignment",
           "reference": true,
           "many": true
@@ -10146,7 +11216,9 @@
     },
     "IfcRepresentationMap": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcProductRepresentationSelect"
+      ],
       "fields": {
         "MappingOrigin": {
           "type": "IfcAxis2Placement",
@@ -10158,6 +11230,11 @@
           "reference": true,
           "many": false
         },
+        "HasShapeAspects": {
+          "type": "IfcShapeAspect",
+          "reference": true,
+          "many": true
+        },
         "MapUsage": {
           "type": "IfcMappedItem",
           "reference": true,
@@ -10168,13 +11245,179 @@
     "IfcResource": {
       "domain": null,
       "superclasses": [
-        "IfcObject"
+        "IfcObject",
+        "IfcResourceSelect"
       ],
       "fields": {
+        "Identification": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LongDescription": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
         "ResourceOf": {
           "type": "IfcRelAssignsToResource",
           "reference": true,
           "many": true
+        }
+      }
+    },
+    "IfcResourceApprovalRelationship": {
+      "domain": null,
+      "superclasses": [
+        "IfcResourceLevelRelationship"
+      ],
+      "fields": {
+        "RelatedResourceObjects": {
+          "type": "IfcResourceObjectSelect",
+          "reference": true,
+          "many": true
+        },
+        "RelatingApproval": {
+          "type": "IfcApproval",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcResourceConstraintRelationship": {
+      "domain": null,
+      "superclasses": [
+        "IfcResourceLevelRelationship"
+      ],
+      "fields": {
+        "RelatingConstraint": {
+          "type": "IfcConstraint",
+          "reference": true,
+          "many": false
+        },
+        "RelatedResourceObjects": {
+          "type": "IfcResourceObjectSelect",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcResourceLevelRelationship": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {
+        "Name": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcResourceTime": {
+      "domain": null,
+      "superclasses": [
+        "IfcSchedulingTime"
+      ],
+      "fields": {
+        "ScheduleWork": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ScheduleUsage": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "ScheduleUsageAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ScheduleStart": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ScheduleFinish": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ScheduleContour": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LevelingDelay": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "IsOverAllocated": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "StatusTime": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ActualWork": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ActualUsage": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "ActualUsageAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ActualStart": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ActualFinish": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "RemainingWork": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "RemainingUsage": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "RemainingUsageAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Completion": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "CompletionAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
     },
@@ -10201,55 +11444,15 @@
         }
       }
     },
-    "IfcRibPlateProfileProperties": {
+    "IfcRevolvedAreaSolidTapered": {
       "domain": null,
       "superclasses": [
-        "IfcProfileProperties"
+        "IfcRevolvedAreaSolid"
       ],
       "fields": {
-        "Thickness": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ThicknessAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "RibHeight": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RibHeightAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "RibWidth": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RibWidthAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "RibSpacing": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RibSpacingAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Direction": {
-          "type": "enum",
-          "reference": false,
+        "EndSweptArea": {
+          "type": "IfcProfileDef",
+          "reference": true,
           "many": false
         }
       }
@@ -10316,7 +11519,20 @@
         "IfcBuildingElement"
       ],
       "fields": {
-        "ShapeType": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcRoofType": {
+      "domain": null,
+      "superclasses": [
+        "IfcBuildingElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
@@ -10343,24 +11559,6 @@
           "many": false
         },
         "Description": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcRoundedEdgeFeature": {
-      "domain": null,
-      "superclasses": [
-        "IfcEdgeFeature"
-      ],
-      "fields": {
-        "Radius": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RadiusAsString": {
           "type": "string",
           "reference": false,
           "many": false
@@ -10403,6 +11601,19 @@
         }
       }
     },
+    "IfcSanitaryTerminal": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminal"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcSanitaryTerminalType": {
       "domain": null,
       "superclasses": [
@@ -10416,152 +11627,32 @@
         }
       }
     },
-    "IfcScheduleTimeControl": {
+    "IfcSchedulingTime": {
       "domain": null,
-      "superclasses": [
-        "IfcControl"
-      ],
+      "superclasses": [],
       "fields": {
-        "ActualStart": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "EarlyStart": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "LateStart": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "ScheduleStart": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "ActualFinish": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "EarlyFinish": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "LateFinish": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "ScheduleFinish": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "ScheduleDuration": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ScheduleDurationAsString": {
+        "Name": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "ActualDuration": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ActualDurationAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "RemainingTime": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "RemainingTimeAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "FreeFloat": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "FreeFloatAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "TotalFloat": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "TotalFloatAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "IsCritical": {
+        "DataOrigin": {
           "type": "enum",
           "reference": false,
           "many": false
         },
-        "StatusTime": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "StartFloat": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "StartFloatAsString": {
+        "UserDefinedDataOrigin": {
           "type": "string",
           "reference": false,
-          "many": false
-        },
-        "FinishFloat": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "FinishFloatAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "Completion": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CompletionAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ScheduleTimeControlAssigned": {
-          "type": "IfcRelAssignsTasks",
-          "reference": true,
           "many": false
         }
       }
     },
     "IfcSectionProperties": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcPreDefinedProperties"
+      ],
       "fields": {
         "SectionType": {
           "type": "enum",
@@ -10582,7 +11673,9 @@
     },
     "IfcSectionReinforcementProperties": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcPreDefinedProperties"
+      ],
       "fields": {
         "LongitudinalStartPosition": {
           "type": "double",
@@ -10659,6 +11752,19 @@
         }
       }
     },
+    "IfcSensor": {
+      "domain": null,
+      "superclasses": [
+        "IfcDistributionControlElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcSensorType": {
       "domain": null,
       "superclasses": [
@@ -10672,53 +11778,28 @@
         }
       }
     },
-    "IfcServiceLife": {
+    "IfcShadingDevice": {
       "domain": null,
       "superclasses": [
-        "IfcControl"
-      ],
-      "fields": {
-        "ServiceLifeType": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "ServiceLifeDuration": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ServiceLifeDurationAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcServiceLifeFactor": {
-      "domain": null,
-      "superclasses": [
-        "IfcPropertySetDefinition"
+        "IfcBuildingElement"
       ],
       "fields": {
         "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
-        },
-        "UpperValue": {
-          "type": "IfcMeasureValue",
-          "reference": true,
-          "many": false
-        },
-        "MostUsedValue": {
-          "type": "IfcMeasureValue",
-          "reference": true,
-          "many": false
-        },
-        "LowerValue": {
-          "type": "IfcMeasureValue",
-          "reference": true,
+        }
+      }
+    },
+    "IfcShadingDeviceType": {
+      "domain": null,
+      "superclasses": [
+        "IfcBuildingElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
           "many": false
         }
       }
@@ -10748,7 +11829,7 @@
           "many": false
         },
         "PartOfProductDefinitionShape": {
-          "type": "IfcProductDefinitionShape",
+          "type": "IfcProductRepresentationSelect",
           "reference": true,
           "many": false
         }
@@ -10798,6 +11879,54 @@
         "IfcProperty"
       ],
       "fields": {}
+    },
+    "IfcSimplePropertyTemplate": {
+      "domain": null,
+      "superclasses": [
+        "IfcPropertyTemplate"
+      ],
+      "fields": {
+        "TemplateType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "PrimaryMeasureType": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "SecondaryMeasureType": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Enumerators": {
+          "type": "IfcPropertyEnumeration",
+          "reference": true,
+          "many": false
+        },
+        "PrimaryUnit": {
+          "type": "IfcUnit",
+          "reference": true,
+          "many": false
+        },
+        "SecondaryUnit": {
+          "type": "IfcUnit",
+          "reference": true,
+          "many": false
+        },
+        "Expression": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "AccessState": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcSite": {
       "domain": null,
@@ -10850,6 +11979,20 @@
         }
       }
     },
+    "IfcSlabElementedCase": {
+      "domain": null,
+      "superclasses": [
+        "IfcSlab"
+      ],
+      "fields": {}
+    },
+    "IfcSlabStandardCase": {
+      "domain": null,
+      "superclasses": [
+        "IfcSlab"
+      ],
+      "fields": {}
+    },
     "IfcSlabType": {
       "domain": null,
       "superclasses": [
@@ -10901,11 +12044,38 @@
         }
       }
     },
+    "IfcSolarDevice": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcSolarDeviceType": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDeviceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcSolidModel": {
       "domain": null,
       "superclasses": [
         "IfcGeometricRepresentationItem",
-        "IfcBooleanOperand"
+        "IfcBooleanOperand",
+        "IfcSolidOrShell"
       ],
       "fields": {
         "Dim": {
@@ -10915,64 +12085,14 @@
         }
       }
     },
-    "IfcSoundProperties": {
-      "domain": null,
-      "superclasses": [
-        "IfcPropertySetDefinition"
-      ],
-      "fields": {
-        "IsAttenuating": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "SoundScale": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "SoundValues": {
-          "type": "IfcSoundValue",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcSoundValue": {
-      "domain": null,
-      "superclasses": [
-        "IfcPropertySetDefinition"
-      ],
-      "fields": {
-        "SoundLevelTimeSeries": {
-          "type": "IfcTimeSeries",
-          "reference": true,
-          "many": false
-        },
-        "Frequency": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "FrequencyAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "SoundLevelSingleValue": {
-          "type": "IfcDerivedMeasureValue",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
     "IfcSpace": {
       "domain": null,
       "superclasses": [
-        "IfcSpatialStructureElement"
+        "IfcSpatialStructureElement",
+        "IfcSpaceBoundarySelect"
       ],
       "fields": {
-        "InteriorOrExteriorSpace": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
@@ -10999,10 +12119,10 @@
         }
       }
     },
-    "IfcSpaceHeaterType": {
+    "IfcSpaceHeater": {
       "domain": null,
       "superclasses": [
-        "IfcEnergyConversionDeviceType"
+        "IfcFlowTerminal"
       ],
       "fields": {
         "PredefinedType": {
@@ -11012,131 +12132,13 @@
         }
       }
     },
-    "IfcSpaceProgram": {
+    "IfcSpaceHeaterType": {
       "domain": null,
       "superclasses": [
-        "IfcControl"
+        "IfcFlowTerminalType"
       ],
       "fields": {
-        "SpaceProgramIdentifier": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MaxRequiredArea": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MaxRequiredAreaAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MinRequiredArea": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MinRequiredAreaAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "RequestedLocation": {
-          "type": "IfcSpatialStructureElement",
-          "reference": true,
-          "many": false
-        },
-        "StandardRequiredArea": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "StandardRequiredAreaAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "HasInteractionReqsFrom": {
-          "type": "IfcRelInteractionRequirements",
-          "reference": true,
-          "many": true
-        },
-        "HasInteractionReqsTo": {
-          "type": "IfcRelInteractionRequirements",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcSpaceThermalLoadProperties": {
-      "domain": null,
-      "superclasses": [
-        "IfcPropertySetDefinition"
-      ],
-      "fields": {
-        "ApplicableValueRatio": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ApplicableValueRatioAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ThermalLoadSource": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "PropertySource": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "SourceDescription": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MaximumValue": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MaximumValueAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MinimumValue": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MinimumValueAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ThermalLoadTimeSeriesValues": {
-          "type": "IfcTimeSeries",
-          "reference": true,
-          "many": false
-        },
-        "UserDefinedThermalLoadSource": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "UserDefinedPropertySource": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ThermalLoadType": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
@@ -11153,10 +12155,15 @@
           "type": "enum",
           "reference": false,
           "many": false
+        },
+        "LongName": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
     },
-    "IfcSpatialStructureElement": {
+    "IfcSpatialElement": {
       "domain": null,
       "superclasses": [
         "IfcProduct"
@@ -11167,13 +12174,8 @@
           "reference": false,
           "many": false
         },
-        "CompositionType": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "ReferencesElements": {
-          "type": "IfcRelReferencedInSpatialStructure",
+        "ContainsElements": {
+          "type": "IfcRelContainedInSpatialStructure",
           "reference": true,
           "many": true
         },
@@ -11182,19 +12184,76 @@
           "reference": true,
           "many": true
         },
-        "ContainsElements": {
-          "type": "IfcRelContainedInSpatialStructure",
+        "ReferencesElements": {
+          "type": "IfcRelReferencedInSpatialStructure",
           "reference": true,
           "many": true
+        }
+      }
+    },
+    "IfcSpatialElementType": {
+      "domain": null,
+      "superclasses": [
+        "IfcTypeProduct"
+      ],
+      "fields": {
+        "ElementType": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcSpatialStructureElement": {
+      "domain": null,
+      "superclasses": [
+        "IfcSpatialElement"
+      ],
+      "fields": {
+        "CompositionType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
     "IfcSpatialStructureElementType": {
       "domain": null,
       "superclasses": [
-        "IfcElementType"
+        "IfcSpatialElementType"
       ],
       "fields": {}
+    },
+    "IfcSpatialZone": {
+      "domain": null,
+      "superclasses": [
+        "IfcSpatialElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcSpatialZoneType": {
+      "domain": null,
+      "superclasses": [
+        "IfcSpatialElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "LongName": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcSphere": {
       "domain": null,
@@ -11209,6 +12268,19 @@
         },
         "RadiusAsString": {
           "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcStackTerminal": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowTerminal"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -11233,7 +12305,7 @@
         "IfcBuildingElement"
       ],
       "fields": {
-        "ShapeType": {
+        "PredefinedType": {
           "type": "enum",
           "reference": false,
           "many": false
@@ -11275,10 +12347,28 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
         }
       }
     },
     "IfcStairFlightType": {
+      "domain": null,
+      "superclasses": [
+        "IfcBuildingElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcStairType": {
       "domain": null,
       "superclasses": [
         "IfcBuildingElementType"
@@ -11300,11 +12390,6 @@
         "DestabilizingLoad": {
           "type": "enum",
           "reference": false,
-          "many": false
-        },
-        "CausedBy": {
-          "type": "IfcStructuralReaction",
-          "reference": true,
           "many": false
         }
       }
@@ -11328,7 +12413,7 @@
         "AssignedToStructuralItem": {
           "type": "IfcRelConnectsStructuralActivity",
           "reference": true,
-          "many": false
+          "many": true
         }
       }
     },
@@ -11357,6 +12442,11 @@
           "type": "IfcStructuralResultGroup",
           "reference": true,
           "many": true
+        },
+        "SharedPlacement": {
+          "type": "IfcObjectPlacement",
+          "reference": true,
+          "many": false
         }
       }
     },
@@ -11389,12 +12479,36 @@
         }
       }
     },
+    "IfcStructuralCurveAction": {
+      "domain": null,
+      "superclasses": [
+        "IfcStructuralAction"
+      ],
+      "fields": {
+        "ProjectedOrTrue": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcStructuralCurveConnection": {
       "domain": null,
       "superclasses": [
         "IfcStructuralConnection"
       ],
-      "fields": {}
+      "fields": {
+        "Axis": {
+          "type": "IfcDirection",
+          "reference": true,
+          "many": false
+        }
+      }
     },
     "IfcStructuralCurveMember": {
       "domain": null,
@@ -11406,6 +12520,11 @@
           "type": "enum",
           "reference": false,
           "many": false
+        },
+        "Axis": {
+          "type": "IfcDirection",
+          "reference": true,
+          "many": false
         }
       }
     },
@@ -11415,6 +12534,19 @@
         "IfcStructuralCurveMember"
       ],
       "fields": {}
+    },
+    "IfcStructuralCurveReaction": {
+      "domain": null,
+      "superclasses": [
+        "IfcStructuralReaction"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcStructuralItem": {
       "domain": null,
@@ -11433,33 +12565,9 @@
     "IfcStructuralLinearAction": {
       "domain": null,
       "superclasses": [
-        "IfcStructuralAction"
+        "IfcStructuralCurveAction"
       ],
-      "fields": {
-        "ProjectedOrTrue": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcStructuralLinearActionVarying": {
-      "domain": null,
-      "superclasses": [
-        "IfcStructuralLinearAction"
-      ],
-      "fields": {
-        "VaryingAppliedLoadLocation": {
-          "type": "IfcShapeAspect",
-          "reference": true,
-          "many": false
-        },
-        "SubsequentAppliedLoads": {
-          "type": "IfcStructuralLoad",
-          "reference": true,
-          "many": true
-        }
-      }
+      "fields": {}
     },
     "IfcStructuralLoad": {
       "domain": null,
@@ -11469,6 +12577,37 @@
           "type": "string",
           "reference": false,
           "many": false
+        }
+      }
+    },
+    "IfcStructuralLoadCase": {
+      "domain": null,
+      "superclasses": [
+        "IfcStructuralLoadGroup"
+      ],
+      "fields": {
+        "SelfWeightCoefficients": {
+          "type": "double",
+          "reference": false,
+          "many": true
+        },
+        "SelfWeightCoefficientsAsString": {
+          "type": "string",
+          "reference": false,
+          "many": true
+        }
+      }
+    },
+    "IfcStructuralLoadConfiguration": {
+      "domain": null,
+      "superclasses": [
+        "IfcStructuralLoad"
+      ],
+      "fields": {
+        "Values": {
+          "type": "IfcStructuralLoadOrResult",
+          "reference": true,
+          "many": true
         }
       }
     },
@@ -11587,6 +12726,13 @@
           "many": false
         }
       }
+    },
+    "IfcStructuralLoadOrResult": {
+      "domain": null,
+      "superclasses": [
+        "IfcStructuralLoad"
+      ],
+      "fields": {}
     },
     "IfcStructuralLoadPlanarForce": {
       "domain": null,
@@ -11801,7 +12947,7 @@
     "IfcStructuralLoadStatic": {
       "domain": null,
       "superclasses": [
-        "IfcStructuralLoad"
+        "IfcStructuralLoadOrResult"
       ],
       "fields": {}
     },
@@ -11811,32 +12957,32 @@
         "IfcStructuralLoadStatic"
       ],
       "fields": {
-        "DeltaT_Constant": {
+        "DeltaTConstant": {
           "type": "double",
           "reference": false,
           "many": false
         },
-        "DeltaT_ConstantAsString": {
+        "DeltaTConstantAsString": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "DeltaT_Y": {
+        "DeltaTY": {
           "type": "double",
           "reference": false,
           "many": false
         },
-        "DeltaT_YAsString": {
+        "DeltaTYAsString": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "DeltaT_Z": {
+        "DeltaTZ": {
           "type": "double",
           "reference": false,
           "many": false
         },
-        "DeltaT_ZAsString": {
+        "DeltaTZAsString": {
           "type": "string",
           "reference": false,
           "many": false
@@ -11849,11 +12995,6 @@
         "IfcStructuralItem"
       ],
       "fields": {
-        "ReferencesElement": {
-          "type": "IfcRelConnectsStructuralElement",
-          "reference": true,
-          "many": true
-        },
         "ConnectedBy": {
           "type": "IfcRelConnectsStructuralMember",
           "reference": true,
@@ -11864,33 +13005,9 @@
     "IfcStructuralPlanarAction": {
       "domain": null,
       "superclasses": [
-        "IfcStructuralAction"
+        "IfcStructuralSurfaceAction"
       ],
-      "fields": {
-        "ProjectedOrTrue": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcStructuralPlanarActionVarying": {
-      "domain": null,
-      "superclasses": [
-        "IfcStructuralPlanarAction"
-      ],
-      "fields": {
-        "VaryingAppliedLoadLocation": {
-          "type": "IfcShapeAspect",
-          "reference": true,
-          "many": false
-        },
-        "SubsequentAppliedLoads": {
-          "type": "IfcStructuralLoad",
-          "reference": true,
-          "many": true
-        }
-      }
+      "fields": {}
     },
     "IfcStructuralPointAction": {
       "domain": null,
@@ -11904,7 +13021,13 @@
       "superclasses": [
         "IfcStructuralConnection"
       ],
-      "fields": {}
+      "fields": {
+        "ConditionCoordinateSystem": {
+          "type": "IfcAxis2Placement3D",
+          "reference": true,
+          "many": false
+        }
+      }
     },
     "IfcStructuralPointReaction": {
       "domain": null,
@@ -11913,186 +13036,12 @@
       ],
       "fields": {}
     },
-    "IfcStructuralProfileProperties": {
-      "domain": null,
-      "superclasses": [
-        "IfcGeneralProfileProperties"
-      ],
-      "fields": {
-        "TorsionalConstantX": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "TorsionalConstantXAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MomentOfInertiaYZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MomentOfInertiaYZAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MomentOfInertiaY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MomentOfInertiaYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MomentOfInertiaZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MomentOfInertiaZAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "WarpingConstant": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "WarpingConstantAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ShearCentreZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ShearCentreZAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ShearCentreY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ShearCentreYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ShearDeformationAreaZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ShearDeformationAreaZAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ShearDeformationAreaY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ShearDeformationAreaYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MaximumSectionModulusY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MaximumSectionModulusYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MinimumSectionModulusY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MinimumSectionModulusYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MaximumSectionModulusZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MaximumSectionModulusZAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "MinimumSectionModulusZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "MinimumSectionModulusZAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "TorsionalSectionModulus": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "TorsionalSectionModulusAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInX": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInXAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
     "IfcStructuralReaction": {
       "domain": null,
       "superclasses": [
         "IfcStructuralActivity"
       ],
-      "fields": {
-        "Causes": {
-          "type": "IfcStructuralAction",
-          "reference": true,
-          "many": true
-        }
-      }
+      "fields": {}
     },
     "IfcStructuralResultGroup": {
       "domain": null,
@@ -12122,49 +13071,19 @@
         }
       }
     },
-    "IfcStructuralSteelProfileProperties": {
+    "IfcStructuralSurfaceAction": {
       "domain": null,
       "superclasses": [
-        "IfcStructuralProfileProperties"
+        "IfcStructuralAction"
       ],
       "fields": {
-        "ShearAreaZ": {
-          "type": "double",
+        "ProjectedOrTrue": {
+          "type": "enum",
           "reference": false,
           "many": false
         },
-        "ShearAreaZAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ShearAreaY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ShearAreaYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "PlasticShapeFactorY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "PlasticShapeFactorYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "PlasticShapeFactorZ": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "PlasticShapeFactorZAsString": {
-          "type": "string",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -12205,40 +13124,20 @@
       "superclasses": [
         "IfcStructuralSurfaceMember"
       ],
+      "fields": {}
+    },
+    "IfcStructuralSurfaceReaction": {
+      "domain": null,
+      "superclasses": [
+        "IfcStructuralReaction"
+      ],
       "fields": {
-        "SubsequentThickness": {
-          "type": "double",
-          "reference": false,
-          "many": true
-        },
-        "SubsequentThicknessAsString": {
-          "type": "string",
-          "reference": false,
-          "many": true
-        },
-        "VaryingThicknessLocation": {
-          "type": "IfcShapeAspect",
-          "reference": true,
-          "many": false
-        },
-        "VaryingThickness": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "VaryingThicknessAsString": {
-          "type": "string",
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
       }
-    },
-    "IfcStructuredDimensionCallout": {
-      "domain": null,
-      "superclasses": [
-        "IfcDraughtingCallout"
-      ],
-      "fields": {}
     },
     "IfcStyleModel": {
       "domain": null,
@@ -12259,7 +13158,7 @@
           "many": false
         },
         "Styles": {
-          "type": "IfcPresentationStyleAssignment",
+          "type": "IfcStyleAssignmentSelect",
           "reference": true,
           "many": true
         },
@@ -12283,13 +13182,21 @@
         "IfcConstructionResource"
       ],
       "fields": {
-        "SubContractor": {
-          "type": "IfcActorSelect",
-          "reference": true,
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
           "many": false
-        },
-        "JobDescription": {
-          "type": "string",
+        }
+      }
+    },
+    "IfcSubContractResourceType": {
+      "domain": null,
+      "superclasses": [
+        "IfcConstructionResourceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -12315,7 +13222,13 @@
         "IfcGeometricSetSelect",
         "IfcSurfaceOrFaceSurface"
       ],
-      "fields": {}
+      "fields": {
+        "Dim": {
+          "type": "int",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcSurfaceCurveSweptAreaSolid": {
       "domain": null,
@@ -12351,6 +13264,19 @@
         "ReferenceSurface": {
           "type": "IfcSurface",
           "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcSurfaceFeature": {
+      "domain": null,
+      "superclasses": [
+        "IfcFeatureElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
           "many": false
         }
       }
@@ -12391,6 +13317,44 @@
         }
       }
     },
+    "IfcSurfaceReinforcementArea": {
+      "domain": null,
+      "superclasses": [
+        "IfcStructuralLoadOrResult"
+      ],
+      "fields": {
+        "SurfaceReinforcement1": {
+          "type": "double",
+          "reference": false,
+          "many": true
+        },
+        "SurfaceReinforcement1AsString": {
+          "type": "string",
+          "reference": false,
+          "many": true
+        },
+        "SurfaceReinforcement2": {
+          "type": "double",
+          "reference": false,
+          "many": true
+        },
+        "SurfaceReinforcement2AsString": {
+          "type": "string",
+          "reference": false,
+          "many": true
+        },
+        "ShearReinforcement": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "ShearReinforcementAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcSurfaceStyle": {
       "domain": null,
       "superclasses": [
@@ -12413,6 +13377,7 @@
     "IfcSurfaceStyleLighting": {
       "domain": null,
       "superclasses": [
+        "IfcPresentationItem",
         "IfcSurfaceStyleElementSelect"
       ],
       "fields": {
@@ -12441,6 +13406,7 @@
     "IfcSurfaceStyleRefraction": {
       "domain": null,
       "superclasses": [
+        "IfcPresentationItem",
         "IfcSurfaceStyleElementSelect"
       ],
       "fields": {
@@ -12522,6 +13488,7 @@
     "IfcSurfaceStyleShading": {
       "domain": null,
       "superclasses": [
+        "IfcPresentationItem",
         "IfcSurfaceStyleElementSelect"
       ],
       "fields": {
@@ -12535,6 +13502,7 @@
     "IfcSurfaceStyleWithTextures": {
       "domain": null,
       "superclasses": [
+        "IfcPresentationItem",
         "IfcSurfaceStyleElementSelect"
       ],
       "fields": {
@@ -12547,7 +13515,9 @@
     },
     "IfcSurfaceTexture": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcPresentationItem"
+      ],
       "fields": {
         "RepeatS": {
           "type": "enum",
@@ -12559,8 +13529,8 @@
           "reference": false,
           "many": false
         },
-        "TextureType": {
-          "type": "enum",
+        "Mode": {
+          "type": "string",
           "reference": false,
           "many": false
         },
@@ -12568,6 +13538,21 @@
           "type": "IfcCartesianTransformationOperator2D",
           "reference": true,
           "many": false
+        },
+        "Parameter": {
+          "type": "string",
+          "reference": false,
+          "many": true
+        },
+        "IsMappedBy": {
+          "type": "IfcTextureCoordinate",
+          "reference": true,
+          "many": true
+        },
+        "UsedInStyles": {
+          "type": "IfcSurfaceStyleWithTextures",
+          "reference": true,
+          "many": true
         }
       }
     },
@@ -12642,6 +13627,24 @@
         }
       }
     },
+    "IfcSweptDiskSolidPolygonal": {
+      "domain": null,
+      "superclasses": [
+        "IfcSweptDiskSolid"
+      ],
+      "fields": {
+        "FilletRadius": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "FilletRadiusAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcSweptSurface": {
       "domain": null,
       "superclasses": [
@@ -12657,9 +13660,17 @@
           "type": "IfcAxis2Placement3D",
           "reference": true,
           "many": false
-        },
-        "Dim": {
-          "type": "int",
+        }
+      }
+    },
+    "IfcSwitchingDevice": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowController"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
           "reference": false,
           "many": false
         }
@@ -12678,20 +13689,6 @@
         }
       }
     },
-    "IfcSymbolStyle": {
-      "domain": null,
-      "superclasses": [
-        "IfcPresentationStyle",
-        "IfcPresentationStyleSelect"
-      ],
-      "fields": {
-        "StyleOfSymbol": {
-          "type": "IfcSymbolStyleSelect",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
     "IfcSystem": {
       "domain": null,
       "superclasses": [
@@ -12705,12 +13702,31 @@
         }
       }
     },
+    "IfcSystemFurnitureElement": {
+      "domain": null,
+      "superclasses": [
+        "IfcFurnishingElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcSystemFurnitureElementType": {
       "domain": null,
       "superclasses": [
         "IfcFurnishingElementType"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcTShapeProfileDef": {
       "domain": null,
@@ -12807,23 +13823,14 @@
           "type": "string",
           "reference": false,
           "many": false
-        },
-        "CentreOfGravityInY": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInYAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
         }
       }
     },
     "IfcTable": {
       "domain": null,
       "superclasses": [
-        "IfcMetricValueSelect"
+        "IfcMetricValueSelect",
+        "IfcObjectReferenceSelect"
       ],
       "fields": {
         "Name": {
@@ -12835,6 +13842,42 @@
           "type": "IfcTableRow",
           "reference": true,
           "many": true
+        },
+        "Columns": {
+          "type": "IfcTableColumn",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcTableColumn": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {
+        "Identifier": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Name": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Description": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Unit": {
+          "type": "IfcUnit",
+          "reference": true,
+          "many": false
+        },
+        "ReferencePath": {
+          "type": "IfcReference",
+          "reference": true,
+          "many": false
         }
       }
     },
@@ -12859,6 +13902,19 @@
         }
       }
     },
+    "IfcTank": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowStorageDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcTankType": {
       "domain": null,
       "superclasses": [
@@ -12878,11 +13934,6 @@
         "IfcProcess"
       ],
       "fields": {
-        "TaskId": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
         "Status": {
           "type": "string",
           "reference": false,
@@ -12900,6 +13951,145 @@
         },
         "Priority": {
           "type": "int",
+          "reference": false,
+          "many": false
+        },
+        "TaskTime": {
+          "type": "IfcTaskTime",
+          "reference": true,
+          "many": false
+        },
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcTaskTime": {
+      "domain": null,
+      "superclasses": [
+        "IfcSchedulingTime"
+      ],
+      "fields": {
+        "DurationType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "ScheduleDuration": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ScheduleStart": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ScheduleFinish": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "EarlyStart": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "EarlyFinish": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LateStart": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LateFinish": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "FreeFloat": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "TotalFloat": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "IsCritical": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "StatusTime": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ActualDuration": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ActualStart": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ActualFinish": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "RemainingTime": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Completion": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "CompletionAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcTaskTimeRecurring": {
+      "domain": null,
+      "superclasses": [
+        "IfcTaskTime"
+      ],
+      "fields": {
+        "Recurrance": {
+          "type": "IfcRecurrencePattern",
+          "reference": true,
+          "many": false
+        }
+      }
+    },
+    "IfcTaskType": {
+      "domain": null,
+      "superclasses": [
+        "IfcTypeProcess"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "WorkMethod": {
+          "type": "string",
           "reference": false,
           "many": false
         }
@@ -12935,6 +14125,11 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "MessagingIDs": {
+          "type": "string",
+          "reference": false,
+          "many": true
         }
       }
     },
@@ -13026,20 +14221,104 @@
       "superclasses": [
         "IfcReinforcingElement"
       ],
-      "fields": {}
-    },
-    "IfcTerminatorSymbol": {
-      "domain": null,
-      "superclasses": [
-        "IfcAnnotationSymbolOccurrence"
-      ],
       "fields": {
-        "AnnotatedCurve": {
-          "type": "IfcAnnotationCurveOccurrence",
-          "reference": true,
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
           "many": false
         }
       }
+    },
+    "IfcTendonAnchorType": {
+      "domain": null,
+      "superclasses": [
+        "IfcReinforcingElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcTendonType": {
+      "domain": null,
+      "superclasses": [
+        "IfcReinforcingElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "NominalDiameter": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "NominalDiameterAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "CrossSectionArea": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "CrossSectionAreaAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "SheethDiameter": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "SheethDiameterAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcTessellatedFaceSet": {
+      "domain": null,
+      "superclasses": [
+        "IfcTessellatedItem"
+      ],
+      "fields": {
+        "Coordinates": {
+          "type": "IfcCartesianPointList3D",
+          "reference": true,
+          "many": false
+        },
+        "Closed": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "HasColours": {
+          "type": "IfcIndexedColourMap",
+          "reference": true,
+          "many": true
+        },
+        "HasTextures": {
+          "type": "IfcIndexedTextureMap",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcTessellatedItem": {
+      "domain": null,
+      "superclasses": [
+        "IfcGeometricRepresentationItem"
+      ],
+      "fields": {}
     },
     "IfcTextLiteral": {
       "domain": null,
@@ -13090,18 +14369,23 @@
       ],
       "fields": {
         "TextCharacterAppearance": {
-          "type": "IfcCharacterStyleSelect",
+          "type": "IfcTextStyleForDefinedFont",
           "reference": true,
           "many": false
         },
         "TextStyle": {
-          "type": "IfcTextStyleSelect",
+          "type": "IfcTextStyleTextModel",
           "reference": true,
           "many": false
         },
         "TextFontStyle": {
           "type": "IfcTextFontSelect",
           "reference": true,
+          "many": false
+        },
+        "ModelOrDraughting": {
+          "type": "enum",
+          "reference": false,
           "many": false
         }
       }
@@ -13142,7 +14426,7 @@
     "IfcTextStyleForDefinedFont": {
       "domain": null,
       "superclasses": [
-        "IfcCharacterStyleSelect"
+        "IfcPresentationItem"
       ],
       "fields": {
         "Colour": {
@@ -13160,7 +14444,7 @@
     "IfcTextStyleTextModel": {
       "domain": null,
       "superclasses": [
-        "IfcTextStyleSelect"
+        "IfcPresentationItem"
       ],
       "fields": {
         "TextIndent": {
@@ -13200,65 +14484,14 @@
         }
       }
     },
-    "IfcTextStyleWithBoxCharacteristics": {
-      "domain": null,
-      "superclasses": [
-        "IfcTextStyleSelect"
-      ],
-      "fields": {
-        "BoxHeight": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BoxHeightAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "BoxWidth": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BoxWidthAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "BoxSlantAngle": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BoxSlantAngleAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "BoxRotateAngle": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BoxRotateAngleAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "CharacterSpacing": {
-          "type": "IfcSizeSelect",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
     "IfcTextureCoordinate": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcPresentationItem"
+      ],
       "fields": {
-        "AnnotatedSurface": {
-          "type": "IfcAnnotationSurface",
+        "Maps": {
+          "type": "IfcSurfaceTexture",
           "reference": true,
           "many": true
         }
@@ -13276,8 +14509,13 @@
           "many": false
         },
         "Parameter": {
-          "type": "IfcSimpleValue",
-          "reference": true,
+          "type": "double",
+          "reference": false,
+          "many": true
+        },
+        "ParameterAsString": {
+          "type": "string",
+          "reference": false,
           "many": true
         }
       }
@@ -13288,16 +14526,23 @@
         "IfcTextureCoordinate"
       ],
       "fields": {
-        "TextureMaps": {
-          "type": "IfcVertexBasedTextureMap",
+        "Vertices": {
+          "type": "IfcTextureVertex",
           "reference": true,
           "many": true
+        },
+        "MappedTo": {
+          "type": "IfcFace",
+          "reference": true,
+          "many": false
         }
       }
     },
     "IfcTextureVertex": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcPresentationItem"
+      ],
       "fields": {
         "Coordinates": {
           "type": "double",
@@ -13311,48 +14556,23 @@
         }
       }
     },
-    "IfcThermalMaterialProperties": {
+    "IfcTextureVertexList": {
       "domain": null,
       "superclasses": [
-        "IfcMaterialProperties"
+        "IfcPresentationItem"
       ],
+      "fields": {}
+    },
+    "IfcTimePeriod": {
+      "domain": null,
+      "superclasses": [],
       "fields": {
-        "SpecificHeatCapacity": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "SpecificHeatCapacityAsString": {
+        "StartTime": {
           "type": "string",
           "reference": false,
           "many": false
         },
-        "BoilingPoint": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "BoilingPointAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "FreezingPoint": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "FreezingPointAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ThermalConductivity": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ThermalConductivityAsString": {
+        "EndTime": {
           "type": "string",
           "reference": false,
           "many": false
@@ -13363,7 +14583,8 @@
       "domain": null,
       "superclasses": [
         "IfcMetricValueSelect",
-        "IfcObjectReferenceSelect"
+        "IfcObjectReferenceSelect",
+        "IfcResourceObjectSelect"
       ],
       "fields": {
         "Name": {
@@ -13377,13 +14598,13 @@
           "many": false
         },
         "StartTime": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "EndTime": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
+          "type": "string",
+          "reference": false,
           "many": false
         },
         "TimeSeriesDataType": {
@@ -13406,49 +14627,10 @@
           "reference": true,
           "many": false
         },
-        "DocumentedBy": {
-          "type": "IfcTimeSeriesReferenceRelationship",
+        "HasExternalReference": {
+          "type": "IfcExternalReferenceRelationship",
           "reference": true,
           "many": true
-        }
-      }
-    },
-    "IfcTimeSeriesReferenceRelationship": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "ReferencedTimeSeries": {
-          "type": "IfcTimeSeries",
-          "reference": true,
-          "many": false
-        },
-        "TimeSeriesReferences": {
-          "type": "IfcDocumentSelect",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
-    "IfcTimeSeriesSchedule": {
-      "domain": null,
-      "superclasses": [
-        "IfcControl"
-      ],
-      "fields": {
-        "ApplicableDates": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": true
-        },
-        "TimeSeriesScheduleType": {
-          "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "TimeSeries": {
-          "type": "IfcTimeSeries",
-          "reference": true,
-          "many": false
         }
       }
     },
@@ -13477,6 +14659,19 @@
       ],
       "fields": {}
     },
+    "IfcTransformer": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcTransformerType": {
       "domain": null,
       "superclasses": [
@@ -13496,28 +14691,8 @@
         "IfcElement"
       ],
       "fields": {
-        "OperationType": {
+        "PredefinedType": {
           "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "CapacityByWeight": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CapacityByWeightAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "CapacityByNumber": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CapacityByNumberAsString": {
-          "type": "string",
           "reference": false,
           "many": false
         }
@@ -13584,6 +14759,13 @@
         }
       }
     },
+    "IfcTriangulatedFaceSet": {
+      "domain": null,
+      "superclasses": [
+        "IfcTessellatedFaceSet"
+      ],
+      "fields": {}
+    },
     "IfcTrimmedCurve": {
       "domain": null,
       "superclasses": [
@@ -13617,10 +14799,10 @@
         }
       }
     },
-    "IfcTubeBundleType": {
+    "IfcTubeBundle": {
       "domain": null,
       "superclasses": [
-        "IfcEnergyConversionDeviceType"
+        "IfcEnergyConversionDevice"
       ],
       "fields": {
         "PredefinedType": {
@@ -13630,15 +14812,15 @@
         }
       }
     },
-    "IfcTwoDirectionRepeatFactor": {
+    "IfcTubeBundleType": {
       "domain": null,
       "superclasses": [
-        "IfcOneDirectionRepeatFactor"
+        "IfcEnergyConversionDeviceType"
       ],
       "fields": {
-        "SecondRepeatFactor": {
-          "type": "IfcVector",
-          "reference": true,
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
           "many": false
         }
       }
@@ -13659,8 +14841,37 @@
           "reference": true,
           "many": true
         },
-        "ObjectTypeOf": {
+        "Types": {
           "type": "IfcRelDefinesByType",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcTypeProcess": {
+      "domain": null,
+      "superclasses": [
+        "IfcTypeObject",
+        "IfcProcessSelect"
+      ],
+      "fields": {
+        "Identification": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LongDescription": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ProcessType": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "OperatesOn": {
+          "type": "IfcRelAssignsToProcess",
           "reference": true,
           "many": true
         }
@@ -13669,7 +14880,8 @@
     "IfcTypeProduct": {
       "domain": null,
       "superclasses": [
-        "IfcTypeObject"
+        "IfcTypeObject",
+        "IfcProductSelect"
       ],
       "fields": {
         "RepresentationMaps": {
@@ -13681,6 +14893,40 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "ReferencedBy": {
+          "type": "IfcRelAssignsToProduct",
+          "reference": true,
+          "many": true
+        }
+      }
+    },
+    "IfcTypeResource": {
+      "domain": null,
+      "superclasses": [
+        "IfcTypeObject",
+        "IfcResourceSelect"
+      ],
+      "fields": {
+        "Identification": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LongDescription": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ResourceType": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "ResourceOf": {
+          "type": "IfcRelAssignsToResource",
+          "reference": true,
+          "many": true
         }
       }
     },
@@ -13759,16 +15005,6 @@
           "type": "string",
           "reference": false,
           "many": false
-        },
-        "CentreOfGravityInX": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "CentreOfGravityInXAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
         }
       }
     },
@@ -13783,10 +15019,62 @@
         }
       }
     },
+    "IfcUnitaryControlElement": {
+      "domain": null,
+      "superclasses": [
+        "IfcDistributionControlElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcUnitaryControlElementType": {
+      "domain": null,
+      "superclasses": [
+        "IfcDistributionControlElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcUnitaryEquipment": {
+      "domain": null,
+      "superclasses": [
+        "IfcEnergyConversionDevice"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcUnitaryEquipmentType": {
       "domain": null,
       "superclasses": [
         "IfcEnergyConversionDeviceType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcValve": {
+      "domain": null,
+      "superclasses": [
+        "IfcFlowController"
       ],
       "fields": {
         "PredefinedType": {
@@ -13813,6 +15101,7 @@
       "domain": null,
       "superclasses": [
         "IfcGeometricRepresentationItem",
+        "IfcHatchLineDistanceSelect",
         "IfcVectorOrDirection"
       ],
       "fields": {
@@ -13845,22 +15134,6 @@
       ],
       "fields": {}
     },
-    "IfcVertexBasedTextureMap": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "TextureVertices": {
-          "type": "IfcTextureVertex",
-          "reference": true,
-          "many": true
-        },
-        "TexturePoints": {
-          "type": "IfcCartesianPoint",
-          "reference": true,
-          "many": true
-        }
-      }
-    },
     "IfcVertexLoop": {
       "domain": null,
       "superclasses": [
@@ -13888,10 +15161,23 @@
         }
       }
     },
+    "IfcVibrationIsolator": {
+      "domain": null,
+      "superclasses": [
+        "IfcElementComponent"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcVibrationIsolatorType": {
       "domain": null,
       "superclasses": [
-        "IfcDiscreteAccessoryType"
+        "IfcElementComponentType"
       ],
       "fields": {
         "PredefinedType": {
@@ -13910,7 +15196,9 @@
     },
     "IfcVirtualGridIntersection": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcGridPlacementDirectionSelect"
+      ],
       "fields": {
         "IntersectingAxes": {
           "type": "IfcGridAxis",
@@ -13929,10 +15217,36 @@
         }
       }
     },
+    "IfcVoidingFeature": {
+      "domain": null,
+      "superclasses": [
+        "IfcFeatureElementSubtraction"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcWall": {
       "domain": null,
       "superclasses": [
         "IfcBuildingElement"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcWallElementedCase": {
+      "domain": null,
+      "superclasses": [
+        "IfcWall"
       ],
       "fields": {}
     },
@@ -13956,10 +15270,10 @@
         }
       }
     },
-    "IfcWasteTerminalType": {
+    "IfcWasteTerminal": {
       "domain": null,
       "superclasses": [
-        "IfcFlowTerminalType"
+        "IfcFlowTerminal"
       ],
       "fields": {
         "PredefinedType": {
@@ -13969,74 +15283,14 @@
         }
       }
     },
-    "IfcWaterProperties": {
+    "IfcWasteTerminalType": {
       "domain": null,
       "superclasses": [
-        "IfcMaterialProperties"
+        "IfcFlowTerminalType"
       ],
       "fields": {
-        "IsPotable": {
+        "PredefinedType": {
           "type": "enum",
-          "reference": false,
-          "many": false
-        },
-        "Hardness": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "HardnessAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "AlkalinityConcentration": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "AlkalinityConcentrationAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "AcidityConcentration": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "AcidityConcentrationAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "ImpuritiesContent": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "ImpuritiesContentAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "PHLevel": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "PHLevelAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        },
-        "DissolvedSolidsContent": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "DissolvedSolidsContentAsString": {
-          "type": "string",
           "reference": false,
           "many": false
         }
@@ -14067,13 +15321,28 @@
           "type": "string",
           "reference": false,
           "many": false
+        },
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "PartitioningType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "UserDefinedPartitioningType": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
     },
     "IfcWindowLiningProperties": {
       "domain": null,
       "superclasses": [
-        "IfcPropertySetDefinition"
+        "IfcPreDefinedPropertySet"
       ],
       "fields": {
         "LiningDepth": {
@@ -14160,13 +15429,43 @@
           "type": "IfcShapeAspect",
           "reference": true,
           "many": false
+        },
+        "LiningOffset": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "LiningOffsetAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LiningToPanelOffsetX": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "LiningToPanelOffsetXAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "LiningToPanelOffsetY": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "LiningToPanelOffsetYAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
         }
       }
     },
     "IfcWindowPanelProperties": {
       "domain": null,
       "superclasses": [
-        "IfcPropertySetDefinition"
+        "IfcPreDefinedPropertySet"
       ],
       "fields": {
         "OperationType": {
@@ -14206,6 +15505,13 @@
         }
       }
     },
+    "IfcWindowStandardCase": {
+      "domain": null,
+      "superclasses": [
+        "IfcWindow"
+      ],
+      "fields": {}
+    },
     "IfcWindowStyle": {
       "domain": null,
       "superclasses": [
@@ -14234,20 +15540,66 @@
         }
       }
     },
+    "IfcWindowType": {
+      "domain": null,
+      "superclasses": [
+        "IfcBuildingElementType"
+      ],
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "PartitioningType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "ParameterTakesPrecedence": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        },
+        "UserDefinedPartitioningType": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcWorkCalendar": {
+      "domain": null,
+      "superclasses": [
+        "IfcControl"
+      ],
+      "fields": {
+        "WorkingTimes": {
+          "type": "IfcWorkTime",
+          "reference": true,
+          "many": true
+        },
+        "ExceptionTimes": {
+          "type": "IfcWorkTime",
+          "reference": true,
+          "many": true
+        },
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcWorkControl": {
       "domain": null,
       "superclasses": [
         "IfcControl"
       ],
       "fields": {
-        "Identifier": {
+        "CreationDate": {
           "type": "string",
           "reference": false,
-          "many": false
-        },
-        "CreationDate": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
           "many": false
         },
         "Creators": {
@@ -14261,41 +15613,21 @@
           "many": false
         },
         "Duration": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "DurationAsString": {
           "type": "string",
           "reference": false,
           "many": false
         },
         "TotalFloat": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "TotalFloatAsString": {
           "type": "string",
           "reference": false,
           "many": false
         },
         "StartTime": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "FinishTime": {
-          "type": "IfcDateTimeSelect",
-          "reference": true,
-          "many": false
-        },
-        "WorkControlType": {
-          "type": "enum",
+          "type": "string",
           "reference": false,
           "many": false
         },
-        "UserDefinedControlType": {
+        "FinishTime": {
           "type": "string",
           "reference": false,
           "many": false
@@ -14307,14 +15639,49 @@
       "superclasses": [
         "IfcWorkControl"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcWorkSchedule": {
       "domain": null,
       "superclasses": [
         "IfcWorkControl"
       ],
-      "fields": {}
+      "fields": {
+        "PredefinedType": {
+          "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcWorkTime": {
+      "domain": null,
+      "superclasses": [
+        "IfcSchedulingTime"
+      ],
+      "fields": {
+        "RecurrencePattern": {
+          "type": "IfcRecurrencePattern",
+          "reference": true,
+          "many": false
+        },
+        "Start": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        },
+        "Finish": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcZShapeProfileDef": {
       "domain": null,
@@ -14387,9 +15754,15 @@
     "IfcZone": {
       "domain": null,
       "superclasses": [
-        "IfcGroup"
+        "IfcSystem"
       ],
-      "fields": {}
+      "fields": {
+        "LongName": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
     },
     "IfcAbsorbedDoseMeasure": {
       "domain": null,
@@ -14463,6 +15836,24 @@
         }
       }
     },
+    "IfcAreaDensityMeasure": {
+      "domain": null,
+      "superclasses": [
+        "IfcDerivedMeasureValue"
+      ],
+      "fields": {
+        "wrappedValue": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "wrappedValueAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcAreaMeasure": {
       "domain": null,
       "superclasses": [
@@ -14484,12 +15875,29 @@
     "IfcBoolean": {
       "domain": null,
       "superclasses": [
+        "IfcModulusOfRotationalSubgradeReactionSelect",
+        "IfcModulusOfSubgradeReactionSelect",
+        "IfcModulusOfTranslationalSubgradeReactionSelect",
+        "IfcRotationalStiffnessSelect",
         "IfcSimpleValue",
+        "IfcTranslationalStiffnessSelect",
+        "IfcWarpingStiffnessSelect",
         "IfcValue"
       ],
       "fields": {
         "wrappedValue": {
           "type": "enum",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcCardinalPointReference": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {
+        "wrappedValue": {
+          "type": "int",
           "reference": false,
           "many": false
         }
@@ -14549,6 +15957,32 @@
         }
       }
     },
+    "IfcDate": {
+      "domain": null,
+      "superclasses": [
+        "IfcSimpleValue"
+      ],
+      "fields": {
+        "wrappedValue": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcDateTime": {
+      "domain": null,
+      "superclasses": [
+        "IfcSimpleValue"
+      ],
+      "fields": {
+        "wrappedValue": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcDayInMonthNumber": {
       "domain": null,
       "superclasses": [],
@@ -14560,7 +15994,7 @@
         }
       }
     },
-    "IfcDaylightSavingHour": {
+    "IfcDayInWeekNumber": {
       "domain": null,
       "superclasses": [],
       "fields": {
@@ -14608,6 +16042,20 @@
           "many": false
         },
         "wrappedValueAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcDuration": {
+      "domain": null,
+      "superclasses": [
+        "IfcSimpleValue",
+        "IfcTimeOrRatioSelect"
+      ],
+      "fields": {
+        "wrappedValue": {
           "type": "string",
           "reference": false,
           "many": false
@@ -14874,17 +16322,6 @@
         }
       }
     },
-    "IfcHourInDay": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "wrappedValue": {
-          "type": "int",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
     "IfcIdentifier": {
       "domain": null,
       "superclasses": [
@@ -15017,7 +16454,6 @@
     "IfcLabel": {
       "domain": null,
       "superclasses": [
-        "IfcConditionCriterionSelect",
         "IfcSimpleValue"
       ],
       "fields": {
@@ -15031,6 +16467,7 @@
     "IfcLengthMeasure": {
       "domain": null,
       "superclasses": [
+        "IfcBendingParameterSelect",
         "IfcMeasureValue",
         "IfcSizeSelect"
       ],
@@ -15086,7 +16523,8 @@
     "IfcLinearStiffnessMeasure": {
       "domain": null,
       "superclasses": [
-        "IfcDerivedMeasureValue"
+        "IfcDerivedMeasureValue",
+        "IfcTranslationalStiffnessSelect"
       ],
       "fields": {
         "wrappedValue": {
@@ -15294,17 +16732,6 @@
         }
       }
     },
-    "IfcMinuteInHour": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "wrappedValue": {
-          "type": "int",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
     "IfcModulusOfElasticityMeasure": {
       "domain": null,
       "superclasses": [
@@ -15326,7 +16753,8 @@
     "IfcModulusOfLinearSubgradeReactionMeasure": {
       "domain": null,
       "superclasses": [
-        "IfcDerivedMeasureValue"
+        "IfcDerivedMeasureValue",
+        "IfcModulusOfTranslationalSubgradeReactionSelect"
       ],
       "fields": {
         "wrappedValue": {
@@ -15344,7 +16772,8 @@
     "IfcModulusOfRotationalSubgradeReactionMeasure": {
       "domain": null,
       "superclasses": [
-        "IfcDerivedMeasureValue"
+        "IfcDerivedMeasureValue",
+        "IfcModulusOfRotationalSubgradeReactionSelect"
       ],
       "fields": {
         "wrappedValue": {
@@ -15362,7 +16791,8 @@
     "IfcModulusOfSubgradeReactionMeasure": {
       "domain": null,
       "superclasses": [
-        "IfcDerivedMeasureValue"
+        "IfcDerivedMeasureValue",
+        "IfcModulusOfSubgradeReactionSelect"
       ],
       "fields": {
         "wrappedValue": {
@@ -15434,7 +16864,6 @@
     "IfcMonetaryMeasure": {
       "domain": null,
       "superclasses": [
-        "IfcAppliedValueSelect",
         "IfcDerivedMeasureValue"
       ],
       "fields": {
@@ -15537,8 +16966,8 @@
     "IfcPlaneAngleMeasure": {
       "domain": null,
       "superclasses": [
-        "IfcMeasureValue",
-        "IfcOrientationSelect"
+        "IfcBendingParameterSelect",
+        "IfcMeasureValue"
       ],
       "fields": {
         "wrappedValue": {
@@ -15621,9 +17050,9 @@
     "IfcRatioMeasure": {
       "domain": null,
       "superclasses": [
-        "IfcAppliedValueSelect",
         "IfcMeasureValue",
-        "IfcSizeSelect"
+        "IfcSizeSelect",
+        "IfcTimeOrRatioSelect"
       ],
       "fields": {
         "wrappedValue": {
@@ -15695,24 +17124,9 @@
     "IfcRotationalStiffnessMeasure": {
       "domain": null,
       "superclasses": [
-        "IfcDerivedMeasureValue"
+        "IfcDerivedMeasureValue",
+        "IfcRotationalStiffnessSelect"
       ],
-      "fields": {
-        "wrappedValue": {
-          "type": "double",
-          "reference": false,
-          "many": false
-        },
-        "wrappedValueAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcSecondInMinute": {
-      "domain": null,
-      "superclasses": [],
       "fields": {
         "wrappedValue": {
           "type": "double",
@@ -15798,7 +17212,43 @@
         }
       }
     },
+    "IfcSoundPowerLevelMeasure": {
+      "domain": null,
+      "superclasses": [
+        "IfcDerivedMeasureValue"
+      ],
+      "fields": {
+        "wrappedValue": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "wrappedValueAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcSoundPowerMeasure": {
+      "domain": null,
+      "superclasses": [
+        "IfcDerivedMeasureValue"
+      ],
+      "fields": {
+        "wrappedValue": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "wrappedValueAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcSoundPressureLevelMeasure": {
       "domain": null,
       "superclasses": [
         "IfcDerivedMeasureValue"
@@ -15906,10 +17356,27 @@
         }
       }
     },
+    "IfcTemperatureRateOfChangeMeasure": {
+      "domain": null,
+      "superclasses": [
+        "IfcDerivedMeasureValue"
+      ],
+      "fields": {
+        "wrappedValue": {
+          "type": "double",
+          "reference": false,
+          "many": false
+        },
+        "wrappedValueAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcText": {
       "domain": null,
       "superclasses": [
-        "IfcMetricValueSelect",
         "IfcSimpleValue"
       ],
       "fields": {
@@ -16072,6 +17539,19 @@
         }
       }
     },
+    "IfcTime": {
+      "domain": null,
+      "superclasses": [
+        "IfcSimpleValue"
+      ],
+      "fields": {
+        "wrappedValue": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
     "IfcTimeMeasure": {
       "domain": null,
       "superclasses": [
@@ -16093,7 +17573,7 @@
     "IfcTimeStamp": {
       "domain": null,
       "superclasses": [
-        "IfcDerivedMeasureValue"
+        "IfcSimpleValue"
       ],
       "fields": {
         "wrappedValue": {
@@ -16115,6 +17595,17 @@
           "many": false
         },
         "wrappedValueAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false
+        }
+      }
+    },
+    "IfcURIReference": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {
+        "wrappedValue": {
           "type": "string",
           "reference": false,
           "many": false
@@ -16196,7 +17687,8 @@
     "IfcWarpingMomentMeasure": {
       "domain": null,
       "superclasses": [
-        "IfcDerivedMeasureValue"
+        "IfcDerivedMeasureValue",
+        "IfcWarpingStiffnessSelect"
       ],
       "fields": {
         "wrappedValue": {
@@ -16206,17 +17698,6 @@
         },
         "wrappedValueAsString": {
           "type": "string",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "IfcYearNumber": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "wrappedValue": {
-          "type": "int",
           "reference": false,
           "many": false
         }
@@ -16241,6 +17722,21 @@
           "many": false
         }
       }
+    },
+    "IfcLanguageId": {
+      "domain": null,
+      "superclasses": [
+        "IfcIdentifier"
+      ],
+      "fields": {}
+    },
+    "IfcNonNegativeLengthMeasure": {
+      "domain": null,
+      "superclasses": [
+        "IfcLengthMeasure",
+        "IfcMeasureValue"
+      ],
+      "fields": {}
     },
     "IfcNormalisedRatioMeasure": {
       "domain": null,
@@ -16279,11 +17775,11 @@
       ],
       "fields": {}
     },
+    "IfcActionRequestTypeEnum": {},
     "IfcActionSourceTypeEnum": {},
     "IfcActionTypeEnum": {},
     "IfcActuatorTypeEnum": {},
     "IfcAddressTypeEnum": {},
-    "IfcAheadOrBehind": {},
     "IfcAirTerminalBoxTypeEnum": {},
     "IfcAirTerminalTypeEnum": {},
     "IfcAirToAirHeatRecoveryTypeEnum": {},
@@ -16292,74 +17788,98 @@
     "IfcAnalysisTheoryTypeEnum": {},
     "IfcArithmeticOperatorEnum": {},
     "IfcAssemblyPlaceEnum": {},
+    "IfcAudioVisualApplianceTypeEnum": {},
     "IfcBSplineCurveForm": {},
+    "IfcBSplineSurfaceForm": {},
     "IfcBeamTypeEnum": {},
     "IfcBenchmarkEnum": {},
     "IfcBoilerTypeEnum": {},
     "IfcBooleanOperator": {},
+    "IfcBuildingElementPartTypeEnum": {},
     "IfcBuildingElementProxyTypeEnum": {},
+    "IfcBuildingSystemTypeEnum": {},
+    "IfcBurnerTypeEnum": {},
     "IfcCableCarrierFittingTypeEnum": {},
     "IfcCableCarrierSegmentTypeEnum": {},
+    "IfcCableFittingTypeEnum": {},
     "IfcCableSegmentTypeEnum": {},
     "IfcChangeActionEnum": {},
     "IfcChillerTypeEnum": {},
+    "IfcChimneyTypeEnum": {},
     "IfcCoilTypeEnum": {},
     "IfcColumnTypeEnum": {},
+    "IfcCommunicationsApplianceTypeEnum": {},
+    "IfcComplexPropertyTemplateTypeEnum": {},
     "IfcCompressorTypeEnum": {},
     "IfcCondenserTypeEnum": {},
     "IfcConnectionTypeEnum": {},
     "IfcConstraintEnum": {},
+    "IfcConstructionEquipmentResourceTypeEnum": {},
+    "IfcConstructionMaterialResourceTypeEnum": {},
+    "IfcConstructionProductResourceTypeEnum": {},
     "IfcControllerTypeEnum": {},
     "IfcCooledBeamTypeEnum": {},
     "IfcCoolingTowerTypeEnum": {},
+    "IfcCostItemTypeEnum": {},
     "IfcCostScheduleTypeEnum": {},
     "IfcCoveringTypeEnum": {},
-    "IfcCurrencyEnum": {},
+    "IfcCrewResourceTypeEnum": {},
     "IfcCurtainWallTypeEnum": {},
+    "IfcCurveInterpolationEnum": {},
     "IfcDamperTypeEnum": {},
     "IfcDataOriginEnum": {},
     "IfcDerivedUnitEnum": {},
-    "IfcDimensionExtentUsage": {},
     "IfcDirectionSenseEnum": {},
+    "IfcDiscreteAccessoryTypeEnum": {},
     "IfcDistributionChamberElementTypeEnum": {},
+    "IfcDistributionPortTypeEnum": {},
+    "IfcDistributionSystemEnum": {},
     "IfcDocumentConfidentialityEnum": {},
     "IfcDocumentStatusEnum": {},
     "IfcDoorPanelOperationEnum": {},
     "IfcDoorPanelPositionEnum": {},
     "IfcDoorStyleConstructionEnum": {},
     "IfcDoorStyleOperationEnum": {},
+    "IfcDoorTypeEnum": {},
+    "IfcDoorTypeOperationEnum": {},
     "IfcDuctFittingTypeEnum": {},
     "IfcDuctSegmentTypeEnum": {},
     "IfcDuctSilencerTypeEnum": {},
     "IfcElectricApplianceTypeEnum": {},
-    "IfcElectricCurrentEnum": {},
-    "IfcElectricDistributionPointFunctionEnum": {},
+    "IfcElectricDistributionBoardTypeEnum": {},
     "IfcElectricFlowStorageDeviceTypeEnum": {},
     "IfcElectricGeneratorTypeEnum": {},
-    "IfcElectricHeaterTypeEnum": {},
     "IfcElectricMotorTypeEnum": {},
     "IfcElectricTimeControlTypeEnum": {},
     "IfcElementAssemblyTypeEnum": {},
     "IfcElementCompositionEnum": {},
-    "IfcEnergySequenceEnum": {},
-    "IfcEnvironmentalImpactCategoryEnum": {},
+    "IfcEngineTypeEnum": {},
     "IfcEvaporativeCoolerTypeEnum": {},
     "IfcEvaporatorTypeEnum": {},
+    "IfcEventTriggerTypeEnum": {},
+    "IfcEventTypeEnum": {},
+    "IfcExternalSpatialElementTypeEnum": {},
     "IfcFanTypeEnum": {},
+    "IfcFastenerTypeEnum": {},
     "IfcFilterTypeEnum": {},
     "IfcFireSuppressionTerminalTypeEnum": {},
     "IfcFlowDirectionEnum": {},
     "IfcFlowInstrumentTypeEnum": {},
     "IfcFlowMeterTypeEnum": {},
     "IfcFootingTypeEnum": {},
-    "IfcGasTerminalTypeEnum": {},
+    "IfcFurnitureTypeEnum": {},
+    "IfcGeographicElementTypeEnum": {},
     "IfcGeometricProjectionEnum": {},
     "IfcGlobalOrLocalEnum": {},
+    "IfcGridTypeEnum": {},
     "IfcHeatExchangerTypeEnum": {},
     "IfcHumidifierTypeEnum": {},
+    "IfcInterceptorTypeEnum": {},
     "IfcInternalOrExternalEnum": {},
     "IfcInventoryTypeEnum": {},
     "IfcJunctionBoxTypeEnum": {},
+    "IfcKnotType": {},
+    "IfcLaborResourceTypeEnum": {},
     "IfcLampTypeEnum": {},
     "IfcLayerSetDirectionEnum": {},
     "IfcLightDistributionCurveEnum": {},
@@ -16367,14 +17887,19 @@
     "IfcLightFixtureTypeEnum": {},
     "IfcLoadGroupTypeEnum": {},
     "IfcLogicalOperatorEnum": {},
+    "IfcMechanicalFastenerTypeEnum": {},
+    "IfcMedicalDeviceTypeEnum": {},
     "IfcMemberTypeEnum": {},
     "IfcMotorConnectionTypeEnum": {},
     "IfcNullStyleEnum": {},
     "IfcObjectTypeEnum": {},
     "IfcObjectiveEnum": {},
     "IfcOccupantTypeEnum": {},
+    "IfcOpeningElementTypeEnum": {},
     "IfcOutletTypeEnum": {},
+    "IfcPerformanceHistoryTypeEnum": {},
     "IfcPermeableCoveringOperationEnum": {},
+    "IfcPermitTypeEnum": {},
     "IfcPhysicalOrVirtualEnum": {},
     "IfcPileConstructionEnum": {},
     "IfcPileTypeEnum": {},
@@ -16383,20 +17908,22 @@
     "IfcPlateTypeEnum": {},
     "IfcProcedureTypeEnum": {},
     "IfcProfileTypeEnum": {},
-    "IfcProjectOrderRecordTypeEnum": {},
     "IfcProjectOrderTypeEnum": {},
     "IfcProjectedOrTrueLengthEnum": {},
-    "IfcPropertySourceEnum": {},
+    "IfcProjectionElementTypeEnum": {},
+    "IfcPropertySetTemplateTypeEnum": {},
+    "IfcProtectiveDeviceTrippingUnitTypeEnum": {},
     "IfcProtectiveDeviceTypeEnum": {},
     "IfcPumpTypeEnum": {},
     "IfcRailingTypeEnum": {},
     "IfcRampFlightTypeEnum": {},
     "IfcRampTypeEnum": {},
+    "IfcRecurrenceTypeEnum": {},
     "IfcReflectanceMethodEnum": {},
     "IfcReinforcingBarRoleEnum": {},
     "IfcReinforcingBarSurfaceEnum": {},
-    "IfcResourceConsumptionEnum": {},
-    "IfcRibPlateDirectionEnum": {},
+    "IfcReinforcingBarTypeEnum": {},
+    "IfcReinforcingMeshTypeEnum": {},
     "IfcRoleEnum": {},
     "IfcRoofTypeEnum": {},
     "IfcSIPrefix": {},
@@ -16405,44 +17932,55 @@
     "IfcSectionTypeEnum": {},
     "IfcSensorTypeEnum": {},
     "IfcSequenceEnum": {},
-    "IfcServiceLifeFactorTypeEnum": {},
-    "IfcServiceLifeTypeEnum": {},
+    "IfcShadingDeviceTypeEnum": {},
+    "IfcSimplePropertyTemplateTypeEnum": {},
     "IfcSlabTypeEnum": {},
-    "IfcSoundScaleEnum": {},
+    "IfcSolarDeviceTypeEnum": {},
     "IfcSpaceHeaterTypeEnum": {},
     "IfcSpaceTypeEnum": {},
+    "IfcSpatialZoneTypeEnum": {},
     "IfcStackTerminalTypeEnum": {},
     "IfcStairFlightTypeEnum": {},
     "IfcStairTypeEnum": {},
     "IfcStateEnum": {},
-    "IfcStructuralCurveTypeEnum": {},
-    "IfcStructuralSurfaceTypeEnum": {},
+    "IfcStructuralCurveActivityTypeEnum": {},
+    "IfcStructuralCurveMemberTypeEnum": {},
+    "IfcStructuralSurfaceActivityTypeEnum": {},
+    "IfcStructuralSurfaceMemberTypeEnum": {},
+    "IfcSubContractResourceTypeEnum": {},
+    "IfcSurfaceFeatureTypeEnum": {},
     "IfcSurfaceSide": {},
-    "IfcSurfaceTextureEnum": {},
     "IfcSwitchingDeviceTypeEnum": {},
+    "IfcSystemFurnitureElementTypeEnum": {},
     "IfcTankTypeEnum": {},
+    "IfcTaskDurationEnum": {},
+    "IfcTaskTypeEnum": {},
+    "IfcTendonAnchorTypeEnum": {},
     "IfcTendonTypeEnum": {},
     "IfcTextPath": {},
-    "IfcThermalLoadSourceEnum": {},
-    "IfcThermalLoadTypeEnum": {},
     "IfcTimeSeriesDataTypeEnum": {},
-    "IfcTimeSeriesScheduleTypeEnum": {},
     "IfcTransformerTypeEnum": {},
     "IfcTransitionCode": {},
     "IfcTransportElementTypeEnum": {},
     "IfcTrimmingPreference": {},
     "IfcTubeBundleTypeEnum": {},
     "IfcUnitEnum": {},
+    "IfcUnitaryControlElementTypeEnum": {},
     "IfcUnitaryEquipmentTypeEnum": {},
     "IfcValveTypeEnum": {},
     "IfcVibrationIsolatorTypeEnum": {},
+    "IfcVoidingFeatureTypeEnum": {},
     "IfcWallTypeEnum": {},
     "IfcWasteTerminalTypeEnum": {},
     "IfcWindowPanelOperationEnum": {},
     "IfcWindowPanelPositionEnum": {},
     "IfcWindowStyleConstructionEnum": {},
     "IfcWindowStyleOperationEnum": {},
-    "IfcWorkControlTypeEnum": {},
+    "IfcWindowTypeEnum": {},
+    "IfcWindowTypePartitioningEnum": {},
+    "IfcWorkCalendarTypeEnum": {},
+    "IfcWorkPlanTypeEnum": {},
+    "IfcWorkScheduleTypeEnum": {},
     "IfcComplexNumber": {
       "domain": null,
       "superclasses": [
@@ -16489,17 +18027,22 @@
       "superclasses": [],
       "fields": {}
     },
+    "IfcBendingParameterSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
     "IfcBooleanOperand": {
       "domain": null,
       "superclasses": [],
       "fields": {}
     },
-    "IfcCharacterStyleSelect": {
+    "IfcClassificationReferenceSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
     },
-    "IfcClassificationNotationSelect": {
+    "IfcClassificationSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
@@ -16507,8 +18050,7 @@
     "IfcColour": {
       "domain": null,
       "superclasses": [
-        "IfcFillStyleSelect",
-        "IfcSymbolStyleSelect"
+        "IfcFillStyleSelect"
       ],
       "fields": {}
     },
@@ -16517,7 +18059,7 @@
       "superclasses": [],
       "fields": {}
     },
-    "IfcConditionCriterionSelect": {
+    "IfcCoordinateReferenceSystemSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
@@ -16528,6 +18070,11 @@
       "fields": {}
     },
     "IfcCurveFontOrScaledCurveFontSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcCurveOnSurface": {
       "domain": null,
       "superclasses": [],
       "fields": {}
@@ -16544,14 +18091,7 @@
       ],
       "fields": {}
     },
-    "IfcDateTimeSelect": {
-      "domain": null,
-      "superclasses": [
-        "IfcMetricValueSelect"
-      ],
-      "fields": {}
-    },
-    "IfcDefinedSymbolSelect": {
+    "IfcDefinitionSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
@@ -16568,22 +18108,17 @@
       "superclasses": [],
       "fields": {}
     },
-    "IfcDraughtingCalloutElement": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {}
-    },
-    "IfcFillAreaStyleTileShapeSelect": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {}
-    },
     "IfcFillStyleSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
     },
     "IfcGeometricSetSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcGridPlacementDirectionSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
@@ -16625,12 +18160,22 @@
       "superclasses": [],
       "fields": {}
     },
-    "IfcObjectReferenceSelect": {
+    "IfcModulusOfRotationalSubgradeReactionSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
     },
-    "IfcOrientationSelect": {
+    "IfcModulusOfSubgradeReactionSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcModulusOfTranslationalSubgradeReactionSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcObjectReferenceSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
@@ -16641,6 +18186,41 @@
       "fields": {}
     },
     "IfcPresentationStyleSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcProcessSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcProductRepresentationSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcProductSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcPropertySetDefinitionSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcResourceObjectSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcResourceSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcRotationalStiffnessSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
@@ -16662,12 +18242,27 @@
       "superclasses": [],
       "fields": {}
     },
+    "IfcSolidOrShell": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcSpaceBoundarySelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
     "IfcSpecularHighlightSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
     },
     "IfcStructuralActivityAssignmentSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcStyleAssignmentSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
@@ -16682,17 +18277,17 @@
       "superclasses": [],
       "fields": {}
     },
-    "IfcSymbolStyleSelect": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {}
-    },
     "IfcTextFontSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
     },
-    "IfcTextStyleSelect": {
+    "IfcTimeOrRatioSelect": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcTranslationalStiffnessSelect": {
       "domain": null,
       "superclasses": [],
       "fields": {}
@@ -16709,7 +18304,10 @@
     },
     "IfcValue": {
       "domain": null,
-      "superclasses": [],
+      "superclasses": [
+        "IfcAppliedValueSelect",
+        "IfcMetricValueSelect"
+      ],
       "fields": {}
     },
     "IfcVectorOrDirection": {
@@ -16717,119 +18315,10 @@
       "superclasses": [],
       "fields": {}
     },
-    "GeometryInfo": {
+    "IfcWarpingStiffnessSelect": {
       "domain": null,
       "superclasses": [],
-      "fields": {
-        "minBounds": {
-          "type": "Vector3f",
-          "reference": true,
-          "many": false
-        },
-        "maxBounds": {
-          "type": "Vector3f",
-          "reference": true,
-          "many": false
-        },
-        "startVertex": {
-          "type": "int",
-          "reference": false,
-          "many": false
-        },
-        "startIndex": {
-          "type": "int",
-          "reference": false,
-          "many": false
-        },
-        "primitiveCount": {
-          "type": "int",
-          "reference": false,
-          "many": false
-        },
-        "data": {
-          "type": "GeometryData",
-          "reference": true,
-          "many": false
-        },
-        "instance": {
-          "type": "GeometryInstance",
-          "reference": true,
-          "many": false
-        },
-        "transformation": {
-          "type": "bytearray",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "Vector3f": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "x": {
-          "type": "EFloat",
-          "reference": false,
-          "many": false
-        },
-        "y": {
-          "type": "EFloat",
-          "reference": false,
-          "many": false
-        },
-        "z": {
-          "type": "EFloat",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "GeometryData": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "indices": {
-          "type": "bytearray",
-          "reference": false,
-          "many": false
-        },
-        "vertices": {
-          "type": "bytearray",
-          "reference": false,
-          "many": false
-        },
-        "normals": {
-          "type": "bytearray",
-          "reference": false,
-          "many": false
-        },
-        "materials": {
-          "type": "bytearray",
-          "reference": false,
-          "many": false
-        },
-        "materialIndices": {
-          "type": "bytearray",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "GeometryInstance": {
-      "domain": null,
-      "superclasses": [],
-      "fields": {
-        "data": {
-          "type": "GeometryData",
-          "reference": true,
-          "many": false
-        },
-        "transformation": {
-          "type": "bytearray",
-          "reference": false,
-          "many": false
-        }
-      }
+      "fields": {}
     }
   }
 }

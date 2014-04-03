@@ -77,7 +77,7 @@ public class GetAllProjectsSmallDatabaseAction extends BimDatabaseAction<List<SP
 		if (project.getState() == ObjectState.DELETED && !(authorization instanceof AdminAuthorization)) {
 			return;
 		}
-		list.add(createSmallProject(project, user));
+		list.add(createSmallProject(authorization, bimServer, project, user));
 		List<Project> subProjects = new ArrayList<Project>(project.getSubProjects());
 		Collections.sort(subProjects, new Comparator<Project>(){
 			@Override
@@ -89,12 +89,13 @@ public class GetAllProjectsSmallDatabaseAction extends BimDatabaseAction<List<SP
 		}
 	}
 	
-	private SProjectSmall createSmallProject(Project project, User user) {
+	public static SProjectSmall createSmallProject(Authorization authorization, BimServer bimServer, Project project, User user) {
 		SProjectSmall small = new SProjectSmall();
 		small.setName(project.getName());
 		small.setOid(project.getOid());
 		small.setLastRevisionId(project.getLastRevision() == null ? -1 : project.getLastRevision().getOid());
 		small.setNrRevisions(project.getRevisions().size());
+		small.setSchema(project.getSchema());
 		small.setNrSubProjects(project.getSubProjects().size());
 		small.setHasCheckinRights(authorization.hasRightsOnProject(user, project));
 		small.setState(bimServer.getSConverter().convertToSObject(project.getState()));

@@ -20,8 +20,8 @@ package org.bimserver.database.actions;
 import java.util.Date;
 
 import org.bimserver.BimServer;
+import org.bimserver.GeometryCache;
 import org.bimserver.GeometryGenerator;
-import org.bimserver.GeometryGenerator.GeometryCache;
 import org.bimserver.SummaryMap;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;

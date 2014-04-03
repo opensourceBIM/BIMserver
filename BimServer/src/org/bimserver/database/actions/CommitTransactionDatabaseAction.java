@@ -22,9 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.BimServer;
+import org.bimserver.GeometryCache;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.GeometryGenerator;
-import org.bimserver.GeometryGenerator.GeometryCache;
 import org.bimserver.SummaryMap;
 import org.bimserver.changes.Change;
 import org.bimserver.changes.CreateObjectChange;

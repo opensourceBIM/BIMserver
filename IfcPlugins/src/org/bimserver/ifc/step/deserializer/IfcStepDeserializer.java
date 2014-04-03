@@ -354,7 +354,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 			((IdEObjectImpl) object).setExpressId(recordNumber);
 			String realData = line.substring(indexOfFirstParen + 1, indexOfLastParen);
 			int lastIndex = 0;
-			EntityDefinition entityBN = getPackageMetaData().getSchema().getEntityBN(name);
+			EntityDefinition entityBN = getPackageMetaData().getSchemaDefinition().getEntityBN(name);
 			if (entityBN == null) {
 				throw new DeserializeException(lineNumber, "Unknown entity " + name);
 			}

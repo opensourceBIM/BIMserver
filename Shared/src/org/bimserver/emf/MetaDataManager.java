@@ -18,7 +18,6 @@ package org.bimserver.emf;
  *****************************************************************************/
 
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -32,19 +31,19 @@ public class MetaDataManager {
 	private final Map<String, PackageMetaData> ePackages = new TreeMap<String, PackageMetaData>();
 	private PluginManager pluginManager;
 
-	public MetaDataManager(Set<EPackage> ePackages, PluginManager pluginManager) {
-		this.pluginManager = pluginManager;
-		for (EPackage ePackage : ePackages) {
-			addEPackage(ePackage);
-		}
-	}
+//	public MetaDataManager(Set<EPackage> ePackages, PluginManager pluginManager) {
+//		this.pluginManager = pluginManager;
+//		for (EPackage ePackage : ePackages) {
+//			addEPackage(ePackage);
+//		}
+//	}
 	
 	public MetaDataManager(PluginManager pluginManager) {
 		this.pluginManager = pluginManager;
-		addEPackage(Ifc2x3tc1Package.eINSTANCE);
-		addEPackage(Ifc4Package.eINSTANCE);
-		addEPackage(StorePackage.eINSTANCE);
-		addEPackage(LogPackage.eINSTANCE);
+		addEPackage(Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1);
+		addEPackage(Ifc4Package.eINSTANCE, Schema.IFC4);
+		addEPackage(StorePackage.eINSTANCE, Schema.STORE);
+		addEPackage(LogPackage.eINSTANCE, Schema.LOG);
 	}
 	
 	public PackageMetaData getEPackage(String schema) {
@@ -52,8 +51,8 @@ public class MetaDataManager {
 		return ePackages.get(schema);
 	}
 
-	public void addEPackage(EPackage ePackage) {
-		ePackages.put(ePackage.getName(), new PackageMetaData(this, ePackage));
+	public void addEPackage(EPackage ePackage, Schema schema) {
+		ePackages.put(ePackage.getName(), new PackageMetaData(this, ePackage, schema));
 	}
 
 	public PluginManager getPluginManager() {
