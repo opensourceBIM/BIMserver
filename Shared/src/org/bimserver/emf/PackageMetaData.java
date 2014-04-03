@@ -34,10 +34,12 @@ public class PackageMetaData {
 	private final BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
 	private final Map<EStructuralFeature, Boolean> inverseCache = new HashMap<EStructuralFeature, Boolean>();
 	private EPackage ePackage;
-	private SchemaDefinition schema;
+	private SchemaDefinition schemaDefinition;
+	private Schema schema;
 
-	public PackageMetaData(MetaDataManager metaDataManager, EPackage ePackage) {
+	public PackageMetaData(MetaDataManager metaDataManager, EPackage ePackage, Schema schema) {
 		this.ePackage = ePackage;
+		this.schema = schema;
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			caseInsensitive.put(eClassifier.getName().toLowerCase(), eClassifier);
 			caseSensitive.put(eClassifier.getName(), eClassifier);
@@ -67,7 +69,7 @@ public class PackageMetaData {
 		initEClassClassMap();
 		try {
 			if (metaDataManager.getPluginManager() != null) {
-				schema = metaDataManager.getPluginManager().requireSchemaDefinition(ePackage.getName().toLowerCase());
+				schemaDefinition = metaDataManager.getPluginManager().requireSchemaDefinition(ePackage.getName().toLowerCase());
 			}
 		} catch (PluginException e) {
 		}
@@ -110,7 +112,7 @@ public class PackageMetaData {
 		if (inverseCache.containsKey(feature)) {
 			return inverseCache.get(feature);
 		}
-		EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(feature.getEContainingClass()));
+		EntityDefinition entityBN = schemaDefinition.getEntityBNNoCaseConvert(upperCases.get(feature.getEContainingClass()));
 		if (entityBN == null) {
 			return false;
 		}
@@ -190,7 +192,11 @@ public class PackageMetaData {
 		return ePackage.getEFactoryInstance().create(getEClass(clazz));
 	}
 
-	public SchemaDefinition getSchema() {
+	public SchemaDefinition getSchemaDefinition() {
+		return schemaDefinition;
+	}
+	
+	public Schema getSchema() {
 		return schema;
 	}
 }

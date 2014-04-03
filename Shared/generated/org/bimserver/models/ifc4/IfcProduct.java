@@ -16,6 +16,8 @@
  */
 package org.bimserver.models.ifc4;
 
+import org.bimserver.models.geometry.GeometryInfo;
+
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -29,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcProduct#getObjectPlacement <em>Object Placement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProduct#getRepresentation <em>Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProduct#getReferencedBy <em>Referenced By</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcProduct#getGeometry <em>Geometry</em>}</li>
  * </ul>
  * </p>
  *
@@ -183,5 +186,31 @@ public interface IfcProduct extends IfcObject, IfcProductSelect {
 	 * @generated
 	 */
 	boolean isSetReferencedBy();
+
+	/**
+	 * Returns the value of the '<em><b>Geometry</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Geometry</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Geometry</em>' reference.
+	 * @see #setGeometry(GeometryInfo)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProduct_Geometry()
+	 * @model
+	 * @generated
+	 */
+	GeometryInfo getGeometry();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcProduct#getGeometry <em>Geometry</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Geometry</em>' reference.
+	 * @see #getGeometry()
+	 * @generated
+	 */
+	void setGeometry(GeometryInfo value);
 
 } // IfcProduct

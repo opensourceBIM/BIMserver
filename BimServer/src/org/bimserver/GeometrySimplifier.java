@@ -8,15 +8,16 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.emf.IdEObject;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.eclipse.emf.ecore.EClass;
 
 public class GeometrySimplifier {
 
 	private final Map<EClass, Map<Integer, Set<GeometryData>>> data = new HashMap<EClass, Map<Integer, Set<GeometryData>>>();
 
-	public void add(IfcProduct ifcProduct, GeometryData geometryData) {
+	public void add(IdEObject ifcProduct, GeometryData geometryData) {
 		Map<Integer, Set<GeometryData>> ofType = data.get(ifcProduct.eClass());
 		if (ofType == null) {
 			ofType = new HashMap<>();
@@ -30,14 +31,15 @@ public class GeometrySimplifier {
 		set.add(geometryData);
 	}
 
-	public Set<GeometryData> getMatchingGeometry(IfcProduct ifcProduct, GeometryData geometryData) {
+	public Set<GeometryData> getMatchingGeometry(IdEObject ifcProduct, GeometryData geometryData) {
 		Set<GeometryData> result = new HashSet<>();
 		Map<Integer, Set<GeometryData>> ofType = data.get(ifcProduct.eClass());
 		if (ofType != null) {
 			Set<GeometryData> set = ofType.get(geometryData.getVertices().length);
 			if (set != null) {
 				for (GeometryData d : set) {
-					if (d != ifcProduct.getGeometry().getData()) {
+					GeometryInfo geom = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
+					if (d != geom.getData()) {
 						if (matchSameOrder(geometryData, d)) {
 							result.add(d);
 //					} else if (matchTotalDistance(geometryData, d)) {

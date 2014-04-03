@@ -28,12 +28,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.emf.IdEObject;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.AligningOutputStream;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -75,11 +76,13 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		Bounds modelBounds = new Bounds();
 		int nrObjects = 0;
 		
-		List<IfcProduct> products = getModel().getAllWithSubTypes(IfcProduct.class);
+		EClass productClass = getModel().getPackageMetaData().getEClass("IfcProduct");
 		
-		for (IfcProduct ifcProduct : products) {
-			GeometryInfo geometryInfo = ifcProduct.getGeometry();
-			if (geometryInfo != null) {
+		List<IdEObject> products = getModel().getAllWithSubTypes(productClass);
+		
+		for (IdEObject ifcProduct : products) {
+			GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
+			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 				Bounds objectBounds = new Bounds(new Float3(geometryInfo.getMinBounds().getX(), geometryInfo.getMinBounds().getY(), geometryInfo.getMinBounds()
 						.getZ()), new Float3(geometryInfo.getMaxBounds().getX(), geometryInfo.getMaxBounds().getY(), geometryInfo.getMaxBounds().getZ()));
 				modelBounds.integrate(objectBounds);
@@ -97,8 +100,8 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		
 		int counter = 0;
 		
-		for (IfcProduct ifcProduct : products) {
-			GeometryInfo geometryInfo = ifcProduct.getGeometry();
+		for (IdEObject ifcProduct : products) {
+			GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
 			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 				dataOutputStream.writeUTF(ifcProduct.eClass().getName());
 				dataOutputStream.writeLong(ifcProduct.getOid());

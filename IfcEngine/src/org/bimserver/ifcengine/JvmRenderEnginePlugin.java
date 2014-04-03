@@ -40,7 +40,7 @@ import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.schema.SchemaPlugin;
 
-public class TNOJvmRenderEnginePlugin implements RenderEnginePlugin {
+public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 
 	private PluginManager pluginManager;
 	private boolean initialized = false;
@@ -51,16 +51,11 @@ public class TNOJvmRenderEnginePlugin implements RenderEnginePlugin {
 	public String getVersion() {
 		return "1.0";
 	}
-
+	
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
 		try {
-			SchemaPlugin schemaPlugin = pluginManager.getFirstSchemaPlugin(true);
-			schemaFile = schemaPlugin.getExpressSchemaFile();
-			if (schemaFile == null) {
-				throw new PluginException("No schema file");
-			}
 			PluginContext pluginContext = pluginManager.getPluginContext(this);
 			String os = System.getProperty("os.name").toLowerCase();
 			String libraryName = "";
@@ -104,8 +99,17 @@ public class TNOJvmRenderEnginePlugin implements RenderEnginePlugin {
 	}
 
 	@Override
-	public RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration) throws RenderEngineException {
-		return new JvmIfcEngine(schemaFile, nativeFolder, pluginManager.getTempDir(), pluginManager.getCompleteClassPath());
+	public RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration, String schema) throws RenderEngineException {
+		try {
+			SchemaPlugin schemaPlugin = pluginManager.getFirstSchemaPlugin(schema, true);
+			schemaFile = schemaPlugin.getExpressSchemaFile();
+			if (schemaFile == null) {
+				throw new RenderEngineException("No schema file");
+			}
+			return new JvmIfcEngine(schemaFile, nativeFolder, pluginManager.getTempDir(), pluginManager.getCompleteClassPath());
+		} catch (PluginException e) {
+			throw new RenderEngineException(e);
+		}
 	}
 
 	@Override

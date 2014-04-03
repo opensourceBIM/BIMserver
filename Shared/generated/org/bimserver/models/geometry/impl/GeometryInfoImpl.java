@@ -14,33 +14,33 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.bimserver.models.ifc2x3tc1.impl;
+package org.bimserver.models.geometry.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.Vector3f;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.GeometryInstance;
+import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.geometry.Vector3f;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Geometry Info</b></em>'.
+ * An implementation of the model object '<em><b>Info</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getMinBounds <em>Min Bounds</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getMaxBounds <em>Max Bounds</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getStartVertex <em>Start Vertex</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getStartIndex <em>Start Index</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getPrimitiveCount <em>Primitive Count</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getData <em>Data</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getInstance <em>Instance</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInfoImpl#getTransformation <em>Transformation</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMinBounds <em>Min Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMaxBounds <em>Max Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getStartVertex <em>Start Vertex</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getStartIndex <em>Start Index</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getPrimitiveCount <em>Primitive Count</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getData <em>Data</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getInstance <em>Instance</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getTransformation <em>Transformation</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,7 +63,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Ifc2x3tc1Package.Literals.GEOMETRY_INFO;
+		return GeometryPackage.Literals.GEOMETRY_INFO;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public Vector3f getMinBounds() {
-		return (Vector3f) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__MIN_BOUNDS, true);
+		return (Vector3f) eGet(GeometryPackage.Literals.GEOMETRY_INFO__MIN_BOUNDS, true);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setMinBounds(Vector3f newMinBounds) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__MIN_BOUNDS, newMinBounds);
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__MIN_BOUNDS, newMinBounds);
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public Vector3f getMaxBounds() {
-		return (Vector3f) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__MAX_BOUNDS, true);
+		return (Vector3f) eGet(GeometryPackage.Literals.GEOMETRY_INFO__MAX_BOUNDS, true);
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setMaxBounds(Vector3f newMaxBounds) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__MAX_BOUNDS, newMaxBounds);
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__MAX_BOUNDS, newMaxBounds);
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public Integer getStartVertex() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_VERTEX, true);
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__START_VERTEX, true);
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setStartVertex(Integer newStartVertex) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_VERTEX, newStartVertex);
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__START_VERTEX, newStartVertex);
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public Integer getStartIndex() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_INDEX, true);
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__START_INDEX, true);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setStartIndex(Integer newStartIndex) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__START_INDEX, newStartIndex);
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__START_INDEX, newStartIndex);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public Integer getPrimitiveCount() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__PRIMITIVE_COUNT, true);
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__PRIMITIVE_COUNT, true);
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setPrimitiveCount(Integer newPrimitiveCount) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__PRIMITIVE_COUNT, newPrimitiveCount);
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__PRIMITIVE_COUNT, newPrimitiveCount);
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public GeometryData getData() {
-		return (GeometryData) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__DATA, true);
+		return (GeometryData) eGet(GeometryPackage.Literals.GEOMETRY_INFO__DATA, true);
 	}
 
 	/**
@@ -181,7 +181,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setData(GeometryData newData) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__DATA, newData);
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__DATA, newData);
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public GeometryInstance getInstance() {
-		return (GeometryInstance) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__INSTANCE, true);
+		return (GeometryInstance) eGet(GeometryPackage.Literals.GEOMETRY_INFO__INSTANCE, true);
 	}
 
 	/**
@@ -199,7 +199,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setInstance(GeometryInstance newInstance) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__INSTANCE, newInstance);
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__INSTANCE, newInstance);
 	}
 
 	/**
@@ -208,7 +208,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public byte[] getTransformation() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__TRANSFORMATION, true);
+		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_INFO__TRANSFORMATION, true);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * @generated
 	 */
 	public void setTransformation(byte[] newTransformation) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__TRANSFORMATION, newTransformation);
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__TRANSFORMATION, newTransformation);
 	}
 
 } //GeometryInfoImpl

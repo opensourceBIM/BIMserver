@@ -14,37 +14,37 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.bimserver.models.ifc2x3tc1.impl;
+package org.bimserver.models.geometry.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.geometry.Vector3f;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Geometry Instance</b></em>'.
+ * An implementation of the model object '<em><b>Vector3f</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getData <em>Data</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getTransformation <em>Transformation</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.Vector3fImpl#getX <em>X</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.Vector3fImpl#getY <em>Y</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.Vector3fImpl#getZ <em>Z</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInstance {
+public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GeometryInstanceImpl() {
+	protected Vector3fImpl() {
 		super();
 	}
 
@@ -55,7 +55,7 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE;
+		return GeometryPackage.Literals.VECTOR3F;
 	}
 
 	/**
@@ -73,8 +73,8 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GeometryData getData() {
-		return (GeometryData) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__DATA, true);
+	public float getX() {
+		return (Float) eGet(GeometryPackage.Literals.VECTOR3F__X, true);
 	}
 
 	/**
@@ -82,8 +82,8 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setData(GeometryData newData) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__DATA, newData);
+	public void setX(float newX) {
+		eSet(GeometryPackage.Literals.VECTOR3F__X, newX);
 	}
 
 	/**
@@ -91,8 +91,8 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getTransformation() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__TRANSFORMATION, true);
+	public float getY() {
+		return (Float) eGet(GeometryPackage.Literals.VECTOR3F__Y, true);
 	}
 
 	/**
@@ -100,8 +100,26 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTransformation(byte[] newTransformation) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__TRANSFORMATION, newTransformation);
+	public void setY(float newY) {
+		eSet(GeometryPackage.Literals.VECTOR3F__Y, newY);
 	}
 
-} //GeometryInstanceImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public float getZ() {
+		return (Float) eGet(GeometryPackage.Literals.VECTOR3F__Z, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setZ(float newZ) {
+		eSet(GeometryPackage.Literals.VECTOR3F__Z, newZ);
+	}
+
+} //Vector3fImpl

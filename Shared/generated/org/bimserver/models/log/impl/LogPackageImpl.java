@@ -20,6 +20,10 @@ import java.io.IOException;
 
 import java.net.URL;
 
+import org.bimserver.models.geometry.GeometryPackage;
+
+import org.bimserver.models.geometry.impl.GeometryPackageImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 
 import org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1PackageImpl;
@@ -336,6 +340,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 		isInited = true;
 
 		// Obtain or create and register interdependencies
+		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI) instanceof GeometryPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(GeometryPackage.eNS_URI) : GeometryPackage.eINSTANCE);
 		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI) instanceof Ifc2x3tc1PackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(Ifc2x3tc1Package.eNS_URI) : Ifc2x3tc1Package.eINSTANCE);
 		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI) instanceof Ifc4PackageImpl ? EPackage.Registry.INSTANCE
@@ -345,12 +351,14 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 
 		// Load packages
 		theLogPackage.loadPackage();
+		theGeometryPackage.loadPackage();
 		theIfc2x3tc1Package.loadPackage();
 		theIfc4Package.loadPackage();
 		theStorePackage.loadPackage();
 
 		// Fix loaded packages
 		theLogPackage.fixPackageContents();
+		theGeometryPackage.fixPackageContents();
 		theIfc2x3tc1Package.fixPackageContents();
 		theIfc4Package.fixPackageContents();
 		theStorePackage.fixPackageContents();

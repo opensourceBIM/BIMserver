@@ -20,6 +20,10 @@ import java.io.IOException;
 
 import java.net.URL;
 
+import org.bimserver.models.geometry.GeometryPackage;
+
+import org.bimserver.models.geometry.impl.GeometryPackageImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 
@@ -7014,6 +7018,8 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 		isInited = true;
 
 		// Obtain or create and register interdependencies
+		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI) instanceof GeometryPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(GeometryPackage.eNS_URI) : GeometryPackage.eINSTANCE);
 		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI) instanceof Ifc4PackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(Ifc4Package.eNS_URI) : Ifc4Package.eINSTANCE);
 		LogPackageImpl theLogPackage = (LogPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI) instanceof LogPackageImpl ? EPackage.Registry.INSTANCE
@@ -7023,12 +7029,14 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 
 		// Load packages
 		theIfc2x3tc1Package.loadPackage();
+		theGeometryPackage.loadPackage();
 		theIfc4Package.loadPackage();
 		theLogPackage.loadPackage();
 		theStorePackage.loadPackage();
 
 		// Fix loaded packages
 		theIfc2x3tc1Package.fixPackageContents();
+		theGeometryPackage.fixPackageContents();
 		theIfc4Package.fixPackageContents();
 		theLogPackage.fixPackageContents();
 		theStorePackage.fixPackageContents();

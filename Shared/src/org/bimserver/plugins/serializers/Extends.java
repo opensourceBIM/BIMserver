@@ -19,8 +19,8 @@ package org.bimserver.plugins.serializers;
 
 import java.util.Arrays;
 
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.Vector3f;
+import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.Vector3f;
 
 public class Extends {
 	public float[] min = { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };

@@ -14,27 +14,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.bimserver.models.ifc2x3tc1;
+package org.bimserver.models.geometry;
 
 import org.bimserver.emf.IdEObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Geometry Data</b></em>'.
+ * A representation of the model object '<em><b>Data</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryData#getIndices <em>Indices</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryData#getVertices <em>Vertices</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryData#getNormals <em>Normals</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryData#getMaterials <em>Materials</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryData#getMaterialIndices <em>Material Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getIndices <em>Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getVertices <em>Vertices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getNormals <em>Normals</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getMaterials <em>Materials</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getMaterialIndices <em>Material Indices</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryData()
+ * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
  * @model
  * @extends IdEObject
  * @generated
@@ -50,14 +50,14 @@ public interface GeometryData extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Indices</em>' attribute.
 	 * @see #setIndices(byte[])
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryData_Indices()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Indices()
 	 * @model
 	 * @generated
 	 */
 	byte[] getIndices();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryData#getIndices <em>Indices</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getIndices <em>Indices</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Indices</em>' attribute.
@@ -76,14 +76,14 @@ public interface GeometryData extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Vertices</em>' attribute.
 	 * @see #setVertices(byte[])
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryData_Vertices()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Vertices()
 	 * @model
 	 * @generated
 	 */
 	byte[] getVertices();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryData#getVertices <em>Vertices</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getVertices <em>Vertices</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Vertices</em>' attribute.
@@ -102,14 +102,14 @@ public interface GeometryData extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Normals</em>' attribute.
 	 * @see #setNormals(byte[])
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryData_Normals()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Normals()
 	 * @model
 	 * @generated
 	 */
 	byte[] getNormals();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryData#getNormals <em>Normals</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getNormals <em>Normals</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Normals</em>' attribute.
@@ -128,14 +128,14 @@ public interface GeometryData extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Materials</em>' attribute.
 	 * @see #setMaterials(byte[])
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryData_Materials()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Materials()
 	 * @model
 	 * @generated
 	 */
 	byte[] getMaterials();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryData#getMaterials <em>Materials</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getMaterials <em>Materials</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Materials</em>' attribute.
@@ -154,14 +154,14 @@ public interface GeometryData extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Material Indices</em>' attribute.
 	 * @see #setMaterialIndices(byte[])
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryData_MaterialIndices()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_MaterialIndices()
 	 * @model
 	 * @generated
 	 */
 	byte[] getMaterialIndices();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryData#getMaterialIndices <em>Material Indices</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getMaterialIndices <em>Material Indices</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Material Indices</em>' attribute.

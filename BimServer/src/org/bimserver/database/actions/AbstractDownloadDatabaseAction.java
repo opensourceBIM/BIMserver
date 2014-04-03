@@ -18,12 +18,12 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.GeometryGenerator;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.GeometryGenerator;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;

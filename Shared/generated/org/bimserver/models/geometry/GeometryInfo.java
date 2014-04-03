@@ -14,30 +14,30 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.bimserver.models.ifc2x3tc1;
+package org.bimserver.models.geometry;
 
 import org.bimserver.emf.IdEObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Geometry Info</b></em>'.
+ * A representation of the model object '<em><b>Info</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getMinBounds <em>Min Bounds</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getMaxBounds <em>Max Bounds</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getStartVertex <em>Start Vertex</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getStartIndex <em>Start Index</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getPrimitiveCount <em>Primitive Count</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getData <em>Data</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getInstance <em>Instance</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getTransformation <em>Transformation</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getMinBounds <em>Min Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getMaxBounds <em>Max Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getStartVertex <em>Start Vertex</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getStartIndex <em>Start Index</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getPrimitiveCount <em>Primitive Count</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getData <em>Data</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getInstance <em>Instance</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getTransformation <em>Transformation</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInfo()
+ * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo()
  * @model
  * @extends IdEObject
  * @generated
@@ -53,14 +53,14 @@ public interface GeometryInfo extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Min Bounds</em>' reference.
 	 * @see #setMinBounds(Vector3f)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInfo_MinBounds()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_MinBounds()
 	 * @model
 	 * @generated
 	 */
 	Vector3f getMinBounds();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getMinBounds <em>Min Bounds</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getMinBounds <em>Min Bounds</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Min Bounds</em>' reference.
@@ -79,14 +79,14 @@ public interface GeometryInfo extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Max Bounds</em>' reference.
 	 * @see #setMaxBounds(Vector3f)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInfo_MaxBounds()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_MaxBounds()
 	 * @model
 	 * @generated
 	 */
 	Vector3f getMaxBounds();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getMaxBounds <em>Max Bounds</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getMaxBounds <em>Max Bounds</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Max Bounds</em>' reference.
@@ -105,14 +105,14 @@ public interface GeometryInfo extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Vertex</em>' attribute.
 	 * @see #setStartVertex(Integer)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInfo_StartVertex()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_StartVertex()
 	 * @model
 	 * @generated
 	 */
 	Integer getStartVertex();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getStartVertex <em>Start Vertex</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getStartVertex <em>Start Vertex</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Start Vertex</em>' attribute.
@@ -131,14 +131,14 @@ public interface GeometryInfo extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Index</em>' attribute.
 	 * @see #setStartIndex(Integer)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInfo_StartIndex()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_StartIndex()
 	 * @model
 	 * @generated
 	 */
 	Integer getStartIndex();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getStartIndex <em>Start Index</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getStartIndex <em>Start Index</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Start Index</em>' attribute.
@@ -157,14 +157,14 @@ public interface GeometryInfo extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Primitive Count</em>' attribute.
 	 * @see #setPrimitiveCount(Integer)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInfo_PrimitiveCount()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_PrimitiveCount()
 	 * @model
 	 * @generated
 	 */
 	Integer getPrimitiveCount();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getPrimitiveCount <em>Primitive Count</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getPrimitiveCount <em>Primitive Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Primitive Count</em>' attribute.
@@ -183,14 +183,14 @@ public interface GeometryInfo extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data</em>' reference.
 	 * @see #setData(GeometryData)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInfo_Data()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_Data()
 	 * @model
 	 * @generated
 	 */
 	GeometryData getData();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getData <em>Data</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getData <em>Data</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Data</em>' reference.
@@ -209,14 +209,14 @@ public interface GeometryInfo extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Instance</em>' reference.
 	 * @see #setInstance(GeometryInstance)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInfo_Instance()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_Instance()
 	 * @model
 	 * @generated
 	 */
 	GeometryInstance getInstance();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getInstance <em>Instance</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getInstance <em>Instance</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Instance</em>' reference.
@@ -235,14 +235,14 @@ public interface GeometryInfo extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transformation</em>' attribute.
 	 * @see #setTransformation(byte[])
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInfo_Transformation()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_Transformation()
 	 * @model
 	 * @generated
 	 */
 	byte[] getTransformation();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo#getTransformation <em>Transformation</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getTransformation <em>Transformation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Transformation</em>' attribute.

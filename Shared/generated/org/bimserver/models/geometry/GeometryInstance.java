@@ -14,24 +14,24 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.bimserver.models.ifc2x3tc1;
+package org.bimserver.models.geometry;
 
 import org.bimserver.emf.IdEObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Geometry Instance</b></em>'.
+ * A representation of the model object '<em><b>Instance</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getData <em>Data</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getTransformation <em>Transformation</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInstance#getData <em>Data</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInstance#getTransformation <em>Transformation</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance()
+ * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInstance()
  * @model
  * @extends IdEObject
  * @generated
@@ -47,14 +47,14 @@ public interface GeometryInstance extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data</em>' reference.
 	 * @see #setData(GeometryData)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_Data()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInstance_Data()
 	 * @model
 	 * @generated
 	 */
 	GeometryData getData();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getData <em>Data</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInstance#getData <em>Data</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Data</em>' reference.
@@ -73,14 +73,14 @@ public interface GeometryInstance extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transformation</em>' attribute.
 	 * @see #setTransformation(byte[])
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_Transformation()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInstance_Transformation()
 	 * @model
 	 * @generated
 	 */
 	byte[] getTransformation();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getTransformation <em>Transformation</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInstance#getTransformation <em>Transformation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Transformation</em>' attribute.

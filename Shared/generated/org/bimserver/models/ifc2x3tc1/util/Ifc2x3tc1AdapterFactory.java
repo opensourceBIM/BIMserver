@@ -4166,26 +4166,6 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseGeometryInfo(GeometryInfo object) {
-			return createGeometryInfoAdapter();
-		}
-
-		@Override
-		public Adapter caseVector3f(Vector3f object) {
-			return createVector3fAdapter();
-		}
-
-		@Override
-		public Adapter caseGeometryData(GeometryData object) {
-			return createGeometryDataAdapter();
-		}
-
-		@Override
-		public Adapter caseGeometryInstance(GeometryInstance object) {
-			return createGeometryInstanceAdapter();
-		}
-
-		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}

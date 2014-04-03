@@ -14,27 +14,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.bimserver.models.ifc2x3tc1.impl;
+package org.bimserver.models.geometry.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Geometry Data</b></em>'.
+ * An implementation of the model object '<em><b>Data</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryDataImpl#getIndices <em>Indices</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryDataImpl#getVertices <em>Vertices</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryDataImpl#getNormals <em>Normals</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryDataImpl#getMaterials <em>Materials</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryDataImpl#getMaterialIndices <em>Material Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getIndices <em>Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getVertices <em>Vertices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getNormals <em>Normals</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMaterials <em>Materials</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMaterialIndices <em>Material Indices</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,7 +57,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Ifc2x3tc1Package.Literals.GEOMETRY_DATA;
+		return GeometryPackage.Literals.GEOMETRY_DATA;
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getIndices() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__INDICES, true);
+		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__INDICES, true);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public void setIndices(byte[] newIndices) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__INDICES, newIndices);
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__INDICES, newIndices);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getVertices() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__VERTICES, true);
+		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES, true);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public void setVertices(byte[] newVertices) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__VERTICES, newVertices);
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES, newVertices);
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getNormals() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__NORMALS, true);
+		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS, true);
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public void setNormals(byte[] newNormals) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__NORMALS, newNormals);
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS, newNormals);
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getMaterials() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIALS, true);
+		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__MATERIALS, true);
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public void setMaterials(byte[] newMaterials) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIALS, newMaterials);
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__MATERIALS, newMaterials);
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public byte[] getMaterialIndices() {
-		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIAL_INDICES, true);
+		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__MATERIAL_INDICES, true);
 	}
 
 	/**
@@ -157,7 +157,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * @generated
 	 */
 	public void setMaterialIndices(byte[] newMaterialIndices) {
-		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_DATA__MATERIAL_INDICES, newMaterialIndices);
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__MATERIAL_INDICES, newMaterialIndices);
 	}
 
 } //GeometryDataImpl

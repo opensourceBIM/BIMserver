@@ -16,6 +16,7 @@ import jxl.write.biff.RowsExceededException;
 
 import org.bimserver.emf.MetaDataException;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.Schema;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.shared.IfcDoc;
 import org.bimserver.tools.psetschema.ClassDefinition;
@@ -62,7 +63,7 @@ public class ExpressToExcel {
 		    times.setWrap(false);
 
 		    MetaDataManager metaDataManager = new MetaDataManager(null);
-		    metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE);
+		    metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1);
 		    
 			workbook = Workbook.createWorkbook(file, wbSettings);
 			int i=0;

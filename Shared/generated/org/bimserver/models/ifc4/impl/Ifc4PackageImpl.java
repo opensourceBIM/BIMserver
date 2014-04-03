@@ -20,6 +20,10 @@ import java.io.IOException;
 
 import java.net.URL;
 
+import org.bimserver.models.geometry.GeometryPackage;
+
+import org.bimserver.models.geometry.impl.GeometryPackageImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 
 import org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1PackageImpl;
@@ -8218,6 +8222,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 		isInited = true;
 
 		// Obtain or create and register interdependencies
+		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI) instanceof GeometryPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(GeometryPackage.eNS_URI) : GeometryPackage.eINSTANCE);
 		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI) instanceof Ifc2x3tc1PackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(Ifc2x3tc1Package.eNS_URI) : Ifc2x3tc1Package.eINSTANCE);
 		LogPackageImpl theLogPackage = (LogPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI) instanceof LogPackageImpl ? EPackage.Registry.INSTANCE
@@ -8227,12 +8233,14 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 
 		// Load packages
 		theIfc4Package.loadPackage();
+		theGeometryPackage.loadPackage();
 		theIfc2x3tc1Package.loadPackage();
 		theLogPackage.loadPackage();
 		theStorePackage.loadPackage();
 
 		// Fix loaded packages
 		theIfc4Package.fixPackageContents();
+		theGeometryPackage.fixPackageContents();
 		theIfc2x3tc1Package.fixPackageContents();
 		theLogPackage.fixPackageContents();
 		theStorePackage.fixPackageContents();
@@ -22979,6 +22987,15 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EReference getIfcProduct_ReferencedBy() {
 		return (EReference) getIfcProduct().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIfcProduct_Geometry() {
+		return (EReference) getIfcProduct().getEStructuralFeatures().get(3);
 	}
 
 	/**

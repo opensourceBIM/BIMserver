@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SExtendedDataAddedToProject.class, SCheckoutRelated.class, SExtendedDataAddedToRevision.class, SNewObjectIDMUploaded.class, SRevisionRelated.class, SUserRelated.class, SSettingsSaved.class, SGeoTagUpdated.class, SDatabaseCreated.class, SServerStarted.class, SRevisionBranched.class, SRemoteServiceCalled.class, SProjectRelated.class, SDownload.class})
+@XmlSeeAlso(value={SRemoteServiceCalled.class, SUserRelated.class, SExtendedDataAddedToRevision.class, SServerStarted.class, SExtendedDataAddedToProject.class, SGeoTagUpdated.class, SRevisionBranched.class, SSettingsSaved.class, SRevisionRelated.class, SDownload.class, SProjectRelated.class, SNewObjectIDMUploaded.class, SDatabaseCreated.class, SCheckoutRelated.class})
 public class SLogAction implements SDataBase
 {
 	private long oid = -1;

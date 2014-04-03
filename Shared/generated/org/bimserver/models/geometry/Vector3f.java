@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.bimserver.models.ifc2x3tc1;
+package org.bimserver.models.geometry;
 
 import org.bimserver.emf.IdEObject;
 
@@ -26,13 +26,13 @@ import org.bimserver.emf.IdEObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.Vector3f#getX <em>X</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.Vector3f#getY <em>Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.Vector3f#getZ <em>Z</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.Vector3f#getX <em>X</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.Vector3f#getY <em>Y</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.Vector3f#getZ <em>Z</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getVector3f()
+ * @see org.bimserver.models.geometry.GeometryPackage#getVector3f()
  * @model
  * @extends IdEObject
  * @generated
@@ -48,14 +48,14 @@ public interface Vector3f extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>X</em>' attribute.
 	 * @see #setX(float)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getVector3f_X()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getVector3f_X()
 	 * @model
 	 * @generated
 	 */
 	float getX();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.Vector3f#getX <em>X</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.Vector3f#getX <em>X</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>X</em>' attribute.
@@ -74,14 +74,14 @@ public interface Vector3f extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Y</em>' attribute.
 	 * @see #setY(float)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getVector3f_Y()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getVector3f_Y()
 	 * @model
 	 * @generated
 	 */
 	float getY();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.Vector3f#getY <em>Y</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.Vector3f#getY <em>Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Y</em>' attribute.
@@ -100,14 +100,14 @@ public interface Vector3f extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Z</em>' attribute.
 	 * @see #setZ(float)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getVector3f_Z()
+	 * @see org.bimserver.models.geometry.GeometryPackage#getVector3f_Z()
 	 * @model
 	 * @generated
 	 */
 	float getZ();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.Vector3f#getZ <em>Z</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.Vector3f#getZ <em>Z</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Z</em>' attribute.

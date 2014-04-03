@@ -3298,6 +3298,9 @@
         eType="#//IfcRelAssignsToProduct" unsettable="true">
       <eAnnotations source="inverse"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="ecore:EClass geometry#//GeometryInfo">
+      <eAnnotations source="hidden"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcProductDefinitionShape" eSuperTypes="#//IfcProductRepresentation #//IfcProductRepresentationSelect">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ShapeOfProduct" upperBound="-1"

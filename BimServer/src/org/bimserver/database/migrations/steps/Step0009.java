@@ -26,7 +26,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.GeometryData;
+import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
