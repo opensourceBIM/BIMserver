@@ -160,16 +160,16 @@ public class GeometryGenerator {
 							for (IfcProduct ifcProduct : products) {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
 								RenderEngineInstanceVisualisationProperties visualisationProperties = renderEngineInstance.getVisualisationProperties();
-								if (visualisationProperties.getPrimitiveCount() > 0) {
+								if (visualisationProperties.getIndices() != null && visualisationProperties.getIndices().length > 0) {
 									GeometryInfo geometryInfo = null;
 									if (store) {
 										geometryInfo = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryInfo(), pid, rid);
 									} else {
 										geometryInfo = Ifc2x3tc1Factory.eINSTANCE.createGeometryInfo();
 									}
-									geometryInfo.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
-									geometryInfo.setStartIndex(visualisationProperties.getStartIndex());
-									geometryInfo.setStartVertex(visualisationProperties.getStartVertex());
+//									geometryInfo.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
+//									geometryInfo.setStartIndex(visualisationProperties.getStartIndex());
+//									geometryInfo.setStartVertex(visualisationProperties.getStartVertex());
 									
 //									ByteBuffer verticesBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
 //									ByteBuffer normalsBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
@@ -263,6 +263,9 @@ public class GeometryGenerator {
 	}
 	
 	private byte[] floatArrayToByteArray(float[] vertices) {
+		if (vertices == null) {
+			return null;
+		}
 		ByteBuffer buffer = ByteBuffer.wrap(new byte[vertices.length * 4]);
 		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		FloatBuffer asFloatBuffer = buffer.asFloatBuffer();
@@ -273,6 +276,9 @@ public class GeometryGenerator {
 	}
 
 	private byte[] intArrayToByteArray(int[] indices) {
+		if (indices == null) {
+			return null;
+		}
 		ByteBuffer buffer = ByteBuffer.wrap(new byte[indices.length * 4]);
 		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		IntBuffer asIntBuffer = buffer.asIntBuffer();

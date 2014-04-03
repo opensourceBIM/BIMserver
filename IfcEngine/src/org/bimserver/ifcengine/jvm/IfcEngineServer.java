@@ -187,7 +187,7 @@ public class IfcEngineServer extends Thread {
 				case GET_VISUALISATION_PROPERTIES: {
 					int modelId = in.readInt();
 					int instanceId = in.readInt();
-					RenderEngineInstanceVisualisationProperties instanceInModelling = ifcEngine.getInstanceInModelling(pointers.get(modelId), pointers.get(instanceId), 1);
+					RenderEngineInstanceVisualisationPropertiesInternal instanceInModelling = ifcEngine.getInstanceInModelling(pointers.get(modelId), pointers.get(instanceId), 1);
 					out.writeInt(instanceInModelling.getStartVertex());
 					out.writeInt(instanceInModelling.getStartIndex());
 					out.writeInt(instanceInModelling.getPrimitiveCount());
