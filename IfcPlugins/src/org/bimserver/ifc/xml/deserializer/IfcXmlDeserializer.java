@@ -45,7 +45,7 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
-public class IfcXmlDeserializer extends EmfDeserializer {
+public abstract class IfcXmlDeserializer extends EmfDeserializer {
 
 	private IfcModel model;
 

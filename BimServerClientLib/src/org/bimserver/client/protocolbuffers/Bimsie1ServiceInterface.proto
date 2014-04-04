@@ -482,6 +482,7 @@ message GetSubProjectsResponse {
 
 message GetSuggestedDeserializerForExtensionRequest {
 	optional string extension = 1;
+	optional int64 poid = 2;
 }
 
 message GetSuggestedDeserializerForExtensionResponse {

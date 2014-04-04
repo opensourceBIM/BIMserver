@@ -18,24 +18,16 @@ package org.bimserver.plugins.renderengine;
  *****************************************************************************/
 
 public class RenderEngineInstanceVisualisationProperties {
-	private final float[] vertices;
-	private final int[] indices;
-	private final float[] normals;
+	private final int startIndex;
+	private final int startVertex;
+	private final int nrPrimitives;
 
-	public RenderEngineInstanceVisualisationProperties(int[] indices, float[] vertices, float[] normals) {
-		this.indices = indices;
-		this.vertices = vertices;
-		this.normals = normals;
+	public RenderEngineInstanceVisualisationProperties(int startIndex, int startVertex, int nrPrimitives) {
+		this.startIndex = startIndex;
+		this.startVertex = startVertex;
+		this.nrPrimitives = nrPrimitives;
 	}
 	
-	public float[] getVertices() {
-		return vertices;
-	}
-
-	public int[] getIndices() {
-		return indices;
-	}
-
 	public float[] getMaterials() {
 		return null;
 	}
@@ -43,8 +35,16 @@ public class RenderEngineInstanceVisualisationProperties {
 	public int[] getMaterialIndices() {
 		return null;
 	}
-
-	public float[] getNormals() {
-		return normals;
+	
+	public int getNrPrimitives() {
+		return nrPrimitives;
+	}
+	
+	public int getStartIndex() {
+		return startIndex;
+	}
+	
+	public int getStartVertex() {
+		return startVertex;
 	}
 }

@@ -671,11 +671,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void getSuggestedDeserializerForExtension(final java.lang.String extension, final GetSuggestedDeserializerForExtensionCallback callback) {
+	public void getSuggestedDeserializerForExtension(final java.lang.String extension, final java.lang.Long poid, final GetSuggestedDeserializerForExtensionCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getSuggestedDeserializerForExtension(extension));
+					callback.success(syncService.getSuggestedDeserializerForExtension(extension, poid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

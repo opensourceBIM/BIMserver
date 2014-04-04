@@ -200,7 +200,8 @@ public class LodToExcel2 {
 					
 					for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 						RenderEngineInstance instance = ifcEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
-						int nrTriangles = instance.getVisualisationProperties().getIndices().length / 3;
+						// TODO
+						int nrTriangles = 0; //instance.getVisualisationProperties().getIndices().length / 3;
 						Bounds bounds = getBounds(geometry, instance);
 						System.out.println("Product bounds: " + bounds);
 						totalBounds.integrate(bounds);

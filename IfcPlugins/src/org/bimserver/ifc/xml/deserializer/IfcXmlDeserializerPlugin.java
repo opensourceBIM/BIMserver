@@ -28,19 +28,9 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 
-public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
+public abstract class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 
 	private boolean initialized = false;
-
-	@Override
-	public EmfDeserializer createDeserializer(PluginConfiguration pluginConfiguration) {
-		return new IfcXmlDeserializer();
-	}
-
-	@Override
-	public String getDescription() {
-		return "IfcXmlDeserializer";
-	}
 
 	@Override
 	public String getVersion() {
@@ -64,17 +54,7 @@ public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 	}
 
 	@Override
-	public String getDefaultName() {
-		return "IfcXmlDeserializer";
-	}
-
-	@Override
 	public ObjectDefinition getSettingsDefinition() {
 		return null;
-	}
-
-	@Override
-	public Set<Schema> getSupportedSchemas() {
-		return Collections.singleton(Schema.IFC2X3TC1);
 	}
 }

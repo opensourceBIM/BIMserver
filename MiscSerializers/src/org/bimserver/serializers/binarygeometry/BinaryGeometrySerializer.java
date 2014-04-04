@@ -114,7 +114,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				bytesTotal += vertices.length;
 				byte geometryType = concreteGeometrySent.contains(geometryData.getOid()) ? GEOMETRY_TYPE_INSTANCE : GEOMETRY_TYPE_TRIANGLES;
 				dataOutputStream.write(geometryType);
-
+				
 				if (outputStream instanceof AligningOutputStream) {
 					((AligningOutputStream)outputStream).align4();
 				} else {
@@ -125,17 +125,17 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				}
 				
 				dataOutputStream.write(geometryInfo.getTransformation());
-
+				
 				if (concreteGeometrySent.contains(geometryData.getOid())) {
 					dataOutputStream.writeLong(geometryData.getOid());
 					bytesSaved += vertices.length;
 				} else {
 					ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
 					dataOutputStream.writeLong(geometryData.getOid());
-
+					
 					Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
 					objectBounds.writeTo(dataOutputStream);
-
+					
 					ByteBuffer indicesBuffer = ByteBuffer.wrap(geometryData.getIndices());
 					dataOutputStream.writeInt(indicesBuffer.capacity() / 4);
 					dataOutputStream.write(indicesBuffer.array());
@@ -146,7 +146,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
 					dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
 					dataOutputStream.write(normalsBuffer.array());
-
+					
 					if (geometryData.getMaterialIndices() != null) {
 						ByteBuffer materialIndexByteBuffer = ByteBuffer.wrap(geometryData.getMaterialIndices());
 						materialIndexByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
@@ -191,10 +191,10 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					
 					concreteGeometrySent.add(geometryData.getOid());
 				}
-			}
-			counter++;
-			if (counter % 12 == 0) {
-				dataOutputStream.flush();
+				counter++;
+				if (counter % 12 == 0) {
+					dataOutputStream.flush();
+				}
 			}
 		}
 		dataOutputStream.flush();

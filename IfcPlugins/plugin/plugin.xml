@@ -25,7 +25,11 @@
 
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.xml.deserializer.IfcXmlDeserializerPlugin</implementationClass>
+		<implementationClass>org.bimserver.ifc.xml.deserializer.Ifc4XmlDeserializerPlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.xml.deserializer.Ifc2x3tc1XmlDeserializerPlugin</implementationClass>
 	</PluginImplementation>
 
 	<PluginImplementation>

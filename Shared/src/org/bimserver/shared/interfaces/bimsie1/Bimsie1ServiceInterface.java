@@ -317,7 +317,8 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getSuggestedDeserializerForExtension")
 	SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(
-		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension) throws ServerException, UserException;
+		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension,
+		@WebParam(name = "poid", partName = "getSuggestedDeserializerForExtension.poid") Long poid) throws ServerException, UserException;
 	
 	/**
 	 * @param roid ObjectID of the Revision
