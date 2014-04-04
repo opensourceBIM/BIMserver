@@ -50,6 +50,7 @@ import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
 import org.bimserver.database.actions.UndeleteProjectDatabaseAction;
+import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDownloadResult;
@@ -325,26 +326,29 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 	}
 	
 	@Override
-	public SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(String extension) throws ServerException, UserException {
+	public SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(String extension, Long poid) throws ServerException, UserException {
 		// Token authenticated users should also be able to call this method
 		try {
 			requireAuthenticationAndRunningServer();
-			for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true)) {
-				if (deserializerPlugin.canHandleExtension(extension)) {
-					DatabaseSession session = getBimServer().getDatabase().createSession();
-					try {
+			DatabaseSession session = getBimServer().getDatabase().createSession();
+			try {
+				Project project = session.get(poid, Query.getDefault());
+				for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true)) {
+					if (deserializerPlugin.canHandleExtension(extension)) {
 						UserSettings userSettings = getUserSettings(session);
 						for (DeserializerPluginConfiguration deserializer : userSettings.getDeserializers()) {
 							if (deserializer.getPluginDescriptor().getPluginClassName().equals(deserializerPlugin.getClass().getName())) {
-								return getBimServer().getSConverter().convertToSObject(deserializer);
+								if (deserializerPlugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
+									return getBimServer().getSConverter().convertToSObject(deserializer);
+								}
 							}
 						}
-					} catch (BimserverDatabaseException e) {
-						LOGGER.error("", e);
-					} finally {
-						session.close();
 					}
 				}
+			} catch (BimserverDatabaseException e) {
+				LOGGER.error("", e);
+			} finally {
+				session.close();
 			}
 		} catch (Exception e) {
 			handleException(e);
@@ -488,14 +492,8 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 		try {
 			GetProjectByPoidDatabaseAction action = new GetProjectByPoidDatabaseAction(session, getInternalAccessMethod(), poid, getAuthorization());
 			Project project = session.executeAndCommitAction(action);
-			SProjectSmall small = new SProjectSmall();
-			small.setName(project.getName());
-			small.setOid(project.getOid());
-			small.setLastRevisionId(project.getLastRevision() == null ? -1 : project.getLastRevision().getOid());
-			small.setState(getBimServer().getSConverter().convertToSObject(project.getState()));
-			small.setParentId(project.getParent() == null ? -1 : project.getParent().getOid());
-			small.setNrSubProjects(project.getSubProjects().size());
-			return small;
+			User user = session.get(getAuthorization().getUoid(), Query.getDefault());
+			return GetAllProjectsSmallDatabaseAction.createSmallProject(getAuthorization(), getBimServer(), project, user);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

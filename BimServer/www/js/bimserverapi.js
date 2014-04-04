@@ -365,10 +365,7 @@ function BimServerApi(baseUrl, notifier) {
 	this.unregisterProgressHandler = function(topicId, handler, callback){
 		othis.unregister(handler);
 		othis.call("Bimsie1NotificationRegistryInterface", "unregisterProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
-			if (callback != null) {
-				callback();
-			}
-		});
+		}).done(callback);
 	};
 
 	this.unregister = function(listener) {
@@ -405,6 +402,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.multiCall = function(requests, callback, errorCallback, showBusy, showDone, showError) {
+		var promise = new Promise();
 		var request = null;
 		if (requests.length == 1) {
 			request = requests[0];
@@ -421,6 +419,7 @@ function BimServerApi(baseUrl, notifier) {
 				requests: requestObjects
 			};
 		} else if (requests.length == 0) {
+			promise.fire();
 			callback();
 		}
 
@@ -516,6 +515,7 @@ function BimServerApi(baseUrl, notifier) {
 						callback(data.responses);
 					}
 				}
+				promise.fire();
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				if (textStatus == "abort") {
@@ -535,8 +535,10 @@ function BimServerApi(baseUrl, notifier) {
 					result.ok = false;
 					callback(result);
 				}
+				promise.fire();
 			}
 		});
+		return promise;
 	};
 
 	this.getModel = function(poid, roid, schema, deep, callback) {
@@ -552,19 +554,19 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.callWithNoIndication = function(interfaceName, methodName, data, callback) {
-		othis.call(interfaceName, methodName, data, callback, null, false, false, false);
+		return othis.call(interfaceName, methodName, data, callback, null, false, false, false);
 	};
 
 	this.callWithFullIndication = function(interfaceName, methodName, data, callback) {
-		othis.call(interfaceName, methodName, data, callback, null, true, true, true);
+		return othis.call(interfaceName, methodName, data, callback, null, true, true, true);
 	};
 
 	this.callWithUserErrorIndication = function(action, data, callback) {
-		othis.call(interfaceName, methodName, data, callback, null, false, false, true);
+		return othis.call(interfaceName, methodName, data, callback, null, false, false, true);
 	};
 
 	this.callWithUserErrorAndDoneIndication = function(action, data, callback) {
-		othis.call(interfaceName, methodName, data, callback, null, false, true, true);
+		return othis.call(interfaceName, methodName, data, callback, null, false, true, true);
 	};
 
 	this.isA = function(schema, typeSubject, typeName){
@@ -602,7 +604,7 @@ function BimServerApi(baseUrl, notifier) {
 		var showDone = typeof showDone !== 'undefined' ? showDone : false;
 		var showError = typeof showError !== 'undefined' ? showError : true;
 
-		othis.multiCall([[
+		return othis.multiCall([[
 		    interfaceName,
 		    methodName,
 			data

@@ -45,7 +45,8 @@ public enum Command {
 	CLOSE, 
 	GET_INSTANCE_FROM_EXPRESSID,
 	SET_FORMAT,
-	GET_TRANSFORMATION_MATRIX;
+	GET_TRANSFORMATION_MATRIX, 
+	INITIALIZE_MODELLING_INSTANCE;
 
 	private static final Map<Byte, Command> map = initMap();
 	private byte id;

@@ -22,11 +22,11 @@ public class Ifc4StepDeserializerPlugin extends IfcStepDeserializerPlugin {
 	
 	@Override
 	public String getDescription() {
-		return "IfcStepDeserializer Ifc4";
+		return "Ifc4 Step Deserializer";
 	}
 
 	@Override
 	public String getDefaultName() {
-		return "IfcStepDeserializer Ifc4";
+		return "Ifc4 Step Deserializer";
 	}
 }

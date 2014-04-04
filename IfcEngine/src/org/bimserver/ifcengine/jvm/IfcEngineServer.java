@@ -131,6 +131,14 @@ public class IfcEngineServer extends Thread {
 					out.writeInt(surfaceProperties.getVerticesCount());
 				}
 					break;
+				case INITIALIZE_MODELLING_INSTANCE: {
+					int modelId = in.readInt();
+					int instanceId = in.readInt();
+					SurfaceProperties surfaceProperties = ifcEngine.initializeModellingInstance(pointers.get(modelId), 0.0, pointers.get(instanceId));
+					out.writeInt(surfaceProperties.getIndicesCount());
+					out.writeInt(surfaceProperties.getVerticesCount());
+				}
+				break;
 				case SET_POSTPROCESSING: {
 					int modelId = in.readInt();
 					ifcEngine.setPostProcessing(pointers.get(modelId), in.readBoolean() ? 1 : 0);

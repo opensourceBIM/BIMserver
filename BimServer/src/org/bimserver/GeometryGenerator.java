@@ -53,6 +53,7 @@ import org.bimserver.plugins.renderengine.IndexFormat;
 import org.bimserver.plugins.renderengine.Precision;
 import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineGeometry;
 import org.bimserver.plugins.renderengine.RenderEngineInstance;
 import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
@@ -119,11 +120,11 @@ public class GeometryGenerator {
 						settings.setGenerateWireFrame(false);
 						renderEngineModel.setSettings(settings);
 						try {
-							RenderEngineSurfaceProperties initializeModelling = renderEngineModel.initializeModelling();
-							if (initializeModelling.getIndicesCount() == 0) {
-								LOGGER.info("Got no indices from engine");
-							}
-							renderEngineModel.finalizeModelling(initializeModelling);
+//							RenderEngineSurfaceProperties initializeModelling = renderEngineModel.initializeModelling();
+//							if (initializeModelling.getIndicesCount() == 0) {
+//								LOGGER.info("Got no indices from engine");
+//							}
+//							renderEngineModel.finalizeModelling(initializeModelling);
 							EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
 							List<IdEObject> products = model.getAllWithSubTypes(productClass);
 
@@ -132,49 +133,52 @@ public class GeometryGenerator {
 							EStructuralFeature geometryFeature = productClass.getEStructuralFeature("geometry");
 							for (IdEObject ifcProduct : products) {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
-								RenderEngineInstanceVisualisationProperties visualisationProperties = renderEngineInstance.getVisualisationProperties();
-								if (visualisationProperties.getIndices() != null && visualisationProperties.getIndices().length > 0) {
-									GeometryInfo geometryInfo = null;
-									if (store) {
-										geometryInfo = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryInfo(), pid, rid);
-									} else {
-										geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
-									}
-
-									geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-									geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
-									
-									GeometryData geometryData = null;
-									if (store) {
-										geometryData = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryData(), pid, rid);
-									} else {
-										geometryData = GeometryFactory.eINSTANCE.createGeometryData();
-									}
-
-									geometryData.setIndices(intArrayToByteArray(visualisationProperties.getIndices()));
-									geometryData.setVertices(floatArrayToByteArray(visualisationProperties.getVertices()));
-									geometryData.setMaterialIndices(intArrayToByteArray(visualisationProperties.getMaterialIndices()));
-									geometryData.setNormals(floatArrayToByteArray(visualisationProperties.getNormals()));
-									geometryData.setMaterials(floatArrayToByteArray(visualisationProperties.getMaterials()));
-									
-									for (int i=0; i<visualisationProperties.getIndices().length; i++) {
-										processExtends(geometryInfo, visualisationProperties.getVertices(), visualisationProperties.getIndices()[i] * 3);
-									}
-									
-									geometryInfo.setData(geometryData);
-									
+								RenderEngineSurfaceProperties initializeModelling = renderEngineInstance.initializeModelling();
+								if (initializeModelling.getIndicesCount() > 0) {
+									RenderEngineGeometry geometry = renderEngineModel.finalizeModelling(initializeModelling);
+									if (geometry.getIndices() != null && geometry.getIndices().length > 0) {
+										GeometryInfo geometryInfo = null;
+										if (store) {
+											geometryInfo = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryInfo(), pid, rid);
+										} else {
+											geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
+										}
+										
+										geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+										geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
+										
+										GeometryData geometryData = null;
+										if (store) {
+											geometryData = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryData(), pid, rid);
+										} else {
+											geometryData = GeometryFactory.eINSTANCE.createGeometryData();
+										}
+										
+										geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
+										geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
+										geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
+										geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
+										geometryData.setMaterials(floatArrayToByteArray(geometry.getMaterials()));
+										
+										for (int i=0; i<geometry.getIndices().length; i++) {
+											processExtends(geometryInfo, geometry.getVertices(), geometry.getIndices()[i] * 3);
+										}
+										
+										geometryInfo.setData(geometryData);
+										
 //									if (geometryCache != null) {
 //										geometryCache.put(ifcProduct.getExpressId(), new GeometryCacheEntry(verticesBuffer, normalsBuffer, geometryInfo));
 //									}
-									float[] identityMatrix = new float[16];
-									Matrix.setIdentityM(identityMatrix, 0);
-									setTransformationMatrix(geometryInfo, identityMatrix);
-									if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
-										geometrySimplifier.add(ifcProduct, geometryData);
-									}
-									ifcProduct.eSet(productClass.getEStructuralFeature("geometry"), geometryInfo);
-									if (store) {
-										databaseSession.store(ifcProduct, pid, rid);
+										float[] identityMatrix = new float[16];
+										Matrix.setIdentityM(identityMatrix, 0);
+										setTransformationMatrix(geometryInfo, identityMatrix);
+										if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
+											geometrySimplifier.add(ifcProduct, geometryData);
+										}
+										ifcProduct.eSet(productClass.getEStructuralFeature("geometry"), geometryInfo);
+										if (store) {
+											databaseSession.store(ifcProduct, pid, rid);
+										}
 									}
 								}
 							}

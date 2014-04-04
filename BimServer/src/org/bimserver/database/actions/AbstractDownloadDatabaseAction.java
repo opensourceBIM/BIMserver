@@ -22,9 +22,9 @@ import org.bimserver.GeometryGeneratingException;
 import org.bimserver.GeometryGenerator;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.geometry.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -33,6 +33,7 @@ import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.webservices.authorization.Authorization;
+import org.eclipse.emf.ecore.EClass;
 
 public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseAction<T> {
 
@@ -53,8 +54,9 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)
 				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), revision, false, null);
 			} else {
-				for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-					GeometryInfo geometryInfo = ifcProduct.getGeometry();
+				EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
+				for (IdEObject ifcProduct : model.getAllWithSubTypes(productClass)) {
+					GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(productClass.getEStructuralFeature("geometry"));
 					if (geometryInfo != null) {
 						geometryInfo.loadExplicit();
 						geometryInfo.getData().loadExplicit();
