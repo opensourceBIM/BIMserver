@@ -17,6 +17,8 @@ package org.bimserver.serializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Set;
+
 import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
@@ -81,7 +83,7 @@ public class JsonSerializerPlugin extends AbstractSerializerPlugin {
 	}
 
 	@Override
-	public Schema[] getSupportedSchemas() {
-		return new Schema[]{Schema.IFC2X3TC1, Schema.IFC4};
+	public Set<Schema> getSupportedSchemas() {
+		return Schema.asSet(Schema.IFC2X3TC1, Schema.IFC4);
 	}
 }

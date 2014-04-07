@@ -17,6 +17,8 @@ package org.bimserver.plugins.serializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Set;
+
 import org.bimserver.emf.Schema;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
@@ -39,5 +41,5 @@ public interface SerializerPlugin extends Plugin {
 	/**
 	 * @return The schema supported by this serializer
 	 */
-	Schema[] getSupportedSchemas();
+	Set<Schema> getSupportedSchemas();
 }

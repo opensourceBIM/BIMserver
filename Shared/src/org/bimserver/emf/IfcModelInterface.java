@@ -77,7 +77,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	 * Retrieve the size of the model
 	 * @return The amount of objects in the model
 	 */
-	long size();
+	int size();
 	
 	/**
 	 * Tests if this model has a certain GUID

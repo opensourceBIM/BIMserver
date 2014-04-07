@@ -306,7 +306,7 @@ public class IfcModel implements IfcModelInterface {
 		return nameIndex.get(eClass).get(name);
 	}
 
-	public long size() {
+	public int size() {
 		return objects.size() + unidentifiedObjects.size();
 	}
 

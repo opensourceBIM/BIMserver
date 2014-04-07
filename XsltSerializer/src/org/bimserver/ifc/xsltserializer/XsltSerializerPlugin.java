@@ -17,6 +17,8 @@ package org.bimserver.ifc.xsltserializer;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Set;
+
 import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
@@ -81,7 +83,7 @@ public class XsltSerializerPlugin extends AbstractSerializerPlugin {
 	}
 
 	@Override
-	public Schema[] getSupportedSchemas() {
-		return new Schema[]{Schema.IFC2X3TC1};
+	public Set<Schema> getSupportedSchemas() {
+		return Schema.IFC2X3TC1.toSet();
 	}
 }

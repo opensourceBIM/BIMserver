@@ -114,7 +114,7 @@ import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.bimserver.schemaconverter.SchemaConverter;
+import org.bimserver.schemaconverter.SchemaConverterFactory;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PluginInterface;
@@ -763,8 +763,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 				Iterator<Schema> iterator = uniqueSchemas.iterator();
 				Schema schema1 = iterator.next();
 				Schema schema2 = iterator.next();
-				SchemaConverter converter1 = getBimServer().getSchemaConverterManager().getSchemaConverter(schema1, schema2);
-				SchemaConverter converter2 = getBimServer().getSchemaConverterManager().getSchemaConverter(schema2, schema1);
+				SchemaConverterFactory converter1 = getBimServer().getSchemaConverterManager().getSchemaConverterFactory(schema1, schema2);
+				SchemaConverterFactory converter2 = getBimServer().getSchemaConverterManager().getSchemaConverterFactory(schema2, schema1);
 				if (converter1 != null) {
 					schemaOr.add(schema1);
 				}

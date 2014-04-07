@@ -5,24 +5,30 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.Schema;
 
 public class SchemaConverterManager {
-	private final Map<SchemaKey, SchemaConverter> converters = new HashMap<SchemaKey, SchemaConverter>();
+	private final Map<SchemaKey, SchemaConverterFactory> converters = new HashMap<SchemaKey, SchemaConverterFactory>();
 	
-	public void registerConverter(SchemaConverter schemaConverter) {
-		converters.put(new SchemaKey(schemaConverter.getSourceSchema(), schemaConverter.getTargetSchema()), schemaConverter);
+	public void registerConverter(SchemaConverterFactory schemaConverterFactory) {
+		converters.put(new SchemaKey(schemaConverterFactory.getSourceSchema(), schemaConverterFactory.getTargetSchema()), schemaConverterFactory);
 	}
 	
-	public SchemaConverter getSchemaConverter(Schema source, Schema target) {
+	public SchemaConverterFactory getSchemaConverterFactory(Schema source, Schema target) {
 		return converters.get(new SchemaKey(source, target));
+	}
+
+	public SchemaConverter getSchemaConverter(Schema source, Schema target, IfcModelInterface sourceModel, IfcModelInterface targetModel) {
+		SchemaConverterFactory factory = getSchemaConverterFactory(source, target);
+		return factory.create(sourceModel, targetModel);
 	}
 
 	public Set<Schema> getSchemaTargets(Schema source) {
 		Set<Schema> result = new HashSet<>();
-		for (SchemaConverter schemaConverter : converters.values()) {
-			if (schemaConverter.getSourceSchema() == source) {
-				result.add(schemaConverter.getTargetSchema());
+		for (SchemaConverterFactory factory : converters.values()) {
+			if (factory.getSourceSchema() == source) {
+				result.add(factory.getTargetSchema());
 			}
 		}
 		return result;

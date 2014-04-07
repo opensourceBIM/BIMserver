@@ -20,11 +20,15 @@ package org.bimserver.serializers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.Schema;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
@@ -47,10 +51,14 @@ import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.ProjectInfo;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
+import org.bimserver.schemaconverter.SchemaConverter;
+import org.bimserver.schemaconverter.SchemaConverterException;
+import org.bimserver.schemaconverter.SchemaConverterFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,11 +66,13 @@ public class SerializerFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SerializerFactory.class);
 	private PluginManager pluginManager;
 	private BimDatabase bimDatabase;
+	private BimServer bimServer;
 
 	public SerializerFactory() {
 	}
 
-	public void init(PluginManager pluginManager, BimDatabase bimDatabase) {
+	public void init(BimServer bimServer, PluginManager pluginManager, BimDatabase bimDatabase) {
+		this.bimServer = bimServer;
 		this.pluginManager = pluginManager;
 		this.bimDatabase = bimDatabase;
 	}
@@ -93,15 +103,37 @@ public class SerializerFactory {
 		return descriptors;
 	}
 	
-	public org.bimserver.plugins.serializers.Serializer create(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
+	public Serializer create(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
 			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
 			if (serializerPluginConfiguration != null) {
 				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+				if (!serializerPlugin.getSupportedSchemas().contains(model.getPackageMetaData().getSchema())) {
+					SchemaConverterFactory converterFactory = null;
+					for (Schema schema : serializerPlugin.getSupportedSchemas()) {
+						converterFactory = bimServer.getSchemaConverterManager().getSchemaConverterFactory(model.getPackageMetaData().getSchema(), schema);
+						if (converterFactory != null) {
+							break;
+						}
+					}
+					if (converterFactory == null) {
+						throw new SerializerException("No usable converter found for schema " + model.getPackageMetaData().getSchema() + " for serializer " + serializerPlugin.getClass().getName());
+					}
+					try {
+						IfcModel targetModel = new IfcModel(bimServer.getMetaDataManager().getEPackage(converterFactory.getTargetSchema().getEPackageName()), model.size());
+						SchemaConverter converter = converterFactory.create(model, targetModel);
+						converter.convert();
+						model = targetModel;
+					} catch (SchemaConverterException e) {
+						throw new SerializerException(e);
+					} catch (IfcModelInterfaceException e) {
+						throw new SerializerException(e);
+					}
+				}
 				if (serializerPlugin != null) {
 					ObjectType settings = serializerPluginConfiguration.getSettings();
-					org.bimserver.plugins.serializers.Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration(settings));
+					Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration(settings));
 					if (serializer != null) {
 						try {
 							ProjectInfo projectInfo = new ProjectInfo();
@@ -118,7 +150,7 @@ public class SerializerFactory {
 								projectInfo.setY(52.3700);
 							}
 							projectInfo.setAuthorName(username);
-							serializer.init(model, projectInfo, pluginManager, renderEnginePlugin, bimDatabase.getMetaDataManager().getEPackage(project.getSchema()), true);
+							serializer.init(model, projectInfo, pluginManager, renderEnginePlugin, model.getPackageMetaData(), true);
 							return serializer;
 						} catch (NullPointerException e) {
 							LOGGER.error("", e);
