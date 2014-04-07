@@ -72,6 +72,7 @@ public class ModelHelper {
 			return converted.get(original);
 		}
 		IdEObject newObject = (IdEObject) objectFactory.create(original.eClass());
+		boolean sameSchema = original.eClass().getEPackage() == newObject.eClass().getEPackage();
 		if (keepOriginalOids) {
 			((IdEObjectImpl)newObject).setOid(original.getOid());
 		} else {
@@ -89,6 +90,9 @@ public class ModelHelper {
 		}
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
 			if (objectIDM == null ||  objectIDM.shouldFollowReference(originalEClass, original.eClass(), eStructuralFeature)) {
+				if (!sameSchema && newObject.eClass().getEStructuralFeature(eStructuralFeature.getName()) == null) {
+					continue;
+				}
 				Object get = original.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Double) {

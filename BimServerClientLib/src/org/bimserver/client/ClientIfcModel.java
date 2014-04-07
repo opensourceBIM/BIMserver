@@ -494,7 +494,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	@Override
-	public long size() {
+	public int size() {
 		try {
 			loadDeep();
 		} catch (Exception e) {

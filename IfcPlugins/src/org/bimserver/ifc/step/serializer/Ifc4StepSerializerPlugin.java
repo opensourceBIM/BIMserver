@@ -1,5 +1,7 @@
 package org.bimserver.ifc.step.serializer;
 
+import java.util.Set;
+
 import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.serializers.Serializer;
@@ -16,7 +18,7 @@ public class Ifc4StepSerializerPlugin extends IfcStepSerializerPlugin {
 	}
 
 	@Override
-	public Schema[] getSupportedSchemas() {
-		return new Schema[]{Schema.IFC4};
+	public Set<Schema> getSupportedSchemas() {
+		return Schema.IFC4.toSet();
 	}
 }

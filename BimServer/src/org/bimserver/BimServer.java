@@ -117,6 +117,9 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.schemaconverter.Ifc2x3tc1ToIfc4Converter;
+import org.bimserver.schemaconverter.Ifc2x3tc1ToIfc4SchemaConverterFactory;
+import org.bimserver.schemaconverter.Ifc4ToIfc2x3tc1SchemaConverterFactory;
+import org.bimserver.schemaconverter.Ifc4ToIfcIfc2x3tc1Converter;
 import org.bimserver.schemaconverter.SchemaConverterManager;
 import org.bimserver.serializers.SerializerFactory;
 import org.bimserver.shared.BimServerClientFactory;
@@ -392,7 +395,8 @@ public class BimServer {
 
 			jsonHandler = new JsonHandler(this);
 			
-			schemaConverterManager.registerConverter(new Ifc2x3tc1ToIfc4Converter());
+			schemaConverterManager.registerConverter(new Ifc2x3tc1ToIfc4SchemaConverterFactory());
+			schemaConverterManager.registerConverter(new Ifc4ToIfc2x3tc1SchemaConverterFactory());
 			
 			serializerFactory = new SerializerFactory();
 			deserializerFactory = new DeserializerFactory();
@@ -656,7 +660,7 @@ public class BimServer {
 		serverSettingsCache.init();
 		notificationsManager.init();
 
-		getSerializerFactory().init(pluginManager, bimDatabase);
+		getSerializerFactory().init(this, pluginManager, bimDatabase);
 		getDeserializerFactory().init(pluginManager, bimDatabase);
 		try {
 			DatabaseSession session = bimDatabase.createSession();
