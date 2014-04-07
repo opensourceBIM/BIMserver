@@ -70,16 +70,21 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		long start = System.nanoTime();
 
 		DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+		// Identifier for clients to determine if this server is even serving binary geometry
 		dataOutputStream.writeUTF("BGS");
+		
+		// Version of the current format being outputted, should be changed for every (released) change in protocol 
 		dataOutputStream.writeByte(FORMAT_VERSION);
 		
 		Bounds modelBounds = new Bounds();
 		int nrObjects = 0;
 		
+		// All access to EClass is being done generically to support multiple IFC schema's with 1 serializer
 		EClass productClass = getModel().getPackageMetaData().getEClass("IfcProduct");
 		
 		List<IdEObject> products = getModel().getAllWithSubTypes(productClass);
 		
+		// First iteration, to determine number of objects with geometry and calculate model bounds
 		for (IdEObject ifcProduct : products) {
 			GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
 			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
@@ -94,12 +99,15 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		int bytesSaved = 0;
 		int bytesTotal = 0;
 		
+		// Keeping track of geometry already sent, this can be used for instancing of reused geometry
 		Set<Long> concreteGeometrySent = new HashSet<>();
 		
+		// Flushing here so the client can show progressbar etc...
 		dataOutputStream.flush();
 		
 		int counter = 0;
 		
+		// Second iteration actually writing the geometry
 		for (IdEObject ifcProduct : products) {
 			GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
 			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
@@ -115,6 +123,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				byte geometryType = concreteGeometrySent.contains(geometryData.getOid()) ? GEOMETRY_TYPE_INSTANCE : GEOMETRY_TYPE_TRIANGLES;
 				dataOutputStream.write(geometryType);
 				
+				// This is an ugly hack to align the bytes, but for 2 different kinds of output (this first one is the websocket implementation)
 				if (outputStream instanceof AligningOutputStream) {
 					((AligningOutputStream)outputStream).align4();
 				} else {
@@ -127,6 +136,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				dataOutputStream.write(geometryInfo.getTransformation());
 				
 				if (concreteGeometrySent.contains(geometryData.getOid())) {
+					// Reused geometry, only send the id of the reused geometry data
 					dataOutputStream.writeLong(geometryData.getOid());
 					bytesSaved += vertices.length;
 				} else {
@@ -147,6 +157,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
 					dataOutputStream.write(normalsBuffer.array());
 					
+					// Only when materials are used we send them
 					if (geometryData.getMaterialIndices() != null) {
 						ByteBuffer materialIndexByteBuffer = ByteBuffer.wrap(geometryData.getMaterialIndices());
 						materialIndexByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
@@ -158,34 +169,13 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 						for (int i=0; i<materialIndicesBuffer.capacity(); i++) {
 							int materialIndex = materialIndicesBuffer.get(i);
 							if (materialIndex == -1) {
-								ByteBuffer test = ByteBuffer.wrap(new byte[16]);
-								test.order(ByteOrder.LITTLE_ENDIAN);
-								FloatBuffer fl = test.asFloatBuffer();
-								fl.put(1f);
-								fl.put(0f);
-								fl.put(0f);
-								fl.put(1f);
-								for (int j=0; j<3; j++) {
-									dataOutputStream.write(test.array());
-								}
+								sendMaterial(dataOutputStream, 0, 1, 0, 1);
 							} else {
-								float r = materialsBuffer.get(materialIndex);
-								float g = materialsBuffer.get(materialIndex + 1);
-								float b = materialsBuffer.get(materialIndex + 2);
-								float a = materialsBuffer.get(materialIndex + 3);
-								ByteBuffer test = ByteBuffer.wrap(new byte[16]);
-								test.order(ByteOrder.LITTLE_ENDIAN);
-								FloatBuffer fl = test.asFloatBuffer();
-								fl.put(r);
-								fl.put(g);
-								fl.put(b);
-								fl.put(a);
-								for (int j=0; j<3; j++) {
-									dataOutputStream.write(test.array());
-								}
+								sendMaterial(dataOutputStream, materialsBuffer.get(materialIndex), materialsBuffer.get(materialIndex + 1), materialsBuffer.get(materialIndex + 2), materialsBuffer.get(materialIndex + 3));
 							}
 						}
 					} else {
+						// No materials used
 						dataOutputStream.writeInt(0);
 					}
 					
@@ -193,6 +183,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				}
 				counter++;
 				if (counter % 12 == 0) {
+					// Flushing in batches, this is to limit the amount of WebSocket messages
 					dataOutputStream.flush();
 				}
 			}
@@ -203,5 +194,18 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		}
 		long end = System.nanoTime();
 		LOGGER.debug(((end - start) / 1000000) + " ms");
+	}
+
+	private void sendMaterial(DataOutputStream dataOutputStream, float r, float g, float b, float a) throws IOException {
+		ByteBuffer test = ByteBuffer.wrap(new byte[16]);
+		test.order(ByteOrder.LITTLE_ENDIAN);
+		FloatBuffer fl = test.asFloatBuffer();
+		fl.put(r);
+		fl.put(g);
+		fl.put(b);
+		fl.put(a);
+		for (int j=0; j<3; j++) {
+			dataOutputStream.write(test.array());
+		}
 	}
 }
