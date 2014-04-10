@@ -24,8 +24,9 @@ package org.bimserver.ifcengine;
  *****************************************************************************/
 
 import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineGeometry;
 import org.bimserver.plugins.renderengine.RenderEngineInstance;
-import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.renderengine.RenderEngineSurfaceProperties;
 
 public class JvmIfcEngineInstance implements RenderEngineInstance {
 	private final JvmIfcEngine failSafeIfcEngine;
@@ -38,45 +39,6 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 		this.failSafeIfcEngine = failSafeIfcEngine;
 		this.modelId = modelId;
 		this.instanceId = instanceId;
-	}
-
-	public RenderEngineInstanceVisualisationProperties getVisualisationProperties() throws RenderEngineException {
-		synchronized (failSafeIfcEngine) {
-			failSafeIfcEngine.writeCommand(Command.GET_VISUALISATION_PROPERTIES);
-			failSafeIfcEngine.writeInt(modelId);
-			failSafeIfcEngine.writeInt(instanceId);
-			failSafeIfcEngine.flush();
-			
-			int startVertex = failSafeIfcEngine.readInt();
-			int startIndex = failSafeIfcEngine.readInt();
-			int primitiveCount = failSafeIfcEngine.readInt();
-			
-			int[] indices = new int[primitiveCount * 3];
-			float[] vertices = new float[primitiveCount * 3 * 3];
-			float[] normals = new float[primitiveCount * 3 * 3];
-
-			int highestVertexIndexUsed = 0;
-			for (int i = startIndex; i < startIndex + primitiveCount * 3; i++) {
-				int vertex = jvmIfcEngineModel.indices[i] - startVertex;
-				indices[i - startIndex] = vertex;
-				vertices[vertex * 3] = jvmIfcEngineModel.vertices[jvmIfcEngineModel.indices[i] * 3];
-				vertices[vertex * 3 + 1] = jvmIfcEngineModel.vertices[jvmIfcEngineModel.indices[i] * 3 + 1];
-				vertices[vertex * 3 + 2] = jvmIfcEngineModel.vertices[jvmIfcEngineModel.indices[i] * 3 + 2];
-				normals[vertex * 3] = jvmIfcEngineModel.normals[jvmIfcEngineModel.indices[i] * 3];
-				normals[vertex * 3 + 1] = jvmIfcEngineModel.normals[jvmIfcEngineModel.indices[i] * 3 + 1];
-				normals[vertex * 3 + 2] = jvmIfcEngineModel.normals[jvmIfcEngineModel.indices[i] * 3 + 2];
-				if (vertex * 3 + 3 > highestVertexIndexUsed) {
-					highestVertexIndexUsed = vertex * 3 + 3;
-				}
-			}
-			if (highestVertexIndexUsed < primitiveCount * 3 * 3) {
-				// Reuse of vertices, lets trim the arrays
-				vertices = trim(vertices, highestVertexIndexUsed);
-				normals = trim(normals, highestVertexIndexUsed);
-			}
-			
-			return new RenderEngineInstanceVisualisationProperties(indices, vertices, normals, null, null);
-		}
 	}
 
 	private float[] trim(float[] vertices, int size) {
@@ -97,6 +59,38 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 				result[i] = failSafeIfcEngine.readFloat();
 			}
 			return result;
+		}
+	}
+
+	@Override
+	public RenderEngineGeometry generateGeometry() throws RenderEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.INITIALIZE_MODELLING_INSTANCE);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(instanceId);
+			failSafeIfcEngine.flush();
+			int noIndices = failSafeIfcEngine.readInt();
+			int noVertices = failSafeIfcEngine.readInt();
+			RenderEngineSurfaceProperties renderEngineSurfaceProperties = new RenderEngineSurfaceProperties(modelId, noVertices, noIndices, 0.0);
+
+			failSafeIfcEngine.writeCommand(Command.GET_VISUALISATION_PROPERTIES);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(instanceId);
+			failSafeIfcEngine.flush();
+			
+			int[] indices = new int[renderEngineSurfaceProperties.getIndicesCount()];
+			float[] vertices = new float[renderEngineSurfaceProperties.getVerticesCount() * 3];
+			float[] normals = new float[renderEngineSurfaceProperties.getVerticesCount() * 3];
+			for (int i = 0; i < indices.length; i++) {
+				indices[i] = failSafeIfcEngine.readInt();
+			}
+			for (int i = 0; i < vertices.length; i++) {
+				vertices[i] = failSafeIfcEngine.readFloat();
+			}
+			for (int i = 0; i < normals.length; i++) {
+				normals[i] = failSafeIfcEngine.readFloat();
+			}
+			return new RenderEngineGeometry(indices, vertices, normals, null, null);
 		}
 	}
 }

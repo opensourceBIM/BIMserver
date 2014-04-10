@@ -53,11 +53,9 @@ import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEngineGeometry;
 import org.bimserver.plugins.renderengine.RenderEngineInstance;
-import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
-import org.bimserver.plugins.renderengine.RenderEngineSurfaceProperties;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.slf4j.Logger;
@@ -149,35 +147,22 @@ public class GeometryGenerator {
 						settings.setGenerateWireFrame(false);
 						renderEngineModel.setSettings(settings);
 						try {
-							RenderEngineSurfaceProperties initializeModelling = renderEngineModel.initializeModelling();
-							RenderEngineGeometry renderEngineGeometry = renderEngineModel.finalizeModelling(initializeModelling);
+							renderEngineModel.generateGeneralGeometry();
+							
 							List<IfcProduct> products = model.getAllWithSubTypes(IfcProduct.class);
 
 							GeometrySimplifier geometrySimplifier = new GeometrySimplifier();
 							
 							for (IfcProduct ifcProduct : products) {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
-								RenderEngineInstanceVisualisationProperties visualisationProperties = renderEngineInstance.getVisualisationProperties();
-								if (visualisationProperties.getIndices() != null && visualisationProperties.getIndices().length > 0) {
+								RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
+								if (geometry != null && geometry.getNrIndices() > 0) {
 									GeometryInfo geometryInfo = null;
 									if (store) {
 										geometryInfo = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryInfo(), pid, rid);
 									} else {
 										geometryInfo = Ifc2x3tc1Factory.eINSTANCE.createGeometryInfo();
 									}
-//									geometryInfo.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
-//									geometryInfo.setStartIndex(visualisationProperties.getStartIndex());
-//									geometryInfo.setStartVertex(visualisationProperties.getStartVertex());
-									
-//									ByteBuffer verticesBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
-//									ByteBuffer normalsBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
-//									ByteBuffer materialsBuffer = ByteBuffer.allocate(visualisationProperties.getNrMaterials() * 4 * 4);
-//									ByteBuffer materialIndicesBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 4);
-//									
-//									verticesBuffer.order(ByteOrder.LITTLE_ENDIAN);
-//									normalsBuffer.order(ByteOrder.LITTLE_ENDIAN);
-//									materialIndicesBuffer.order(ByteOrder.LITTLE_ENDIAN);
-//									materialsBuffer.order(ByteOrder.LITTLE_ENDIAN);
 
 									geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
 									geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
@@ -189,20 +174,20 @@ public class GeometryGenerator {
 										geometryData = Ifc2x3tc1Factory.eINSTANCE.createGeometryData();
 									}
 
-									geometryData.setIndices(intArrayToByteArray(visualisationProperties.getIndices()));
-									geometryData.setVertices(floatArrayToByteArray(visualisationProperties.getVertices()));
-									geometryData.setMaterialIndices(intArrayToByteArray(visualisationProperties.getMaterialIndices()));
-									geometryData.setNormals(floatArrayToByteArray(visualisationProperties.getNormals()));
+									geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
+									geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
+									geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
+									geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
 									
-									if (visualisationProperties.getMaterialIndices() != null) {
-										float[] vertex_colors = new float[visualisationProperties.getVertices().length / 3 * 4];
-										for (int i = 0; i < visualisationProperties.getMaterialIndices().length; ++i) {
-											int c = visualisationProperties.getMaterialIndices()[i];
+									if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
+										float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
+										for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
+											int c = geometry.getMaterialIndices()[i];
 											for (int j = 0; j < 3; ++j) {
-												int k = visualisationProperties.getIndices()[i * 3 + j];
+												int k = geometry.getIndices()[i * 3 + j];
 												if (c > -1) {
 													for (int l = 0; l < 4; ++l) {
-														vertex_colors[4 * k + l] = visualisationProperties.getMaterials()[4 * c + l];
+														vertex_colors[4 * k + l] = geometry.getMaterials()[4 * c + l];
 													}
 												} else {
 													vertex_colors[4 * k] = 0;
@@ -215,30 +200,11 @@ public class GeometryGenerator {
 										geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
 									}
 									
-//									for (int i=visualisationProperties.getMaterialStartIndex(); i<visualisationProperties.getMaterialStartIndex() + visualisationProperties.getPrimitiveCount(); i++) {
-//										int index = renderEngineGeometry.getMaterialIndex(i);
-//										materialIndicesBuffer.putInt(index);
-//									}
-//
-//									for (int i=0; i<visualisationProperties.getNrMaterials(); i++) {
-//										materialsBuffer.putFloat(renderEngineGeometry.getMaterial(visualisationProperties.getMaterialStart() + i));
-//										materialsBuffer.putFloat(renderEngineGeometry.getMaterial(visualisationProperties.getMaterialStart() + i + 1));
-//										materialsBuffer.putFloat(renderEngineGeometry.getMaterial(visualisationProperties.getMaterialStart() + i + 2));
-//										materialsBuffer.putFloat(renderEngineGeometry.getMaterial(visualisationProperties.getMaterialStart() + i + 3));
-//									}
-									
-									for (int i=0; i<visualisationProperties.getIndices().length; i++) {
-										processExtends(geometryInfo, visualisationProperties.getVertices(), visualisationProperties.getIndices()[i] * 3);
+									for (int i=0; i<geometry.getIndices().length; i++) {
+										processExtends(geometryInfo, geometry.getVertices(), geometry.getIndices()[i] * 3);
 									}
 									
 									geometryInfo.setData(geometryData);
-//									geometryData.setVertices(verticesBuffer.array());
-//									geometryData.setNormals(normalsBuffer.array());
-//									geometryData.setMaterialIndices(materialIndicesBuffer.array());
-//									geometryData.setMaterials(materialsBuffer.array());
-//									if (geometryCache != null) {
-//										geometryCache.put(ifcProduct.getExpressId(), new GeometryCacheEntry(verticesBuffer, normalsBuffer, geometryInfo));
-//									}
 									
 									float[] tranformationMatrix = new float[16];
 									if (renderEngineInstance.getTransformationMatrix() != null) {

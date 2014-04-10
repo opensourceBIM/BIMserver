@@ -39,7 +39,6 @@ import org.bimserver.ifcengine.Command;
 import org.bimserver.ifcengine.jvm.IfcEngine.SurfaceProperties;
 import org.bimserver.plugins.renderengine.RenderEngineClash;
 import org.bimserver.plugins.renderengine.RenderEngineException;
-import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
 
 import com.sun.jna.Pointer;
 
@@ -131,6 +130,14 @@ public class IfcEngineServer extends Thread {
 					out.writeInt(surfaceProperties.getVerticesCount());
 				}
 					break;
+				case INITIALIZE_MODELLING_INSTANCE: {
+					int modelId = in.readInt();
+					int instanceId = in.readInt();
+					SurfaceProperties surfaceProperties = ifcEngine.initializeModellingInstance(pointers.get(modelId), 0.0, pointers.get(instanceId));
+					out.writeInt(surfaceProperties.getIndicesCount());
+					out.writeInt(surfaceProperties.getVerticesCount());
+				}
+					break;
 				case SET_POSTPROCESSING: {
 					int modelId = in.readInt();
 					ifcEngine.setPostProcessing(pointers.get(modelId), in.readBoolean() ? 1 : 0);
@@ -218,11 +225,27 @@ public class IfcEngineServer extends Thread {
 				case GET_TRANSFORMATION_MATRIX: {
 					int modelId = in.readInt();
 					int instanceId = in.readInt();
-					long owlInstance = ifcEngine.owlGetInstance(pointers.get(modelId), pointers.get(instanceId));
-					float[] transformationMatrix = ifcEngine.owlGetMappedItem(pointers.get(modelId), pointers.get(instanceId), owlInstance);
-					for (int i=0; i<16; i++) {
-						out.writeFloat(transformationMatrix[i]);
-					}
+//					long owlInstance = ifcEngine.owlGetInstance(pointers.get(modelId), pointers.get(instanceId));
+//					float[] transformationMatrix = ifcEngine.owlGetMappedItem(pointers.get(modelId), pointers.get(instanceId), owlInstance);
+//					for (int i=0; i<16; i++) {
+//						out.writeFloat(transformationMatrix[i]);
+//					}
+					out.writeFloat(1f);
+					out.writeFloat(0f);
+					out.writeFloat(0f);
+					out.writeFloat(0f);
+					out.writeFloat(0f);
+					out.writeFloat(1f);
+					out.writeFloat(0f);
+					out.writeFloat(0f);
+					out.writeFloat(0f);
+					out.writeFloat(0f);
+					out.writeFloat(1f);
+					out.writeFloat(0f);
+					out.writeFloat(0f);
+					out.writeFloat(0f);
+					out.writeFloat(0f);
+					out.writeFloat(1f);
 					break;					
 				}
 				case CLOSE: {
