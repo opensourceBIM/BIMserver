@@ -209,7 +209,7 @@ public abstract class Authorization {
 				throw new AuthenticationException("Given token is corrupt");
 			}
 		} catch (GeneralSecurityException e) {
-			throw new AuthenticationException("Invalid token (" + token + ")", e);
+			throw new AuthenticationException("Invalid token", e);
 		} catch (DecoderException e) {
 			throw new AuthenticationException(e);
 		}

@@ -50,7 +50,8 @@ function BimServerApi(baseUrl, notifier) {
 		DELETEPROJECT_DONE: "Project successfully deleted",
 		ADDPROJECT_DONE: "Project successfully added",
 		DOWNLOAD_BUSY: "Busy downloading...",
-		VALIDATEACCOUNT_DONE: "Account successfully validated, you can now login"
+		VALIDATEACCOUNT_DONE: "Account successfully validated, you can now login",
+		ADDPROJECTASSUBPROJECT_DONE: "Sub project added successfully"
 	}
 
 	othis.token = null;
