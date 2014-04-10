@@ -56,20 +56,16 @@ public class StreamingSocket extends WebSocketAdapter implements StreamingSocket
 		this.session = session;
 		streamer.onOpen();
 	}
-	
+
 	public void send(JsonObject object) {
 		try {
-			session.getRemote().sendString(object.toString());
-		} catch (IOException e) {
+			session.getRemote().sendStringByFuture(object.toString());
 		} catch (WebSocketException e) {
 		}
 	}
 
 	@Override
 	public void send(byte[] data, int start, int length) {
-		try {
-			session.getRemote().sendBytes(ByteBuffer.wrap(data, start, length));
-		} catch (IOException e) {
-		}
+		session.getRemote().sendBytesByFuture(ByteBuffer.wrap(data, start, length));
 	}
 }

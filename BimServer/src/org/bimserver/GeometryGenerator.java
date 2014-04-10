@@ -63,8 +63,6 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.java_cup.internal.runtime.virtual_parse_stack;
-
 public class GeometryGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryGenerator.class);
 	private BimServer bimServer;
@@ -195,7 +193,25 @@ public class GeometryGenerator {
 									geometryData.setVertices(floatArrayToByteArray(visualisationProperties.getVertices()));
 									geometryData.setMaterialIndices(intArrayToByteArray(visualisationProperties.getMaterialIndices()));
 									geometryData.setNormals(floatArrayToByteArray(visualisationProperties.getNormals()));
-									geometryData.setMaterials(floatArrayToByteArray(visualisationProperties.getMaterials()));
+									
+									float[] vertex_colors = new float[visualisationProperties.getVertices().length / 3 * 4];
+									for (int i = 0; i < visualisationProperties.getMaterialIndices().length; ++i) {
+										int c = visualisationProperties.getMaterialIndices()[i];
+										for (int j = 0; j < 3; ++j) {
+											int k = visualisationProperties.getIndices()[i * 3 + j];
+											if (c > -1) {
+												for (int l = 0; l < 4; ++l) {
+													vertex_colors[4 * k + l] = visualisationProperties.getMaterials()[4 * c + l];
+												}
+											} else {
+												vertex_colors[4 * k] = 0;
+												vertex_colors[4 * k + 1] = 1;
+												vertex_colors[4 * k + 2] = 0;
+												vertex_colors[4 * k + 3] = 1;
+											}
+										}
+									}
+									geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
 									
 //									for (int i=visualisationProperties.getMaterialStartIndex(); i<visualisationProperties.getMaterialStartIndex() + visualisationProperties.getPrimitiveCount(); i++) {
 //										int index = renderEngineGeometry.getMaterialIndex(i);
@@ -214,7 +230,6 @@ public class GeometryGenerator {
 									}
 									
 									geometryInfo.setData(geometryData);
-									
 //									geometryData.setVertices(verticesBuffer.array());
 //									geometryData.setNormals(normalsBuffer.array());
 //									geometryData.setMaterialIndices(materialIndicesBuffer.array());
@@ -222,9 +237,15 @@ public class GeometryGenerator {
 //									if (geometryCache != null) {
 //										geometryCache.put(ifcProduct.getExpressId(), new GeometryCacheEntry(verticesBuffer, normalsBuffer, geometryInfo));
 //									}
-									float[] identityMatrix = new float[16];
-									Matrix.setIdentityM(identityMatrix, 0);
-									setTransformationMatrix(geometryInfo, identityMatrix);
+									
+									float[] tranformationMatrix = new float[16];
+									if (renderEngineInstance.getTransformationMatrix() != null) {
+										tranformationMatrix = renderEngineInstance.getTransformationMatrix();
+ 										tranformationMatrix = Matrix.changeOrientation(tranformationMatrix);
+									} else {
+										Matrix.setIdentityM(tranformationMatrix, 0);
+									}
+									setTransformationMatrix(geometryInfo, tranformationMatrix);
 									if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
 										geometrySimplifier.add(ifcProduct, geometryData);
 									}
@@ -282,15 +303,22 @@ public class GeometryGenerator {
 		ByteBuffer buffer = ByteBuffer.wrap(new byte[indices.length * 4]);
 		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		IntBuffer asIntBuffer = buffer.asIntBuffer();
+		boolean allMinus1 = true;
 		for (int i : indices) {
 			asIntBuffer.put(i);
+			if (i != -1) {
+				allMinus1 = false;
+			}
+		}
+		if (allMinus1) {
+			return null;
 		}
 		return buffer.array();
 	}
 
 	private void setTransformationMatrix(GeometryInfo geometryInfo, float[] transformationMatrix) {
 		ByteBuffer byteBuffer = ByteBuffer.allocate(16 * 4);
-		byteBuffer.order(ByteOrder.nativeOrder());
+		byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
 		FloatBuffer asFloatBuffer = byteBuffer.asFloatBuffer();
 		for (float f : transformationMatrix) {
 			asFloatBuffer.put(f);

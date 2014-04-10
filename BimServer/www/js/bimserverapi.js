@@ -78,10 +78,11 @@ function BimServerApi(baseUrl, notifier) {
 	othis.debug = false;
 	othis.classes = {};
 	othis.binaryDataListener = {};
+	othis.schemas = {};
 
 	this.init = function(callback) {
 		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.js", function(result){
-			othis.schema = result.classes;
+			othis.schemas["ifc2x3tc1"] = result.classes;
 			callback();
 		});
 	};
@@ -361,10 +362,7 @@ function BimServerApi(baseUrl, notifier) {
 	this.unregisterProgressHandler = function(topicId, handler, callback){
 		othis.unregister(handler);
 		othis.call("Bimsie1NotificationRegistryInterface", "unregisterProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
-			if (callback != null) {
-				callback();
-			}
-		});
+		}).done(callback);
 	};
 
 	this.unregister = function(listener) {
@@ -401,6 +399,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.multiCall = function(requests, callback, errorCallback, showBusy, showDone, showError) {
+		var promise = new Promise();
 		var request = null;
 		if (requests.length == 1) {
 			request = requests[0];
@@ -417,6 +416,7 @@ function BimServerApi(baseUrl, notifier) {
 				requests: requestObjects
 			};
 		} else if (requests.length == 0) {
+			promise.fire();
 			callback();
 		}
 
@@ -512,6 +512,7 @@ function BimServerApi(baseUrl, notifier) {
 						callback(data.responses);
 					}
 				}
+				promise.fire();
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				if (textStatus == "abort") {
@@ -531,12 +532,14 @@ function BimServerApi(baseUrl, notifier) {
 					result.ok = false;
 					callback(result);
 				}
+				promise.fire();
 			}
 		});
+		return promise;
 	};
 
-	this.getModel = function(poid, roid, deep, callback) {
-		var model = new Model(othis, poid, roid, deep);
+	this.getModel = function(poid, roid, schema, deep, callback) {
+		var model = new Model(othis, poid, roid, schema);
 		model.load(deep, callback);
 		return model;
 	};
@@ -548,27 +551,27 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.callWithNoIndication = function(interfaceName, methodName, data, callback) {
-		othis.call(interfaceName, methodName, data, callback, null, false, false, false);
+		return othis.call(interfaceName, methodName, data, callback, null, false, false, false);
 	};
 
 	this.callWithFullIndication = function(interfaceName, methodName, data, callback) {
-		othis.call(interfaceName, methodName, data, callback, null, true, true, true);
+		return othis.call(interfaceName, methodName, data, callback, null, true, true, true);
 	};
 
 	this.callWithUserErrorIndication = function(action, data, callback) {
-		othis.call(interfaceName, methodName, data, callback, null, false, false, true);
+		return othis.call(interfaceName, methodName, data, callback, null, false, false, true);
 	};
 
 	this.callWithUserErrorAndDoneIndication = function(action, data, callback) {
-		othis.call(interfaceName, methodName, data, callback, null, false, true, true);
+		return othis.call(interfaceName, methodName, data, callback, null, false, true, true);
 	};
 
-	this.isA = function(typeSubject, typeName){
+	this.isA = function(schema, typeSubject, typeName){
 		var isa = false;
 		if (typeSubject == typeName) {
 			return true;
 		}
-		var subject = othis.schema[typeSubject];
+		var subject = othis.schemas[schema][typeSubject];
 		if (subject == null) {
 			console.log(typeSubject, "not found");
 		}
@@ -576,7 +579,7 @@ function BimServerApi(baseUrl, notifier) {
 			if (superclass == typeName) {
 				isa = true;
 			}
-			if (othis.isA(superclass, typeName)) {
+			if (othis.isA(schema, superclass, typeName)) {
 				isa = true;
 			}
 		});
@@ -598,7 +601,7 @@ function BimServerApi(baseUrl, notifier) {
 		var showDone = typeof showDone !== 'undefined' ? showDone : false;
 		var showError = typeof showError !== 'undefined' ? showError : true;
 
-		othis.multiCall([[
+		return othis.multiCall([[
 		    interfaceName,
 		    methodName,
 			data
@@ -646,8 +649,9 @@ function Synchronizer(fetcher) {
 	};
 }
 
-function Model(bimServerApi, poid, roid) {
+function Model(bimServerApi, poid, roid, schema) {
 	var othis = this;
+	othis.schema = schema;
 	othis.bimServerApi = bimServerApi;
 	othis.poid = poid;
 	othis.roid = roid;
@@ -670,8 +674,8 @@ function Model(bimServerApi, poid, roid) {
 	othis.logging = true;
 	
 	othis.changes = 0;
-
 	othis.changeListeners = [];
+	othis.schema = "ifc2x3tc1";
 	
 	othis.transactionSynchronizer = new Synchronizer(function(callback){
 		bimServerApi.call("Bimsie1LowLevelInterface", "startTransaction", {poid: othis.poid}, function(tid){
@@ -811,7 +815,7 @@ function Model(bimServerApi, poid, roid) {
 	};
 
 	this.extendClass = function(wrapperClass, typeName){
-		var realType = othis.bimServerApi.schema[typeName];
+		var realType = othis.bimServerApi.schemas[othis.schema][typeName];
 		realType.superclasses.forEach(function(typeName){
 			othis.extendClass(wrapperClass, typeName);
 		});
@@ -1106,15 +1110,15 @@ function Model(bimServerApi, poid, roid) {
 	
 	this.getClass = function(typeName){
 		if (othis.bimServerApi.classes[typeName] == null) {
-			var realType = othis.bimServerApi.schema[typeName];
+			var realType = othis.bimServerApi.schemas[othis.schema][typeName];
 			if (realType == null) {
-				throw "Type " + object.__type + " not found";
+				throw "Type " + typeName + " not found in schema " + othis.schema;
 			}
 
 			var wrapperClass = {};
 			
 			wrapperClass.isA = function(typeName){
-				return othis.bimServerApi.isA(this.object.__type, typeName);
+				return othis.bimServerApi.isA(othis.schema, this.object.__type, typeName);
 			};
 			wrapperClass.getType = function(){
 				return this.object.__type;
@@ -1370,6 +1374,7 @@ function Model(bimServerApi, poid, roid) {
 					bimServerApi.call("Bimsie1ServiceInterface", "downloadByTypes", {
 						roids: [othis.roid],
 						classNames: [type],
+						schema: "ifc2x3tc1",
 						includeAllSubtypes: includeAllSubTypes,
 						serializerOid: jsonSerializerOid,
 						useObjectIDM: false,
@@ -1430,6 +1435,7 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	this.endPointId = null;
 	this.listener = null;
 	this.tosend = [];
+	this.tosendAfterConnect = [];
 
 	this.connect = function(callback) {
 		othis.openCallbacks.push(callback);
@@ -1444,10 +1450,22 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this._onopen = function() {
+		while (othis.tosendAfterConnect.length > 0 && othis._ws.readyState == 1) {
+			var messageArray = othis.tosendAfterConnect.splice(0, 1);
+			othis._sendWithoutEndPoint(messageArray[0]);
+		}
 	};
 
+	this._sendWithoutEndPoint = function(message) {
+		if (othis._ws && othis._ws.readyState == 1) {
+			othis._ws.send(message);
+		} else {
+			othis.tosendAfterConnect.push(message);
+		}		
+	};
+	
 	this._send = function(message) {
-		if (othis._ws && othis.endPointId != null && othis._ws.readyState == 1) {
+		if (othis._ws && othis._ws.readyState == 1 && othis.endPointId != null) {
 			othis._ws.send(message);
 		} else {
 			console.log("Waiting", message);
@@ -1468,7 +1486,7 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 			var incomingMessage = JSON.parse(message.data);
 			bimServerApi.log("incoming", incomingMessage);
 			if (incomingMessage.welcome != null) {
-				othis._ws.send(JSON.stringify({"token": bimServerApi.token}));
+				othis._sendWithoutEndPoint(JSON.stringify({"token": bimServerApi.token}));
 			} else if (incomingMessage.endpointid != null) {
 				othis.endPointId = incomingMessage.endpointid;
 				othis.connected = true;
