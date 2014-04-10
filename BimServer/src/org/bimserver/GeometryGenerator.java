@@ -194,24 +194,26 @@ public class GeometryGenerator {
 									geometryData.setMaterialIndices(intArrayToByteArray(visualisationProperties.getMaterialIndices()));
 									geometryData.setNormals(floatArrayToByteArray(visualisationProperties.getNormals()));
 									
-									float[] vertex_colors = new float[visualisationProperties.getVertices().length / 3 * 4];
-									for (int i = 0; i < visualisationProperties.getMaterialIndices().length; ++i) {
-										int c = visualisationProperties.getMaterialIndices()[i];
-										for (int j = 0; j < 3; ++j) {
-											int k = visualisationProperties.getIndices()[i * 3 + j];
-											if (c > -1) {
-												for (int l = 0; l < 4; ++l) {
-													vertex_colors[4 * k + l] = visualisationProperties.getMaterials()[4 * c + l];
+									if (visualisationProperties.getMaterialIndices() != null) {
+										float[] vertex_colors = new float[visualisationProperties.getVertices().length / 3 * 4];
+										for (int i = 0; i < visualisationProperties.getMaterialIndices().length; ++i) {
+											int c = visualisationProperties.getMaterialIndices()[i];
+											for (int j = 0; j < 3; ++j) {
+												int k = visualisationProperties.getIndices()[i * 3 + j];
+												if (c > -1) {
+													for (int l = 0; l < 4; ++l) {
+														vertex_colors[4 * k + l] = visualisationProperties.getMaterials()[4 * c + l];
+													}
+												} else {
+													vertex_colors[4 * k] = 0;
+													vertex_colors[4 * k + 1] = 1;
+													vertex_colors[4 * k + 2] = 0;
+													vertex_colors[4 * k + 3] = 1;
 												}
-											} else {
-												vertex_colors[4 * k] = 0;
-												vertex_colors[4 * k + 1] = 1;
-												vertex_colors[4 * k + 2] = 0;
-												vertex_colors[4 * k + 3] = 1;
 											}
 										}
+										geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
 									}
-									geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
 									
 //									for (int i=visualisationProperties.getMaterialStartIndex(); i<visualisationProperties.getMaterialStartIndex() + visualisationProperties.getPrimitiveCount(); i++) {
 //										int index = renderEngineGeometry.getMaterialIndex(i);
