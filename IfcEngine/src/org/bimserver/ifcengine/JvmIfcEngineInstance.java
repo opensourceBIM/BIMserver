@@ -75,7 +75,7 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 				normals = trim(normals, highestVertexIndexUsed);
 			}
 			
-			return new RenderEngineInstanceVisualisationProperties(indices, vertices, normals);
+			return new RenderEngineInstanceVisualisationProperties(indices, vertices, normals, null, null);
 		}
 	}
 

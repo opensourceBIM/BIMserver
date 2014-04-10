@@ -39,6 +39,13 @@ package org.bimserver.geometry;
  */
 public class Matrix {
 
+	public static void main(String[] args) {
+		float[] x = new float[16];
+		setIdentityM(x, 0);
+		translateM(x, 0, 2, 3, 4);
+		dump(x);
+	}
+	
     /** Temporary memory for operations that need temporary matrix data. */
     private final static float[] sTemp = new float[32];
 
@@ -757,5 +764,26 @@ public class Matrix {
 
 	public static void copy(float[] mModelMatrix, float[] mModelMatrix2) {
 		System.arraycopy(mModelMatrix, 0, mModelMatrix2, 0, mModelMatrix.length);
+	}
+
+	public static float[] changeOrientation(float[] input) {
+		float[] result = new float[16];
+		result[0] = input[0];
+		result[1] = input[4];
+		result[2] = input[8];
+		result[3] = input[12];
+		result[4] = input[1];
+		result[5] = input[5];
+		result[6] = input[9];
+		result[7] = input[13];
+		result[8] = input[2];
+		result[9] = input[6];
+		result[10] = input[10];
+		result[11] = input[14];
+		result[12] = input[3];
+		result[13] = input[7];
+		result[14] = input[11];
+		result[15] = input[15];
+		return result;
 	}
 }
