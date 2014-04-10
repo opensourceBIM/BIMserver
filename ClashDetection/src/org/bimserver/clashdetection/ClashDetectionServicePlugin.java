@@ -120,8 +120,9 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						renderEngine.init();
 
 						RenderEngineModel renderEngineModel = renderEngine.openModel(new ByteArrayInputStream(baos.toByteArray()), baos.size());
-						Set<RenderEngineClash> clashes = renderEngineModel.findClashesWithEids(pluginConfiguration.getDouble("margin"));
-						RenderEngineGeometry geometry = renderEngineModel.finalizeModelling(renderEngineModel.initializeModelling());
+						// TODO
+						Set<RenderEngineClash> clashes = null;//renderEngineModel.findClashesWithEids(pluginConfiguration.getDouble("margin"));
+						RenderEngineGeometry geometry = null;//renderEngineModel.finalizeModelling(renderEngineModel.initializeModelling());
 
 						StillImageRenderer stillImageRenderer = getPluginManager().getFirstStillImageRenderPlugin().create(new PluginConfiguration());
 						boolean renderImage = true;

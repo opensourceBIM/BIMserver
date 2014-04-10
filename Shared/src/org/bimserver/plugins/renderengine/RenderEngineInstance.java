@@ -18,6 +18,6 @@ package org.bimserver.plugins.renderengine;
  *****************************************************************************/
 
 public interface RenderEngineInstance {
-	RenderEngineInstanceVisualisationProperties getVisualisationProperties() throws RenderEngineException;
 	float[] getTransformationMatrix() throws RenderEngineException;
+	RenderEngineGeometry generateGeometry() throws RenderEngineException;
 }

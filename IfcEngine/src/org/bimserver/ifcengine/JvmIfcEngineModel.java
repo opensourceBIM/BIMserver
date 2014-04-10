@@ -204,4 +204,9 @@ public class JvmIfcEngineModel implements RenderEngineModel {
         setting += settings.isGenerateWireFrame() ? WIREFRAME : 0;
         setFormat(setting, mask);
 	}
+
+	@Override
+	public void generateGeneralGeometry() throws RenderEngineException {
+		// Do nothing, geometry is generated on instance level...
+	}
 }

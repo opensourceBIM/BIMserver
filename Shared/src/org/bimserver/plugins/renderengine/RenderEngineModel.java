@@ -17,24 +17,16 @@ package org.bimserver.plugins.renderengine;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.List;
-import java.util.Set;
-
 public interface RenderEngineModel {
 	public static final int PRECISION = Precision.BIT;
 	public static final int INDEX_BITS = IndexFormat.BIT;
 	public static final int NORMALS = 32;
 	public static final int TRIANGLES = 256;
 	public static final int WIREFRAME = 4096;
-	
-	RenderEngineSurfaceProperties initializeModelling() throws RenderEngineException;
-	void setPostProcessing(boolean postProcessing) throws RenderEngineException;
+
 	void setFormat(int format, int mask) throws RenderEngineException;
-	RenderEngineGeometry finalizeModelling(RenderEngineSurfaceProperties surfaceProperties) throws RenderEngineException;
-	List<? extends RenderEngineInstance> getInstances(String name) throws RenderEngineException;
-	void close() throws RenderEngineException;
-	Set<RenderEngineClash> findClashesWithEids(double d) throws RenderEngineException;
-	Set<RenderEngineClash> findClashesWithGuids(double d) throws RenderEngineException;
-	RenderEngineInstance getInstanceFromExpressId(int oid) throws RenderEngineException;
 	void setSettings(RenderEngineSettings settings) throws RenderEngineException;
+	RenderEngineInstance getInstanceFromExpressId(int oid) throws RenderEngineException;
+	void generateGeneralGeometry() throws RenderEngineException;
+	void close() throws RenderEngineException;
 }
