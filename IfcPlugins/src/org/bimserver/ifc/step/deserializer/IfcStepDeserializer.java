@@ -247,7 +247,8 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 		try {
 			SIfcHeader ifcHeader = model.getModelMetaData().getIfcHeader();
 			if (ifcHeader == null) {
-				model.getModelMetaData().setIfcHeader(new SIfcHeader());
+				ifcHeader = new SIfcHeader();
+				model.getModelMetaData().setIfcHeader(ifcHeader);
 			}
 			if (line.startsWith("FILE_DESCRIPTION")) {
 				Tokenizer tokenizer = new Tokenizer(line.substring(line.indexOf("(")));
