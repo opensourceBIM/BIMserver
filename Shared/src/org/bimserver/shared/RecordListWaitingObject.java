@@ -1,4 +1,4 @@
-package org.bimserver.plugins.deserializers;
+package org.bimserver.shared;
 
 /******************************************************************************
  * Copyright (C) 2009-2014  BIMserver.org
@@ -17,25 +17,25 @@ package org.bimserver.plugins.deserializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.InputStream;
+import org.bimserver.database.Record;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.PackageMetaData;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+/*
+ * WaitingObject's are used when while reading, a reference is encountered that has not yet been
+ * parsed. In that case a WaitingObject is created and stored in a map. As soon as the referenced
+ * object get's parsed, all that object's waiting objects are connected to the original object.
+ */
+public class RecordListWaitingObject extends RecordWaitingObject {
 
-public abstract class EmfDeserializer implements Deserializer {
+	// To keep an eventual order intact, for EList's you can store the index at which it should be placed
+	private final int index;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(EmfDeserializer.class);
-	private PackageMetaData packageMetaData;
-	
-	public void init(PackageMetaData packageMetaData) {
-		this.packageMetaData = packageMetaData;
-	}
-
-	public PackageMetaData getPackageMetaData() {
-		return packageMetaData;
+	public RecordListWaitingObject(int lineNumber, Record record, EStructuralFeature structuralFeature, int index) {
+		super(lineNumber, record, structuralFeature);
+		this.index = index;
 	}
 	
-	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException;
+	public int getIndex() {
+		return index;
+	}
 }

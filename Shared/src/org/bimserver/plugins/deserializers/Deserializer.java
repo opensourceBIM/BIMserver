@@ -25,6 +25,5 @@ import org.bimserver.emf.PackageMetaData;
 
 public interface Deserializer {
 	void init(PackageMetaData packageMetaData);
-	IfcModelInterface read(File file) throws DeserializeException;
 	IfcModelInterface read(InputStream inputStream, String fileName, long fileSize) throws DeserializeException;
 }
