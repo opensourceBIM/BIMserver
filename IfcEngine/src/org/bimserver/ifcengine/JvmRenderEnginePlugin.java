@@ -40,7 +40,7 @@ import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.schema.SchemaPlugin;
 
-public class TNOJvmRenderEnginePlugin implements RenderEnginePlugin {
+public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 
 	private PluginManager pluginManager;
 	private boolean initialized = false;
@@ -75,7 +75,7 @@ public class TNOJvmRenderEnginePlugin implements RenderEnginePlugin {
 			if (inputStream != null) {
 				try {
 					File tmpFolder = pluginManager.getTempDir();
-					nativeFolder = new File(tmpFolder, "TNOEngineSeries");
+					nativeFolder = new File(tmpFolder, "ifcenginedll");
 					File file = new File(nativeFolder, libraryName);
 					if (nativeFolder.exists()) {
 						try {
@@ -100,7 +100,7 @@ public class TNOJvmRenderEnginePlugin implements RenderEnginePlugin {
 
 	@Override
 	public String getDescription() {
-		return "Native implementation of an IFC Engine";
+		return "Native implementation of an IFC Engine by RDF";
 	}
 
 	@Override
@@ -115,7 +115,7 @@ public class TNOJvmRenderEnginePlugin implements RenderEnginePlugin {
 
 	@Override
 	public String getDefaultName() {
-		return "TNO Engine Series";
+		return "IFC Engine DLL";
 	}
 
 	@Override
