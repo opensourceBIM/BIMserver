@@ -6,9 +6,8 @@
 	<base href="/"/>
   </head>
   <body>
-  	<div class="indexStatus">
+  	<div class="indexStatus statusWrapper">
 		<div class="alert status">
-			<button type="button" class="close">&times;</button>
 			<div class="message"></div>
 		</div>
   	</div>
@@ -74,6 +73,8 @@
 		    baseJsDir + "jquery.scrollto.js", 
 		    baseJsDir + "pagechanger.js",
 		    baseJsDir + "BIMSURFER.js",
+		    baseJsDir + "plugins/pluginmanager.js",
+		    baseJsDir + "plugins/relaticsplugin.js",
 		    baseJsDir + 'scenejs-3.1/scenejs.js',
 		    baseJsDir + 'SceneJS.js',
 		    baseJsDir + 'BIMSURFER/Constants.js',
@@ -244,6 +245,7 @@
 				};
 
 				this.clear = function() {
+					console.log("clear");
 					$(othis.selector).find(".message").html("").parent().hide();
 				};
 
@@ -273,7 +275,7 @@
 						clearTimeout(othis.lastTimeOut);
 						othis.lastTimeOut = null;
 					}
-					$(othis.selector).find(".message").html(status).parent().show().removeClass("alert-danger").removeClass("alert-info").addClass("alert-success");
+					$(othis.selector).find(".message").html(status).parent().removeClass("initialhide").removeClass("alert-danger").removeClass("alert-info").addClass("alert-success").show();
 					var notifier = this;
 					if (timeToShow != -1) {
 						othis.lastTimeOut = setTimeout(function(){

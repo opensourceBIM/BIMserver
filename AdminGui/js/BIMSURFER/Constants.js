@@ -81,7 +81,14 @@ BIMSURFER.Constants.materials = {
 	IfcAirTerminal: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0},
 	IfcMember: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0},
 	IfcCovering: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0},
-	IfcFlowFitting: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0}
+	IfcTransportElement: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0},
+	IfcFlowController: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0},
+	IfcFlowFitting: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0},
+	IfcRamp: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0},
+	IfcFurniture: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0},
+	IfcFooting: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0},
+	IfcSystemFurnitureElement: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0},
+	DEFAULT: {r: 0.8470588235, g: 0.427450980392, b: 0, a: 1.0}
 }
 
 /*

@@ -10,8 +10,6 @@
 						<ul class="dropdown-menu">
 							<li><a class="btnAddProject">New project</a></li>
 							<li><a class="btnShowProjects">Show projects</a></li>
-							<li class="divider"></li>
-							<li role="presentation" class="dropdown-header">This project</li>
 						</ul></li>
 					<li class="dropdown usersettingsLink"><a href="#" class="dropdown-toggle" data-toggle="dropdown">User Settings <b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -58,12 +56,12 @@
 			</div>
 		</div>
 	</nav>
-	<div class="clearfix"></div>
-	<div class="alert status initialhide">
-		<button type="button" class="close">&times;</button>
-		<div class="message"></div>
-	</div>
 	<div class="maincontainer"></div>
+	<div class="mainStatus statusWrapper">
+		<div class="alert status">
+			<div class="message"></div>
+		</div>
+	</div>
 </div>
 <script>
 function Main(address, user) {
@@ -74,7 +72,7 @@ function Main(address, user) {
 	$(".main .addressLabel").html(address);
 	
 	this.show = function() {
-		Global.notifier.setSelector(".main .status");
+		Global.notifier.setSelector(".main .mainStatus .status");
 		Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(user){
 			//$(".main .nav li").hide();
 			othis.user = user;
@@ -162,7 +160,7 @@ function Main(address, user) {
 	this.showAddProject = function(callback, parentProject) {
 		othis.pageChanger.changePage($(".projectsLink"), "addproject.html", function(){
 			pushHistory({page: "AddProject"}, "Add Project");
-			return new AddProject(othis, parentProject);
+			return new AddProject($(this), othis, parentProject);
 		}, callback);
 	};
 
@@ -217,7 +215,7 @@ function Main(address, user) {
 	};
 
 	this.showUserSettings = function(callback) {
-		othis.pageChanger.changePage($(".usersettingsLink"), "usersettings.html", function(){
+		othis.pageChanger.changePage($(".usersettingsLink2"), "usersettings.html", function(){
 			return new UserSettings(othis);
 		}, callback);
 	};
@@ -328,6 +326,22 @@ function Main(address, user) {
 		}).modal({keyboard:true});
 	};
 	
+	this.addMenuDivider = function(mainTitle){
+		var navbar = $(".nav.navbar-nav");
+		var parentA = navbar.find("a." + mainTitle);
+		var li = $("<li class=\"divider\"></li>");
+		parentA.parent().find("ul").append(li);
+		return li;
+	};
+	
+	this.addMenuHeader = function(mainTitle, title){
+		var navbar = $(".nav.navbar-nav");
+		var parentA = navbar.find("a." + mainTitle);
+		var li = $("<li role=\"presentation\" class=\"dropdown-header\">" + title + "</li>");
+		parentA.parent().find("ul").append(li);
+		return li;
+	};
+	
 	this.addMenuItem = function(mainTitle, title, callback){
 		var navbar = $(".nav.navbar-nav");
 		var parentA = navbar.find("a." + mainTitle);
@@ -337,6 +351,7 @@ function Main(address, user) {
 		a.click(callback);
 		li.append(a);
 		parentA.parent().find("ul").append(li);
+		return li;
 	};
 	
 	$(".changePasswordLink").click(othis.changePasswordClick);
@@ -344,7 +359,6 @@ function Main(address, user) {
 	$(".dashboardLink").click(function(){othis.showDashboard(null, true)});
 	$(".btnShowProjects").click(function(event){othis.showProjects(null, true)});
 	$(".btnListUsers").click(function(event){othis.showUsers(null, true)});
-	$(".usersettingsLink").click(function(event){othis.showUserSettings(null, true)});
 	$(".serverinfoLink").click(function(event){othis.showServerInfo(null, true)});
 	$(".btnBasicServerSettings").click(function(event){othis.showServerSettings(function(){
 		this.showBasicServerSettings();
@@ -450,7 +464,7 @@ function Main(address, user) {
 	$(".btnShow3D").click(othis.show3dView);
 	
 	$(".btnBrand").click(function(){
-		Settings.createStartPage($(".main .maincontainer"));
+		Settings.createStartPage($(".main .maincontainer"), othis);
 	});
 	
 	$(".userButton").click(function(){

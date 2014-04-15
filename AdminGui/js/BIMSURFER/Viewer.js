@@ -350,10 +350,18 @@ BIMSURFER.Viewer = BIMSURFER.Class({
 	/**
 	 * Loads and shows the geometry of the revisions that are in the load queue
 	 */
-	loadGeometry: function(options) {
-		var geometryLoader = new GeometryLoader(this.bimServerApi, this, options);
-		this.geometryLoaders.push(geometryLoader);
-		geometryLoader.load();
+	loadGeometry: function(geometryLoader) {
+		var o = this;
+		o.geometryLoaders.push(geometryLoader);
+		if (o.geometryLoaders.length <= 2) {
+			geometryLoader.progressListeners.push(function(progress){
+				if (progress == 100) {
+					removeA(o.geometryLoaders, geometryLoader);
+					
+				}
+			});
+			geometryLoader.start();
+		}
 	},
 
 	/**
