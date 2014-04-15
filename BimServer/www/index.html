@@ -52,7 +52,7 @@ LazyLoad.css([
 ], function(){});
 
 LazyLoad.js([
-    baseJsDir + "jquery-2.0.3.min.js", 
+    baseJsDir + "jquery-2.1.0.min.js", 
     baseJsDir + "main.js", 
     baseJsDir + "jquery.cookie.js", 
     baseJsDir + "String.js", 
@@ -64,6 +64,34 @@ LazyLoad.js([
 	Global.bimServerApi = null;
 	Global.objectcache = {};
 	Global.timeoutId;
+	
+	function Notifier() {
+		var othis = this;
+		
+		this.setSelector = function(selector) {
+		};
+
+		this.clear = function() {
+		};
+
+		this.resetStatus = function(){
+		};
+
+		this.resetStatusQuick = function(){
+		};
+
+		this.setSuccess = function(status, timeToShow) {
+		};
+		
+		this.setInfo = function(status, timeToShow) {
+		};
+
+		this.setError = function(error) {
+			console.log(error);
+		};
+	}
+
+	Global.notifier = new Notifier();
 	
 	loadBimServerApi(Global.baseDir, Global.notifier, function(serverInfo){
 		Global.bimServerApi.call("AdminInterface", "getVersion", {}, function(version){
