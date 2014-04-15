@@ -11,32 +11,44 @@ function GeometryLoader(bimServerApi, viewer) {
 	};
 	
 	this.addReadObject = function() {
-		o.asyncStream.addReadUTF8(function(materialName){
-			o.state.materialName = materialName;
-		});
 		o.asyncStream.addReadUTF8(function(type){
 			o.state.type = type;
+//			console.log("type", type);
 		});
 		o.asyncStream.addReadLong(function(objectId){
+//			console.log("objectid", objectId);
 			o.state.objectId = objectId;
 		});
 		o.asyncStream.addReadByte(function(geometryType){
+//			console.log("type", geometryType);
 			if (geometryType == GEOMETRY_TYPE_TRIANGLES) {
 				o.asyncStream.addReadLong(function(coreId){
+//					console.log("coreid", coreId);
 					o.state.coreId = coreId;
-				});
-				o.asyncStream.addReadInt(function(nrIndices){
-					o.state.nrIndices = nrIndices;
 				});
 				o.asyncStream.addReadFloats(6, function(objectBounds){
 				});
-				o.asyncStream.addReadInt(function(nrVertices){
-					o.asyncStream.addReadFloatArray(nrVertices, function(vertices){
-						o.asyncStream.addReadInt(function(nrNormals){
-							o.asyncStream.addReadFloatArray(nrNormals, function(normals){
-								o.state.nrObjectsRead++;
-								o.processGeometry(geometryType, nrVertices, vertices, nrNormals, normals);
-								o.updateProgress();
+				o.asyncStream.addReadInt(function(nrIndices){
+//					console.log("indices", nrIndices);
+					o.asyncStream.addReadIntArray(nrIndices, function(indices){
+						o.asyncStream.addReadInt(function(nrVertices){
+//							console.log("vertices", nrVertices)
+							o.asyncStream.addReadFloatArray(nrVertices, function(vertices){
+								o.asyncStream.addReadInt(function(nrNormals){
+//									console.log("normals", nrNormals);
+									o.asyncStream.addReadFloatArray(nrNormals, function(normals){
+										o.asyncStream.addReadInt(function(nrColors){
+//											console.log("colors", nrColors);
+											o.asyncStream.addReadFloatArray(nrColors * 4, function(colors){
+//												console.log("add");
+												o.state.nrObjectsRead++;
+//												console.log(o.state.nrObjectsRead, o.state.nrObjects);
+												o.processGeometry(geometryType, indices, vertices, normals, colors);
+												o.updateProgress();
+											});
+										});
+									});
+								});
 							});
 						});
 					});
@@ -46,7 +58,7 @@ function GeometryLoader(bimServerApi, viewer) {
 					o.state.coreId = coreId;
 					o.state.nrObjectsRead++;
 					
-					o.processGeometry(geometryType, -1, null, -1, null);
+					o.processGeometry(geometryType, null, null, null, null);
 					o.updateProgress();
 				});
 			}
@@ -73,6 +85,8 @@ function GeometryLoader(bimServerApi, viewer) {
 				progressListener(100);
 			});
 			o.viewer.events.trigger('sceneLoaded', [o.viewer.scene]);
+			o.bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: o.topicId}, function(){
+			});
 		}
 	};
 	
@@ -104,6 +118,9 @@ function GeometryLoader(bimServerApi, viewer) {
 						y: (modelBounds.max.y + modelBounds.min.y) / 2,
 						z: (modelBounds.max.z + modelBounds.min.z) / 2,
 					};
+					
+//					console.log("Model Bounds", modelBounds);
+//					console.log("Center", center);
 					
 					o.boundsTranslate = o.viewer.scene.findNode("bounds_translate");
 					var firstModel = false;
@@ -153,7 +170,11 @@ function GeometryLoader(bimServerApi, viewer) {
 				}); // model bounds
 				o.asyncStream.addReadInt(function(nrObjects){
 					o.state.nrObjects = nrObjects;
-					o.addReadObject();
+					if (o.state.nrObjects > 0) {
+						o.addReadObject();
+					} else {
+						o.updateProgress();
+					}
 				});
 			});
 		});
@@ -179,7 +200,7 @@ function GeometryLoader(bimServerApi, viewer) {
 		o.bimServerApi.downloadViaWebsocket(msg);
 	};
 	
-	this.processGeometry = function(geometryType, nrVertices, vertices, nrNormals, normals) {
+	this.processGeometry = function(geometryType, indices, vertices, normals, colors) {
 		if (geometryType == GEOMETRY_TYPE_TRIANGLES) {
 			var geometry = {
 				type: "geometry",
@@ -187,24 +208,24 @@ function GeometryLoader(bimServerApi, viewer) {
 			};
 			
 			geometry.coreId = o.state.coreId;
-			geometry.nrindices = o.state.nrIndices;
+			geometry.indices = indices;
 			geometry.positions = vertices;
 			geometry.normals = normals;
-			geometry.indices = [];
-			for (var i = 0; i < geometry.nrindices; i++) {
-				geometry.indices.push(i);
+			
+			if (colors != null && colors.length > 0) {
+				geometry.colors = colors;
 			}
 			o.library.add("node", geometry);
 		}
 
-		var material = BIMSURFER.Constants.materials[o.state.materialName];
+		var material = BIMSURFER.Constants.materials[o.state.type];
 		var hasTransparency = false;
-		if (material != null) {
-			if (material.a != 1) {
-				hasTransparency = true;
-			}
-		} else {
-			console.log("material not found", o.state.materialName);
+		if (material == null) {
+			console.log("material not found", o.state.type);
+			material = BIMSURFER.Constants.materials["DEFAULT"];
+		}
+		if (material.a < 1) {
+			hasTransparency = true;
 		}
 
 		var enabled = false;
@@ -245,7 +266,7 @@ function GeometryLoader(bimServerApi, viewer) {
 	
 	this.process = function(count){
 		if (o.asyncStream != null) {
-			o.asyncStream.process(Math.ceil(1 + o.state.nrObjects / 10));
+			o.asyncStream.process(Math.ceil(1 + o.state.nrObjects / 12));
 		}
 	};
 	
@@ -260,41 +281,51 @@ function GeometryLoader(bimServerApi, viewer) {
 			}
 		}
 	};
-	
-	// Loads everything, but only show the types given in types
-	this.loadRevision = function(roid, types) {
-		o.groupId = roid;
-		o.types = types;
-		o.bimServerApi.getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin", function(serializer){
-			o.bimServerApi.call("Bimsie1ServiceInterface", "download", {
-				roid: roid,
-				serializerOid : serializer.oid,
-				sync : false,
-				showOwn: true
-			}, function(topicId){
-				o.topicId = topicId;
-				o.bimServerApi.registerProgressHandler(o.topicId, o.progressHandler);
-			});
-		});
-	}
 
+	// Loads everything, but only show the types given in types
+	this.setLoadRevision = function(roid, types) {
+		o.options = {type: "revision", roid: roid, types: types};
+	};
+	
 	// Only loads the given types
-	this.loadTypes = function(roid, types){
-		o.groupId = roid;
-		o.types = types;
-		o.bimServerApi.getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin", function(serializer){
-			o.bimServerApi.call("Bimsie1ServiceInterface", "downloadByTypes", {
-				roids: [roid],
-				classNames : types,
-				serializerOid : serializer.oid,
-				includeAllSubtypes : false,
-				useObjectIDM : false,
-				sync : false,
-				deep: true
-			}, function(topicId){
-				o.topicId = topicId;
-				o.bimServerApi.registerProgressHandler(o.topicId, o.progressHandler);
-			});
-		});
+	this.setLoadTypes = function(roid, types) {
+		o.options = {type: "types", roid: roid, types: types};
+	};
+	
+	this.start = function(){
+		if (o.options != null) {
+			if (o.options.type == "types") {
+				o.groupId = o.options.roid;
+				o.types = o.options.types;
+				o.bimServerApi.getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin", function(serializer){
+					o.bimServerApi.call("Bimsie1ServiceInterface", "downloadByTypes", {
+						roids: [o.options.roid],
+						classNames : o.options.types,
+						serializerOid : serializer.oid,
+						includeAllSubtypes : false,
+						useObjectIDM : false,
+						sync : false,
+						deep: true
+					}, function(topicId){
+						o.topicId = topicId;
+						o.bimServerApi.registerProgressHandler(o.topicId, o.progressHandler);
+					});
+				});
+			} else if (o.options.type == "revision") {
+				o.groupId = o.options.roid;
+				o.types = o.options.types;
+				o.bimServerApi.getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin", function(serializer){
+					o.bimServerApi.call("Bimsie1ServiceInterface", "download", {
+						roid: o.options.roid,
+						serializerOid : serializer.oid,
+						sync : false,
+						showOwn: true
+					}, function(topicId){
+						o.topicId = topicId;
+						o.bimServerApi.registerProgressHandler(o.topicId, o.progressHandler);
+					});
+				});
+			}
+		}
 	};
 }
