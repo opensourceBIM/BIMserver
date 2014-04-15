@@ -15,7 +15,7 @@ var Settings = {
 		});
 	},
 	usableBimServerVersion: function(version) {
-		return version.major == 1 && version.minor == 2 && version.revision == 1;
+		return version.major == 1 && version.minor == 3 && version.revision == 0;
 	},
 	getMenuItems: function(){
 		return [
