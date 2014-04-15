@@ -24,8 +24,8 @@
 			<fileset file="../../BimServer/lib/cxf/httpcore-nio-4.2.2.jar"/>
 			<fileset file="../../BimServer/lib/cxf/wsdl4j-1.6.2.jar"/>
 			<fileset file="../../BimServer/lib/cxf/xmlschema-core-2.0.3.jar"/>
-			<fileset file="../../BimServer/lib/gson-2.2.2.jar"/>
-			<fileset file="../../BimServer/lib/guava-13.0.1.jar"/>
+			<fileset file="../../BimServer/lib/gson-2.2.4.jar"/>
+			<fileset file="../../BimServer/lib/guava-16.0.1.jar"/>
 			<fileset file="../../BimServer/lib/cxf/httpclient-4.2.1.jar"/>
 			<fileset file="../../BimServer/lib/cxf/httpcore-4.2.2.jar"/>
 			<fileset file="../../BimServer/lib/cxf/httpmime-4.2.2.jar"/>
@@ -41,7 +41,6 @@
 			<fileset file="../../BimServer/lib/jdt/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar"/>
 			<fileset file="../../BimServer/lib/jdt/org.eclipse.osgi_3.8.0.v20120529-1548.jar"/>
 			<fileset file="../../BimServer/lib/protocolbuffers.jar"/>
-			<fileset file="../../BimServer/lib/gson-2.2.4.jar"/>
 			<fileset file="../../BimServer/lib/logging/log4j-1.2.16.jar"/>
 			<fileset file="../../BimServer/lib/logging/slf4j-api-1.6.2.jar"/>
 			<fileset file="../../BimServer/lib/logging/slf4j-log4j12-1.6.2.jar"/>
