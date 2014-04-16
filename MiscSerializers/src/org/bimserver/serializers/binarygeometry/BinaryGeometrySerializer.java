@@ -106,7 +106,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		
 		for (IfcProduct ifcProduct : products) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
-			if (geometryInfo != null) {
+			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 				Bounds objectBounds = new Bounds(new Float3(geometryInfo.getMinBounds().getX(), geometryInfo.getMinBounds().getY(), geometryInfo.getMinBounds()
 						.getZ()), new Float3(geometryInfo.getMaxBounds().getX(), geometryInfo.getMaxBounds().getY(), geometryInfo.getMaxBounds().getZ()));
 				modelBounds.integrate(objectBounds);
@@ -127,6 +127,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		for (IfcProduct ifcProduct : products) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
 			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
+				System.out.println(ifcProduct.getOid());
 				dataOutputStream.writeUTF(ifcProduct.eClass().getName());
 				dataOutputStream.writeLong(ifcProduct.getOid());
 
@@ -222,10 +223,10 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					
 					concreteGeometrySent.add(geometryData.getOid());
 				}
-			}
-			counter++;
-			if (counter % 12 == 0) {
-				dataOutputStream.flush();
+				counter++;
+				if (counter % 12 == 0) {
+					dataOutputStream.flush();
+				}
 			}
 		}
 		dataOutputStream.flush();
