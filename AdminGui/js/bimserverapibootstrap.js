@@ -1,12 +1,18 @@
 function loadBimServerApi(address, notifier, callback, errorCallback) {
+	if (Window.Global == null) {
+		Window.Global = {};
+	}
 	var timeoutId = window.setTimeout(function() {
-		notifier.error("Could not connect");
+		notifier.setError("Could not connect");
 		errorCallback();
 	}, 3000);
+	if (address.endsWith("/")) {
+		address = address.substring(0, address.length - 1);
+	}
 	$.getScript(address + "/js/bimserverapi.js").done(function(){
 		window.clearTimeout(timeoutId);
 		if (typeof BimServerApi != 'function') {
-			notifier.error("Could not connect");
+			notifier.setError("Could not connect");
 			errorCallback();
 		} else {
 			if (BimServerApi != null) {
@@ -22,13 +28,13 @@ function loadBimServerApi(address, notifier, callback, errorCallback) {
 				});
 			} else {
 				window.clearTimeout(timeoutId);
-				notifier.error("Could not find BIMserver API");
+				notifier.setError("Could not find BIMserver API");
 				errorCallback();
 			}
 		}
 	}).fail(function(jqxhr, settings, exception){
 		window.clearTimeout(timeoutId);
-		notifier.error("Could not connect");
+		notifier.setError("Could not connect");
 		errorCallback();
 	});
 }

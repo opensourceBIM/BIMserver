@@ -589,7 +589,7 @@ function BimServerApi(baseUrl, notifier) {
 	
 	this.setToken = function(token, callback, errorCallback) {
 		othis.token = token;
-		Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
+		othis.call("AuthInterface", "getLoggedInUser", {}, function(data){
 			othis.user = data;
 			othis.server.connect(callback);
 		}, function(){
