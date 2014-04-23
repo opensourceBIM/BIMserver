@@ -38,7 +38,9 @@ public class GeometrySimplifier {
 			if (set != null) {
 				for (GeometryData d : set) {
 					if (d != ifcProduct.getGeometry().getData()) {
-						if (matchSameOrder(geometryData, d)) {
+						if (matchExactlyTheSame(geometryData, d)) {
+							result.add(d);
+						} else if (matchSameOrder(geometryData, d)) {
 							result.add(d);
 //					} else if (matchTotalDistance(geometryData, d)) {
 //						return d;
@@ -105,6 +107,26 @@ public class GeometrySimplifier {
 			lastX2 = buffer2.get(i);
 			lastY2 = buffer2.get(i+1);
 			lastZ2 = buffer2.get(i+2);
+		}
+		return true;
+	}
+
+	private boolean matchExactlyTheSame(GeometryData geometryDate, GeometryData d) {
+		ByteBuffer bb1 = ByteBuffer.wrap(geometryDate.getVertices());
+		bb1.order(ByteOrder.LITTLE_ENDIAN);
+		FloatBuffer buffer1 = bb1.asFloatBuffer();
+		ByteBuffer bb2 = ByteBuffer.wrap(d.getVertices());
+		bb2.order(ByteOrder.LITTLE_ENDIAN);
+		FloatBuffer buffer2 = bb2.asFloatBuffer();
+		if (buffer1.capacity() != buffer2.capacity()) {
+			return false;
+		}
+		for (int i=0; i<buffer1.capacity(); i++) {
+			float a = buffer1.get();
+			float b = buffer1.get();
+			if (b != a) {
+				return false;
+			}
 		}
 		return true;
 	}

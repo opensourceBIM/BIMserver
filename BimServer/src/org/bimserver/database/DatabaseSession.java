@@ -1616,6 +1616,10 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		return object.getOid();
 	}
+	
+	public void removeFromCommit(IdEObject idEObject) {
+		objectsToCommit.remove(idEObject);
+	}
 
 	private void writePrimitiveValue(EStructuralFeature feature, Object value, ByteBuffer buffer) throws BimserverDatabaseException {
 		EClassifier type = feature.getEType();
