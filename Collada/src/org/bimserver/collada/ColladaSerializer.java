@@ -20,6 +20,8 @@ package org.bimserver.collada;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,6 +33,7 @@ import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.geometry.Matrix;
 import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingElementProxy;
@@ -73,9 +76,8 @@ import org.slf4j.LoggerFactory;
 public class ColladaSerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
 	private static final Map<Class<? extends IfcProduct>, Convertor<? extends IfcProduct>> convertors = new LinkedHashMap<Class<? extends IfcProduct>, Convertor<? extends IfcProduct>>();
-	private final Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
+	private final Map<String, Set<IfcProduct>> converted = new HashMap<String, Set<IfcProduct>>();
 	private SIPrefix lengthUnitPrefix;
-	private int idCounter;
 
 	private static <T extends IfcProduct> void addConvertor(Convertor<T> convertor) {
 		convertors.put(convertor.getCl(), convertor);
@@ -127,8 +129,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 			PrintWriter writer = new UTF8PrintWriter(out);
 			try {
 				writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-				writer.println("<COLLADA xmlns=\"http://www.collada.org/2005/11/COLLADASchema\" version=\"1.4.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.collada.org/2005/11/COLLADASchema http://www.khronos.org/files/collada_schema_1_4\" >");
-				// writer.println("<COLLADA xmlns=\"http://www.collada.org/2008/03/COLLADASchema\" version=\"1.5.0\">");
+				writer.println("<COLLADA xmlns=\"http://www.collada.org/2008/03/COLLADASchema\" version=\"1.5.0\">");
 
 				writeAssets(writer);
 				writeCameras(writer);
@@ -170,7 +171,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		} else {
 			out.println("        <unit meter=\"" + Math.pow(10.0, lengthUnitPrefix.getValue()) + "\" name=\"" + lengthUnitPrefix.name().toLowerCase() + "\"/>");
 		}
-		out.println("        <up_axis>Y_UP</up_axis>");
+		out.println("        <up_axis>Z_UP</up_axis>");
 		out.println("    </asset>");
 	}
 
@@ -191,109 +192,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		out.println("      </library_geometries>");
 	}
 
-	private String generateId() {
-		return "" + (idCounter++);
-	}
-
 	private void setGeometry(PrintWriter out, IfcProduct ifcProductObject, String material) throws RenderEngineException, SerializerException {
-		// boolean materialFound = false;
-		// boolean added = false;
-		// if (ifcRootObject instanceof IfcProduct) {
-		// IfcProduct ifcProduct = (IfcProduct) ifcRootObject;
-		//
-		// EList<IfcRelDecomposes> isDecomposedBy =
-		// ifcProduct.getIsDecomposedBy();
-		// for (IfcRelDecomposes dcmp : isDecomposedBy) {
-		// EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
-		// for (IfcObjectDefinition relatedObject : relatedObjects) {
-		// setGeometry(out, relatedObject, material);
-		// }
-		// }
-		// if (isDecomposedBy != null && isDecomposedBy.size() > 0) {
-		// return;
-		// }
-		//
-		// Iterator<IfcRelAssociatesMaterial> ramIter =
-		// model.getAll(IfcRelAssociatesMaterial.class).iterator();
-		// boolean found = false;
-		// IfcMaterialSelect relatingMaterial = null;
-		// while (!found && ramIter.hasNext()) {
-		// IfcRelAssociatesMaterial ram = ramIter.next();
-		// if (ram.getRelatedObjects().contains(ifcProduct)) {
-		// found = true;
-		// relatingMaterial = ram.getRelatingMaterial();
-		// }
-		// }
-		// if (found && relatingMaterial instanceof IfcMaterialLayerSetUsage) {
-		// IfcMaterialLayerSetUsage mlsu = (IfcMaterialLayerSetUsage)
-		// relatingMaterial;
-		// IfcMaterialLayerSet forLayerSet = mlsu.getForLayerSet();
-		// if (forLayerSet != null) {
-		// EList<IfcMaterialLayer> materialLayers =
-		// forLayerSet.getMaterialLayers();
-		// for (IfcMaterialLayer ml : materialLayers) {
-		// IfcMaterial ifcMaterial = ml.getMaterial();
-		// if (ifcMaterial != null) {
-		// String name = ifcMaterial.getName();
-		// String filterSpaces = fitNameForQualifiedName(name);
-		// materialFound = converted.containsKey(filterSpaces);
-		// if (materialFound) {
-		// material = filterSpaces;
-		// }
-		// }
-		// }
-		// }
-		// } else if (found && relatingMaterial instanceof IfcMaterial) {
-		// IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
-		// String name = ifcMaterial.getName();
-		// String filterSpaces = fitNameForQualifiedName(name);
-		// materialFound = converted.containsKey(filterSpaces);
-		// if (materialFound) {
-		// material = filterSpaces;
-		// }
-		// }
-		//
-		// if (!materialFound) {
-		// IfcProductRepresentation representation =
-		// ifcProduct.getRepresentation();
-		// if (representation instanceof IfcProductDefinitionShape) {
-		// IfcProductDefinitionShape pds = (IfcProductDefinitionShape)
-		// representation;
-		// EList<IfcRepresentation> representations = pds.getRepresentations();
-		// for (IfcRepresentation rep : representations) {
-		// if (rep instanceof IfcShapeRepresentation) {
-		// IfcShapeRepresentation sRep = (IfcShapeRepresentation) rep;
-		// EList<IfcRepresentationItem> items = sRep.getItems();
-		// for (IfcRepresentationItem item : items) {
-		// EList<IfcStyledItem> styledByItem = item.getStyledByItem();
-		// for (IfcStyledItem sItem : styledByItem) {
-		// EList<IfcPresentationStyleAssignment> styles = sItem.getStyles();
-		// for (IfcPresentationStyleAssignment sa : styles) {
-		// EList<IfcPresentationStyleSelect> styles2 = sa.getStyles();
-		// for (IfcPresentationStyleSelect pss : styles2) {
-		// if (pss instanceof IfcSurfaceStyle) {
-		// IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
-		// String name = ss.getName();
-		// String filterSpaces = fitNameForQualifiedName(name);
-		// added = true;
-		// if (!converted.containsKey(filterSpaces)) {
-		// converted.put(filterSpaces, new HashSet<String>());
-		// }
-		// converted.get(filterSpaces).add(id);
-		// }
-		// }
-		// }
-		// }
-		// }
-		// }
-		// }
-		// }
-		// }
-		// }
-		//
-		// if (!added) {
-		// }
-
 		if (ifcProductObject instanceof IfcFeatureElementSubtraction) {
 			// Mostly just skips IfcOpeningElements which one would probably not
 			// want to end up in the Collada file.
@@ -303,30 +202,34 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		GeometryInfo geometryInfo = ifcProductObject.getGeometry();
 		if (geometryInfo != null) {
 			GeometryData geometryData = geometryInfo.getData();
+			ByteBuffer indicesBuffer = ByteBuffer.wrap(geometryData.getIndices());
+			indicesBuffer.order(ByteOrder.LITTLE_ENDIAN);
 			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
+			verticesBuffer.order(ByteOrder.LITTLE_ENDIAN);
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
+			normalsBuffer.order(ByteOrder.LITTLE_ENDIAN);
 
-			String id = generateId();
+			String id = "" + ifcProductObject.getOid();
 			if (!converted.containsKey(material)) {
-				converted.put(material, new HashSet<String>());
+				converted.put(material, new HashSet<IfcProduct>());
 			}
-			converted.get(material).add(id);
+			converted.get(material).add(ifcProductObject);
 
 			String name = "[NO_GUID]";
 			if (ifcProductObject.getGlobalId() != null && ifcProductObject.getGlobalId() != null) {
 				name = ifcProductObject.getGlobalId();
 			}
 
-			int t = geometryInfo.getPrimitiveCount() * 3 * 3;
+			int nrVertices = verticesBuffer.capacity() / 4;
 
 			out.println("      <geometry id=\"geom-" + id + "\" name=\"" + name + "\">");
 			out.println("                      <mesh>");
 			out.println("                                     <source id=\"positions-" + id + "\" name=\"positions-" + id + "\">");
 			out.print("                                                         <float_array id=\"positions-array-" + id + "\" count=\""
-					+ t + "\">");
+					+ nrVertices + "\">");
 
-			for (int i = 0; i < t; i++) {
-				if (i < t - 1) {
+			for (int i = 0; i < nrVertices; i++) {
+				if (i < nrVertices - 1) {
 					out.print(verticesBuffer.getFloat() + " ");
 				} else {
 					out.print(verticesBuffer.getFloat());
@@ -335,7 +238,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 
 			out.println("</float_array>");
 			out.println("                                                     <technique_common>");
-			out.println("                                                                     <accessor count=\"" + (geometryInfo.getPrimitiveCount() * 3)
+			out.println("                                                                     <accessor count=\"" + (verticesBuffer.capacity() / 12)
 					+ "\" offset=\"0\" source=\"#positions-array-" + id + "\" stride=\"3\">");
 			out.println("                                                                                    <param name=\"X\" type=\"float\"></param>");
 			out.println("                                                                                    <param name=\"Y\" type=\"float\"></param>");
@@ -344,21 +247,23 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 			out.println("                                                     </technique_common>");
 			out.println("                                     </source>");
 
+			int nrNormals = normalsBuffer.capacity() / 4;
+			
 			out.println("                                     <source id=\"normals-" + id + "\" name=\"normals-" + id + "\">");
 			out.print("                                                         <float_array id=\"normals-array-" + id + "\" count=\""
-					+ t + "\">");
+					+ nrNormals + "\">");
 			
-			for (int i = 0; i < t; i++) {
-				if (i < t - 1) {
-					out.print(normalsBuffer.getFloat() * 1000.0f + " ");
+			for (int i = 0; i < nrNormals; i++) {
+				if (i < nrNormals - 1) {
+					out.print(normalsBuffer.getFloat() + " ");
 				} else {
-					out.print(normalsBuffer.getFloat() * 1000.0f);
+					out.print(normalsBuffer.getFloat());
 				}
 			}
 
 			out.println("</float_array>");
 			out.println("                                                     <technique_common>");
-			out.println("                                                                     <accessor count=\"" + (geometryInfo.getPrimitiveCount() * 3)
+			out.println("                                                                     <accessor count=\"" + (normalsBuffer.capacity() / 12)
 					+ "\" offset=\"0\" source=\"#normals-array-" + id + "\" stride=\"3\">");
 			out.println("                                                                                    <param name=\"X\" type=\"float\"></param>");
 			out.println("                                                                                    <param name=\"Y\" type=\"float\"></param>");
@@ -371,18 +276,19 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 			out.println("                                                     <input semantic=\"POSITION\" source=\"#positions-" + id + "\"/>");
 			out.println("                                                     <input semantic=\"NORMAL\" source=\"#normals-" + id + "\"/>");
 			out.println("                                     </vertices>");
+			
+			out.println("                                     <triangles count=\"" + (indicesBuffer.capacity() / 12) + "\" material=\"Material-" + id + "\">");
+			out.println("                                           <input offset=\"0\" semantic=\"VERTEX\" source=\"#vertices-" + id + "\"/>");
+			out.print("                                             <p>");
 
-			out.println("                                     <triangles count=\"" + (geometryInfo.getPrimitiveCount()) * 3 + "\" material=\"Material-" + id + "\">");
-			out.println("                                                     <input offset=\"0\" semantic=\"VERTEX\" source=\"#vertices-" + id + "\"/>");
-			out.print("                                                         <p>");
-
-			int count = geometryInfo.getPrimitiveCount() * 3;
-			for (int i = 0; i < count; i += 3) {
-				out.print(i + " ");
-				out.print((i + 2)  + " ");
-				out.print(i + 1);
-				if (i + 3 != count) {
-					out.print(" ");
+			for (int i = 0; i < indicesBuffer.capacity() / 4; i += 3) {
+				int first = indicesBuffer.getInt();
+				out.print(first + " ");
+				out.print(indicesBuffer.getInt() + " ");
+				if (i + 3 == indicesBuffer.capacity() / 4) {
+					out.print(indicesBuffer.getInt());
+				} else {
+					out.print(indicesBuffer.getInt() + " ");
 				}
 			}
 			out.println("</p>");
@@ -416,38 +322,45 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		out.println("                <instance_light url=\"#light-lib\"/>");
 		out.println("            </node>");
 		for (String material : converted.keySet()) {
-			Set<String> ids = converted.get(material);
-			for (String id : ids) {
-				out.println("            <node id=\"node-" + id + "\" name=\"node-" + id + "\">");
-				out.println("                <rotate sid=\"rotateX\">1 0 0 90</rotate>");
-				out.println("                <rotate sid=\"rotateY\">0 1 0 180</rotate>");
-				out.println("                <rotate sid=\"rotateZ\">0 0 1 90</rotate>");
-				out.println("                <instance_geometry url=\"#geom-" + id + "\">");
-				out.println("                    <bind_material>");
-				out.println("                        <technique_common>");
-				out.println("                            <instance_material symbol=\"Material-" + id + "\" target=\"#" + material + "Material\"/>");
-				out.println("                        </technique_common>");
-				out.println("                    </bind_material>");
-				out.println("                </instance_geometry>");
-				out.println("            </node>");
+			Set<IfcProduct> ids = converted.get(material);
+			for (IfcProduct product : ids) {
+				GeometryInfo geometryInfo = product.getGeometry();
+				if (geometryInfo != null && geometryInfo.getTransformation() != null) {
+					out.println("            <node id=\"node-" + product.getOid() + "\" name=\"node-" + product.getOid() + "\">");
+					printMatrix(out, geometryInfo);
+					out.println("                <instance_geometry url=\"#geom-" + product.getOid() + "\">");
+					out.println("                    <bind_material>");
+					out.println("                        <technique_common>");
+					out.println("                            <instance_material symbol=\"Material-" + product.getOid() + "\" target=\"#" + material + "Material\"/>");
+					out.println("                        </technique_common>");
+					out.println("                    </bind_material>");
+					out.println("                </instance_geometry>");
+					out.println("            </node>");
+				}
 			}
 		}
-		// out.println("            <node id=\"testCamera\" name=\"testCamera\">");
-		// out.println("                <translate sid=\"translate\">-427.749 333.855 655.017</translate>");
-		// out.println("                <rotate sid=\"rotateY\">0 1 0 -33</rotate>");
-		// out.println("                <rotate sid=\"rotateX\">1 0 0 -22.1954</rotate>");
-		// out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		// out.println("                <instance_camera url=\"#testCameraShape\"/>");
-		// out.println("            </node>");
-		// out.println("            <node id=\"pointLight1\" name=\"pointLight1\">");
-		// out.println("                <translate sid=\"translate\">3 4 10</translate>");
-		// out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		// out.println("                <rotate sid=\"rotateY\">0 1 0 0</rotate>");
-		// out.println("                <rotate sid=\"rotateX\">1 0 0 0</rotate>");
-		// out.println("                <instance_light url=\"#pointLightShape1-lib\"/>");
-		// out.println("            </node>");
 		out.println("        </visual_scene>");
 		out.println("    </library_visual_scenes>");
+	}
+
+	private void printMatrix(PrintWriter out, GeometryInfo geometryInfo) {
+		ByteBuffer transformation = ByteBuffer.wrap(geometryInfo.getTransformation());
+		transformation.order(ByteOrder.LITTLE_ENDIAN);
+		FloatBuffer floatBuffer = transformation.asFloatBuffer();
+		float[] matrix = new float[16];
+		for (int i=0; i<matrix.length; i++) {
+			matrix[i] = floatBuffer.get();
+		}
+		matrix = Matrix.changeOrientation(matrix);
+		out.println("                <matrix>");
+		for (int i=0; i<matrix.length; i++) {
+			if (i + 1 == matrix.length) {
+				out.print(matrix[i]);
+			} else {
+				out.print(matrix[i] + " ");
+			}
+		}
+		out.println("                </matrix>");
 	}
 
 	private void writeEffects(PrintWriter out) {
@@ -455,56 +368,8 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		for (Convertor<? extends IfcProduct> convertor : convertors.values()) {
 			writeEffect(out, convertor.getMaterialName(null), convertor.getColors(), convertor.getOpacity());
 		}
-		// List<IfcSurfaceStyle> listSurfaceStyles =
-		// model.getAll(IfcSurfaceStyle.class);
-		// for (IfcSurfaceStyle ss : listSurfaceStyles) {
-		// EList<IfcSurfaceStyleElementSelect> styles = ss.getStyles();
-		// for (IfcSurfaceStyleElementSelect style : styles) {
-		// if (style instanceof IfcSurfaceStyleRendering) {
-		// IfcSurfaceStyleRendering ssr = (IfcSurfaceStyleRendering) style;
-		// IfcColourRgb colour = null;
-		// IfcColourOrFactor surfaceColour = ssr.getSurfaceColour();
-		// if (surfaceColour instanceof IfcColourRgb) {
-		// colour = (IfcColourRgb) surfaceColour;
-		// }
-		// String name = fitNameForQualifiedName(ss.getName());
-		// writeEffect(out, name, new double[] { colour.getRed(),
-		// colour.getGreen(), colour.getBlue() }, (ssr.isSetTransparency() ?
-		// (ssr.getTransparency()) : 1.0f));
-		// break;
-		// }
-		// }
-		// }
 		out.println("    </library_effects>");
 	}
-
-	// private String fitNameForQualifiedName(String name) {
-	// if (name == null) {
-	// return "";
-	// }
-	// StringBuilder builder = new StringBuilder(name);
-	// int indexOfSpace = builder.indexOf(" ");
-	// while (indexOfSpace >= 0) {
-	// builder.deleteCharAt(indexOfSpace);
-	// indexOfSpace = builder.indexOf(" ");
-	// }
-	// indexOfSpace = builder.indexOf(",");
-	// while (indexOfSpace >= 0) {
-	// builder.setCharAt(indexOfSpace, '_');
-	// indexOfSpace = builder.indexOf(",");
-	// }
-	// indexOfSpace = builder.indexOf("/");
-	// while (indexOfSpace >= 0) {
-	// builder.setCharAt(indexOfSpace, '_');
-	// indexOfSpace = builder.indexOf("/");
-	// }
-	// indexOfSpace = builder.indexOf("*");
-	// while (indexOfSpace >= 0) {
-	// builder.setCharAt(indexOfSpace, '_');
-	// indexOfSpace = builder.indexOf("/");
-	// }
-	// return builder.toString();
-	// }
 
 	private void writeEffect(PrintWriter out, String name, double[] colors, double transparency) {
 		out.println("        <effect id=\"" + name + "-fx\">");
