@@ -32,7 +32,11 @@ public class LocalDevPluginLoader {
 
 		if (pluginDirectories != null) {
 			for (File pluginDirectory : pluginDirectories) {
-				pluginManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
+				try {
+					pluginManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
+				} catch (PluginException e) {
+					LOGGER.error("", e);
+				}
 			}
 		}
 	}
