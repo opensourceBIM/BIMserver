@@ -123,7 +123,7 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 			int nrInstances = failSafeIfcEngine.readInt();
 			List<JvmIfcEngineInstance> instances = new ArrayList<JvmIfcEngineInstance>();
 			for (int i = 0; i < nrInstances; i++) {
-				instances.add(new JvmIfcEngineInstance(this, failSafeIfcEngine, modelId, failSafeIfcEngine.readInt()));
+				instances.add(new JvmIfcEngineInstance(failSafeIfcEngine, modelId, failSafeIfcEngine.readInt()));
 			}
 			return instances;
 		}
@@ -184,7 +184,7 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 			if (instanceId == -1) {
 				throw new RenderEngineException("Instance with express id " + oid + " not found");
 			}
-			return new JvmIfcEngineInstance(this, failSafeIfcEngine, modelId, instanceId);
+			return new JvmIfcEngineInstance(failSafeIfcEngine, modelId, instanceId);
 		}
 	}
 

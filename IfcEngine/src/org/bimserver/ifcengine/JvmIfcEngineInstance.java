@@ -32,19 +32,11 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 	private final JvmIfcEngine failSafeIfcEngine;
 	private final int instanceId;
 	private final int modelId;
-	private JvmIfcEngineModel jvmIfcEngineModel;
 
-	public JvmIfcEngineInstance(JvmIfcEngineModel jvmIfcEngineModel, JvmIfcEngine failSafeIfcEngine, int modelId, int instanceId) {
-		this.jvmIfcEngineModel = jvmIfcEngineModel;
+	public JvmIfcEngineInstance(JvmIfcEngine failSafeIfcEngine, int modelId, int instanceId) {
 		this.failSafeIfcEngine = failSafeIfcEngine;
 		this.modelId = modelId;
 		this.instanceId = instanceId;
-	}
-
-	private float[] trim(float[] vertices, int size) {
-		float[] newArray = new float[size];
-		System.arraycopy(vertices, 0, newArray, 0, size);
-		return newArray;
 	}
 
 	@Override
@@ -62,8 +54,7 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 		}
 	}
 
-	@Override
-	public RenderEngineGeometry generateGeometry() throws RenderEngineException {
+	private RenderEngineSurfaceProperties initialize() throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.INITIALIZE_MODELLING_INSTANCE);
 			failSafeIfcEngine.writeInt(modelId);
@@ -72,15 +63,26 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 			int noIndices = failSafeIfcEngine.readInt();
 			int noVertices = failSafeIfcEngine.readInt();
 			RenderEngineSurfaceProperties renderEngineSurfaceProperties = new RenderEngineSurfaceProperties(modelId, noVertices, noIndices, 0.0);
+			return renderEngineSurfaceProperties;
+		}		
+	}
+	
+	@Override
+	public RenderEngineGeometry generateGeometry() throws RenderEngineException {
+		RenderEngineSurfaceProperties initialize = initialize();
+		return getVisualizationProperties(initialize);
+	}
 
+	private RenderEngineGeometry getVisualizationProperties(RenderEngineSurfaceProperties initialize) throws RenderEngineException {
+		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.GET_VISUALISATION_PROPERTIES);
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.writeInt(instanceId);
 			failSafeIfcEngine.flush();
 			
-			int[] indices = new int[renderEngineSurfaceProperties.getIndicesCount()];
-			float[] vertices = new float[renderEngineSurfaceProperties.getVerticesCount() * 3];
-			float[] normals = new float[renderEngineSurfaceProperties.getVerticesCount() * 3];
+			int[] indices = new int[initialize.getIndicesCount()];
+			float[] vertices = new float[initialize.getVerticesCount() * 3];
+			float[] normals = new float[initialize.getVerticesCount() * 3];
 			for (int i = 0; i < indices.length; i++) {
 				indices[i] = failSafeIfcEngine.readInt();
 			}
