@@ -23,11 +23,11 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -64,6 +64,7 @@ import org.slf4j.LoggerFactory;
 public class GeometryGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryGenerator.class);
 	private BimServer bimServer;
+	private final Map<Integer, GeometryData> hashes = new HashMap<>();
 
 	public static class GeometryCacheEntry {
 		public GeometryCacheEntry(ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, GeometryInfo geometryInfo) {
@@ -151,8 +152,6 @@ public class GeometryGenerator {
 							
 							List<IfcProduct> products = model.getAllWithSubTypes(IfcProduct.class);
 
-							GeometrySimplifier geometrySimplifier = new GeometrySimplifier();
-							
 							for (IfcProduct ifcProduct : products) {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
 								RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
@@ -215,23 +214,17 @@ public class GeometryGenerator {
 									}
 									setTransformationMatrix(geometryInfo, tranformationMatrix);
 									if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
-										geometrySimplifier.add(ifcProduct, geometryData);
+										int hash = hash(geometryData);
+										if (hashes.containsKey(hash)) {
+											databaseSession.removeFromCommit(geometryData);
+											geometryInfo.setData(hashes.get(hash));
+										} else {
+											hashes.put(hash, geometryData);
+										}
 									}
 									ifcProduct.setGeometry(geometryInfo);
 									if (store) {
 										databaseSession.store(ifcProduct, pid, rid);
-									}
-								}
-							}
-							if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
-								for (IfcProduct ifcProduct : products) {
-									if (ifcProduct.getGeometry() != null && ifcProduct.getGeometry().getData() != null) {
-										Set<GeometryData> matchingGeometryDatas = geometrySimplifier.getMatchingGeometry(ifcProduct, ifcProduct.getGeometry().getData());
-										for (GeometryData matchingGeometryData : matchingGeometryDatas) {
-											if (reuseGeometry(ifcProduct, ifcProduct.getGeometry(), ifcProduct.getGeometry().getData(), matchingGeometryData)) {
-												break;
-											}
-										}
 									}
 								}
 							}
@@ -251,6 +244,26 @@ public class GeometryGenerator {
 		}
 	}
 	
+	private int hash(GeometryData geometryData) {
+		int hashCode = 0;
+		if (geometryData.getIndices() != null) {
+			hashCode += Arrays.hashCode(geometryData.getIndices());
+		}
+		if (geometryData.getVertices() != null) {
+			hashCode += Arrays.hashCode(geometryData.getVertices());
+		}
+		if (geometryData.getNormals() != null) {
+			hashCode += Arrays.hashCode(geometryData.getNormals());
+		}
+		if (geometryData.getMaterialIndices() != null) {
+			hashCode += Arrays.hashCode(geometryData.getMaterialIndices());
+		}
+		if (geometryData.getMaterials() != null) {
+			hashCode += Arrays.hashCode(geometryData.getMaterials());
+		}
+		return hashCode;
+	}
+
 	private byte[] floatArrayToByteArray(float[] vertices) {
 		if (vertices == null) {
 			return null;
@@ -298,45 +311,6 @@ public class GeometryGenerator {
 		return Math.abs(f1 - f2) < maxDiff;
 	}
 	
-	private boolean reuseGeometry(IfcProduct ifcProduct, GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
-		double distanceFromCorners = Math.sqrt(Math.pow(geometryInfo.getMaxBounds().getX() - geometryInfo.getMinBounds().getX(), 2) + Math.pow(geometryInfo.getMaxBounds().getY() - geometryInfo.getMinBounds().getY(), 2) + Math.pow(geometryInfo.getMaxBounds().getZ() - geometryInfo.getMinBounds().getZ(), 2));
-		float maxDiff = (float) (distanceFromCorners / 100.0);
-		
-		ByteBuffer bb1 = ByteBuffer.wrap(matchingGeometryData.getVertices());
-		ByteBuffer bb2 = ByteBuffer.wrap(geometryData.getVertices());
-		bb1.order(ByteOrder.LITTLE_ENDIAN);
-		bb2.order(ByteOrder.LITTLE_ENDIAN);
-		FloatBuffer vertices1 = bb1.asFloatBuffer();
-		FloatBuffer vertices2 = bb2.asFloatBuffer();
-
-		float[] v1 = new float[]{vertices1.get(0), vertices1.get(1), vertices1.get(2)};
-		float[] u1 = new float[]{vertices2.get(0), vertices2.get(1), vertices2.get(2)};
-		float[] v2 = new float[]{vertices1.get(3), vertices1.get(4), vertices1.get(5)};
-		float[] u2 = new float[]{vertices2.get(3), vertices2.get(4), vertices2.get(5)};
-		float[] v3 = new float[]{vertices1.get(6), vertices1.get(7), vertices1.get(8)};
-		float[] u3 = new float[]{vertices2.get(6), vertices2.get(7), vertices2.get(8)};
-
-		float[] totalResult = getTransformationMatrix(v1, v2, v3, u1, u2, u3, maxDiff);
-		if (totalResult == null) {
-			return false;
-		}
-
-		float[] r = new float[4];
-		Matrix.multiplyMV(r, 0, totalResult, 0, new float[]{v1[0], v1[1], v1[2], 1}, 0);
-		
-		if (almostTheSame(r[0] - v1[0], u1[0], maxDiff) && almostTheSame(r[1] - v1[1], u1[1], maxDiff) && almostTheSame(r[2] - v1[2], u1[2], maxDiff)) {
-			// Interesting
-			Matrix.translateM(totalResult, 0, -v1[0], -v1[1], -v1[2]);
-		}
-		
-		if (test(v1, u1, totalResult, maxDiff)) {
-			geometryInfo.setData(matchingGeometryData);
-			setTransformationMatrix(geometryInfo, totalResult);
-			return true;
-		}
-		return false;
-	}
-
 	/**
 	 * This function should return a transformation matrix (with translation and rotation, no scaling) overlaying triangle V on U
 	 * Assumed is that the triangles are indeed the same and the order of the vertices is also the same (shifts are not allowed)
