@@ -62,22 +62,22 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 			failSafeIfcEngine.flush();
 			int noIndices = failSafeIfcEngine.readInt();
 			int noVertices = failSafeIfcEngine.readInt();
-			RenderEngineSurfaceProperties renderEngineSurfaceProperties = new RenderEngineSurfaceProperties(modelId, noVertices, noIndices, 0.0);
-			return renderEngineSurfaceProperties;
+			return new RenderEngineSurfaceProperties(modelId, noVertices, noIndices, 0.0);
 		}		
 	}
 	
 	@Override
 	public RenderEngineGeometry generateGeometry() throws RenderEngineException {
 		RenderEngineSurfaceProperties initialize = initialize();
-		return getVisualizationProperties(initialize);
+		return finalize(initialize);
 	}
 
-	private RenderEngineGeometry getVisualizationProperties(RenderEngineSurfaceProperties initialize) throws RenderEngineException {
+	private RenderEngineGeometry finalize(RenderEngineSurfaceProperties initialize) throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
-			failSafeIfcEngine.writeCommand(Command.GET_VISUALISATION_PROPERTIES);
+			failSafeIfcEngine.writeCommand(Command.FINALIZE_MODELLING);
 			failSafeIfcEngine.writeInt(modelId);
-			failSafeIfcEngine.writeInt(instanceId);
+			failSafeIfcEngine.writeInt(initialize.getIndicesCount());
+			failSafeIfcEngine.writeInt(initialize.getVerticesCount());
 			failSafeIfcEngine.flush();
 			
 			int[] indices = new int[initialize.getIndicesCount()];
