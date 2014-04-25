@@ -198,20 +198,21 @@ public class GeometryGenerator {
 										}
 										geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
 									}
+
+									float[] tranformationMatrix = new float[16];
+									if (renderEngineInstance.getTransformationMatrix() != null) {
+										tranformationMatrix = renderEngineInstance.getTransformationMatrix();
+										tranformationMatrix = Matrix.changeOrientation(tranformationMatrix);
+									} else {
+										Matrix.setIdentityM(tranformationMatrix, 0);
+									}
 									
 									for (int i=0; i<geometry.getIndices().length; i++) {
-										processExtends(geometryInfo, geometry.getVertices(), geometry.getIndices()[i] * 3);
+										processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3);
 									}
 									
 									geometryInfo.setData(geometryData);
 									
-									float[] tranformationMatrix = new float[16];
-									if (renderEngineInstance.getTransformationMatrix() != null) {
-										tranformationMatrix = renderEngineInstance.getTransformationMatrix();
- 										tranformationMatrix = Matrix.changeOrientation(tranformationMatrix);
-									} else {
-										Matrix.setIdentityM(tranformationMatrix, 0);
-									}
 									setTransformationMatrix(geometryInfo, tranformationMatrix);
 									if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
 										int hash = hash(geometryData);
@@ -625,10 +626,15 @@ public class GeometryGenerator {
 		return vector3f;
 	}
 
-	private void processExtends(GeometryInfo geometryInfo, float[] vertices, int index) {
+	private void processExtends(GeometryInfo geometryInfo, float[] transformationMatrix, float[] vertices, int index) {
 		float x = vertices[index];
 		float y = vertices[index + 1];
 		float z = vertices[index + 2];
+		float[] result = new float[4];
+		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new float[]{x, y, z, 1}, 0);
+		x = result[0];
+		y = result[1];
+		z = result[2];
 		geometryInfo.getMinBounds().setX(Math.min(x, geometryInfo.getMinBounds().getX()));
 		geometryInfo.getMinBounds().setY(Math.min(y, geometryInfo.getMinBounds().getY()));
 		geometryInfo.getMinBounds().setZ(Math.min(z, geometryInfo.getMinBounds().getZ()));
