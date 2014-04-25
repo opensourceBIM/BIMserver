@@ -39,7 +39,6 @@ public class WarServerInitializer implements ServletContextListener {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 	private BimServer bimServer;
-
 	
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
