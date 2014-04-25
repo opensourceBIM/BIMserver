@@ -103,7 +103,7 @@ function pushHistoryAppend(obj, title) {
 		str = str.substring(0, str.length - 1);
 	}
 	if (!current.cleanUrl.endsWith(str)) {
-		History.pushState(obj, "BIM Views" + (title == null ? "" : " - " + title), str);
+		History.pushState(obj, Settings.getTitle() + (title == null ? "" : " - " + title), str);
 	}
 	pushing = false;
 }
@@ -119,8 +119,8 @@ function pushHistory(obj, title, initial) {
 		str = str.substring(0, str.length - 1);
 	}
 	if (title != null) {
-		if (!title.startsWith("BIM Views")) {
-			title = "BIM Views - " + title;
+		if (!title.startsWith(Settings.getTitle())) {
+			title = Settings.getTitle() + " - " + title;
 		}
 	} else {
 		title = current.title;
