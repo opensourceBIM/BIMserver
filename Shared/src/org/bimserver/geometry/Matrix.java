@@ -1,42 +1,22 @@
 package org.bimserver.geometry;
-/*
- * Copyright (C) 2007 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
-/**
- * Matrix math utilities. These methods operate on OpenGL ES format
- * matrices and vectors stored in float arrays.
- *
- * Matrices are 4 x 4 column-vector matrices stored in column-major
- * order:
- * <pre>
- *  m[offset +  0] m[offset +  4] m[offset +  8] m[offset + 12]
- *  m[offset +  1] m[offset +  5] m[offset +  9] m[offset + 13]
- *  m[offset +  2] m[offset +  6] m[offset + 10] m[offset + 14]
- *  m[offset +  3] m[offset +  7] m[offset + 11] m[offset + 15]
- * </pre>
- *
- * Vectors are 4 row x 1 column column-vectors stored in order:
- * <pre>
- * v[offset + 0]
- * v[offset + 1]
- * v[offset + 2]
- * v[offset + 3]
- * </pre>
- *
- */
+/******************************************************************************
+ * Copyright (C) 2009-2014  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 public class Matrix {
 
 	public static void main(String[] args) {

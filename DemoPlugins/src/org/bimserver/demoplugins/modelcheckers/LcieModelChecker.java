@@ -7,10 +7,8 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
-import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.store.ModelCheckerResult;
-import org.bimserver.models.store.ModelCheckerResultItem;
 import org.bimserver.models.store.ModelCheckerResultLine;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.modelchecker.ModelCheckException;
@@ -18,6 +16,7 @@ import org.bimserver.plugins.modelchecker.ModelChecker;
 
 public class LcieModelChecker implements ModelChecker {
 
+	@SuppressWarnings("unused")
 	private static class SpaceRequirement {
 		public SpaceRequirement(float usableHeight, float grossArea, float netArea) {
 			this.usableHeight = usableHeight;
@@ -53,7 +52,7 @@ public class LcieModelChecker implements ModelChecker {
 	public ModelCheckerResult check(IfcModelInterface model, byte[] compiledCode) throws ModelCheckException {
 		ModelCheckerResult result = StoreFactory.eINSTANCE.createModelCheckerResult();
 		for (String guid : requirements.keySet()) {
-			SpaceRequirement spaceRequirement = requirements.get(guid);
+//			SpaceRequirement spaceRequirement = requirements.get(guid);
 			IfcSpace space = (IfcSpace) model.getByGuid(guid);
 			if (space == null) {
 				ModelCheckerResultLine item = StoreFactory.eINSTANCE.createModelCheckerResultLine();

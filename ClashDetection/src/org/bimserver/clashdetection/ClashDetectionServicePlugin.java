@@ -1,29 +1,16 @@
 package org.bimserver.clashdetection;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.activation.DataSource;
-import javax.imageio.ImageIO;
 import javax.mail.util.ByteArrayDataSource;
-import javax.xml.datatype.DatatypeFactory;
 
-import org.bimserver.bcf.markup.Header;
-import org.bimserver.bcf.markup.Header.File;
-import org.bimserver.bcf.markup.Markup;
-import org.bimserver.bcf.markup.Topic;
-import org.bimserver.bcf.visinfo.Component;
 import org.bimserver.bcf.visinfo.Direction;
-import org.bimserver.bcf.visinfo.PerspectiveCamera;
 import org.bimserver.bcf.visinfo.Point;
-import org.bimserver.bcf.visinfo.VisualizationInfo;
 import org.bimserver.clashdetection.bcf.Bcf;
-import org.bimserver.clashdetection.bcf.Issue;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
@@ -32,7 +19,6 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
-import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.ObjectDefinition;
@@ -49,7 +35,6 @@ import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineClash;
 import org.bimserver.plugins.renderengine.RenderEngineGeometry;
-import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -60,11 +45,8 @@ import org.bimserver.plugins.stillimagerenderer.StillImageRendererException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.openmali.vecmath2.Vector3f;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.ibm.wsdl.util.IOUtils;
 
 public class ClashDetectionServicePlugin extends ServicePlugin {
 
@@ -88,6 +70,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(clashDetection, new NewRevisionHandler() {
+			@SuppressWarnings("unused")
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();
 
@@ -236,6 +219,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		});
 	}
 
+	@SuppressWarnings("unused")
 	private Point newPoint(double x, double y, double z) {
 		Point point = new Point();
 		point.setX(x);
@@ -244,6 +228,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		return point;
 	}
 
+	@SuppressWarnings("unused")
 	private Direction newDirection(double x, double y, double z) {
 		Direction direction = new Direction();
 		direction.setX(x);

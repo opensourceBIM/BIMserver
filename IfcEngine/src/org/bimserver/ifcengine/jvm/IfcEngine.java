@@ -34,7 +34,6 @@ import java.util.Set;
 
 import org.bimserver.ifcengine.jvm.IfcEngineInterface.StreamCallback;
 import org.bimserver.plugins.renderengine.RenderEngineClash;
-import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Pointer;

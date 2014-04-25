@@ -22,7 +22,6 @@ import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.GeometryInstance;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -206,7 +205,6 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	public byte[] getTransformation() {
 		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INFO__TRANSFORMATION, true);
 	}

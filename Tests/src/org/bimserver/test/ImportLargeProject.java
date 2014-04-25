@@ -1,5 +1,22 @@
 package org.bimserver.test;
 
+/******************************************************************************
+ * Copyright (C) 2009-2014  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 import java.io.File;
 import java.io.IOException;
 
@@ -34,11 +51,11 @@ public class ImportLargeProject {
 			SProject teklaHouseFoundationRebars = serviceInterface.addProjectAsSubProject("Tekla Hose Foundation Rebars", foundation.getOid());
 			SProject teklaHouseFoundationEmbedments = serviceInterface.addProjectAsSubProject("Tekla Hose Foundation Embedments", foundation.getOid());
 			SProject cipConcreteContractor = serviceInterface.addProjectAsSubProject("CIP Concrete Contractor", mainProject.getOid());
-			SProject teklaHouseCIPPours = serviceInterface.addProjectAsSubProject("Tekla House CIP Pours", cipConcreteContractor.getOid());
+			serviceInterface.addProjectAsSubProject("Tekla House CIP Pours", cipConcreteContractor.getOid());
 			SProject teklaHouseCIPRebars = serviceInterface.addProjectAsSubProject("Tekla House CIP Rebars", cipConcreteContractor.getOid());
 			SProject teklaHouseCIPColumns = serviceInterface.addProjectAsSubProject("Tekla House CIP Columns", cipConcreteContractor.getOid());
 			SProject formWork = serviceInterface.addProjectAsSubProject("Formwork", mainProject.getOid());
-			SProject columnFormwork = serviceInterface.addProjectAsSubProject("Column Formwork", formWork.getOid());
+			serviceInterface.addProjectAsSubProject("Column Formwork", formWork.getOid());
 			SProject precast = serviceInterface.addProjectAsSubProject("Precast", mainProject.getOid());
 			SProject teklaHousePrecastRebars = serviceInterface.addProjectAsSubProject("Tekla House Precast Rebars", precast.getOid());
 			SProject teklaHousePrecastConcrete = serviceInterface.addProjectAsSubProject("Tekla House Precast Concrete", precast.getOid());
@@ -49,10 +66,10 @@ public class ImportLargeProject {
 			SProject teklaHouseMEP3 = serviceInterface.addProjectAsSubProject("Tekla House MEP, 3rd", mep.getOid());
 			SProject teklaHouseMEPRoof = serviceInterface.addProjectAsSubProject("Tekla House MEP, Roof", mep.getOid());
 			SProject site = serviceInterface.addProjectAsSubProject("Site", mainProject.getOid());
-			SProject siteSkp = serviceInterface.addProjectAsSubProject("Site.skp", site.getOid());
-			SProject towerCrane = serviceInterface.addProjectAsSubProject("Tower crane", site.getOid());
-			SProject caterpillar = serviceInterface.addProjectAsSubProject("Caterpillar", site.getOid());
-			SProject excavator = serviceInterface.addProjectAsSubProject("Excavator", site.getOid());
+			serviceInterface.addProjectAsSubProject("Site.skp", site.getOid());
+			serviceInterface.addProjectAsSubProject("Tower crane", site.getOid());
+			serviceInterface.addProjectAsSubProject("Caterpillar", site.getOid());
+			serviceInterface.addProjectAsSubProject("Excavator", site.getOid());
 			SProject grid = serviceInterface.addProjectAsSubProject("Grid", mainProject.getOid());
 			SProject teklaHouseGrids = serviceInterface.addProjectAsSubProject("Tekla House Grids", grid.getOid());
 			

@@ -17,7 +17,6 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 
 public class ProgressOnRevisionTopic extends ProgressTopic {
