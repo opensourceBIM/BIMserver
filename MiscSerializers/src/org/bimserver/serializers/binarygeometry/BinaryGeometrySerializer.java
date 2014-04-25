@@ -23,7 +23,6 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -106,7 +105,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		
 		for (IfcProduct ifcProduct : products) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
-			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
+			if (geometryInfo != null && geometryInfo.getTransformation() != null && geometryInfo.getData().getVertices() != null) {
 				Bounds objectBounds = new Bounds(new Float3(geometryInfo.getMinBounds().getX(), geometryInfo.getMinBounds().getY(), geometryInfo.getMinBounds()
 						.getZ()), new Float3(geometryInfo.getMaxBounds().getX(), geometryInfo.getMaxBounds().getY(), geometryInfo.getMaxBounds().getZ()));
 				modelBounds.integrate(objectBounds);
@@ -126,8 +125,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		
 		for (IfcProduct ifcProduct : products) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
-			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
-				System.out.println(ifcProduct.getOid());
+			if (geometryInfo != null && geometryInfo.getTransformation() != null && geometryInfo.getData().getVertices() != null) {
 				dataOutputStream.writeUTF(ifcProduct.eClass().getName());
 				dataOutputStream.writeLong(ifcProduct.getOid());
 
