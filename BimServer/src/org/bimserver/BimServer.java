@@ -37,6 +37,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
+import org.apache.log4j.PatternLayout;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.client.DirectBimServerClientFactory;
@@ -801,6 +802,7 @@ public class BimServer {
 	private void fixLogging() throws IOException {
 		File file = new File(config.getHomeDir(), "logs/bimserver.log");
 		CustomFileAppender appender = new CustomFileAppender(file);
+		appender.setLayout(new PatternLayout("%d{dd-MM-yyyy HH:mm:ss} %-5p %-80m (%c.java:%L) %n"));
 		System.out.println("Logging to: " + file.getAbsolutePath());
 		Enumeration<?> currentLoggers = LogManager.getCurrentLoggers();
 		LogManager.getRootLogger().addAppender(appender);
