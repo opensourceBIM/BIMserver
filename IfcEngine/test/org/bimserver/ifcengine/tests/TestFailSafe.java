@@ -23,6 +23,7 @@ public class TestFailSafe {
 			model.setSettings(new RenderEngineSettings());
 			RenderEngineInstance instance = model.getInstanceFromExpressId(3008);
 			RenderEngineGeometry geometry = instance.generateGeometry();
+			System.out.println(geometry);
 			
 			model.close();
 			failSafeIfcEngine.close();

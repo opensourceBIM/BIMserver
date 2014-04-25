@@ -17,11 +17,6 @@ package org.bimserver.database;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-/* 
- * DatabaseSession is NOT thread safe 
- * 
- * */
-
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;

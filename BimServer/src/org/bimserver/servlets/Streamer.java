@@ -73,7 +73,6 @@ public class Streamer implements EndPoint {
 	}
 	
 	public static class WebSocketifier extends OutputStream implements AligningOutputStream {
-		private static final int HARD_LIMIT = 262144;
 		private byte[] buffer = new byte[1024 * 1024 * 100];
 		private int pos = 0;
 		private StreamingSocketInterface streamingSocketInterface;

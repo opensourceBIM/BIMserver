@@ -1,6 +1,5 @@
 package org.bimserver.demoplugins.service;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;

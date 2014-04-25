@@ -238,6 +238,7 @@ public class SceneJs3ShellSerializer extends AbstractGeometrySerializer {
 		jsonWriter.endObject();
 	}
 
+	@SuppressWarnings("unused")
 	private void writeVisualScenes(JsonWriter jsonWriter) throws IOException {
 		Extends sceneExtends = getSceneExtends();
 		// Calculate the maximum ray length through the scene (using the two
