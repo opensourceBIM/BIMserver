@@ -55,7 +55,7 @@ function Login(address, username) {
 	Global.bimServerApi.call("AdminInterface", "getVersion", {}, function(version){
 		if (!Settings.usableBimServerVersion(version)) {
 			var versionString = version.major + "." + version.minor + "." + version.revision;
-			Global.notifier.setInfo("This version of BIMserver (" + versionString + ") has not been tested with this version of BIMvie.ws");
+			Global.notifier.setInfo("This version of BIMserver (" + versionString + ") has not been tested with this version of " + Settings.getTitle());
 		}
 	});
 	

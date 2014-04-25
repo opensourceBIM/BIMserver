@@ -14,6 +14,9 @@ var Settings = {
 			callback(data.address);
 		});
 	},
+	getTitle: function(){
+		return "BIMserver Admin GUI";
+	},
 	usableBimServerVersion: function(version) {
 		return version.major == 1 && version.minor == 3 && version.revision == 0;
 	},
