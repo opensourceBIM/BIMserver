@@ -331,6 +331,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 		LOGGER.info("Regenerating geometry for concrete revision" + croid);
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
+			session.setOverwriteEnabled(true); // Normally we wouldn't be allowed to change existing data
 			ConcreteRevision concreteRevision = session.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, Query.getDefault());
 			IfcModelInterface model = new IfcModel();
 			session.getMap(model, new Query(concreteRevision.getProject().getId(), concreteRevision.getId()));
