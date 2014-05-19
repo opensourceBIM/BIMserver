@@ -60,6 +60,8 @@ service AdminInterface {
 
 	rpc migrateDatabase (MigrateDatabaseRequest) returns (VoidResponse);
 
+	rpc regenerateGeometry (RegenerateGeometryRequest) returns (VoidResponse);
+
 	rpc setup (SetupRequest) returns (VoidResponse);
 
 	rpc upgradePossible (UpgradePossibleRequest) returns (UpgradePossibleResponse);
@@ -457,6 +459,10 @@ message GetVersionResponse {
 }
 
 message MigrateDatabaseRequest {
+}
+
+message RegenerateGeometryRequest {
+	optional int64 roid = 1;
 }
 
 message SetupRequest {

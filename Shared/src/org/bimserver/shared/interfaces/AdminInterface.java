@@ -217,4 +217,11 @@ public interface AdminInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getServerStartTime")
 	Date getServerStartTime() throws ServerException, UserException;
+
+	/**
+	 * Regenerate the geometry for a specified roid
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "regenerateGeometry")
+	void regenerateGeometry(@WebParam(name = "roid", partName = "regenerateGeometry.roid") Long roid) throws ServerException, UserException;
 }

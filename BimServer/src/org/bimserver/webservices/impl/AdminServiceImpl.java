@@ -29,6 +29,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.bimserver.GeometryGenerator;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -38,6 +39,8 @@ import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetLogsDatabaseAction;
 import org.bimserver.database.migrations.Migrator;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SBimServerInfo;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SJavaInfo;
@@ -49,8 +52,10 @@ import org.bimserver.interfaces.objects.SSystemInfo;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogAction;
+import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.ServerException;
@@ -317,6 +322,25 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			return convertToSListPluginDescriptor;
 		} catch (Exception e) {
 			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void regenerateGeometry(Long roid) throws ServerException, UserException {
+		LOGGER.info("Regenerating geometry for " + roid);
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
+			for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
+				IfcModelInterface model = new IfcModel();
+				session.getMap(model, new Query(concreteRevision.getProject().getId(), concreteRevision.getId()));
+				new GeometryGenerator(getBimServer()).generateGeometry(getAuthorization().getUoid(), getBimServer().getPluginManager(), session, model, concreteRevision.getProject().getId(), concreteRevision.getId(), revision, false, null);
+			}
+			session.commit();
+		} catch (Exception e) {
+			handleException(e);
 		} finally {
 			session.close();
 		}

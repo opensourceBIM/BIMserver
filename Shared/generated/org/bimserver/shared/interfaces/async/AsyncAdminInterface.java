@@ -119,6 +119,11 @@ public class AsyncAdminInterface {
 		void error(Throwable e);
 	}
 	
+	public interface RegenerateGeometryCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface SetupCallback {
 		void success();
 		void error(Throwable e);
@@ -342,6 +347,19 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					syncService.migrateDatabase();
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void regenerateGeometry(final java.lang.Long roid, final RegenerateGeometryCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.regenerateGeometry(roid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
