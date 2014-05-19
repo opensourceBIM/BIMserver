@@ -334,7 +334,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			ConcreteRevision concreteRevision = session.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, Query.getDefault());
 			IfcModelInterface model = new IfcModel();
 			session.getMap(model, new Query(concreteRevision.getProject().getId(), concreteRevision.getId()));
-			new GeometryGenerator(getBimServer()).generateGeometry(getAuthorization().getUoid(), getBimServer().getPluginManager(), session, model, concreteRevision.getProject().getId(), concreteRevision.getId(), false, null);
+			new GeometryGenerator(getBimServer()).generateGeometry(getAuthorization().getUoid(), getBimServer().getPluginManager(), session, model, concreteRevision.getProject().getId(), concreteRevision.getId(), true, null);
 			session.commit();
 		} catch (Exception e) {
 			handleException(e);

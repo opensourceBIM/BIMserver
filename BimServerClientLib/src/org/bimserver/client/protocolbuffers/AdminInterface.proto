@@ -462,7 +462,7 @@ message MigrateDatabaseRequest {
 }
 
 message RegenerateGeometryRequest {
-	optional int64 roid = 1;
+	optional int64 croid = 1;
 }
 
 message SetupRequest {

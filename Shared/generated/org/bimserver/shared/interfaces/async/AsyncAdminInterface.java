@@ -355,11 +355,11 @@ public class AsyncAdminInterface {
 		});
 	}
 	
-	public void regenerateGeometry(final java.lang.Long roid, final RegenerateGeometryCallback callback) {
+	public void regenerateGeometry(final java.lang.Long croid, final RegenerateGeometryCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.regenerateGeometry(roid);
+					syncService.regenerateGeometry(croid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
