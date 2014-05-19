@@ -55,7 +55,6 @@ import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.PluginDescriptor;
-import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.ServerException;
@@ -328,16 +327,14 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	}
 	
 	@Override
-	public void regenerateGeometry(Long roid) throws ServerException, UserException {
-		LOGGER.info("Regenerating geometry for " + roid);
+	public void regenerateGeometry(Long croid) throws ServerException, UserException {
+		LOGGER.info("Regenerating geometry for concrete revision" + croid);
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
-			for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-				IfcModelInterface model = new IfcModel();
-				session.getMap(model, new Query(concreteRevision.getProject().getId(), concreteRevision.getId()));
-				new GeometryGenerator(getBimServer()).generateGeometry(getAuthorization().getUoid(), getBimServer().getPluginManager(), session, model, concreteRevision.getProject().getId(), concreteRevision.getId(), revision, false, null);
-			}
+			ConcreteRevision concreteRevision = session.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, Query.getDefault());
+			IfcModelInterface model = new IfcModel();
+			session.getMap(model, new Query(concreteRevision.getProject().getId(), concreteRevision.getId()));
+			new GeometryGenerator(getBimServer()).generateGeometry(getAuthorization().getUoid(), getBimServer().getPluginManager(), session, model, concreteRevision.getProject().getId(), concreteRevision.getId(), false, null);
 			session.commit();
 		} catch (Exception e) {
 			handleException(e);

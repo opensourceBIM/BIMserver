@@ -110,8 +110,7 @@ public class GeometryGenerator {
 		this.bimServer = bimServer;
 	}
 
-	public void generateGeometry(long uoid, PluginManager pluginManager, DatabaseSession databaseSession, IfcModelInterface model, int pid, int rid, Revision revision,
-			boolean store, GeometryCache geometryCache) throws BimserverDatabaseException, GeometryGeneratingException {
+	public void generateGeometry(long uoid, PluginManager pluginManager, DatabaseSession databaseSession, IfcModelInterface model, int pid, int rid, boolean store, GeometryCache geometryCache) throws BimserverDatabaseException, GeometryGeneratingException {
 		if (geometryCache != null && !geometryCache.isEmpty()) {
 			returnCachedData(model, geometryCache, databaseSession, pid, rid);
 			return;
