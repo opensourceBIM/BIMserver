@@ -31,7 +31,7 @@ public class Step0012 extends Migration {
 		schema.createEAttribute(geometryData, "materials", EcorePackage.eINSTANCE.getEByteArray());
 		schema.createEAttribute(geometryData, "materialIndices", EcorePackage.eINSTANCE.getEByteArray());
 	}
-
+	
 	@Override
 	public String getDescription() {
 		return "Store materials";

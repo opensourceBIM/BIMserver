@@ -90,6 +90,9 @@ public class AdminInterfaceAdaptor implements org.bimserver.shared.interfaces.Ad
 	public void migrateDatabase() throws UserException, ServerException {
 	}
 	
+	public void regenerateGeometry(java.lang.Long roid) throws UserException, ServerException {
+	}
+	
 	public void setup(java.lang.String siteAddress, java.lang.String smtpServer, java.lang.String smtpSender, java.lang.String adminName, java.lang.String adminUsername, java.lang.String adminPassword) throws UserException, ServerException {
 	}
 	
