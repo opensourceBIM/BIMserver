@@ -42,7 +42,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
-import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.plugins.PluginConfiguration;

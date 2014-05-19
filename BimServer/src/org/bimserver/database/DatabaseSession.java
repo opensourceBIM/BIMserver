@@ -107,6 +107,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private SessionState state = SessionState.OPEN;
+	private boolean overwriteEnabled;
 
 	public DatabaseSession(Database database, BimTransaction bimTransaction) {
 		this.database = database;
@@ -117,6 +118,10 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			LOGGER.info("NEW SESSION");
 		}
 		this.eStore = new ServerEStore(this);
+	}
+	
+	public void setOverwriteEnabled(boolean overwriteEnabled) {
+		this.overwriteEnabled = overwriteEnabled;
 	}
 
 	public void addPostCommitAction(PostCommitAction postCommitAction) {
@@ -156,7 +161,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				database.getKeyValueStore().storeNoOverwrite(recordIdentifier.getPackageName() + "_" + recordIdentifier.getClassName(), keyBuffer.array(), new byte[] { -1 }, this);
 				writes++;
 			}
-			// This buffer is reused for the values, it's position must be reset at the end of the loop, and the convertObjectToByteArray function is responsible for settings the buffer's position to the end of the (used part of the) buffer
+			// This buffer is reused for the values, it's position must be reset at the end of the loop, and the convertObjectToByteArray function is responsible for setting the buffer's position to the end of the (used part of the) buffer
 			ByteBuffer reusableBuffer = ByteBuffer.allocate(32768);
 			for (IdEObject object : objectsToCommit) {
 				if (object.getOid() == -1) {
@@ -167,7 +172,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					LOGGER.info("Write: " + object.eClass().getName() + " " + "pid=" + object.getPid() + " oid=" + object.getOid() + " rid=" + object.getRid());
 				}
 				ByteBuffer valueBuffer = convertObjectToByteArray(object, reusableBuffer);
-				if (object.eClass().getEAnnotation("nolazyload") == null) {
+				if (object.eClass().getEAnnotation("nolazyload") == null && !overwriteEnabled) {
 					database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
 							valueBuffer.array(), 0, valueBuffer.position(), this);
 				} else {
