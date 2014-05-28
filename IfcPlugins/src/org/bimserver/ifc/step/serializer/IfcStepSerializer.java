@@ -133,7 +133,7 @@ public class IfcStepSerializer extends IfcSerializer {
 			Date date = new Date();
 			out.println("FILE_DESCRIPTION ((''), '2;1');");
 			out.println("FILE_NAME ('', '" + dateFormatter.format(date) + "', (''), (''), '', 'BIMserver', '');");
-			out.println("FILE_SCHEMA (('IFC2x3'));");
+			out.println("FILE_SCHEMA (('IFC2X3'));");
 		} else {
 			out.print("FILE_DESCRIPTION ((");
 			out.print(StringUtils.concat(ifcHeader.getDescription(), "'", ", "));
@@ -142,7 +142,7 @@ public class IfcStepSerializer extends IfcSerializer {
 
 			// TODO For now forcing IFC2x3, maybe make this a setting?
 			//	out.println("FILE_SCHEMA (('" + ifcHeader.getIfcSchemaVersion() + "'));");
-			out.println("FILE_SCHEMA (('IFC2x3'));");
+			out.println("FILE_SCHEMA (('IFC2X3'));");
 		}
 		out.println("ENDSEC;");
 		out.println("DATA;");
