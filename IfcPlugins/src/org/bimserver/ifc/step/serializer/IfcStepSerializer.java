@@ -79,6 +79,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	
 	private Iterator<IdEObject> iterator;
 	private UTF8PrintWriter out;
+	private SchemaDefinition schema;
 
 	public IfcStepSerializer(PluginConfiguration pluginConfiguration) {
 	}
@@ -95,6 +96,11 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 		if (getMode() == Mode.HEADER) {
 			writeHeader(out);
+			try {
+				schema = getPluginManager().requireSchemaDefinition();
+			} catch (PluginException e) {
+					throw new SerializerException(e);
+			}
 			setMode(Mode.BODY);
 			iterator = model.getValues().iterator();
 			out.flush();
@@ -286,7 +292,8 @@ public class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void writeEDataType(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
-		if (feature.getEAnnotation("derived") != null) {
+		EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName());
+		if (entityBN != null && entityBN.isDerived(feature.getName())) {
 			out.print(ASTERISK);
 		} else if (feature.isMany()) {
 			writeList(out, object, feature);
@@ -304,7 +311,8 @@ public class IfcStepSerializer extends IfcSerializer {
 				out.print(DASH);
 				out.print(String.valueOf(getExpressId((IdEObject) referencedObject)));
 			} else {
-				if (feature.getEAnnotation("derived") != null) {
+				EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName());
+				if (entityBN != null && entityBN.isDerived(feature.getName())) {
 					out.print(ASTERISK);
 				} else if (feature.isMany()) {
 					writeList(out, object, feature);
@@ -533,15 +541,9 @@ public class IfcStepSerializer extends IfcSerializer {
 				if (type == IFC_PACKAGE_INSTANCE.getIfcBoolean() || type == IFC_PACKAGE_INSTANCE.getIfcLogical() || type == ECORE_PACKAGE_INSTANCE.getEBoolean()) {
 					out.print(BOOLEAN_UNDEFINED);
 				} else {
-					SchemaDefinition schema;
-					try {
-						schema = getPluginManager().requireSchemaDefinition();
-					} catch (PluginException e) {
-						throw new SerializerException(e);
-					}
 					EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName());
 					if (entityBN != null && entityBN.isDerived(feature.getName())) {
-						out.print("*");
+						out.print(ASTERISK);
 					} else {
 						out.print(DOLLAR);
 					}
