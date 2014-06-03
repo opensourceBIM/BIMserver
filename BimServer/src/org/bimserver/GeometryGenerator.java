@@ -57,6 +57,7 @@ import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -132,6 +133,9 @@ public class GeometryGenerator {
 			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
 			if (defaultRenderEngine != null) {
 				RenderEnginePlugin renderEnginePlugin = pluginManager.getRenderEngine(defaultRenderEngine.getPluginDescriptor().getPluginClassName(), true);
+				if (renderEnginePlugin == null) {
+					throw new UserException("No (enabled) render engine found " + defaultRenderEngine.getPluginDescriptor().getPluginClassName());
+				}
 				try {
 					RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration());
 					renderEngine.init();
