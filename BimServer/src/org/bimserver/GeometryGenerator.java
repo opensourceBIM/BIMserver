@@ -131,115 +131,116 @@ public class GeometryGenerator {
 			User user = (User) databaseSession.get(uoid, Query.getDefault());
 			UserSettings userSettings = user.getUserSettings();
 			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
-			if (defaultRenderEngine != null) {
-				RenderEnginePlugin renderEnginePlugin = pluginManager.getRenderEngine(defaultRenderEngine.getPluginDescriptor().getPluginClassName(), true);
-				if (renderEnginePlugin == null) {
-					throw new UserException("No (enabled) render engine found " + defaultRenderEngine.getPluginDescriptor().getPluginClassName());
-				}
+			if (defaultRenderEngine == null) {
+				throw new UserException("No default render engine has been selected for this user");
+			}
+			RenderEnginePlugin renderEnginePlugin = pluginManager.getRenderEngine(defaultRenderEngine.getPluginDescriptor().getPluginClassName(), true);
+			if (renderEnginePlugin == null) {
+				throw new UserException("No (enabled) render engine found of type " + defaultRenderEngine.getPluginDescriptor().getPluginClassName());
+			}
+			try {
+				RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration());
+				renderEngine.init();
 				try {
-					RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration());
-					renderEngine.init();
+					RenderEngineModel renderEngineModel = renderEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
+
+					RenderEngineSettings settings = new RenderEngineSettings();
+					settings.setPrecision(Precision.SINGLE);
+					settings.setIndexFormat(IndexFormat.AUTO_DETECT);
+					settings.setGenerateNormals(true);
+					settings.setGenerateTriangles(true);
+					settings.setGenerateWireFrame(false);
+					renderEngineModel.setSettings(settings);
 					try {
-						RenderEngineModel renderEngineModel = renderEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
+						renderEngineModel.generateGeneralGeometry();
+						
+						List<IfcProduct> products = model.getAllWithSubTypes(IfcProduct.class);
 
-						RenderEngineSettings settings = new RenderEngineSettings();
-						settings.setPrecision(Precision.SINGLE);
-						settings.setIndexFormat(IndexFormat.AUTO_DETECT);
-						settings.setGenerateNormals(true);
-						settings.setGenerateTriangles(true);
-						settings.setGenerateWireFrame(false);
-						renderEngineModel.setSettings(settings);
-						try {
-							renderEngineModel.generateGeneralGeometry();
-							
-							List<IfcProduct> products = model.getAllWithSubTypes(IfcProduct.class);
+						for (IfcProduct ifcProduct : products) {
+							RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
+							RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
+							if (geometry != null && geometry.getNrIndices() > 0) {
+								GeometryInfo geometryInfo = null;
+								if (store) {
+									geometryInfo = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryInfo(), pid, rid);
+								} else {
+									geometryInfo = Ifc2x3tc1Factory.eINSTANCE.createGeometryInfo();
+								}
 
-							for (IfcProduct ifcProduct : products) {
-								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
-								RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
-								if (geometry != null && geometry.getNrIndices() > 0) {
-									GeometryInfo geometryInfo = null;
-									if (store) {
-										geometryInfo = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryInfo(), pid, rid);
-									} else {
-										geometryInfo = Ifc2x3tc1Factory.eINSTANCE.createGeometryInfo();
-									}
+								geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+								geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
+								
+								GeometryData geometryData = null;
+								if (store) {
+									geometryData = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), pid, rid);
+								} else {
+									geometryData = Ifc2x3tc1Factory.eINSTANCE.createGeometryData();
+								}
 
-									geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-									geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
-									
-									GeometryData geometryData = null;
-									if (store) {
-										geometryData = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), pid, rid);
-									} else {
-										geometryData = Ifc2x3tc1Factory.eINSTANCE.createGeometryData();
-									}
-
-									geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
-									geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
-									geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
-									geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
-									
-									if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
-										float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
-										for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
-											int c = geometry.getMaterialIndices()[i];
-											for (int j = 0; j < 3; ++j) {
-												int k = geometry.getIndices()[i * 3 + j];
-												if (c > -1) {
-													for (int l = 0; l < 4; ++l) {
-														vertex_colors[4 * k + l] = geometry.getMaterials()[4 * c + l];
-													}
-												} else {
-													vertex_colors[4 * k] = 0;
-													vertex_colors[4 * k + 1] = 1;
-													vertex_colors[4 * k + 2] = 0;
-													vertex_colors[4 * k + 3] = 1;
+								geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
+								geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
+								geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
+								geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
+								
+								if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
+									float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
+									for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
+										int c = geometry.getMaterialIndices()[i];
+										for (int j = 0; j < 3; ++j) {
+											int k = geometry.getIndices()[i * 3 + j];
+											if (c > -1) {
+												for (int l = 0; l < 4; ++l) {
+													vertex_colors[4 * k + l] = geometry.getMaterials()[4 * c + l];
 												}
+											} else {
+												vertex_colors[4 * k] = 0;
+												vertex_colors[4 * k + 1] = 1;
+												vertex_colors[4 * k + 2] = 0;
+												vertex_colors[4 * k + 3] = 1;
 											}
 										}
-										geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
 									}
+									geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
+								}
 
-									float[] tranformationMatrix = new float[16];
-									if (renderEngineInstance.getTransformationMatrix() != null) {
-										tranformationMatrix = renderEngineInstance.getTransformationMatrix();
-										tranformationMatrix = Matrix.changeOrientation(tranformationMatrix);
+								float[] tranformationMatrix = new float[16];
+								if (renderEngineInstance.getTransformationMatrix() != null) {
+									tranformationMatrix = renderEngineInstance.getTransformationMatrix();
+									tranformationMatrix = Matrix.changeOrientation(tranformationMatrix);
+								} else {
+									Matrix.setIdentityM(tranformationMatrix, 0);
+								}
+								
+								for (int i=0; i<geometry.getIndices().length; i++) {
+									processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3);
+								}
+								
+								geometryInfo.setData(geometryData);
+								
+								setTransformationMatrix(geometryInfo, tranformationMatrix);
+								if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
+									int hash = hash(geometryData);
+									if (hashes.containsKey(hash)) {
+										databaseSession.removeFromCommit(geometryData);
+										geometryInfo.setData(hashes.get(hash));
 									} else {
-										Matrix.setIdentityM(tranformationMatrix, 0);
-									}
-									
-									for (int i=0; i<geometry.getIndices().length; i++) {
-										processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3);
-									}
-									
-									geometryInfo.setData(geometryData);
-									
-									setTransformationMatrix(geometryInfo, tranformationMatrix);
-									if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
-										int hash = hash(geometryData);
-										if (hashes.containsKey(hash)) {
-											databaseSession.removeFromCommit(geometryData);
-											geometryInfo.setData(hashes.get(hash));
-										} else {
-											hashes.put(hash, geometryData);
-										}
-									}
-									ifcProduct.setGeometry(geometryInfo);
-									if (store) {
-										databaseSession.store(ifcProduct, pid, rid);
+										hashes.put(hash, geometryData);
 									}
 								}
+								ifcProduct.setGeometry(geometryInfo);
+								if (store) {
+									databaseSession.store(ifcProduct, pid, rid);
+								}
 							}
-						} finally {
-							renderEngineModel.close();
 						}
 					} finally {
-						renderEngine.close();
+						renderEngineModel.close();
 					}
-				} catch (RenderEngineException e) {
-					LOGGER.error("", e);
+				} finally {
+					renderEngine.close();
 				}
+			} catch (RenderEngineException e) {
+				LOGGER.error("", e);
 			}
 		} catch (Exception e) {
 			LOGGER.error("", e);
