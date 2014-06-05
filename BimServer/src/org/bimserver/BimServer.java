@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -513,12 +514,22 @@ public class BimServer {
 				userSettings.getRenderEngines().add(ifcEnginePluginConfiguration);
 				genericPluginConversion(session, ifcEnginePlugin, ifcEnginePluginConfiguration, getPluginDescriptor(session, ifcEnginePlugin.getClass().getName()));
 			}
+			if (userSettings.getDefaultRenderEngine() != null && userSettings.getDefaultRenderEngine().getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifcengine.TNOJvmRenderEnginePlugin") && ifcEnginePlugin.getClass().getName().equals("org.ifcopenshell.IfcOpenShellEnginePlugin")) {
+				userSettings.setDefaultRenderEngine(ifcEnginePluginConfiguration);
+			}
 			if (userSettings.getDefaultRenderEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.ifcopenshell.IfcOpenShellEnginePlugin")) {
 				userSettings.setDefaultRenderEngine(ifcEnginePluginConfiguration);
 			}
 		}
 		if (userSettings.getDefaultRenderEngine() == null && !userSettings.getRenderEngines().isEmpty()) {
 			userSettings.setDefaultRenderEngine(userSettings.getRenderEngines().get(0));
+		}
+		Iterator<RenderEnginePluginConfiguration> iterator = userSettings.getRenderEngines().iterator();
+		while (iterator.hasNext()) {
+			RenderEnginePluginConfiguration next = iterator.next();
+			if (next.getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifcengine.TNOJvmRenderEnginePlugin")) {
+				iterator.remove();
+			}
 		}
 		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
 			QueryEnginePluginConfiguration queryEnginePluginConfiguration = find(userSettings.getQueryengines(), queryEnginePlugin.getClass().getName());
