@@ -110,14 +110,16 @@ public enum IfcSIUnitName implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GRAM(7, "GRAM", "GRAM"), /**
-								 * The '<em><b>KELVIN</b></em>' literal object.
-								 * <!-- begin-user-doc -->
-								 * <!-- end-user-doc -->
-								 * @see #KELVIN_VALUE
-								 * @generated
-								 * @ordered
-								 */
+	GRAM(7, "GRAM", "GRAM"),
+
+	/**
+	 * The '<em><b>KELVIN</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #KELVIN_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	KELVIN(8, "KELVIN", "KELVIN"),
 
 	/**

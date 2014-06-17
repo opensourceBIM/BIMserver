@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.WebModulePluginDescriptor;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class WebModulePluginDescriptorImpl extends PluginDescriptorImpl
-		implements WebModulePluginDescriptor {
+public class WebModulePluginDescriptorImpl extends PluginDescriptorImpl implements WebModulePluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

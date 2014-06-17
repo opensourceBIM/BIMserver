@@ -42,7 +42,7 @@ public class TestIfcStepDeserializer {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.requireSchemaDefinition("ifc2x3tc1"));
 			IfcModelInterface modelInterface = deserializer.read(TestFile.AC11.getFile());
 			
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);

@@ -130,14 +130,16 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TEMPERATURESENSOR(9, "TEMPERATURESENSOR", "TEMPERATURESENSOR"), /**
-																	 * The '<em><b>GASSENSOR</b></em>' literal object.
-																	 * <!-- begin-user-doc -->
-																	 * <!-- end-user-doc -->
-																	 * @see #GASSENSOR_VALUE
-																	 * @generated
-																	 * @ordered
-																	 */
+	TEMPERATURESENSOR(9, "TEMPERATURESENSOR", "TEMPERATURESENSOR"),
+
+	/**
+	 * The '<em><b>GASSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #GASSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	GASSENSOR(10, "GASSENSOR", "GASSENSOR"),
 
 	/**

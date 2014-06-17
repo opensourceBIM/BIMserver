@@ -32,6 +32,7 @@ import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
@@ -98,13 +99,14 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 				try {
 					int highestStopId = findHighestStopRid(project, concreteRevision);
 					
-					IfcModelInterface subModel = new IfcModel();
+					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+					IfcModelInterface subModel = new IfcModel(packageMetaData);
 					
-					Query databaseQuery = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
+					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
 					JsonObject queryObject = (JsonObject)query;
 					JsonArray queries = queryObject.get("queries").getAsJsonArray();
 					for (JsonElement queryElement : queries) {
-						processQueryPart(queryObject, (JsonObject) queryElement, subModel, databaseQuery);
+						processQueryPart(concreteRevision.getProject().getSchema().toLowerCase(), queryObject, (JsonObject) queryElement, subModel, databaseQuery);
 					}
 					
 					size += subModel.size();
@@ -115,7 +117,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					throw new UserException(e);
 				}
 			}
-			IfcModelInterface ifcModel = new IfcModel(size);
+			IfcModelInterface ifcModel = new IfcModel(null, size); // TODO
 			if (ifcModelSet.size() > 1) {
 				try {
 					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
@@ -133,7 +135,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
 		// TODO check, double merging??
-		IfcModelInterface ifcModel = new IfcModel();
+		IfcModelInterface ifcModel = new IfcModel(null); // TODO
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
@@ -155,11 +157,11 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 		return ifcModel;
 	}
 	
-	private void processQueryPart(JsonObject query, JsonObject typeQuery, IfcModelInterface model, QueryInterface queryInterface) throws BimserverDatabaseException, IfcModelInterfaceException {
+	private void processQueryPart(String schema, JsonObject query, JsonObject typeQuery, IfcModelInterface model, QueryInterface queryInterface) throws BimserverDatabaseException, IfcModelInterfaceException {
 		if (typeQuery.has("type")) {
 			String type = typeQuery.get("type").getAsString();
-			EClass typeClass = getDatabaseSession().getEClassForName(type);
-			getDatabaseSession().getAllOfType(model, type, queryInterface);
+			EClass typeClass = getDatabaseSession().getEClass(schema, type);
+			getDatabaseSession().getAllOfType(model, schema, type, queryInterface);
 			if (typeQuery.has("include")) {
 				processInclude(query, typeQuery, model, queryInterface, model.getAllWithSubTypes(typeClass));
 			}

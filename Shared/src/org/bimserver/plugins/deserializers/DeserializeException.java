@@ -1,5 +1,6 @@
 package org.bimserver.plugins.deserializers;
 
+
 /******************************************************************************
  * Copyright (C) 2009-2014  BIMserver.org
  * 
@@ -46,5 +47,10 @@ public class DeserializeException extends Exception {
 
 	public DeserializeException(Exception e) {
 		super(e);
+	}
+
+	public DeserializeException(int lineNumber, Exception e) {
+		super(e);
+		this.lineNumber = lineNumber;
 	}
 }

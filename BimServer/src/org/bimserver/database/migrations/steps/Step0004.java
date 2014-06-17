@@ -70,12 +70,12 @@ public class Step0004 extends Migration {
 		EClass internalServicePluginConfiguration = schema.getEClass("store", "InternalServicePluginConfiguration");
 		schema.createEAttribute(internalServicePluginConfiguration, "publicProfile", EcorePackage.eINSTANCE.getEBoolean());
 		
-		EClass geometryInstance = schema.createEClass("ifc2x3tc1", "GeometryInstance");
-		schema.createEReference(geometryInstance, "data", schema.getEClass("ifc2x3tc1", "GeometryData"), Multiplicity.SINGLE);
-		schema.createEAttribute(geometryInstance, "transformation", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
-		geometryInstance.getEAnnotations().add(createHiddenAnnotation());
+//		EClass geometryInstance = schema.createEClass("ifc2x3tc1", "GeometryInstance");
+//		schema.createEReference(geometryInstance, "data", schema.getEClass("ifc2x3tc1", "GeometryData"), Multiplicity.SINGLE);
+//		schema.createEAttribute(geometryInstance, "transformation", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
+//		geometryInstance.getEAnnotations().add(createHiddenAnnotation());
 		
-		schema.createEReference(schema.getEClass("ifc2x3tc1", "GeometryInfo"), "instance", geometryInstance, Multiplicity.SINGLE);
+//		schema.createEReference(schema.getEClass("ifc2x3tc1", "GeometryInfo"), "instance", geometryInstance, Multiplicity.SINGLE);
 	}
 
 	@Override

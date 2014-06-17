@@ -17,6 +17,7 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcActorSelect;
 import org.bimserver.models.ifc2x3tc1.IfcCalendarDate;
@@ -27,7 +28,9 @@ import org.bimserver.models.ifc2x3tc1.IfcDocumentInformation;
 import org.bimserver.models.ifc2x3tc1.IfcDocumentInformationRelationship;
 import org.bimserver.models.ifc2x3tc1.IfcDocumentReference;
 import org.bimserver.models.ifc2x3tc1.IfcDocumentStatusEnum;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -32,7 +32,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
@@ -51,14 +50,10 @@ import com.google.gson.stream.JsonReader;
 public class JsonDeserializer extends EmfDeserializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonDeserializer.class);
 
-	@Override
-	public void init(SchemaDefinition schema) {
-	}
-
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException {
-		IfcModelInterface model = new IfcModel();
+		IfcModelInterface model = new IfcModel(getPackageMetaData());
 		WaitingList<Long> waitingList = new WaitingList<Long>();
 		JsonReader jsonReader = new JsonReader(new InputStreamReader(in));
 		try {

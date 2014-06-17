@@ -132,7 +132,7 @@ public class TestEmbeddedBimServer {
 			ServiceMap serviceMap = bimServer.getServiceFactory().get(AccessMethod.INTERNAL);
 			ServiceInterface service = serviceMap.get(ServiceInterface.class);
 			serviceMap.get(Bimsie1AuthInterface.class).login(username, password);
-			SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test " + new Random().nextInt());
+			SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test " + new Random().nextInt(), "ifc4");
 			File sourceFile = TestFile.AC11.getFile();
 			service.checkin(project.getOid(), "test", -1L, sourceFile.length(), "test", new DataHandler(new FileDataSource(sourceFile)), false, true); // TODO
 		} catch (ServiceException e) {

@@ -110,22 +110,26 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FREEFORM(7, "FREEFORM", "FREEFORM"), /**
-											 * The '<em><b>GABLE ROOF</b></em>' literal object.
-											 * <!-- begin-user-doc -->
-											 * <!-- end-user-doc -->
-											 * @see #GABLE_ROOF_VALUE
-											 * @generated
-											 * @ordered
-											 */
-	GABLE_ROOF(8, "GABLE_ROOF", "GABLE_ROOF"), /**
-												 * The '<em><b>BARREL ROOF</b></em>' literal object.
-												 * <!-- begin-user-doc -->
-												 * <!-- end-user-doc -->
-												 * @see #BARREL_ROOF_VALUE
-												 * @generated
-												 * @ordered
-												 */
+	FREEFORM(7, "FREEFORM", "FREEFORM"),
+
+	/**
+	 * The '<em><b>GABLE ROOF</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #GABLE_ROOF_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	GABLE_ROOF(8, "GABLE_ROOF", "GABLE_ROOF"),
+
+	/**
+	 * The '<em><b>BARREL ROOF</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BARREL_ROOF_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	BARREL_ROOF(9, "BARREL_ROOF", "BARREL_ROOF"),
 
 	/**

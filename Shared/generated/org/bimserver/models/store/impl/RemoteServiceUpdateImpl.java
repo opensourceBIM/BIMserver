@@ -17,8 +17,10 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.RemoteServiceUpdate;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -30,8 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RemoteServiceUpdateImpl extends IdEObjectImpl implements
-		RemoteServiceUpdate {
+public class RemoteServiceUpdateImpl extends IdEObjectImpl implements RemoteServiceUpdate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

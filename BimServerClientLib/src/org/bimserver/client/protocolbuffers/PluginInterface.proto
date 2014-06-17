@@ -66,6 +66,8 @@ service PluginInterface {
 
 	rpc getAllDeserializers (GetAllDeserializersRequest) returns (GetAllDeserializersResponse);
 
+	rpc getAllDeserializersForProject (GetAllDeserializersForProjectRequest) returns (GetAllDeserializersForProjectResponse);
+
 	rpc getAllInternalServices (GetAllInternalServicesRequest) returns (GetAllInternalServicesResponse);
 
 	rpc getAllModelCheckerPluginDescriptors (GetAllModelCheckerPluginDescriptorsRequest) returns (GetAllModelCheckerPluginDescriptorsResponse);
@@ -93,6 +95,8 @@ service PluginInterface {
 	rpc getAllSerializerPluginDescriptors (GetAllSerializerPluginDescriptorsRequest) returns (GetAllSerializerPluginDescriptorsResponse);
 
 	rpc getAllSerializers (GetAllSerializersRequest) returns (GetAllSerializersResponse);
+
+	rpc getAllSerializersForRoids (GetAllSerializersForRoidsRequest) returns (GetAllSerializersForRoidsResponse);
 
 	rpc getAllServicePluginDescriptors (GetAllServicePluginDescriptorsRequest) returns (GetAllServicePluginDescriptorsResponse);
 
@@ -361,6 +365,16 @@ message GetAllDeserializersResponse {
 	repeated SDeserializerPluginConfiguration value = 2;
 }
 
+message GetAllDeserializersForProjectRequest {
+	optional bool onlyEnabled = 1;
+	optional int64 poid = 2;
+}
+
+message GetAllDeserializersForProjectResponse {
+	optional string errorMessage = 1;
+	repeated SDeserializerPluginConfiguration value = 2;
+}
+
 message GetAllInternalServicesRequest {
 	optional bool onlyEnabled = 1;
 }
@@ -482,6 +496,16 @@ message GetAllSerializersRequest {
 }
 
 message GetAllSerializersResponse {
+	optional string errorMessage = 1;
+	repeated SSerializerPluginConfiguration value = 2;
+}
+
+message GetAllSerializersForRoidsRequest {
+	optional bool onlyEnabled = 1;
+	repeated int64 roids = 2;
+}
+
+message GetAllSerializersForRoidsResponse {
 	optional string errorMessage = 1;
 	repeated SSerializerPluginConfiguration value = 2;
 }

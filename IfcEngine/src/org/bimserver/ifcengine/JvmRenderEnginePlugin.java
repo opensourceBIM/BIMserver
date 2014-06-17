@@ -51,16 +51,11 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 	public String getVersion() {
 		return "1.0";
 	}
-
+	
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
 		try {
-			SchemaPlugin schemaPlugin = pluginManager.getFirstSchemaPlugin(true);
-			schemaFile = schemaPlugin.getExpressSchemaFile();
-			if (schemaFile == null) {
-				throw new PluginException("No schema file");
-			}
 			PluginContext pluginContext = pluginManager.getPluginContext(this);
 			String os = System.getProperty("os.name").toLowerCase();
 			String libraryName = "";
@@ -75,7 +70,7 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 			if (inputStream != null) {
 				try {
 					File tmpFolder = pluginManager.getTempDir();
-					nativeFolder = new File(tmpFolder, "ifcenginedll");
+					nativeFolder = new File(tmpFolder, "TNOEngineSeries");
 					File file = new File(nativeFolder, libraryName);
 					if (nativeFolder.exists()) {
 						try {
@@ -100,12 +95,21 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 
 	@Override
 	public String getDescription() {
-		return "Native implementation of an IFC Engine by RDF";
+		return "Native implementation of an IFC Engine";
 	}
 
 	@Override
-	public RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration) throws RenderEngineException {
-		return new JvmIfcEngine(schemaFile, nativeFolder, pluginManager.getTempDir(), pluginManager.getCompleteClassPath());
+	public RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration, String schema) throws RenderEngineException {
+		try {
+			SchemaPlugin schemaPlugin = pluginManager.getFirstSchemaPlugin(schema, true);
+			schemaFile = schemaPlugin.getExpressSchemaFile();
+			if (schemaFile == null) {
+				throw new RenderEngineException("No schema file");
+			}
+			return new JvmIfcEngine(schemaFile, nativeFolder, pluginManager.getTempDir(), pluginManager.getCompleteClassPath());
+		} catch (PluginException e) {
+			throw new RenderEngineException(e);
+		}
 	}
 
 	@Override
@@ -115,7 +119,7 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 
 	@Override
 	public String getDefaultName() {
-		return "IFC Engine DLL";
+		return "TNO Engine Series";
 	}
 
 	@Override

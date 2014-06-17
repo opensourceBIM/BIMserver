@@ -17,24 +17,42 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import java.io.IOException;
+
 import java.net.URL;
+
+import org.bimserver.models.geometry.GeometryPackage;
+
+import org.bimserver.models.geometry.impl.GeometryPackageImpl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+
+import org.bimserver.models.ifc4.Ifc4Package;
+
+import org.bimserver.models.ifc4.impl.Ifc4PackageImpl;
+
 import org.bimserver.models.log.LogPackage;
+
 import org.bimserver.models.log.impl.LogPackageImpl;
+
 import org.bimserver.models.store.StorePackage;
+
 import org.bimserver.models.store.impl.StorePackageImpl;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.emf.ecore.resource.Resource;
+
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 
 /**
@@ -7000,6 +7018,10 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 		isInited = true;
 
 		// Obtain or create and register interdependencies
+		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI) instanceof GeometryPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(GeometryPackage.eNS_URI) : GeometryPackage.eINSTANCE);
+		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI) instanceof Ifc4PackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(Ifc4Package.eNS_URI) : Ifc4Package.eINSTANCE);
 		LogPackageImpl theLogPackage = (LogPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI) instanceof LogPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(LogPackage.eNS_URI) : LogPackage.eINSTANCE);
 		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE
@@ -7007,11 +7029,15 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 
 		// Load packages
 		theIfc2x3tc1Package.loadPackage();
+		theGeometryPackage.loadPackage();
+		theIfc4Package.loadPackage();
 		theLogPackage.loadPackage();
 		theStorePackage.loadPackage();
 
 		// Fix loaded packages
 		theIfc2x3tc1Package.fixPackageContents();
+		theGeometryPackage.fixPackageContents();
+		theIfc4Package.fixPackageContents();
 		theLogPackage.fixPackageContents();
 		theStorePackage.fixPackageContents();
 

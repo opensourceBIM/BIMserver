@@ -27,7 +27,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.ifc.IfcSerializer;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.codehaus.jettison.json.JSONObject;
@@ -141,9 +140,10 @@ public class JsonSerializer extends IfcSerializer {
 											} else {
 												out.write(",");
 												IdEObject ref = (IdEObject) value;
-												if (ref instanceof IfcGloballyUniqueId) {
+												if (ref.eClass().getName().equals("IfcGloballyUniqueId")) {
 													out.write("\"" + eStructuralFeature.getName() + "\":");
-													writePrimitive(out, eStructuralFeature, ((IfcGloballyUniqueId)ref).getWrappedValue());
+													String wrappedValue = (String) ref.eGet(ref.eClass().getEStructuralFeature("WrappedValue"));
+													writePrimitive(out, eStructuralFeature, wrappedValue);
 												} else if (((IdEObject)ref).eClass().getEAnnotation("wrapped") != null) {
 													out.write("\"__emb" + eStructuralFeature.getName() + "\":");
 													writeObject(out, ref);

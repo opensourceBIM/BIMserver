@@ -50,7 +50,7 @@ public class SConverterGeneratorWrapper {
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		ePackages.add(StorePackage.eINSTANCE);
 		ePackages.add(LogPackage.eINSTANCE);
-		new SConverterGeneratorWrapper(new MetaDataManager()).generate(ePackages);
+		new SConverterGeneratorWrapper(new MetaDataManager(null)).generate(ePackages);
 	}
 
 	public void generate(Set<EPackage> ePackages) {

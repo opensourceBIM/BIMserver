@@ -420,14 +420,16 @@ public enum IfcCurrencyEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	KRW(38, "KRW", "KRW"), /**
-							 * The '<em><b>JMD</b></em>' literal object.
-							 * <!-- begin-user-doc -->
-							 * <!-- end-user-doc -->
-							 * @see #JMD_VALUE
-							 * @generated
-							 * @ordered
-							 */
+	KRW(38, "KRW", "KRW"),
+
+	/**
+	 * The '<em><b>JMD</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #JMD_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	JMD(39, "JMD", "JMD"),
 
 	/**

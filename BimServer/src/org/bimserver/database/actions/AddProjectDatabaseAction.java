@@ -41,16 +41,19 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 	private final long parentPoid;
 	private final BimServer bimServer;
 	private Authorization authorization;
+	private String schema;
 
-	public AddProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String name, Authorization authorization) {
-		this(bimServer, databaseSession, accessMethod, name, -1, authorization);
+	public AddProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String name, String schema, Authorization authorization) {
+		this(bimServer, databaseSession, accessMethod, name, -1, schema, authorization);
+		this.schema = schema;
 	}
 
-	public AddProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String projectName, long parentPoid, Authorization authorization) {
+	public AddProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String projectName, long parentPoid, String schema, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.name = projectName;
 		this.parentPoid = parentPoid;
+		this.schema = schema;
 		this.authorization = authorization;
 	}
 
@@ -104,6 +107,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		});
 		project.setId(getDatabaseSession().newPid());
 		project.setName(trimmedName);
+		project.setSchema(schema);
 //		project.getHasAuthorizedUsers().add(getAdminUser());
 		project.getHasAuthorizedUsers().add(actingUser);
 		project.setCreatedBy(actingUser);

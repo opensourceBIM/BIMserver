@@ -17,6 +17,10 @@ package org.bimserver.deserializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Collections;
+import java.util.Set;
+
+import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -66,5 +70,10 @@ public class JsonDeserializerPlugin implements DeserializerPlugin {
 	@Override
 	public boolean canHandleExtension(String extension) {
 		return extension.equals("json");
+	}
+
+	@Override
+	public Set<Schema> getSupportedSchemas() {
+		return Collections.singleton(Schema.IFC2X3TC1);
 	}
 }

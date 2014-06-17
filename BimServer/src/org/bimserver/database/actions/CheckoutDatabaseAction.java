@@ -30,6 +30,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
@@ -105,9 +106,10 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
-			IfcModel subModel = new IfcModel();
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(subRevision.getProject().getSchema());
+			IfcModel subModel = new IfcModel(packageMetaData);
 			int highestStopId = findHighestStopRid(project, subRevision);
-			Query query = new Query(subRevision.getProject().getId(), subRevision.getId(), null, Deep.YES, highestStopId);
+			Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), null, Deep.YES, highestStopId);
 			subModel.addChangeListener(new IfcModelChangeListener() {
 				@Override
 				public void objectAdded() {
@@ -129,7 +131,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			ifcModelSet.add(subModel);
 		}
 		
-		IfcModelInterface ifcModel = new IfcModel();
+		IfcModelInterface ifcModel = new IfcModel(null); // TODO
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid())

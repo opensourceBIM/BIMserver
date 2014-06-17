@@ -16,45 +16,15 @@
  */
 package org.bimserver.models.log.impl;
 
-import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.CheckoutRelated;
-import org.bimserver.models.log.DatabaseCreated;
-import org.bimserver.models.log.Download;
-import org.bimserver.models.log.ExtendedDataAddedToProject;
-import org.bimserver.models.log.ExtendedDataAddedToRevision;
-import org.bimserver.models.log.GeoTagUpdated;
-import org.bimserver.models.log.LogAction;
-import org.bimserver.models.log.LogFactory;
-import org.bimserver.models.log.LogPackage;
-import org.bimserver.models.log.NewCheckoutAdded;
-import org.bimserver.models.log.NewObjectIDMUploaded;
-import org.bimserver.models.log.NewProjectAdded;
-import org.bimserver.models.log.NewRevisionAdded;
-import org.bimserver.models.log.NewUserAdded;
-import org.bimserver.models.log.PasswordChanged;
-import org.bimserver.models.log.PasswordReset;
-import org.bimserver.models.log.ProjectDeleted;
-import org.bimserver.models.log.ProjectRelated;
-import org.bimserver.models.log.ProjectUndeleted;
-import org.bimserver.models.log.ProjectUpdated;
-import org.bimserver.models.log.RemoteServiceCalled;
-import org.bimserver.models.log.RevisionBranched;
-import org.bimserver.models.log.RevisionRelated;
-import org.bimserver.models.log.RevisionUpdated;
-import org.bimserver.models.log.ServerLog;
-import org.bimserver.models.log.ServerStarted;
-import org.bimserver.models.log.SettingsSaved;
-import org.bimserver.models.log.UserAddedToProject;
-import org.bimserver.models.log.UserChanged;
-import org.bimserver.models.log.UserDeleted;
-import org.bimserver.models.log.UserRelated;
-import org.bimserver.models.log.UserRemovedFromProject;
-import org.bimserver.models.log.UserUndeleted;
+import org.bimserver.models.log.*;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

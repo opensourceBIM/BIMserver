@@ -17,29 +17,25 @@ package org.bimserver.plugins.deserializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.emf.PackageMetaData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class EmfDeserializer implements Deserializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfDeserializer.class);
-	public abstract void init(SchemaDefinition schema);
-
-	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException;
-
-	public IfcModelInterface read(File file) throws DeserializeException {
-		try {
-			return read(new FileInputStream(file), file.getName(), file.length());
-		} catch (FileNotFoundException e) {
-			LOGGER.error("", e);
-			return null;
-		}
+	private PackageMetaData packageMetaData;
+	
+	public void init(PackageMetaData packageMetaData) {
+		this.packageMetaData = packageMetaData;
 	}
+
+	public PackageMetaData getPackageMetaData() {
+		return packageMetaData;
+	}
+	
+	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException;
 }

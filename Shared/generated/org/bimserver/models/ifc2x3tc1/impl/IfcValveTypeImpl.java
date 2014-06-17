@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcValveType;
 import org.bimserver.models.ifc2x3tc1.IfcValveTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -159,7 +159,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 					} else {
 						FileBasedReflectorFactoryBuilder reflectorBuilder = new FileBasedReflectorFactoryBuilder();
 						ReflectorFactory reflectorFactory = reflectorBuilder.newReflectorFactory();
-						factory = new JsonBimServerClientFactory(apiUrl, bimServer.getServicesMap(), new JsonSocketReflectorFactory(bimServer.getServicesMap()), reflectorFactory);
+						factory = new JsonBimServerClientFactory(apiUrl, bimServer.getServicesMap(), new JsonSocketReflectorFactory(bimServer.getServicesMap()), reflectorFactory, bimServer.getDatabase().getMetaDataManager());
 						factories.put(apiUrl, factory);
 					}
 				}

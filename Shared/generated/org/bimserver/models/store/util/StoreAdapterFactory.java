@@ -17,98 +17,12 @@
 package org.bimserver.models.store.util;
 
 import org.bimserver.models.store.*;
-import org.bimserver.models.store.ArrayDefinition;
-import org.bimserver.models.store.ArrayType;
-import org.bimserver.models.store.BimServerInfo;
-import org.bimserver.models.store.BooleanType;
-import org.bimserver.models.store.ByteArrayType;
-import org.bimserver.models.store.Checkout;
-import org.bimserver.models.store.CheckoutResult;
-import org.bimserver.models.store.CompareContainer;
-import org.bimserver.models.store.CompareItem;
-import org.bimserver.models.store.CompareResult;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.DataObject;
-import org.bimserver.models.store.DataValue;
-import org.bimserver.models.store.DatabaseInformation;
-import org.bimserver.models.store.DatabaseInformationCategory;
-import org.bimserver.models.store.DatabaseInformationItem;
-import org.bimserver.models.store.DeserializerPluginConfiguration;
-import org.bimserver.models.store.DeserializerPluginDescriptor;
-import org.bimserver.models.store.DoubleType;
-import org.bimserver.models.store.DownloadResult;
-import org.bimserver.models.store.ExtendedData;
-import org.bimserver.models.store.ExtendedDataSchema;
-import org.bimserver.models.store.File;
-import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.IfcHeader;
-import org.bimserver.models.store.ImmediateNotificationResult;
-import org.bimserver.models.store.InternalServicePluginConfiguration;
-import org.bimserver.models.store.JavaInfo;
-import org.bimserver.models.store.ListDataValue;
-import org.bimserver.models.store.LongAction;
-import org.bimserver.models.store.LongActionState;
-import org.bimserver.models.store.LongType;
-import org.bimserver.models.store.Migration;
-import org.bimserver.models.store.ModelComparePluginConfiguration;
-import org.bimserver.models.store.ModelComparePluginDescriptor;
-import org.bimserver.models.store.ModelMergerPluginConfiguration;
-import org.bimserver.models.store.ModelMergerPluginDescriptor;
-import org.bimserver.models.store.ObjectAdded;
-import org.bimserver.models.store.ObjectDefinition;
-import org.bimserver.models.store.ObjectIDMPluginConfiguration;
-import org.bimserver.models.store.ObjectIDMPluginDescriptor;
-import org.bimserver.models.store.ObjectModified;
-import org.bimserver.models.store.ObjectRemoved;
-import org.bimserver.models.store.ObjectType;
-import org.bimserver.models.store.Parameter;
-import org.bimserver.models.store.ParameterDefinition;
-import org.bimserver.models.store.PercentageChange;
-import org.bimserver.models.store.PluginConfiguration;
-import org.bimserver.models.store.PluginDescriptor;
-import org.bimserver.models.store.PrimitiveDefinition;
-import org.bimserver.models.store.PrimitiveType;
-import org.bimserver.models.store.ProfileDescriptor;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.ProjectSmall;
-import org.bimserver.models.store.QueryEnginePluginConfiguration;
-import org.bimserver.models.store.QueryEnginePluginDescriptor;
-import org.bimserver.models.store.ReferenceDataValue;
-import org.bimserver.models.store.RemoteServiceUpdate;
-import org.bimserver.models.store.RenderEnginePluginConfiguration;
-import org.bimserver.models.store.RenderEnginePluginDescriptor;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.RevisionSummary;
-import org.bimserver.models.store.RevisionSummaryContainer;
-import org.bimserver.models.store.RevisionSummaryType;
-import org.bimserver.models.store.SerializerPluginConfiguration;
-import org.bimserver.models.store.SerializerPluginDescriptor;
-import org.bimserver.models.store.ServerInfo;
-import org.bimserver.models.store.ServerSettings;
-import org.bimserver.models.store.Service;
-import org.bimserver.models.store.ServiceDescriptor;
-import org.bimserver.models.store.ServiceField;
-import org.bimserver.models.store.ServiceInterface;
-import org.bimserver.models.store.ServiceMethod;
-import org.bimserver.models.store.ServiceParameter;
-import org.bimserver.models.store.ServicePluginDescriptor;
-import org.bimserver.models.store.ServiceType;
-import org.bimserver.models.store.SimpleDataValue;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.StringType;
-import org.bimserver.models.store.SystemInfo;
-import org.bimserver.models.store.Token;
-import org.bimserver.models.store.Type;
-import org.bimserver.models.store.TypeDefinition;
-import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserSession;
-import org.bimserver.models.store.UserSettings;
-import org.bimserver.models.store.Version;
-import org.bimserver.models.store.WebModulePluginConfiguration;
-import org.bimserver.models.store.WebModulePluginDescriptor;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -212,26 +126,22 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseSerializerPluginConfiguration(
-				SerializerPluginConfiguration object) {
+		public Adapter caseSerializerPluginConfiguration(SerializerPluginConfiguration object) {
 			return createSerializerPluginConfigurationAdapter();
 		}
 
 		@Override
-		public Adapter caseObjectIDMPluginConfiguration(
-				ObjectIDMPluginConfiguration object) {
+		public Adapter caseObjectIDMPluginConfiguration(ObjectIDMPluginConfiguration object) {
 			return createObjectIDMPluginConfigurationAdapter();
 		}
 
 		@Override
-		public Adapter caseRenderEnginePluginConfiguration(
-				RenderEnginePluginConfiguration object) {
+		public Adapter caseRenderEnginePluginConfiguration(RenderEnginePluginConfiguration object) {
 			return createRenderEnginePluginConfigurationAdapter();
 		}
 
 		@Override
-		public Adapter caseDeserializerPluginConfiguration(
-				DeserializerPluginConfiguration object) {
+		public Adapter caseDeserializerPluginConfiguration(DeserializerPluginConfiguration object) {
 			return createDeserializerPluginConfigurationAdapter();
 		}
 
@@ -281,14 +191,12 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseDatabaseInformationItem(
-				DatabaseInformationItem object) {
+		public Adapter caseDatabaseInformationItem(DatabaseInformationItem object) {
 			return createDatabaseInformationItemAdapter();
 		}
 
 		@Override
-		public Adapter caseDatabaseInformationCategory(
-				DatabaseInformationCategory object) {
+		public Adapter caseDatabaseInformationCategory(DatabaseInformationCategory object) {
 			return createDatabaseInformationCategoryAdapter();
 		}
 
@@ -303,14 +211,12 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseSerializerPluginDescriptor(
-				SerializerPluginDescriptor object) {
+		public Adapter caseSerializerPluginDescriptor(SerializerPluginDescriptor object) {
 			return createSerializerPluginDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter caseDeserializerPluginDescriptor(
-				DeserializerPluginDescriptor object) {
+		public Adapter caseDeserializerPluginDescriptor(DeserializerPluginDescriptor object) {
 			return createDeserializerPluginDescriptorAdapter();
 		}
 
@@ -320,8 +226,7 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseRevisionSummaryContainer(
-				RevisionSummaryContainer object) {
+		public Adapter caseRevisionSummaryContainer(RevisionSummaryContainer object) {
 			return createRevisionSummaryContainerAdapter();
 		}
 
@@ -336,8 +241,7 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseObjectIDMPluginDescriptor(
-				ObjectIDMPluginDescriptor object) {
+		public Adapter caseObjectIDMPluginDescriptor(ObjectIDMPluginDescriptor object) {
 			return createObjectIDMPluginDescriptorAdapter();
 		}
 
@@ -387,8 +291,7 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseRenderEnginePluginDescriptor(
-				RenderEnginePluginDescriptor object) {
+		public Adapter caseRenderEnginePluginDescriptor(RenderEnginePluginDescriptor object) {
 			return createRenderEnginePluginDescriptorAdapter();
 		}
 
@@ -408,50 +311,42 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseQueryEnginePluginDescriptor(
-				QueryEnginePluginDescriptor object) {
+		public Adapter caseQueryEnginePluginDescriptor(QueryEnginePluginDescriptor object) {
 			return createQueryEnginePluginDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter caseQueryEnginePluginConfiguration(
-				QueryEnginePluginConfiguration object) {
+		public Adapter caseQueryEnginePluginConfiguration(QueryEnginePluginConfiguration object) {
 			return createQueryEnginePluginConfigurationAdapter();
 		}
 
 		@Override
-		public Adapter caseWebModulePluginDescriptor(
-				WebModulePluginDescriptor object) {
+		public Adapter caseWebModulePluginDescriptor(WebModulePluginDescriptor object) {
 			return createWebModulePluginDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter caseWebModulePluginConfiguration(
-				WebModulePluginConfiguration object) {
+		public Adapter caseWebModulePluginConfiguration(WebModulePluginConfiguration object) {
 			return createWebModulePluginConfigurationAdapter();
 		}
 
 		@Override
-		public Adapter caseModelMergerPluginDescriptor(
-				ModelMergerPluginDescriptor object) {
+		public Adapter caseModelMergerPluginDescriptor(ModelMergerPluginDescriptor object) {
 			return createModelMergerPluginDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter caseModelMergerPluginConfiguration(
-				ModelMergerPluginConfiguration object) {
+		public Adapter caseModelMergerPluginConfiguration(ModelMergerPluginConfiguration object) {
 			return createModelMergerPluginConfigurationAdapter();
 		}
 
 		@Override
-		public Adapter caseModelComparePluginDescriptor(
-				ModelComparePluginDescriptor object) {
+		public Adapter caseModelComparePluginDescriptor(ModelComparePluginDescriptor object) {
 			return createModelComparePluginDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter caseModelComparePluginConfiguration(
-				ModelComparePluginConfiguration object) {
+		public Adapter caseModelComparePluginConfiguration(ModelComparePluginConfiguration object) {
 			return createModelComparePluginConfigurationAdapter();
 		}
 
@@ -476,14 +371,12 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseServicePluginDescriptor(
-				ServicePluginDescriptor object) {
+		public Adapter caseServicePluginDescriptor(ServicePluginDescriptor object) {
 			return createServicePluginDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter caseInternalServicePluginConfiguration(
-				InternalServicePluginConfiguration object) {
+		public Adapter caseInternalServicePluginConfiguration(InternalServicePluginConfiguration object) {
 			return createInternalServicePluginConfigurationAdapter();
 		}
 
@@ -588,8 +481,7 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseImmediateNotificationResult(
-				ImmediateNotificationResult object) {
+		public Adapter caseImmediateNotificationResult(ImmediateNotificationResult object) {
 			return createImmediateNotificationResultAdapter();
 		}
 
@@ -634,8 +526,7 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseModelCheckerResultHeader(
-				ModelCheckerResultHeader object) {
+		public Adapter caseModelCheckerResultHeader(ModelCheckerResultHeader object) {
 			return createModelCheckerResultHeaderAdapter();
 		}
 
@@ -655,8 +546,7 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseModelCheckerPluginDescriptor(
-				ModelCheckerPluginDescriptor object) {
+		public Adapter caseModelCheckerPluginDescriptor(ModelCheckerPluginDescriptor object) {
 			return createModelCheckerPluginDescriptorAdapter();
 		}
 

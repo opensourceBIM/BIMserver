@@ -29,6 +29,7 @@ import org.bimserver.BimServer;
 import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.ifc.step.serializer.Ifc4StepSerializer;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
@@ -77,7 +78,7 @@ public class TestClientEmfModelLocal {
 
 	private SProject createProject() throws PublicInterfaceNotFoundException {
 		try {
-			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("Project " + new Random().nextInt());
+			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("Project " + new Random().nextInt(), "ifc4");
 			return project;
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -124,7 +125,7 @@ public class TestClientEmfModelLocal {
 	private void dumpToFile(long poid, long roid) throws SerializerException {
 		try {
 			IfcModelInterface model = bimServerClient.getModel(poid, roid, false);
-			IfcStepSerializer serializer = new IfcStepSerializer(new PluginConfiguration());
+			IfcStepSerializer serializer = new Ifc4StepSerializer(new PluginConfiguration());
 			serializer.init(model, null, bimServer.getPluginManager(), null, false);
 			File output = new File("output");
 			if (!output.exists()) {

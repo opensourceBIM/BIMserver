@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.ObjectModified;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ObjectModifiedImpl extends CompareItemImpl implements
-		ObjectModified {
+public class ObjectModifiedImpl extends CompareItemImpl implements ObjectModified {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +62,7 @@ public class ObjectModifiedImpl extends CompareItemImpl implements
 	 * @generated
 	 */
 	public String getFieldName() {
-		return (String) eGet(StorePackage.Literals.OBJECT_MODIFIED__FIELD_NAME,
-				true);
+		return (String) eGet(StorePackage.Literals.OBJECT_MODIFIED__FIELD_NAME, true);
 	}
 
 	/**
@@ -81,8 +80,7 @@ public class ObjectModifiedImpl extends CompareItemImpl implements
 	 * @generated
 	 */
 	public String getOldValue() {
-		return (String) eGet(StorePackage.Literals.OBJECT_MODIFIED__OLD_VALUE,
-				true);
+		return (String) eGet(StorePackage.Literals.OBJECT_MODIFIED__OLD_VALUE, true);
 	}
 
 	/**
@@ -100,8 +98,7 @@ public class ObjectModifiedImpl extends CompareItemImpl implements
 	 * @generated
 	 */
 	public String getNewValue() {
-		return (String) eGet(StorePackage.Literals.OBJECT_MODIFIED__NEW_VALUE,
-				true);
+		return (String) eGet(StorePackage.Literals.OBJECT_MODIFIED__NEW_VALUE, true);
 	}
 
 	/**

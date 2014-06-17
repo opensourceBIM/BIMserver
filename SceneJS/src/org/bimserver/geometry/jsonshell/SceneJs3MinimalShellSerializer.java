@@ -58,12 +58,9 @@ import org.bimserver.models.ifc2x3tc1.IfcUnit;
 import org.bimserver.models.ifc2x3tc1.IfcUnitAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
 import org.bimserver.models.store.SIPrefix;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEngineException;
-import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.Extends;
-import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
@@ -76,12 +73,6 @@ public class SceneJs3MinimalShellSerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SceneJs3MinimalShellSerializer.class);
 	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
 	private final List<Long> surfaceStyleIds = new ArrayList<Long>();
-
-	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids)
-			throws SerializerException {
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
-	}
 
 	@Override
 	public void reset() {

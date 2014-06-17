@@ -1,5 +1,5 @@
 
-šÿ
+µÿ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -254,28 +254,27 @@ dataObject (2.org.bimserver.pb.SDataObject
 errorMessage (	&
 value (2.org.bimserver.pb.SUser",
 GetAllCheckoutsByUserRequest
-uoid ("È
+uoid ("³
 	SRevision
 bmi (
 	checkouts (
 comment (	
 concreteRevisions (
 date (
-extendedData (
-hasGeometry (
+extendedData (
 
-id (
-lastConcreteRevisionId	 (
-	lastError
- (	
-logs (
-oid (
-	projectId (
-rid (
-	serviceId (
-size (
-tag (	
-userId ("Ñ
+id (
+lastConcreteRevisionId (
+	lastError	 (	
+logs
+ (
+oid (
+	projectId (
+rid (
+	serviceId (
+size (
+tag (	
+userId ("Ñ
 	SCheckout
 active (,
 checkin (2.org.bimserver.pb.SRevision
@@ -352,7 +351,7 @@ $GetAllModelCheckersOfProjectResponse
 errorMessage (	6
 value (2'.org.bimserver.pb.SModelCheckerInstance"8
 (GetAllNonAuthorizedProjectsOfUserRequest
-uoid ("‡
+uoid ("—
 SProject
 	checkouts (
 concreteRevisions (
@@ -374,10 +373,11 @@ $GetAllModelCheckersOfProjectResponse
 oid (
 parentId (
 	revisions (
-rid (
-services (-
-state (2.org.bimserver.pb.SObjectState
-subProjects ("l
+rid (
+schema (	
+services (-
+state (2.org.bimserver.pb.SObjectState
+subProjects ("l
 )GetAllNonAuthorizedProjectsOfUserResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"8
@@ -404,7 +404,7 @@ $GetAllModelCheckersOfProjectResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject",
 GetAllRelatedProjectsRequest
-poid ("Ö
+poid ("æ
 SProjectSmall
 hasCheckinRights (
 lastRevisionId (
@@ -413,8 +413,10 @@ $GetAllModelCheckersOfProjectResponse
 nrSubProjects (
 oid (
 parentId (
-rid (-
-state	 (2.org.bimserver.pb.SObjectState"e
+rid (
+schema	 (	-
+state
+ (2.org.bimserver.pb.SObjectState"e
 GetAllRelatedProjectsResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SProjectSmall",
@@ -521,12 +523,13 @@ $GetAvailableClassesInRevisionRequest
 errorMessage (	
 value (	")
 GetRevisionSummaryRequest
-roid ("M
+roid ("]
 SRevisionSummaryType
 count (
 name (	
 oid (
-rid ("z
+rid (
+schema (	"z
 SRevisionSummaryContainer
 name (	
 oid (

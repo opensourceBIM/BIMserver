@@ -27,9 +27,10 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3tc1.Tristate;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.schema.Attribute;
@@ -53,11 +54,12 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
-public class IfcXmlSerializer extends IfcSerializer {
+public abstract class IfcXmlSerializer extends IfcSerializer {
 
 	private PrintWriter out;
 	private Map<EObject, Long> objectToOidMap;
@@ -65,16 +67,11 @@ public class IfcXmlSerializer extends IfcSerializer {
 	private SchemaDefinition schema;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 		objectToOidMap = new HashMap<EObject, Long>((int) model.size());
 		for (Long key : model.keySet()) {
 			objectToOidMap.put(model.get(key), key);
-		}
-		try {
-			schema = getPluginManager().requireSchemaDefinition();
-		} catch (PluginException e) {
-			throw new SerializerException(e);
 		}
 	}
 
@@ -143,7 +140,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 			EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName().toUpperCase());
 			Attribute attributeBN = entityBN != null ? entityBN.getAttributeBNWithSuper(structuralFeature.getName()) : null;
 			boolean derived = entityBN.isDerived(structuralFeature.getName());
-			if (!isInverse(structuralFeature) && !structuralFeature.isDerived() && !derived) {
+			if (!getPackageMetaData().isInverse(structuralFeature) && !structuralFeature.isDerived() && !derived) {
 				// Because of small deviations in the string/float/string
 				// conversions some float attributes are also stored in the
 				// original string representations. These auxiliary attribute

@@ -17,7 +17,9 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
+
 import org.bimserver.models.log.AccessMethod;
+
 import org.eclipse.emf.common.util.EList;
 
 /**

@@ -150,14 +150,16 @@ public enum IfcDoorStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FOLDING_TO_RIGHT(11, "FOLDING_TO_RIGHT", "FOLDING_TO_RIGHT"), /**
-																	 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE RIGHT</b></em>' literal object.
-																	 * <!-- begin-user-doc -->
-																	 * <!-- end-user-doc -->
-																	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_VALUE
-																	 * @generated
-																	 * @ordered
-																	 */
+	FOLDING_TO_RIGHT(11, "FOLDING_TO_RIGHT", "FOLDING_TO_RIGHT"),
+
+	/**
+	 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE RIGHT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT(12, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"),
 
 	/**

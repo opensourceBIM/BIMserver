@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcConditionCriterion;
 import org.bimserver.models.ifc2x3tc1.IfcConditionCriterionSelect;
 import org.bimserver.models.ifc2x3tc1.IfcDateTimeSelect;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

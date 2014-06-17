@@ -137,7 +137,7 @@ public class IfcEngineServer extends Thread {
 					out.writeInt(surfaceProperties.getIndicesCount());
 					out.writeInt(surfaceProperties.getVerticesCount());
 				}
-					break;
+				break;
 				case SET_POSTPROCESSING: {
 					int modelId = in.readInt();
 					ifcEngine.setPostProcessing(pointers.get(modelId), in.readBoolean() ? 1 : 0);

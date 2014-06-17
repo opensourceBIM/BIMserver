@@ -14,7 +14,9 @@ import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
+import org.bimserver.emf.MetaDataException;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.Schema;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.shared.IfcDoc;
 import org.bimserver.tools.psetschema.ClassDefinition;
@@ -36,10 +38,14 @@ public class ExpressToExcel {
 	private int row;
 
 	public static void main(String[] args) {
-		new ExpressToExcel().export(new File("ifc2x3tc1.xls"));
+		try {
+			new ExpressToExcel().export(new File("ifc2x3tc1.xls"));
+		} catch (MetaDataException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private void export(File file) {
+	private void export(File file) throws MetaDataException {
 		psetSchema = PsetSchemaLoader.load(new File("psd"));
 		ifcDoc = new IfcDoc(new File("C:\\Users\\Ruben de Laat\\Downloads\\IFC2x3_TC1_HTML_distribution-pset_errata\\R2x3_TC1"));
 
@@ -56,8 +62,8 @@ public class ExpressToExcel {
 		    // Lets automatically wrap the cells
 		    times.setWrap(false);
 
-		    MetaDataManager metaDataManager = new MetaDataManager();
-		    metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE);
+		    MetaDataManager metaDataManager = new MetaDataManager(null);
+		    metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1);
 		    
 			workbook = Workbook.createWorkbook(file, wbSettings);
 			int i=0;
@@ -65,7 +71,7 @@ public class ExpressToExcel {
 				// Determine if there is at least one type eligible
 				int x =0;
 				for (String className : ifcDoc.getClassNames(domain)) {
-					EClassifier eClassifier = metaDataManager.getEClassifierCaseInsensitive(className);
+					EClassifier eClassifier = metaDataManager.getEPackage("ifc2x3tc1").getEClassifierCaseInsensitive(className);
 					if (eClassifier instanceof EClass) {
 						EClass eClass = (EClass)eClassifier;
 						if (Ifc2x3tc1Package.eINSTANCE.getIfcProduct().isSuperTypeOf(eClass)) {
@@ -78,7 +84,7 @@ public class ExpressToExcel {
 					row = 0;
 					WritableSheet excelSheet = workbook.createSheet(domain, i);
 					for (String className : ifcDoc.getClassNames(domain)) {
-						EClassifier eClassifier = metaDataManager.getEClassifierCaseInsensitive(className);
+						EClassifier eClassifier = metaDataManager.getEPackage("ifc2x3tc1").getEClassifierCaseInsensitive(className);
 						if (eClassifier instanceof EClass) {
 							EClass eClass = (EClass)eClassifier;
 							if (Ifc2x3tc1Package.eINSTANCE.getIfcProduct().isSuperTypeOf(eClass)) {

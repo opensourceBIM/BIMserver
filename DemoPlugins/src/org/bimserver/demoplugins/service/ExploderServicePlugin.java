@@ -7,6 +7,7 @@ import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectDefinition;
@@ -91,7 +92,9 @@ public class ExploderServicePlugin extends ServicePlugin {
 					state.setStart(startDate);
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
-					IfcModelInterface model = bimServerClientInterface.getModel(poid, roid, false);
+					SProject projectByPoid = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
+					
+					IfcModelInterface model = bimServerClientInterface.getModel(projectByPoid, roid, false);
 
 					long total = 0;
 					int calls = 0;

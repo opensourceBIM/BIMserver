@@ -70,14 +70,16 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
-												 * The '<em><b>BALANCINGDAMPER</b></em>' literal object.
-												 * <!-- begin-user-doc -->
-												 * <!-- end-user-doc -->
-												 * @see #BALANCINGDAMPER_VALUE
-												 * @generated
-												 * @ordered
-												 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
+
+	/**
+	 * The '<em><b>BALANCINGDAMPER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BALANCINGDAMPER_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	BALANCINGDAMPER(4, "BALANCINGDAMPER", "BALANCINGDAMPER"),
 
 	/**

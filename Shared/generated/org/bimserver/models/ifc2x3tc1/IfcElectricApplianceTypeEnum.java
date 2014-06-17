@@ -120,14 +120,16 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INDIRECTWATERHEATER(8, "INDIRECTWATERHEATER", "INDIRECTWATERHEATER"), /**
-																			 * The '<em><b>PHOTOCOPIER</b></em>' literal object.
-																			 * <!-- begin-user-doc -->
-																			 * <!-- end-user-doc -->
-																			 * @see #PHOTOCOPIER_VALUE
-																			 * @generated
-																			 * @ordered
-																			 */
+	INDIRECTWATERHEATER(8, "INDIRECTWATERHEATER", "INDIRECTWATERHEATER"),
+
+	/**
+	 * The '<em><b>PHOTOCOPIER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PHOTOCOPIER_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	PHOTOCOPIER(9, "PHOTOCOPIER", "PHOTOCOPIER"),
 
 	/**

@@ -19,6 +19,7 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcActuatorType;
 import org.bimserver.models.ifc2x3tc1.IfcActuatorTypeEnum;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
