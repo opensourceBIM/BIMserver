@@ -47,6 +47,7 @@ public class SRevision implements SDataBase
 	private List<Long> extendedData = new ArrayList<Long>();
 	private List<Long> logs = new ArrayList<Long>();
 	private long serviceId = -1;
+	private boolean hasGeometry;
 
 	public long getOid() {
 		return this.oid;
@@ -119,6 +120,9 @@ public class SRevision implements SDataBase
 		if (sField.getName().equals("serviceId")) {
 			return getServiceId();
 		}
+		if (sField.getName().equals("hasGeometry")) {
+			return isHasGeometry();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -188,6 +192,10 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("serviceId")) {
 			setServiceId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("hasGeometry")) {
+			setHasGeometry((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -319,6 +327,14 @@ public class SRevision implements SDataBase
 
 	public void setServiceId(long serviceId) {
 		this.serviceId = serviceId;
+	}
+	
+	public boolean isHasGeometry() {
+		return hasGeometry;
+	}
+
+	public void setHasGeometry(boolean hasGeometry) {
+		this.hasGeometry = hasGeometry;
 	}
 	
 	@Override

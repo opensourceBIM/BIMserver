@@ -41,15 +41,6 @@
 		<implementationClass>org.bimserver.ifc.step.deserializer.Ifc2x3tc1StepDeserializerPlugin</implementationClass>
 	</PluginImplementation>
 
-		<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.deserializers.StreamingDeserializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.step.streamingdeserializers.Ifc4StepStreamingDeserializerPlugin</implementationClass>
-	</PluginImplementation>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.deserializers.StreamingDeserializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.step.streamingdeserializers.Ifc2x3tc1StepStreamingDeserializerPlugin</implementationClass>
-	</PluginImplementation>
-
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.modelcompare.ModelComparePlugin</interfaceClass>
 		<implementationClass>org.bimserver.ifc.compare.NameBasedModelComparePlugin</implementationClass>

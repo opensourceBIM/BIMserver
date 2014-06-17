@@ -19706,6 +19706,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1"
           eType="#/3/RevisionRelated" eOpposite="#/3/RevisionRelated/revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#/4/Service"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasGeometry" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConcreteRevision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
