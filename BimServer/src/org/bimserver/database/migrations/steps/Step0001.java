@@ -29,7 +29,7 @@ public class Step0001 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
-		schema.loadEcore(getClass().getResourceAsStream("IFC2X3_TC1.ecore"));
+		schema.loadEcore("ifc2x3_tc1.ecore", getClass().getResourceAsStream("IFC2X3_TC1.ecore"));
 		EClass ifcRoot = schema.getEClass("ifc2x3tc1", "IfcRoot");
 		ifcRoot.getEStructuralFeature("GlobalId").getEAnnotations().add(createIndexAnnotation());
 		ifcRoot.getEStructuralFeature("Name").getEAnnotations().add(createIndexAnnotation());

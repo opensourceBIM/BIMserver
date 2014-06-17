@@ -28,6 +28,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
@@ -49,17 +50,19 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 	private final String className;
 	private final long roid;
 	private boolean flat;
+	private String packageName;
 
-	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String className, Authorization authorization, boolean flat) {
+	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String packageName, String className, Authorization authorization, boolean flat) {
 		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roid = roid;
+		this.packageName = packageName;
 		this.className = className;
 		this.flat = flat;
 	}
 
 	@Override
 	public List<DataObject> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		EClass eClass = getDatabaseSession().getEClassForName(className);
+		EClass eClass = getDatabaseSession().getEClass(packageName, className);
 		Revision virtualRevision = getRevisionByRoid(roid);
 		if (virtualRevision == null) {
 			throw new UserException("No revision with roid " + roid + " found");
@@ -67,13 +70,14 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		Project project = virtualRevision.getProject();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 			int highestStopId = findHighestStopRid(project, concreteRevision);
-			Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
-			IfcModelInterface subModel = getDatabaseSession().getAllOfType(className, query);
+			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
+			IfcModelInterface subModel = getDatabaseSession().getAllOfType(packageName, className, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel = new IfcModel();
+		IfcModelInterface ifcModel = new IfcModel(null); //TODO
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

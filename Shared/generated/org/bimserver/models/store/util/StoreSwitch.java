@@ -17,97 +17,10 @@
 package org.bimserver.models.store.util;
 
 import org.bimserver.models.store.*;
-import org.bimserver.models.store.ArrayDefinition;
-import org.bimserver.models.store.ArrayType;
-import org.bimserver.models.store.BimServerInfo;
-import org.bimserver.models.store.BooleanType;
-import org.bimserver.models.store.ByteArrayType;
-import org.bimserver.models.store.Checkout;
-import org.bimserver.models.store.CheckoutResult;
-import org.bimserver.models.store.CompareContainer;
-import org.bimserver.models.store.CompareItem;
-import org.bimserver.models.store.CompareResult;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.DataObject;
-import org.bimserver.models.store.DataValue;
-import org.bimserver.models.store.DatabaseInformation;
-import org.bimserver.models.store.DatabaseInformationCategory;
-import org.bimserver.models.store.DatabaseInformationItem;
-import org.bimserver.models.store.DeserializerPluginConfiguration;
-import org.bimserver.models.store.DeserializerPluginDescriptor;
-import org.bimserver.models.store.DoubleType;
-import org.bimserver.models.store.DownloadResult;
-import org.bimserver.models.store.ExtendedData;
-import org.bimserver.models.store.ExtendedDataSchema;
-import org.bimserver.models.store.File;
-import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.IfcHeader;
-import org.bimserver.models.store.ImmediateNotificationResult;
-import org.bimserver.models.store.InternalServicePluginConfiguration;
-import org.bimserver.models.store.JavaInfo;
-import org.bimserver.models.store.ListDataValue;
-import org.bimserver.models.store.LongAction;
-import org.bimserver.models.store.LongActionState;
-import org.bimserver.models.store.LongType;
-import org.bimserver.models.store.Migration;
-import org.bimserver.models.store.ModelComparePluginConfiguration;
-import org.bimserver.models.store.ModelComparePluginDescriptor;
-import org.bimserver.models.store.ModelMergerPluginConfiguration;
-import org.bimserver.models.store.ModelMergerPluginDescriptor;
-import org.bimserver.models.store.ObjectAdded;
-import org.bimserver.models.store.ObjectDefinition;
-import org.bimserver.models.store.ObjectIDMPluginConfiguration;
-import org.bimserver.models.store.ObjectIDMPluginDescriptor;
-import org.bimserver.models.store.ObjectModified;
-import org.bimserver.models.store.ObjectRemoved;
-import org.bimserver.models.store.ObjectType;
-import org.bimserver.models.store.Parameter;
-import org.bimserver.models.store.ParameterDefinition;
-import org.bimserver.models.store.PercentageChange;
-import org.bimserver.models.store.PluginConfiguration;
-import org.bimserver.models.store.PluginDescriptor;
-import org.bimserver.models.store.PrimitiveDefinition;
-import org.bimserver.models.store.PrimitiveType;
-import org.bimserver.models.store.ProfileDescriptor;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.ProjectSmall;
-import org.bimserver.models.store.QueryEnginePluginConfiguration;
-import org.bimserver.models.store.QueryEnginePluginDescriptor;
-import org.bimserver.models.store.ReferenceDataValue;
-import org.bimserver.models.store.RemoteServiceUpdate;
-import org.bimserver.models.store.RenderEnginePluginConfiguration;
-import org.bimserver.models.store.RenderEnginePluginDescriptor;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.RevisionSummary;
-import org.bimserver.models.store.RevisionSummaryContainer;
-import org.bimserver.models.store.RevisionSummaryType;
-import org.bimserver.models.store.SerializerPluginConfiguration;
-import org.bimserver.models.store.SerializerPluginDescriptor;
-import org.bimserver.models.store.ServerInfo;
-import org.bimserver.models.store.ServerSettings;
-import org.bimserver.models.store.Service;
-import org.bimserver.models.store.ServiceDescriptor;
-import org.bimserver.models.store.ServiceField;
-import org.bimserver.models.store.ServiceInterface;
-import org.bimserver.models.store.ServiceMethod;
-import org.bimserver.models.store.ServiceParameter;
-import org.bimserver.models.store.ServicePluginDescriptor;
-import org.bimserver.models.store.ServiceType;
-import org.bimserver.models.store.SimpleDataValue;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.StringType;
-import org.bimserver.models.store.SystemInfo;
-import org.bimserver.models.store.Token;
-import org.bimserver.models.store.Type;
-import org.bimserver.models.store.TypeDefinition;
-import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserSession;
-import org.bimserver.models.store.UserSettings;
-import org.bimserver.models.store.Version;
-import org.bimserver.models.store.WebModulePluginConfiguration;
-import org.bimserver.models.store.WebModulePluginDescriptor;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -1064,8 +977,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSerializerPluginConfiguration(
-			SerializerPluginConfiguration object) {
+	public T caseSerializerPluginConfiguration(SerializerPluginConfiguration object) {
 		return null;
 	}
 
@@ -1080,8 +992,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseObjectIDMPluginConfiguration(
-			ObjectIDMPluginConfiguration object) {
+	public T caseObjectIDMPluginConfiguration(ObjectIDMPluginConfiguration object) {
 		return null;
 	}
 
@@ -1096,8 +1007,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRenderEnginePluginConfiguration(
-			RenderEnginePluginConfiguration object) {
+	public T caseRenderEnginePluginConfiguration(RenderEnginePluginConfiguration object) {
 		return null;
 	}
 
@@ -1112,8 +1022,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDeserializerPluginConfiguration(
-			DeserializerPluginConfiguration object) {
+	public T caseDeserializerPluginConfiguration(DeserializerPluginConfiguration object) {
 		return null;
 	}
 
@@ -1338,8 +1247,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDeserializerPluginDescriptor(
-			DeserializerPluginDescriptor object) {
+	public T caseDeserializerPluginDescriptor(DeserializerPluginDescriptor object) {
 		return null;
 	}
 
@@ -1564,8 +1472,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRenderEnginePluginDescriptor(
-			RenderEnginePluginDescriptor object) {
+	public T caseRenderEnginePluginDescriptor(RenderEnginePluginDescriptor object) {
 		return null;
 	}
 
@@ -1640,8 +1547,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQueryEnginePluginConfiguration(
-			QueryEnginePluginConfiguration object) {
+	public T caseQueryEnginePluginConfiguration(QueryEnginePluginConfiguration object) {
 		return null;
 	}
 
@@ -1671,8 +1577,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseWebModulePluginConfiguration(
-			WebModulePluginConfiguration object) {
+	public T caseWebModulePluginConfiguration(WebModulePluginConfiguration object) {
 		return null;
 	}
 
@@ -1702,8 +1607,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelMergerPluginConfiguration(
-			ModelMergerPluginConfiguration object) {
+	public T caseModelMergerPluginConfiguration(ModelMergerPluginConfiguration object) {
 		return null;
 	}
 
@@ -1718,8 +1622,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelComparePluginDescriptor(
-			ModelComparePluginDescriptor object) {
+	public T caseModelComparePluginDescriptor(ModelComparePluginDescriptor object) {
 		return null;
 	}
 
@@ -1734,8 +1637,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelComparePluginConfiguration(
-			ModelComparePluginConfiguration object) {
+	public T caseModelComparePluginConfiguration(ModelComparePluginConfiguration object) {
 		return null;
 	}
 
@@ -1825,8 +1727,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInternalServicePluginConfiguration(
-			InternalServicePluginConfiguration object) {
+	public T caseInternalServicePluginConfiguration(InternalServicePluginConfiguration object) {
 		return null;
 	}
 
@@ -2336,8 +2237,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelCheckerPluginDescriptor(
-			ModelCheckerPluginDescriptor object) {
+	public T caseModelCheckerPluginDescriptor(ModelCheckerPluginDescriptor object) {
 		return null;
 	}
 

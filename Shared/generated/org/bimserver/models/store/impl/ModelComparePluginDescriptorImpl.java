@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.ModelComparePluginDescriptor;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelComparePluginDescriptorImpl extends PluginDescriptorImpl
-		implements ModelComparePluginDescriptor {
+public class ModelComparePluginDescriptorImpl extends PluginDescriptorImpl implements ModelComparePluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

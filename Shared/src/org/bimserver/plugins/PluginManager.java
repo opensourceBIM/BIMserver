@@ -100,6 +100,14 @@ public class PluginManager {
 		this.baseClassPath = null;
 	}
 
+	public void loadPluginsFromEclipseProject(File projectRoot, boolean exceptions) throws PluginException {
+		if (exceptions) {
+			loadPluginsFromEclipseProject(projectRoot);
+		} else {
+			loadPluginsFromEclipseProjectNoExceptions(projectRoot);
+		}
+	}
+	
 	public void loadPluginsFromEclipseProjectNoExceptions(File projectRoot) {
 		try {
 			loadPluginsFromEclipseProject(projectRoot);
@@ -166,14 +174,14 @@ public class PluginManager {
 				} catch (ClassNotFoundException e) {
 					throw new PluginException("Implementation class '" + implementationClassName + "' not found in " + location, e);
 				} catch (InstantiationException e) {
-					throw new PluginException(e);
+					throw new PluginException(implementationClassName, e);
 				} catch (IllegalAccessException e) {
-					throw new PluginException(e);
+					throw new PluginException(implementationClassName, e);
 				}
 			} catch (ClassNotFoundException e) {
 				throw new PluginException("Interface class '" + interfaceClassName + "' not found", e);
 			} catch (Error e) {
-				throw new PluginException(e);
+				throw new PluginException(pluginImplementation.getImplementationClass(), e);
 			}
 		}
 	}
@@ -369,16 +377,20 @@ public class PluginManager {
 		return getPlugins(SchemaPlugin.class, onlyEnabled);
 	}
 	
-	public SchemaDefinition requireSchemaDefinition() throws PluginException {
+	public SchemaDefinition requireSchemaDefinition(String name) throws PluginException {
 		Collection<SchemaPlugin> allSchemaPlugins = getAllSchemaPlugins(true);
 		if (allSchemaPlugins.size() == 0) {
 			throw new SchemaException("No schema plugins found");
 		}
-		SchemaPlugin schemaPlugin = allSchemaPlugins.iterator().next();
-		if (!schemaPlugin.isInitialized()) {
-			schemaPlugin.init(this);
+		for (SchemaPlugin schemaPlugin : allSchemaPlugins) {
+			if (!schemaPlugin.isInitialized()) {
+				schemaPlugin.init(this);
+			}
+			if (schemaPlugin.getSchemaVersion().equals(name)) {
+				return schemaPlugin.getSchemaDefinition(new PluginConfiguration());
+			}
 		}
-		return schemaPlugin.getSchemaDefinition(new PluginConfiguration());
+		throw new PluginException("No schema definition found for " + name);
 	}
 	
 	public DeserializerPlugin requireDeserializer(String extension) throws DeserializeException {
@@ -475,16 +487,20 @@ public class PluginManager {
 		return allDeserializerPlugins.iterator().next();
 	}
 
-	public SchemaPlugin getFirstSchemaPlugin(boolean onlyEnabled) throws PluginException {
+	public SchemaPlugin getFirstSchemaPlugin(String schema, boolean onlyEnabled) throws PluginException {
 		Collection<SchemaPlugin> allSchemaPlugins = getAllSchemaPlugins(onlyEnabled);
 		if (allSchemaPlugins.size() == 0) {
 			throw new PluginException("No schema plugins found");
 		}
-		SchemaPlugin schemaPlugin = allSchemaPlugins.iterator().next();
-		if (!schemaPlugin.isInitialized()) {
-			schemaPlugin.init(this);
+		for (SchemaPlugin schemaPlugin : allSchemaPlugins) {
+			if (schemaPlugin.getSchemaVersion().equals(schema)) {
+				if (!schemaPlugin.isInitialized()) {
+					schemaPlugin.init(this);
+				}
+				return schemaPlugin;
+			}
 		}
-		return schemaPlugin;
+		return null;
 	}
 
 	public ObjectIDMPlugin getObjectIDMByName(String className, boolean onlyEnabled) {
@@ -523,6 +539,23 @@ public class PluginManager {
 						}
 					}
 				}
+			}
+		}
+		if (file.isDirectory()) {
+			loadIfIsPlugin(showExceptions, file);
+			for (File project : file.listFiles()) {
+				loadIfIsPlugin(showExceptions, project);
+			}
+		}
+	}
+
+	private void loadIfIsPlugin(boolean showExceptions, File project)
+			throws PluginException {
+		File pluginDir = new File(project, "plugin");
+		if (pluginDir.exists()) {
+			File pluginFile = new File(pluginDir, "plugin.xml");
+			if (pluginFile.exists()) {
+				loadPluginsFromEclipseProject(project, showExceptions);
 			}
 		}
 	}
@@ -632,5 +665,9 @@ public class PluginManager {
 		if (notificationsManagerInterface != null) {
 			notificationsManagerInterface.registerInternalNewExtendedDataOnRevisionHandler(serviceDescriptor, newExtendedDataHandler);
 		}
+	}
+
+	public DeserializerPlugin getDeserializerPlugin(String pluginClassName, boolean onlyEnabled) {
+		return getPluginByClassName(DeserializerPlugin.class, pluginClassName, onlyEnabled);
 	}
 }

@@ -102,7 +102,7 @@ public abstract class AbstractModelMerger implements ModelMerger {
 		for (IfcModelInterface ifcModel : ifcModels) {
 			size += ifcModel.size();
 		}
-		IfcModelInterface endModel = new IfcModel((int) size);
+		IfcModelInterface endModel = new IfcModel(null, (int) size);//TODO
 		modelHelper.setTargetModel(endModel);
 		modelHelper.setObjectFactory(endModel);
 		modelHelper.setKeepOriginalOids(true);

@@ -146,7 +146,7 @@ public class TestLowLevelChanges {
 
 	private long createProject() {
 		try {
-			SProject project = bimsie1ServiceInterface.addProject("Project " + new Random().nextInt());
+			SProject project = bimsie1ServiceInterface.addProject("Project " + new Random().nextInt(), "ifc4");
 			return project.getOid();
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -331,7 +331,7 @@ public class TestLowLevelChanges {
 		try {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.requireSchemaDefinition("ifc2x3tc1"));
 			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), "test.ifc", 0);
 			return model;
 		} catch (PluginException e) {

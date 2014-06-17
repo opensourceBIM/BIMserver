@@ -144,14 +144,16 @@ public class Streamer implements EndPoint {
 						public void run() {
 							try {
 								SDownloadResult checkoutResult = serviceMap.getBimsie1ServiceInterface().getDownloadData(downloadId);
-								DataSource dataSource = checkoutResult.getFile().getDataSource();
-								OutputStream outputStream = new WebSocketifier(topicId, streamingSocketInterface);
-								if (dataSource instanceof FileInputStreamDataSource) {
-									InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
-									IOUtils.copy(inputStream, outputStream);
-									inputStream.close();
-								} else {
-									((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
+								if (checkoutResult != null) {
+									DataSource dataSource = checkoutResult.getFile().getDataSource();
+									OutputStream outputStream = new WebSocketifier(topicId, streamingSocketInterface);
+									if (dataSource instanceof FileInputStreamDataSource) {
+										InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
+										IOUtils.copy(inputStream, outputStream);
+										inputStream.close();
+									} else {
+										((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
+									}
 								}
 							} catch (ServerException e) {
 								LOGGER.error("", e);

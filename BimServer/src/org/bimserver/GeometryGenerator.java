@@ -33,14 +33,15 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.geometry.Matrix;
 import org.bimserver.geometry.Vector;
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryFactory;
+import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.Vector3f;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -65,47 +66,7 @@ public class GeometryGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryGenerator.class);
 	private BimServer bimServer;
 	private final Map<Integer, GeometryData> hashes = new HashMap<>();
-
-	public static class GeometryCacheEntry {
-		public GeometryCacheEntry(ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, GeometryInfo geometryInfo) {
-			this.vertices = verticesBuffer;
-			this.normals = normalsBuffer;
-			this.geometryInfo = geometryInfo;
-		}
-
-		private ByteBuffer vertices;
-		private ByteBuffer normals;
-		private GeometryInfo geometryInfo;
-
-		public ByteBuffer getVertices() {
-			return vertices;
-		}
-
-		public ByteBuffer getNormals() {
-			return normals;
-		}
-
-		public GeometryInfo getGeometryInfo() {
-			return geometryInfo;
-		}
-	}
-
-	public static class GeometryCache {
-		private final Map<Integer, GeometryCacheEntry> cache = new HashMap<Integer, GeometryCacheEntry>();
-
-		public void put(int expressId, GeometryCacheEntry geometryCacheEntry) {
-			cache.put(expressId, geometryCacheEntry);
-		}
-
-		public boolean isEmpty() {
-			return cache.isEmpty();
-		}
-
-		public GeometryCacheEntry get(int expressId) {
-			return cache.get(expressId);
-		}
-	}
-
+	
 	public GeometryGenerator(BimServer bimServer) {
 		this.bimServer = bimServer;
 	}
@@ -121,10 +82,11 @@ public class GeometryGenerator {
 			// Make sure we have minimal express ids
 			model.generateMinimalExpressIds();
 
-			serializer.init(model, null, pluginManager, null, false);
-			
+			PackageMetaData packageMetaData = model.getPackageMetaData();
+			serializer.init(model, null, pluginManager, null, packageMetaData, false);
+
 			// TODO This is not streaming. SerializerInputstream has to be fixed first, then the IfcEngine wrapper should be able to handle streams without knowing the size in advance
-			
+
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			serializer.writeToOutputStream(outputStream);
 
@@ -139,7 +101,7 @@ public class GeometryGenerator {
 				throw new UserException("No (enabled) render engine found of type " + defaultRenderEngine.getPluginDescriptor().getPluginClassName());
 			}
 			try {
-				RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration());
+				RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration(), packageMetaData.getSchema().getEPackageName());
 				renderEngine.init();
 				try {
 					RenderEngineModel renderEngineModel = renderEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
@@ -153,7 +115,7 @@ public class GeometryGenerator {
 					renderEngineModel.setSettings(settings);
 					try {
 						renderEngineModel.generateGeneralGeometry();
-						
+
 						List<IfcProduct> products = model.getAllWithSubTypes(IfcProduct.class);
 
 						for (IfcProduct ifcProduct : products) {
@@ -164,24 +126,24 @@ public class GeometryGenerator {
 								if (store) {
 									geometryInfo = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryInfo(), pid, rid);
 								} else {
-									geometryInfo = Ifc2x3tc1Factory.eINSTANCE.createGeometryInfo();
+									geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
 								}
 
 								geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
 								geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
-								
+
 								GeometryData geometryData = null;
 								if (store) {
 									geometryData = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), pid, rid);
 								} else {
-									geometryData = Ifc2x3tc1Factory.eINSTANCE.createGeometryData();
+									geometryData = GeometryFactory.eINSTANCE.createGeometryData();
 								}
 
 								geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
 								geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
 								geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
 								geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
-								
+
 								if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 									float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
 									for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
@@ -210,13 +172,13 @@ public class GeometryGenerator {
 								} else {
 									Matrix.setIdentityM(tranformationMatrix, 0);
 								}
-								
+
 								for (int i=0; i<geometry.getIndices().length; i++) {
 									processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3);
 								}
-								
+
 								geometryInfo.setData(geometryData);
-								
+
 								setTransformationMatrix(geometryInfo, tranformationMatrix);
 								if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
 									int hash = hash(geometryData);
@@ -267,7 +229,24 @@ public class GeometryGenerator {
 		}
 		return hashCode;
 	}
-
+	
+	private void processExtends(GeometryInfo geometryInfo, float[] transformationMatrix, float[] vertices, int index) {
+		float x = vertices[index];
+		float y = vertices[index + 1];
+		float z = vertices[index + 2];
+		float[] result = new float[4];
+		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new float[]{x, y, z, 1}, 0);
+		x = result[0];
+		y = result[1];
+		z = result[2];
+		geometryInfo.getMinBounds().setX(Math.min(x, geometryInfo.getMinBounds().getX()));
+		geometryInfo.getMinBounds().setY(Math.min(y, geometryInfo.getMinBounds().getY()));
+		geometryInfo.getMinBounds().setZ(Math.min(z, geometryInfo.getMinBounds().getZ()));
+		geometryInfo.getMaxBounds().setX(Math.max(x, geometryInfo.getMaxBounds().getX()));
+		geometryInfo.getMaxBounds().setY(Math.max(y, geometryInfo.getMaxBounds().getY()));
+		geometryInfo.getMaxBounds().setZ(Math.max(z, geometryInfo.getMaxBounds().getZ()));
+	}
+	
 	private byte[] floatArrayToByteArray(float[] vertices) {
 		if (vertices == null) {
 			return null;
@@ -288,22 +267,15 @@ public class GeometryGenerator {
 		ByteBuffer buffer = ByteBuffer.wrap(new byte[indices.length * 4]);
 		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		IntBuffer asIntBuffer = buffer.asIntBuffer();
-		boolean allMinus1 = true;
 		for (int i : indices) {
 			asIntBuffer.put(i);
-			if (i != -1) {
-				allMinus1 = false;
-			}
-		}
-		if (allMinus1) {
-			return null;
 		}
 		return buffer.array();
 	}
 
 	private void setTransformationMatrix(GeometryInfo geometryInfo, float[] transformationMatrix) {
 		ByteBuffer byteBuffer = ByteBuffer.allocate(16 * 4);
-		byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+		byteBuffer.order(ByteOrder.nativeOrder());
 		FloatBuffer asFloatBuffer = byteBuffer.asFloatBuffer();
 		for (float f : transformationMatrix) {
 			asFloatBuffer.put(f);
@@ -315,6 +287,45 @@ public class GeometryGenerator {
 		return Math.abs(f1 - f2) < maxDiff;
 	}
 	
+	private boolean reuseGeometry(IfcProduct ifcProduct, GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
+		double distanceFromCorners = Math.sqrt(Math.pow(geometryInfo.getMaxBounds().getX() - geometryInfo.getMinBounds().getX(), 2) + Math.pow(geometryInfo.getMaxBounds().getY() - geometryInfo.getMinBounds().getY(), 2) + Math.pow(geometryInfo.getMaxBounds().getZ() - geometryInfo.getMinBounds().getZ(), 2));
+		float maxDiff = (float) (distanceFromCorners / 100.0);
+		
+		ByteBuffer bb1 = ByteBuffer.wrap(matchingGeometryData.getVertices());
+		ByteBuffer bb2 = ByteBuffer.wrap(geometryData.getVertices());
+		bb1.order(ByteOrder.LITTLE_ENDIAN);
+		bb2.order(ByteOrder.LITTLE_ENDIAN);
+		FloatBuffer vertices1 = bb1.asFloatBuffer();
+		FloatBuffer vertices2 = bb2.asFloatBuffer();
+
+		float[] v1 = new float[]{vertices1.get(0), vertices1.get(1), vertices1.get(2)};
+		float[] u1 = new float[]{vertices2.get(0), vertices2.get(1), vertices2.get(2)};
+		float[] v2 = new float[]{vertices1.get(3), vertices1.get(4), vertices1.get(5)};
+		float[] u2 = new float[]{vertices2.get(3), vertices2.get(4), vertices2.get(5)};
+		float[] v3 = new float[]{vertices1.get(6), vertices1.get(7), vertices1.get(8)};
+		float[] u3 = new float[]{vertices2.get(6), vertices2.get(7), vertices2.get(8)};
+
+		float[] totalResult = getTransformationMatrix(v1, v2, v3, u1, u2, u3, maxDiff);
+		if (totalResult == null) {
+			return false;
+		}
+
+		float[] r = new float[4];
+		Matrix.multiplyMV(r, 0, totalResult, 0, new float[]{v1[0], v1[1], v1[2], 1}, 0);
+		
+		if (almostTheSame(r[0] - v1[0], u1[0], maxDiff) && almostTheSame(r[1] - v1[1], u1[1], maxDiff) && almostTheSame(r[2] - v1[2], u1[2], maxDiff)) {
+			// Interesting
+			Matrix.translateM(totalResult, 0, -v1[0], -v1[1], -v1[2]);
+		}
+		
+		if (test(v1, u1, totalResult, maxDiff)) {
+			geometryInfo.setData(matchingGeometryData);
+			setTransformationMatrix(geometryInfo, totalResult);
+			return true;
+		}
+		return false;
+	}
+
 	/**
 	 * This function should return a transformation matrix (with translation and rotation, no scaling) overlaying triangle V on U
 	 * Assumed is that the triangles are indeed the same and the order of the vertices is also the same (shifts are not allowed)
@@ -621,7 +632,7 @@ public class GeometryGenerator {
 		if (store) {
 			vector3f = (Vector3f) session.create(Ifc2x3tc1Package.eINSTANCE.getVector3f(), pid, rid);
 		} else {
-			vector3f = Ifc2x3tc1Factory.eINSTANCE.createVector3f();
+			vector3f = GeometryFactory.eINSTANCE.createVector3f();
 		}
 		vector3f.setX(defaultValue);
 		vector3f.setY(defaultValue);
@@ -629,15 +640,10 @@ public class GeometryGenerator {
 		return vector3f;
 	}
 
-	private void processExtends(GeometryInfo geometryInfo, float[] transformationMatrix, float[] vertices, int index) {
+	private void processExtends(GeometryInfo geometryInfo, float[] vertices, int index) {
 		float x = vertices[index];
 		float y = vertices[index + 1];
 		float z = vertices[index + 2];
-		float[] result = new float[4];
-		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new float[]{x, y, z, 1}, 0);
-		x = result[0];
-		y = result[1];
-		z = result[2];
 		geometryInfo.getMinBounds().setX(Math.min(x, geometryInfo.getMinBounds().getX()));
 		geometryInfo.getMinBounds().setY(Math.min(y, geometryInfo.getMinBounds().getY()));
 		geometryInfo.getMinBounds().setZ(Math.min(z, geometryInfo.getMinBounds().getZ()));

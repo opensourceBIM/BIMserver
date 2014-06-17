@@ -19,7 +19,9 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcConnectedFaceSet;
 import org.bimserver.models.ifc2x3tc1.IfcFaceBasedSurfaceModel;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

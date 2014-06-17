@@ -21,6 +21,7 @@ import org.bimserver.models.ifc2x3tc1.IfcDateTimeSelect;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsTasks;
 import org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl;
 import org.bimserver.models.ifc2x3tc1.Tristate;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.DeserializerPluginDescriptor;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class DeserializerPluginDescriptorImpl extends PluginDescriptorImpl
-		implements DeserializerPluginDescriptor {
+public class DeserializerPluginDescriptorImpl extends PluginDescriptorImpl implements DeserializerPluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

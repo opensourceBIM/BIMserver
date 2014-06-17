@@ -17,10 +17,13 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

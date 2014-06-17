@@ -39,7 +39,7 @@ public class CityGmlTest {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("ifc");
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.requireSchemaDefinition("ifc2x3tc1"));
 			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile());
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.citygml.CityGmlSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());

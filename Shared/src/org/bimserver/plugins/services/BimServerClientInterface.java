@@ -36,7 +36,7 @@ import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 
 public interface BimServerClientInterface extends ServiceHolder {
 
-	IfcModelInterface getModel(long poid, long roid, boolean deep) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException;
+	IfcModelInterface getModel(SProject project, long roid, boolean deep) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException;
 	void commit(IfcModelInterface model, String comment);
 	void download(long roid, long serializerOid, OutputStream outputStream);
 	void download(long roid, long serializerOid, File file) throws IOException;

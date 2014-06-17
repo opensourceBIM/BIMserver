@@ -20,7 +20,7 @@ package org.bimserver.serializers.binarygeometry;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import org.bimserver.models.ifc2x3tc1.Vector3f;
+import org.bimserver.models.geometry.Vector3f;
 
 public class Bounds {
 	public Float3 min;

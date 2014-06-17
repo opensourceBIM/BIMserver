@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.RenderEnginePluginDescriptor;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RenderEnginePluginDescriptorImpl extends PluginDescriptorImpl
-		implements RenderEnginePluginDescriptor {
+public class RenderEnginePluginDescriptorImpl extends PluginDescriptorImpl implements RenderEnginePluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -17,15 +17,45 @@ package org.bimserver.database.migrations.steps;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.nio.ByteBuffer;
+
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.StorePackage;
 
 public class Step0009 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		// Content moved to step0012
+//		if (databaseSession != null) {
+//			try {
+//				IfcModelInterface projects = databaseSession.getAllOfType(StorePackage.eINSTANCE.getProject(), Query.getDefault());
+//				for (Project project : projects.getAll(Project.class)) {
+//					for (Revision revision : project.getRevisions()) {
+//						IfcModelInterface allOfType = databaseSession.getAllOfType(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), new Query(databaseSession.getMetaDataManager().getEPackage(project.getSchema()), project.getId(), revision.getId()));
+//						for (GeometryData geometryData : allOfType.getAll(GeometryData.class)) {
+//							System.out.println("Updating geometry data for " + geometryData.getOid());
+//							ByteBuffer buffer = ByteBuffer.wrap(geometryData.getVertices());
+//							convertOrder(buffer);
+//							buffer = ByteBuffer.wrap(geometryData.getNormals());
+//							convertOrder(buffer);
+//							databaseSession.store(geometryData);
+//						}
+//					}
+//				}
+//			} catch (BimserverDatabaseException e) {
+//				e.printStackTrace();
+//			}
+//		}
 	}
 	
 	@Override

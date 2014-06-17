@@ -110,22 +110,26 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROJECTMANAGER(7, "PROJECTMANAGER", "PROJECTMANAGER"), /**
-															 * The '<em><b>CLIENT</b></em>' literal object.
-															 * <!-- begin-user-doc -->
-															 * <!-- end-user-doc -->
-															 * @see #CLIENT_VALUE
-															 * @generated
-															 * @ordered
-															 */
-	CLIENT(8, "CLIENT", "CLIENT"), /**
-									 * The '<em><b>ELECTRICALENGINEER</b></em>' literal object.
-									 * <!-- begin-user-doc -->
-									 * <!-- end-user-doc -->
-									 * @see #ELECTRICALENGINEER_VALUE
-									 * @generated
-									 * @ordered
-									 */
+	PROJECTMANAGER(7, "PROJECTMANAGER", "PROJECTMANAGER"),
+
+	/**
+	 * The '<em><b>CLIENT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CLIENT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	CLIENT(8, "CLIENT", "CLIENT"),
+
+	/**
+	 * The '<em><b>ELECTRICALENGINEER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ELECTRICALENGINEER_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	ELECTRICALENGINEER(9, "ELECTRICALENGINEER", "ELECTRICALENGINEER"),
 
 	/**

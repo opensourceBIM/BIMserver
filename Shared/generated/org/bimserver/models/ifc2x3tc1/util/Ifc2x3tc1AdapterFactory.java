@@ -17,9 +17,12 @@
 package org.bimserver.models.ifc2x3tc1.util;
 
 import org.bimserver.models.ifc2x3tc1.*;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -4160,26 +4163,6 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseIfcVectorOrDirection(IfcVectorOrDirection object) {
 			return createIfcVectorOrDirectionAdapter();
-		}
-
-		@Override
-		public Adapter caseGeometryInfo(GeometryInfo object) {
-			return createGeometryInfoAdapter();
-		}
-
-		@Override
-		public Adapter caseVector3f(Vector3f object) {
-			return createVector3fAdapter();
-		}
-
-		@Override
-		public Adapter caseGeometryData(GeometryData object) {
-			return createGeometryDataAdapter();
-		}
-
-		@Override
-		public Adapter caseGeometryInstance(GeometryInstance object) {
-			return createGeometryInstanceAdapter();
 		}
 
 		@Override

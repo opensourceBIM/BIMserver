@@ -33,6 +33,7 @@ import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
@@ -87,7 +88,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 			for (String guid : guids) {
 				if (!foundGuids.contains(guid)) {
 					for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-						ObjectIdentifier objectIdentifier = getDatabaseSession().getOidOfGuid(guid, concreteRevision.getProject().getId(),
+						ObjectIdentifier objectIdentifier = getDatabaseSession().getOidOfGuid(concreteRevision.getProject().getSchema(), guid, concreteRevision.getProject().getId(),
 								concreteRevision.getId());
 						if (objectIdentifier != null) {
 							foundGuids.add(guid);
@@ -104,9 +105,10 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 			final AtomicLong total = new AtomicLong();
 
 			for (ConcreteRevision concreteRevision : map.keySet()) {
-				IfcModel subModel = new IfcModel();
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+				IfcModel subModel = new IfcModel(packageMetaData);
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
+				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {
@@ -128,7 +130,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 			}
 		}
 		try {
-			IfcModelInterface ifcModel = new IfcModel();
+			IfcModelInterface ifcModel = new IfcModel(null); // TODO
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 			ifcModel.getModelMetaData().setName("query");
 			for (String guid : guids) {

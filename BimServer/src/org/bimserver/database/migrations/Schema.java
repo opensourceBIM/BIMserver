@@ -258,10 +258,10 @@ public class Schema {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public void loadEcore(InputStream inputStream) {
+	public void loadEcore(String name, InputStream inputStream) {
         ResourceSet resourceSet = new ResourceSetImpl();
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-        Resource resource = resourceSet.createResource(URI.createURI("ifc2x3.ecore"));
+        Resource resource = resourceSet.createResource(URI.createURI(name));
         try {
 			resource.load(inputStream, new HashMap());
 			for (EObject eObject : resource.getContents()) {
@@ -313,5 +313,9 @@ public class Schema {
 
 	public EClass createEClass(String packageName, String className, EClass... superTypes) {
 		return createEClass(getEPackage(packageName), className, superTypes);
+	}
+
+	public void removeEReference(EClass eClass, String name) {
+		eClass.getEStructuralFeatures().remove(eClass.getEStructuralFeature(name));
 	}
 }

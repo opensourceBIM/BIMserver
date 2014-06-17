@@ -28,6 +28,7 @@ import org.bimserver.emf.IdEObject;
  * <ul>
  *   <li>{@link org.bimserver.models.store.RevisionSummaryType#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.RevisionSummaryType#getCount <em>Count</em>}</li>
+ *   <li>{@link org.bimserver.models.store.RevisionSummaryType#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,5 +89,31 @@ public interface RevisionSummaryType extends IdEObject {
 	 * @generated
 	 */
 	void setCount(Integer value);
+
+	/**
+	 * Returns the value of the '<em><b>Schema</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Schema</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Schema</em>' attribute.
+	 * @see #setSchema(String)
+	 * @see org.bimserver.models.store.StorePackage#getRevisionSummaryType_Schema()
+	 * @model
+	 * @generated
+	 */
+	String getSchema();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.RevisionSummaryType#getSchema <em>Schema</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Schema</em>' attribute.
+	 * @see #getSchema()
+	 * @generated
+	 */
+	void setSchema(String value);
 
 } // RevisionSummaryType

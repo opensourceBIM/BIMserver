@@ -33,13 +33,13 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.Geometry;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
+import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
@@ -79,20 +79,20 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	private final SServicesMap servicesMap;
 	private final NotificationsManager notificationsManager;
 	private final String baseAddress;
-	private final MetaDataManager metaDataManager = new MetaDataManager();
 	private AuthenticationInfo authenticationInfo = new AnonymousAuthentication();
 	private String token;
+	private BimServerClientFactory factory;
 
-	public BimServerClient(String baseAddress, SServicesMap servicesMap, Channel channel) {
+	public BimServerClient(BimServerClientFactory factory, String baseAddress, SServicesMap servicesMap, Channel channel) {
+		this.factory = factory;
 		this.baseAddress = baseAddress;
 		this.servicesMap = servicesMap;
 		this.channel = channel;
 		this.notificationsManager = new NotificationsManager(this);
-		this.metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE);
 	}
 
 	public MetaDataManager getMetaDataManager() {
-		return metaDataManager;
+		return factory.getMetaDataManager();
 	}
 	
 	public void setAuthentication(AuthenticationInfo authenticationInfo) throws ServerException, UserException, ChannelConnectionException {
@@ -173,8 +173,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		notifyOfDisconnect();
 	}
 
-	public ClientIfcModel getModel(long poid, long roid, boolean deep) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException {
-		return new ClientIfcModel(this, poid, roid, deep);
+	public ClientIfcModel getModel(SProject project, long roid, boolean deep) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException {
+		return new ClientIfcModel(this, project.getOid(), roid, deep, getMetaDataManager().getEPackage(project.getSchema()));
 	}
 
 	public boolean isConnected() {
@@ -281,7 +281,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 
 	public IfcModelInterface newModel(SProject project) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
-		return new ClientIfcModel(this, project.getOid(), -1, false);
+		return new ClientIfcModel(this, project.getOid(), -1, false, getMetaDataManager().getEPackage(project.getSchema()));
 	}
 
 	public <T extends PublicInterface> T get(Class<T> clazz) throws PublicInterfaceNotFoundException {

@@ -20,7 +20,7 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
 			
 			// Find a deserializer to use
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");

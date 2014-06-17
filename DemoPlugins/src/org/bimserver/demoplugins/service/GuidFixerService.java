@@ -11,6 +11,7 @@ import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectDefinition;
@@ -93,7 +94,8 @@ public class GuidFixerService extends ServicePlugin {
 					state.setProgress(-1);
 					state.setStart(startDate);
 
-					IfcModelInterface model = bimServerClientInterface.getModel(poid, roid, false);
+					SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
+					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, false);
 					Map<String, List<IfcRoot>> guids = new HashMap<String, List<IfcRoot>>();
 					int fixed = 0;
 					// Iterate over all objects that can have a GUID

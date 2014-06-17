@@ -7,6 +7,7 @@ import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectDefinition;
@@ -94,7 +95,8 @@ public class SpaceInvadersService extends ServicePlugin {
 //					SSerializerPluginConfiguration stepSerializerRemote = bimServerClientInterface.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
 					
 					try {
-						IfcModelInterface model = bimServerClientInterface.getModel(poid, roid, true);
+						SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
+						IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true);
 						for (IfcSpace ifcSpace : model.getAllWithSubTypes(IfcSpace.class)) {
 //							GeometryInfo geometry = ifcSpace.getGeometry();
 							bimServerClientInterface.getGeometry(roid, ifcSpace);

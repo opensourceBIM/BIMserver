@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.ByteArrayType;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -33,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ByteArrayTypeImpl extends PrimitiveTypeImpl implements
-		ByteArrayType {
+public class ByteArrayTypeImpl extends PrimitiveTypeImpl implements ByteArrayType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

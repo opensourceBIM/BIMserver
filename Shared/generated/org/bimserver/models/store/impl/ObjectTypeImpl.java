@@ -19,7 +19,9 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -81,8 +83,7 @@ public class ObjectTypeImpl extends TypeImpl implements ObjectType {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Parameter> getParameters() {
-		return (EList<Parameter>) eGet(
-				StorePackage.Literals.OBJECT_TYPE__PARAMETERS, true);
+		return (EList<Parameter>) eGet(StorePackage.Literals.OBJECT_TYPE__PARAMETERS, true);
 	}
 
 } //ObjectTypeImpl

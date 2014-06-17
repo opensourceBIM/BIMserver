@@ -150,6 +150,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "downloadByTypes")
 	Long downloadByTypes(
 		@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
+		@WebParam(name = "schema", partName = "downloadByTypes.schema") String schema,
 		@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
 		@WebParam(name = "serializerOid", partName = "downloadByTypes.serializerOid") Long serializerOid,
 		@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
@@ -316,7 +317,8 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getSuggestedDeserializerForExtension")
 	SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(
-		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension) throws ServerException, UserException;
+		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension,
+		@WebParam(name = "poid", partName = "getSuggestedDeserializerForExtension.poid") Long poid) throws ServerException, UserException;
 	
 	/**
 	 * @param roid ObjectID of the Revision
@@ -327,7 +329,6 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	void addExtendedDataToRevision(
 		@WebParam(name = "roid", partName = "addExtendedDataToRevision.roid") Long roid,
 		@WebParam(name = "extendedData", partName = "addExtendedDataToRevision.extendedData") SExtendedData extendedData) throws ServerException, UserException;
-	
 
 	/**
 	 * @param oid ObjectID of the ExtendedData
@@ -476,7 +477,8 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addProject")
 	SProject addProject(
-		@WebParam(name = "projectName", partName = "addProject.projectName") String projectName) throws ServerException, UserException;
+		@WebParam(name = "projectName", partName = "addProject.projectName") String projectName,
+		@WebParam(name = "schema", partName = "addProject.schema") String schema) throws ServerException, UserException;
 
 	/**
 	 * Add a new project as a subproject of another project
@@ -488,7 +490,8 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "addProjectAsSubProject")
 	SProject addProjectAsSubProject(
 		@WebParam(name = "projectName", partName = "addProjectAsSubProject.projectName") String projectName,
-		@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid) throws ServerException, UserException;
+		@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid,
+		@WebParam(name = "schema", partName = "addProjectAsSubProject.schema") String schema) throws ServerException, UserException;
 
 	/**
 	 * Delete a Project, Projects can be undeleted with the undeleteProject method

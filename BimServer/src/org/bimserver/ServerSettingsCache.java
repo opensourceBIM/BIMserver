@@ -43,7 +43,7 @@ public class ServerSettingsCache {
 	public synchronized void updateCache() {
 		DatabaseSession session = database.createSession();
 		try {
-			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), new Query(true));
+			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), new Query(session.getMetaDataManager().getEPackage("store"), true));
 			if (serverSettings.getSessionTimeOutSeconds() == 0) {
 				serverSettings.setSessionTimeOutSeconds(60 * 60 * 24 * 30);
 			}

@@ -59,13 +59,14 @@ public class DataObjectGeneratorWrapper {
 		}
 		ServiceInterfaceObjectGenerator dataObjectGenerator = new ServiceInterfaceObjectGenerator();
 		Set<String> fileNamesCreated = new HashSet<String>();
+		MetaDataManager metaDataManager = new MetaDataManager(null);
 		for (EPackage ePackage : ePackages) {
 			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass || eClassifier instanceof EEnum) {
 					Object[] arguments = new Object[]{
 						eClassifier,
 						new ImportManager(),
-						new MetaDataManager(ePackages)
+						metaDataManager
 					};
 					String generated = dataObjectGenerator.generate(arguments);
 					String fileName = "S" + eClassifier.getName() + ".java";

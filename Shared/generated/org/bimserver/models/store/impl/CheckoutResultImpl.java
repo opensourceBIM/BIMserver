@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.CheckoutResult;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class CheckoutResultImpl extends DownloadResultImpl implements
-		CheckoutResult {
+public class CheckoutResultImpl extends DownloadResultImpl implements CheckoutResult {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

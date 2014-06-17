@@ -81,11 +81,10 @@ public class TestIfcEngineEmbedded {
 				// Authenticate
 				client.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 				
-				SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
-				
-				
 				// Create a project
-				SProject project = client.getBimsie1ServiceInterface().addProject("test" + Math.random());
+				SProject project = client.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+
+				SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 				
 				// This is the test file
 				File testIfcFile = new File("../TestData/data/" + filename);
@@ -178,7 +177,7 @@ public class TestIfcEngineEmbedded {
 			}
 			
 			// Get a deserializer
-			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", );
 			if (deserializer == null) {
 				throw new Exception("No deserializer found for IFC-SPF. Make sure plugin directories are correctly configured");
 			}
@@ -199,6 +198,29 @@ public class TestIfcEngineEmbedded {
 			}			
 			
 			System.exit(0);
+
+			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+						
+			// Create a project
+			SProject project = client.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
+
+			// This is the test file
+			File testIfcFile = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
+
+			// Checkin the file
+			client.checkin(project.getOid(), "testing ifc engine", deserializer.getOid(), false, true, testIfcFile);
+
+			// Update local project
+			project = client.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
+
+			// Find collada serializer
+			SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
+
+			// Download as collada			
+			client.download(project.getLastRevisionId(), serializer.getOid(), new File(testIfcFile.getName() + ".ifc"));
+
+			client.disconnect();
+			bimServer.stop();
 		} catch (Exception e) {
 			e.printStackTrace();
 			

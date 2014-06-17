@@ -35,7 +35,6 @@ import org.bimserver.models.store.Project;
  * @generated
  */
 public interface UserRemovedFromProject extends UserRelated {
-
 	/**
 	 * Returns the value of the '<em><b>Project</b></em>' reference.
 	 * <!-- begin-user-doc -->

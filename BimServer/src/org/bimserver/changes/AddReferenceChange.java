@@ -26,6 +26,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.ErrorCode;
@@ -48,7 +49,8 @@ public class AddReferenceChange implements Change {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(model, oid, new Query(project.getId(), concreteRevision.getId()));
+		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getEPackage(project.getSchema());
+		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId()));
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
@@ -56,14 +58,14 @@ public class AddReferenceChange implements Change {
 		if (idEObject == null) {
 			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + project.getId());
 		}
-		EReference eReference = databaseSession.getMetaDataManager().getEReference(eClass.getName(), referenceName);
+		EReference eReference = packageMetaData.getEReference(eClass.getName(), referenceName);
 		if (eReference == null) {
 			throw new UserException("No reference with the name " + referenceName + " found in class " + eClass.getName());
 		}
 		if (!eReference.isMany()) {
 			throw new UserException("Reference is not of type 'many'");
 		}
-		IdEObject referencedObject = databaseSession.get(referenceOid, new Query(project.getId(), concreteRevision.getId()));
+		IdEObject referencedObject = databaseSession.get(referenceOid, new Query(packageMetaData, project.getId(), concreteRevision.getId()));
 		if (referencedObject == null) {
 			referencedObject = created.get(oid);
 		}

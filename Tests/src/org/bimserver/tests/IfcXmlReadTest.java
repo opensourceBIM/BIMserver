@@ -58,7 +58,7 @@ public class IfcXmlReadTest {
 				
 				DeserializerPlugin deserializerPlugin2 = pluginManager.getFirstDeserializer("ifc", true);
 				Deserializer deserializer2 = deserializerPlugin2.createDeserializer(new PluginConfiguration());
-				deserializer2.init(pluginManager.requireSchemaDefinition());
+				deserializer2.init(pluginManager.requireSchemaDefinition("ifc2x3tc1"));
 				deserializer2.read(outFile);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

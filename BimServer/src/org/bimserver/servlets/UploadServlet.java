@@ -151,6 +151,7 @@ public class UploadServlet extends SubServlet {
 				}
 			}
 		} catch (Exception e) {
+			LOGGER.error("", e);
 			sendException(response, e);
 			return;
 		}

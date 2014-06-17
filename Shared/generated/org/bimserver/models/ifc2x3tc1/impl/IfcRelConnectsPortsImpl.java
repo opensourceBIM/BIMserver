@@ -20,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
 import org.bimserver.models.ifc2x3tc1.IfcPort;
 import org.bimserver.models.ifc2x3tc1.IfcRelConnectsPorts;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

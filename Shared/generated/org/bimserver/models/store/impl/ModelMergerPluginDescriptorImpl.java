@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.ModelMergerPluginDescriptor;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelMergerPluginDescriptorImpl extends PluginDescriptorImpl
-		implements ModelMergerPluginDescriptor {
+public class ModelMergerPluginDescriptorImpl extends PluginDescriptorImpl implements ModelMergerPluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

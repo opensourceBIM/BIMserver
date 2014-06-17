@@ -26,6 +26,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationLayerAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
@@ -54,7 +55,7 @@ public class GuidHighlighter {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			try {
-				serializer.init(model, null, null, pluginManager.requireRenderEngine(), false);
+				serializer.init(model, null, null, pluginManager.requireRenderEngine(), Ifc2x3tc1Package.eINSTANCE, null, false);
 				serializer.writeToFile(outputFile);
 			} catch (SerializerException e) {
 				e.printStackTrace();

@@ -21,15 +21,11 @@ public class RenderEngineInstanceVisualisationProperties {
 	private final float[] vertices;
 	private final int[] indices;
 	private final float[] normals;
-	private int[] materialIndices;
-	private float[] materials;
 
-	public RenderEngineInstanceVisualisationProperties(int[] indices, float[] vertices, float[] normals, int[] materialIndices, float[] materials) {
+	public RenderEngineInstanceVisualisationProperties(int[] indices, float[] vertices, float[] normals) {
 		this.indices = indices;
 		this.vertices = vertices;
 		this.normals = normals;
-		this.materialIndices = materialIndices;
-		this.materials = materials;
 	}
 	
 	public float[] getVertices() {
@@ -41,11 +37,11 @@ public class RenderEngineInstanceVisualisationProperties {
 	}
 
 	public float[] getMaterials() {
-		return materials;
+		return null;
 	}
 
 	public int[] getMaterialIndices() {
-		return materialIndices;
+		return null;
 	}
 
 	public float[] getNormals() {

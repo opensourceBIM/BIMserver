@@ -17,6 +17,7 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAppliedValue;
 import org.bimserver.models.ifc2x3tc1.IfcAppliedValueRelationship;
@@ -24,7 +25,9 @@ import org.bimserver.models.ifc2x3tc1.IfcAppliedValueSelect;
 import org.bimserver.models.ifc2x3tc1.IfcDateTimeSelect;
 import org.bimserver.models.ifc2x3tc1.IfcMeasureWithUnit;
 import org.bimserver.models.ifc2x3tc1.IfcReferencesValueDocument;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

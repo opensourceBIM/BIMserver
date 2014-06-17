@@ -6975,42 +6975,6 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	IfcNullStyle createIfcNullStyle();
 
 	/**
-	 * Returns a new object of class '<em>Geometry Info</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Geometry Info</em>'.
-	 * @generated
-	 */
-	GeometryInfo createGeometryInfo();
-
-	/**
-	 * Returns a new object of class '<em>Vector3f</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Vector3f</em>'.
-	 * @generated
-	 */
-	Vector3f createVector3f();
-
-	/**
-	 * Returns a new object of class '<em>Geometry Data</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Geometry Data</em>'.
-	 * @generated
-	 */
-	GeometryData createGeometryData();
-
-	/**
-	 * Returns a new object of class '<em>Geometry Instance</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Geometry Instance</em>'.
-	 * @generated
-	 */
-	GeometryInstance createGeometryInstance();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -17,6 +17,10 @@ package org.bimserver.ifc.xml.deserializer;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Collections;
+import java.util.Set;
+
+import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -24,19 +28,9 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 
-public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
+public abstract class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 
 	private boolean initialized = false;
-
-	@Override
-	public EmfDeserializer createDeserializer(PluginConfiguration pluginConfiguration) {
-		return new IfcXmlDeserializer();
-	}
-
-	@Override
-	public String getDescription() {
-		return "IfcXmlDeserializer";
-	}
 
 	@Override
 	public String getVersion() {
@@ -46,7 +40,7 @@ public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		initialized = true;
-		pluginManager.requireSchemaDefinition();
+		pluginManager.requireSchemaDefinition("ifc2x3tc1");
 	}
 
 	@Override
@@ -57,11 +51,6 @@ public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 	@Override
 	public boolean isInitialized() {
 		return initialized;
-	}
-
-	@Override
-	public String getDefaultName() {
-		return "IfcXmlDeserializer";
 	}
 
 	@Override

@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.QueryEnginePluginDescriptor;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,8 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class QueryEnginePluginDescriptorImpl extends PluginDescriptorImpl
-		implements QueryEnginePluginDescriptor {
+public class QueryEnginePluginDescriptorImpl extends PluginDescriptorImpl implements QueryEnginePluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

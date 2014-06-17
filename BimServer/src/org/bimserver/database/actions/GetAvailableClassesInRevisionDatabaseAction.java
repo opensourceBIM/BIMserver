@@ -20,10 +20,12 @@ package org.bimserver.database.actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.exceptions.UserException;
@@ -31,15 +33,18 @@ import org.bimserver.shared.exceptions.UserException;
 public class GetAvailableClassesInRevisionDatabaseAction extends BimDatabaseAction<List<String>> {
 
 	private final long roid;
+	private BimServer bimServer;
 
-	public GetAvailableClassesInRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long roid) {
+	public GetAvailableClassesInRevisionDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.roid = roid;
 	}
 
 	@Override
 	public List<String> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
-		return new ArrayList<String>(getDatabaseSession().getAvailableClassesInRevision(new Query(revision.getProject().getId(), revision.getId())));
+		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(revision.getProject().getSchema());
+		return new ArrayList<String>(getDatabaseSession().getAvailableClassesInRevision(new Query(packageMetaData, revision.getProject().getId(), revision.getId())));
 	}
 }
