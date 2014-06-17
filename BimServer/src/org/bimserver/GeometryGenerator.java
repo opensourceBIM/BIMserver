@@ -32,16 +32,17 @@ import java.util.Random;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.emf.Schema;
 import org.bimserver.geometry.Matrix;
 import org.bimserver.geometry.Vector;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -59,6 +60,8 @@ import org.bimserver.plugins.renderengine.RenderEngineSettings;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,7 +79,14 @@ public class GeometryGenerator {
 			returnCachedData(model, geometryCache, databaseSession, pid, rid);
 			return;
 		}
-		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
+		String pluginName = "";
+		if (model.getPackageMetaData().getSchema() == Schema.IFC4) {
+			pluginName = "org.bimserver.ifc.step.serializer.Ifc4StepSerializerPlugin";
+		} else if (model.getPackageMetaData().getSchema() == Schema.IFC2X3TC1) {
+			pluginName = "org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin";
+		}
+		
+		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(pluginName, true);
 		Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 		try {
 			// Make sure we have minimal express ids
@@ -116,15 +126,17 @@ public class GeometryGenerator {
 					try {
 						renderEngineModel.generateGeneralGeometry();
 
-						List<IfcProduct> products = model.getAllWithSubTypes(IfcProduct.class);
-
-						for (IfcProduct ifcProduct : products) {
+						EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
+						List<IdEObject> products = model.getAllWithSubTypes(productClass);
+						
+						EStructuralFeature geometryFeature = productClass.getEStructuralFeature("geometry");
+						for (IdEObject ifcProduct : products) {
 							RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
 							RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
 							if (geometry != null && geometry.getNrIndices() > 0) {
 								GeometryInfo geometryInfo = null;
 								if (store) {
-									geometryInfo = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryInfo(), pid, rid);
+									geometryInfo = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryInfo(), pid, rid);
 								} else {
 									geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
 								}
@@ -134,7 +146,7 @@ public class GeometryGenerator {
 
 								GeometryData geometryData = null;
 								if (store) {
-									geometryData = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), pid, rid);
+									geometryData = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryData(), pid, rid);
 								} else {
 									geometryData = GeometryFactory.eINSTANCE.createGeometryData();
 								}
@@ -189,7 +201,8 @@ public class GeometryGenerator {
 										hashes.put(hash, geometryData);
 									}
 								}
-								ifcProduct.setGeometry(geometryInfo);
+								
+								ifcProduct.eSet(geometryFeature, geometryInfo);
 								if (store) {
 									databaseSession.store(ifcProduct, pid, rid);
 								}
@@ -287,7 +300,7 @@ public class GeometryGenerator {
 		return Math.abs(f1 - f2) < maxDiff;
 	}
 	
-	private boolean reuseGeometry(IfcProduct ifcProduct, GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
+	private boolean reuseGeometry(IdEObject ifcProduct, GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
 		double distanceFromCorners = Math.sqrt(Math.pow(geometryInfo.getMaxBounds().getX() - geometryInfo.getMinBounds().getX(), 2) + Math.pow(geometryInfo.getMaxBounds().getY() - geometryInfo.getMinBounds().getY(), 2) + Math.pow(geometryInfo.getMaxBounds().getZ() - geometryInfo.getMinBounds().getZ(), 2));
 		float maxDiff = (float) (distanceFromCorners / 100.0);
 		
@@ -604,25 +617,27 @@ public class GeometryGenerator {
 	}
 
 	private void returnCachedData(IfcModelInterface model, GeometryCache geometryCache, DatabaseSession databaseSession, int pid, int rid) throws BimserverDatabaseException {
-		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
+		EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
+		List<IdEObject> products = model.getAllWithSubTypes(productClass);
+		for (IdEObject ifcProduct : products) {
 			GeometryCacheEntry geometryCacheEntry = geometryCache.get(ifcProduct.getExpressId());
 			if (geometryCacheEntry != null) {
-				GeometryData geometryData = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryData(), pid, rid);
+				GeometryData geometryData = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryData(), pid, rid);
 				geometryData.setVertices(geometryCacheEntry.getVertices().array());
 				geometryData.setNormals(geometryCacheEntry.getNormals().array());
-				GeometryInfo geometryInfo = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryInfo(), pid, rid);
-				Vector3f min = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getVector3f(), pid, rid);
+				GeometryInfo geometryInfo = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryInfo(), pid, rid);
+				Vector3f min = databaseSession.create(GeometryPackage.eINSTANCE.getVector3f(), pid, rid);
 				min.setX(geometryCacheEntry.getGeometryInfo().getMinBounds().getX());
 				min.setY(geometryCacheEntry.getGeometryInfo().getMinBounds().getY());
 				min.setZ(geometryCacheEntry.getGeometryInfo().getMinBounds().getZ());
-				Vector3f max = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getVector3f(), pid, rid);
+				Vector3f max = databaseSession.create(GeometryPackage.eINSTANCE.getVector3f(), pid, rid);
 				max.setX(geometryCacheEntry.getGeometryInfo().getMaxBounds().getX());
 				max.setY(geometryCacheEntry.getGeometryInfo().getMaxBounds().getY());
 				max.setZ(geometryCacheEntry.getGeometryInfo().getMaxBounds().getZ());
 				geometryInfo.setMinBounds(min);
 				geometryInfo.setMaxBounds(max);
 				geometryInfo.setData(geometryData);
-				ifcProduct.setGeometry(geometryInfo);
+				ifcProduct.eSet(ifcProduct.eClass().getEStructuralFeature("geometry"), geometryInfo);
 			}
 		}
 	}
@@ -630,7 +645,7 @@ public class GeometryGenerator {
 	private Vector3f createVector3f(float defaultValue, DatabaseSession session, boolean store, int pid, int rid) throws BimserverDatabaseException {
 		Vector3f vector3f = null;
 		if (store) {
-			vector3f = (Vector3f) session.create(Ifc2x3tc1Package.eINSTANCE.getVector3f(), pid, rid);
+			vector3f = (Vector3f) session.create(GeometryPackage.eINSTANCE.getVector3f(), pid, rid);
 		} else {
 			vector3f = GeometryFactory.eINSTANCE.createVector3f();
 		}

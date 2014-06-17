@@ -22,7 +22,6 @@ import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0002 extends Migration {
@@ -55,8 +54,8 @@ public class Step0002 extends Migration {
 //
 //		schema.createEReference(geometry, "data", geometryData, Multiplicity.SINGLE).getEAnnotations().add(createNoLazyLoadAnnotation());
 //
-//		EClass revision = schema.getEClass("store", "Revision");
-//		schema.createEAttribute(revision, "hasGeometry", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		EClass revision = schema.getEClass("store", "Revision");
+		schema.createEAttribute(revision, "hasGeometry", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 //
 //		EClass ifcProduct = schema.getEClass("ifc2x3tc1", "IfcProduct");
 //		schema.createEReference(ifcProduct, "geometry", geometry, Multiplicity.SINGLE).getEAnnotations().add(createHiddenAnnotation());

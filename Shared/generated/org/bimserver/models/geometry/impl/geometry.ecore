@@ -37,7 +37,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
     <eAnnotations source="hidden"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="ecore:EClass http://buildingsmart.ifc2x3tc1.ecore#//GeometryData"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//GeometryData"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
   </eClassifiers>
 </ecore:EPackage>

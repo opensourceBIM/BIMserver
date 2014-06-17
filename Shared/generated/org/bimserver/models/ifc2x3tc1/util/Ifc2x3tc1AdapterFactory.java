@@ -15623,62 +15623,6 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo <em>Geometry Info</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.GeometryInfo
-	 * @generated
-	 */
-	public Adapter createGeometryInfoAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.Vector3f <em>Vector3f</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.Vector3f
-	 * @generated
-	 */
-	public Adapter createVector3fAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.GeometryData <em>Geometry Data</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.GeometryData
-	 * @generated
-	 */
-	public Adapter createGeometryDataAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance <em>Geometry Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.GeometryInstance
-	 * @generated
-	 */
-	public Adapter createGeometryInstanceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for the default case.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.

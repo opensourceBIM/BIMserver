@@ -51,7 +51,7 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 	public String getVersion() {
 		return "1.0";
 	}
-	
+
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
@@ -70,7 +70,7 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 			if (inputStream != null) {
 				try {
 					File tmpFolder = pluginManager.getTempDir();
-					nativeFolder = new File(tmpFolder, "TNOEngineSeries");
+					nativeFolder = new File(tmpFolder, "ifcenginedll");
 					File file = new File(nativeFolder, libraryName);
 					if (nativeFolder.exists()) {
 						try {
@@ -95,7 +95,7 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 
 	@Override
 	public String getDescription() {
-		return "Native implementation of an IFC Engine";
+		return "Native implementation of an IFC Engine by RDF";
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 
 	@Override
 	public String getDefaultName() {
-		return "TNO Engine Series";
+		return "IFC Engine DLL";
 	}
 
 	@Override
