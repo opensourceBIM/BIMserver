@@ -728,9 +728,17 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				String realEnumValue = val.substring(1, val.length() - 1);
 				EEnumLiteral enumValue = (((EEnumImpl) structuralFeature.getEType()).getEEnumLiteral(realEnumValue));
 				if (enumValue == null) {
-					throw new DeserializeException("Enum type " + structuralFeature.getEType().getName() + " has no literal value '" + realEnumValue + "'");
+					/*
+					 *  Workaround for supporting IFC files from Revit.
+					 */
+					if ("NOTDEFINED".equals(realEnumValue)) {
+						object.eUnset(structuralFeature);
+					} else {
+						throw new DeserializeException("Enum type " + structuralFeature.getEType().getName() + " has no literal value '" + realEnumValue + "'");
+					}
+				} else {
+					object.eSet(structuralFeature, enumValue.getInstance());
 				}
-				object.eSet(structuralFeature, enumValue.getInstance());
 			} else {
 				throw new DeserializeException("Value " + val + " indicates enum type but " + structuralFeature.getEType().getName() + " expected");
 			}
