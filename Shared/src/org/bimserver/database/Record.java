@@ -36,6 +36,7 @@ public class Record {
 	public void setWrapped(EStructuralFeature structuralFeature, EClass eClass, Enumerator enumerator) {
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Record> getList(EStructuralFeature structuralFeature) {
 		return (List<Record>) values.get(structuralFeature);
 	}

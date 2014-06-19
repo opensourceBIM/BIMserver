@@ -29,6 +29,7 @@ public abstract class AbstractSchemaConverter implements SchemaConverter {
 		this.target = target;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected IdEObject copy(IdEObject original) throws IfcModelInterfaceException {
 		if (!((IdEObjectImpl)original).isLoadedOrLoading()) {
 			return null;

@@ -5,8 +5,6 @@ import static org.junit.Assert.fail;
 import java.io.File;
 
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.MetaDataManager;
-import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;

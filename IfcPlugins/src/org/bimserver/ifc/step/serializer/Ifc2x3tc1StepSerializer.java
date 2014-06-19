@@ -1,7 +1,6 @@
 package org.bimserver.ifc.step.serializer;
 
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -9,7 +8,6 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.eclipse.emf.ecore.EPackage;
 
 public class Ifc2x3tc1StepSerializer extends IfcStepSerializer {
 

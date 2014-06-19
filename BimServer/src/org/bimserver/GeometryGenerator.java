@@ -168,11 +168,6 @@ public class GeometryGenerator {
 												for (int l = 0; l < 4; ++l) {
 													vertex_colors[4 * k + l] = geometry.getMaterials()[4 * c + l];
 												}
-											} else {
-												vertex_colors[4 * k] = 0;
-												vertex_colors[4 * k + 1] = 1;
-												vertex_colors[4 * k + 2] = 0;
-												vertex_colors[4 * k + 3] = 1;
 											}
 										}
 									}
@@ -304,45 +299,6 @@ public class GeometryGenerator {
 		return Math.abs(f1 - f2) < maxDiff;
 	}
 	
-	private boolean reuseGeometry(IdEObject ifcProduct, GeometryInfo geometryInfo, GeometryData geometryData, GeometryData matchingGeometryData) {
-		double distanceFromCorners = Math.sqrt(Math.pow(geometryInfo.getMaxBounds().getX() - geometryInfo.getMinBounds().getX(), 2) + Math.pow(geometryInfo.getMaxBounds().getY() - geometryInfo.getMinBounds().getY(), 2) + Math.pow(geometryInfo.getMaxBounds().getZ() - geometryInfo.getMinBounds().getZ(), 2));
-		float maxDiff = (float) (distanceFromCorners / 100.0);
-		
-		ByteBuffer bb1 = ByteBuffer.wrap(matchingGeometryData.getVertices());
-		ByteBuffer bb2 = ByteBuffer.wrap(geometryData.getVertices());
-		bb1.order(ByteOrder.LITTLE_ENDIAN);
-		bb2.order(ByteOrder.LITTLE_ENDIAN);
-		FloatBuffer vertices1 = bb1.asFloatBuffer();
-		FloatBuffer vertices2 = bb2.asFloatBuffer();
-
-		float[] v1 = new float[]{vertices1.get(0), vertices1.get(1), vertices1.get(2)};
-		float[] u1 = new float[]{vertices2.get(0), vertices2.get(1), vertices2.get(2)};
-		float[] v2 = new float[]{vertices1.get(3), vertices1.get(4), vertices1.get(5)};
-		float[] u2 = new float[]{vertices2.get(3), vertices2.get(4), vertices2.get(5)};
-		float[] v3 = new float[]{vertices1.get(6), vertices1.get(7), vertices1.get(8)};
-		float[] u3 = new float[]{vertices2.get(6), vertices2.get(7), vertices2.get(8)};
-
-		float[] totalResult = getTransformationMatrix(v1, v2, v3, u1, u2, u3, maxDiff);
-		if (totalResult == null) {
-			return false;
-		}
-
-		float[] r = new float[4];
-		Matrix.multiplyMV(r, 0, totalResult, 0, new float[]{v1[0], v1[1], v1[2], 1}, 0);
-		
-		if (almostTheSame(r[0] - v1[0], u1[0], maxDiff) && almostTheSame(r[1] - v1[1], u1[1], maxDiff) && almostTheSame(r[2] - v1[2], u1[2], maxDiff)) {
-			// Interesting
-			Matrix.translateM(totalResult, 0, -v1[0], -v1[1], -v1[2]);
-		}
-		
-		if (test(v1, u1, totalResult, maxDiff)) {
-			geometryInfo.setData(matchingGeometryData);
-			setTransformationMatrix(geometryInfo, totalResult);
-			return true;
-		}
-		return false;
-	}
-
 	/**
 	 * This function should return a transformation matrix (with translation and rotation, no scaling) overlaying triangle V on U
 	 * Assumed is that the triangles are indeed the same and the order of the vertices is also the same (shifts are not allowed)
@@ -657,17 +613,5 @@ public class GeometryGenerator {
 		vector3f.setY(defaultValue);
 		vector3f.setZ(defaultValue);
 		return vector3f;
-	}
-
-	private void processExtends(GeometryInfo geometryInfo, float[] vertices, int index) {
-		float x = vertices[index];
-		float y = vertices[index + 1];
-		float z = vertices[index + 2];
-		geometryInfo.getMinBounds().setX(Math.min(x, geometryInfo.getMinBounds().getX()));
-		geometryInfo.getMinBounds().setY(Math.min(y, geometryInfo.getMinBounds().getY()));
-		geometryInfo.getMinBounds().setZ(Math.min(z, geometryInfo.getMinBounds().getZ()));
-		geometryInfo.getMaxBounds().setX(Math.max(x, geometryInfo.getMaxBounds().getX()));
-		geometryInfo.getMaxBounds().setY(Math.max(y, geometryInfo.getMaxBounds().getY()));
-		geometryInfo.getMaxBounds().setZ(Math.max(z, geometryInfo.getMaxBounds().getZ()));
 	}
 }

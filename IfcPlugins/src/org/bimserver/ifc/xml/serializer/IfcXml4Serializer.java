@@ -1,14 +1,12 @@
 package org.bimserver.ifc.xml.serializer;
 
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.eclipse.emf.ecore.EPackage;
 
 public class IfcXml4Serializer extends IfcXmlSerializer {
 	@Override

@@ -26,7 +26,6 @@ import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.bimserver.emf.MetaDataManager;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.interfaces.PublicInterface;
