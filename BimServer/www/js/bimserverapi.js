@@ -85,7 +85,6 @@ function BimServerApi(baseUrl, notifier) {
 	this.init = function(callback) {
 		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.js", function(result){
 			othis.schemas["ifc2x3tc1"] = result.classes;
-			callback();
 			$.getJSON(othis.baseUrl + "/js/ifc4.js", function(result){
 				othis.schemas["ifc4"] = result.classes;
 				callback();
