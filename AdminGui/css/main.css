@@ -349,6 +349,10 @@ div#viewport {
 	padding-bottom: 2px;
 }
 
+.underline {
+	text-decoration: underline;
+}
+
 .tree-dropdown {
 	background-image: url("../img/dropdown.png");
 	width: 23px;
@@ -372,6 +376,12 @@ div#viewport {
 .projectTabs .btn.active, .projectTabs .btn:active {
 	webkit-box-shadow: none;
 	box-shadow: none;
+}
+
+.help {
+	position: fixed;
+	margin: 10px;
+	width: 400px;
 }
 
 .dropdown-submenu{position:relative;}

@@ -37,15 +37,15 @@ RelaticsPlugin.prototype.loadData = function(username, password, object, callbac
 	o.containerDiv.append("<span>Loading...</span>");
 	var ifcGuid = object.getGlobalId();
 	var request = {
-		"bimdataservice_request": {
-			"ifc_guid": "3e_Z0UB95FzQ84RHxlySBA",
-			"data_report_name": "test-report"
-		}
+			"bimdataservice_request": {
+				"ifc_guid": "3e_Z0UB95FzQ84RHxlySBA",
+				"data_report_name": "test-report"
+			}
 	};
 	$.ajax({
 		type: "POST",
 		crossDomain: true,
-		url: "[ENTER URL]",
+		url: "https://23.253.203.178:8243/services/bim-client-dataservice",
 		dataType: "json",
 		cache: false,
 		contentType: "application/json",
@@ -58,7 +58,8 @@ RelaticsPlugin.prototype.loadData = function(username, password, object, callbac
 		success: function (response){
 			$.cookie("relatics-wso2-username", username);
 			$.cookie("relatics-wso2-password", password);
-			var realResponse = response.bimdataservice_response;
+			console.log(response);
+			var realResponse = response.bimdataservice_riesponse;
 			if (realResponse.succesfull == true) {
 				var table = $("<table class=\"table table-no-top\">");
 				table.append("<thead></thead>");
@@ -110,14 +111,16 @@ RelaticsPlugin.prototype.pick = function(groupId, id){
 		modal.on("shown.bs.modal", function(){
 			modal.find("input").first().focus();
 		});
-		modal.find(".loginButton").click(function(){
+		var loginFn = function(){
 			o.message.addClass("alert alert-info").html("Logging in...");
 			o.projectPage.models[groupId].get(id, function(object){
 				o.loadData(form.find(".usernameInp").val(), form.find(".passwordInp").val(), object, function(){
 					o.message.removeClass("alert-info").addClass("alert-success").html("Successfully retrieved Relatics data");
 				});
 			});
-		});
+		}
+		form.find("input").enterpress(loginFn);
+		modal.find(".loginButton").click(loginFn);
 		modal.modal();
 	} else {
 		o.projectPage.models[groupId].get(id, function(object){
