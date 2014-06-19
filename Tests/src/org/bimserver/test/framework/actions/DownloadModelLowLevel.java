@@ -20,6 +20,9 @@ package org.bimserver.test.framework.actions;
 import java.io.File;
 
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -47,12 +50,17 @@ public class DownloadModelLowLevel extends Action {
 		if (randomRevision != null) {
 			IfcModelInterface model;
 			try {
-				model = virtualUser.getBimServerClient().getModel(randomRevision.getProjectId(), randomRevision.getOid(), true);
+				SProject project = virtualUser.getBimServerClient().getBimsie1ServiceInterface().getProjectByPoid(randomRevision.getProjectId());
+				model = virtualUser.getBimServerClient().getModel(project, randomRevision.getOid(), true);
 				PluginManager pluginManager = getTestFramework().getPluginManager();
+				
+				MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+				PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
+				
 				SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 				Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 				model.generateMinimalExpressIds();
-				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
+				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
 				serializer.writeToFile(new File(getTestFramework().getTestConfiguration().getOutputFolder(), "test.ifc"));
 			} catch (BimServerClientException e1) {
 				e1.printStackTrace();

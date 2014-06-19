@@ -35,7 +35,7 @@ public class DeleteObjects extends TestWithEmbeddedServer {
 
 			long roid = model.commit("Initial model");
 
-			model = bimServerClient.getModel(newProject.getOid(), roid, true);
+			model = bimServerClient.getModel(newProject, roid, true);
 			List<IfcWall> walls = model.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			assertTrue(walls.size() == 10);
 			IfcWall wall6 = (IfcWall) model.getByGuid("Wall 6");
@@ -44,7 +44,7 @@ public class DeleteObjects extends TestWithEmbeddedServer {
 
 			roid = model.commit("Removed wall 6");
 
-			model = bimServerClient.getModel(newProject.getOid(), roid, true);
+			model = bimServerClient.getModel(newProject, roid, true);
 			walls = model.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			assertTrue(walls.size() == 9);
 		} catch (Throwable e) {

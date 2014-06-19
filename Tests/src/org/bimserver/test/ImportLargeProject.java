@@ -56,7 +56,7 @@ public class ImportLargeProject {
 			SProject grid = serviceInterface.addProjectAsSubProject("Grid", mainProject.getOid(), "ifc2x3tc1");
 			SProject teklaHouseGrids = serviceInterface.addProjectAsSubProject("Tekla House Grids", grid.getOid(), "ifc2x3tc1");
 			
-			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", teklaHouseStructural.getOid());
 			
 			client.checkin(teklaHouseStructural.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Structural.ifcZIP"));
 			client.checkin(teklaHouseGrids.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Grids.ifc"));

@@ -34,7 +34,7 @@ public class SubProjects extends TestWithEmbeddedServer {
 			File ifcFile3 = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 
 			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", mainProject.getOid());
 
 			// Checkin
 			bimServerClient.checkin(sub1.getOid(), "test", deserializer.getOid(), false, true, ifcFile1);

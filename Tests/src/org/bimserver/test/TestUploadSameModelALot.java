@@ -41,9 +41,9 @@ public class TestUploadSameModelALot {
 		try {
 			client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			client.getSettingsInterface().setGenerateGeometryOnCheckin(false);
-			SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
 			for (int i=0; i<20; i++) {
 				SProject project = client.getBimsie1ServiceInterface().addProject("P" + i, "ifc4");
+				SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 				System.out.println(i);
 				client.checkin(project.getOid(), "C" + i, deserializerForExtension.getOid(), false, true, new File("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
 			}

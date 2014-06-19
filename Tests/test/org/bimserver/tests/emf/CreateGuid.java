@@ -31,7 +31,7 @@ public class CreateGuid extends TestWithEmbeddedServer {
 			
 			long roid = model.commit("Initial model");
 
-			IfcModelInterface newModel = bimServerClient.getModel(newProject.getOid(), roid, true);
+			IfcModelInterface newModel = bimServerClient.getModel(newProject, roid, true);
 			List<IfcFurnishingElement> furnishingElements = newModel.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement());
 			assertTrue(furnishingElements.size() == 1);
 			IfcFurnishingElement newF = furnishingElements.get(0);

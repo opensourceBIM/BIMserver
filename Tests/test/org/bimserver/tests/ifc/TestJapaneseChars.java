@@ -23,7 +23,7 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
 			
 			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 
 			File[] files = new File[]{
 				new File("../TestData/data/ac16_sjis.ifc"),

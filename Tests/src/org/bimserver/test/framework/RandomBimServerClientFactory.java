@@ -22,6 +22,7 @@ import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.client.soap.SoapBimServerClientFactory;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.BimServerClientFactory;
@@ -53,8 +54,10 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	private JsonBimServerClientFactory jsonBimServerClientFactory;
 	private ProtocolBuffersBimServerClientFactory protocolBuffersBimServerClientFactory;
 	private SoapBimServerClientFactory soapBimServerClientFactory;
+	private MetaDataManager metaDataManager;
 	
 	public RandomBimServerClientFactory(TestFramework testFramework, Type... types) {
+		metaDataManager = new MetaDataManager(null);
 		if (types.length == 0) {
 			this.types = Type.values();
 		} else {
@@ -66,11 +69,11 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		FileBasedReflectorFactoryBuilder factoryBuilder = new FileBasedReflectorFactoryBuilder();
 		ReflectorFactory reflectorFactory = factoryBuilder.newReflectorFactory();
 		
-		jsonBimServerClientFactory = new JsonBimServerClientFactory("http://localhost:8080", servicesMap, new JsonSocketReflectorFactory(servicesMap), reflectorFactory);
+		jsonBimServerClientFactory = new JsonBimServerClientFactory("http://localhost:8080", servicesMap, new JsonSocketReflectorFactory(servicesMap), reflectorFactory, metaDataManager);
 		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		protocolBuffersMetaData.load(servicesMap, ProtocolBuffersBimServerClientFactory.class);
 		protocolBuffersBimServerClientFactory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData);
-		soapBimServerClientFactory = new SoapBimServerClientFactory("http://localhost:8080", servicesMap);
+		soapBimServerClientFactory = new SoapBimServerClientFactory("http://localhost:8080", servicesMap, metaDataManager);
 	}
 	
 	public synchronized BimServerClientInterface create(AuthenticationInfo authenticationInfo) throws ServerException, UserException {
@@ -104,5 +107,10 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	@Override
 	public BimServerClient create() throws ServiceException, ChannelConnectionException {
 		return null;
+	}
+
+	@Override
+	public MetaDataManager getMetaDataManager() {
+		return metaDataManager;
 	}
 }
