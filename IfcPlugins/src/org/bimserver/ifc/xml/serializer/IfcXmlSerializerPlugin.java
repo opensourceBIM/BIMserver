@@ -23,11 +23,9 @@ import org.bimserver.models.store.PrimitiveDefinition;
 import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StringType;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
-import org.bimserver.plugins.serializers.EmfSerializer;
 
 public abstract class IfcXmlSerializerPlugin extends AbstractSerializerPlugin {
 

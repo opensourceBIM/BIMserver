@@ -21,12 +21,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.nio.IntBuffer;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -186,18 +180,5 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		}
 		long end = System.nanoTime();
 		LOGGER.debug(((end - start) / 1000000) + " ms");
-	}
-
-	private void sendMaterial(DataOutputStream dataOutputStream, float r, float g, float b, float a) throws IOException {
-		ByteBuffer test = ByteBuffer.wrap(new byte[16]);
-		test.order(ByteOrder.LITTLE_ENDIAN);
-		FloatBuffer fl = test.asFloatBuffer();
-		fl.put(r);
-		fl.put(g);
-		fl.put(b);
-		fl.put(a);
-		for (int j=0; j<3; j++) {
-			dataOutputStream.write(test.array());
-		}
 	}
 }

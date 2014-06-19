@@ -25,12 +25,9 @@ import java.io.InputStream;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public abstract class EmfDeserializer implements Deserializer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(EmfDeserializer.class);
 	private PackageMetaData packageMetaData;
 	
 	public void init(PackageMetaData packageMetaData) {

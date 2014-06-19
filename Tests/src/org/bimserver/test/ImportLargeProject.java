@@ -15,6 +15,7 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 
 public class ImportLargeProject {
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 		try {

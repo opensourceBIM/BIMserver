@@ -27,7 +27,6 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3tc1.Tristate;
@@ -54,7 +53,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;

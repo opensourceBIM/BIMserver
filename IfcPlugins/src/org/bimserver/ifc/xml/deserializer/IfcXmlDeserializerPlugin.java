@@ -17,16 +17,10 @@ package org.bimserver.ifc.xml.deserializer;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Collections;
-import java.util.Set;
-
-import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
 
 public abstract class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 
