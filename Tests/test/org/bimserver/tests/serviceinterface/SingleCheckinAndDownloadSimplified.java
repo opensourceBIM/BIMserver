@@ -30,7 +30,7 @@ public class SingleCheckinAndDownloadSimplified extends TestWithEmbeddedServer {
 			File ifcFile = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 			
 			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 			
 			// Checkin
 			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, ifcFile);

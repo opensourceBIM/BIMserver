@@ -17,6 +17,10 @@ package org.bimserver.plugins.deserializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 import org.bimserver.emf.IfcModelInterface;
@@ -38,4 +42,22 @@ public abstract class EmfDeserializer implements Deserializer {
 	}
 	
 	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException;
+	
+	public IfcModelInterface read(File file) throws DeserializeException {
+		FileInputStream fileInputStream;
+		try {
+			fileInputStream = new FileInputStream(file);
+			try {
+				return read(fileInputStream, file.getName(), file.length());
+			} finally {
+				try {
+					fileInputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (FileNotFoundException e) {
+			throw new DeserializeException(e);
+		}
+	}
 }

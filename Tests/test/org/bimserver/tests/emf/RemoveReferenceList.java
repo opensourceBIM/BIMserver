@@ -50,7 +50,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			// refresh
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 			
-			model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
+			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
 				if (ifcFurnishingElement.getContainedInStructure().size() != 3) {
 					fail("Size should be 3, is " + ifcFurnishingElement.getContainedInStructure().size());
@@ -73,7 +73,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 					fail("Second one should be link 3");
 				}
 			}
-			model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
+			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			if (e instanceof AssertionError) {

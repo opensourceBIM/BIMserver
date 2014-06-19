@@ -157,12 +157,14 @@ public class GeometryGenerator {
 								geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
 
 								if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
+									boolean hasMaterial = false;
 									float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
 									for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
 										int c = geometry.getMaterialIndices()[i];
 										for (int j = 0; j < 3; ++j) {
 											int k = geometry.getIndices()[i * 3 + j];
 											if (c > -1) {
+												hasMaterial = true;
 												for (int l = 0; l < 4; ++l) {
 													vertex_colors[4 * k + l] = geometry.getMaterials()[4 * c + l];
 												}
@@ -174,7 +176,9 @@ public class GeometryGenerator {
 											}
 										}
 									}
-									geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
+									if (hasMaterial) {
+										geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
+									}
 								}
 
 								float[] tranformationMatrix = new float[16];

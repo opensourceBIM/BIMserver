@@ -70,9 +70,13 @@ public abstract class AbstractSchemaConverter implements SchemaConverter {
 					if (eStructuralFeature.getEType() instanceof EEnum) {
 						EEnum targetEnum = (EEnum) targetFeature.getEType();
 						EEnumLiteral newLiteral = targetEnum.getEEnumLiteral(get.toString());
-						newObject.eSet(targetFeature, newLiteral.getInstance());
+						if (newLiteral != null) {
+							newObject.eSet(targetFeature, newLiteral.getInstance());
+						}
 					} else {
-						newObject.eSet(targetFeature, get);
+						if (targetFeature instanceof EAttribute) {
+							newObject.eSet(targetFeature, get);
+						}
 					}
 				}
 			} else if (eStructuralFeature instanceof EReference) {

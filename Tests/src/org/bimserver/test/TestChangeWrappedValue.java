@@ -21,6 +21,7 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcLabel;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
 import org.bimserver.plugins.services.BimServerClientException;
@@ -40,7 +41,10 @@ public class TestChangeWrappedValue {
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			long poid = 2686977;
 			long roid = 720899;
-			ClientIfcModel model = client.getModel(poid, roid, true);
+			
+			SProject project = client.getBimsie1ServiceInterface().getProjectByPoid(poid);
+			
+			ClientIfcModel model = client.getModel(project, roid, true);
 			
 			for (IfcPropertySingleValue prop : model.getAll(IfcPropertySingleValue.class)) {
 //				IfcValue value = ((IfcPropertySingleValue) prop).getNominalValue();

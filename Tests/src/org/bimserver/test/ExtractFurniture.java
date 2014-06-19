@@ -22,6 +22,8 @@ import java.io.File;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
@@ -44,20 +46,24 @@ public class ExtractFurniture {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(null);
-			deserializer.init(pluginManager.requireSchemaDefinition("ifc2x3tc1"));
+			
+			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
+			
+			deserializer.init(packageMetaData);
 			IfcModelInterface model = deserializer.read(new File("../TestData/data/ADT-FZK-Haus-2005-2006.ifc"));
 			model.fixOids(new IncrementingOidProvider());
 			
 			IfcFurnishingElement picknick = (IfcFurnishingElement) model.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
 
-			IfcModelInterface newModel = new IfcModel();
+			IfcModelInterface newModel = new IfcModel(packageMetaData);
 			ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition("ifc2x3tc1")), newModel);
 			
 			modelHelper.copy(picknick);
 			
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(null);
-			serializer.init(newModel, null, pluginManager, null, true);
+			serializer.init(newModel, null, pluginManager, null, packageMetaData, true);
 			serializer.writeToFile(new File("test.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();

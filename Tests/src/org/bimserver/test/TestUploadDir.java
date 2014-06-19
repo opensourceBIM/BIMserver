@@ -72,7 +72,7 @@ public class TestUploadDir {
 		} else {
 			String lowerCase = directory.getName().toLowerCase();
 			if (lowerCase.endsWith("ifc") || lowerCase.endsWith("ifcxml") || lowerCase.endsWith("ifczip")) {
-				SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(directory.getName().substring(directory.getName().lastIndexOf(".") + 1));
+				SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(directory.getName().substring(directory.getName().lastIndexOf(".") + 1), parentProject.getOid());
 				System.out.println("Checking in " + directory.getAbsolutePath() + " - " + Formatters.bytesToString(directory.length()));
 				try {
 					client.checkin(parentProject.getOid(), "", deserializerForExtension.getOid(), false, true, directory);

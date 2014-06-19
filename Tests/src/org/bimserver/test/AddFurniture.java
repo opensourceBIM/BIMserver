@@ -23,6 +23,8 @@ import java.util.List;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
@@ -57,12 +59,16 @@ public class AddFurniture {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			
 			Deserializer deserializer = deserializerPlugin.createDeserializer(null);
-			deserializer.init(pluginManager.requireSchemaDefinition("ifc2x3tc1"));
+			
+			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
+			
+			deserializer.init(packageMetaData);
 			
 			IfcModelInterface model = deserializer.read(new File("../TestData/data/AC9R1-Haus-G-H-Ver2-2x3.ifc"));
 
 			deserializer = deserializerPlugin.createDeserializer(null);
-			deserializer.init(pluginManager.requireSchemaDefinition("ifc2x3tc1"));
+			deserializer.init(packageMetaData);
 			IfcModelInterface furnishingModel = deserializer.read(new File("test.ifc"));
 			
 			model.fixOids(new IncrementingOidProvider());
@@ -143,7 +149,7 @@ public class AddFurniture {
 
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(null);
-			serializer.init(model, null, pluginManager, null, true);
+			serializer.init(model, null, pluginManager, null, packageMetaData, true);
 			serializer.writeToFile(new File("withfurn.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();

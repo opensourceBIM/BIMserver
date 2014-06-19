@@ -34,8 +34,8 @@ public class TestAddExtendedData {
 			
 			System.out.println(client.getServiceInterface().getFile(fileId));
 			
-			SProject project = client.getBimsie1ServiceInterface().addProject("test23");
-			SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SProject project = client.getBimsie1ServiceInterface().addProject("test23", "ifc2x3tc1");
+			SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			client.checkin(project.getOid(), "initial", deserializerForExtension.getOid(), false, true, new File("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
 			
 			project = client.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
