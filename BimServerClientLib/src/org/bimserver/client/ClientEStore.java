@@ -20,6 +20,8 @@ package org.bimserver.client;
 import org.bimserver.client.ClientIfcModel.ModelState;
 import org.bimserver.emf.BimServerEStore;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -226,5 +228,14 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 
 	private Bimsie1LowLevelInterface lowLevelInterface() throws PublicInterfaceNotFoundException {
 		return clientIfcModel.getBimServerClient().getBimsie1LowLevelInterface();
+	}
+	
+	@Override
+	public Object get(InternalEObject eObject, EStructuralFeature feature, int index) {
+		IdEObjectImpl impl = (IdEObjectImpl)eObject;
+		if (impl.getLoadingState() == State.TO_BE_LOADED) {
+			impl.load();
+		}
+		return super.get(eObject, feature, index);
 	}
 }

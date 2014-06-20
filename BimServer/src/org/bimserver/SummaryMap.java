@@ -24,6 +24,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.RevisionSummaryContainer;
 import org.bimserver.models.store.RevisionSummaryType;
@@ -31,10 +32,10 @@ import org.eclipse.emf.ecore.EClass;
 
 public class SummaryMap {
 	private final Map<EClass, Integer> summaryMap = new TreeMap<EClass, Integer>(new EClassNameComparator());
-	private IfcModelInterface model;
+	private final PackageMetaData packageMetaData;
 
 	public SummaryMap(IfcModelInterface model) throws BimserverDatabaseException {
-		this.model = model;
+		this.packageMetaData = model.getPackageMetaData();
 		for (IdEObject idEObject : model.getValues()) {
 			if (!summaryMap.containsKey(idEObject.eClass())) {
 				summaryMap.put(idEObject.eClass(), 1);
@@ -43,18 +44,20 @@ public class SummaryMap {
 			}
 		}
 	}
+
+	public SummaryMap(PackageMetaData packageMetaData) {
+		this.packageMetaData = packageMetaData;
+	}
 	
-	public SummaryMap(RevisionSummary revisionSummary) {
+	public SummaryMap(PackageMetaData packageMetaData, RevisionSummary revisionSummary) {
+		this.packageMetaData = packageMetaData;
 		for (RevisionSummaryContainer revisionSummaryContainer : revisionSummary.getList()) {
 			for (RevisionSummaryType revisionSummaryType : revisionSummaryContainer.getTypes()) {
-				summaryMap.put((EClass)model.getPackageMetaData().getEPackage().getEClassifier(revisionSummaryType.getName()), revisionSummaryType.getCount());
+				summaryMap.put((EClass)packageMetaData.getEPackage().getEClassifier(revisionSummaryType.getName()), revisionSummaryType.getCount());
 			}
 		}
 	}
 	
-	public SummaryMap() {
-	}
-
 	public void remove(EClass eClass, int count) {
 		if (count == 0) {
 			return;
@@ -95,9 +98,9 @@ public class SummaryMap {
 		
 		for (EClass eClass : summaryMap.keySet()) {
 			RevisionSummaryContainer subMap = null;
-			if (((EClass) model.getPackageMetaData().getEPackage().getEClassifier("IfcObject")).isSuperTypeOf(eClass)) {
+			if (((EClass) packageMetaData.getEPackage().getEClassifier("IfcObject")).isSuperTypeOf(eClass)) {
 				subMap = revisionSummaryContainerEntities;
-			} else if (((EClass) model.getPackageMetaData().getEPackage().getEClassifier("IfcRelationship")).isSuperTypeOf(eClass)) {
+			} else if (((EClass) packageMetaData.getEPackage().getEClassifier("IfcRelationship")).isSuperTypeOf(eClass)) {
 				subMap = revisionSummaryContainerRelations;
 			} else if (eClass.getEAnnotation("wrapped") != null) {
 				subMap = revisionSummaryContainerPrimitives;
