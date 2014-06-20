@@ -132,9 +132,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 
 		SummaryMap summaryMap = null;
 		if (oldLastRevision != null && oldLastRevision.getConcreteRevisions().size() == 1 && oldLastRevision.getConcreteRevisions().get(0).getSummary() != null) {
-			summaryMap = new SummaryMap(oldLastRevision.getConcreteRevisions().get(0).getSummary());
+			summaryMap = new SummaryMap(packageMetaData, oldLastRevision.getConcreteRevisions().get(0).getSummary());
 		} else {
-			summaryMap = new SummaryMap();
+			summaryMap = new SummaryMap(packageMetaData);
 		}
 
 		boolean geometryChanged = true;

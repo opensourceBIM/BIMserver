@@ -108,11 +108,13 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 				return action.getRevision().getOid();
 			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);
+				handleException(e);
 			} finally {
 				session.close();
 			}
-		} catch (NoTransactionException e) {
+		} catch (Exception e) {
 			LOGGER.error("", e);
+			handleException(e);
 		}
 		return -1L;
 	}

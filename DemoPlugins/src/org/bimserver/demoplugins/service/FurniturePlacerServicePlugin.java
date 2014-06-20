@@ -115,7 +115,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
 					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true);
 					
-					DeserializerPlugin deserializerPlugin = getPluginManager().getFirstDeserializer("ifc", true);
+					DeserializerPlugin deserializerPlugin = getPluginManager().getDeserializerPlugin("org.bimserver.ifc.step.deserializer.Ifc2x3tc1StepDeserializerPlugin", true);
 					
 					Deserializer deserializer = deserializerPlugin.createDeserializer(null);
 					deserializer.init(model.getPackageMetaData());
@@ -139,7 +139,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 						if (ifcShapeRepresentation.getRepresentationType().equals("SurfaceModel")) {
 							surfaceModel = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation);
 						} else if (ifcShapeRepresentation.getRepresentationType().equals("BoundingBox")) {
-							boundingBox	 = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation);
+							boundingBox	= (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation);
 						}
 					}
 

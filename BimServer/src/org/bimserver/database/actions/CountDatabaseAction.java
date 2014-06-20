@@ -49,7 +49,7 @@ public class CountDatabaseAction extends BimDatabaseAction<Integer> {
 		Project project = revision.getProject();
 		if (revision.getConcreteRevisions().size() == 1 && revision.getConcreteRevisions().get(0).getSummary() != null) {
 			RevisionSummary summary = revision.getConcreteRevisions().get(0).getSummary();
-			SummaryMap summaryMap = new SummaryMap(summary);
+			SummaryMap summaryMap = new SummaryMap(null, summary);
 			return summaryMap.count(getDatabaseSession().getEClass(project.getSchema(), className));
 		}
 		return null;
