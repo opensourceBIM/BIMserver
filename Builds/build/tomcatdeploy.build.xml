@@ -29,7 +29,7 @@
 	<target name="deploy">
 		<property name="target" value="war" />
 		<mkdir dir="additionalplugins"/>
-		<get src="https://github.com/opensourceBIM/bimvie.ws/releases/download/1.3.1-FINAL-2014-05-28/bimviews-1.3.1-FINAL-2014-05-28.jar" dest="additionalplugins"/>
+		<get src="https://github.com/opensourceBIM/bimvie.ws/releases/download/1.3.2-FINAL-2014-06-24/bimviews-1.3.2-FINAL-2014-06-24.jar" dest="additionalplugins"/>
 		<ant antfile="bimserver.build.xml" target="Build War"></ant>
 		<undeploy url="${tomcat_server}" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
 		<deploy url="${tomcat_server}" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />
