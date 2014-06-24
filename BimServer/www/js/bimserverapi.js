@@ -1445,21 +1445,32 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 		othis.openCallbacks.push(callback);
 		var location = bimServerApi.baseUrl.toString().replace('http://', 'ws://').replace('https://', 'wss://') + "/stream";
 		if (typeof(WebSocket) == "function") {
-			this._ws = new WebSocket(location);
-			this._ws.binaryType = "arraybuffer";
-			this._ws.onopen = this._onopen;
-			this._ws.onmessage = this._onmessage;
-			this._ws.onclose = this._onclose;
+			try {
+				this._ws = new WebSocket(location);
+				this._ws.binaryType = "arraybuffer";
+				this._ws.onopen = this._onopen;
+				this._ws.onmessage = this._onmessage;
+				this._ws.onclose = this._onclose;
+				this._ws.onerror = this._onerror;
+			} catch (err) {
+				bimServerApi.notifier.setError("WebSocket error: " + err.message);
+			}
+		} else {
+			bimServerApi.notifier.setError("This browser does not support websockets, please use Google Chrome");
 		}
 	};
 
+	this._onerror = function() {
+		bimServerApi.notifier.setError("WebSocket error");
+	};
+	
 	this._onopen = function() {
 		while (othis.tosendAfterConnect.length > 0 && othis._ws.readyState == 1) {
 			var messageArray = othis.tosendAfterConnect.splice(0, 1);
 			othis._sendWithoutEndPoint(messageArray[0]);
 		}
 	};
-
+	
 	this._sendWithoutEndPoint = function(message) {
 		if (othis._ws && othis._ws.readyState == 1) {
 			othis._ws.send(message);
