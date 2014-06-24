@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
 
 public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometrySerializer.class);
-	private static final byte FORMAT_VERSION = 4;
+	private static final byte FORMAT_VERSION = 5;
 	private static final byte GEOMETRY_TYPE_TRIANGLES = 0;
 	private static final byte GEOMETRY_TYPE_INSTANCE = 1;
 
