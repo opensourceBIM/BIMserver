@@ -1442,7 +1442,7 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	this.connect = function(callback) {
 		othis.openCallbacks.push(callback);
 		var location = bimServerApi.baseUrl.toString().replace('http://', 'ws://').replace('https://', 'wss://') + "/stream";
-		if (typeof(WebSocket) == "function") {
+		if ("WebSocket" in window) {
 			try {
 				this._ws = new WebSocket(location);
 				this._ws.binaryType = "arraybuffer";
@@ -1451,15 +1451,15 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 				this._ws.onclose = this._onclose;
 				this._ws.onerror = this._onerror;
 			} catch (err) {
-				bimServerApi.notifier.setError("WebSocket error: " + err.message);
+				bimServerApi.notifier.setError("WebSocket error" + (err.message != null ? (": " + err.message) : ""));
 			}
 		} else {
-			bimServerApi.notifier.setError("This browser does not support websockets, please use Google Chrome");
+			bimServerApi.notifier.setError("This browser does not support websockets <a href=\"https://github.com/opensourceBIM/bimvie.ws/wiki/Requirements\"></a>");
 		}
 	};
 
-	this._onerror = function() {
-		bimServerApi.notifier.setError("WebSocket error");
+	this._onerror = function(err) {
+		bimServerApi.notifier.setError("WebSocket error" + (err.message != null ? (": " + err.message) : ""));
 	};
 
 	this._onopen = function() {
