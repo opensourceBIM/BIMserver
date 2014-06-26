@@ -6,6 +6,7 @@ import java.util.Set;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcAsymmetricIShapeProfileDef;
 import org.bimserver.models.ifc2x3tc1.IfcBlock;
@@ -99,10 +100,12 @@ public abstract class AbstractModelMerger implements ModelMerger {
 	// TODO: Actually we should not modify the original objects and then copy them to the destination model, but the other way around...
 	protected IfcModelInterface mergeScales(Project project, Set<IfcModelInterface> ifcModels, ModelHelper modelHelper) throws MergeException {
 		long size = 0;
+		PackageMetaData packageMetaData = null;
 		for (IfcModelInterface ifcModel : ifcModels) {
 			size += ifcModel.size();
+			packageMetaData = ifcModel.getPackageMetaData();
 		}
-		IfcModelInterface endModel = new IfcModel(null, (int) size);//TODO
+		IfcModelInterface endModel = new IfcModel(packageMetaData, (int) size);
 		modelHelper.setTargetModel(endModel);
 		modelHelper.setObjectFactory(endModel);
 		modelHelper.setKeepOriginalOids(true);

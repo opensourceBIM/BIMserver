@@ -63,9 +63,11 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			executeAction(action, downloadParameters, session, false);
  		} catch (UserException e) {
  			error(e);
- 		} catch (Exception e) {
+ 		} catch (BimserverDatabaseException e) {
  			error(e);
-			LOGGER.error("", e);
+ 		} catch (Exception e) {
+ 			LOGGER.error("", e);
+ 			error(e);
 		} finally {
 			if (session != null) {
 				session.close();
@@ -74,7 +76,8 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		}
 	}
 
-	public void init() {
+	public void init(Thread thread) {
+		super.init(thread);
 		if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles() && getBimServer().getDiskCacheManager().contains(downloadParameters)) {
 			return;
 		}

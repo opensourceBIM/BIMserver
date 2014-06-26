@@ -644,4 +644,14 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 			session.close();
 		}
 	}
+
+	@Override
+	public void terminateLongRunningAction(Long actionId) throws ServerException, UserException {
+		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) getBimServer().getLongActionManager().getLongAction(actionId);
+		if (longAction != null) {
+			longAction.terminate();
+		} else {
+			throw new UserException("No data found for laid " + actionId);
+		}
+	}
 }

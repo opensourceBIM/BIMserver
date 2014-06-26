@@ -559,17 +559,18 @@ message SRevision {
 	repeated int64 concreteRevisions = 4;
 	optional int64 date = 5;
 	repeated int64 extendedData = 6;
-	optional int32 id = 7;
-	optional int64 lastConcreteRevisionId = 8;
-	optional string lastError = 9;
-	repeated int64 logs = 10;
-	optional int64 oid = 11;
-	optional int64 projectId = 12;
-	optional int32 rid = 13;
-	optional int64 serviceId = 14;
-	optional int64 size = 15;
-	optional string tag = 16;
-	optional int64 userId = 17;
+	optional bool hasGeometry = 7;
+	optional int32 id = 8;
+	optional int64 lastConcreteRevisionId = 9;
+	optional string lastError = 10;
+	repeated int64 logs = 11;
+	optional int64 oid = 12;
+	optional int64 projectId = 13;
+	optional int32 rid = 14;
+	optional int64 serviceId = 15;
+	optional int64 size = 16;
+	optional string tag = 17;
+	optional int64 userId = 18;
 }
 
 message SCheckout {

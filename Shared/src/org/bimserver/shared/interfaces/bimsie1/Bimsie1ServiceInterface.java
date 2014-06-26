@@ -249,6 +249,17 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 		@WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
 
 	/**
+	 * Terminate a long running action
+	 * 
+	 * @param actionId The actionId returned by one of the download or checkout methods
+	 * @return An SDownloadResult containing the serialized data
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "terminateLongRunningAction")
+	void terminateLongRunningAction(
+			@WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
+	
+	/**
 	 * @param serializerName Name of the Serializer
 	 * @return Serializer
 	 * @throws ServerException, UserException

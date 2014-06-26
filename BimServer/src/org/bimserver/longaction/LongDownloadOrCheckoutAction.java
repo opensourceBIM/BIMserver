@@ -57,6 +57,11 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		this.accessMethod = accessMethod;
 		this.downloadParameters = downloadParameters;
 	}
+	
+	@Override
+	public void init(Thread thread) {
+		super.init(thread);
+	}
 
 	public SCheckoutResult getCheckoutResult() {
 		return checkoutResult;
