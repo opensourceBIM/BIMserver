@@ -30,6 +30,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	private CheckoutDatabaseAction action;
 	private DatabaseSession session;
+	private Thread thread;
 
 	public LongCheckoutAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, Authorization authorization, AccessMethod accessMethod) {
 		super(bimServer, username, userUsername, downloadParameters, accessMethod, authorization);
@@ -61,7 +62,8 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	}
 	
 	@Override
-	public void init() {
+	public void init(Thread thread) {
+		super.init(thread);
 		session = getBimServer().getDatabase().createSession();
 		action = new CheckoutDatabaseAction(getBimServer(), session, accessMethod, getAuthorization(), downloadParameters.getRoid(), downloadParameters.getSerializerOid());
 		action.addProgressListener(this);

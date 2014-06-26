@@ -48,10 +48,6 @@ public class LongBranchAction extends LongAction<LongCheckinActionKey> {
 	}
 
 	@Override
-	public void init() {
-	}
-
-	@Override
 	public void execute() {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {

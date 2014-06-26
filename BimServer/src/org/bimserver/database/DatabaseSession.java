@@ -646,7 +646,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				objectsToCommit.clear();
 				bimTransaction = database.getKeyValueStore().startTransaction();
 			} catch (BimserverDatabaseException e) {
-				LOGGER.error("", e);
 				throw e;
 			} catch (ServiceException e) {
 				if (e instanceof UserException) {
@@ -1056,6 +1055,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			Record record = recordIterator.next();
 			ByteBuffer nextKeyStart = ByteBuffer.allocate(12);
 			while (record != null) {
+				if (Thread.currentThread().isInterrupted()) {
+					throw new BimserverThreadInterruptedException("Thread interrupted");
+				}
 				reads++;
 				ByteBuffer keyBuffer = ByteBuffer.wrap(record.getKey());
 				int keyPid = keyBuffer.getInt();
@@ -1081,6 +1083,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		checkOpen();
 		TodoList todoList = new TodoList();
 		for (EClass eClass : database.getClasses()) {
+			if (Thread.currentThread().isInterrupted()) {
+				throw new BimserverDatabaseException("Thread interrupted");
+			}
 			if (eClass.getEAnnotation("nolazyload") == null && eClass.getEAnnotation("nodatabase") == null) {
 				if (query.shouldIncludeClass(eClass)) {
 					getMap(eClass, ifcModel, query, todoList);

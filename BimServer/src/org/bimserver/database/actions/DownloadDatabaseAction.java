@@ -122,7 +122,8 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel(null); // TODO
+		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(project.getSchema());
+		IfcModelInterface ifcModel = new IfcModel(packageMetaData);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(revision.getProject(), ifcModelSet, new ModelHelper(ifcModel));

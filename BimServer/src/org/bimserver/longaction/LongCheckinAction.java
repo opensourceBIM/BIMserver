@@ -95,8 +95,4 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	public String getDescription() {
 		return getClass().getSimpleName();
 	}
-	
-	@Override
-	public void init() {
-	}
 }

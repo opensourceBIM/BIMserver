@@ -105,6 +105,8 @@ service Bimsie1ServiceInterface {
 
 	rpc getSuggestedDeserializerForExtension (GetSuggestedDeserializerForExtensionRequest) returns (GetSuggestedDeserializerForExtensionResponse);
 
+	rpc terminateLongRunningAction (TerminateLongRunningActionRequest) returns (VoidResponse);
+
 	rpc undeleteProject (UndeleteProjectRequest) returns (UndeleteProjectResponse);
 
 }
@@ -488,6 +490,10 @@ message GetSuggestedDeserializerForExtensionRequest {
 message GetSuggestedDeserializerForExtensionResponse {
 	optional string errorMessage = 1;
 	optional SDeserializerPluginConfiguration value = 2;
+}
+
+message TerminateLongRunningActionRequest {
+	optional int64 actionId = 1;
 }
 
 message UndeleteProjectRequest {

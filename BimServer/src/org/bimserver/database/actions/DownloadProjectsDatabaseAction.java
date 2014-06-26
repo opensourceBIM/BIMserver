@@ -112,7 +112,8 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel(null); // TODO
+		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(project.getSchema());
+		IfcModelInterface ifcModel = new IfcModel(packageMetaData);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

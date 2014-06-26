@@ -246,12 +246,14 @@ public class DownloadServlet extends SubServlet {
 							response.setContentType(request.getParameter("mime"));
 						}
 						try {
-							if (dataSource instanceof FileInputStreamDataSource) {
-								InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
+							if (dataSource == null) {
+								LOGGER.error("No datasource");
+							} else if (dataSource instanceof EmfSerializerDataSource) {
+								((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
+							} else {
+								InputStream inputStream = dataSource.getInputStream();
 								IOUtils.copy(inputStream, outputStream);
 								inputStream.close();
-							} else {
-								((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
 							}
 						} catch (SerializerException e) {
 							LOGGER.error("", e);

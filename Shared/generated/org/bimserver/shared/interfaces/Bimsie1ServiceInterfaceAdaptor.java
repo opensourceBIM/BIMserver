@@ -172,6 +172,9 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 		return null;
 	}
 	
+	public void terminateLongRunningAction(java.lang.Long actionId) throws UserException, ServerException {
+	}
+	
 	public java.lang.Boolean undeleteProject(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
