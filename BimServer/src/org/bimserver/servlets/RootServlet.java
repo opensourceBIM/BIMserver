@@ -70,6 +70,9 @@ public class RootServlet extends HttpServlet {
 					// Only when in setup-mode
 					siteAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 				}
+				if (siteAddress.contains("http://")) {
+					siteAddress = siteAddress.replace("http://", request.getScheme() + "://");
+				}
 				response.getWriter().print("{\"address\":\"" + siteAddress + "\"}");
 				return;
 			} else if (request.getRequestURI().startsWith("/openid")) {
