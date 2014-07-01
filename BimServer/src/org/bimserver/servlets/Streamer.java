@@ -127,68 +127,73 @@ public class Streamer implements EndPoint {
 	}
 	
 	public void onText(Reader reader) {
-		JsonReader jsonreader = new JsonReader(reader);
-		JsonParser parser = new JsonParser();
-		JsonObject request = (JsonObject) parser.parse(jsonreader);
-		if (request.has("hb")) {
-			// Heartbeat, ignore
-		} else if (request.has("action")) {
-			if (request.get("action").getAsString().equals("download")) {
-				String token = request.get("token").getAsString();
-				final int topicId = request.get("topicId").getAsInt();
-				try {
-					final ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL);
-					final long downloadId = request.get("longActionId").getAsLong();
-					new Thread(){
-						@Override
-						public void run() {
-							try {
-								SDownloadResult checkoutResult = serviceMap.getBimsie1ServiceInterface().getDownloadData(downloadId);
-								if (checkoutResult != null) {
-									DataSource dataSource = checkoutResult.getFile().getDataSource();
-									OutputStream outputStream = new WebSocketifier(topicId, streamingSocketInterface);
-									if (dataSource instanceof FileInputStreamDataSource) {
-										InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
-										IOUtils.copy(inputStream, outputStream);
-										inputStream.close();
-									} else {
-										((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
+		try {
+			JsonReader jsonreader = new JsonReader(reader);
+			JsonParser parser = new JsonParser();
+			JsonObject request = (JsonObject) parser.parse(jsonreader);
+			if (request.has("hb")) {
+				// Heartbeat, ignore
+			} else if (request.has("action")) {
+				if (request.get("action").getAsString().equals("download")) {
+					String token = request.get("token").getAsString();
+					LOGGER.info("" + request);
+					final int topicId = request.get("topicId").getAsInt();
+					try {
+						final ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL);
+						final long downloadId = request.get("longActionId").getAsLong();
+						new Thread(){
+							@Override
+							public void run() {
+								try {
+									SDownloadResult checkoutResult = serviceMap.getBimsie1ServiceInterface().getDownloadData(downloadId);
+									if (checkoutResult != null) {
+										DataSource dataSource = checkoutResult.getFile().getDataSource();
+										OutputStream outputStream = new WebSocketifier(topicId, streamingSocketInterface);
+										if (dataSource instanceof FileInputStreamDataSource) {
+											InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
+											IOUtils.copy(inputStream, outputStream);
+											inputStream.close();
+										} else {
+											((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
+										}
 									}
+								} catch (ServerException e) {
+									LOGGER.error("", e);
+								} catch (UserException e) {
+									LOGGER.error("", e);
+								} catch (IOException e) {
+									LOGGER.error("", e);
+								} catch (SerializerException e) {
+									LOGGER.error("", e);
 								}
-							} catch (ServerException e) {
-								LOGGER.error("", e);
-							} catch (UserException e) {
-								LOGGER.error("", e);
-							} catch (IOException e) {
-								LOGGER.error("", e);
-							} catch (SerializerException e) {
-								LOGGER.error("", e);
 							}
-						}
-					}.start();
+						}.start();
+						
+					} catch (UserException e) {
+						LOGGER.error("", e);
+					}
+				}
+			} else if (request.has("token")) {
+				String token = request.get("token").getAsString();
+				try {
+					ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.JSON);
+					uoid = serviceMap.getBimServerAuthInterface().getLoggedInUser().getOid();
+		
+					this.endpointid = bimServer.getEndPointManager().register(this);
 					
+					JsonObject enpointMessage = new JsonObject();
+					enpointMessage.add("endpointid", new JsonPrimitive(endpointid));
+					streamingSocketInterface.send(enpointMessage);
 				} catch (UserException e) {
 					LOGGER.error("", e);
+				} catch (ServerException e) {
+					LOGGER.error("", e);
 				}
+			} else {
+				bimServer.getJsonHandler().execute(request, null, new NullWriter());
 			}
-		} else if (request.has("token")) {
-			String token = request.get("token").getAsString();
-			try {
-				ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.JSON);
-				uoid = serviceMap.getBimServerAuthInterface().getLoggedInUser().getOid();
-
-				this.endpointid = bimServer.getEndPointManager().register(this);
-				
-				JsonObject enpointMessage = new JsonObject();
-				enpointMessage.add("endpointid", new JsonPrimitive(endpointid));
-				streamingSocketInterface.send(enpointMessage);
-			} catch (UserException e) {
-				LOGGER.error("", e);
-			} catch (ServerException e) {
-				LOGGER.error("", e);
-			}
-		} else {
-			bimServer.getJsonHandler().execute(request, null, new NullWriter());
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 	}
 

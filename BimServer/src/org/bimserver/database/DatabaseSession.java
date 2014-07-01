@@ -1111,7 +1111,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			return model;
 		}
 		// TODO check why clearCache??
-		objectCache.clear();
+//		objectCache.clear();
 
 		TodoList todoList = new TodoList();
 		ByteBuffer mustStartWith = createKeyBuffer(query.getPid(), oid);

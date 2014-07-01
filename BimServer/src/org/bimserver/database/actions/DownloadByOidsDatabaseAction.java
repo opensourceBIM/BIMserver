@@ -84,7 +84,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 				IfcModel subModel = new IfcModel(packageMetaData);
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
+				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {
@@ -92,9 +92,6 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 						progress = (int) Math.round(100.0 * total.get() / totalSize);
 					}
 				});
-				if (oids.contains(2032161L)) {
-					System.out.println();
-				}
 				getDatabaseSession().getMapWithOids(subModel, oids, query);
 				subModel.getModelMetaData().setDate(concreteRevision.getDate());
 				

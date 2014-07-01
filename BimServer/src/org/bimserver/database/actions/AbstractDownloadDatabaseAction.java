@@ -17,6 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.GeometryGenerator;
@@ -55,7 +58,8 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), false, null);
 			} else {
 				EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
-				for (IdEObject ifcProduct : model.getAllWithSubTypes(productClass)) {
+				List<IdEObject> allWithSubTypes = new ArrayList<>(model.getAllWithSubTypes(productClass));
+				for (IdEObject ifcProduct : allWithSubTypes) {
 					GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(productClass.getEStructuralFeature("geometry"));
 					if (geometryInfo != null) {
 						geometryInfo.loadExplicit();
