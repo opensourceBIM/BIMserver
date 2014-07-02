@@ -17,9 +17,11 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
+
 import org.bimserver.BimServer;
-import org.bimserver.GeometryGenerator;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.GeometryGenerator;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
@@ -53,7 +55,7 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)
 				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), false, null);
 			} else {
-				for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
+				for (IfcProduct ifcProduct : new ArrayList<>(model.getAllWithSubTypes(IfcProduct.class))) {
 					GeometryInfo geometryInfo = ifcProduct.getGeometry();
 					if (geometryInfo != null) {
 						geometryInfo.loadExplicit();
