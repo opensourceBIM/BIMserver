@@ -20,7 +20,7 @@
 	</tstamp>
 
 	<property name="majorversion" value="1"/>
-	<property name="minorversion" value="3"/>
+	<property name="minorversion" value="4"/>
 	<property name="revisionversion" value="0"/>
 	<property name="type" value="DEV"/>
 	<property name="revisiondate" value="${builddate}"/>
