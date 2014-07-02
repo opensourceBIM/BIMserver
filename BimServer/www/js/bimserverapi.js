@@ -1531,3 +1531,39 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 		othis.endpointid = null;
 	};
 }
+
+function Promise() {
+	var o = this;
+	
+	o.isDone = false;
+	o.chains = [];
+
+	this.done = function(callback){
+		if (o.isDone) {
+			callback();
+		} else {
+			o.callback = callback;
+		}
+	};
+
+	this.fire = function(){
+		o.isDone = true;
+		if (o.callback != null) {
+			o.callback();
+		}
+	};
+	
+	this.chain = function(otherPromise) {
+		o.chains.push(otherPromise);
+		otherPromise.done(function(){
+			for (var i=o.chains.length-1; i>=0; i--) {
+				if (o.chains[i] == otherPromise) {
+					o.chains.splice(i, 1);
+				}
+			}
+			if (o.chains.length == 0) {
+				o.fire();
+			}
+		});
+	};
+}
