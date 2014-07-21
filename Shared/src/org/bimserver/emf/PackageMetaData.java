@@ -68,7 +68,7 @@ public class PackageMetaData {
 		initUpperCases();
 		initEClassClassMap();
 		try {
-			if (metaDataManager.getPluginManager() != null) {
+			if (metaDataManager != null && metaDataManager.getPluginManager() != null) {
 				schemaDefinition = metaDataManager.getPluginManager().requireSchemaDefinition(ePackage.getName().toLowerCase());
 			}
 		} catch (PluginException e) {
