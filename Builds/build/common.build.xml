@@ -452,6 +452,8 @@
 		<copy file="../../Shared/generated/org/bimserver/models/ifc2x3tc1/impl/ifc2x3tc1.ecore" todir="builds/shared/org/bimserver/models/ifc2x3tc1/impl" />
 		<copy file="../../Shared/generated/org/bimserver/models/store/impl/store.ecore" todir="builds/shared/org/bimserver/models/store/impl" />
 		<copy file="../../Shared/generated/org/bimserver/models/log/impl/log.ecore" todir="builds/shared/org/bimserver/models/log/impl" />
+		<copy file="../../Shared/generated/org/bimserver/models/geometry/impl/geometry.ecore" todir="builds/shared/org/bimserver/models/geometry/impl" />
+		<copy file="../../Shared/generated/org/bimserver/models/ifc4/impl/ifc4.ecore" todir="builds/shared/org/bimserver/models/ifc4/impl" />
 		<copy todir="builds/shared/org/bimserver/shared/interfaces/bimsie1">
 			<fileset dir="../../Shared/src/org/bimserver/shared/interfaces/bimsie1">
 				<include name="*.java"/>
