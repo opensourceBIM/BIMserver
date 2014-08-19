@@ -26,14 +26,14 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 
-public class ZippedOpenGLTransmissionFormatTextOpen3DGCSerializerPlugin extends AbstractSerializerPlugin {
+public class MultiplePassZippedOpenGLTransmissionFormatSerializerPlugin extends AbstractSerializerPlugin {
 
 	private boolean initialized = false;
 	
 	@Override
 	public Serializer createSerializer(PluginConfiguration plugin) {
-		Collada2GLTFConfiguration configuration = new Collada2GLTFConfiguration("Open3DGC", "ascii", false, false, true, false, false);
-		return new OpenGLTransmissionFormatSerializer(configuration, ".zip");
+		Collada2GLTFConfiguration configuration = new Collada2GLTFConfiguration(null, null, false, false, true, false, false);
+		return new OpenGLTransmissionFormatSerializer(configuration, ".zip", false);
 	}
 
 	@Override
@@ -54,12 +54,12 @@ public class ZippedOpenGLTransmissionFormatTextOpen3DGCSerializerPlugin extends 
 
 	@Override
 	public String getDescription() {
-		return "Zipped OpenGL Transmission Format (glTF) with text-based Open3DGC compression.";
+		return "Zipped OpenGL Transmission Format (glTF), Multiple Passes";
 	}
 
 	@Override
 	public String getDefaultName() {
-		return "glTF with Open3DGC compression as ZIP";
+		return "glTF as ZIP, multiple passes";
 	}
 
 	@Override
