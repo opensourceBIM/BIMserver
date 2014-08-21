@@ -18,6 +18,7 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
@@ -55,15 +56,22 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)
 				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), false, null);
 			} else {
-				for (IfcProduct ifcProduct : new ArrayList<>(model.getAllWithSubTypes(IfcProduct.class))) {
-					GeometryInfo geometryInfo = ifcProduct.getGeometry();
-					if (geometryInfo != null) {
-						geometryInfo.loadExplicit();
-						geometryInfo.getData().loadExplicit();
-						geometryInfo.getTransformation();
-						geometryInfo.getMinBounds().loadExplicit();
-						geometryInfo.getMaxBounds().loadExplicit();
+				// As long as the amount of objects of type IfcProduct is increasing, we keep loading more...
+				List<IfcProduct> allWithSubTypes = model.getAllWithSubTypes(IfcProduct.class);
+				int lastSize = -1;
+				while (lastSize != allWithSubTypes.size()) {
+					lastSize = allWithSubTypes.size();
+					for (IfcProduct ifcProduct : new ArrayList<>(allWithSubTypes)) {
+						GeometryInfo geometryInfo = ifcProduct.getGeometry();
+						if (geometryInfo != null) {
+							geometryInfo.loadExplicit();
+							geometryInfo.getData().loadExplicit();
+							geometryInfo.getTransformation();
+							geometryInfo.getMinBounds().loadExplicit();
+							geometryInfo.getMaxBounds().loadExplicit();
+						}
 					}
+					allWithSubTypes = model.getAllWithSubTypes(IfcProduct.class);
 				}
 			}
 		}
