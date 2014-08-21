@@ -46,6 +46,7 @@ import org.apache.commons.codec.binary.Base64OutputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.SystemUtils;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.geometry.GeometryInfo;
@@ -180,23 +181,65 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 	@Override
 	protected boolean write(OutputStream outputStream) throws SerializerException {
 		if (getMode() == Mode.BODY) {
+			// Store the directory ("gltf") to write executables into (beneath "tmp").
+			File collada2gltfWorkspaceDirectory = null;
+			// Store the directory to write models into (beneath "gltf").
 			File writeDirectory = null;
+			// Optionally, store the path to the collada2gltf executable.
+			File collada2gltfExecutable = null;
 			try {
 				File tempDirectory = pluginManager.getTempDir();
 				if (!tempDirectory.exists())
 					tempDirectory.mkdir();
+				// Get a link to the directory where collada2gltf might be installed, and where temporary folders will definitely be created.
+				collada2gltfWorkspaceDirectory = new File(tempDirectory, "gltf");
+				// Create the permanent resource directory if it doesn't exist.
+				if (!collada2gltfWorkspaceDirectory.exists())
+					collada2gltfWorkspaceDirectory.mkdir();
+				// Will always fail iff OS is not Windows or MacOSX (others require binary to be built locally).
+				if (SystemUtils.IS_OS_MAC_OSX || SystemUtils.IS_OS_WINDOWS)
+				{
+					// Get the resource bundle (contains binaries).
+					OpenGLTransmissionFormatResourceBundle bundle = new OpenGLTransmissionFormatResourceBundle();
+					// Check to see if there is a pre-packaged binary folder: "gltf".
+					if (collada2gltfWorkspaceDirectory.exists())
+					{
+						// If MacOSX, use "collada2gltf" binary file.
+						if (SystemUtils.IS_OS_MAC_OSX)
+						{
+							File macOSXcollada2gltfExecutable = new File(collada2gltfWorkspaceDirectory, "collada2gltf");
+							// Write "collada2gltf".
+							if (!macOSXcollada2gltfExecutable.exists())
+								bundle.writeWindowsExecutable(macOSXcollada2gltfExecutable);
+							// If it now exists, use the path.
+							if (macOSXcollada2gltfExecutable.exists())
+								collada2gltfExecutable = macOSXcollada2gltfExecutable;
+						}
+						// If Windows, use "collada2gltf.exe" executable.
+						else if (SystemUtils.IS_OS_WINDOWS)
+						{
+							File windowsOScollada2gltfExecutable = new File(collada2gltfWorkspaceDirectory, "collada2gltf.exe");
+							// Write "collada2gltf.exe".
+							if (!windowsOScollada2gltfExecutable.exists())
+								bundle.writeWindowsExecutable(windowsOScollada2gltfExecutable);
+							// If it now exists, use the path.
+							if (windowsOScollada2gltfExecutable.exists())
+								collada2gltfExecutable = windowsOScollada2gltfExecutable;
+						}
+					}
+				}
 				// Create a unique identifier for the temporary directory where collada2gltf will export files.
 				UUID id = UUID.randomUUID();
 				// Create an abstraction for the write directory path.
-				writeDirectory = new File(tempDirectory, id.toString());
+				writeDirectory = new File(collada2gltfWorkspaceDirectory, id.toString());
 				// Create the write directory if it doesn't exist.
 				if (!writeDirectory.exists())
 					writeDirectory.mkdir();
 				// Export in a single pass. Otherwise, export the individual IfcProducts individually (very slow, very space efficient).
 				if (wantSinglePass)
-					exportInSinglePass(outputStream, writeDirectory);
+					exportInSinglePass(outputStream, writeDirectory, collada2gltfExecutable);
 				else
-					exportInMultiplePasses(outputStream, writeDirectory);
+					exportInMultiplePasses(outputStream, writeDirectory, collada2gltfExecutable);
 			} catch (IOException e) {
 				String errorMessage = String.format("Could not write file of return type, %s.", returnType);
 				LOGGER.error(errorMessage, e);
@@ -218,20 +261,20 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 		return false;
 	}
 
-	private void exportInSinglePass(OutputStream outputStream, File writeDirectory) throws IOException, UnsupportedEncodingException {
+	private void exportInSinglePass(OutputStream outputStream, File writeDirectory, File collada2gltfExecutable) throws IOException, UnsupportedEncodingException {
 		String thisFileStub = projectInfo.getName();
 		// Create file.
-		boolean success = exportToGLTF(thisFileStub, writeDirectory);
-		// Send the whole result back.
+		exportToGLTF(thisFileStub, writeDirectory, collada2gltfExecutable);
+		// Regardless of success, send the whole result back (may effectively be empty results).
 		if (returnType == ".zip")
 			zipTheDirectory(outputStream, writeDirectory);
 		else if (returnType == ".json")
 			jsonTheDirectory(outputStream, writeDirectory);
 	}
 
-	private void exportInMultiplePasses(OutputStream outputStream, File writeDirectory) throws IOException, UnsupportedEncodingException {
+	private void exportInMultiplePasses(OutputStream outputStream, File writeDirectory, File collada2gltfExecutable) throws IOException, UnsupportedEncodingException {
 		// Export just the lights and camera into a DAE then into the output of collada2gltf.
-		boolean success = createBaseJSONStructure(writeDirectory);
+		boolean success = createBaseJSONStructure(writeDirectory, collada2gltfExecutable);
 		// If success, write the files into the stream. Otherwise, write an empty file into the stream.
 		if (success) {
 			// Get the result back in as a JSON abstraction.
@@ -251,7 +294,7 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 						// Want at least: 10250235.json from 10250235.dae
 						String thisFileStub = String.format("%d", ifcProduct.getOid());
 						// Create file.
-						boolean thisWasSuccessful = exportToGLTF(thisFileStub, writeDirectory);
+						boolean thisWasSuccessful = exportToGLTF(thisFileStub, writeDirectory, collada2gltfExecutable);
 						// If exporting the sub-file to glTF was successful, patch it into the base JSON object.
 						if (thisWasSuccessful) {
 							// Get a name like: 10250235.json.
@@ -294,16 +337,20 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 	 * File-based methods, specifically to handle writing an output file into the stream.
 	 */
 	// Launch a thread to run the program "collada2gltf", which takes a Collada file as input and writes other files out to a directory.
-	private boolean exportToGLTF(File writeDirectory) {
-		return exportToGLTF(projectInfo.getName(), writeDirectory);
+	private boolean exportToGLTF(File writeDirectory, File collada2gltfExecutable) {
+		return exportToGLTF(projectInfo.getName(), writeDirectory, collada2gltfExecutable);
 	}
 
-	private boolean exportToGLTF(String nameStub, File writeDirectory) {
+	private boolean exportToGLTF(String nameStub, File writeDirectory, File collada2gltfExecutable) {
 		try {
 			// Get the Collada file.
 			File colladaFile = writeColladaFile(nameStub, writeDirectory);
+			if (collada2gltfExecutable != null) {
+				File absoluteExecutable = collada2gltfExecutable.getAbsoluteFile();
+				configuration.executable = absoluteExecutable.getPath();
+			}
 			// Reconfigure for new thread.
-			configuration.fileName = colladaFile.getName(); 
+			configuration.fileName = colladaFile.getName();
 			// Launch a thread to run the collada2gltf converter.
 			Collada2GLTFThread thread = new Collada2GLTFThread(writeDirectory, configuration);
 			synchronized (thread) {
@@ -443,13 +490,13 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 	}
 
 	/*
-	 * JSON-related methods, specifically used to join the output of two individual sets of collada2gltf output into 1. 
+	 * JSON-related methods, specifically used to join the output of two individual sets of collada2gltf output into one file. 
 	 */
-	private boolean createBaseJSONStructure(File writeDirectory) {
+	private boolean createBaseJSONStructure(File writeDirectory, File collada2gltfExecutable) {
 		// Get the expected name of the base file: P1.dae.
 		File expectedOutputFile = new File(writeDirectory, String.format("%s.json", projectInfo.getName()));
 		// Send a basic Collada (DAE) file into collada2gltf. File should include non-empty: asset, library_cameras, library lights, library_visual_scenes, scene.
-		boolean success = exportToGLTF(writeDirectory);
+		boolean success = exportToGLTF(writeDirectory, collada2gltfExecutable);
 		// If the file was successful, attempt to sanitize the output.
 		if (success)
 			cleanBufferViewEntryInJSONFile(expectedOutputFile);
@@ -752,26 +799,6 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 			// Entry set yields key like: "geom-131696".
 			for (Map.Entry<String, JsonElement> entry : joining.entrySet())
 			{
-				/*
-   "meshes": {
-    "geom-262774": {
-      //
-      "extensions": {
-        "Open3DGC-compression": {
-          //
-          "compressedData": {
-            "bufferView": "bufferView_24",
-            "byteOffset": 0,
-            "count": 405,
-            "floatAttributesIndexes": {},
-            "indicesCount": 36,
-            "mode": "binary",
-            "type": 5121,
-            "verticesCount": 24
-          }
-        }
-      },
-				 */
 				// Get: "geom-131696", { "primitives": [{ "attributes": { "NORMAL": "accessor_20", ... }, "indices": "accesor_16", ... }, ], ... }
 				String propertyName = entry.getKey();
 				JsonElement joiningElement = entry.getValue();
