@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelCheckerResultHeaderImpl extends ModelCheckerResultItemImpl
-		implements ModelCheckerResultHeader {
+public class ModelCheckerResultHeaderImpl extends ModelCheckerResultItemImpl implements ModelCheckerResultHeader {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class ModelCheckerResultHeaderImpl extends ModelCheckerResultItemImpl
 	 * @generated
 	 */
 	public String getText() {
-		return (String) eGet(
-				StorePackage.Literals.MODEL_CHECKER_RESULT_HEADER__TEXT, true);
+		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_HEADER__TEXT, true);
 	}
 
 	/**

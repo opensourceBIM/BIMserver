@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -110,22 +110,26 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROJECTMANAGER(7, "PROJECTMANAGER", "PROJECTMANAGER"), /**
-															 * The '<em><b>CLIENT</b></em>' literal object.
-															 * <!-- begin-user-doc -->
-															 * <!-- end-user-doc -->
-															 * @see #CLIENT_VALUE
-															 * @generated
-															 * @ordered
-															 */
-	CLIENT(8, "CLIENT", "CLIENT"), /**
-									 * The '<em><b>ELECTRICALENGINEER</b></em>' literal object.
-									 * <!-- begin-user-doc -->
-									 * <!-- end-user-doc -->
-									 * @see #ELECTRICALENGINEER_VALUE
-									 * @generated
-									 * @ordered
-									 */
+	PROJECTMANAGER(7, "PROJECTMANAGER", "PROJECTMANAGER"),
+
+	/**
+	 * The '<em><b>CLIENT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CLIENT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	CLIENT(8, "CLIENT", "CLIENT"),
+
+	/**
+	 * The '<em><b>ELECTRICALENGINEER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ELECTRICALENGINEER_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	ELECTRICALENGINEER(9, "ELECTRICALENGINEER", "ELECTRICALENGINEER"),
 
 	/**
@@ -634,9 +638,9 @@ public enum IfcRoleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRoleEnum[] VALUES_ARRAY = new IfcRoleEnum[] { NULL, COSTENGINEER, COMISSIONINGENGINEER, BUILDINGOPERATOR, RESELLER, ENGINEER, ARCHITECT,
-			PROJECTMANAGER, CLIENT, ELECTRICALENGINEER, CIVILENGINEER, SUPPLIER, CONTRACTOR, FIELDCONSTRUCTIONMANAGER, FACILITIESMANAGER, OWNER, CONSTRUCTIONMANAGER,
-			STRUCTURALENGINEER, MECHANICALENGINEER, USERDEFINED, CONSULTANT, MANUFACTURER, SUBCONTRACTOR, BUILDINGOWNER, };
+	private static final IfcRoleEnum[] VALUES_ARRAY = new IfcRoleEnum[] { NULL, COSTENGINEER, COMISSIONINGENGINEER, BUILDINGOPERATOR, RESELLER, ENGINEER,
+			ARCHITECT, PROJECTMANAGER, CLIENT, ELECTRICALENGINEER, CIVILENGINEER, SUPPLIER, CONTRACTOR, FIELDCONSTRUCTIONMANAGER, FACILITIESMANAGER, OWNER,
+			CONSTRUCTIONMANAGER, STRUCTURALENGINEER, MECHANICALENGINEER, USERDEFINED, CONSULTANT, MANUFACTURER, SUBCONTRACTOR, BUILDINGOWNER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Role Enum</b></em>' enumerators.

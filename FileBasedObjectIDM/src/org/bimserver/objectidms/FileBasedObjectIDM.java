@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class FileBasedObjectIDM extends AbstractObjectIDM {
 
 	public FileBasedObjectIDM(SchemaDefinition schemaDefinition, PluginContext pluginContext) throws ObjectIDMException {
-		super(schemaDefinition);
+		super(schemaDefinition, null);
 		try {
 			URL ignoreFile = pluginContext.getResourceAsUrl("objectidm.xml");
 			PackageDefinition packageDefinition = PackageDefinition.readFromFile(ignoreFile);

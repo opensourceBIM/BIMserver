@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,8 +17,10 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.TypeDefinition;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

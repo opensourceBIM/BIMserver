@@ -10,16 +10,14 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.Schema;
 import org.bimserver.ifc.ReferenceCounter;
 import org.bimserver.ifc.ReferenceCounter.Reference;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.deserializers.DeserializeException;
-import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -29,7 +27,6 @@ import org.eclipse.emf.ecore.EClassifier;
 
 public class IfcGeometryRemover {
 	private PluginManager pluginManager;
-	private SchemaDefinition schema;
 	private IfcDoc ifcDoc;
 	private MetaDataManager metaDataManager;
 	private ReferenceCounter referenceCounter;
@@ -37,10 +34,9 @@ public class IfcGeometryRemover {
 	public IfcGeometryRemover() {
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			schema = pluginManager.requireSchemaDefinition();
 			ifcDoc = new IfcDoc(new File("C:\\Users\\Ruben\\git\\BootstrapBIM\\BootstrapBIM\\docs\\R2x3_TC1"));
-			metaDataManager = new MetaDataManager();
-			metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE);
+			metaDataManager = new MetaDataManager(null);
+			metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1);
 		} catch (PluginException e) {
 			e.printStackTrace();
 		}
@@ -64,7 +60,7 @@ public class IfcGeometryRemover {
 		Set<IdEObject> toRemove = new HashSet<IdEObject>();
 		while (iterator.hasNext()) {
 			String classname = iterator.next();
-			EClassifier eClassifier = metaDataManager.getEClassifierCaseInsensitive(classname);
+			EClassifier eClassifier = metaDataManager.getEPackage("ifc2x3tc1").getEClassifierCaseInsensitive(classname);
 			if (eClassifier instanceof EClass) {
 				toRemove.addAll(model.getAllWithSubTypes((EClass)eClassifier));
 			}
@@ -92,7 +88,7 @@ public class IfcGeometryRemover {
 		Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 		try {
 			model.resetExpressIds();
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), true);
+			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, true);
 			serializer.writeToFile(outFile, null);
 		} catch (SerializerException e) {
 			e.printStackTrace();
@@ -104,13 +100,11 @@ public class IfcGeometryRemover {
 	public IfcModelInterface readModel(File file) {
 		try {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(schema);
-			IfcModelInterface model = deserializer.read(file);
+			deserializerPlugin.createDeserializer(new PluginConfiguration());
+//			deserializer.init(schema, null, null); // TODO
+			IfcModelInterface model = null;//deserializer.read(file);
 			return model;
 		} catch (PluginException e) {
-			e.printStackTrace();
-		} catch (DeserializeException e) {
 			e.printStackTrace();
 		}
 		return null;

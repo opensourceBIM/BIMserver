@@ -44,12 +44,12 @@ package org.bimserver.interfaces.objects;
 @XmlRootElement
 <%
 importManager.getImport("javax.xml.bind.annotation.XmlTransient");
-if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) { 
+if (!metaDataManager.getEPackage(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass).isEmpty()) { 
 importManager.getImport("javax.xml.bind.annotation.XmlSeeAlso");
 %>
 @XmlSeeAlso(value={
 <%
-java.util.Set<EClass> subClasses = metaDataManager.getDirectSubClasses(eClass);
+java.util.Set<EClass> subClasses = metaDataManager.getEPackage(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass);
 int i=0;
 for (EClass subClass : subClasses) {
 	%>S<%=subClass.getName()%>.class<%
@@ -136,10 +136,7 @@ public class S<%=eClass.getName()%>
 			}
 		}
 	}
-%>
-	public S<%=eClass.getName()%>() {
-	}
-<%
+
 	if (eClass.getEAnnotation("nodatabase") == null) { %>
 
 	public long getOid() {

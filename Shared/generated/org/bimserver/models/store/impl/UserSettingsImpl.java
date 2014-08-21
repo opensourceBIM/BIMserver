@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,7 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
@@ -27,7 +28,9 @@ import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -93,8 +96,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<SerializerPluginConfiguration> getSerializers() {
-		return (EList<SerializerPluginConfiguration>) eGet(
-				StorePackage.Literals.USER_SETTINGS__SERIALIZERS, true);
+		return (EList<SerializerPluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__SERIALIZERS, true);
 	}
 
 	/**
@@ -104,8 +106,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ObjectIDMPluginConfiguration> getObjectIDMs() {
-		return (EList<ObjectIDMPluginConfiguration>) eGet(
-				StorePackage.Literals.USER_SETTINGS__OBJECT_ID_MS, true);
+		return (EList<ObjectIDMPluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__OBJECT_ID_MS, true);
 	}
 
 	/**
@@ -115,8 +116,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<RenderEnginePluginConfiguration> getRenderEngines() {
-		return (EList<RenderEnginePluginConfiguration>) eGet(
-				StorePackage.Literals.USER_SETTINGS__RENDER_ENGINES, true);
+		return (EList<RenderEnginePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__RENDER_ENGINES, true);
 	}
 
 	/**
@@ -126,8 +126,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<DeserializerPluginConfiguration> getDeserializers() {
-		return (EList<DeserializerPluginConfiguration>) eGet(
-				StorePackage.Literals.USER_SETTINGS__DESERIALIZERS, true);
+		return (EList<DeserializerPluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__DESERIALIZERS, true);
 	}
 
 	/**
@@ -137,8 +136,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<QueryEnginePluginConfiguration> getQueryengines() {
-		return (EList<QueryEnginePluginConfiguration>) eGet(
-				StorePackage.Literals.USER_SETTINGS__QUERYENGINES, true);
+		return (EList<QueryEnginePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__QUERYENGINES, true);
 	}
 
 	/**
@@ -148,8 +146,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ModelMergerPluginConfiguration> getModelmergers() {
-		return (EList<ModelMergerPluginConfiguration>) eGet(
-				StorePackage.Literals.USER_SETTINGS__MODELMERGERS, true);
+		return (EList<ModelMergerPluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__MODELMERGERS, true);
 	}
 
 	/**
@@ -159,8 +156,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ModelComparePluginConfiguration> getModelcompares() {
-		return (EList<ModelComparePluginConfiguration>) eGet(
-				StorePackage.Literals.USER_SETTINGS__MODELCOMPARES, true);
+		return (EList<ModelComparePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__MODELCOMPARES, true);
 	}
 
 	/**
@@ -169,8 +165,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * @generated
 	 */
 	public ModelMergerPluginConfiguration getDefaultModelMerger() {
-		return (ModelMergerPluginConfiguration) eGet(
-				StorePackage.Literals.USER_SETTINGS__DEFAULT_MODEL_MERGER, true);
+		return (ModelMergerPluginConfiguration) eGet(StorePackage.Literals.USER_SETTINGS__DEFAULT_MODEL_MERGER, true);
 	}
 
 	/**
@@ -178,10 +173,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultModelMerger(
-			ModelMergerPluginConfiguration newDefaultModelMerger) {
-		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_MODEL_MERGER,
-				newDefaultModelMerger);
+	public void setDefaultModelMerger(ModelMergerPluginConfiguration newDefaultModelMerger) {
+		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_MODEL_MERGER, newDefaultModelMerger);
 	}
 
 	/**
@@ -190,9 +183,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * @generated
 	 */
 	public ModelComparePluginConfiguration getDefaultModelCompare() {
-		return (ModelComparePluginConfiguration) eGet(
-				StorePackage.Literals.USER_SETTINGS__DEFAULT_MODEL_COMPARE,
-				true);
+		return (ModelComparePluginConfiguration) eGet(StorePackage.Literals.USER_SETTINGS__DEFAULT_MODEL_COMPARE, true);
 	}
 
 	/**
@@ -200,10 +191,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultModelCompare(
-			ModelComparePluginConfiguration newDefaultModelCompare) {
-		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_MODEL_COMPARE,
-				newDefaultModelCompare);
+	public void setDefaultModelCompare(ModelComparePluginConfiguration newDefaultModelCompare) {
+		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_MODEL_COMPARE, newDefaultModelCompare);
 	}
 
 	/**
@@ -212,8 +201,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * @generated
 	 */
 	public QueryEnginePluginConfiguration getDefaultQueryEngine() {
-		return (QueryEnginePluginConfiguration) eGet(
-				StorePackage.Literals.USER_SETTINGS__DEFAULT_QUERY_ENGINE, true);
+		return (QueryEnginePluginConfiguration) eGet(StorePackage.Literals.USER_SETTINGS__DEFAULT_QUERY_ENGINE, true);
 	}
 
 	/**
@@ -221,10 +209,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultQueryEngine(
-			QueryEnginePluginConfiguration newDefaultQueryEngine) {
-		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_QUERY_ENGINE,
-				newDefaultQueryEngine);
+	public void setDefaultQueryEngine(QueryEnginePluginConfiguration newDefaultQueryEngine) {
+		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_QUERY_ENGINE, newDefaultQueryEngine);
 	}
 
 	/**
@@ -233,9 +219,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * @generated
 	 */
 	public RenderEnginePluginConfiguration getDefaultRenderEngine() {
-		return (RenderEnginePluginConfiguration) eGet(
-				StorePackage.Literals.USER_SETTINGS__DEFAULT_RENDER_ENGINE,
-				true);
+		return (RenderEnginePluginConfiguration) eGet(StorePackage.Literals.USER_SETTINGS__DEFAULT_RENDER_ENGINE, true);
 	}
 
 	/**
@@ -243,10 +227,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultRenderEngine(
-			RenderEnginePluginConfiguration newDefaultRenderEngine) {
-		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_RENDER_ENGINE,
-				newDefaultRenderEngine);
+	public void setDefaultRenderEngine(RenderEnginePluginConfiguration newDefaultRenderEngine) {
+		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_RENDER_ENGINE, newDefaultRenderEngine);
 	}
 
 	/**
@@ -255,8 +237,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * @generated
 	 */
 	public SerializerPluginConfiguration getDefaultSerializer() {
-		return (SerializerPluginConfiguration) eGet(
-				StorePackage.Literals.USER_SETTINGS__DEFAULT_SERIALIZER, true);
+		return (SerializerPluginConfiguration) eGet(StorePackage.Literals.USER_SETTINGS__DEFAULT_SERIALIZER, true);
 	}
 
 	/**
@@ -264,10 +245,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultSerializer(
-			SerializerPluginConfiguration newDefaultSerializer) {
-		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_SERIALIZER,
-				newDefaultSerializer);
+	public void setDefaultSerializer(SerializerPluginConfiguration newDefaultSerializer) {
+		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_SERIALIZER, newDefaultSerializer);
 	}
 
 	/**
@@ -276,8 +255,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * @generated
 	 */
 	public ObjectIDMPluginConfiguration getDefaultObjectIDM() {
-		return (ObjectIDMPluginConfiguration) eGet(
-				StorePackage.Literals.USER_SETTINGS__DEFAULT_OBJECT_IDM, true);
+		return (ObjectIDMPluginConfiguration) eGet(StorePackage.Literals.USER_SETTINGS__DEFAULT_OBJECT_IDM, true);
 	}
 
 	/**
@@ -285,10 +263,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultObjectIDM(
-			ObjectIDMPluginConfiguration newDefaultObjectIDM) {
-		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_OBJECT_IDM,
-				newDefaultObjectIDM);
+	public void setDefaultObjectIDM(ObjectIDMPluginConfiguration newDefaultObjectIDM) {
+		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_OBJECT_IDM, newDefaultObjectIDM);
 	}
 
 	/**
@@ -298,8 +274,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<InternalServicePluginConfiguration> getServices() {
-		return (EList<InternalServicePluginConfiguration>) eGet(
-				StorePackage.Literals.USER_SETTINGS__SERVICES, true);
+		return (EList<InternalServicePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__SERVICES, true);
 	}
 
 } //UserSettingsImpl

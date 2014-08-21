@@ -55,8 +55,6 @@ public class SServerSettings implements SDataBase
 	private int smtpPort;
 	private SSmtpProtocol smtpProtocol;
 	private boolean reuseGeometry;
-	public SServerSettings() {
-	}
 
 	public long getOid() {
 		return this.oid;

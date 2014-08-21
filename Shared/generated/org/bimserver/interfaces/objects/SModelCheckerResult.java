@@ -33,8 +33,6 @@ public class SModelCheckerResult implements SDataBase
 	private static SClass sClass;
 	private boolean valid;
 	private List<Long> items = new ArrayList<Long>();
-	public SModelCheckerResult() {
-	}
 
 	public long getOid() {
 		return this.oid;

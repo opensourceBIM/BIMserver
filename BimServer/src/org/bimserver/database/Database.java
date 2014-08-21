@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -39,7 +39,9 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.LogPackage;
@@ -66,7 +68,7 @@ public class Database implements BimDatabase {
 	public static final int STORE_PROJECT_ID = 1;
 	public static final String SCHEMA_VERSION = "SCHEMA_VERSION";
 	private static final String DATE_CREATED = "DATE_CREATED";
-	private final Set<EPackage> emfPackages = new LinkedHashSet<EPackage>();
+	private final Map<String, EPackage> emfPackages = new LinkedHashMap<String, EPackage>();
 	private final KeyValueStore keyValueStore;
 	private final DoubleHashMap<Short, EClass> classifiers = new DoubleHashMap<Short, EClass>();
 	private final List<String> realClasses = new ArrayList<String>();
@@ -78,7 +80,7 @@ public class Database implements BimDatabase {
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
-	private final MetaDataManager metaDataManager = new MetaDataManager();
+	private final MetaDataManager metaDataManager;
 	private final BimServer bimServer;
 
 	/*
@@ -86,14 +88,18 @@ public class Database implements BimDatabase {
 	 * database-schema change. Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 12;
+	public static final int APPLICATION_SCHEMA_VERSION = 13;
 
-	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore) throws DatabaseInitException {
+	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore, MetaDataManager metaDataManager) throws DatabaseInitException {
 		this.bimServer = bimServer;
 		this.keyValueStore = keyValueStore;
-		this.emfPackages.add(StorePackage.eINSTANCE);
-		this.emfPackages.add(LogPackage.eINSTANCE);
-		this.emfPackages.addAll(emfPackages);
+		this.metaDataManager = metaDataManager;
+		this.emfPackages.put(StorePackage.eINSTANCE.getName(), StorePackage.eINSTANCE);
+		this.emfPackages.put(LogPackage.eINSTANCE.getName(), LogPackage.eINSTANCE);
+		this.emfPackages.put(GeometryPackage.eINSTANCE.getName(), GeometryPackage.eINSTANCE);
+		for (EPackage ePackage : emfPackages) {
+			this.emfPackages.put(ePackage.getName(), ePackage);
+		}
 		this.registry = new Registry(keyValueStore);
 	}
 
@@ -103,6 +109,15 @@ public class Database implements BimDatabase {
 
 	public int getDatabaseSchemaVersion() {
 		return databaseSchemaVersion;
+	}
+
+	public EClass getEClassForName(String className) {
+		for (EPackage ePackage : emfPackages.values()) {
+			if (ePackage.getEClassifier(className) != null) {
+				return (EClass) ePackage.getEClassifier(className);
+			}
+		}
+		return null;
 	}
 
 	public void init() throws DatabaseInitException, DatabaseRestartRequiredException, InconsistentModelsException {
@@ -168,7 +183,7 @@ public class Database implements BimDatabase {
 				initCounters(databaseSession);
 			}
 			for (EClass eClass : classifiers.keyBSet()) {
-				if (eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE) {
+				if (eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE) {
 					realClasses.add(eClass.getName());
 				}
 			}
@@ -217,13 +232,29 @@ public class Database implements BimDatabase {
 		return oidCounters.get(eClass).addAndGet(65536);
 	}
 
-	private EClassifier getEClassifier(String classifierName) {
-		for (EPackage ePackage : emfPackages) {
-			if (ePackage.getEClassifier(classifierName) != null) {
-				return ePackage.getEClassifier(classifierName);
-			}
+	public EClassifier getEClassifier(String packageName, String classifierName) throws BimserverDatabaseException {
+		if (packageName == null) {
+			throw new BimserverDatabaseException("No package name given");
 		}
-		return null;
+		if (packageName.contains(".")) {
+			packageName = packageName.substring(packageName.lastIndexOf(".") + 1);
+		}
+		EPackage ePackage = emfPackages.get(packageName);
+		if (ePackage == null) {
+			throw new BimserverDatabaseException("No package found with name " + packageName);
+		}
+		if (ePackage.getEClassifier(classifierName) != null) {
+			return ePackage.getEClassifier(classifierName);
+		}
+		throw new BimserverDatabaseException("No classifier found with name " + classifierName + " in package " + packageName);
+	}
+
+	public EClass getEClass(String packageName, String classifierName) throws BimserverDatabaseException {
+		EClassifier eClassifier = getEClassifier(packageName, classifierName);
+		if (eClassifier instanceof EClass) {
+			return (EClass)eClassifier;
+		}
+		throw new BimserverDatabaseException("Classifier " + packageName + "." + classifierName + " is not an EClass");
 	}
 
 	public void initInternalStructure(DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
@@ -231,9 +262,11 @@ public class Database implements BimDatabase {
 		try {
 			Record record = recordIterator.next();
 			while (record != null) {
-				String className = BinUtils.byteArrayToString(record.getValue());
-				EClass eClass = (EClass) getEClassifier(className);
-				keyValueStore.openTable(eClass.getEPackage().getName() + "_" + eClass.getName());
+				String packageAndClassName = BinUtils.byteArrayToString(record.getValue());
+				String packageName = packageAndClassName.substring(0, packageAndClassName.indexOf("_"));
+				String className = packageAndClassName.substring(packageAndClassName.indexOf("_") + 1);
+				EClass eClass = (EClass) getEClassifier(packageName, className);
+				keyValueStore.openTable(packageAndClassName);
 				Short cid = BinUtils.byteArrayToShort(record.getKey());
 				classifiers.put(cid, eClass);
 				record = recordIterator.next();
@@ -284,15 +317,6 @@ public class Database implements BimDatabase {
 
 	public void close() {
 		keyValueStore.close();
-	}
-
-	public EClass getEClassForName(String className) {
-		for (EPackage ePackage : emfPackages) {
-			if (ePackage.getEClassifier(className) != null) {
-				return (EClass) ePackage.getEClassifier(className);
-			}
-		}
-		return null;
 	}
 
 	public List<String> getAvailableClasses() {
@@ -348,7 +372,7 @@ public class Database implements BimDatabase {
 		if (createTable) {
 			tableId++;
 			try {
-				keyValueStore.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getName()), null);
+				keyValueStore.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getEPackage().getName() + "_" + eClass.getName()), null);
 			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);
 			}

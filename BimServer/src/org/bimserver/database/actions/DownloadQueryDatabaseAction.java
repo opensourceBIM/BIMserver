@@ -56,10 +56,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 		this.qeid = qeid;
 		this.serializerOid = serializerOid;
 		this.code = code;
-		try {
-			this.objectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), bimServer.getPluginManager().requireSchemaDefinition());
-		} catch (PluginException e) {
-		}
+		this.objectIDM = objectIDM;
 	}
 
 	@Override
@@ -74,7 +71,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 				QueryEnginePlugin queryEnginePlugin = getBimServer().getPluginManager().getQueryEngine(queryEngineObject.getPluginDescriptor().getPluginClassName(), true);
 				if (queryEnginePlugin != null) {
 					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(new PluginConfiguration(queryEngineObject.getSettings()));
-					IfcModelInterface result = new IfcModel();
+					IfcModelInterface result = new IfcModel(null); // TODO
 					IfcModelInterface finalResult = queryEngine.query(ifcModel, code, new Reporter(){
 						@Override
 						public void error(Exception error) {

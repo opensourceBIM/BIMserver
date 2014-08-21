@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.ReferenceDataValue;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ReferenceDataValueImpl extends DataValueImpl implements
-		ReferenceDataValue {
+public class ReferenceDataValueImpl extends DataValueImpl implements ReferenceDataValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +61,7 @@ public class ReferenceDataValueImpl extends DataValueImpl implements
 	 * @generated
 	 */
 	public String getTypeName() {
-		return (String) eGet(
-				StorePackage.Literals.REFERENCE_DATA_VALUE__TYPE_NAME, true);
+		return (String) eGet(StorePackage.Literals.REFERENCE_DATA_VALUE__TYPE_NAME, true);
 	}
 
 	/**
@@ -80,8 +79,7 @@ public class ReferenceDataValueImpl extends DataValueImpl implements
 	 * @generated
 	 */
 	public String getGuid() {
-		return (String) eGet(StorePackage.Literals.REFERENCE_DATA_VALUE__GUID,
-				true);
+		return (String) eGet(StorePackage.Literals.REFERENCE_DATA_VALUE__GUID, true);
 	}
 
 	/**

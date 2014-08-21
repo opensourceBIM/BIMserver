@@ -38,6 +38,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotation;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotationCurveOccurrence;
@@ -101,6 +102,8 @@ public class IfcModel implements IfcModelInterface {
 	private long oidCounter = 1;
 	private boolean useDoubleStrings = true;
 
+	private PackageMetaData packageMetaData;
+
 	private static BiMap<EClass, Class<?>> initEClassClassMap() {
 		BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
 		for (EPackage ePackage : new EPackage[] { Ifc2x3tc1Package.eINSTANCE, StorePackage.eINSTANCE, LogPackage.eINSTANCE }) {
@@ -113,12 +116,19 @@ public class IfcModel implements IfcModelInterface {
 		}
 		return eClassClassMap;
 	}
+	
+	@Override
+	public PackageMetaData getPackageMetaData() {
+		return null;
+	}
 
-	public IfcModel() {
+	public IfcModel(PackageMetaData packageMetaData) {
+		this.packageMetaData = packageMetaData;
 		this.objects = HashBiMap.create();
 	}
 
-	public IfcModel(int size) {
+	public IfcModel(PackageMetaData packageMetaData, int size) {
+		this.packageMetaData = packageMetaData;
 		this.objects = HashBiMap.create(size);
 	}
 

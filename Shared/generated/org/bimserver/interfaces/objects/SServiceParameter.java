@@ -31,8 +31,6 @@ public class SServiceParameter implements SBase
 	private java.lang.String doc;
 	private SServiceType type;
 	private SServiceType genericType;
-	public SServiceParameter() {
-	}
 	
 	@XmlTransient
 	public SClass getSClass() {

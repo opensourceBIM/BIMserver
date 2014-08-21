@@ -30,8 +30,6 @@ public class SStringType extends SPrimitiveType implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private java.lang.String value;
-	public SStringType() {
-	}
 
 	public long getOid() {
 		return this.oid;

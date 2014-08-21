@@ -30,8 +30,6 @@ public class SObjectDefinition extends STypeDefinition implements SBase
 	@XmlTransient
 	private static SClass sClass;
 	private List<SParameterDefinition> parameters = new ArrayList<SParameterDefinition>();
-	public SObjectDefinition() {
-	}
 	
 	@XmlTransient
 	public SClass getSClass() {

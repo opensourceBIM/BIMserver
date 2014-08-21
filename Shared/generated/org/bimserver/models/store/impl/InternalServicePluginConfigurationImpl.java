@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,6 +19,7 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class InternalServicePluginConfigurationImpl extends
-		PluginConfigurationImpl implements InternalServicePluginConfiguration {
+public class InternalServicePluginConfigurationImpl extends PluginConfigurationImpl implements InternalServicePluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +63,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public boolean isRemoteAccessible() {
-		return (Boolean) eGet(
-				StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE, true);
 	}
 
 	/**
@@ -74,8 +72,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public void setRemoteAccessible(boolean newRemoteAccessible) {
-		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE,
-				newRemoteAccessible);
+		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE, newRemoteAccessible);
 	}
 
 	/**
@@ -84,9 +81,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(
-				StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				true);
+		return (UserSettings) eGet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
 
 	/**
@@ -95,8 +90,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public void setUserSettings(UserSettings newUserSettings) {
-		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				newUserSettings);
+		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
 
 	/**
@@ -105,9 +99,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public boolean isPublicProfile() {
-		return (Boolean) eGet(
-				StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE, true);
 	}
 
 	/**
@@ -116,8 +108,7 @@ public class InternalServicePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public void setPublicProfile(boolean newPublicProfile) {
-		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE,
-				newPublicProfile);
+		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE, newPublicProfile);
 	}
 
 } //InternalServicePluginConfigurationImpl

@@ -25,7 +25,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.models.ifc2x3tc1.GeometryData;
+import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.eclipse.emf.ecore.EClass;
 

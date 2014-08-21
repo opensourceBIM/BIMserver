@@ -53,6 +53,7 @@ public class DownloadParameters extends LongActionKey {
 	private long serializerOid;
 	private boolean useObjectIDM;
 	private Deep deep;
+	private String schema;
 
 	public DownloadParameters(BimServer bimServer, DownloadType downloadType) {
 		this.bimServer = bimServer;
@@ -394,5 +395,9 @@ public class DownloadParameters extends LongActionKey {
 
 	public String getJsonQuery() {
 		return jsonQuery;
+	}
+
+	public String getSchema() {
+		return schema;
 	}
 }

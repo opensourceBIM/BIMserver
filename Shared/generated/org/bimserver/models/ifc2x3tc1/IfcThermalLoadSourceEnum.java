@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -50,30 +50,36 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DRYBULBTEMPERATURE(1, "DRYBULBTEMPERATURE", "DRYBULBTEMPERATURE"), /**
-																		 * The '<em><b>VENTILATIONINDOORAIR</b></em>' literal object.
-																		 * <!-- begin-user-doc -->
-																		 * <!-- end-user-doc -->
-																		 * @see #VENTILATIONINDOORAIR_VALUE
-																		 * @generated
-																		 * @ordered
-																		 */
-	VENTILATIONINDOORAIR(2, "VENTILATIONINDOORAIR", "VENTILATIONINDOORAIR"), /**
-																				 * The '<em><b>RECIRCULATEDAIR</b></em>' literal object.
-																				 * <!-- begin-user-doc -->
-																				 * <!-- end-user-doc -->
-																				 * @see #RECIRCULATEDAIR_VALUE
-																				 * @generated
-																				 * @ordered
-																				 */
-	RECIRCULATEDAIR(3, "RECIRCULATEDAIR", "RECIRCULATEDAIR"), /**
-																 * The '<em><b>NOTDEFINED</b></em>' literal object.
-																 * <!-- begin-user-doc -->
-																 * <!-- end-user-doc -->
-																 * @see #NOTDEFINED_VALUE
-																 * @generated
-																 * @ordered
-																 */
+	DRYBULBTEMPERATURE(1, "DRYBULBTEMPERATURE", "DRYBULBTEMPERATURE"),
+
+	/**
+	 * The '<em><b>VENTILATIONINDOORAIR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #VENTILATIONINDOORAIR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	VENTILATIONINDOORAIR(2, "VENTILATIONINDOORAIR", "VENTILATIONINDOORAIR"),
+
+	/**
+	 * The '<em><b>RECIRCULATEDAIR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RECIRCULATEDAIR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	RECIRCULATEDAIR(3, "RECIRCULATEDAIR", "RECIRCULATEDAIR"),
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
@@ -84,22 +90,26 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RELATIVEHUMIDITY(5, "RELATIVEHUMIDITY", "RELATIVEHUMIDITY"), /**
-																	 * The '<em><b>EXHAUSTAIR</b></em>' literal object.
-																	 * <!-- begin-user-doc -->
-																	 * <!-- end-user-doc -->
-																	 * @see #EXHAUSTAIR_VALUE
-																	 * @generated
-																	 * @ordered
-																	 */
-	EXHAUSTAIR(6, "EXHAUSTAIR", "EXHAUSTAIR"), /**
-												 * The '<em><b>VENTILATIONOUTSIDEAIR</b></em>' literal object.
-												 * <!-- begin-user-doc -->
-												 * <!-- end-user-doc -->
-												 * @see #VENTILATIONOUTSIDEAIR_VALUE
-												 * @generated
-												 * @ordered
-												 */
+	RELATIVEHUMIDITY(5, "RELATIVEHUMIDITY", "RELATIVEHUMIDITY"),
+
+	/**
+	 * The '<em><b>EXHAUSTAIR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #EXHAUSTAIR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	EXHAUSTAIR(6, "EXHAUSTAIR", "EXHAUSTAIR"),
+
+	/**
+	 * The '<em><b>VENTILATIONOUTSIDEAIR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #VENTILATIONOUTSIDEAIR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	VENTILATIONOUTSIDEAIR(7, "VENTILATIONOUTSIDEAIR", "VENTILATIONOUTSIDEAIR"),
 
 	/**
@@ -130,14 +140,16 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(10, "USERDEFINED", "USERDEFINED"), /**
-													 * The '<em><b>EQUIPMENT</b></em>' literal object.
-													 * <!-- begin-user-doc -->
-													 * <!-- end-user-doc -->
-													 * @see #EQUIPMENT_VALUE
-													 * @generated
-													 * @ordered
-													 */
+	USERDEFINED(10, "USERDEFINED", "USERDEFINED"),
+
+	/**
+	 * The '<em><b>EQUIPMENT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #EQUIPMENT_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	EQUIPMENT(11, "EQUIPMENT", "EQUIPMENT"),
 
 	/**
@@ -376,8 +388,9 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcThermalLoadSourceEnum[] VALUES_ARRAY = new IfcThermalLoadSourceEnum[] { NULL, DRYBULBTEMPERATURE, VENTILATIONINDOORAIR, RECIRCULATEDAIR, NOTDEFINED,
-			RELATIVEHUMIDITY, EXHAUSTAIR, VENTILATIONOUTSIDEAIR, PEOPLE, INFILTRATION, USERDEFINED, EQUIPMENT, AIREXCHANGERATE, LIGHTING, };
+	private static final IfcThermalLoadSourceEnum[] VALUES_ARRAY = new IfcThermalLoadSourceEnum[] { NULL, DRYBULBTEMPERATURE, VENTILATIONINDOORAIR,
+			RECIRCULATEDAIR, NOTDEFINED, RELATIVEHUMIDITY, EXHAUSTAIR, VENTILATIONOUTSIDEAIR, PEOPLE, INFILTRATION, USERDEFINED, EQUIPMENT, AIREXCHANGERATE,
+			LIGHTING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Thermal Load Source Enum</b></em>' enumerators.

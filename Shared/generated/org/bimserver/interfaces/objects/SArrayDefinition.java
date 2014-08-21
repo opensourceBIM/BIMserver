@@ -28,8 +28,6 @@ public class SArrayDefinition extends STypeDefinition implements SBase
 	@XmlTransient
 	private static SClass sClass;
 	private STypeDefinition type;
-	public SArrayDefinition() {
-	}
 	
 	@XmlTransient
 	public SClass getSClass() {

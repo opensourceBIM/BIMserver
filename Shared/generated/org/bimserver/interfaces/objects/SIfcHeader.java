@@ -42,8 +42,6 @@ public class SIfcHeader implements SDataBase
 	private java.lang.String originatingSystem;
 	private java.lang.String ifcSchemaVersion;
 	private java.lang.String authorization;
-	public SIfcHeader() {
-	}
 
 	public long getOid() {
 		return this.oid;

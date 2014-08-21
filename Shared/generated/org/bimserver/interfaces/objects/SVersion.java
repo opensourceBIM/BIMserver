@@ -37,8 +37,6 @@ public class SVersion implements SDataBase
 	private java.lang.String downloadUrl;
 	private java.lang.String supportUrl;
 	private java.lang.String supportEmail;
-	public SVersion() {
-	}
 
 	public long getOid() {
 		return this.oid;

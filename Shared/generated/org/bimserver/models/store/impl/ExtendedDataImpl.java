@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,6 +19,7 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.File;
@@ -26,6 +27,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -193,8 +195,7 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 * @generated
 	 */
 	public ExtendedDataSchema getSchema() {
-		return (ExtendedDataSchema) eGet(
-				StorePackage.Literals.EXTENDED_DATA__SCHEMA, true);
+		return (ExtendedDataSchema) eGet(StorePackage.Literals.EXTENDED_DATA__SCHEMA, true);
 	}
 
 	/**
@@ -212,8 +213,7 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 * @generated
 	 */
 	public Revision getRevision() {
-		return (Revision) eGet(StorePackage.Literals.EXTENDED_DATA__REVISION,
-				true);
+		return (Revision) eGet(StorePackage.Literals.EXTENDED_DATA__REVISION, true);
 	}
 
 	/**
@@ -231,8 +231,7 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 * @generated
 	 */
 	public Project getProject() {
-		return (Project) eGet(StorePackage.Literals.EXTENDED_DATA__PROJECT,
-				true);
+		return (Project) eGet(StorePackage.Literals.EXTENDED_DATA__PROJECT, true);
 	}
 
 	/**

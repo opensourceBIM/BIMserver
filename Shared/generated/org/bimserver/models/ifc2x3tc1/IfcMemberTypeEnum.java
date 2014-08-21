@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -413,8 +413,8 @@ public enum IfcMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcMemberTypeEnum[] VALUES_ARRAY = new IfcMemberTypeEnum[] { NULL, CHORD, NOTDEFINED, MEMBER, PLATE, STUD, MULLION, COLLAR, PURLIN, POST, RAFTER,
-			USERDEFINED, BRACE, STRUT, STRINGER, };
+	private static final IfcMemberTypeEnum[] VALUES_ARRAY = new IfcMemberTypeEnum[] { NULL, CHORD, NOTDEFINED, MEMBER, PLATE, STUD, MULLION, COLLAR, PURLIN,
+			POST, RAFTER, USERDEFINED, BRACE, STRUT, STRINGER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Member Type Enum</b></em>' enumerators.

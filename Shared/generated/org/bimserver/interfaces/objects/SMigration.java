@@ -32,8 +32,6 @@ public class SMigration implements SDataBase
 	private java.lang.Integer number;
 	private java.lang.String description;
 	private java.lang.Boolean executed;
-	public SMigration() {
-	}
 
 	public long getOid() {
 		return this.oid;

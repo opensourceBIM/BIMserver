@@ -52,8 +52,7 @@ public class SProject implements SDataBase
 	private List<Long> services = new ArrayList<Long>();
 	private List<Long> logs = new ArrayList<Long>();
 	private List<Long> modelCheckers = new ArrayList<Long>();
-	public SProject() {
-	}
+	private java.lang.String schema;
 
 	public long getOid() {
 		return this.oid;
@@ -140,6 +139,9 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("modelCheckers")) {
 			return getModelCheckers();
+		}
+		if (sField.getName().equals("schema")) {
+			return getSchema();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -230,6 +232,10 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("modelCheckers")) {
 			setModelCheckers((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("schema")) {
+			setSchema((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -401,6 +407,14 @@ public class SProject implements SDataBase
 
 	public void setModelCheckers(List<Long> modelCheckers) {
 		this.modelCheckers = modelCheckers;
+	}
+	
+	public java.lang.String getSchema() {
+		return schema;
+	}
+
+	public void setSchema(java.lang.String schema) {
+		this.schema = schema;
 	}
 	
 	@Override

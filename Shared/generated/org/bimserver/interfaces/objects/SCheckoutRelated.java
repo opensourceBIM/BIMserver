@@ -33,8 +33,6 @@ public class SCheckoutRelated extends SLogAction implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private long checkoutId = -1;
-	public SCheckoutRelated() {
-	}
 
 	public long getOid() {
 		return this.oid;

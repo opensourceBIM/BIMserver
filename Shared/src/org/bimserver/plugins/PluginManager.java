@@ -404,16 +404,20 @@ public class PluginManager {
 		return getPlugins(SchemaPlugin.class, onlyEnabled);
 	}
 	
-	public SchemaDefinition requireSchemaDefinition() throws PluginException {
+	public SchemaDefinition requireSchemaDefinition(String name) throws PluginException {
 		Collection<SchemaPlugin> allSchemaPlugins = getAllSchemaPlugins(true);
 		if (allSchemaPlugins.size() == 0) {
 			throw new SchemaException("No schema plugins found");
 		}
-		SchemaPlugin schemaPlugin = allSchemaPlugins.iterator().next();
-		if (!schemaPlugin.isInitialized()) {
-			schemaPlugin.init(this);
+		for (SchemaPlugin schemaPlugin : allSchemaPlugins) {
+			if (!schemaPlugin.isInitialized()) {
+				schemaPlugin.init(this);
+			}
+			if (schemaPlugin.getSchemaVersion().equals(name)) {
+				return schemaPlugin.getSchemaDefinition(new PluginConfiguration());
+			}
 		}
-		return schemaPlugin.getSchemaDefinition(new PluginConfiguration());
+		throw new PluginException("No schema definition found for " + name);
 	}
 	
 	public DeserializerPlugin requireDeserializer(String extension) throws DeserializeException {
@@ -511,16 +515,20 @@ public class PluginManager {
 		return allDeserializerPlugins.iterator().next();
 	}
 
-	public SchemaPlugin getFirstSchemaPlugin(boolean onlyEnabled) throws PluginException {
+	public SchemaPlugin getFirstSchemaPlugin(String schema, boolean onlyEnabled) throws PluginException {
 		Collection<SchemaPlugin> allSchemaPlugins = getAllSchemaPlugins(onlyEnabled);
 		if (allSchemaPlugins.size() == 0) {
 			throw new PluginException("No schema plugins found");
 		}
-		SchemaPlugin schemaPlugin = allSchemaPlugins.iterator().next();
-		if (!schemaPlugin.isInitialized()) {
-			schemaPlugin.init(this);
+		for (SchemaPlugin schemaPlugin : allSchemaPlugins) {
+			if (schemaPlugin.getSchemaVersion().equals(schema)) {
+				if (!schemaPlugin.isInitialized()) {
+					schemaPlugin.init(this);
+				}
+				return schemaPlugin;
+			}
 		}
-		return schemaPlugin;
+		return null;
 	}
 
 	public ObjectIDMPlugin getObjectIDMByName(String className, boolean onlyEnabled) {
@@ -674,5 +682,9 @@ public class PluginManager {
 		if (notificationsManagerInterface != null) {
 			notificationsManagerInterface.registerInternalNewExtendedDataOnRevisionHandler(uoid, serviceDescriptor, newExtendedDataHandler);
 		}
+	}
+	
+	public DeserializerPlugin getDeserializerPlugin(String pluginClassName, boolean onlyEnabled) {
+		return getPluginByClassName(DeserializerPlugin.class, pluginClassName, onlyEnabled);
 	}
 }

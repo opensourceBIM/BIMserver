@@ -24,6 +24,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -71,13 +72,16 @@ public class BranchToExistingProjectDatabaseAction extends AbstractBranchDatabas
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		PackageMetaData lastMetaData = null;
 		for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
-			IfcModel subModel = new IfcModel();
-			getDatabaseSession().getMap(subModel, new Query(subRevision.getProject().getId(), subRevision.getId(), Deep.YES));
+			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(subRevision.getProject().getSchema());
+			IfcModel subModel = new IfcModel(packageMetaData);
+			getDatabaseSession().getMap(subModel, new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), Deep.YES));
 			subModel.getModelMetaData().setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
+			lastMetaData = packageMetaData;
 		}
-		IfcModelInterface model = new IfcModel();
+		IfcModelInterface model = new IfcModel(lastMetaData);
 		try {
 			model = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid())
 					.merge(oldRevision.getProject(), ifcModelSet, new ModelHelper(model));

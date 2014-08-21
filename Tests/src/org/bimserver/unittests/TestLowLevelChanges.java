@@ -35,6 +35,8 @@ import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -146,7 +148,7 @@ public class TestLowLevelChanges {
 
 	private long createProject() {
 		try {
-			SProject project = bimsie1ServiceInterface.addProject("Project " + new Random().nextInt());
+			SProject project = bimsie1ServiceInterface.addProject("Project " + new Random().nextInt(), "ifc4");
 			return project.getOid();
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -331,7 +333,11 @@ public class TestLowLevelChanges {
 		try {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			
+			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
+			
+			deserializer.init(packageMetaData);
 			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), "test.ifc", 0);
 			return model;
 		} catch (PluginException e) {

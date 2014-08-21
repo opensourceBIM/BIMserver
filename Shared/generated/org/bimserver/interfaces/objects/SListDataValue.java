@@ -32,8 +32,6 @@ public class SListDataValue extends SDataValue implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private List<SDataValue> values = new ArrayList<SDataValue>();
-	public SListDataValue() {
-	}
 
 	public long getOid() {
 		return this.oid;

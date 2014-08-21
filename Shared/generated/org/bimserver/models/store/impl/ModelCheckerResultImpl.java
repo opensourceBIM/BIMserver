@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelCheckerResultImpl extends IdEObjectImpl implements
-		ModelCheckerResult {
+public class ModelCheckerResultImpl extends IdEObjectImpl implements ModelCheckerResult {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,8 +76,7 @@ public class ModelCheckerResultImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public boolean isValid() {
-		return (Boolean) eGet(
-				StorePackage.Literals.MODEL_CHECKER_RESULT__VALID, true);
+		return (Boolean) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT__VALID, true);
 	}
 
 	/**
@@ -97,8 +95,7 @@ public class ModelCheckerResultImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ModelCheckerResultItem> getItems() {
-		return (EList<ModelCheckerResultItem>) eGet(
-				StorePackage.Literals.MODEL_CHECKER_RESULT__ITEMS, true);
+		return (EList<ModelCheckerResultItem>) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT__ITEMS, true);
 	}
 
 } //ModelCheckerResultImpl

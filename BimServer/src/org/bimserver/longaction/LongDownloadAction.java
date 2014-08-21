@@ -116,7 +116,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			action = new DownloadByNamesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getNames(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, downloadParameters.getDeep());
 			break;
 		case DOWNLOAD_OF_TYPE:
-			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), downloadParameters.getUseObjectIDM(), getAuthorization(), objectIDM, downloadParameters.getDeep());
+			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSchema(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), downloadParameters.getUseObjectIDM(), getAuthorization(), objectIDM, downloadParameters.getDeep());
 			break;
 		case DOWNLOAD_JSON_QUERY:
 			action = new DownloadByJsonQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());

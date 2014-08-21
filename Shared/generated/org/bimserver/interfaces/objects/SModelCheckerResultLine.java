@@ -34,8 +34,6 @@ public class SModelCheckerResultLine extends SModelCheckerResultItem implements 
 	private java.lang.String shouldBe;
 	private SModelCheckerResultType type;
 	private long objectId;
-	public SModelCheckerResultLine() {
-	}
 
 	public long getOid() {
 		return this.oid;

@@ -31,8 +31,6 @@ public class SServerInfo implements SDataBase
 	private static SClass sClass;
 	private SServerState serverState;
 	private java.lang.String errorMessage;
-	public SServerInfo() {
-	}
 
 	public long getOid() {
 		return this.oid;

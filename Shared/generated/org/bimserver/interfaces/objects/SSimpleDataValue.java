@@ -30,8 +30,6 @@ public class SSimpleDataValue extends SDataValue implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private java.lang.String stringValue;
-	public SSimpleDataValue() {
-	}
 
 	public long getOid() {
 		return this.oid;

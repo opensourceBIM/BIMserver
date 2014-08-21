@@ -35,8 +35,6 @@ public class SServiceType implements SDataBase
 	private java.lang.String simpleName;
 	private List<SServiceField> fields = new ArrayList<SServiceField>();
 	private SServiceSimpleType simpleType;
-	public SServiceType() {
-	}
 
 	public long getOid() {
 		return this.oid;

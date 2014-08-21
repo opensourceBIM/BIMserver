@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,8 +19,10 @@ package org.bimserver.models.store.impl;
 import javax.activation.DataHandler;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.DownloadResult;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -74,8 +76,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * @generated
 	 */
 	public String getProjectName() {
-		return (String) eGet(
-				StorePackage.Literals.DOWNLOAD_RESULT__PROJECT_NAME, true);
+		return (String) eGet(StorePackage.Literals.DOWNLOAD_RESULT__PROJECT_NAME, true);
 	}
 
 	/**
@@ -84,8 +85,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * @generated
 	 */
 	public void setProjectName(String newProjectName) {
-		eSet(StorePackage.Literals.DOWNLOAD_RESULT__PROJECT_NAME,
-				newProjectName);
+		eSet(StorePackage.Literals.DOWNLOAD_RESULT__PROJECT_NAME, newProjectName);
 	}
 
 	/**
@@ -94,8 +94,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * @generated
 	 */
 	public Integer getRevisionNr() {
-		return (Integer) eGet(
-				StorePackage.Literals.DOWNLOAD_RESULT__REVISION_NR, true);
+		return (Integer) eGet(StorePackage.Literals.DOWNLOAD_RESULT__REVISION_NR, true);
 	}
 
 	/**
@@ -113,8 +112,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * @generated
 	 */
 	public DataHandler getFile() {
-		return (DataHandler) eGet(StorePackage.Literals.DOWNLOAD_RESULT__FILE,
-				true);
+		return (DataHandler) eGet(StorePackage.Literals.DOWNLOAD_RESULT__FILE, true);
 	}
 
 	/**

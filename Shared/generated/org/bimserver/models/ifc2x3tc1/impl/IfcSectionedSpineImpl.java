@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,7 +21,9 @@ import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcCompositeCurve;
 import org.bimserver.models.ifc2x3tc1.IfcProfileDef;
 import org.bimserver.models.ifc2x3tc1.IfcSectionedSpine;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

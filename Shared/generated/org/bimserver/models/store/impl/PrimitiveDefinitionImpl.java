@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,6 +19,7 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.PrimitiveDefinition;
 import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PrimitiveDefinitionImpl extends TypeDefinitionImpl implements
-		PrimitiveDefinition {
+public class PrimitiveDefinitionImpl extends TypeDefinitionImpl implements PrimitiveDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +61,7 @@ public class PrimitiveDefinitionImpl extends TypeDefinitionImpl implements
 	 * @generated
 	 */
 	public PrimitiveEnum getType() {
-		return (PrimitiveEnum) eGet(
-				StorePackage.Literals.PRIMITIVE_DEFINITION__TYPE, true);
+		return (PrimitiveEnum) eGet(StorePackage.Literals.PRIMITIVE_DEFINITION__TYPE, true);
 	}
 
 	/**

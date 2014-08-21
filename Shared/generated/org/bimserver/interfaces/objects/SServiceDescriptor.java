@@ -42,8 +42,6 @@ public class SServiceDescriptor implements SBase
 	private java.lang.String companyUrl;
 	private java.lang.String tokenUrl;
 	private java.lang.String newProfileUrl;
-	public SServiceDescriptor() {
-	}
 	
 	@XmlTransient
 	public SClass getSClass() {

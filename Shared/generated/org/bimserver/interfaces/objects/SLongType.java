@@ -30,8 +30,6 @@ public class SLongType extends SPrimitiveType implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private long value;
-	public SLongType() {
-	}
 
 	public long getOid() {
 		return this.oid;

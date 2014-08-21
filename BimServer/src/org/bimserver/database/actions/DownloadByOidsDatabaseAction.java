@@ -29,6 +29,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -74,6 +75,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		Project project = null;
 		long incrSize = 0L;
+		PackageMetaData lastPackageMetaData = null;
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
@@ -85,12 +87,14 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 			final long totalSize = incrSize;
 			final AtomicLong total = new AtomicLong();
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-				IfcModel subModel = new IfcModel();
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+				lastPackageMetaData = packageMetaData;
+				IfcModel subModel = new IfcModel(packageMetaData);
 				int highestStopId = findHighestStopRid(project, concreteRevision);
 				
 				HideAllInversesObjectIDM hideAllInversesObjectIDM;
 				try {
-					hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getBimServer().getPluginManager().requireSchemaDefinition());
+					hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getBimServer().getPluginManager().requireSchemaDefinition(packageMetaData.getSchema().name()));
 					// This hack makes sure the JsonGeometrySerializer can look at the styles, probably more subtypes of getIfcRepresentationItem should be added (not ignored), also this code should not be here at all...
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(new StructuralFeatureIdentifier(Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem().getName(), Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_StyledByItem().getName()));
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(new StructuralFeatureIdentifier(Ifc2x3tc1Package.eINSTANCE.getIfcExtrudedAreaSolid().getName(), Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_StyledByItem().getName()));
@@ -98,7 +102,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_IsDecomposedBy());
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcOpeningElement_HasFillings());
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations());
-					Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), hideAllInversesObjectIDM, deep, highestStopId);
+					Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), hideAllInversesObjectIDM, deep, highestStopId);
 					subModel.addChangeListener(new IfcModelChangeListener() {
 						@Override
 						public void objectAdded() {
@@ -128,7 +132,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 				}
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel();
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

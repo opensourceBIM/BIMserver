@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,9 +17,11 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.ProjectSmall;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,6 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getNrSubProjects <em>Nr Sub Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#isHasCheckinRights <em>Has Checkin Rights</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getLastRevisionId <em>Last Revision Id</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
  *
@@ -113,8 +116,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public ObjectState getState() {
-		return (ObjectState) eGet(StorePackage.Literals.PROJECT_SMALL__STATE,
-				true);
+		return (ObjectState) eGet(StorePackage.Literals.PROJECT_SMALL__STATE, true);
 	}
 
 	/**
@@ -132,8 +134,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public int getNrRevisions() {
-		return (Integer) eGet(
-				StorePackage.Literals.PROJECT_SMALL__NR_REVISIONS, true);
+		return (Integer) eGet(StorePackage.Literals.PROJECT_SMALL__NR_REVISIONS, true);
 	}
 
 	/**
@@ -151,8 +152,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public int getNrSubProjects() {
-		return (Integer) eGet(
-				StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS, true);
+		return (Integer) eGet(StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS, true);
 	}
 
 	/**
@@ -161,8 +161,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public void setNrSubProjects(int newNrSubProjects) {
-		eSet(StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS,
-				newNrSubProjects);
+		eSet(StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS, newNrSubProjects);
 	}
 
 	/**
@@ -171,8 +170,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public boolean isHasCheckinRights() {
-		return (Boolean) eGet(
-				StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS, true);
+		return (Boolean) eGet(StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS, true);
 	}
 
 	/**
@@ -181,8 +179,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public void setHasCheckinRights(boolean newHasCheckinRights) {
-		eSet(StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS,
-				newHasCheckinRights);
+		eSet(StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS, newHasCheckinRights);
 	}
 
 	/**
@@ -191,8 +188,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public long getLastRevisionId() {
-		return (Long) eGet(
-				StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID, true);
+		return (Long) eGet(StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID, true);
 	}
 
 	/**
@@ -201,8 +197,25 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * @generated
 	 */
 	public void setLastRevisionId(long newLastRevisionId) {
-		eSet(StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID,
-				newLastRevisionId);
+		eSet(StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID, newLastRevisionId);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSchema() {
+		return (String) eGet(StorePackage.Literals.PROJECT_SMALL__SCHEMA, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSchema(String newSchema) {
+		eSet(StorePackage.Literals.PROJECT_SMALL__SCHEMA, newSchema);
 	}
 
 } //ProjectSmallImpl

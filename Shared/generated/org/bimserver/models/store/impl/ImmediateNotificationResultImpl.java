@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,9 +17,11 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.ImmediateNotificationResult;
 import org.bimserver.models.store.NotifictionResultEnum;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,8 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ImmediateNotificationResultImpl extends IdEObjectImpl implements
-		ImmediateNotificationResult {
+public class ImmediateNotificationResultImpl extends IdEObjectImpl implements ImmediateNotificationResult {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,9 +74,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public NotifictionResultEnum getResult() {
-		return (NotifictionResultEnum) eGet(
-				StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__RESULT,
-				true);
+		return (NotifictionResultEnum) eGet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__RESULT, true);
 	}
 
 	/**
@@ -84,8 +83,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setResult(NotifictionResultEnum newResult) {
-		eSet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__RESULT,
-				newResult);
+		eSet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__RESULT, newResult);
 	}
 
 	/**
@@ -94,9 +92,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION,
-				true);
+		return (String) eGet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION, true);
 	}
 
 	/**
@@ -105,8 +101,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION,
-				newDescription);
+		eSet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION, newDescription);
 	}
 
 } //ImmediateNotificationResultImpl

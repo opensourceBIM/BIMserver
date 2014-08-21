@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -188,7 +188,8 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcOutletTypeEnum[] VALUES_ARRAY = new IfcOutletTypeEnum[] { NULL, NOTDEFINED, AUDIOVISUALOUTLET, COMMUNICATIONSOUTLET, USERDEFINED, POWEROUTLET, };
+	private static final IfcOutletTypeEnum[] VALUES_ARRAY = new IfcOutletTypeEnum[] { NULL, NOTDEFINED, AUDIOVISUALOUTLET, COMMUNICATIONSOUTLET, USERDEFINED,
+			POWEROUTLET, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Outlet Type Enum</b></em>' enumerators.

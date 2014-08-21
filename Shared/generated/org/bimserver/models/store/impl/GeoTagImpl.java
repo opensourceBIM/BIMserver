@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,10 +17,13 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -97,8 +100,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Project> getProjects() {
-		return (EList<Project>) eGet(StorePackage.Literals.GEO_TAG__PROJECTS,
-				true);
+		return (EList<Project>) eGet(StorePackage.Literals.GEO_TAG__PROJECTS, true);
 	}
 
 	/**
@@ -179,8 +181,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public Double getDirectionAngle() {
-		return (Double) eGet(StorePackage.Literals.GEO_TAG__DIRECTION_ANGLE,
-				true);
+		return (Double) eGet(StorePackage.Literals.GEO_TAG__DIRECTION_ANGLE, true);
 	}
 
 	/**

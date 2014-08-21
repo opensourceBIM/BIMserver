@@ -23,20 +23,13 @@ import org.bimserver.models.store.PrimitiveDefinition;
 import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StringType;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
-import org.bimserver.plugins.serializers.Serializer;
 
-public class IfcStepSerializerPlugin extends AbstractSerializerPlugin {
+public abstract class IfcStepSerializerPlugin extends AbstractSerializerPlugin {
 
 	private boolean initialized = false;
-
-	@Override
-	public Serializer createSerializer(PluginConfiguration pluginConfiguration) {
-		return new IfcStepSerializer(pluginConfiguration);
-	}
 
 	@Override
 	public String getDescription() {
@@ -55,13 +48,7 @@ public class IfcStepSerializerPlugin extends AbstractSerializerPlugin {
 	
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
-		pluginManager.requireSchemaDefinition();
 		initialized = true;
-	}
-
-	@Override
-	public String getDefaultName() {
-		return "Ifc2x3";
 	}
 
 	@Override

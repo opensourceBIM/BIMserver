@@ -38,8 +38,6 @@ public class SUserSession implements SDataBase
 	private java.util.Date activeSince;
 	private java.util.Date lastActive;
 	private SAccessMethod accessMethod;
-	public SUserSession() {
-	}
 
 	public long getOid() {
 		return this.oid;

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.PercentageChange;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -33,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PercentageChangeImpl extends RemoteServiceUpdateImpl implements
-		PercentageChange {
+public class PercentageChangeImpl extends RemoteServiceUpdateImpl implements PercentageChange {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,8 +60,7 @@ public class PercentageChangeImpl extends RemoteServiceUpdateImpl implements
 	 * @generated
 	 */
 	public int getPercentage() {
-		return (Integer) eGet(
-				StorePackage.Literals.PERCENTAGE_CHANGE__PERCENTAGE, true);
+		return (Integer) eGet(StorePackage.Literals.PERCENTAGE_CHANGE__PERCENTAGE, true);
 	}
 
 	/**

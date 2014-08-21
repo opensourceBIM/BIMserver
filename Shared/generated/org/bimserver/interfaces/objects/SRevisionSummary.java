@@ -32,8 +32,6 @@ public class SRevisionSummary implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private List<SRevisionSummaryContainer> list = new ArrayList<SRevisionSummaryContainer>();
-	public SRevisionSummary() {
-	}
 
 	public long getOid() {
 		return this.oid;

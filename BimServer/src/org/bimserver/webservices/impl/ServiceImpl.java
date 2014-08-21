@@ -41,6 +41,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
+import org.bimserver.BimServer;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -191,6 +192,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String userUsername = "Unknown";
 		try {
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
+			Project project = session.get(poid, Query.getDefault());
 			username = user.getName();
 			userUsername = user.getUsername();
 			File homeDirIncoming = new File(getBimServer().getHomeDir(), "incoming");
@@ -216,11 +218,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
 			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
-			try {
-				deserializer.init(getBimServer().getPluginManager().requireSchemaDefinition());
-			} catch (PluginException e) {
-				throw new UserException(e);
-			}
+			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getEPackage(project.getSchema()));
 			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), inputStream, deserializer, fileSize, comment, fileName, merge);
 			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 			getBimServer().getLongActionManager().start(longAction);
@@ -279,11 +277,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
 			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
-			try {
-				deserializer.init(getBimServer().getPluginManager().requireSchemaDefinition());
-			} catch (PluginException e) {
-				throw new UserException(e);
-			}
+			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getEPackage("ifc2x3tc1"));
 			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), inputStream, deserializer, contentLength, comment, fileName, merge);
 			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 			getBimServer().getLongActionManager().start(longAction);
@@ -892,7 +886,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<List<String>> action = new GetAvailableClassesInRevisionDatabaseAction(session, getInternalAccessMethod(), roid);
+			BimDatabaseAction<List<String>> action = new GetAvailableClassesInRevisionDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid);
 			return session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -995,7 +989,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public SServiceDescriptor getServiceDescriptor(String baseUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(baseUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory());
+			BimServerClientFactory factory = new JsonBimServerClientFactory(baseUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager());
 			BimServerClientInterface client = factory.create();
 			SServiceDescriptor service = client.getRemoteServiceInterface().getService(serviceIdentifier);
 			if (service == null) {
@@ -1180,7 +1174,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory());
+			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager());
 			BimServerClientInterface client = factory.create();
 			return client.getRemoteServiceInterface().getPublicProfiles(serviceIdentifier);
 		} catch (Exception e) {
@@ -1192,7 +1186,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier, String token) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory());
+			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager());
 			BimServerClientInterface client = factory.create();
 			return client.getRemoteServiceInterface().getPrivateProfiles(serviceIdentifier, token);
 		} catch (Exception e) {

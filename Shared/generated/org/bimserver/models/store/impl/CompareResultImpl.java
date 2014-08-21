@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,10 +17,13 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.CompareContainer;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -73,8 +76,7 @@ public class CompareResultImpl extends IdEObjectImpl implements CompareResult {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<CompareContainer> getItems() {
-		return (EList<CompareContainer>) eGet(
-				StorePackage.Literals.COMPARE_RESULT__ITEMS, true);
+		return (EList<CompareContainer>) eGet(StorePackage.Literals.COMPARE_RESULT__ITEMS, true);
 	}
 
 } //CompareResultImpl

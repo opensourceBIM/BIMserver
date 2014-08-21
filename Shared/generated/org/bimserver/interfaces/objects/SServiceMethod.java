@@ -30,8 +30,6 @@ public class SServiceMethod implements SBase
 	private java.lang.String name;
 	private java.lang.String doc;
 	private java.lang.String returnDoc;
-	public SServiceMethod() {
-	}
 	
 	@XmlTransient
 	public SClass getSClass() {

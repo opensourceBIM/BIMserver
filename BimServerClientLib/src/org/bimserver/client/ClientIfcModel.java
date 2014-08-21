@@ -38,13 +38,13 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
@@ -86,8 +86,8 @@ public class ClientIfcModel extends IfcModel {
 	private long binaryGeometrySerializerOid = -1;
 	private ClientEStore eStore;
 
-	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
-		super();
+	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
+		super(packageMetaData);
 		this.eStore = new ClientEStore(this);
 		this.bimServerClient = bimServerClient;
 		this.roid = roid;
@@ -101,7 +101,8 @@ public class ClientIfcModel extends IfcModel {
 		}
 	}
 
-	private ClientIfcModel(BimServerClient bimServerClient, long poid) {
+	private ClientIfcModel(BimServerClient bimServerClient, PackageMetaData packageMetaData, long poid) {
+		super(packageMetaData);
 		this.bimServerClient = bimServerClient;
 		try {
 			tid = bimServerClient.getBimsie1LowLevelInterface().startTransaction(poid);
@@ -113,7 +114,7 @@ public class ClientIfcModel extends IfcModel {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ClientIfcModel branch(long poid) {
 		// TODO this should of course be done server side, without any copying
-		ClientIfcModel branch = new ClientIfcModel(bimServerClient, poid);
+		ClientIfcModel branch = new ClientIfcModel(bimServerClient, null, poid);
 		try {
 			loadDeep();
 		} catch (ServerException e) {
@@ -573,7 +574,7 @@ public class ClientIfcModel extends IfcModel {
 				Long downloadByTypes = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(roid), Collections.singleton(eClass.getName()),
 						getIfcSerializerOid(), true, false, false, true);
 				processDownload(downloadByTypes);
-				for (EClass subClass : bimServerClient.getMetaDataManager().getAllSubClasses(eClass)) {
+				for (EClass subClass : bimServerClient.getMetaDataManager().getEPackage(eClass.getEPackage().getName()).getAllSubClasses(eClass)) {
 					loadedClasses.add(subClass.getName());
 					rebuildIndexPerClass(eClass);
 				}

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,13 +19,17 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.log.CheckoutRelated;
+
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -192,8 +196,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<CheckoutRelated> getLogs() {
-		return (EList<CheckoutRelated>) eGet(
-				StorePackage.Literals.CHECKOUT__LOGS, true);
+		return (EList<CheckoutRelated>) eGet(StorePackage.Literals.CHECKOUT__LOGS, true);
 	}
 
 } //CheckoutImpl

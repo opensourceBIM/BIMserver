@@ -30,8 +30,6 @@ public class SWebModulePluginDescriptor extends SPluginDescriptor implements SDa
 
 	@XmlTransient
 	private static SClass sClass;
-	public SWebModulePluginDescriptor() {
-	}
 
 	public long getOid() {
 		return this.oid;

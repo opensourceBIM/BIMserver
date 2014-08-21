@@ -30,6 +30,7 @@ import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.IfcActorRole;
 import org.bimserver.models.ifc2x3tc1.IfcApplication;
 import org.bimserver.models.ifc2x3tc1.IfcBuilding;
@@ -109,9 +110,9 @@ public class SceneJs3ShellSerializer extends AbstractGeometrySerializer {
 	private final List<Long> surfaceStyleIds = new ArrayList<Long>();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids)
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids)
 			throws SerializerException {
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
+		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 	}
 
 	@Override

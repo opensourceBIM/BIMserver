@@ -24,11 +24,11 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 	public void addExtendedDataToRevision(java.lang.Long roid, org.bimserver.interfaces.objects.SExtendedData extendedData) throws UserException, ServerException {
 	}
 	
-	public org.bimserver.interfaces.objects.SProject addProject(java.lang.String projectName) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SProject addProject(java.lang.String projectName, java.lang.String schema) throws UserException, ServerException {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SProject addProjectAsSubProject(java.lang.String projectName, java.lang.Long parentPoid) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SProject addProjectAsSubProject(java.lang.String projectName, java.lang.Long parentPoid, java.lang.String schema) throws UserException, ServerException {
 		return null;
 	}
 	

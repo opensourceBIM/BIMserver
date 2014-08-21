@@ -44,7 +44,7 @@ public class RevisionMerger {
 	public RevisionMerger(IfcModelInterface oldModel, IfcModelInterface newModel) {
 		this.oldModel = oldModel;
 		this.newModel = newModel;
-		resultModel = new IfcModel((int)oldModel.size());
+		resultModel = new IfcModel(null, (int)oldModel.size()); //TODO
 	}
 	
 	public IfcModel merge() throws IfcModelInterfaceException {

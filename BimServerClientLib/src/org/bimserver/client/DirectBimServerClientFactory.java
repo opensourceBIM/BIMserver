@@ -17,6 +17,7 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
@@ -31,8 +32,8 @@ public class DirectBimServerClientFactory<T extends PublicInterface> extends Abs
 	private ServiceFactory serviceFactory;
 	private String baseAddress;
 
-	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap, PluginManager pluginManager) {
-		super(servicesMap);
+	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap, PluginManager pluginManager, MetaDataManager metaDataManager) {
+		super(servicesMap, metaDataManager);
 		this.baseAddress = baseAddress;
 		this.serviceFactory = serviceFactory;
 		this.pluginManager = pluginManager;
@@ -50,7 +51,7 @@ public class DirectBimServerClientFactory<T extends PublicInterface> extends Abs
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
 		DirectChannel channel = new DirectChannel(serviceFactory, getServicesMap());
 		channel.connect();
-		BimServerClient bimServerClient = new BimServerClient(baseAddress, getServicesMap(), channel);
+		BimServerClient bimServerClient = new BimServerClient(this, baseAddress, getServicesMap(), channel);
 		bimServerClient.setAuthentication(authenticationInfo);
 		return bimServerClient;
 	}

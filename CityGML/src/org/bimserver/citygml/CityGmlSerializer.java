@@ -30,8 +30,9 @@ import javax.xml.bind.JAXBException;
 
 import org.bimserver.citygml.xbuilding.GlobalIdType;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcBuilding;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcColumn;
@@ -124,8 +125,8 @@ public class CityGmlSerializer extends AbstractGeometrySerializer {
 	}
 
 	@Override
-	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
-		super.init(ifcModel, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
+	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
+		super.init(ifcModel, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 		this.model = ifcModel;
 		ctx = new CityGMLContext();
 		citygml = new CityGMLFactory();

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,10 +19,13 @@ package org.bimserver.models.log.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.log.LogPackage;
+
 import org.bimserver.models.store.User;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

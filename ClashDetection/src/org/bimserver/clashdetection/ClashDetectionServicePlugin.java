@@ -92,7 +92,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						}
 
 						Deserializer deserializer = getPluginManager().requireDeserializer("ifc").createDeserializer(new PluginConfiguration());
-						deserializer.init(getPluginManager().requireSchemaDefinition());
+//						deserializer.init(getPluginManager().requireSchemaDefinition());
 						IfcModelInterface model = deserializer.read(new ByteArrayInputStream(baos.toByteArray()), "test.ifc", baos.size());
 						List<IfcProject> ifcProjects = model.getAll(IfcProject.class);
 						IfcProject mainIfcProject = null;
@@ -100,7 +100,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 							mainIfcProject = ifcProjects.get(0);
 						}
 
-						RenderEngine renderEngine = getPluginManager().requireRenderEngine().createRenderEngine(new PluginConfiguration());
+						RenderEngine renderEngine = getPluginManager().requireRenderEngine().createRenderEngine(new PluginConfiguration(), "ifc2x3tc1");
 						renderEngine.init();
 
 						RenderEngineModel renderEngineModel = renderEngine.openModel(new ByteArrayInputStream(baos.toByteArray()), baos.size());

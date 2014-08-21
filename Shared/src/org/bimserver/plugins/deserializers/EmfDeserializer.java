@@ -20,37 +20,50 @@ package org.bimserver.plugins.deserializers;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.plugins.schema.SchemaDefinition;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.bimserver.emf.PackageMetaData;
 
 public abstract class EmfDeserializer implements Deserializer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(EmfDeserializer.class);
+	private PackageMetaData packageMetaData;
+	
+	public void init(PackageMetaData packageMetaData) {
+		this.packageMetaData = packageMetaData;
+	}
 
-	public abstract void init(SchemaDefinition schema);
-
+	public PackageMetaData getPackageMetaData() {
+		return packageMetaData;
+	}
+	
 	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException;
 
+	public IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException {
+		return read(in, filename, fileSize);
+	}
+	
+	@Override
 	public IfcModelInterface read(File file, ByteProgressReporter progressReporter) throws DeserializeException {
+		FileInputStream fileInputStream;
 		try {
-			return read(new FileInputStream(file), file.getName(), file.length());
+			fileInputStream = new FileInputStream(file);
+			try {
+				return read(fileInputStream, file.getName(), file.length(), progressReporter);
+			} finally {
+				try {
+					fileInputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		} catch (FileNotFoundException e) {
-			LOGGER.error("", e);
-			return null;
+			throw new DeserializeException(e);
 		}
 	}
-
-	@Override
+	
 	public IfcModelInterface read(File file) throws DeserializeException {
 		return read(file, null);
-	}
-
-	@Override
-	public IfcModelInterface read(InputStream inputStream, String fileName, long fileSize) throws DeserializeException {
-		return read(inputStream, fileName, fileSize, null);
 	}
 }

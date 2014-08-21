@@ -30,8 +30,6 @@ public class SServiceInterface implements SBase
 	private java.lang.String name;
 	private java.lang.String nameSpace;
 	private java.lang.String simpleName;
-	public SServiceInterface() {
-	}
 	
 	@XmlTransient
 	public SClass getSClass() {

@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.sql.SQLException;
 
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -29,14 +30,14 @@ public class IfcToRdfSerializer extends EmfSerializer {
 	}
 	
 	@Override
-	protected boolean write(OutputStream outputStream) throws SerializerException {
+	protected boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		// Quite inefficient, first write the model to IFC (byte buffer), then call the IfcToRdf code
 
 		SerializerPlugin serializerPlugin = getPluginManager().getSerializerPlugin("org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin", true);
 		Serializer serializer = serializerPlugin.createSerializer(null);
 		serializer.init(getModel(), null, getPluginManager(), null, getPackageMetaData(), true);
 		ByteArrayOutputStream outputStream2 = new ByteArrayOutputStream();
-		serializer.writeToOutputStream(outputStream2);
+		serializer.writeToOutputStream(outputStream2, progressReporter);
 		InputStream inputStream = new ByteArrayInputStream(outputStream2.toByteArray());
 		String fileName = "test.ifc";
 		ExpressReader er = new ExpressReader(expressFile.getAbsolutePath());

@@ -52,8 +52,6 @@ public class SService implements SDataBase
 	private long userId = -1;
 	private long internalServiceId = -1;
 	private List<Long> modelCheckers = new ArrayList<Long>();
-	public SService() {
-	}
 
 	public long getOid() {
 		return this.oid;

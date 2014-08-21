@@ -28,8 +28,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;

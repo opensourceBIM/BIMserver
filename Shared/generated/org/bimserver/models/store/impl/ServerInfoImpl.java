@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,9 +17,11 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -72,8 +74,7 @@ public class ServerInfoImpl extends IdEObjectImpl implements ServerInfo {
 	 * @generated
 	 */
 	public ServerState getServerState() {
-		return (ServerState) eGet(
-				StorePackage.Literals.SERVER_INFO__SERVER_STATE, true);
+		return (ServerState) eGet(StorePackage.Literals.SERVER_INFO__SERVER_STATE, true);
 	}
 
 	/**
@@ -91,8 +92,7 @@ public class ServerInfoImpl extends IdEObjectImpl implements ServerInfo {
 	 * @generated
 	 */
 	public String getErrorMessage() {
-		return (String) eGet(StorePackage.Literals.SERVER_INFO__ERROR_MESSAGE,
-				true);
+		return (String) eGet(StorePackage.Literals.SERVER_INFO__ERROR_MESSAGE, true);
 	}
 
 	/**

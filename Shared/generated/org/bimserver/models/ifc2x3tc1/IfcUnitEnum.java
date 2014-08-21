@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -80,14 +80,16 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AREAUNIT(4, "AREAUNIT", "AREAUNIT"), /**
-											 * The '<em><b>FREQUENCYUNIT</b></em>' literal object.
-											 * <!-- begin-user-doc -->
-											 * <!-- end-user-doc -->
-											 * @see #FREQUENCYUNIT_VALUE
-											 * @generated
-											 * @ordered
-											 */
+	AREAUNIT(4, "AREAUNIT", "AREAUNIT"),
+
+	/**
+	 * The '<em><b>FREQUENCYUNIT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #FREQUENCYUNIT_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	FREQUENCYUNIT(5, "FREQUENCYUNIT", "FREQUENCYUNIT"),
 
 	/**
@@ -128,14 +130,16 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RADIOACTIVITYUNIT(9, "RADIOACTIVITYUNIT", "RADIOACTIVITYUNIT"), /**
-																	 * The '<em><b>LENGTHUNIT</b></em>' literal object.
-																	 * <!-- begin-user-doc -->
-																	 * <!-- end-user-doc -->
-																	 * @see #LENGTHUNIT_VALUE
-																	 * @generated
-																	 * @ordered
-																	 */
+	RADIOACTIVITYUNIT(9, "RADIOACTIVITYUNIT", "RADIOACTIVITYUNIT"),
+
+	/**
+	 * The '<em><b>LENGTHUNIT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LENGTHUNIT_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	LENGTHUNIT(10, "LENGTHUNIT", "LENGTHUNIT"),
 
 	/**
@@ -809,10 +813,11 @@ public enum IfcUnitEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcUnitEnum[] VALUES_ARRAY = new IfcUnitEnum[] { NULL, ELECTRICRESISTANCEUNIT, ELECTRICCURRENTUNIT, ILLUMINANCEUNIT, AREAUNIT, FREQUENCYUNIT, TIMEUNIT,
-			ELECTRICCHARGEUNIT, FORCEUNIT, RADIOACTIVITYUNIT, LENGTHUNIT, DOSEEQUIVALENTUNIT, INDUCTANCEUNIT, MAGNETICFLUXDENSITYUNIT, LUMINOUSINTENSITYUNIT, LUMINOUSFLUXUNIT,
-			VOLUMEUNIT, ELECTRICCONDUCTANCEUNIT, AMOUNTOFSUBSTANCEUNIT, ENERGYUNIT, POWERUNIT, SOLIDANGLEUNIT, ELECTRICVOLTAGEUNIT, ELECTRICCAPACITANCEUNIT, PRESSUREUNIT,
-			THERMODYNAMICTEMPERATUREUNIT, MASSUNIT, USERDEFINED, ABSORBEDDOSEUNIT, MAGNETICFLUXUNIT, PLANEANGLEUNIT, };
+	private static final IfcUnitEnum[] VALUES_ARRAY = new IfcUnitEnum[] { NULL, ELECTRICRESISTANCEUNIT, ELECTRICCURRENTUNIT, ILLUMINANCEUNIT, AREAUNIT,
+			FREQUENCYUNIT, TIMEUNIT, ELECTRICCHARGEUNIT, FORCEUNIT, RADIOACTIVITYUNIT, LENGTHUNIT, DOSEEQUIVALENTUNIT, INDUCTANCEUNIT, MAGNETICFLUXDENSITYUNIT,
+			LUMINOUSINTENSITYUNIT, LUMINOUSFLUXUNIT, VOLUMEUNIT, ELECTRICCONDUCTANCEUNIT, AMOUNTOFSUBSTANCEUNIT, ENERGYUNIT, POWERUNIT, SOLIDANGLEUNIT,
+			ELECTRICVOLTAGEUNIT, ELECTRICCAPACITANCEUNIT, PRESSUREUNIT, THERMODYNAMICTEMPERATUREUNIT, MASSUNIT, USERDEFINED, ABSORBEDDOSEUNIT,
+			MAGNETICFLUXUNIT, PLANEANGLEUNIT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Unit Enum</b></em>' enumerators.

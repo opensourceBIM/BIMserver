@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SServicePluginDescriptor.class, SModelComparePluginDescriptor.class, SWebModulePluginDescriptor.class, SQueryEnginePluginDescriptor.class, SModelMergerPluginDescriptor.class, SModelCheckerPluginDescriptor.class, SSerializerPluginDescriptor.class, SDeserializerPluginDescriptor.class, SRenderEnginePluginDescriptor.class})
+@XmlSeeAlso(value={SModelCheckerPluginDescriptor.class, SSerializerPluginDescriptor.class, SModelComparePluginDescriptor.class, SModelMergerPluginDescriptor.class, SRenderEnginePluginDescriptor.class, SDeserializerPluginDescriptor.class, SQueryEnginePluginDescriptor.class, SWebModulePluginDescriptor.class, SServicePluginDescriptor.class})
 public class SPluginDescriptor implements SDataBase
 {
 	private long oid = -1;
@@ -41,8 +41,6 @@ public class SPluginDescriptor implements SDataBase
 	private java.lang.Boolean enabled;
 	private java.lang.String pluginInterfaceClassName;
 	private List<Long> configurations = new ArrayList<Long>();
-	public SPluginDescriptor() {
-	}
 
 	public long getOid() {
 		return this.oid;

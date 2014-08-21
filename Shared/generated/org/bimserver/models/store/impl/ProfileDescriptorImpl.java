@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,8 +17,10 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.ProfileDescriptor;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -37,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ProfileDescriptorImpl extends IdEObjectImpl implements
-		ProfileDescriptor {
+public class ProfileDescriptorImpl extends IdEObjectImpl implements ProfileDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,8 +75,7 @@ public class ProfileDescriptorImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(StorePackage.Literals.PROFILE_DESCRIPTOR__NAME,
-				true);
+		return (String) eGet(StorePackage.Literals.PROFILE_DESCRIPTOR__NAME, true);
 	}
 
 	/**
@@ -93,8 +93,7 @@ public class ProfileDescriptorImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				StorePackage.Literals.PROFILE_DESCRIPTOR__DESCRIPTION, true);
+		return (String) eGet(StorePackage.Literals.PROFILE_DESCRIPTOR__DESCRIPTION, true);
 	}
 
 	/**
@@ -103,8 +102,7 @@ public class ProfileDescriptorImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.PROFILE_DESCRIPTOR__DESCRIPTION,
-				newDescription);
+		eSet(StorePackage.Literals.PROFILE_DESCRIPTOR__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -113,8 +111,7 @@ public class ProfileDescriptorImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public boolean isPublicProfile() {
-		return (Boolean) eGet(
-				StorePackage.Literals.PROFILE_DESCRIPTOR__PUBLIC_PROFILE, true);
+		return (Boolean) eGet(StorePackage.Literals.PROFILE_DESCRIPTOR__PUBLIC_PROFILE, true);
 	}
 
 	/**
@@ -123,8 +120,7 @@ public class ProfileDescriptorImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setPublicProfile(boolean newPublicProfile) {
-		eSet(StorePackage.Literals.PROFILE_DESCRIPTOR__PUBLIC_PROFILE,
-				newPublicProfile);
+		eSet(StorePackage.Literals.PROFILE_DESCRIPTOR__PUBLIC_PROFILE, newPublicProfile);
 	}
 
 	/**
@@ -133,8 +129,7 @@ public class ProfileDescriptorImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getIdentifier() {
-		return (String) eGet(
-				StorePackage.Literals.PROFILE_DESCRIPTOR__IDENTIFIER, true);
+		return (String) eGet(StorePackage.Literals.PROFILE_DESCRIPTOR__IDENTIFIER, true);
 	}
 
 	/**
@@ -143,8 +138,7 @@ public class ProfileDescriptorImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setIdentifier(String newIdentifier) {
-		eSet(StorePackage.Literals.PROFILE_DESCRIPTOR__IDENTIFIER,
-				newIdentifier);
+		eSet(StorePackage.Literals.PROFILE_DESCRIPTOR__IDENTIFIER, newIdentifier);
 	}
 
 } //ProfileDescriptorImpl

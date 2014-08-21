@@ -19,6 +19,7 @@ package org.bimserver.client.json;
 
 import org.bimserver.client.AbstractBimServerClientFactory;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -32,8 +33,8 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private ReflectorFactory reflectorFactory;
 
-	public JsonBimServerClientFactory(String address, SServicesMap servicesMap, JsonSocketReflectorFactory jsonSocketReflectorFactory, ReflectorFactory reflectorFactory) {
-		super(servicesMap);
+	public JsonBimServerClientFactory(String address, SServicesMap servicesMap, JsonSocketReflectorFactory jsonSocketReflectorFactory, ReflectorFactory reflectorFactory, MetaDataManager metaDataManager) {
+		super(servicesMap, metaDataManager);
 		this.address = address;
 		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 		this.reflectorFactory = reflectorFactory;
@@ -50,7 +51,7 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
 		JsonChannel jsonChannel = new JsonChannel(reflectorFactory, jsonSocketReflectorFactory, address + "/json", getServicesMap());
-		BimServerClient bimServerClient = new BimServerClient(address, getServicesMap(), jsonChannel);
+		BimServerClient bimServerClient = new BimServerClient(this, address, getServicesMap(), jsonChannel);
 		jsonChannel.connect(bimServerClient);
 		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connect();

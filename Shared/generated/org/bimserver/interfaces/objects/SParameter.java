@@ -31,8 +31,6 @@ public class SParameter implements SDataBase
 	private static SClass sClass;
 	private java.lang.String name;
 	private SType value;
-	public SParameter() {
-	}
 
 	public long getOid() {
 		return this.oid;

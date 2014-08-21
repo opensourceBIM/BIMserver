@@ -35,8 +35,6 @@ public class SDownloadResult implements SDataBase
 	private java.lang.String projectName;
 	private java.lang.Integer revisionNr;
 	private javax.activation.DataHandler file;
-	public SDownloadResult() {
-	}
 
 	public long getOid() {
 		return this.oid;

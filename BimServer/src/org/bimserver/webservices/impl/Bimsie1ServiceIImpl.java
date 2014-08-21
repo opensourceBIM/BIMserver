@@ -447,11 +447,11 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 	}
 	
 	@Override
-	public SProject addProjectAsSubProject(String projectName, Long parentPoid) throws ServerException, UserException {
+	public SProject addProjectAsSubProject(String projectName, Long parentPoid, String schema) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(getBimServer(), session, getInternalAccessMethod(), projectName, parentPoid, getAuthorization());
+			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(getBimServer(), session, getInternalAccessMethod(), projectName, parentPoid, schema, getAuthorization());
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
 			return handleException(e);
@@ -659,11 +659,11 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 	}
 	
 	@Override
-	public SProject addProject(String projectName) throws ServerException, UserException {
+	public SProject addProject(String projectName, String schema) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(getBimServer(), session, getInternalAccessMethod(), projectName, getAuthorization());
+			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(getBimServer(), session, getInternalAccessMethod(), projectName, schema, getAuthorization());
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
 			return handleException(e);

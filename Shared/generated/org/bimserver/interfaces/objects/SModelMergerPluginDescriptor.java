@@ -30,8 +30,6 @@ public class SModelMergerPluginDescriptor extends SPluginDescriptor implements S
 
 	@XmlTransient
 	private static SClass sClass;
-	public SModelMergerPluginDescriptor() {
-	}
 
 	public long getOid() {
 		return this.oid;

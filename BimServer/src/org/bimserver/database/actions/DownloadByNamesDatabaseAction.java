@@ -33,6 +33,8 @@ import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.MetaDataException;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
@@ -76,7 +78,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 		long incrSize = 0L;
 		
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
-		
+		PackageMetaData lastPackageMetaData = null;
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
 			project = virtualRevision.getProject();
@@ -87,14 +89,18 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 			for (String name : names) {
 				if (!foundNames.contains(name)) {
 					for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-						for (ObjectIdentifier objectIdentifier : getDatabaseSession().getOidsOfName(name, concreteRevision.getProject().getId(),
-								concreteRevision.getId())) {
-							foundNames.add(name);
-							if (!map.containsKey(concreteRevision)) {
-								map.put(concreteRevision, new HashSet<Long>());
-								incrSize += concreteRevision.getSize();
+						try {
+							for (ObjectIdentifier objectIdentifier : getDatabaseSession().getOidsOfName(concreteRevision.getProject().getSchema(), name, concreteRevision.getProject().getId(),
+									concreteRevision.getId())) {
+								foundNames.add(name);
+								if (!map.containsKey(concreteRevision)) {
+									map.put(concreteRevision, new HashSet<Long>());
+									incrSize += concreteRevision.getSize();
+								}
+								map.get(concreteRevision).add(objectIdentifier.getOid());
 							}
-							map.get(concreteRevision).add(objectIdentifier.getOid());
+						} catch (MetaDataException e) {
+							e.printStackTrace();
 						}
 					}
 				}
@@ -103,9 +109,11 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 			final AtomicLong total = new AtomicLong();
 
 			for (ConcreteRevision concreteRevision : map.keySet()) {
-				IfcModel subModel = new IfcModel();
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+				lastPackageMetaData = packageMetaData;
+				IfcModel subModel = new IfcModel(packageMetaData);
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
+				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {
@@ -126,7 +134,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel();
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 			ifcModel.getModelMetaData().setName("query");

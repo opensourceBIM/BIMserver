@@ -31,8 +31,6 @@ public class SImmediateNotificationResult implements SDataBase
 	private static SClass sClass;
 	private SNotifictionResultEnum result;
 	private java.lang.String description;
-	public SImmediateNotificationResult() {
-	}
 
 	public long getOid() {
 		return this.oid;

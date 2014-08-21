@@ -28,6 +28,7 @@ import java.io.OutputStream;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.slf4j.Logger;
@@ -43,18 +44,24 @@ public abstract class EmfSerializer implements Serializer {
 	private RenderEnginePlugin renderEnginePlugin;
 	private boolean normalizeOids;
 	private int expressIdCounter = 1;
+	private PackageMetaData packageMetaData;
 
 	protected static enum Mode {
 		HEADER, BODY, FOOTER, FINISHED
 	}
 
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
 		this.model = model;
 		this.projectInfo = projectInfo;
 		this.renderEnginePlugin = renderEnginePlugin;
+		this.packageMetaData = packageMetaData;
 		this.normalizeOids = normalizeOids;
 		this.setPluginManager(pluginManager);
 		reset();
+	}
+	
+	public PackageMetaData getPackageMetaData() {
+		return packageMetaData;
 	}
 	
 	@Override

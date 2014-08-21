@@ -54,8 +54,6 @@ public class SJavaInfo implements SDataBase
 	private java.lang.String javaFileSeparator;
 	private java.lang.String javaPathSeparator;
 	private java.lang.String javaLineSeparator;
-	public SJavaInfo() {
-	}
 
 	public long getOid() {
 		return this.oid;

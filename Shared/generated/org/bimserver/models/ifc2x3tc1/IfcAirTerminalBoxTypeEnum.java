@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -188,8 +188,8 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAirTerminalBoxTypeEnum[] VALUES_ARRAY = new IfcAirTerminalBoxTypeEnum[] { NULL, NOTDEFINED, VARIABLEFLOWPRESSUREINDEPENDANT, CONSTANTFLOW, USERDEFINED,
-			VARIABLEFLOWPRESSUREDEPENDANT, };
+	private static final IfcAirTerminalBoxTypeEnum[] VALUES_ARRAY = new IfcAirTerminalBoxTypeEnum[] { NULL, NOTDEFINED, VARIABLEFLOWPRESSUREINDEPENDANT,
+			CONSTANTFLOW, USERDEFINED, VARIABLEFLOWPRESSUREDEPENDANT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Air Terminal Box Type Enum</b></em>' enumerators.

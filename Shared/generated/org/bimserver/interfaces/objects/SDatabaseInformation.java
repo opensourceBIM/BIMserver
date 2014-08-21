@@ -42,8 +42,6 @@ public class SDatabaseInformation implements SDataBase
 	private java.lang.String location;
 	private java.lang.Integer schemaVersion;
 	private List<SDatabaseInformationCategory> categories = new ArrayList<SDatabaseInformationCategory>();
-	public SDatabaseInformation() {
-	}
 
 	public long getOid() {
 		return this.oid;

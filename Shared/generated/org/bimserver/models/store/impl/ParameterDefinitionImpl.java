@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,10 +17,12 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.ParameterDefinition;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Type;
 import org.bimserver.models.store.TypeDefinition;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -40,8 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ParameterDefinitionImpl extends IdEObjectImpl implements
-		ParameterDefinition {
+public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,8 +78,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(StorePackage.Literals.PARAMETER_DEFINITION__NAME,
-				true);
+		return (String) eGet(StorePackage.Literals.PARAMETER_DEFINITION__NAME, true);
 	}
 
 	/**
@@ -96,8 +96,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public boolean isRequired() {
-		return (Boolean) eGet(
-				StorePackage.Literals.PARAMETER_DEFINITION__REQUIRED, true);
+		return (Boolean) eGet(StorePackage.Literals.PARAMETER_DEFINITION__REQUIRED, true);
 	}
 
 	/**
@@ -115,8 +114,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(
-				StorePackage.Literals.PARAMETER_DEFINITION__DESCRIPTION, true);
+		return (String) eGet(StorePackage.Literals.PARAMETER_DEFINITION__DESCRIPTION, true);
 	}
 
 	/**
@@ -125,8 +123,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.PARAMETER_DEFINITION__DESCRIPTION,
-				newDescription);
+		eSet(StorePackage.Literals.PARAMETER_DEFINITION__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -135,8 +132,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public TypeDefinition getType() {
-		return (TypeDefinition) eGet(
-				StorePackage.Literals.PARAMETER_DEFINITION__TYPE, true);
+		return (TypeDefinition) eGet(StorePackage.Literals.PARAMETER_DEFINITION__TYPE, true);
 	}
 
 	/**
@@ -154,8 +150,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Type getDefaultValue() {
-		return (Type) eGet(
-				StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE, true);
+		return (Type) eGet(StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE, true);
 	}
 
 	/**
@@ -164,8 +159,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setDefaultValue(Type newDefaultValue) {
-		eSet(StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE,
-				newDefaultValue);
+		eSet(StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE, newDefaultValue);
 	}
 
 } //ParameterDefinitionImpl

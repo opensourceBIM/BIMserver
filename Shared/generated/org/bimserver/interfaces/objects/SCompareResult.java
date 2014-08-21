@@ -32,8 +32,6 @@ public class SCompareResult implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private List<SCompareContainer> items = new ArrayList<SCompareContainer>();
-	public SCompareResult() {
-	}
 
 	public long getOid() {
 		return this.oid;

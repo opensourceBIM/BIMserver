@@ -26,6 +26,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
@@ -50,7 +51,8 @@ public class SetAttributeChangeAtIndex implements Change {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(model, oid, new Query(project.getId(), concreteRevision.getId()));
+		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getEPackage(project.getSchema());
+		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId()));
 		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
@@ -58,7 +60,7 @@ public class SetAttributeChangeAtIndex implements Change {
 		if (idEObject == null) {
 			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + project.getId());
 		}
-		EAttribute eAttribute = databaseSession.getMetaDataManager().getEAttribute(eClass.getName(), attributeName);
+		EAttribute eAttribute = packageMetaData.getEAttribute(eClass.getName(), attributeName);
 		if (eAttribute == null) {
 			throw new UserException("No attribute with the name \"" + attributeName + "\" found in class \"" + eClass.getName() + "\"");
 		}

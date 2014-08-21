@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -213,7 +213,8 @@ public enum IfcChangeActionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcChangeActionEnum[] VALUES_ARRAY = new IfcChangeActionEnum[] { NULL, NOCHANGE, MODIFIEDADDED, MODIFIED, MODIFIEDDELETED, ADDED, DELETED, };
+	private static final IfcChangeActionEnum[] VALUES_ARRAY = new IfcChangeActionEnum[] { NULL, NOCHANGE, MODIFIEDADDED, MODIFIED, MODIFIEDDELETED, ADDED,
+			DELETED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Change Action Enum</b></em>' enumerators.

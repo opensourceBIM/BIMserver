@@ -118,7 +118,7 @@ public class SerializerFactory {
 								projectInfo.setY(52.3700);
 							}
 							projectInfo.setAuthorName(username);
-							serializer.init(model, projectInfo, pluginManager, renderEnginePlugin, true);
+							serializer.init(model, projectInfo, pluginManager, renderEnginePlugin, model.getPackageMetaData(), true);
 							return serializer;
 						} catch (NullPointerException e) {
 							LOGGER.error("", e);

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,9 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.ArrayType;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Type;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -62,8 +64,7 @@ public class ArrayTypeImpl extends TypeImpl implements ArrayType {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Type> getValues() {
-		return (EList<Type>) eGet(StorePackage.Literals.ARRAY_TYPE__VALUES,
-				true);
+		return (EList<Type>) eGet(StorePackage.Literals.ARRAY_TYPE__VALUES, true);
 	}
 
 } //ArrayTypeImpl

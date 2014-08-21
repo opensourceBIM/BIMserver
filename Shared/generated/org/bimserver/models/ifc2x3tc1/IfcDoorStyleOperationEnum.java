@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -150,14 +150,16 @@ public enum IfcDoorStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FOLDING_TO_RIGHT(11, "FOLDING_TO_RIGHT", "FOLDING_TO_RIGHT"), /**
-																	 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE RIGHT</b></em>' literal object.
-																	 * <!-- begin-user-doc -->
-																	 * <!-- end-user-doc -->
-																	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_VALUE
-																	 * @generated
-																	 * @ordered
-																	 */
+	FOLDING_TO_RIGHT(11, "FOLDING_TO_RIGHT", "FOLDING_TO_RIGHT"),
+
+	/**
+	 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE RIGHT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT(12, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"),
 
 	/**
@@ -511,9 +513,10 @@ public enum IfcDoorStyleOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorStyleOperationEnum[] VALUES_ARRAY = new IfcDoorStyleOperationEnum[] { NULL, SINGLE_SWING_LEFT, FOLDING_TO_LEFT, SINGLE_SWING_RIGHT, NOTDEFINED,
-			ROLLINGUP, DOUBLE_DOOR_FOLDING, DOUBLE_DOOR_DOUBLE_SWING, DOUBLE_DOOR_SINGLE_SWING, SLIDING_TO_LEFT, DOUBLE_DOOR_SLIDING, FOLDING_TO_RIGHT,
-			DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT, REVOLVING, DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT, USERDEFINED, SLIDING_TO_RIGHT, DOUBLE_SWING_LEFT, DOUBLE_SWING_RIGHT, };
+	private static final IfcDoorStyleOperationEnum[] VALUES_ARRAY = new IfcDoorStyleOperationEnum[] { NULL, SINGLE_SWING_LEFT, FOLDING_TO_LEFT,
+			SINGLE_SWING_RIGHT, NOTDEFINED, ROLLINGUP, DOUBLE_DOOR_FOLDING, DOUBLE_DOOR_DOUBLE_SWING, DOUBLE_DOOR_SINGLE_SWING, SLIDING_TO_LEFT,
+			DOUBLE_DOOR_SLIDING, FOLDING_TO_RIGHT, DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT, REVOLVING, DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT, USERDEFINED,
+			SLIDING_TO_RIGHT, DOUBLE_SWING_LEFT, DOUBLE_SWING_RIGHT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Style Operation Enum</b></em>' enumerators.

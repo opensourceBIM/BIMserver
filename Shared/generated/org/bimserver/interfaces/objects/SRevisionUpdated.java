@@ -30,8 +30,6 @@ public class SRevisionUpdated extends SRevisionRelated implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	public SRevisionUpdated() {
-	}
 
 	public long getOid() {
 		return this.oid;

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,9 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.log.UserRelated;
+
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.ObjectState;
@@ -30,7 +32,9 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -155,8 +159,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Project> getHasRightsOn() {
-		return (EList<Project>) eGet(StorePackage.Literals.USER__HAS_RIGHTS_ON,
-				true);
+		return (EList<Project>) eGet(StorePackage.Literals.USER__HAS_RIGHTS_ON, true);
 	}
 
 	/**
@@ -166,8 +169,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Revision> getRevisions() {
-		return (EList<Revision>) eGet(StorePackage.Literals.USER__REVISIONS,
-				true);
+		return (EList<Revision>) eGet(StorePackage.Literals.USER__REVISIONS, true);
 	}
 
 	/**
@@ -320,8 +322,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	public Date getValidationTokenCreated() {
-		return (Date) eGet(
-				StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, true);
+		return (Date) eGet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, true);
 	}
 
 	/**
@@ -330,8 +331,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	public void setValidationTokenCreated(Date newValidationTokenCreated) {
-		eSet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED,
-				newValidationTokenCreated);
+		eSet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, newValidationTokenCreated);
 	}
 
 	/**
@@ -340,8 +340,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(StorePackage.Literals.USER__USER_SETTINGS,
-				true);
+		return (UserSettings) eGet(StorePackage.Literals.USER__USER_SETTINGS, true);
 	}
 
 	/**
@@ -360,8 +359,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ExtendedDataSchema> getSchemas() {
-		return (EList<ExtendedDataSchema>) eGet(
-				StorePackage.Literals.USER__SCHEMAS, true);
+		return (EList<ExtendedDataSchema>) eGet(StorePackage.Literals.USER__SCHEMAS, true);
 	}
 
 	/**
@@ -371,8 +369,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ExtendedData> getExtendedData() {
-		return (EList<ExtendedData>) eGet(
-				StorePackage.Literals.USER__EXTENDED_DATA, true);
+		return (EList<ExtendedData>) eGet(StorePackage.Literals.USER__EXTENDED_DATA, true);
 	}
 
 	/**

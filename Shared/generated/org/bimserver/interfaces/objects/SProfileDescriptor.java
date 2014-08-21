@@ -31,8 +31,6 @@ public class SProfileDescriptor implements SBase
 	private java.lang.String description;
 	private boolean publicProfile;
 	private java.lang.String identifier;
-	public SProfileDescriptor() {
-	}
 	
 	@XmlTransient
 	public SClass getSClass() {
