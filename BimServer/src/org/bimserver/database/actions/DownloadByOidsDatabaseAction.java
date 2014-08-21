@@ -90,9 +90,6 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 						progress = (int) Math.round(100.0 * total.get() / totalSize);
 					}
 				});
-				if (oids.contains(2032161L)) {
-					System.out.println();
-				}
 				getDatabaseSession().getMapWithOids(subModel, oids, query);
 				subModel.getModelMetaData().setDate(concreteRevision.getDate());
 				
