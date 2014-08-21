@@ -17,6 +17,7 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.reflector.ReflectorFactoryImpl1;
@@ -41,9 +42,11 @@ import org.bimserver.shared.meta.SServicesMap;
 public abstract class AbstractBimServerClientFactory implements BimServerClientFactory {
 
 	private SServicesMap servicesMap;
+	private MetaDataManager metaDataManager;
 
-	public AbstractBimServerClientFactory(SServicesMap servicesMap) {
+	public AbstractBimServerClientFactory(SServicesMap servicesMap, MetaDataManager metaDataManager) {
 		this.servicesMap = servicesMap;
+		this.metaDataManager = metaDataManager;
 	}
 
 	public AbstractBimServerClientFactory() {
@@ -63,6 +66,11 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		addService(new SService(servicesMap, null, Bimsie1NotificationRegistryInterface.class));
 		addService(new SService(servicesMap, null, Bimsie1ServiceInterface.class));
 		servicesMap.initialize();
+	}
+	
+	@Override
+	public MetaDataManager getMetaDataManager() {
+		return metaDataManager;
 	}
 	
 	@Override

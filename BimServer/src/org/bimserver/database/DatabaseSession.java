@@ -43,8 +43,10 @@ import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.LazyLoader;
+import org.bimserver.emf.MetaDataException;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.OidProvider;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -122,6 +124,10 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	
 	public void setOverwriteEnabled(boolean overwriteEnabled) {
 		this.overwriteEnabled = overwriteEnabled;
+	}
+
+	public EClass getEClassForName(String className) {
+		return database.getEClassForName(className);
 	}
 
 	public void addPostCommitAction(PostCommitAction postCommitAction) {
@@ -648,7 +654,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				objectsToCommit.clear();
 				bimTransaction = database.getKeyValueStore().startTransaction();
 			} catch (BimserverDatabaseException e) {
-				LOGGER.error("", e);
 				throw e;
 			} catch (ServiceException e) {
 				if (e instanceof UserException) {
@@ -681,7 +686,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public <T extends IdEObject> T get(long oid, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
 		TodoList todoList = new TodoList();
-		IfcModelInterface model = createModel();
+		IfcModelInterface model = createModel(query.getPackageMetaData());
 		IdEObject idEObject = get(model, null, oid, query, todoList);
 		processTodoList(model, todoList, query);
 		return (T) idEObject;
@@ -702,7 +707,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			return null;
 		}
 		TodoList todoList = new TodoList();
-		IfcModelInterface model = createModel();
+		IfcModelInterface model = createModel(query.getPackageMetaData());
 		T t = get(model, null, oid, query, todoList);
 		processTodoList(model, todoList, query);
 		return t;
@@ -803,7 +808,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	public IfcModelInterface getAllOfType(EClass eClass, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
-		IfcModelInterface model = createModel();
+		IfcModelInterface model = createModel(query.getPackageMetaData());
 		TodoList todoList = new TodoList();
 		getMap(eClass, model, query, todoList);
 		processTodoList(model, todoList, query);
@@ -820,7 +825,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	public IfcModelInterface getAllOfTypes(Set<EClass> eClasses, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
-		IfcModelInterface model = createModel();
+		IfcModelInterface model = createModel(query.getPackageMetaData());
 		TodoList todoList = new TodoList();
 		for (EClass eClass : eClasses) {
 			getMap(eClass, model, query, todoList);
@@ -829,14 +834,14 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return model;
 	}
 
-	public IfcModelInterface getAllOfType(String className, QueryInterface query) throws BimserverDatabaseException {
+	public IfcModelInterface getAllOfType(String packageName, String className, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
-		return getAllOfType(getEClassForName(className), query);
+		return getAllOfType(getEClass(packageName, className), query);
 	}
 
-	public IfcModelInterface getAllOfType(IfcModelInterface model, String className, QueryInterface query) throws BimserverDatabaseException {
+	public IfcModelInterface getAllOfType(IfcModelInterface model, String packageName, String className, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
-		return getAllOfType(model, getEClassForName(className), query);
+		return getAllOfType(model, getEClass(packageName, className), query);
 	}
 
 	public BimTransaction getBimTransaction() {
@@ -851,8 +856,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return cidOfEClass;
 	}
 
-	public short getCidForClassName(String className) {
-		return database.getCidOfEClass(getEClassForName(className));
+	public short getCidForClassName(String packageName, String className) throws BimserverDatabaseException {
+		return database.getCidOfEClass(getEClass(packageName, className));
 	}
 
 	public short getCidOfEClass(EClass eClass) {
@@ -951,12 +956,12 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return databaseInformation;
 	}
 
-	public EClass getEClassForCid(short cid) {
+	public EClass getEClass(short cid) {
 		return database.getEClassForCid(cid);
 	}
 
-	public EClass getEClassForName(String className) {
-		return database.getEClassForName(className);
+	public EClass getEClass(String packageName, String className) throws BimserverDatabaseException {
+		return database.getEClass(packageName, className);
 	}
 
 	private int getExactSize(IdEObject idEObject) {
@@ -1058,6 +1063,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			Record record = recordIterator.next();
 			ByteBuffer nextKeyStart = ByteBuffer.allocate(12);
 			while (record != null) {
+				if (Thread.currentThread().isInterrupted()) {
+					throw new BimserverThreadInterruptedException("Thread interrupted");
+				}
 				reads++;
 				ByteBuffer keyBuffer = ByteBuffer.wrap(record.getKey());
 				int keyPid = keyBuffer.getInt();
@@ -1083,6 +1091,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		checkOpen();
 		TodoList todoList = new TodoList();
 		for (EClass eClass : database.getClasses()) {
+			if (Thread.currentThread().isInterrupted()) {
+				throw new BimserverDatabaseException("Thread interrupted");
+			}
 			if (eClass.getEAnnotation("nolazyload") == null && eClass.getEAnnotation("nodatabase") == null) {
 				if (query.shouldIncludeClass(eClass)) {
 					getMap(eClass, ifcModel, query, todoList);
@@ -1094,7 +1105,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	public IfcModelInterface getMapWithObjectIdentifiers(Set<ObjectIdentifier> oids, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
-		IfcModelInterface model = createModel();
+		IfcModelInterface model = createModel(query.getPackageMetaData());
 		for (ObjectIdentifier objectIdentifier : oids) {
 			getMapWithOid(query, objectIdentifier.getCid(), objectIdentifier.getOid(), model);
 		}
@@ -1108,7 +1119,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			return model;
 		}
 		// TODO check why clearCache??
-		objectCache.clear();
+//		objectCache.clear();
 
 		TodoList todoList = new TodoList();
 		ByteBuffer mustStartWith = createKeyBuffer(query.getPid(), oid);
@@ -1183,8 +1194,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return query(condition, clazz, query).size();
 	}
 
-	public ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimserverDatabaseException {
-		for (EClass eClass : getMetaDataManager().getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
+	public ObjectIdentifier getOidOfGuid(String schema, String guid, int pid, int rid) throws BimserverDatabaseException {
+		for (EClass eClass : getMetaDataManager().getEPackage(schema).getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
 			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid),
 					BinUtils.intToByteArray(pid), this);
 			try {
@@ -1223,9 +1234,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return null;
 	}
 
-	public Set<ObjectIdentifier> getOidsOfName(String name, int pid, int rid) throws BimserverDatabaseException {
+	public Set<ObjectIdentifier> getOidsOfName(String schema, String name, int pid, int rid) throws BimserverDatabaseException, MetaDataException {
 		Set<ObjectIdentifier> result = new HashSet<ObjectIdentifier>();
-		for (EClass eClass : getMetaDataManager().getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
+		for (EClass eClass : getMetaDataManager().getEPackage(schema).getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
 			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid),
 					BinUtils.intToByteArray(pid), this);
 			try {
@@ -1326,8 +1337,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return eClass.getEPackage() != Ifc2x3tc1Package.eINSTANCE;
 	}
 
-	public IfcModelInterface createModel() {
-		return new IfcModel();
+	public IfcModelInterface createModel(PackageMetaData packageMetaData) {
+		return new IfcModel(packageMetaData);
 	}
 
 	@SuppressWarnings("unused")
@@ -1337,7 +1348,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		IfcModelInterface model = ((IdEObjectImpl)idEObject).getModel();
 		if (model == null) {
-			model = createModel();
+			model = createModel(getMetaDataManager().getEPackage(idEObject.eClass().getEPackage().getName()));
 		}
 		idEObject = get(model, idEObject, idEObject.getOid(), ((IdEObjectImpl) idEObject).getQueryInterface(), new TodoList());
 		if (idEObject != null) {
@@ -1371,7 +1382,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		Map<Long, T> map = new HashMap<Long, T>();
 		Set<EClass> eClasses = new HashSet<EClass>();
 		condition.getEClassRequirements(eClasses);
-		IfcModelInterface model = createModel();
+		IfcModelInterface model = createModel(query.getPackageMetaData());
 		TodoList todoList = new TodoList();
 		for (EClass eClass : eClasses) {
 			getMap(eClass, model, query, todoList);
@@ -1732,7 +1743,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	public Set<String> getAvailableClassesInRevision(QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
-		IfcModelInterface ifcModel = createModel();
+		IfcModelInterface ifcModel = createModel(query.getPackageMetaData());
 		try {
 			getMap(ifcModel, query);
 			Set<String> classes = new HashSet<String>();
@@ -1783,8 +1794,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends IdEObject> T create(Class<T> clazz) {
-		return (T) create(database.getEClassForName(clazz.getSimpleName()));
+	public <T extends IdEObject> T create(Class<T> clazz) throws BimserverDatabaseException {
+		return (T) create(database.getEClass(clazz.getPackage().getName(), clazz.getSimpleName()));
 	}
 
 	public EObject create(EClass eClass) {
@@ -1799,7 +1810,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public <T extends IdEObject> List<T> getAllOfType(EClass eClass, Class<T> clazz, QueryInterface query) throws BimserverDatabaseException {
-		IfcModelInterface allOfType = getAllOfType(eClass.getName(), query);
+		IfcModelInterface allOfType = getAllOfType(eClass.getEPackage().getName(), eClass.getName(), query);
 		return allOfType.getAllWithSubTypes(clazz);
 	}
 

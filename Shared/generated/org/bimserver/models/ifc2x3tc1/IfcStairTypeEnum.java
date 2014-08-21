@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -463,9 +463,9 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStairTypeEnum[] VALUES_ARRAY = new IfcStairTypeEnum[] { NULL, SPIRAL_STAIR, NOTDEFINED, QUARTER_WINDING_STAIR, HALF_WINDING_STAIR, STRAIGHT_RUN_STAIR,
-			TWO_CURVED_RUN_STAIR, HALF_TURN_STAIR, CURVED_RUN_STAIR, DOUBLE_RETURN_STAIR, QUARTER_TURN_STAIR, TWO_QUARTER_WINDING_STAIR, TWO_QUARTER_TURN_STAIR,
-			THREE_QUARTER_TURN_STAIR, TWO_STRAIGHT_RUN_STAIR, THREE_QUARTER_WINDING_STAIR, USERDEFINED, };
+	private static final IfcStairTypeEnum[] VALUES_ARRAY = new IfcStairTypeEnum[] { NULL, SPIRAL_STAIR, NOTDEFINED, QUARTER_WINDING_STAIR, HALF_WINDING_STAIR,
+			STRAIGHT_RUN_STAIR, TWO_CURVED_RUN_STAIR, HALF_TURN_STAIR, CURVED_RUN_STAIR, DOUBLE_RETURN_STAIR, QUARTER_TURN_STAIR, TWO_QUARTER_WINDING_STAIR,
+			TWO_QUARTER_TURN_STAIR, THREE_QUARTER_TURN_STAIR, TWO_STRAIGHT_RUN_STAIR, THREE_QUARTER_WINDING_STAIR, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Stair Type Enum</b></em>' enumerators.

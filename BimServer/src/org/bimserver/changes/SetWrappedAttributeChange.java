@@ -26,6 +26,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
@@ -53,7 +54,8 @@ public class SetWrappedAttributeChange implements Change {
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException,
 			BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(model, oid, new Query(project.getId(), concreteRevision.getId()));
+		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getEPackage(project.getSchema());
+		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId()));
 		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
@@ -61,7 +63,7 @@ public class SetWrappedAttributeChange implements Change {
 		if (idEObject == null) {
 			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + project.getId());
 		}
-		EReference eReference = databaseSession.getMetaDataManager().getEReference(eClass.getName(), attributeName);
+		EReference eReference = packageMetaData.getEReference(eClass.getName(), attributeName);
 		if (eReference == null) {
 			throw new UserException("No reference with the name \"" + attributeName + "\" found in class \"" + eClass.getName() + "\"");
 		}
@@ -87,7 +89,7 @@ public class SetWrappedAttributeChange implements Change {
 				EEnum eEnum = (EEnum) eReference.getEType();
 				idEObject.eSet(eReference, eEnum.getEEnumLiteral(((String) value).toUpperCase()).getInstance());
 			} else {
-				EClass typeEClass = (EClass) databaseSession.getMetaDataManager().getEClassifier(type);
+				EClass typeEClass = (EClass) packageMetaData.getEClassifier(type);
 				if (typeEClass.getEAnnotation("wrapped") == null) {
 					throw new UserException("Not a wrapped type");
 				}

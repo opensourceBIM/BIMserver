@@ -17,8 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.util;
 
 import org.bimserver.models.ifc2x3tc1.*;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -11391,34 +11393,6 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 		case Ifc2x3tc1Package.IFC_VECTOR_OR_DIRECTION: {
 			IfcVectorOrDirection ifcVectorOrDirection = (IfcVectorOrDirection) theEObject;
 			T result = caseIfcVectorOrDirection(ifcVectorOrDirection);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.GEOMETRY_INFO: {
-			GeometryInfo geometryInfo = (GeometryInfo) theEObject;
-			T result = caseGeometryInfo(geometryInfo);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.VECTOR3F: {
-			Vector3f vector3f = (Vector3f) theEObject;
-			T result = caseVector3f(vector3f);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.GEOMETRY_DATA: {
-			GeometryData geometryData = (GeometryData) theEObject;
-			T result = caseGeometryData(geometryData);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.GEOMETRY_INSTANCE: {
-			GeometryInstance geometryInstance = (GeometryInstance) theEObject;
-			T result = caseGeometryInstance(geometryInstance);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -23680,66 +23654,6 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfcVectorOrDirection(IfcVectorOrDirection object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Geometry Info</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Geometry Info</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGeometryInfo(GeometryInfo object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vector3f</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vector3f</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVector3f(Vector3f object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Geometry Data</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Geometry Data</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGeometryData(GeometryData object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Geometry Instance</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Geometry Instance</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGeometryInstance(GeometryInstance object) {
 		return null;
 	}
 

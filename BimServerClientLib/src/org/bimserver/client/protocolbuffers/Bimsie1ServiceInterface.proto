@@ -116,6 +116,7 @@ message AddExtendedDataToRevisionRequest {
 
 message AddProjectRequest {
 	optional string projectName = 1;
+	optional string schema = 2;
 }
 
 message AddProjectResponse {
@@ -126,6 +127,7 @@ message AddProjectResponse {
 message AddProjectAsSubProjectRequest {
 	optional string projectName = 1;
 	optional int64 parentPoid = 2;
+	optional string schema = 3;
 }
 
 message AddProjectAsSubProjectResponse {

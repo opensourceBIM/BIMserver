@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,10 +19,13 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -46,8 +49,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class LongActionStateImpl extends IdEObjectImpl implements
-		LongActionState {
+public class LongActionStateImpl extends IdEObjectImpl implements LongActionState {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -119,8 +121,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Integer getProgress() {
-		return (Integer) eGet(
-				StorePackage.Literals.LONG_ACTION_STATE__PROGRESS, true);
+		return (Integer) eGet(StorePackage.Literals.LONG_ACTION_STATE__PROGRESS, true);
 	}
 
 	/**
@@ -138,8 +139,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public ActionState getState() {
-		return (ActionState) eGet(
-				StorePackage.Literals.LONG_ACTION_STATE__STATE, true);
+		return (ActionState) eGet(StorePackage.Literals.LONG_ACTION_STATE__STATE, true);
 	}
 
 	/**
@@ -157,8 +157,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getTitle() {
-		return (String) eGet(StorePackage.Literals.LONG_ACTION_STATE__TITLE,
-				true);
+		return (String) eGet(StorePackage.Literals.LONG_ACTION_STATE__TITLE, true);
 	}
 
 	/**
@@ -176,8 +175,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public int getStage() {
-		return (Integer) eGet(StorePackage.Literals.LONG_ACTION_STATE__STAGE,
-				true);
+		return (Integer) eGet(StorePackage.Literals.LONG_ACTION_STATE__STAGE, true);
 	}
 
 	/**
@@ -196,8 +194,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getErrors() {
-		return (EList<String>) eGet(
-				StorePackage.Literals.LONG_ACTION_STATE__ERRORS, true);
+		return (EList<String>) eGet(StorePackage.Literals.LONG_ACTION_STATE__ERRORS, true);
 	}
 
 	/**
@@ -207,8 +204,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getWarnings() {
-		return (EList<String>) eGet(
-				StorePackage.Literals.LONG_ACTION_STATE__WARNINGS, true);
+		return (EList<String>) eGet(StorePackage.Literals.LONG_ACTION_STATE__WARNINGS, true);
 	}
 
 	/**
@@ -218,8 +214,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getInfos() {
-		return (EList<String>) eGet(
-				StorePackage.Literals.LONG_ACTION_STATE__INFOS, true);
+		return (EList<String>) eGet(StorePackage.Literals.LONG_ACTION_STATE__INFOS, true);
 	}
 
 } //LongActionStateImpl

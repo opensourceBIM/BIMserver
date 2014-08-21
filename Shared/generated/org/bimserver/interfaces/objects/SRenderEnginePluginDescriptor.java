@@ -30,8 +30,6 @@ public class SRenderEnginePluginDescriptor extends SPluginDescriptor implements 
 
 	@XmlTransient
 	private static SClass sClass;
-	public SRenderEnginePluginDescriptor() {
-	}
 
 	public long getOid() {
 		return this.oid;

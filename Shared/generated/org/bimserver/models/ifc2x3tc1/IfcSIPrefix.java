@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -463,7 +463,8 @@ public enum IfcSIPrefix implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSIPrefix[] VALUES_ARRAY = new IfcSIPrefix[] { NULL, ATTO, MICRO, PICO, CENTI, DECI, KILO, TERA, MEGA, PETA, FEMTO, EXA, MILLI, GIGA, DECA, HECTO, NANO, };
+	private static final IfcSIPrefix[] VALUES_ARRAY = new IfcSIPrefix[] { NULL, ATTO, MICRO, PICO, CENTI, DECI, KILO, TERA, MEGA, PETA, FEMTO, EXA, MILLI,
+			GIGA, DECA, HECTO, NANO, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc SI Prefix</b></em>' enumerators.

@@ -28,6 +28,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
@@ -65,15 +66,18 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 			throw new UserException("No revision with roid " + roid + " found");
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		PackageMetaData lastPackageMetaData = null;
 		Project project = virtualRevision.getProject();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 			int highestStopId = findHighestStopRid(project, concreteRevision);
-			Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
-			IfcModelInterface subModel = getDatabaseSession().getAllOfType(className, query);
+			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
+			lastPackageMetaData = packageMetaData;
+			IfcModelInterface subModel = getDatabaseSession().getAllOfType(packageMetaData.getEPackage().getName(), className, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel = new IfcModel();
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

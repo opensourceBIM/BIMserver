@@ -30,8 +30,6 @@ public class SSettingsSaved extends SLogAction implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	public SSettingsSaved() {
-	}
 
 	public long getOid() {
 		return this.oid;

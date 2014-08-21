@@ -1,18 +1,20 @@
 
-…S
+¥S
 Bimsie1ServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"g
  AddExtendedDataToRevisionRequest
 roid (5
-extendedData (2.org.bimserver.pb.SExtendedData"(
+extendedData (2.org.bimserver.pb.SExtendedData"8
 AddProjectRequest
-projectName (	"U
+projectName (	
+schema (	"U
 AddProjectResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"H
+value (2.org.bimserver.pb.SProject"X
 AddProjectAsSubProjectRequest
 projectName (	
 
-parentPoid ("a
+parentPoid (
+schema (	"a
 AddProjectAsSubProjectResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"_

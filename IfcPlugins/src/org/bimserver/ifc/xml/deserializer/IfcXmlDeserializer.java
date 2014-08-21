@@ -30,13 +30,13 @@ import javax.xml.stream.XMLStreamReader;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -46,12 +46,18 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
-public class IfcXmlDeserializer extends EmfDeserializer {
+public abstract class IfcXmlDeserializer extends EmfDeserializer {
 
-	private final IfcModel model = new IfcModel();
+	private IfcModel model;
 
 	@Override
-	public IfcModelInterface read(InputStream inputStream, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException {
+	public void init(PackageMetaData packageMetaData) {
+		super.init(packageMetaData);
+		 model = new IfcModel(packageMetaData);
+	}
+	
+	@Override
+	public IfcModelInterface read(InputStream inputStream, String filename, long fileSize, ByteProgressReporter byteProgressReporter) throws DeserializeException {
 		if (filename != null && (filename.toUpperCase().endsWith(".ZIP") || filename.toUpperCase().endsWith(".IFCZIP") || filename.toUpperCase().endsWith(".IFCXMLZIP"))) {
 			ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 			ZipEntry nextEntry;
@@ -337,10 +343,5 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 		} else {
 			throw new DeserializeException("Unimplemented primitive type: " + eType.getName());
 		}
-	}
-
-	@Override
-	public void init(SchemaDefinition schema) {
-
 	}
 }

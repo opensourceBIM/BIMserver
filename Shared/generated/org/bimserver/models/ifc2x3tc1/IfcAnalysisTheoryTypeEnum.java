@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -213,8 +213,8 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAnalysisTheoryTypeEnum[] VALUES_ARRAY = new IfcAnalysisTheoryTypeEnum[] { NULL, FULL_NONLINEAR_THEORY, NOTDEFINED, THIRD_ORDER_THEORY,
-			FIRST_ORDER_THEORY, SECOND_ORDER_THEORY, USERDEFINED, };
+	private static final IfcAnalysisTheoryTypeEnum[] VALUES_ARRAY = new IfcAnalysisTheoryTypeEnum[] { NULL, FULL_NONLINEAR_THEORY, NOTDEFINED,
+			THIRD_ORDER_THEORY, FIRST_ORDER_THEORY, SECOND_ORDER_THEORY, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Analysis Theory Type Enum</b></em>' enumerators.

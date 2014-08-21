@@ -30,8 +30,6 @@ public class SServerStarted extends SLogAction implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	public SServerStarted() {
-	}
 
 	public long getOid() {
 		return this.oid;

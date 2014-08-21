@@ -42,7 +42,7 @@ public class GetOidByGuidDatabaseAction extends BimDatabaseAction<Long>{
 		Revision virtualRevision = getRevisionByRoid(roid);
 		ObjectIdentifier objectIdentifier = null;
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-			objectIdentifier = getDatabaseSession().getOidOfGuid(guid, concreteRevision.getProject().getId(), concreteRevision.getId());
+			objectIdentifier = getDatabaseSession().getOidOfGuid(concreteRevision.getProject().getSchema(), guid, concreteRevision.getProject().getId(), concreteRevision.getId());
 			if (objectIdentifier != null) {
 				long oidOfGuid = objectIdentifier.getOid();
 				if (oidOfGuid != -1) {

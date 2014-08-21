@@ -33,4 +33,6 @@ public interface QueryInterface {
 	boolean shouldFollowReference(EClass originalQueryClass, EClass eClass, EStructuralFeature feature);
 
 	boolean shouldIncludeClass(EClass eClass);
+	
+	PackageMetaData getPackageMetaData();
 }

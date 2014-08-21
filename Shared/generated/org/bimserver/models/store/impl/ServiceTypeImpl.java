@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,11 +17,14 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.ServiceField;
 import org.bimserver.models.store.ServiceSimpleType;
 import org.bimserver.models.store.ServiceType;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -94,8 +97,7 @@ public class ServiceTypeImpl extends IdEObjectImpl implements ServiceType {
 	 * @generated
 	 */
 	public String getSimpleName() {
-		return (String) eGet(StorePackage.Literals.SERVICE_TYPE__SIMPLE_NAME,
-				true);
+		return (String) eGet(StorePackage.Literals.SERVICE_TYPE__SIMPLE_NAME, true);
 	}
 
 	/**
@@ -114,8 +116,7 @@ public class ServiceTypeImpl extends IdEObjectImpl implements ServiceType {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ServiceField> getFields() {
-		return (EList<ServiceField>) eGet(
-				StorePackage.Literals.SERVICE_TYPE__FIELDS, true);
+		return (EList<ServiceField>) eGet(StorePackage.Literals.SERVICE_TYPE__FIELDS, true);
 	}
 
 	/**
@@ -124,8 +125,7 @@ public class ServiceTypeImpl extends IdEObjectImpl implements ServiceType {
 	 * @generated
 	 */
 	public ServiceSimpleType getSimpleType() {
-		return (ServiceSimpleType) eGet(
-				StorePackage.Literals.SERVICE_TYPE__SIMPLE_TYPE, true);
+		return (ServiceSimpleType) eGet(StorePackage.Literals.SERVICE_TYPE__SIMPLE_TYPE, true);
 	}
 
 	/**

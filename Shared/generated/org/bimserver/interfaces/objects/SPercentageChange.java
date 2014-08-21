@@ -30,8 +30,6 @@ public class SPercentageChange extends SRemoteServiceUpdate implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private int percentage;
-	public SPercentageChange() {
-	}
 
 	public long getOid() {
 		return this.oid;

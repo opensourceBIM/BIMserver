@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,6 +19,7 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.WebModulePluginConfiguration;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class WebModulePluginConfigurationImpl extends PluginConfigurationImpl
-		implements WebModulePluginConfiguration {
+public class WebModulePluginConfigurationImpl extends PluginConfigurationImpl implements WebModulePluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +61,7 @@ public class WebModulePluginConfigurationImpl extends PluginConfigurationImpl
 	 * @generated
 	 */
 	public ServerSettings getServerSettings() {
-		return (ServerSettings) eGet(
-				StorePackage.Literals.WEB_MODULE_PLUGIN_CONFIGURATION__SERVER_SETTINGS,
-				true);
+		return (ServerSettings) eGet(StorePackage.Literals.WEB_MODULE_PLUGIN_CONFIGURATION__SERVER_SETTINGS, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class WebModulePluginConfigurationImpl extends PluginConfigurationImpl
 	 * @generated
 	 */
 	public void setServerSettings(ServerSettings newServerSettings) {
-		eSet(StorePackage.Literals.WEB_MODULE_PLUGIN_CONFIGURATION__SERVER_SETTINGS,
-				newServerSettings);
+		eSet(StorePackage.Literals.WEB_MODULE_PLUGIN_CONFIGURATION__SERVER_SETTINGS, newServerSettings);
 	}
 
 } //WebModulePluginConfigurationImpl

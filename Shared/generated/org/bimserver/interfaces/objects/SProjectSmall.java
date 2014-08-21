@@ -36,8 +36,7 @@ public class SProjectSmall implements SDataBase
 	private int nrSubProjects;
 	private boolean hasCheckinRights;
 	private long lastRevisionId;
-	public SProjectSmall() {
-	}
+	private java.lang.String schema;
 
 	public long getOid() {
 		return this.oid;
@@ -86,6 +85,9 @@ public class SProjectSmall implements SDataBase
 		if (sField.getName().equals("lastRevisionId")) {
 			return getLastRevisionId();
 		}
+		if (sField.getName().equals("schema")) {
+			return getSchema();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -122,6 +124,10 @@ public class SProjectSmall implements SDataBase
 		}
 		if (sField.getName().equals("lastRevisionId")) {
 			setLastRevisionId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("schema")) {
+			setSchema((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -189,6 +195,14 @@ public class SProjectSmall implements SDataBase
 
 	public void setLastRevisionId(long lastRevisionId) {
 		this.lastRevisionId = lastRevisionId;
+	}
+	
+	public java.lang.String getSchema() {
+		return schema;
+	}
+
+	public void setSchema(java.lang.String schema) {
+		this.schema = schema;
 	}
 	
 	@Override

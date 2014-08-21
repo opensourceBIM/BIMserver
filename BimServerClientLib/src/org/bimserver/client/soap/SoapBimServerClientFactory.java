@@ -19,6 +19,7 @@ package org.bimserver.client.soap;
 
 import org.bimserver.client.AbstractBimServerClientFactory;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -28,8 +29,8 @@ public class SoapBimServerClientFactory extends AbstractBimServerClientFactory {
 
 	private String address;
 
-	public SoapBimServerClientFactory(String address, SServicesMap servicesMap) {
-		super(servicesMap);
+	public SoapBimServerClientFactory(String address, SServicesMap servicesMap, MetaDataManager metaDataManager) {
+		super(servicesMap, metaDataManager);
 		this.address = address;
 	}
 	
@@ -40,7 +41,7 @@ public class SoapBimServerClientFactory extends AbstractBimServerClientFactory {
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
 		SoapChannel soapChannel = new SoapChannel(address + "/soap11", true, getServicesMap().getInterfaceClasses());
-		BimServerClient bimServerClient = new BimServerClient(address, getServicesMap(), soapChannel);
+		BimServerClient bimServerClient = new BimServerClient(this, address, getServicesMap(), soapChannel);
 		soapChannel.connect(bimServerClient);
 		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connect();

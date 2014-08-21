@@ -26,5 +26,5 @@ public interface RenderEnginePlugin extends Plugin {
 	 * @return A RenderEngine instance
 	 * @throws RenderEngineException
 	 */
-	RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration) throws RenderEngineException;
+	RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration, String schema) throws RenderEngineException;
 }

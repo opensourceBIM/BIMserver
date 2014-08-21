@@ -17,10 +17,12 @@ package org.bimserver.shared;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public interface BimServerClientFactory {
 	BimServerClientInterface create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException;
 	BimServerClientInterface create() throws ServiceException, ChannelConnectionException;
+	MetaDataManager getMetaDataManager();
 }

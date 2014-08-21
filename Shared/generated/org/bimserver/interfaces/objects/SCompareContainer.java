@@ -33,8 +33,6 @@ public class SCompareContainer implements SDataBase
 	private static SClass sClass;
 	private java.lang.String type;
 	private List<SCompareItem> items = new ArrayList<SCompareItem>();
-	public SCompareContainer() {
-	}
 
 	public long getOid() {
 		return this.oid;

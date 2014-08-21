@@ -48,7 +48,7 @@ public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClie
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
 		ProtocolBuffersChannel channel = new ProtocolBuffersChannel(getServicesMap(), protocolBuffersMetaData, reflectorFactory, address, port);
 		// TODO people using https or a non-root context-path will get in trouble here
-		BimServerClient bimServerClient = new BimServerClient("http://" + address + ":" + httpPort, getServicesMap(), channel);
+		BimServerClient bimServerClient = new BimServerClient(this, "http://" + address + ":" + httpPort, getServicesMap(), channel);
 		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connect();
 		return bimServerClient;

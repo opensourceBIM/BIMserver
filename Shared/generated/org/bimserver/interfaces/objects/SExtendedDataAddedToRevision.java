@@ -32,8 +32,6 @@ public class SExtendedDataAddedToRevision extends SLogAction implements SDataBas
 	private static SClass sClass;
 	private long revisionId = -1;
 	private long extendedDataId = -1;
-	public SExtendedDataAddedToRevision() {
-	}
 
 	public long getOid() {
 		return this.oid;

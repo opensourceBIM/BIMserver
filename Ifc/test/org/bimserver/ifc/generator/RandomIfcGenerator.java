@@ -55,7 +55,7 @@ public class RandomIfcGenerator {
 				i--;
 			}
 		}
-		IfcModel ifcModel = new IfcModel(objects.size());
+		IfcModel ifcModel = new IfcModel(null, objects.size());
 		long i=0;
 		for (IdEObject idEObject : objects) {
 			try {

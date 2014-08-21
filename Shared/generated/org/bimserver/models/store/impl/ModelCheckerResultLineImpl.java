@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl
-		implements ModelCheckerResultLine {
+public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl implements ModelCheckerResultLine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +65,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl
 	 * @generated
 	 */
 	public String getFieldOrClass() {
-		return (String) eGet(
-				StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__FIELD_OR_CLASS,
-				true);
+		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__FIELD_OR_CLASS, true);
 	}
 
 	/**
@@ -77,8 +74,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl
 	 * @generated
 	 */
 	public void setFieldOrClass(String newFieldOrClass) {
-		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__FIELD_OR_CLASS,
-				newFieldOrClass);
+		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__FIELD_OR_CLASS, newFieldOrClass);
 	}
 
 	/**
@@ -87,8 +83,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl
 	 * @generated
 	 */
 	public String getValue() {
-		return (String) eGet(
-				StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__VALUE, true);
+		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__VALUE, true);
 	}
 
 	/**
@@ -106,9 +101,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl
 	 * @generated
 	 */
 	public String getShouldBe() {
-		return (String) eGet(
-				StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__SHOULD_BE,
-				true);
+		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__SHOULD_BE, true);
 	}
 
 	/**
@@ -117,8 +110,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl
 	 * @generated
 	 */
 	public void setShouldBe(String newShouldBe) {
-		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__SHOULD_BE,
-				newShouldBe);
+		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__SHOULD_BE, newShouldBe);
 	}
 
 	/**
@@ -127,8 +119,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl
 	 * @generated
 	 */
 	public ModelCheckerResultType getType() {
-		return (ModelCheckerResultType) eGet(
-				StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__TYPE, true);
+		return (ModelCheckerResultType) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__TYPE, true);
 	}
 
 	/**
@@ -146,9 +137,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl
 	 * @generated
 	 */
 	public long getObjectId() {
-		return (Long) eGet(
-				StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__OBJECT_ID,
-				true);
+		return (Long) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__OBJECT_ID, true);
 	}
 
 	/**
@@ -157,8 +146,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl
 	 * @generated
 	 */
 	public void setObjectId(long newObjectId) {
-		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__OBJECT_ID,
-				newObjectId);
+		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__OBJECT_ID, newObjectId);
 	}
 
 } //ModelCheckerResultLineImpl

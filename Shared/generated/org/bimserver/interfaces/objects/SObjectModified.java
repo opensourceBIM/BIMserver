@@ -32,8 +32,6 @@ public class SObjectModified extends SCompareItem implements SDataBase
 	private java.lang.String fieldName;
 	private java.lang.String oldValue;
 	private java.lang.String newValue;
-	public SObjectModified() {
-	}
 
 	public long getOid() {
 		return this.oid;

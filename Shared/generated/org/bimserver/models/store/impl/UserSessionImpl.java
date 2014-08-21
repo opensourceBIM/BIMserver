@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,11 +19,14 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.log.AccessMethod;
+
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSession;
 import org.bimserver.models.store.UserType;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -154,8 +157,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * @generated
 	 */
 	public String getRemoteAddress() {
-		return (String) eGet(
-				StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS, true);
+		return (String) eGet(StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS, true);
 	}
 
 	/**
@@ -164,8 +166,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * @generated
 	 */
 	public void setRemoteAddress(String newRemoteAddress) {
-		eSet(StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS,
-				newRemoteAddress);
+		eSet(StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS, newRemoteAddress);
 	}
 
 	/**
@@ -174,8 +175,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * @generated
 	 */
 	public Date getActiveSince() {
-		return (Date) eGet(StorePackage.Literals.USER_SESSION__ACTIVE_SINCE,
-				true);
+		return (Date) eGet(StorePackage.Literals.USER_SESSION__ACTIVE_SINCE, true);
 	}
 
 	/**
@@ -193,8 +193,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * @generated
 	 */
 	public Date getLastActive() {
-		return (Date) eGet(StorePackage.Literals.USER_SESSION__LAST_ACTIVE,
-				true);
+		return (Date) eGet(StorePackage.Literals.USER_SESSION__LAST_ACTIVE, true);
 	}
 
 	/**
@@ -212,8 +211,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * @generated
 	 */
 	public AccessMethod getAccessMethod() {
-		return (AccessMethod) eGet(
-				StorePackage.Literals.USER_SESSION__ACCESS_METHOD, true);
+		return (AccessMethod) eGet(StorePackage.Literals.USER_SESSION__ACCESS_METHOD, true);
 	}
 
 	/**

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ifc2x3tc1" nsURI="http:///buildingsmart.ifc.ecore" nsPrefix="iai">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ifc2x3tc1" nsURI="http://buildingsmart.ifc2x3tc1.ecore" nsPrefix="iai">
   <eClassifiers xsi:type="ecore:EEnum" name="Tristate">
     <eLiterals name="TRUE"/>
     <eLiterals name="FALSE" value="1"/>
@@ -3194,7 +3194,7 @@
         eType="#//IfcRelAssignsToProduct" unsettable="true" eOpposite="#//IfcRelAssignsToProduct/RelatingProduct">
       <eAnnotations source="inverse"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#//GeometryInfo">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="ecore:EClass geometry#//GeometryInfo">
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -8946,43 +8946,4 @@
   <eClassifiers xsi:type="ecore:EClass" name="IfcValue" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcVectorOrDirection" abstract="true"
       interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GeometryInfo">
-    <eAnnotations source="hidden"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="minBounds" eType="#//Vector3f">
-      <eAnnotations source="embedsreference"/>
-      <eAnnotations source="hidden"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="maxBounds" eType="#//Vector3f">
-      <eAnnotations source="embedsreference"/>
-      <eAnnotations source="hidden"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startVertex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitiveCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//GeometryData">
-      <eAnnotations source="nolazyload"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#//GeometryInstance"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Vector3f">
-    <eAnnotations source="hidden"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="z" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GeometryData">
-    <eAnnotations source="nolazyload"/>
-    <eAnnotations source="hidden"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="normals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="materials" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="materialIndices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
-    <eAnnotations source="hidden"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//GeometryData"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-  </eClassifiers>
 </ecore:EPackage>

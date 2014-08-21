@@ -29,8 +29,6 @@ public class SObjectRemoved extends SCompareItem implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	public SObjectRemoved() {
-	}
 
 	public long getOid() {
 		return this.oid;

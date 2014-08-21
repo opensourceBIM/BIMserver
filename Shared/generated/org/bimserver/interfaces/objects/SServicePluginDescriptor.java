@@ -30,8 +30,6 @@ public class SServicePluginDescriptor extends SPluginDescriptor implements SData
 
 	@XmlTransient
 	private static SClass sClass;
-	public SServicePluginDescriptor() {
-	}
 
 	public long getOid() {
 		return this.oid;

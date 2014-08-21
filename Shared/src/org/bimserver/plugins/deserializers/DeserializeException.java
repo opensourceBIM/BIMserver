@@ -47,4 +47,9 @@ public class DeserializeException extends Exception {
 	public DeserializeException(Exception e) {
 		super(e);
 	}
+
+	public DeserializeException(int lineNumber, Exception e) {
+		super(e);
+		this.lineNumber = lineNumber;
+	}
 }

@@ -33,8 +33,6 @@ public class SDatabaseInformationCategory implements SDataBase
 	private static SClass sClass;
 	private java.lang.String title;
 	private List<SDatabaseInformationItem> items = new ArrayList<SDatabaseInformationItem>();
-	public SDatabaseInformationCategory() {
-	}
 
 	public long getOid() {
 		return this.oid;

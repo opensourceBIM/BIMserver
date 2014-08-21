@@ -126,7 +126,7 @@ public class Colorizer {
 		}
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			schema = pluginManager.requireSchemaDefinition();
+			schema = pluginManager.requireSchemaDefinition("ifc2x3tc1");
 		} catch (PluginException e) {
 			e.printStackTrace();
 		}
@@ -136,7 +136,7 @@ public class Colorizer {
 		try {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(schema);
+//			deserializer.init(schema); // TODO
 			IfcModelInterface model = deserializer.read(file);
 			return model;
 		} catch (PluginException e) {
@@ -250,7 +250,8 @@ public class Colorizer {
 		Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 		try {
 			model.resetExpressIds();
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), true);
+			// TODO
+			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, true);
 			serializer.writeToFile(outFile, null);
 		} catch (SerializerException e) {
 			e.printStackTrace();

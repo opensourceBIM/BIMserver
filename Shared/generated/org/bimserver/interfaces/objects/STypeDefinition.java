@@ -29,8 +29,6 @@ public class STypeDefinition implements SBase
 
 	@XmlTransient
 	private static SClass sClass;
-	public STypeDefinition() {
-	}
 	
 	@XmlTransient
 	public SClass getSClass() {

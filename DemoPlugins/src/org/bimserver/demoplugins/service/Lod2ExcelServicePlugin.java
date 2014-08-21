@@ -23,7 +23,9 @@ import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
+import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
@@ -36,7 +38,6 @@ import org.bimserver.models.ifc2x3tc1.IfcSIUnit;
 import org.bimserver.models.ifc2x3tc1.IfcSIUnitName;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
-import org.bimserver.models.ifc2x3tc1.Vector3f;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ServiceDescriptor;
@@ -99,10 +100,10 @@ public class Lod2ExcelServicePlugin extends ServicePlugin {
 	}
 
 	@Override
-	public void register(long uoid, SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalService, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
-		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
+		serviceDescriptor.setIdentifier(getClass().getName());
 		serviceDescriptor.setName("LOD to Excel");
 		serviceDescriptor.setDescription("LOD to Excel");
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
@@ -122,7 +123,8 @@ public class Lod2ExcelServicePlugin extends ServicePlugin {
 					state.setStart(startDate);
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
-					IfcModelInterface model = bimServerClientInterface.getModel(poid, roid, true);
+					SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
+					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true);
 					
 					try {
 					    WorkbookSettings wbSettings = new WorkbookSettings();

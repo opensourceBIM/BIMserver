@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -263,8 +263,8 @@ public enum IfcWindowStyleConstructionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowStyleConstructionEnum[] VALUES_ARRAY = new IfcWindowStyleConstructionEnum[] { NULL, ALUMINIUM_WOOD, HIGH_GRADE_STEEL, NOTDEFINED,
-			OTHER_CONSTRUCTION, PLASTIC, WOOD, ALUMINIUM, STEEL, };
+	private static final IfcWindowStyleConstructionEnum[] VALUES_ARRAY = new IfcWindowStyleConstructionEnum[] { NULL, ALUMINIUM_WOOD, HIGH_GRADE_STEEL,
+			NOTDEFINED, OTHER_CONSTRUCTION, PLASTIC, WOOD, ALUMINIUM, STEEL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Style Construction Enum</b></em>' enumerators.

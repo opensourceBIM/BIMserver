@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -263,8 +263,8 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcResourceConsumptionEnum[] VALUES_ARRAY = new IfcResourceConsumptionEnum[] { NULL, CONSUMED, NOTCONSUMED, NOTDEFINED, PARTIALLYCONSUMED, OCCUPIED,
-			USERDEFINED, NOTOCCUPIED, PARTIALLYOCCUPIED, };
+	private static final IfcResourceConsumptionEnum[] VALUES_ARRAY = new IfcResourceConsumptionEnum[] { NULL, CONSUMED, NOTCONSUMED, NOTDEFINED,
+			PARTIALLYCONSUMED, OCCUPIED, USERDEFINED, NOTOCCUPIED, PARTIALLYOCCUPIED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Resource Consumption Enum</b></em>' enumerators.

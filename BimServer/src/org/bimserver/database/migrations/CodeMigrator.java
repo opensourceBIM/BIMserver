@@ -79,15 +79,14 @@ public class CodeMigrator {
 		LOGGER.info("Generating ServiceInterface objects...");
 		DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper();
 		Set<EPackage> ePackages = new HashSet<EPackage>();
+		MetaDataManager metaDataManager = new MetaDataManager(null);
 		for (EPackage ePackage : schema.getEPackages()) {
-			if (!ePackage.getName().equals("ifc2x3tc1")) {
+			if (!ePackage.getName().equals("ifc2x3tc1") && !ePackage.getName().equals("ifc4") && !ePackage.getName().equals("geometry")) {
 				ePackages.add(ePackage);
 			}
 		}
 		serviceGenerator.generateDataObjects(ePackages);
 		LOGGER.info("ServiceInterface objects successfully generated");
-
-		MetaDataManager metaDataManager = new MetaDataManager(ePackages);
 
 		SConverterGeneratorWrapper sConverterGenerator = new SConverterGeneratorWrapper(metaDataManager);
 		sConverterGenerator.generate(ePackages);

@@ -60,6 +60,7 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.deserializers.DeserializerFactory;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.endpoints.EndPointManager;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
@@ -180,6 +181,8 @@ public class BimServer {
 	private ExecutorService executorService = Executors.newFixedThreadPool(50);
 	private InternalServicesManager internalServicesManager;
 	private OpenIdManager openIdManager;
+
+	private MetaDataManager metaDataManager;
 
 	/**
 	 * Create a new BIMserver
@@ -340,13 +343,16 @@ public class BimServer {
 			templateEngine.init(config.getResourceFetcher().getResource("templates/"));
 			File databaseDir = new File(config.getHomeDir(), "database");
 			BerkeleyKeyValueStore keyValueStore = new BerkeleyKeyValueStore(databaseDir);
-			bimDatabase = new Database(this, packages, keyValueStore);
+			
+			metaDataManager = new MetaDataManager(pluginManager);
+			Query.setPackageMetaDataForDefaultQuery(metaDataManager.getEPackage("store"));
+			
 			try {
 				bimDatabase.init();
 			} catch (DatabaseRestartRequiredException e) {
 				bimDatabase.close();
 				keyValueStore = new BerkeleyKeyValueStore(databaseDir);
-				bimDatabase = new Database(this, packages, keyValueStore);
+				bimDatabase = new Database(this, packages, keyValueStore, metaDataManager);
 				try {
 					bimDatabase.init();
 				} catch (InconsistentModelsException e1) {
@@ -735,7 +741,7 @@ public class BimServer {
 				}
 			}
 			
-			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager);
+			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager, metaDataManager);
 			pluginManager.setBimServerClientFactory(bimServerClientFactory);
 		} catch (BimserverLockConflictException e) {
 			throw new BimserverDatabaseException(e);
@@ -994,5 +1000,9 @@ public class BimServer {
 	
 	public OpenIdManager getOpenIdManager() {
 		return openIdManager;
+	}
+	
+	public MetaDataManager getMetaDataManager() {
+		return metaDataManager;
 	}
 }

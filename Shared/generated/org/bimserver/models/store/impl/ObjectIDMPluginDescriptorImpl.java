@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,8 +17,10 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.ObjectIDMPluginDescriptor;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ObjectIDMPluginDescriptorImpl extends IdEObjectImpl implements
-		ObjectIDMPluginDescriptor {
+public class ObjectIDMPluginDescriptorImpl extends IdEObjectImpl implements ObjectIDMPluginDescriptor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,9 +72,7 @@ public class ObjectIDMPluginDescriptorImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getClassName() {
-		return (String) eGet(
-				StorePackage.Literals.OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME,
-				true);
+		return (String) eGet(StorePackage.Literals.OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME, true);
 	}
 
 	/**
@@ -82,8 +81,7 @@ public class ObjectIDMPluginDescriptorImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setClassName(String newClassName) {
-		eSet(StorePackage.Literals.OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME,
-				newClassName);
+		eSet(StorePackage.Literals.OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME, newClassName);
 	}
 
 } //ObjectIDMPluginDescriptorImpl

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,10 +17,13 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.RevisionSummaryContainer;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -36,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RevisionSummaryImpl extends IdEObjectImpl implements
-		RevisionSummary {
+public class RevisionSummaryImpl extends IdEObjectImpl implements RevisionSummary {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,8 +76,7 @@ public class RevisionSummaryImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<RevisionSummaryContainer> getList() {
-		return (EList<RevisionSummaryContainer>) eGet(
-				StorePackage.Literals.REVISION_SUMMARY__LIST, true);
+		return (EList<RevisionSummaryContainer>) eGet(StorePackage.Literals.REVISION_SUMMARY__LIST, true);
 	}
 
 } //RevisionSummaryImpl

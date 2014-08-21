@@ -33,6 +33,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getNrSubProjects <em>Nr Sub Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#isHasCheckinRights <em>Has Checkin Rights</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getLastRevisionId <em>Last Revision Id</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
  *
@@ -226,5 +227,31 @@ public interface ProjectSmall extends IdEObject {
 	 * @generated
 	 */
 	void setLastRevisionId(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Schema</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Schema</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Schema</em>' attribute.
+	 * @see #setSchema(String)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_Schema()
+	 * @model
+	 * @generated
+	 */
+	String getSchema();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#getSchema <em>Schema</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Schema</em>' attribute.
+	 * @see #getSchema()
+	 * @generated
+	 */
+	void setSchema(String value);
 
 } // ProjectSmall

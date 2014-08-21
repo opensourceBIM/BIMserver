@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,9 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.log.RevisionRelated;
+
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
@@ -28,7 +30,9 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -186,8 +190,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ConcreteRevision> getConcreteRevisions() {
-		return (EList<ConcreteRevision>) eGet(
-				StorePackage.Literals.REVISION__CONCRETE_REVISIONS, true);
+		return (EList<ConcreteRevision>) eGet(StorePackage.Literals.REVISION__CONCRETE_REVISIONS, true);
 	}
 
 	/**
@@ -196,8 +199,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public ConcreteRevision getLastConcreteRevision() {
-		return (ConcreteRevision) eGet(
-				StorePackage.Literals.REVISION__LAST_CONCRETE_REVISION, true);
+		return (ConcreteRevision) eGet(StorePackage.Literals.REVISION__LAST_CONCRETE_REVISION, true);
 	}
 
 	/**
@@ -206,8 +208,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setLastConcreteRevision(ConcreteRevision newLastConcreteRevision) {
-		eSet(StorePackage.Literals.REVISION__LAST_CONCRETE_REVISION,
-				newLastConcreteRevision);
+		eSet(StorePackage.Literals.REVISION__LAST_CONCRETE_REVISION, newLastConcreteRevision);
 	}
 
 	/**
@@ -217,8 +218,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Checkout> getCheckouts() {
-		return (EList<Checkout>) eGet(
-				StorePackage.Literals.REVISION__CHECKOUTS, true);
+		return (EList<Checkout>) eGet(StorePackage.Literals.REVISION__CHECKOUTS, true);
 	}
 
 	/**
@@ -300,8 +300,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ExtendedData> getExtendedData() {
-		return (EList<ExtendedData>) eGet(
-				StorePackage.Literals.REVISION__EXTENDED_DATA, true);
+		return (EList<ExtendedData>) eGet(StorePackage.Literals.REVISION__EXTENDED_DATA, true);
 	}
 
 	/**
@@ -311,8 +310,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<RevisionRelated> getLogs() {
-		return (EList<RevisionRelated>) eGet(
-				StorePackage.Literals.REVISION__LOGS, true);
+		return (EList<RevisionRelated>) eGet(StorePackage.Literals.REVISION__LOGS, true);
 	}
 
 	/**
@@ -339,8 +337,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public boolean isHasGeometry() {
-		return (Boolean) eGet(StorePackage.Literals.REVISION__HAS_GEOMETRY,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.REVISION__HAS_GEOMETRY, true);
 	}
 
 	/**

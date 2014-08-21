@@ -202,4 +202,6 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 
 	<T extends IdEObject> T create(Class<T> class1, OidProvider<Long> oidProvider) throws IfcModelInterfaceException;
 	<T extends IdEObject> T create(EClass eClass, OidProvider<Long> oidProvider) throws IfcModelInterfaceException;
+	
+	PackageMetaData getPackageMetaData();
 }

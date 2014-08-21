@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,10 +17,13 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.DatabaseInformationCategory;
 import org.bimserver.models.store.DatabaseInformationItem;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -37,8 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class DatabaseInformationCategoryImpl extends IdEObjectImpl implements
-		DatabaseInformationCategory {
+public class DatabaseInformationCategoryImpl extends IdEObjectImpl implements DatabaseInformationCategory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,9 +76,7 @@ public class DatabaseInformationCategoryImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getTitle() {
-		return (String) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION_CATEGORY__TITLE,
-				true);
+		return (String) eGet(StorePackage.Literals.DATABASE_INFORMATION_CATEGORY__TITLE, true);
 	}
 
 	/**
@@ -85,8 +85,7 @@ public class DatabaseInformationCategoryImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public void setTitle(String newTitle) {
-		eSet(StorePackage.Literals.DATABASE_INFORMATION_CATEGORY__TITLE,
-				newTitle);
+		eSet(StorePackage.Literals.DATABASE_INFORMATION_CATEGORY__TITLE, newTitle);
 	}
 
 	/**
@@ -96,9 +95,7 @@ public class DatabaseInformationCategoryImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<DatabaseInformationItem> getItems() {
-		return (EList<DatabaseInformationItem>) eGet(
-				StorePackage.Literals.DATABASE_INFORMATION_CATEGORY__ITEMS,
-				true);
+		return (EList<DatabaseInformationItem>) eGet(StorePackage.Literals.DATABASE_INFORMATION_CATEGORY__ITEMS, true);
 	}
 
 } //DatabaseInformationCategoryImpl

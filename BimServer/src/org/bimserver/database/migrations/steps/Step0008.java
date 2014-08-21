@@ -20,16 +20,13 @@ package org.bimserver.database.migrations.steps;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
-import org.bimserver.database.migrations.Schema.Multiplicity;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0008 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
-		EClass geometryInfo = schema.getEClass("ifc2x3tc1", "GeometryInfo");
-		schema.createEAttribute(geometryInfo, "transformation", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
+//		EClass geometryInfo = schema.getEClass("ifc2x3tc1", "GeometryInfo");
+//		schema.createEAttribute(geometryInfo, "transformation", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 	}
 
 	@Override

@@ -30,8 +30,6 @@ public class SDeserializerPluginConfiguration extends SPluginConfiguration imple
 	@XmlTransient
 	private static SClass sClass;
 	private long userSettingsId = -1;
-	public SDeserializerPluginConfiguration() {
-	}
 
 	public long getOid() {
 		return this.oid;

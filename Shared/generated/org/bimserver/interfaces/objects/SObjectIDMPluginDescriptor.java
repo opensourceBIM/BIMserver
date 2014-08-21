@@ -30,8 +30,6 @@ public class SObjectIDMPluginDescriptor implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private java.lang.String className;
-	public SObjectIDMPluginDescriptor() {
-	}
 
 	public long getOid() {
 		return this.oid;

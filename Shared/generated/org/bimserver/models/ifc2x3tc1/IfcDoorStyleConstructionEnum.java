@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -288,8 +288,8 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorStyleConstructionEnum[] VALUES_ARRAY = new IfcDoorStyleConstructionEnum[] { NULL, ALUMINIUM_WOOD, HIGH_GRADE_STEEL, NOTDEFINED, ALUMINIUM_PLASTIC,
-			USERDEFINED, PLASTIC, WOOD, ALUMINIUM, STEEL, };
+	private static final IfcDoorStyleConstructionEnum[] VALUES_ARRAY = new IfcDoorStyleConstructionEnum[] { NULL, ALUMINIUM_WOOD, HIGH_GRADE_STEEL, NOTDEFINED,
+			ALUMINIUM_PLASTIC, USERDEFINED, PLASTIC, WOOD, ALUMINIUM, STEEL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Style Construction Enum</b></em>' enumerators.

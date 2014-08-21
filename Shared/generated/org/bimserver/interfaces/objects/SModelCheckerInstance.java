@@ -35,8 +35,6 @@ public class SModelCheckerInstance implements SDataBase
 	private byte[] compiled;
 	private boolean valid;
 	private java.lang.String modelCheckerPluginClassName;
-	public SModelCheckerInstance() {
-	}
 
 	public long getOid() {
 		return this.oid;

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,9 +19,11 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -77,8 +79,7 @@ public class LongActionImpl extends IdEObjectImpl implements LongAction {
 	 * @generated
 	 */
 	public String getIdentification() {
-		return (String) eGet(StorePackage.Literals.LONG_ACTION__IDENTIFICATION,
-				true);
+		return (String) eGet(StorePackage.Literals.LONG_ACTION__IDENTIFICATION, true);
 	}
 
 	/**
@@ -87,8 +88,7 @@ public class LongActionImpl extends IdEObjectImpl implements LongAction {
 	 * @generated
 	 */
 	public void setIdentification(String newIdentification) {
-		eSet(StorePackage.Literals.LONG_ACTION__IDENTIFICATION,
-				newIdentification);
+		eSet(StorePackage.Literals.LONG_ACTION__IDENTIFICATION, newIdentification);
 	}
 
 	/**

@@ -30,8 +30,6 @@ public class SWebModulePluginConfiguration extends SPluginConfiguration implemen
 	@XmlTransient
 	private static SClass sClass;
 	private long serverSettingsId = -1;
-	public SWebModulePluginConfiguration() {
-	}
 
 	public long getOid() {
 		return this.oid;

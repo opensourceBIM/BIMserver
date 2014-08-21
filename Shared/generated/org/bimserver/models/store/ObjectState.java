@@ -88,8 +88,7 @@ public enum ObjectState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ObjectState[] VALUES_ARRAY = new ObjectState[] {
-			ACTIVE, DELETED, };
+	private static final ObjectState[] VALUES_ARRAY = new ObjectState[] { ACTIVE, DELETED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Object State</b></em>' enumerators.
@@ -97,8 +96,7 @@ public enum ObjectState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ObjectState> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ObjectState> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Object State</b></em>' literal with the specified literal value.

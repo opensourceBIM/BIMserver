@@ -25,4 +25,5 @@ import org.bimserver.plugins.PluginConfiguration;
 public interface SchemaPlugin extends Plugin {
 	SchemaDefinition getSchemaDefinition(PluginConfiguration pluginConfiguration);
 	File getExpressSchemaFile();
+	String getSchemaVersion();
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,8 +19,10 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.BimServerInfo;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -82,8 +84,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public String getCurrentVersion() {
-		return (String) eGet(
-				StorePackage.Literals.BIM_SERVER_INFO__CURRENT_VERSION, true);
+		return (String) eGet(StorePackage.Literals.BIM_SERVER_INFO__CURRENT_VERSION, true);
 	}
 
 	/**
@@ -92,8 +93,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public void setCurrentVersion(String newCurrentVersion) {
-		eSet(StorePackage.Literals.BIM_SERVER_INFO__CURRENT_VERSION,
-				newCurrentVersion);
+		eSet(StorePackage.Literals.BIM_SERVER_INFO__CURRENT_VERSION, newCurrentVersion);
 	}
 
 	/**
@@ -102,8 +102,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public Date getCurrentDate() {
-		return (Date) eGet(StorePackage.Literals.BIM_SERVER_INFO__CURRENT_DATE,
-				true);
+		return (Date) eGet(StorePackage.Literals.BIM_SERVER_INFO__CURRENT_DATE, true);
 	}
 
 	/**
@@ -112,8 +111,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public void setCurrentDate(Date newCurrentDate) {
-		eSet(StorePackage.Literals.BIM_SERVER_INFO__CURRENT_DATE,
-				newCurrentDate);
+		eSet(StorePackage.Literals.BIM_SERVER_INFO__CURRENT_DATE, newCurrentDate);
 	}
 
 	/**
@@ -122,8 +120,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public int getSchemaVersion() {
-		return (Integer) eGet(
-				StorePackage.Literals.BIM_SERVER_INFO__SCHEMA_VERSION, true);
+		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__SCHEMA_VERSION, true);
 	}
 
 	/**
@@ -132,8 +129,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public void setSchemaVersion(int newSchemaVersion) {
-		eSet(StorePackage.Literals.BIM_SERVER_INFO__SCHEMA_VERSION,
-				newSchemaVersion);
+		eSet(StorePackage.Literals.BIM_SERVER_INFO__SCHEMA_VERSION, newSchemaVersion);
 	}
 
 	/**
@@ -142,8 +138,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public Date getLatestDate() {
-		return (Date) eGet(StorePackage.Literals.BIM_SERVER_INFO__LATEST_DATE,
-				true);
+		return (Date) eGet(StorePackage.Literals.BIM_SERVER_INFO__LATEST_DATE, true);
 	}
 
 	/**
@@ -161,8 +156,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public String getLatestVersion() {
-		return (String) eGet(
-				StorePackage.Literals.BIM_SERVER_INFO__LATEST_VERSION, true);
+		return (String) eGet(StorePackage.Literals.BIM_SERVER_INFO__LATEST_VERSION, true);
 	}
 
 	/**
@@ -171,8 +165,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public void setLatestVersion(String newLatestVersion) {
-		eSet(StorePackage.Literals.BIM_SERVER_INFO__LATEST_VERSION,
-				newLatestVersion);
+		eSet(StorePackage.Literals.BIM_SERVER_INFO__LATEST_VERSION, newLatestVersion);
 	}
 
 	/**
@@ -181,8 +174,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public int getProjects() {
-		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__PROJECTS,
-				true);
+		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__PROJECTS, true);
 	}
 
 	/**
@@ -200,8 +192,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public int getRevisions() {
-		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__REVISIONS,
-				true);
+		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__REVISIONS, true);
 	}
 
 	/**
@@ -219,8 +210,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public int getUsers() {
-		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__USERS,
-				true);
+		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__USERS, true);
 	}
 
 	/**
@@ -238,8 +228,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public int getCheckouts() {
-		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__CHECKOUTS,
-				true);
+		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__CHECKOUTS, true);
 	}
 
 	/**
@@ -257,8 +246,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public String getServerLogUrl() {
-		return (String) eGet(
-				StorePackage.Literals.BIM_SERVER_INFO__SERVER_LOG_URL, true);
+		return (String) eGet(StorePackage.Literals.BIM_SERVER_INFO__SERVER_LOG_URL, true);
 	}
 
 	/**
@@ -267,8 +255,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * @generated
 	 */
 	public void setServerLogUrl(String newServerLogUrl) {
-		eSet(StorePackage.Literals.BIM_SERVER_INFO__SERVER_LOG_URL,
-				newServerLogUrl);
+		eSet(StorePackage.Literals.BIM_SERVER_INFO__SERVER_LOG_URL, newServerLogUrl);
 	}
 
 	/**

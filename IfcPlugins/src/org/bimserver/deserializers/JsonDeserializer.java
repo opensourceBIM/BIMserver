@@ -52,14 +52,10 @@ import com.google.gson.stream.JsonReader;
 public class JsonDeserializer extends EmfDeserializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonDeserializer.class);
 
-	@Override
-	public void init(SchemaDefinition schema) {
-	}
-
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException {
-		IfcModelInterface model = new IfcModel();
+		IfcModelInterface model = new IfcModel(getPackageMetaData());
 		WaitingList<Long> waitingList = new WaitingList<Long>();
 		JsonReader jsonReader = new JsonReader(new InputStreamReader(in));
 		try {

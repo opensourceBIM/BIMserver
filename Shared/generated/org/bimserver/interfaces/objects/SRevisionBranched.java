@@ -32,8 +32,6 @@ public class SRevisionBranched extends SLogAction implements SDataBase
 	private static SClass sClass;
 	private long oldrevisionId = -1;
 	private long newrevisionId = -1;
-	public SRevisionBranched() {
-	}
 
 	public long getOid() {
 		return this.oid;

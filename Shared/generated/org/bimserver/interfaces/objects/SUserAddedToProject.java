@@ -31,8 +31,6 @@ public class SUserAddedToProject extends SUserRelated implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private long projectId = -1;
-	public SUserAddedToProject() {
-	}
 
 	public long getOid() {
 		return this.oid;

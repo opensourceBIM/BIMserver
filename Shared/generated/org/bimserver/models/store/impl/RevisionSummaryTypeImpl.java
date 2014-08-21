@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,8 +17,10 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.RevisionSummaryType;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -30,13 +32,13 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getCount <em>Count</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RevisionSummaryTypeImpl extends IdEObjectImpl implements
-		RevisionSummaryType {
+public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSummaryType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,8 +74,7 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__NAME,
-				true);
+		return (String) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__NAME, true);
 	}
 
 	/**
@@ -91,8 +92,7 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements
 	 * @generated
 	 */
 	public Integer getCount() {
-		return (Integer) eGet(
-				StorePackage.Literals.REVISION_SUMMARY_TYPE__COUNT, true);
+		return (Integer) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__COUNT, true);
 	}
 
 	/**
@@ -102,6 +102,24 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements
 	 */
 	public void setCount(Integer newCount) {
 		eSet(StorePackage.Literals.REVISION_SUMMARY_TYPE__COUNT, newCount);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSchema() {
+		return (String) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__SCHEMA, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSchema(String newSchema) {
+		eSet(StorePackage.Literals.REVISION_SUMMARY_TYPE__SCHEMA, newSchema);
 	}
 
 } //RevisionSummaryTypeImpl

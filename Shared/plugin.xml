@@ -21,9 +21,23 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated models -->
+      <package
+            uri="geometry"
+            class="org.bimserver.models.geometry.GeometryPackage"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http:///buildingsmart.ifc.ecore"
             class="org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated models -->
+      <package
+            uri="http://buildingsmart.ifc4.ecore"
+            class="org.bimserver.models.ifc4.Ifc4Package"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">

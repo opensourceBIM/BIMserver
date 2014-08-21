@@ -21,6 +21,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.bimserver.changes.Change;
+import org.bimserver.emf.PackageMetaData;
 
 public class LongTransaction {
 
@@ -29,12 +30,18 @@ public class LongTransaction {
 	private int pid;
 	private int rid;
 	private long poid;
+	private String schemaName;
 
-	public LongTransaction(long poid, int pid, int rid, long tid) {
+	public LongTransaction(long poid, int pid, int rid, long tid, String schemaName) {
 		this.poid = poid;
 		this.pid = pid;
 		this.rid = rid;
 		this.tid = tid;
+		this.schemaName = schemaName;
+	}
+	
+	public String getSchemaName() {
+		return schemaName;
 	}
 	
 	public int getPid() {
@@ -62,5 +69,9 @@ public class LongTransaction {
 
 	public long getPoid() {
 		return poid;
+	}
+
+	public PackageMetaData getPackageMetaData() {
+		return null;
 	}
 }

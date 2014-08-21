@@ -30,8 +30,6 @@ public class SPasswordChanged extends SUserRelated implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	public SPasswordChanged() {
-	}
 
 	public long getOid() {
 		return this.oid;

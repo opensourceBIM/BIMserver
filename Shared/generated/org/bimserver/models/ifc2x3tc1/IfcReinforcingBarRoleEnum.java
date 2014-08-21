@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -288,8 +288,8 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcReinforcingBarRoleEnum[] VALUES_ARRAY = new IfcReinforcingBarRoleEnum[] { NULL, RING, MAIN, NOTDEFINED, LIGATURE, PUNCHING, SHEAR, USERDEFINED, STUD,
-			EDGE, };
+	private static final IfcReinforcingBarRoleEnum[] VALUES_ARRAY = new IfcReinforcingBarRoleEnum[] { NULL, RING, MAIN, NOTDEFINED, LIGATURE, PUNCHING, SHEAR,
+			USERDEFINED, STUD, EDGE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Reinforcing Bar Role Enum</b></em>' enumerators.

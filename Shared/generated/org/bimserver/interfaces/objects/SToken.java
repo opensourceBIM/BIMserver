@@ -31,8 +31,6 @@ public class SToken implements SDataBase
 	private static SClass sClass;
 	private java.lang.String tokenString;
 	private long expires;
-	public SToken() {
-	}
 
 	public long getOid() {
 		return this.oid;

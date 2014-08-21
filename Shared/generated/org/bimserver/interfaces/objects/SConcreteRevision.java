@@ -43,8 +43,6 @@ public class SConcreteRevision implements SDataBase
 	private long summaryId = -1;
 	private long userId = -1;
 	private long ifcHeaderId = -1;
-	public SConcreteRevision() {
-	}
 
 	public long getOid() {
 		return this.oid;

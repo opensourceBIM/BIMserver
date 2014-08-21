@@ -30,8 +30,6 @@ public class SModelCheckerPluginDescriptor extends SPluginDescriptor implements 
 
 	@XmlTransient
 	private static SClass sClass;
-	public SModelCheckerPluginDescriptor() {
-	}
 
 	public long getOid() {
 		return this.oid;

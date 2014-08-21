@@ -51,8 +51,6 @@ public class SUser implements SDataBase
 	private List<Long> extendedData = new ArrayList<Long>();
 	private List<Long> services = new ArrayList<Long>();
 	private List<Long> logs = new ArrayList<Long>();
-	public SUser() {
-	}
 
 	public long getOid() {
 		return this.oid;

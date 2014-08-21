@@ -28,6 +28,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
@@ -74,15 +75,17 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 		final AtomicLong total = new AtomicLong();
 
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
-
+		PackageMetaData lastPackageMetaData = null;
 		for (long roid : roids) {
 			Revision revision = getRevisionByRoid(roid);
 			project = revision.getProject();
 			if (getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-					IfcModel subModel = new IfcModel();
+					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+					lastPackageMetaData = packageMetaData;
+					IfcModel subModel = new IfcModel(packageMetaData);
 					int highestStopId = findHighestStopRid(project, concreteRevision);
-					Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, Deep.YES, highestStopId);
+					Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, Deep.YES, highestStopId);
 					subModel.addChangeListener(new IfcModelChangeListener() {
 						@Override
 						public void objectAdded() {
@@ -110,7 +113,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel();
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

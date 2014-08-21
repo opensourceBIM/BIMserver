@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,11 +17,14 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.SmtpProtocol;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.WebModulePluginConfiguration;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -96,9 +99,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public boolean isSendConfirmationEmailAfterRegistration() {
-		return (Boolean) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, true);
 	}
 
 	/**
@@ -106,10 +107,8 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSendConfirmationEmailAfterRegistration(
-			boolean newSendConfirmationEmailAfterRegistration) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION,
-				newSendConfirmationEmailAfterRegistration);
+	public void setSendConfirmationEmailAfterRegistration(boolean newSendConfirmationEmailAfterRegistration) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, newSendConfirmationEmailAfterRegistration);
 	}
 
 	/**
@@ -118,9 +117,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public Boolean getAllowSelfRegistration() {
-		return (Boolean) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__ALLOW_SELF_REGISTRATION,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_SELF_REGISTRATION, true);
 	}
 
 	/**
@@ -129,8 +126,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setAllowSelfRegistration(Boolean newAllowSelfRegistration) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_SELF_REGISTRATION,
-				newAllowSelfRegistration);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_SELF_REGISTRATION, newAllowSelfRegistration);
 	}
 
 	/**
@@ -139,9 +135,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public boolean isAllowUsersToCreateTopLevelProjects() {
-		return (Boolean) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS, true);
 	}
 
 	/**
@@ -149,10 +143,8 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAllowUsersToCreateTopLevelProjects(
-			boolean newAllowUsersToCreateTopLevelProjects) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS,
-				newAllowUsersToCreateTopLevelProjects);
+	public void setAllowUsersToCreateTopLevelProjects(boolean newAllowUsersToCreateTopLevelProjects) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS, newAllowUsersToCreateTopLevelProjects);
 	}
 
 	/**
@@ -161,9 +153,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public Boolean getCheckinMergingEnabled() {
-		return (Boolean) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__CHECKIN_MERGING_ENABLED,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__CHECKIN_MERGING_ENABLED, true);
 	}
 
 	/**
@@ -172,8 +162,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setCheckinMergingEnabled(Boolean newCheckinMergingEnabled) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__CHECKIN_MERGING_ENABLED,
-				newCheckinMergingEnabled);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__CHECKIN_MERGING_ENABLED, newCheckinMergingEnabled);
 	}
 
 	/**
@@ -182,8 +171,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public String getSmtpServer() {
-		return (String) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__SMTP_SERVER, true);
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_SERVER, true);
 	}
 
 	/**
@@ -201,9 +189,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public String getEmailSenderAddress() {
-		return (String) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_ADDRESS,
-				true);
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_ADDRESS, true);
 	}
 
 	/**
@@ -212,8 +198,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setEmailSenderAddress(String newEmailSenderAddress) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_ADDRESS,
-				newEmailSenderAddress);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_ADDRESS, newEmailSenderAddress);
 	}
 
 	/**
@@ -222,8 +207,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public String getEmailSenderName() {
-		return (String) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_NAME, true);
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_NAME, true);
 	}
 
 	/**
@@ -232,8 +216,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setEmailSenderName(String newEmailSenderName) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_NAME,
-				newEmailSenderName);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_NAME, newEmailSenderName);
 	}
 
 	/**
@@ -242,8 +225,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public String getSiteAddress() {
-		return (String) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__SITE_ADDRESS, true);
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SITE_ADDRESS, true);
 	}
 
 	/**
@@ -252,8 +234,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setSiteAddress(String newSiteAddress) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SITE_ADDRESS,
-				newSiteAddress);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SITE_ADDRESS, newSiteAddress);
 	}
 
 	/**
@@ -262,9 +243,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public boolean isGenerateGeometryOnCheckin() {
-		return (Boolean) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN, true);
 	}
 
 	/**
@@ -272,10 +251,8 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGenerateGeometryOnCheckin(
-			boolean newGenerateGeometryOnCheckin) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN,
-				newGenerateGeometryOnCheckin);
+	public void setGenerateGeometryOnCheckin(boolean newGenerateGeometryOnCheckin) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN, newGenerateGeometryOnCheckin);
 	}
 
 	/**
@@ -284,9 +261,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public boolean isAllowOnlyWhitelisted() {
-		return (Boolean) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__ALLOW_ONLY_WHITELISTED,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_ONLY_WHITELISTED, true);
 	}
 
 	/**
@@ -295,8 +270,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setAllowOnlyWhitelisted(boolean newAllowOnlyWhitelisted) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_ONLY_WHITELISTED,
-				newAllowOnlyWhitelisted);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_ONLY_WHITELISTED, newAllowOnlyWhitelisted);
 	}
 
 	/**
@@ -306,9 +280,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getWhitelistedDomains() {
-		return (EList<String>) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__WHITELISTED_DOMAINS,
-				true);
+		return (EList<String>) eGet(StorePackage.Literals.SERVER_SETTINGS__WHITELISTED_DOMAINS, true);
 	}
 
 	/**
@@ -317,9 +289,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public Boolean getHideUserListForNonAdmin() {
-		return (Boolean) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN, true);
 	}
 
 	/**
@@ -328,8 +298,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setHideUserListForNonAdmin(Boolean newHideUserListForNonAdmin) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN,
-				newHideUserListForNonAdmin);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN, newHideUserListForNonAdmin);
 	}
 
 	/**
@@ -338,9 +307,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public Integer getProtocolBuffersPort() {
-		return (Integer) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT,
-				true);
+		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT, true);
 	}
 
 	/**
@@ -349,8 +316,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setProtocolBuffersPort(Integer newProtocolBuffersPort) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT,
-				newProtocolBuffersPort);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT, newProtocolBuffersPort);
 	}
 
 	/**
@@ -359,8 +325,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public Boolean getCacheOutputFiles() {
-		return (Boolean) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__CACHE_OUTPUT_FILES, true);
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__CACHE_OUTPUT_FILES, true);
 	}
 
 	/**
@@ -369,8 +334,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setCacheOutputFiles(Boolean newCacheOutputFiles) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__CACHE_OUTPUT_FILES,
-				newCacheOutputFiles);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__CACHE_OUTPUT_FILES, newCacheOutputFiles);
 	}
 
 	/**
@@ -380,8 +344,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<WebModulePluginConfiguration> getWebModules() {
-		return (EList<WebModulePluginConfiguration>) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__WEB_MODULES, true);
+		return (EList<WebModulePluginConfiguration>) eGet(StorePackage.Literals.SERVER_SETTINGS__WEB_MODULES, true);
 	}
 
 	/**
@@ -390,8 +353,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public WebModulePluginConfiguration getWebModule() {
-		return (WebModulePluginConfiguration) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__WEB_MODULE, true);
+		return (WebModulePluginConfiguration) eGet(StorePackage.Literals.SERVER_SETTINGS__WEB_MODULE, true);
 	}
 
 	/**
@@ -409,9 +371,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public String getServiceRepositoryUrl() {
-		return (String) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__SERVICE_REPOSITORY_URL,
-				true);
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SERVICE_REPOSITORY_URL, true);
 	}
 
 	/**
@@ -420,8 +380,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setServiceRepositoryUrl(String newServiceRepositoryUrl) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SERVICE_REPOSITORY_URL,
-				newServiceRepositoryUrl);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SERVICE_REPOSITORY_URL, newServiceRepositoryUrl);
 	}
 
 	/**
@@ -430,9 +389,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public boolean isSendEmailOnNewRevision() {
-		return (Boolean) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION,
-				true);
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION, true);
 	}
 
 	/**
@@ -441,8 +398,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setSendEmailOnNewRevision(boolean newSendEmailOnNewRevision) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION,
-				newSendEmailOnNewRevision);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION, newSendEmailOnNewRevision);
 	}
 
 	/**
@@ -451,9 +407,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public int getSessionTimeOutSeconds() {
-		return (Integer) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__SESSION_TIME_OUT_SECONDS,
-				true);
+		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__SESSION_TIME_OUT_SECONDS, true);
 	}
 
 	/**
@@ -462,8 +416,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setSessionTimeOutSeconds(int newSessionTimeOutSeconds) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SESSION_TIME_OUT_SECONDS,
-				newSessionTimeOutSeconds);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SESSION_TIME_OUT_SECONDS, newSessionTimeOutSeconds);
 	}
 
 	/**
@@ -472,8 +425,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public String getSmtpUsername() {
-		return (String) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__SMTP_USERNAME, true);
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_USERNAME, true);
 	}
 
 	/**
@@ -482,8 +434,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setSmtpUsername(String newSmtpUsername) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_USERNAME,
-				newSmtpUsername);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_USERNAME, newSmtpUsername);
 	}
 
 	/**
@@ -492,8 +443,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public String getSmtpPassword() {
-		return (String) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__SMTP_PASSWORD, true);
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PASSWORD, true);
 	}
 
 	/**
@@ -502,8 +452,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setSmtpPassword(String newSmtpPassword) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PASSWORD,
-				newSmtpPassword);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PASSWORD, newSmtpPassword);
 	}
 
 	/**
@@ -512,8 +461,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public int getSmtpPort() {
-		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PORT,
-				true);
+		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PORT, true);
 	}
 
 	/**
@@ -531,8 +479,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public SmtpProtocol getSmtpProtocol() {
-		return (SmtpProtocol) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__SMTP_PROTOCOL, true);
+		return (SmtpProtocol) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PROTOCOL, true);
 	}
 
 	/**
@@ -541,8 +488,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setSmtpProtocol(SmtpProtocol newSmtpProtocol) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PROTOCOL,
-				newSmtpProtocol);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PROTOCOL, newSmtpProtocol);
 	}
 
 	/**
@@ -551,8 +497,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public boolean isReuseGeometry() {
-		return (Boolean) eGet(
-				StorePackage.Literals.SERVER_SETTINGS__REUSE_GEOMETRY, true);
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__REUSE_GEOMETRY, true);
 	}
 
 	/**
@@ -561,8 +506,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setReuseGeometry(boolean newReuseGeometry) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__REUSE_GEOMETRY,
-				newReuseGeometry);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__REUSE_GEOMETRY, newReuseGeometry);
 	}
 
 } //ServerSettingsImpl

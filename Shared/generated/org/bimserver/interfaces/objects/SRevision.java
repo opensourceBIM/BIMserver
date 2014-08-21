@@ -48,8 +48,6 @@ public class SRevision implements SDataBase
 	private List<Long> logs = new ArrayList<Long>();
 	private long serviceId = -1;
 	private boolean hasGeometry;
-	public SRevision() {
-	}
 
 	public long getOid() {
 		return this.oid;

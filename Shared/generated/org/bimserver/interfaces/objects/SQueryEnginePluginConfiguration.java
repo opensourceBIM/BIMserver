@@ -30,8 +30,6 @@ public class SQueryEnginePluginConfiguration extends SPluginConfiguration implem
 	@XmlTransient
 	private static SClass sClass;
 	private long userSettingsId = -1;
-	public SQueryEnginePluginConfiguration() {
-	}
 
 	public long getOid() {
 		return this.oid;

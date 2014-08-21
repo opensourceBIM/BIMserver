@@ -30,8 +30,6 @@ public class SDeserializerPluginDescriptor extends SPluginDescriptor implements 
 
 	@XmlTransient
 	private static SClass sClass;
-	public SDeserializerPluginDescriptor() {
-	}
 
 	public long getOid() {
 		return this.oid;

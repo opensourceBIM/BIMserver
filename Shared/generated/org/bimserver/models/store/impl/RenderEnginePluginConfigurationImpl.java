@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,7 +20,9 @@ import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -37,8 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RenderEnginePluginConfigurationImpl extends
-		PluginConfigurationImpl implements RenderEnginePluginConfiguration {
+public class RenderEnginePluginConfigurationImpl extends PluginConfigurationImpl implements RenderEnginePluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +66,7 @@ public class RenderEnginePluginConfigurationImpl extends
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<SerializerPluginConfiguration> getSerializers() {
-		return (EList<SerializerPluginConfiguration>) eGet(
-				StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS,
-				true);
+		return (EList<SerializerPluginConfiguration>) eGet(StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS, true);
 	}
 
 	/**
@@ -76,9 +75,7 @@ public class RenderEnginePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(
-				StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				true);
+		return (UserSettings) eGet(StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
 
 	/**
@@ -87,8 +84,7 @@ public class RenderEnginePluginConfigurationImpl extends
 	 * @generated
 	 */
 	public void setUserSettings(UserSettings newUserSettings) {
-		eSet(StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				newUserSettings);
+		eSet(StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
 
 } //RenderEnginePluginConfigurationImpl

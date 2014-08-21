@@ -476,7 +476,8 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addProject")
 	SProject addProject(
-		@WebParam(name = "projectName", partName = "addProject.projectName") String projectName) throws ServerException, UserException;
+		@WebParam(name = "projectName", partName = "addProject.projectName") String projectName,
+		@WebParam(name = "schema", partName = "addProject.schema") String schema) throws ServerException, UserException;
 
 	/**
 	 * Add a new project as a subproject of another project
@@ -488,7 +489,8 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "addProjectAsSubProject")
 	SProject addProjectAsSubProject(
 		@WebParam(name = "projectName", partName = "addProjectAsSubProject.projectName") String projectName,
-		@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid) throws ServerException, UserException;
+		@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid,
+		@WebParam(name = "schema", partName = "addProjectAsSubProject.schema") String schema) throws ServerException, UserException;
 
 	/**
 	 * Delete a Project, Projects can be undeleted with the undeleteProject method

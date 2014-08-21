@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,9 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.log.ProjectRelated;
+
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
@@ -32,7 +34,9 @@ import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -62,6 +66,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getModelCheckers <em>Model Checkers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
  *
@@ -140,8 +145,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<User> getHasAuthorizedUsers() {
-		return (EList<User>) eGet(
-				StorePackage.Literals.PROJECT__HAS_AUTHORIZED_USERS, true);
+		return (EList<User>) eGet(StorePackage.Literals.PROJECT__HAS_AUTHORIZED_USERS, true);
 	}
 
 	/**
@@ -151,8 +155,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ConcreteRevision> getConcreteRevisions() {
-		return (EList<ConcreteRevision>) eGet(
-				StorePackage.Literals.PROJECT__CONCRETE_REVISIONS, true);
+		return (EList<ConcreteRevision>) eGet(StorePackage.Literals.PROJECT__CONCRETE_REVISIONS, true);
 	}
 
 	/**
@@ -162,8 +165,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Revision> getRevisions() {
-		return (EList<Revision>) eGet(StorePackage.Literals.PROJECT__REVISIONS,
-				true);
+		return (EList<Revision>) eGet(StorePackage.Literals.PROJECT__REVISIONS, true);
 	}
 
 	/**
@@ -172,8 +174,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public ConcreteRevision getLastConcreteRevision() {
-		return (ConcreteRevision) eGet(
-				StorePackage.Literals.PROJECT__LAST_CONCRETE_REVISION, true);
+		return (ConcreteRevision) eGet(StorePackage.Literals.PROJECT__LAST_CONCRETE_REVISION, true);
 	}
 
 	/**
@@ -182,8 +183,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setLastConcreteRevision(ConcreteRevision newLastConcreteRevision) {
-		eSet(StorePackage.Literals.PROJECT__LAST_CONCRETE_REVISION,
-				newLastConcreteRevision);
+		eSet(StorePackage.Literals.PROJECT__LAST_CONCRETE_REVISION, newLastConcreteRevision);
 	}
 
 	/**
@@ -192,8 +192,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public Revision getLastRevision() {
-		return (Revision) eGet(StorePackage.Literals.PROJECT__LAST_REVISION,
-				true);
+		return (Revision) eGet(StorePackage.Literals.PROJECT__LAST_REVISION, true);
 	}
 
 	/**
@@ -212,8 +211,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Checkout> getCheckouts() {
-		return (EList<Checkout>) eGet(StorePackage.Literals.PROJECT__CHECKOUTS,
-				true);
+		return (EList<Checkout>) eGet(StorePackage.Literals.PROJECT__CHECKOUTS, true);
 	}
 
 	/**
@@ -295,8 +293,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Project> getSubProjects() {
-		return (EList<Project>) eGet(
-				StorePackage.Literals.PROJECT__SUB_PROJECTS, true);
+		return (EList<Project>) eGet(StorePackage.Literals.PROJECT__SUB_PROJECTS, true);
 	}
 
 	/**
@@ -341,9 +338,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public SIPrefix getExportLengthMeasurePrefix() {
-		return (SIPrefix) eGet(
-				StorePackage.Literals.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX,
-				true);
+		return (SIPrefix) eGet(StorePackage.Literals.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX, true);
 	}
 
 	/**
@@ -351,10 +346,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExportLengthMeasurePrefix(
-			SIPrefix newExportLengthMeasurePrefix) {
-		eSet(StorePackage.Literals.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX,
-				newExportLengthMeasurePrefix);
+	public void setExportLengthMeasurePrefix(SIPrefix newExportLengthMeasurePrefix) {
+		eSet(StorePackage.Literals.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX, newExportLengthMeasurePrefix);
 	}
 
 	/**
@@ -364,8 +357,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ExtendedData> getExtendedData() {
-		return (EList<ExtendedData>) eGet(
-				StorePackage.Literals.PROJECT__EXTENDED_DATA, true);
+		return (EList<ExtendedData>) eGet(StorePackage.Literals.PROJECT__EXTENDED_DATA, true);
 	}
 
 	/**
@@ -375,8 +367,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Service> getServices() {
-		return (EList<Service>) eGet(StorePackage.Literals.PROJECT__SERVICES,
-				true);
+		return (EList<Service>) eGet(StorePackage.Literals.PROJECT__SERVICES, true);
 	}
 
 	/**
@@ -386,8 +377,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ProjectRelated> getLogs() {
-		return (EList<ProjectRelated>) eGet(
-				StorePackage.Literals.PROJECT__LOGS, true);
+		return (EList<ProjectRelated>) eGet(StorePackage.Literals.PROJECT__LOGS, true);
 	}
 
 	/**
@@ -397,8 +387,25 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ModelCheckerInstance> getModelCheckers() {
-		return (EList<ModelCheckerInstance>) eGet(
-				StorePackage.Literals.PROJECT__MODEL_CHECKERS, true);
+		return (EList<ModelCheckerInstance>) eGet(StorePackage.Literals.PROJECT__MODEL_CHECKERS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSchema() {
+		return (String) eGet(StorePackage.Literals.PROJECT__SCHEMA, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSchema(String newSchema) {
+		eSet(StorePackage.Literals.PROJECT__SCHEMA, newSchema);
 	}
 
 } //ProjectImpl

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,9 +17,11 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.store.ServiceField;
 import org.bimserver.models.store.ServiceType;
 import org.bimserver.models.store.StorePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -92,8 +94,7 @@ public class ServiceFieldImpl extends IdEObjectImpl implements ServiceField {
 	 * @generated
 	 */
 	public ServiceType getType() {
-		return (ServiceType) eGet(StorePackage.Literals.SERVICE_FIELD__TYPE,
-				true);
+		return (ServiceType) eGet(StorePackage.Literals.SERVICE_FIELD__TYPE, true);
 	}
 
 	/**
@@ -111,8 +112,7 @@ public class ServiceFieldImpl extends IdEObjectImpl implements ServiceField {
 	 * @generated
 	 */
 	public ServiceType getGenericType() {
-		return (ServiceType) eGet(
-				StorePackage.Literals.SERVICE_FIELD__GENERIC_TYPE, true);
+		return (ServiceType) eGet(StorePackage.Literals.SERVICE_FIELD__GENERIC_TYPE, true);
 	}
 
 	/**

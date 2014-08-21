@@ -31,8 +31,6 @@ public class SDatabaseInformationItem implements SDataBase
 	private static SClass sClass;
 	private java.lang.String key;
 	private java.lang.String value;
-	public SDatabaseInformationItem() {
-	}
 
 	public long getOid() {
 		return this.oid;

@@ -34,6 +34,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.mail.EmailMessage;
 import org.bimserver.mail.MailSystem;
@@ -200,11 +201,12 @@ public class NewRevisionNotification extends Notification {
 							ModelCheckerResult result;
 							try {
 								if (model == null) {
-									model = new IfcModel();
+									PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(project.getSchema());
+									model = new IfcModel(packageMetaData);
 									Revision revision;
 									try {
 										revision = session.get(roid, Query.getDefault());
-										session.getMap(model, new Query(project.getId(), revision.getId(), null, Deep.NO));
+										session.getMap(model, new Query(packageMetaData, project.getId(), revision.getId(), null, Deep.NO));
 									} catch (BimserverDatabaseException e) {
 										LOGGER.error("", e);
 									}

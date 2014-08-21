@@ -1,7 +1,5 @@
 package org.bimserver.collada;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,7 +15,6 @@ import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Base64OutputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -27,6 +24,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.slf4j.Logger;
@@ -105,7 +103,7 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 	}
 
 	@Override
-	protected boolean write(OutputStream outputStream) throws SerializerException {
+	protected boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			File writeDirectory = null;
 			try {
@@ -192,7 +190,7 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 		// Prepare to write the Collada file.
 		FileOutputStream fileOutputStream = new FileOutputStream(colladaFile);
 		// Write into the Collada file.
-		colladaSerializer.write(fileOutputStream);
+		colladaSerializer.write(fileOutputStream, null);
 		// Push the data into the stream.
 		fileOutputStream.flush();
 		// Finalize the stream and close the file.
@@ -229,5 +227,4 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 		// Close the entry in the ZIP file.
 		outputStream.closeEntry();
 	}
-
 }
