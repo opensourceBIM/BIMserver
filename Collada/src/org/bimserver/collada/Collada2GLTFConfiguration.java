@@ -23,6 +23,7 @@ import java.util.List;
 
 public class Collada2GLTFConfiguration {
 	// OpenGL Transformation Format settings.
+	public String executable = null;
 	public String fileName = null;
 	public String compressionType = null; // Can be Open3DGC; -c "Open3DGC"
 	public String compressionMode = null; // Can be "ascii", "binary"; -m "ascii"
@@ -67,7 +68,7 @@ public class Collada2GLTFConfiguration {
 	{
 		ArrayList<String> list = new ArrayList<String>();
 		// Add the application.
-		list.add("collada2gltf");
+		list.add((executable == null) ? "collada2gltf" : executable);
 		// Required parameters.
 		if (fileName != null)
 			list.addAll(Arrays.asList(new String[] {"-f", String.format("\"%s\"", fileName)}));
