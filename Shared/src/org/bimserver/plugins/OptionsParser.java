@@ -43,7 +43,7 @@ public class OptionsParser {
 				for (int i=0; i<plugins.length; i++) {
 					pluginDirectories[i] = new File(plugins[i]);
 					if (!pluginDirectories[i].isDirectory()) {
-						throw new RuntimeException("plugins parameter must point to a directory");
+						throw new RuntimeException("plugins parameter must point to a directory (" + pluginDirectories[i] + ")");
 					}
 				}
 			}
