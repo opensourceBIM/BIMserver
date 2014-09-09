@@ -136,7 +136,7 @@ public class Streamer implements EndPoint {
 			} else if (request.has("action")) {
 				if (request.get("action").getAsString().equals("download")) {
 					String token = request.get("token").getAsString();
-					LOGGER.info("" + request);
+//					LOGGER.info("" + request);
 					final int topicId = request.get("topicId").getAsInt();
 					try {
 						final ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL);
