@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
-import java.util.Collection;
 
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.Serializer;
@@ -16,7 +15,6 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 
 import fi.ni.ExpressReader;
 import fi.ni.IFC_ClassModel;
-import fi.ni.rdf.VirtConfig;
 
 public class IfcToRdfSerializer extends EmfSerializer {
 
@@ -32,10 +30,11 @@ public class IfcToRdfSerializer extends EmfSerializer {
 	
 	@Override
 	protected boolean write(OutputStream outputStream) throws SerializerException {
-		Collection<SerializerPlugin> serializerPlugins = getPluginManager().getAllSerializerPlugins(true);
-		SerializerPlugin serializerPlugin = serializerPlugins.iterator().next();
+		// Quite inefficient, first write the model to IFC (byte buffer), then call the IfcToRdf code
+
+		SerializerPlugin serializerPlugin = getPluginManager().getSerializerPlugin("org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin", true);
 		Serializer serializer = serializerPlugin.createSerializer(null);
-		serializer.init(getModel(), null, getPluginManager(), null, null, true);
+		serializer.init(getModel(), null, getPluginManager(), null, getPackageMetaData(), true);
 		ByteArrayOutputStream outputStream2 = new ByteArrayOutputStream();
 		serializer.writeToOutputStream(outputStream2);
 		InputStream inputStream = new ByteArrayInputStream(outputStream2.toByteArray());
@@ -43,12 +42,11 @@ public class IfcToRdfSerializer extends EmfSerializer {
 		ExpressReader er = new ExpressReader(expressFile.getAbsolutePath());
 		IFC_ClassModel model = new IFC_ClassModel(fileName, inputStream, er.getEntities(), er.getTypes(), "model name");
 		try {
-			VirtConfig virtConfig = new VirtConfig();
-			model.listRDF(outputStream, "", virtConfig);
+			model.listRDF(outputStream, "ifc", null);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new SerializerException(e);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new SerializerException(e);
 		}
 		return false;
 	}

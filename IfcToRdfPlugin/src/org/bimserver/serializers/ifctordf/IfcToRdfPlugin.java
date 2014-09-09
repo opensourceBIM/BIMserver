@@ -20,8 +20,7 @@ public class IfcToRdfPlugin implements SerializerPlugin {
 
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
-		String schema = "Ifc2x3tc1";
-		SchemaPlugin schemaPlugin = pluginManager.getFirstSchemaPlugin(schema, true);
+		SchemaPlugin schemaPlugin = pluginManager.getFirstSchemaPlugin("ifc2x3tc1", true);
 		schemaFile = schemaPlugin.getExpressSchemaFile();
 		if (schemaFile == null) {
 			throw new RenderEngineException("No schema file");
