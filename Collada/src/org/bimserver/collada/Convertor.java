@@ -17,32 +17,42 @@ package org.bimserver.collada;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.models.ifc2x3tc1.IfcRoot;
+// Templated class that provides a generic, class-level (IfcDoor, IfcWindow, etc.) colored material. Ignores IfcMaterial, IfcMaterialLayerSet, IfcMaterialProfileSet [IFC2x4], and IfcMaterialConstituentSet [IFC2x4].
+public class Convertor {
+	private ColladaMaterial material;
 
-public class Convertor<T extends IfcRoot> {
-	private final Class<T> cl;
-	private final double[] colors;
-	private final double opacity;
-	
-	public Convertor(Class<T> cl, double[] colors, double opacity) {
-		this.cl = cl;
-		this.colors = colors;
-		this.opacity = opacity;
+	public Convertor(ColladaMaterial material) {
+		this.material = material;
 	}
-	
-	public Class<T> getCl() {
-		return cl;
+
+	public Convertor(Class<?> cl, double[] colors, double opacity) {
+		// ColladaMaterial internally adds the suffix "-fx" only on writing. Simple name refers to the end of a package string, like IfcWindow. Warning: 
+		this.material = new ColladaMaterial(cl.getSimpleName());
+		ColladaProfile profile = this.material.getProfile("Common");
+		profile.diffuseColor = colors;
+		profile.transparency = 1 - opacity;
 	}
-	
-	public String getMaterialName(Object t) {
-		return cl.getSimpleName();
+
+	// One use of key is to find {class-name}-fx and the other use of key is to find {ifc-product-oid}-fx.
+	public String getKey() {
+		return getMaterialName();
 	}
-	
+
+	public String getMaterialName() {
+		return material.name;
+	}
+
 	public double[] getColors() {
-		return colors;
+		ColladaProfile profile = material.getProfile("Common");
+		return profile.diffuseColor;
+	}
+
+	public double getOpacity() {
+		ColladaProfile profile = material.getProfile("Common");
+		return profile.transparency;
 	}
 	
-	public double getOpacity() {
-		return opacity;
+	public String getEffectString() {
+		return material.getEffectString();
 	}
 }
