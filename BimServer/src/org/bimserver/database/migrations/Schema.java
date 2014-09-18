@@ -228,9 +228,7 @@ public class Schema {
 		for (Change change : changes) {
 			try {
 				change.change(database, databaseSession);
-			} catch (NotImplementedException e) {
-				LOGGER.error("", e);
-			} catch (BimserverDatabaseException e) {
+			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
 		}

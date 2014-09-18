@@ -50,60 +50,62 @@ public class NewReferenceChange implements Change {
 		KeyValueStore keyValueStore = database.getKeyValueStore();
 		for (EClass subClass : schema.getSubClasses(eClass)) {
 			try {
-				if (subClass.getEAnnotation("nodatabase") == null) {
-					RecordIterator recordIterator = keyValueStore.getRecordIterator(subClass.getEPackage().getName() + "_" + subClass.getName(), databaseSession);
-					try {
-						Record record = recordIterator.next();
-						while (record != null) {
-							ByteBuffer buffer = ByteBuffer.wrap(record.getValue());
-
-							int nrStartBytesBefore = (int) Math.ceil(nrFeaturesBefore / 8.0);
-							int nrStartBytesAfter = (int) Math.ceil((nrFeaturesBefore + 1) / 8.0);
-							
-							byte x = buffer.get();
-							
-							if (x != nrStartBytesBefore) {
-								throw new BimserverDatabaseException("Size to not match");
-							}
-							
-							byte[] unsetted = new byte[nrStartBytesAfter];
-							buffer.get(unsetted, 0, x);
-							
-							if (eReference.isUnsettable()) {
-								unsetted[(nrFeaturesBefore + 1) / 8] |= (1 << ((nrFeaturesBefore + 1) % 8));
-							}
-							
-							int extra = 0;
-							
-							if (!eReference.isUnsettable()) {
-								if (eReference.isMany()) {
-									extra = 4;
-								} else {
-									extra = 2;
+				if (!keyValueStore.isNew()) {
+					if (subClass.getEAnnotation("nodatabase") == null) {
+						RecordIterator recordIterator = keyValueStore.getRecordIterator(subClass.getEPackage().getName() + "_" + subClass.getName(), databaseSession);
+						try {
+							Record record = recordIterator.next();
+							while (record != null) {
+								ByteBuffer buffer = ByteBuffer.wrap(record.getValue());
+	
+								int nrStartBytesBefore = (int) Math.ceil(nrFeaturesBefore / 8.0);
+								int nrStartBytesAfter = (int) Math.ceil((nrFeaturesBefore + 1) / 8.0);
+								
+								byte x = buffer.get();
+								
+								if (x != nrStartBytesBefore) {
+									throw new BimserverDatabaseException("Size to not match");
 								}
-							}
-							
-							ByteBuffer newBuffer = ByteBuffer.allocate(record.getValue().length + (nrStartBytesAfter - nrStartBytesBefore) + extra);
-							newBuffer.put((byte)nrStartBytesAfter);
-							newBuffer.put(unsetted);
-							buffer.position(1 + nrStartBytesBefore);
-							newBuffer.put(buffer);
-							
-							if (!eReference.isUnsettable()) {
-								if (eReference.isMany()) {
-									newBuffer.putInt(0);
-								} else {
-									newBuffer.putShort((short)-1);
+								
+								byte[] unsetted = new byte[nrStartBytesAfter];
+								buffer.get(unsetted, 0, x);
+								
+								if (eReference.isUnsettable()) {
+									unsetted[(nrFeaturesBefore + 1) / 8] |= (1 << ((nrFeaturesBefore + 1) % 8));
 								}
+								
+								int extra = 0;
+								
+								if (!eReference.isUnsettable()) {
+									if (eReference.isMany()) {
+										extra = 4;
+									} else {
+										extra = 2;
+									}
+								}
+								
+								ByteBuffer newBuffer = ByteBuffer.allocate(record.getValue().length + (nrStartBytesAfter - nrStartBytesBefore) + extra);
+								newBuffer.put((byte)nrStartBytesAfter);
+								newBuffer.put(unsetted);
+								buffer.position(1 + nrStartBytesBefore);
+								newBuffer.put(buffer);
+								
+								if (!eReference.isUnsettable()) {
+									if (eReference.isMany()) {
+										newBuffer.putInt(0);
+									} else {
+										newBuffer.putShort((short)-1);
+									}
+								}
+								
+								keyValueStore.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), newBuffer.array(), databaseSession);
+								record = recordIterator.next();
 							}
-							
-							keyValueStore.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), newBuffer.array(), databaseSession);
-							record = recordIterator.next();
+						} catch (BimserverDatabaseException e) {
+							LOGGER.error("", e);
+						} finally {
+							recordIterator.close();
 						}
-					} catch (BimserverDatabaseException e) {
-						LOGGER.error("", e);
-					} finally {
-						recordIterator.close();
 					}
 				}
 			} catch (BimserverLockConflictException e) {
