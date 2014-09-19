@@ -22,7 +22,9 @@ import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.database.BimTransaction;
 import org.bimserver.database.BimserverDatabaseException;
@@ -63,6 +65,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	private CursorConfig cursorConfig;
 	private long lastPrintedReads = 0;
 	private long lastPrintedCommittedWrites = 0;
+	private static final boolean MONITOR_CURSOR_STACK_TRACES = true;
+	private final AtomicLong cursorCounter = new AtomicLong();
+	private final Map<Long, StackTraceElement[]> openCursors = new ConcurrentHashMap<>();
 
 	public BerkeleyKeyValueStore(File dataDir) throws DatabaseInitException {
 		if (dataDir.isDirectory()) {
@@ -229,7 +234,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		Cursor cursor = null;
 		try {
 			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
-			return new BerkeleyRecordIterator(cursor);
+			BerkeleyRecordIterator berkeleyRecordIterator = new BerkeleyRecordIterator(cursor, this, cursorCounter.incrementAndGet());
+			openCursors.put(berkeleyRecordIterator.getCursorId(), new Exception().getStackTrace());
+			return berkeleyRecordIterator;
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}
@@ -241,7 +248,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		Cursor cursor = null;
 		try {
 			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
-			return new BerkeleySearchingRecordIterator(cursor, mustStartWith, startSearchingAt);
+			BerkeleySearchingRecordIterator berkeleySearchingRecordIterator = new BerkeleySearchingRecordIterator(cursor, this, cursorCounter.incrementAndGet(), mustStartWith, startSearchingAt);
+			openCursors.put(berkeleySearchingRecordIterator.getCursorId(), new Exception().getStackTrace());
+			return berkeleySearchingRecordIterator;
 		} catch (BimserverLockConflictException e) {
 			if (cursor != null) {
 				try {
@@ -418,6 +427,21 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		if (this.committedWrites / 100000 != lastPrintedCommittedWrites) {
 			LOGGER.info("writes: " + this.committedWrites);
 			lastPrintedCommittedWrites = this.committedWrites / 100000;
+		}
+	}
+
+	public void removeOpenCursor(long cursorId) {
+		openCursors.remove(cursorId);
+	}
+
+	@Override
+	public void dumpOpenCursors() {
+		for (StackTraceElement[] ste : openCursors.values()) {
+			System.out.println("Open cursor");
+			for (StackTraceElement stackTraceElement : ste) {
+				LOGGER.info("\t" + stackTraceElement.getClassName() + ":" + stackTraceElement.getLineNumber() + "."
+						+ stackTraceElement.getMethodName());
+			}
 		}
 	}
 }
