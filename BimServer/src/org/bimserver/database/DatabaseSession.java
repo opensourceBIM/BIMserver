@@ -140,7 +140,11 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		database.unregisterSession(this);
 		database.incrementReads(reads);
 		if (bimTransaction != null) {
-			bimTransaction.close();
+			try {
+				bimTransaction.close();
+			} catch (IllegalStateException e) {
+				database.getKeyValueStore().dumpOpenCursors();
+			}
 		}
 		if (DEVELOPER_DEBUG) {
 			LOGGER.info("END SESSION");
