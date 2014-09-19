@@ -38,13 +38,21 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	private final Cursor cursor;
 	private final byte[] mustStartWith;
 	private byte[] nextStartSearchingAt;
+	private long cursorId;
+	private BerkeleyKeyValueStore berkeleyKeyValueStore;
 
-	public BerkeleySearchingRecordIterator(Cursor cursor, byte[] mustStartWith, byte[] startSearchingAt) throws BimserverLockConflictException {
+	public BerkeleySearchingRecordIterator(Cursor cursor, BerkeleyKeyValueStore berkeleyKeyValueStore, long cursorId, byte[] mustStartWith, byte[] startSearchingAt) throws BimserverLockConflictException {
 		this.cursor = cursor;
+		this.berkeleyKeyValueStore = berkeleyKeyValueStore;
+		this.cursorId = cursorId;
 		this.mustStartWith = mustStartWith;
 		this.nextStartSearchingAt = startSearchingAt;
 	}
 
+	public long getCursorId() {
+		return cursorId;
+	}
+	
 	private Record getFirstNext(byte[] startSearchingAt) throws BimserverLockConflictException {
 		this.nextStartSearchingAt = null;
 		DatabaseEntry key = new DatabaseEntry(startSearchingAt);
@@ -94,6 +102,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	public void close() {
 		try {
 			cursor.close();
+			berkeleyKeyValueStore.removeOpenCursor(cursorId);
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}
