@@ -5,11 +5,11 @@
  * 
  * Example file: AC9R1-Haus-G-H-Ver2-2x3.ifc
  */
-
 package org.bimserver.jqep;
 
 import java.io.PrintWriter;
 
+import org.bimserver.jqep.*;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.emf.IfcModelInterface;
@@ -22,7 +22,7 @@ public class Query implements QueryInterface {
 	private IfcModelInterface model;
 
 	@Override
-	public void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, ModelHelper modelHelper) throws IfcModelInterfaceException {
+	public void query(IfcModelInterface source, Reporter reporter, ModelHelper modelHelper) throws IfcModelInterfaceException {
 		reporter.info("Running doors example");
         List<IfcBuildingStorey> stories = source.getAll(IfcBuildingStorey.class);
         Map<Double, IfcBuildingStorey> orderedStories = new TreeMap<Double, IfcBuildingStorey>();
@@ -37,7 +37,7 @@ public class Query implements QueryInterface {
             			IfcDoor ifcDoor = (IfcDoor)product;
                         if (ifcDoor.getOverallHeight() > 2) {
                         	reporter.info(ifcDoor.getName() + " " + ifcDoor.getOverallHeight());
-                        	modelHelper.copy(ifcDoor, dest);
+                        	modelHelper.copy(ifcDoor);
                         }
             		}
             	}

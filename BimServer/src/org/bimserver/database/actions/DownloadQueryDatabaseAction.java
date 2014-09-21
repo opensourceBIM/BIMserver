@@ -24,23 +24,27 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.PluginConfiguration;
+import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.Reporter;
+import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.queryengine.QueryEngineException;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.utils.CollectionUtils;
 import org.bimserver.webservices.authorization.Authorization;
 
 public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
-	private final ObjectIDM objectIDM;
+	private ObjectIDM objectIDM;
 	private final long qeid;
 	private final String code;
 	private final long roid;
@@ -52,7 +56,10 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 		this.qeid = qeid;
 		this.serializerOid = serializerOid;
 		this.code = code;
-		this.objectIDM = objectIDM;
+		try {
+			this.objectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), bimServer.getPluginManager().requireSchemaDefinition());
+		} catch (PluginException e) {
+		}
 	}
 
 	@Override
@@ -68,8 +75,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 				if (queryEnginePlugin != null) {
 					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(new PluginConfiguration(queryEngineObject.getSettings()));
 					IfcModelInterface result = new IfcModel();
-					return queryEngine.query(ifcModel, code, new Reporter(){
-
+					IfcModelInterface finalResult = queryEngine.query(ifcModel, code, new Reporter(){
 						@Override
 						public void error(Exception error) {
 						}
@@ -81,6 +87,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 						@Override
 						public void info(String info) {
 						}}, new ModelHelper(objectIDM, result));
+					return finalResult;
 				} else {
 					throw new UserException("No Query Engine found " + queryEngineObject.getPluginDescriptor().getPluginClassName());
 				}
