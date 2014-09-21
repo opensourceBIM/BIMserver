@@ -78,13 +78,13 @@ public class VirtualFileManager implements JavaFileManager {
 
 	@Override
 	public JavaFileObject getJavaFileForOutput(Location location, String className, Kind kind, FileObject sibling) throws IOException {
-		String path = className.replace(".", File.separator);
+		String path = sibling.getName();
 		String cleanPath = path;
 		if (cleanPath.contains("$")) {
 			cleanPath = cleanPath.substring(0, cleanPath.indexOf("$"));
 		}
-		if (baseDir.containsType(cleanPath + ".java")) {
-			return baseDir.createFile(path + ".class");
+		if (baseDir.containsType(cleanPath)) {
+			return baseDir.createFile(path.replace(".java", "").replace(".", "/") + ".class");
 		}
 		return null;
 	}

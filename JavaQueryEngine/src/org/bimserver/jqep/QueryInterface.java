@@ -23,5 +23,5 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 
 public interface QueryInterface {
-	void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, ModelHelper modelHelper) throws IfcModelInterfaceException;
+	void query(IfcModelInterface source, Reporter reporter, ModelHelper modelHelper) throws IfcModelInterfaceException;
 }
