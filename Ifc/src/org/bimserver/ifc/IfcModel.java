@@ -39,6 +39,9 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcElement;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
@@ -881,5 +884,17 @@ public class IfcModel implements IfcModelInterface {
 	@Override
 	public long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void fixInverseMismatches() {
+		for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : getAll(IfcRelContainedInSpatialStructure.class)) {
+			for (IfcProduct ifcProduct : ifcRelContainedInSpatialStructure.getRelatedElements()) {
+				if (ifcProduct instanceof IfcElement) {
+					IfcElement ifcElement = (IfcElement)ifcProduct;
+					ifcElement.getContainedInStructure().add(ifcRelContainedInSpatialStructure);
+				}
+			}
+		}
 	}
 }

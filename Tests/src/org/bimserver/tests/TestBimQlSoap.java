@@ -26,7 +26,7 @@ import java.util.List;
 import javax.activation.DataHandler;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.client.soap.SoapBimServerClientFactory;
+import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
@@ -43,7 +43,7 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class TestBimQlSoap {
 	public static void main(String[] args) {
-		BimServerClientFactory factory = new SoapBimServerClientFactory("localhost");
+		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 		try {
 			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
