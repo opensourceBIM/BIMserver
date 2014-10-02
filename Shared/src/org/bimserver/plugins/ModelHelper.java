@@ -25,6 +25,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ObjectFactory;
 import org.bimserver.emf.OidProvider;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.objectidms.AbstractObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.AbstractEList;
@@ -43,6 +44,7 @@ public class ModelHelper {
 	private IfcModelInterface targetModel;
 	private OidProvider<Long> oidProvider;
 	private boolean keepOriginalOids;
+	private final HashMap<Long, InverseFix> inverseFixes = new HashMap<>();
 
 	public ModelHelper(ObjectIDM objectIDM, IfcModelInterface targetModel) {
 		this.objectIDM = objectIDM;
@@ -88,41 +90,57 @@ public class ModelHelper {
 		if (newObject.eClass().getEAnnotation("wrapped") == null) {
 			targetModel.add(newObject.getOid(), newObject);
 		}
+
+		if (inverseFixes.containsKey(original.getOid())) {
+			InverseFix inverseFix = inverseFixes.get(original.getOid());
+			inverseFix.apply(newObject);
+		}
+
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
-			if (objectIDM == null ||  objectIDM.shouldFollowReference(originalEClass, original.eClass(), eStructuralFeature)) {
-				Object get = original.eGet(eStructuralFeature);
-				if (eStructuralFeature instanceof EAttribute) {
-					if (get instanceof Double) {
-						EStructuralFeature doubleStringFeature = original.eClass().getEStructuralFeature("wrappedValueAsString");
-						if (doubleStringFeature != null) {
-							Object doubleString = original.eGet(doubleStringFeature);
-							newObject.eSet(doubleStringFeature, doubleString);
-						} else {
-							newObject.eSet(eStructuralFeature, get);
-						}
+			boolean canFollow = objectIDM == null ||  objectIDM.shouldFollowReference(originalEClass, original.eClass(), eStructuralFeature);
+			Object get = original.eGet(eStructuralFeature);
+			if (eStructuralFeature instanceof EAttribute) {
+				if (get instanceof Double) {
+					EStructuralFeature doubleStringFeature = original.eClass().getEStructuralFeature("wrappedValueAsString");
+					if (doubleStringFeature != null) {
+						Object doubleString = original.eGet(doubleStringFeature);
+						newObject.eSet(doubleStringFeature, doubleString);
 					} else {
 						newObject.eSet(eStructuralFeature, get);
 					}
-				} else if (eStructuralFeature instanceof EReference) {
-					if (get == null) {
-					} else {
-						if (eStructuralFeature.isMany()) {
-							EList<EObject> list = (EList<EObject>) get;
-							AbstractEList<EObject> toList = (AbstractEList<EObject>) newObject.eGet(eStructuralFeature);
-							for (Object o : list) {
-								if (converted.containsKey(o)) {
-									toList.addUnique(converted.get(o));
-								} else {
+				} else {
+					newObject.eSet(eStructuralFeature, get);
+				}
+			} else if (eStructuralFeature instanceof EReference) {
+				if (get == null) {
+				} else {
+					if (eStructuralFeature.isMany()) {
+						EList<EObject> list = (EList<EObject>) get;
+						AbstractEList<EObject> toList = (AbstractEList<EObject>) newObject.eGet(eStructuralFeature);
+						
+						for (Object o : list) {
+							if (converted.containsKey(o)) {
+								toList.addUnique(converted.get(o));
+							} else {
+								if (canFollow) {
 									IdEObject result = copy(originalEClass, (IdEObject) o);
 									if (result != null) {
 										toList.addUnique(result);
 									}
+								} else {
+									// In some cases the object is not already converted AND canFollow = false AND there is an opposite mismatch
+									if (eStructuralFeature.getName().equals("RelatedElements")) {
+										inverseFixes.put(((IdEObject)o).getOid(), new InverseFix(Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements(), newObject));
+										System.out.println("YEP");
+									}
 								}
 							}
+						}
+					} else {
+						if (converted.containsKey(get)) {
+							newObject.eSet(eStructuralFeature, converted.get(get));
 						} else {
-							if (converted.containsKey(get)) {
-								newObject.eSet(eStructuralFeature, converted.get(get));
-							} else {
+							if (canFollow) {
 								newObject.eSet(eStructuralFeature, copy(originalEClass, (IdEObject) get));
 							}
 						}
