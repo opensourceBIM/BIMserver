@@ -25,6 +25,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ObjectFactory;
 import org.bimserver.emf.OidProvider;
+import org.bimserver.plugins.objectidms.AbstractObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.EList;
@@ -36,7 +37,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class ModelHelper {
 
-	private final ObjectIDM objectIDM;
+	private ObjectIDM objectIDM;
 	private final HashMap<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 	private ObjectFactory objectFactory;
 	private IfcModelInterface targetModel;
@@ -146,5 +147,13 @@ public class ModelHelper {
 	
 	public IfcModelInterface getTargetModel() {
 		return targetModel;
+	}
+
+	public void setObjectIDM(ObjectIDM idm) {
+		this.objectIDM = idm;
+	}
+
+	public ObjectIDM getObjectIDM() {
+		return objectIDM;
 	}
 }

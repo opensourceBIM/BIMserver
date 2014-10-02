@@ -187,6 +187,8 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	void fixOids();
 	void generateMinimalExpressIds();
 
+	void fixInverseMismatches();
+	
 	Collection<IdEObject> getUnidentifiedValues();
 	int countWithSubtypes(EClass eClass);
 
