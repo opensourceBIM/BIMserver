@@ -55,6 +55,12 @@ public class EmailMessage {
 	public void send() throws MessagingException {
 		Properties props = new Properties();
 		ServerSettings serverSettings = bimServer.getServerSettingsCache().getServerSettings();
+		
+		//in order to use the port specified in server settings.
+		String smtpProps = serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS ? "mail.smtps.port" : "mail.smtp.port";
+		props.put(smtpProps, serverSettings.getSmtpPort();		
+		
+		
 		props.put("mail.smtp.localhost", "bimserver.org");
 		Session mailSession = Session.getDefaultInstance(props);
 		
