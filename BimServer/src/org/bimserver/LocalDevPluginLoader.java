@@ -41,16 +41,20 @@ public class LocalDevPluginLoader {
 		}
 	}
 	
+	public static PluginManager createPluginManager(File home, File[] pluginDirectories) throws PluginException {
+		return createPluginManager(home, new File(".."), pluginDirectories);
+	}
+
 	public static PluginManager createPluginManager(File home) throws PluginException {
-		return createPluginManager(home, new File(".."));
+		return createPluginManager(home, new File(".."), null);
 	}
 	
-	public static PluginManager createPluginManager(File home, File current) throws PluginException {
+	public static PluginManager createPluginManager(File home, File current, File[] pluginDirectories) throws PluginException {
 		if (!home.exists()) {
 			home.mkdir();
 		}
 		PluginManager pluginManager = new PluginManager(new File(home, "tmp"), System.getProperty("java.class.path"), null, null, null);
-		loadPlugins(pluginManager, current, null);
+		loadPlugins(pluginManager, current, pluginDirectories);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;
 	}
