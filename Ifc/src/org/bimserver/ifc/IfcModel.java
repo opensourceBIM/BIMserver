@@ -759,32 +759,40 @@ public class IfcModel implements IfcModelInterface {
 		return list.size();
 	}
 	
+	
+	/**
+	 * TODO: Have a look if this can be done with less memory, and maybe faster as well
+	 */
 	public Iterator<IdEObject> iterateAllObjects() {
 		return new Iterator<IdEObject>() {
-			private final Queue<IdEObject> todo = new LinkedBlockingQueue<IdEObject>(getValues());
+			private final Queue<IdEObject> queue = new LinkedBlockingQueue<IdEObject>(getValues());
+			private final Set<IdEObject> todo = new HashSet<IdEObject>();
 			private final Set<IdEObject> done = new HashSet<IdEObject>();
 			
 			@Override
 			public boolean hasNext() {
-				return !todo.isEmpty();
+				return !queue.isEmpty();
 			}
 
 			@SuppressWarnings("rawtypes")
 			@Override
 			public IdEObject next() {
-				IdEObject idEObject = todo.poll();
+				IdEObject idEObject = queue.poll();
+				todo.remove(idEObject);
 				done.add(idEObject);
 				for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 					Object val = idEObject.eGet(eReference);
 					if (eReference.isMany()) {
 						List list = (List) val;
 						for (Object o : list) {
-							if (!done.contains(o)) {
+							if (!done.contains(o) && !todo.contains(o)) {
+								queue.add((IdEObject) o);
 								todo.add((IdEObject) o);
 							}
 						}
 					} else {
-						if (val != null && !done.contains(val)) {
+						if (val != null && !done.contains(val)  && !todo.contains(val)) {
+							queue.add((IdEObject) val);
 							todo.add((IdEObject) val);
 						}
 					}
