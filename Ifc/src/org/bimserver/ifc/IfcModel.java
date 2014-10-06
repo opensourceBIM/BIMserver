@@ -766,7 +766,7 @@ public class IfcModel implements IfcModelInterface {
 	public Iterator<IdEObject> iterateAllObjects() {
 		return new Iterator<IdEObject>() {
 			private final Queue<IdEObject> queue = new LinkedBlockingQueue<IdEObject>(getValues());
-			private final Set<IdEObject> todo = new HashSet<IdEObject>();
+			private final Set<IdEObject> todo = new HashSet<IdEObject>(getValues());
 			private final Set<IdEObject> done = new HashSet<IdEObject>();
 			
 			@Override
@@ -808,13 +808,14 @@ public class IfcModel implements IfcModelInterface {
 	}
 	
 	@Override
-	public void generateMinimalExpressIds() {
+	public int generateMinimalExpressIds() {
 		int expressId = 1;
 		Iterator<IdEObject> iterateAllObjects = iterateAllObjects();
 		while (iterateAllObjects.hasNext()) {
 			IdEObject idEObject = iterateAllObjects.next();
 			((IdEObjectImpl)idEObject).setExpressId(expressId++);
 		}
+		return expressId - 1;
 	}
 
 	@Override
