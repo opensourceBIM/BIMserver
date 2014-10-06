@@ -185,7 +185,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	boolean isUseDoubleStrings();
 	void changeOid(IdEObject object);
 	void fixOids();
-	void generateMinimalExpressIds();
+	int generateMinimalExpressIds();
 
 	void fixInverseMismatches();
 	
