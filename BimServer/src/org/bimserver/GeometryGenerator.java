@@ -17,8 +17,6 @@ package org.bimserver;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -55,7 +53,9 @@ import org.bimserver.plugins.renderengine.RenderEngineInstance;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
+import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.Serializer;
+import org.bimserver.plugins.serializers.SerializerInputstream;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
@@ -125,8 +125,7 @@ public class GeometryGenerator {
 			
 			// TODO This is not streaming. SerializerInputstream has to be fixed first, then the IfcEngine wrapper should be able to handle streams without knowing the size in advance
 			
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			serializer.writeToOutputStream(outputStream);
+			SerializerInputstream serializerInputstream = new SerializerInputstream((EmfSerializer) serializer);
 
 			User user = (User) databaseSession.get(uoid, Query.getDefault());
 			UserSettings userSettings = user.getUserSettings();
@@ -142,7 +141,7 @@ public class GeometryGenerator {
 				RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration());
 				renderEngine.init();
 				try {
-					RenderEngineModel renderEngineModel = renderEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
+					RenderEngineModel renderEngineModel = renderEngine.openModel(serializerInputstream, -1);
 
 					RenderEngineSettings settings = new RenderEngineSettings();
 					settings.setPrecision(Precision.SINGLE);
