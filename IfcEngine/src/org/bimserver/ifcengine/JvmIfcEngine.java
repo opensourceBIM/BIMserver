@@ -199,6 +199,26 @@ public class JvmIfcEngine implements RenderEngine {
 		return new JvmIfcEngineModel(this, modelId);
 	}
 
+	public synchronized JvmIfcEngineModel openModel(InputStream inputStream) throws RenderEngineException {
+		checkRunning();
+		writeCommand(Command.OPEN_MODEL_STREAMING_PARTS);
+		try {
+			byte[] buffer = new byte[4096];
+			int read = inputStream.read(buffer, 0, 4096);
+			while (read != -1) {
+				out.writeInt(read);
+				out.write(buffer, 0, read);
+				read = inputStream.read(buffer, 0, 4096);
+			}
+			out.writeInt(-1);
+		} catch (IOException e) {
+			throw new RenderEngineException(e);
+		}
+		flush();
+		int modelId = readInt();
+		return new JvmIfcEngineModel(this, modelId);
+	}
+	
 	private void checkRunning() throws RenderEngineException {
 		if (lastException != null) {
 			throw lastException;

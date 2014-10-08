@@ -141,7 +141,7 @@ public class GeometryGenerator {
 				RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration());
 				renderEngine.init();
 				try {
-					RenderEngineModel renderEngineModel = renderEngine.openModel(serializerInputstream, -1);
+					RenderEngineModel renderEngineModel = renderEngine.openModel(serializerInputstream);
 
 					RenderEngineSettings settings = new RenderEngineSettings();
 					settings.setPrecision(Precision.SINGLE);
