@@ -30,16 +30,27 @@ import org.slf4j.LoggerFactory;
 public abstract class EmfDeserializer implements Deserializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfDeserializer.class);
+
 	public abstract void init(SchemaDefinition schema);
 
-	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException;
+	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException;
 
-	public IfcModelInterface read(File file) throws DeserializeException {
+	public IfcModelInterface read(File file, ByteProgressReporter progressReporter) throws DeserializeException {
 		try {
 			return read(new FileInputStream(file), file.getName(), file.length());
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);
 			return null;
 		}
+	}
+
+	@Override
+	public IfcModelInterface read(File file) throws DeserializeException {
+		return read(file, null);
+	}
+
+	@Override
+	public IfcModelInterface read(InputStream inputStream, String fileName, long fileSize) throws DeserializeException {
+		return read(inputStream, fileName, fileSize, null);
 	}
 }

@@ -33,6 +33,7 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
@@ -50,7 +51,7 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 	private final IfcModel model = new IfcModel();
 
 	@Override
-	public IfcModelInterface read(InputStream inputStream, String filename, long fileSize) throws DeserializeException {
+	public IfcModelInterface read(InputStream inputStream, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException {
 		if (filename != null && (filename.toUpperCase().endsWith(".ZIP") || filename.toUpperCase().endsWith(".IFCZIP") || filename.toUpperCase().endsWith(".IFCXMLZIP"))) {
 			ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 			ZipEntry nextEntry;
