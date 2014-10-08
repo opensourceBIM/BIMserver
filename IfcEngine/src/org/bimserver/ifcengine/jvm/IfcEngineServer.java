@@ -97,6 +97,13 @@ public class IfcEngineServer extends Thread {
 					out.writeInt(newPointerKey);
 				}
 					break;
+				case OPEN_MODEL_STREAMING_PARTS: {
+					ConvertingInputStream convertingInputStream = new ConvertingInputStream(in);
+					Pointer modelId = ifcEngine.loadFromInputStream(convertingInputStream, schemaFileName);
+					int newPointerKey = savePointer(modelId);
+					out.writeInt(newPointerKey);
+				}
+				break;
 				case FINALIZE_MODELLING: {
 					int modelId = in.readInt();
 					int indicesCount = in.readInt();
