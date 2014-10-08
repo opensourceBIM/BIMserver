@@ -52,7 +52,8 @@ function BimServerApi(baseUrl, notifier) {
 		DOWNLOAD_BUSY: "Busy downloading...",
 		VALIDATEACCOUNT_DONE: "Account successfully validated, you can now login",
 		ADDPROJECTASSUBPROJECT_DONE: "Sub project added successfully",
-		DOWNLOADBYJSONQUERY_BUSY: "Downloading BIM"
+		DOWNLOADBYJSONQUERY_BUSY: "Downloading BIM",
+		CHECKINFROMURL_DONE: "Done checking in from URL"
 	}
 
 	othis.token = null;

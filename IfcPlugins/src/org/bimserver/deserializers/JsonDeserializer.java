@@ -30,6 +30,7 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
@@ -57,7 +58,7 @@ public class JsonDeserializer extends EmfDeserializer {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException {
+	public IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException {
 		IfcModelInterface model = new IfcModel();
 		WaitingList<Long> waitingList = new WaitingList<Long>();
 		JsonReader jsonReader = new JsonReader(new InputStreamReader(in));

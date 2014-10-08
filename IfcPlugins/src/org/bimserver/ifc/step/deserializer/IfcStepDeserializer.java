@@ -51,6 +51,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcBoolean;
 import org.bimserver.models.ifc2x3tc1.IfcLogical;
 import org.bimserver.models.ifc2x3tc1.Tristate;
+import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.Attribute;
@@ -108,7 +109,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		this.schema = schema;
 	}
 
-	public IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException {
+	public IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException {
 		mode = Mode.HEADER;
 		if (filename != null && (filename.toUpperCase().endsWith(".ZIP") || filename.toUpperCase().endsWith(".IFCZIP"))) {
 			ZipInputStream zipInputStream = new ZipInputStream(in);
@@ -121,7 +122,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				if (nextEntry.getName().toUpperCase().endsWith(".IFC")) {
 					IfcModelInterface model = null;
 					FakeClosingInputStream fakeClosingInputStream = new FakeClosingInputStream(zipInputStream);
-					model = read(fakeClosingInputStream, fileSize);
+					model = read(fakeClosingInputStream, fileSize, progressReporter);
 					if (model.size() == 0) {
 						throw new DeserializeException("Uploaded file does not seem to be a correct IFC file");
 					}
@@ -139,7 +140,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				throw new DeserializeException(e);
 			}
 		} else {
-			return read(in, fileSize);
+			return read(in, fileSize, progressReporter);
 		}
 	}
 
@@ -151,11 +152,12 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		}
 	}
 	
-	private IfcModelInterface read(InputStream inputStream, long fileSize) throws DeserializeException {
+	private IfcModelInterface read(InputStream inputStream, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
 		model = new IfcModel(initialCapacity);
 		lineNumber = 0;
+		long bytesRead = 0;
 		try {
 			String line = reader.readLine();
 			MessageDigest md = MessageDigest.getInstance("MD5");
@@ -177,6 +179,10 @@ public class IfcStepDeserializer extends EmfDeserializer {
 					} else {
 						throw new DeserializeException(lineNumber, " (" + e.getMessage() + ") " + line, e);
 					}
+				}
+				bytesRead += bytes.length;
+				if (progressReporter != null) {
+					progressReporter.progress(bytesRead);
 				}
 				line = reader.readLine();
 				lineNumber++;
@@ -201,7 +207,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		}
 		try {
 			FileInputStream in = new FileInputStream(sourceFile);
-			read(in, sourceFile.length());
+			read(in, sourceFile.length(), null);
 			in.close();
 			model.getModelMetaData().setDate(new Date());
 			model.getModelMetaData().setName(sourceFile.getName());

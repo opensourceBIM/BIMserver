@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -146,7 +147,6 @@ import org.bimserver.models.store.UserType;
 import org.bimserver.notifications.NewExtendedDataOnRevisionNotification;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -206,35 +206,23 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			String cacheFileName = dateFormat.format(new Date()) + "-" + fileName;
 			File file = new File(userDirIncoming, cacheFileName);
 			InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(file));
-			try {
-				DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
-				if (deserializerObject == null) {
-					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
-				}
-				Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
-				try {
-					deserializer.init(getBimServer().getPluginManager().requireSchemaDefinition());
-				} catch (PluginException e) {
-					throw new UserException(e);
-				}
-				IfcModelInterface model = deserializer.read(inputStream, cacheFileName, fileSize);
-				if (model.size() == 0) {
-					throw new DeserializeException("Cannot checkin empty model");
-				}
-				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
-				LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
-				getBimServer().getLongActionManager().start(longAction);
-				if (sync) {
-					longAction.waitForCompletion();
-				}
-				return longAction.getProgressTopic().getKey().getId();
-			} catch (UserException e) {
-				throw e;
-			} catch (DeserializeException e) {
-				throw new UserException(e);
-			} finally {
-				inputStream.close();
+			DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
+			if (deserializerObject == null) {
+				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
+			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
+			try {
+				deserializer.init(getBimServer().getPluginManager().requireSchemaDefinition());
+			} catch (PluginException e) {
+				throw new UserException(e);
+			}
+			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), inputStream, deserializer, fileSize, comment, fileName, merge);
+			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+			getBimServer().getLongActionManager().start(longAction);
+			if (sync) {
+				longAction.waitForCompletion();
+			}
+			return longAction.getProgressTopic().getKey().getId();
 		} catch (UserException e) {
 			throw e;
 		} catch (Throwable e) {
@@ -265,7 +253,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 			
 			URL url = new URL(urlString);
-			InputStream input = url.openStream();
+			URLConnection openConnection = url.openConnection();
+			int contentLength = openConnection.getContentLength();
+			InputStream input = openConnection.getInputStream();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 			if (fileName == null) {
 				if (urlString.contains("/")) {
@@ -278,35 +268,23 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 			File file = new File(userDirIncoming, fileName);
 			InputStream inputStream = new MultiplexingInputStream(input, new FileOutputStream(file));
-			try {
-				DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
-				if (deserializerObject == null) {
-					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
-				}
-				Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
-				try {
-					deserializer.init(getBimServer().getPluginManager().requireSchemaDefinition());
-				} catch (PluginException e) {
-					throw new UserException(e);
-				}
-				IfcModelInterface model = deserializer.read(inputStream, fileName, 0);
-				if (model.size() == 0) {
-					throw new DeserializeException("Cannot checkin empty model");
-				}
-				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
-				LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
-				getBimServer().getLongActionManager().start(longAction);
-				if (sync) {
-					longAction.waitForCompletion();
-				}
-				return longAction.getProgressTopic().getKey().getId();
-			} catch (UserException e) {
-				throw e;
-			} catch (DeserializeException e) {
-				throw new UserException(e);
-			} finally {
-				inputStream.close();
+			DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
+			if (deserializerObject == null) {
+				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
+			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
+			try {
+				deserializer.init(getBimServer().getPluginManager().requireSchemaDefinition());
+			} catch (PluginException e) {
+				throw new UserException(e);
+			}
+			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), inputStream, deserializer, contentLength, comment, fileName, merge);
+			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+			getBimServer().getLongActionManager().start(longAction);
+			if (sync) {
+				longAction.waitForCompletion();
+			}
+			return longAction.getProgressTopic().getKey().getId();
 		} catch (UserException e) {
 			throw e;
 		} catch (Throwable e) {

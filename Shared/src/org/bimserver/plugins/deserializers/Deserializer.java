@@ -25,6 +25,8 @@ import org.bimserver.plugins.schema.SchemaDefinition;
 
 public interface Deserializer {
 	void init(SchemaDefinition schemaDefinition);
+	IfcModelInterface read(File file, ByteProgressReporter progressReporter) throws DeserializeException;
+	IfcModelInterface read(InputStream inputStream, String fileName, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException;
 	IfcModelInterface read(File file) throws DeserializeException;
 	IfcModelInterface read(InputStream inputStream, String fileName, long fileSize) throws DeserializeException;
 }
