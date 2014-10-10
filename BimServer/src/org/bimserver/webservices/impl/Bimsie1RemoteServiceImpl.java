@@ -104,7 +104,11 @@ public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bims
 	
 	@Override
 	public void newRevision(Long poid, Long roid, Long soid, String serviceIdentifier, String profileIdentifier, String userToken, String token, String apiUrl) throws UserException, ServerException {
-		bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier).newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
+		Bimsie1RemoteServiceInterface localRemoteServiceInterface = bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier);
+		if (localRemoteServiceInterface == null) {
+			throw new UserException("No local remote service found " + serviceIdentifier);
+		}
+		localRemoteServiceInterface.newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
 	}
 
 	@Override
