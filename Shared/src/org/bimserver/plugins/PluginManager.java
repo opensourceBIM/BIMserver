@@ -576,6 +576,12 @@ public class PluginManager {
 			notificationsManagerInterface.registerInternalNewRevisionHandler(serviceDescriptor, newRevisionHandler);
 		}
 	}
+
+	public void unregisterNewRevisionHandler(ServiceDescriptor serviceDescriptor) {
+		if (notificationsManagerInterface != null) {
+			notificationsManagerInterface.unregisterInternalNewRevisionHandler(serviceDescriptor);
+		}
+	}
 	
 	public SServicesMap getServicesMap() {
 		return servicesMap;

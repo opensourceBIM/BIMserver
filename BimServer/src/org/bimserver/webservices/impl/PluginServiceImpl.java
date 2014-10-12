@@ -106,6 +106,7 @@ import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
+import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PluginInterface;
@@ -696,6 +697,20 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			SetPluginSettingsDatabaseAction action = new SetPluginSettingsDatabaseAction(session, getInternalAccessMethod(), poid, convertedSettings);
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+
+		session = getBimServer().getDatabase().createSession();
+		try {
+			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, Query.getDefault());
+			ServicePlugin servicePlugin = getBimServer().getPluginManager().getServicePlugin(pluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+			SInternalServicePluginConfiguration sInternalService = (SInternalServicePluginConfiguration) getBimServer().getSConverter().convertToSObject(pluginConfiguration);
+	
+			servicePlugin.unregister(sInternalService);
+			servicePlugin.register(sInternalService, new org.bimserver.plugins.PluginConfiguration(settings));
+		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
 			session.close();
