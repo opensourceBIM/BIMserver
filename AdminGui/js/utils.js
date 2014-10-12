@@ -30,28 +30,6 @@ function CountingPromise() {
 	};
 }
 
-
-function Promise() {
-	var o = this;
-
-	this.isDone = false;
-	
-	this.done = function(callback){
-		if (o.isDone) {
-			callback();
-		} else {
-			o.callback = callback;
-		}
-	};
-
-	this.fire = function(){
-		o.isDone = true;
-		if (o.callback != null) {
-			o.callback();
-		}
-	};
-}
-
 function formatAccessMethod(accessMethod) {
 	if (accessMethod == "INTERNAL") {
 		return "Internal";

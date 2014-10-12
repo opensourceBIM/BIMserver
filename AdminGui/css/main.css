@@ -161,6 +161,7 @@ div.setup form.form-horizontal label {
 
 .my-fluid-container {
 	padding: 15px;
+	padding-bottom: 0px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -220,6 +221,17 @@ li.treenode {
 	background-repeat: no-repeat;
 }
 
+.treenode .treepreicon {
+	display: inline-block;
+	width: 23px;
+	height: 23px;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
 .treenode .treelabel {
 	position: relative;
 	top: -5px;
@@ -238,8 +250,24 @@ li.treenode {
 	background-image: url("../img/loading.gif");
 }
 
+.ball {
+	background-image: url("../img/ball.gif");
+}
+
+.hierarchy {
+	background-image: url("../img/hierarchy.gif");
+}
+
+.projecttree .types {
+	background-image: url("../img/types.png");
+}
+
 .treenodeclosed {
 	background-image: url("../img/black_arrow.png");
+}
+
+.folder {
+	background-image: url("../img/folder.gif");
 }
 
 .treenodeclosed:hover {
@@ -349,6 +377,10 @@ div#viewport {
 	padding-bottom: 2px;
 }
 
+.underline {
+	text-decoration: underline;
+}
+
 .tree-dropdown {
 	background-image: url("../img/dropdown.png");
 	width: 23px;
@@ -372,6 +404,22 @@ div#viewport {
 .projectTabs .btn.active, .projectTabs .btn:active {
 	webkit-box-shadow: none;
 	box-shadow: none;
+}
+
+.help {
+	position: fixed;
+	margin: 10px;
+	width: 400px;
+}
+
+.startLink {
+	color: white;
+}
+
+caption {
+	text-align: left;
+	padding-left: 6px;
+	font-size: 140%;
 }
 
 .dropdown-submenu{position:relative;}

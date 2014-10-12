@@ -1,6 +1,6 @@
 function loadBimServerApi(address, notifier, callback, errorCallback) {
-	if (Window.Global == null) {
-		Window.Global = {};
+	if (window.Global == null) {
+		window.Global = {};
 	}
 	var timeoutId = window.setTimeout(function() {
 		notifier.setError("Could not connect");
@@ -19,6 +19,7 @@ function loadBimServerApi(address, notifier, callback, errorCallback) {
 				Global.bimServerApi = new BimServerApi(address, notifier);
 				Global.bimServerApi.init(function(){
 					// TODO make 1 call
+
 					Global.bimServerApi.call("AdminInterface", "getServerInfo", {}, function(serverInfo){
 						Global.bimServerApi.call("AdminInterface", "getVersion", {}, function(version){
 							Global.bimServerApi.version = version;

@@ -6,8 +6,8 @@ function PluginManager() {
 		if (o.byType[type] != null) {
 			o.byType[type].forEach(function(plugin){
 				var pluginInstance = Object.create(plugin.prototype);
-				var plugin = Settings.getPlugins()[pluginInstance.getName()];
-				if (plugin != null && plugin.enabled) {
+				var pluginConfiguration = Settings.getPlugins()[pluginInstance.getName()];
+				if (pluginConfiguration != null && pluginConfiguration.enabled) {
 					callback(plugin);
 				}
 			});
