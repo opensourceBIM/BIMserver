@@ -31,6 +31,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.GeometryData;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;
@@ -102,10 +103,15 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		int nrObjects = 0;
 		
 		List<IfcProduct> products = getModel().getAllWithSubTypes(IfcProduct.class);
-		
+		long oidCounter = 1;
 		for (IfcProduct ifcProduct : products) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
 			if (geometryInfo != null && geometryInfo.getTransformation() != null && geometryInfo.getData().getVertices() != null) {
+				// This is for geometry that is generated on-the-fly
+				if (geometryInfo.getData().getOid() == -1) {
+					((IdEObjectImpl)geometryInfo.getData()).setOid(oidCounter++);
+				}
+
 				Bounds objectBounds = new Bounds(new Float3(geometryInfo.getMinBounds().getX(), geometryInfo.getMinBounds().getY(), geometryInfo.getMinBounds()
 						.getZ()), new Float3(geometryInfo.getMaxBounds().getX(), geometryInfo.getMaxBounds().getY(), geometryInfo.getMaxBounds().getZ()));
 				modelBounds.integrate(objectBounds);
@@ -135,7 +141,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				// BEWARE, ByteOrder is always LITTLE_ENDIAN, because that's what GPU's seem to prefer, Java's ByteBuffer default is BIG_ENDIAN though!
 				
 				bytesTotal += vertices.length;
-				byte geometryType = concreteGeometrySent.contains(geometryData.getOid()) ? GEOMETRY_TYPE_INSTANCE : GEOMETRY_TYPE_TRIANGLES;
+				byte geometryType = geometryData.getOid() != -1 && concreteGeometrySent.contains(geometryData.getOid()) ? GEOMETRY_TYPE_INSTANCE : GEOMETRY_TYPE_TRIANGLES;
 				dataOutputStream.write(geometryType);
 
 				if (outputStream instanceof AligningOutputStream) {
@@ -149,10 +155,10 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				
 				dataOutputStream.write(geometryInfo.getTransformation());
 
-				if (concreteGeometrySent.contains(geometryData.getOid())) {
+				if (geometryType == GEOMETRY_TYPE_INSTANCE) {
 					dataOutputStream.writeLong(geometryData.getOid());
 					bytesSaved += vertices.length;
-				} else {
+				} else if (geometryType == GEOMETRY_TYPE_TRIANGLES) {
 					ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
 					dataOutputStream.writeLong(geometryData.getOid());
 
