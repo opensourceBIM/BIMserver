@@ -1,4 +1,4 @@
-<project name="BIMserver Release Build">
+<project name="BIMserver Local Build">
 	<import file="version.build.xml"/>
 	
 	<property name="type" value="FINAL"/>
