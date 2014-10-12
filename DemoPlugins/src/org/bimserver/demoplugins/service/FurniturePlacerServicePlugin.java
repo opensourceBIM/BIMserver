@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SActionState;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -88,7 +89,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 	}
 
 	@Override
-	public void register(PluginConfiguration pluginConfiguration) {
+	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
 		serviceDescriptor.setIdentifier(getClass().getName());
@@ -214,5 +215,9 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 				}
 			}
 		});
+	}
+
+	@Override
+	public void unregister(SInternalServicePluginConfiguration internalService) {
 	}
 }

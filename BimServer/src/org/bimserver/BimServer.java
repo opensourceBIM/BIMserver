@@ -62,6 +62,7 @@ import org.bimserver.deserializers.DeserializerFactory;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.endpoints.EndPointManager;
 import org.bimserver.interfaces.SConverter;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
@@ -668,21 +669,6 @@ public class BimServer {
 			}
 
 			session = bimDatabase.createSession();
-			try {
-				for (InternalServicePluginConfiguration internalService : session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), InternalServicePluginConfiguration.class, Query.getDefault())) {
-					if (internalService.getEnabled()) {
-						ServicePlugin servicePlugin = pluginManager.getServicePlugin(internalService.getPluginDescriptor().getPluginClassName(), true);
-						if (servicePlugin != null) {
-							ObjectType settings = internalService.getSettings();
-							servicePlugin.register(new org.bimserver.plugins.PluginConfiguration(settings));
-						}
-					}
-				}
-			} finally {
-				session.close();
-			}
-			
-			session = bimDatabase.createSession();
 			createDatabaseObjects(session);
 			
 			ServerSettings serverSettings = serverSettingsCache.getServerSettings();
@@ -713,6 +699,22 @@ public class BimServer {
 				throw new BimserverDatabaseException(e);
 			} catch (ServiceException e) {
 				throw new BimserverDatabaseException(e);
+			} finally {
+				session.close();
+			}
+			
+			session = bimDatabase.createSession();
+			try {
+				for (InternalServicePluginConfiguration internalService : session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), InternalServicePluginConfiguration.class, Query.getDefault())) {
+					if (internalService.getEnabled()) {
+						ServicePlugin servicePlugin = pluginManager.getServicePlugin(internalService.getPluginDescriptor().getPluginClassName(), true);
+						if (servicePlugin != null) {
+							ObjectType settings = internalService.getSettings();
+							SInternalServicePluginConfiguration sInternalService = getSConverter().convertToSObject(internalService);
+							servicePlugin.register(sInternalService, new org.bimserver.plugins.PluginConfiguration(settings));
+						}
+					}
+				}
 			} finally {
 				session.close();
 			}

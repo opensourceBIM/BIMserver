@@ -16,6 +16,7 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
@@ -59,7 +60,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		initialized = true;
 	}
 
-	public void register(final PluginConfiguration pluginConfiguration) {
+	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, final PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor clashDetection = StoreFactory.eINSTANCE.createServiceDescriptor();
 		clashDetection.setProviderName("BIMserver");
 		clashDetection.setIdentifier(getClass().getName());
@@ -276,5 +277,9 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		marginParameter.setType(doubleDefinition);
 		objectDefinition.getParameters().add(marginParameter);
 		return objectDefinition;
+	}
+
+	@Override
+	public void unregister(SInternalServicePluginConfiguration internalService) {
 	}
 }

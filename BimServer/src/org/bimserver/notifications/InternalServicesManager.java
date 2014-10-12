@@ -208,4 +208,10 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 			}
 		});
 	}
+	
+	@Override
+	public void unregisterInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor) {
+		internalServices.remove(serviceDescriptor.getName());
+		internalRemoteServiceInterfaces.remove(serviceDescriptor.getIdentifier());
+	}
 }

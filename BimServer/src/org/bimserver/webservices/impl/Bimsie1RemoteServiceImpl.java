@@ -55,7 +55,7 @@ public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bims
 			IfcModelInterface modelInterface = session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), Query.getDefault());
 			for (InternalServicePluginConfiguration internalServicePluginConfiguration : modelInterface.getAll(InternalServicePluginConfiguration.class)) {
 				if (internalServicePluginConfiguration.isPublicProfile()) {
-					if (internalServicePluginConfiguration.getPluginDescriptor().getPluginClassName().equals(serviceIdentifier)) {
+					if (serviceIdentifier.equals("" + internalServicePluginConfiguration.getOid())) {
 						SProfileDescriptor sProfileDescriptor = new SProfileDescriptor();
 						descriptors.add(sProfileDescriptor);
 						

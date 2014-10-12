@@ -17,6 +17,7 @@ package org.bimserver.plugins.services;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.Plugin;
@@ -33,6 +34,7 @@ public abstract class ServicePlugin implements Plugin {
 
 	public abstract String getTitle();
 	private PluginManager pluginManager;
+	private boolean initialized;
 	
 	public ServiceInterface getServiceInterface(String token) throws UserException {
 		return pluginManager.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
@@ -40,6 +42,10 @@ public abstract class ServicePlugin implements Plugin {
 
 	protected void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
 		pluginManager.registerNewRevisionHandler(serviceDescriptor, newRevisionHandler);
+	}
+
+	protected void unregisterNewRevisionHandler(ServiceDescriptor serviceDescriptor) {
+		pluginManager.unregisterNewRevisionHandler(serviceDescriptor);
 	}
 	
 	protected BimServerClientInterface getLocalBimServerClientInterface(AuthenticationInfo tokenAuthentication) throws ServiceException, ChannelConnectionException {
@@ -49,6 +55,12 @@ public abstract class ServicePlugin implements Plugin {
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
+		initialized = true;
+	}
+	
+	@Override
+	public boolean isInitialized() {
+		return initialized;
 	}
 	
 	public PluginManager getPluginManager() {
@@ -68,5 +80,6 @@ public abstract class ServicePlugin implements Plugin {
 	 * 
 	 * @param pluginConfiguration
 	 */
-	public abstract void register(PluginConfiguration pluginConfiguration);
+	public abstract void register(SInternalServicePluginConfiguration internalService, PluginConfiguration pluginConfiguration);
+	public abstract void unregister(SInternalServicePluginConfiguration internalService);
 }

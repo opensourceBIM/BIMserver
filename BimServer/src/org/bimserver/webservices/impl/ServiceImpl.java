@@ -1196,7 +1196,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			User user = session.querySingle(condition, User.class, Query.getDefault());
 			if (user != null) {
 				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
-					if (internalServicePluginConfiguration.getPluginDescriptor().getPluginClassName().equals(serviceIdentifier)) {
+					if (serviceIdentifier.equals("" + internalServicePluginConfiguration.getOid())) {
 						SProfileDescriptor sProfileDescriptor = new SProfileDescriptor();
 						descriptors.add(sProfileDescriptor);
 						
