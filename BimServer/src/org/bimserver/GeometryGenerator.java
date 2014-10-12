@@ -123,8 +123,6 @@ public class GeometryGenerator {
 
 			serializer.init(model, null, pluginManager, null, false);
 			
-			// TODO This is not streaming. SerializerInputstream has to be fixed first, then the IfcEngine wrapper should be able to handle streams without knowing the size in advance
-			
 			SerializerInputstream serializerInputstream = new SerializerInputstream((EmfSerializer) serializer);
 
 			User user = (User) databaseSession.get(uoid, Query.getDefault());
@@ -150,6 +148,7 @@ public class GeometryGenerator {
 					settings.setGenerateTriangles(true);
 					settings.setGenerateWireFrame(false);
 					renderEngineModel.setSettings(settings);
+					
 					try {
 						renderEngineModel.generateGeneralGeometry();
 						
@@ -219,6 +218,8 @@ public class GeometryGenerator {
 								setTransformationMatrix(geometryInfo, tranformationMatrix);
 								if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
 									int hash = hash(geometryData);
+									
+									// TODO check for hashcollisions
 									if (hashes.containsKey(hash)) {
 										databaseSession.removeFromCommit(geometryData);
 										geometryInfo.setData(hashes.get(hash));
