@@ -21,7 +21,7 @@ var Settings = {
 		return "BIMserver Admin GUI";
 	},
 	usableBimServerVersion: function(version) {
-		return version.major == 1 && version.minor == 3 && version.revision == 0;
+		return (version.major == 1 && version.minor == 3) || (version.major == 1 && version.minor == 4);
 	},
 	getMenuItems: function(){
 		return [
