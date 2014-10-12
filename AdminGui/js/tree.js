@@ -40,17 +40,52 @@ function Node(id, title) {
 	o.isOpen = false;
 	o.parent = null;
 	o.children = [];
+	o.sort = false;
+	o.onLoadListeners = new EventRegistry();
 
 	this.add = function(node){
 		node.parent = o;
-		if (!o.children.length > 0) {
-			o.img.addClass("treenodeclosed");
-		}
-		o.children.push(node);
-		o.img.show();
 		node.tree = o.tree;
 		node.tree.idToNodeMap[node.id] = node;
-		o.ul.append(node.li);
+
+		if (o.sort) {
+			var found = false;
+			for (var i=0; i<o.children.length; i++) {
+				var diff = node.title.localeCompare(o.children[i].title);
+				if (diff < 0) {
+					if (i == 0) {
+						o.ul.prepend(node.li);
+					} else {
+						o.ul.children().eq(i-1).after(node.li);
+					}
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				o.ul.append(node.li);
+			}
+		} else {
+			o.ul.append(node.li);
+		}
+		// TODO sync order in array with dom nodes order?
+		o.children.push(node);
+		
+		if (o.isOpen) {
+			o.img.addClass("treenodeopen");
+		} else {
+			o.img.addClass("treenodeclosed");
+		}
+		o.img.show();
+	};
+	
+	this.setIcon = function(icon){
+		o.icon.addClass(icon);
+	};
+	
+	this.onLoad = function(listener){
+		o.onLoadListeners.register(listener);
+		o.img.addClass("treenodeclosed");
 	};
 	
 	this.click = function(click){
@@ -58,12 +93,18 @@ function Node(id, title) {
 	};
 	
 	this.open = function(){
+		var promise = new Promise();
 		o.isOpen = true;
+		o.onLoadListeners.trigger(function(listener){
+			promise.chain(listener());
+		});
+		o.onLoadListeners.clear();
 		o.ul.show();
 		if (o.children.length > 0) {
 			o.img.removeClass("treenodeclosed");
 			o.img.addClass("treenodeopen");
 		}
+		return promise;
 	};
 	
 	this.close = function(){
@@ -108,11 +149,20 @@ function Node(id, title) {
 	};
 	
 	this.setLoading = function(){
+		o.img.removeClass("treenodeopen");
+		o.img.removeClass("treenodeclosed");
 		o.img.addClass("loading");
 	};
 	
 	this.doneLoading = function(){
 		o.img.removeClass("loading");
+		if (o.children.length > 0) {
+			if (o.isOpen) {
+				o.img.addClass("treenodeopen");
+			} else {
+				o.img.addClass("treenodeclosed");
+			}
+		}			
 	};
 	
 	this.toggle = function(){
@@ -143,6 +193,34 @@ function Node(id, title) {
 		o.tree.remove(o);
 		o.li.remove();
 	};
+
+	this.listFilterByType = function(type){
+		var result = [];
+		o.internalListFilterByType(result, type);
+		return result;
+	};
+	
+	this.list = function(){
+		var result = [];
+		o.internalList(result);
+		return result;
+	};
+
+	this.internalList = function(result){
+		result.push(o);
+		o.children.forEach(function(subNode){
+			subNode.internalList(result);
+		});
+	};
+	
+	this.internalListFilterByType = function(result, type){
+		if (o.type == type) {
+			result.push(o);
+		}
+		o.children.forEach(function(subNode){
+			subNode.internalListFilterByType(result, type);
+		});
+	};
 	
 	this.addButton = function(button){
 		o.div.after(button);
@@ -155,6 +233,8 @@ function Node(id, title) {
 	o.img = $("<div class=\"treeicon\"/>");
 	o.img.click(o.toggle);
 	o.li.append(o.img);
+	o.icon = $("<div class=\"treepreicon\">");
+	o.li.append(o.icon);
 	o.div.append(o.a);
 	o.li.append(o.div);
 	o.ul = $("<ul>");

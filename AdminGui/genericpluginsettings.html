@@ -51,10 +51,16 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 					objectDefinition.parameters.forEach(function(parameter){
 						var input = $(".genericpluginsettings").find("input[parameter=\"" + parameter.name + "\"]");
 						var value = parameter.value;
-						if (value.__type == "SDoubleType" || value.__type == "SStringType" || value.__type == "SBooleanType" || value.__type == "SLongType") {
-							input.val(value.value);
-						} else if (value.__type == "SObjectType") {
-						} else if (value.__type == "SArrayType") {
+						if (value != null) {
+							if (value.__type == "SDoubleType" || value.__type == "SStringType" || value.__type == "SBooleanType" || value.__type == "SLongType") {
+								input.val(value.value);
+							} else if (value.__type == "SObjectType") {
+							} else if (value.__type == "SArrayType") {
+							} else if (value.__type == "SByteArrayType") {
+								if (value.value != null) {
+									input.parent().append("<span>Current: " + atob(value.value).length + " bytes</span>");
+								}
+							}
 						}
 					});
 				}
@@ -90,6 +96,22 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 							td.append(input);
 						} else if (primitiveDefinition.type == "BYTE_ARRAY") {
 							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"file\"/>");
+							
+							var reader = new FileReader();
+							reader.onload = function (event) {
+								var data = event.target.result;
+								var encoded = data.substr(data.indexOf(",") + 1);
+								input.data("base64", encoded);
+							};
+							input.change(function(){
+								var get = input.get(0);
+								var files = get.files;
+								if (files != null && files.length == 1) {
+									var oFile = files[0];
+									reader.readAsDataURL(oFile);
+								}
+							});
+							
 							td.append(input);
 						} else if (primitiveDefinition.type == "BOOLEAN") {
 							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"checkbox\"/>");
@@ -110,6 +132,7 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 		};
 		$(".genericpluginsettings").find("input[parameter]").each(function(){
 			var type = null;
+			var input = $(this);
 			if ($(this).attr("dtype") == "DOUBLE") {
 				type = {
 					__type: "SDoubleType",
@@ -124,6 +147,11 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 				type = {
 					__type: "SStringType",
 					value: parseInt($(this).val())
+				};
+			} else if ($(this).attr("dtype") == "BYTE_ARRAY") {
+				type = {
+					__type: "SByteArrayType",
+					value: $(this).data("base64")
 				};
 			} else if ($(this).attr("dtype") == "BOOLEAN") {
 				type = {

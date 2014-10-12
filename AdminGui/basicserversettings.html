@@ -309,9 +309,9 @@ function BasicServerSettings(main, serversettings) {
 	
 	$(".basicserversettings select").change(function(){othis.change = true; othis.save()});
 	$(".basicserversettings input[type='checkbox']").change(function(){othis.change = true; othis.save()});
-	$(".basicserversettings input[type='text']").blur(othis.save);
-	$(".basicserversettings input[type='text']").enterpress(othis.save);
-	$(".basicserversettings input[type='text']").keyup(function(event){
+	$(".basicserversettings input[type='text'], .basicserversettings input[type='password']").blur(othis.save);
+	$(".basicserversettings input[type='text'], .basicserversettings input[type='password']").enterpress(othis.save);
+	$(".basicserversettings input[type='text'], .basicserversettings input[type='password']").keyup(function(event){
 		if (event.which != 13 && event.which != 9) {
 			othis.change = true;
 		}

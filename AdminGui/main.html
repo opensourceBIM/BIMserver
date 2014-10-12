@@ -325,7 +325,19 @@ function Main(address, user) {
 			new Download($(this), params);
 		}).modal({keyboard:true});
 	};
-	
+
+	this.showDownloadRevisionsPopup = function(roids) {
+		var div = $("<div class=\"modal fade\">");
+		$(document.body).append(div);
+		var params = {
+			downloadType: "downloadRevisions",
+			roids: roids
+		};
+		div.load(Global.baseDir + "download.html", function(){
+			new Download($(this), params);
+		}).modal({keyboard:true});
+	};
+
 	this.addMenuDivider = function(mainTitle){
 		var navbar = $(".nav.navbar-nav");
 		var parentA = navbar.find("a." + mainTitle);
