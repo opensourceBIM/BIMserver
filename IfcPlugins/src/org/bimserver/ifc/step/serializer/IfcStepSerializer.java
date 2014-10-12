@@ -390,7 +390,7 @@ public class IfcStepSerializer extends IfcSerializer {
 						LOGGER.info("Serializing infinite or NaN double as 0.0");
 						print("0.0");
 					} else {
-						print((String)realVal);
+						print(((Double)realVal).toString());
 					}
 				}
 			} else {
