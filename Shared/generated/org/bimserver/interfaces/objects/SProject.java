@@ -52,6 +52,8 @@ public class SProject implements SDataBase
 	private List<Long> services = new ArrayList<Long>();
 	private List<Long> logs = new ArrayList<Long>();
 	private List<Long> modelCheckers = new ArrayList<Long>();
+	public SProject() {
+	}
 
 	public long getOid() {
 		return this.oid;

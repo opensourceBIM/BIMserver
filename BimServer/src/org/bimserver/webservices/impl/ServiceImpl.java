@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -170,6 +171,8 @@ import org.codehaus.jettison.json.JSONTokener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
+
 public class ServiceImpl extends GenericServiceImpl implements ServiceInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceImpl.class);
 
@@ -263,6 +266,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				} else {
 					fileName = urlString;
 				}
+				fileName = URLDecoder.decode(fileName, Charsets.UTF_8.name());
 			} else {
 				fileName = dateFormat.format(new Date()) + "-" + fileName;
 			}

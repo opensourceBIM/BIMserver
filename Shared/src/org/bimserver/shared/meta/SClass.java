@@ -55,6 +55,13 @@ public class SClass implements Comparable<SClass> {
 		if (instanceClass == null) {
 			throw new RuntimeException("InstanceClass cannot be null");
 		}
+		if (instanceClass.isEnum() || instanceClass.isArray() || instanceClass == Enum.class || instanceClass.getName().equals("java.lang.Object") || instanceClass.isPrimitive() || instanceClass == String.class || instanceClass.getName().startsWith("java.")) {
+			
+		} else {
+			if (sConstructor == null) {
+				throw new RuntimeException("No constructor for " + instanceClass.getName());
+			}
+		}
 		this.instanceClass = instanceClass;
 		this.name = instanceClass.getName();
 		this.simpleType = SimpleType.get(instanceClass);

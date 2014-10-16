@@ -30,6 +30,8 @@ public class SNewCheckoutAdded extends SCheckoutRelated implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	public SNewCheckoutAdded() {
+	}
 
 	public long getOid() {
 		return this.oid;

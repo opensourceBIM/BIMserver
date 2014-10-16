@@ -29,6 +29,8 @@ public class SObjectAdded extends SCompareItem implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	public SObjectAdded() {
+	}
 
 	public long getOid() {
 		return this.oid;

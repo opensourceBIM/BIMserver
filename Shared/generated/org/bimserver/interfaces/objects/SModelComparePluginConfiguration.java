@@ -30,6 +30,8 @@ public class SModelComparePluginConfiguration extends SPluginConfiguration imple
 	@XmlTransient
 	private static SClass sClass;
 	private long userSettingsId = -1;
+	public SModelComparePluginConfiguration() {
+	}
 
 	public long getOid() {
 		return this.oid;

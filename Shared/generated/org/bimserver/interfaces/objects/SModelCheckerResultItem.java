@@ -31,6 +31,8 @@ public class SModelCheckerResultItem implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	public SModelCheckerResultItem() {
+	}
 
 	public long getOid() {
 		return this.oid;

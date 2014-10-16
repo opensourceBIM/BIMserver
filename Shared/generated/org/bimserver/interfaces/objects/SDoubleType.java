@@ -30,6 +30,8 @@ public class SDoubleType extends SPrimitiveType implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private double value;
+	public SDoubleType() {
+	}
 
 	public long getOid() {
 		return this.oid;

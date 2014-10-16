@@ -38,6 +38,8 @@ public class SGeoTag implements SDataBase
 	private java.lang.Double z;
 	private java.lang.Integer epsg;
 	private java.lang.Double directionAngle;
+	public SGeoTag() {
+	}
 
 	public long getOid() {
 		return this.oid;

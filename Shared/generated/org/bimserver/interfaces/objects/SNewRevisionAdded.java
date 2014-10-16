@@ -31,6 +31,8 @@ public class SNewRevisionAdded extends SRevisionRelated implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private long projectId = -1;
+	public SNewRevisionAdded() {
+	}
 
 	public long getOid() {
 		return this.oid;

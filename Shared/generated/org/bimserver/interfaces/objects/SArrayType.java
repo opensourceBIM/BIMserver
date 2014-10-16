@@ -32,6 +32,8 @@ public class SArrayType extends SType implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private List<SType> values = new ArrayList<SType>();
+	public SArrayType() {
+	}
 
 	public long getOid() {
 		return this.oid;

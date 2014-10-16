@@ -32,6 +32,8 @@ public class SExtendedDataAddedToProject extends SLogAction implements SDataBase
 	private static SClass sClass;
 	private long projectId = -1;
 	private long extendedDataId = -1;
+	public SExtendedDataAddedToProject() {
+	}
 
 	public long getOid() {
 		return this.oid;

@@ -32,6 +32,8 @@ public class SParameterDefinition implements SBase
 	private java.lang.String description;
 	private STypeDefinition type;
 	private long defaultValueId = -1;
+	public SParameterDefinition() {
+	}
 	
 	@XmlTransient
 	public SClass getSClass() {

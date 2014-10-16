@@ -30,6 +30,8 @@ public class SBooleanType extends SPrimitiveType implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private boolean value;
+	public SBooleanType() {
+	}
 
 	public long getOid() {
 		return this.oid;

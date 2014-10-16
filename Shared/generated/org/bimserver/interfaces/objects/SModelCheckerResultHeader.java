@@ -30,6 +30,8 @@ public class SModelCheckerResultHeader extends SModelCheckerResultItem implement
 	@XmlTransient
 	private static SClass sClass;
 	private java.lang.String text;
+	public SModelCheckerResultHeader() {
+	}
 
 	public long getOid() {
 		return this.oid;

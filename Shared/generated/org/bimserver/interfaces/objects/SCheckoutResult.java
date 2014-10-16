@@ -30,6 +30,8 @@ public class SCheckoutResult extends SDownloadResult implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	public SCheckoutResult() {
+	}
 
 	public long getOid() {
 		return this.oid;

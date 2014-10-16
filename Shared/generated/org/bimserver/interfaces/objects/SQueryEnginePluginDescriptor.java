@@ -30,6 +30,8 @@ public class SQueryEnginePluginDescriptor extends SPluginDescriptor implements S
 
 	@XmlTransient
 	private static SClass sClass;
+	public SQueryEnginePluginDescriptor() {
+	}
 
 	public long getOid() {
 		return this.oid;

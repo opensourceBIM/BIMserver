@@ -30,6 +30,8 @@ public class SDownload extends SLogAction implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	public SDownload() {
+	}
 
 	public long getOid() {
 		return this.oid;
