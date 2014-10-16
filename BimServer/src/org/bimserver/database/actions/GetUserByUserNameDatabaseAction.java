@@ -40,7 +40,7 @@ public class GetUserByUserNameDatabaseAction extends BimDatabaseAction<User> {
 
 	@Override
 	public User execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username));
+		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username.trim().toLowerCase()));
 		return getDatabaseSession().querySingle(condition, User.class, Query.getDefault());
 	}
 }

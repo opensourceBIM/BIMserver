@@ -86,7 +86,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 	}
 
 	public User execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		String trimmedUserName = username.trim();
+		String trimmedUserName = username.trim().toLowerCase();
 		String trimmedName = name.trim();
 		if (userType == UserType.SYSTEM && !createSystemUser) {
 			throw new UserException("Cannot create system users");
