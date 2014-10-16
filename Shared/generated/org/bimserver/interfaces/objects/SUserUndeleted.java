@@ -30,6 +30,8 @@ public class SUserUndeleted extends SUserRelated implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	public SUserUndeleted() {
+	}
 
 	public long getOid() {
 		return this.oid;

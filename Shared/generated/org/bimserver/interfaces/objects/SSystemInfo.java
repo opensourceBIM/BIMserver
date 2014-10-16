@@ -37,6 +37,8 @@ public class SSystemInfo implements SDataBase
 	private java.lang.String userName;
 	private java.lang.String userHome;
 	private java.lang.String userDir;
+	public SSystemInfo() {
+	}
 
 	public long getOid() {
 		return this.oid;

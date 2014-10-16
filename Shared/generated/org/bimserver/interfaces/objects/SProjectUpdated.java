@@ -30,6 +30,8 @@ public class SProjectUpdated extends SProjectRelated implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	public SProjectUpdated() {
+	}
 
 	public long getOid() {
 		return this.oid;

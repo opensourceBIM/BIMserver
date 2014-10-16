@@ -30,6 +30,8 @@ public class SByteArrayType extends SPrimitiveType implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private byte[] value;
+	public SByteArrayType() {
+	}
 
 	public long getOid() {
 		return this.oid;

@@ -41,6 +41,8 @@ public class SBimServerInfo implements SDataBase
 	private int checkouts;
 	private java.lang.String serverLogUrl;
 	private java.util.Date started;
+	public SBimServerInfo() {
+	}
 
 	public long getOid() {
 		return this.oid;

@@ -39,6 +39,8 @@ public class SCheckout implements SDataBase
 	private SRevision checkin;
 	private java.lang.Boolean active;
 	private List<Long> logs = new ArrayList<Long>();
+	public SCheckout() {
+	}
 
 	public long getOid() {
 		return this.oid;

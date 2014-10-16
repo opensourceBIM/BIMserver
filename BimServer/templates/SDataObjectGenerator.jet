@@ -136,7 +136,10 @@ public class S<%=eClass.getName()%>
 			}
 		}
 	}
-
+%>
+	public S<%=eClass.getName()%>() {
+	}
+<%
 	if (eClass.getEAnnotation("nodatabase") == null) { %>
 
 	public long getOid() {

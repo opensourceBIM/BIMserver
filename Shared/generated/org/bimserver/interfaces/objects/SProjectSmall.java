@@ -36,6 +36,8 @@ public class SProjectSmall implements SDataBase
 	private int nrSubProjects;
 	private boolean hasCheckinRights;
 	private long lastRevisionId;
+	public SProjectSmall() {
+	}
 
 	public long getOid() {
 		return this.oid;

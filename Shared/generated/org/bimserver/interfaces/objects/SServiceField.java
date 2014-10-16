@@ -31,6 +31,8 @@ public class SServiceField implements SBase
 	private SServiceType type;
 	private SServiceType genericType;
 	private java.lang.String doc;
+	public SServiceField() {
+	}
 	
 	@XmlTransient
 	public SClass getSClass() {

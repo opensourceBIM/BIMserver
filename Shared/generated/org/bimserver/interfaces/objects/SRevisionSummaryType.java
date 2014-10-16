@@ -31,6 +31,8 @@ public class SRevisionSummaryType implements SDataBase
 	private static SClass sClass;
 	private java.lang.String name;
 	private java.lang.Integer count;
+	public SRevisionSummaryType() {
+	}
 
 	public long getOid() {
 		return this.oid;

@@ -32,6 +32,8 @@ public class SInternalServicePluginConfiguration extends SPluginConfiguration im
 	private boolean remoteAccessible;
 	private long userSettingsId = -1;
 	private boolean publicProfile;
+	public SInternalServicePluginConfiguration() {
+	}
 
 	public long getOid() {
 		return this.oid;

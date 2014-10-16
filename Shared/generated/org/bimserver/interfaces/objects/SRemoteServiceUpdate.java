@@ -31,6 +31,8 @@ public class SRemoteServiceUpdate implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	public SRemoteServiceUpdate() {
+	}
 
 	public long getOid() {
 		return this.oid;

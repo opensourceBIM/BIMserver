@@ -31,6 +31,8 @@ public class SReferenceDataValue extends SDataValue implements SDataBase
 	private static SClass sClass;
 	private java.lang.String typeName;
 	private java.lang.String guid;
+	public SReferenceDataValue() {
+	}
 
 	public long getOid() {
 		return this.oid;

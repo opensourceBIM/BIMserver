@@ -31,6 +31,8 @@ public class SUserRemovedFromProject extends SUserRelated implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private long projectId = -1;
+	public SUserRemovedFromProject() {
+	}
 
 	public long getOid() {
 		return this.oid;

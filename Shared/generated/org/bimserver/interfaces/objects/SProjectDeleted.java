@@ -30,6 +30,8 @@ public class SProjectDeleted extends SProjectRelated implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	public SProjectDeleted() {
+	}
 
 	public long getOid() {
 		return this.oid;

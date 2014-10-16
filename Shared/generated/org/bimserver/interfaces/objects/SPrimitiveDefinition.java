@@ -28,6 +28,8 @@ public class SPrimitiveDefinition extends STypeDefinition implements SBase
 	@XmlTransient
 	private static SClass sClass;
 	private SPrimitiveEnum type;
+	public SPrimitiveDefinition() {
+	}
 	
 	@XmlTransient
 	public SClass getSClass() {

@@ -30,6 +30,8 @@ public class SModelMergerPluginConfiguration extends SPluginConfiguration implem
 	@XmlTransient
 	private static SClass sClass;
 	private long userSettingsId = -1;
+	public SModelMergerPluginConfiguration() {
+	}
 
 	public long getOid() {
 		return this.oid;

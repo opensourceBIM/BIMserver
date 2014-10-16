@@ -30,6 +30,8 @@ public class SNewObjectIDMUploaded extends SLogAction implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	public SNewObjectIDMUploaded() {
+	}
 
 	public long getOid() {
 		return this.oid;
