@@ -74,7 +74,7 @@ public class GuidFixerService extends ServicePlugin {
 	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
-		serviceDescriptor.setIdentifier(getClass().getName());
+		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
 		serviceDescriptor.setName("GUID fixer");
 		serviceDescriptor.setDescription("This service will make sure no double GUIDs exist in the model. This is done by appending an incrementing number.");
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);

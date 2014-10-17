@@ -67,7 +67,7 @@ public class DemoServicePlugin1 extends ServicePlugin {
 	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
-		serviceDescriptor.setIdentifier(getClass().getName());
+		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
 		serviceDescriptor.setName("Demo Service 1");
 		serviceDescriptor.setDescription("Demo Service 1");
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);

@@ -63,7 +63,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, final PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor clashDetection = StoreFactory.eINSTANCE.createServiceDescriptor();
 		clashDetection.setProviderName("BIMserver");
-		clashDetection.setIdentifier(getClass().getName());
+		clashDetection.setIdentifier("" + internalServicePluginConfiguration.getOid());
 		clashDetection.setName("Clashdetection");
 		clashDetection.setDescription("Clashdetection");
 		clashDetection.setNotificationProtocol(AccessMethod.INTERNAL);
