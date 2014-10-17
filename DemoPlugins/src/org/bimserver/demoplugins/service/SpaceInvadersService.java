@@ -73,7 +73,7 @@ public class SpaceInvadersService extends ServicePlugin {
 	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, final PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
-		serviceDescriptor.setIdentifier(getClass().getName());
+		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
 		serviceDescriptor.setName("Space Invaders Service");
 		serviceDescriptor.setDescription("Space Invaders Service");
 		serviceDescriptor.setReadRevision(true);

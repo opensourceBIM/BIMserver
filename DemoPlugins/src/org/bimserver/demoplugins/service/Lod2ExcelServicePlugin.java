@@ -102,7 +102,7 @@ public class Lod2ExcelServicePlugin extends ServicePlugin {
 	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
-		serviceDescriptor.setIdentifier(getClass().getName());
+		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
 		serviceDescriptor.setName("LOD to Excel");
 		serviceDescriptor.setDescription("LOD to Excel");
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
