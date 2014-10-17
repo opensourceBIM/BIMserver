@@ -86,7 +86,6 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 				path = path.substring(1);
 			}
 			if (path.startsWith("pluginversion")) {
-				System.out.println(getPluginContext().getPluginType());
 				if (getPluginContext().getPluginType() == PluginSourceType.INTERNAL) {
 					// Probably the default plugin
 					return false;

@@ -16,7 +16,6 @@ public class InverseFix {
 	}
 
 	public void apply(IdEObject value) {
-		System.out.println("Apply");
 		if (eStructuralFeature.isMany()) {
 			List list = (List)newObject.eGet(eStructuralFeature);
 			list.add(value);
