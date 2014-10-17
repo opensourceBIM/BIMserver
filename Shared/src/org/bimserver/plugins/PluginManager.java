@@ -22,11 +22,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -426,7 +424,6 @@ public class PluginManager {
 		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
 		try {
 			PluginContext pluginContext = new PluginContext(this, classLoader, pluginType, location);
-			System.out.println(plugin.getClass().getName() + ": " + pluginType);
 			pluginContext.setPlugin(plugin);
 			pluginContext.setClassLocation(classLocation);
 			set.add(pluginContext);
