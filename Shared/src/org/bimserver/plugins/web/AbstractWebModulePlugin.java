@@ -86,13 +86,18 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 				path = path.substring(1);
 			}
 			if (path.startsWith("pluginversion")) {
-				if (getPluginContext().getPluginType() == PluginSourceType.ECLIPSE_PROJECT || getPluginContext().getPluginType() == PluginSourceType.INTERNAL) {
+				System.out.println(getPluginContext().getPluginType());
+				if (getPluginContext().getPluginType() == PluginSourceType.INTERNAL) {
+					// Probably the default plugin
+					return false;
+				} else if (getPluginContext().getPluginType() == PluginSourceType.ECLIPSE_PROJECT) {
 					// We don't want to cache in Eclipse, because we change files without changing the plugin version everytime
 					response.getOutputStream().write(("{\"version\":\"" + System.nanoTime() + "\"}").getBytes(Charsets.UTF_8));
-				} else {
-					response.getOutputStream().write(("{\"version\":" + getVersion() + "}").getBytes(Charsets.UTF_8));
+					return true;
+				} else if (getPluginContext().getPluginType() == PluginSourceType.JAR_FILE) {
+					response.getOutputStream().write(("{\"version\":\"" + getVersion() + "\"}").getBytes(Charsets.UTF_8));
+					return true;
 				}
-				return true;
 			}
 			response.setHeader("Expires", FAR_FUTURE_EXPIRE_DATE);
 			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(getSubDir() + path);

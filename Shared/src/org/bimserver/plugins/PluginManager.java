@@ -278,6 +278,7 @@ public class PluginManager {
 	}
 
 	public PluginContext getPluginContext(Plugin plugin) {
+		// TODO make more efficient
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
 			for (PluginContext pluginContext : pluginContexts) {
 				if (pluginContext.getPlugin() == plugin) {
@@ -288,23 +289,23 @@ public class PluginManager {
 		throw new RuntimeException("No plugin context found for " + plugin);
 	}
 
-	public void loadPluginsFromCurrentClassloader() {
-		try {
-			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugin/plugin.xml");
-			while (resources.hasMoreElements()) {
-				URL url = resources.nextElement();
-				LOGGER.info("Loading " + url);
-				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
-				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL);
-			}
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		} catch (JAXBException e) {
-			LOGGER.error("", e);
-		} catch (PluginException e) {
-			LOGGER.error("", e);
-		}
-	}
+//	public void loadPluginsFromCurrentClassloader() {
+//		try {
+//			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugin/plugin.xml");
+//			while (resources.hasMoreElements()) {
+//				URL url = resources.nextElement();
+//				LOGGER.info("Loading " + url);
+//				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
+//				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL);
+//			}
+//		} catch (IOException e) {
+//			LOGGER.error("", e);
+//		} catch (JAXBException e) {
+//			LOGGER.error("", e);
+//		} catch (PluginException e) {
+//			LOGGER.error("", e);
+//		}
+//	}
 	
 	public void enablePlugin(String name) {
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
@@ -425,6 +426,7 @@ public class PluginManager {
 		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
 		try {
 			PluginContext pluginContext = new PluginContext(this, classLoader, pluginType, location);
+			System.out.println(plugin.getClass().getName() + ": " + pluginType);
 			pluginContext.setPlugin(plugin);
 			pluginContext.setClassLocation(classLocation);
 			set.add(pluginContext);
