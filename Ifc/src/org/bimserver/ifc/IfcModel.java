@@ -39,10 +39,28 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcAnnotation;
+import org.bimserver.models.ifc2x3tc1.IfcAnnotationCurveOccurrence;
+import org.bimserver.models.ifc2x3tc1.IfcDimensionCurve;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
+import org.bimserver.models.ifc2x3tc1.IfcGrid;
+import org.bimserver.models.ifc2x3tc1.IfcLayeredItem;
+import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
+import org.bimserver.models.ifc2x3tc1.IfcPresentationLayerAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
+import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcPropertyDefinition;
+import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
+import org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralActivity;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
+import org.bimserver.models.ifc2x3tc1.IfcRelReferencedInSpatialStructure;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.models.ifc2x3tc1.IfcStructuralActivityAssignmentSelect;
+import org.bimserver.models.ifc2x3tc1.IfcStructuralItem;
+import org.bimserver.models.ifc2x3tc1.IfcTerminatorSymbol;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.objectidms.ObjectIDM;
@@ -902,8 +920,60 @@ public class IfcModel implements IfcModelInterface {
 				if (ifcProduct instanceof IfcElement) {
 					IfcElement ifcElement = (IfcElement)ifcProduct;
 					ifcElement.getContainedInStructure().add(ifcRelContainedInSpatialStructure);
+				} else if (ifcProduct instanceof IfcAnnotation) {
+					IfcAnnotation ifcAnnotation = (IfcAnnotation)ifcProduct;
+					ifcAnnotation.getContainedInStructure().add(ifcRelContainedInSpatialStructure);
+				} else if (ifcProduct instanceof IfcGrid) {
+					IfcGrid ifcGrid = (IfcGrid)ifcProduct;
+					ifcGrid.getContainedInStructure().add(ifcRelContainedInSpatialStructure);
 				}
 			}
 		}
+		for (IfcPresentationLayerAssignment ifcPresentationLayerAssignment : getAllWithSubTypes(IfcPresentationLayerAssignment.class)) {
+			for (IfcLayeredItem ifcLayeredItem : ifcPresentationLayerAssignment.getAssignedItems()) {
+				if (ifcLayeredItem instanceof IfcRepresentation) {
+					IfcRepresentation ifcRepresentation = (IfcRepresentation)ifcLayeredItem;
+					ifcRepresentation.getLayerAssignments().add(ifcPresentationLayerAssignment);
+				} else if (ifcLayeredItem instanceof IfcRepresentationItem) {
+					IfcRepresentationItem ifcRepresentationItem = (IfcRepresentationItem)ifcLayeredItem;
+					ifcRepresentationItem.getLayerAssignments().add(ifcPresentationLayerAssignment);
+				}
+			}
+		}
+		for (IfcRelAssociates ifcRelAssociates : getAllWithSubTypes(IfcRelAssociates.class)) {
+			for (IfcRoot ifcRoot : ifcRelAssociates.getRelatedObjects()) {
+				if (ifcRoot instanceof IfcObjectDefinition) {
+					((IfcObjectDefinition)ifcRoot).getHasAssociations().add(ifcRelAssociates);
+				} else if (ifcRoot instanceof IfcPropertyDefinition) {
+					((IfcPropertyDefinition)ifcRoot).getHasAssociations().add(ifcRelAssociates);
+				}
+			}
+		}
+		for (IfcTerminatorSymbol ifcTerminatorSymbol : getAllWithSubTypes(IfcTerminatorSymbol.class)) {
+			IfcAnnotationCurveOccurrence ifcAnnotationCurveOccurrence = ifcTerminatorSymbol.getAnnotatedCurve();
+			if (ifcAnnotationCurveOccurrence instanceof IfcDimensionCurve) {
+				((IfcDimensionCurve)ifcAnnotationCurveOccurrence).setItem(ifcTerminatorSymbol);
+			}
+		}
+		for (IfcRelReferencedInSpatialStructure ifcRelReferencedInSpatialStructure : getAllWithSubTypes(IfcRelReferencedInSpatialStructure.class)) {
+			for (IfcProduct ifcProduct : ifcRelReferencedInSpatialStructure.getRelatedElements()) {
+				if (ifcProduct instanceof IfcElement) {
+					((IfcElement)ifcProduct).getReferencedInStructures().add(ifcRelReferencedInSpatialStructure);
+				}
+			}
+		}
+		for (IfcProduct ifcProduct : getAllWithSubTypes(IfcProduct.class)) {
+			IfcProductRepresentation ifcProductRepresentation = ifcProduct.getRepresentation();
+			if (ifcProductRepresentation instanceof IfcProductDefinitionShape) {
+				((IfcProductDefinitionShape)ifcProductRepresentation).getShapeOfProduct().add(ifcProduct);
+			}
+		}
+		for (IfcRelConnectsStructuralActivity ifcRelConnectsStructuralActivity : getAllWithSubTypes(IfcRelConnectsStructuralActivity.class)) {
+			IfcStructuralActivityAssignmentSelect ifcStructuralActivityAssignmentSelect = ifcRelConnectsStructuralActivity.getRelatingElement();
+			if (ifcStructuralActivityAssignmentSelect instanceof IfcStructuralItem) {
+				((IfcStructuralItem)ifcStructuralActivityAssignmentSelect).getAssignedStructuralActivity().add(ifcRelConnectsStructuralActivity);
+			}
+		}
+		
 	}
 }
