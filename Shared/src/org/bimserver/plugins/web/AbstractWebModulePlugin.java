@@ -20,6 +20,13 @@ package org.bimserver.plugins.web;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,16 +41,33 @@ import org.bimserver.models.store.StringType;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginSourceType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Charsets;
 
 public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractWebModulePlugin.class);
 	private PluginContext pluginContext;
+	private static final DateFormat HTTP_EXPIRES = expiresDateFormat();
+	public static final String FAR_FUTURE_EXPIRE_DATE = HTTP_EXPIRES.format(makeExpiresDate());
+
+	public static DateFormat expiresDateFormat() {
+		DateFormat httpDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+		httpDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+		return httpDateFormat;
+	}
 	
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		pluginContext = pluginManager.getPluginContext(this);
+	}
+	
+	private static Date makeExpiresDate() {
+		GregorianCalendar gregorianCalendar = new GregorianCalendar();
+		gregorianCalendar.add(Calendar.DAY_OF_YEAR, 120);
+		return gregorianCalendar.getTime();
 	}
 	
 	@Override
@@ -61,9 +85,20 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 			if (path.startsWith("/")) {
 				path = path.substring(1);
 			}
+			if (path.startsWith("pluginversion")) {
+				if (getPluginContext().getPluginType() == PluginSourceType.ECLIPSE_PROJECT || getPluginContext().getPluginType() == PluginSourceType.INTERNAL) {
+					// We don't want to cache in Eclipse, because we change files without changing the plugin version everytime
+					response.getOutputStream().write(("{\"version\":\"" + System.nanoTime() + "\"}").getBytes(Charsets.UTF_8));
+				} else {
+					response.getOutputStream().write(("{\"version\":" + getVersion() + "}").getBytes(Charsets.UTF_8));
+				}
+				return true;
+			}
+			response.setHeader("Expires", FAR_FUTURE_EXPIRE_DATE);
 			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(getSubDir() + path);
 			if (resourceAsInputStream != null) {
 				IOUtils.copy(resourceAsInputStream, response.getOutputStream());
+				resourceAsInputStream.close();
 				return true;
 			} else {
 				return false;

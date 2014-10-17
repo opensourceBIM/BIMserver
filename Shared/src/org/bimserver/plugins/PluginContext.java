@@ -63,6 +63,10 @@ public class PluginContext {
 			break;
 		}
 	}
+	
+	public PluginSourceType getPluginType() {
+		return pluginType;
+	}
 
 	public void setPlugin(Plugin plugin) {
 		this.plugin = plugin;
