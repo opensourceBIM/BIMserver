@@ -84,9 +84,14 @@ function BimServerApi(baseUrl, notifier) {
 	othis.schemas = {};
 
 	this.init = function(callback) {
-		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.js", function(result){
-			othis.schemas["ifc2x3tc1"] = result.classes;
-			callback();
+		$.ajax({
+			dataType: "json",
+			url: othis.baseUrl + "/js/ifc2x3tc1.js?_v=" + Global.version,
+			cache: true,
+			success: function(result){
+				othis.schemas["ifc2x3tc1"] = result.classes;
+				callback();
+			}
 		});
 	};
 
