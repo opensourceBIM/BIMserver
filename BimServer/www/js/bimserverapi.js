@@ -1372,11 +1372,13 @@ function Model(bimServerApi, poid, roid, schema) {
 					}
 				}
 				othis.decrementRunningCalls("getAllOfType");
+				promise.fire();
 			} if (othis.loadedTypes[type] != null) {
 				for (var oid in othis.loadedTypes[type]) {
 					callback(othis.loadedTypes[type][oid]);
 				}
 				othis.decrementRunningCalls("getAllOfType");
+				promise.fire();
 			} else {
 				othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
 					bimServerApi.call("Bimsie1ServiceInterface", "downloadByTypes", {
