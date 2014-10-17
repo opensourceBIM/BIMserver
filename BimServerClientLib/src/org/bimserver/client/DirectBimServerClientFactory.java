@@ -38,13 +38,13 @@ public class DirectBimServerClientFactory<T extends PublicInterface> extends Abs
 		this.pluginManager = pluginManager;
 	}
 	
-	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap) {
-		super(servicesMap);
-		this.baseAddress = baseAddress;
-		this.serviceFactory = serviceFactory;
-		pluginManager = new PluginManager();
-		pluginManager.loadPluginsFromCurrentClassloader();
-	}
+//	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap) {
+//		super(servicesMap);
+//		this.baseAddress = baseAddress;
+//		this.serviceFactory = serviceFactory;
+//		pluginManager = new PluginManager();
+//		pluginManager.loadPluginsFromCurrentClassloader();
+//	}
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
