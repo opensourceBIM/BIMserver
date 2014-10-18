@@ -17,8 +17,10 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -225,7 +227,20 @@ public class NewRevisionNotification extends Notification {
 				long writeExtendedDataRoid = service.getWriteExtendedData() != null ? roid : -1;
 				long readRevisionRoid = service.isReadRevision() ? roid : -1;
 				long readExtendedDataRoid = service.getReadExtendedData() != null ? roid : -1;
-				final ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(bimServer, service.getUser().getOid(), service.getOid(), readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
+				
+				List<Long> roidsList = new ArrayList<>();
+				Set<Project> relatedProjects = getRelatedProjects(project);
+				for (Project p : relatedProjects) {
+					if (p.getLastRevision() != null) {
+						roidsList.add(p.getLastRevision().getOid());
+					}
+				}
+				
+				long[] roids = new long[roidsList.size()];
+				for (int i=0; i<roids.length; i++) {
+					roids[i] = roidsList.get(i);
+				}
+				final ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(bimServer, service.getUser().getOid(), service.getOid(), service.isReadRevision() ? roids : new long[0], writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
 				ServiceInterface newService = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL).get(ServiceInterface.class);
 				((org.bimserver.webservices.impl.ServiceImpl)newService).setAuthorization(authorization); // TODO redundant?
 				

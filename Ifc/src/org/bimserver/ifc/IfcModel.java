@@ -974,6 +974,5 @@ public class IfcModel implements IfcModelInterface {
 				((IfcStructuralItem)ifcStructuralActivityAssignmentSelect).getAssignedStructuralActivity().add(ifcRelConnectsStructuralActivity);
 			}
 		}
-		
 	}
 }

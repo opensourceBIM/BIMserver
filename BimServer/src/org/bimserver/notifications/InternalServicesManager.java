@@ -75,7 +75,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	@Override
 	public void register(ServiceDescriptor serviceDescriptor, Bimsie1RemoteServiceInterface remoteServiceInterface) {
 		serviceDescriptor.setUrl(url);
-		internalServices.put(serviceDescriptor.getName(), serviceDescriptor);
+		internalServices.put(serviceDescriptor.getIdentifier(), serviceDescriptor);
 		internalRemoteServiceInterfaces.put(serviceDescriptor.getIdentifier(), remoteServiceInterface);
 	}
 	
@@ -211,7 +211,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	
 	@Override
 	public void unregisterInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor) {
-		internalServices.remove(serviceDescriptor.getName());
+		internalServices.remove(serviceDescriptor.getIdentifier());
 		internalRemoteServiceInterfaces.remove(serviceDescriptor.getIdentifier());
 	}
 }
