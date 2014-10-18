@@ -1200,6 +1200,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			User user = session.querySingle(condition, User.class, Query.getDefault());
 			if (user != null) {
 				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
+					System.out.println(internalServicePluginConfiguration.getOid());
 					if (serviceIdentifier.equals("" + internalServicePluginConfiguration.getOid())) {
 						SProfileDescriptor sProfileDescriptor = new SProfileDescriptor();
 						descriptors.add(sProfileDescriptor);
@@ -1294,7 +1295,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	
 	@Override
 	public String shareRevision(Long roid) throws UserException, ServerException {
-		ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(getBimServer(), getCurrentUser().getOid(), -1, roid, -1, -1, -1);
+		ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(getBimServer(), getCurrentUser().getOid(), -1, new long[]{roid}, -1, -1, -1);
 		return authorization.asHexToken(getBimServer().getEncryptionKey());
 	}
 	

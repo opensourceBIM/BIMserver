@@ -24,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -82,6 +83,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	private final MetaDataManager metaDataManager = new MetaDataManager();
 	private AuthenticationInfo authenticationInfo = new AnonymousAuthentication();
 	private String token;
+	private long binaryGeometrySerializerOid = -1;
 
 	public BimServerClient(String baseAddress, SServicesMap servicesMap, Channel channel) {
 		this.baseAddress = baseAddress;
@@ -329,18 +331,34 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return notificationsManager;
 	}
 
+	public long getBinaryGeometrySerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
+		if (binaryGeometrySerializerOid == -1) {
+			SSerializerPluginConfiguration serializerPluginConfiguration = getPluginInterface().getSerializerByPluginClassName(
+					"org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin");
+			if (serializerPluginConfiguration != null) {
+				binaryGeometrySerializerOid = serializerPluginConfiguration.getOid();
+			}
+		}
+		return binaryGeometrySerializerOid;
+	}
+
 	@Override
 	public Geometry getGeometry(long roid, IfcProduct ifcProduct) {
 		try {
-			SSerializerPluginConfiguration serializerByPluginClassName = getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin");
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			download(roid, serializerByPluginClassName.getOid(), outputStream);
-			return null;
+			long serializerOid = getBinaryGeometrySerializerOid();
+			
+			Long download = getBimsie1ServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(ifcProduct.getOid()), serializerOid, true, false);
+			InputStream inputStream = getDownloadData(download, serializerOid);
+
+			Geometry geometry = new Geometry(inputStream, ifcProduct.getOid());
+			return geometry;
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;

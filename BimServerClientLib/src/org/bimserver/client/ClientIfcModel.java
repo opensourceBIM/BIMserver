@@ -82,6 +82,7 @@ public class ClientIfcModel extends IfcModel {
 	private final Set<String> loadedClasses = new HashSet<String>();
 	private long ifcSerializerOid = -1;
 	private long jsonGeometrySerializerOid = -1;
+	private long binaryGeometrySerializerOid = -1;
 	private ClientEStore eStore;
 
 	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
@@ -197,6 +198,17 @@ public class ClientIfcModel extends IfcModel {
 		return jsonGeometrySerializerOid;
 	}
 	
+	public long getBinaryGeometrySerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
+		if (binaryGeometrySerializerOid == -1) {
+			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName(
+					"org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin");
+			if (serializerPluginConfiguration != null) {
+				binaryGeometrySerializerOid = serializerPluginConfiguration.getOid();
+			}
+		}
+		return binaryGeometrySerializerOid;
+	}
+	
 	private void loadDeep() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
 		if (modelState != ModelState.FULLY_LOADED) {
 			modelState = ModelState.LOADING;
@@ -230,14 +242,14 @@ public class ClientIfcModel extends IfcModel {
 				fos.close();
 				downloadData = new ByteArrayInputStream(baos.toByteArray());
 			} else {
-				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				if (downloadData instanceof SerializerInputstream) {
-					SerializerInputstream serializerInputStream = (SerializerInputstream)downloadData;
-					serializerInputStream.getEmfSerializer().writeToOutputStream(baos);
-				} else {
-					IOUtils.copy((InputStream) downloadData, baos);
-				}
-				downloadData = new ByteArrayInputStream(baos.toByteArray());
+//				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//				if (downloadData instanceof SerializerInputstream) {
+//					SerializerInputstream serializerInputStream = (SerializerInputstream)downloadData;
+//					serializerInputStream.getEmfSerializer().writeToOutputStream(baos);
+//				} else {
+//					IOUtils.copy((InputStream) downloadData, baos);
+//				}
+//				downloadData = new ByteArrayInputStream(baos.toByteArray());
 			}
 			JsonReader jsonReader = new JsonReader(new InputStreamReader(downloadData, Charsets.UTF_8));
 			try {

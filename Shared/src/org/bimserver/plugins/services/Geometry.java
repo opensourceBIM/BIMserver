@@ -1,5 +1,13 @@
 package org.bimserver.plugins.services;
 
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+
 /******************************************************************************
  * Copyright (C) 2009-2014  BIMserver.org
  * 
@@ -18,5 +26,130 @@ package org.bimserver.plugins.services;
  *****************************************************************************/
 
 public class Geometry {
+	private static final byte GEOMETRY_TYPE_TRIANGLES = 0;
+	private static final byte GEOMETRY_TYPE_INSTANCE = 1;
+	private IntBuffer indices;
+	private FloatBuffer vertices;
+	private FloatBuffer normals;
+	private FloatBuffer materials;
+	private float minX;
+	private float minY;
+	private float minZ;
+	private float maxX;
+	private float maxY;
+	private float maxZ;
 
+	public Geometry(InputStream inputStream, long oidToUse) throws IOException {
+		DataInputStream dataInputStream = new DataInputStream(inputStream);
+		String protocol = dataInputStream.readUTF();
+		byte version = dataInputStream.readByte();
+		dataInputStream.readFloat();
+		dataInputStream.readFloat();
+		dataInputStream.readFloat();
+		dataInputStream.readFloat();
+		dataInputStream.readFloat();
+		dataInputStream.readFloat();
+		int nrObjects = dataInputStream.readInt();
+		System.out.println(nrObjects);
+		int offset = 2;
+		for (int i=0; i<nrObjects; i++) {
+			String type = dataInputStream.readUTF();
+			long oid = dataInputStream.readLong();
+			byte geometryType = dataInputStream.readByte();
+			
+			offset += 3 + type.getBytes("UTF-8").length;
+			int skip = 4 - (offset % 4);
+			if (skip != 0 && skip != 4) {
+				dataInputStream.skip(skip);
+			}
+			offset = 0;
+			
+			for (int x=0; x<16; x++) {
+				dataInputStream.readFloat();
+			}
+			if (geometryType == GEOMETRY_TYPE_INSTANCE) {
+				dataInputStream.readLong();
+			} else if (geometryType == GEOMETRY_TYPE_TRIANGLES) {
+				dataInputStream.readLong();
+				minX = dataInputStream.readFloat();
+				minY = dataInputStream.readFloat();
+				minZ = dataInputStream.readFloat();
+				maxX = dataInputStream.readFloat();
+				maxY = dataInputStream.readFloat();
+				maxZ = dataInputStream.readFloat();
+				int nrIndices = dataInputStream.readInt();
+				IntBuffer indices = readIntBuffer(dataInputStream, nrIndices);
+				int nrVertices = dataInputStream.readInt();
+				FloatBuffer vertices = readFloatBuffer(dataInputStream, nrVertices);
+				int nrNormals = dataInputStream.readInt();
+				FloatBuffer normals = readFloatBuffer(dataInputStream, nrNormals);
+				int nrMaterials = dataInputStream.readInt();
+				FloatBuffer materials = readFloatBuffer(dataInputStream, nrMaterials * 4);
+				
+				if (oidToUse == oid) {
+					this.indices = indices;
+					this.vertices = vertices;
+					this.normals = normals;
+					this.materials = materials;
+				}
+			}
+		}
+	}
+	
+	public float getMaxX() {
+		return maxX;
+	}
+	
+	public float getMaxY() {
+		return maxY;
+	}
+	
+	public float getMaxZ() {
+		return maxZ;
+	}
+
+	public float getMinX() {
+		return minX;
+	}
+	
+	public float getMinY() {
+		return minY;
+	}
+	
+	public float getMinZ() {
+		return minZ;
+	}
+	
+	private ByteBuffer readBuffer(DataInputStream dataInputStream, int nrBytes) throws IOException {
+		ByteBuffer buffer = ByteBuffer.allocate(nrBytes);
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
+		int read = dataInputStream.read(buffer.array());
+		int totalRead = 0;
+		while (read != -1 && totalRead < nrBytes) {
+			totalRead += read;
+			read = dataInputStream.read(buffer.array(), totalRead, nrBytes - totalRead);
+		}
+		return buffer;
+	}
+	
+	private FloatBuffer readFloatBuffer(DataInputStream dataInputStream, int nrInts) throws IOException {
+		FloatBuffer asFloatBuffer = readBuffer(dataInputStream, nrInts * 4).asFloatBuffer();
+		return asFloatBuffer;
+	}
+
+	private IntBuffer readIntBuffer(DataInputStream dataInputStream, int nrFloats) throws IOException {
+		return readBuffer(dataInputStream, nrFloats * 4).asIntBuffer();
+	}
+
+	public IntBuffer getIndices() {
+		return indices;
+	}
+	
+	public FloatBuffer getVertices() {
+		return vertices;
+	}
+	
+	public FloatBuffer getNormals() {
+		return normals;
+	}
 }
