@@ -77,6 +77,12 @@ public abstract class JsonReflector implements Reflector {
 						} else {
 							throw new ServerException(message);
 						}
+					} else {
+						if (exceptionJson.has("errorCode")) {
+							throw new ServerException(message, ErrorCode.parse(exceptionJson.get("errorCode").getAsInt()));
+						} else {
+							throw new ServerException(message);
+						}
 					}
 				} else if (response.has("result")) {
 					Object result = response.get("result");
@@ -97,7 +103,6 @@ public abstract class JsonReflector implements Reflector {
 		} catch (Exception e) {
 			throw new ReflectorException(e);
 		}
-		return null;
 	}
 
 	protected boolean isOneWay() {

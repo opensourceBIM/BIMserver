@@ -61,8 +61,8 @@ public class JsonHandler {
 			} else if (incomingMessage.has("requests")) {
 				processMultiRequest(incomingMessage.getAsJsonArray("requests"), token, httpRequest, jsonWriter);
 			}
-		} catch (Exception exception) {
-			handleException(jsonWriter, exception);
+		} catch (Throwable throwable) {
+			handleThrowable(jsonWriter, throwable);
 		} finally {
 			try {
 				jsonWriter.endObject();
@@ -79,7 +79,7 @@ public class JsonHandler {
 			try {
 				processSingleRequest((JsonObject) requests.get(r), jsonToken, httpRequest, out);
 			} catch (Exception e) {
-				handleException(out, e);
+				handleThrowable(out, e);
 			}
 		}
 		out.endArray();
@@ -140,20 +140,24 @@ public class JsonHandler {
 		}
 	}
 
-	private void handleException(JsonWriter writer, Exception exception) {
-		if (LoggerFactory.getLogger(JsonHandler.class).isDebugEnabled()) {
-			LoggerFactory.getLogger(JsonHandler.class).debug("", exception);
+	private void handleThrowable(JsonWriter writer, Throwable throwable) {
+		if (!(throwable instanceof ServiceException)) {
+			LoggerFactory.getLogger(JsonHandler.class).error("", throwable);
+		} else {
+			if (LoggerFactory.getLogger(JsonHandler.class).isDebugEnabled()) {
+				LoggerFactory.getLogger(JsonHandler.class).debug("", throwable);
+			}
 		}
 		try {
 			writer.beginObject();
 			writer.name("exception");
 			writer.beginObject();
 			writer.name("__type");
-			writer.value(exception.getClass().getSimpleName());
+			writer.value(throwable.getClass().getSimpleName());
 			writer.name("message");
-			writer.value(exception.getMessage() == null ? exception.toString() : exception.getMessage());
-			if (exception instanceof ServiceException) {
-				ServiceException serviceException = (ServiceException) exception;
+			writer.value(throwable.getMessage() == null ? throwable.toString() : throwable.getMessage());
+			if (throwable instanceof ServiceException) {
+				ServiceException serviceException = (ServiceException) throwable;
 				if (serviceException.getErrorCode() != null) {
 					writer.name("errorCode");
 					writer.value(serviceException.getErrorCode().getCode());
