@@ -999,7 +999,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public List<SServiceDescriptor> getAllLocalServiceDescriptors() throws ServerException, UserException {
-		return sort(getBimServer().getSConverter().convertToSListServiceDescriptor(getBimServer().getInternalServicesManager().getInternalServices().values()));
+		return sort(getBimServer().getSConverter().convertToSListServiceDescriptor(getBimServer().getInternalServicesManager().getInternalServices(getAuthorization().getUoid()).values()));
 	}
 	
 	@Override

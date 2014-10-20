@@ -32,7 +32,6 @@ import org.bimserver.models.ifc2x3tc1.IfcProperty;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
-import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
 import org.bimserver.models.ifc2x3tc1.IfcRelFillsElement;
@@ -164,7 +163,7 @@ public class GeometryMatcher extends ServicePlugin {
 	}
 	
 	@Override
-	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
 		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
@@ -174,7 +173,7 @@ public class GeometryMatcher extends ServicePlugin {
 		serviceDescriptor.setWriteExtendedData("geometrymatching");
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
-		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
+		registerNewRevisionHandler(uoid, serviceDescriptor, new NewRevisionHandler() {
 			@Override
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				try {

@@ -99,7 +99,7 @@ public class Lod2ExcelServicePlugin extends ServicePlugin {
 	}
 
 	@Override
-	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
 		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
@@ -109,7 +109,7 @@ public class Lod2ExcelServicePlugin extends ServicePlugin {
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		serviceDescriptor.setReadRevision(true);
 		serviceDescriptor.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/excellod");
-		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
+		registerNewRevisionHandler(uoid, serviceDescriptor, new NewRevisionHandler() {
 			@Override
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				try {

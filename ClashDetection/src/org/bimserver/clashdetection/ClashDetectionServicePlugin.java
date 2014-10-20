@@ -60,7 +60,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		initialized = true;
 	}
 
-	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, final PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalServicePluginConfiguration, final PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor clashDetection = StoreFactory.eINSTANCE.createServiceDescriptor();
 		clashDetection.setProviderName("BIMserver");
 		clashDetection.setIdentifier("" + internalServicePluginConfiguration.getOid());
@@ -70,7 +70,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setReadRevision(true);
 		clashDetection.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
-		registerNewRevisionHandler(clashDetection, new NewRevisionHandler() {
+		registerNewRevisionHandler(uoid, clashDetection, new NewRevisionHandler() {
 			@SuppressWarnings("unused")
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();

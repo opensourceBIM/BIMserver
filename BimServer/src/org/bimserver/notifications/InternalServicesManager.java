@@ -57,7 +57,7 @@ import org.slf4j.LoggerFactory;
 public class InternalServicesManager implements NotificationsManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(InternalServicesManager.class);
 
-	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
+	private final Map<Long, Map<String, ServiceDescriptor>> internalServices = new HashMap<Long, Map<String, ServiceDescriptor>>();
 	private final Map<String, Bimsie1RemoteServiceInterface> internalRemoteServiceInterfaces = new HashMap<String, Bimsie1RemoteServiceInterface>();
 	private final Map<String, BimServerClientFactory> factories = new HashMap<>();
 	private BimServer bimServer;
@@ -73,18 +73,27 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	}
 	
 	@Override
-	public void register(ServiceDescriptor serviceDescriptor, Bimsie1RemoteServiceInterface remoteServiceInterface) {
+	public void register(long uoid, ServiceDescriptor serviceDescriptor, Bimsie1RemoteServiceInterface remoteServiceInterface) {
 		serviceDescriptor.setUrl(url);
-		internalServices.put(serviceDescriptor.getIdentifier(), serviceDescriptor);
+		Map<String, ServiceDescriptor> map = internalServices.get(uoid);
+		if (map == null) {
+			map = new HashMap<String, ServiceDescriptor>();
+			internalServices.put(uoid, map);
+		}
+		map.put(serviceDescriptor.getIdentifier(), serviceDescriptor);
 		internalRemoteServiceInterfaces.put(serviceDescriptor.getIdentifier(), remoteServiceInterface);
 	}
 	
-	public ServiceDescriptor getInternalService(String serviceIdentifier) {
-		return internalServices.get(serviceIdentifier);
+	public ServiceDescriptor getInternalService(Long uoid, String serviceIdentifier) {
+		Map<String, ServiceDescriptor> map = internalServices.get(uoid);
+		if (map != null) {
+			return map.get(serviceIdentifier);
+		}
+		return null;
 	}
 	
-	public Map<String, ServiceDescriptor> getInternalServices() {
-		return internalServices;
+	public Map<String, ServiceDescriptor> getInternalServices(long uoid) {
+		return internalServices.get(uoid);
 	}
 	
 	public Bimsie1RemoteServiceInterface getLocalRemoteServiceInterface(String serviceIdentifier) {
@@ -92,8 +101,8 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	}
 	
 	@Override
-	public void registerInternalNewExtendedDataOnRevisionHandler(ServiceDescriptor serviceDescriptor, final NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
-		register(serviceDescriptor, new Bimsie1RemoteServiceInterfaceAdaptor(){
+	public void registerInternalNewExtendedDataOnRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, final NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
+		register(uoid, serviceDescriptor, new Bimsie1RemoteServiceInterfaceAdaptor(){
 			@Override
 			public void newExtendedDataOnRevision(Long poid, Long roid, Long edid, Long soid, String serviceIdentifier, String profileIdentifier, String userToken, String token, String apiUrl)
 					throws UserException, ServerException {
@@ -104,8 +113,8 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	}
 	
 	@Override
-	public void registerInternalNewExtendedDataOnProjectHandler(ServiceDescriptor serviceDescriptor, final NewExtendedDataOnProjectHandler newExtendedDataHandler) {
-		register(serviceDescriptor, new Bimsie1RemoteServiceInterfaceAdaptor(){
+	public void registerInternalNewExtendedDataOnProjectHandler(long uoid, ServiceDescriptor serviceDescriptor, final NewExtendedDataOnProjectHandler newExtendedDataHandler) {
+		register(uoid, serviceDescriptor, new Bimsie1RemoteServiceInterfaceAdaptor(){
 			@Override
 			public void newExtendedDataOnProject(Long poid, Long edid, Long soid, String serviceIdentifier, String profileIdentifier, String userToken, String token, String apiUrl)
 					throws UserException, ServerException {
@@ -185,8 +194,8 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	}
 	
 	@Override
-	public void registerInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
-		register(serviceDescriptor, new Bimsie1RemoteServiceInterfaceAdaptor(){
+	public void registerInternalNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
+		register(uoid, serviceDescriptor, new Bimsie1RemoteServiceInterfaceAdaptor(){
 			@Override
 			public void newRevision(final Long poid, final Long roid, Long soid, String serviceIdentifier, String profileIdentifier, final String userToken, String token, String apiUrl) throws UserException, ServerException {
 				final P p = getBimServerClient(serviceIdentifier, profileIdentifier, apiUrl, token);

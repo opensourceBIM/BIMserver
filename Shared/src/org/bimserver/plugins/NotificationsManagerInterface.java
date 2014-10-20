@@ -25,10 +25,10 @@ import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 
 public interface NotificationsManagerInterface {
 
-	void registerInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler);
 	void unregisterInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor);
 
-	void registerInternalNewExtendedDataOnProjectHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler);
-	void registerInternalNewExtendedDataOnRevisionHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler);
-	void register(ServiceDescriptor serviceDescriptor, Bimsie1RemoteServiceInterface remoteServiceInterface);
+	void registerInternalNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler);
+	void registerInternalNewExtendedDataOnProjectHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler);
+	void registerInternalNewExtendedDataOnRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler);
+	void register(long uoid, ServiceDescriptor serviceDescriptor, Bimsie1RemoteServiceInterface remoteServiceInterface);
 }

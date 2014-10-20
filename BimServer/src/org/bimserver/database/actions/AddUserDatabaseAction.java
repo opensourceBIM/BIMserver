@@ -30,18 +30,14 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
-import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.mail.EmailMessage;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewUserAdded;
-import org.bimserver.models.store.InternalServicePluginConfiguration;
-import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.notifications.NewUserNotification;
-import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
@@ -151,17 +147,6 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 				}
 			});
 			bimServer.updateUserSettings(getDatabaseSession(), user);
-			
-			for (InternalServicePluginConfiguration internalService : user.getUserSettings().getServices()) {
-				if (internalService.getEnabled()) {
-					ServicePlugin servicePlugin = bimServer.getPluginManager().getServicePlugin(internalService.getPluginDescriptor().getPluginClassName(), true);
-					if (servicePlugin != null) {
-						ObjectType settings = internalService.getSettings();
-						SInternalServicePluginConfiguration sInternalService = bimServer.getSConverter().convertToSObject(internalService);
-						servicePlugin.register(sInternalService, new org.bimserver.plugins.PluginConfiguration(settings));
-					}
-				}
-			}
 		}
 		
 		getDatabaseSession().store(user);
