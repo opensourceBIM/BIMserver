@@ -64,11 +64,11 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 					for (IfcProduct ifcProduct : new ArrayList<>(allWithSubTypes)) {
 						GeometryInfo geometryInfo = ifcProduct.getGeometry();
 						if (geometryInfo != null) {
-							geometryInfo.loadExplicit();
-							geometryInfo.getData().loadExplicit();
+							geometryInfo.load();
+							geometryInfo.getData().load();
 							geometryInfo.getTransformation();
-							geometryInfo.getMinBounds().loadExplicit();
-							geometryInfo.getMaxBounds().loadExplicit();
+							geometryInfo.getMinBounds().load();
+							geometryInfo.getMaxBounds().load();
 						}
 					}
 					allWithSubTypes = model.getAllWithSubTypes(IfcProduct.class);

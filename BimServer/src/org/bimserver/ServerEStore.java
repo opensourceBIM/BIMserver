@@ -25,6 +25,8 @@ import java.util.Map;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.BimServerEStore;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IdEObjectImpl.State;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -44,7 +46,9 @@ public class ServerEStore implements BimServerEStore {
 
 	@Override
 	public void load(IdEObject idEObject) {
+		((IdEObjectImpl)idEObject).setLoadingState(State.LOADING);
 		databaseSession.load(idEObject);
+		((IdEObjectImpl)idEObject).setLoadingState(State.LOADED);
 	}
 
 	@Override

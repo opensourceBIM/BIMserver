@@ -62,6 +62,16 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 		}
 	}
 
+	public Object get(InternalEObject eObject, EStructuralFeature feature, int index) {
+		((IdEObject) eObject).load();
+		Entry entry = new Entry(eObject, feature);
+		if (index == NO_INDEX) {
+			return map.get(entry);
+		} else {
+			return getList(entry).get(index);
+		}
+	}
+	
 	@Override
 	public void add(InternalEObject eObject, EStructuralFeature eFeature, int index, Object newValue) {
 		IdEObject idEObject = (IdEObject) eObject;

@@ -1,21 +1,44 @@
 package org.bimserver.demoplugins.service;
 
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SActionState;
+import org.bimserver.interfaces.objects.SExtendedData;
+import org.bimserver.interfaces.objects.SExtendedDataSchema;
+import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.interfaces.objects.SProjectSmall;
+import org.bimserver.models.ifc2x3tc1.IfcElement;
+import org.bimserver.models.ifc2x3tc1.IfcLabel;
 import org.bimserver.models.ifc2x3tc1.IfcOpeningElement;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProperty;
+import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
+import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;
+import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
+import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
+import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
+import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
+import org.bimserver.models.ifc2x3tc1.IfcRelFillsElement;
+import org.bimserver.models.ifc2x3tc1.IfcText;
+import org.bimserver.models.ifc2x3tc1.IfcValue;
+import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ServiceDescriptor;
@@ -32,8 +55,12 @@ import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import au.com.bytecode.opencsv.CSVWriter;
 
 public class GeometryMatcher extends ServicePlugin {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryMatcher.class);
@@ -123,8 +150,12 @@ public class GeometryMatcher extends ServicePlugin {
 		public IfcOpeningElement el2;
 		public BoundingBox b1;
 		public BoundingBox b2;
+		public SProjectSmall secondProject;
+		public SProjectSmall firstProject;
 
-		public Hit(BoundingBox b1, BoundingBox b2, IfcOpeningElement el1, IfcOpeningElement el2) {
+		public Hit(SProjectSmall firstProject, SProjectSmall secondProject, BoundingBox b1, BoundingBox b2, IfcOpeningElement el1, IfcOpeningElement el2) {
+			this.firstProject = firstProject;
+			this.secondProject = secondProject;
 			this.b1 = b1;
 			this.b2 = b2;
 			this.el1 = el1;
@@ -140,7 +171,7 @@ public class GeometryMatcher extends ServicePlugin {
 		serviceDescriptor.setName("Geometry Matcher");
 		serviceDescriptor.setDescription("Geometry Matcher");
 		serviceDescriptor.setReadRevision(true);
-		serviceDescriptor.setWriteExtendedData("test");
+		serviceDescriptor.setWriteExtendedData("geometrymatching");
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
@@ -150,14 +181,17 @@ public class GeometryMatcher extends ServicePlugin {
 					Date startDate = new Date();
 					Long topicId = bimServerClientInterface.getRegistry().registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid, "Running Demo Service");
 					
-					Map<Long, Map<BoundingBox, IfcOpeningElement>> map = new HashMap<>();
+					Map<SProjectSmall, Map<BoundingBox, IfcOpeningElement>> map = new HashMap<>();
+					
+					Map<Long, String> projectNames = new LinkedHashMap<>();
 					
 					List<SProjectSmall> allRelatedProjects = bimServerClientInterface.getServiceInterface().getAllRelatedProjects(poid);
 					for (SProjectSmall project : allRelatedProjects) {
 						if (project.getLastRevisionId() != -1 && project.getNrSubProjects() == 0) {
+							projectNames.put(project.getOid(), project.getName());
 							IfcModelInterface model = bimServerClientInterface.getModel(project.getOid(), project.getLastRevisionId(), false);
 							Map<BoundingBox, IfcOpeningElement> boundingBoxes = new HashMap<>();
-							map.put(project.getLastRevisionId(), boundingBoxes);
+							map.put(project, boundingBoxes);
 							for (IfcOpeningElement ifcOpeningElement : model.getAll(IfcOpeningElement.class)) {
 								
 								Geometry geometry = bimServerClientInterface.getGeometry(project.getLastRevisionId(), ifcOpeningElement);
@@ -183,9 +217,52 @@ public class GeometryMatcher extends ServicePlugin {
 					}
 					
 					List<Hit> hits = analyze(map);
+					ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+					CSVWriter csvWriter = new CSVWriter(new OutputStreamWriter(byteArrayOutputStream));
+
+					Iterator<String> projectIter = projectNames.values().iterator();
+					csvWriter.writeNext(new String[]{"GUID in " + projectIter.next(), "GUID in " + projectIter.next(), "Mark"});
 					for (Hit hit : hits) {
-						System.out.println(hit.el1.getGlobalId() + " / " + hit.el2.getGlobalId() + " " + hit.b1 + " / " + hit.b2);
+						String mark = "NOT MATCHED";
+						for (IfcOpeningElement ifcOpeningElement : new IfcOpeningElement[]{hit.el1, hit.el2}) {
+							for (IfcRelFillsElement ifcRelFillsElement : ifcOpeningElement.getHasFillings()) {
+								IfcElement relatedBuildingElement = ifcRelFillsElement.getRelatedBuildingElement();
+								if (relatedBuildingElement instanceof IfcWindow) {
+									dump(relatedBuildingElement);
+									String m = getStringProperty(relatedBuildingElement, "Mark");
+									if (m != null) {
+										mark = m;
+									}
+								}
+							}
+						}
+						System.out.println(mark);
+						csvWriter.writeNext(new String[]{hit.el1.getGlobalId(), hit.el2.getGlobalId(), mark});
 					}
+					csvWriter.close();
+					
+					SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getBimsie1ServiceInterface().getExtendedDataSchemaByNamespace(
+							"geometrymatching");
+
+					SFile file = new SFile();
+
+					SExtendedData extendedData = new SExtendedData();
+					extendedData.setTitle("Geometry Matching Results");
+					file.setFilename("geometrymatching.csv");
+					extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
+					try {
+						byte[] bytes = byteArrayOutputStream.toByteArray();
+						file.setData(bytes);
+						file.setMime("text/csv");
+
+						long fileId = bimServerClientInterface.getServiceInterface().uploadFile(file);
+						extendedData.setFileId(fileId);
+
+						bimServerClientInterface.getBimsie1ServiceInterface().addExtendedDataToRevision(roid, extendedData);
+					} catch (Exception e) {
+						LOGGER.error("", e);
+					}
+
 					
 					SLongActionState state = new SLongActionState();
 					state.setProgress(100);
@@ -198,20 +275,56 @@ public class GeometryMatcher extends ServicePlugin {
 					bimServerClientInterface.getRegistry().unregisterProgressTopic(topicId);
 				} catch (PublicInterfaceNotFoundException | BimServerClientException e) {
 					LOGGER.error("", e);
+				} catch (IOException e) {
+					LOGGER.error("", e);
 				}
 			}
 
-			private List<Hit> analyze(Map<Long, Map<BoundingBox, IfcOpeningElement>> map) {
+			private void dump(IdEObject object) {
+				System.out.println(object.eClass().getName() + " " + object.getOid());
+				for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
+					System.out.print(eStructuralFeature.getName() + ": ");
+					Object val = object.eGet(eStructuralFeature);
+					if (eStructuralFeature instanceof EReference) {
+						if (eStructuralFeature.isMany()) {
+							List list = (List)val;
+							for (Object o : list) {
+								IdEObject ref = (IdEObject)o;
+								System.out.print(ref.eClass().getName() + " " + ref.getOid() + ", ");
+							}
+						} else {
+							if (val != null) {
+								IdEObject ref = ((IdEObject)val);
+								System.out.print(ref.eClass().getName() + " " + ref.getOid());
+							}
+						}
+					} else {
+						if (eStructuralFeature.isMany()) {
+							System.out.print("values...");
+						} else {
+							System.out.print(val);
+						}
+					}
+					System.out.println();
+				}
+			}
+
+			private List<Hit> analyze(Map<SProjectSmall, Map<BoundingBox, IfcOpeningElement>> map) {
+				Set<IfcOpeningElement> matched = new HashSet<>();
 				List<Hit> hits = new ArrayList<>();
-				for (long roid : map.keySet()) {
-					Map<BoundingBox, IfcOpeningElement> m = map.get(roid);
+				for (SProjectSmall project : map.keySet()) {
+					Map<BoundingBox, IfcOpeningElement> m = map.get(project);
 					for (BoundingBox b : m.keySet()) {
-						for (long r2 : map.keySet()) {
-							if (r2 != roid) {
-								Map<BoundingBox, IfcOpeningElement> m2 = map.get(r2);
+						for (SProjectSmall project2 : map.keySet()) {
+							if (project2.getOid() != project.getOid()) {
+								Map<BoundingBox, IfcOpeningElement> m2 = map.get(project2);
 								for (BoundingBox b2 : m2.keySet()) {
 									if (b.closeTo(b2)) {
-										hits.add(new Hit(b, b2, m.get(b), m2.get(b2)));
+										if (!matched.contains(m.get(b)) && !matched.contains(m2.get(b2))) {
+											hits.add(new Hit(project, project2, b, b2, m.get(b), m2.get(b2)));
+											matched.add(m.get(b));
+											matched.add(m2.get(b2));
+										}
 									}
 								}
 							}
@@ -223,6 +336,34 @@ public class GeometryMatcher extends ServicePlugin {
 		});
 	}
 
+	private String getStringProperty(IfcProduct ifcProduct, String propertyName) {
+		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinition relatingPropertyDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (relatingPropertyDefinition instanceof IfcPropertySet) {
+					IfcPropertySet ifcProperySet = ((IfcPropertySet)relatingPropertyDefinition);
+					for (IfcProperty ifcProperty : ifcProperySet.getHasProperties()) {
+						if (propertyName.equals(ifcProperty.getName())) {
+							if (ifcProperty instanceof IfcPropertySingleValue) {
+								IfcPropertySingleValue ifcPropertySingleValue = (IfcPropertySingleValue)ifcProperty;
+								IfcValue nominalValue = ifcPropertySingleValue.getNominalValue();
+								if (nominalValue instanceof IfcLabel) {
+									IfcLabel ifcLabel = (IfcLabel)nominalValue;
+									return ifcLabel.getWrappedValue();
+								} else if (nominalValue instanceof IfcText) {
+									IfcText ifcText = (IfcText)nominalValue;
+									return ifcText.getWrappedValue();
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
 	@Override
 	public void unregister(SInternalServicePluginConfiguration internalService) {
 	}

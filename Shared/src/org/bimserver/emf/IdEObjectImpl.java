@@ -100,18 +100,8 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 
 	public void load() {
 		if (loadingState == State.TO_BE_LOADED && oid != -1) {
-			loadExplicit();
+			((BimServerEStore)eStore).load(this);
 		}
-	}
-
-	public void loadExplicit() {
-		setLoadingState(State.LOADING);
-		internalLoad();
-		setLoadingState(State.LOADED);
-	}
-
-	private void internalLoad() {
-		((BimServerEStore)eStore).load(this);
 	}
 
 	public void setLoaded() {
