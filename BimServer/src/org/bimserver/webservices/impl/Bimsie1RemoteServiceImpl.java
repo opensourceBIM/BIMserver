@@ -113,7 +113,7 @@ public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bims
 
 	@Override
 	public SServiceDescriptor getService(String serviceIdentifier) throws UserException, ServerException {
-		ServiceDescriptor internalService = getBimServer().getInternalServicesManager().getInternalService(serviceIdentifier);
+		ServiceDescriptor internalService = getBimServer().getInternalServicesManager().getInternalService(getAuthorization().getUoid(), serviceIdentifier);
 		return getBimServer().getSConverter().convertToSObject(internalService);
 	}
 

@@ -570,9 +570,9 @@ public class PluginManager {
 		return serviceFactory;
 	}
 
-	public void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler) {
+	public void registerNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler) {
 		if (notificationsManagerInterface != null) {
-			notificationsManagerInterface.registerInternalNewRevisionHandler(serviceDescriptor, newRevisionHandler);
+			notificationsManagerInterface.registerInternalNewRevisionHandler(uoid, serviceDescriptor, newRevisionHandler);
 		}
 	}
 
@@ -627,15 +627,15 @@ public class PluginManager {
 		this.bimServerClientFactory = bimServerClientFactory;
 	}
 
-	public void registerNewExtendedDataOnProjectHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
+	public void registerNewExtendedDataOnProjectHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
 		if (notificationsManagerInterface != null) {
-			notificationsManagerInterface.registerInternalNewExtendedDataOnProjectHandler(serviceDescriptor, newExtendedDataHandler);
+			notificationsManagerInterface.registerInternalNewExtendedDataOnProjectHandler(uoid, serviceDescriptor, newExtendedDataHandler);
 		}
 	}
 
-	public void registerNewExtendedDataOnRevisionHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
+	public void registerNewExtendedDataOnRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
 		if (notificationsManagerInterface != null) {
-			notificationsManagerInterface.registerInternalNewExtendedDataOnRevisionHandler(serviceDescriptor, newExtendedDataHandler);
+			notificationsManagerInterface.registerInternalNewExtendedDataOnRevisionHandler(uoid, serviceDescriptor, newExtendedDataHandler);
 		}
 	}
 }

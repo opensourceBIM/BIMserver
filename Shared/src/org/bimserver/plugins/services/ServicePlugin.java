@@ -40,8 +40,8 @@ public abstract class ServicePlugin implements Plugin {
 		return pluginManager.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 	}
 
-	protected void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
-		pluginManager.registerNewRevisionHandler(serviceDescriptor, newRevisionHandler);
+	protected void registerNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
+		pluginManager.registerNewRevisionHandler(uoid, serviceDescriptor, newRevisionHandler);
 	}
 
 	protected void unregisterNewRevisionHandler(ServiceDescriptor serviceDescriptor) {
@@ -67,12 +67,12 @@ public abstract class ServicePlugin implements Plugin {
 		return pluginManager;
 	}
 
-	public void registerNewExtendedDataOnProjectHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
-		pluginManager.registerNewExtendedDataOnProjectHandler(serviceDescriptor, newExtendedDataHandler);
+	public void registerNewExtendedDataOnProjectHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
+		pluginManager.registerNewExtendedDataOnProjectHandler(uoid, serviceDescriptor, newExtendedDataHandler);
 	}
 
-	public void registerNewExtendedDataOnRevisionHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
-		pluginManager.registerNewExtendedDataOnRevisionHandler(serviceDescriptor, newExtendedDataHandler);
+	public void registerNewExtendedDataOnRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
+		pluginManager.registerNewExtendedDataOnRevisionHandler(uoid, serviceDescriptor, newExtendedDataHandler);
 	}
 	
 	/**
@@ -80,6 +80,6 @@ public abstract class ServicePlugin implements Plugin {
 	 * 
 	 * @param pluginConfiguration
 	 */
-	public abstract void register(SInternalServicePluginConfiguration internalService, PluginConfiguration pluginConfiguration);
+	public abstract void register(long uoid, SInternalServicePluginConfiguration internalService, PluginConfiguration pluginConfiguration);
 	public abstract void unregister(SInternalServicePluginConfiguration internalService);
 }

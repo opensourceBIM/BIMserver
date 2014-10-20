@@ -99,7 +99,7 @@ public class CloneService extends ServicePlugin {
 	}
 
 	@Override
-	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, final PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalServicePluginConfiguration, final PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
 		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
@@ -108,7 +108,7 @@ public class CloneService extends ServicePlugin {
 		serviceDescriptor.setReadRevision(true);
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
-		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
+		registerNewRevisionHandler(uoid, serviceDescriptor, new NewRevisionHandler() {
 			@Override
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				Date startDate = new Date();

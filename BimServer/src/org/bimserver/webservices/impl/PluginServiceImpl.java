@@ -709,7 +709,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			SInternalServicePluginConfiguration sInternalService = (SInternalServicePluginConfiguration) getBimServer().getSConverter().convertToSObject(pluginConfiguration);
 	
 			servicePlugin.unregister(sInternalService);
-			servicePlugin.register(sInternalService, new org.bimserver.plugins.PluginConfiguration(settings));
+			servicePlugin.register(getAuthorization().getUoid(), sInternalService, new org.bimserver.plugins.PluginConfiguration(settings));
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {

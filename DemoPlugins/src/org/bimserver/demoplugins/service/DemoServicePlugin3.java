@@ -64,7 +64,7 @@ public class DemoServicePlugin3 extends ServicePlugin {
 	}
 
 	@Override
-	public void register(SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
 		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
@@ -72,7 +72,7 @@ public class DemoServicePlugin3 extends ServicePlugin {
 		serviceDescriptor.setDescription("Demo Service 3");
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 		serviceDescriptor.setTrigger(Trigger.NEW_EXTENDED_DATA);
-		registerNewExtendedDataOnRevisionHandler(serviceDescriptor, new NewExtendedDataOnRevisionHandler(){
+		registerNewExtendedDataOnRevisionHandler(uoid, serviceDescriptor, new NewExtendedDataOnRevisionHandler(){
 			@Override
 			public void newExtendedDataOnRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, long edid, String userToken, long soid, SObjectType settings) {
 				try {

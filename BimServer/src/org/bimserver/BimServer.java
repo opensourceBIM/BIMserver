@@ -597,6 +597,9 @@ public class BimServer {
 				userSettings.getServices().add(internalServicePluginConfiguration);
 				genericPluginConversion(session, servicePlugin, internalServicePluginConfiguration, getPluginDescriptor(session, servicePlugin.getClass().getName()));
 			}
+			ObjectType settings = internalServicePluginConfiguration.getSettings();
+			SInternalServicePluginConfiguration sInternalService = getSConverter().convertToSObject(internalServicePluginConfiguration);
+			servicePlugin.register(user.getOid(), sInternalService, new org.bimserver.plugins.PluginConfiguration(settings));
 		}
 		for (DeserializerPlugin deserializerPlugin : pluginManager.getAllDeserializerPlugins(true)) {
 			DeserializerPluginConfiguration deserializerPluginConfiguration = find(userSettings.getDeserializers(), deserializerPlugin.getClass().getName());
@@ -699,22 +702,6 @@ public class BimServer {
 				throw new BimserverDatabaseException(e);
 			} catch (ServiceException e) {
 				throw new BimserverDatabaseException(e);
-			} finally {
-				session.close();
-			}
-			
-			session = bimDatabase.createSession();
-			try {
-				for (InternalServicePluginConfiguration internalService : session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), InternalServicePluginConfiguration.class, Query.getDefault())) {
-					if (internalService.getEnabled()) {
-						ServicePlugin servicePlugin = pluginManager.getServicePlugin(internalService.getPluginDescriptor().getPluginClassName(), true);
-						if (servicePlugin != null) {
-							ObjectType settings = internalService.getSettings();
-							SInternalServicePluginConfiguration sInternalService = getSConverter().convertToSObject(internalService);
-							servicePlugin.register(sInternalService, new org.bimserver.plugins.PluginConfiguration(settings));
-						}
-					}
-				}
 			} finally {
 				session.close();
 			}
