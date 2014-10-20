@@ -49,7 +49,11 @@ import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcBoolean;
+import org.bimserver.models.ifc2x3tc1.IfcElement;
+import org.bimserver.models.ifc2x3tc1.IfcFeatureElementSubtraction;
 import org.bimserver.models.ifc2x3tc1.IfcLogical;
+import org.bimserver.models.ifc2x3tc1.IfcOpeningElement;
+import org.bimserver.models.ifc2x3tc1.IfcRelVoidsElement;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.DeserializeException;
@@ -730,7 +734,8 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			throw new DeserializeException("'" + val + "' is not a valid reference");
 		}
 		if (model.contains(referenceId)) {
-			object.eSet(structuralFeature, model.get(referenceId));
+			IdEObject other = model.get(referenceId);
+			object.eSet(structuralFeature, other);
 		} else {
 			waitingList.add(referenceId, new SingleWaitingObject(lineNumber, object, structuralFeature));
 		}

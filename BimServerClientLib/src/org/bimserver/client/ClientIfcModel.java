@@ -44,6 +44,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
@@ -276,6 +277,9 @@ public class ClientIfcModel extends IfcModel {
 										((IdEObjectImpl) object).eSetStore(eStore);
 										((IdEObjectImpl) object).setOid(oid);
 										add(oid, object);
+									}
+									if (object instanceof IfcWindow) {
+										System.out.println();
 									}
 									if (state.equals("NOT_LOADED")) {
 										((IdEObjectImpl) object).setLoadingState(State.TO_BE_LOADED);
@@ -537,11 +541,12 @@ public class ClientIfcModel extends IfcModel {
 		try {
 			IdEObjectImpl idEObjectImpl = (IdEObjectImpl) super.get(oid);
 			if (idEObjectImpl != null && !idEObjectImpl.isLoadedOrLoading()) {
-				LOGGER.info("Loading " + oid);
+				idEObjectImpl.setLoadingState(State.LOADING);
 				modelState = ModelState.LOADING;
 				Long downloadByOids = bimServerClient.getBimsie1ServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(oid), getIfcSerializerOid(), true,
 						false);
 				processDownload(downloadByOids);
+				idEObjectImpl.setLoadingState(State.LOADED);
 				modelState = ModelState.NONE;
 			}
 		} catch (Exception e) {

@@ -50,7 +50,6 @@ public class Geometry {
 		dataInputStream.readFloat();
 		dataInputStream.readFloat();
 		int nrObjects = dataInputStream.readInt();
-		System.out.println(nrObjects);
 		int offset = 2;
 		for (int i=0; i<nrObjects; i++) {
 			String type = dataInputStream.readUTF();

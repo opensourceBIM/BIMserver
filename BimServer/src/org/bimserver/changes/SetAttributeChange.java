@@ -57,7 +57,7 @@ public class SetAttributeChange implements Change {
 		if (idEObject == null) {
 			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + project.getId());
 		}
-		idEObject.loadExplicit();
+		idEObject.load();
 		EAttribute eAttribute = databaseSession.getMetaDataManager().getEAttribute(eClass.getName(), attributeName);
 		if (eAttribute == null) {
 			throw new UserException("No attribute with the name \"" + attributeName + "\" found in class \"" + eClass.getName() + "\"");

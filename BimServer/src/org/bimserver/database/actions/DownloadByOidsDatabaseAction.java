@@ -31,6 +31,7 @@ import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -40,9 +41,13 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
+import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.modelmerger.MergeException;
+import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.plugins.objectidms.StructuralFeatureIdentifier;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.utils.CollectionUtils;
 import org.bimserver.webservices.authorization.Authorization;
 
 public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
@@ -82,31 +87,45 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 				IfcModel subModel = new IfcModel();
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
-				subModel.addChangeListener(new IfcModelChangeListener() {
-					@Override
-					public void objectAdded() {
-						total.incrementAndGet();
-						progress = (int) Math.round(100.0 * total.get() / totalSize);
-					}
-				});
-				getDatabaseSession().getMapWithOids(subModel, oids, query);
-				subModel.getModelMetaData().setDate(concreteRevision.getDate());
 				
+				HideAllInversesObjectIDM hideAllInversesObjectIDM;
 				try {
-					checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
-				} catch (GeometryGeneratingException e) {
-					throw new UserException(e);
+					hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getBimServer().getPluginManager().requireSchemaDefinition());
+					// This hack makes sure the JsonGeometrySerializer can look at the styles, probably more subtypes of getIfcRepresentationItem should be added (not ignored), also this code should not be here at all...
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(new StructuralFeatureIdentifier(Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem().getName(), Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_StyledByItem().getName()));
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(new StructuralFeatureIdentifier(Ifc2x3tc1Package.eINSTANCE.getIfcExtrudedAreaSolid().getName(), Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_StyledByItem().getName()));
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcObject_IsDefinedBy());
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_IsDecomposedBy());
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcOpeningElement_HasFillings());
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations());
+					Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), hideAllInversesObjectIDM, deep, highestStopId);
+					subModel.addChangeListener(new IfcModelChangeListener() {
+						@Override
+						public void objectAdded() {
+							total.incrementAndGet();
+							progress = (int) Math.round(100.0 * total.get() / totalSize);
+						}
+					});
+					getDatabaseSession().getMapWithOids(subModel, oids, query);
+					subModel.getModelMetaData().setDate(concreteRevision.getDate());
+					
+					try {
+						checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
+					} catch (GeometryGeneratingException e) {
+						throw new UserException(e);
+					}
+					
+					ifcModelSet.add(subModel);
+					// for (Long oid : oids) {
+					// IfcModel subModel =
+					// databaseSession.getMapWithOids(concreteRevision.getProject().getId(),
+					// concreteRevision.getId(), oid);
+					// subModel.setDate(concreteRevision.getDate());
+					// ifcModels.add(subModel);
+					// }
+				} catch (PluginException e1) {
+					e1.printStackTrace();
 				}
-				
-				ifcModelSet.add(subModel);
-				// for (Long oid : oids) {
-				// IfcModel subModel =
-				// databaseSession.getMapWithOids(concreteRevision.getProject().getId(),
-				// concreteRevision.getId(), oid);
-				// subModel.setDate(concreteRevision.getDate());
-				// ifcModels.add(subModel);
-				// }
 			}
 		}
 		IfcModelInterface ifcModel = new IfcModel();
