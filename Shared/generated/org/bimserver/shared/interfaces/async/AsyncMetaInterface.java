@@ -155,11 +155,11 @@ public class AsyncMetaInterface {
 		});
 	}
 	
-	public void getServiceTypes(final java.lang.String serviceInterfaceName, final GetServiceTypesCallback callback) {
+	public void getServiceTypes(final GetServiceTypesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getServiceTypes(serviceInterfaceName));
+					callback.success(syncService.getServiceTypes());
 				} catch (Throwable e) {
 					callback.error(e);
 				}

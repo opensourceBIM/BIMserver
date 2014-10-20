@@ -76,14 +76,12 @@ public interface MetaInterface extends PublicInterface {
 		@WebParam(name = "methodName", partName = "getServiceMethod.methodName") String methodName) throws ServerException, UserException;
 	
 	/**
-	 * @param serviceInterfaceName
 	 * @return A list of all types known for the given service
 	 * @throws ServerException
 	 * @throws UserException
 	 */
 	@WebMethod(action="getServiceTypes")
-	List<SServiceType> getServiceTypes(
-		@WebParam(name = "serviceInterfaceName", partName = "getServiceTypes.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
+	List<SServiceType> getServiceTypes() throws ServerException, UserException;
 	
 	/**
 	 * @param serviceInterfaceName
