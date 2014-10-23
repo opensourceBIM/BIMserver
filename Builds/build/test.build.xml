@@ -1,6 +1,6 @@
 <project name="Test">
 	<path id="classpath.test">
-		<fileset dir="antlibs" includes="*.jar" />
+		<fileset dir="../Builds/build/antlibs" includes="*.jar" />
 	</path>
 
 	<taskdef name="junit" classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask">
