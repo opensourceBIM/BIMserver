@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -50,13 +51,21 @@ public class TestBigFilesRemote {
 			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 			for (String fileName : fileNames) {
 				String projectName = fileName.substring(0, fileName.lastIndexOf(".ifc"));
-				System.out.println("Creating project " + fileName);
+				
+				List<SProject> projectsByName = client.getBimsie1ServiceInterface().getProjectsByName(projectName);
+				SProject project = null;
+				if (projectsByName.size() == 1) {
+					project = projectsByName.get(0);
+				} else {
+					System.out.println("Creating project " + fileName);
+					project = client.getBimsie1ServiceInterface().addProject(projectName);
+				}
+				
 				System.out.println(dateFormat.format(new Date()));
 				SDatabaseInformation databaseInformation = client.getAdminInterface().getDatabaseInformation();
 				System.out.println("Database size: " + Formatters.bytesToString(databaseInformation.getDatabaseSizeInBytes()) + " (" + databaseInformation.getDatabaseSizeInBytes() + ")");
 				SJavaInfo javaInfo = client.getAdminInterface().getJavaInfo();
 				System.out.println("Used: " + Formatters.bytesToString(javaInfo.getHeapUsed()) + ", Free: " + Formatters.bytesToString(javaInfo.getHeapFree()) + ", Max: " + Formatters.bytesToString(javaInfo.getHeapMax()) + ", Total: " + Formatters.bytesToString(javaInfo.getHeapTotal()));
-				SProject project = client.getBimsie1ServiceInterface().addProject(projectName);
 				String downloadUrl = URLEncoder.encode(basepath + fileName, "UTF-8");
 				client.getServiceInterface().checkinFromUrl(project.getOid(), fileName, deserializer.getOid(), fileName, downloadUrl, false, true);
 				System.out.println("Done checking in " + fileName);
