@@ -1,13 +1,20 @@
 package org.bimserver.tests;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
+import org.bimserver.interfaces.objects.SJavaInfo;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.utils.Formatters;
 
 public class TestBigFilesRemote {
 	 public static void main(String[] args) {
@@ -37,10 +44,16 @@ public class TestBigFilesRemote {
 			};
 			
 			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
-			
+
+			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 			for (String fileName : fileNames) {
 				String projectName = fileName.substring(0, fileName.lastIndexOf(".ifc"));
 				System.out.println("Creating project " + fileName);
+				System.out.println(dateFormat.format(new Date()));
+				SDatabaseInformation databaseInformation = client.getAdminInterface().getDatabaseInformation();
+				System.out.println("Database size: " + Formatters.bytesToString(databaseInformation.getDatabaseSizeInBytes()) + " (" + databaseInformation.getDatabaseSizeInBytes() + ")");
+				SJavaInfo javaInfo = client.getAdminInterface().getJavaInfo();
+				System.out.println("Used: " + Formatters.bytesToString(javaInfo.getHeapUsed()) + ", Free: " + Formatters.bytesToString(javaInfo.getHeapFree()) + ", Max: " + Formatters.bytesToString(javaInfo.getHeapMax()) + ", Total: " + Formatters.bytesToString(javaInfo.getHeapTotal()));
 				SProject project = client.getBimsie1ServiceInterface().addProject(projectName);
 				client.getServiceInterface().checkinFromUrl(project.getOid(), fileName, deserializer.getOid(), fileName, basepath + fileName, false, true);
 				System.out.println("Done checking in " + fileName);
