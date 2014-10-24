@@ -15,11 +15,17 @@ public class TestBigFilesRemote {
 	}
 
 	private void start(String[] args) {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory(args[0]);
+		String address = args[0];
+		String username = args[1];
+		String password = args[2];
+		String basepath = args[3];
+		System.out.println("Address: " + address);
+		System.out.println("Username: " + username);
+		System.out.println("Password: " + password);
+		System.out.println("Basepath: " + basepath);
+		JsonBimServerClientFactory factory = new JsonBimServerClientFactory(address);
 		try {
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo(args[1], args[2]));
-			
-			String basePath = "";
 			
 			String[] fileNames = new String[]{
 				"4NC Whole Model.ifc",
@@ -36,7 +42,7 @@ public class TestBigFilesRemote {
 				String projectName = fileName.substring(0, fileName.lastIndexOf(".ifc"));
 				System.out.println("Creating project " + fileName);
 				SProject project = client.getBimsie1ServiceInterface().addProject(projectName);
-				client.getServiceInterface().checkinFromUrl(project.getOid(), fileName, deserializer.getOid(), fileName, basePath + fileName, false, true);
+				client.getServiceInterface().checkinFromUrl(project.getOid(), fileName, deserializer.getOid(), fileName, basepath + fileName, false, true);
 				System.out.println("Done checking in " + fileName);
 			}
 		} catch (ServiceException e) {
