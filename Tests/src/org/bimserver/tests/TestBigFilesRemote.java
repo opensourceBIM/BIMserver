@@ -1,5 +1,7 @@
 package org.bimserver.tests;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -55,7 +57,8 @@ public class TestBigFilesRemote {
 				SJavaInfo javaInfo = client.getAdminInterface().getJavaInfo();
 				System.out.println("Used: " + Formatters.bytesToString(javaInfo.getHeapUsed()) + ", Free: " + Formatters.bytesToString(javaInfo.getHeapFree()) + ", Max: " + Formatters.bytesToString(javaInfo.getHeapMax()) + ", Total: " + Formatters.bytesToString(javaInfo.getHeapTotal()));
 				SProject project = client.getBimsie1ServiceInterface().addProject(projectName);
-				client.getServiceInterface().checkinFromUrl(project.getOid(), fileName, deserializer.getOid(), fileName, basepath + fileName, false, true);
+				String downloadUrl = URLEncoder.encode(basepath + fileName, "UTF-8");
+				client.getServiceInterface().checkinFromUrl(project.getOid(), fileName, deserializer.getOid(), fileName, downloadUrl, false, true);
 				System.out.println("Done checking in " + fileName);
 			}
 		} catch (ServiceException e) {
@@ -63,6 +66,8 @@ public class TestBigFilesRemote {
 		} catch (ChannelConnectionException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 	}
