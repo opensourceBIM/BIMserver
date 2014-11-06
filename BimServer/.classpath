@@ -27,6 +27,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar" sourcepath="libsrc/org.eclipse.emf.ecore.source_2.9.1.v20130827-0309.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jxl.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/je-6.2.7.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>
@@ -114,7 +115,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/mina-core-2.0.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlbeans-2.6.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlsec-1.5.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/je-5.0.97.jar" sourcepath="libsrc/je5.0.97.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/javax.websocket-api-1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-schemas-3.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/servlet-api-3.1.jar"/>
