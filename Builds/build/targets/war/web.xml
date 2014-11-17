@@ -72,14 +72,14 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>/css/*</url-pattern>
+		<url-pattern>/css</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>/js/*</url-pattern>
+		<url-pattern>/js</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>/img/*</url-pattern>
+		<url-pattern>/img</url-pattern>
 	</servlet-mapping>
 </web-app>
