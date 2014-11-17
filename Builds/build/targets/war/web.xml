@@ -39,6 +39,30 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/soap11</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/soap12</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/syndication</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/json</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/download</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>
