@@ -68,7 +68,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>*pluginversion</url-pattern>
+		<url-pattern>*/pluginversion</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
