@@ -29,10 +29,6 @@ public class Jsr356Impl implements StreamingSocketInterface {
 	private Streamer streamer;
 	private Session websocketSession;
 	
-	public Jsr356Impl() {
-		LOGGER.info("WebSocket object created");
-	}
-
 	@OnOpen
 	public void onOpen(Session websocketSession, EndpointConfig config) {
 		LOGGER.info("WebSocket session opened");
