@@ -59,7 +59,11 @@ public class WarServerInitializer implements ServletContextListener {
 			autoMigrate = Boolean.valueOf(servletContext.getInitParameter("autoMigrate"));
 		}
 		
-		File baseDir = new File(servletContext.getRealPath("/") + "WEB-INF");
+		String realPath = servletContext.getRealPath("/");
+		if (!realPath.endsWith("/")) {
+			realPath = realPath + "/";
+		}
+		File baseDir = new File(realPath + "WEB-INF");
 		if (homeDir == null) {
 			homeDir = baseDir;
 		}
