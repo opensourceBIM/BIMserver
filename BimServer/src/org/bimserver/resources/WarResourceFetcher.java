@@ -29,6 +29,10 @@ public class WarResourceFetcher extends ResourceFetcher {
 		if (homeDir != null) {
 			addPath(homeDir);
 		}
-		addPath(new File(servletContext.getRealPath("/") + "WEB-INF"));
+		String realPath = servletContext.getRealPath("/");
+		if (!realPath.endsWith("/")) {
+			realPath = realPath + "/";
+		}
+		addPath(new File(realPath + "WEB-INF"));
 	}
 }
