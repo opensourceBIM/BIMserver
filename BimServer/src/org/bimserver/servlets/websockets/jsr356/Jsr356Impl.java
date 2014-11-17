@@ -36,6 +36,7 @@ public class Jsr356Impl implements StreamingSocketInterface {
 		HttpSession httpSession = (HttpSession) config.getUserProperties().get("httpSession");
 		ServletContext servletContext = httpSession.getServletContext();
 		streamer = new Streamer(this, (BimServer) servletContext.getAttribute("bimserver"));
+		streamer.onOpen();
 	}
 
 	@OnMessage
