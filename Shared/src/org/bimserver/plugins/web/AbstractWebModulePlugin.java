@@ -73,7 +73,7 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	@Override
 	public boolean service(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			String path = request.getPathInfo();
+			String path = request.getRequestURI();
 			if (path.startsWith(getDefaultContextPath())) {
 				path = path.substring(getDefaultContextPath().length());
 			}
