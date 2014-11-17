@@ -17,7 +17,6 @@ import javax.websocket.server.ServerEndpoint;
 import org.bimserver.BimServer;
 import org.bimserver.servlets.Streamer;
 import org.bimserver.servlets.StreamingSocketInterface;
-import org.eclipse.jetty.websocket.api.WebSocketException;
 
 import com.google.gson.JsonObject;
 
@@ -48,10 +47,7 @@ public class Jsr356Impl implements StreamingSocketInterface {
 
 	@Override
 	public void send(JsonObject request) {
-		try {
-			websocketSession.getAsyncRemote().sendText(request.toString());
-		} catch (WebSocketException e) {
-		}
+		websocketSession.getAsyncRemote().sendText(request.toString());
 	}
 
 	@Override
