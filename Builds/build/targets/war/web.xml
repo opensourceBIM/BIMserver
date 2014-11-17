@@ -64,6 +64,6 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern></url-pattern>
 	</servlet-mapping>
 </web-app>
