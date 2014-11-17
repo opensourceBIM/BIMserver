@@ -69,6 +69,7 @@ public class RootServlet extends HttpServlet {
 			} else {
 				LOGGER.info(requestUri);
 			}
+			setContentType(response, requestUri);
 			if (request.getRequestURI().endsWith("getbimserveraddress")) {
 				response.setContentType("application/json");
 				String siteAddress = bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
@@ -85,14 +86,6 @@ public class RootServlet extends HttpServlet {
 				LOGGER.warn("Stream request should not be going to this servlet!");
 			} else if (requestUri.startsWith("/openid")) {
 				bimServer.getOpenIdManager().verifyResponse(request, response);
-			} else if (requestUri.endsWith(".js")) {
-				response.setContentType("application/javascript");
-			} else if (requestUri.endsWith(".css")) {
-				response.setContentType("text/css");
-			} else if (requestUri.endsWith(".png")) {
-				response.setContentType("image/png");
-			} else if (requestUri.endsWith(".gif")) {
-				response.setContentType("image/gif");
 			} else if (requestUri.startsWith("/soap11/") || requestUri.equals("/soap11")) {
 				soap11Servlet.service(request, response);
 			} else if (requestUri.startsWith("/soap12/") || requestUri.equals("/soap12")) {
@@ -141,6 +134,18 @@ public class RootServlet extends HttpServlet {
 			} else {
 				LOGGER.error("", e);
 			}
+		}
+	}
+
+	private void setContentType(HttpServletResponse response, String requestUri) {
+		if (requestUri.endsWith(".js")) {
+			response.setContentType("application/javascript");
+		} else if (requestUri.endsWith(".css")) {
+			response.setContentType("text/css");
+		} else if (requestUri.endsWith(".png")) {
+			response.setContentType("image/png");
+		} else if (requestUri.endsWith(".gif")) {
+			response.setContentType("image/gif");
 		}
 	}
 }
