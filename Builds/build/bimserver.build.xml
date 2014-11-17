@@ -51,7 +51,7 @@
 		<copy todir="builds/BuildJar/plugins">
 			<fileset dir="../prebuildplugins" />
 		</copy>
-		<copy todir="builds/BuildWar/WEB-INF/plugins" failonerror="false">
+		<copy todir="builds/BuildJar/WEB-INF/plugins" failonerror="false">
 			<fileset dir="additionalplugins" />
 		</copy>
 
