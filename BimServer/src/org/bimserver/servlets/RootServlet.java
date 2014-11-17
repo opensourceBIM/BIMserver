@@ -63,6 +63,7 @@ public class RootServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			LOGGER.info(request.getRequestURI());
 			if (request.getRequestURI().endsWith("getbimserveraddress")) {
 				response.setContentType("application/json");
 				String siteAddress = bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
