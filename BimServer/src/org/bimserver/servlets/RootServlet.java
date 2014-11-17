@@ -75,6 +75,8 @@ public class RootServlet extends HttpServlet {
 				}
 				response.getWriter().print("{\"address\":\"" + siteAddress + "\"}");
 				return;
+			} else if (request.getRequestURI().startsWith("/stream")) {
+				LOGGER.warn("Stream request should not be going to this servlet!");
 			} else if (request.getRequestURI().startsWith("/openid")) {
 				bimServer.getOpenIdManager().verifyResponse(request, response);
 			} else if (request.getRequestURI().endsWith(".js")) {
