@@ -91,6 +91,10 @@ public class WarServerInitializer implements ServletContextListener {
 	}
 	
 	private String makeClassPath(File file) {
+		// Added for Tomcat8
+		if (file == null) {
+			return "";
+		}
 		StringBuilder sb = new StringBuilder();
 		for (File f : file.listFiles()) {
 			if (f.getName().toLowerCase().endsWith(".jar")) {
