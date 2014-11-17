@@ -63,7 +63,12 @@ public class RootServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			LOGGER.info(request.getRequestURI());
+			String requestUri = request.getRequestURI();
+			if (requestUri == null) {
+				LOGGER.error("RequestURI is null");
+			} else {
+				LOGGER.info(requestUri);
+			}
 			if (request.getRequestURI().endsWith("getbimserveraddress")) {
 				response.setContentType("application/json");
 				String siteAddress = bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
@@ -76,42 +81,37 @@ public class RootServlet extends HttpServlet {
 				}
 				response.getWriter().print("{\"address\":\"" + siteAddress + "\"}");
 				return;
-			} else if (request.getRequestURI().startsWith("/stream")) {
+			} else if (requestUri.startsWith("/stream")) {
 				LOGGER.warn("Stream request should not be going to this servlet!");
-			} else if (request.getRequestURI().startsWith("/openid")) {
+			} else if (requestUri.startsWith("/openid")) {
 				bimServer.getOpenIdManager().verifyResponse(request, response);
-			} else if (request.getRequestURI().endsWith(".js")) {
+			} else if (requestUri.endsWith(".js")) {
 				response.setContentType("application/javascript");
-			} else if (request.getRequestURI().endsWith(".css")) {
+			} else if (requestUri.endsWith(".css")) {
 				response.setContentType("text/css");
-			} else if (request.getRequestURI().endsWith(".png")) {
+			} else if (requestUri.endsWith(".png")) {
 				response.setContentType("image/png");
-			} else if (request.getRequestURI().endsWith(".gif")) {
+			} else if (requestUri.endsWith(".gif")) {
 				response.setContentType("image/gif");
-			}
-			String pathInfo = request.getPathInfo();
-			LOGGER.info("Path Info: " + pathInfo);
-			if (pathInfo == null) {
-				LOGGER.error("PathInfo of Request is null");
-			} else if (pathInfo.startsWith("/soap11/") || pathInfo.equals("/soap11")) {
+			} else if (requestUri.startsWith("/soap11/") || requestUri.equals("/soap11")) {
 				soap11Servlet.service(request, response);
-			} else if (pathInfo.startsWith("/soap12/") || pathInfo.equals("/soap12")) {
+			} else if (requestUri.startsWith("/soap12/") || requestUri.equals("/soap12")) {
 				soap12Servlet.service(request, response);
-			} else if (pathInfo.startsWith("/syndication/") || pathInfo.equals("/syndication")) {
+			} else if (requestUri.startsWith("/syndication/") || requestUri.equals("/syndication")) {
 				syndicationServlet.service(request, response);
-			} else if (pathInfo.startsWith("/json/") || pathInfo.equals("/json")) {
+			} else if (requestUri.startsWith("/json/") || requestUri.equals("/json")) {
 				jsonApiServlet.service(request, response);
-			} else if (pathInfo.startsWith("/upload/") || pathInfo.equals("/upload")) {
+			} else if (requestUri.startsWith("/upload/") || requestUri.equals("/upload")) {
 				uploadServlet.service(request, response);
-			} else if (pathInfo.startsWith("/download/") || pathInfo.equals("/download")) {
+			} else if (requestUri.startsWith("/download/") || requestUri.equals("/download")) {
 				downloadServlet.service(request, response);
 			} else {
-				if (pathInfo.equals("") || pathInfo.equals("/") || pathInfo == null) {
-					pathInfo = "/index.html";
+				if (requestUri.equals("") || requestUri.equals("/") || requestUri == null) {
+					requestUri = "/index.html";
 				}
 				if (bimServer.getWebModules() != null) {
 					for (Entry<String, WebModulePlugin> entry : bimServer.getWebModules().entrySet()) {
-						if (pathInfo != null && entry.getValue() != null && pathInfo.startsWith(entry.getKey())) {
+						if (requestUri != null && entry.getValue() != null && requestUri.startsWith(entry.getKey())) {
 							if (entry.getValue().service(request, response)) {
 								return;
 							}
