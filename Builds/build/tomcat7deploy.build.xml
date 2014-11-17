@@ -1,0 +1,37 @@
+<project name="BIMserver Cloud Server">
+	<path id="catalina-ant-classpath">
+	    <fileset dir="antlibs">
+	        <include name="catalina-ant.jar"/>
+	        <include name="tomcat-coyote.jar"/>
+	        <include name="tomcat-util.jar"/>
+	    </fileset>
+	</path>
+	
+	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" classpathref="catalina-ant-classpath"/>
+	<taskdef name="list" classname="org.apache.catalina.ant.ListTask" classpathref="catalina-ant-classpath"/>
+	<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask" classpathref="catalina-ant-classpath"/>
+	<taskdef name="resources" classname="org.apache.catalina.ant.ResourcesTask" classpathref="catalina-ant-classpath" />
+	<taskdef name="start" classname="org.apache.catalina.ant.StartTask" classpathref="catalina-ant-classpath" />
+	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask" classpathref="catalina-ant-classpath" />
+	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" classpathref="catalina-ant-classpath" />
+	
+	<tstamp>
+		<format property="builddate" pattern="yyyy-MM-dd" />
+	</tstamp>
+
+	<import file="version.build.xml"/>
+
+	<property name="type" value="DEV"/>
+	<property name="revisiondate" value="${builddate}"/>
+	<property name="version" value="${majorversion}.${minorversion}.${revisionversion}-${type}-${builddate}"/>
+
+	<target name="deploy">
+		<delete dir="additionalplugins" failonerror="false"></delete>
+		<property name="target" value="tomcat7war" />
+		<mkdir dir="additionalplugins"/>
+		<get src="https://github.com/opensourceBIM/bimvie.ws/releases/download/1.3.8-FINAL-2014-10-17/bimviews-1.3.8-FINAL-2014-10-17.jar" dest="additionalplugins"/>
+		<ant antfile="bimserver.build.xml" target="Build War"></ant>
+		<undeploy url="${tomcat_server}" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
+		<deploy url="${tomcat_server}" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />
+	</target>
+</project>
