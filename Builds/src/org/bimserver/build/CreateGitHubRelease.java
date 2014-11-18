@@ -26,17 +26,21 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSocketFactory;
+
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.AuthCache;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
@@ -84,11 +88,18 @@ public class CreateGitHubRelease {
 			BasicCredentialsProvider basicCredentialsProvider = new BasicCredentialsProvider();
 			basicCredentialsProvider.setCredentials(new AuthScope(httpHost), new UsernamePasswordCredentials(username, password));
 
+			// Do not do this in production!!!
+			HostnameVerifier hostnameVerifier = org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
+
+//			SchemeRegistry registry = new SchemeRegistry();
+//			SSLSocketFactory socketFactory = SSLSocketFactory.getSocketFactory();
+//			socketFactory.setHostnameVerifier((X509HostnameVerifier) hostnameVerifier);
+			
 			SSLContextBuilder builder = new SSLContextBuilder();
 			    builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
 			    SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
 			            builder.build());
-			    CloseableHttpClient client = HttpClients.custom().setDefaultCredentialsProvider(basicCredentialsProvider).setSSLSocketFactory(
+			    CloseableHttpClient client = HttpClients.custom().setDefaultCredentialsProvider(basicCredentialsProvider).setHostnameVerifier((X509HostnameVerifier) hostnameVerifier).setSSLSocketFactory(
 			            sslsf).build();
 			
 			AuthCache authCache = new BasicAuthCache();
