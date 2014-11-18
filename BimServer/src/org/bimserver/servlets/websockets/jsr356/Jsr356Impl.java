@@ -32,7 +32,7 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	private static final Logger LOGGER = LoggerFactory.getLogger(Jsr356Impl.class);
 	private Streamer streamer;
 	private Session websocketSession;
-	private ServletContext servletContext;
+	private static ServletContext servletContext;
 	
 	public Jsr356Impl() {
 		LOGGER.info("WebSocket object created");
