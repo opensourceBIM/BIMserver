@@ -5,6 +5,8 @@ import java.io.StringReader;
 import java.nio.ByteBuffer;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
 import javax.websocket.CloseReason;
 import javax.websocket.EndpointConfig;
@@ -22,22 +24,31 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonObject;
 
-@ServerEndpoint(value = "/stream", configurator = ServletAwareConfig.class)
+@WebListener
+@ServerEndpoint(value = "/stream")
 public class Jsr356Impl implements StreamingSocketInterface {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Jsr356Impl.class);
 	private Streamer streamer;
 	private Session websocketSession;
+	private ServletContext servletContext;
 	
+	public Jsr356Impl() {
+		LOGGER.info("WebSocket object created");
+	}
+
 	@OnOpen
 	public void onOpen(Session websocketSession, EndpointConfig config) {
 		LOGGER.info("WebSocket session opened");
 		this.websocketSession = websocketSession;
-		HttpSession httpSession = (HttpSession) config.getUserProperties().get("httpSession");
-		ServletContext servletContext = httpSession.getServletContext();
 		streamer = new Streamer(this, (BimServer) servletContext.getAttribute("bimserver"));
 		streamer.onOpen();
 	}
+	
+	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		LOGGER.info("WebSocket context initialized");
+        servletContext = servletContextEvent.getServletContext();
+    }
 
 	@OnMessage
 	public String onMessage(String message, Session session) {
