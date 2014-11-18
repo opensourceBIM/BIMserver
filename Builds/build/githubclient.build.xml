@@ -1,0 +1,21 @@
+<project name="GitHubRelease">
+	<fileset id="buildlib" dir="antlibs">
+		<include name="**/*.jar" />
+	</fileset>
+	<target name="GitHubRelease">
+		<mkdir dir="build" />
+		<javac destdir="build" debug="on" includeantruntime="false">
+			<src path="../src" />
+			<classpath>
+				<path>
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<jar basedir="build" file="githubrelease.jar">
+			<manifest>
+				<attribute name="Main-Class" value="org.bimserver.build.CreateGitHubRelease" />
+			</manifest>
+		</jar>
+	</target>
+</project>

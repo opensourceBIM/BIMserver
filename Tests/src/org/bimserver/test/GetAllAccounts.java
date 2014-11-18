@@ -31,9 +31,9 @@ public class GetAllAccounts {
 	}
 
 	private void start() {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://demobs.logic-labs.nl");
 		try {
-			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@logic-labs.nl", "blaat"));
 			for (SUser user : client.getServiceInterface().getAllUsers()) {
 				System.out.println(user.getUsername());
 			}
