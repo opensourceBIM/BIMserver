@@ -43,7 +43,10 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 		LOGGER.info("WebSocket session opened");
 		try {
 			this.websocketSession = websocketSession;
-			streamer = new Streamer(this, (BimServer) servletContext.getAttribute("bimserver"));
+			LOGGER.info("Servlet Context: " + servletContext);
+			BimServer bimServer = (BimServer) servletContext.getAttribute("bimserver");
+			LOGGER.info("bimserver: " + bimServer);
+			streamer = new Streamer(this, bimServer);
 			streamer.onOpen();
 		} catch (Throwable t) {
 			LOGGER.error("", t);
