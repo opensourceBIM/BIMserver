@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSocketFactory;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -36,7 +35,7 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.AuthCache;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
-import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
@@ -46,7 +45,6 @@ import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.eclipse.egit.github.core.client.GitHubClient;
 
@@ -88,14 +86,13 @@ public class CreateGitHubRelease {
 			BasicCredentialsProvider basicCredentialsProvider = new BasicCredentialsProvider();
 			basicCredentialsProvider.setCredentials(new AuthScope(httpHost), new UsernamePasswordCredentials(username, password));
 
-			HostnameVerifier hostnameVerifier = org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
+			HostnameVerifier hostnameVerifier = new AllowAllHostnameVerifier();
 
 			SSLContextBuilder builder = new SSLContextBuilder();
-			    builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
-			    SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
-			            builder.build());
-			    CloseableHttpClient client = HttpClients.custom().setDefaultCredentialsProvider(basicCredentialsProvider).setHostnameVerifier((X509HostnameVerifier) hostnameVerifier).setSSLSocketFactory(
-			            sslsf).build();
+			builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
+			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(builder.build());
+			CloseableHttpClient client = HttpClients.custom().setDefaultCredentialsProvider(basicCredentialsProvider)
+					.setHostnameVerifier((X509HostnameVerifier) hostnameVerifier).setSSLSocketFactory(sslsf).build();
 			
 			AuthCache authCache = new BasicAuthCache();
 			BasicScheme basicAuth = new BasicScheme();
