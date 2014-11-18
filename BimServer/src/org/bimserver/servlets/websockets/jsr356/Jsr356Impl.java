@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
 import javax.websocket.CloseReason;
@@ -26,7 +27,7 @@ import com.google.gson.JsonObject;
 
 @WebListener
 @ServerEndpoint(value = "/stream")
-public class Jsr356Impl implements StreamingSocketInterface {
+public class Jsr356Impl implements StreamingSocketInterface, ServletContextListener {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Jsr356Impl.class);
 	private Streamer streamer;
@@ -40,15 +41,24 @@ public class Jsr356Impl implements StreamingSocketInterface {
 	@OnOpen
 	public void onOpen(Session websocketSession, EndpointConfig config) {
 		LOGGER.info("WebSocket session opened");
-		this.websocketSession = websocketSession;
-		streamer = new Streamer(this, (BimServer) servletContext.getAttribute("bimserver"));
-		streamer.onOpen();
+		try {
+			this.websocketSession = websocketSession;
+			streamer = new Streamer(this, (BimServer) servletContext.getAttribute("bimserver"));
+			streamer.onOpen();
+		} catch (Throwable t) {
+			LOGGER.error("", t);
+		}
 	}
 	
+	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		LOGGER.info("WebSocket context initialized");
         servletContext = servletContextEvent.getServletContext();
     }
+
+	@Override
+	public void contextDestroyed(ServletContextEvent servletContextEvent) {
+	}
 
 	@OnMessage
 	public String onMessage(String message, Session session) {
