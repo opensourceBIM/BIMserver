@@ -8,7 +8,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpSession;
 import javax.websocket.CloseReason;
 import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
@@ -32,20 +31,19 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	private static final Logger LOGGER = LoggerFactory.getLogger(Jsr356Impl.class);
 	private Streamer streamer;
 	private Session websocketSession;
+	
+	// This is a static reference unfortunately. This is because the only other
+	// way of getting the ServletContext (and thus BimServer instance)
+	// to the websocket methods would be via the httpsession, which we don't
+	// have/use/want. This will probably be fixed in a later
+	// version of JSR-356 and implementations
 	private static ServletContext servletContext;
 	
-	public Jsr356Impl() {
-		LOGGER.info("WebSocket object created");
-	}
-
 	@OnOpen
 	public void onOpen(Session websocketSession, EndpointConfig config) {
-		LOGGER.info("WebSocket session opened");
 		try {
 			this.websocketSession = websocketSession;
-			LOGGER.info("Servlet Context: " + servletContext);
 			BimServer bimServer = (BimServer) servletContext.getAttribute("bimserver");
-			LOGGER.info("bimserver: " + bimServer);
 			streamer = new Streamer(this, bimServer);
 			streamer.onOpen();
 		} catch (Throwable t) {
@@ -55,7 +53,6 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		LOGGER.info("WebSocket context initialized");
         servletContext = servletContextEvent.getServletContext();
     }
 
@@ -65,26 +62,22 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 
 	@OnMessage
 	public String onMessage(String message, Session session) {
-		LOGGER.info("Message received: " + message);
 		streamer.onText(new StringReader(message));
 		return null;
 	}
 
 	@OnClose
 	public void onClose(Session session, CloseReason closeReason) {
-		LOGGER.info("WebSocket closed");
 		streamer.onClose();
 	}
 
 	@Override
 	public void send(JsonObject request) {
-		LOGGER.info("WebSocket sending: " + request);
 		websocketSession.getAsyncRemote().sendText(request.toString());
 	}
 
 	@Override
 	public void send(byte[] data, int start, int length) {
-		LOGGER.info("WebSocket sending binary data");
 		try {
 			websocketSession.getAsyncRemote().sendBinary(ByteBuffer.wrap(data, start, length));
 			websocketSession.getAsyncRemote().flushBatch();
