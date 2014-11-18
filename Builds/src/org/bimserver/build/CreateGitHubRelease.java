@@ -88,13 +88,8 @@ public class CreateGitHubRelease {
 			BasicCredentialsProvider basicCredentialsProvider = new BasicCredentialsProvider();
 			basicCredentialsProvider.setCredentials(new AuthScope(httpHost), new UsernamePasswordCredentials(username, password));
 
-			// Do not do this in production!!!
 			HostnameVerifier hostnameVerifier = org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
 
-//			SchemeRegistry registry = new SchemeRegistry();
-//			SSLSocketFactory socketFactory = SSLSocketFactory.getSocketFactory();
-//			socketFactory.setHostnameVerifier((X509HostnameVerifier) hostnameVerifier);
-			
 			SSLContextBuilder builder = new SSLContextBuilder();
 			    builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
 			    SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
