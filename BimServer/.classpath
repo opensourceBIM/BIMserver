@@ -27,7 +27,40 @@
 	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jxl.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/je-6.2.7.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/httpmime-4.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/httpmime-4.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-logging-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-alpn-client-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-alpn-server-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-annotations-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-cdi-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-client-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-continuation-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-deploy-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-http-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-io-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jaas-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jaspi-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jmx-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jndi-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-plus-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-proxy-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-quickstart-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-rewrite-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-security-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-server-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-servlet-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-servlets-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-util-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-webapp-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-xml-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/javax-websocket-client-impl-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/javax-websocket-server-impl-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/javax.websocket-api-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-api-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-client-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-common-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-server-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-servlet-9.2.5.v20141112.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>
@@ -51,7 +84,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-jms_1.1_spec-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xml-resolver-1.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-javamail_1.4_spec-1.7.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/commons-logging-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/js-1.7R2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/commons-lang-2.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/isorelax-20030108.jar"/>
@@ -94,80 +126,51 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-impl-2.2.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-xjc-2.2.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlbeans-2.6.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/javax.websocket-api-1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-schemas-3.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/servlet-api-3.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/javax-websocket-client-impl-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/javax-websocket-server-impl-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-annotations-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-client-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-continuation-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-deploy-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-http-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-io-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jaas-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jaspi-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jmx-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jndi-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-plus-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-proxy-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-rewrite-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-security-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-server-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-servlet-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-servlets-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-util-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-webapp-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-xml-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-api-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-client-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-common-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-server-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-servlet-9.1.2.v20140210.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/activemq-broker-5.8.0.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/activemq-client-5.8.0.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/activemq-openwire-legacy-5.8.0.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/commons-codec-1.9.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/cxf-2.7.13.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/cxf-services-sts-core-2.7.13.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/cxf-services-ws-discovery-api-2.7.13.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/cxf-services-ws-discovery-service-2.7.13.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/cxf-services-wsn-api-2.7.13.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/cxf-services-wsn-core-2.7.13.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/cxf-xjc-boolean-3.0.2.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/cxf-xjc-bug671-3.0.2.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/cxf-xjc-dv-3.0.2.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/cxf-xjc-runtime-3.0.2.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/cxf-xjc-ts-3.0.2.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/FastInfoset-1.2.13.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/geronimo-j2ee-management_1.1_spec-1.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/geronimo-servlet_3.0_spec-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/hawtbuf-1.9.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/httpclient-4.2.5.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/httpcore-4.2.4.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/httpcore-nio-4.2.4.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/jettison-1.3.6.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/jetty-continuation-8.1.15.v20140411.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/jetty-http-8.1.15.v20140411.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/jetty-io-8.1.15.v20140411.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/jetty-security-8.1.15.v20140411.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/jetty-server-8.1.15.v20140411.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/jetty-util-8.1.15.v20140411.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/joda-time-2.2.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/mina-core-2.0.7.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/neethi-3.0.3.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/opensaml-2.6.1.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/openws-1.5.1.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/serializer-2.7.1.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/slf4j-api-1.7.7.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/slf4j-jdk14-1.7.7.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/stax2-api-3.1.4.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/woodstox-core-asl-4.4.1.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/wsdl4j-1.6.3.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/wss4j-1.6.17.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/xmlschema-core-2.1.0.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/xmlsec-1.5.7.jar"/>
-	<classpathentry kind="lib" path="lib/cxf/xmltooling-1.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/activemq-broker-5.8.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/activemq-client-5.8.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/activemq-openwire-legacy-5.8.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/commons-codec-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-2.7.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-sts-core-2.7.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-ws-discovery-api-2.7.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-ws-discovery-service-2.7.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-api-2.7.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-core-2.7.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-boolean-3.0.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-bug671-3.0.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-dv-3.0.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-runtime-3.0.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-ts-3.0.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/FastInfoset-1.2.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-j2ee-management_1.1_spec-1.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-servlet_3.0_spec-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/hawtbuf-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/httpclient-4.2.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/httpcore-4.2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/httpcore-nio-4.2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jettison-1.3.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-continuation-8.1.15.v20140411.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-http-8.1.15.v20140411.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-io-8.1.15.v20140411.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-security-8.1.15.v20140411.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-server-8.1.15.v20140411.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-util-8.1.15.v20140411.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/joda-time-2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/mina-core-2.0.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/neethi-3.0.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/opensaml-2.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/openws-1.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/serializer-2.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/slf4j-api-1.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/stax2-api-3.1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/woodstox-core-asl-4.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/wsdl4j-1.6.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/wss4j-1.6.17.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlschema-core-2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlsec-1.5.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/xmltooling-1.4.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.4.4.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
 	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.7.3.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>

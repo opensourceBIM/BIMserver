@@ -7,7 +7,6 @@
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/aopalliance-1.0.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-manifest.jar" sourcepath="C:/Software/JavaLibs/apache-cxf-2.3.0-src"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-javamail_1.4_spec-1.7.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-jms_1.1_spec-1.1.1.jar"/>
