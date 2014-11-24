@@ -100,7 +100,7 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 			}
 			response.setHeader("Expires", FAR_FUTURE_EXPIRE_DATE);
 			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(getSubDir() + path);
-			LOGGER.info("Getting " + getSubDir() + path + " results in: " + resourceAsInputStream);
+//			LOGGER.info("Getting " + getSubDir() + path + " results in: " + resourceAsInputStream);
 			if (resourceAsInputStream != null) {
 				IOUtils.copy(resourceAsInputStream, response.getOutputStream());
 				resourceAsInputStream.close();

@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -134,7 +133,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 			if (geometryInfo != null && geometryInfo.getTransformation() != null && geometryInfo.getData().getVertices() != null) {
 				dataOutputStream.writeUTF(ifcProduct.eClass().getName());
 				dataOutputStream.writeLong(ifcProduct.getOid());
-
+				
 				GeometryData geometryData = geometryInfo.getData();
 				byte[] vertices = geometryData.getVertices();
 				
@@ -182,9 +181,8 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 //						IntBuffer materialIndicesBuffer = materialIndexByteBuffer.asIntBuffer();
 						ByteBuffer materialsByteBuffer = ByteBuffer.wrap(geometryData.getMaterials());
 						materialsByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
-						FloatBuffer materialsBuffer = materialsByteBuffer.asFloatBuffer();
 						
-						dataOutputStream.writeInt(materialsBuffer.capacity() / 4);
+						dataOutputStream.writeInt(materialsByteBuffer.capacity() / 4);
 						dataOutputStream.write(materialsByteBuffer.array());
 //						for (int i=0; i<materialsBuffer.capacity(); i++) {
 //							dataOutputStream.writeFloat(materialsBuffer.get(i));

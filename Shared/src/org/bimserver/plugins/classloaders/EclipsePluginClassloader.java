@@ -25,10 +25,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EclipsePluginClassloader extends ClassLoader {
+public class EclipsePluginClassloader extends PublicFindClassClassLoader {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EclipsePluginClassloader.class);
 	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
@@ -52,7 +53,7 @@ public class EclipsePluginClassloader extends ClassLoader {
 	}
 	
 	@Override
-	protected URL findResource(String name) {
+	public URL findResource(String name) {
 		File file = new File(projectFolder, name);
 		if (file.exists()) {
 			try {
@@ -65,7 +66,10 @@ public class EclipsePluginClassloader extends ClassLoader {
 	}
 	
 	@Override
-	protected Class<?> findClass(String name) throws ClassNotFoundException {
+	public Class<?> findClass(String name) throws ClassNotFoundException {
+		if (name.endsWith("ResourceManager")) {
+			System.out.println();
+		}
 		String filename = name.replace(".", File.separator) + ".class";
 		if (loadedClasses.containsKey(filename)) {
 			return loadedClasses.get(filename);
@@ -102,5 +106,15 @@ public class EclipsePluginClassloader extends ClassLoader {
 			}
 		}
 		throw new ClassNotFoundException(name);
+	}
+
+	public void dumpStructure(int indent) {
+		System.out.print(StringUtils.gen("  ", indent));
+		System.out.println("EclipsePluginClassloader " + projectFolder);
+		ClassLoader parentLoader = getParent();
+		if (parentLoader instanceof DelegatingClassLoader) {
+			DelegatingClassLoader delegatingClassLoader = (DelegatingClassLoader)parentLoader;
+			delegatingClassLoader.dumpStructure(indent + 1);
+		}
 	}
 }

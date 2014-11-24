@@ -94,6 +94,7 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 				dataObjects.add(dataObject);
 			}
 		}
+		System.out.println(dataObjects.size());
 		return dataObjects;
 	}
 }

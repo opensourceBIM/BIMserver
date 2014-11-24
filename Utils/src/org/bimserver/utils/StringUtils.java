@@ -173,4 +173,12 @@ public class StringUtils {
 		}
 		return baseAddress;
 	}
+
+	public static String gen(String string, int indent) {
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<indent; i++) {
+			sb.append(string);
+		}
+		return sb.toString();
+	}
 }
