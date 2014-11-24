@@ -22,6 +22,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,6 +42,7 @@ import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.classloaders.DelegatingClassLoader;
 import org.bimserver.plugins.classloaders.EclipsePluginClassloader;
 import org.bimserver.plugins.classloaders.FileJarClassLoader;
+import org.bimserver.plugins.classloaders.PublicFindClassClassLoader;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
@@ -127,6 +129,39 @@ public class PluginManager {
 		try {
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(new FileInputStream(pluginFile));
 			DelegatingClassLoader delegatingClassLoader = new DelegatingClassLoader(getClass().getClassLoader());
+			PublicFindClassClassLoader previous = new PublicFindClassClassLoader(getClass().getClassLoader()){
+				@Override
+				public Class<?> findClass(String name) throws ClassNotFoundException {
+					return null;
+				}
+
+				@Override
+				public URL findResource(String name) {
+					return null;
+				}
+
+				@Override
+				public void dumpStructure(int indent) {
+				}
+			};
+			for (Dependency dependency : pluginDescriptor.getDependencies()) {
+				String path = dependency.getPath();
+				
+				DelegatingClassLoader depDelLoader = new DelegatingClassLoader(previous);
+				File depLibFolder = new File(path, "lib");
+				if (depLibFolder.isDirectory()) {
+					for (File libFile : depLibFolder.listFiles()) {
+						if (libFile.getName().toLowerCase().endsWith(".jar")) {
+							FileJarClassLoader jarClassLoader = new FileJarClassLoader(depDelLoader, libFile, tempDir);
+							depDelLoader.add(jarClassLoader);
+						}
+					}
+				}
+				
+				EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, new File(path));
+				previous = depLoader;
+			}
+			delegatingClassLoader.add(previous);
 			File libFolder = new File(projectRoot, "lib");
 			if (libFolder.isDirectory()) {
 				for (File libFile : libFolder.listFiles()) {
@@ -137,6 +172,7 @@ public class PluginManager {
 				}
 			}
 			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
+			pluginClassloader.dumpStructure(0);
 			loadedLocations.add(projectRoot.toPath().toAbsolutePath());
 			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), new File(projectRoot, "bin").getAbsolutePath(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT);
 		} catch (JAXBException e) {
@@ -443,6 +479,7 @@ public class PluginManager {
 						plugin.init(this);
 					}
 				} catch (Throwable e) {
+					LOGGER.error("", e);
 					pluginContext.setEnabled(false, false);
 				}
 			}

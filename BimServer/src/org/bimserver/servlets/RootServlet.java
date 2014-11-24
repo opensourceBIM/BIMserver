@@ -67,7 +67,7 @@ public class RootServlet extends HttpServlet {
 			if (requestUri == null) {
 				LOGGER.error("RequestURI is null");
 			} else {
-				LOGGER.info(requestUri);
+//				LOGGER.info(requestUri);
 			}
 			setContentType(response, requestUri);
 			if (request.getRequestURI().endsWith("getbimserveraddress")) {

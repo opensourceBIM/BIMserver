@@ -36,6 +36,7 @@ import java.util.zip.InflaterInputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -156,5 +157,11 @@ public class MemoryJarClassLoader extends JarClassLoader {
 			return defineClass;
 		}
 		throw new ClassNotFoundException(name);
+	}
+
+	@Override
+	public void dumpStructure(int indent) {
+		System.out.print(StringUtils.gen("  ", indent));
+		System.out.println("MemoryClassLoader");
 	}
 }

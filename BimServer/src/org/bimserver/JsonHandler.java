@@ -119,6 +119,7 @@ public class JsonHandler {
 		}
 
 		PublicInterface service = getServiceInterface(httpRequest, bimServer, sService.getInterfaceClass(), methodName, jsonToken);
+		Thread.currentThread().setName(interfaceName + "." + methodName);
 		Object result = method.invoke(sService.getInterfaceClass(), service, parameters);
 
 		// When we have managed to get here, no exceptions have been thrown. We

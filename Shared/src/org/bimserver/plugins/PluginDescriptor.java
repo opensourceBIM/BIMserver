@@ -17,12 +17,19 @@ package org.bimserver.plugins;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="PluginDescriptor")
@@ -31,6 +38,18 @@ public class PluginDescriptor {
 	
 	@XmlElement(name="PluginImplementation")
 	private List<PluginImplementation> implementations = new ArrayList<PluginImplementation>();
+	
+	@XmlElementWrapper(name="dependencies")
+	@XmlElement(name="Dependency")
+	private List<Dependency> dependencies = new ArrayList<Dependency>();
+
+	public List<Dependency> getDependencies() {
+		return dependencies;
+	}
+	
+	public void setDependencies(List<Dependency> dependencies) {
+		this.dependencies = dependencies;
+	}
 
 	public void setImplementations(List<PluginImplementation> implementations) {
 		this.implementations = implementations;
@@ -47,5 +66,23 @@ public class PluginDescriptor {
 			sb.append(pluginImplementation.toString() + "\n");
 		}
 		return sb.toString();
+	}
+	
+	public static void main(String[] args) {
+		PluginDescriptor descriptor = new PluginDescriptor();
+		Dependency dependency = new Dependency();
+		dependency.setPath("test");
+		PluginImplementation pluginImplementation = new PluginImplementation();
+		descriptor.getImplementations().add(pluginImplementation);
+		descriptor.getDependencies().add(dependency);
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);
+			Marshaller marshaller = jaxbContext.createMarshaller();
+			marshaller.marshal(descriptor, new FileOutputStream(new File("testdescriptor.xml")));
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -19,7 +19,7 @@ package org.bimserver.plugins.classloaders;
 
 import java.net.URL;
 
-public abstract class JarClassLoader extends ClassLoader {
+public abstract class JarClassLoader extends PublicFindClassClassLoader {
 
 	public JarClassLoader(ClassLoader parentClassLoader) {
 		super(parentClassLoader);
