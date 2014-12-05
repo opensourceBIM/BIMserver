@@ -454,11 +454,13 @@ public class IfcStepSerializer extends IfcSerializer {
 								print(upperCases.get(class1));
 								print(OPEN_PAREN);
 								if (realVal instanceof Double) {
-									Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
-									if (stringVal != null && model.isUseDoubleStrings()) {
-										print((String)stringVal);
-									} else {
-										print((String)realVal);
+									if (model.isUseDoubleStrings()) {
+										Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
+										if (stringVal != null) {
+											print((String)stringVal);
+										} else {
+											writePrimitive(realVal);
+										}
 									}
 								} else {
 									writePrimitive(realVal);
