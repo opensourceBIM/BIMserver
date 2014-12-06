@@ -151,7 +151,7 @@ public class Streamer implements EndPoint {
 									IOUtils.copy(inputStream, outputStream);
 									inputStream.close();
 								} else {
-									((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
+									((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, null);
 								}
 							} catch (ServerException e) {
 								LOGGER.error("", e);

@@ -82,7 +82,7 @@ public class JsonConverter {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			if (dataHandler.getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
 				CacheStoringEmfSerializerDataSource cacheStoringEmfSerializerDataSource = (CacheStoringEmfSerializerDataSource) dataHandler.getDataSource();
-				cacheStoringEmfSerializerDataSource.writeToOutputStream(baos);
+				cacheStoringEmfSerializerDataSource.writeToOutputStream(baos, null);
 				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
 			} else {
 				InputStream inputStream = dataHandler.getInputStream();

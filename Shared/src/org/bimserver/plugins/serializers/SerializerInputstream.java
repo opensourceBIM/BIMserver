@@ -55,7 +55,7 @@ public class SerializerInputstream extends InputStream {
 			buffer = null;
 			pos = 0;
 			try {
-				boolean write = emfSerializer.write(out);
+				boolean write = emfSerializer.write(out, null);
 				if (write) {
 					buffer = out.toByteArray();
 					if (buffer.length > 0) {
@@ -87,7 +87,7 @@ public class SerializerInputstream extends InputStream {
 				buffer = null;
 				while (buffer == null) {
 					out.reset();
-					boolean write = emfSerializer.write(out);
+					boolean write = emfSerializer.write(out, null);
 					byte[] newBuffer = out.toByteArray();
 					if (newBuffer.length > 0) {
 						buffer = newBuffer;

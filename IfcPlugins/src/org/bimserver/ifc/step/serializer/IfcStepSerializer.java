@@ -38,6 +38,7 @@ import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.common.util.EList;
@@ -76,6 +77,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	private static final String DOLLAR = "$";
 	private static final String WRAPPED_VALUE = "wrappedValue";
 	
+	private long writeCounter = 0;
 	private Iterator<IdEObject> iterator;
 	private SchemaDefinition schema;
 	private OutputStream outputStream;
@@ -88,7 +90,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		setMode(Mode.HEADER);
 	}
 	
-	public boolean write(OutputStream outputStream) throws SerializerException {
+	public boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		try {
 			this.outputStream = outputStream;
 			if (getMode() == Mode.HEADER) {
@@ -104,14 +106,17 @@ public class IfcStepSerializer extends IfcSerializer {
 			} else if (getMode() == Mode.BODY) {
 				if (iterator.hasNext()) {
 					writeObject(iterator.next());
+					writeCounter++;
+					progressReporter.update(writeCounter, model.size());
 				} else {
 					iterator = null;
 					setMode(Mode.FOOTER);
-					return write(outputStream);
+					return true;
 				}
 				return true;
 			} else if (getMode() == Mode.FOOTER) {
 				writeFooter();
+				progressReporter.update(model.size(), model.size());
 				setMode(Mode.FINISHED);
 				return true;
 			} else if (getMode() == Mode.FINISHED) {
@@ -476,7 +481,7 @@ public class IfcStepSerializer extends IfcSerializer {
 									if (val == null) {
 										writePrimitive(listObject);
 									} else {
-										print((String)val);
+										print(val);
 									}
 								} else {
 									writePrimitive(listObject);

@@ -51,7 +51,7 @@ public class IfcXmlReadTest {
 				Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
 				try {
-					serializer.writeToFile(outFile);
+					serializer.writeToFile(outFile, null);
 				} catch (SerializerException e) {
 					e.printStackTrace();
 				}

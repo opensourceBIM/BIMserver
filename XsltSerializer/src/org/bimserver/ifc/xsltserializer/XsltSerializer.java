@@ -35,6 +35,7 @@ import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -61,7 +62,7 @@ public class XsltSerializer extends EmfSerializer {
 	}
 
 	@Override
-	protected boolean write(OutputStream outputStream) throws SerializerException {
+	protected boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		switch (getMode()) {
 		case BODY:
 			SerializerPlugin plugin = (SerializerPlugin) getPluginManager().getPlugin("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin", true);

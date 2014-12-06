@@ -124,7 +124,7 @@ public class TestSimultaniousDownloadWithCaching {
 								CacheStoringEmfSerializerDataSource c = (CacheStoringEmfSerializerDataSource)downloadData.getFile().getDataSource();
 								try {
 									ByteArrayOutputStream baos = new ByteArrayOutputStream();
-									c.writeToOutputStream(baos);
+									c.writeToOutputStream(baos, null);
 									System.out.println(baos.size());
 								} catch (SerializerException e) {
 									e.printStackTrace();

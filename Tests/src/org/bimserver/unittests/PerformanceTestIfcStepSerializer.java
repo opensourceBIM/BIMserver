@@ -65,7 +65,7 @@ public class PerformanceTestIfcStepSerializer {
 			}
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
 			long start = System.nanoTime();
-			serializer.writeToFile(new File("output/test.ifc"));
+			serializer.writeToFile(new File("output/test.ifc"), null);
 			System.out.println("Serialize took: " + ((System.nanoTime() - start) / 1000000) + "ms");
 		} catch (PluginException e) {
 			e.printStackTrace();

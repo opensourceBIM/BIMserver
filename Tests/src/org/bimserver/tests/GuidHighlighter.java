@@ -55,7 +55,7 @@ public class GuidHighlighter {
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			try {
 				serializer.init(model, null, null, pluginManager.requireRenderEngine(), false);
-				serializer.writeToFile(outputFile);
+				serializer.writeToFile(outputFile, null);
 			} catch (SerializerException e) {
 				e.printStackTrace();
 			}

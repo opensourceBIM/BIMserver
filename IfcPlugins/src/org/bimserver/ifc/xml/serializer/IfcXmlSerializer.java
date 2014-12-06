@@ -17,9 +17,6 @@ package org.bimserver.ifc.xml.serializer;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -43,6 +40,7 @@ import org.bimserver.plugins.schema.RealType;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SetType;
 import org.bimserver.plugins.schema.StringType;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
@@ -84,7 +82,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 	}
 	
 	@Override
-	public boolean write(OutputStream out) throws SerializerException {
+	public boolean write(OutputStream out, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			this.out = new UTF8PrintWriter(out);
 			printLineTabbed("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
@@ -110,10 +108,6 @@ public class IfcXmlSerializer extends IfcSerializer {
 			return false;
 		}
 		return false;
-	}
-
-	public void write(File file) throws FileNotFoundException, SerializerException {
-		write(new FileOutputStream(file));
 	}
 
 	/**

@@ -130,7 +130,7 @@ public class TestClientEmfModelLocal {
 			if (!output.exists()) {
 				output.mkdir();
 			}
-			serializer.writeToFile(new File(output, roid + ".ifc"));
+			serializer.writeToFile(new File(output, roid + ".ifc"), null);
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		} catch (UserException e) {

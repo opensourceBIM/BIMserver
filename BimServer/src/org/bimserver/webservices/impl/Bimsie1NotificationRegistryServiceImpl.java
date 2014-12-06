@@ -70,7 +70,8 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 			LongActionState lastProgress = progressTopic.getLastProgress();
 			if (lastProgress != null && lastProgress.getState() == ActionState.FINISHED) {
 				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("Sending update directly for topic " + progressTopic.getKey().getId());
-				progressTopic.updateProgress(lastProgress);
+				// TODO!!
+//				progressTopic.stageProgressUpdate(ate, title)updateProgress(lastProgress);
 			} else {
 				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("NOT Sending update directly for topic " + progressTopic.getKey().getId());
 			}

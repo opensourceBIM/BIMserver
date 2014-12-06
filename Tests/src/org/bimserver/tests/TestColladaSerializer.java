@@ -59,7 +59,7 @@ public class TestColladaSerializer {
 
 					Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 					serializer.init(model, projectInfo, pluginManager, pluginManager.requireRenderEngine(), false);
-					serializer.writeToFile(new File(output, file.getName() + ".dae"));
+					serializer.writeToFile(new File(output, file.getName() + ".dae"), null);
 				}
 			}
 		} catch (PluginException e) {

@@ -234,7 +234,7 @@ public class ClientIfcModel extends IfcModel {
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				if (downloadData instanceof SerializerInputstream) {
 					SerializerInputstream serializerInputStream = (SerializerInputstream)downloadData;
-					serializerInputStream.getEmfSerializer().writeToOutputStream(baos);
+					serializerInputStream.getEmfSerializer().writeToOutputStream(baos, null);
 				} else {
 					IOUtils.copy((InputStream) downloadData, baos);
 				}

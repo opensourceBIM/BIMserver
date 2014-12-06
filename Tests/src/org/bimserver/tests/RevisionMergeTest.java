@@ -53,7 +53,7 @@ public class RevisionMergeTest {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			serializer.init(merged, null, null, pluginManager.requireRenderEngine(), false);
-			serializer.writeToFile(new File("merged.ifc"));
+			serializer.writeToFile(new File("merged.ifc"), null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -32,9 +32,9 @@ public class CacheStoringEmfSerializerDataSource extends EmfSerializerDataSource
 	}
 	
 	@Override
-	public void writeToOutputStream(OutputStream outputStream) throws SerializerException, IOException {
+	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException, IOException {
 		try {
-			super.writeToOutputStream(new MultiplexingOutputStream(outputStream, diskCacheOutputStream));
+			super.writeToOutputStream(new MultiplexingOutputStream(outputStream, diskCacheOutputStream), progressReporter);
 		} catch (Exception e) {
 			diskCacheOutputStream.remove();
 		}

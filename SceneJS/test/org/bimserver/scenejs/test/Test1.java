@@ -28,7 +28,7 @@ public class Test1 {
 			Serializer streamingSerializer = streamingSerializerPlugin.createSerializer(new PluginConfiguration());
 			streamingSerializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
 			long start = System.nanoTime();
-			streamingSerializer.writeToFile(new File("str-" + file.getName() + ".json"));
+			streamingSerializer.writeToFile(new File("str-" + file.getName() + ".json"), null);
 			long end = System.nanoTime();
 
 			System.out.println(((end - start) / 1000000) + " ms");

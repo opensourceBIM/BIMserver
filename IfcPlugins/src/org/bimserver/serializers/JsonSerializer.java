@@ -29,6 +29,7 @@ import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.codehaus.jettison.json.JSONObject;
@@ -55,7 +56,7 @@ public class JsonSerializer extends IfcSerializer {
 	}
 
 	@Override
-	protected boolean write(OutputStream outputStream) throws SerializerException {
+	protected boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		try {
 			if (out == null) {
 				out = new UTF8PrintWriter(outputStream);

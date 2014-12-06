@@ -57,7 +57,7 @@ public class TestCollada {
 				// true);
 				IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile());
 				serializer.init(model, null, pluginManager, ifcEngine, false);
-				serializer.writeToFile(new File("output/ac11.dae"));
+				serializer.writeToFile(new File("output/ac11.dae"), null);
 			}
 		} catch (PluginException e) {
 			e.printStackTrace();
