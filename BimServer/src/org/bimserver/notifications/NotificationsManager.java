@@ -68,6 +68,10 @@ public class NotificationsManager {
 		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 		this.bimServer = bimServer;
 	}
+	
+	public BimServer getBimServer() {
+		return bimServer;
+	}
 
 	public void notify(Notification notification) {
 		addToQueue(notification);

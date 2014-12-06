@@ -58,7 +58,7 @@ public class ExtractFurniture {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(null);
 			serializer.init(newModel, null, pluginManager, null, true);
-			serializer.writeToFile(new File("test.ifc"));
+			serializer.writeToFile(new File("test.ifc"), null);
 		} catch (PluginException e) {
 			e.printStackTrace();
 		} catch (DeserializeException e) {

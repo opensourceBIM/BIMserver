@@ -87,7 +87,7 @@ public abstract class EmfSerializer implements Serializer {
 	public byte[] getBytes() {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		try {
-			writeToOutputStream(outputStream);
+			writeToOutputStream(outputStream, null);
 		} catch (SerializerException e) {
 			LOGGER.error("", e);
 		}
@@ -105,19 +105,19 @@ public abstract class EmfSerializer implements Serializer {
 	 * The implementation must return true when data has been written, or false
 	 * when no data has been written (this will stop the serialization).
 	 */
-	protected abstract boolean write(OutputStream outputStream) throws SerializerException;
+	protected abstract boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException;
 
-	public void writeToOutputStream(OutputStream outputStream) throws SerializerException {
-		boolean result = write(outputStream);
+	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
+		boolean result = write(outputStream, progressReporter);
 		while (result) {
-			result = write(outputStream);
+			result = write(outputStream, progressReporter);
 		}
 	}
 
-	public void writeToFile(File file) throws SerializerException {
+	public void writeToFile(File file, ProgressReporter progressReporter) throws SerializerException {
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
-			writeToOutputStream(fos);
+			writeToOutputStream(fos, progressReporter);
 			fos.close();
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);

@@ -27,6 +27,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
@@ -55,7 +56,7 @@ public class KmzSerializer extends EmfSerializer {
 	}
 	
 	@Override
-	public boolean write(OutputStream out) throws SerializerException {
+	public boolean write(OutputStream out, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			try {
 				ZipOutputStream zipOutputStream = new ZipOutputStream(out);
@@ -63,7 +64,7 @@ public class KmzSerializer extends EmfSerializer {
 				writeKmlFile(zipOutputStream);
 				zipOutputStream.closeEntry();
 				zipOutputStream.putNextEntry(new ZipEntry("files/collada.dae"));
-				ifcToCollada.write(zipOutputStream);
+				ifcToCollada.write(zipOutputStream, null);
 				zipOutputStream.closeEntry();
 				zipOutputStream.finish();
 				zipOutputStream.flush();

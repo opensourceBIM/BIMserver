@@ -93,7 +93,7 @@ public class IfcGeometryRemover {
 		try {
 			model.resetExpressIds();
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), true);
-			serializer.writeToFile(outFile);
+			serializer.writeToFile(outFile, null);
 		} catch (SerializerException e) {
 			e.printStackTrace();
 		} catch (PluginException e) {

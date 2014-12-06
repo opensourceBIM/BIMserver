@@ -74,7 +74,7 @@ public class TestColor {
 			Serializer serializer = serializerPlugin.createSerializer(null);
 			model.generateMinimalExpressIds();
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
-			serializer.writeToFile(new File("color.ifc"));
+			serializer.writeToFile(new File("color.ifc"), null);
 		} catch (PluginException e1) {
 			e1.printStackTrace();
 		} catch (DeserializeException e) {

@@ -40,7 +40,7 @@ public class FileCache {
 			File file = new File(cacheDir, fileName);
 			EmfSerializer emfSerializer = (EmfSerializer) checkoutResult.getFile().getDataSource();
 			FileOutputStream out = new FileOutputStream(file);
-			emfSerializer.writeToOutputStream(out);
+			emfSerializer.writeToOutputStream(out, null);
 			out.close();
 		} catch (IOException e) {
 			LOGGER.error("", e);

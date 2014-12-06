@@ -56,8 +56,8 @@ public class EmfSerializerDataSource implements DataSource {
 		return serializer;
 	}
 
-	public void writeToOutputStream(OutputStream outputStream) throws SerializerException, IOException {
-		serializer.writeToOutputStream(outputStream);
+	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException, IOException {
+		serializer.writeToOutputStream(outputStream, progressReporter);
 		try {
 			outputStream.close();
 		} catch (EOFException e) {

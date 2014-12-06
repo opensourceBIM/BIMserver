@@ -53,7 +53,7 @@ public class DownloadModelLowLevel extends Action {
 				Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 				model.generateMinimalExpressIds();
 				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
-				serializer.writeToFile(new File(getTestFramework().getTestConfiguration().getOutputFolder(), "test.ifc"));
+				serializer.writeToFile(new File(getTestFramework().getTestConfiguration().getOutputFolder(), "test.ifc"), null);
 			} catch (BimServerClientException e1) {
 				e1.printStackTrace();
 			} catch (RenderEngineException e) {

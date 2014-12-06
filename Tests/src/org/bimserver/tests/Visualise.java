@@ -78,7 +78,7 @@ public class Visualise extends JFrame {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			serializer.init(merged, null, null, pluginManager.requireRenderEngine(), false);
-			serializer.writeToFile(new File("merged.ifc"));
+			serializer.writeToFile(new File("merged.ifc"), null);
 			new Visualise().start(model1b, "Model 1");
 			new Visualise().start(model2b, "Model 2");
 			new Visualise().start(merged, "Merged");

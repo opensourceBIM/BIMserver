@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 public class ProgressTopic extends Topic {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProgressTopic.class);
-	private static final int RATE_LIMIT_NANO_SECONDS = 200000000; // 400ms
+	private static final int RATE_LIMIT_NANO_SECONDS = 200000000; // 200ms
 	private SProgressTopicType type;
 	private String description;
 	private ProgressTopicKey key;
@@ -49,25 +49,29 @@ public class ProgressTopic extends Topic {
 		return key;
 	}
 
-	public synchronized void updateProgress(final LongActionState state) {
-		// Actually we should be keeping track of when we last sent a message to A SPECIFIC ENDPOINT, this way, new endpoints won't receive the message rights away
-		if (lastSent == -1 || System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS || state.getProgress() == 100 || state.getState() == ActionState.FINISHED || state.getState() == ActionState.AS_ERROR) {
-			try {
-				map(new Mapper(){
-					@Override
-					public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
-						try {
-							endPoint.getNotificationInterface().progress(key.getId(), new SConverter().convertToSObject(state));
-						} catch (Exception e) {
-							LOGGER.error("", e);
+	protected synchronized void updateProgress(final LongActionState state) {
+		try {
+			// Actually we should be keeping track of when we last sent a message to A SPECIFIC ENDPOINT, this way, new endpoints won't receive the message rights away
+			if (lastSent == -1 || System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS || state.getProgress() == 100 || state.getState() == ActionState.FINISHED || state.getState() == ActionState.AS_ERROR || (lastProgress != null && lastProgress.getStage() != state.getStage())) {
+				try {
+					map(new Mapper(){
+						@Override
+						public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
+							try {
+								endPoint.getNotificationInterface().progress(key.getId(), new SConverter().convertToSObject(state));
+							} catch (Exception e) {
+								LOGGER.error("", e);
+							}
 						}
-					}
-				});
-			} catch (Exception e) {
-				LOGGER.error("", e);
+					});
+				} catch (Exception e) {
+					LOGGER.error("", e);
+				}
+				lastProgress = state;
+				lastSent = System.nanoTime();
 			}
-			lastProgress = state;
-			lastSent = System.nanoTime();
+		} catch (Exception e) {
+			System.out.println();
 		}
 	}
 
@@ -89,5 +93,9 @@ public class ProgressTopic extends Topic {
 	@Override
 	public void remove() {
 		getNotificationsManager().removeProgressTopic(key);
+	}
+
+	public void stageProgressUpdate(LongActionState longActionState) {
+		getNotificationsManager().notify(new ProgressNotification(getNotificationsManager().getBimServer(), this, longActionState));
 	}
 }

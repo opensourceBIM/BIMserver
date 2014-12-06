@@ -88,7 +88,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						if (dataSource instanceof ByteArrayDataSource) {
 							org.apache.commons.io.IOUtils.copy(((ByteArrayDataSource) dataSource).getInputStream(), baos);
 						} else {
-							((EmfSerializerDataSource) dataSource).getSerializer().writeToOutputStream(baos);
+							((EmfSerializerDataSource) dataSource).getSerializer().writeToOutputStream(baos, null);
 						}
 
 						Deserializer deserializer = getPluginManager().requireDeserializer("ifc").createDeserializer(new PluginConfiguration());

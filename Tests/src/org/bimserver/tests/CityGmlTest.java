@@ -45,7 +45,7 @@ public class CityGmlTest {
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
 			FileOutputStream fos = new FileOutputStream(new File("out.gml"));
-			serializer.writeToOutputStream(fos);
+			serializer.writeToOutputStream(fos, null);
 			fos.close();
 		} catch (PluginException e2) {
 			e2.printStackTrace();

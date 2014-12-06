@@ -28,11 +28,11 @@ import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 
 public interface Serializer {
 	void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException;
-	void writeToFile(File file) throws SerializerException;
+	void writeToFile(File file, ProgressReporter progressReporter) throws SerializerException;
 	byte[] getBytes();
 	IfcModelInterface getModel();
 	InputStream getInputStream() throws IOException;
-	void writeToOutputStream(OutputStream outputStream) throws SerializerException;
+	void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException;
 
 	/*
 	 * The serializer must implement this method, but in most cases won't have

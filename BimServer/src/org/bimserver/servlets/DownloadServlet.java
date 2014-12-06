@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.zip.GZIPOutputStream;
@@ -44,8 +45,13 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.ServerException;
@@ -84,6 +90,10 @@ public class DownloadServlet extends SubServlet {
 
 			if (token == null) {
 				token = request.getParameter("token");
+			}
+			long topicId = -1;
+			if (request.getParameter("topicId") != null) {
+				topicId = Long.parseLong(request.getParameter("topicId"));
 			}
 			ServiceMap serviceMap = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL);
 
@@ -214,48 +224,78 @@ public class DownloadServlet extends SubServlet {
 				} else {
 					DataSource dataSource = checkoutResult.getFile().getDataSource();
 					PluginConfiguration pluginConfiguration = new PluginConfiguration(serviceMap.getPluginInterface().getPluginSettings(serializer.getOid()));
-					if (zip) {
-						if (pluginConfiguration.getString("ZipExtension") != null) {
-							response.setHeader("Content-Disposition",
-									"inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.ZIP_EXTENSION) + "\"");
+
+					final ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
+
+					ProgressReporter progressReporter = new ProgressReporter() {
+						@Override
+						public void update(long progress, long max) {
+							if (progressTopic != null) {
+								LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
+								ds.setStart(new Date());
+								ds.setState(progress == max ? ActionState.FINISHED : ActionState.STARTED);
+								ds.setTitle("Downloading...");
+								ds.setStage(3);
+								ds.setProgress((int) Math.round(100.0 * progress / max));
+
+								progressTopic.stageProgressUpdate(ds);
+							}
+						}
+					};
+
+					try {
+						if (zip) {
+							if (pluginConfiguration.getString("ZipExtension") != null) {
+								response.setHeader("Content-Disposition",
+										"inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.ZIP_EXTENSION) + "\"");
+							} else {
+								response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + ".zip" + "\"");
+							}
+							response.setContentType("application/zip");
+
+							String nameInZip = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
+							ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
+							zipOutputStream.putNextEntry(new ZipEntry(nameInZip));
+							if (dataSource instanceof FileInputStreamDataSource) {
+								InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
+								IOUtils.copy(inputStream, zipOutputStream);
+								inputStream.close();
+							} else {
+								((EmfSerializerDataSource) dataSource).writeToOutputStream(zipOutputStream, progressReporter);
+							}
+							try {
+								zipOutputStream.finish();
+							} catch (IOException e) {
+								// Sometimes it's already closed, that's no problem
+							}
 						} else {
-							response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + ".zip" + "\"");
-						}
-						response.setContentType("application/zip");
-						String nameInZip = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
-						ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
-						zipOutputStream.putNextEntry(new ZipEntry(nameInZip));
-						if (dataSource instanceof FileInputStreamDataSource) {
-							InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
-							IOUtils.copy(inputStream, zipOutputStream);
-							inputStream.close();
-						} else {
-							((EmfSerializerDataSource) dataSource).writeToOutputStream(zipOutputStream);
-						}
-						try {
-							zipOutputStream.finish();
-						} catch (IOException e) {
-							// Sometimes it's already closed, that's no problem
-						}
-					} else {
-						if (request.getParameter("mime") == null) {
-							response.setContentType(pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE));
-							response.setHeader("Content-Disposition",
-									"inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION) + "\"");
-						} else {
-							response.setContentType(request.getParameter("mime"));
-						}
-						try {
+							if (request.getParameter("mime") == null) {
+								response.setContentType(pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE));
+								response.setHeader("Content-Disposition",
+										"inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION) + "\"");
+							} else {
+								response.setContentType(request.getParameter("mime"));
+							}
 							if (dataSource instanceof FileInputStreamDataSource) {
 								InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
 								IOUtils.copy(inputStream, outputStream);
 								inputStream.close();
 							} else {
-								((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
+								((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
 							}
-						} catch (SerializerException e) {
-							LOGGER.error("", e);
 						}
+					} catch (SerializerException s) {
+						LOGGER.error("", s);
+
+						LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
+						ds.setStart(new Date());
+						ds.setState(ActionState.AS_ERROR);
+						ds.setTitle("Serialization Error");
+						ds.setProgress(-1);
+						ds.setStage(3);
+						ds.getErrors().add(s.getMessage());
+
+						progressTopic.stageProgressUpdate(ds);
 					}
 				}
 			}

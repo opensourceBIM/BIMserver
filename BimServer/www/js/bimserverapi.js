@@ -189,7 +189,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.generateRevisionDownloadUrl = function(settings) {
-		return othis.baseUrl + "/download?token=" + othis.token + "&longActionId=" + settings.laid + (settings.zip ? "&zip=on" : "") + "&serializerOid=" + settings.serializerOid;
+		return othis.baseUrl + "/download?token=" + othis.token + "&longActionId=" + settings.laid + (settings.zip ? "&zip=on" : "") + "&serializerOid=" + settings.serializerOid + "&topicId=" + settings.topicId;
 	};
 
 	this.generateExtendedDataDownloadUrl = function(edid) {
