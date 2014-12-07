@@ -52,8 +52,17 @@ public class ProgressTopic extends Topic {
 	protected synchronized void updateProgress(final LongActionState state) {
 		try {
 			// Actually we should be keeping track of when we last sent a message to A SPECIFIC ENDPOINT, this way, new endpoints won't receive the message rights away
-			if (lastSent == -1 || System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS || state.getProgress() == 100 || state.getState() == ActionState.FINISHED || state.getState() == ActionState.AS_ERROR || (lastProgress != null && lastProgress.getStage() != state.getStage())) {
+			
+			boolean sendMessage = lastSent == -1 || System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS;
+			sendMessage |= state.getProgress() == 100;
+			sendMessage |= state.getState() == ActionState.FINISHED;
+			sendMessage |= state.getState() == ActionState.AS_ERROR;
+			sendMessage |= lastProgress != null && lastProgress.getStage() != state.getStage();
+			sendMessage |= lastProgress != null && !lastProgress.getTitle().equals(state.getTitle());
+
+			if (sendMessage) {
 				try {
+//					System.out.println("Sending " + state.getProgress() + ", " + state.getState() + ", " + state.getTitle() + " to " + getEndPoints().size());
 					map(new Mapper(){
 						@Override
 						public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
@@ -69,9 +78,11 @@ public class ProgressTopic extends Topic {
 				}
 				lastProgress = state;
 				lastSent = System.nanoTime();
+			} else {
+//				System.out.println("Skipping " + state.getProgress() + ", " + state.getState() + ", " + state.getTitle());
 			}
 		} catch (Exception e) {
-			System.out.println();
+			LOGGER.error("", e);
 		}
 	}
 

@@ -172,7 +172,7 @@ public class PluginManager {
 				}
 			}
 			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
-			pluginClassloader.dumpStructure(0);
+//			pluginClassloader.dumpStructure(0);
 			loadedLocations.add(projectRoot.toPath().toAbsolutePath());
 			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), new File(projectRoot, "bin").getAbsolutePath(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT);
 		} catch (JAXBException e) {

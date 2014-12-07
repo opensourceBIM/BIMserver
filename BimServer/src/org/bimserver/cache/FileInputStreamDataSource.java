@@ -62,4 +62,8 @@ public class FileInputStreamDataSource implements DataSource {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public long size() {
+		return file.length();
+	}
 }

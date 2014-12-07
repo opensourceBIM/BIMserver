@@ -70,7 +70,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			if (session != null) {
 				session.close();
 			}
-			changeActionState(ActionState.STARTED, "Done preparing", 0);
+			if (getErrors().size() == 0) {
+				changeActionState(ActionState.STARTED, "Done preparing", 0);
+			}
 		}
 	}
 

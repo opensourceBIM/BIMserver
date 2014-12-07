@@ -25,16 +25,21 @@ import java.util.concurrent.TimeUnit;
 
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.plugins.serializers.RemovableFileOutputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DiskCacheOutputStream extends RemovableFileOutputStream {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(DiskCacheOutputStream.class);
 	private DiskCacheManager diskCacheManager;
 	private File file;
+	private File tempFile;
 	private final CountDownLatch latch = new CountDownLatch(1);
-	private DownloadParameters downloadParameters;
+	private final DownloadParameters downloadParameters;
 
 	public DiskCacheOutputStream(DiskCacheManager diskCacheManager, File file, DownloadParameters downloadParameters) throws FileNotFoundException {
-		super(file);
+		super(new File(file.getAbsolutePath() + ".__tmp"));
+		this.tempFile = new File(file.getAbsolutePath() + ".__tmp");
 		this.diskCacheManager = diskCacheManager;
 		this.file = file;
 		this.downloadParameters = downloadParameters;
@@ -51,6 +56,8 @@ public class DiskCacheOutputStream extends RemovableFileOutputStream {
 	@Override
 	public void close() throws IOException {
 		super.close();
+		LOGGER.info("Renaming temp file " + tempFile.getName() + " to " + file.getName());
+		tempFile.renameTo(file);
 		diskCacheManager.doneGenerating(this);
 		latch.countDown();
 	}
@@ -58,7 +65,9 @@ public class DiskCacheOutputStream extends RemovableFileOutputStream {
 	@Override
 	public void remove() {
 		super.remove();
+		this.tempFile.delete();
 		diskCacheManager.remove(this);
+		latch.countDown();
 	}
 
 	public String getName() {

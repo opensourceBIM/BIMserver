@@ -83,9 +83,6 @@ public class JsonSerializer extends IfcSerializer {
 							out.write("\"__state\":\"NOT_LOADED\"");
 							out.write("}\n");
 						} else {
-							if (object instanceof IfcWindow) {
-								System.out.println();
-							}
 							out.write("{");
 							out.write("\"__oid\":" + object.getOid() + ",");
 							out.write("\"__type\":\"" + object.eClass().getName() + "\",");

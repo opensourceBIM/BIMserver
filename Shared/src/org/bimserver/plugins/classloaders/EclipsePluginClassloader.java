@@ -67,9 +67,6 @@ public class EclipsePluginClassloader extends PublicFindClassClassLoader {
 	
 	@Override
 	public Class<?> findClass(String name) throws ClassNotFoundException {
-		if (name.endsWith("ResourceManager")) {
-			System.out.println();
-		}
 		String filename = name.replace(".", File.separator) + ".class";
 		if (loadedClasses.containsKey(filename)) {
 			return loadedClasses.get(filename);

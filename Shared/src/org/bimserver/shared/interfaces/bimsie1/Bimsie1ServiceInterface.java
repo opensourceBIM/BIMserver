@@ -133,7 +133,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	Long downloadByOids(
 		@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
 		@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "serializerOid", partName = "downloadCompareResults.serializerOid") Long serializerOid,
 		@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync,
 		@WebParam(name = "deep", partName = "downloadCompareResults.deep") Boolean deep) throws ServerException, UserException;
 
@@ -219,7 +219,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "downloadRevisions")
 	Long downloadRevisions(
 		@WebParam(name = "roids", partName = "downloadRevisions.roids") Set<Long> roids,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "serializerOid", partName = "downloadRevisions.serializerOid") Long serializerOid,
 		@WebParam(name = "sync", partName = "downloadRevisions.sync") Boolean sync) throws ServerException, UserException;
 
 	/**

@@ -26,6 +26,7 @@ import javax.activation.DataHandler;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.database.actions.AddExtendedDataToRevisionDatabaseAction;
 import org.bimserver.database.actions.AddProjectDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
@@ -66,6 +67,7 @@ import org.bimserver.longaction.LongBranchAction;
 import org.bimserver.longaction.LongCheckoutAction;
 import org.bimserver.longaction.LongDownloadAction;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
+import org.bimserver.longaction.DownloadParameters.DownloadType;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Project;
@@ -112,7 +114,10 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 			if (!serializerPluginConfiguration.getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin") && !serializerPluginConfiguration.getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin")) {
 				throw new UserException("Only IFC or IFCXML allowed when checking out");
 			}
-			DownloadParameters downloadParameters = DownloadParameters.fromRoids(getBimServer(), Collections.singleton(roid), serializerOid);
+			DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_PROJECTS);
+			downloadParameters.setRoid(roid);
+			downloadParameters.setSerializerOid(serializerOid);
+			
 			user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
 			LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(getBimServer(), user.getName(), user.getUsername(), downloadParameters, getAuthorization(), getInternalAccessMethod());
 			try {
@@ -175,52 +180,85 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 	
 	public Long download(Long roid, Long serializerOid, Boolean showOwn, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromRoids(getBimServer(), Collections.singleton(roid), serializerOid), sync);
+		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_REVISION);
+		downloadParameters.setRoid(roid);
+		downloadParameters.setSerializerOid(serializerOid);
+		return download(downloadParameters, sync);
 	}
 
 	@Override
 	public Long downloadByOids(Set<Long> roids, Set<Long> oids, Long serializerOid, Boolean sync, Boolean deep) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromOids(getBimServer(), serializerOid, roids, oids, deep), sync);
+		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_OIDS);
+		downloadParameters.setSerializerOid(serializerOid);
+		downloadParameters.setRoids(roids);
+		downloadParameters.setOids(oids);
+		downloadParameters.setDeep(deep ? Deep.YES : Deep.NO);
+		return download(downloadParameters, sync);
 	}
 
 	@Override
 	public Long downloadByTypes(Set<Long> roids, Set<String> classNames, Long serializerOid, Boolean includeAllSubtypes, Boolean useObjectIDM, Boolean deep, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		DownloadParameters fromClassNames = DownloadParameters.fromClassNames(getBimServer(), roids, classNames, includeAllSubtypes, serializerOid, deep);
-		fromClassNames.setUseObjectIDM(useObjectIDM);
-		return download(fromClassNames, sync);
+		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_OF_TYPE);
+		downloadParameters.setRoids(roids);
+		downloadParameters.setClassNames(classNames);
+		downloadParameters.setIncludeAllSubtypes(includeAllSubtypes);
+		downloadParameters.setSerializerOid(serializerOid);
+		downloadParameters.setUseObjectIDM(useObjectIDM);
+		return download(downloadParameters, sync);
 	}
 	
 	@Override
 	public Long downloadByJsonQuery(Set<Long> roids, String jsonQuery, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		DownloadParameters fromJsonQuery = DownloadParameters.fromJsonQuery(getBimServer(), roids, jsonQuery, serializerOid);
-		return download(fromJsonQuery, sync);
+		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_JSON_QUERY);
+		downloadParameters.setRoids(roids);
+		downloadParameters.setJsonQuery(jsonQuery);
+		downloadParameters.setSerializerOid(serializerOid);
+		return download(downloadParameters, sync);
 	}
 
 	@Override
 	public Long downloadByGuids(Set<Long> roids, Set<String> guids, Long serializerOid, Boolean deep, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromGuids(getBimServer(), roids, guids, serializerOid, deep), sync);
+		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_GUIDS);
+		downloadParameters.setRoids(roids);
+		downloadParameters.setGuids(guids);
+		downloadParameters.setSerializerOid(serializerOid);
+		downloadParameters.setDeep(deep ? Deep.YES : Deep.NO);
+		return download(downloadParameters, sync);
 	}
 
 	@Override
 	public Long downloadByNames(Set<Long> roids, Set<String> names, Long serializerOid, Boolean deep, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromNames(getBimServer(), roids, names, serializerOid, deep), sync);
+		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_NAMES);
+		downloadParameters.setRoids(roids);
+		downloadParameters.setNames(names);
+		downloadParameters.setSerializerOid(serializerOid);
+		downloadParameters.setDeep(deep ? Deep.YES : Deep.NO);
+		return download(downloadParameters, sync);
 	}
 
 	@Override
 	public Long downloadRevisions(Set<Long> roids, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromRoids(getBimServer(), roids, serializerOid), sync);
+		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_PROJECTS);
+		downloadParameters.setRoids(roids);
+		downloadParameters.setSerializerOid(serializerOid);
+		return download(downloadParameters, sync);
 	}
 
 	@Override
 	public Long downloadQuery(Long roid, Long qeid, String code, Boolean sync, Long serializerOid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromQuery(getBimServer(), roid, qeid, code, serializerOid), sync);
+		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_QUERY);
+		downloadParameters.setRoid(roid);
+		downloadParameters.setQeid(qeid);
+		downloadParameters.setCode(code);
+		downloadParameters.setSerializerOid(serializerOid);
+		return download(downloadParameters, sync);
 	}
 	
 	@Override
