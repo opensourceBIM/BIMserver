@@ -23,7 +23,6 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.activation.DataSource;
@@ -34,10 +33,6 @@ import org.bimserver.cache.FileInputStreamDataSource;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ActionState;
-import org.bimserver.models.store.LongActionState;
-import org.bimserver.models.store.StoreFactory;
-import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.plugins.serializers.AligningOutputStream;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.ProgressReporter;
@@ -143,7 +138,9 @@ public class Streamer implements EndPoint {
         while (-1 != (n = input.read(buffer))) {
             output.write(buffer, 0, n);
             output.flush();
-            progressReporter.update(count, totalSize);
+            if (progressReporter != null) {
+            	progressReporter.update(count, totalSize);
+            }
             count += n;
         }
         return count;
@@ -166,23 +163,23 @@ public class Streamer implements EndPoint {
 						@Override
 						public void run() {
 							try {
-								final ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
-
-								ProgressReporter progressReporter = new ProgressReporter() {
-									@Override
-									public void update(long progress, long max) {
-										if (progressTopic != null) {
-											LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
-											ds.setStart(new Date());
-											ds.setState(progress == max ? ActionState.FINISHED : ActionState.STARTED);
-											ds.setTitle("Downloading...");
-											ds.setStage(3);
-											ds.setProgress((int) Math.round(100.0 * progress / max));
-
-											progressTopic.stageProgressUpdate(ds);
-										}
-									}
-								};
+//								final ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
+//
+//								ProgressReporter progressReporter = new ProgressReporter() {
+//									@Override
+//									public void update(long progress, long max) {
+//										if (progressTopic != null) {
+//											LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
+//											ds.setStart(new Date());
+//											ds.setState(progress == max ? ActionState.FINISHED : ActionState.STARTED);
+//											ds.setTitle("Downloading...");
+//											ds.setStage(3);
+//											ds.setProgress((int) Math.round(100.0 * progress / max));
+//
+//											progressTopic.stageProgressUpdate(ds);
+//										}
+//									}
+//								};
 								
 								SDownloadResult checkoutResult = serviceMap.getBimsie1ServiceInterface().getDownloadData(downloadId);
 								DataSource dataSource = checkoutResult.getFile().getDataSource();
@@ -190,11 +187,11 @@ public class Streamer implements EndPoint {
 								if (dataSource instanceof FileInputStreamDataSource) {
 									FileInputStreamDataSource fileInputStreamDataSource = ((FileInputStreamDataSource) dataSource);
 									InputStream inputStream = dataSource.getInputStream();
-									copyWithFlush(inputStream, outputStream, progressReporter, fileInputStreamDataSource.size());
+									copyWithFlush(inputStream, outputStream, null, -1);
 									outputStream.flush();
 									inputStream.close();
 								} else {
-									((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
+									((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, null);
 								}
 							} catch (ServerException e) {
 								LOGGER.error("", e);

@@ -227,9 +227,9 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					concreteGeometrySent.add(geometryData.getOid());
 				}
 				counter++;
-//				if (counter % 12 == 0) {
+				if (counter % 20 == 0) {
 					dataOutputStream.flush();
-//				}
+				}
 			}
 		}
 		dataOutputStream.flush();
@@ -401,5 +401,10 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 			indexOfChar = builder.indexOf("/");
 		}
 		return builder.toString();
+	}
+
+	@Override
+	public boolean allowCaching() {
+		return false;
 	}
 }

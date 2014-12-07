@@ -40,4 +40,5 @@ public interface Serializer {
 	 * to cleanup/setup
 	 */
 	void reset();
+	boolean allowCaching();
 }
