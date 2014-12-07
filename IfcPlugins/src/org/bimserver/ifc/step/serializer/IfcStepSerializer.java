@@ -108,7 +108,9 @@ public class IfcStepSerializer extends IfcSerializer {
 				if (iterator.hasNext()) {
 					writeObject(iterator.next());
 					writeCounter++;
-					progressReporter.update(writeCounter, model.size());
+					if (progressReporter != null) {
+						progressReporter.update(writeCounter, model.size());
+					}
 				} else {
 					iterator = null;
 					setMode(Mode.FOOTER);
@@ -117,7 +119,9 @@ public class IfcStepSerializer extends IfcSerializer {
 				return true;
 			} else if (getMode() == Mode.FOOTER) {
 				writeFooter();
-				progressReporter.update(model.size(), model.size());
+				if (progressReporter != null) {
+					progressReporter.update(model.size(), model.size());
+				}
 				setMode(Mode.FINISHED);
 				return true;
 			} else if (getMode() == Mode.FINISHED) {
