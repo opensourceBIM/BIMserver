@@ -56,6 +56,11 @@ public abstract class EmfSerializer implements Serializer {
 		this.setPluginManager(pluginManager);
 		reset();
 	}
+	
+	@Override
+	public boolean allowCaching() {
+		return true;
+	}
 
 	public RenderEnginePlugin getRenderEnginePlugin() {
 		return renderEnginePlugin;

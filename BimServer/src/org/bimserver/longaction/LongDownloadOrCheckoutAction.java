@@ -73,7 +73,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				if (serializer == null) {
 					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerOid());
 				}
-				if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles()) {
+				if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles() && serializer.allowCaching()) {
 					if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
 						checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters));
 					} else {
