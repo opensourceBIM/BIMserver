@@ -21,7 +21,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -159,7 +158,6 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					dataOutputStream.writeLong(geometryData.getOid());
 					bytesSaved += vertices.length;
 				} else if (geometryType == GEOMETRY_TYPE_TRIANGLES) {
-					ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
 					dataOutputStream.writeLong(geometryData.getOid());
 
 					Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
@@ -169,6 +167,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					dataOutputStream.writeInt(indicesBuffer.capacity() / 4);
 					dataOutputStream.write(indicesBuffer.array());
 					
+					ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
 					dataOutputStream.writeInt(vertexByteBuffer.capacity() / 4);
 					dataOutputStream.write(vertexByteBuffer.array());
 					
@@ -176,15 +175,16 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
 					dataOutputStream.write(normalsBuffer.array());
 
-					if (geometryData.getMaterialIndices() != null) {
+					if (geometryData.getMaterials() != null) {
 //						ByteBuffer materialIndexByteBuffer = ByteBuffer.wrap(geometryData.getMaterialIndices());
 //						materialIndexByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
 //						IntBuffer materialIndicesBuffer = materialIndexByteBuffer.asIntBuffer();
-						ByteBuffer materialsByteBuffer = ByteBuffer.wrap(geometryData.getMaterials());
-						materialsByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
 						
-						dataOutputStream.writeInt(materialsByteBuffer.capacity() / 4);
-						dataOutputStream.write(materialsByteBuffer.array());
+						
+						ByteBuffer materialsBuffer = ByteBuffer.wrap(geometryData.getMaterials());
+						dataOutputStream.writeInt(materialsBuffer.capacity() / 4);
+						dataOutputStream.write(materialsBuffer.array());
+//						
 //						for (int i=0; i<materialsBuffer.capacity(); i++) {
 //							dataOutputStream.writeFloat(materialsBuffer.get(i));
 //						}
@@ -227,9 +227,9 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 					concreteGeometrySent.add(geometryData.getOid());
 				}
 				counter++;
-				if (counter % 12 == 0) {
+//				if (counter % 12 == 0) {
 					dataOutputStream.flush();
-				}
+//				}
 			}
 		}
 		dataOutputStream.flush();

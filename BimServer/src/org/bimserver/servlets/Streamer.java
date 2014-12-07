@@ -23,19 +23,24 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.activation.DataSource;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
 import org.bimserver.cache.FileInputStreamDataSource;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.plugins.serializers.AligningOutputStream;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -115,15 +120,33 @@ public class Streamer implements EndPoint {
 				pos += skip;
 			}
 		}
-		
+
 		@Override
 		public void flush() throws IOException {
-			streamingSocketInterface.send(buffer, 0, pos);
+			// We make a copy of the buffer, because at least Jetty will sometimes send it later (async)
+			
+			byte[] tmp = new byte[pos];
+			System.arraycopy(buffer, 0, tmp, 0, pos);
+			streamingSocketInterface.send(tmp, 0, pos);
+			
 			ByteBuffer wrap = ByteBuffer.wrap(buffer);
 			IntBuffer intBuffer = wrap.asIntBuffer();
 			intBuffer.put(topicId);
 			pos = 4;
 		}
+	}
+
+	private long copyWithFlush(InputStream input, OutputStream output, ProgressReporter progressReporter, long totalSize) throws IOException {
+		byte[] buffer = new byte[4096];
+        long count = 0;
+        int n = 0;
+        while (-1 != (n = input.read(buffer))) {
+            output.write(buffer, 0, n);
+            output.flush();
+            progressReporter.update(count, totalSize);
+            count += n;
+        }
+        return count;
 	}
 	
 	public void onText(Reader reader) {
@@ -143,15 +166,35 @@ public class Streamer implements EndPoint {
 						@Override
 						public void run() {
 							try {
+								final ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
+
+								ProgressReporter progressReporter = new ProgressReporter() {
+									@Override
+									public void update(long progress, long max) {
+										if (progressTopic != null) {
+											LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
+											ds.setStart(new Date());
+											ds.setState(progress == max ? ActionState.FINISHED : ActionState.STARTED);
+											ds.setTitle("Downloading...");
+											ds.setStage(3);
+											ds.setProgress((int) Math.round(100.0 * progress / max));
+
+											progressTopic.stageProgressUpdate(ds);
+										}
+									}
+								};
+								
 								SDownloadResult checkoutResult = serviceMap.getBimsie1ServiceInterface().getDownloadData(downloadId);
 								DataSource dataSource = checkoutResult.getFile().getDataSource();
 								OutputStream outputStream = new WebSocketifier(topicId, streamingSocketInterface);
 								if (dataSource instanceof FileInputStreamDataSource) {
-									InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
-									IOUtils.copy(inputStream, outputStream);
+									FileInputStreamDataSource fileInputStreamDataSource = ((FileInputStreamDataSource) dataSource);
+									InputStream inputStream = dataSource.getInputStream();
+									copyWithFlush(inputStream, outputStream, progressReporter, fileInputStreamDataSource.size());
+									outputStream.flush();
 									inputStream.close();
 								} else {
-									((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, null);
+									((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
 								}
 							} catch (ServerException e) {
 								LOGGER.error("", e);
