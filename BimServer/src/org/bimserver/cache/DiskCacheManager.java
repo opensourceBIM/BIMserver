@@ -46,7 +46,11 @@ public class DiskCacheManager {
 			cacheDir.mkdir();
 		}
 		for (File file : this.cacheDir.listFiles()) {
-			cachedFileNames.add(file.getName());
+			if (file.getName().endsWith(".__tmp")) {
+				file.delete();
+			} else {
+				cachedFileNames.add(file.getName());
+			}
 		}
 	}
 	
@@ -89,7 +93,7 @@ public class DiskCacheManager {
 			} else {
 				LOGGER.info("Reading from cache " + downloadParameters.getFileName());
 				FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(file);
-				fileInputStreamDataSource.setName(downloadParameters.getFileName());
+				fileInputStreamDataSource.setName(downloadParameters.getFileNameWithoutExtension());
 				return fileInputStreamDataSource;
 			}
 		}
@@ -130,6 +134,10 @@ public class DiskCacheManager {
 	}
 
 	public void remove(DiskCacheOutputStream diskCacheOutputStream) {
+		LOGGER.info("Removing cache " + diskCacheOutputStream.getDownloadParameters().getFileName());
 		cachedFileNames.remove(diskCacheOutputStream.getDownloadParameters().getId());
+		synchronized (busyCaching) {
+			busyCaching.remove(diskCacheOutputStream.getDownloadParameters());
+		}
 	}
 }

@@ -170,6 +170,10 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		return ds;
 	}
 	
+	public List<String> getErrors() {
+		return errors;
+	}
+	
 	@Override
 	public void error(Exception error) {
 		LOGGER.error("", error);

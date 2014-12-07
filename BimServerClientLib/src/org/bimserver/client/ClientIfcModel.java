@@ -278,9 +278,6 @@ public class ClientIfcModel extends IfcModel {
 										((IdEObjectImpl) object).setOid(oid);
 										add(oid, object);
 									}
-									if (object instanceof IfcWindow) {
-										System.out.println();
-									}
 									if (state.equals("NOT_LOADED")) {
 										((IdEObjectImpl) object).setLoadingState(State.TO_BE_LOADED);
 									} else {

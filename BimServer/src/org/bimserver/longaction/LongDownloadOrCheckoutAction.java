@@ -75,7 +75,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				}
 				if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles()) {
 					if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
-						checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
+						checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters));
 					} else {
 						checkoutResult.setFile(new DataHandler(new CacheStoringEmfSerializerDataSource(serializer, getBimServer().getDiskCacheManager().startCaching(downloadParameters))));
 					}
@@ -94,7 +94,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		try {
 			if (action == null) {
 				checkoutResult = new SCheckoutResult();
-				checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
+				checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters));
 			} else {
 				Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), Query.getDefault());
 				if (revision == null) {

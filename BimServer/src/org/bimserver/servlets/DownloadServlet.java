@@ -35,7 +35,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.cache.FileInputStreamDataSource;
 import org.bimserver.interfaces.objects.SCompareType;
@@ -253,12 +252,13 @@ public class DownloadServlet extends SubServlet {
 							}
 							response.setContentType("application/zip");
 
-							String nameInZip = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
+							String nameInZip = dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
 							ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
 							zipOutputStream.putNextEntry(new ZipEntry(nameInZip));
 							if (dataSource instanceof FileInputStreamDataSource) {
-								InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
-								IOUtils.copy(inputStream, zipOutputStream);
+								FileInputStreamDataSource fileInputStreamDataSource = (FileInputStreamDataSource) dataSource;
+								InputStream inputStream = fileInputStreamDataSource.getInputStream();
+								copy(inputStream, zipOutputStream, progressReporter, fileInputStreamDataSource.size());
 								inputStream.close();
 							} else {
 								((EmfSerializerDataSource) dataSource).writeToOutputStream(zipOutputStream, progressReporter);
@@ -277,8 +277,9 @@ public class DownloadServlet extends SubServlet {
 								response.setContentType(request.getParameter("mime"));
 							}
 							if (dataSource instanceof FileInputStreamDataSource) {
-								InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
-								IOUtils.copy(inputStream, outputStream);
+								FileInputStreamDataSource fileInputStreamDataSource = (FileInputStreamDataSource) dataSource;
+								InputStream inputStream = fileInputStreamDataSource.getInputStream();
+								copy(inputStream, outputStream, progressReporter, fileInputStreamDataSource.size());
 								inputStream.close();
 							} else {
 								((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
@@ -313,5 +314,17 @@ public class DownloadServlet extends SubServlet {
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
+	}
+	
+	private long copy(InputStream input, OutputStream output, ProgressReporter progressReporter, long totalSize) throws IOException {
+		byte[] buffer = new byte[4096];
+        long count = 0;
+        int n = 0;
+        while (-1 != (n = input.read(buffer))) {
+            output.write(buffer, 0, n);
+            count += n;
+            progressReporter.update(count, totalSize);
+        }
+        return count;
 	}
 }

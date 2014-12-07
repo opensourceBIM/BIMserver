@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -127,6 +128,7 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.longaction.DownloadParameters.DownloadType;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.mail.EmailMessage;
 import org.bimserver.models.log.LogAction;
@@ -456,7 +458,16 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public Long downloadCompareResults(Long serializerOid, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return ((Bimsie1ServiceIImpl)getServiceMap().getBimsie1ServiceInterface()).download(DownloadParameters.fromCompare(getBimServer(), roid1, roid2, getBimServer().getSConverter().convertFromSObject(type), mcid, serializerOid), sync);
+		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_COMPARE);
+		downloadParameters.setModelCompareIdentifier(mcid);
+		downloadParameters.setCompareType(getBimServer().getSConverter().convertFromSObject(type));
+		downloadParameters.setSerializerOid(serializerOid);
+		Set<Long> roids = new HashSet<>();
+		roids.add(roid1);
+		roids.add(roid2);
+		downloadParameters.setRoids(roids);
+		
+		return ((Bimsie1ServiceIImpl)getServiceMap().getBimsie1ServiceInterface()).download(downloadParameters, sync);
 	}
 
 	@Override

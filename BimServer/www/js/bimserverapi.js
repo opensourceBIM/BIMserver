@@ -712,6 +712,7 @@ function Model(bimServerApi, poid, roid, schema) {
 				}, function(laid){
 					var url = bimServerApi.generateRevisionDownloadUrl({
 						laid: laid,
+						topicId: laid,
 						serializerOid: jsonSerializerOid
 					});
 					$.getJSON(url, function(data, textStatus, jqXHR){
@@ -1224,6 +1225,7 @@ function Model(bimServerApi, poid, roid, schema) {
 					bimServerApi.call("Bimsie1ServiceInterface", interfaceMethodName, request, function(laid){
 						var url = bimServerApi.generateRevisionDownloadUrl({
 							laid: laid,
+							topicId: laid,
 							serializerOid: jsonSerializerOid
 						});
 						$.getJSON(url, function(data, textStatus, jqXHR){
@@ -1326,6 +1328,7 @@ function Model(bimServerApi, poid, roid, schema) {
 				}, function(laid){
 					var url = bimServerApi.generateRevisionDownloadUrl({
 						laid: laid,
+						topicId: laid,
 						serializerOid: jsonSerializerOid
 					});
 					$.getJSON(url, function(data, textStatus, jqXHR){
@@ -1393,6 +1396,7 @@ function Model(bimServerApi, poid, roid, schema) {
 					}, function(laid){
 						var url = bimServerApi.generateRevisionDownloadUrl({
 							laid: laid,
+							topicId: laid,
 							serializerOid: jsonSerializerOid
 						});
 						$.getJSON(url, function(data, textStatus, jqXHR){
