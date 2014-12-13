@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.bimserver.database.Record;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.eclipse.emf.ecore.EClass;
