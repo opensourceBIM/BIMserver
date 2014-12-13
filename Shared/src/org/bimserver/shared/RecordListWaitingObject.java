@@ -17,7 +17,6 @@ package org.bimserver.shared;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.Record;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /*
