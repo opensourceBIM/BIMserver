@@ -7,20 +7,38 @@
 
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin</implementationClass>
+		<implementationClass>org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin</implementationClass>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin</implementationClass>
+		<implementationClass>org.bimserver.ifc.step.serializer.Ifc4StepSerializerPlugin</implementationClass>
+	</PluginImplementation>
+
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.xml.serializer.IfcXml2x3tc1SerializerPlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.xml.serializer.IfcXml4SerializerPlugin</implementationClass>
 	</PluginImplementation>
 
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.xml.deserializer.IfcXmlDeserializerPlugin</implementationClass>
+		<implementationClass>org.bimserver.ifc.xml.deserializer.Ifc4XmlDeserializerPlugin</implementationClass>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.step.deserializer.IfcStepDeserializerPlugin</implementationClass>
+		<implementationClass>org.bimserver.ifc.xml.deserializer.Ifc2x3tc1XmlDeserializerPlugin</implementationClass>
+	</PluginImplementation>
+
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.step.deserializer.Ifc4StepDeserializerPlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.step.deserializer.Ifc2x3tc1StepDeserializerPlugin</implementationClass>
 	</PluginImplementation>
 
 	<PluginImplementation>

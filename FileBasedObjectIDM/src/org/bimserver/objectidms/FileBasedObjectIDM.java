@@ -26,6 +26,7 @@ import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.objectidms.AbstractObjectIDM;
@@ -37,8 +38,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class FileBasedObjectIDM extends AbstractObjectIDM {
 
-	public FileBasedObjectIDM(SchemaDefinition schemaDefinition, PluginContext pluginContext) throws ObjectIDMException {
-		super(schemaDefinition, null);
+	public FileBasedObjectIDM(SchemaDefinition schemaDefinition, PluginContext pluginContext, PackageMetaData packageMetaData) throws ObjectIDMException {
+		super(schemaDefinition, packageMetaData);
 		try {
 			URL ignoreFile = pluginContext.getResourceAsUrl("objectidm.xml");
 			PackageDefinition packageDefinition = PackageDefinition.readFromFile(ignoreFile);
