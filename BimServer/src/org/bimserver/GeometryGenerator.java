@@ -129,80 +129,83 @@ public class GeometryGenerator {
 						List<IdEObject> products = model.getAllWithSubTypes(productClass);
 						
 						EStructuralFeature geometryFeature = productClass.getEStructuralFeature("geometry");
+						EStructuralFeature representationFeature = productClass.getEStructuralFeature("representation");
 						for (IdEObject ifcProduct : products) {
-							RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
-							RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
-							if (geometry != null && geometry.getNrIndices() > 0) {
-								GeometryInfo geometryInfo = null;
-								if (store) {
-									geometryInfo = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryInfo(), pid, rid);
-								} else {
-									geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
-								}
+							if (ifcProduct.eGet(representationFeature) != null) {
+								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
+								RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
+								if (geometry != null && geometry.getNrIndices() > 0) {
+									GeometryInfo geometryInfo = null;
+									if (store) {
+										geometryInfo = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryInfo(), pid, rid);
+									} else {
+										geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
+									}
 
-								geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-								geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
+									geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+									geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
 
-								GeometryData geometryData = null;
-								if (store) {
-									geometryData = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryData(), pid, rid);
-								} else {
-									geometryData = GeometryFactory.eINSTANCE.createGeometryData();
-								}
+									GeometryData geometryData = null;
+									if (store) {
+										geometryData = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryData(), pid, rid);
+									} else {
+										geometryData = GeometryFactory.eINSTANCE.createGeometryData();
+									}
 
-								geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
-								geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
-								geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
-								geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
+									geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
+									geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
+									geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
+									geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
 
-								if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
-									boolean hasMaterial = false;
-									float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
-									for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
-										int c = geometry.getMaterialIndices()[i];
-										for (int j = 0; j < 3; ++j) {
-											int k = geometry.getIndices()[i * 3 + j];
-											if (c > -1) {
-												hasMaterial = true;
-												for (int l = 0; l < 4; ++l) {
-													vertex_colors[4 * k + l] = geometry.getMaterials()[4 * c + l];
+									if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
+										boolean hasMaterial = false;
+										float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
+										for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
+											int c = geometry.getMaterialIndices()[i];
+											for (int j = 0; j < 3; ++j) {
+												int k = geometry.getIndices()[i * 3 + j];
+												if (c > -1) {
+													hasMaterial = true;
+													for (int l = 0; l < 4; ++l) {
+														vertex_colors[4 * k + l] = geometry.getMaterials()[4 * c + l];
+													}
 												}
 											}
 										}
+										if (hasMaterial) {
+											geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
+										}
 									}
-									if (hasMaterial) {
-										geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
-									}
-								}
 
-								float[] tranformationMatrix = new float[16];
-								if (renderEngineInstance.getTransformationMatrix() != null) {
-									tranformationMatrix = renderEngineInstance.getTransformationMatrix();
-									tranformationMatrix = Matrix.changeOrientation(tranformationMatrix);
-								} else {
-									Matrix.setIdentityM(tranformationMatrix, 0);
-								}
-
-								for (int i=0; i<geometry.getIndices().length; i++) {
-									processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3);
-								}
-
-								geometryInfo.setData(geometryData);
-
-								setTransformationMatrix(geometryInfo, tranformationMatrix);
-								if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
-									int hash = hash(geometryData);
-									if (hashes.containsKey(hash)) {
-										databaseSession.removeFromCommit(geometryData);
-										geometryInfo.setData(hashes.get(hash));
+									float[] tranformationMatrix = new float[16];
+									if (renderEngineInstance.getTransformationMatrix() != null) {
+										tranformationMatrix = renderEngineInstance.getTransformationMatrix();
+										tranformationMatrix = Matrix.changeOrientation(tranformationMatrix);
 									} else {
-										hashes.put(hash, geometryData);
+										Matrix.setIdentityM(tranformationMatrix, 0);
 									}
-								}
-								
-								ifcProduct.eSet(geometryFeature, geometryInfo);
-								if (store) {
-									databaseSession.store(ifcProduct, pid, rid);
+
+									for (int i=0; i<geometry.getIndices().length; i++) {
+										processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3);
+									}
+
+									geometryInfo.setData(geometryData);
+
+									setTransformationMatrix(geometryInfo, tranformationMatrix);
+									if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
+										int hash = hash(geometryData);
+										if (hashes.containsKey(hash)) {
+											databaseSession.removeFromCommit(geometryData);
+											geometryInfo.setData(hashes.get(hash));
+										} else {
+											hashes.put(hash, geometryData);
+										}
+									}
+									
+									ifcProduct.eSet(geometryFeature, geometryInfo);
+									if (store) {
+										databaseSession.store(ifcProduct, pid, rid);
+									}
 								}
 							}
 						}
