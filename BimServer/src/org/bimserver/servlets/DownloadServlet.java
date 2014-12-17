@@ -191,7 +191,7 @@ public class DownloadServlet extends SubServlet {
 							}
 							Set<Long> roids = new HashSet<Long>();
 							roids.add(roid);
-							downloadId = serviceMap.getBimsie1ServiceInterface().downloadByTypes(roids, classes, serializer.getOid(), false, true, true, true);
+							downloadId = serviceMap.getBimsie1ServiceInterface().downloadByTypes(roids, "ifc2x3tc1", classes, serializer.getOid(), false, true, true, true);
 						} else if (request.getParameter("oids") != null) {
 							Set<Long> oids = new HashSet<Long>();
 							for (String oidString : request.getParameter("oids").split(";")) {

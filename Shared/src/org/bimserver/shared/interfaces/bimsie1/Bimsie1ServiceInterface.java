@@ -150,6 +150,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "downloadByTypes")
 	Long downloadByTypes(
 		@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
+		@WebParam(name = "schema", partName = "downloadByTypes.schema") String schema,
 		@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
 		@WebParam(name = "serializerOid", partName = "downloadByTypes.serializerOid") Long serializerOid,
 		@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
@@ -316,7 +317,8 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getSuggestedDeserializerForExtension")
 	SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(
-		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension) throws ServerException, UserException;
+		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension,
+		@WebParam(name = "poid", partName = "getSuggestedDeserializerForExtension.poid") Long poid) throws ServerException, UserException;
 	
 	/**
 	 * @param roid ObjectID of the Revision

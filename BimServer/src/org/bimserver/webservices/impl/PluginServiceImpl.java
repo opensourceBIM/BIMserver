@@ -68,6 +68,7 @@ import org.bimserver.database.actions.UpdateRenderEngineDatabaseAction;
 import org.bimserver.database.actions.UpdateSerializerDatabaseAction;
 import org.bimserver.database.actions.UserSettingsSetter;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
@@ -97,6 +98,7 @@ import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
@@ -1168,5 +1170,33 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		} finally {
 			session.close();
 		}
+	}
+	
+	@Override
+	public List<SDeserializerPluginConfiguration> getAllDeserializersForProject(Boolean onlyEnabled, Long poid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Project project = session.get(poid, Query.getDefault());
+
+			UserSettings userSettings = getUserSettings(session);
+			EList<DeserializerPluginConfiguration> deserializers = userSettings.getDeserializers();
+			List<SDeserializerPluginConfiguration> sDeserializers = new ArrayList<SDeserializerPluginConfiguration>();
+			for (DeserializerPluginConfiguration deserializerPluginConfiguration : deserializers) {
+				DeserializerPlugin plugin = getBimServer().getPluginManager().getDeserializerPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+				if (plugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
+					if (!onlyEnabled || (deserializerPluginConfiguration.getEnabled() && deserializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
+						sDeserializers.add(getBimServer().getSConverter().convertToSObject(deserializerPluginConfiguration));
+					}
+				}
+			}
+			Collections.sort(sDeserializers, new SPluginConfigurationComparator());
+			return sDeserializers;
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
 	}
 }

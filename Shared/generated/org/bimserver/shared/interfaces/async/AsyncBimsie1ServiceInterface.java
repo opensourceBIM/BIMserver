@@ -395,11 +395,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void downloadByTypes(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> classNames, final java.lang.Long serializerOid, final java.lang.Boolean includeAllSubtypes, final java.lang.Boolean useObjectIDM, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByTypesCallback callback) {
+	public void downloadByTypes(final java.util.Set<java.lang.Long> roids, final java.lang.String schema, final java.util.Set<java.lang.String> classNames, final java.lang.Long serializerOid, final java.lang.Boolean includeAllSubtypes, final java.lang.Boolean useObjectIDM, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByTypesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.downloadByTypes(roids, classNames, serializerOid, includeAllSubtypes, useObjectIDM, deep, sync));
+					callback.success(syncService.downloadByTypes(roids, schema, classNames, serializerOid, includeAllSubtypes, useObjectIDM, deep, sync));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -671,11 +671,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void getSuggestedDeserializerForExtension(final java.lang.String extension, final GetSuggestedDeserializerForExtensionCallback callback) {
+	public void getSuggestedDeserializerForExtension(final java.lang.String extension, final java.lang.Long poid, final GetSuggestedDeserializerForExtensionCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getSuggestedDeserializerForExtension(extension));
+					callback.success(syncService.getSuggestedDeserializerForExtension(extension, poid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

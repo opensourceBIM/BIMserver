@@ -46,12 +46,12 @@ public class SConverterGeneratorWrapper {
 		this.metaDataManager = metaDataManager;
 	}
 
-	public static void main(String[] args) {
-		Set<EPackage> ePackages = new HashSet<EPackage>();
-		ePackages.add(StorePackage.eINSTANCE);
-		ePackages.add(LogPackage.eINSTANCE);
-		new SConverterGeneratorWrapper(new MetaDataManager(null)).generate(ePackages);
-	}
+//	public static void main(String[] args) {
+//		Set<EPackage> ePackages = new HashSet<EPackage>();
+//		ePackages.add(StorePackage.eINSTANCE);
+//		ePackages.add(LogPackage.eINSTANCE);
+//		new SConverterGeneratorWrapper(new MetaDataManager(null)).generate(ePackages);
+//	}
 
 	public void generate(Set<EPackage> ePackages) {
 		try {

@@ -80,6 +80,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginConfiguration> getAllDeserializersForProject(java.lang.Boolean onlyEnabled, java.lang.Long poid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> getAllInternalServices(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
