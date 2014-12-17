@@ -523,6 +523,16 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "onlyEnabled", partName = "getAllDeserializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
+	 * @param onlyEnabled Whether to only include enabled deserializers
+	 * @return A list of all available deserializers
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllDeserializersForProject")
+	List<SDeserializerPluginConfiguration> getAllDeserializersForProject (
+		@WebParam(name = "onlyEnabled", partName = "getAllDeserializersForProject.onlyEnabled") Boolean onlyEnabled,
+		@WebParam(name = "poid", partName = "getAllDeserializersForProject.poid") Long poid) throws ServerException, UserException;
+
+	/**
 	 * @param contentType The ContentType
 	 * @return Serializer supporting the given ContentType
 	 * @throws ServerException, UserException

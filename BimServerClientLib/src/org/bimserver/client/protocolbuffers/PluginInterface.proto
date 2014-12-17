@@ -66,6 +66,8 @@ service PluginInterface {
 
 	rpc getAllDeserializers (GetAllDeserializersRequest) returns (GetAllDeserializersResponse);
 
+	rpc getAllDeserializersForProject (GetAllDeserializersForProjectRequest) returns (GetAllDeserializersForProjectResponse);
+
 	rpc getAllInternalServices (GetAllInternalServicesRequest) returns (GetAllInternalServicesResponse);
 
 	rpc getAllModelCheckerPluginDescriptors (GetAllModelCheckerPluginDescriptorsRequest) returns (GetAllModelCheckerPluginDescriptorsResponse);
@@ -357,6 +359,16 @@ message GetAllDeserializersRequest {
 }
 
 message GetAllDeserializersResponse {
+	optional string errorMessage = 1;
+	repeated SDeserializerPluginConfiguration value = 2;
+}
+
+message GetAllDeserializersForProjectRequest {
+	optional bool onlyEnabled = 1;
+	optional int64 poid = 2;
+}
+
+message GetAllDeserializersForProjectResponse {
 	optional string errorMessage = 1;
 	repeated SDeserializerPluginConfiguration value = 2;
 }

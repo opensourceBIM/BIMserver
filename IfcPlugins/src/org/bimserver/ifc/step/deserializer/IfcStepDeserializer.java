@@ -111,7 +111,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 				if (nextEntry.getName().toUpperCase().endsWith(".IFC")) {
 					IfcModelInterface model = null;
 					FakeClosingInputStream fakeClosingInputStream = new FakeClosingInputStream(zipInputStream);
-					model = read(fakeClosingInputStream, fileSize);
+					model = read(fakeClosingInputStream, fileSize, byteProgressReporter);
 					if (model.size() == 0) {
 						throw new DeserializeException("Uploaded file does not seem to be a correct IFC file");
 					}
@@ -129,7 +129,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 				throw new DeserializeException(e);
 			}
 		} else {
-			return read(in, fileSize);
+			return read(in, fileSize, byteProgressReporter);
 		}
 	}
 
@@ -141,10 +141,11 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 		}
 	}
 	
-	private IfcModelInterface read(InputStream inputStream, long fileSize) throws DeserializeException {
+	private IfcModelInterface read(InputStream inputStream, long fileSize, ByteProgressReporter byteProgressReporter) throws DeserializeException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
 		model = new IfcModel(getPackageMetaData(), initialCapacity);
+		long bytesRead = 0;
 		lineNumber = 0;
 		try {
 			String line = reader.readLine();
@@ -168,6 +169,11 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 						throw new DeserializeException(lineNumber, " (" + e.getMessage() + ") " + line, e);
 					}
 				}
+				bytesRead += bytes.length;
+				if (byteProgressReporter != null) {
+					byteProgressReporter.progress(bytesRead);
+				}
+
 				line = reader.readLine();
 				lineNumber++;
 			}
@@ -188,7 +194,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 	public IfcModelInterface read(File sourceFile) throws DeserializeException {
 		try {
 			FileInputStream in = new FileInputStream(sourceFile);
-			read(in, sourceFile.length());
+			read(in, sourceFile.length(), null);
 			in.close();
 			model.getModelMetaData().setDate(new Date());
 			model.getModelMetaData().setName(sourceFile.getName());

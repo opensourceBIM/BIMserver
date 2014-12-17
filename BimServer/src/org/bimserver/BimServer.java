@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +70,7 @@ import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.BooleanType;
@@ -129,11 +131,11 @@ import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.reflector.FileBasedReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.bimserver.templating.TemplateEngine;
-import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
 import org.bimserver.webservices.LongTransactionManager;
 import org.bimserver.webservices.PublicInterfaceFactory;
 import org.bimserver.webservices.authorization.SystemAuthorization;
+import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -181,7 +183,6 @@ public class BimServer {
 	private ExecutorService executorService = Executors.newFixedThreadPool(50);
 	private InternalServicesManager internalServicesManager;
 	private OpenIdManager openIdManager;
-
 	private MetaDataManager metaDataManager;
 
 	/**
@@ -245,6 +246,8 @@ public class BimServer {
 			LOGGER.debug("PublicInterfaceFactory created");
 			
 			pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath(), serviceFactory, internalServicesManager, servicesMap);
+			metaDataManager = new MetaDataManager(pluginManager);
+			pluginManager.setMetaDataManager(metaDataManager);
 			LOGGER.debug("PluginManager created");
 			
 			versionChecker = new VersionChecker(config.getResourceFetcher());
@@ -330,6 +333,7 @@ public class BimServer {
 			}
 
 			try {
+				metaDataManager.init();
 				pluginManager.initAllLoadedPlugins();
 			} catch (PluginException e) {
 				LOGGER.error("", e);
@@ -338,15 +342,17 @@ public class BimServer {
 
 			longActionManager = new LongActionManager();
 
-			Set<Ifc2x3tc1Package> packages = CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE);
+			Set<EPackage> packages = new HashSet<>();
+			packages.add(Ifc2x3tc1Package.eINSTANCE);
+			packages.add(Ifc4Package.eINSTANCE);
 			templateEngine = new TemplateEngine();
 			templateEngine.init(config.getResourceFetcher().getResource("templates/"));
 			File databaseDir = new File(config.getHomeDir(), "database");
 			BerkeleyKeyValueStore keyValueStore = new BerkeleyKeyValueStore(databaseDir);
 			
-			metaDataManager = new MetaDataManager(pluginManager);
 			Query.setPackageMetaDataForDefaultQuery(metaDataManager.getEPackage("store"));
 			
+			bimDatabase = new Database(this, packages, keyValueStore, metaDataManager);
 			try {
 				bimDatabase.init();
 			} catch (DatabaseRestartRequiredException e) {

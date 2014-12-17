@@ -51,6 +51,7 @@ import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
 import org.bimserver.database.actions.UndeleteProjectDatabaseAction;
+import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDownloadResult;
@@ -198,7 +199,7 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 	}
 
 	@Override
-	public Long downloadByTypes(Set<Long> roids, Set<String> classNames, Long serializerOid, Boolean includeAllSubtypes, Boolean useObjectIDM, Boolean deep, Boolean sync) throws ServerException, UserException {
+	public Long downloadByTypes(Set<Long> roids, String schema, Set<String> classNames, Long serializerOid, Boolean includeAllSubtypes, Boolean useObjectIDM, Boolean deep, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_OF_TYPE);
 		downloadParameters.setRoids(roids);
@@ -206,6 +207,7 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 		downloadParameters.setIncludeAllSubtypes(includeAllSubtypes);
 		downloadParameters.setSerializerOid(serializerOid);
 		downloadParameters.setUseObjectIDM(useObjectIDM);
+		downloadParameters.setSchema(schema);
 		return download(downloadParameters, sync);
 	}
 	
@@ -363,26 +365,29 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 	}
 	
 	@Override
-	public SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(String extension) throws ServerException, UserException {
+	public SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(String extension, Long poid) throws ServerException, UserException {
 		// Token authenticated users should also be able to call this method
 		try {
 			requireAuthenticationAndRunningServer();
-			for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true)) {
-				if (deserializerPlugin.canHandleExtension(extension)) {
-					DatabaseSession session = getBimServer().getDatabase().createSession();
-					try {
+			DatabaseSession session = getBimServer().getDatabase().createSession();
+			try {
+				Project project = session.get(poid, Query.getDefault());
+				for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true)) {
+					if (deserializerPlugin.canHandleExtension(extension)) {
 						UserSettings userSettings = getUserSettings(session);
 						for (DeserializerPluginConfiguration deserializer : userSettings.getDeserializers()) {
 							if (deserializer.getPluginDescriptor().getPluginClassName().equals(deserializerPlugin.getClass().getName())) {
-								return getBimServer().getSConverter().convertToSObject(deserializer);
+								if (deserializerPlugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
+									return getBimServer().getSConverter().convertToSObject(deserializer);
+								}
 							}
 						}
-					} catch (BimserverDatabaseException e) {
-						LOGGER.error("", e);
-					} finally {
-						session.close();
 					}
 				}
+			} catch (BimserverDatabaseException e) {
+				LOGGER.error("", e);
+			} finally {
+				session.close();
 			}
 		} catch (Exception e) {
 			handleException(e);

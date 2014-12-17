@@ -37,6 +37,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.classloaders.DelegatingClassLoader;
@@ -85,6 +86,7 @@ public class PluginManager {
 	private NotificationsManagerInterface notificationsManagerInterface;
 	private SServicesMap servicesMap;
 	private BimServerClientFactory bimServerClientFactory;
+	private MetaDataManager metaDataManager;
 
 	public PluginManager(File tempDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
 		LOGGER.debug("Creating new PluginManager");
@@ -413,7 +415,7 @@ public class PluginManager {
 			if (!schemaPlugin.isInitialized()) {
 				schemaPlugin.init(this);
 			}
-			if (schemaPlugin.getSchemaVersion().equals(name)) {
+			if (schemaPlugin.getSchemaVersion().toLowerCase().equals(name.toLowerCase())) {
 				return schemaPlugin.getSchemaDefinition(new PluginConfiguration());
 			}
 		}
@@ -686,5 +688,13 @@ public class PluginManager {
 	
 	public DeserializerPlugin getDeserializerPlugin(String pluginClassName, boolean onlyEnabled) {
 		return getPluginByClassName(DeserializerPlugin.class, pluginClassName, onlyEnabled);
+	}
+
+	public MetaDataManager getMetaDataManager() {
+		return metaDataManager;
+	}
+	
+	public void setMetaDataManager(MetaDataManager metaDataManager) {
+		this.metaDataManager = metaDataManager;
 	}
 }

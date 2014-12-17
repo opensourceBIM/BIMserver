@@ -97,6 +97,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
 public abstract class AbstractModelMerger implements ModelMerger {
+	// TODO: Actually we should not modify the original objects and then copy them to the destination model, but the other way around...
 	protected IfcModelInterface mergeScales(Project project, Set<IfcModelInterface> ifcModels, ModelHelper modelHelper) throws MergeException {
 		long size = 0;
 		PackageMetaData packageMetaData = null;
@@ -133,16 +134,9 @@ public abstract class AbstractModelMerger implements ModelMerger {
 				float scale = (float) (getLengthUnitPrefix(ifcModel) / Math.pow(10.0, prefix.getValue()));
 				setLengthUnitMeasure(ifcModel, prefix);
 				ifcModel.indexGuids();
-
-				for (long key : ifcModel.keySet()) {
-					IdEObject idEObject;
-					try {
-						idEObject = modelHelper.copy((IdEObject) ifcModel.get(key));
-					} catch (IfcModelInterfaceException e) {
-						throw new MergeException(e);
-					}
-					
-					if (idEObject != null && scale != 1.0f) {
+				if (scale != 1.0f) {
+					for (long key : ifcModel.keySet()) {
+						IdEObject idEObject = (IdEObject) ifcModel.get(key);
 						if (idEObject instanceof IfcAsymmetricIShapeProfileDef) {
 							setIfcAsymmetricIShapeProfileDef(idEObject, scale);
 						} else if (idEObject instanceof IfcBlock) {
@@ -287,9 +281,14 @@ public abstract class AbstractModelMerger implements ModelMerger {
 							setIfcZShapeProfileDef(idEObject, scale);
 						}
 						setDoubleAsStringValues(idEObject);
-						
 					}
-					
+				}
+				for (long key : ifcModel.keySet()) {
+					try {
+						modelHelper.copy((IdEObject) ifcModel.get(key));
+					} catch (IfcModelInterfaceException e) {
+						throw new MergeException(e);
+					}
 				}
 			}
 		}

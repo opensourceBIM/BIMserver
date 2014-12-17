@@ -76,6 +76,9 @@ public class DownloadParameters extends LongActionKey {
 		this.compareType = compareType;
 	}
 
+	public void setSchema(String schema) {
+		this.schema = schema;
+	}
 	
 	public void setNames(Set<String> names) {
 		this.names = names;

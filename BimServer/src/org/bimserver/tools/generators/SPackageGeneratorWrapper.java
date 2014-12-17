@@ -41,12 +41,12 @@ public class SPackageGeneratorWrapper {
 	private File sourceFolder = new File("../Shared/generated");
 	private File packageFolder = new File(sourceFolder, "org" + File.separator + "bimserver" + File.separator + "shared" + File.separator + "meta");
 
-	public static void main(String[] args) {
-		Set<EPackage> ePackages = new HashSet<EPackage>();
-		ePackages.add(StorePackage.eINSTANCE);
-		ePackages.add(LogPackage.eINSTANCE);
-		new SConverterGeneratorWrapper(new MetaDataManager(null)).generate(ePackages);
-	}
+//	public static void main(String[] args) {
+//		Set<EPackage> ePackages = new HashSet<EPackage>();
+//		ePackages.add(StorePackage.eINSTANCE);
+//		ePackages.add(LogPackage.eINSTANCE);
+//		new SConverterGeneratorWrapper(new MetaDataManager(null)).generate(ePackages);
+//	}
 
 	public void generate(Set<EPackage> ePackages) {
 		try {

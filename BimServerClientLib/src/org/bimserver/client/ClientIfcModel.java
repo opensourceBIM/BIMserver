@@ -474,7 +474,7 @@ public class ClientIfcModel extends IfcModel {
 			LOGGER.info("Loading all " + eClass.getName());
 			try {
 				modelState = ModelState.LOADING;
-				Long downloadByTypes = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(roid), Collections.singleton(eClass.getName()),
+				Long downloadByTypes = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(roid), "ifc2x3tc1", Collections.singleton(eClass.getName()),
 						getIfcSerializerOid(), false, false, false, true);
 				processDownload(downloadByTypes);
 				loadedClasses.add(eClass.getName());
@@ -571,7 +571,7 @@ public class ClientIfcModel extends IfcModel {
 		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED) {
 			try {
 				modelState = ModelState.LOADING;
-				Long downloadByTypes = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(roid), Collections.singleton(eClass.getName()),
+				Long downloadByTypes = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(roid), "ifc2x3tc1", Collections.singleton(eClass.getName()),
 						getIfcSerializerOid(), true, false, false, true);
 				processDownload(downloadByTypes);
 				for (EClass subClass : bimServerClient.getMetaDataManager().getEPackage(eClass.getEPackage().getName()).getAllSubClasses(eClass)) {

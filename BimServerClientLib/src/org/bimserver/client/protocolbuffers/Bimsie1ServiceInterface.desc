@@ -1,5 +1,5 @@
 
-¥S
+ÃS
 Bimsie1ServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"g
  AddExtendedDataToRevisionRequest
 roid (5
@@ -88,16 +88,17 @@ parentPoid (
 deep ("=
 DownloadByOidsResponse
 errorMessage (	
-value (" 
+value ("°
 DownloadByTypesRequest
-roids (
+roids (
+schema (	
 
-classNames (	
-serializerOid (
-includeAllSubtypes (
-useObjectIDM (
-deep (
-sync (">
+classNames (	
+serializerOid (
+includeAllSubtypes (
+useObjectIDM (
+deep (
+sync (">
 DownloadByTypesResponse
 errorMessage (	
 value ("e
@@ -233,9 +234,10 @@ revisionNr (
 poid ("Y
 GetSubProjectsResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"@
+value (2.org.bimserver.pb.SProject"N
 +GetSuggestedDeserializerForExtensionRequest
-	extension (	"‡
+	extension (	
+poid ("‡
 ,GetSuggestedDeserializerForExtensionResponse
 errorMessage (	A
 value (22.org.bimserver.pb.SDeserializerPluginConfiguration"&

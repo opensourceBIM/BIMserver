@@ -1,5 +1,5 @@
 
-ª­
+‹°
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
  SDeserializerPluginConfiguration
 description (	
@@ -131,6 +131,12 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 GetAllDeserializersRequest
 onlyEnabled ("v
 GetAllDeserializersResponse
+errorMessage (	A
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration"I
+$GetAllDeserializersForProjectRequest
+onlyEnabled (
+poid ("€
+%GetAllDeserializersForProjectResponse
 errorMessage (	A
 value (22.org.bimserver.pb.SDeserializerPluginConfiguration"4
 GetAllInternalServicesRequest
@@ -446,7 +452,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*š
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2¾D
+SPrimitiveEnum_BYTE_ARRAY2ÑE
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -466,7 +472,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*š
 deleteRenderEngine+.org.bimserver.pb.DeleteRenderEngineRequest.org.bimserver.pb.VoidResponse]
 deleteSerializer).org.bimserver.pb.DeleteSerializerRequest.org.bimserver.pb.VoidResponse¢
 #getAllDeserializerPluginDescriptors<.org.bimserver.pb.GetAllDeserializerPluginDescriptorsRequest=.org.bimserver.pb.GetAllDeserializerPluginDescriptorsResponser
-getAllDeserializers,.org.bimserver.pb.GetAllDeserializersRequest-.org.bimserver.pb.GetAllDeserializersResponse{
+getAllDeserializers,.org.bimserver.pb.GetAllDeserializersRequest-.org.bimserver.pb.GetAllDeserializersResponse
+getAllDeserializersForProject6.org.bimserver.pb.GetAllDeserializersForProjectRequest7.org.bimserver.pb.GetAllDeserializersForProjectResponse{
 getAllInternalServices/.org.bimserver.pb.GetAllInternalServicesRequest0.org.bimserver.pb.GetAllInternalServicesResponse¢
 #getAllModelCheckerPluginDescriptors<.org.bimserver.pb.GetAllModelCheckerPluginDescriptorsRequest=.org.bimserver.pb.GetAllModelCheckerPluginDescriptorsResponse¢
 #getAllModelComparePluginDescriptors<.org.bimserver.pb.GetAllModelComparePluginDescriptorsRequest=.org.bimserver.pb.GetAllModelComparePluginDescriptorsResponser
