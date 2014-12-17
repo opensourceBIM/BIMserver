@@ -90,7 +90,15 @@ function BimServerApi(baseUrl, notifier) {
 			cache: true,
 			success: function(result){
 				othis.schemas["ifc2x3tc1"] = result.classes;
-				callback();
+				$.ajax({
+					dataType: "json",
+					url: othis.baseUrl + "/js/ifc4.js?_v=" + Global.version,
+					cache: true,
+					success: function(result){
+						othis.schemas["ifc4"] = result.classes;
+						callback();
+					}
+				});
 			}
 		});
 	};
