@@ -126,8 +126,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		this.overwriteEnabled = overwriteEnabled;
 	}
 
-	public EClass getEClassForName(String className) {
-		return database.getEClassForName(className);
+	public EClass getEClassForName(String packageName, String className) {
+		return database.getEClassForName(packageName, className);
 	}
 
 	public void addPostCommitAction(PostCommitAction postCommitAction) {

@@ -54,9 +54,9 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 				@Override
 				public void progress(int current, int max) {
 					if (count == 0) {
-						updateProgress("Checkin of " + fileName, current * 100 / max);
+						updateProgress("Saving to database (" + fileName + ")", current * 100 / max);
 					} else {
-						updateProgress("Checkin of " + fileName + " (" + count + ")", current * 100 / max);
+						updateProgress("Saving to database (" + fileName + ", " + count + " try)", current * 100 / max);
 					}
 				}
 

@@ -50,17 +50,19 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 	private final String className;
 	private final long roid;
 	private boolean flat;
+	private String packageName;
 
-	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String className, Authorization authorization, boolean flat) {
+	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String packageName, String className, Authorization authorization, boolean flat) {
 		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roid = roid;
+		this.packageName = packageName;
 		this.className = className;
 		this.flat = flat;
 	}
 
 	@Override
 	public List<DataObject> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		EClass eClass = getDatabaseSession().getEClassForName(className);
+		EClass eClass = getDatabaseSession().getEClassForName(packageName, className);
 		Revision virtualRevision = getRevisionByRoid(roid);
 		if (virtualRevision == null) {
 			throw new UserException("No revision with roid " + roid + " found");

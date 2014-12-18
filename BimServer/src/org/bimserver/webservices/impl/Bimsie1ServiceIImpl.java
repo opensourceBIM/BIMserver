@@ -531,14 +531,8 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 		try {
 			GetProjectByPoidDatabaseAction action = new GetProjectByPoidDatabaseAction(session, getInternalAccessMethod(), poid, getAuthorization());
 			Project project = session.executeAndCommitAction(action);
-			SProjectSmall small = new SProjectSmall();
-			small.setName(project.getName());
-			small.setOid(project.getOid());
-			small.setLastRevisionId(project.getLastRevision() == null ? -1 : project.getLastRevision().getOid());
-			small.setState(getBimServer().getSConverter().convertToSObject(project.getState()));
-			small.setParentId(project.getParent() == null ? -1 : project.getParent().getOid());
-			small.setNrSubProjects(project.getSubProjects().size());
-			return small;
+			User user = session.get(getAuthorization().getUoid(), Query.getDefault());
+			return GetAllProjectsSmallDatabaseAction.createSmallProject(getAuthorization(), getBimServer(), project, user);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

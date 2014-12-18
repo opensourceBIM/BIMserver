@@ -595,7 +595,7 @@ public class BimServer {
 				serializerPluginConfiguration.setObjectIDM(userSettings.getDefaultObjectIDM());
 				serializerPluginConfiguration.setRenderEngine(userSettings.getDefaultRenderEngine());
 			}
-			if (userSettings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")) {
+			if (userSettings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin")) {
 				userSettings.setDefaultSerializer(serializerPluginConfiguration);
 			}
 		}

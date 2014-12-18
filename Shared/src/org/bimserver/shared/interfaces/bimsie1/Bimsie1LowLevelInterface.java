@@ -932,6 +932,7 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	@WebMethod(action = "getDataObjectsByType")
 	List<SDataObject> getDataObjectsByType(
 		@WebParam(name = "roid", partName = "getDataObjectsByType.roid") Long roid,
+		@WebParam(name = "packageName", partName = "getDataObjectsByType.packageName") String packageName,
 		@WebParam(name = "className", partName = "getDataObjectsByType.className") String className,
 		@WebParam(name = "flat", partName = "getDataObjectsByType.flat") Boolean flat) throws ServerException, UserException;
 
