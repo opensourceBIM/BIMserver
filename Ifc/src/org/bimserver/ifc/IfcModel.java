@@ -96,8 +96,10 @@ public class IfcModel implements IfcModelInterface {
 	private long oidCounter = 1;
 	private boolean useDoubleStrings = true;
 	private PackageMetaData packageMetaData;
+	private Map<Integer, Long> ridRoidMap;
 
-	public IfcModel(PackageMetaData packageMetaData) {
+	public IfcModel(PackageMetaData packageMetaData, Map<Integer, Long> ridRoidMap) {
+		this.ridRoidMap = ridRoidMap;
 		if (packageMetaData == null) {
 			throw new IllegalArgumentException();
 		}
@@ -960,5 +962,10 @@ public class IfcModel implements IfcModelInterface {
 				((IfcStructuralItem)ifcStructuralActivityAssignmentSelect).getAssignedStructuralActivity().add(ifcRelConnectsStructuralActivity);
 			}
 		}
+	}
+
+	@Override
+	public Map<Integer, Long> getRidRoidMap() {
+		return ridRoidMap;
 	}
 }

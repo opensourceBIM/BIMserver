@@ -17,7 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
@@ -71,10 +73,12 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 		EObject eObject = null;
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> ridRoidMap = new HashMap<>();
+		ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema()); 
 			lastPackageMetaData = packageMetaData;
-			IfcModel subModel = new IfcModel(packageMetaData);
+			IfcModel subModel = new IfcModel(packageMetaData, null);
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
 			eObject = getDatabaseSession().get(null, oid, subModel, query);
@@ -85,7 +89,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 			}
 		}
 
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

@@ -53,7 +53,7 @@ public abstract class IfcXmlDeserializer extends EmfDeserializer {
 	@Override
 	public void init(PackageMetaData packageMetaData) {
 		super.init(packageMetaData);
-		 model = new IfcModel(packageMetaData);
+		 model = new IfcModel(packageMetaData, null);
 	}
 	
 	@Override

@@ -112,7 +112,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		newRevisionAdded.setAccessMethod(getAccessMethod());
 		
 		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(project.getSchema());
-		IfcModelInterface ifcModel = new IfcModel(packageMetaData);
+		IfcModelInterface ifcModel = new IfcModel(packageMetaData, null);
 		if (oldLastRevision != null) {
 			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
 			getDatabaseSession().getMap(ifcModel, new Query(longTransaction.getPackageMetaData(), project.getId(), oldLastRevision.getId(), null, Deep.YES, highestStopId));

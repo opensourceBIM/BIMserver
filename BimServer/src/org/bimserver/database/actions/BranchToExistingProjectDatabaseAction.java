@@ -75,13 +75,13 @@ public class BranchToExistingProjectDatabaseAction extends AbstractBranchDatabas
 		PackageMetaData lastMetaData = null;
 		for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
 			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(subRevision.getProject().getSchema());
-			IfcModel subModel = new IfcModel(packageMetaData);
+			IfcModel subModel = new IfcModel(packageMetaData, null);
 			getDatabaseSession().getMap(subModel, new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), Deep.YES));
 			subModel.getModelMetaData().setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 			lastMetaData = packageMetaData;
 		}
-		IfcModelInterface model = new IfcModel(lastMetaData);
+		IfcModelInterface model = new IfcModel(lastMetaData, null);
 		try {
 			model = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid())
 					.merge(oldRevision.getProject(), ifcModelSet, new ModelHelper(model));

@@ -80,12 +80,12 @@ public class BranchToNewProjectDatabaseAction extends AbstractBranchDatabaseActi
 			if (lastMetaData != null && lastMetaData != packageMetaData) {
 				throw new UserException("Branching not possible for revision with multiple schemas");
 			}
-			IfcModel subModel = new IfcModel(packageMetaData);
+			IfcModel subModel = new IfcModel(packageMetaData, null);
 			getDatabaseSession().getMap(subModel, new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), Deep.NO));
 			subModel.getModelMetaData().setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface model = new IfcModel(lastMetaData);
+		IfcModelInterface model = new IfcModel(lastMetaData, null);
 		try {
 			model = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(oldRevision.getProject(), ifcModelSet, new ModelHelper(model));
 		} catch (MergeException e) {

@@ -79,8 +79,10 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 		
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		
+		Map<Integer, Long> ridRoidMap = new HashMap<Integer, Long>();
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
+			ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
 			project = virtualRevision.getProject();
 			if (!getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
@@ -108,7 +110,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 			for (ConcreteRevision concreteRevision : map.keySet()) {
 				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
-				IfcModel subModel = new IfcModel(packageMetaData);
+				IfcModel subModel = new IfcModel(packageMetaData, ridRoidMap);
 				int highestStopId = findHighestStopRid(project, concreteRevision);
 				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
@@ -132,7 +134,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 			}
 		}
 		try {
-			IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData);
+			IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 			ifcModel.getModelMetaData().setName("query");
 			for (String guid : guids) {

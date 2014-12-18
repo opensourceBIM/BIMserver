@@ -335,7 +335,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			session.setOverwriteEnabled(true); // Normally we wouldn't be allowed to change existing data
 			ConcreteRevision concreteRevision = session.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, Query.getDefault());
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
-			IfcModelInterface model = new IfcModel(packageMetaData);
+			IfcModelInterface model = new IfcModel(packageMetaData, null);
 			session.getMap(model, new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId()));
 			new GeometryGenerator(getBimServer()).generateGeometry(getAuthorization().getUoid(), getBimServer().getPluginManager(), session, model, concreteRevision.getProject().getId(), concreteRevision.getId(), true, null);
 			session.commit();
