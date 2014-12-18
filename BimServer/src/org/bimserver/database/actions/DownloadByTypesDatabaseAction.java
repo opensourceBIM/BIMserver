@@ -18,7 +18,9 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -95,8 +97,10 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		}
 		String name = "";
 		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> ridRoidMap = new HashMap<>();
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
+			ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
 			try {
@@ -155,7 +159,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
 		// TODO check, double merging??
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));

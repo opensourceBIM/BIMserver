@@ -19,7 +19,9 @@ package org.bimserver.database.actions;
 
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -78,8 +80,10 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		String name = "";
 		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> ridRoidMap = new HashMap<>();
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
+			ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
 			try {
@@ -102,7 +106,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					
 					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 					lastPackageMetaData = packageMetaData;
-					IfcModelInterface subModel = new IfcModel(packageMetaData);
+					IfcModelInterface subModel = new IfcModel(packageMetaData, null);
 					
 					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
 					JsonObject queryObject = (JsonObject)query;
@@ -137,7 +141,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
 		// TODO check, double merging??
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));

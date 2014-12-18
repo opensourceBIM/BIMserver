@@ -499,7 +499,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 				try {
 					return Double.parseDouble(value);
 				} catch (NumberFormatException e) {
-					throw new DeserializeException(lineNumber, "Incorrect double floating point value", e);
+					throw new DeserializeException(lineNumber, "Incorrect double floating point value: " + value, e);
 				}
 			} else if (instanceClass == String.class) {
 				if (value.startsWith("'") && value.endsWith("'")) {

@@ -1338,7 +1338,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public IfcModelInterface createModel(PackageMetaData packageMetaData) {
-		return new IfcModel(packageMetaData);
+		return new IfcModel(packageMetaData, null);
 	}
 
 	@SuppressWarnings("unused")

@@ -109,7 +109,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(subRevision.getProject().getSchema());
 			lastPackageMetaData = packageMetaData;
-			IfcModel subModel = new IfcModel(packageMetaData);
+			IfcModel subModel = new IfcModel(packageMetaData, null);
 			int highestStopId = findHighestStopRid(project, subRevision);
 			Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), null, Deep.YES, highestStopId);
 			subModel.addChangeListener(new IfcModelChangeListener() {
@@ -133,7 +133,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			ifcModelSet.add(subModel);
 		}
 		
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, null);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid())

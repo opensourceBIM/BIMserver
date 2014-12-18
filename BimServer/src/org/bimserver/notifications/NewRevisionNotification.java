@@ -202,7 +202,7 @@ public class NewRevisionNotification extends Notification {
 							try {
 								if (model == null) {
 									PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(project.getSchema());
-									model = new IfcModel(packageMetaData);
+									model = new IfcModel(packageMetaData, null);
 									Revision revision;
 									try {
 										revision = session.get(roid, Query.getDefault());

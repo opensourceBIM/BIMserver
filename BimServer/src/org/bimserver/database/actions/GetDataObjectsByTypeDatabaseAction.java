@@ -18,7 +18,9 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
@@ -67,7 +69,9 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 		if (virtualRevision == null) {
 			throw new UserException("No revision with roid " + roid + " found");
 		}
+		Map<Integer, Long> ridRoidMap = new HashMap<>();
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
 		PackageMetaData lastPackageMetaData = null;
 		Project project = virtualRevision.getProject();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
@@ -79,7 +83,7 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

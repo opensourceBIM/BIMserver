@@ -19,6 +19,7 @@ package org.bimserver.emf;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
@@ -204,4 +205,5 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	<T extends IdEObject> T create(EClass eClass, OidProvider<Long> oidProvider) throws IfcModelInterfaceException;
 	
 	PackageMetaData getPackageMetaData();
+	Map<Integer, Long> getRidRoidMap();
 }

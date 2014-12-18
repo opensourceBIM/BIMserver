@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 
 public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometrySerializer.class);
-	private static final byte FORMAT_VERSION = 5;
+	private static final byte FORMAT_VERSION = 6;
 	private static final byte GEOMETRY_TYPE_TRIANGLES = 0;
 	private static final byte GEOMETRY_TYPE_INSTANCE = 1;
 
@@ -110,6 +110,8 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 			GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
 			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 				dataOutputStream.writeUTF(ifcProduct.eClass().getName());
+				Long roid = getModel().getRidRoidMap().get(ifcProduct.getRid());
+				dataOutputStream.writeLong(roid);
 				dataOutputStream.writeLong(ifcProduct.getOid());
 
 				GeometryData geometryData = geometryInfo.getData();

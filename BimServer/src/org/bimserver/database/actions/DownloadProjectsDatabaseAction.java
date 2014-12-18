@@ -17,6 +17,8 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -76,6 +78,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> ridRoidMap = new HashMap<>();
 		for (long roid : roids) {
 			Revision revision = getRevisionByRoid(roid);
 			project = revision.getProject();
@@ -83,7 +86,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 					lastPackageMetaData = packageMetaData;
-					IfcModel subModel = new IfcModel(packageMetaData);
+					IfcModel subModel = new IfcModel(packageMetaData, null);
 					int highestStopId = findHighestStopRid(project, concreteRevision);
 					Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, Deep.YES, highestStopId);
 					subModel.addChangeListener(new IfcModelChangeListener() {
@@ -113,7 +116,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

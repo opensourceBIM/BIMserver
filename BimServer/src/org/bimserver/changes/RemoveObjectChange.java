@@ -71,7 +71,7 @@ public class RemoveObjectChange implements Change {
 
 		int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
 		Query query = new Query(packageMetaData, project.getId(), concreteRevision.getId(), null, Deep.YES, highestStopId);
-		IfcModel subModel = new IfcModel(packageMetaData);
+		IfcModel subModel = new IfcModel(packageMetaData, null);
 		databaseSession.getMap(subModel, query);
 		for (IdEObject idEObject2 : subModel.getValues()) {
 			if (idEObject2 == idEObject) {

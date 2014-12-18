@@ -55,7 +55,7 @@ public class JsonDeserializer extends EmfDeserializer {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException {
-		IfcModelInterface model = new IfcModel(getPackageMetaData());
+		IfcModelInterface model = new IfcModel(getPackageMetaData(), null);
 		WaitingList<Long> waitingList = new WaitingList<Long>();
 		JsonReader jsonReader = new JsonReader(new InputStreamReader(in));
 		try {

@@ -87,7 +87,7 @@ public class ClientIfcModel extends IfcModel {
 	private ClientEStore eStore;
 
 	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
-		super(packageMetaData);
+		super(packageMetaData, null);
 		this.eStore = new ClientEStore(this);
 		this.bimServerClient = bimServerClient;
 		this.roid = roid;
@@ -102,7 +102,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	private ClientIfcModel(BimServerClient bimServerClient, PackageMetaData packageMetaData, long poid) {
-		super(packageMetaData);
+		super(packageMetaData, null);
 		this.bimServerClient = bimServerClient;
 		try {
 			tid = bimServerClient.getBimsie1LowLevelInterface().startTransaction(poid);

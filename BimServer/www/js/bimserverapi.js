@@ -90,15 +90,7 @@ function BimServerApi(baseUrl, notifier) {
 			cache: true,
 			success: function(result){
 				othis.schemas["ifc2x3tc1"] = result.classes;
-				$.ajax({
-					dataType: "json",
-					url: othis.baseUrl + "/js/ifc4.js?_v=" + Global.version,
-					cache: true,
-					success: function(result){
-						othis.schemas["ifc4"] = result.classes;
-						callback();
-					}
-				});
+				callback();
 			}
 		});
 	};
@@ -691,6 +683,7 @@ function Model(bimServerApi, poid, roid, schema) {
 	
 	othis.changes = 0;
 	othis.changeListeners = [];
+	othis.schema = "ifc2x3tc1";
 	
 	othis.transactionSynchronizer = new Synchronizer(function(callback){
 		bimServerApi.call("Bimsie1LowLevelInterface", "startTransaction", {poid: othis.poid}, function(tid){
@@ -1218,6 +1211,7 @@ function Model(bimServerApi, poid, roid, schema) {
 			}
 			// Any left?
 			if (list.length > 0) {
+				console.log("Getting", list);
 				list.forEach(function(item){
 					fetchingMap[item] = [];
 				});
