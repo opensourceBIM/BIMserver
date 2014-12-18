@@ -250,20 +250,20 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 	@Override
 	public Long createObject(Long tid, String className) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		EClass eClass = ((Database) getBimServer().getDatabase()).getEClassForName(className);
-		if (eClass == null) {
-			throw new UserException("Unknown type: \"" + className + "\"");
-		}
-		Long oid = getBimServer().getDatabase().newOid(eClass);
-		CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass);
 		try {
 			LongTransaction longTransaction = getBimServer().getLongTransactionManager().get(tid);
 			if (longTransaction == null) {
 				throw new UserException("No transaction with tid " + tid + " was found");
 			}
+			EClass eClass = ((Database) getBimServer().getDatabase()).getEClass(longTransaction.getSchemaName(), className);
+			if (eClass == null) {
+				throw new UserException("Unknown type: \"" + className + "\"");
+			}
+			Long oid = getBimServer().getDatabase().newOid(eClass);
+			CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass);
 			longTransaction.add(createObject);
 			return oid;
-		} catch (NoTransactionException e) {
+		} catch (Exception e) {
 			return handleException(e);
 		}
 	}
@@ -685,10 +685,10 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 	}
 
 	@Override
-	public List<SDataObject> getDataObjectsByType(Long roid, String className, Boolean flat) throws ServerException, UserException {
+	public List<SDataObject> getDataObjectsByType(Long roid, String packageName, String className, Boolean flat) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
-		BimDatabaseAction<List<DataObject>> action = new GetDataObjectsByTypeDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, className, getAuthorization(), flat);
+		BimDatabaseAction<List<DataObject>> action = new GetDataObjectsByTypeDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, packageName, className, getAuthorization(), flat);
 		try {
 			return getBimServer().getSConverter().convertToSListDataObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {

@@ -311,8 +311,9 @@ message GetDataObjectsResponse {
 
 message GetDataObjectsByTypeRequest {
 	optional int64 roid = 1;
-	optional string className = 2;
-	optional bool flat = 3;
+	optional string packageName = 2;
+	optional string className = 3;
+	optional bool flat = 4;
 }
 
 message GetDataObjectsByTypeResponse {

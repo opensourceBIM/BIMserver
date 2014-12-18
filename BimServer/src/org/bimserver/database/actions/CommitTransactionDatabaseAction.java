@@ -98,6 +98,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				size--;
 			}
 		}
+		
 		Revision oldLastRevision = project.getLastRevision();
 		CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), size, project, user, comment.trim());
 		ConcreteRevision concreteRevision = result.getConcreteRevision();
@@ -109,12 +110,12 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		newRevisionAdded.setRevision(concreteRevision.getRevisions().get(0));
 		newRevisionAdded.setProject(project);
 		newRevisionAdded.setAccessMethod(getAccessMethod());
-
+		
 		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(project.getSchema());
 		IfcModelInterface ifcModel = new IfcModel(packageMetaData);
 		if (oldLastRevision != null) {
 			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
-			getDatabaseSession().getMap(ifcModel, new Query(packageMetaData, project.getId(), oldLastRevision.getId(), null, Deep.YES, highestStopId));
+			getDatabaseSession().getMap(ifcModel, new Query(longTransaction.getPackageMetaData(), project.getId(), oldLastRevision.getId(), null, Deep.YES, highestStopId));
 		}
 		
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
@@ -131,9 +132,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 
 		SummaryMap summaryMap = null;
 		if (oldLastRevision != null && oldLastRevision.getConcreteRevisions().size() == 1 && oldLastRevision.getConcreteRevisions().get(0).getSummary() != null) {
-			summaryMap = new SummaryMap(oldLastRevision.getConcreteRevisions().get(0).getSummary());
+			summaryMap = new SummaryMap(packageMetaData, oldLastRevision.getConcreteRevisions().get(0).getSummary());
 		} else {
-			summaryMap = new SummaryMap();
+			summaryMap = new SummaryMap(packageMetaData);
 		}
 
 		boolean geometryChanged = true;

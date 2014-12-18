@@ -95,10 +95,6 @@ public class GeometryGenerator {
 			PackageMetaData packageMetaData = model.getPackageMetaData();
 			serializer.init(model, null, pluginManager, null, packageMetaData, false);
 
-			// TODO This is not streaming. SerializerInputstream has to be fixed first, then the IfcEngine wrapper should be able to handle streams without knowing the size in advance
-
-			SerializerInputstream serializerInputstream = new SerializerInputstream((EmfSerializer) serializer);
-
 			User user = (User) databaseSession.get(uoid, Query.getDefault());
 			UserSettings userSettings = user.getUserSettings();
 			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
@@ -109,6 +105,7 @@ public class GeometryGenerator {
 			if (renderEnginePlugin == null) {
 				throw new UserException("No (enabled) render engine found of type " + defaultRenderEngine.getPluginDescriptor().getPluginClassName());
 			}
+			SerializerInputstream serializerInputstream = new SerializerInputstream((EmfSerializer) serializer);
 			try {
 				RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration(), packageMetaData.getSchema().getEPackageName());
 				renderEngine.init();
@@ -129,7 +126,7 @@ public class GeometryGenerator {
 						List<IdEObject> products = model.getAllWithSubTypes(productClass);
 						
 						EStructuralFeature geometryFeature = productClass.getEStructuralFeature("geometry");
-						EStructuralFeature representationFeature = productClass.getEStructuralFeature("representation");
+						EStructuralFeature representationFeature = productClass.getEStructuralFeature("Representation");
 						for (IdEObject ifcProduct : products) {
 							if (ifcProduct.eGet(representationFeature) != null) {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());

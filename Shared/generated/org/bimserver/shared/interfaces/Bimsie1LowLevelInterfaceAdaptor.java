@@ -83,7 +83,7 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SDataObject> getDataObjectsByType(java.lang.Long roid, java.lang.String className, java.lang.Boolean flat) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SDataObject> getDataObjectsByType(java.lang.Long roid, java.lang.String packageName, java.lang.String className, java.lang.Boolean flat) throws UserException, ServerException {
 		return null;
 	}
 	

@@ -328,7 +328,7 @@ public class DownloadParameters extends LongActionKey {
 			for (long roid : roids) {
 				Revision revision;
 				try {
-					revision = session.get(session.getEClassForName("Revision"), roid, Query.getDefault());
+					revision = session.get(session.getEClassForName("store", "Revision"), roid, Query.getDefault());
 					for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 						fileName.append(concreteRevision.getProject().getName() + "-");
 					}

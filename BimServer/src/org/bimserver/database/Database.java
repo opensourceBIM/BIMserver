@@ -111,11 +111,10 @@ public class Database implements BimDatabase {
 		return databaseSchemaVersion;
 	}
 
-	public EClass getEClassForName(String className) {
-		for (EPackage ePackage : emfPackages.values()) {
-			if (ePackage.getEClassifier(className) != null) {
-				return (EClass) ePackage.getEClassifier(className);
-			}
+	public EClass getEClassForName(String packageName, String className) {
+		EPackage ePackage = emfPackages.get(packageName);
+		if (ePackage.getEClassifier(className) != null) {
+			return (EClass) ePackage.getEClassifier(className);
 		}
 		return null;
 	}

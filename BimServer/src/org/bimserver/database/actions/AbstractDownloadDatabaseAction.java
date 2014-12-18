@@ -25,9 +25,9 @@ import org.bimserver.GeometryGeneratingException;
 import org.bimserver.GeometryGenerator;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.geometry.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -36,6 +36,7 @@ import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.webservices.authorization.Authorization;
+import org.eclipse.emf.ecore.EClass;
 
 public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseAction<T> {
 
@@ -56,22 +57,18 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)
 				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), false, null);
 			} else {
-				// As long as the amount of objects of type IfcProduct is increasing, we keep loading more...
-				List<IfcProduct> allWithSubTypes = model.getAllWithSubTypes(IfcProduct.class);
-				int lastSize = -1;
-				while (lastSize != allWithSubTypes.size()) {
-					lastSize = allWithSubTypes.size();
-					for (IfcProduct ifcProduct : new ArrayList<>(allWithSubTypes)) {
-						GeometryInfo geometryInfo = ifcProduct.getGeometry();
-						if (geometryInfo != null) {
-							geometryInfo.load();
-							geometryInfo.getData().load();
-							geometryInfo.getTransformation();
-							geometryInfo.getMinBounds().load();
-							geometryInfo.getMaxBounds().load();
-						}
+				EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
+				List<IdEObject> allWithSubTypes = new ArrayList<>(model.getAllWithSubTypes(productClass));
+				for (IdEObject ifcProduct : allWithSubTypes) {
+					ifcProduct.load();
+					GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(productClass.getEStructuralFeature("geometry"));
+					if (geometryInfo != null) {
+						geometryInfo.load();
+						geometryInfo.getData().load();
+						geometryInfo.getTransformation();
+						geometryInfo.getMinBounds().load();
+						geometryInfo.getMaxBounds().load();
 					}
-					allWithSubTypes = model.getAllWithSubTypes(IfcProduct.class);
 				}
 			}
 		}

@@ -99,7 +99,9 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 				try {
 					int highestStopId = findHighestStopRid(project, concreteRevision);
+					
 					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+					lastPackageMetaData = packageMetaData;
 					IfcModelInterface subModel = new IfcModel(packageMetaData);
 					
 					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
@@ -111,11 +113,8 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					
 					size += subModel.size();
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());
-					subModel.fixInverseMismatches();
 					checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 					ifcModelSet.add(subModel);
-					
-					lastPackageMetaData = packageMetaData;
 				} catch (GeometryGeneratingException | IfcModelInterfaceException e) {
 					throw new UserException(e);
 				}
@@ -163,7 +162,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 	private void processQueryPart(String schema, JsonObject query, JsonObject typeQuery, IfcModelInterface model, QueryInterface queryInterface) throws BimserverDatabaseException, IfcModelInterfaceException {
 		if (typeQuery.has("type")) {
 			String type = typeQuery.get("type").getAsString();
-			EClass typeClass = getDatabaseSession().getEClassForName(type);
+			EClass typeClass = getDatabaseSession().getEClass(schema, type);
 			getDatabaseSession().getAllOfType(model, schema, type, queryInterface);
 			if (typeQuery.has("include")) {
 				processInclude(query, typeQuery, model, queryInterface, model.getAllWithSubTypes(typeClass));

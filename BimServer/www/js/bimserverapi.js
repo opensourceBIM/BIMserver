@@ -691,7 +691,6 @@ function Model(bimServerApi, poid, roid, schema) {
 	
 	othis.changes = 0;
 	othis.changeListeners = [];
-	othis.schema = "ifc2x3tc1";
 	
 	othis.transactionSynchronizer = new Synchronizer(function(callback){
 		bimServerApi.call("Bimsie1LowLevelInterface", "startTransaction", {poid: othis.poid}, function(tid){

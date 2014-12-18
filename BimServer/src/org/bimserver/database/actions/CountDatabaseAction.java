@@ -22,6 +22,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.shared.exceptions.UserException;
@@ -45,10 +46,11 @@ public class CountDatabaseAction extends BimDatabaseAction<Integer> {
 		if (revision == null) {
 			throw new UserException("Revision with roid " + roid + " not found");
 		}
+		Project project = revision.getProject();
 		if (revision.getConcreteRevisions().size() == 1 && revision.getConcreteRevisions().get(0).getSummary() != null) {
 			RevisionSummary summary = revision.getConcreteRevisions().get(0).getSummary();
-			SummaryMap summaryMap = new SummaryMap(summary);
-			return summaryMap.count(getDatabaseSession().getEClassForName(className));
+			SummaryMap summaryMap = new SummaryMap(null, summary);
+			return summaryMap.count(getDatabaseSession().getEClass(project.getSchema(), className));
 		}
 		return null;
 	}

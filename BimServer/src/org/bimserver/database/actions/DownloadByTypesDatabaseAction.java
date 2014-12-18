@@ -84,7 +84,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		Set<EClass> eClasses = new HashSet<EClass>();
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		for (String className : classNames) {
-			eClasses.add(getDatabaseSession().getEClassForName(className));
+			eClasses.add(getDatabaseSession().getEClassForName(schema, className));
 			if (includeAllSubtypes) {
 				EClassifier eClassifier = Ifc2x3tc1Package.eINSTANCE.getEClassifier(className);
 				if (eClassifier == null) {

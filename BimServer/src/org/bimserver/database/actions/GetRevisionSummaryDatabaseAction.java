@@ -95,6 +95,7 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 				subMap = revisionSummaryContainerOther;
 			}
 			RevisionSummaryType createRevisionSummaryType = StoreFactory.eINSTANCE.createRevisionSummaryType();
+			createRevisionSummaryType.setSchema(eClass.getEPackage().getName());
 			createRevisionSummaryType.setCount(map.get(eClass));
 			createRevisionSummaryType.setName(eClass.getName());
 			subMap.getTypes().add(createRevisionSummaryType);
@@ -102,13 +103,13 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 		return revisionSummary;
 	}
 
-	private void merge(RevisionSummary add) {
+	private void merge(RevisionSummary add) throws BimserverDatabaseException {
 		for (RevisionSummaryContainer summaryContainer : add.getList()) {
 			for (RevisionSummaryType revisionSummaryType : summaryContainer.getTypes()) {
-				if (!map.containsKey(getDatabaseSession().getEClassForName(revisionSummaryType.getName()))) {
-					map.put(getDatabaseSession().getEClassForName(revisionSummaryType.getName()), revisionSummaryType.getCount());
+				if (!map.containsKey(getDatabaseSession().getEClass(revisionSummaryType.getSchema(), revisionSummaryType.getName()))) {
+					map.put(getDatabaseSession().getEClass(revisionSummaryType.getSchema(), revisionSummaryType.getName()), revisionSummaryType.getCount());
 				} else {
-					map.put(getDatabaseSession().getEClassForName(revisionSummaryType.getName()), map.get(getDatabaseSession().getEClassForName(revisionSummaryType.getName())) + revisionSummaryType.getCount());
+					map.put(getDatabaseSession().getEClass(revisionSummaryType.getSchema(), revisionSummaryType.getName()), map.get(getDatabaseSession().getEClass(revisionSummaryType.getSchema(), revisionSummaryType.getName())) + revisionSummaryType.getCount());
 				}
 			}
 		}
