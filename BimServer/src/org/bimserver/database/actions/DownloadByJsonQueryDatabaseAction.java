@@ -117,6 +117,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					
 					size += subModel.size();
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());
+					subModel.fixInverseMismatches();
 					checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 					ifcModelSet.add(subModel);
 				} catch (GeometryGeneratingException | IfcModelInterfaceException e) {

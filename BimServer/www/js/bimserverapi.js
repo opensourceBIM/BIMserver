@@ -53,7 +53,8 @@ function BimServerApi(baseUrl, notifier) {
 		VALIDATEACCOUNT_DONE: "Account successfully validated, you can now login",
 		ADDPROJECTASSUBPROJECT_DONE: "Sub project added successfully",
 		DOWNLOADBYJSONQUERY_BUSY: "Downloading BIM",
-		CHECKINFROMURL_DONE: "Done checking in from URL"
+		CHECKINFROMURL_DONE: "Done checking in from URL",
+		GETLOGGEDINUSER_BUSY: "Getting user details"
 	}
 
 	othis.token = null;
@@ -1233,6 +1234,7 @@ function Model(bimServerApi, poid, roid, schema) {
 							if (data.objects.length > 0) {
 								var done = 0;
 								data.objects.forEach(function(object){
+									console.log(object);
 									var wrapper = null;
 									if (othis.objects[object.__oid] != null) {
 										wrapper = othis.objects[object.__oid];
