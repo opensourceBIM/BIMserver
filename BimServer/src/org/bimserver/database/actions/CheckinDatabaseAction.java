@@ -33,7 +33,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.mail.MailSystem;
-import org.bimserver.models.ifc2x3tc1.IfcOpeningElement;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
@@ -129,11 +128,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			
 			long size = 0;
 			if (getModel() != null) {
-				for (IfcOpeningElement ifcOpeningElement : getModel().getAll(IfcOpeningElement.class)) {
-					System.out.println("fv: "+ ifcOpeningElement.getHasFillings().size());
-				}
-				
-				
 				for (IdEObject idEObject : getModel().getValues()) {
 					if (idEObject.eClass().getEAnnotation("hidden") == null) {
 						size++;
