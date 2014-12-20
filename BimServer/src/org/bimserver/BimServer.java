@@ -78,6 +78,7 @@ import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.LongType;
+import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.ObjectDefinition;
@@ -116,6 +117,7 @@ import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
+import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
@@ -597,6 +599,14 @@ public class BimServer {
 			}
 			if (userSettings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin")) {
 				userSettings.setDefaultSerializer(serializerPluginConfiguration);
+			}
+		}
+		for (MessagingSerializerPlugin serializerPlugin : pluginManager.getAllMessagingSerializerPlugins(true)) {
+			MessagingSerializerPluginConfiguration serializerPluginConfiguration = find(userSettings.getMessagingSerializerPlugins(), serializerPlugin.getClass().getName());
+			if (serializerPluginConfiguration == null) {
+				serializerPluginConfiguration = session.create(MessagingSerializerPluginConfiguration.class);
+				userSettings.getMessagingSerializerPlugins().add(serializerPluginConfiguration);
+				genericPluginConversion(session, serializerPlugin, serializerPluginConfiguration, getPluginDescriptor(session, serializerPlugin.getClass().getName()));
 			}
 		}
 		if (userSettings.getDefaultSerializer() == null && !userSettings.getSerializers().isEmpty()) {

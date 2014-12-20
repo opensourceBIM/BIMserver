@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Serializer Plugin Descriptor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

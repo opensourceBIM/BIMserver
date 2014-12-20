@@ -254,6 +254,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetMessagingSerializerByPluginClassNameCallback {
+		void success(org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration result);
+		void error(Throwable e);
+	}
+	
 	public interface GetModelCompareByIdCallback {
 		void success(org.bimserver.interfaces.objects.SModelComparePluginConfiguration result);
 		void error(Throwable e);
@@ -966,6 +971,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getInternalServiceById(oid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getMessagingSerializerByPluginClassName(final java.lang.String pluginClassName, final GetMessagingSerializerByPluginClassNameCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getMessagingSerializerByPluginClassName(pluginClassName));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

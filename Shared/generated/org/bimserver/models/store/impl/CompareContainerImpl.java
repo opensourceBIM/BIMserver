@@ -31,12 +31,13 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Compare Container</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.CompareContainerImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CompareContainerImpl#getItems <em>Items</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

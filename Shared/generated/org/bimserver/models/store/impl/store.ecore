@@ -222,6 +222,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#//ObjectIDMPluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
         eType="#//InternalServicePluginConfiguration" eOpposite="#//InternalServicePluginConfiguration/userSettings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="messagingSerializerPlugins"
+        upperBound="-1" eType="#//MessagingSerializerPluginConfiguration" eOpposite="#//MessagingSerializerPluginConfiguration/userSettings"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -827,5 +829,10 @@
   <eClassifiers xsi:type="ecore:EEnum" name="SmtpProtocol">
     <eLiterals name="SMTP"/>
     <eLiterals name="SMTPS" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MessagingSerializerPluginConfiguration"
+      eSuperTypes="#//PluginConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
+        eOpposite="#//UserSettings/messagingSerializerPlugins"/>
   </eClassifiers>
 </ecore:EPackage>

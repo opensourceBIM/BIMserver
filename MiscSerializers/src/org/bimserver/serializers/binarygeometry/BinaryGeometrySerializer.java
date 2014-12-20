@@ -36,6 +36,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.io.LittleEndianDataOutputStream;
+
+@Deprecated
 public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometrySerializer.class);
 	private static final byte FORMAT_VERSION = 6;
@@ -67,7 +70,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private void writeGeometries(OutputStream outputStream) throws IOException {
 		long start = System.nanoTime();
 
-		DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+		LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(outputStream);
 		// Identifier for clients to determine if this server is even serving binary geometry
 		dataOutputStream.writeUTF("BGS");
 		
@@ -127,7 +130,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				if (outputStream instanceof AligningOutputStream) {
 					((AligningOutputStream)outputStream).align4();
 				} else {
-					int skip = 4 - (dataOutputStream.size() % 4);
+					int skip = 4 - (10000 % 4); // TODO fix
 					if(skip != 0 && skip != 4) {
 						dataOutputStream.write(new byte[skip]);
 					}

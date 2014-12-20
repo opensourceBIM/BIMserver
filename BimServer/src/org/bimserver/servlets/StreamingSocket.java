@@ -20,6 +20,7 @@ package org.bimserver.servlets;
 import java.io.StringReader;
 import java.nio.ByteBuffer;
 
+import org.bimserver.shared.StreamingSocketInterface;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 import org.eclipse.jetty.websocket.api.WebSocketException;

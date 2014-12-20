@@ -44,7 +44,9 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Project</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getName <em>Name</em>}</li>
@@ -68,7 +70,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getModelCheckers <em>Model Checkers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getSchema <em>Schema</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

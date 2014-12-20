@@ -61,7 +61,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -822,6 +822,15 @@ public class StoreSwitch<T> extends Switch<T> {
 			T result = caseModelCheckerPluginDescriptor(modelCheckerPluginDescriptor);
 			if (result == null)
 				result = casePluginDescriptor(modelCheckerPluginDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION: {
+			MessagingSerializerPluginConfiguration messagingSerializerPluginConfiguration = (MessagingSerializerPluginConfiguration) theEObject;
+			T result = caseMessagingSerializerPluginConfiguration(messagingSerializerPluginConfiguration);
+			if (result == null)
+				result = casePluginConfiguration(messagingSerializerPluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -2238,6 +2247,21 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelCheckerPluginDescriptor(ModelCheckerPluginDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Messaging Serializer Plugin Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Messaging Serializer Plugin Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMessagingSerializerPluginConfiguration(MessagingSerializerPluginConfiguration object) {
 		return null;
 	}
 

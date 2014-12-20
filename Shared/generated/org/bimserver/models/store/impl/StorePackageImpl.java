@@ -733,6 +733,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass messagingSerializerPluginConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -874,8 +881,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 			return (StorePackage) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI);
 
 		// Obtain or create and register package
-		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-				: new StorePackageImpl());
+		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE
+				.get(eNS_URI) : new StorePackageImpl());
 
 		isInited = true;
 
@@ -2076,6 +2083,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getUserSettings_Services() {
 		return (EReference) getUserSettings().getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUserSettings_MessagingSerializerPlugins() {
+		return (EReference) getUserSettings().getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -5610,6 +5626,27 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 			modelCheckerPluginDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(107);
 		}
 		return modelCheckerPluginDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMessagingSerializerPluginConfiguration() {
+		if (messagingSerializerPluginConfigurationEClass == null) {
+			messagingSerializerPluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(109);
+		}
+		return messagingSerializerPluginConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMessagingSerializerPluginConfiguration_UserSettings() {
+		return (EReference) getMessagingSerializerPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**

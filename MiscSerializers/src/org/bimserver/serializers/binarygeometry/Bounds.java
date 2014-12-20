@@ -22,6 +22,8 @@ import java.io.IOException;
 
 import org.bimserver.models.geometry.Vector3f;
 
+import com.google.common.io.LittleEndianDataOutputStream;
+
 public class Bounds {
 	public Float3 min;
 	public Float3 max;
@@ -46,7 +48,7 @@ public class Bounds {
 		this.max.max(objectBounds.max);
 	}
 
-	public void writeTo(DataOutputStream dataOutputStream) throws IOException {
+	public void writeTo(LittleEndianDataOutputStream dataOutputStream) throws IOException {
 		min.writeTo(dataOutputStream);
 		max.writeTo(dataOutputStream);
 	}

@@ -17,6 +17,7 @@ package org.bimserver.servlets;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.json.JsonReflector;
 import org.bimserver.shared.meta.SServicesMap;
 import org.codehaus.jettison.json.JSONException;

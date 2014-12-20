@@ -91,7 +91,15 @@ function BimServerApi(baseUrl, notifier) {
 			cache: true,
 			success: function(result){
 				othis.schemas["ifc2x3tc1"] = result.classes;
-				callback();
+				$.ajax({
+					dataType: "json",
+					url: othis.baseUrl + "/js/ifc4.js?_v=" + Global.version,
+					cache: true,
+					success: function(result){
+						othis.schemas["ifc4"] = result.classes;
+						callback();
+					}
+				});
 			}
 		});
 	};
@@ -200,6 +208,17 @@ function BimServerApi(baseUrl, notifier) {
 	this.getSerializerByPluginClassName = function(pluginClassName, callback) {
 		if (othis.serializersByPluginClassName[name] == null) {
 			othis.call("PluginInterface", "getSerializerByPluginClassName", {pluginClassName : pluginClassName}, function(serializer) {
+				othis.serializersByPluginClassName[name] = serializer;
+				callback(serializer);
+			});
+		} else {
+			callback(othis.serializersByPluginClassName[name]);
+		}
+	},
+
+	this.getMessagingSerializerByPluginClassName = function(pluginClassName, callback) {
+		if (othis.serializersByPluginClassName[name] == null) {
+			othis.call("PluginInterface", "getMessagingSerializerByPluginClassName", {pluginClassName : pluginClassName}, function(serializer) {
 				othis.serializersByPluginClassName[name] = serializer;
 				callback(serializer);
 			});
@@ -684,7 +703,6 @@ function Model(bimServerApi, poid, roid, schema) {
 	
 	othis.changes = 0;
 	othis.changeListeners = [];
-	othis.schema = "ifc2x3tc1";
 	
 	othis.transactionSynchronizer = new Synchronizer(function(callback){
 		bimServerApi.call("Bimsie1LowLevelInterface", "startTransaction", {poid: othis.poid}, function(tid){
@@ -1198,7 +1216,11 @@ function Model(bimServerApi, poid, roid, schema) {
 				var item = list[len];
 				if (targetMap[item] != null) {
 					// Already loaded? Remove from list and call callback
-					if (targetMap[item].object.__state == "LOADED") {
+					var existingObject = targetMap[item].object;
+					if (item == 6947311) {
+						debugger;
+					}
+					if (existingObject.__state == "LOADED") {
 						var index = list.indexOf(item);
 						list.splice(index, 1);
 						callback(targetMap[item]);

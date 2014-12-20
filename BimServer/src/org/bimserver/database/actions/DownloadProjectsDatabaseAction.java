@@ -35,9 +35,9 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -76,7 +76,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 		final long totalSize = incrSize;
 		final AtomicLong total = new AtomicLong();
 
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		PackageMetaData lastPackageMetaData = null;
 		Map<Integer, Long> ridRoidMap = new HashMap<>();
 		for (long roid : roids) {

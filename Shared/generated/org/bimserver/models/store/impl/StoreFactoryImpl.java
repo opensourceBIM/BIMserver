@@ -260,6 +260,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createModelCheckerInstance();
 		case StorePackage.MODEL_CHECKER_PLUGIN_DESCRIPTOR:
 			return (EObject) createModelCheckerPluginDescriptor();
+		case StorePackage.MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION:
+			return (EObject) createMessagingSerializerPluginConfiguration();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1289,6 +1291,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ModelCheckerPluginDescriptor createModelCheckerPluginDescriptor() {
 		ModelCheckerPluginDescriptorImpl modelCheckerPluginDescriptor = new ModelCheckerPluginDescriptorImpl();
 		return modelCheckerPluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MessagingSerializerPluginConfiguration createMessagingSerializerPluginConfiguration() {
+		MessagingSerializerPluginConfigurationImpl messagingSerializerPluginConfiguration = new MessagingSerializerPluginConfigurationImpl();
+		return messagingSerializerPluginConfiguration;
 	}
 
 	/**

@@ -1383,15 +1383,16 @@ message SUserSettings {
 	optional int64 defaultRenderEngineId = 5;
 	optional int64 defaultSerializerId = 6;
 	repeated int64 deserializers = 7;
-	repeated int64 modelcompares = 8;
-	repeated int64 modelmergers = 9;
-	repeated int64 objectIDMs = 10;
-	optional int64 oid = 11;
-	repeated int64 queryengines = 12;
-	repeated int64 renderEngines = 13;
-	optional int32 rid = 14;
-	repeated int64 serializers = 15;
-	repeated int64 services = 16;
+	repeated int64 messagingSerializerPlugins = 8;
+	repeated int64 modelcompares = 9;
+	repeated int64 modelmergers = 10;
+	repeated int64 objectIDMs = 11;
+	optional int64 oid = 12;
+	repeated int64 queryengines = 13;
+	repeated int64 renderEngines = 14;
+	optional int32 rid = 15;
+	repeated int64 serializers = 16;
+	repeated int64 services = 17;
 }
 
 message GetUserSettingsResponse {

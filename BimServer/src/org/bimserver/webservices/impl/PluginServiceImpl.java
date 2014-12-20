@@ -43,6 +43,7 @@ import org.bimserver.database.actions.DeleteQueryEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteRenderEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
 import org.bimserver.database.actions.GetByIdDatabaseAction;
+import org.bimserver.database.actions.GetMessagingSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByIdDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByNameDatabaseAction;
 import org.bimserver.database.actions.GetModelMergerByIdDatabaseAction;
@@ -72,6 +73,7 @@ import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
+import org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
@@ -1042,6 +1044,21 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+	
+	@Override
+	public SMessagingSerializerPluginConfiguration getMessagingSerializerByPluginClassName(String pluginClassName) throws ServerException, UserException {
+		// Not checking for real authentication here because a remote service should be able to use a serializer for download call
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetMessagingSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

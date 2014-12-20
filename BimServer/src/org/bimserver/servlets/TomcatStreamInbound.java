@@ -25,6 +25,7 @@ import java.nio.CharBuffer;
 
 import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WsOutbound;
+import org.bimserver.shared.StreamingSocketInterface;
 
 import com.google.gson.JsonObject;
 

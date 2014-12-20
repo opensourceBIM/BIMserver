@@ -17,8 +17,9 @@ package org.bimserver.serializers.binarygeometry;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.DataOutputStream;
 import java.io.IOException;
+
+import com.google.common.io.LittleEndianDataOutputStream;
 
 public class Float3 {
 	public float x;
@@ -55,7 +56,7 @@ public class Float3 {
 		}
 	}
 
-	public void writeTo(DataOutputStream dataOutputStream) throws IOException {
+	public void writeTo(LittleEndianDataOutputStream dataOutputStream) throws IOException {
 		dataOutputStream.writeFloat(x);
 		dataOutputStream.writeFloat(y);
 		dataOutputStream.writeFloat(z);
