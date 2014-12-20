@@ -30,10 +30,12 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EClass;
@@ -49,9 +51,15 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 		this.authorization = authorization;
 	}
 	
-	protected void checkGeometry(SerializerPluginConfiguration serializerPluginConfiguration, PluginManager pluginManager, IfcModelInterface model, Project project, ConcreteRevision concreteRevision, Revision revision) throws BimserverDatabaseException, GeometryGeneratingException {
-		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-		if (serializerPlugin.needsGeometry()) {
+	protected void checkGeometry(PluginConfiguration serializerPluginConfiguration, PluginManager pluginManager, IfcModelInterface model, Project project, ConcreteRevision concreteRevision, Revision revision) throws BimserverDatabaseException, GeometryGeneratingException {
+		boolean needsGeometry = false;
+		Plugin plugin = pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+		if (plugin instanceof SerializerPlugin) {
+			needsGeometry = ((SerializerPlugin)plugin).needsGeometry();
+		} else if (plugin instanceof MessagingSerializerPlugin) {
+			needsGeometry = ((MessagingSerializerPlugin)plugin).needsGeometry();
+		}
+		if (needsGeometry) {
 			if (!revision.isHasGeometry()) {
 				setProgress("Generating geometry...", -1);
 				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)

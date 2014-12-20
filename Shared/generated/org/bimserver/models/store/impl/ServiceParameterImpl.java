@@ -29,14 +29,15 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Service Parameter</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServiceParameterImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceParameterImpl#getDoc <em>Doc</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceParameterImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceParameterImpl#getGenericType <em>Generic Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

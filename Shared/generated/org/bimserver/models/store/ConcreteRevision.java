@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getProject <em>Project</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getIfcHeader <em>Ifc Header</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getConcreteRevision()
  * @model

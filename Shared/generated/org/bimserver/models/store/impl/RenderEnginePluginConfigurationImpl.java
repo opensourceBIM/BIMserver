@@ -30,12 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Render Engine Plugin Configuration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.RenderEnginePluginConfigurationImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RenderEnginePluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

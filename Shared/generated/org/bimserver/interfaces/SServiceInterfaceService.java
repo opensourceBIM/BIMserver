@@ -517,6 +517,11 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 					}
 				}));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SSmtpProtocol"), null));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);

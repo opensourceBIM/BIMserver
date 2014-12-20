@@ -58,6 +58,7 @@ import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
+import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
@@ -303,6 +304,10 @@ public class PluginManager {
 
 	public Collection<SerializerPlugin> getAllSerializerPlugins(boolean onlyEnabled) {
 		return getPlugins(SerializerPlugin.class, onlyEnabled);
+	}
+
+	public Collection<MessagingSerializerPlugin> getAllMessagingSerializerPlugins(boolean onlyEnabled) {
+		return getPlugins(MessagingSerializerPlugin.class, onlyEnabled);
 	}
 
 	public Collection<DeserializerPlugin> getAllDeserializerPlugins(boolean onlyEnabled) {
@@ -652,6 +657,10 @@ public class PluginManager {
 
 	public SerializerPlugin getSerializerPlugin(String className, boolean onlyEnabled) {
 		return (SerializerPlugin) getPlugin(className, onlyEnabled);
+	}
+
+	public MessagingSerializerPlugin getMessagingSerializerPlugin(String className, boolean onlyEnabled) {
+		return (MessagingSerializerPlugin) getPlugin(className, onlyEnabled);
 	}
 
 	public Collection<WebModulePlugin> getAllWebPlugins(boolean onlyEnabled) {

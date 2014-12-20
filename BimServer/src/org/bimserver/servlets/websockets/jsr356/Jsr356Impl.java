@@ -18,7 +18,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.bimserver.BimServer;
 import org.bimserver.servlets.Streamer;
-import org.bimserver.servlets.StreamingSocketInterface;
+import org.bimserver.shared.StreamingSocketInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

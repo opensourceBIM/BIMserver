@@ -30,7 +30,9 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Bim Server Info</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.BimServerInfoImpl#getCurrentVersion <em>Current Version</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.BimServerInfoImpl#getCurrentDate <em>Current Date</em>}</li>
@@ -44,7 +46,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.BimServerInfoImpl#getServerLogUrl <em>Server Log Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.BimServerInfoImpl#getStarted <em>Started</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

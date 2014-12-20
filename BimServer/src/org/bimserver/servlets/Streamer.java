@@ -17,26 +17,25 @@ package org.bimserver.servlets;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.Reader;
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
+import java.util.Date;
 import java.util.GregorianCalendar;
-
-import javax.activation.DataSource;
 
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
-import org.bimserver.cache.FileInputStreamDataSource;
 import org.bimserver.endpoints.EndPoint;
-import org.bimserver.interfaces.objects.SDownloadResult;
+import org.bimserver.longaction.LongDownloadOrCheckoutAction;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.plugins.serializers.AligningOutputStream;
-import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.notifications.ProgressTopic;
+import org.bimserver.plugins.serializers.MessagingSerializer;
 import org.bimserver.plugins.serializers.ProgressReporter;
-import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
@@ -72,80 +71,6 @@ public class Streamer implements EndPoint {
 		streamingSocketInterface.send(welcome);
 	}
 	
-	public static class WebSocketifier extends OutputStream implements AligningOutputStream {
-		private byte[] buffer = new byte[1024 * 1024 * 100];
-		private int pos = 0;
-		private StreamingSocketInterface streamingSocketInterface;
-		private int topicId;
-		
-		public WebSocketifier(int topicId, StreamingSocketInterface streamingSocketInterface) {
-			this.topicId = topicId;
-			this.streamingSocketInterface = streamingSocketInterface;
-			ByteBuffer wrap = ByteBuffer.wrap(buffer);
-			IntBuffer intBuffer = wrap.asIntBuffer();
-			intBuffer.put(topicId);
-			pos = 4;
-		}
-		
-		public int getTopicId() {
-			return topicId;
-		}
-
-		@Override
-		public void write(int val) throws IOException {
-//			if (pos + 1 >= HARD_LIMIT) {
-//				flush();
-//			}
-			buffer[pos] = (byte) val;
-			pos++;
-		}
-
-		@Override
-		public void write(byte[] b, int off, int len) throws IOException {
-//			if (pos + len >= HARD_LIMIT) {
-//				flush();
-//			}
-			System.arraycopy(b, off, buffer, pos, len);
-			pos += len;
-		}
-		
-		public void align4() {
-			int skip = 4 - (pos % 4);
-			if(skip != 0 && skip != 4) {
-				pos += skip;
-			}
-		}
-
-		@Override
-		public void flush() throws IOException {
-			// We make a copy of the buffer, because at least Jetty will sometimes send it later (async)
-			
-			byte[] tmp = new byte[pos];
-			System.arraycopy(buffer, 0, tmp, 0, pos);
-			streamingSocketInterface.send(tmp, 0, pos);
-			
-			ByteBuffer wrap = ByteBuffer.wrap(buffer);
-			IntBuffer intBuffer = wrap.asIntBuffer();
-			intBuffer.put(topicId);
-			pos = 4;
-		}
-	}
-
-	private long copyWithFlush(InputStream input, OutputStream output, ProgressReporter progressReporter, long totalSize) throws IOException {
-		byte[] buffer = new byte[4096];
-        long count = 0;
-        int n = 0;
-        while (-1 != (n = input.read(buffer))) {
-            output.write(buffer, 0, n);
-            output.flush();
-            if (progressReporter != null) {
-            	progressReporter.update(count, totalSize);
-            }
-            count += n;
-        }
-        return count;
-	}
-	
 	public void onText(Reader reader) {
 		JsonReader jsonreader = new JsonReader(reader);
 		JsonParser parser = new JsonParser();
@@ -163,48 +88,41 @@ public class Streamer implements EndPoint {
 						@Override
 						public void run() {
 							try {
-//								final ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
-//
-//								ProgressReporter progressReporter = new ProgressReporter() {
-//									@Override
-//									public void update(long progress, long max) {
-//										if (progressTopic != null) {
-//											LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
-//											ds.setStart(new Date());
-//											ds.setState(progress == max ? ActionState.FINISHED : ActionState.STARTED);
-//											ds.setTitle("Downloading...");
-//											ds.setStage(3);
-//											ds.setProgress((int) Math.round(100.0 * progress / max));
-//
-//											progressTopic.stageProgressUpdate(ds);
-//										}
-//									}
-//								};
+								final ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
+
+								ProgressReporter progressReporter = new ProgressReporter() {
+									@Override
+									public void update(long progress, long max) {
+										if (progressTopic != null) {
+											LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
+											ds.setStart(new Date());
+											ds.setState(progress == max ? ActionState.FINISHED : ActionState.STARTED);
+											ds.setTitle("Downloading...");
+											ds.setStage(3);
+											ds.setProgress((int) Math.round(100.0 * progress / max));
+
+											progressTopic.stageProgressUpdate(ds);
+										}
+									}
+								};
+								LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(downloadId);
+								MessagingSerializer messagingSerializer = longAction.getMessagingSerializer();
 								
-								SDownloadResult checkoutResult = serviceMap.getBimsie1ServiceInterface().getDownloadData(downloadId);
-								DataSource dataSource = checkoutResult.getFile().getDataSource();
-								OutputStream outputStream = new WebSocketifier(topicId, streamingSocketInterface);
-								if (dataSource instanceof FileInputStreamDataSource) {
-									FileInputStreamDataSource fileInputStreamDataSource = ((FileInputStreamDataSource) dataSource);
-									InputStream inputStream = dataSource.getInputStream();
-									copyWithFlush(inputStream, outputStream, null, -1);
-									outputStream.flush();
-									inputStream.close();
-								} else {
-									((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, null);
-								}
-							} catch (ServerException e) {
-								LOGGER.error("", e);
-							} catch (UserException e) {
-								LOGGER.error("", e);
+								boolean writeMessage = true;
+								do {
+									ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+									DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+									dataOutputStream.writeInt(topicId);
+									writeMessage = messagingSerializer.writeMessage(byteArrayOutputStream, progressReporter);
+									if (byteArrayOutputStream.size() > 4) {
+										streamingSocketInterface.send(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.size());
+									}
+								} while (writeMessage);
 							} catch (IOException e) {
-								LOGGER.error("", e);
-							} catch (SerializerException e) {
 								LOGGER.error("", e);
 							}
 						}
 					}.start();
-					
 				} catch (UserException e) {
 					LOGGER.error("", e);
 				}

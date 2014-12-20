@@ -28,13 +28,14 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Migration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.MigrationImpl#getNumber <em>Number</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.MigrationImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.MigrationImpl#getExecuted <em>Executed</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

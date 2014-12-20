@@ -27,6 +27,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getFile <em>File</em>}</li>
@@ -38,7 +39,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ExtendedData#getRevision <em>Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getProject <em>Project</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getExtendedData()
  * @model

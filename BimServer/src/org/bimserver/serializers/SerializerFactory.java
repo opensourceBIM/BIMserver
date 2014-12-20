@@ -35,6 +35,7 @@ import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SWebModulePluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SerializerPluginConfiguration;
@@ -46,7 +47,10 @@ import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
+import org.bimserver.plugins.serializers.MessagingSerializer;
+import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.ProjectInfo;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
@@ -93,7 +97,7 @@ public class SerializerFactory {
 		return descriptors;
 	}
 	
-	public org.bimserver.plugins.serializers.Serializer create(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
+	public Serializer create(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
 			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
@@ -101,7 +105,7 @@ public class SerializerFactory {
 				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 				if (serializerPlugin != null) {
 					ObjectType settings = serializerPluginConfiguration.getSettings();
-					org.bimserver.plugins.serializers.Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration(settings));
+					Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration(settings));
 					if (serializer != null) {
 						try {
 							ProjectInfo projectInfo = new ProjectInfo();
@@ -119,6 +123,33 @@ public class SerializerFactory {
 							}
 							projectInfo.setAuthorName(username);
 							serializer.init(model, projectInfo, pluginManager, renderEnginePlugin, model.getPackageMetaData(), true);
+							return serializer;
+						} catch (NullPointerException e) {
+							LOGGER.error("", e);
+						}
+					}
+				}
+			}
+		} catch (BimserverDatabaseException e) {
+			LOGGER.error("", e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+	
+	public MessagingSerializer createMessagingSerializer(String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
+		DatabaseSession session = bimDatabase.createSession();
+		try {
+			MessagingSerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getMessagingSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
+			if (serializerPluginConfiguration != null) {
+				MessagingSerializerPlugin serializerPlugin = (MessagingSerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+				if (serializerPlugin != null) {
+					ObjectType settings = serializerPluginConfiguration.getSettings();
+					MessagingSerializer serializer = serializerPlugin.createSerializer(new PluginConfiguration(settings));
+					if (serializer != null) {
+						try {
+							serializer.init(model, null, pluginManager, renderEnginePlugin, model.getPackageMetaData(), true);
 							return serializer;
 						} catch (NullPointerException e) {
 							LOGGER.error("", e);

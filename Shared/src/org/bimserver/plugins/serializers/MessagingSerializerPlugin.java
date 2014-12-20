@@ -1,4 +1,4 @@
-package org.bimserver.servlets;
+package org.bimserver.plugins.serializers;
 
 /******************************************************************************
  * Copyright (C) 2009-2014  BIMserver.org
@@ -17,10 +17,26 @@ package org.bimserver.servlets;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import com.google.gson.JsonObject;
+import java.util.Set;
 
-public interface StreamingSocketInterface {
+import org.bimserver.emf.Schema;
+import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.PluginConfiguration;
 
-	void send(JsonObject request);
-	void send(byte[] data, int start, int length);
+public interface MessagingSerializerPlugin extends Plugin {
+
+	/**
+	 * @return A serializer
+	 */
+	MessagingSerializer createSerializer(PluginConfiguration plugin);
+
+	/**
+	 * @return Whether this plugin will be needing geometry
+	 */
+	boolean needsGeometry();
+	
+	/**
+	 * @return The schema supported by this serializer
+	 */
+	Set<Schema> getSupportedSchemas();
 }

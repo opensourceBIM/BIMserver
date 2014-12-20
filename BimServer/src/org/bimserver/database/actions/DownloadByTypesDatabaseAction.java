@@ -36,9 +36,9 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -84,7 +84,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		User user = getUserByUoid(getAuthorization().getUoid());
 		Project project = null;
 		Set<EClass> eClasses = new HashSet<EClass>();
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		for (String className : classNames) {
 			eClasses.add(getDatabaseSession().getEClassForName(schema, className));
 			if (includeAllSubtypes) {

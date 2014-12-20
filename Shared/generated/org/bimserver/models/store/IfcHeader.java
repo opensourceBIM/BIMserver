@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.IfcHeader#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.IfcHeader#getImplementationLevel <em>Implementation Level</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.IfcHeader#getIfcSchemaVersion <em>Ifc Schema Version</em>}</li>
  *   <li>{@link org.bimserver.models.store.IfcHeader#getAuthorization <em>Authorization</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getIfcHeader()
  * @model

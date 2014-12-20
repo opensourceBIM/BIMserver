@@ -23,11 +23,11 @@ package org.bimserver.models.store;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ReferenceDataValue#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ReferenceDataValue#getGuid <em>Guid</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getReferenceDataValue()
  * @model

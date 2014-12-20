@@ -30,6 +30,7 @@ import javax.jws.soap.SOAPBinding.Use;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
+import org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
@@ -540,6 +541,15 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getSerializerByPluginClassName")
 	SSerializerPluginConfiguration getSerializerByPluginClassName(
 		@WebParam(name = "pluginClassName", partName = "getSerializerByPluginClassName.pluginClassName") String pluginClassName) throws ServerException, UserException;
+
+	/**
+	 * @param contentType The ContentType
+	 * @return Serializer supporting the given ContentType
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getMessagingSerializerByPluginClassName")
+	SMessagingSerializerPluginConfiguration getMessagingSerializerByPluginClassName(
+			@WebParam(name = "pluginClassName", partName = "getMessagingSerializerByPluginClassName.pluginClassName") String pluginClassName) throws ServerException, UserException;
 	
 	/**
 	 * @param type The type

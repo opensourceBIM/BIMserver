@@ -12,4 +12,8 @@
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin</implementationClass>
 	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.MessagingSerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.serializers.binarygeometry.BinaryGeometryMessagingSerializerPlugin</implementationClass>
+	</PluginImplementation>
 </PluginDescriptor>

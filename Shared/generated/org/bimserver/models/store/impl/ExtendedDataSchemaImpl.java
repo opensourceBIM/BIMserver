@@ -34,7 +34,9 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Extended Data Schema</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getUrl <em>Url</em>}</li>
@@ -47,7 +49,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getUsers <em>Users</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

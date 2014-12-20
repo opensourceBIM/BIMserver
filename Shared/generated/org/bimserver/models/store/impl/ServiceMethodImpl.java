@@ -28,13 +28,14 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Service Method</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServiceMethodImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceMethodImpl#getDoc <em>Doc</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceMethodImpl#getReturnDoc <em>Return Doc</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

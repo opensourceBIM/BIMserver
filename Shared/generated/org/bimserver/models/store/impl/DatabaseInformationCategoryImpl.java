@@ -31,12 +31,13 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Database Information Category</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.DatabaseInformationCategoryImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DatabaseInformationCategoryImpl#getItems <em>Items</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
