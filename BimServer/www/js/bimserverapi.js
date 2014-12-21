@@ -1185,6 +1185,9 @@ function Model(bimServerApi, poid, roid, schema) {
 		wrapper.oid = object.oid;
 		wrapper.model = othis;
 		wrapper.object = object;
+		if (wrapper.getType() == "IfcProject") {
+			debugger;
+		}
 		return wrapper;
 	};
 
