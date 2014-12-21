@@ -99,7 +99,7 @@ public class ServerInfoManager {
 	}
 
 	public void setOutOfMemory() {
-		serverInfo.setErrorMessage("This server is out of memory, more info on how to fix this can be found on <a href=\"http://support.bimserver.org/\">support.bimserver.org</a>. Or let us handle the hosting stuff and join our VIP hosting solutions at <a href=\"http://vip.bimserver.org/\">vip.bimserver.org</a>.  ");
+		serverInfo.setErrorMessage("This server is out of memory, more info on how to fix this can be found on <a href=\"http://support.opensourcebim.org/\">support.opensourcebim.org</a>. Or let us handle the hosting stuff and join our VIP hosting solutions at <a href=\"http://vip.bimserver.org/\">vip.bimserver.org</a>.  ");
 	}
 
 	public void setServerState(ServerState serverState) {
