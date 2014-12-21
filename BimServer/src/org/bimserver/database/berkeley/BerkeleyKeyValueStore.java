@@ -65,7 +65,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	private CursorConfig cursorConfig;
 	private long lastPrintedReads = 0;
 	private long lastPrintedCommittedWrites = 0;
-	private static final boolean MONITOR_CURSOR_STACK_TRACES = true;
+	private static final boolean MONITOR_CURSOR_STACK_TRACES = false;
 	private final AtomicLong cursorCounter = new AtomicLong();
 	private final Map<Long, StackTraceElement[]> openCursors = new ConcurrentHashMap<>();
 
@@ -235,7 +235,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		try {
 			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
 			BerkeleyRecordIterator berkeleyRecordIterator = new BerkeleyRecordIterator(cursor, this, cursorCounter.incrementAndGet());
-			openCursors.put(berkeleyRecordIterator.getCursorId(), new Exception().getStackTrace());
+			if (MONITOR_CURSOR_STACK_TRACES) {
+				openCursors.put(berkeleyRecordIterator.getCursorId(), new Exception().getStackTrace());
+			}
 			return berkeleyRecordIterator;
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
@@ -249,7 +251,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		try {
 			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
 			BerkeleySearchingRecordIterator berkeleySearchingRecordIterator = new BerkeleySearchingRecordIterator(cursor, this, cursorCounter.incrementAndGet(), mustStartWith, startSearchingAt);
-			openCursors.put(berkeleySearchingRecordIterator.getCursorId(), new Exception().getStackTrace());
+			if (MONITOR_CURSOR_STACK_TRACES) {
+				openCursors.put(berkeleySearchingRecordIterator.getCursorId(), new Exception().getStackTrace());
+			}
 			return berkeleySearchingRecordIterator;
 		} catch (BimserverLockConflictException e) {
 			if (cursor != null) {

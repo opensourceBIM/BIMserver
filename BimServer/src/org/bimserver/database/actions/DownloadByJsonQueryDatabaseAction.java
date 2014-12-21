@@ -37,6 +37,7 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.PluginConfiguration;
@@ -111,19 +112,26 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
 					JsonObject queryObject = (JsonObject)query;
 					JsonArray queries = queryObject.get("queries").getAsJsonArray();
+					long start = System.nanoTime();
+					String lowerCaseSchema = concreteRevision.getProject().getSchema().toLowerCase();
 					for (JsonElement queryElement : queries) {
-						processQueryPart(concreteRevision.getProject().getSchema().toLowerCase(), queryObject, (JsonObject) queryElement, subModel, databaseQuery);
+						processQueryPart(lowerCaseSchema, queryObject, (JsonObject) queryElement, subModel, databaseQuery);
 					}
+					long end = System.nanoTime();
+					System.out.println(((end - start) / 1000000) + " ms");
 					
 					size += subModel.size();
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());
 					subModel.fixInverseMismatches();
 					checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 					ifcModelSet.add(subModel);
+					
+					System.out.println(subModel.getAllWithSubTypes(IfcProject.class).size() + " IfcProject");
 				} catch (GeometryGeneratingException | IfcModelInterfaceException e) {
 					throw new UserException(e);
 				}
 			}
+
 			IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, size);
 			if (ifcModelSet.size() > 1) {
 				try {
@@ -168,7 +176,10 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 		if (typeQuery.has("type")) {
 			String type = typeQuery.get("type").getAsString();
 			EClass typeClass = getDatabaseSession().getEClass(schema, type);
+			long s = System.nanoTime();
 			getDatabaseSession().getAllOfType(model, schema, type, queryInterface);
+			long e = System.nanoTime();
+			System.out.println("GetAllOfType " + type + " " + ((e - s) / 1000000) + " ms");
 			if (typeQuery.has("include")) {
 				processInclude(query, typeQuery, model, queryInterface, model.getAllWithSubTypes(typeClass));
 			}

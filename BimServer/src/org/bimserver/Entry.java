@@ -22,12 +22,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 public class Entry {
-	protected EObject eObject;
-	protected EStructuralFeature eStructuralFeature;
+	protected final EObject eObject;
+	protected final EStructuralFeature eStructuralFeature;
+	private int hashcode;
 
 	public Entry(InternalEObject eObject, EStructuralFeature eStructuralFeature) {
 		this.eObject = eObject;
 		this.eStructuralFeature = eStructuralFeature;
+		hashcode = eObject.hashCode() ^ eStructuralFeature.hashCode();
 	}
 
 	@Override
@@ -42,6 +44,6 @@ public class Entry {
 
 	@Override
 	public int hashCode() {
-		return eObject.hashCode() ^ eStructuralFeature.hashCode();
+		return hashcode;
 	}
 }
