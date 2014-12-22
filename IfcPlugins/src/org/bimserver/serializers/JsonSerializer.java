@@ -28,7 +28,6 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
@@ -78,15 +77,15 @@ public class JsonSerializer extends IfcSerializer {
 						}
 						if (((IdEObjectImpl) object).getLoadingState() != State.LOADED) {
 							out.write("{");
-							out.write("\"__oid\":" + object.getOid() + ",");
-							out.write("\"__type\":\"" + object.eClass().getName() + "\",");
-							out.write("\"__state\":\"NOT_LOADED\"");
+							out.write("\"_i\":" + object.getOid() + ",");
+							out.write("\"_t\":\"" + object.eClass().getName() + "\",");
+							out.write("\"_s\":0");
 							out.write("}\n");
 						} else {
 							out.write("{");
-							out.write("\"__oid\":" + object.getOid() + ",");
-							out.write("\"__type\":\"" + object.eClass().getName() + "\",");
-							out.write("\"__state\":\"LOADED\"");
+							out.write("\"_i\":" + object.getOid() + ",");
+							out.write("\"_t\":\"" + object.eClass().getName() + "\",");
+							out.write("\"_s\":1");
 							for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
 								if (eStructuralFeature.getEAnnotation("nolazyload") == null && eStructuralFeature.getEAnnotation("hidden") == null) {
 									if (eStructuralFeature instanceof EReference) {
@@ -107,14 +106,14 @@ public class JsonSerializer extends IfcSerializer {
 														}
 													}
 													if (wrapped == 0 && referred != 0) {
-														out.write("\"__ref" + eStructuralFeature.getName() + "\":[");
+														out.write("\"_r" + eStructuralFeature.getName() + "\":[");
 													} else if (wrapped != 0 && referred == 0) {
-														out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
+														out.write("\"_e" + eStructuralFeature.getName() + "\":[");
 													} else if (wrapped == 0 && referred == 0) {
 														// should not happen
 													} else {
 														// both, this can occur, for example IfcTrimmedCurve.Trim1
-														out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
+														out.write("\"_e" + eStructuralFeature.getName() + "\":[");
 													}
 													boolean f = true;
 													for (Object o : list) {
@@ -130,7 +129,7 @@ public class JsonSerializer extends IfcSerializer {
 															if (wrapped != 0 && referred != 0) {
 																// Special situation, where we have to construct an object around the OID to make it distinguishable from embedded objects
 																out.write("{");
-																out.write("\"oid\":");
+																out.write("\"i\":");
 																out.write("" + ref.getOid());
 																out.write("}");
 															} else {
@@ -147,10 +146,10 @@ public class JsonSerializer extends IfcSerializer {
 													out.write("\"" + eStructuralFeature.getName() + "\":");
 													writePrimitive(out, eStructuralFeature, ((IfcGloballyUniqueId)ref).getWrappedValue());
 												} else if (((IdEObject)ref).eClass().getEAnnotation("wrapped") != null) {
-													out.write("\"__emb" + eStructuralFeature.getName() + "\":");
+													out.write("\"_e" + eStructuralFeature.getName() + "\":");
 													writeObject(out, ref);
 												} else {
-													out.write("\"__ref" + eStructuralFeature.getName() + "\":" + ref.getOid());
+													out.write("\"_r" + eStructuralFeature.getName() + "\":" + ref.getOid());
 												}
 											}
 										}
@@ -207,8 +206,8 @@ public class JsonSerializer extends IfcSerializer {
 		if (object.eClass().getEAnnotation("wrapped") != null) {
 			EStructuralFeature wrappedFeature = object.eClass().getEStructuralFeature("wrappedValue");
 			out.write("{");
-			out.write("\"__type\":\"" + object.eClass().getName() + "\",");
-			out.write("\"value\":");
+			out.write("\"_t\":\"" + object.eClass().getName() + "\",");
+			out.write("\"_v\":");
 			writePrimitive(out, wrappedFeature, object.eGet(wrappedFeature));
 			out.write("}");
 		} else {

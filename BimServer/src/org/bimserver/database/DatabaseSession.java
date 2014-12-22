@@ -48,6 +48,7 @@ import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
+import org.bimserver.emf.SpecialList;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
@@ -355,16 +356,32 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 												throw new BimserverDatabaseException(referencedObject.getClass().getSimpleName() + " cannot be stored in list of "
 														+ feature.getName());
 											}
-											// if (eReference.getEOpposite() ==
-											// null || !((IdEObjectImpl)
-											// referencedObject).isLoadedOrLoading())
-											// {
-											if (feature.isUnique()) {
-												list.add(referencedObject);
+											EReference eReference = (EReference)feature;
+											if (eReference.getEOpposite() == null || ((IdEObjectImpl)referencedObject).isLoadedOrLoading() || query.isDeep()) {
+												if (feature.isUnique()) {
+													list.add(referencedObject);
+												} else {
+													list.addUnique(referencedObject);
+												}
 											} else {
-												list.addUnique(referencedObject);
+												// We have a reference with an opposite and the opposite object has not been loaded here and we 
+												// are not loading the model deeply... so we don't want to have this .add call to trigger 
+												// loading the referenced object.
+												if (list instanceof SpecialList) {
+													SpecialList specialList = (SpecialList)list;
+													if (feature.isUnique()) {
+														specialList.addNoOppositeLoading(referencedObject);
+													} else {
+														specialList.addNoOppositeLoadingUnique(referencedObject);
+													}
+												} else {
+													if (feature.isUnique()) {
+														list.add(referencedObject);
+													} else {
+														list.addUnique(referencedObject);
+													}
+												}
 											}
-											// }
 										}
 									}
 								}

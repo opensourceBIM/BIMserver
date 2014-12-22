@@ -17,8 +17,6 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Iterator;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EStoreEObjectImpl;
@@ -36,9 +34,29 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 	private IfcModelInterface model;
 	private State loadingState = State.NO_LAZY_LOADING;
 	private QueryInterface queryInterface;
+	private static final FakeDynamicValueHolder fakeDynamicValueHolder = new FakeDynamicValueHolder();
 
-	public IdEObjectImpl() {
-		eSetStore(new DefaultBimServerEStore());
+	@Override
+	protected boolean eHasSettings() {
+		return false;
+	}
+
+	@Override
+	protected EStructuralFeature.Internal.DynamicValueHolder eSettings() {
+		return fakeDynamicValueHolder;
+	}
+	
+	@Override
+	public EStore eStore() {
+		if (this.eStore == null) {
+			this.eStore = new DefaultBimServerEStore();
+		}
+		return this.eStore;
+	}
+	
+	@Override
+	protected boolean eIsCaching() {
+		return false;
 	}
 	
 	@Override
@@ -48,27 +66,7 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 
 	@Override
 	protected EList<?> createList(EStructuralFeature eStructuralFeature) {
-		return new BasicEStoreEList<Object>(this, eStructuralFeature){
-			private static final long serialVersionUID = 6865419120828460240L;
-
-			@Override
-			public int size() {
-				load();
-				return super.size();
-			}
-			
-			@Override
-			public boolean isEmpty() {
-				load();
-				return super.isEmpty();
-			}
-			
-			@Override
-			public Iterator<Object> iterator() {
-				load();
-				return super.iterator();
-			}
-		};
+		return (EList<?>) new SpecialList(this, eStructuralFeature);
 	}
 	
 	public void setOid(long oid) {
@@ -100,7 +98,7 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 
 	public void load() {
 		if (loadingState == State.TO_BE_LOADED && oid != -1) {
-			((BimServerEStore)eStore).load(this);
+			((BimServerEStore)eStore()).load(this);
 		}
 	}
 
@@ -146,7 +144,7 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 	}
 
 	public void remove() {
-		((BimServerEStore)eStore).remove(this);
+		((BimServerEStore)eStore()).remove(this);
 	}
 
 	public void setLoadingState(State state) {

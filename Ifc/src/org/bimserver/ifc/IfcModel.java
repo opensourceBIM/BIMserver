@@ -39,6 +39,7 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotation;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotationCurveOccurrence;
 import org.bimserver.models.ifc2x3tc1.IfcDimensionCurve;
@@ -356,9 +357,6 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	public void add(long oid, IdEObject eObject) throws IfcModelInterfaceException {
-		if (oid == 98894319) {
-			System.out.println();
-		}
 		add(oid, eObject, false, false);
 	}
 
