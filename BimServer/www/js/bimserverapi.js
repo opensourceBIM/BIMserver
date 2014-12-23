@@ -968,9 +968,6 @@ function Model(bimServerApi, poid, roid, schema) {
 						if (object[fieldName] != null) {
 							if (field.many) {
 								object[fieldName].forEach(function(item){
-									if (item.object._s == 0) {
-										console.log("oho");
-									}
 									callback(item);
 								});
 							} else {
@@ -1239,9 +1236,6 @@ function Model(bimServerApi, poid, roid, schema) {
 				if (targetMap[item] != null) {
 					// Already loaded? Remove from list and call callback
 					var existingObject = targetMap[item].object;
-					if (item == 6947311) {
-						debugger;
-					}
 					if (existingObject._s == 1) {
 						var index = list.indexOf(item);
 						list.splice(index, 1);
@@ -1256,7 +1250,6 @@ function Model(bimServerApi, poid, roid, schema) {
 			}
 			// Any left?
 			if (list.length > 0) {
-				console.log("Getting", list);
 				list.forEach(function(item){
 					fetchingMap[item] = [];
 				});

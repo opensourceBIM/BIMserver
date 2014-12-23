@@ -17,6 +17,9 @@ package org.bimserver.ifc;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -39,7 +42,6 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotation;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotationCurveOccurrence;
 import org.bimserver.models.ifc2x3tc1.IfcDimensionCurve;
@@ -98,8 +100,20 @@ public class IfcModel implements IfcModelInterface {
 	private boolean useDoubleStrings = true;
 	private PackageMetaData packageMetaData;
 	private Map<Integer, Long> ridRoidMap;
+	private String stracktrace;
 
+	public IfcModel() {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		new Exception().printStackTrace(new PrintStream(out, true));
+		stracktrace = new String(out.toByteArray());
+	}
+	
+	public String getStracktrace() {
+		return stracktrace;
+	}
+	
 	public IfcModel(PackageMetaData packageMetaData, Map<Integer, Long> ridRoidMap) {
+		this();
 		this.ridRoidMap = ridRoidMap;
 		if (packageMetaData == null) {
 			throw new IllegalArgumentException();
@@ -109,6 +123,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	public IfcModel(PackageMetaData packageMetaData, int size) {
+		this();
 		if (packageMetaData == null) {
 			throw new IllegalArgumentException();
 		}
@@ -367,7 +382,9 @@ public class IfcModel implements IfcModelInterface {
 
 	private void add(long oid, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException {
 		if (((IdEObjectImpl) eObject).hasModel() && !allowMultiModel && ((IdEObjectImpl) eObject).getModel() != this) {
-			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel());
+			System.out.println((((IfcModel)((IdEObjectImpl) eObject).getModel())).getStracktrace());
+			System.out.println(getStracktrace());
+			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel() + ", not this " + this);
 		}
 		if (oid == -1 || eObject.eClass().getEAnnotation("wrapped") != null) {
 			unidentifiedObjects.add(eObject);
