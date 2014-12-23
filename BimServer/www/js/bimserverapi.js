@@ -1371,7 +1371,6 @@ function Model(bimServerApi, poid, roid, schema) {
 						serializerOid: jsonSerializerOid
 					});
 					$.getJSON(url, function(data, textStatus, jqXHR){
-						console.log(data.objects.length + " loaded");
 						data.objects.forEach(function(object){
 							var wrapper = othis.objects[object._i];
 							if (wrapper == null) {
