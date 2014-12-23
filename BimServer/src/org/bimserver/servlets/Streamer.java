@@ -90,34 +90,38 @@ public class Streamer implements EndPoint {
 							try {
 								final ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
 
-								ProgressReporter progressReporter = new ProgressReporter() {
-									@Override
-									public void update(long progress, long max) {
-										if (progressTopic != null) {
-											LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
-											ds.setStart(new Date());
-											ds.setState(progress == max ? ActionState.FINISHED : ActionState.STARTED);
-											ds.setTitle("Downloading...");
-											ds.setStage(3);
-											ds.setProgress((int) Math.round(100.0 * progress / max));
-
-											progressTopic.stageProgressUpdate(ds);
-										}
-									}
-								};
+//								ProgressReporter progressReporter = new ProgressReporter() {
+//									@Override
+//									public void update(long progress, long max) {
+//										if (progressTopic != null) {
+//											LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
+//											ds.setStart(new Date());
+//											ds.setState(progress == max ? ActionState.FINISHED : ActionState.STARTED);
+//											ds.setTitle("Downloading...");
+//											ds.setStage(3);
+//											ds.setProgress((int) Math.round(100.0 * progress / max));
+//
+//											progressTopic.stageProgressUpdate(ds);
+//										}
+//									}
+//								};
 								LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(downloadId);
 								MessagingSerializer messagingSerializer = longAction.getMessagingSerializer();
-								
+								long s = System.nanoTime();
+								int messages = 0;
 								boolean writeMessage = true;
 								do {
 									ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 									DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
 									dataOutputStream.writeInt(topicId);
-									writeMessage = messagingSerializer.writeMessage(byteArrayOutputStream, progressReporter);
+									writeMessage = messagingSerializer.writeMessage(byteArrayOutputStream, null);
 									if (byteArrayOutputStream.size() > 4) {
+										messages++;
 										streamingSocketInterface.send(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.size());
 									}
 								} while (writeMessage);
+								long e = System.nanoTime();
+								System.out.println(((e - s) / 1000000) + "ms ws " + messages);
 							} catch (IOException e) {
 								LOGGER.error("", e);
 							}

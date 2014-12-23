@@ -542,7 +542,8 @@ public class BimServer {
 		Iterator<RenderEnginePluginConfiguration> iterator = userSettings.getRenderEngines().iterator();
 		while (iterator.hasNext()) {
 			RenderEnginePluginConfiguration next = iterator.next();
-			if (next.getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifcengine.TNOJvmRenderEnginePlugin")) {
+			PluginDescriptor pluginDescriptor = next.getPluginDescriptor();
+			if (pluginDescriptor.getPluginClassName().equals("org.bimserver.ifcengine.TNOJvmRenderEnginePlugin")) {
 				iterator.remove();
 			}
 		}

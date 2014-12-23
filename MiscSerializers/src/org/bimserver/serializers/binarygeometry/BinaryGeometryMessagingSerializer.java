@@ -20,10 +20,13 @@ package org.bimserver.serializers.binarygeometry;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.util.HashSet;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
@@ -57,7 +60,9 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 	private enum MessageType {
 		INIT((byte)0),
 		GEOMETRY_TRIANGLES((byte)1),
-		GEOMETRY_INSTANCE((byte)2);
+		GEOMETRY_INSTANCE((byte)2),
+		GEOMETRY_TRIANGLES_PARTED((byte)3),
+		GEOMETRY_INSTANCE_PARTED((byte)4);
 		
 		private byte id;
 
@@ -71,9 +76,11 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 	}
 	
 	private Mode mode = Mode.START;
-	private Set<Long> concreteGeometrySent;
+	private Map<Long, Object> concreteGeometrySent;
 	private Iterator<IdEObject> iterator;
 	private PackageMetaData packageMetaData;
+	private long splitCounter = -1;
+	private static final boolean LIMIT_VERTICES = true;
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin,
@@ -139,7 +146,7 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 		modelBounds.writeTo(dataOutputStream);
 		dataOutputStream.writeInt(nrObjects);
 		
-		concreteGeometrySent = new HashSet<>();
+		concreteGeometrySent = new HashMap<Long, Object>();
 		EClass productEClass = packageMetaData.getEClass("IfcProduct");
 		iterator = model.getAllWithSubTypes(productEClass).iterator();
 	}
@@ -150,9 +157,27 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 		GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
 		if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 			GeometryData geometryData = geometryInfo.getData();
-			MessageType geometryType = concreteGeometrySent.contains(geometryData.getOid()) ? MessageType.GEOMETRY_INSTANCE : MessageType.GEOMETRY_TRIANGLES;
-
-			dataOutputStream.writeByte(geometryType.getId());
+			
+			int totalNrIndices = geometryData.getIndices().length / 4;
+			int maxIndexValues = 49167;
+			
+			Object reuse = concreteGeometrySent.get(geometryData.getOid());
+			MessageType messageType = null;
+			if (reuse == null) {
+				if (totalNrIndices > maxIndexValues) {
+					messageType = MessageType.GEOMETRY_TRIANGLES_PARTED;
+				} else {
+					messageType = MessageType.GEOMETRY_TRIANGLES;
+				}
+			} else {
+				if (reuse instanceof List) {
+					messageType = MessageType.GEOMETRY_INSTANCE_PARTED;
+				} else {
+					messageType = MessageType.GEOMETRY_INSTANCE;
+				}
+			}
+			
+			dataOutputStream.writeByte(messageType.getId());
 			dataOutputStream.writeUTF(ifcProduct.eClass().getName());
 			Long roid = model.getRidRoidMap().get(ifcProduct.getRid());
 			dataOutputStream.writeLong(roid);
@@ -162,7 +187,6 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 			
 			// BEWARE, ByteOrder is always LITTLE_ENDIAN, because that's what GPU's seem to prefer, Java's ByteBuffer default is BIG_ENDIAN though!
 			
-			// This is an ugly hack to align the bytes, but for 2 different kinds of output (this first one is the websocket implementation)
 			int skip = 4 - ((3 + ifcProduct.eClass().getName().getBytes(Charsets.UTF_8).length) % 4);
 			if(skip != 0 && skip != 4) {
 				dataOutputStream.write(new byte[skip]);
@@ -170,39 +194,106 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 			
 			dataOutputStream.write(geometryInfo.getTransformation());
 			
-			if (concreteGeometrySent.contains(geometryData.getOid())) {
+			if (concreteGeometrySent.containsKey(geometryData.getOid())) {
 				// Reused geometry, only send the id of the reused geometry data
 				dataOutputStream.writeLong(geometryData.getOid());
 			} else {
-				ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
-				dataOutputStream.writeLong(geometryData.getOid());
-				
-				Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
-				objectBounds.writeTo(dataOutputStream);
-				
-				ByteBuffer indicesBuffer = ByteBuffer.wrap(geometryData.getIndices());
-				dataOutputStream.writeInt(indicesBuffer.capacity() / 4);
-				dataOutputStream.write(indicesBuffer.array());
-				
-				dataOutputStream.writeInt(vertexByteBuffer.capacity() / 4);
-				dataOutputStream.write(vertexByteBuffer.array());
-				
-				ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
-				dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
-				dataOutputStream.write(normalsBuffer.array());
-				
-				// Only when materials are used we send them
-				if (geometryData.getMaterials() != null) {
-					ByteBuffer materialsByteBuffer = ByteBuffer.wrap(geometryData.getMaterials());
+				if (totalNrIndices > maxIndexValues) {
+					// Split geometry, this algorithm - for now - just throws away all the reuse of vertices that might be there
+					// Also, although usually the vertices buffers are too large, this algorithm is based on the indices, so we
+					// probably are not cramming as much data as we can in each "part", but that's not really a problem I think
+
+					int nrParts = (totalNrIndices + maxIndexValues - 1) / maxIndexValues;
+					dataOutputStream.writeShort(nrParts);
+
+					Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
+					objectBounds.writeTo(dataOutputStream);
+
+					ByteBuffer indicesBuffer = ByteBuffer.wrap(geometryData.getIndices());
+					IntBuffer indicesIntBuffer = indicesBuffer.asIntBuffer();
+
+					ByteBuffer vertexBuffer = ByteBuffer.wrap(geometryData.getVertices());
+					FloatBuffer verticesFloatBuffer = vertexBuffer.asFloatBuffer();
+					FloatBuffer normalsFloatBuffer = vertexBuffer.asFloatBuffer();
 					
-					dataOutputStream.writeInt(materialsByteBuffer.capacity() / 4);
-					dataOutputStream.write(materialsByteBuffer.array());
+					for (int part=0; part<nrParts; part++) {
+						long splitId = splitCounter--;
+						dataOutputStream.writeLong(splitId);
+						
+						int indexCounter = 0;
+						int upto = Math.min((part + 1) * maxIndexValues, totalNrIndices);
+						dataOutputStream.writeInt(upto - part * maxIndexValues);
+						for (int i=part * maxIndexValues; i<upto; i+=3) {
+							dataOutputStream.writeInt(indexCounter++);
+						}
+						
+						dataOutputStream.writeInt((upto - part * maxIndexValues) * 3);
+						for (int i=part * maxIndexValues; i<upto; i+=3) {
+							int oldIndex1 = indicesIntBuffer.get(i);
+							int oldIndex2 = indicesIntBuffer.get(i+1);
+							int oldIndex3 = indicesIntBuffer.get(i+2);
+							
+							dataOutputStream.writeFloat(verticesFloatBuffer.get(oldIndex1));
+							dataOutputStream.writeFloat(verticesFloatBuffer.get(oldIndex1 + 1));
+							dataOutputStream.writeFloat(verticesFloatBuffer.get(oldIndex1 + 2));
+							dataOutputStream.writeFloat(verticesFloatBuffer.get(oldIndex2));
+							dataOutputStream.writeFloat(verticesFloatBuffer.get(oldIndex2 + 1));
+							dataOutputStream.writeFloat(verticesFloatBuffer.get(oldIndex2 + 2));
+							dataOutputStream.writeFloat(verticesFloatBuffer.get(oldIndex3));
+							dataOutputStream.writeFloat(verticesFloatBuffer.get(oldIndex3 + 1));
+							dataOutputStream.writeFloat(verticesFloatBuffer.get(oldIndex3 + 2));
+						}
+						dataOutputStream.writeInt((upto - part * maxIndexValues) * 3);
+						for (int i=part * maxIndexValues; i<upto; i+=3) {
+							int oldIndex1 = indicesIntBuffer.get(i);
+							int oldIndex2 = indicesIntBuffer.get(i+1);
+							int oldIndex3 = indicesIntBuffer.get(i+2);
+							
+							dataOutputStream.writeFloat(normalsFloatBuffer.get(oldIndex1));
+							dataOutputStream.writeFloat(normalsFloatBuffer.get(oldIndex1 + 1));
+							dataOutputStream.writeFloat(normalsFloatBuffer.get(oldIndex1 + 2));
+							dataOutputStream.writeFloat(normalsFloatBuffer.get(oldIndex2));
+							dataOutputStream.writeFloat(normalsFloatBuffer.get(oldIndex2 + 1));
+							dataOutputStream.writeFloat(normalsFloatBuffer.get(oldIndex2 + 2));
+							dataOutputStream.writeFloat(normalsFloatBuffer.get(oldIndex3));
+							dataOutputStream.writeFloat(normalsFloatBuffer.get(oldIndex3 + 1));
+							dataOutputStream.writeFloat(normalsFloatBuffer.get(oldIndex3 + 2));
+						}
+						
+						dataOutputStream.writeInt(0);
+					}
 				} else {
-					// No materials used
-					dataOutputStream.writeInt(0);
+					Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
+					objectBounds.writeTo(dataOutputStream);
+					
+					dataOutputStream.writeLong(geometryData.getOid());
+					
+					ByteBuffer indicesBuffer = ByteBuffer.wrap(geometryData.getIndices());
+					dataOutputStream.writeInt(indicesBuffer.capacity() / 4);
+					dataOutputStream.write(indicesBuffer.array());
+					
+					ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
+					dataOutputStream.writeInt(vertexByteBuffer.capacity() / 4);
+					dataOutputStream.write(vertexByteBuffer.array());
+					
+					ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
+					dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
+					dataOutputStream.write(normalsBuffer.array());
+					
+					// Only when materials are used we send them
+					if (geometryData.getMaterials() != null) {
+						ByteBuffer materialsByteBuffer = ByteBuffer.wrap(geometryData.getMaterials());
+						
+						dataOutputStream.writeInt(materialsByteBuffer.capacity() / 4);
+						dataOutputStream.write(materialsByteBuffer.array());
+					} else {
+						// No materials used
+						dataOutputStream.writeInt(0);
+					}
+					List<Long> arrayList = new ArrayList<Long>();
+					arrayList.add(geometryData.getOid());
+					concreteGeometrySent.put(geometryData.getOid(), arrayList);
 				}
-				
-				concreteGeometrySent.add(geometryData.getOid());
 			}
 		}
 		return iterator.hasNext();
