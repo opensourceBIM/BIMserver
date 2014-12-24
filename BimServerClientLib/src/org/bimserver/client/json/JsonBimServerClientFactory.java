@@ -40,8 +40,8 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 		this.reflectorFactory = reflectorFactory;
 	}
 
-	public JsonBimServerClientFactory(String address) {
-		super();
+	public JsonBimServerClientFactory(MetaDataManager metaDataManager, String address) {
+		super(metaDataManager);
 		this.address = address;
 		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(getServicesMap());
 		FileBasedReflectorFactoryBuilder reflectorBuilder = new FileBasedReflectorFactoryBuilder();

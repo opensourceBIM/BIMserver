@@ -69,9 +69,9 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 		if (virtualRevision == null) {
 			throw new UserException("No revision with roid " + roid + " found");
 		}
-		Map<Integer, Long> ridRoidMap = new HashMap<>();
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		IfcModelSet ifcModelSet = new IfcModelSet();
-		ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
+		pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 		PackageMetaData lastPackageMetaData = null;
 		Project project = virtualRevision.getProject();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
@@ -83,7 +83,7 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

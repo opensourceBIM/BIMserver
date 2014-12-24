@@ -73,7 +73,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 		Project project = null;
 		long incrSize = 0L;
 		PackageMetaData lastPackageMetaData = null;
-		Map<Integer, Long> ridRoidMap = new HashMap<>();
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
@@ -84,11 +84,11 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 			incrSize += virtualRevision.getConcreteRevisions().size();
 			final long totalSize = incrSize;
 			final AtomicLong total = new AtomicLong();
-			ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
+			pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
-				IfcModel subModel = new IfcModel(packageMetaData, ridRoidMap);
+				IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 				int highestStopId = findHighestStopRid(project, concreteRevision);
 				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
@@ -117,7 +117,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 				// }
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

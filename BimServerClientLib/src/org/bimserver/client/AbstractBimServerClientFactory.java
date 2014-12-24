@@ -41,15 +41,22 @@ import org.bimserver.shared.meta.SServicesMap;
 
 public abstract class AbstractBimServerClientFactory implements BimServerClientFactory {
 
-	private SServicesMap servicesMap;
-	private MetaDataManager metaDataManager;
+	private final SServicesMap servicesMap;
+	private final MetaDataManager metaDataManager;
 
 	public AbstractBimServerClientFactory(SServicesMap servicesMap, MetaDataManager metaDataManager) {
 		this.servicesMap = servicesMap;
+		if (metaDataManager == null) {
+			throw new IllegalArgumentException("MetaDataManager cannot be null");
+		}
 		this.metaDataManager = metaDataManager;
 	}
 
-	public AbstractBimServerClientFactory() {
+	public AbstractBimServerClientFactory(MetaDataManager metaDataManager) {
+		if (metaDataManager == null) {
+			throw new IllegalArgumentException("MetaDataManager cannot be null");
+		}
+		this.metaDataManager = metaDataManager;
 		this.servicesMap = new SServicesMap();
 		servicesMap.setReflectorFactory(new ReflectorFactoryImpl1());
 		SService serviceInterface = new SServiceInterfaceService(servicesMap, null, ServiceInterface.class);

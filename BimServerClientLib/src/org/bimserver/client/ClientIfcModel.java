@@ -260,36 +260,36 @@ public class ClientIfcModel extends IfcModel {
 					jsonReader.beginArray();
 					while (jsonReader.hasNext()) {
 						jsonReader.beginObject();
-						if (jsonReader.nextName().equals("__oid")) {
+						if (jsonReader.nextName().equals("_i")) {
 							long oid = jsonReader.nextLong();
-							if (jsonReader.nextName().equals("__type")) {
+							if (jsonReader.nextName().equals("_t")) {
 								String type = jsonReader.nextString();
 								EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(type);
 								if (eClass == null) {
 									throw new BimServerClientException("No class found with name " + type);
 								}
-								if (jsonReader.nextName().equals("__state")) {
-									String state = jsonReader.nextString();
+								if (jsonReader.nextName().equals("_s")) {
+									int state = jsonReader.nextInt();
 									IdEObject object = null;
 									if (containsNoFetch(oid)) {
 										object = getNoFetch(oid);
 									} else {
 										object = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
-										((IdEObjectImpl) object).eSetStore(eStore);
+										((IdEObjectImpl) object).setBimserverEStore(eStore);
 										((IdEObjectImpl) object).setOid(oid);
 										add(oid, object);
 									}
-									if (state.equals("NOT_LOADED")) {
+									if (state == 0) {
 										((IdEObjectImpl) object).setLoadingState(State.TO_BE_LOADED);
 									} else {
 										while (jsonReader.hasNext()) {
 											String featureName = jsonReader.nextName();
 											boolean embedded = false;
-											if (featureName.startsWith("__ref")) {
-												featureName = featureName.substring(5);
-											} else if (featureName.startsWith("__emb")) {
+											if (featureName.startsWith("_r")) {
+												featureName = featureName.substring(2);
+											} else if (featureName.startsWith("_e")) {
 												embedded = true;
-												featureName = featureName.substring(5);
+												featureName = featureName.substring(2);
 											}
 											EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureName);
 											if (eStructuralFeature == null) {
@@ -322,7 +322,7 @@ public class ClientIfcModel extends IfcModel {
 															List list = (List)object.eGet(eStructuralFeature);
 															jsonReader.beginObject();
 															String n = jsonReader.nextName();
-															if (n.equals("__type")) {
+															if (n.equals("_t")) {
 																String t = jsonReader.nextString();
 																IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
 																((IdEObjectImpl) wrappedObject).setOid(object.getOid()); // crazy hack, to make sure the wrapped objects know to which object they belong, otherwise we would never know what to do when user calls setWrappedValue
@@ -377,12 +377,12 @@ public class ClientIfcModel extends IfcModel {
 												} else if (eStructuralFeature instanceof EReference) {
 													if (embedded) {
 														jsonReader.beginObject();
-														if (jsonReader.nextName().equals("__type")) {
+														if (jsonReader.nextName().equals("_t")) {
 															String t = jsonReader.nextString();
 															IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
-															((IdEObjectImpl) wrappedObject).eSetStore(eStore);
+															((IdEObjectImpl) wrappedObject).setBimserverEStore(eStore);
 															((IdEObjectImpl) wrappedObject).setOid(object.getOid()); // crazy hack, to make sure the wrapped objects know to which object they belong, otherwise we would never know what to do when user calls setWrappedValue
-															if (jsonReader.nextName().equals("value")) {
+															if (jsonReader.nextName().equals("_v")) {
 																EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
 																wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
 																object.eSet(eStructuralFeature, wrappedObject);

@@ -105,7 +105,7 @@ public abstract class AbstractModelMerger implements ModelMerger {
 			size += ifcModel.size();
 			packageMetaData = ifcModel.getPackageMetaData();
 		}
-		IfcModelInterface endModel = new IfcModel(packageMetaData, (int) size);
+		IfcModelInterface endModel = new IfcModel(packageMetaData, null, (int) size);
 		modelHelper.setTargetModel(endModel);
 		modelHelper.setObjectFactory(endModel);
 		modelHelper.setKeepOriginalOids(true);

@@ -144,7 +144,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 	private IfcModelInterface read(InputStream inputStream, long fileSize, ByteProgressReporter byteProgressReporter) throws DeserializeException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
-		model = new IfcModel(getPackageMetaData(), initialCapacity);
+		model = new IfcModel(getPackageMetaData(), null, initialCapacity);
 		long bytesRead = 0;
 		lineNumber = 0;
 		try {

@@ -113,7 +113,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 			for (ConcreteRevision concreteRevision : map.keySet()) {
 				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
-				IfcModel subModel = new IfcModel(packageMetaData, null);
+				IfcModel subModel = new IfcModel(packageMetaData, ridRoidMap);
 				int highestStopId = findHighestStopRid(project, concreteRevision);
 				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {

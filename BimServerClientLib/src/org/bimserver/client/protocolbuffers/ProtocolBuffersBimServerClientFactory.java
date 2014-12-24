@@ -19,6 +19,7 @@ package org.bimserver.client.protocolbuffers;
 
 import org.bimserver.client.AbstractBimServerClientFactory;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -34,8 +35,8 @@ public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClie
 	private final ReflectorFactory reflectorFactory;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 
-	public ProtocolBuffersBimServerClientFactory(String address, int port, int httpPort, ProtocolBuffersMetaData protocolBuffersMetaData) {
-		super();
+	public ProtocolBuffersBimServerClientFactory(String address, int port, int httpPort, ProtocolBuffersMetaData protocolBuffersMetaData, MetaDataManager metaDataManager) {
+		super(metaDataManager);
 		this.httpPort = httpPort;
 		this.address = address;
 		this.port = port;

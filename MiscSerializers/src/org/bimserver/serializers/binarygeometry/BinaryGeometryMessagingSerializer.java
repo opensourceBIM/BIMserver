@@ -179,7 +179,7 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 			}
 			dataOutputStream.writeByte(messageType.getId());
 			dataOutputStream.writeUTF(ifcProduct.eClass().getName());
-			Long roid = model.getRidRoidMap().get(ifcProduct.getRid());
+			Long roid = model.getPidRoidMap().get(ifcProduct.getPid());
 			dataOutputStream.writeLong(roid);
 			dataOutputStream.writeLong(ifcProduct.getOid());
 			

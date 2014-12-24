@@ -54,7 +54,8 @@ function BimServerApi(baseUrl, notifier) {
 		ADDPROJECTASSUBPROJECT_DONE: "Sub project added successfully",
 		DOWNLOADBYJSONQUERY_BUSY: "Downloading BIM",
 		CHECKINFROMURL_DONE: "Done checking in from URL",
-		GETLOGGEDINUSER_BUSY: "Getting user details"
+		GETLOGGEDINUSER_BUSY: "Getting user details",
+		SETPLUGINSETTINGS_DONE: "Plugin settings successfully saved"
 	}
 
 	othis.token = null;
@@ -1407,6 +1408,7 @@ function Model(bimServerApi, poid, roid, schema) {
 						serializerOid: jsonSerializerOid
 					});
 					$.getJSON(url, function(data, textStatus, jqXHR){
+						console.log("query", data.objects.length);
 						data.objects.forEach(function(object){
 							var wrapper = othis.objects[object._i];
 							if (wrapper == null) {
@@ -1428,6 +1430,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								callback(wrapper);
 							}
 						});
+						othis.dumpByType();
 						bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
 							promise.fire();
 						});

@@ -28,6 +28,7 @@ import org.bimserver.shared.meta.SServicesMap;
 
 public class DirectBimServerClientFactory<T extends PublicInterface> extends AbstractBimServerClientFactory {
 
+	@SuppressWarnings("unused")
 	private final PluginManager pluginManager;
 	private ServiceFactory serviceFactory;
 	private String baseAddress;

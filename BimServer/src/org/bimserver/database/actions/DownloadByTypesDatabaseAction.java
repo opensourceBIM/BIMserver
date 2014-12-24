@@ -97,10 +97,10 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		}
 		String name = "";
 		PackageMetaData lastPackageMetaData = null;
-		Map<Integer, Long> ridRoidMap = new HashMap<>();
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
-			ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
+			pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
 			try {
@@ -141,7 +141,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					throw new UserException(e);
 				}
 			}
-			IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, size);
+			IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap, size);
 			if (ifcModelSet.size() > 1) {
 				try {
 					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
@@ -159,7 +159,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
 		// TODO check, double merging??
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));

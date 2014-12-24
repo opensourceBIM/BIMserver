@@ -34,7 +34,8 @@ public class SoapBimServerClientFactory extends AbstractBimServerClientFactory {
 		this.address = address;
 	}
 	
-	public SoapBimServerClientFactory(String address) {
+	public SoapBimServerClientFactory(MetaDataManager metaDataManager, String address) {
+		super(metaDataManager);
 		this.address = address;
 	}
 

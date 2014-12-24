@@ -73,12 +73,12 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 		EObject eObject = null;
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		PackageMetaData lastPackageMetaData = null;
-		Map<Integer, Long> ridRoidMap = new HashMap<>();
-		ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
+		pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema()); 
 			lastPackageMetaData = packageMetaData;
-			IfcModel subModel = new IfcModel(packageMetaData, null);
+			IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
 			eObject = getDatabaseSession().get(null, oid, subModel, query);
@@ -89,7 +89,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 			}
 		}
 
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {
