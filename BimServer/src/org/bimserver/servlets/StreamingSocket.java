@@ -17,6 +17,7 @@ package org.bimserver.servlets;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.IOException;
 import java.io.StringReader;
 import java.nio.ByteBuffer;
 
@@ -67,5 +68,14 @@ public class StreamingSocket extends WebSocketAdapter implements StreamingSocket
 	@Override
 	public void send(byte[] data, int start, int length) {
 		session.getRemote().sendBytesByFuture(ByteBuffer.wrap(data, start, length));
+	}
+
+	@Override
+	public void sendBlocking(byte[] data, int start, int length) {
+		try {
+			session.getRemote().sendBytes(ByteBuffer.wrap(data, start, length));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

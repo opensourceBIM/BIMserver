@@ -78,10 +78,11 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 
 	@Override
 	public void send(byte[] data, int start, int length) {
-		try {
-			websocketSession.getAsyncRemote().sendBinary(ByteBuffer.wrap(data, start, length));
-			websocketSession.getAsyncRemote().flushBatch();
-		} catch (IOException e) {
-		}
+		websocketSession.getAsyncRemote().sendBinary(ByteBuffer.wrap(data, start, length));
+	}
+
+	@Override
+	public void sendBlocking(byte[] data, int start, int length) {
+		websocketSession.getAsyncRemote().sendBinary(ByteBuffer.wrap(data, start, length));
 	}
 }

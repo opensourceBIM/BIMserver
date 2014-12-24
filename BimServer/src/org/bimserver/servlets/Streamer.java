@@ -21,7 +21,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Date;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.GregorianCalendar;
 
 import org.apache.commons.io.output.NullWriter;
@@ -29,12 +30,8 @@ import org.bimserver.BimServer;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ActionState;
-import org.bimserver.models.store.LongActionState;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.plugins.serializers.MessagingSerializer;
-import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -57,6 +54,7 @@ public class Streamer implements EndPoint {
 	private Bimsie1NotificationInterface notificationInterface;
 	private Bimsie1RemoteServiceInterface remoteServiceInterface;
 	private StreamingSocketInterface streamingSocketInterface;
+	private static final int BUFFER_SIZE = -1; // -1 means just send every message on it's own
 
 	public Streamer(StreamingSocketInterface streamingSocketInterface, BimServer bimServer) {
 		this.streamingSocketInterface = streamingSocketInterface;
@@ -107,21 +105,31 @@ public class Streamer implements EndPoint {
 //								};
 								LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(downloadId);
 								MessagingSerializer messagingSerializer = longAction.getMessagingSerializer();
-								long s = System.nanoTime();
-								int messages = 0;
 								boolean writeMessage = true;
+//								int counter = 0;
+//								long bytes = 0;
 								do {
 									ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 									DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
 									dataOutputStream.writeInt(topicId);
+									dataOutputStream.writeInt(0); // fake nr messages, to be replaced later
 									writeMessage = messagingSerializer.writeMessage(byteArrayOutputStream, null);
-									if (byteArrayOutputStream.size() > 4) {
+									int messages = 1;
+									while (byteArrayOutputStream.size() < BUFFER_SIZE && writeMessage) {
 										messages++;
-										streamingSocketInterface.send(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.size());
+										writeMessage = messagingSerializer.writeMessage(byteArrayOutputStream, null);
+									}
+									byte[] byteArray = byteArrayOutputStream.toByteArray();
+									ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);
+									byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+									byteBuffer.putInt(4, messages);
+									if (byteArrayOutputStream.size() > 8) {
+//										bytes += byteArray.length;
+										streamingSocketInterface.sendBlocking(byteArray, 0, byteArray.length);
+//										counter++;
 									}
 								} while (writeMessage);
-								long e = System.nanoTime();
-								System.out.println(((e - s) / 1000000) + "ms ws " + messages);
+//								System.out.println(counter + " messages written " + Formatters.bytesToString(bytes));
 							} catch (IOException e) {
 								LOGGER.error("", e);
 							}

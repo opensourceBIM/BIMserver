@@ -23,4 +23,5 @@ public interface StreamingSocketInterface {
 
 	void send(JsonObject request);
 	void send(byte[] data, int start, int length);
+	void sendBlocking(byte[] data, int start, int length);
 }
