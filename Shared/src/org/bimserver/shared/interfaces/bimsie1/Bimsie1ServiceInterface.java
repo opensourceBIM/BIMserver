@@ -329,7 +329,6 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	void addExtendedDataToRevision(
 		@WebParam(name = "roid", partName = "addExtendedDataToRevision.roid") Long roid,
 		@WebParam(name = "extendedData", partName = "addExtendedDataToRevision.extendedData") SExtendedData extendedData) throws ServerException, UserException;
-	
 
 	/**
 	 * @param oid ObjectID of the ExtendedData

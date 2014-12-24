@@ -95,12 +95,13 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		final AtomicLong total = new AtomicLong();
 		IfcHeader ifcHeader = null;
 		PackageMetaData lastPackageMetaData = null;
-		Map<Integer, Long> ridRoidMap = new HashMap<>();
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
+		pidRoidMap.put(project.getId(), roid);
 		for (ConcreteRevision subRevision : concreteRevisions) {
 			if (subRevision.getUser().getOid() != ignoreUoid) {
 				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(subRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
-				IfcModel subModel = new IfcModel(packageMetaData, null);
+				IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 				ifcHeader = subRevision.getIfcHeader();
 				int highestStopId = findHighestStopRid(project, subRevision);
 				Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), objectIDM, Deep.YES, highestStopId);
@@ -127,7 +128,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(revision.getProject(), ifcModelSet, new ModelHelper(ifcModel));

@@ -78,15 +78,16 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 
 		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		PackageMetaData lastPackageMetaData = null;
-		Map<Integer, Long> ridRoidMap = new HashMap<>();
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		for (long roid : roids) {
 			Revision revision = getRevisionByRoid(roid);
 			project = revision.getProject();
+			pidRoidMap.put(project.getId(), roid);
 			if (getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 					lastPackageMetaData = packageMetaData;
-					IfcModel subModel = new IfcModel(packageMetaData, null);
+					IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 					int highestStopId = findHighestStopRid(project, concreteRevision);
 					Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, Deep.YES, highestStopId);
 					subModel.addChangeListener(new IfcModelChangeListener() {
@@ -116,7 +117,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

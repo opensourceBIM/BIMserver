@@ -82,10 +82,10 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		String name = "";
 		PackageMetaData lastPackageMetaData = null;
-		Map<Integer, Long> ridRoidMap = new HashMap<>();
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
-			ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
+			pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
 			try {
@@ -108,7 +108,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					
 					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 					lastPackageMetaData = packageMetaData;
-					IfcModelInterface subModel = new IfcModel(packageMetaData, null);
+					IfcModelInterface subModel = new IfcModel(packageMetaData, pidRoidMap);
 					
 					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
 					JsonObject queryObject = (JsonObject)query;
@@ -128,7 +128,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 				}
 			}
 
-			IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, size);
+			IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap, size);
 			if (ifcModelSet.size() > 1) {
 				try {
 					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
@@ -146,7 +146,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
 		// TODO check, double merging??
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, ridRoidMap);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));

@@ -22,6 +22,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -38,7 +39,8 @@ public class GetExtendedDataByIdDatabaseAction extends GetByIdDatabaseAction<Ext
 	@Override
 	public ExtendedData execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		ExtendedData extendedData = super.execute();
-		authorization.canReadExtendedData(extendedData.getRevision().getOid());
+		Revision revision = extendedData.getRevision();
+		authorization.canReadExtendedData(revision.getOid());
 		return extendedData;
 	}
 }

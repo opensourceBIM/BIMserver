@@ -227,6 +227,7 @@ public class NewRevisionNotification extends Notification {
 				final Bimsie1RemoteServiceInterface remoteServiceInterface = channel.get(Bimsie1RemoteServiceInterface.class);
 				long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
 				long writeExtendedDataRoid = service.getWriteExtendedData() != null ? roid : -1;
+				@SuppressWarnings("unused")
 				long readRevisionRoid = service.isReadRevision() ? roid : -1;
 				long readExtendedDataRoid = service.getReadExtendedData() != null ? roid : -1;
 				

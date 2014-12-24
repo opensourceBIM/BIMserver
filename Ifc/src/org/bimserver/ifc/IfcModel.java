@@ -17,9 +17,6 @@ package org.bimserver.ifc;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -99,36 +96,19 @@ public class IfcModel implements IfcModelInterface {
 	private long oidCounter = 1;
 	private boolean useDoubleStrings = true;
 	private PackageMetaData packageMetaData;
-	private Map<Integer, Long> ridRoidMap;
-	private String stracktrace;
+	private Map<Integer, Long> pidRoidMap;
 
-	public IfcModel() {
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		new Exception().printStackTrace(new PrintStream(out, true));
-		stracktrace = new String(out.toByteArray());
-	}
-	
-	public String getStracktrace() {
-		return stracktrace;
-	}
-	
-	public IfcModel(PackageMetaData packageMetaData, Map<Integer, Long> ridRoidMap) {
-		this();
-		this.ridRoidMap = ridRoidMap;
-		if (packageMetaData == null) {
-			throw new IllegalArgumentException();
-		}
-		this.packageMetaData = packageMetaData;
-		this.objects = HashBiMap.create();
-	}
-
-	public IfcModel(PackageMetaData packageMetaData, int size) {
-		this();
+	public IfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap, int size) {
+		this.pidRoidMap = pidRoidMap;
 		if (packageMetaData == null) {
 			throw new IllegalArgumentException();
 		}
 		this.packageMetaData = packageMetaData;
 		this.objects = HashBiMap.create(size);
+	}
+
+	public IfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap) {
+		this(packageMetaData, pidRoidMap, 16);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -382,8 +362,6 @@ public class IfcModel implements IfcModelInterface {
 
 	private void add(long oid, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException {
 		if (((IdEObjectImpl) eObject).hasModel() && !allowMultiModel && ((IdEObjectImpl) eObject).getModel() != this) {
-			System.out.println((((IfcModel)((IdEObjectImpl) eObject).getModel())).getStracktrace());
-			System.out.println(getStracktrace());
 			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel() + ", not this " + this);
 		}
 		if (oid == -1 || eObject.eClass().getEAnnotation("wrapped") != null) {
@@ -983,7 +961,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	@Override
-	public Map<Integer, Long> getRidRoidMap() {
-		return ridRoidMap;
+	public Map<Integer, Long> getPidRoidMap() {
+		return pidRoidMap;
 	}
 }

@@ -113,7 +113,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 			GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
 			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 				dataOutputStream.writeUTF(ifcProduct.eClass().getName());
-				Long roid = getModel().getRidRoidMap().get(ifcProduct.getRid());
+				Long roid = getModel().getPidRoidMap().get(ifcProduct.getRid());
 				dataOutputStream.writeLong(roid);
 				dataOutputStream.writeLong(ifcProduct.getOid());
 
