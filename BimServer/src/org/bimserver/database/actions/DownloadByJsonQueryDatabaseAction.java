@@ -38,6 +38,7 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.models.ifc2x3tc1.IfcClassificationReference;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.PluginConfiguration;
@@ -230,6 +231,10 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					if (eStructuralFeature instanceof EReference) {
 						List<?> list = ((List<?>)value);
 						for (Object o : list) {
+							if (o instanceof IfcClassificationReference) {
+								System.out.println();
+							}
+
 							if (!model.contains(((IdEObject)o).getOid())) {
 								model.add(((IdEObject)o).getOid(), ((IdEObject)o));
 							}

@@ -91,12 +91,14 @@ function BimServerApi(baseUrl, notifier) {
 			cache: true,
 			success: function(result){
 				othis.schemas["ifc2x3tc1"] = result.classes;
+				othis.addSubtypesToSchema(result.classes);
 				$.ajax({
 					dataType: "json",
 					url: othis.baseUrl + "/js/ifc4.js?_v=" + Global.version,
 					cache: true,
 					success: function(result){
 						othis.schemas["ifc4"] = result.classes;
+						othis.addSubtypesToSchema(result.classes);
 						callback();
 					}
 				});
@@ -104,6 +106,32 @@ function BimServerApi(baseUrl, notifier) {
 		});
 	};
 
+	this.addSubtypesToSchema = function(classes) {
+		for (var typeName in classes) {
+			var type = classes[typeName];
+			if (type.superclasses != null) {
+				type.superclasses.forEach(function(superClass){
+					var directSubClasses = classes[superClass].directSubClasses;
+					if (directSubClasses == null) {
+						directSubClasses = [];
+						classes[superClass].directSubClasses = directSubClasses;
+					}
+					directSubClasses.push(typeName);
+				});
+			}
+		}
+	};
+	
+	this.getAllSubTypes = function(schema, typeName, callback) {
+		var type = schema[typeName];
+		if (type.directSubClasses != null) {
+			type.directSubClasses.forEach(function(subTypeName){
+				callback(subTypeName);
+				othis.getAllSubTypes(schema, subTypeName, callback);
+			});
+		}
+	};
+	
 	this.log = function(message, message2){
 		if (othis.debug) {
 			console.log(message, message2);
@@ -1271,6 +1299,7 @@ function Model(bimServerApi, poid, roid, schema) {
 							if (data.objects.length > 0) {
 								var done = 0;
 								data.objects.forEach(function(object){
+									debugger;
 									var wrapper = null;
 									if (othis.objects[object._i] != null) {
 										wrapper = othis.objects[object._i];
@@ -1355,6 +1384,13 @@ function Model(bimServerApi, poid, roid, schema) {
 			if (subQuery.type != null) {
 				fullTypesLoading[subQuery.type] = true;
 				othis.loadedTypes[subQuery.type] = {};
+				if (subQuery.includeAllSubTypes) {
+					var schema = othis.bimServerApi.schemas[othis.schema];
+					othis.bimServerApi.getAllSubTypes(schema, subQuery.type, function(subTypeName){
+						fullTypesLoading[subTypeName] = true;
+						othis.loadedTypes[subTypeName] = {};
+					});
+				}
 			}
 		});
 		othis.waitForLoaded(function(){
