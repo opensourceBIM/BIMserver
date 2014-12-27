@@ -1012,7 +1012,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		try {
 			List<SServiceDescriptor> sServiceDescriptors = new ArrayList<SServiceDescriptor>();
-			URL url = new URL(getServiceMap().get(SettingsInterface.class).getServiceRepositoryUrl() + "/services");
+			URL url = new URL(getServiceMap().get(SettingsInterface.class).getServiceRepositoryUrl() + "/services.json");
 			String content = NetUtils.getContent(url, 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray services = root.getJSONArray("services");
@@ -1069,7 +1069,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		try {
 			List<SExtendedDataSchema> extendedDataSchemas = new ArrayList<SExtendedDataSchema>();
-			String content = NetUtils.getContent(new URL(getServiceMap().get(SettingsInterface.class).getServiceRepositoryUrl() + "/extendeddataschemas"), 5000);
+			String content = NetUtils.getContent(new URL(getServiceMap().get(SettingsInterface.class).getServiceRepositoryUrl() + "/extendeddataschemas.json"), 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray extendedDataSchemasJson = root.getJSONArray("extendeddataschemas");
 			for (int i = 0; i < extendedDataSchemasJson.length(); i++) {

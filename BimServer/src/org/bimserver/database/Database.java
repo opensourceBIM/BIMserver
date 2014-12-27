@@ -218,7 +218,7 @@ public class Database implements BimDatabase {
 		settings.setCheckinMergingEnabled(false);
 		settings.setHideUserListForNonAdmin(true);
 		settings.setCacheOutputFiles(false);
-		settings.setServiceRepositoryUrl("http://extend.bimserver.org");
+		settings.setServiceRepositoryUrl("https://raw.githubusercontent.com/opensourceBIM/BIMserver-Repository/master");
 		settings.setAllowOnlyWhitelisted(false);
 		settings.setGenerateGeometryOnCheckin(true);
 		settings.setSessionTimeOutSeconds(60 * 60 * 24 * 30); // 1 month
