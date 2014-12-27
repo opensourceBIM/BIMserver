@@ -279,7 +279,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 		boolean isFirst = true;
 		EntityDefinition entityBN = getSchemaDefinition().getEntityBN(object.eClass().getName());
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
-			if (feature.getEAnnotation("hidden") == null && (!entityBN.isDerived(feature.getName()) || entityBN.isDerivedOverride(feature.getName()))) {
+			if (feature.getEAnnotation("hidden") == null && (entityBN != null && (!entityBN.isDerived(feature.getName()) || entityBN.isDerivedOverride(feature.getName())))) {
 				EClassifier type = feature.getEType();
 				if (type instanceof EEnum) {
 					if (!isFirst) {
@@ -474,7 +474,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 									if (val == null) {
 										writePrimitive(listObject);
 									} else {
-										writePrimitive(val);
+										print(val);
 									}
 								} else {
 									writePrimitive(listObject);

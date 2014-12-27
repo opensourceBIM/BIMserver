@@ -71,7 +71,7 @@ public class StreamingSocket extends WebSocketAdapter implements StreamingSocket
 	}
 
 	@Override
-	public void sendBlocking(byte[] data, int start, int length) {
+	public synchronized void sendBlocking(byte[] data, int start, int length) {
 		try {
 			session.getRemote().sendBytes(ByteBuffer.wrap(data, start, length));
 		} catch (IOException e) {

@@ -1,5 +1,5 @@
 
-Ý´
+¨·
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
  SDeserializerPluginConfiguration
 description (	
@@ -204,6 +204,12 @@ $GetAllDeserializersForProjectRequest
 GetAllSerializersRequest
 onlyEnabled ("r
 GetAllSerializersResponse
+errorMessage (	?
+value (20.org.bimserver.pb.SSerializerPluginConfiguration"F
+ GetAllSerializersForRoidsRequest
+onlyEnabled (
+roids ("z
+!GetAllSerializersForRoidsResponse
 errorMessage (	?
 value (20.org.bimserver.pb.SSerializerPluginConfiguration"'
 %GetAllServicePluginDescriptorsRequest"y
@@ -467,7 +473,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*š
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2‚G
+SPrimitiveEnum_BYTE_ARRAY2‰H
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -502,7 +508,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*š
 #getAllRenderEnginePluginDescriptors<.org.bimserver.pb.GetAllRenderEnginePluginDescriptorsRequest=.org.bimserver.pb.GetAllRenderEnginePluginDescriptorsResponser
 getAllRenderEngines,.org.bimserver.pb.GetAllRenderEnginesRequest-.org.bimserver.pb.GetAllRenderEnginesResponseœ
 !getAllSerializerPluginDescriptors:.org.bimserver.pb.GetAllSerializerPluginDescriptorsRequest;.org.bimserver.pb.GetAllSerializerPluginDescriptorsResponsel
-getAllSerializers*.org.bimserver.pb.GetAllSerializersRequest+.org.bimserver.pb.GetAllSerializersResponse“
+getAllSerializers*.org.bimserver.pb.GetAllSerializersRequest+.org.bimserver.pb.GetAllSerializersResponse„
+getAllSerializersForRoids2.org.bimserver.pb.GetAllSerializersForRoidsRequest3.org.bimserver.pb.GetAllSerializersForRoidsResponse“
 getAllServicePluginDescriptors7.org.bimserver.pb.GetAllServicePluginDescriptorsRequest8.org.bimserver.pb.GetAllServicePluginDescriptorsResponse™
  getAllWebModulePluginDescriptors9.org.bimserver.pb.GetAllWebModulePluginDescriptorsRequest:.org.bimserver.pb.GetAllWebModulePluginDescriptorsResponsei
 getAllWebModules).org.bimserver.pb.GetAllWebModulesRequest*.org.bimserver.pb.GetAllWebModulesResponse{

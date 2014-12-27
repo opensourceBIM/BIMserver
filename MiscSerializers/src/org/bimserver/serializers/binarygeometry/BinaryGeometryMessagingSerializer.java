@@ -94,7 +94,10 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 	public boolean writeMessage(OutputStream outputStream, ProgressReporter progressReporter) throws IOException {
 		switch (mode) {
 		case START:
-			writeStart(outputStream);
+			if (!writeStart(outputStream)) {
+				mode = Mode.END;
+				return false;
+			}
 			mode = Mode.DATA;
 			break;
 		case DATA:
@@ -111,7 +114,7 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 		return true;
 	}
 	
-	private void writeStart(OutputStream outputStream) throws IOException {
+	private boolean writeStart(OutputStream outputStream) throws IOException {
 		LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(outputStream);
 		// Identifier for clients to determine if this server is even serving binary geometry
 		dataOutputStream.writeByte(MessageType.INIT.getId());
@@ -150,6 +153,8 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 		concreteGeometrySent = new HashMap<Long, Object>();
 		EClass productEClass = packageMetaData.getEClass("IfcProduct");
 		iterator = model.getAllWithSubTypes(productEClass).iterator();
+		
+		return nrObjects > 0;
 	}
 	
 	private boolean writeData(OutputStream outputStream) throws IOException {

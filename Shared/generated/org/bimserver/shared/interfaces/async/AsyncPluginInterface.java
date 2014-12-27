@@ -199,6 +199,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetAllSerializersForRoidsCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> result);
+		void error(Throwable e);
+	}
+	
 	public interface GetAllServicePluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor> result);
 		void error(Throwable e);
@@ -839,6 +844,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllSerializers(onlyEnabled));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllSerializersForRoids(final java.lang.Boolean onlyEnabled, final java.util.Set<java.lang.Long> roids, final GetAllSerializersForRoidsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllSerializersForRoids(onlyEnabled, roids));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

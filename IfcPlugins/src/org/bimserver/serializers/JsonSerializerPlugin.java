@@ -83,6 +83,6 @@ public class JsonSerializerPlugin extends AbstractSerializerPlugin {
 	
 	@Override
 	public Set<Schema> getSupportedSchemas() {
-		return Schema.IFC2X3TC1.toSet();
+		return Schema.asSet(Schema.IFC2X3TC1, Schema.IFC4);
 	}
 }
