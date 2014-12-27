@@ -83,6 +83,6 @@ public class JsonGeometrySerializerPlugin extends AbstractSerializerPlugin {
 
 	@Override
 	public Set<Schema> getSupportedSchemas() {
-		return null;
+		return Schema.IFC2X3TC1.toSet();
 	}
 }

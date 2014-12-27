@@ -96,6 +96,8 @@ service PluginInterface {
 
 	rpc getAllSerializers (GetAllSerializersRequest) returns (GetAllSerializersResponse);
 
+	rpc getAllSerializersForRoids (GetAllSerializersForRoidsRequest) returns (GetAllSerializersForRoidsResponse);
+
 	rpc getAllServicePluginDescriptors (GetAllServicePluginDescriptorsRequest) returns (GetAllServicePluginDescriptorsResponse);
 
 	rpc getAllWebModulePluginDescriptors (GetAllWebModulePluginDescriptorsRequest) returns (GetAllWebModulePluginDescriptorsResponse);
@@ -496,6 +498,16 @@ message GetAllSerializersRequest {
 }
 
 message GetAllSerializersResponse {
+	optional string errorMessage = 1;
+	repeated SSerializerPluginConfiguration value = 2;
+}
+
+message GetAllSerializersForRoidsRequest {
+	optional bool onlyEnabled = 1;
+	repeated int64 roids = 2;
+}
+
+message GetAllSerializersForRoidsResponse {
 	optional string errorMessage = 1;
 	repeated SSerializerPluginConfiguration value = 2;
 }

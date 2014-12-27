@@ -18,6 +18,7 @@ package org.bimserver.shared.interfaces;
  *****************************************************************************/
 
 import java.util.List;
+import java.util.Set;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -80,6 +81,16 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action="setDefaultRenderEngine")
 	void setDefaultRenderEngine(
 		@WebParam(name = "oid", partName = "setDefaultRenderEngine.oid") Long oid) throws UserException, ServerException;
+
+	/**
+	 * @param onlyEnabled Whether to only include enabled serializers
+	 * @return A list of Serializers
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllSerializersForRoids")
+	List<SSerializerPluginConfiguration> getAllSerializersForRoids(
+		@WebParam(name = "onlyEnabled", partName = "getAllSerializersForRoids.onlyEnabled") Boolean onlyEnabled,
+		@WebParam(name = "roids", partName = "getAllSerializersForRoids.roids") Set<Long> roids) throws ServerException, UserException;
 
 	@WebMethod(action="setDefaultWebModule")
 	void setDefaultWebModule(

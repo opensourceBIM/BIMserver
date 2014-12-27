@@ -1279,6 +1279,7 @@ function Model(bimServerApi, poid, roid, schema) {
 			}
 			// Any left?
 			if (list.length > 0) {
+//				debugger;
 				list.forEach(function(item){
 					fetchingMap[item] = [];
 				});
@@ -1300,7 +1301,6 @@ function Model(bimServerApi, poid, roid, schema) {
 							if (data.objects.length > 0) {
 								var done = 0;
 								data.objects.forEach(function(object){
-									debugger;
 									var wrapper = null;
 									if (othis.objects[object._i] != null) {
 										wrapper = othis.objects[object._i];

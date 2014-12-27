@@ -140,6 +140,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> getAllSerializersForRoids(java.lang.Boolean onlyEnabled, java.util.Set<java.lang.Long> roids) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor> getAllServicePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}

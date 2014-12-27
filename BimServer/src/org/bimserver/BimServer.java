@@ -121,6 +121,9 @@ import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
+import org.bimserver.schemaconverter.Ifc2x3tc1ToIfc4SchemaConverterFactory;
+import org.bimserver.schemaconverter.Ifc4ToIfc2x3tc1SchemaConverterFactory;
+import org.bimserver.schemaconverter.SchemaConverterManager;
 import org.bimserver.serializers.SerializerFactory;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.InterfaceList;
@@ -186,6 +189,7 @@ public class BimServer {
 	private InternalServicesManager internalServicesManager;
 	private OpenIdManager openIdManager;
 	private MetaDataManager metaDataManager;
+	private SchemaConverterManager schemaConverterManager = new SchemaConverterManager();
 
 	/**
 	 * Create a new BIMserver
@@ -351,6 +355,9 @@ public class BimServer {
 			templateEngine.init(config.getResourceFetcher().getResource("templates/"));
 			File databaseDir = new File(config.getHomeDir(), "database");
 			BerkeleyKeyValueStore keyValueStore = new BerkeleyKeyValueStore(databaseDir);
+			
+			schemaConverterManager.registerConverter(new Ifc2x3tc1ToIfc4SchemaConverterFactory());
+			schemaConverterManager.registerConverter(new Ifc4ToIfc2x3tc1SchemaConverterFactory());
 			
 			Query.setPackageMetaDataForDefaultQuery(metaDataManager.getEPackage("store"));
 			
@@ -681,7 +688,7 @@ public class BimServer {
 		serverSettingsCache.init();
 		notificationsManager.init();
 
-		getSerializerFactory().init(pluginManager, bimDatabase);
+		getSerializerFactory().init(pluginManager, bimDatabase, this);
 		getDeserializerFactory().init(pluginManager, bimDatabase);
 		try {
 			DatabaseSession session = bimDatabase.createSession();
@@ -1021,5 +1028,9 @@ public class BimServer {
 	
 	public MetaDataManager getMetaDataManager() {
 		return metaDataManager;
+	}
+	
+	public SchemaConverterManager getSchemaConverterManager() {
+		return schemaConverterManager;
 	}
 }
