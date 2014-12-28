@@ -89,7 +89,7 @@ function BimServerApi(baseUrl, notifier) {
 	othis.listeners = {};
 	othis.autoLoginTried = false;
 	othis.serializersByPluginClassName = [];
-	othis.debug = true;
+	othis.debug = false;
 	othis.classes = {};
 	othis.binaryDataListener = {};
 	othis.schemas = {};
@@ -178,6 +178,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.downloadViaWebsocket = function(msg){
+		console.log("downloadViaWebsocket");
 		msg.action = "download";
 		msg.token = othis.token;
 		othis.server.send(msg);
