@@ -65,6 +65,7 @@
 		<delete file="builds/bimserver/org/bimserver/servlets/websockets/jsr356/Jsr356Impl.class"></delete>
 		<copy todir="builds/bimserver/org/bimserver/database/migrations/steps">
 			<fileset file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3_TC1.ecore"></fileset>
+			<fileset file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC4.ecore"></fileset>
 		</copy>
 		<mkdir dir="builds/bimserver/plugin"/>
 		<jar destfile="builds/lib/bimserver-${version}.jar">
