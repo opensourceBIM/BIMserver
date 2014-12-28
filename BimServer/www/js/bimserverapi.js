@@ -80,7 +80,7 @@ function BimServerApi(baseUrl, notifier) {
 	othis.listeners = {};
 	othis.autoLoginTried = false;
 	othis.serializersByPluginClassName = [];
-	othis.debug = false;
+	othis.debug = true;
 	othis.classes = {};
 	othis.binaryDataListener = {};
 	othis.schemas = {};
