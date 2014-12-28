@@ -8,7 +8,10 @@
 			<src path="../src" />
 			<classpath>
 				<path>
-					<fileset refid="buildlib" />
+					<fileset file="antlibs/gson-2.2.4.jar"/>
+					<fileset file="antlibs/org.eclipse.egit.github.core-2.1.5.jar"/>
+					<fileset file="antlibs/httpclient-4.3.2.jar"/>
+					<fileset file="antlibs/httpcore-4.3.1.jar"/>
 				</path>
 			</classpath>
 		</javac>
