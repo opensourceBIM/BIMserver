@@ -15,10 +15,6 @@
 	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask" classpathref="catalina-ant-classpath" />
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" classpathref="catalina-ant-classpath" />
 	
-	<tstamp>
-		<format property="builddate" pattern="yyyy-MM-dd" />
-	</tstamp>
-
 	<import file="version.build.xml"/>
 
 	<property name="type" value="DEV"/>
