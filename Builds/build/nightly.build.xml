@@ -3,9 +3,8 @@
 		<format property="builddate" pattern="yyyy-MM-dd.HH-mm-ss" />
 	</tstamp>
 
-	<property name="majorversion" value="1"/>
-	<property name="minorversion" value="2"/>
-	<property name="revisionversion" value="0"/>
+	<import file="version.build.xml"/>
+	
 	<property name="revisiondate" value="${builddate}"/>
 	<property name="version" value="${builddate}"/>
 
