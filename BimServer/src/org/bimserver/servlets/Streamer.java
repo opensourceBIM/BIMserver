@@ -37,6 +37,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.utils.Formatters;
 import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -106,8 +107,8 @@ public class Streamer implements EndPoint {
 								LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(downloadId);
 								MessagingSerializer messagingSerializer = longAction.getMessagingSerializer();
 								boolean writeMessage = true;
-//								int counter = 0;
-//								long bytes = 0;
+								int counter = 0;
+								long bytes = 0;
 								do {
 									ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 									DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -124,12 +125,12 @@ public class Streamer implements EndPoint {
 									byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
 									byteBuffer.putInt(4, messages);
 									if (byteArrayOutputStream.size() > 8) {
-//										bytes += byteArray.length;
+										bytes += byteArray.length;
 										streamingSocketInterface.sendBlocking(byteArray, 0, byteArray.length);
-//										counter++;
+										counter++;
 									}
 								} while (writeMessage);
-//								System.out.println(counter + " messages written " + Formatters.bytesToString(bytes));
+								System.out.println(counter + " messages written " + Formatters.bytesToString(bytes));
 							} catch (IOException e) {
 								LOGGER.error("", e);
 							}
