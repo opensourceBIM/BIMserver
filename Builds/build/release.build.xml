@@ -1,8 +1,5 @@
 <project name="BIMserver Release Build">
 	<import file="version.build.xml"/>
-	<tstamp>
-		<format property="builddate" pattern="yyyy-MM-dd" />
-	</tstamp>
 	
 	<property name="type" value="FINAL"/>
 	<property name="revisiondate" value="${builddate}"/>
