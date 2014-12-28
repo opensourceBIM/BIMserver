@@ -73,6 +73,7 @@ public class TomcatStreamInbound extends StreamInbound implements StreamingSocke
 	public void send(byte[] data, int start, int length) {
 		try {
 			outbound.writeBinaryMessage(ByteBuffer.wrap(data, start, length));
+			outbound.flush();
 		} catch (IOException e) {
 		}
 	}
@@ -81,6 +82,7 @@ public class TomcatStreamInbound extends StreamInbound implements StreamingSocke
 	public void sendBlocking(byte[] data, int start, int length) {
 		try {
 			outbound.writeBinaryMessage(ByteBuffer.wrap(data, start, length));
+			outbound.flush();
 		} catch (IOException e) {
 		}
 	}
