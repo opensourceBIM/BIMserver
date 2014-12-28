@@ -62,6 +62,7 @@
 				</path>
 			</classpath>
 		</javac>
+		<delete file="builds/bimserver/org/bimserver/servlets/websockets/jsr356/Jsr356Impl.class"></delete>
 		<copy todir="builds/bimserver/org/bimserver/database/migrations/steps">
 			<fileset file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3_TC1.ecore"></fileset>
 		</copy>

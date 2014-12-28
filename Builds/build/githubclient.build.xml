@@ -1,7 +1,4 @@
 <project name="GitHubRelease">
-	<fileset id="buildlib" dir="antlibs">
-		<include name="**/*.jar" />
-	</fileset>
 	<target name="GitHubRelease">
 		<mkdir dir="build" />
 		<javac destdir="build" debug="on" includeantruntime="false">
