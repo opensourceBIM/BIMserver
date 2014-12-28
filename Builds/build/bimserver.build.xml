@@ -12,6 +12,7 @@
 		</copy>
 		<copy todir="builds/BuildJar/config" overwrite="true">
 			<fileset file="${buildtargets}/shared/IFC2X3_TC1.exp" />
+			<fileset file="${buildtargets}/shared/IFC4.exp" />
 			<fileset file="${buildtargets}/shared/version.xml" />
 			<fileset file="${buildtargets}/shared/web.xml" />
 			<fileset dir="../../Builds/build/pb">
@@ -83,6 +84,7 @@
 		</copy>
 		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/IFC2X3_TC1.exp" />
+			<fileset file="${buildtargets}/shared/IFC4.exp" />
 			<fileset file="${buildtargets}/shared/version.xml" />
 			<fileset file="${buildtargets}/shared/service.proto" />
 			<fileset file="${buildtargets}/shared/notification.proto" />
@@ -165,7 +167,7 @@
 			<fileset dir="../../BimServer/www" />
 		</copy>
 		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
-			<fileset file="${buildtargets}/shared/IFC2X3_TC1.exp" />
+			<fileset file="${buildtargets}/shared/IFC4.exp" />
 			<fileset file="${buildtargets}/shared/version.xml" />
 			<fileset file="${buildtargets}/shared/service.proto" />
 			<fileset file="${buildtargets}/shared/notification.proto" />
