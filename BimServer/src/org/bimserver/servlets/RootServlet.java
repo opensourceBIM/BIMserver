@@ -102,6 +102,11 @@ public class RootServlet extends HttpServlet {
 				if (requestUri.equals("") || requestUri.equals("/") || requestUri == null) {
 					requestUri = "/index.html";
 				}
+				if (bimServer.getDefaultWebModule() != null) {
+					if (bimServer.getDefaultWebModule().service(request, response)) {
+						return;
+					}
+				}
 				if (bimServer.getWebModules() != null) {
 					for (Entry<String, WebModulePlugin> entry : bimServer.getWebModules().entrySet()) {
 						if (requestUri != null && entry.getValue() != null && requestUri.startsWith(entry.getKey())) {
