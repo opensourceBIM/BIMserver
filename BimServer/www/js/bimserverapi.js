@@ -55,7 +55,16 @@ function BimServerApi(baseUrl, notifier) {
 		DOWNLOADBYJSONQUERY_BUSY: "Downloading BIM",
 		CHECKINFROMURL_DONE: "Done checking in from URL",
 		GETLOGGEDINUSER_BUSY: "Getting user details",
-		SETPLUGINSETTINGS_DONE: "Plugin settings successfully saved"
+		SETPLUGINSETTINGS_DONE: "Plugin settings successfully saved",
+		GETSERVERINFO_BUSY: "Getting server info",
+		GETVERSION_BUSY: "Getting server version",
+		GETPROJECTBYPOID_BUSY: "Getting project details",
+		GETALLRELATEDPROJECTS_BUSY: "Getting related project's details",
+		GETSERIALIZERBYPLUGINCLASSNAME_BUSY: "Getting serializer info",
+		CLEANUPLONGACTION_BUSY: "Cleaning up",
+		GETREVISIONSUMMARY_BUSY: "Getting revision summary",
+		DOWNLOADBYOIDS_BUSY: "Downloading model data",
+		REGISTERPROGRESSHANDLER_BUSY: "Registering for updates on progress"
 	}
 
 	othis.token = null;
