@@ -32,6 +32,12 @@
 		<listener-class>org.bimserver.web.WarServerInitializer</listener-class>
 	</listener>
 
+	<servlet>
+		<servlet-name>RootServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.RootServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
 		<url-pattern>/soap11</url-pattern>
