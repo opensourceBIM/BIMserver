@@ -19,6 +19,7 @@ package org.bimserver.notifications;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.bimserver.BimServer;
 import org.bimserver.client.SimpleTokenHolder;
@@ -85,10 +86,16 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	}
 	
 	public ServiceDescriptor getInternalService(Long uoid, String serviceIdentifier) {
-		Map<String, ServiceDescriptor> map = internalServices.get(uoid);
-		if (map != null) {
-			return map.get(serviceIdentifier);
+		// Temporary hack, should be used based
+		for (Entry<Long, Map<String, ServiceDescriptor>> entry : internalServices.entrySet()) {
+			if (entry.getValue().containsKey(serviceIdentifier)) {
+				return entry.getValue().get(serviceIdentifier);
+			}
 		}
+//		Map<String, ServiceDescriptor> map = internalServices.get(uoid);
+//		if (map != null) {
+//			return map.get(serviceIdentifier);
+//		}
 		return null;
 	}
 	
