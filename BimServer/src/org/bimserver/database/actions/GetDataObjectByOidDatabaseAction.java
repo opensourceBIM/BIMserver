@@ -80,7 +80,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 			lastPackageMetaData = packageMetaData;
 			IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);
-			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
+			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.NO, highestStopId);
 			eObject = getDatabaseSession().get(null, oid, subModel, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);

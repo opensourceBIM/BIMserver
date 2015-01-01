@@ -112,7 +112,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 				lastPackageMetaData = packageMetaData;
 				IfcModel subModel = new IfcModel(packageMetaData, ridRoidMap);
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
+				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), objectIDM, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {

@@ -61,7 +61,7 @@ public class RemoveObjectChange implements Change {
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getEPackage(project.getSchema());
-		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId() - 1));
+		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId() - 1, -1));
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
@@ -70,7 +70,7 @@ public class RemoveObjectChange implements Change {
 		}
 
 		int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
-		Query query = new Query(packageMetaData, project.getId(), concreteRevision.getId(), null, Deep.YES, highestStopId);
+		Query query = new Query(packageMetaData, project.getId(), concreteRevision.getId(), -1, null, Deep.YES, highestStopId);
 		IfcModel subModel = new IfcModel(packageMetaData, null);
 		databaseSession.getMap(subModel, query);
 		for (IdEObject idEObject2 : subModel.getValues()) {

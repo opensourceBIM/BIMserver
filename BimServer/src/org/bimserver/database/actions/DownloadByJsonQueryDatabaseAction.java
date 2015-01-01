@@ -110,7 +110,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					lastPackageMetaData = packageMetaData;
 					IfcModelInterface subModel = new IfcModel(packageMetaData, pidRoidMap);
 					
-					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
+					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.NO, highestStopId);
 					JsonObject queryObject = (JsonObject)query;
 					JsonArray queries = queryObject.get("queries").getAsJsonArray();
 					String lowerCaseSchema = concreteRevision.getProject().getSchema().toLowerCase();

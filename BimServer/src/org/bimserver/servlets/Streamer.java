@@ -130,7 +130,7 @@ public class Streamer implements EndPoint {
 										counter++;
 									}
 								} while (writeMessage);
-								System.out.println(counter + " messages written " + Formatters.bytesToString(bytes));
+								LOGGER.debug(counter + " messages written " + Formatters.bytesToString(bytes));
 							} catch (IOException e) {
 								LOGGER.error("", e);
 							}

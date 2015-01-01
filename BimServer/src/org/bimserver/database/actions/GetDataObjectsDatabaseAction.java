@@ -65,7 +65,7 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
 			IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
-			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.YES, highestStopId);
+			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.YES, highestStopId);
 			getDatabaseSession().getMap(subModel, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);

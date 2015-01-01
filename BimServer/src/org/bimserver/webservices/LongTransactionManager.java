@@ -25,8 +25,8 @@ public class LongTransactionManager {
 	private final AtomicLong counter = new AtomicLong();
 	private final Map<Long, LongTransaction> runningTransactions = new HashMap<Long, LongTransaction>();
 	
-	public synchronized LongTransaction newLongTransaction(long poid, int pid, int rid, String schemaName) {
-		LongTransaction longTransaction = new LongTransaction(poid, pid, rid, counter.incrementAndGet(), schemaName);
+	public synchronized LongTransaction newLongTransaction(long poid, int pid, int rid, long roid, String schemaName) {
+		LongTransaction longTransaction = new LongTransaction(poid, roid, pid, rid, counter.incrementAndGet(), schemaName);
 		runningTransactions.put(longTransaction.getTid(), longTransaction);
 		return longTransaction;
 	}

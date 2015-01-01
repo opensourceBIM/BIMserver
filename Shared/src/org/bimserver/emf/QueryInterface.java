@@ -35,4 +35,6 @@ public interface QueryInterface {
 	boolean shouldIncludeClass(EClass eClass);
 	
 	PackageMetaData getPackageMetaData();
+
+	long getRoid();
 }
