@@ -673,7 +673,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public <T extends IdEObject> T get(long oid, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
 		TodoList todoList = new TodoList();
-		IfcModelInterface model = createModel(query.getPackageMetaData());
+		IfcModelInterface model = createModel(query);
 		IdEObject idEObject = get(model, null, oid, query, todoList);
 		processTodoList(model, todoList, query);
 		return (T) idEObject;
@@ -694,7 +694,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			return null;
 		}
 		TodoList todoList = new TodoList();
-		IfcModelInterface model = createModel(query.getPackageMetaData());
+		IfcModelInterface model = createModel(query);
 		T t = get(model, null, oid, query, todoList);
 		processTodoList(model, todoList, query);
 		return t;
@@ -805,7 +805,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public IfcModelInterface getAllOfType(EClass eClass, QueryInterface query) throws BimserverDatabaseException {
-		IfcModelInterface model = createModel(query.getPackageMetaData());
+		IfcModelInterface model = createModel(query);
 		return getAllOfType(model, eClass, query);
 	}
 	
@@ -818,7 +818,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public IfcModelInterface getAllOfTypes(Set<EClass> eClasses, QueryInterface query) throws BimserverDatabaseException {
-		IfcModelInterface model = createModel(query.getPackageMetaData());
+		IfcModelInterface model = createModel(query);
 		return getAllOfTypes(model, eClasses, query);
 	}
 	
@@ -1334,8 +1334,14 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return eClass.getEPackage() != Ifc2x3tc1Package.eINSTANCE;
 	}
 
-	public IfcModelInterface createModel(PackageMetaData packageMetaData) {
-		return new IfcModel(packageMetaData, null);
+	public IfcModelInterface createModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap) {
+		return new IfcModel(packageMetaData, pidRoidMap);
+	}
+
+	public IfcModelInterface createModel(QueryInterface queryInterface) {
+		HashMap<Integer, Long> map = new HashMap<Integer, Long>();
+		map.put(queryInterface.getPid(), queryInterface.getRoid());
+		return new IfcModel(queryInterface.getPackageMetaData(), map);
 	}
 
 	@SuppressWarnings("unused")
@@ -1345,7 +1351,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		IfcModelInterface model = ((IdEObjectImpl)idEObject).getModel();
 		if (model == null) {
-			model = createModel(getMetaDataManager().getEPackage(idEObject.eClass().getEPackage().getName()));
+			Map<Integer, Long> pidToRoid = new HashMap<Integer, Long>();
+			model = createModel(getMetaDataManager().getEPackage(idEObject.eClass().getEPackage().getName()), pidToRoid);
 		}
 		idEObject = get(model, idEObject, idEObject.getOid(), ((IdEObjectImpl) idEObject).getQueryInterface(), new TodoList());
 		if (idEObject != null) {
@@ -1376,7 +1383,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public <T extends IdEObject> Map<Long, T> query(Condition condition, Class<T> clazz, QueryInterface query) throws BimserverDatabaseException {
-		IfcModelInterface model = createModel(query.getPackageMetaData());
+		IfcModelInterface model = createModel(query);
 		return query(model, condition, clazz, query);
 	}
 	
@@ -1743,7 +1750,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 	
 	public Set<String> getAvailableClassesInRevision(QueryInterface query) throws BimserverDatabaseException {
-		IfcModelInterface model = createModel(query.getPackageMetaData());
+		IfcModelInterface model = createModel(query);
 		return getAvailableClassesInRevision(model, query);
 	}
 
@@ -1780,7 +1787,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	@SuppressWarnings("unchecked")
 	public <T extends IdEObject> T getSingle(EClass eClass, QueryInterface query) throws BimserverDatabaseException {
-		IfcModelInterface model = createModel(query.getPackageMetaData());
+		IfcModelInterface model = createModel(query);
 		List<T> all = getAllOfType(model, eClass, query).getAll((Class<T>) eClass.getInstanceClass());
 		if (all.size() > 0) {
 			return all.get(0);

@@ -115,7 +115,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		IfcModelInterface ifcModel = new IfcModel(packageMetaData, null);
 		if (oldLastRevision != null) {
 			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
-			getDatabaseSession().getMap(ifcModel, new Query(longTransaction.getPackageMetaData(), project.getId(), oldLastRevision.getId(), null, Deep.YES, highestStopId));
+			getDatabaseSession().getMap(ifcModel, new Query(longTransaction.getPackageMetaData(), project.getId(), oldLastRevision.getId(), -1, null, Deep.YES, highestStopId));
 		}
 		
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {

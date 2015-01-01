@@ -81,7 +81,7 @@ public class BranchToNewProjectDatabaseAction extends AbstractBranchDatabaseActi
 				throw new UserException("Branching not possible for revision with multiple schemas");
 			}
 			IfcModel subModel = new IfcModel(packageMetaData, null);
-			getDatabaseSession().getMap(subModel, new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), Deep.NO));
+			getDatabaseSession().getMap(subModel, new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), -1, Deep.NO));
 			subModel.getModelMetaData().setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}

@@ -73,6 +73,7 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		int pid = -1;
 		int rid = -1;
+		long roid = -1;
 		try {
 			Project project = (Project) session.get(poid, Query.getDefault());
 			if (project == null) {
@@ -83,8 +84,9 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 				Revision revision = project.getLastRevision();
 				ConcreteRevision lastConcreteRevision = revision.getLastConcreteRevision();
 				rid = lastConcreteRevision.getId();
+				roid = revision.getOid();
 			}
-			LongTransaction longTransaction = getBimServer().getLongTransactionManager().newLongTransaction(poid, pid, rid, project.getSchema());
+			LongTransaction longTransaction = getBimServer().getLongTransactionManager().newLongTransaction(poid, pid, rid, roid, project.getSchema());
 			return longTransaction.getTid();
 		} catch (Exception e) {
 			return handleException(e);
@@ -517,7 +519,7 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 		try {
 			LongTransaction transaction = getBimServer().getLongTransactionManager().get(tid);
 			EClass eClass = session.getEClassForOid(oid);
-			IdEObject object = session.get(eClass, oid, new Query(transaction.getPackageMetaData(), transaction.getPid(), transaction.getRid(), null, Deep.NO));
+			IdEObject object = session.get(eClass, oid, new Query(transaction.getPackageMetaData(), transaction.getPid(), transaction.getRid(), transaction.getRoid(), null, Deep.NO));
 			if (object == null) {
 				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
 			}
@@ -540,7 +542,7 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 		try {
 			LongTransaction transaction = getBimServer().getLongTransactionManager().get(tid);
 			EClass eClass = session.getEClassForOid(oid);
-			IdEObject object = session.get(eClass, oid, new Query(transaction.getPackageMetaData(), transaction.getPid(), transaction.getRid(), null, Deep.NO));
+			IdEObject object = session.get(eClass, oid, new Query(transaction.getPackageMetaData(), transaction.getPid(), transaction.getRid(), transaction.getRoid(), null, Deep.NO));
 			if (object == null) {
 				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
 			}
@@ -589,7 +591,7 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 		try {
 			LongTransaction transaction = getBimServer().getLongTransactionManager().get(tid);
 			EClass eClass = session.getEClassForOid(oid);
-			IdEObject object = session.get(eClass, oid, new Query(transaction.getPackageMetaData(), transaction.getPid(), transaction.getRid(), null, Deep.NO));
+			IdEObject object = session.get(eClass, oid, new Query(transaction.getPackageMetaData(), transaction.getPid(), transaction.getRid(), transaction.getRoid(), null, Deep.NO));
 			if (object == null) {
 				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
 			}
@@ -616,7 +618,7 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 		try {
 			LongTransaction transaction = getBimServer().getLongTransactionManager().get(tid);
 			EClass eClass = session.getEClassForOid(oid);
-			IdEObject object = session.get(eClass, oid, new Query(transaction.getPackageMetaData(), transaction.getPid(), transaction.getRid(), null, Deep.NO));
+			IdEObject object = session.get(eClass, oid, new Query(transaction.getPackageMetaData(), transaction.getPid(), transaction.getRid(), transaction.getRoid(), null, Deep.NO));
 			if (object == null) {
 				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
 			}

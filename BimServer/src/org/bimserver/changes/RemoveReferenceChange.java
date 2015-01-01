@@ -49,7 +49,7 @@ public class RemoveReferenceChange implements Change {
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getEPackage(project.getSchema());
-		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId()));
+		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId(), -1));
 		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);

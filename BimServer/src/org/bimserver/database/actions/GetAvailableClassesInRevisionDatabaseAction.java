@@ -45,6 +45,6 @@ public class GetAvailableClassesInRevisionDatabaseAction extends BimDatabaseActi
 	public List<String> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
 		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(revision.getProject().getSchema());
-		return new ArrayList<String>(getDatabaseSession().getAvailableClassesInRevision(new Query(packageMetaData, revision.getProject().getId(), revision.getId())));
+		return new ArrayList<String>(getDatabaseSession().getAvailableClassesInRevision(new Query(packageMetaData, revision.getProject().getId(), revision.getId(), -1)));
 	}
 }

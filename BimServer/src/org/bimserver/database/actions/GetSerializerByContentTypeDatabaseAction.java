@@ -41,7 +41,8 @@ public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<
 	public SerializerPluginConfiguration execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		for (SerializerPluginConfiguration serializerPluginConfiguration : getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, Query.getDefault())) {
 			PluginConfiguration pluginConfiguration = new PluginConfiguration(serializerPluginConfiguration.getSettings());
-			if (pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE).equals(contentType)) {
+			String string = pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE);
+			if (string != null && string.equals(contentType)) {
 				return serializerPluginConfiguration;
 			}
 		}

@@ -206,7 +206,7 @@ public class NewRevisionNotification extends Notification {
 									Revision revision;
 									try {
 										revision = session.get(roid, Query.getDefault());
-										session.getMap(model, new Query(packageMetaData, project.getId(), revision.getId(), null, Deep.NO));
+										session.getMap(model, new Query(packageMetaData, project.getId(), revision.getId(), revision.getOid(), null, Deep.NO));
 									} catch (BimserverDatabaseException e) {
 										LOGGER.error("", e);
 									}

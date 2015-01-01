@@ -17,10 +17,10 @@ package org.bimserver.serializers.binarygeometry;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
 import com.google.common.io.LittleEndianDataOutputStream;
 
 @Deprecated
@@ -106,15 +107,15 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		// Flushing here so the client can show progressbar etc...
 		dataOutputStream.flush();
 		
+		int bytes = 6;
 		int counter = 0;
 		
 		// Second iteration actually writing the geometry
 		for (IdEObject ifcProduct : products) {
 			GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
 			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
-				dataOutputStream.writeUTF(ifcProduct.eClass().getName());
-				Long roid = getModel().getPidRoidMap().get(ifcProduct.getRid());
-				dataOutputStream.writeLong(roid);
+				String type = ifcProduct.eClass().getName();
+				dataOutputStream.writeUTF(type);
 				dataOutputStream.writeLong(ifcProduct.getOid());
 
 				GeometryData geometryData = geometryInfo.getData();
@@ -126,15 +127,15 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				byte geometryType = concreteGeometrySent.contains(geometryData.getOid()) ? GEOMETRY_TYPE_INSTANCE : GEOMETRY_TYPE_TRIANGLES;
 				dataOutputStream.write(geometryType);
 				
+				bytes += (type.getBytes(Charsets.UTF_8).length + 3);
+				
 				// This is an ugly hack to align the bytes, but for 2 different kinds of output (this first one is the websocket implementation)
-				if (outputStream instanceof AligningOutputStream) {
-					((AligningOutputStream)outputStream).align4();
-				} else {
-					int skip = 4 - (10000 % 4); // TODO fix
-					if(skip != 0 && skip != 4) {
-						dataOutputStream.write(new byte[skip]);
-					}
+				int skip = 4 - (bytes % 4); // TODO fix
+				if(skip != 0 && skip != 4) {
+					dataOutputStream.write(new byte[skip]);
 				}
+				
+				bytes = 0;
 				
 				dataOutputStream.write(geometryInfo.getTransformation());
 				

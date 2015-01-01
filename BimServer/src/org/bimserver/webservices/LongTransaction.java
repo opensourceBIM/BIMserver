@@ -31,9 +31,11 @@ public class LongTransaction {
 	private int rid;
 	private long poid;
 	private String schemaName;
+	private long roid;
 
-	public LongTransaction(long poid, int pid, int rid, long tid, String schemaName) {
+	public LongTransaction(long poid, long roid, int pid, int rid, long tid, String schemaName) {
 		this.poid = poid;
+		this.roid = roid;
 		this.pid = pid;
 		this.rid = rid;
 		this.tid = tid;
@@ -73,5 +75,9 @@ public class LongTransaction {
 
 	public PackageMetaData getPackageMetaData() {
 		return null;
+	}
+
+	public long getRoid() {
+		return roid;
 	}
 }

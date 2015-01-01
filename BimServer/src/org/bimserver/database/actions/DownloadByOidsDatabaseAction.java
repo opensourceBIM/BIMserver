@@ -90,7 +90,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 				lastPackageMetaData = packageMetaData;
 				IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, deep, highestStopId);
+				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {

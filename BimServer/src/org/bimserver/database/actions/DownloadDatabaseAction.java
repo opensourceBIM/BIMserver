@@ -104,7 +104,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 				ifcHeader = subRevision.getIfcHeader();
 				int highestStopId = findHighestStopRid(project, subRevision);
-				Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), objectIDM, Deep.YES, highestStopId);
+				Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), subRevision.getOid(), objectIDM, Deep.YES, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {
