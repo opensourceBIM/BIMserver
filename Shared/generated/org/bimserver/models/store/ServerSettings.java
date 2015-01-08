@@ -53,6 +53,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpPort <em>Smtp Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpProtocol <em>Smtp Protocol</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isReuseGeometry <em>Reuse Geometry</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServerSettings()
@@ -672,5 +673,31 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setReuseGeometry(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Allow Create Validated User</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Allow Create Validated User</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Allow Create Validated User</em>' attribute.
+	 * @see #setAllowCreateValidatedUser(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_AllowCreateValidatedUser()
+	 * @model
+	 * @generated
+	 */
+	boolean isAllowCreateValidatedUser();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Allow Create Validated User</em>' attribute.
+	 * @see #isAllowCreateValidatedUser()
+	 * @generated
+	 */
+	void setAllowCreateValidatedUser(boolean value);
 
 } // ServerSettings

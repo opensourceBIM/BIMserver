@@ -138,6 +138,24 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "resetUrl", partName = "addUser.resetUrl") String resetUrl) throws ServerException, UserException;
 
 	/**
+	 * Add a new user
+	 * @param username The username (must be a valid e-mail address)
+	 * @param name The name (e.g. "Bill Gates")
+	 * @param type Type of user
+	 * @param selfRegistration Whether this is a self-registration (for example e-mails will be different)
+	 * @return The ObjectID of the created User object
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "addUserWithPassword")
+	SUser addUserWithPassword(
+			@WebParam(name = "username", partName = "addUser.username") String username,
+			@WebParam(name = "password", partName = "addUser.password") String password,
+			@WebParam(name = "name", partName = "addUser.name") String name,
+			@WebParam(name = "type", partName = "addUser.type") SUserType type,
+			@WebParam(name = "selfRegistration", partName = "addUser.selfRegistration") Boolean selfRegistration,
+			@WebParam(name = "resetUrl", partName = "addUser.resetUrl") String resetUrl) throws ServerException, UserException;
+
+	/**
 	 * Change the type of a user
 	 * @param uoid The User's ObjectID
 	 * @param userType The new type

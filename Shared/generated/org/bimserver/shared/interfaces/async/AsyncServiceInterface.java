@@ -74,6 +74,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface AddUserWithPasswordCallback {
+		void success(org.bimserver.interfaces.objects.SUser result);
+		void error(Throwable e);
+	}
+	
 	public interface ChangeUserTypeCallback {
 		void success();
 		void error(Throwable e);
@@ -518,6 +523,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.addUserToProject(uoid, poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void addUserWithPassword(final java.lang.String username, final java.lang.String password, final java.lang.String name, final org.bimserver.interfaces.objects.SUserType type, final java.lang.Boolean selfRegistration, final java.lang.String resetUrl, final AddUserWithPasswordCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.addUserWithPassword(username, password, name, type, selfRegistration, resetUrl));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

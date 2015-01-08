@@ -43,7 +43,6 @@ import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
 import org.bimserver.utils.Hashers;
 import org.bimserver.webservices.authorization.Authorization;
-import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -107,14 +106,16 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 			throw new UserException("A user with the username " + trimmedUserName + " already exists");
 		}
 		User actingUser = null;
-		if (authorization != null && !(authorization instanceof SystemAuthorization)) {
-			actingUser = getUserByUoid(authorization.getUoid());
-			if (actingUser == null || actingUser.getUserType() != UserType.SYSTEM) {
-				if (authorization.getUoid() != -1 && actingUser.getUserType() != UserType.ADMIN) {
-					throw new UserException("Only admin users can create other users");
-				}
-			}
-		}
+//		if (bimServer.getServerSettingsCache() != null && !bimServer.getServerSettingsCache().getServerSettings().isAllowCreateValidatedUser()) {
+//			if (authorization != null && !(authorization instanceof SystemAuthorization)) {
+//				actingUser = getUserByUoid(authorization.getUoid());
+//				if (actingUser == null || actingUser.getUserType() != UserType.SYSTEM) {
+//					if (authorization.getUoid() != -1 && actingUser.getUserType() != UserType.ADMIN) {
+//						throw new UserException("Only admin users can create other users");
+//					}
+//				}
+//			}
+//		}
 		final User user = getDatabaseSession().create(User.class);
 		if (password != null) {
 			byte[] salt = new byte[32];

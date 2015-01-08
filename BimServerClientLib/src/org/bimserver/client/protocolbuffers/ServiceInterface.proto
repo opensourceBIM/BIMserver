@@ -41,6 +41,8 @@ service ServiceInterface {
 
 	rpc addUserToProject (AddUserToProjectRequest) returns (AddUserToProjectResponse);
 
+	rpc addUserWithPassword (AddUserWithPasswordRequest) returns (AddUserWithPasswordResponse);
+
 	rpc changeUserType (ChangeUserTypeRequest) returns (VoidResponse);
 
 	rpc checkin (CheckinRequest) returns (CheckinResponse);
@@ -366,6 +368,20 @@ message AddUserToProjectRequest {
 message AddUserToProjectResponse {
 	optional string errorMessage = 1;
 	optional bool value = 2;
+}
+
+message AddUserWithPasswordRequest {
+	optional string username = 1;
+	optional string password = 2;
+	optional string name = 3;
+	optional SUserType type = 4;
+	optional bool selfRegistration = 5;
+	optional string resetUrl = 6;
+}
+
+message AddUserWithPasswordResponse {
+	optional string errorMessage = 1;
+	optional SUser value = 2;
 }
 
 message ChangeUserTypeRequest {

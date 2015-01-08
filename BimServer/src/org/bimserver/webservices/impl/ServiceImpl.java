@@ -315,6 +315,25 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
+	public SUser addUserWithPassword(String username, String password, String name, SUserType type, Boolean selfRegistration, String resetUrl) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			if (selfRegistration) {
+				requireSelfregistrationAllowed();
+			} else if (!getBimServer().getServerSettingsCache().getServerSettings().getAllowSelfRegistration()) {
+				requireRealUserAuthentication();
+			}
+			BimDatabaseAction<User> action = new AddUserDatabaseAction(getBimServer(), session, getInternalAccessMethod(), username, password, name, getBimServer().getSConverter().convertFromSObject(type), getAuthorization(),
+					selfRegistration, resetUrl);
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
 	public Boolean addUserToProject(Long uoid, Long poid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
