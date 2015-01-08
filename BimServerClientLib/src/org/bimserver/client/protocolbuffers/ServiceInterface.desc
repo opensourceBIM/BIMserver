@@ -1,5 +1,5 @@
 
-îÿ
+ç‚
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -126,7 +126,17 @@ revisionId (
 poid ("?
 AddUserToProjectResponse
 errorMessage (	
-value ("T
+value ("¥
+AddUserWithPasswordRequest
+username (	
+password (	
+name (	)
+type (2.org.bimserver.pb.SUserType
+selfRegistration (
+resetUrl (	"[
+AddUserWithPasswordResponse
+errorMessage (	&
+value (2.org.bimserver.pb.SUser"T
 ChangeUserTypeRequest
 uoid (-
 userType (2.org.bimserver.pb.SUserType"—
@@ -1008,7 +1018,7 @@ $RemoveModelCheckerFromProjectRequest
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2óC
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2çD
 ServiceInterfaceg
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponsem
@@ -1018,7 +1028,8 @@ $RemoveModelCheckerFromProjectRequest
 addServiceToProject,.org.bimserver.pb.AddServiceToProjectRequest.org.bimserver.pb.VoidResponseN
 addUser .org.bimserver.pb.AddUserRequest!.org.bimserver.pb.AddUserResponses
 addUserToExtendedDataSchema4.org.bimserver.pb.AddUserToExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsei
-addUserToProject).org.bimserver.pb.AddUserToProjectRequest*.org.bimserver.pb.AddUserToProjectResponseY
+addUserToProject).org.bimserver.pb.AddUserToProjectRequest*.org.bimserver.pb.AddUserToProjectResponser
+addUserWithPassword,.org.bimserver.pb.AddUserWithPasswordRequest-.org.bimserver.pb.AddUserWithPasswordResponseY
 changeUserType'.org.bimserver.pb.ChangeUserTypeRequest.org.bimserver.pb.VoidResponseN
 checkin .org.bimserver.pb.CheckinRequest!.org.bimserver.pb.CheckinResponsec
 checkinFromUrl'.org.bimserver.pb.CheckinFromUrlRequest(.org.bimserver.pb.CheckinFromUrlResponse_

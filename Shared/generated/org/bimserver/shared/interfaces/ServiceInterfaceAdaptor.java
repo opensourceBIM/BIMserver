@@ -51,6 +51,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SUser addUserWithPassword(java.lang.String username, java.lang.String password, java.lang.String name, org.bimserver.interfaces.objects.SUserType type, java.lang.Boolean selfRegistration, java.lang.String resetUrl) throws UserException, ServerException {
+		return null;
+	}
+	
 	public void changeUserType(java.lang.Long uoid, org.bimserver.interfaces.objects.SUserType userType) throws UserException, ServerException {
 	}
 	

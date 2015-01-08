@@ -86,6 +86,7 @@ public class JsonHandler {
 	}
 
 	private void processSingleRequest(JsonObject request, String jsonToken, HttpServletRequest httpRequest, JsonWriter writer) throws Exception {
+		long s = System.nanoTime();
 		String interfaceName = request.get("interface").getAsString();
 		String methodName = request.get("method").getAsString();
 		SService sService = bimServer.getServicesMap().getByName(interfaceName);
@@ -139,6 +140,8 @@ public class JsonHandler {
 				writer.endObject();
 			}
 		}
+		long e = System.nanoTime();
+		LOGGER.debug(interfaceName + "." + methodName + " " + ((e - s) / 1000000) + "ms");
 	}
 
 	private void handleThrowable(JsonWriter writer, Throwable throwable) {

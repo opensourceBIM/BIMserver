@@ -23,6 +23,7 @@ import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0014 extends Migration {
 
@@ -35,6 +36,9 @@ public class Step0014 extends Migration {
 		
 		settingsSerializerReference.setEOpposite(serializerSettingsReference);
 		serializerSettingsReference.setEOpposite(settingsSerializerReference);
+		
+		EClass serverSettings = schema.getEClass("store", "ServerSettings");
+		schema.createEAttribute(serverSettings, "allowCreateValidatedUser", EcorePackage.eINSTANCE.getEBoolean());
 	}
 
 	@Override

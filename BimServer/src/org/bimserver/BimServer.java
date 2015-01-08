@@ -715,6 +715,9 @@ public class BimServer {
 				if (serverSettings.getWebModule() == null && webModulePlugin.getClass().getName().equals("org.bimserver.bimviews.BimViewsWebModulePlugin")) {
 					serverSettings.setWebModule(webPluginConfiguration);
 				}
+				if (serverSettings.getWebModule() == null && webModulePlugin.getClass().getName().equals("org.bimserver.DefaultWebModulePlugin")) {
+					serverSettings.setWebModule(webPluginConfiguration);
+				}
 			}
 			session.store(serverSettings);
 			

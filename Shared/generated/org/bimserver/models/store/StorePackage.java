@@ -1141,13 +1141,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__REUSE_GEOMETRY = 23;
 
 	/**
+	 * The feature id for the '<em><b>Allow Create Validated User</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER = 24;
+
+	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 24;
+	int SERVER_SETTINGS_FEATURE_COUNT = 25;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -8022,6 +8031,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerSettings_ReuseGeometry();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Allow Create Validated User</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#isAllowCreateValidatedUser()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_AllowCreateValidatedUser();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.UserSettings <em>User Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13217,6 +13237,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_SETTINGS__REUSE_GEOMETRY = eINSTANCE.getServerSettings_ReuseGeometry();
+
+		/**
+		 * The meta object literal for the '<em><b>Allow Create Validated User</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER = eINSTANCE.getServerSettings_AllowCreateValidatedUser();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
