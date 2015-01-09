@@ -67,6 +67,7 @@ public class RootServlet extends HttpServlet {
 			if (requestUri == null) {
 				LOGGER.error("RequestURI is null");
 			} else {
+				LOGGER.debug(requestUri);
 //				LOGGER.info(requestUri);
 			}
 			setContentType(response, requestUri);
