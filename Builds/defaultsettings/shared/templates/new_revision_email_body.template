@@ -6,6 +6,8 @@
 #parse("inc/header.template")
 Dear $name,<br/>
 
+token: $token
+
 A new revision ($revisionId) with comment "$comment" has been checked-in on project "$projectName".
 
 #parse("inc/footer.template")

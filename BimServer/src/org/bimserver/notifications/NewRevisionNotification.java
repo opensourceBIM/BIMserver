@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
@@ -48,6 +49,7 @@ import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.bimserver.plugins.modelchecker.ModelCheckException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
@@ -60,7 +62,10 @@ import org.bimserver.shared.interfaces.async.AsyncBimsie1RemoteServiceInterface;
 import org.bimserver.shared.interfaces.async.AsyncBimsie1RemoteServiceInterface.NewRevisionCallback;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.templating.TemplateIdentifier;
+import org.bimserver.webservices.authorization.AdminAuthorization;
+import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
+import org.bimserver.webservices.authorization.UserAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -137,6 +142,17 @@ public class NewRevisionNotification extends Notification {
 					context.put("username", user.getUsername());
 					context.put("siteaddress", serverSettings.getSiteAddress());
 					context.put("revisionId", revision.getId());
+					
+					Authorization authorization = null;
+					if (user.getUserType() == UserType.ADMIN) {
+						authorization = new AdminAuthorization(getBimServer().getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
+					} else {
+						authorization = new UserAuthorization(getBimServer().getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
+					}
+					authorization.setUoid(user.getOid());
+					String asHexToken = authorization.asHexToken(getBimServer().getEncryptionKey());
+					
+					context.put("token", asHexToken);
 					context.put("comment", revision.getComment());
 					context.put("projectName", project.getName());
 					String subject = null;
