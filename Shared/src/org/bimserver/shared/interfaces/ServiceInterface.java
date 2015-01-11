@@ -570,7 +570,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "serviceIdentifier", partName = "getAllPublicProfiles.serviceIdentifier") String serviceIdentifier) throws ServerException, UserException;
 
 	@WebMethod(action="addServiceToProject")
-	void addServiceToProject(
+	Long addServiceToProject(
 		@WebParam(name = "poid", partName = "addServiceToProject.poid") Long poid, 
 		@WebParam(name = "sService", partName = "addServiceToProject.sService") org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException;
 

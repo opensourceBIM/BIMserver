@@ -1,5 +1,5 @@
 
-ç‚
+ºƒ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -85,7 +85,10 @@ revisionId (
 modelCheckerOid ("X
 AddServiceToProjectRequest
 poid (,
-sService (2.org.bimserver.pb.SService"‡
+sService (2.org.bimserver.pb.SService"B
+AddServiceToProjectResponse
+errorMessage (	
+value ("‡
 AddUserRequest
 username (	
 name (	)
@@ -1018,14 +1021,14 @@ $RemoveModelCheckerFromProjectRequest
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2çD
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2öD
 ServiceInterfaceg
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponsem
 addLocalServiceToProject1.org.bimserver.pb.AddLocalServiceToProjectRequest.org.bimserver.pb.VoidResponsef
 addModelChecker(.org.bimserver.pb.AddModelCheckerRequest).org.bimserver.pb.AddModelCheckerResponsem
-addModelCheckerToProject1.org.bimserver.pb.AddModelCheckerToProjectRequest.org.bimserver.pb.VoidResponsec
-addServiceToProject,.org.bimserver.pb.AddServiceToProjectRequest.org.bimserver.pb.VoidResponseN
+addModelCheckerToProject1.org.bimserver.pb.AddModelCheckerToProjectRequest.org.bimserver.pb.VoidResponser
+addServiceToProject,.org.bimserver.pb.AddServiceToProjectRequest-.org.bimserver.pb.AddServiceToProjectResponseN
 addUser .org.bimserver.pb.AddUserRequest!.org.bimserver.pb.AddUserResponses
 addUserToExtendedDataSchema4.org.bimserver.pb.AddUserToExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsei
 addUserToProject).org.bimserver.pb.AddUserToProjectRequest*.org.bimserver.pb.AddUserToProjectResponser

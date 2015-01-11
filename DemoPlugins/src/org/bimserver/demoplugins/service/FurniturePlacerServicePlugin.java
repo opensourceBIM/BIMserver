@@ -93,7 +93,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 	public void register(long uoid, SInternalServicePluginConfiguration internalService, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
-		serviceDescriptor.setIdentifier(getClass().getName());
+		serviceDescriptor.setIdentifier("" + internalService.getOid());
 		serviceDescriptor.setName("Furniture Placer");
 		serviceDescriptor.setDescription("Furniture Placer");
 		serviceDescriptor.setWriteRevision(true);

@@ -41,7 +41,7 @@ public abstract class EmfDeserializer implements Deserializer {
 	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException;
 
 	public IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException {
-		return read(in, filename, fileSize);
+		return read(in, filename, fileSize, null);
 	}
 	
 	@Override
