@@ -648,7 +648,7 @@ public class ClientIfcModel extends IfcModel {
 	@Override
 	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		object.eSetStore(eStore);
+		object.setBimserverEStore(eStore);
 		try {
 			Long oid = bimServerClient.getBimsie1LowLevelInterface().createObject(tid, eClass.getName());
 			object.setOid(oid);

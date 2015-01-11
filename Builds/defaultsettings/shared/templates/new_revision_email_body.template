@@ -6,8 +6,8 @@
 #parse("inc/header.template")
 Dear $name,<br/>
 
-token: $token
-
 A new revision ($revisionId) with comment "$comment" has been checked-in on project "$projectName".
+
+<a href="http://localhost:8080/thebimfederation/?token=$token&page=Results&roid=$roid">link</a>
 
 #parse("inc/footer.template")

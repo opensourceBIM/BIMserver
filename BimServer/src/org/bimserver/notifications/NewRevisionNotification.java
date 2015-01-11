@@ -153,6 +153,7 @@ public class NewRevisionNotification extends Notification {
 					String asHexToken = authorization.asHexToken(getBimServer().getEncryptionKey());
 					
 					context.put("token", asHexToken);
+					context.put("roid", revision.getOid());
 					context.put("comment", revision.getComment());
 					context.put("projectName", project.getName());
 					String subject = null;

@@ -29,7 +29,7 @@ import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
-public class AddServiceToProjectDatabaseAction extends BimDatabaseAction<Void> {
+public class AddServiceToProjectDatabaseAction extends BimDatabaseAction<Long> {
 
 	private long poid;
 	private Authorization authorization;
@@ -43,7 +43,7 @@ public class AddServiceToProjectDatabaseAction extends BimDatabaseAction<Void> {
 	}
 
 	@Override
-	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getDatabaseSession().get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
 		service.setUser(user);
@@ -54,8 +54,8 @@ public class AddServiceToProjectDatabaseAction extends BimDatabaseAction<Void> {
 		}
 		project.getServices().add(service);
 		service.setProject(project);
-		getDatabaseSession().store(service);
+		long serviceOid = getDatabaseSession().store(service);
 		getDatabaseSession().store(project);
-		return null;
+		return serviceOid;
 	}
 }

@@ -55,7 +55,7 @@ public class AsyncServiceInterface {
 	}
 	
 	public interface AddServiceToProjectCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
@@ -484,8 +484,7 @@ public class AsyncServiceInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addServiceToProject(poid, sService);
-					callback.success();
+					callback.success(syncService.addServiceToProject(poid, sService));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
