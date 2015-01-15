@@ -26,7 +26,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar" sourcepath="libsrc/org.eclipse.emf.ecore.source_2.9.1.v20130827-0309.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jxl.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/je-6.2.7.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/httpmime-4.3.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-logging-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-alpn-client-9.2.5.v20141112.jar"/>
@@ -171,6 +170,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlschema-core-2.1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlsec-1.5.7.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmltooling-1.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/je-6.2.31.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.4.4.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
 	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.7.3.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
