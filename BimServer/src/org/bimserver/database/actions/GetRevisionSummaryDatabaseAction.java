@@ -42,6 +42,7 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 	private RevisionSummaryContainer revisionSummaryContainerRelations;
 	private RevisionSummaryContainer revisionSummaryContainerPrimitives;
 	private RevisionSummaryContainer revisionSummaryContainerOther;
+	
 	private Map<EClass, Integer> map = new TreeMap<EClass, Integer>(new Comparator<EClass>() {
 		@Override
 		public int compare(EClass o1, EClass o2) {

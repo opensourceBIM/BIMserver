@@ -108,6 +108,7 @@ public class SummaryMap {
 				subMap = revisionSummaryContainerOther;
 			}
 			RevisionSummaryType createRevisionSummaryType = databaseSession.create(RevisionSummaryType.class);
+			createRevisionSummaryType.setSchema(eClass.getEPackage().getName());
 			createRevisionSummaryType.setCount(summaryMap.get(eClass));
 			createRevisionSummaryType.setName(eClass.getName());
 			subMap.getTypes().add(createRevisionSummaryType);
