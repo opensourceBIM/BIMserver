@@ -10,10 +10,10 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.schema.SchemaPlugin;
+import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
-import org.bimserver.plugins.serializers.SerializerPlugin;
 
-public class IfcToRdfPlugin implements SerializerPlugin {
+public class IfcToRdfPlugin extends AbstractSerializerPlugin {
 
 	private boolean initialized;
 	private File schemaFile;
@@ -35,17 +35,17 @@ public class IfcToRdfPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDefaultName() {
-		return "Ifc to RDF";
+		return "RDF";
 	}
 
 	@Override
 	public String getVersion() {
-		return "Ifc to RDF";
+		return "1.0";
 	}
 
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
-		return null;
+		return super.getSettingsDefinition();
 	}
 
 	@Override
@@ -66,5 +66,15 @@ public class IfcToRdfPlugin implements SerializerPlugin {
 	@Override
 	public Set<Schema> getSupportedSchemas() {
 		return Schema.IFC2X3TC1.toSet();
+	}
+
+	@Override
+	public String getDefaultExtension() {
+		return "rdf";
+	}
+
+	@Override
+	public String getDefaultContentType() {
+		return "application/rdf+xml";
 	}
 }

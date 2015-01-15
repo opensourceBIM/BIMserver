@@ -18,8 +18,6 @@ package fi.ni;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -34,9 +32,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.Stack;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.bimserver.plugins.serializers.ProgressReporter;
 
 import fi.ni.ifc2x3.IfcProject;
 import fi.ni.ifc2x3.IfcRoot;
@@ -162,7 +163,7 @@ public class IFC_ClassModel {
 
 	// ==============================================================================================================================
 
-	public void listRDF(OutputStream outputStream, String path, VirtConfig virt) throws IOException, SQLException {
+	public void listRDF(OutputStream outputStream, String path, VirtConfig virt, ProgressReporter progressReporter) throws IOException, SQLException {
 
 		BufferedWriter out = null;
 		Connection c = null;
@@ -194,7 +195,9 @@ public class IFC_ClassModel {
 				c = dataSource.getConnection();
 			}
 
-			for (Map.Entry<Long, Thing> entry : object_buffer.entrySet()) {
+			Set<Entry<Long, Thing>> entrySet = object_buffer.entrySet();
+			int progress = 0;
+			for (Map.Entry<Long, Thing> entry : entrySet) {
 				Thing gobject = entry.getValue();
 				String triples = generateTriples(gobject);
 				out.write(triples);
@@ -211,6 +214,7 @@ public class IFC_ClassModel {
 					}
 					if(stmt != null) stmt.close();
 				}
+				progressReporter.update(progress++, entrySet.size());
 			}
 
 		} finally {
