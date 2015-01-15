@@ -13,6 +13,7 @@ import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.serializers.StagingProgressReporter;
 
 import fi.ni.ExpressReader;
 import fi.ni.IFC_ClassModel;
@@ -37,13 +38,15 @@ public class IfcToRdfSerializer extends EmfSerializer {
 		Serializer serializer = serializerPlugin.createSerializer(null);
 		serializer.init(getModel(), null, getPluginManager(), null, getPackageMetaData(), true);
 		ByteArrayOutputStream outputStream2 = new ByteArrayOutputStream();
-		serializer.writeToOutputStream(outputStream2, progressReporter);
+		StagingProgressReporter halvingProgressReporter = new StagingProgressReporter(progressReporter, 2);
+		serializer.writeToOutputStream(outputStream2, halvingProgressReporter);
+		halvingProgressReporter.incStage();
 		InputStream inputStream = new ByteArrayInputStream(outputStream2.toByteArray());
 		String fileName = "test.ifc";
 		ExpressReader er = new ExpressReader(expressFile.getAbsolutePath());
 		IFC_ClassModel model = new IFC_ClassModel(fileName, inputStream, er.getEntities(), er.getTypes(), "model name");
 		try {
-			model.listRDF(outputStream, "ifc", null);
+			model.listRDF(outputStream, "ifc", null, halvingProgressReporter);
 		} catch (IOException e) {
 			throw new SerializerException(e);
 		} catch (SQLException e) {
