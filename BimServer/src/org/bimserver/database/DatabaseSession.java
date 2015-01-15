@@ -482,7 +482,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 								buffer.putShort((short) -1);
 							} else {
 								IdEObject listObject = (IdEObject) o;
-								if (listObject.eClass().getEAnnotation("wrapped") != null) {
+								if (listObject.eClass().getEAnnotation("wrapped") != null || listObject.eClass().getEStructuralFeature("wrappedValue") != null) {
 									writeWrappedValue(object.getPid(), object.getRid(), listObject, buffer);
 								} else {
 									writeReference(object, listObject, buffer, feature);
@@ -1717,8 +1717,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		Short cid = database.getCidOfEClass(((EObject) value).eClass());
 		buffer.putShort(cid);
 		IdEObject idEObject = (IdEObject) value;
-		if (idEObject.getOid() == -1) {
-			LOGGER.warn("Writing a reference with oid -1, this is not supposed to happen");
+		if (idEObject.getOid() < 0) {
+			LOGGER.warn("Writing a reference with oid " + idEObject.getOid() + ", this is not supposed to happen, referenced: " + idEObject.getOid() + " " + value + " from " + object.getOid() + " " + object);
 			((IdEObjectImpl) idEObject).setOid(newOid(idEObject.eClass()));
 			((IdEObjectImpl) idEObject).setPid(object.getPid());
 			((IdEObjectImpl) idEObject).setRid(object.getRid());
