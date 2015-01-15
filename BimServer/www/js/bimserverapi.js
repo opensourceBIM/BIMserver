@@ -97,14 +97,14 @@ function BimServerApi(baseUrl, notifier) {
 	this.init = function(callback) {
 		$.ajax({
 			dataType: "json",
-			url: othis.baseUrl + "/js/ifc2x3tc1.js?_v=" + Global.version,
+			url: othis.baseUrl + "/js/ifc2x3tc1.js?_v=" + othis.version,
 			cache: true,
 			success: function(result){
 				othis.schemas["ifc2x3tc1"] = result.classes;
 				othis.addSubtypesToSchema(result.classes);
 				$.ajax({
 					dataType: "json",
-					url: othis.baseUrl + "/js/ifc4.js?_v=" + Global.version,
+					url: othis.baseUrl + "/js/ifc4.js?_v=" + othis.version,
 					cache: true,
 					success: function(result){
 						othis.schemas["ifc4"] = result.classes;
