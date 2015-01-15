@@ -39,6 +39,12 @@ public class Step0014 extends Migration {
 		
 		EClass serverSettings = schema.getEClass("store", "ServerSettings");
 		schema.createEAttribute(serverSettings, "allowCreateValidatedUser", EcorePackage.eINSTANCE.getEBoolean());
+		
+		EClass version = schema.getEClass("store", "Version");
+
+		EClass serverInfo = schema.getEClass("store", "ServerInfo");
+		EReference versionReference = schema.createEReference(serverInfo, "version", version, Multiplicity.SINGLE);
+		versionReference.getEAnnotations().add(createEmbedsReferenceAnnotation());
 	}
 
 	@Override

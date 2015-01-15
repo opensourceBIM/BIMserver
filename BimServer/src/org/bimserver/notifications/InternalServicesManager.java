@@ -204,7 +204,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	public void registerInternalNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
 		register(uoid, serviceDescriptor, new Bimsie1RemoteServiceInterfaceAdaptor(){
 			@Override
-			public void newRevision(final Long poid, final Long roid, Long soid, String serviceIdentifier, String profileIdentifier, final String userToken, String token, String apiUrl) throws UserException, ServerException {
+			public void newRevision(final Long poid, final Long roid, final Long soid, String serviceIdentifier, String profileIdentifier, final String userToken, String token, String apiUrl) throws UserException, ServerException {
 				final P p = getBimServerClient(serviceIdentifier, profileIdentifier, apiUrl, token);
 				
 				// TODO this should somehow be managed...
@@ -213,7 +213,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 					@Override
 					public void run() {
 						try {
-							newRevisionHandler.newRevision(p.client, poid, roid, userToken, p.configurationId, p.settings);
+							newRevisionHandler.newRevision(p.client, poid, roid, userToken, soid, p.settings);
 						} catch (ServerException e) {
 							LOGGER.error("", e);
 						} catch (UserException e) {

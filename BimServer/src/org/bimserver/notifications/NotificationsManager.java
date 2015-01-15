@@ -282,6 +282,11 @@ public class NotificationsManager {
 	}
 
 	public void removeProgressTopic(ProgressTopicKey key) {
-		progressTopicsById.remove(key.getId());
+		if (key instanceof ProgressOnProjectTopicKey) {
+			progressOnProjectTopics.remove((ProgressOnProjectTopicKey)key);
+		} else if (key instanceof ProgressOnRevisionTopicKey) {
+			progressOnRevisionTopics.remove((ProgressOnRevisionTopicKey)key);
+		}
+ 		progressTopicsById.remove(key.getId());
 	}
 }
