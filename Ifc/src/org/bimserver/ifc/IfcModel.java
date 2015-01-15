@@ -964,4 +964,12 @@ public class IfcModel implements IfcModelInterface {
 	public Map<Integer, Long> getPidRoidMap() {
 		return pidRoidMap;
 	}
+
+	@Override
+	public void set(IdEObject idEObject, EStructuralFeature eFeature, Object newValue) {
+	}
+
+	@Override
+	public void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
+	}
 }

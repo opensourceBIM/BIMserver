@@ -280,7 +280,7 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 
 	@Override
 	public SDeserializerPluginConfiguration getDeserializerByName(String deserializerName) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetDeserializerByNameDatabaseAction(session, getInternalAccessMethod(), deserializerName)));

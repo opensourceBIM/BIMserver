@@ -27,6 +27,7 @@ import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.google.common.collect.BiMap;
 
@@ -206,4 +207,8 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	
 	PackageMetaData getPackageMetaData();
 	Map<Integer, Long> getPidRoidMap();
+
+	void set(IdEObject idEObject, EStructuralFeature eFeature, Object newValue);
+
+	void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException;
 }

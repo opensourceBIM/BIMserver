@@ -20030,6 +20030,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="serverState" eType="#/4/ServerState"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="errorMessage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="version" eType="#/4/Version">
+        <eAnnotations source="embedsreference"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Version">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="major" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>

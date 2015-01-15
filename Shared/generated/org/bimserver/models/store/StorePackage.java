@@ -3128,13 +3128,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_INFO__ERROR_MESSAGE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_INFO__VERSION = 2;
+
+	/**
 	 * The number of structural features of the '<em>Server Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_INFO_FEATURE_COUNT = 2;
+	int SERVER_INFO_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.VersionImpl <em>Version</em>}' class.
@@ -9515,6 +9524,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerInfo_ErrorMessage();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ServerInfo#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Version</em>'.
+	 * @see org.bimserver.models.store.ServerInfo#getVersion()
+	 * @see #getServerInfo()
+	 * @generated
+	 */
+	EReference getServerInfo_Version();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Version <em>Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14409,6 +14429,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_INFO__ERROR_MESSAGE = eINSTANCE.getServerInfo_ErrorMessage();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVER_INFO__VERSION = eINSTANCE.getServerInfo_Version();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.VersionImpl <em>Version</em>}' class.

@@ -42,7 +42,7 @@ public class ServerInfoManager {
 	private BimServer bimServer;
 	private final Set<StateChangeListener> stateChangeListeners = new HashSet<StateChangeListener>();
 	private final ServerInfo serverInfo = StoreFactory.eINSTANCE.createServerInfo();
-
+	
 	public void registerStateChangeListener(StateChangeListener stateChangeListener) {
 		stateChangeListeners.add(stateChangeListener);
 	}
@@ -54,6 +54,11 @@ public class ServerInfoManager {
 	}
 
 	public void update() {
+		try {
+			serverInfo.setVersion(bimServer.getSConverter().convertFromSObject(bimServer.getVersionChecker().getLocalVersion(), null));
+		} catch (BimserverDatabaseException e) {
+			LOGGER.error("", e);
+		}
 		if (bimServer.getDatabase().getMigrator().migrationRequired()) {
 			setServerState(ServerState.MIGRATION_REQUIRED);
 			if (bimServer.getConfig().isAutoMigrate()) {

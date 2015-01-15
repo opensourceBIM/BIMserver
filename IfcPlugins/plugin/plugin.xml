@@ -4,6 +4,10 @@
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.serializers.JsonSerializerPlugin</implementationClass>
 	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.deserializers.JsonDeserializerPlugin</implementationClass>
+	</PluginImplementation>
 
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>

@@ -13,6 +13,7 @@ import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SService;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
@@ -113,6 +114,8 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					state.setStart(startDate);
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
+					SService service = bimServerClientInterface.getServiceInterface().getService(soid);
+					
 					SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
 					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true);
 					
@@ -198,7 +201,12 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 						}
 					}
 
-					model.commit("Added furniture");
+					if (service.getWriteRevisionId() != -1) {
+						IfcModelInterface branch = model.branch(service.getWriteRevisionId());
+						branch.checkin(service.getWriteRevisionId(), "test");
+					} else {
+						model.commit("Added furniture");
+					}
 					
 					state = new SLongActionState();
 					state.setProgress(100);

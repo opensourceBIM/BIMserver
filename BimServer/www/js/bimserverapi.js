@@ -95,29 +95,27 @@ function BimServerApi(baseUrl, notifier) {
 	othis.schemas = {};
 
 	this.init = function(callback) {
-		// TODO make 1 call
 		othis.call("AdminInterface", "getServerInfo", {}, function(serverInfo){
-			othis.call("AdminInterface", "getVersion", {}, function(version){
-				othis.version = version;
-				$.ajax({
-					dataType: "json",
-					url: othis.baseUrl + "/js/ifc2x3tc1.js?_v=" + othis.version,
-					cache: true,
-					success: function(result){
-						othis.schemas["ifc2x3tc1"] = result.classes;
-						othis.addSubtypesToSchema(result.classes);
-						$.ajax({
-							dataType: "json",
-							url: othis.baseUrl + "/js/ifc4.js?_v=" + othis.version,
-							cache: true,
-							success: function(result){
-								othis.schemas["ifc4"] = result.classes;
-								othis.addSubtypesToSchema(result.classes);
-								callback(this, serverInfo);
-							}
-						});
-					}
-				});
+			othis.version = serverInfo.version;
+			var versionString = othis.version.major + "." + othis.version.minor + "." + othis.version.revision;
+			$.ajax({
+				dataType: "json",
+				url: othis.baseUrl + "/js/ifc2x3tc1.js?_v=" + versionString,
+				cache: true,
+				success: function(result){
+					othis.schemas["ifc2x3tc1"] = result.classes;
+					othis.addSubtypesToSchema(result.classes);
+					$.ajax({
+						dataType: "json",
+						url: othis.baseUrl + "/js/ifc4.js?_v=" + versionString,
+						cache: true,
+						success: function(result){
+							othis.schemas["ifc4"] = result.classes;
+							othis.addSubtypesToSchema(result.classes);
+							callback(this, serverInfo);
+						}
+					});
+				}
 			});
 		});
 	};

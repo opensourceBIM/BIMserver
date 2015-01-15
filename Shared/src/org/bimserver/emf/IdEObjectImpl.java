@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl.InternalSettingDelegate
 import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl.InternalSettingDelegateSingleEObject;
 import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl.InternalSettingDelegateSingleEObjectUnsettable;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
@@ -32,6 +34,7 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		NO_LAZY_LOADING, TO_BE_LOADED, LOADING, LOADED, OPPOSITE_SETTING
 	}
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(IdEObjectImpl.class);
 	private long oid = -1;
 	private int pid;
 	private int rid;
@@ -197,5 +200,13 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
 	public void setBimserverEStore(BimServerEStore eStore) {
 		this.bimServerEStore = eStore;
+	}
+	
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		if (model != null) {
+			model.set(this, eClass().getEStructuralFeature(featureID), newValue);
+		}
+		super.eSet(featureID, newValue);
 	}
 }

@@ -292,8 +292,9 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 		ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
 		if (progressTopic != null) {
 			return getBimServer().getSConverter().convertToSObject(progressTopic.getLastProgress());
+		} else {
+			throw new UserException("No topic found with topicId " + topicId);
 		}
-		return null;
 	}
 	
 	@Override

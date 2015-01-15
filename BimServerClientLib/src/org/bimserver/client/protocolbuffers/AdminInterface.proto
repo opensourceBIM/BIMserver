@@ -407,6 +407,7 @@ message SServerInfo {
 	optional int64 oid = 2;
 	optional int32 rid = 3;
 	optional SServerState serverState = 4;
+	optional int64 versionId = 5;
 }
 
 message GetServerInfoResponse {
