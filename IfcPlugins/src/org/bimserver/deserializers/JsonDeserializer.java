@@ -28,7 +28,6 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.DeserializeException;
@@ -36,17 +35,21 @@ import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
+import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 
 public class JsonDeserializer extends EmfDeserializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonDeserializer.class);
@@ -56,7 +59,7 @@ public class JsonDeserializer extends EmfDeserializer {
 	public IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException {
 		IfcModelInterface model = new IfcModel(getPackageMetaData(), null);
 		WaitingList<Long> waitingList = new WaitingList<Long>();
-		JsonReader jsonReader = new JsonReader(new InputStreamReader(in));
+		JsonReader jsonReader = new JsonReader(new InputStreamReader(in, Charsets.UTF_8));
 		try {
 			jsonReader.beginObject();
 			if (jsonReader.nextName().equals("objects")) {
@@ -67,18 +70,17 @@ public class JsonDeserializer extends EmfDeserializer {
 						long oid = jsonReader.nextLong();
 						if (jsonReader.nextName().equals("_t")) {
 							String type = jsonReader.nextString();
-							System.out.println(type);
-							EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(type);
+							EClass eClass = getPackageMetaData().getEClass(type);
 							if (eClass == null) {
 								throw new DeserializeException("No class found with name " + type);
 							}
-							IdEObject object = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
+							IdEObject object = (IdEObject) getPackageMetaData().create(eClass);
+							((IdEObjectImpl)object).setOid(oid);
+							model.add(object.getOid(), object);
 							if (jsonReader.nextName().equals("_s")) {
 								int state = jsonReader.nextInt();
 								// ((IdEObjectImpl) object).setDelegate(new
 								// ClientDelegate(this, object, null));
-								((IdEObjectImpl) object).setOid(oid);
-								model.add(object.getOid(), object);
 								if (state == 1) {
 									while (jsonReader.hasNext()) {
 										String featureName = jsonReader.nextName();
@@ -125,14 +127,15 @@ public class JsonDeserializer extends EmfDeserializer {
 												}
 											} else if (eStructuralFeature instanceof EReference) {
 												int index = 0;
+												AbstractEList list = (AbstractEList) object.eGet(eStructuralFeature);
 												while (jsonReader.hasNext()) {
 													if (embedded) {
-														List list = (List) object.eGet(eStructuralFeature);
 														jsonReader.beginObject();
 														if (jsonReader.nextName().equals("_t")) {
 															String t = jsonReader.nextString();
-															IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
-															if (jsonReader.nextName().equals("value")) {
+															IdEObject wrappedObject = (IdEObject) getPackageMetaData().create(getPackageMetaData().getEClass(t));
+															model.add(-1, wrappedObject);
+															if (jsonReader.nextName().equals("_v")) {
 																EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
 																wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
 																list.add(wrappedObject);
@@ -143,7 +146,24 @@ public class JsonDeserializer extends EmfDeserializer {
 														jsonReader.endObject();
 													} else {
 														long refOid = jsonReader.nextLong();
-														waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
+														if (model.contains(refOid)) {
+															EObject referencedObject = model.get(refOid);
+															if (referencedObject != null) {
+																EClass referenceEClass = referencedObject.eClass();
+																if (((EClass) eStructuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
+																	while (list.size() <= index) {
+																		EObject create = getPackageMetaData().create(referenceEClass);
+																		((IdEObjectImpl)create).setOid(-2);
+																		list.addUnique(create);
+																	}
+																	list.setUnique(index, referencedObject);
+																} else {
+																	throw new DeserializeException(-1, referenceEClass.getName() + " cannot be stored in " + eStructuralFeature.getName());
+																}
+															}
+														} else {
+															waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
+														}
 														index++;
 													}
 												}
@@ -176,8 +196,9 @@ public class JsonDeserializer extends EmfDeserializer {
 													jsonReader.beginObject();
 													if (jsonReader.nextName().equals("_t")) {
 														String t = jsonReader.nextString();
-														IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
-														if (jsonReader.nextName().equals("value")) {
+														IdEObject wrappedObject = (IdEObject) getPackageMetaData().create(getPackageMetaData().getEClass(t));
+														model.add(-1, wrappedObject);
+														if (jsonReader.nextName().equals("_v")) {
 															EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
 															wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
 															object.eSet(eStructuralFeature, wrappedObject);
@@ -187,15 +208,20 @@ public class JsonDeserializer extends EmfDeserializer {
 													}
 													jsonReader.endObject();
 												} else {
-													waitingList.add(jsonReader.nextLong(), new SingleWaitingObject(-1, object, eStructuralFeature));
+													long refOid = jsonReader.nextLong();
+													if (model.contains(refOid)) {
+														object.eSet(eStructuralFeature, model.get(refOid));
+													} else {
+														waitingList.add(refOid, new SingleWaitingObject(-1, object, eStructuralFeature));
+													}
 												}
 											}
 										}
 									}
 								}
-								if (waitingList.containsKey(oid)) {
-									waitingList.updateNode(oid, eClass, object);
-								}
+							}
+							if (waitingList.containsKey(oid)) {
+								waitingList.updateNode(oid, eClass, object);
 							}
 						}
 					}
@@ -214,6 +240,9 @@ public class JsonDeserializer extends EmfDeserializer {
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
+		}
+		if (waitingList.size() > 0) {
+			throw new DeserializeException("Waitinglist should be empty (" + waitingList.size() + ")");
 		}
 		return model;
 	}
@@ -241,7 +270,7 @@ public class JsonDeserializer extends EmfDeserializer {
 			}
 		} else if (eClassifier instanceof EEnum) {
 			EEnum eEnum = (EEnum) eStructuralFeature.getEType();
-			if (eEnum.getName().equals("IfcBoolean") || eEnum.getName().equals("Tristate")) {
+			if (jsonReader.peek() == JsonToken.BOOLEAN) {
 				return eEnum.getEEnumLiteral(jsonReader.nextBoolean() ? "TRUE" : "FALSE").getInstance();
 			} else {
 				return eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance();
