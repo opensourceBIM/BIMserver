@@ -53,6 +53,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	private String title = "Unknown";
 	private int stage = 0;
 	private ProgressTopic progressTopic;
+	private Thread thread;
 
 	public LongAction(BimServer bimServer, String username, String userUsername, Authorization authorization) {
 		start = new GregorianCalendar();
@@ -61,6 +62,10 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		this.username = username;
 		this.bimServer = bimServer;
 		this.actionState = ActionState.STARTED;
+	}
+
+	public void init(Thread thread) {
+		this.thread = thread;
 	}
 
 	public void setProgressTopic(ProgressTopic progressTopic) {
@@ -111,8 +116,6 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 
 	public abstract String getDescription();
 
-	public abstract void init();
-
 	public abstract void execute();
 
 	public String getUserName() {
@@ -149,6 +152,11 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		}
 	}
 
+	public void terminate() {
+		LOGGER.info("Terminating long action with id " + progressTopic.getKey().getId());
+		thread.interrupt();
+	}
+	
 	public int getProgress() {
 		return progress.get();
 	}

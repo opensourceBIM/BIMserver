@@ -259,6 +259,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void write(IdEObject object) throws SerializerException, IOException {
+//		throw new SerializerException("test");
 		EClass eClass = object.eClass();
 		if (eClass.getEAnnotation("hidden") != null) {
 			return;

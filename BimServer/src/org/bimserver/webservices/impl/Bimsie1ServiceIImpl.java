@@ -143,6 +143,16 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 	}
 	
 	@Override
+	public void terminateLongRunningAction(Long actionId) throws ServerException, UserException {
+		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) getBimServer().getLongActionManager().getLongAction(actionId);
+		if (longAction != null) {
+			longAction.terminate();
+		} else {
+			throw new UserException("No data found for laid " + actionId);
+		}
+	}
+	
+	@Override
 	public SDownloadResult getDownloadData(final Long actionId) throws ServerException, UserException {
 		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) getBimServer().getLongActionManager().getLongAction(actionId);
 		if (longAction != null) {
@@ -248,6 +258,9 @@ public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1Se
 		requireAuthenticationAndRunningServer();
 		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_PROJECTS);
 		downloadParameters.setRoids(roids);
+		if (serializerOid == null) {
+			throw new UserException("No valid serializer selected");
+		}
 		downloadParameters.setSerializerOid(serializerOid);
 		return download(downloadParameters, sync);
 	}

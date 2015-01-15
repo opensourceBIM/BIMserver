@@ -219,6 +219,11 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface TerminateLongRunningActionCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface UndeleteProjectCallback {
 		void success(java.lang.Boolean result);
 		void error(Throwable e);
@@ -676,6 +681,19 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSuggestedDeserializerForExtension(extension, poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void terminateLongRunningAction(final java.lang.Long actionId, final TerminateLongRunningActionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.terminateLongRunningAction(actionId);
+					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
 				}

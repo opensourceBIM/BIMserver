@@ -35,6 +35,7 @@ import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
