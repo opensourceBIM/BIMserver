@@ -53,11 +53,6 @@ public abstract class IfcXmlSerializerPlugin extends AbstractSerializerPlugin {
 	}
 
 	@Override
-	public String getDefaultName() {
-		return "IfcXML";
-	}
-
-	@Override
 	public String getDefaultContentType() {
 		return "application/ifcxml";
 	}

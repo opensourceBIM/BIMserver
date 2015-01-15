@@ -63,6 +63,7 @@ public class RootServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+//			Thread.sleep((long) (Math.random() * 20000));
 			String requestUri = request.getRequestURI();
 			if (requestUri == null) {
 				LOGGER.error("RequestURI is null");

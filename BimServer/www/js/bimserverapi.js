@@ -64,7 +64,12 @@ function BimServerApi(baseUrl, notifier) {
 		CLEANUPLONGACTION_BUSY: "Cleaning up",
 		GETREVISIONSUMMARY_BUSY: "Getting revision summary",
 		DOWNLOADBYOIDS_BUSY: "Downloading model data",
-		REGISTERPROGRESSHANDLER_BUSY: "Registering for updates on progress"
+		REGISTERPROGRESSHANDLER_BUSY: "Registering for updates on progress",
+		GETALLREVISIONSOFPROJECT_BUSY: "Getting all revisions of project",
+		GETPLUGINDESCRIPTOR_BUSY: "Getting plugin information",
+		GETUSERSETTINGS_BUSY: "Getting user settings",
+		GETALLQUERYENGINES_BUSY: "Getting query engines",
+		REGISTERNEWPROJECTHANDLER_BUSY: "Registering for updates on new projects"
 	}
 
 	othis.token = null;

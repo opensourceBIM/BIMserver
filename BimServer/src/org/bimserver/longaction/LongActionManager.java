@@ -43,7 +43,7 @@ public class LongActionManager {
 					longAction.execute();
 				}
 			}, "LongAction Runner");
-			longAction.init();
+			longAction.init(thread);
 			thread.setDaemon(true);
 			thread.setName(longAction.getDescription());
 			actions.put(longAction.getProgressTopic().getKey().getId(), longAction);
