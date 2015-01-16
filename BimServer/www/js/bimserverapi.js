@@ -187,7 +187,6 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.downloadViaWebsocket = function(msg){
-		console.log("downloadViaWebsocket");
 		msg.action = "download";
 		msg.token = othis.token;
 		othis.server.send(msg);
@@ -1427,7 +1426,7 @@ function Model(bimServerApi, poid, roid, schema) {
 						serializerOid: jsonSerializerOid
 					});
 					$.getJSON(url, function(data, textStatus, jqXHR){
-						console.log("query", data.objects.length);
+//						console.log("query", data.objects.length);
 						data.objects.forEach(function(object){
 							var wrapper = othis.objects[object._i];
 							if (wrapper == null) {
@@ -1449,7 +1448,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								callback(wrapper);
 							}
 						});
-						othis.dumpByType();
+//						othis.dumpByType();
 						bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
 							promise.fire();
 						});
