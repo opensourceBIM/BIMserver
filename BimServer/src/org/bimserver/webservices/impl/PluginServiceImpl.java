@@ -976,11 +976,13 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			List<SSerializerPluginConfiguration> sSerializers = new ArrayList<SSerializerPluginConfiguration>();
 			for (SerializerPluginConfiguration serializerPluginConfiguration : userSettings.getSerializers()) {
 				SerializerPlugin plugin = getBimServer().getPluginManager().getSerializerPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-				for (Schema schema : plugin.getSupportedSchemas()) {
-					if (schemaOr.contains(schema)) {
-						if (!onlyEnabled || (serializerPluginConfiguration.getEnabled() && serializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
-							sSerializers.add(getBimServer().getSConverter().convertToSObject(serializerPluginConfiguration));
-							break;
+				if (plugin != null) {
+					for (Schema schema : plugin.getSupportedSchemas()) {
+						if (schemaOr.contains(schema)) {
+							if (!onlyEnabled || (serializerPluginConfiguration.getEnabled() && serializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
+								sSerializers.add(getBimServer().getSConverter().convertToSObject(serializerPluginConfiguration));
+								break;
+							}
 						}
 					}
 				}

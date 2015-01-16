@@ -68,14 +68,14 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 				EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
 				List<IdEObject> allWithSubTypes = new ArrayList<>(model.getAllWithSubTypes(productClass));
 				for (IdEObject ifcProduct : allWithSubTypes) {
-					ifcProduct.load();
+					ifcProduct.forceLoad();
 					GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(productClass.getEStructuralFeature("geometry"));
 					if (geometryInfo != null) {
-						geometryInfo.load();
-						geometryInfo.getData().load();
+						geometryInfo.forceLoad();
+						geometryInfo.getData().forceLoad();
 						geometryInfo.getTransformation();
-						geometryInfo.getMinBounds().load();
-						geometryInfo.getMaxBounds().load();
+						geometryInfo.getMinBounds().forceLoad();
+						geometryInfo.getMaxBounds().forceLoad();
 					}
 				}
 			}
