@@ -42,7 +42,7 @@ public class PluginDescriptor {
 	@XmlElementWrapper(name="dependencies")
 	@XmlElement(name="Dependency")
 	private List<Dependency> dependencies = new ArrayList<Dependency>();
-
+	
 	public List<Dependency> getDependencies() {
 		return dependencies;
 	}

@@ -3,5 +3,6 @@
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.objectidms.ObjectIDMPlugin</interfaceClass>
 		<implementationClass>org.bimserver.objectidms.FileBasedObjectIDMPlugin</implementationClass>
+		<enabled>true</enabled>
 	</PluginImplementation>
 </PluginDescriptor>

@@ -145,6 +145,12 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		}
 	}
 
+	public void forceLoad() {
+		if (loadingState != State.LOADED && loadingState != State.LOADING && oid != -1) {
+			bimServerEStore.load(this);
+		}
+	}
+
 	public void setLoaded() {
 		setLoadingState(State.LOADED);
 	}
