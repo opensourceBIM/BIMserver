@@ -23,16 +23,16 @@
 -->
 		
 		<ant antfile="bimserver.build.xml" target="Build War"/>
-<!--		<copy file="builds/bimserver-${version}.war" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/> -->
+		<copy file="builds/bimserver-${version}.war" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 
 		<ant antfile="bimserver.build.xml" target="Build Jar"/>
-		<!--		<copy file="builds/bimserver-${version}.jar" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>-->
+		<copy file="builds/bimserver-${version}.jar" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 		
 		<ant antfile="clientlib.build.xml" target="Build ClientLib"/>
-<!--		<copy file="builds/bimserver-client-lib-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>-->
+		<copy file="builds/bimserver-client-lib-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 		
 		<ant antfile="bimserverlib.build.xml" target="Build ServerLib"/>
-<!--		<copy file="builds/bimserver-lib-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>-->
+		<copy file="builds/bimserver-lib-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 		
 <!--
 		<ant antfile="source.build.xml" target="Build Source"/>
