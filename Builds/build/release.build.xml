@@ -39,16 +39,16 @@
 		<copy file="builds/bimserver-source-${version}.zip" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 -->
 		
-		<java jar="antlibs/githubrelease.jar" fork="true">
+		<java classname="org.bimserver.build.CreateGitHubRelease" fork="true">
 			<classpath>
-				<pathelement location="antlibs/httpclient-4.3.2.jar"/>
-				<pathelement location="antlibs/httpcore-4.3.1.jar"/>
-				<pathelement location="antlibs/commons-codec-1.6.jar"/>
-				<pathelement location="antlibs/commons-logging-1.1.3.jar"/>
-				<pathelement location="antlibs/httpmime-4.3.2.jar"/>
-				<pathelement location="antlibs/httpclient-cache-4.3.2.jar"/>
+				<pathelement location="antlibs/gson-2.2.4.jar"/>
+				<pathelement location="antlibs/githubrelease.jar"/>
 				<pathelement location="antlibs/org.eclipse.egit.github.core-2.1.5.jar"/>
-         	</classpath>
+				<pathelement location="antlibs/httpcore-4.3.1.jar"/>
+				<pathelement location="antlibs/httpclient-4.3.2.jar"/>
+				<pathelement location="antlibs/commons-logging-1.1.3.jar"/>
+				<pathelement location="antlibs/commons-codec-1.6.jar"/>
+			</classpath>
 			<arg value="${github_username}"></arg>
 			<arg value="${github_password}"></arg>
 			<arg value="opensourceBIM"></arg>
