@@ -1,7 +1,7 @@
 <project name="Version Info">
 	<property name="majorversion" value="1"/>
 	<property name="minorversion" value="3"/>
-	<property name="revisionversion" value="5"/>
+	<property name="revisionversion" value="6"/>
 	<tstamp>
 		<format property="builddate" pattern="yyyy-MM-dd" />
 	</tstamp>
