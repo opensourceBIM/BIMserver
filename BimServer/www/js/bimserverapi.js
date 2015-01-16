@@ -1546,6 +1546,7 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	this.listener = null;
 	this.tosend = [];
 	this.tosendAfterConnect = [];
+	this.messagesReceived = 0;
 
 	this.connect = function(callback) {
 		othis.openCallbacks.push(callback);
@@ -1601,6 +1602,10 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this._onmessage = function(message) {
+		othis.messagesReceived++;
+		if (othis.messagesReceived % 10 == 0) {
+//			console.log(othis.messagesReceived);
+		}
 		if (message.data instanceof ArrayBuffer) {
 			othis.listener(message.data);
 		} else {

@@ -82,6 +82,22 @@ public class Starter extends JFrame {
 		new Starter().start();
 	}
 
+	public void save() {
+		try {
+			jarSettings.setAddress(addressField.getText());
+			jarSettings.setPort(Integer.parseInt(portField.getText()));
+			jarSettings.setJvm(jvmField.getText());
+			jarSettings.setStacksize(stackSizeField.getText());
+			jarSettings.setHeapsize(heapSizeField.getText());
+			jarSettings.setPermsize(permSizeField.getText());
+			jarSettings.setHomedir(homeDirField.getText());
+			jarSettings.setForceipv4(forceIpv4Field.isSelected());
+			jarSettings.save();
+		} catch (Exception e) {
+			// ignore
+		}
+	}
+	
 	private void start() {
 		final JTextArea logField = new JTextArea();
 
@@ -257,22 +273,6 @@ public class Starter extends JFrame {
 			public void changedUpdate(DocumentEvent e) {
 				save();
 			}
-
-			public void save() {
-				try {
-					jarSettings.setAddress(addressField.getText());
-					jarSettings.setPort(Integer.parseInt(portField.getText()));
-					jarSettings.setJvm(jvmField.getText());
-					jarSettings.setStacksize(stackSizeField.getText());
-					jarSettings.setHeapsize(heapSizeField.getText());
-					jarSettings.setPermsize(permSizeField.getText());
-					jarSettings.setHomedir(homeDirField.getText());
-					jarSettings.setForceipv4(forceIpv4Field.isSelected());
-					jarSettings.save();
-				} catch (Exception e) {
-					// ignore
-				}
-			}
 		};
 
 		jvmField.getDocument().addDocumentListener(documentChangeListener);
@@ -285,7 +285,7 @@ public class Starter extends JFrame {
 		forceIpv4Field.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				((JarSettings) documentChangeListener).save();
+				save();
 			}
 		});
 		
