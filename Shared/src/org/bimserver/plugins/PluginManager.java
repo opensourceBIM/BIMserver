@@ -190,28 +190,30 @@ public class PluginManager {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void loadPlugins(ClassLoader classLoader, String location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType) throws PluginException {
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
-			String interfaceClassName = pluginImplementation.getInterfaceClass().trim().replace("\n", "");
-			try {
-				Class interfaceClass = classLoader.loadClass(interfaceClassName);
-				String implementationClassName = pluginImplementation.getImplementationClass().trim().replace("\n", "");
+			if (pluginImplementation.isEnabled()) {
+				String interfaceClassName = pluginImplementation.getInterfaceClass().trim().replace("\n", "");
 				try {
-					Class implementationClass = classLoader.loadClass(implementationClassName);
-					Plugin plugin = (Plugin) implementationClass.newInstance();
-					loadPlugin(interfaceClass, location, classLocation, plugin, classLoader, pluginType);
-				} catch (NoClassDefFoundError e) {
-					throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
+					Class interfaceClass = classLoader.loadClass(interfaceClassName);
+					String implementationClassName = pluginImplementation.getImplementationClass().trim().replace("\n", "");
+					try {
+						Class implementationClass = classLoader.loadClass(implementationClassName);
+						Plugin plugin = (Plugin) implementationClass.newInstance();
+						loadPlugin(interfaceClass, location, classLocation, plugin, classLoader, pluginType);
+					} catch (NoClassDefFoundError e) {
+						throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
+					} catch (ClassNotFoundException e) {
+						throw new PluginException("Implementation class '" + implementationClassName + "' not found in " + location, e);
+					} catch (InstantiationException e) {
+						throw new PluginException(e);
+					} catch (IllegalAccessException e) {
+						throw new PluginException(e);
+					}
 				} catch (ClassNotFoundException e) {
-					throw new PluginException("Implementation class '" + implementationClassName + "' not found in " + location, e);
-				} catch (InstantiationException e) {
-					throw new PluginException(e);
-				} catch (IllegalAccessException e) {
+					throw new PluginException("Interface class '" + interfaceClassName + "' not found", e);
+				} catch (Error e) {
 					throw new PluginException(e);
 				}
-			} catch (ClassNotFoundException e) {
-				throw new PluginException("Interface class '" + interfaceClassName + "' not found", e);
-			} catch (Error e) {
-				throw new PluginException(e);
-			}
+			}	
 		}
 	}
 

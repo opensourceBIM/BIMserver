@@ -25,5 +25,6 @@ public interface IdEObject extends EObject {
 	int getRid();
 	int getPid();
 	void load();
+	void forceLoad();
 	void remove();
 }

@@ -17,16 +17,15 @@ package org.bimserver.plugins;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 
 @XmlAccessorType(XmlAccessType.NONE)
 public class PluginImplementation {
+	@XmlElement
+	private boolean enabled;
+
 	@XmlElement
 	private String interfaceClass;
 
@@ -52,5 +51,13 @@ public class PluginImplementation {
 	@Override
 	public String toString() {
 		return interfaceClass + " / " + implementationClass;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 }

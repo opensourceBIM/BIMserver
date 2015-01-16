@@ -220,7 +220,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 			return;
 		//
 		GeometryInfo geometryInfo = ifcProductObject.getGeometry();
-		if (geometryInfo != null) {
+		if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 			GeometryData geometryData = geometryInfo.getData();
 			ByteBuffer indicesBuffer = ByteBuffer.wrap(geometryData.getIndices());
 			indicesBuffer.order(ByteOrder.LITTLE_ENDIAN);
