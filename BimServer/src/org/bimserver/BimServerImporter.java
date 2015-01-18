@@ -114,7 +114,7 @@ public class BimServerImporter {
 			} finally {
 				databaseSession.close();
 			}
-			BimServerClientInterface client = bimServer.getBimServerClientFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface client = bimServer.getBimServerClientFactory().create(new UsernamePasswordAuthenticationInfo(username, password));
 			
 			for (SRenderEnginePluginConfiguration renderEnginePluginConfiguration : client.getPluginInterface().getAllRenderEngines(true)) {
 				if (renderEnginePluginConfiguration.getName().equals("IFC Engine DLL")) {
