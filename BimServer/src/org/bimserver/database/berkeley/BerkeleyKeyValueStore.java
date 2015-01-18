@@ -19,7 +19,10 @@ package org.bimserver.database.berkeley;
 
 import java.io.File;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -414,7 +417,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	}
 	
 	public Set<String> getAllTableNames() {
-		return tables.keySet();
+		return new HashSet<String>(environment.getDatabaseNames());
 	}
 	
 	public synchronized void incrementReads(int reads) {

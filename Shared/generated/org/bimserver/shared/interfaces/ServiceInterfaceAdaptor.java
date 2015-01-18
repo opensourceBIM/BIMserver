@@ -21,7 +21,8 @@ import org.bimserver.shared.exceptions.ServerException;
 
 public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.ServiceInterface {
 
-	public void addExtendedDataSchema(org.bimserver.interfaces.objects.SExtendedDataSchema extendedDataSchema) throws UserException, ServerException {
+	public java.lang.Long addExtendedDataSchema(org.bimserver.interfaces.objects.SExtendedDataSchema extendedDataSchema) throws UserException, ServerException {
+		return null;
 	}
 	
 	public void addExtendedDataToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SExtendedData extendedData) throws UserException, ServerException {
@@ -251,6 +252,9 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getUsersProjects(java.lang.Long uoid) throws UserException, ServerException {
 		return null;
+	}
+	
+	public void importData(java.lang.String address, java.lang.String username, java.lang.String password, java.lang.String path) throws UserException, ServerException {
 	}
 	
 	public void removeModelCheckerFromProject(java.lang.Long poid, java.lang.Long modelCheckerOid) throws UserException, ServerException {

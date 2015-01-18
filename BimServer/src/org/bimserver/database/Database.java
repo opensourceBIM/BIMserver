@@ -277,30 +277,25 @@ public class Database implements BimDatabase {
 	}
 
 	public void initCounters(DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
-		DatabaseSession session = createSession();
-		try {
-			for (EClass eClass : classifiers.keyBSet()) {
-				RecordIterator iterator = keyValueStore.getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), databaseSession);
-				try {
-					Record record = iterator.last();
-					initCounter(eClass);
-					if (record != null) {
-						ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
-						int pid = buffer.getInt();
-						long oid = buffer.getLong();
-						if (oid > oidCounters.get(eClass).get()) {
-							oidCounters.put(eClass, new AtomicLong(oid));
-						}
-						if (pid > pidCounter.get()) {
-							pidCounter.set(pid);
-						}
+		for (EClass eClass : classifiers.keyBSet()) {
+			RecordIterator iterator = keyValueStore.getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), databaseSession);
+			try {
+				Record record = iterator.last();
+				initCounter(eClass);
+				if (record != null) {
+					ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
+					int pid = buffer.getInt();
+					long oid = buffer.getLong();
+					if (oid > oidCounters.get(eClass).get()) {
+						oidCounters.put(eClass, new AtomicLong(oid));
 					}
-				} finally {
-					iterator.close();
+					if (pid > pidCounter.get()) {
+						pidCounter.set(pid);
+					}
 				}
+			} finally {
+				iterator.close();
 			}
-		} finally {
-			session.close();
 		}
 	}
 

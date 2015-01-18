@@ -32,6 +32,9 @@ public class AuthInterfaceAdaptor implements org.bimserver.shared.interfaces.Aut
 	public void requestPasswordChange(java.lang.String username, java.lang.String resetUrl) throws UserException, ServerException {
 	}
 	
+	public void setHash(java.lang.Long uoid, byte[] hash, byte[] salt) throws UserException, ServerException {
+	}
+	
 	public org.bimserver.interfaces.objects.SUser validateAccount(java.lang.Long uoid, java.lang.String token, java.lang.String password) throws UserException, ServerException {
 		return null;
 	}

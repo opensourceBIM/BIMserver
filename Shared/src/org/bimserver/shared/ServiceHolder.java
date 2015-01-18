@@ -18,6 +18,7 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
@@ -32,6 +33,7 @@ public interface ServiceHolder {
 	<T extends PublicInterface> T get(Class<T> clazz) throws PublicInterfaceNotFoundException;
 	Bimsie1NotificationRegistryInterface getRegistry() throws PublicInterfaceNotFoundException;
 	Bimsie1AuthInterface getBimsie1AuthInterface() throws PublicInterfaceNotFoundException;
+	AuthInterface getAuthInterface() throws PublicInterfaceNotFoundException;
 	SettingsInterface getSettingsInterface() throws PublicInterfaceNotFoundException;
 	Bimsie1LowLevelInterface getBimsie1LowLevelInterface() throws PublicInterfaceNotFoundException;
 	AdminInterface getAdminInterface() throws PublicInterfaceNotFoundException;

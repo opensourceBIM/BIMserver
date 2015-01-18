@@ -251,6 +251,11 @@ public abstract class Channel implements ServiceHolder {
 	}
 	
 	@Override
+	public AuthInterface getAuthInterface() throws PublicInterfaceNotFoundException {
+		return get(AuthInterface.class);
+	}
+	
+	@Override
 	public Bimsie1LowLevelInterface getBimsie1LowLevelInterface() throws PublicInterfaceNotFoundException {
 		return get(Bimsie1LowLevelInterface.class);
 	}

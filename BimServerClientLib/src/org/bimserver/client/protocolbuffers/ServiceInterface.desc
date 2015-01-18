@@ -1,5 +1,5 @@
 
-ºƒ
+¼…
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -19,7 +19,10 @@
 users (
 validate ("a
 AddExtendedDataSchemaRequestA
-extendedDataSchema (2%.org.bimserver.pb.SExtendedDataSchema"»
+extendedDataSchema (2%.org.bimserver.pb.SExtendedDataSchema"D
+AddExtendedDataSchemaResponse
+errorMessage (	
+value ("»
 SExtendedData
 added (
 fileId (
@@ -904,7 +907,12 @@ objectIDMs (
 uoid ("[
 GetUsersProjectsResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"M
+value (2.org.bimserver.pb.SProject"V
+ImportDataRequest
+address (	
+username (	
+password (	
+path (	"M
 $RemoveModelCheckerFromProjectRequest
 poid (
 modelCheckerOid ("F
@@ -1021,9 +1029,9 @@ $RemoveModelCheckerFromProjectRequest
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2öD
-ServiceInterfaceg
-addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsem
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2ÚE
+ServiceInterfacex
+addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponsem
 addLocalServiceToProject1.org.bimserver.pb.AddLocalServiceToProjectRequest.org.bimserver.pb.VoidResponsef
 addModelChecker(.org.bimserver.pb.AddModelCheckerRequest).org.bimserver.pb.AddModelCheckerResponsem
@@ -1084,7 +1092,9 @@ getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceRes
 getUserByUserName*.org.bimserver.pb.GetUserByUserNameRequest+.org.bimserver.pb.GetUserByUserNameResponseo
 getUserRelatedLogs+.org.bimserver.pb.GetUserRelatedLogsRequest,.org.bimserver.pb.GetUserRelatedLogsResponsef
 getUserSettings(.org.bimserver.pb.GetUserSettingsRequest).org.bimserver.pb.GetUserSettingsResponsei
-getUsersProjects).org.bimserver.pb.GetUsersProjectsRequest*.org.bimserver.pb.GetUsersProjectsResponsew
+getUsersProjects).org.bimserver.pb.GetUsersProjectsRequest*.org.bimserver.pb.GetUsersProjectsResponseQ
+
+importData#.org.bimserver.pb.ImportDataRequest.org.bimserver.pb.VoidResponsew
 removeModelCheckerFromProject6.org.bimserver.pb.RemoveModelCheckerFromProjectRequest.org.bimserver.pb.VoidResponse}
  removeUserFromExtendedDataSchema9.org.bimserver.pb.RemoveUserFromExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsex
 removeUserFromProject..org.bimserver.pb.RemoveUserFromProjectRequest/.org.bimserver.pb.RemoveUserFromProjectResponse]

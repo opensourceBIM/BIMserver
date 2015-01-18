@@ -26,8 +26,8 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -348,7 +348,7 @@ public class BimServer {
 
 			longActionManager = new LongActionManager();
 
-			Set<EPackage> packages = new HashSet<>();
+			Set<EPackage> packages = new LinkedHashSet<>();
 			packages.add(Ifc2x3tc1Package.eINSTANCE);
 			packages.add(Ifc4Package.eINSTANCE);
 			templateEngine = new TemplateEngine();

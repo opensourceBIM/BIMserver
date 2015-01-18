@@ -30,7 +30,7 @@ public class AsyncServiceInterface {
 	}
 
 	public interface AddExtendedDataSchemaCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
@@ -329,6 +329,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface ImportDataCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface RemoveModelCheckerFromProjectCallback {
 		void success();
 		void error(Throwable e);
@@ -420,8 +425,7 @@ public class AsyncServiceInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addExtendedDataSchema(extendedDataSchema);
-					callback.success();
+					callback.success(syncService.addExtendedDataSchema(extendedDataSchema));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -1137,6 +1141,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getUsersProjects(uoid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void importData(final java.lang.String address, final java.lang.String username, final java.lang.String password, final java.lang.String path, final ImportDataCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.importData(address, username, password, path);
+					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
 				}

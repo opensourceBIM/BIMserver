@@ -41,6 +41,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
+import org.bimserver.BimServerImporter;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -914,14 +915,14 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public void addExtendedDataSchema(SExtendedDataSchema extendedDataSchema) throws ServerException, UserException {
+	public Long addExtendedDataSchema(SExtendedDataSchema extendedDataSchema) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			ExtendedDataSchema convert = getBimServer().getSConverter().convertFromSObject(extendedDataSchema, session);
-			session.executeAndCommitAction(new AddExtendedDataSchemaDatabaseAction(session, getInternalAccessMethod(), convert));
+			return session.executeAndCommitAction(new AddExtendedDataSchemaDatabaseAction(session, getInternalAccessMethod(), convert));
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1486,5 +1487,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		} finally {
 			session.close();
 		}
+	}
+	
+	@Override
+	public void importData(String address, String username, String password, String path) {
+		new BimServerImporter(getBimServer(), address, username, password, path).start();
 	}
 }
