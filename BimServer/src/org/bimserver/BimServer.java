@@ -185,7 +185,7 @@ public class BimServer {
 	private BimServerClientFactory bimServerClientFactory;
 	private Map<String, WebModulePlugin> webModules;
 	private WebModulePlugin defaultWebModule;
-	private ExecutorService executorService = Executors.newFixedThreadPool(50);
+	private ExecutorService executorService = Executors.newCachedThreadPool();
 	private InternalServicesManager internalServicesManager;
 	private OpenIdManager openIdManager;
 	private MetaDataManager metaDataManager;

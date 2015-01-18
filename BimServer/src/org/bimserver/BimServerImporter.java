@@ -60,11 +60,7 @@ public class BimServerImporter {
 		users.put(remoteUoid, newUser);
 		long createdById = remoteUser.getCreatedById();
 		if (createdById != -1) {
-			if (users.containsKey(createdById)) {
-				newUser.setCreatedBy(users.get(createdById));
-			} else {
-				newUser.setCreatedBy(createUser(databaseSession, createdById));
-			}
+			newUser.setCreatedBy(createUser(databaseSession, createdById));
 		}
 		newUser.setCreatedOn(remoteUser.getCreatedOn());
 		newUser.setLastSeen(remoteUser.getLastSeen());
@@ -116,49 +112,44 @@ public class BimServerImporter {
 			}
 			BimServerClientInterface client = bimServer.getBimServerClientFactory().create(new UsernamePasswordAuthenticationInfo(username, password));
 			
-			for (SRenderEnginePluginConfiguration renderEnginePluginConfiguration : client.getPluginInterface().getAllRenderEngines(true)) {
-				if (renderEnginePluginConfiguration.getName().equals("IFC Engine DLL")) {
-					client.getPluginInterface().setDefaultRenderEngine(renderEnginePluginConfiguration.getOid());
-				}
-			}
-			try {
-				File incoming = new File(path);
-				Map<GregorianCalendar, Key> comments = new TreeMap<>();
-				for (SProject project : remoteClient.getBimsie1ServiceInterface().getAllProjects(false, false)) {
-					for (SRevision revision : remoteClient.getBimsie1ServiceInterface().getAllRevisionsOfProject(project.getOid())) {
-						GregorianCalendar gregorianCalendar = new GregorianCalendar();
-						gregorianCalendar.setTime(revision.getDate());
-						if (!revision.getComment().startsWith("generated for")) {
-							User user = users.get(revision.getUserId());
-							File userFolder = new File(incoming, user.getUsername());
-							LOGGER.info(userFolder.getAbsolutePath());
-							boolean found = false;
-							for (File file : userFolder.listFiles()) {
-								if (file.getName().endsWith(revision.getComment())) {
-									comments.put(gregorianCalendar, new Key(file, project.getOid(), revision.getComment()));
-									found = true;
-									break;
-								}
+//			for (SRenderEnginePluginConfiguration renderEnginePluginConfiguration : client.getPluginInterface().getAllRenderEngines(true)) {
+//				if (renderEnginePluginConfiguration.getName().equals("IFC Engine DLL")) {
+//					client.getPluginInterface().setDefaultRenderEngine(renderEnginePluginConfiguration.getOid());
+//				}
+//			}
+			File incoming = new File(path);
+			Map<GregorianCalendar, Key> comments = new TreeMap<>();
+			for (SProject project : remoteClient.getBimsie1ServiceInterface().getAllProjects(false, false)) {
+				for (SRevision revision : remoteClient.getBimsie1ServiceInterface().getAllRevisionsOfProject(project.getOid())) {
+					GregorianCalendar gregorianCalendar = new GregorianCalendar();
+					gregorianCalendar.setTime(revision.getDate());
+					if (!revision.getComment().startsWith("generated for")) {
+						User user = users.get(revision.getUserId());
+						File userFolder = new File(incoming, user.getUsername());
+						boolean found = false;
+						for (File file : userFolder.listFiles()) {
+							if (file.getName().endsWith(revision.getComment())) {
+								comments.put(gregorianCalendar, new Key(file, project.getOid(), revision.getComment()));
+								found = true;
+								break;
 							}
-							if (!found) {
-								LOGGER.info("Not found: " + revision.getComment());
-							}
+						}
+						if (!found) {
+							LOGGER.info("Not found: " + revision.getComment());
 						}
 					}
 				}
-				for (GregorianCalendar gregorianCalendar : comments.keySet()) {
-					Key key = comments.get(gregorianCalendar);
-					LOGGER.info("Checking in: " + key.file.getName() + " " + Formatters.bytesToString(key.file.length()));
-					Project project = projects.get(key.poid);
-					SDeserializerPluginConfiguration desserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-					try {
-						client.checkin(project.getOid(), key.comment, desserializer.getOid(), false, true, key.file);
-					} catch (IOException e) {
-						LOGGER.error("", e);
-					}
+			}
+			for (GregorianCalendar gregorianCalendar : comments.keySet()) {
+				Key key = comments.get(gregorianCalendar);
+				LOGGER.info("Checking in: " + key.file.getName() + " " + Formatters.bytesToString(key.file.length()));
+				Project project = projects.get(key.poid);
+				SDeserializerPluginConfiguration desserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+				try {
+					client.checkin(project.getOid(), key.comment, desserializer.getOid(), false, true, key.file);
+				} catch (IOException e) {
+					LOGGER.error("", e);
 				}
-			} finally {
-				databaseSession.close();
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
