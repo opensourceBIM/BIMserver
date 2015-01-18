@@ -131,6 +131,7 @@ public class BimServerImporter {
 						if (!revision.getComment().startsWith("generated for")) {
 							User user = users.get(revision.getUserId());
 							File userFolder = new File(incoming, user.getUsername());
+							System.out.println(userFolder.getAbsolutePath());
 							boolean found = false;
 							for (File file : userFolder.listFiles()) {
 								if (file.getName().endsWith(revision.getComment())) {
