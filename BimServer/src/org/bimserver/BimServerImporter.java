@@ -110,7 +110,7 @@ public class BimServerImporter {
 				LOGGER.info("Done");
 				databaseSession.commit();
 			} catch (BimserverDatabaseException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} finally {
 				databaseSession.close();
 			}
@@ -131,7 +131,7 @@ public class BimServerImporter {
 						if (!revision.getComment().startsWith("generated for")) {
 							User user = users.get(revision.getUserId());
 							File userFolder = new File(incoming, user.getUsername());
-							System.out.println(userFolder.getAbsolutePath());
+							LOGGER.info(userFolder.getAbsolutePath());
 							boolean found = false;
 							for (File file : userFolder.listFiles()) {
 								if (file.getName().endsWith(revision.getComment())) {
@@ -141,31 +141,31 @@ public class BimServerImporter {
 								}
 							}
 							if (!found) {
-								System.out.println("Not found: " + revision.getComment());
+								LOGGER.info("Not found: " + revision.getComment());
 							}
 						}
 					}
 				}
 				for (GregorianCalendar gregorianCalendar : comments.keySet()) {
 					Key key = comments.get(gregorianCalendar);
-					System.out.println("Checking in: " + key.file.getName() + " " + Formatters.bytesToString(key.file.length()));
+					LOGGER.info("Checking in: " + key.file.getName() + " " + Formatters.bytesToString(key.file.length()));
 					Project project = projects.get(key.poid);
 					SDeserializerPluginConfiguration desserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 					try {
 						client.checkin(project.getOid(), key.comment, desserializer.getOid(), false, true, key.file);
 					} catch (IOException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				}
 			} finally {
 				databaseSession.close();
 			}
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ChannelConnectionException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -187,7 +187,9 @@ public class BimServerImporter {
 		newProject.setExportLengthMeasurePrefix(bimServer.getSConverter().convertFromSObject(project.getExportLengthMeasurePrefix()));
 		newProject.setName(project.getName());
 		if (project.getParentId() != -1) {
-			newProject.setParent(createProject(databaseSession, project.getParentId()));
+			Project createProject = createProject(databaseSession, project.getParentId());
+			createProject.getSubProjects().add(newProject);
+			newProject.setParent(createProject);
 		}
 		for (long uoid : project.getHasAuthorizedUsers()) {
 			newProject.getHasAuthorizedUsers().add(createUser(databaseSession, uoid));
