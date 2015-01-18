@@ -494,7 +494,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addExtendedDataSchema")
-	void addExtendedDataSchema(
+	Long addExtendedDataSchema(
 		@WebParam(name = "extendedDataSchema", partName = "addExtendedDataSchema.extendedDataSchema") SExtendedDataSchema extendedDataSchema) throws ServerException, UserException;
 
 	/**
@@ -667,4 +667,11 @@ public interface ServiceInterface extends PublicInterface {
 	void removeModelCheckerFromProject(
 		@WebParam(name = "poid", partName = "removeModelCheckerFromProject.poid") Long poid, 
 		@WebParam(name = "modelCheckerOid", partName = "removeModelCheckerFromProject.modelCheckerOid") Long modelCheckerOid) throws ServerException, UserException;
+	
+	@WebMethod(action = "importData")
+	void importData(
+		@WebParam(name = "address", partName = "importData.address") String address,
+		@WebParam(name = "username", partName = "importData.username") String username,
+		@WebParam(name = "password", partName = "importData.password") String password,
+		@WebParam(name = "path", partName = "importData.path") String path) throws ServerException, UserException;
 }

@@ -209,6 +209,11 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return get(Bimsie1AuthInterface.class);
 	}
 
+	@Override
+	public AuthInterface getAuthInterface() throws PublicInterfaceNotFoundException {
+		return get(AuthInterface.class);
+	}
+	
 	public SettingsInterface getSettingsInterface() throws PublicInterfaceNotFoundException {
 		return get(SettingsInterface.class);
 	}

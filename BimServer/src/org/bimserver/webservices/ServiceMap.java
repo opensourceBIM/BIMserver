@@ -33,6 +33,7 @@ import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.interfaces.async.AsyncAdminInterface;
+import org.bimserver.shared.interfaces.async.AsyncAuthInterface;
 import org.bimserver.shared.interfaces.async.AsyncBimsie1LowLevelInterface;
 import org.bimserver.shared.interfaces.async.AsyncMetaInterface;
 import org.bimserver.shared.interfaces.async.AsyncPluginInterface;
@@ -157,6 +158,10 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 		return new AsyncServiceInterface(get(ServiceInterface.class), bimServer.getExecutorService());
 	}
 	
+	public AsyncAuthInterface getAuthInterfaceAsync() {
+		return new AsyncAuthInterface(get(AuthInterface.class), bimServer.getExecutorService());
+	}
+	
 	public AsyncSettingsInterface getSettingsAsync() {
 		return new AsyncSettingsInterface(get(SettingsInterface.class), bimServer.getExecutorService());
 	}
@@ -174,6 +179,11 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 	@Override
 	public Bimsie1LowLevelInterface getBimsie1LowLevelInterface() throws PublicInterfaceNotFoundException {
 		return get(Bimsie1LowLevelInterface.class);
+	}
+	
+	@Override
+	public AuthInterface getAuthInterface() throws PublicInterfaceNotFoundException {
+		return get(AuthInterface.class);
 	}
 	
 	@Override
