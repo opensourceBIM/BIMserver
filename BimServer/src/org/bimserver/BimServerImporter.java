@@ -6,6 +6,10 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.BimDatabase;
@@ -13,7 +17,6 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.models.store.GeoTag;
@@ -110,7 +113,7 @@ public class BimServerImporter {
 			} finally {
 				databaseSession.close();
 			}
-			BimServerClientInterface client = bimServer.getBimServerClientFactory().create(new UsernamePasswordAuthenticationInfo(username, password));
+			final BimServerClientInterface client = bimServer.getBimServerClientFactory().create(new UsernamePasswordAuthenticationInfo(username, password));
 			
 //			for (SRenderEnginePluginConfiguration renderEnginePluginConfiguration : client.getPluginInterface().getAllRenderEngines(true)) {
 //				if (renderEnginePluginConfiguration.getName().equals("IFC Engine DLL")) {
@@ -118,7 +121,7 @@ public class BimServerImporter {
 //				}
 //			}
 			File incoming = new File(path);
-			Map<GregorianCalendar, Key> comments = new TreeMap<>();
+			final Map<GregorianCalendar, Key> comments = new TreeMap<>();
 			for (SProject project : remoteClient.getBimsie1ServiceInterface().getAllProjects(false, false)) {
 				for (SRevision revision : remoteClient.getBimsie1ServiceInterface().getAllRevisionsOfProject(project.getOid())) {
 					GregorianCalendar gregorianCalendar = new GregorianCalendar();
@@ -140,17 +143,26 @@ public class BimServerImporter {
 					}
 				}
 			}
-			for (GregorianCalendar gregorianCalendar : comments.keySet()) {
-				Key key = comments.get(gregorianCalendar);
-				LOGGER.info("Checking in: " + key.file.getName() + " " + Formatters.bytesToString(key.file.length()));
-				Project project = projects.get(key.poid);
-				SDeserializerPluginConfiguration desserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-				try {
-					client.checkin(project.getOid(), key.comment, desserializer.getOid(), false, true, key.file);
-				} catch (IOException e) {
-					LOGGER.error("", e);
-				}
+			ExecutorService executorService = new ThreadPoolExecutor(8, 8, 1, TimeUnit.DAYS, new ArrayBlockingQueue<Runnable>(1000));
+			
+			for (final GregorianCalendar gregorianCalendar : comments.keySet()) {
+				executorService.submit(new Runnable(){
+					@Override
+					public void run() {
+						Key key = comments.get(gregorianCalendar);
+						LOGGER.info("Checking in: " + key.file.getName() + " " + Formatters.bytesToString(key.file.length()));
+						Project project = projects.get(key.poid);
+						try {
+							SDeserializerPluginConfiguration desserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+							client.checkin(project.getOid(), key.comment, desserializer.getOid(), false, true, key.file);
+						} catch (IOException | UserException | ServerException | PublicInterfaceNotFoundException e) {
+							LOGGER.error("", e);
+						}
+					}					
+				});
+				
 			}
+			executorService.shutdown();
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		} catch (ChannelConnectionException e) {
