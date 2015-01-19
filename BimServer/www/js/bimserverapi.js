@@ -1246,7 +1246,7 @@ function Model(bimServerApi, poid, roid, schema) {
 		var wrapper = Object.create(cl);
 		// transient variables
 		wrapper.trans = {
-			mode: 0
+			mode: 2
 		};
 		wrapper.oid = object.oid;
 		wrapper.model = othis;
@@ -1414,7 +1414,7 @@ function Model(bimServerApi, poid, roid, schema) {
 		});
 		othis.waitForLoaded(function(){
 			othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
-				bimServerApi.call("Bimsie1ServiceInterface", "downloadByJsonQuery", {
+				bimServerApi.callWithFullIndication("Bimsie1ServiceInterface", "downloadByJsonQuery", {
 					roids: [othis.roid],
 					jsonQuery: JSON.stringify(query),
 					serializerOid: jsonSerializerOid,
@@ -1425,6 +1425,7 @@ function Model(bimServerApi, poid, roid, schema) {
 						topicId: laid,
 						serializerOid: jsonSerializerOid
 					});
+					Global.notifier.setInfo("Getting model data...", -1);
 					$.getJSON(url, function(data, textStatus, jqXHR){
 //						console.log("query", data.objects.length);
 						data.objects.forEach(function(object){
@@ -1451,6 +1452,7 @@ function Model(bimServerApi, poid, roid, schema) {
 //						othis.dumpByType();
 						bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
 							promise.fire();
+							Global.notifier.setSuccess("Model data successfully downloaded...");
 						});
 					});
 				});
@@ -1568,6 +1570,7 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this._onerror = function(err) {
+		console.log(err);
 		bimServerApi.notifier.setError("WebSocket error" + (err.message != null ? (": " + err.message) : ""));
 	};
 
