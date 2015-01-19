@@ -53,7 +53,7 @@ public class ProgressTopic extends Topic {
 		try {
 			// Actually we should be keeping track of when we last sent a message to A SPECIFIC ENDPOINT, this way, new endpoints won't receive the message rights away
 			
-			boolean sendMessage = lastSent == -1 || System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS;
+			boolean sendMessage = lastSent == -1 || (System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS && state.getProgress() != lastProgress.getProgress());
 			sendMessage |= state.getProgress() == 100;
 			sendMessage |= state.getState() == ActionState.FINISHED;
 			sendMessage |= state.getState() == ActionState.AS_ERROR;

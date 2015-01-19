@@ -200,7 +200,7 @@ function BimServerApi(baseUrl, notifier) {
 	
 	this.processNotification = function(message) {
 		if (message instanceof ArrayBuffer) {
-			var view = new DataView(message, 0, 4);
+			var view = new DataView(new ArrayBuffer(message), 0, 4);
 			var channelId = view.getInt32(0);
 			var listener = othis.binaryDataListener[channelId];
 			listener(message);
