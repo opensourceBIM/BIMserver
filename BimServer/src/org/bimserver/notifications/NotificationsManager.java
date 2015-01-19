@@ -63,10 +63,13 @@ public class NotificationsManager {
 	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private final BimServer bimServer;
 	private String url;
+	private final NotificationsProcessor notificationsProcessor;
 
 	public NotificationsManager(BimServer bimServer, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
 		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 		this.bimServer = bimServer;
+		notificationsProcessor = new NotificationsProcessor(bimServer);
+		notificationsProcessor.start();
 	}
 	
 	public BimServer getBimServer() {
@@ -82,7 +85,7 @@ public class NotificationsManager {
 	}
 
 	public void addToQueue(Notification notification) {
-		bimServer.getExecutorService().execute(notification);
+		notificationsProcessor.queue(notification);
 	}
 	
 	public void init() {
@@ -111,6 +114,7 @@ public class NotificationsManager {
 	}
 	
 	public void shutdown() {
+		notificationsProcessor.termintate();
 	}
 
 	public NewRevisionTopic getNewRevisionTopic() {
