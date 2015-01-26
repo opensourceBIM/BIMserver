@@ -13,6 +13,9 @@
 		<copy todir="builds/BuildSource/BIMserver/BuildingSMARTLibrary">
 			<fileset dir="../../BuildingSMARTLibrary" />
 		</copy>
+		<copy todir="builds/BuildSource/BIMserver/Charting">
+			<fileset dir="../../Charting" />
+		</copy>
 		<copy todir="builds/BuildSource/BIMserver/CityGML">
 			<fileset dir="../../CityGML" />
 		</copy>
