@@ -16,6 +16,7 @@
 		<antcall target="BimServerClientLib" />
 		<antcall target="XsltSerializer" />
 		<antcall target="BimServer" />
+		<antcall target="Charting" />
 		<antcall target="CityGML" />
 		<antcall target="Collada" />
 		<antcall target="SceneJS" />
@@ -347,6 +348,32 @@
 		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-admingui.jar">
 			<fileset dir="builds/admingui"/>
+		</jar>
+	</target>
+	<target name="Charting">
+		<mkdir dir="builds/charting" />
+		<javac destdir="builds/charting" debug="on" includeantruntime="false">
+			<src path="../../Charting/src" />
+			<classpath>
+				<path>
+					<fileset dir="../../Charting/lib" />
+				</path>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/charting/lib"/>
+		<copy todir="builds/charting/lib">
+			<fileset dir="../../Charting/lib"/>
+		</copy>
+		<mkdir dir="builds/charting/plugin"/>
+		<copy todir="builds/charting/plugin">
+			<fileset dir="../../Charting/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-charting.jar">
+			<fileset dir="builds/charting"/>
 		</jar>
 	</target>
 	<target name="Collada">
