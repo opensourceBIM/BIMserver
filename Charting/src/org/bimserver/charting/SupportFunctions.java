@@ -47,9 +47,22 @@ import org.openmali.vecmath2.Vector3d;
 public class SupportFunctions {
 
 	public static ArrayList<LinkedHashMap<String, Object>> getTreeStructureWithAreaFromIFCData(IfcModelInterface model, Chart chart) {
+		return getDataWithTreeStructure("hierarchy", model, chart);
+	}
+
+	public static ArrayList<LinkedHashMap<String, Object>> getClusterStructureWithAreaFromIFCData(IfcModelInterface model, Chart chart) {
+		return getDataWithTreeStructure("clusters", model, chart);
+	}
+
+	/**
+	 * @param model
+	 * @param chart
+	 * @return
+	 */
+	public static ArrayList<LinkedHashMap<String, Object>> getDataWithTreeStructure(String structureKeyword, IfcModelInterface model, Chart chart) {
 		ArrayList<LinkedHashMap<String, Object>> rawData = new ArrayList<>();
 		// Get units.
-		String units = "units"; 
+		String units = "units";
 		SIPrefix prefix = SupportFunctions.getLengthUnitPrefix(model);
 		if (prefix != null)
 			units = prefix.getLiteral();
@@ -108,9 +121,9 @@ public class SupportFunctions {
 		// Derive the column names.
 		ArrayList<String> hierarchyColumnNames = new ArrayList<>();
 		for (int i = 0; i < maxDepth; i++)
-			hierarchyColumnNames.add(String.format("hierarchy%d", i + 1));
+			hierarchyColumnNames.add(String.format("%s%d", structureKeyword, i + 1));
 		// Update the chart configuration.
-		chart.setDimensionLookupKeys("hierarchy", hierarchyColumnNames);
+		chart.setDimensionLookupKeys(structureKeyword, hierarchyColumnNames);
 		chart.setDimensionLookupKey("size", "size");
 		chart.setDimensionLookupKey("label", "label");
 		chart.setDimensionLookupKey("color", hierarchyColumnNames.get(Math.max(0, maxDepth - 2)));
@@ -139,8 +152,7 @@ public class SupportFunctions {
 					}
 					leafDataEntry.put("label", leafObject.getName());
 					leafDataEntry.put("size", leaf.Size);
-				}
-				else if (stackLowerRange < i && i <= stackUpperBound) {
+				} else if (stackLowerRange < i && i <= stackUpperBound) {
 					int index = sizeOfStack - (stackUpperBound - i) - 1;
 					value = traceAtThisPoint.get(index);
 				} else
