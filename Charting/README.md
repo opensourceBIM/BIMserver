@@ -24,36 +24,36 @@ Currently, this project provides plugins for tree model type charts, which offer
 
 #### IFC Treeview
 
-![Treeview](https://github.com/lirmont/BIMserver/raw/master/readme images/Treeview.png)
+![Treeview](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Treeview.png)
 
 IFC objects are displayed from left to right, ending in IFC objects that do not contain other IFC objects.
 
 #### IFC Depth-Clustered Treeview
 
-![Depth-Clustered Treeview](https://github.com/lirmont/BIMserver/raw/master/readme images/Depth-Clustered Treeview.png)
+![Depth-Clustered Treeview](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Depth-Clustered%20Treeview.png)
 
 IFC objects are displayed from left to right, ending in IFC objects that do not contain other IFC objects. However, jagged data is right-aligned so that all non-container IFC objects are lined up along the right-hand side of the chart.
 
 #### IFC Treemap by Area
 
-![Treemap](https://github.com/lirmont/BIMserver/raw/master/readme images/Treemap.png)
+![Treemap](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Treemap.png)
 
 IFC objects are grouped. Groups are compared against each other by total area. IFC objects in a group are laid out as rectangles by area against other objects in that group.
 
 #### IFC Radial Dendrogram
 
-![Radial Dendrogram](https://github.com/lirmont/BIMserver/raw/master/readme images/Radial Dendrogram.png)
+![Radial Dendrogram](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Radial%20Dendrogram.png)
 
 IFC objects are displayed from the center out towards the edges of the chart in a circular fashion.
 
 #### IFC Circle Packing Map by Area
 
-![Circle Packing](https://github.com/lirmont/BIMserver/raw/master/readme images/Circle Packing.png)
+![Circle Packing](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Circle%20Packing.png)
 
 IFC objects are grouped. Groups are compared against each other by total area. IFC objects in a group are laid out as circles by area against other objects in that group.
 
 #### IFC Cluster Force
 
-![Cluster Force](https://github.com/lirmont/BIMserver/raw/master/readme images/Cluster Force.png)
+![Cluster Force](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Cluster%20Force.png)
 
 IFC objects are placed in an aggregate group. IFC objects are laid out as circles by area against all other objects. This chart is meant to be made interactive through the use of the __D3__ library, which requires the SVG to exist in an appropriate web context.
