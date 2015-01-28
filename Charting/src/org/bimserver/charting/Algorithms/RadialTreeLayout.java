@@ -417,6 +417,15 @@ public class RadialTreeLayout extends TreeLayout {
 			);
 		}
 
+		public static Point2D.Double rotatePoint(double angle, Point2D.Double p1, Point2D.Double around) {
+			double cosTheta = Math.cos(angle);
+			double sinTheta = Math.sin(angle);
+			return new Point2D.Double(
+				cosTheta * (p1.x - around.x) - sinTheta * (p1.y - around.y) + around.x,
+				sinTheta * (p1.x - around.x) + cosTheta * (p1.y - around.y) + around.y
+			);
+		}
+
 		public static double angle(double p1X, double p1Y, double aroundX, double aroundY) {
 			return angle(new Point2D.Double(p1X, p1Y), new Point2D.Double(aroundX, aroundY));
 		}

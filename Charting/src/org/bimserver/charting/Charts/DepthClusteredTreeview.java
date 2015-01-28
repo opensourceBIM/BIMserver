@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import org.bimserver.charting.Containers.ChartExtent;
 import org.bimserver.charting.Containers.ChartOption;
 import org.bimserver.charting.Containers.ChartRows;
 import org.bimserver.charting.Containers.ElementLike;
@@ -85,7 +86,7 @@ public class DepthClusteredTreeview extends Chart {
 				add(new ChartOption("Width", "Horizontal dimension.", 1000));
 				add(new ChartOption("Height", "Vertical dimension.", 500));
 			}},
-			new TreeModel(Arrays.asList(new String[] {"hierarchy"})),
+			new TreeModel(Arrays.asList(new String[] {"hierarchy", "label"})),
 			true
 		);
 	}
@@ -110,11 +111,14 @@ public class DepthClusteredTreeview extends Chart {
 		double width = (hasOption("Width")) ? (int)getOptionValue("Width") : 1000;
 		double height = (hasOption("Height")) ? (int)getOptionValue("Height") : 500;
 		//
+		Point2D.Double halfSizeOfPointMarker = new Point2D.Double(4.5, 4.5);
+		Rectangle2D.Double bounds = new Rectangle2D.Double(0, 0, width, height);
+		Point2D.Double anchor = new Point2D.Double(25, height / 2.0);
+		//
 		TreeNode root = TreeNode.Consume(filteredData, hierarchy, null);
 		root.collapseAllNodesWithNullNames();
 		root.padTreeSoThatLeafNodesAreAllTheSameDepth();
 		// At this point, inspect exactly how many leaf nodes there are.
-		double leafCount = root.getLeafNodeCount();
 		double depth = root.maximumLeafDepth() + 1;
 		// Make place to store transformable data.
 		Tree tree = new Tree();
@@ -144,18 +148,22 @@ public class DepthClusteredTreeview extends Chart {
 		//
 		ActionList list = new ActionList();
 		// "tree" refers to root of XML document. Second argument is padding versus primary node groups.
-		NodeLinkTreeLayout layout = new NodeLinkTreeLayout("tree", Constants.ORIENT_LEFT_RIGHT, width / depth, 11, height / leafCount);
-		Point2D.Double anchor = new Point2D.Double(25, height / 2.0);
+		double spaceBetweenSubTrees = 11;
+		NodeLinkTreeLayout layout = new NodeLinkTreeLayout("tree", Constants.ORIENT_LEFT_RIGHT, width / depth, 11, spaceBetweenSubTrees);
 		layout.setLayoutAnchor(anchor);
+		layout.setLayoutBounds(bounds);
 		list.add(new FontAction("tree.nodes", FontLib.getFont("Arial", 11)));
 		list.add(layout);
 		//
 		visualization.putAction("layout", list);
 		// Zero elapsed time.
 		layout.run(0.0);
-		//
+		// Collapse edges that are marked for simplification.
 		iterateTreeCollapsingEdges(visualization, graph);
-		iterateTree(visualization, graph, new Point2D.Double(4.5, 4.5), builder);
+		// Fit values along vertical axis.
+		iterateTreeToFitY(visualization, graph, halfSizeOfPointMarker, bounds);
+		// Add shapes to builder.
+		iterateTree(visualization, graph, halfSizeOfPointMarker, builder);
 		//
 		return builder;
 	}
@@ -194,6 +202,53 @@ public class DepthClusteredTreeview extends Chart {
 				for (Integer source : sources)
 					for (Integer target : targets)
 						graph.addEdge(source, target);
+			}
+		}
+	}
+
+	/**
+	 * @param visualization
+	 * @param node
+	 */
+	public void iterateTreeToFitY(Visualization visualization, Graph graph, Point2D.Double halfSizeOfPointMarker, Rectangle2D.Double bounds) {
+		double verticalDiameter = halfSizeOfPointMarker.y * 2;
+		// Prepare to iterate for maximum and minimum values.
+		Double minY = null;
+		Double maxY = null;
+		// Iterate nodes for maximum and minimum values.
+		Iterator b = graph.nodes();
+		while (b.hasNext()) {
+			//
+			Node child = (Node)b.next();
+			VisualItem item = visualization.getVisualItem("tree", child);
+			//
+			double y = item.getY();
+			if (minY == null || y < minY)
+				minY = y;
+			if (maxY == null || y > maxY)
+				maxY = y;
+		}
+		// Calculate the fit.
+		ChartExtent yExtent = null;
+		if (minY != null && maxY != null) {
+			double desiredStartY = minY - verticalDiameter;
+			double desiredEndY = maxY + verticalDiameter;
+			boolean someYValuesAreBeforeViewport = desiredStartY < bounds.y;
+			boolean someYValuesAreAfterViewport = desiredEndY > bounds.y + bounds.height;
+			boolean feelLikeIt = true;
+			if (feelLikeIt || someYValuesAreBeforeViewport || someYValuesAreAfterViewport)
+				yExtent = new ChartExtent(desiredStartY, desiredEndY, bounds.y, bounds.y + bounds.height);
+		}
+		// Fit all values.
+		if (yExtent != null) {
+			b = graph.nodes();
+			while (b.hasNext()) {
+				//
+				Node child = (Node)b.next();
+				VisualItem item = visualization.getVisualItem("tree", child);
+				//
+				double y = item.getY();
+				item.setY(yExtent.getLinearWorldSpaceValueAtXGivenActualValue(y));
 			}
 		}
 	}
