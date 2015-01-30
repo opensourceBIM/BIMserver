@@ -433,11 +433,11 @@ public class AsyncBimsie1LowLevelInterface {
 		});
 	}
 	
-	public void createObject(final java.lang.Long tid, final java.lang.String className, final CreateObjectCallback callback) {
+	public void createObject(final java.lang.Long tid, final java.lang.String className, final java.lang.Boolean generateGuid, final CreateObjectCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.createObject(tid, className));
+					callback.success(syncService.createObject(tid, className, generateGuid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

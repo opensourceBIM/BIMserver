@@ -47,7 +47,7 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 		return null;
 	}
 	
-	public java.lang.Long createObject(java.lang.Long tid, java.lang.String className) throws UserException, ServerException {
+	public java.lang.Long createObject(java.lang.Long tid, java.lang.String className, java.lang.Boolean generateGuid) throws UserException, ServerException {
 		return null;
 	}
 	
