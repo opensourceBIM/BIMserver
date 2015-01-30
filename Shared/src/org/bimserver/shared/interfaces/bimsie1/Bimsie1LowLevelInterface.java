@@ -80,7 +80,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	@WebMethod(action = "createObject")
 	Long createObject(
 		@WebParam(name = "tid", partName = "createObject.tid") Long tid,
-		@WebParam(name = "className", partName = "createObject.className") String className) throws ServerException, UserException;
+		@WebParam(name = "className", partName = "createObject.className") String className,
+		@WebParam(name = "generateGuid", partName = "createObject.generateGuid") Boolean generateGuid) throws ServerException, UserException;
 	
 	/**
 	 * Remove an object

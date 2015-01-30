@@ -250,7 +250,7 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 	}
 
 	@Override
-	public Long createObject(Long tid, String className) throws UserException, ServerException {
+	public Long createObject(Long tid, String className, Boolean generateGuid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		try {
 			LongTransaction longTransaction = getBimServer().getLongTransactionManager().get(tid);
@@ -262,7 +262,7 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 				throw new UserException("Unknown type: \"" + className + "\"");
 			}
 			Long oid = getBimServer().getDatabase().newOid(eClass);
-			CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass);
+			CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass, generateGuid);
 			longTransaction.add(createObject);
 			return oid;
 		} catch (Exception e) {

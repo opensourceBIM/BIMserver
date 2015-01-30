@@ -64,6 +64,10 @@ public class RootServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String requestUri = request.getRequestURI();
+			String servletContextName = getServletContext().getServletContextName();
+			if (requestUri.startsWith("/" + servletContextName)) {
+				requestUri = requestUri.substring(servletContextName.length() + 1);
+			}
 			if (requestUri == null) {
 				LOGGER.error("RequestURI is null");
 			} else {

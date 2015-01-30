@@ -1,5 +1,5 @@
 
-—l
+­l
 Bimsie1LowLevelInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoBimsie1ServiceInterface.proto"Bimsie1NotificationInterface.proto#Bimsie1RemoteServiceInterface.protoBimsie1AuthInterface.proto"&
 AbortTransactionRequest
 tid ("\
@@ -39,10 +39,11 @@
 	className (	"4
 CountResponse
 errorMessage (	
-value ("5
+value ("K
 CreateObjectRequest
 tid (
-	className (	";
+	className (	
+generateGuid (";
 CreateObjectResponse
 errorMessage (	
 value ("M

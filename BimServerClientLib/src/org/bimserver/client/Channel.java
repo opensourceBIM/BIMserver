@@ -228,6 +228,8 @@ public abstract class Channel implements ServiceHolder {
 			LOGGER.error("", e);
 		} catch (IOException e) {
 			LOGGER.error("", e);
+		} finally {
+			httppost.releaseConnection();
 		}
 		return null;
 	}

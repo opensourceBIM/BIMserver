@@ -217,6 +217,7 @@ message CountResponse {
 message CreateObjectRequest {
 	optional int64 tid = 1;
 	optional string className = 2;
+	optional bool generateGuid = 3;
 }
 
 message CreateObjectResponse {

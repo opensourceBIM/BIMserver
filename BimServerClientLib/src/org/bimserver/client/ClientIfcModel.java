@@ -658,7 +658,7 @@ public class ClientIfcModel extends IfcModel {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		object.setBimserverEStore(eStore);
 		try {
-			Long oid = bimServerClient.getBimsie1LowLevelInterface().createObject(tid, eClass.getName());
+			Long oid = bimServerClient.getBimsie1LowLevelInterface().createObject(tid, eClass.getName(), true);
 			object.setOid(oid);
 		} catch (Exception e) {
 			LOGGER.error("", e);
