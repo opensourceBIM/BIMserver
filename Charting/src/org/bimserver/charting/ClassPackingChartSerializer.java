@@ -23,9 +23,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import org.bimserver.charting.Charts.Chart;
-import org.bimserver.charting.Charts.ClusterForce;
-import org.bimserver.charting.Charts.DepthClusteredTreeview;
-import org.bimserver.charting.Charts.Treeview;
+import org.bimserver.charting.Charts.Packing;
+import org.bimserver.charting.ColorScales.LinearColorScale;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginManager;
@@ -37,9 +36,9 @@ import org.bimserver.utils.UTF8PrintWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ClusterForceChartSerializer extends EmfSerializer {
+public class ClassPackingChartSerializer extends EmfSerializer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClusterForceChartSerializer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClassPackingChartSerializer.class);
 
 	private Chart chart = null;
 	private ArrayList<LinkedHashMap<String, Object>> rawData = null;
@@ -55,8 +54,9 @@ public class ClusterForceChartSerializer extends EmfSerializer {
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
 		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 		// Pick chart.
-		chart = new ClusterForce();
-		chart.setOption("Show Labels", true);
+		chart = new Packing();
+		chart.setOption("Padding", 3);
+		chart.setOption("Color Scale", new LinearColorScale());
 		// Prepare for data.
 		rawData = new ArrayList<>();
 	}
@@ -65,13 +65,8 @@ public class ClusterForceChartSerializer extends EmfSerializer {
 	protected boolean write(OutputStream outputStream) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			// Get data.
-			rawData = SupportFunctions.getClusterStructureWithAreaFromIFCData(model, chart);
-			int count = rawData.size();
-			// For every 100 items, increase the overall size by 4500 pixels.
-			double diameter = 1000 + (count / 100) * 4500;
-			chart.setOption("Diameter", diameter);
-			if (diameter > 1000)
-				chart.FitToSize = false;
+			int lookBackXClasses = 0;
+			rawData = SupportFunctions.getIfcDataByClassWithTreeStructure("hierarchy", model, chart, lookBackXClasses);
 			// Write chart.
 			PrintWriter writer = new UTF8PrintWriter(outputStream);
 			try {

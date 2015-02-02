@@ -54,6 +54,8 @@ public class TreemapChartSerializer extends EmfSerializer {
 		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 		// Pick chart.
 		chart = new Treemap();
+		chart.setOption("Width", 7500);
+		chart.setOption("Height", 5000);
 		// Prepare for data.
 		rawData = new ArrayList<>();
 	}

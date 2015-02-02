@@ -64,6 +64,10 @@ public class DepthClusteredTreeviewChartSerializer extends EmfSerializer {
 		if (getMode() == Mode.BODY) {
 			// Get data.
 			rawData = SupportFunctions.getTreeStructureWithAreaFromIFCData(model, chart);
+			// Set height.
+			int leafCount = rawData.size();
+			double heightEstimate = 12 * leafCount + 12 * (leafCount + 1);
+			chart.setOption("Height", heightEstimate);
 			// Write chart.
 			PrintWriter writer = new UTF8PrintWriter(outputStream);
 			try {

@@ -87,7 +87,7 @@ public class DepthClusteredTreeview extends Chart {
 				add(new ChartOption("Height", "Vertical dimension.", 500));
 			}},
 			new TreeModel(Arrays.asList(new String[] {"hierarchy", "label"})),
-			true
+			false
 		);
 	}
 
@@ -108,18 +108,21 @@ public class DepthClusteredTreeview extends Chart {
 		// Get "hierarchy" and "size" dimensions.
 		ModelDimension hierarchy = Model.getDimensionByKey("hierarchy");
 		// Get the width and height options.
-		double width = (hasOption("Width")) ? (int)getOptionValue("Width") : 1000;
-		double height = (hasOption("Height")) ? (int)getOptionValue("Height") : 500;
-		//
-		Point2D.Double halfSizeOfPointMarker = new Point2D.Double(4.5, 4.5);
-		Rectangle2D.Double bounds = new Rectangle2D.Double(0, 0, width, height);
-		Point2D.Double anchor = new Point2D.Double(25, height / 2.0);
-		//
+		double width = (hasOption("Width")) ? ((Number)getOptionValue("Width")).doubleValue() : 1000;
+		double height = (hasOption("Height")) ? ((Number)getOptionValue("Height")).doubleValue() : 500;
+		// Turn the data into a tree, and get the metrics from it.
 		TreeNode root = TreeNode.Consume(filteredData, hierarchy, null);
 		root.collapseAllNodesWithNullNames();
 		root.padTreeSoThatLeafNodesAreAllTheSameDepth();
 		// At this point, inspect exactly how many leaf nodes there are.
 		double depth = root.maximumLeafDepth() + 1;
+		// Prepare to configure the tree layout.
+		double spaceBetweenSiblingNodes = 11;
+		double spaceBetweenSubTrees = 11;
+		// Derive other metrics.
+		Point2D.Double halfSizeOfPointMarker = new Point2D.Double(4.5, 4.5);
+		Rectangle2D.Double bounds = new Rectangle2D.Double(0, 0, width, height);
+		Point2D.Double anchor = new Point2D.Double(25, height / 2.0);
 		// Make place to store transformable data.
 		Tree tree = new Tree();
 		// Add structure to data.
@@ -148,8 +151,7 @@ public class DepthClusteredTreeview extends Chart {
 		//
 		ActionList list = new ActionList();
 		// "tree" refers to root of XML document. Second argument is padding versus primary node groups.
-		double spaceBetweenSubTrees = 11;
-		NodeLinkTreeLayout layout = new NodeLinkTreeLayout("tree", Constants.ORIENT_LEFT_RIGHT, width / depth, 11, spaceBetweenSubTrees);
+		NodeLinkTreeLayout layout = new NodeLinkTreeLayout("tree", Constants.ORIENT_LEFT_RIGHT, width / depth, spaceBetweenSiblingNodes, spaceBetweenSubTrees);
 		layout.setLayoutAnchor(anchor);
 		layout.setLayoutBounds(bounds);
 		list.add(new FontAction("tree.nodes", FontLib.getFont("Arial", 11)));
