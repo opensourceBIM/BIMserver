@@ -48,4 +48,8 @@ public class PackableCircle {
 		Rectangle otherBounds = other.getBounds();
 		return thisBounds.getMinimumAndMaximumComponents(otherBounds);
 	}
+
+	public double getDiameter() {
+		return Radius * 2;
+	}
 }

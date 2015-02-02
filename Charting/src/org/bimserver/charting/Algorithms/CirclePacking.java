@@ -120,40 +120,33 @@ public class CirclePacking extends TreeLayout implements INodeHandler {
 		// Replaces h.
 		double height = r.getHeight();
 		// Root.
-		double radiusOfRoot = 0; //Math.min(width, height) / 2.0;
+		double radiusOfRoot = 0;
 		NodeItem root = getLayoutRoot();
 		PackableCircle rootData = new PackableCircle(new Vector2d(0, 0), radiusOfRoot);
 		setPackableCircle(root, rootData);
 		// Walk the nodes from root to its leaves, running the "handleNode" method on the node. This method provides the initial packing circle definitions.
 		CurrentMode = Mode.SetInitialRadii;
-		walkNodesFromRootToLeaves(root, this);
+		walkNodesFromLeavesToRoot(root, this);
 		// Lay everything out.
 		CurrentMode = Mode.LayNodesOut;
-		walkNodesFromRootToLeaves(root, this);
+		walkNodesFromLeavesToRoot(root, this);
+		// Translate and scale the layout to fit the requested size.
+		packTransform(root, width / 2.0, height / 2.0, 1.0 / Math.max(2 * rootData.Radius / width, 2 * rootData.Radius / height));
 		// When padding, recompute the layout using scaled padding.
 		if (Padding != 0) {
 			final double dr = Padding * Math.max(rootData.Radius / width, rootData.Radius / height);
 			walkNodesFromRootToLeaves(root, new INodeHandler() {
 				@Override
 				public void handleNode(Node node) {
-					PackableCircle data = getPackableCircle(node);
-					data.Radius += dr;
-				}
-			});
-			//
-			CurrentMode = Mode.LayNodesOut;
-			walkNodesFromRootToLeaves(root, this);
-			//
-			walkNodesFromRootToLeaves(root, new INodeHandler() {
-				@Override
-				public void handleNode(Node node) {
-					PackableCircle data = getPackableCircle(node);
-					data.Radius -= dr;
+					Node parent = node.getParent();
+					// Avoid setting the radius of root. Root is a containment node.
+					if (parent != null) {
+						PackableCircle data = getPackableCircle(node);
+						data.Radius = Math.max(data.Radius - dr, 1.0);
+					}
 				}
 			});
 		}
-		// Translate and scale the layout to fit the requested size.
-		packTransform(root, width / 2.0, height / 2.0, 1.0 / Math.max(2 * rootData.Radius / width, 2 * rootData.Radius / height));
 	}
 
 	public void handleNode(Node node) {
@@ -164,23 +157,29 @@ public class CirclePacking extends TreeLayout implements INodeHandler {
 	}
 
 	private void setRadiusOnNodeBasedOnValue(Node node) {
-		// Potentially get the pre-existing data.
-		PackableCircle nodeData = getPackableCircle(node);
-		// If it doesn't exist, create an initial packing circle with no location.
-		if (nodeData == null)
-			nodeData = new PackableCircle();
-		// Get a value from the incoming data, "size".
-		Double rawValue = node.getDouble("size");
-		// Clamp the value to chart extent range.
-		rawValue = (rawValue != null) ? rawValue : RadiusExtent.getLower();
-		// Get the world-space value. Ideally meant to clamps values to range 1 to 100 (i.e. non-zero and doubling as % of whole).
-		double value = RadiusExtent.getLinearWorldSpaceValueAtXGivenActualValue(rawValue);
-		// Modulate the value?
-		double valueAsRadius = value; //Math.sqrt(value);
-		// Set the radius.
-		nodeData.Radius = valueAsRadius;
-		// Store it.
-		node.set(CIRCLE, nodeData);
+		Node parent = node.getParent();
+		// Avoid setting the radius of root. Root is a containment node.
+		if (parent != null) {
+			// Potentially get the pre-existing data.
+			PackableCircle nodeData = getPackableCircle(node);
+			// If it doesn't exist, create an initial packing circle with no location.
+			if (nodeData == null)
+				nodeData = new PackableCircle();
+			//
+			double valueAsRadius = 0.0;
+			// Get a value from the incoming data, "size".
+			Double rawValue = node.getDouble("size");
+			// Clamp the value to chart extent range.
+			rawValue = (rawValue != null) ? rawValue : RadiusExtent.getLower();
+			// Get the world-space value. Ideally meant to clamps values to range 1 to 100 (i.e. non-zero and doubling as % of whole).
+			double value = RadiusExtent.getLinearWorldSpaceValueAtXGivenActualValue(rawValue);
+			//
+			valueAsRadius = Math.sqrt(value);
+			// Set the radius.
+			nodeData.Radius = valueAsRadius;
+			// Store it.
+			node.set(CIRCLE, nodeData);
+		}
 	}
 
 	private static void setPackableCircle(Node node, PackableCircle circle) {
@@ -299,8 +298,8 @@ public class CirclePacking extends TreeLayout implements INodeHandler {
 			return;
 		int n = node.getChildCount();
 		// This is a leaf. It needs to be filled (and that's all).
+		PackableCircle thisCircle = getPackableCircle(node);
 		if (n <= 0) {
-			PackableCircle thisCircle = getPackableCircle(node);
 			thisCircle.Filled = true;
 			return;
 		}
@@ -386,14 +385,15 @@ public class CirclePacking extends TreeLayout implements INodeHandler {
 		for (int i = 0; i < n; i++) {
 			c = getPackableCircle(nodesInThisPass.get(i));
 			// Update location: subtract the center from the location.
-			c.Location.sub(center);
+			Vector2d delta = new Vector2d(c.Location.x() - center.x(), c.Location.y() - center.y());
 			// Distance: (x^2 + y^2)^(0.5)
-			double distance = Math.sqrt(Math.pow(c.Location.x(), 2) + Math.pow(c.Location.y(), 2));
+			double distance = Math.sqrt(Math.pow(delta.x(), 2) + Math.pow(delta.y(), 2));
 			// Update radius.
 			cr = Math.max(cr, c.Radius + distance);
+			//
+			c.Location.sub(center);
 		}
 		// Update the radius of the supplied node so that it encompasses its children.
-		PackableCircle thisCircle = getPackableCircle(node);
 		thisCircle.Radius = cr;
 		// For each child node in this node, remove the child node's links.
 		clearNextAndPreviousLinksOnChildNodes(node);

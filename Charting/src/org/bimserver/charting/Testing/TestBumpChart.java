@@ -36,8 +36,8 @@ public class TestBumpChart extends BaseChartTest {
 		chart.setDimensionLookupKey("group", "B");
 		chart.setDimensionLookupKey("date", "A");
 		chart.setDimensionLookupKey("size", "C");
-		chart.setOption("Width", 720);
-		chart.setOption("Height", 500);
+		chart.setOption("Width", 400);
+		chart.setOption("Height", 300);
 		chart.setOption("Padding", 1);
 		chart.setOption("Interpolation", "basis spline");
 		chart.setOption("Normalize", true);
