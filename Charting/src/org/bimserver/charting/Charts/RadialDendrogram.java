@@ -82,12 +82,17 @@ public class RadialDendrogram extends Chart {
 		this("Radial Dendrogram");
 	}
 
+	@SuppressWarnings("serial")
 	public RadialDendrogram(String title) {
-		this(title, "Dendrograms are tree-like diagrams used to represent the distribution of a hierarchical clustering. The different depth levels represented by each node are visualized on the horizontal axes and it is useful to visualize a non-weighted hierarchy.<br />Based on <br /><a href='http://bl.ocks.org/mbostock/4063570'>http://bl.ocks.org/mbostock/4063570</a>", "Hierarchies", new ArrayList<ChartOption>() {
-			{
+		this(title,
+			"Dendrograms are tree-like diagrams used to represent the distribution of a hierarchical clustering. The different depth levels represented by each node are visualized on the horizontal axes and it is useful to visualize a non-weighted hierarchy.<br />Based on <br /><a href='http://bl.ocks.org/mbostock/4063570'>http://bl.ocks.org/mbostock/4063570</a>",
+			"Hierarchies",
+			new ArrayList<ChartOption>() {{
 				add(new ChartOption("Diameter", "Diameter of the circular representation.", 1000));
-			}
-		}, new TreeModel(Arrays.asList(new String[] { "hierarchy", "label" })), false);
+			}},
+			new TreeModel(Arrays.asList(new String[] { "hierarchy", "label" })),
+			false
+		);
 	}
 
 	/**
@@ -334,11 +339,11 @@ public class RadialDendrogram extends Chart {
 		double horizontalDiameter = halfSizeOfPointMarker.x * 2;
 		ElementLike boxGroup = new ElementLike("g");
 		// Edges: lines between points.
-		Iterator c = graph.edges();
+		Iterator graphChildEdges = graph.edges();
 		Edge edge = null;
-		while (c.hasNext()) {
+		while (graphChildEdges.hasNext()) {
 			//
-			edge = (Edge) c.next();
+			edge = (Edge) graphChildEdges.next();
 			//
 			Node source = graph.getSourceNode(edge);
 			Node target = graph.getTargetNode(edge);
@@ -433,11 +438,11 @@ public class RadialDendrogram extends Chart {
 			boxGroup.child(line);
 		}
 		// Nodes: labels.
-		Iterator b = graph.nodes();
+		Iterator graphChildNodes = graph.nodes();
 		Node child = null;
-		while (b.hasNext()) {
+		while (graphChildNodes.hasNext()) {
 			//
-			child = (Node) b.next();
+			child = (Node) graphChildNodes.next();
 			double angleInDegrees = 0;
 			//
 			int count = child.getChildCount();

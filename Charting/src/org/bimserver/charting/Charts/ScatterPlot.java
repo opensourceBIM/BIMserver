@@ -42,6 +42,7 @@ public class ScatterPlot extends Chart {
 		this("Scatter Plot");
 	}
 
+	@SuppressWarnings("serial")
 	public ScatterPlot(String title) {
 		this(
 			title,

@@ -75,6 +75,7 @@ public class Treeview extends Chart {
 		this("Treeview");
 	}
 
+	@SuppressWarnings("serial")
 	public Treeview(String title) {
 		this(
 			title,
@@ -173,10 +174,10 @@ public class Treeview extends Chart {
 		Double minY = null;
 		Double maxY = null;
 		// Iterate nodes for maximum and minimum values.
-		Iterator b = graph.nodes();
-		while (b.hasNext()) {
+		Iterator graphChildNodes = graph.nodes();
+		while (graphChildNodes.hasNext()) {
 			//
-			Node child = (Node)b.next();
+			Node child = (Node)graphChildNodes.next();
 			VisualItem item = visualization.getVisualItem("tree", child);
 			//
 			double y = item.getY();
@@ -198,10 +199,10 @@ public class Treeview extends Chart {
 		}
 		// Fit all values.
 		if (yExtent != null) {
-			b = graph.nodes();
-			while (b.hasNext()) {
+			graphChildNodes = graph.nodes();
+			while (graphChildNodes.hasNext()) {
 				//
-				Node child = (Node)b.next();
+				Node child = (Node)graphChildNodes.next();
 				VisualItem item = visualization.getVisualItem("tree", child);
 				//
 				double y = item.getY();
@@ -219,11 +220,11 @@ public class Treeview extends Chart {
 		double horizontalDiameter = halfSizeOfPointMarker.x * 2;
 		ElementLike boxGroup = new ElementLike("g");
 		// Edges: lines between points.
-		Iterator c = graph.edges();
+		Iterator graphChildEdges = graph.edges();
 		Edge edge = null;
-		while(c.hasNext()) {
+		while(graphChildEdges.hasNext()) {
 			//
-			edge = (Edge)c.next();
+			edge = (Edge)graphChildEdges.next();
 			//
 			Node source = graph.getSourceNode(edge);
 			Node target = graph.getTargetNode(edge);
@@ -254,11 +255,11 @@ public class Treeview extends Chart {
 			boxGroup.child(line);
 		}
 		// Nodes: labels.
-		Iterator b = graph.nodes();
+		Iterator graphChildNodes = graph.nodes();
 		Node child = null;
-		while (b.hasNext()) {
+		while (graphChildNodes.hasNext()) {
 			//
-			child = (Node)b.next();
+			child = (Node)graphChildNodes.next();
 			//
 			VisualItem item = visualization.getVisualItem("tree", child);
 			String name = child.getString("name");

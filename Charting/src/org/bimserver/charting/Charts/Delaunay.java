@@ -41,6 +41,7 @@ public class Delaunay extends Chart {
 		this("Delaunay Triangulation");
 	}
 
+	@SuppressWarnings("serial")
 	public Delaunay(String title) {
 		this(
 			title,

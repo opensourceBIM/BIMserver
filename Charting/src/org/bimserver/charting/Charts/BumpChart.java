@@ -43,6 +43,7 @@ public class BumpChart extends Chart {
 		this("Bump Chart");
 	}
 
+	@SuppressWarnings("serial")
 	public BumpChart(String title) {
 		this(
 			title,

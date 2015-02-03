@@ -77,6 +77,7 @@ public class DepthClusteredTreeview extends Chart {
 		this("Clustered Dendrogram");
 	}
 
+	@SuppressWarnings("serial")
 	public DepthClusteredTreeview(String title) {
 		this(
 			title,

@@ -20,43 +20,28 @@ package org.bimserver.charting;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
-import org.bimserver.charting.Charts.Chart;
 import org.bimserver.charting.Charts.Packing;
-import org.bimserver.charting.ColorScales.LinearColorScale;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
-import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ClassificationPackingChartSerializer extends EmfSerializer {
+public class ClassificationPackingChartSerializer extends ChartEmfSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClassificationPackingChartSerializer.class);
-
-	private Chart chart = null;
-	private ArrayList<LinkedHashMap<String, Object>> rawData = null;
-
-	@Override
-	public void reset() {
-		if (rawData != null)
-			rawData.clear();
-		setMode(Mode.BODY);
-	}
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
 		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 		// Pick chart.
 		chart = new Packing();
-		chart.setOption("Padding", 3);
-		chart.setOption("Color Scale", new LinearColorScale());
+		integrateSettings();
 		// Prepare for data.
 		rawData = new ArrayList<>();
 	}
@@ -65,7 +50,8 @@ public class ClassificationPackingChartSerializer extends EmfSerializer {
 	protected boolean write(OutputStream outputStream) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			// Get data.
-			rawData = SupportFunctions.getIfcByClassificationReferenceWithTreeStructure("hierarchy", model, chart, true);
+			boolean includeClassificationSystem = (hasOption("Include Classification System")) ? (boolean)getOptionValue("Include Classification System") : true;
+			rawData = SupportFunctions.getIfcByClassificationReferenceWithTreeStructure("hierarchy", model, chart, includeClassificationSystem);
 			// Write chart.
 			PrintWriter writer = new UTF8PrintWriter(outputStream);
 			try {

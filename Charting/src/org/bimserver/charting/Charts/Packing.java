@@ -77,6 +77,7 @@ public class Packing extends Chart {
 		this("Packing");
 	}
 
+	@SuppressWarnings("serial")
 	public Packing(String title) {
 		this(
 			title,

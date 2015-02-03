@@ -27,22 +27,22 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 
-public class IfcTreemapChartSerializerPlugin extends AbstractSerializerPlugin {
+public class IfcMaterialUsageChartSerializerPlugin extends AbstractSerializerPlugin {
 
 	private boolean initialized = false;
 
 	@Override
 	public Serializer createSerializer(PluginConfiguration plugin) {
-		TreemapChartSerializer serializer = new TreemapChartSerializer();
+		MaterialUsageChartSerializer serializer = new MaterialUsageChartSerializer();
 		serializer.title = getDefaultName();
-		serializer.addOption("Width", 7500);
-		serializer.addOption("Height", 5000);
+		serializer.addOption("Width", 1500);
+		serializer.addOption("Use Same Scale", true);
 		return serializer;
 	}
 
 	@Override
 	public boolean needsGeometry() {
-		return true;
+		return false;
 	}
 
 	@Override
@@ -57,12 +57,12 @@ public class IfcTreemapChartSerializerPlugin extends AbstractSerializerPlugin {
 
 	@Override
 	public String getDescription() {
-		return "IFC Treemap by Area Chart (SVG)";
+		return "IFC Material Usage Area Chart (SVG)";
 	}
 
 	@Override
 	public String getDefaultName() {
-		return "IFC Treemap Chart";
+		return "IFC Material Usage Chart";
 	}
 
 	@Override

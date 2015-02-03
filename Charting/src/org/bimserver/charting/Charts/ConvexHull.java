@@ -40,6 +40,7 @@ public class ConvexHull extends Chart {
 		this("Convex Hull");
 	}
 
+	@SuppressWarnings("serial")
 	public ConvexHull(String title) {
 		this(
 			title,

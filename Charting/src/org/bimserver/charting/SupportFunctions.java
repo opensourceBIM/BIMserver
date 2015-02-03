@@ -18,6 +18,8 @@ package org.bimserver.charting;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -32,41 +34,33 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.ifc2x3tc1.IfcClassification;
-import org.bimserver.models.ifc2x3tc1.IfcClassificationItem;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationNotation;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationNotationFacet;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationNotationSelect;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationReference;
-import org.bimserver.models.ifc2x3tc1.IfcComplexProperty;
-import org.bimserver.models.ifc2x3tc1.IfcLabel;
 import org.bimserver.models.ifc2x3tc1.IfcMaterial;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSetUsage;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialList;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialSelect;
 import org.bimserver.models.ifc2x3tc1.IfcObject;
 import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
-import org.bimserver.models.ifc2x3tc1.IfcProperty;
-import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
-import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;
-import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesClassification;
+import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
-import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
-import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.IfcSIUnit;
-import org.bimserver.models.ifc2x3tc1.IfcSimpleProperty;
 import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
-import org.bimserver.models.ifc2x3tc1.IfcTypeObject;
 import org.bimserver.models.ifc2x3tc1.IfcUnit;
 import org.bimserver.models.ifc2x3tc1.IfcUnitAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
-import org.bimserver.models.ifc2x3tc1.IfcValue;
-import org.bimserver.models.ifc2x3tc1.impl.IfcBuildingElementImpl;
-import org.bimserver.models.ifc2x3tc1.impl.IfcSpatialStructureElementImpl;
-import org.bimserver.models.ifc4.IfcMaterialRelationship;
 import org.bimserver.models.store.SIPrefix;
 import org.eclipse.emf.common.util.EList;
+import org.openmali.types.primitives.MutableInteger;
 import org.openmali.vecmath2.Vector3d;
 
 public class SupportFunctions {
@@ -117,14 +111,7 @@ public class SupportFunctions {
 				IfcSpatialStructureElement ifcSpatialStructureElement = (IfcSpatialStructureElement) parentObject;
 				for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : ifcSpatialStructureElement.getContainsElements())
 					for (IfcProduct ifcProduct : ifcRelContainedInSpatialStructure.getRelatedElements()) {
-						Double area = null;
-						GeometryInfo geometry = ifcProduct.getGeometry();
-						if (geometry != null) {
-							Vector3f min = geometry.getMinBounds();
-							Vector3f max = geometry.getMaxBounds();
-							Vector3d delta = new Vector3d(max.getX() - min.getX(), max.getY() - min.getY(), max.getZ() - min.getZ());
-							area = delta.lengthSquared();
-						}
+						Double area = getRoughAreaEstimateFromIfcProduct(ifcProduct);
 						childrenInThisPass.add(new IfcObjectWithTrace(traceAtChildren, ifcProduct, area));
 					}
 			}
@@ -187,6 +174,32 @@ public class SupportFunctions {
 		return rawData;
 	}
 
+	public static Double getRoughAreaEstimateFromIfcProduct(IfcProduct ifcProduct) {
+		GeometryInfo geometry = ifcProduct.getGeometry();
+		Double area = null;
+		if (geometry != null) {
+			Vector3f min = geometry.getMinBounds();
+			Vector3f max = geometry.getMaxBounds();
+			Vector3d delta = new Vector3d(max.getX() - min.getX(), max.getY() - min.getY(), max.getZ() - min.getZ());
+			// A (of rectangular prism boundary) = 2(wl + hl + hw) 
+			area = 2 * (delta.x() * delta.y() + delta.z() * delta.y() + delta.z() * delta.x());
+		}
+		return area;
+	}
+
+	public static Double getRoughVolumeEstimateFromIfcProduct(IfcProduct ifcProduct) {
+		GeometryInfo geometry = ifcProduct.getGeometry();
+		Double volume = null;
+		if (geometry != null) {
+			Vector3f min = geometry.getMinBounds();
+			Vector3f max = geometry.getMaxBounds();
+			Vector3d delta = new Vector3d(max.getX() - min.getX(), max.getY() - min.getY(), max.getZ() - min.getZ());
+			// V (of rectangular prism boundary) = whl 
+			volume = delta.x() * delta.y() * delta.z();
+		}
+		return volume;
+	}
+
 	public static ArrayList<LinkedHashMap<String, Object>> getIfcDataByClassWithTreeStructure(String structureKeyword, IfcModelInterface model, Chart chart, int superClassesToStepBackwardsThrough) {
 		ArrayList<LinkedHashMap<String, Object>> rawData = new ArrayList<>();
 		// Prepare for static iteration.
@@ -244,73 +257,149 @@ public class SupportFunctions {
 		return rawData;
 	}
 
-	public static ArrayList<LinkedHashMap<String, Object>> getIfcMaterialsByClassWithTreeStructure(String structureKeyword, IfcModelInterface model, Chart chart) {
-		ArrayList<LinkedHashMap<String, Object>> rawData = new ArrayList<>();
-		// Prepare for static iteration.
-		LinkedHashMap<IfcPropertySingleValue, Integer> ifcMaterialPropertiesWithCounts = new LinkedHashMap<>();
-		// Iterate only the products.
-		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class))
-		{
-			EList<IfcRelDefines> a = ifcProduct.getIsDefinedBy();
-			for (IfcRelDefines b : a) {
-				if (b instanceof IfcRelDefinesByProperties)
-				{
-					IfcRelDefinesByProperties c = (IfcRelDefinesByProperties)b;
-					IfcPropertySetDefinition d = c.getRelatingPropertyDefinition();
-					if (d instanceof IfcPropertySet) {
-						IfcPropertySet e = (IfcPropertySet)d;
-						for (IfcProperty f : e.getHasProperties()) {
-							if (f instanceof IfcSimpleProperty) {
-								IfcSimpleProperty g = (IfcSimpleProperty)f;
-								if (g instanceof IfcPropertySingleValue) {
-									IfcPropertySingleValue key = (IfcPropertySingleValue)g;
-									String propertyName = key.getName();
-									if (propertyName.equals("Material")) {
-										// Push or adjust the value.
-										Integer value = 0;
-										if (ifcMaterialPropertiesWithCounts.containsKey(key))
-											value = ifcMaterialPropertiesWithCounts.get(key);
-										ifcMaterialPropertiesWithCounts.put(key, value + 1);
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+	public static Comparator<Double> sortSmallerValuesToFront = new Comparator<Double>() {
+		public int compare(Double p1, Double p2) {
+			//
+			Double a = (p1 != null) ? p1 : 0;
+			Double b = (p2 != null) ? p2 : 0;
+			// Smaller values at start, larger values at end.
+			return a.compareTo(b);
 		}
+	};
+
+	public static ArrayList<LinkedHashMap<String, Object>> getIfcMaterialsByClassWithTreeStructure(String structureKeyword, IfcModelInterface model, Chart chart, MutableInteger subChartCount) {
 		// Derive the column name.
 		String leafColumnName = structureKeyword;
 		// Update the chart configuration.
 		chart.setDimensionLookupKey(structureKeyword, leafColumnName);
+		chart.setDimensionLookupKey("date", "date");
 		chart.setDimensionLookupKey("size", "size");
-		chart.setDimensionLookupKey("label", "label");
-		chart.setDimensionLookupKey("color", "size");
-		// Add each entry.
-		for (Entry<IfcPropertySingleValue, Integer> countedEntry : ifcMaterialPropertiesWithCounts.entrySet()) {
-			// Prepare to store this raw data entry.
-			LinkedHashMap<String, Object> dataEntry = new LinkedHashMap<>();
-			//
-			Integer count = countedEntry.getValue();
-			IfcPropertySingleValue singlePropertyValue = countedEntry.getKey();
-			//
-			IfcValue materialIfcValue = singlePropertyValue.getNominalValue();
-			String materialValue = "(no value)";
-			if (materialIfcValue instanceof IfcLabel) {
-				IfcLabel a = (IfcLabel)materialIfcValue;
-				materialValue = a.getWrappedValue();
+		// Prepare to iterate the relationships.
+		LinkedHashMap<String, ArrayList<Double>> materialNameWithSizes = new LinkedHashMap<>(); 
+		// Iterate only the relationships.
+		for (IfcRelAssociatesMaterial ifcRelAssociatesMaterial : model.getAllWithSubTypes(IfcRelAssociatesMaterial.class))
+		{
+			// IfcMaterialSelect: IfcMaterial, IfcMaterialList, IfcMaterialLayerSetUsage, IfcMaterialLayerSet, IfcMaterialLayer.
+			IfcMaterialSelect materialLike = ifcRelAssociatesMaterial.getRelatingMaterial();
+			// If there was a material-like object, sum it across X.
+			if (materialLike != null) {
+				// Get material name, like: Brick (000000), Air (000001); or, Concrete (0000000).
+				String materialName = getNameOfMaterialsFromMaterialLike(materialLike, true, true);
+				// Use material name if available. Otherwise, use OID of top-level material-like object.
+				String name = (materialName != null) ? materialName : String.format("%d", materialLike.getOid());
+				// Add entry if it doesn't exist.
+				if (!materialNameWithSizes.containsKey(name))
+					materialNameWithSizes.put(name, new ArrayList<Double>());
+				// Get existing size data.
+				ArrayList<Double> sizes = materialNameWithSizes.get(name);
+				// Iterate objects.
+				EList<IfcRoot> ifcRoots = ifcRelAssociatesMaterial.getRelatedObjects();
+				for (IfcRoot ifcRoot : ifcRoots) {
+					Double size = 0.0;
+					if (ifcRoot instanceof IfcObjectDefinition) {
+						IfcObjectDefinition ifcObjectDefinition = (IfcObjectDefinition)ifcRoot;
+						if (ifcObjectDefinition instanceof IfcObject) {
+							IfcObject ifcObject = (IfcObject)ifcObjectDefinition;
+							if (ifcObject instanceof IfcProduct) {
+								IfcProduct ifcProduct = (IfcProduct)ifcObject;
+								Double volume = getRoughVolumeEstimateFromIfcProduct(ifcProduct);
+								size = volume;
+							}
+						}
+					}
+					if (size != null && size > 0)
+						sizes.add(size);
+				}
 			}
-			IfcUnit unit = singlePropertyValue.getUnit();
-			// Name the group.
-			String name = String.format("%s (%s)", materialValue, count);
-			dataEntry.put(leafColumnName, name);
-			dataEntry.put("size", count);
-			dataEntry.put("label", name);
-			// Push the entry into the data pool.
-			rawData.add(dataEntry);
+		}
+		//
+		subChartCount.setValue(materialNameWithSizes.size());
+		//
+		ArrayList<LinkedHashMap<String, Object>> rawData = new ArrayList<>();
+		//
+		for (Entry<String, ArrayList<Double>> entry : materialNameWithSizes.entrySet()) {
+			String name = entry.getKey();
+			// Get existing size data.
+			ArrayList<Double> sizes = materialNameWithSizes.get(name);
+			// Sort, value ascending.
+			Collections.sort(sizes, sortSmallerValuesToFront);
+			sizes.add(0, 0.0);
+			if (sizes.size() == 1)
+				sizes.add(0, 0.0);
+			// Count including empty first entry.
+			double count = Math.max(1, sizes.size() - 1);
+			double step = 10000.0 / count;
+			double runningSize = 0.0;
+			// Add sum of zero at entry zero.
+			int i = 0;
+			// Iterate objects, summing them across 0 to 10000 (an arbitrary range, a way to relate to other sums along X).
+			for (Double size : sizes) {
+				double someMeasurement = (size != null) ? size : 0.0;
+				runningSize += someMeasurement;
+				// Prepare to store this raw data entry.
+				LinkedHashMap<String, Object> dataEntry = new LinkedHashMap<>();
+				// Name the group.
+				dataEntry.put(leafColumnName, name);
+				dataEntry.put("date", i * step);
+				dataEntry.put("size", runningSize);
+				// Push the entry into the data pool.
+				rawData.add(dataEntry);
+				//
+				i += 1;
+			}
 		}
 		// Send it all back.
 		return rawData;
+	}
+
+	public static String getNameOfMaterialsFromMaterialLike(IfcMaterialSelect materialLike, boolean includeIfcMaterialOID, boolean includeLayerPercentages) {
+		String materialName = null;
+		if (materialLike instanceof IfcMaterial) {
+			IfcMaterial ifcMaterial = (IfcMaterial)materialLike;
+			materialName = ifcMaterial.getName();
+			if (includeIfcMaterialOID)
+				materialName += String.format(" (%d)", ifcMaterial.getOid());
+		} else if (materialLike instanceof IfcMaterialList) {
+			IfcMaterialList ifcMaterialList = (IfcMaterialList)materialLike;
+			ArrayList<String> materials = new ArrayList<>();
+			for (IfcMaterial ifcMaterial : ifcMaterialList.getMaterials()) {
+				String thisName = getNameOfMaterialsFromMaterialLike(ifcMaterial, includeIfcMaterialOID, includeLayerPercentages);
+				materials.add(thisName);
+			}
+			materialName = StringUtils.join(materials, ", ");
+		} else if (materialLike instanceof IfcMaterialLayerSetUsage) {
+			IfcMaterialLayerSetUsage ifcMaterialLayerSetUsage = (IfcMaterialLayerSetUsage)materialLike;
+			IfcMaterialLayerSet ifcMaterialLayerSet = ifcMaterialLayerSetUsage.getForLayerSet();
+			return getNameOfMaterialsFromMaterialLike(ifcMaterialLayerSet, includeIfcMaterialOID, includeLayerPercentages);
+		} else if (materialLike instanceof IfcMaterialLayerSet) {
+			IfcMaterialLayerSet ifcMaterialLayerSet = (IfcMaterialLayerSet)materialLike;
+			ArrayList<String> materials = new ArrayList<>();
+			ArrayList<Double> thicknesses = new ArrayList<>();
+			double thicknessSum = 0.0;
+			for (IfcMaterialLayer ifcMaterialLayer : ifcMaterialLayerSet.getMaterialLayers()) {
+				String thisName = getNameOfMaterialsFromMaterialLike(ifcMaterialLayer.getMaterial(), includeIfcMaterialOID, includeLayerPercentages);
+				materials.add(thisName);
+				//
+				if (includeLayerPercentages) {
+					double layerThickness = ifcMaterialLayer.getLayerThickness();
+					thicknesses.add(layerThickness);
+					thicknessSum += layerThickness;
+				}
+			}
+			// Calculate percentages and add them to names.
+			if (includeLayerPercentages && thicknessSum > 0)
+				for (int i = 0; i < materials.size(); i++) {
+					double thisPercent = 100 * thicknesses.get(i) / thicknessSum;
+					String newMaterialName = String.format("%.2f%% %s", thisPercent, materials.get(i));
+					materials.set(i, newMaterialName);
+				}
+			// Create the joined name.
+			materialName = StringUtils.join(materials, ", ");
+		} else if (materialLike instanceof IfcMaterialLayer) {
+			IfcMaterialLayer ifcMaterialLayer = (IfcMaterialLayer)materialLike;
+			return getNameOfMaterialsFromMaterialLike(ifcMaterialLayer.getMaterial(), includeIfcMaterialOID, includeLayerPercentages);
+		}
+		return materialName;
 	}
 
 

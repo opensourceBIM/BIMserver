@@ -33,7 +33,10 @@ public class IfcPackingChartSerializerPlugin extends AbstractSerializerPlugin {
 
 	@Override
 	public Serializer createSerializer(PluginConfiguration plugin) {
-		return new PackingChartSerializer();
+		PackingChartSerializer serializer = new PackingChartSerializer();
+		serializer.title = getDefaultName();
+		serializer.addOption("Padding", 0);
+		return serializer;
 	}
 
 	@Override

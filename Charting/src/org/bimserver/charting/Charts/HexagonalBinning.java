@@ -41,6 +41,7 @@ public class HexagonalBinning extends Chart {
 		this("Hexagonal Binning");
 	}
 
+	@SuppressWarnings("serial")
 	public HexagonalBinning(String title) {
 		this(
 			title,
