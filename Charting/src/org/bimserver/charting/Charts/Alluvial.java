@@ -41,6 +41,7 @@ public class Alluvial extends Chart {
 		this("Alluvial Diagram");
 	}
 
+	@SuppressWarnings("serial")
 	public Alluvial(String title) {
 		this(
 			title,

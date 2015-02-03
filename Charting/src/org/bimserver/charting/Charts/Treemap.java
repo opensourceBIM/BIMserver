@@ -17,7 +17,10 @@ package org.bimserver.charting.Charts;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.awt.Font;
 import java.awt.Shape;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +44,7 @@ import prefuse.data.Node;
 import prefuse.data.Tree;
 import prefuse.render.AbstractShapeRenderer;
 import prefuse.render.DefaultRendererFactory;
+import prefuse.util.FontLib;
 import prefuse.visual.VisualItem;
 import prefuse.visual.expression.InGroupPredicate;
 
@@ -70,6 +74,7 @@ public class Treemap extends Chart {
 		this("Treemap");
 	}
 
+	@SuppressWarnings("serial")
 	public Treemap(String title) {
 		this(
 			title,
@@ -79,6 +84,7 @@ public class Treemap extends Chart {
 				add(new ChartOption("Width", "Horizontal dimension.", 1000));
 				add(new ChartOption("Height", "Vertical dimension.", 500));
 				add(new ChartOption("Padding", "Padding between major node groups.", 5));
+				add(new ChartOption("Show Labels", "Show labels on blocks.", true));
 				// Any valid GroupedChartExtents<String>, including HSLColorScale and LinearColorScale.
 				add(new ChartOption("Color Scale", "Scale of the color.", new HSLColorScale()));
 			}},
@@ -108,6 +114,7 @@ public class Treemap extends Chart {
 		double width = (hasOption("Width")) ? (int)getOptionValue("Width") : 1000;
 		double height = (hasOption("Height")) ? (int)getOptionValue("Height") : 500;
 		double padding = (hasOption("Padding")) ? ((Number)getOptionValue("Padding")).doubleValue() : 5.0;
+		boolean showLabels = (hasOption("Show Labels")) ? (boolean)getOptionValue("Show Labels") : true;
 		// Make it so that padding is the actual value between things rather than 2 times the value.
 		padding /= 2.0;
 		// Color extent. Transforms data to be in range of 0 to 1. Put these values through a color scale.
@@ -145,7 +152,7 @@ public class Treemap extends Chart {
 		// Zero elapsed time.
 		layout.run(0.0);
 		//
-		iterateTree(visualization, graph, colorExtent, colorScale, width, builder);
+		iterateTree(visualization, graph, colorExtent, colorScale, width, showLabels, builder);
 		//
 		return builder;
 	}
@@ -155,10 +162,10 @@ public class Treemap extends Chart {
 	 * @param node
 	 */
 	public void iterateTreeSize(Visualization visualization, Graph graph) {
-		Iterator b = graph.nodes();
+		Iterator graphChildNodes = graph.nodes();
 		Node child = null;
-		while (b.hasNext()) {
-			child = (Node)b.next();
+		while (graphChildNodes.hasNext()) {
+			child = (Node)graphChildNodes.next();
 			VisualItem item = visualization.getVisualItem("tree", child);
 			// If it's a leaf, set its size. Don't set value otherwise.
 			if (child.getChildCount() == 0) {
@@ -172,12 +179,21 @@ public class Treemap extends Chart {
 	 * @param visualization
 	 * @param node
 	 */
-	public StringBuilder iterateTree(Visualization visualization, Graph graph, ChartExtent colorExtent, GroupedChartExtents<String> colorScale, double viewportWidth, StringBuilder builder) {
-		Iterator b = graph.nodes();
+	public StringBuilder iterateTree(Visualization visualization, Graph graph, ChartExtent colorExtent, GroupedChartExtents<String> colorScale, double viewportWidth, boolean showLabels, StringBuilder builder) {
+		// Prepare to measure text widths.
+		Font font = null;
+		FontRenderContext frc = null;
+		if (showLabels) {
+			// Prepare to measure text.
+			font = FontLib.getFont("Arial", 11);
+			frc = new FontRenderContext(new AffineTransform(), false, true);
+		}
+		//
+		Iterator graphChildNodes = graph.nodes();
 		Node child = null;
 		ElementLike boxGroup = new ElementLike("g");
-		while (b.hasNext()) {
-			child = (Node)b.next();
+		while (graphChildNodes.hasNext()) {
+			child = (Node)graphChildNodes.next();
 			if (child.getChildCount() == 0) {
 				VisualItem item = visualization.getVisualItem("tree", child);
 				//
@@ -208,25 +224,46 @@ public class Treemap extends Chart {
 				//
 				ElementLike title = new ElementLike("title");
 				title.text(tooltip);
-				// Figure out a size (based around Arial near 11px) that will be relative to the viewport's coordinates (re: vw) so that the font's scale with their containers.
-				double containerWidth = bounds.getWidth();
-				double paddedPercentageOfViewportWidth = 60.0 * containerWidth / viewportWidth;
-				double numberOfLetters = (label != null) ? label.length() : 1;
-				//
-				ElementLike text = new ElementLike("text");
-				double viewportPercentagePerLetter = paddedPercentageOfViewportWidth / numberOfLetters;
-				if (11.0 * numberOfLetters < containerWidth)
-					text.attribute("style", "font-size: 11px; font-family: Arial, Helvetica;");
-				else
-					text.attribute("style", String.format("font-size: %svw; font-family: Arial, Helvetica;", viewportPercentagePerLetter));
-				text.attribute("text-anchor", "middle");
-				text.attribute("dy", "0.45em");
-				text.attribute("transform", String.format("translate(%s, %s)", bounds.getCenterX(), bounds.getCenterY()));
-				text.text(label);
 				//
 				rect.child(title);
 				boxGroup.child(rect);
-				boxGroup.child(text);
+				// Figure out a size (based around Arial near 11px) that will be relative to the viewport's coordinates (re: vw) so that the font's scale with their containers.
+				if (showLabels && label != null) {
+					// Pad label.
+					label = String.format(" %s ", label);
+					// Container width.
+					double containerWidth = bounds.getWidth();
+					// Text width.
+					Rectangle2D lineRectangle = font.getStringBounds(label, frc);
+					double widthEstimateOfText = lineRectangle.getWidth();
+					// Derived.
+					double viewportMultiplierForText = 1.1 * widthEstimateOfText / containerWidth;
+					//
+					ElementLike text = new ElementLike("text");
+					String fontSize;
+					double scaleX = 1.0, scaleY = 1.0;
+					if (viewportMultiplierForText < 1.0)
+						fontSize = "11px";
+					else {
+						if (viewportMultiplierForText > 7.0)
+							fontSize = null;
+						else {
+							fontSize = "11ptx";
+							double inverseMultiplier = 1.0 / viewportMultiplierForText;
+							scaleX = scaleY = inverseMultiplier;
+						}
+					}
+					// If the font size is not infintesimally small, show the text.
+					if (fontSize != null) {
+						text.attribute("style", String.format("font-size: %s; font-family: Arial, Helvetica;", fontSize));
+						text.attribute("text-anchor", "middle");
+						text.attribute("dy", "0.45em");
+						text.attribute("transform", String.format("translate(%s, %s)scale(%s, %s)", bounds.getCenterX(), bounds.getCenterY(), scaleX, scaleY));
+						text.text(label);
+						//
+						boxGroup.child(text);
+					}
+				}
 			}
 		}
 		builder.append(boxGroup.buildString(1));
@@ -248,5 +285,5 @@ public class Treemap extends Chart {
 			m_bounds.setRect(item.getBounds());
 			return m_bounds;
 		}
-	} // end of inner class NodeRenderer
+	}
 }

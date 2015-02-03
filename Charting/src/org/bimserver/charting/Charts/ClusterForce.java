@@ -72,6 +72,7 @@ public class ClusterForce extends Chart {
 		this("Cluster Force");
 	}
 
+	@SuppressWarnings("serial")
 	public ClusterForce(String title) {
 		this(
 			title,

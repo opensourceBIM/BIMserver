@@ -20,40 +20,28 @@ package org.bimserver.charting;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
-import org.bimserver.charting.Charts.Chart;
 import org.bimserver.charting.Charts.RadialDendrogram;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
-import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RadialDendrogramChartSerializer extends EmfSerializer {
+public class RadialDendrogramChartSerializer extends ChartEmfSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(RadialDendrogramChartSerializer.class);
-
-	private Chart chart = null;
-	private ArrayList<LinkedHashMap<String, Object>> rawData = null;
-
-	@Override
-	public void reset() {
-		if (rawData != null)
-			rawData.clear();
-		setMode(Mode.BODY);
-	}
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
 		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 		// Pick chart.
 		chart = new RadialDendrogram();
+		integrateSettings();
 		// Prepare for data.
 		rawData = new ArrayList<>();
 	}

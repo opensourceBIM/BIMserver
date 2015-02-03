@@ -32,7 +32,7 @@ public class TestTreeview extends BaseChartTest {
 		Treeview chart = new Treeview();
 		chart.setDimensionLookupKeys("hierarchy", Arrays.asList("B", "A", "C"));
 		chart.setDimensionLookupKey("label", "C");
-		chart.setOption("Width", 698);
+		chart.setOption("Width", 600);
 		chart.setOption("Height", 500);
 		// Save chart.
 		chart.saveToSVGInUserDirectory(rawData, "test.svg");
@@ -68,21 +68,21 @@ public class TestTreeview extends BaseChartTest {
 		rawData.add(new LinkedHashMap<String, Object>() {
 			{
 				put("A", 1980);
-				put("B", "Cassete");
+				put("B", "Cassette");
 				put("C", 19.1);
 			}
 		});
 		rawData.add(new LinkedHashMap<String, Object>() {
 			{
 				put("A", 1981);
-				put("B", "Cassete");
+				put("B", "Cassette");
 				put("C", 26.7);
 			}
 		});
 		rawData.add(new LinkedHashMap<String, Object>() {
 			{
 				put("A", 1982);
-				put("B", "Cassete");
+				put("B", "Cassette");
 				put("C", 38.2);
 			}
 		});

@@ -32,6 +32,8 @@ public class TestParallelCoordinates extends BaseChartTest {
 		getRandomData(rawData);
 		//
 		ParallelCoordinates chart = new ParallelCoordinates();
+		chart.setOption("Width", 400);
+		chart.setOption("Height", 300);
 		// plot.setOption("Color Scale", new HSLColorScale());
 		chart.setOption("Color Scale", new LinearColorScale());
 		chart.setDimensionLookupKeys("dimensions", Arrays.asList("A", "B", "C", "D"));

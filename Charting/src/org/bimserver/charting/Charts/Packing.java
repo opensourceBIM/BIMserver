@@ -17,6 +17,10 @@ package org.bimserver.charting.Charts;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.awt.Font;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -43,6 +47,7 @@ import prefuse.data.Tree;
 import prefuse.render.AbstractShapeRenderer;
 import prefuse.render.DefaultRendererFactory;
 import prefuse.render.LabelRenderer;
+import prefuse.util.FontLib;
 import prefuse.visual.VisualItem;
 import prefuse.visual.expression.InGroupPredicate;
 
@@ -72,6 +77,7 @@ public class Packing extends Chart {
 		this("Packing");
 	}
 
+	@SuppressWarnings("serial")
 	public Packing(String title) {
 		this(
 			title,
@@ -172,6 +178,16 @@ public class Packing extends Chart {
 	 */
 	@SuppressWarnings("unused")
 	public StringBuilder iterateTree(Visualization visualization, Graph graph, boolean showLabels, ChartExtent colorExtent, GroupedChartExtents<String> colorScale, StringBuilder builder) {
+		// Prepare to measure text widths.
+		Font titleFont = null;
+		Font font = null;
+		FontRenderContext frc = null;
+		if (showLabels) {
+			// Prepare to measure text.
+			font = FontLib.getFont("Arial", 11);
+			titleFont = FontLib.getFont("Arial", 20);
+			frc = new FontRenderContext(new AffineTransform(), false, true);
+		}
 		//
 		java.awt.geom.Rectangle2D bounds = visualization.getBounds("tree");
 		double maxComponent = Math.max(1, Math.max(bounds.getWidth(), bounds.getHeight()));
@@ -219,21 +235,64 @@ public class Packing extends Chart {
 				// Derive label.
 				if (label == null)
 					label = name;
+				// Pad label.
+				label = String.format(" %s ", label);
+				// Container width.
+				double containerWidth = circle.getDiameter();
 				//
-				ElementLike text = new ElementLike("text");
-				text.attribute("text-anchor", "middle");
+				double scaleX = 1.0, scaleY = 1.0;
+				String fontSize = null;
+				String fontFillOpacity = null;
+				// If filled, scale text down. Otherwise, try to fit.
 				if (circle.Filled) {
-					text.attribute("dy", "0.34em");
-					text.attribute("style", "font-size: 11px; font-family: Arial, Helvetica;");
+					// Text width.
+					Rectangle2D lineRectangle = font.getStringBounds(label, frc);
+					double widthEstimateOfText = lineRectangle.getWidth();
+					// Derived.
+					double viewportMultiplierForText = 1.1 * widthEstimateOfText / containerWidth;
+					// Only ever scale text down.
+					if (viewportMultiplierForText < 1.0) {
+						fontSize = "11px";
+					} else {
+						if (viewportMultiplierForText > 7.0)
+							fontSize = null;
+						else {
+							fontSize = "11px";
+							double inverseMultiplier = 1.0 / viewportMultiplierForText;
+							scaleX = scaleY = inverseMultiplier;
+						}
+					}
 				} else {
-					// Context.
-					double labelLength = Math.max(1, label.length());
-					double size = Math.min(maxRelativeSize, circle.Radius * 2.0 / maxComponent / labelLength);
-					text.attribute("style", String.format("font-size: %svw; font-family: Arial, Helvetica; fill-opacity: 0.2; stroke: black; stroke-width: %svw;", size, size / 100.0));
+					fontFillOpacity = "0.09";
+					// Text width.
+					Rectangle2D lineRectangle = titleFont.getStringBounds(label, frc);
+					double widthEstimateOfText = lineRectangle.getWidth();
+					// Derived.
+					double viewportMultiplierForText = 1.1 * widthEstimateOfText / containerWidth;
+					// Scale text.
+					if (viewportMultiplierForText > 7.0)
+						fontSize = null;
+					else {
+						// Scale up or down to fit.
+						fontSize = "20px";
+						double inverseMultiplier = 1.0 / viewportMultiplierForText;
+						scaleX = scaleY = inverseMultiplier;
+					}
 				}
-				text.text(label);
-				//
-				pointGroup.child(text);
+				// Add text if it will be visible.
+				if (fontSize != null) {
+					//
+					ElementLike text = new ElementLike("text");
+					text.attribute("text-anchor", "middle");
+					text.attribute("dy", "0.34em");
+					text.attribute("style", String.format("font-size: %s; font-family: Arial, Helvetica;", fontSize));
+					if (fontFillOpacity != null)
+						text.attribute("opacity", fontFillOpacity);
+					text.attribute("transform", String.format("scale(%s,%s)", scaleX, scaleY));
+					text.text(label);
+					//
+					pointGroup.child(text);
+				}
 			}
 			builder.append(pointGroup.buildString(1));
 		}

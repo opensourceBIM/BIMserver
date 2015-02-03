@@ -33,7 +33,9 @@ public class IfcClusterForceChartSerializerPlugin extends AbstractSerializerPlug
 
 	@Override
 	public Serializer createSerializer(PluginConfiguration plugin) {
-		return new ClusterForceChartSerializer();
+		ClusterForceChartSerializer serializer = new ClusterForceChartSerializer();
+		serializer.title = getDefaultName();
+		return serializer;
 	}
 
 	@Override
