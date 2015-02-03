@@ -43,8 +43,8 @@ public class Chart {
 	//public String Thumbnail = "";
 	public ArrayList<ChartOption> Options = new ArrayList<>();
 	public org.bimserver.charting.Models.Model Model = null;
-	// Convenience shortcut, skipping a need to keep such a variable on the ChartOption object.
-	public boolean FitToWidth = false;
+	// Convenience shortcut, skipping a need to keep such a variable on the ChartOption object. Controls SVG export. 100% versus actual value in header.
+	public boolean FitToSize = false;
 
 	/**
 	 * @param title
@@ -52,16 +52,16 @@ public class Chart {
 	 * @param category
 	 * @param options
 	 * @param model
-	 * @param fitToWidth
+	 * @param fitToSize
 	 */
-	public Chart(String title, String description, String category, ArrayList<ChartOption> options, org.bimserver.charting.Models.Model model, boolean fitToWidth) {
+	public Chart(String title, String description, String category, ArrayList<ChartOption> options, org.bimserver.charting.Models.Model model, boolean fitToSize) {
 		super();
 		Title = title;
 		Description = description;
 		Category = category;
 		Options = options;
 		Model = model;
-		FitToWidth = fitToWidth;
+		FitToSize = fitToSize;
 	}
 
 	/**
@@ -87,21 +87,21 @@ public class Chart {
 
 	public boolean hasOption(String optionTitle) {
 		for (ChartOption option : Options)
-			if (option.Title == optionTitle)
+			if (option.Title.equals(optionTitle))
 				return true;
 		return false;
 	}
 
 	public Object getOptionValue(String optionTitle) {
 		for (ChartOption option : Options)
-			if (option.Title == optionTitle)
+			if (option.Title.equals(optionTitle))
 				return option.getValue();
 		return null;
 	}
 
 	public ChartOption getOption(String optionTitle) {
 		for (ChartOption option : Options)
-			if (option.Title == optionTitle)
+			if (option.Title.equals(optionTitle))
 				return option;
 		return null;
 	}
@@ -154,25 +154,31 @@ public class Chart {
 		// If there is a diameter option, treat as both width and height. Otherwise, specifically look for them.
 		if (hasOption("Diameter")) {
 			// Look for "Diameter" in options (in pixels).
-			int diameter = (hasOption("Diameter")) ? (int)getOptionValue("Diameter") : 1000;
+			int diameter = (hasOption("Diameter")) ? ((Number)getOptionValue("Diameter")).intValue() : 1000;
+			// Write the SVG header.
+			String svgWidth = (FitToSize) ? "100%" : String.format("%d", diameter);
+			String svgHeight = (FitToSize) ? "100%" : String.format("%d", diameter);
 			// Write the SVG header.
 			builder.append(
 				String.format(
-					"<svg version=\"1.1\" baseProfile=\"%s\" id=\"%s\" width=\"100%%\" height=\"100%%\" viewBox=\"0 0 %d %d\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">",
-					"tiny", chartId, diameter, diameter
+					"<svg version=\"1.1\" baseProfile=\"%s\" id=\"%s\" width=\"%s\" height=\"%s\" viewBox=\"0 0 %d %d\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">",
+					"tiny", chartId, svgWidth, svgHeight, diameter, diameter
 				)
 			);
 		}
 		else {
 			// Look for "Width" in options (in pixels).
-			int width = (hasOption("Width")) ? (int)getOptionValue("Width") : 1000;
+			int width = (hasOption("Width")) ? ((Number)getOptionValue("Width")).intValue() : 1000;
 			// Look for "Height" in options (in pixels).
-			int height = (hasOption("Height")) ? (int)getOptionValue("Height") : 500;
+			int height = (hasOption("Height")) ? ((Number)getOptionValue("Height")).intValue() : 500;
 			// Write the SVG header.
+			String svgWidth = (FitToSize) ? "100%" : String.format("%d", width);
+			String svgHeight = (FitToSize) ? "100%" : String.format("%d", height);
+			//
 			builder.append(
 				String.format(
-					"<svg version=\"1.1\" baseProfile=\"%s\" id=\"%s\" width=\"100%%\" height=\"100%%\" viewBox=\"0 0 %d %d\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">",
-					"tiny", chartId, width, height
+					"<svg version=\"1.1\" baseProfile=\"%s\" id=\"%s\" width=\"%s\" height=\"%s\" viewBox=\"0 0 %d %d\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">",
+					"tiny", chartId, svgWidth, svgHeight, width, height
 				)
 			);
 		}

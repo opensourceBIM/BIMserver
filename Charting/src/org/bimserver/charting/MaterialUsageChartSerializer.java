@@ -21,7 +21,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import org.bimserver.charting.Charts.Packing;
+import org.bimserver.charting.Charts.SmallMultiplesArea;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginManager;
@@ -29,18 +29,19 @@ import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
+import org.openmali.types.primitives.MutableInteger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PackingChartSerializer extends ChartEmfSerializer {
+public class MaterialUsageChartSerializer extends ChartEmfSerializer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(PackingChartSerializer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(MaterialUsageChartSerializer.class);
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
 		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 		// Pick chart.
-		chart = new Packing();
+		chart = new SmallMultiplesArea();
 		integrateSettings();
 		// Prepare for data.
 		rawData = new ArrayList<>();
@@ -50,7 +51,17 @@ public class PackingChartSerializer extends ChartEmfSerializer {
 	protected boolean write(OutputStream outputStream) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			// Get data.
-			rawData = SupportFunctions.getTreeStructureWithAreaFromIFCData(model, chart);
+			MutableInteger subChartCount = new MutableInteger(0);
+			rawData = SupportFunctions.getIfcMaterialsByClassWithTreeStructure("group", model, chart, subChartCount);
+			// Adjust height if there wasn't something explicit.
+			int count = subChartCount.intValue();
+			if (!hasOption("Height") && count > 3) {
+				int heightPerChart = 330;
+				int totalHeight = heightPerChart * count;
+				if (totalHeight > 1000)
+					chart.FitToSize = false;
+				chart.setOption("Height", totalHeight);
+			}
 			// Write chart.
 			PrintWriter writer = new UTF8PrintWriter(outputStream);
 			try {

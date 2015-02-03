@@ -33,7 +33,9 @@ public class IfcRadialDendrogramChartSerializerPlugin extends AbstractSerializer
 
 	@Override
 	public Serializer createSerializer(PluginConfiguration plugin) {
-		return new RadialDendrogramChartSerializer();
+		RadialDendrogramChartSerializer serializer = new RadialDendrogramChartSerializer();
+		serializer.title = getDefaultName();
+		return serializer;
 	}
 
 	@Override

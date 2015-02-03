@@ -51,6 +51,7 @@ public class SmallMultiplesArea extends Chart {
 		this("Small Multiples (Area)");
 	}
 
+	@SuppressWarnings("serial")
 	public SmallMultiplesArea(String title) {
 		this(
 			title,
@@ -149,6 +150,7 @@ public class SmallMultiplesArea extends Chart {
 		subChartTextPrototype.attribute("transform", String.format("translate(%s, %s)", widthOfSubChart, heightOfSubChart));
 		subChartTextPrototype.attribute("text-anchor", "end");
 		subChartTextPrototype.attribute("style", "font-family: Arial, Helvetica;font-size: 11px;");
+		subChartTextPrototype.attribute("dy", "-0.34em");
 		//
 		ElementLike clipPathRectanglePrototype = new ElementLike("rect");
 		clipPathRectanglePrototype.attribute("x", "0");

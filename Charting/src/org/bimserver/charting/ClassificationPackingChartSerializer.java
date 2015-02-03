@@ -32,9 +32,9 @@ import org.bimserver.utils.UTF8PrintWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PackingChartSerializer extends ChartEmfSerializer {
+public class ClassificationPackingChartSerializer extends ChartEmfSerializer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(PackingChartSerializer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClassificationPackingChartSerializer.class);
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
@@ -50,7 +50,8 @@ public class PackingChartSerializer extends ChartEmfSerializer {
 	protected boolean write(OutputStream outputStream) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			// Get data.
-			rawData = SupportFunctions.getTreeStructureWithAreaFromIFCData(model, chart);
+			boolean includeClassificationSystem = (hasOption("Include Classification System")) ? (boolean)getOptionValue("Include Classification System") : true;
+			rawData = SupportFunctions.getIfcByClassificationReferenceWithTreeStructure("hierarchy", model, chart, includeClassificationSystem);
 			// Write chart.
 			PrintWriter writer = new UTF8PrintWriter(outputStream);
 			try {

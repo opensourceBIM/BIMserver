@@ -20,40 +20,64 @@ The support code for the _Stacked Graphs - Geometry & Aesthetics_ paper is licen
 
 ### Chart Plugins for Use with BIMServer
 
-Currently, this project provides plugins for tree model type charts, which offer a graphical display similar to how projects are displayed in BIMvie.ws.
+Currently, this project provides plugins mostly for tree model type charts, which offer a graphical display similar to how projects are displayed in BIMvie.ws.
 
 #### IFC Treeview
 
-![Treeview](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Treeview.png)
+![Treeview](./readme%20images/Treeview.png?raw=true)
 
 IFC objects are displayed from left to right, ending in IFC objects that do not contain other IFC objects.
 
 #### IFC Depth-Clustered Treeview
 
-![Depth-Clustered Treeview](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Depth-Clustered%20Treeview.png)
+![Depth-Clustered Treeview](./readme%20images/Depth-Clustered%20Treeview.png?raw=true)
 
 IFC objects are displayed from left to right, ending in IFC objects that do not contain other IFC objects. However, jagged data is right-aligned so that all non-container IFC objects are lined up along the right-hand side of the chart.
 
 #### IFC Treemap by Area
 
-![Treemap](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Treemap.png)
+![Treemap](./readme%20images/Treemap.png?raw=true)
 
 IFC objects are grouped. Groups are compared against each other by total area. IFC objects in a group are laid out as rectangles by area against other objects in that group.
 
 #### IFC Radial Dendrogram
 
-![Radial Dendrogram](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Radial%20Dendrogram.png)
+![Radial Dendrogram](./readme%20images/Radial%20Dendrogram.png?raw=true)
 
 IFC objects are displayed from the center out towards the edges of the chart in a circular fashion.
 
 #### IFC Circle Packing Map by Area
 
-![Circle Packing](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Circle%20Packing.png)
+![Circle Packing](./readme%20images/Circle%20Packing.png?raw=true)
 
 IFC objects are grouped. Groups are compared against each other by total area. IFC objects in a group are laid out as circles by area against other objects in that group.
 
 #### IFC Cluster Force
 
-![Cluster Force](https://raw.githubusercontent.com/lirmont/BIMserver/master/Charting/readme%20images/Cluster%20Force.png)
+![Cluster Force](./readme%20images/Cluster%20Force.png?raw=true)
 
 IFC objects are placed in an aggregate group. IFC objects are laid out as circles by area against all other objects. This chart is meant to be made interactive through the use of the __D3__ library, which requires the SVG to exist in an appropriate web context.
+
+#### IFC Class Packing
+
+![Class Packing](./readme%20images/Class%20Packing.png?raw=true)
+
+IFC objects are counted by which class they belong to. Counts are compared against each other.
+
+#### IFC Classification Packing
+
+![Classification Packing](./readme%20images/Classification%20Packing.png?raw=true)
+
+IFC objects which reference classifications contribute to counts of those classifications. Counts are compared against each other.
+
+#### IFC Material Usage
+
+![Material Usage](./readme%20images/Material%20Usage.png?raw=true)
+
+IFC material-like objects (IfcMaterialSelect) are related to a running summation of the volume of the IFC objects they're assigned to. The volumes exist on the same scale.
+
+#### IFC Material Usage, Own Scale
+
+![Material Usage](./readme%20images/Material%20Usage,%20Own%20Scale.png?raw=true)
+
+IFC material-like objects (IfcMaterialSelect) are related to a running summation of the volume of the IFC objects they're assigned to. The volumes exist on their own scale.

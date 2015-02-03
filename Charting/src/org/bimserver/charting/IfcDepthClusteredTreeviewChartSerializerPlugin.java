@@ -33,7 +33,9 @@ public class IfcDepthClusteredTreeviewChartSerializerPlugin extends AbstractSeri
 
 	@Override
 	public Serializer createSerializer(PluginConfiguration plugin) {
-		return new DepthClusteredTreeviewChartSerializer();
+		DepthClusteredTreeviewChartSerializer serializer = new DepthClusteredTreeviewChartSerializer();
+		serializer.title = getDefaultName();
+		return serializer;
 	}
 
 	@Override

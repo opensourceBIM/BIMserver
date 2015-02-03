@@ -38,6 +38,7 @@ public class ParallelCoordinates extends Chart {
 		this("Parallel Coordinates");
 	}
 
+	@SuppressWarnings("serial")
 	public ParallelCoordinates(String title) {
 		this(
 			title,

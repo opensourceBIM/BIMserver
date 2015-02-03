@@ -19,6 +19,7 @@ package org.bimserver.charting;
 
 import java.util.Set;
 
+import org.bimserver.charting.ColorScales.LinearColorScale;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
@@ -27,22 +28,23 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 
-public class IfcTreemapChartSerializerPlugin extends AbstractSerializerPlugin {
+public class IfcClassPackingChartSerializerPlugin extends AbstractSerializerPlugin {
 
 	private boolean initialized = false;
 
 	@Override
 	public Serializer createSerializer(PluginConfiguration plugin) {
-		TreemapChartSerializer serializer = new TreemapChartSerializer();
+		ClassPackingChartSerializer serializer = new ClassPackingChartSerializer();
 		serializer.title = getDefaultName();
-		serializer.addOption("Width", 7500);
-		serializer.addOption("Height", 5000);
+		serializer.addOption("Padding", 3);
+		serializer.addOption("Color Scale", new LinearColorScale());
+		serializer.addOption("Look Back X Classes", 0);
 		return serializer;
 	}
 
 	@Override
 	public boolean needsGeometry() {
-		return true;
+		return false;
 	}
 
 	@Override
@@ -57,12 +59,12 @@ public class IfcTreemapChartSerializerPlugin extends AbstractSerializerPlugin {
 
 	@Override
 	public String getDescription() {
-		return "IFC Treemap by Area Chart (SVG)";
+		return "IFC Class Circle Packing by Count Chart (SVG)";
 	}
 
 	@Override
 	public String getDefaultName() {
-		return "IFC Treemap Chart";
+		return "IFC Class Circle Packing Chart";
 	}
 
 	@Override

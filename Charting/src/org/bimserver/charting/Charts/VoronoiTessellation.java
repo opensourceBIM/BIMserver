@@ -46,6 +46,7 @@ public class VoronoiTessellation extends Chart {
 		this("Voronoi Tessellation");
 	}
 
+	@SuppressWarnings("serial")
 	public VoronoiTessellation(String title) {
 		this(
 			title,

@@ -75,6 +75,7 @@ public class Treeview extends Chart {
 		this("Treeview");
 	}
 
+	@SuppressWarnings("serial")
 	public Treeview(String title) {
 		this(
 			title,
@@ -85,7 +86,7 @@ public class Treeview extends Chart {
 				add(new ChartOption("Height", "Vertical dimension.", 500));
 			}},
 			new TreeModel(Arrays.asList(new String[] {"hierarchy", "label"})),
-			true
+			false
 		);
 	}
 
@@ -106,16 +107,18 @@ public class Treeview extends Chart {
 		// Get "hierarchy" and "size" dimensions.
 		ModelDimension hierarchy = Model.getDimensionByKey("hierarchy");
 		// Get the width and height options.
-		double width = (hasOption("Width")) ? (int)getOptionValue("Width") : 1000;
-		double height = (hasOption("Height")) ? (int)getOptionValue("Height") : 500;
-		//
+		double width = (hasOption("Width")) ? ((Number)getOptionValue("Width")).doubleValue() : 1000;
+		double height = (hasOption("Height")) ? ((Number)getOptionValue("Height")).doubleValue() : 500;
+		// Turn the data into a tree, and get the metrics from it.
+		TreeNode root = TreeNode.Consume(filteredData, hierarchy, null);
+		double depth = hierarchy.getLength() + 1;
+		// Prepare to configure the tree layout.
+		double spaceBetweenSiblingNodes = 11;
+		double spaceBetweenSubTrees = 11;
+		// Derive other metrics.
 		Point2D.Double halfSizeOfPointMarker = new Point2D.Double(4.5, 4.5);
 		Rectangle2D.Double bounds = new Rectangle2D.Double(0, 0, width, height);
 		Point2D.Double anchor = new Point2D.Double(25, height / 2.0);
-		//
-		TreeNode root = TreeNode.Consume(filteredData, hierarchy, null);
-		// At this point, inspect exactly how many leaf nodes there are.
-		double depth = hierarchy.getLength() + 1;
 		// Make place to store transformable data.
 		Tree tree = new Tree();
 		// Add structure to data.
@@ -144,8 +147,7 @@ public class Treeview extends Chart {
 		//
 		ActionList list = new ActionList();
 		// "tree" refers to root of XML document. Second argument is padding versus primary node groups.
-		double spaceBetweenSubTrees = 11;
-		NodeLinkTreeLayout layout = new NodeLinkTreeLayout("tree", Constants.ORIENT_LEFT_RIGHT, width / depth, 11, spaceBetweenSubTrees);
+		NodeLinkTreeLayout layout = new NodeLinkTreeLayout("tree", Constants.ORIENT_LEFT_RIGHT, width / depth, spaceBetweenSiblingNodes, spaceBetweenSubTrees);
 		layout.setLayoutAnchor(anchor);
 		layout.setLayoutBounds(bounds);
 		list.add(new FontAction("tree.nodes", FontLib.getFont("Arial", 11)));
@@ -172,10 +174,10 @@ public class Treeview extends Chart {
 		Double minY = null;
 		Double maxY = null;
 		// Iterate nodes for maximum and minimum values.
-		Iterator b = graph.nodes();
-		while (b.hasNext()) {
+		Iterator graphChildNodes = graph.nodes();
+		while (graphChildNodes.hasNext()) {
 			//
-			Node child = (Node)b.next();
+			Node child = (Node)graphChildNodes.next();
 			VisualItem item = visualization.getVisualItem("tree", child);
 			//
 			double y = item.getY();
@@ -197,10 +199,10 @@ public class Treeview extends Chart {
 		}
 		// Fit all values.
 		if (yExtent != null) {
-			b = graph.nodes();
-			while (b.hasNext()) {
+			graphChildNodes = graph.nodes();
+			while (graphChildNodes.hasNext()) {
 				//
-				Node child = (Node)b.next();
+				Node child = (Node)graphChildNodes.next();
 				VisualItem item = visualization.getVisualItem("tree", child);
 				//
 				double y = item.getY();
@@ -218,11 +220,11 @@ public class Treeview extends Chart {
 		double horizontalDiameter = halfSizeOfPointMarker.x * 2;
 		ElementLike boxGroup = new ElementLike("g");
 		// Edges: lines between points.
-		Iterator c = graph.edges();
+		Iterator graphChildEdges = graph.edges();
 		Edge edge = null;
-		while(c.hasNext()) {
+		while(graphChildEdges.hasNext()) {
 			//
-			edge = (Edge)c.next();
+			edge = (Edge)graphChildEdges.next();
 			//
 			Node source = graph.getSourceNode(edge);
 			Node target = graph.getTargetNode(edge);
@@ -253,11 +255,11 @@ public class Treeview extends Chart {
 			boxGroup.child(line);
 		}
 		// Nodes: labels.
-		Iterator b = graph.nodes();
+		Iterator graphChildNodes = graph.nodes();
 		Node child = null;
-		while (b.hasNext()) {
+		while (graphChildNodes.hasNext()) {
 			//
-			child = (Node)b.next();
+			child = (Node)graphChildNodes.next();
 			//
 			VisualItem item = visualization.getVisualItem("tree", child);
 			String name = child.getString("name");

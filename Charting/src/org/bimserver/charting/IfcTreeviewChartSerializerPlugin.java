@@ -33,7 +33,9 @@ public class IfcTreeviewChartSerializerPlugin extends AbstractSerializerPlugin {
 
 	@Override
 	public Serializer createSerializer(PluginConfiguration plugin) {
-		return new TreeviewChartSerializer();
+		TreeviewChartSerializer serializer = new TreeviewChartSerializer();
+		serializer.title = getDefaultName();
+		return serializer;
 	}
 
 	@Override

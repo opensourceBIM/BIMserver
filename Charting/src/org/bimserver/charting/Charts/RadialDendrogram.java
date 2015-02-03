@@ -82,12 +82,17 @@ public class RadialDendrogram extends Chart {
 		this("Radial Dendrogram");
 	}
 
+	@SuppressWarnings("serial")
 	public RadialDendrogram(String title) {
-		this(title, "Dendrograms are tree-like diagrams used to represent the distribution of a hierarchical clustering. The different depth levels represented by each node are visualized on the horizontal axes and it is useful to visualize a non-weighted hierarchy.<br />Based on <br /><a href='http://bl.ocks.org/mbostock/4063570'>http://bl.ocks.org/mbostock/4063570</a>", "Hierarchies", new ArrayList<ChartOption>() {
-			{
+		this(title,
+			"Dendrograms are tree-like diagrams used to represent the distribution of a hierarchical clustering. The different depth levels represented by each node are visualized on the horizontal axes and it is useful to visualize a non-weighted hierarchy.<br />Based on <br /><a href='http://bl.ocks.org/mbostock/4063570'>http://bl.ocks.org/mbostock/4063570</a>",
+			"Hierarchies",
+			new ArrayList<ChartOption>() {{
 				add(new ChartOption("Diameter", "Diameter of the circular representation.", 1000));
-			}
-		}, new TreeModel(Arrays.asList(new String[] { "hierarchy", "label" })), true);
+			}},
+			new TreeModel(Arrays.asList(new String[] { "hierarchy", "label" })),
+			false
+		);
 	}
 
 	/**
@@ -334,11 +339,11 @@ public class RadialDendrogram extends Chart {
 		double horizontalDiameter = halfSizeOfPointMarker.x * 2;
 		ElementLike boxGroup = new ElementLike("g");
 		// Edges: lines between points.
-		Iterator c = graph.edges();
+		Iterator graphChildEdges = graph.edges();
 		Edge edge = null;
-		while (c.hasNext()) {
+		while (graphChildEdges.hasNext()) {
 			//
-			edge = (Edge) c.next();
+			edge = (Edge) graphChildEdges.next();
 			//
 			Node source = graph.getSourceNode(edge);
 			Node target = graph.getTargetNode(edge);
@@ -380,9 +385,10 @@ public class RadialDendrogram extends Chart {
 			if (targetChildCount > 0) {
 				boolean targetChildCountIsOdd = targetChildCount % 2 == 1;
 				// P'2 can be represented exactly by the middle node.
+				int idx = targetChildCount / 2;
 				if (targetChildCountIsOdd) {
 					Node targetChild = null;
-					targetChild = target.getChild(targetChildCount / 2);
+					targetChild = target.getChild(idx);
 					VisualItem targetChildItem = visualization.getVisualItem("tree.nodes", targetChild);
 					tpx = targetChildItem.getX();
 					tpy = targetChildItem.getY();
@@ -391,8 +397,8 @@ public class RadialDendrogram extends Chart {
 				else {
 					Node targetChildA = null;
 					Node targetChildB = null;
-					targetChildA = target.getChild(targetChildCount / 2);
-					targetChildB = target.getChild(targetChildCount / 2 + 1);
+					targetChildA = target.getChild(idx - 1);
+					targetChildB = target.getChild(idx);
 					VisualItem targetChildItemA = visualization.getVisualItem("tree.nodes", targetChildA);
 					VisualItem targetChildItemB = visualization.getVisualItem("tree.nodes", targetChildB);
 					tpx = (targetChildItemA.getX() + targetChildItemB.getX()) / 2.0;
@@ -432,11 +438,11 @@ public class RadialDendrogram extends Chart {
 			boxGroup.child(line);
 		}
 		// Nodes: labels.
-		Iterator b = graph.nodes();
+		Iterator graphChildNodes = graph.nodes();
 		Node child = null;
-		while (b.hasNext()) {
+		while (graphChildNodes.hasNext()) {
 			//
-			child = (Node) b.next();
+			child = (Node) graphChildNodes.next();
 			double angleInDegrees = 0;
 			//
 			int count = child.getChildCount();
@@ -460,7 +466,6 @@ public class RadialDendrogram extends Chart {
 					angleInDegrees += 180;
 				}
 			}
-
 			//
 			VisualItem item = visualization.getVisualItem("tree", child);
 			RadialTreeLayout.Params params = (RadialTreeLayout.Params) item.get(RadialTreeLayout.PARAMS);
@@ -493,8 +498,7 @@ public class RadialDendrogram extends Chart {
 				text.attribute("style", "font-size: 20px; font-family: Arial, Helvetica;");
 				text.attribute("dy", "0.31em");
 				text.attribute("text-antialiasing", "true");
-				// text.attribute("dx", String.format("-%s", halfSizeOfPointMarker.x));
-
+				//
 				if (otherNodeA != null && otherNodeB != null) {
 					double mx = (otherNodeA.getX() + otherNodeB.getX()) / 2.0;
 					double my = (otherNodeA.getY() + otherNodeB.getY()) / 2.0;
