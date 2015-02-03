@@ -1,4 +1,3 @@
-http://stackoverflow.com/questions/4498866/actual-numbers-to-the-human-readable-values
 var SizePrefixes = ' KMGTPEZYXWVU';
 function GetHumanSize(size) {
   if(size <= 0) return '0';

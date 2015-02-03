@@ -240,10 +240,14 @@ function stripHttps(url) {
 // http://stackoverflow.com/questions/4498866/actual-numbers-to-the-human-readable-values/4506030#4506030 //
 var SizePrefixes = ' KMGTPEZYXWVU';
 
-function getHumanSize(size) {
-	if(size <= 0) return '0';
-	var t2 = Math.min(Math.round(Math.log(size)/Math.log(1024)), 12);
-	return (Math.round(size * 100 / Math.pow(1024, t2)) / 100) + SizePrefixes.charAt(t2).replace(' ', '') + 'B';
+function getHumanSize(bytes) {
+	var s = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'];
+    var e = Math.floor(Math.log(bytes) / Math.log(1024));
+    var result = (bytes / Math.pow(1024, e)).toFixed(2);
+    if (result.endsWith(".00")) {
+    	result = result.substring(0, result.length - 3);
+    }
+    return result + " " + s[e];
 }
 //http://stackoverflow.com/questions/4498866/actual-numbers-to-the-human-readable-values/4506030#4506030 //
 
@@ -290,7 +294,9 @@ function EventRegistry() {
 	this.unregister = function(fn) {
 		var len = o.registry.length;
 		while (len--) {
-			o.registry.splice(len, 1);
+			if (o.registry[len] == fn) {
+				o.registry.splice(len, 1);
+			}
 		}
 	};
 	
