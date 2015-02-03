@@ -325,6 +325,8 @@ LazyLoad.js([
 				example += "\"" + $(".__field" + fieldName).val() + "\"";
 			} else if (type.name.contains("Boolean")) {
 				example += "\"" + $(".__field" + fieldName).is(":checked") + "\"";
+			} else if (type.simpleName == "Set"){
+				example += JSON.stringify($(".__field" + fieldName).val().split(',').map(function(e){ return e.trim(); }).filter(function(e){ return e.length > 0;}));
 			} else if (type.name.contains("javax.activation.DataHandler")) {
 				example += "\"" + $(".__field" + fieldName).data("base64") + "\"";
 			} else if (type.name.contains("org.bimserver")) {

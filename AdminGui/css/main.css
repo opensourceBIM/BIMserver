@@ -3,6 +3,10 @@ a {
 	cursor: pointer;
 }
 
+.spaced {
+	margin: 9px;
+}
+
 .sidespan .tree ul li {
 	list-style: none;
 }
@@ -42,6 +46,16 @@ table .header {
 
 .linkspacer {
 	margin: 8px;
+}
+
+.threedviewTabs .btn.active, .threedviewTabs .btn:active {
+	webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.threedviewTabs label {
+	border: 0;
+	padding: 10px;
 }
 
 table.table-hover tr {
@@ -175,6 +189,10 @@ div.sidespan > div > ul {
 	z-index: 5000;
 }
 
+.sidespan .tree ul.rootnode {
+	padding-left: 0px;
+}
+
 .sidespan .tree ul {
 	padding-left: 10px;
 	padding-bottom: 0px;
@@ -182,18 +200,9 @@ div.sidespan > div > ul {
 	margin: 0;
 }
 
-ul.rootnode {
-	padding-left: 0px;
-}
-
 .nav-stacked {
 	width: 250px;
 	float: left;	
-}
-
-.indexcontainer {
-	padding-left: 20px;	
-	padding-right: 20px;	
 }
 
 .indexStatus {
@@ -332,7 +341,7 @@ div#viewport {
 	border-top: 0px;
 }
 
-.types .badge, .classifications .badge {
+.types .badge, .classifications .badge, .layers .badge {
 	background-color: #DDDDDD;
 }
 

@@ -6,6 +6,7 @@
 				<th>Description</th>
 				<th>Enabled</th>
 				<th class="defaultHeader">Default</th>
+				<th>Default Path</th>
 			</tr>
 		</thead>
 		<tbody></tbody>
@@ -32,6 +33,11 @@ function WebModules(main, serversettings) {
 		tr.append("<td>" + plugin.enabled + "</td>");
 		tr.append("<td><input name=\"default\" type=\"radio\"></td>");
 		tr.find("input").change(othis.setDefaultClick);
+		
+		Global.bimServerApi.call("PluginInterface", "getPluginSettings", {poid: plugin.oid}, function(settings){
+			tr.append("<td>" + settings.parameters[0].value.value + "</td>");
+		});
+		
 		if (othis.defaultModule != null && plugin.oid == othis.defaultModule.oid) {
 			tr.find("input").attr("checked", "checked");
 		}
