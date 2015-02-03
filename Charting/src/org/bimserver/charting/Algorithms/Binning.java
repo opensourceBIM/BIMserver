@@ -218,7 +218,7 @@ public class Binning {
 		// Indent row if y value is not even.
 		boolean pjIsNotEvenAtThisPoint = (Math.abs(pj % 2) == 1);
 		// "b" of distance formula.
-		double bOfWorldSpaceRoundingDeviation = py - pj;
+		//double bOfWorldSpaceRoundingDeviation = py - pj;
 		// Calculate world space x as a ratio to the delta x.
 		double px = worldSpacePoint.x() / Delta.x() - (pjIsNotEvenAtThisPoint ? .5 : 0);
 		// Derivisions from px.

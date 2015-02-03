@@ -74,6 +74,7 @@ public class Treemap extends Chart {
 		this("Treemap");
 	}
 
+	@SuppressWarnings("serial")
 	public Treemap(String title) {
 		this(
 			title,
@@ -161,10 +162,10 @@ public class Treemap extends Chart {
 	 * @param node
 	 */
 	public void iterateTreeSize(Visualization visualization, Graph graph) {
-		Iterator b = graph.nodes();
+		Iterator graphChildNodes = graph.nodes();
 		Node child = null;
-		while (b.hasNext()) {
-			child = (Node)b.next();
+		while (graphChildNodes.hasNext()) {
+			child = (Node)graphChildNodes.next();
 			VisualItem item = visualization.getVisualItem("tree", child);
 			// If it's a leaf, set its size. Don't set value otherwise.
 			if (child.getChildCount() == 0) {
@@ -188,11 +189,11 @@ public class Treemap extends Chart {
 			frc = new FontRenderContext(new AffineTransform(), false, true);
 		}
 		//
-		Iterator b = graph.nodes();
+		Iterator graphChildNodes = graph.nodes();
 		Node child = null;
 		ElementLike boxGroup = new ElementLike("g");
-		while (b.hasNext()) {
-			child = (Node)b.next();
+		while (graphChildNodes.hasNext()) {
+			child = (Node)graphChildNodes.next();
 			if (child.getChildCount() == 0) {
 				VisualItem item = visualization.getVisualItem("tree", child);
 				//
@@ -284,5 +285,5 @@ public class Treemap extends Chart {
 			m_bounds.setRect(item.getBounds());
 			return m_bounds;
 		}
-	} // end of inner class NodeRenderer
+	}
 }

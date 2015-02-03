@@ -19,6 +19,7 @@ package org.bimserver.charting;
 
 import java.util.Set;
 
+import org.bimserver.charting.ColorScales.LinearColorScale;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
@@ -33,7 +34,12 @@ public class IfcClassificationPackingChartSerializerPlugin extends AbstractSeria
 
 	@Override
 	public Serializer createSerializer(PluginConfiguration plugin) {
-		return new ClassificationPackingChartSerializer();
+		ClassificationPackingChartSerializer serializer = new ClassificationPackingChartSerializer();
+		serializer.title = getDefaultName();
+		serializer.addOption("Padding", 3);
+		serializer.addOption("Color Scale", new LinearColorScale());
+		serializer.addOption("Include Classification System", true);
+		return serializer;
 	}
 
 	@Override
