@@ -64,7 +64,6 @@ public class RootServlet extends HttpServlet {
 		try {
 			String requestUri = request.getRequestURI();
 			String servletContextPath = getServletContext().getContextPath();
-			LOGGER.info("SCP: " + servletContextPath);
 			if (requestUri.startsWith(servletContextPath)) {
 				requestUri = requestUri.substring(servletContextPath.length());
 			}

@@ -26,6 +26,7 @@
 		<antcall target="IfcPlugins" />
 		<antcall target="DemoPlugins" />
 		<antcall target="AdminGui" />
+		<antcall target="DefaultWebModule" />
 		<antcall target="MiscSerializers" />
 		<antcall target="BuildingSMARTLibrary" />
 		<antcall target="FileBasedObjectIDM" />
@@ -348,6 +349,46 @@
 		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-admingui.jar">
 			<fileset dir="builds/admingui"/>
+		</jar>
+	</target>
+	<target name="DefaultWebModule">
+		<mkdir dir="builds/defaultwebmodulePlugin" />
+		<javac destdir="builds/defaultwebmodule" debug="on" includeantruntime="false">
+			<src path="../../DefaultWebModulePlugin/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/defaultwebmodule/plugin"/>
+		<copy todir="builds/defaultwebmodule/plugin">
+			<fileset dir="../../DefaultWebModulePlugin/plugin"></fileset>
+		</copy>
+		<mkdir dir="builds/defaultwebmodule/css"/>
+		<copy todir="builds/defaultwebmodule/css">
+			<fileset dir="../../DefaultWebModulePlugin/css"></fileset>
+		</copy>
+		<mkdir dir="builds/defaultwebmodule/fonts"/>
+		<copy todir="builds/defaultwebmodule/fonts">
+			<fileset dir="../../DefaultWebModulePlugin/fonts"></fileset>
+		</copy>
+		<mkdir dir="builds/defaultwebmodule/js"/>
+		<copy todir="builds/defaultwebmodule/js">
+			<fileset dir="../../DefaultWebModulePlugin/js"></fileset>
+		</copy>
+		<mkdir dir="builds/defaultwebmodule/img"/>
+		<copy todir="builds/defaultwebmodule/img">
+			<fileset dir="../../DefaultWebModulePlugin/img"></fileset>
+		</copy>
+		<copy todir="builds/defaultwebmodule">
+			<fileset dir="../../DefaultWebModulePlugin">
+				<include name="*.html"/>
+			</fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-defaultwebmodule.jar">
+			<fileset dir="builds/defaultwebmodule"/>
 		</jar>
 	</target>
 	<target name="Collada">
