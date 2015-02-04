@@ -53,7 +53,7 @@ public class DefaultWebModulePlugin extends AbstractWebModulePlugin {
 	
 	@Override
 	public String getSubDir() {
-		return "www/";
+		return "";
 	}
 	
 	@Override
