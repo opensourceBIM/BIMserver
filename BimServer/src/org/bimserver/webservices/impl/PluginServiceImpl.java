@@ -58,9 +58,7 @@ import org.bimserver.database.actions.GetRenderEngineByNameDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByIdDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByNameDatabaseAction;
-import org.bimserver.database.actions.ServerSettingsSetter;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
-import org.bimserver.database.actions.SetServerSettingDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
 import org.bimserver.database.actions.UpdateDatabaseAction;
 import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
@@ -109,7 +107,6 @@ import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SerializerPluginConfiguration;
-import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.WebModulePluginConfiguration;
@@ -914,19 +911,10 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public void setDefaultWebModule(final Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			final WebModulePluginConfiguration defaultWebModule = session.get(StorePackage.eINSTANCE.getWebModulePluginConfiguration(), oid, Query.getDefault());
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
-				@Override
-				public void set(ServerSettings serverSettings) {
-					serverSettings.setWebModule(defaultWebModule);
-				}});
-			session.executeAndCommitAction(action);
-		} catch (BimserverDatabaseException e) {
+			getBimServer().getWebModuleManager().setDefault(oid);
+		} catch (Exception e) {
 			handleException(e);
-		} finally {
-			session.close();
 		}
 	}
 

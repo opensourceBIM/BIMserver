@@ -1,6 +1,5 @@
 package org.bimserver.servlets.websockets.jsr356;
 
-import java.io.IOException;
 import java.io.StringReader;
 import java.nio.ByteBuffer;
 

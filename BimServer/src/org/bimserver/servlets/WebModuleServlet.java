@@ -49,7 +49,7 @@ public class WebModuleServlet extends HttpServlet {
 			} else if (request.getRequestURI().endsWith(".gif")) {
 				response.setContentType("image/gif");
 			}
-			webModule.service(request, response);
+			webModule.service(request.getRequestURI(), response);
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 		}

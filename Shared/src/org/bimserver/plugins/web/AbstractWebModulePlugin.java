@@ -28,7 +28,6 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
@@ -71,41 +70,41 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	}
 	
 	@Override
-	public boolean service(HttpServletRequest request, HttpServletResponse response) {
+	public boolean service(String requestUri, HttpServletResponse response) {
 		try {
-			String path = request.getRequestURI();
-			if (path.startsWith(getDefaultContextPath())) {
-				path = path.substring(getDefaultContextPath().length());
+			if (requestUri.startsWith(getDefaultContextPath())) {
+				requestUri = requestUri.substring(getDefaultContextPath().length());
 			}
-			if (path == null || path.equals("")) {
-				response.sendRedirect(request.getContextPath() + getDefaultContextPath() + "/");
-			} else if (path.equals("/")) {
-				path = "index.html";
+			while (requestUri.startsWith("/")) {
+				requestUri = requestUri.substring(1);
 			}
-			if (path.startsWith("/")) {
-				path = path.substring(1);
+			if (requestUri.equals("")) {
+				requestUri = "index.html";
 			}
-			if (path.endsWith("plugin.version")) {
+			if (requestUri.endsWith("plugin.version")) {
 				if (getPluginContext().getPluginType() == PluginSourceType.INTERNAL) {
 					// Probably the default plugin
 					return false;
 				} else if (getPluginContext().getPluginType() == PluginSourceType.ECLIPSE_PROJECT) {
 					// We don't want to cache in Eclipse, because we change files without changing the plugin version everytime
-					response.getOutputStream().write(("{\"version\":\"" + System.nanoTime() + "\"}").getBytes(Charsets.UTF_8));
+					response.getOutputStream().write(("{\"version\":\"" + getIdentifier() + "-" + System.nanoTime() + "\"}").getBytes(Charsets.UTF_8));
 					return true;
 				} else if (getPluginContext().getPluginType() == PluginSourceType.JAR_FILE) {
-					response.getOutputStream().write(("{\"version\":\"" + getVersion() + "\"}").getBytes(Charsets.UTF_8));
+					response.getOutputStream().write(("{\"version\":\"" + getIdentifier() + "-" + getVersion() + "\"}").getBytes(Charsets.UTF_8));
 					return true;
 				}
 			}
-			response.setHeader("Expires", FAR_FUTURE_EXPIRE_DATE);
-			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(getSubDir() + path);
+			if (!requestUri.equals("index.html")) {
+				response.setHeader("Expires", FAR_FUTURE_EXPIRE_DATE);
+			}
+			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(getSubDir() + requestUri);
 //			LOGGER.info("Getting " + getSubDir() + path + " results in: " + resourceAsInputStream);
 			if (resourceAsInputStream != null) {
 				IOUtils.copy(resourceAsInputStream, response.getOutputStream());
 				resourceAsInputStream.close();
 				return true;
 			} else {
+				LOGGER.info("Not found: " + getSubDir() + requestUri + " in " + getClass().getSimpleName());
 				return false;
 			}
 		} catch (FileNotFoundException e) {
@@ -119,6 +118,12 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	public String getSubDir() {
 		return "";
 	}
+	
+	
+	/**
+	 * @return An identifier for this specific WebModule that will be used in the version-string that can be used for caching purposes
+	 */
+	public abstract String getIdentifier();
 	
 	/**
 	 * @return The context path on which to serve this webmodule

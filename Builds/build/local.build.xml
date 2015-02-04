@@ -6,7 +6,7 @@
 	<property name="version" value="${majorversion}.${minorversion}.${revisionversion}-${type}-${revisiondate}"/>
 
 	<target name="war">
-		<ant antfile="bimserver.build.xml" target="Build War"/>
+		<ant antfile="bimserver.build.xml" target="Build War Tomcat7"/>
 	</target>
 	<target name="jar">
 		<ant antfile="bimserver.build.xml" target="Build Jar"/>
