@@ -19,7 +19,6 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +27,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
-import org.bimserver.plugins.web.WebModulePlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -111,27 +109,28 @@ public class RootServlet extends HttpServlet {
 				} else {
 					LOGGER.info("No default web module");
 				}
+				String modulePath = requestUri;
+				if (modulePath.indexOf("/", 1) != -1) {
+					modulePath = modulePath.substring(0, modulePath.indexOf("/", 1));
+				}
+				if (bimServer.getWebModules().containsKey(modulePath)) {
+					LOGGER.info("Sub path: " + modulePath + " found");
+					String substring = requestUri.substring(modulePath.length());
+					LOGGER.info(substring);
+					if (bimServer.getWebModules().get(modulePath).service(substring, response)) {
+						return;
+					}
+				} else {
+					LOGGER.info("Sub path: " + modulePath + " NOT found");
+				}
 				if (bimServer.getDefaultWebModule() != null) {
 					if (bimServer.getDefaultWebModule().service(requestUri, response)) {
 						return;
 					}
 				}
-				if (bimServer.getWebModules() != null) {
-					for (Entry<String, WebModulePlugin> entry : bimServer.getWebModules().entrySet()) {
-						if (requestUri != null && entry.getValue() != null && requestUri.startsWith(entry.getKey())) {
-							if (entry.getValue().service(requestUri, response)) {
-								return;
-							}
-						}
-					}
-				}
-				if (bimServer.getDefaultWebModule() != null) {
-					if (bimServer.getDefaultWebModule().service(requestUri, response)) {
-						return;
-					}
-				}
-
-				InputStream resourceAsStream = getServletContext().getResourceAsStream(request.getRequestURI());
+				
+				LOGGER.info("Trying local resource: " + requestUri);
+				InputStream resourceAsStream = getServletContext().getResourceAsStream(requestUri);
 				if (resourceAsStream != null) {
 					IOUtils.copy(resourceAsStream, response.getOutputStream());
 				} else {

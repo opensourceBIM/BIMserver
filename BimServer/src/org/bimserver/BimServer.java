@@ -714,11 +714,17 @@ public class BimServer {
 					serverSettings.getWebModules().add(webPluginConfiguration);
 					genericPluginConversion(session, webModulePlugin, webPluginConfiguration, getPluginDescriptor(session, webModulePlugin.getClass().getName()));
 				}
-				if (serverSettings.getWebModule() == null && webModulePlugin.getClass().getName().equals("org.bimserver.bimviews.BimViewsWebModulePlugin")) {
-					serverSettings.setWebModule(webPluginConfiguration);
-				}
-				if (serverSettings.getWebModule() == null && webModulePlugin.getClass().getName().equals("org.bimserver.DefaultWebModulePlugin")) {
-					serverSettings.setWebModule(webPluginConfiguration);
+				if (webPluginConfiguration == serverSettings.getWebModule()) {
+					setDefaultWebModule(webModulePlugin);
+				} else {
+					if (webModulePlugin.getClass().getName().equals("org.bimserver.bimviews.BimViewsWebModulePlugin")) {
+						serverSettings.setWebModule(webPluginConfiguration);
+						setDefaultWebModule(webModulePlugin);
+					}
+					if (webModulePlugin.getClass().getName().equals("org.bimserver.defaultwebmodule.DefaultWebModulePlugin")) {
+						serverSettings.setWebModule(webPluginConfiguration);
+						setDefaultWebModule(webModulePlugin);
+					}
 				}
 			}
 			session.store(serverSettings);

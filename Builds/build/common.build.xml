@@ -352,7 +352,7 @@
 		</jar>
 	</target>
 	<target name="DefaultWebModule">
-		<mkdir dir="builds/defaultwebmodulePlugin" />
+		<mkdir dir="builds/defaultwebmodule" />
 		<javac destdir="builds/defaultwebmodule" debug="on" includeantruntime="false">
 			<src path="../../DefaultWebModulePlugin/src" />
 			<classpath>
