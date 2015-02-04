@@ -43,7 +43,6 @@ public class RootServlet extends HttpServlet {
 	private JsonApiServlet jsonApiServlet;
 	private UploadServlet uploadServlet;
 	private DownloadServlet downloadServlet;
-
 	private BimServer bimServer;
 
 	@Override
@@ -64,9 +63,10 @@ public class RootServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String requestUri = request.getRequestURI();
-			String servletContextName = getServletContext().getServletContextName();
-			if (requestUri.startsWith("/" + servletContextName)) {
-				requestUri = requestUri.substring(servletContextName.length() + 1);
+			String servletContextPath = getServletContext().getContextPath();
+			LOGGER.info("SCP: " + servletContextPath);
+			if (requestUri.startsWith(servletContextPath)) {
+				requestUri = requestUri.substring(servletContextPath.length());
 			}
 			if (requestUri == null) {
 				LOGGER.error("RequestURI is null");
@@ -108,21 +108,26 @@ public class RootServlet extends HttpServlet {
 					requestUri = "/index.html";
 				}
 				if (bimServer.getDefaultWebModule() != null) {
-					if (bimServer.getDefaultWebModule().service(request, response)) {
+					LOGGER.info("" + bimServer.getDefaultWebModule());
+				} else {
+					LOGGER.info("No default web module");
+				}
+				if (bimServer.getDefaultWebModule() != null) {
+					if (bimServer.getDefaultWebModule().service(requestUri, response)) {
 						return;
 					}
 				}
 				if (bimServer.getWebModules() != null) {
 					for (Entry<String, WebModulePlugin> entry : bimServer.getWebModules().entrySet()) {
 						if (requestUri != null && entry.getValue() != null && requestUri.startsWith(entry.getKey())) {
-							if (entry.getValue().service(request, response)) {
+							if (entry.getValue().service(requestUri, response)) {
 								return;
 							}
 						}
 					}
 				}
 				if (bimServer.getDefaultWebModule() != null) {
-					if (bimServer.getDefaultWebModule().service(request, response)) {
+					if (bimServer.getDefaultWebModule().service(requestUri, response)) {
 						return;
 					}
 				}

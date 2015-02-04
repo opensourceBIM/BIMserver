@@ -39,7 +39,7 @@ public class CopyAdminAndBIMsieInterface {
 	public static void main(String[] args) {
 		CopyAdminAndBIMsieInterface copyAdminAndBIMsieInterface = new CopyAdminAndBIMsieInterface();
 		copyAdminAndBIMsieInterface.copyAdminInterface();
-		copyAdminAndBIMsieInterface.copyBimsieInterface();
+//		copyAdminAndBIMsieInterface.copyBimsieInterface();
 	}
 
 	private void copyBimsieInterface() {

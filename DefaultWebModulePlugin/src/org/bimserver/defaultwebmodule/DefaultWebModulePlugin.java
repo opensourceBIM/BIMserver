@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.defaultwebmodule;
 
 /******************************************************************************
  * Copyright (C) 2009-2014  BIMserver.org

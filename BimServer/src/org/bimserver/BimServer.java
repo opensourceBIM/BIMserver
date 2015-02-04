@@ -190,6 +190,7 @@ public class BimServer {
 	private OpenIdManager openIdManager;
 	private MetaDataManager metaDataManager;
 	private SchemaConverterManager schemaConverterManager = new SchemaConverterManager();
+	private WebModuleManager webModuleManager;
 
 	/**
 	 * Create a new BIMserver
@@ -332,8 +333,7 @@ public class BimServer {
 						}
 					}
 				});
-				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
-				pluginManager.loadPlugin(WebModulePlugin.class, "Internal", "Internal", new DefaultWebModulePlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
+				pluginManager.loadPlugin(ObjectIDMPlugin.class, new File(".").getAbsolutePath(), "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
@@ -402,6 +402,8 @@ public class BimServer {
 			
 			serverInfoManager.init(this);
 
+			webModuleManager = new WebModuleManager(this);
+			
 			jsonHandler = new JsonHandler(this);
 			
 			serializerFactory = new SerializerFactory();
@@ -457,7 +459,7 @@ public class BimServer {
 			serverInfoManager.setErrorMessage(e.getMessage());
 		}
 	}
-
+	
 	public SecretKeySpec getEncryptionKey() {
 		return encryptionkey;
 	}
@@ -776,6 +778,10 @@ public class BimServer {
 			throw new BimserverDatabaseException(e);
 		}
 	}
+	
+	public WebModuleManager getWebModuleManager() {
+		return webModuleManager;
+	}
 
 	private Class<?> getPluginInterfaceClass(Plugin plugin) {
 		for (Class<?> pluginInterface : plugin.getClass().getInterfaces()) {
@@ -832,6 +838,10 @@ public class BimServer {
 		return longActionManager;
 	}
 
+	public void setDefaultWebModule(WebModulePlugin defaultWebModule) {
+		this.defaultWebModule = defaultWebModule;
+	}
+	
 	private void fixLogging() throws IOException {
 		File file = new File(config.getHomeDir(), "logs/bimserver.log");
 		CustomFileAppender appender = new CustomFileAppender(file);
