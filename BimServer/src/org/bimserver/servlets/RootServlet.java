@@ -104,9 +104,7 @@ public class RootServlet extends HttpServlet {
 				if (requestUri.equals("") || requestUri.equals("/") || requestUri == null) {
 					requestUri = "/index.html";
 				}
-				if (bimServer.getDefaultWebModule() != null) {
-					LOGGER.info("" + bimServer.getDefaultWebModule());
-				} else {
+				if (bimServer.getDefaultWebModule() == null) {
 					LOGGER.info("No default web module");
 				}
 				String modulePath = requestUri;
@@ -114,9 +112,7 @@ public class RootServlet extends HttpServlet {
 					modulePath = modulePath.substring(0, modulePath.indexOf("/", 1));
 				}
 				if (bimServer.getWebModules().containsKey(modulePath)) {
-					LOGGER.info("Sub path: " + modulePath + " found");
 					String substring = requestUri.substring(modulePath.length());
-					LOGGER.info(substring);
 					if (bimServer.getWebModules().get(modulePath).service(substring, response)) {
 						return;
 					}
