@@ -116,8 +116,6 @@ public class RootServlet extends HttpServlet {
 					if (bimServer.getWebModules().get(modulePath).service(substring, response)) {
 						return;
 					}
-				} else {
-					LOGGER.info("Sub path: " + modulePath + " NOT found");
 				}
 				if (bimServer.getDefaultWebModule() != null) {
 					if (bimServer.getDefaultWebModule().service(requestUri, response)) {
@@ -125,7 +123,6 @@ public class RootServlet extends HttpServlet {
 					}
 				}
 				
-				LOGGER.info("Trying local resource: " + requestUri);
 				InputStream resourceAsStream = getServletContext().getResourceAsStream(requestUri);
 				if (resourceAsStream != null) {
 					IOUtils.copy(resourceAsStream, response.getOutputStream());
