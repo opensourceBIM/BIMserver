@@ -457,7 +457,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 							EClass referenceEClass = referencedObject.eClass();
 							if (((EClass) structuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
 								while (list.size() <= index) {
-									list.addUnique(getPackageMetaData().create(referenceEClass));
+									list.addUnique(referencedObject);
 								}
 								list.setUnique(index, referencedObject);
 							} else {
@@ -581,30 +581,30 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 		if (classifier != null) {
 			if (classifier instanceof EClassImpl) {
 				if (null != ((EClassImpl) classifier).getEStructuralFeature(WRAPPED_VALUE)) {
-					IdEObject create = (IdEObject) getPackageMetaData().create((EClass) classifier);
-					Class<?> instanceClass = create.eClass().getEStructuralFeature(WRAPPED_VALUE).getEType().getInstanceClass();
+					IdEObject newObject = (IdEObject) getPackageMetaData().create((EClass) classifier);
+					Class<?> instanceClass = newObject.eClass().getEStructuralFeature(WRAPPED_VALUE).getEType().getInstanceClass();
 					if (value.equals("")) {
 
 					} else {
 						if (instanceClass == Integer.class || instanceClass == int.class) {
 							try {
-								create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Integer.parseInt(value));
+								newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), Integer.parseInt(value));
 							} catch (NumberFormatException e) {
 								throw new DeserializeException(lineNumber, value + " is not a valid integer value");
 							}
 						} else if (instanceClass == Long.class || instanceClass == long.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Long.parseLong(value));
+							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), Long.parseLong(value));
 						} else if (instanceClass == Boolean.class || instanceClass == boolean.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), value.equals(".T."));
+							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), value.equals(".T."));
 						} else if (instanceClass == Double.class || instanceClass == double.class) {
 							try {
-								create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Double.parseDouble(value));
+								newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), Double.parseDouble(value));
 							} catch (NumberFormatException e) {
 								throw new DeserializeException(lineNumber, value + " is not a valid double floating point number");
 							}
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE + "AsString"), value);
+							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE + "AsString"), value);
 						} else if (instanceClass == String.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), readString(value));
+							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), readString(value));
 						} else if (instanceClass.getName().equals("Tristate")) {
 							Object tristate = null;
 							if (value.equals(".T.")) {
@@ -614,10 +614,10 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 							} else if (value.equals(".U.")) {
 								tristate = getPackageMetaData().getEEnumLiteral("Tristate", "UNDEFINED");
 							}
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), tristate);
+							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), tristate);
 						}
 					}
-					return create;
+					return newObject;
 				} else {
 					return processInline(classifier, value);
 				}
