@@ -1718,10 +1718,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		buffer.putShort(cid);
 		IdEObject idEObject = (IdEObject) value;
 		if (idEObject.getOid() < 0) {
-			LOGGER.warn("Writing a reference with oid " + idEObject.getOid() + ", this is not supposed to happen, referenced: " + idEObject.getOid() + " " + value + " from " + object.getOid() + " " + object);
-			((IdEObjectImpl) idEObject).setOid(newOid(idEObject.eClass()));
-			((IdEObjectImpl) idEObject).setPid(object.getPid());
-			((IdEObjectImpl) idEObject).setRid(object.getRid());
+			throw new BimserverDatabaseException("Writing a reference with oid " + idEObject.getOid() + ", this is not supposed to happen, referenced: " + idEObject.getOid() + " " + value + " from " + object.getOid() + " " + object);
 		}
 		buffer.putLong(idEObject.getOid());
 	}

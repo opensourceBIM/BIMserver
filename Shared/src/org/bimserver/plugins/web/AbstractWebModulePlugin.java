@@ -104,7 +104,6 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 				resourceAsInputStream.close();
 				return true;
 			} else {
-				LOGGER.info("Not found: " + getSubDir() + requestUri + " in " + getClass().getSimpleName());
 				return false;
 			}
 		} catch (FileNotFoundException e) {
