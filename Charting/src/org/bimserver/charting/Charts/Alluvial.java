@@ -84,6 +84,7 @@ public class Alluvial extends Chart {
 		double height = (hasOption("Height")) ? (int)getOptionValue("Height") : 500;
 		double nodeWidth = (hasOption("Node Width")) ? ((Number)getOptionValue("Node Width")).doubleValue() : 5;
 		double nodePadding = (hasOption("Node Padding")) ? ((Number)getOptionValue("Node Padding")).doubleValue() : 8;
+		double heightPadding = nodePadding;
 		int iterationLimit = (hasOption("Iteration Limit")) ? ((Number)getOptionValue("Iteration Limit")).intValue() : 32;
 		String sort = (hasOption("Sort")) ? (String)getOptionValue("Sort") : "name";
 		// Derived.
@@ -134,7 +135,8 @@ public class Alluvial extends Chart {
 			}
 		}
 		//
-		Sankey layoutEngine = new Sankey(nodes, links, iterationLimit, nodeWidth, nodePadding, width, height);
+		double heightMinusPadding = height - 2 * heightPadding;
+		Sankey layoutEngine = new Sankey(nodes, links, iterationLimit, nodeWidth, nodePadding, width, heightMinusPadding);
 		layoutEngine.layout();
 		// Count nodes that exist as sources.
 		int nodesUsedAsSources = 0;
@@ -150,7 +152,7 @@ public class Alluvial extends Chart {
 			double sum = 0.0;
 			for (SankeyNode node : nodesInGroup)
 				sum += node.Delta.y() + nodePadding;
-			double y = (height - sum) / 2.0 + nodePadding / 2.0;
+			double y = heightPadding + (heightMinusPadding - sum) / 2.0 + nodePadding / 2.0;
 			// Do sort.
 			if (sort.equals("name"))
 				Collections.sort(nodesInGroup, SankeyNode.ascendingName);
