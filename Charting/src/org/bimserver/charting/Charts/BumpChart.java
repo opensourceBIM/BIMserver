@@ -181,7 +181,7 @@ public class BumpChart extends Chart {
 				Vector2d textOffset = layout.getTextOffset(subChartIndex);
 				// Get anchor.
 				double horizontalOffsetPercent = Math.round(textOffset.x() / layout.xExtent.WorldSpaceEnd * 100);
-				String anchor = (horizontalOffsetPercent > 90) ? "end" : (horizontalOffsetPercent < 10) ? "start" : "middle";
+				String anchor = (horizontalOffsetPercent > 90) ? "end" : (horizontalOffsetPercent < 20) ? "start" : "middle";
 				// Add text element.
 				ElementLike text = new ElementLike("text");
 				text.attribute("dy", "0.5ex");

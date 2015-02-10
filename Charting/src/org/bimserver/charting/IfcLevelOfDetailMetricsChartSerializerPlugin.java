@@ -27,22 +27,24 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 
-public class IfcMaterialUsageChartSerializerPlugin extends AbstractSerializerPlugin {
+public class IfcLevelOfDetailMetricsChartSerializerPlugin extends AbstractSerializerPlugin {
 
 	private boolean initialized = false;
 
 	@Override
 	public Serializer createSerializer(PluginConfiguration plugin) {
-		MaterialUsageChartSerializer serializer = new MaterialUsageChartSerializer();
+		LevelOfDetailMetricsChartSerializer serializer = new LevelOfDetailMetricsChartSerializer();
 		serializer.title = getDefaultName();
-		serializer.addOption("Width", 1500);
-		serializer.addOption("Use Same Scale", true);
+		serializer.addOption("Width", 1000);
+		serializer.addOption("Height", 750);
+		serializer.addOption("Sort", "none");
+		serializer.addOption("Detail Mode", LevelOfDetailMetricsChartSerializer.DetailMode.Everything);
 		return serializer;
 	}
 
 	@Override
 	public boolean needsGeometry() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -57,12 +59,12 @@ public class IfcMaterialUsageChartSerializerPlugin extends AbstractSerializerPlu
 
 	@Override
 	public String getDescription() {
-		return "IFC Material Usage by Volume Chart (SVG)";
+		return "IFC Level of Detail Metrics Chart (SVG)";
 	}
 
 	@Override
 	public String getDefaultName() {
-		return "IFC Material Usage Chart";
+		return "IFC Level of Detail Metrics Chart";
 	}
 
 	@Override
