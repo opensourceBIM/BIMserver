@@ -57,7 +57,7 @@ public class IfcMaterialUsageOwnScaleChartSerializerPlugin extends AbstractSeria
 
 	@Override
 	public String getDescription() {
-		return "IFC Material Usage Area with Own Scale Chart (SVG)";
+		return "IFC Material Usage by Volume with Own Scale Chart (SVG)";
 	}
 
 	@Override

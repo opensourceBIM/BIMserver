@@ -402,6 +402,153 @@ public class SupportFunctions {
 		return materialName;
 	}
 
+	public static ArrayList<LinkedHashMap<String, Object>> getIfcMaterialsByNameWithTreeStructure(String structureKeyword, IfcModelInterface model, Chart chart, MutableInteger subChartCount) {
+		// Derive the column name.
+		String leafColumnName = structureKeyword;
+		// Update the chart configuration.
+		chart.setDimensionLookupKey(structureKeyword, leafColumnName);
+		chart.setDimensionLookupKey("date", "date");
+		chart.setDimensionLookupKey("size", "size");
+		// Prepare to iterate the relationships.
+		LinkedHashMap<String, ArrayList<Double>> materialNameWithSizes = new LinkedHashMap<>(); 
+		// Iterate only the relationships.
+		for (IfcRelAssociatesMaterial ifcRelAssociatesMaterial : model.getAllWithSubTypes(IfcRelAssociatesMaterial.class))
+		{
+			// IfcMaterialSelect: IfcMaterial, IfcMaterialList, IfcMaterialLayerSetUsage, IfcMaterialLayerSet, IfcMaterialLayer.
+			IfcMaterialSelect materialLike = ifcRelAssociatesMaterial.getRelatingMaterial();
+			// If there was a material-like object, sum the names of what it decomposes into across X individually.
+			if (materialLike != null) {
+				// First, get size data from IFC products.
+				ArrayList<Double> sizes = new ArrayList<>();
+				// Iterate objects.
+				EList<IfcRoot> ifcRoots = ifcRelAssociatesMaterial.getRelatedObjects();
+				for (IfcRoot ifcRoot : ifcRoots) {
+					Double size = 0.0;
+					if (ifcRoot instanceof IfcObjectDefinition) {
+						IfcObjectDefinition ifcObjectDefinition = (IfcObjectDefinition)ifcRoot;
+						if (ifcObjectDefinition instanceof IfcObject) {
+							IfcObject ifcObject = (IfcObject)ifcObjectDefinition;
+							if (ifcObject instanceof IfcProduct) {
+								IfcProduct ifcProduct = (IfcProduct)ifcObject;
+								Double volume = getRoughVolumeEstimateFromIfcProduct(ifcProduct);
+								size = volume;
+							}
+						}
+					}
+					if (size != null && size > 0)
+						sizes.add(size);
+				}
+				// Get material names with percentages, like: Material Name -> 0.5
+				LinkedHashMap<String, Double> materials = getNameOfMaterialsFromMaterialLikeWithPercents(materialLike, false);
+				// Second, iterate materials, realizing the percentage of the sizes onto the collection of sizes for each material name.
+				for (Entry<String, Double> materialEntry : materials.entrySet()) {
+					String materialName = materialEntry.getKey();
+					Double percent = materialEntry.getValue();
+					// Use material name if available. Otherwise, use OID of top-level material-like object.
+					String name = (materialName != null) ? materialName : String.format("%d", materialLike.getOid());
+					// Add entry if it doesn't exist.
+					if (!materialNameWithSizes.containsKey(name))
+						materialNameWithSizes.put(name, new ArrayList<Double>());
+					ArrayList<Double> theseSizes = materialNameWithSizes.get(name);
+					// Get existing size data.
+					if (percent != null && percent > 0) {
+						// If not alteration is required, clone into the stack.
+						if (percent == 1.0)
+							theseSizes.addAll(sizes);
+						// Otherwise, realize the percent of the size.
+						else
+							for (Double size : sizes)
+								theseSizes.add(size * percent);
+					}
+				}
+			}
+		}
+		//
+		subChartCount.setValue(materialNameWithSizes.size());
+		//
+		ArrayList<LinkedHashMap<String, Object>> rawData = new ArrayList<>();
+		//
+		for (Entry<String, ArrayList<Double>> entry : materialNameWithSizes.entrySet()) {
+			String name = entry.getKey();
+			// Get existing size data.
+			ArrayList<Double> sizes = materialNameWithSizes.get(name);
+			// Sort, value ascending.
+			Collections.sort(sizes, sortSmallerValuesToFront);
+			sizes.add(0, 0.0);
+			if (sizes.size() == 1)
+				sizes.add(0, 0.0);
+			// Count including empty first entry.
+			double count = Math.max(1, sizes.size() - 1);
+			double step = 10000.0 / count;
+			double runningSize = 0.0;
+			// Add sum of zero at entry zero.
+			int i = 0;
+			// Iterate objects, summing them across 0 to 10000 (an arbitrary range, a way to relate to other sums along X).
+			for (Double size : sizes) {
+				double someMeasurement = (size != null) ? size : 0.0;
+				runningSize += someMeasurement;
+				// Prepare to store this raw data entry.
+				LinkedHashMap<String, Object> dataEntry = new LinkedHashMap<>();
+				// Name the group.
+				dataEntry.put(leafColumnName, name);
+				dataEntry.put("date", i * step);
+				dataEntry.put("size", runningSize);
+				// Push the entry into the data pool.
+				rawData.add(dataEntry);
+				//
+				i += 1;
+			}
+		}
+		// Send it all back.
+		return rawData;
+	}
+
+	public static LinkedHashMap<String, Double> getNameOfMaterialsFromMaterialLikeWithPercents(IfcMaterialSelect materialLike, boolean includeIfcMaterialOID) {
+		// Prepare a place to store materials, like: Material Name -> 1.0
+		LinkedHashMap<String, Double> parts = new LinkedHashMap<>();
+		//
+		if (materialLike instanceof IfcMaterial) {
+			IfcMaterial ifcMaterial = (IfcMaterial)materialLike;
+			String materialName = ifcMaterial.getName();
+			if (includeIfcMaterialOID)
+				materialName += String.format(" (%d)", ifcMaterial.getOid());
+			// Material is 100% of the composition.
+			parts.put(materialName, 1.0);
+		} else if (materialLike instanceof IfcMaterialList) {
+			IfcMaterialList ifcMaterialList = (IfcMaterialList)materialLike;
+			for (IfcMaterial ifcMaterial : ifcMaterialList.getMaterials()) {
+				String thisName = getNameOfMaterialsFromMaterialLike(ifcMaterial, includeIfcMaterialOID, false);
+				// Pretend each material is 100% of the composition, because it was intentionally not specified. 
+				parts.put(thisName, 1.0);
+			}
+		} else if (materialLike instanceof IfcMaterialLayerSetUsage) {
+			IfcMaterialLayerSetUsage ifcMaterialLayerSetUsage = (IfcMaterialLayerSetUsage)materialLike;
+			IfcMaterialLayerSet ifcMaterialLayerSet = ifcMaterialLayerSetUsage.getForLayerSet();
+			return getNameOfMaterialsFromMaterialLikeWithPercents(ifcMaterialLayerSet, includeIfcMaterialOID);
+		} else if (materialLike instanceof IfcMaterialLayerSet) {
+			IfcMaterialLayerSet ifcMaterialLayerSet = (IfcMaterialLayerSet)materialLike;
+			ArrayList<String> materials = new ArrayList<>();
+			ArrayList<Double> thicknesses = new ArrayList<>();
+			double thicknessSum = 0.0;
+			for (IfcMaterialLayer ifcMaterialLayer : ifcMaterialLayerSet.getMaterialLayers()) {
+				String thisName = getNameOfMaterialsFromMaterialLike(ifcMaterialLayer.getMaterial(), includeIfcMaterialOID, false);
+				materials.add(thisName);
+				//
+				double layerThickness = ifcMaterialLayer.getLayerThickness();
+				thicknesses.add(layerThickness);
+				thicknessSum += layerThickness;
+			}
+			// Calculate percentages and add the materials.
+			for (int i = 0; i < materials.size(); i++) {
+				double thisPercent = (thicknessSum > 0) ? thicknesses.get(i) / thicknessSum : 0;
+				parts.put(materials.get(i), thisPercent);
+			}
+		} else if (materialLike instanceof IfcMaterialLayer) {
+			IfcMaterialLayer ifcMaterialLayer = (IfcMaterialLayer)materialLike;
+			return getNameOfMaterialsFromMaterialLikeWithPercents(ifcMaterialLayer.getMaterial(), includeIfcMaterialOID);
+		}
+		return parts;
+	}
 
 	public static ArrayList<LinkedHashMap<String, Object>> getIfcByClassificationReferenceWithTreeStructure(String structureKeyword, IfcModelInterface model, Chart chart, boolean includeClassificationSystem) {
 		ArrayList<LinkedHashMap<String, Object>> rawData = new ArrayList<>();

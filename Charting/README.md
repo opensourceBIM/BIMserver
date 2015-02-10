@@ -81,3 +81,15 @@ IFC material-like objects (IfcMaterialSelect) are related to a running summation
 ![Material Usage](./readme%20images/Material%20Usage,%20Own%20Scale.png?raw=true)
 
 IFC material-like objects (IfcMaterialSelect) are related to a running summation of the volume of the IFC objects they're assigned to. The volumes exist on their own scale.
+
+#### IFC Raw Material Usage
+
+![Raw Material Usage](./readme%20images/Raw%20Material%20Usage.png?raw=true)
+
+Individual IFC material objects are related to a running summation of the volume of the IFC objects they're assigned to. The volumes exist on the same scale.
+
+#### IFC Level of Detail Metrics
+
+![Level of Detail Metrics](./readme%20images/Level%20of%20Detail%20Metrics.png?raw=true)
+
+IFC data is inspected to yield data relating to how many objects and triangles exist per cubic meter in a given project.
