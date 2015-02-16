@@ -52,9 +52,9 @@ public class PerformanceTestIfcStepSerializer {
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
-			PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
+			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
-			IfcModel model = new IfcModel(packageMetaData);
+			IfcModel model = new IfcModel(packageMetaData, null);
 			EList<EClassifier> classifiers = Ifc2x3tc1Package.eINSTANCE.getEClassifiers();
 			for (int i=0; i<100000; i++) {
 				EClassifier eClassifier = classifiers.get(new Random().nextInt(classifiers.size()));
@@ -71,7 +71,7 @@ public class PerformanceTestIfcStepSerializer {
 			}
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
 			long start = System.nanoTime();
-			serializer.writeToFile(new File("output/test.ifc"));
+			serializer.writeToFile(new File("output/test.ifc"), null);
 			System.out.println("Serialize took: " + ((System.nanoTime() - start) / 1000000) + "ms");
 		} catch (PluginException e) {
 			e.printStackTrace();

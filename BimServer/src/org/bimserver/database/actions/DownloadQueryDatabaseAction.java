@@ -67,7 +67,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
 			QueryEnginePluginConfiguration queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), qeid, Query.getDefault());
 			Revision revision = session.get(roid, Query.getDefault());
-			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(revision.getProject().getSchema());
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 			if (queryEngineObject != null) {
 				QueryEnginePlugin queryEnginePlugin = getBimServer().getPluginManager().getQueryEngine(queryEngineObject.getPluginDescriptor().getPluginClassName(), true);
 				if (queryEnginePlugin != null) {

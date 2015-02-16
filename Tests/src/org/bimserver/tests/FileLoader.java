@@ -24,15 +24,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 
 public class FileLoader {
@@ -42,9 +39,8 @@ public class FileLoader {
 
 	private void load(File dir) {
 //		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://sandbox.bimserver.org");
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 		try {
-			final BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			final BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 			ExecutorService executorService = new ThreadPoolExecutor(1, 1, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(200));
 			for (final File file : dir.listFiles()) {
 				executorService.submit(new Runnable(){
@@ -53,8 +49,8 @@ public class FileLoader {
 						System.out.println(file.getName());
 						SProject project;
 						try {
-							project = client.getBimsie1ServiceInterface().addProject(file.getName());
-							SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+							project = client.getBimsie1ServiceInterface().addProject(file.getName(), "ifc2x3tc1");
+							SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 							client.checkin(project.getOid(), file.getName(), deserializer.getOid(), false, true, file);
 						} catch (ServerException e) {
 							e.printStackTrace();
@@ -69,10 +65,6 @@ public class FileLoader {
 			}
 			executorService.awaitTermination(1, TimeUnit.HOURS);
 			System.out.println("Done");
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		} catch (ChannelConnectionException e) {
-			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

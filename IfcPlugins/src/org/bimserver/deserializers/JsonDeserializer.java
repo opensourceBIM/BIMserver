@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
@@ -124,8 +123,8 @@ public class JsonDeserializer extends EmfDeserializer {
 					throw new DeserializeException("No class found with name " + type);
 				}
 				IdEObject object = (IdEObject) getPackageMetaData().create(eClass);
-				((IdEObjectImpl)object).setOid(oid);
-				model.add(object.getOid(), object);
+//				((IdEObjectImpl)object).setOid(oid);
+				model.add(oid, object);
 				if (jsonReader.nextName().equals("_s")) {
 					int state = jsonReader.nextInt();
 					if (state == 1) {

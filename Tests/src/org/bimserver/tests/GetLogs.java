@@ -45,7 +45,7 @@ public class GetLogs {
 	}
 
 	private void start() {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("[ADD]");
+		JsonBimServerClientFactory factory = new JsonBimServerClientFactory(null, "[ADD]");
 		try {
 			client = factory.create(new UsernamePasswordAuthenticationInfo("[ADD]", "[ADD]"));
 			List<SLogAction> logs = client.getAdminInterface().getLogs();

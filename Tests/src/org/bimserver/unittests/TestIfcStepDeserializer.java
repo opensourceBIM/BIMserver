@@ -46,7 +46,7 @@ public class TestIfcStepDeserializer {
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
-			PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
+			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
 			deserializer.init(packageMetaData);
 			IfcModelInterface modelInterface = deserializer.read(TestFile.AC11.getFile());
@@ -54,7 +54,7 @@ public class TestIfcStepDeserializer {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			serializer.init(modelInterface, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
-			serializer.writeToFile(new File("output/test.ifc"));
+			serializer.writeToFile(new File("output/test.ifc"), null);
 		} catch (PluginException e) {
 			e.printStackTrace();
 			fail(e.getMessage());

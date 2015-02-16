@@ -33,6 +33,7 @@ import org.apache.cxf.headers.Header;
 import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.bimserver.client.Channel;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.TokenChangeListener;
@@ -48,7 +49,8 @@ public class SoapChannel extends Channel implements TokenChangeListener {
 	private String address;
 	private Set<Class<? extends PublicInterface>> interfaces;
 
-	public SoapChannel(String address, boolean useSoapHeaderSessions, Set<Class<? extends PublicInterface>> interfaces) {
+	public SoapChannel(CloseableHttpClient httpClient, String address, boolean useSoapHeaderSessions, Set<Class<? extends PublicInterface>> interfaces) {
+		super(httpClient);
 		this.address = address;
 		this.useSoapHeaderSessions = useSoapHeaderSessions;
 		this.interfaces = interfaces;

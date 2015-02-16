@@ -51,11 +51,11 @@ public class TestKmz {
 			if (!allDeserializerPlugins.isEmpty()) {
 				DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
 				Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-				deserializer.init(pluginManager.requireSchemaDefinition());
+				deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 				IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile());
 				// IfcModelInterface model =
 				// deserializer.read(TestFile.ADTHAUS.getFile(), true);
-				serializer.init(model, null, pluginManager, ifcEnginePlugin, false);
+				serializer.init(model, null, pluginManager, ifcEnginePlugin, null, false);
 				serializer.writeToFile(new File("output/ac11.kmz"), null);
 			}
 		} catch (PluginException e) {

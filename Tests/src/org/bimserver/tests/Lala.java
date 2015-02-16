@@ -19,12 +19,10 @@ package org.bimserver.tests;
 
 import java.util.List;
 
-import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.shared.BimServerClientFactory;
-import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -39,11 +37,9 @@ public class Lala {
 	}
 
 	private void start() {
-		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+		BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 		UsernamePasswordAuthenticationInfo info = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
-		BimServerClientInterface client;
 		try {
-			client = factory.create(info);
 			// ..Snippet..//
 			log.info("Getting User details:");
 			
@@ -66,11 +62,8 @@ public class Lala {
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
-		} catch (ChannelConnectionException e) {
-			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}
-
 	}
 }

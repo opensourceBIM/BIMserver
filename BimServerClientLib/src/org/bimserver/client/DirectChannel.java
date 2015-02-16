@@ -22,6 +22,7 @@ import java.io.InputStream;
 
 import javax.activation.DataHandler;
 
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ChannelConnectionException;
@@ -44,7 +45,8 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 	private ServiceFactory serviceFactory;
 	private SServicesMap sServicesMap;
 
-	public DirectChannel(ServiceFactory serviceFactory, SServicesMap sServicesMap) {
+	public DirectChannel(CloseableHttpClient httpClient, ServiceFactory serviceFactory, SServicesMap sServicesMap) {
+		super(httpClient);
 		this.serviceFactory = serviceFactory;
 		this.sServicesMap = sServicesMap;
 	}

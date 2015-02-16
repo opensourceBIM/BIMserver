@@ -17,24 +17,19 @@ package org.bimserver.test;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.soap.SoapBimServerClientFactory;
-import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.LocalDevSetup;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public class TestProtocolBuffers {
 	public static void main(String[] args) {
-		SoapBimServerClientFactory factory = new SoapBimServerClientFactory("http://localhost:8080");
 		try {
-			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface client = LocalDevSetup.setupSoap("http://localhost:8080");
 			System.out.println(client.getBimsie1ServiceInterface().getAllProjects(true, true));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
-		} catch (ChannelConnectionException e) {
 			e.printStackTrace();
 		}
 	}

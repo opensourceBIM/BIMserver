@@ -173,8 +173,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		notifyOfDisconnect();
 	}
 
-	public ClientIfcModel getModel(SProject project, long roid, boolean deep) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException {
-		return new ClientIfcModel(this, project.getOid(), roid, deep, getMetaDataManager().getEPackage(project.getSchema()));
+	public ClientIfcModel getModel(SProject project, long roid, boolean deep, boolean recordChanges) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException {
+		return new ClientIfcModel(this, project.getOid(), roid, deep, getMetaDataManager().getPackageMetaData(project.getSchema()), recordChanges);
 	}
 
 	public boolean isConnected() {
@@ -263,6 +263,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			Long download = getBimsie1ServiceInterface().download(roid, serializerOid, true, true);
 			InputStream inputStream = getDownloadData(download, serializerOid);
 			IOUtils.copy(inputStream, outputStream);
+			inputStream.close();
 			getServiceInterface().cleanupLongAction(download);
 		} catch (ServerException e) {
 			LOGGER.error("", e);
@@ -285,8 +286,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return channel.getDownloadData(baseAddress, token, downloadId, serializerOid);
 	}
 
-	public IfcModelInterface newModel(SProject project) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
-		return new ClientIfcModel(this, project.getOid(), -1, false, getMetaDataManager().getEPackage(project.getSchema()));
+	public IfcModelInterface newModel(SProject project, boolean recordChanges) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
+		return new ClientIfcModel(this, project.getOid(), -1, false, getMetaDataManager().getPackageMetaData(project.getSchema()), recordChanges);
 	}
 
 	public <T extends PublicInterface> T get(Class<T> clazz) throws PublicInterfaceNotFoundException {

@@ -34,7 +34,7 @@ public class TestBigFilesRemote {
 		System.out.println("Username: " + username);
 		System.out.println("Password: " + password);
 		System.out.println("Basepath: " + basepath);
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory(address);
+		JsonBimServerClientFactory factory = new JsonBimServerClientFactory(null, address);
 		try {
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo(args[1], args[2]));
 			
@@ -47,7 +47,6 @@ public class TestBigFilesRemote {
 				"HLM_39090_12259 University of Sheffield NEB  [PR-BIM-01-bhelberg].ifc"
 			};
 			
-			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
 
 			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 			for (String fileName : fileNames) {
@@ -59,8 +58,9 @@ public class TestBigFilesRemote {
 					project = projectsByName.get(0);
 				} else {
 					System.out.println("Creating project " + fileName);
-					project = client.getBimsie1ServiceInterface().addProject(projectName);
+					project = client.getBimsie1ServiceInterface().addProject(projectName, "ifc2x3tc1");
 				}
+				SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 				
 				System.out.println(dateFormat.format(new Date()));
 				SDatabaseInformation databaseInformation = client.getAdminInterface().getDatabaseInformation();

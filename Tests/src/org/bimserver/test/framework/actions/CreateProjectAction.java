@@ -33,6 +33,6 @@ public class CreateProjectAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		String name = "Project " + randomString();
 		virtualUser.getActionResults().setText("Creating new project " + name);
-		virtualUser.getBimServerClient().getBimsie1ServiceInterface().addProject(name);
+		virtualUser.getBimServerClient().getBimsie1ServiceInterface().addProject(name, "ifc2x3tc1");
 	}
 }

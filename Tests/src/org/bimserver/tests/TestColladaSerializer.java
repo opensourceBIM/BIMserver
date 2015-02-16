@@ -54,11 +54,11 @@ public class TestColladaSerializer {
 					projectInfo.setDescription("");
 					
 					Deserializer ifcDeserializer = ifcDeserializerPlugin.createDeserializer(new PluginConfiguration());
-					ifcDeserializer.init(pluginManager.requireSchemaDefinition());
+					ifcDeserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 					IfcModelInterface model = ifcDeserializer.read(file);
 
 					Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-					serializer.init(model, projectInfo, pluginManager, pluginManager.requireRenderEngine(), false);
+					serializer.init(model, projectInfo, pluginManager, pluginManager.requireRenderEngine(), null, false);
 					serializer.writeToFile(new File(output, file.getName() + ".dae"), null);
 				}
 			}

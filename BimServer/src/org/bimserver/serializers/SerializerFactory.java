@@ -128,7 +128,7 @@ public class SerializerFactory {
 							throw new SerializerException("No usable converter found for schema " + model.getPackageMetaData().getSchema() + " for serializer " + serializerPlugin.getClass().getName());
 						}
 						try {
-							IfcModel targetModel = new IfcModel(bimServer.getMetaDataManager().getEPackage(converterFactory.getTargetSchema().getEPackageName()), new HashMap<Integer, Long>(), (int) model.size());
+							IfcModel targetModel = new IfcModel(bimServer.getMetaDataManager().getPackageMetaData(converterFactory.getTargetSchema().getEPackageName()), new HashMap<Integer, Long>(), (int) model.size());
 							SchemaConverter converter = converterFactory.create(model, targetModel);
 							converter.convert();
 							model = targetModel;

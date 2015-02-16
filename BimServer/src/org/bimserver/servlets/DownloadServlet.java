@@ -78,7 +78,11 @@ public class DownloadServlet extends SubServlet {
 			}
 			response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 			response.setHeader("Access-Control-Allow-Headers", "Content-Type");
-			boolean useGzip = true;
+			String acceptEncoding = request.getHeader("Accept-Encoding");
+			boolean useGzip = false;
+			if (acceptEncoding != null && acceptEncoding.equals("gzip")) {
+				useGzip = true;
+			}
 			OutputStream outputStream = response.getOutputStream();
 			boolean zip = request.getParameter("zip") != null && request.getParameter("zip").equals("on");
 			if (useGzip && !zip) {

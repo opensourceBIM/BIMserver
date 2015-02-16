@@ -92,7 +92,7 @@ public class TestClientEmfModelLocal {
 	public void test() {
 		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		protocolBuffersMetaData.load(bimServer.getServicesMap(), ProtocolBuffersBimServerClientFactory.class);
-		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData);
+		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData, null);
 		UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 		try {
 			bimServerClient = factory.create(usernamePasswordAuthenticationInfo);
@@ -106,7 +106,7 @@ public class TestClientEmfModelLocal {
 			e.printStackTrace();
 		}
 		try {
-			IfcModelInterface model = bimServerClient.newModel(createProject());
+			IfcModelInterface model = bimServerClient.newModel(createProject(), false);
 			SProject project = createProject();
 			CreateFromScratch createFromScratch = new CreateFromScratch();
 			createFromScratch.createIfcProject(model);
@@ -126,18 +126,18 @@ public class TestClientEmfModelLocal {
 
 	private void dumpToFile(SProject project, long roid) throws SerializerException {
 		try {
-			IfcModelInterface model = bimServerClient.getModel(project, roid, false);
+			IfcModelInterface model = bimServerClient.getModel(project, roid, false, false);
 			IfcStepSerializer serializer = new Ifc4StepSerializer(new PluginConfiguration());
 			
 			MetaDataManager metaDataManager = new MetaDataManager(bimServer.getPluginManager());
-			PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
+			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
 			serializer.init(model, null, bimServer.getPluginManager(), null, packageMetaData, false);
 			File output = new File("output");
 			if (!output.exists()) {
 				output.mkdir();
 			}
-			serializer.writeToFile(new File(output, roid + ".ifc"));
+			serializer.writeToFile(new File(output, roid + ".ifc"), null);
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		} catch (UserException e) {

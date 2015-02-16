@@ -41,7 +41,7 @@ public class TestSize {
 			final DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(pluginManager.getFirstSchemaPlugin(true).getSchemaDefinition(new PluginConfiguration()));
+			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile());
 			System.out.println("Nr Objects: " + model.size());
 			System.out.println("Memory: " + MemoryUtil.deepMemoryUsageOf(model));

@@ -1192,7 +1192,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public ObjectIdentifier getOidOfGuid(String schema, String guid, int pid, int rid) throws BimserverDatabaseException {
-		for (EClass eClass : getMetaDataManager().getEPackage(schema).getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
+		for (EClass eClass : getMetaDataManager().getPackageMetaData(schema).getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
 			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid),
 					BinUtils.intToByteArray(pid), this);
 			try {
@@ -1233,7 +1233,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	public Set<ObjectIdentifier> getOidsOfName(String schema, String name, int pid, int rid) throws BimserverDatabaseException, MetaDataException {
 		Set<ObjectIdentifier> result = new HashSet<ObjectIdentifier>();
-		for (EClass eClass : getMetaDataManager().getEPackage(schema).getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
+		for (EClass eClass : getMetaDataManager().getPackageMetaData(schema).getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
 			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid),
 					BinUtils.intToByteArray(pid), this);
 			try {
@@ -1352,7 +1352,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		IfcModelInterface model = ((IdEObjectImpl)idEObject).getModel();
 		if (model == null) {
 			Map<Integer, Long> pidToRoid = new HashMap<Integer, Long>();
-			model = createModel(getMetaDataManager().getEPackage(idEObject.eClass().getEPackage().getName()), pidToRoid);
+			model = createModel(getMetaDataManager().getPackageMetaData(idEObject.eClass().getEPackage().getName()), pidToRoid);
 		}
 		idEObject = get(model, idEObject, idEObject.getOid(), ((IdEObjectImpl) idEObject).getQueryInterface(), new TodoList());
 		if (idEObject != null) {

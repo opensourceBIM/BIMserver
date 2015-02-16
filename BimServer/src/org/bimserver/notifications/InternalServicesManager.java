@@ -141,7 +141,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 		ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, null, AccessMethod.JSON);
 		serviceMapInterface.add(Bimsie1RemoteServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
 		P p = new P();
-		final InternalChannel internalChannel = new InternalChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
+		final InternalChannel internalChannel = new InternalChannel(null, bimServer.getServiceFactory(), bimServer.getServicesMap());
 		try {
 			internalChannel.connect(new SimpleTokenHolder());
 		} catch (ChannelConnectionException e) {

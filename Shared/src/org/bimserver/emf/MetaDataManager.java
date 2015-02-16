@@ -44,7 +44,7 @@ public class MetaDataManager {
 		addEPackage(LogPackage.eINSTANCE, Schema.LOG);
 	}
 	
-	public PackageMetaData getEPackage(String schema) {
+	public PackageMetaData getPackageMetaData(String schema) {
 		if (schema == null) {
 			throw new IllegalArgumentException("schema cannot be null");
 		}

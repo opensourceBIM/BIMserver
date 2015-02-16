@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -198,7 +199,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 
 	void resetExpressIds();
 
-	IfcModelInterface branch(long poid);
+	IfcModelInterface branch(long poid, boolean recordChanges);
 
 	long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException;
 
@@ -211,4 +212,8 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	void set(IdEObject idEObject, EStructuralFeature eFeature, Object newValue);
 
 	void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException;
+
+	<T extends IdEObject> T create(EClass eClass, long oid) throws IfcModelInterfaceException;
+
+	<T extends IdEObject> T createAndAdd(Class<T> class1) throws IfcModelInterfaceException;
 }

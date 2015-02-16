@@ -106,7 +106,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 				try {
 					int highestStopId = findHighestStopRid(project, concreteRevision);
 					
-					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 					lastPackageMetaData = packageMetaData;
 					IfcModelInterface subModel = new IfcModel(packageMetaData, pidRoidMap);
 					
@@ -175,7 +175,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 			Set<EClass> eClasses = new HashSet<EClass>();
 			eClasses.add(typeClass);
 			if (typeQuery.has("includeAllSubtypes") && typeQuery.get("includeAllSubtypes").getAsBoolean()) {
-				eClasses.addAll(getBimServer().getDatabase().getMetaDataManager().getEPackage(schema).getAllSubClasses((EClass)typeClass));
+				eClasses.addAll(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(schema).getAllSubClasses((EClass)typeClass));
 			}
 			getDatabaseSession().getAllOfTypes(model, eClasses, queryInterface);
 			if (typeQuery.has("include")) {

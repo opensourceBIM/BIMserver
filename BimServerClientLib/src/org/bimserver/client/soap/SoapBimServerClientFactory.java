@@ -41,7 +41,7 @@ public class SoapBimServerClientFactory extends AbstractBimServerClientFactory {
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
-		SoapChannel soapChannel = new SoapChannel(address + "/soap11", true, getServicesMap().getInterfaceClasses());
+		SoapChannel soapChannel = new SoapChannel(getHttpClient(), address + "/soap11", true, getServicesMap().getInterfaceClasses());
 		BimServerClient bimServerClient = new BimServerClient(this, address, getServicesMap(), soapChannel);
 		soapChannel.connect(bimServerClient);
 		bimServerClient.setAuthentication(authenticationInfo);

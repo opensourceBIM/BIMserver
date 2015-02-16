@@ -129,7 +129,7 @@ public class CompareTest {
 
 	private IfcModelInterface readModel(File file1, PluginManager pluginManager) throws DeserializeException, PluginException {
 		Deserializer deserializer = pluginManager.requireDeserializer("ifc").createDeserializer(new PluginConfiguration());
-		deserializer.init(pluginManager.requireSchemaDefinition());
+		deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 		IfcModelInterface model1 = deserializer.read(file1);
 		return model1;
 	}

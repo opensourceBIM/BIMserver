@@ -19,7 +19,7 @@ package org.bimserver.servlets;
 
 import javax.servlet.ServletContext;
 
-import org.apache.cxf.common.WSDLConstants;
+import org.apache.cxf.wsdl.WSDLConstants;
 import org.bimserver.BimServer;
 
 /******************************************************************************

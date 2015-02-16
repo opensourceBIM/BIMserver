@@ -99,7 +99,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		pidRoidMap.put(project.getId(), roid);
 		for (ConcreteRevision subRevision : concreteRevisions) {
 			if (subRevision.getUser().getOid() != ignoreUoid) {
-				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(subRevision.getProject().getSchema());
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(subRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
 				IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 				ifcHeader = subRevision.getIfcHeader();

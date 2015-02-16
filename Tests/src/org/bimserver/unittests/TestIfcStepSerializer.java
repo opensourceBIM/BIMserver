@@ -45,9 +45,9 @@ public class TestIfcStepSerializer {
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
-			PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
+			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
-			IfcModel model = new IfcModel(packageMetaData);
+			IfcModel model = new IfcModel(packageMetaData, null);
 			IfcWall wall = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			wall.setName("Test with 'quotes");
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);

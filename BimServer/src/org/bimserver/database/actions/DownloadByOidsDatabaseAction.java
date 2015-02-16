@@ -86,7 +86,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 			final AtomicLong total = new AtomicLong();
 			pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
 				IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 				int highestStopId = findHighestStopRid(project, concreteRevision);

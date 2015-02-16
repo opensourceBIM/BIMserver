@@ -40,7 +40,7 @@ public class TestDeserializer {
 			final DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(pluginManager.getFirstSchemaPlugin(true).getSchemaDefinition(new PluginConfiguration()));
+			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\Atrium%20Offices%20-%20PROJETO_EXECUTIVO%20-%202012.05.03.ifc"));
 			
 			for (IdEObject idEObject : model.getValues()) {

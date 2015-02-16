@@ -48,7 +48,7 @@ public class ExtractFurniture {
 			Deserializer deserializer = deserializerPlugin.createDeserializer(null);
 			
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
-			PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
+			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
 			deserializer.init(packageMetaData);
 			IfcModelInterface model = deserializer.read(new File("../TestData/data/ADT-FZK-Haus-2005-2006.ifc"));
@@ -56,7 +56,7 @@ public class ExtractFurniture {
 			
 			IfcFurnishingElement picknick = (IfcFurnishingElement) model.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
 
-			IfcModelInterface newModel = new IfcModel(packageMetaData);
+			IfcModelInterface newModel = new IfcModel(packageMetaData, null);
 			ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition("ifc2x3tc1")), newModel);
 			
 			modelHelper.copy(picknick);
@@ -64,7 +64,7 @@ public class ExtractFurniture {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(null);
 			serializer.init(newModel, null, pluginManager, null, packageMetaData, true);
-			serializer.writeToFile(new File("test.ifc"));
+			serializer.writeToFile(new File("test.ifc"), null);
 		} catch (PluginException e) {
 			e.printStackTrace();
 		} catch (DeserializeException e) {

@@ -96,7 +96,7 @@ public class GuidFixerService extends ServicePlugin {
 					state.setStart(startDate);
 
 					SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
-					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, false);
+					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, false, false);
 					Map<String, List<IfcRoot>> guids = new HashMap<String, List<IfcRoot>>();
 					int fixed = 0;
 					// Iterate over all objects that can have a GUID

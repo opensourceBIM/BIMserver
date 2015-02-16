@@ -3,16 +3,14 @@ package org.bimserver.test;
 import java.io.File;
 import java.io.IOException;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 
 import com.google.common.base.Charsets;
@@ -23,9 +21,8 @@ public class TestAddExtendedData {
 	}
 
 	private void start() {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 		try {
-			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 			SFile file = new SFile();
 			file.setData("test".getBytes(Charsets.UTF_8));
 			file.setMime("text");
@@ -34,8 +31,8 @@ public class TestAddExtendedData {
 			
 			System.out.println(client.getServiceInterface().getFile(fileId));
 			
-			SProject project = client.getBimsie1ServiceInterface().addProject("test23");
-			SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SProject project = client.getBimsie1ServiceInterface().addProject("test23", "ifc2x3tc1");
+			SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			client.checkin(project.getOid(), "initial", deserializerForExtension.getOid(), false, true, new File("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
 			
 			project = client.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
@@ -49,8 +46,6 @@ public class TestAddExtendedData {
 			
 			client.getBimsie1ServiceInterface().addExtendedDataToRevision(project.getLastRevisionId(), extendedData);
 		} catch (ServiceException e) {
-			e.printStackTrace();
-		} catch (ChannelConnectionException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();

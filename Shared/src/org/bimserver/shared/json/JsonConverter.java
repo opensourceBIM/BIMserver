@@ -31,8 +31,8 @@ import java.util.Set;
 import javax.activation.DataHandler;
 import javax.mail.util.ByteArrayDataSource;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
+import org.apache.mina.util.Base64;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.meta.SBase;

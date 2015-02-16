@@ -26,26 +26,22 @@ import java.util.List;
 import javax.activation.DataHandler;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.shared.BimServerClientFactory;
-import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 
 public class TestBimQlSoap {
 	public static void main(String[] args) {
-		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 		try {
-			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = LocalDevSetup.setupJson("http://localhost:8080");
 			
 			List<SProject> projects = bimServerClient.getBimsie1ServiceInterface().getAllProjects(true, true);
 			if (projects.isEmpty()) {
@@ -66,8 +62,6 @@ public class TestBimQlSoap {
 					IOUtils.copy(dataHandler.getInputStream(), new FileOutputStream(new File("test.ifc")));
 				}
 			}
-		} catch (ChannelConnectionException e) {
-			e.printStackTrace();
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
