@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCartesianPoint;
 import org.bimserver.models.ifc4.IfcLine;
 import org.bimserver.models.ifc4.IfcVector;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

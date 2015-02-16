@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcActorSelect;
 import org.bimserver.models.ifc4.IfcLibraryInformation;
 import org.bimserver.models.ifc4.IfcLibraryReference;
 import org.bimserver.models.ifc4.IfcRelAssociatesLibrary;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

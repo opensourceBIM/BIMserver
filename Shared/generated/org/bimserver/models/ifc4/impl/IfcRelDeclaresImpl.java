@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcContext;
 import org.bimserver.models.ifc4.IfcDefinitionSelect;
 import org.bimserver.models.ifc4.IfcRelDeclares;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

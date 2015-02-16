@@ -1,7 +1,7 @@
 package org.bimserver.client;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -29,7 +29,8 @@ import java.util.zip.DeflaterInputStream;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -114,16 +115,18 @@ public abstract class Channel implements ServiceHolder {
 			// TODO find some GzipInputStream variant that _compresses_ instead of _decompresses_ using deflate for now
 			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
 			
-			MultipartEntity reqEntity = new MultipartEntity();
-			reqEntity.addPart("data", data);
-			reqEntity.addPart("token", new StringBody(token));
-			reqEntity.addPart("deserializerOid", new StringBody("" + deserializerOid));
-			reqEntity.addPart("merge", new StringBody("" + merge));
-			reqEntity.addPart("poid", new StringBody("" + poid));
-			reqEntity.addPart("comment", new StringBody("" + comment));
-			reqEntity.addPart("sync", new StringBody("" + sync));
-			reqEntity.addPart("compression", new StringBody("deflate"));
-			httppost.setEntity(reqEntity);
+			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+			
+			multipartEntityBuilder.addPart("data", data);
+			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("deserializerOid", new StringBody("" + deserializerOid, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("merge", new StringBody("" + merge, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("comment", new StringBody("" + comment, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("sync", new StringBody("" + sync, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("compression", new StringBody("deflate", ContentType.DEFAULT_TEXT));
+			
+			httppost.setEntity(multipartEntityBuilder.build());
 			
 			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {

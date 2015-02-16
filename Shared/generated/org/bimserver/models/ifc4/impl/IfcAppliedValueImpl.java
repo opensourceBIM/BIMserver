@@ -17,16 +17,13 @@
 package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcAppliedValue;
 import org.bimserver.models.ifc4.IfcAppliedValueSelect;
 import org.bimserver.models.ifc4.IfcArithmeticOperatorEnum;
 import org.bimserver.models.ifc4.IfcExternalReferenceRelationship;
 import org.bimserver.models.ifc4.IfcMeasureWithUnit;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

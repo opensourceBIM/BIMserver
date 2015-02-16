@@ -1,7 +1,7 @@
 package org.bimserver.servlets;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -30,7 +30,6 @@ import org.bimserver.BimServer;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.plugins.serializers.MessagingSerializer;
 import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.exceptions.ServerException;
@@ -78,16 +77,15 @@ public class Streamer implements EndPoint {
 			// Heartbeat, ignore
 		} else if (request.has("action")) {
 			if (request.get("action").getAsString().equals("download")) {
-				String token = request.get("token").getAsString();
+//				String token = request.get("token").getAsString();
 				final int topicId = request.get("topicId").getAsInt();
-				try {
-					final ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL);
+//					final ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL);
 					final long downloadId = request.get("longActionId").getAsLong();
 					new Thread(){
 						@Override
 						public void run() {
 							try {
-								final ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
+//								final ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
 
 //								ProgressReporter progressReporter = new ProgressReporter() {
 //									@Override
@@ -136,9 +134,6 @@ public class Streamer implements EndPoint {
 							}
 						}
 					}.start();
-				} catch (UserException e) {
-					LOGGER.error("", e);
-				}
 			}
 		} else if (request.has("token")) {
 			String token = request.get("token").getAsString();

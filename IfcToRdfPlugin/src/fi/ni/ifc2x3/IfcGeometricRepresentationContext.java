@@ -1,7 +1,6 @@
 package fi.ni.ifc2x3;
-import fi.ni.ifc2x3.interfaces.*;
-import fi.ni.*;
-import java.util.*;
+import fi.ni.InverseLinksList;
+import fi.ni.ifc2x3.interfaces.IfcAxis2Placement;
 
 /*
  * IFC Java class

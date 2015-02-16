@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcGrid;
 import org.bimserver.models.ifc4.IfcGridAxis;
 import org.bimserver.models.ifc4.IfcGridTypeEnum;
 import org.bimserver.models.ifc4.IfcRelContainedInSpatialStructure;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

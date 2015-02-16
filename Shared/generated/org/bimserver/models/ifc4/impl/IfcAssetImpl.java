@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcActorSelect;
 import org.bimserver.models.ifc4.IfcAsset;
 import org.bimserver.models.ifc4.IfcCostValue;
 import org.bimserver.models.ifc4.IfcPerson;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcTask;
 import org.bimserver.models.ifc4.IfcTaskTime;
 import org.bimserver.models.ifc4.IfcTaskTypeEnum;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

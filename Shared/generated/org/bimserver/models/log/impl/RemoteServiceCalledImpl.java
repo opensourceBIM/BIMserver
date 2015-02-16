@@ -18,12 +18,9 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.RemoteServiceCalled;
-
 import org.bimserver.models.store.NotifictionResultEnum;
 import org.bimserver.models.store.Service;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

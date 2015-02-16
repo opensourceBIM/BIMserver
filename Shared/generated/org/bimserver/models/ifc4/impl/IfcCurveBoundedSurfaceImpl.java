@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcBoundaryCurve;
 import org.bimserver.models.ifc4.IfcCurveBoundedSurface;
 import org.bimserver.models.ifc4.IfcSurface;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

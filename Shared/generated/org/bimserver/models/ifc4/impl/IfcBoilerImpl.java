@@ -19,7 +19,6 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcBoiler;
 import org.bimserver.models.ifc4.IfcBoilerTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

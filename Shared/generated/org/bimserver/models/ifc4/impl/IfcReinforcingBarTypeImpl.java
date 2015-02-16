@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcBendingParameterSelect;
 import org.bimserver.models.ifc4.IfcReinforcingBarSurfaceEnum;
 import org.bimserver.models.ifc4.IfcReinforcingBarType;
 import org.bimserver.models.ifc4.IfcReinforcingBarTypeEnum;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

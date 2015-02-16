@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcFace;
 import org.bimserver.models.ifc4.IfcFaceBound;
 import org.bimserver.models.ifc4.IfcTextureMap;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

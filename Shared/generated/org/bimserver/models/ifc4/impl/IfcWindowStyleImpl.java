@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcWindowStyle;
 import org.bimserver.models.ifc4.IfcWindowStyleConstructionEnum;
 import org.bimserver.models.ifc4.IfcWindowStyleOperationEnum;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

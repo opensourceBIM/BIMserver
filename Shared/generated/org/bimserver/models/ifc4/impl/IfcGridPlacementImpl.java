@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcGridPlacement;
 import org.bimserver.models.ifc4.IfcGridPlacementDirectionSelect;
 import org.bimserver.models.ifc4.IfcVirtualGridIntersection;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

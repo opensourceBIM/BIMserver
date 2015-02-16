@@ -22,9 +22,7 @@ import org.bimserver.models.ifc4.IfcIndexedColourMap;
 import org.bimserver.models.ifc4.IfcIndexedTextureMap;
 import org.bimserver.models.ifc4.IfcTessellatedFaceSet;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

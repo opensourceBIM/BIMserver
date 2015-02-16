@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCurve;
 import org.bimserver.models.ifc4.IfcDirection;
 import org.bimserver.models.ifc4.IfcFixedReferenceSweptAreaSolid;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

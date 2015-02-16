@@ -19,7 +19,6 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAssemblyPlaceEnum;
 import org.bimserver.models.ifc2x3tc1.IfcFurnitureType;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

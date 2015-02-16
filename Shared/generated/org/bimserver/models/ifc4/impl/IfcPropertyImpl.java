@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcComplexProperty;
 import org.bimserver.models.ifc4.IfcProperty;
 import org.bimserver.models.ifc4.IfcPropertyDependencyRelationship;
 import org.bimserver.models.ifc4.IfcPropertySet;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

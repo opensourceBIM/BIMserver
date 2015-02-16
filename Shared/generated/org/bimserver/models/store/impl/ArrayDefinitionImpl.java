@@ -19,7 +19,6 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.TypeDefinition;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

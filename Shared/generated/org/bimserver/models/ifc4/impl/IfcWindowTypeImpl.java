@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcWindowType;
 import org.bimserver.models.ifc4.IfcWindowTypeEnum;
 import org.bimserver.models.ifc4.IfcWindowTypePartitioningEnum;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

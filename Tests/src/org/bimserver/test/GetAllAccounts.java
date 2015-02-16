@@ -1,7 +1,7 @@
 package org.bimserver.test;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,13 +18,9 @@ package org.bimserver.test;
  *****************************************************************************/
 
 import org.bimserver.LocalDevSetup;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public class GetAllAccounts {

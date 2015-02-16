@@ -1,7 +1,7 @@
 package org.bimserver.client.json;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -33,7 +33,6 @@ public class JsonChannel extends Channel {
 	private JsonReflector reflector;
 	private String address;
 	private SServicesMap sServicesMap;
-	private CloseableHttpClient closeableHttpClient;
 
 	public JsonChannel(CloseableHttpClient closeableHttpClient, ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory, String address, SServicesMap sServicesMap) {
 		super(closeableHttpClient);

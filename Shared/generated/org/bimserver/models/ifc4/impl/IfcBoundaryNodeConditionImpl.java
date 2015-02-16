@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcBoundaryNodeCondition;
 import org.bimserver.models.ifc4.IfcRotationalStiffnessSelect;
 import org.bimserver.models.ifc4.IfcTranslationalStiffnessSelect;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

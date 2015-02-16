@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcAssemblyPlaceEnum;
 import org.bimserver.models.ifc4.IfcFurnitureType;
 import org.bimserver.models.ifc4.IfcFurnitureTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

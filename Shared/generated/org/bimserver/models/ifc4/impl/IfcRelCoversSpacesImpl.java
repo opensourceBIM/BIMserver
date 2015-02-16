@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCovering;
 import org.bimserver.models.ifc4.IfcRelCoversSpaces;
 import org.bimserver.models.ifc4.IfcSpace;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

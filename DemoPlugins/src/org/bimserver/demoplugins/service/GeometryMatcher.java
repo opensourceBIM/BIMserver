@@ -279,6 +279,7 @@ public class GeometryMatcher extends ServicePlugin {
 				}
 			}
 
+			@SuppressWarnings("rawtypes")
 			private void dump(IdEObject object) {
 				System.out.println(object.eClass().getName() + " " + object.getOid());
 				for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {

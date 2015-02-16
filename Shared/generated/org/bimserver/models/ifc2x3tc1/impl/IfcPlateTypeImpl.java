@@ -19,7 +19,6 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPlateType;
 import org.bimserver.models.ifc2x3tc1.IfcPlateTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

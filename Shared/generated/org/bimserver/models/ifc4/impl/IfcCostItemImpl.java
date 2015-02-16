@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcCostItem;
 import org.bimserver.models.ifc4.IfcCostItemTypeEnum;
 import org.bimserver.models.ifc4.IfcCostValue;
 import org.bimserver.models.ifc4.IfcPhysicalQuantity;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

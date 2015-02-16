@@ -22,9 +22,7 @@ import org.bimserver.models.ifc4.IfcCostValue;
 import org.bimserver.models.ifc4.IfcInventory;
 import org.bimserver.models.ifc4.IfcInventoryTypeEnum;
 import org.bimserver.models.ifc4.IfcPerson;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

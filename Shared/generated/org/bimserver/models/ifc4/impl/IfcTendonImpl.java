@@ -19,7 +19,6 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcTendon;
 import org.bimserver.models.ifc4.IfcTendonTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

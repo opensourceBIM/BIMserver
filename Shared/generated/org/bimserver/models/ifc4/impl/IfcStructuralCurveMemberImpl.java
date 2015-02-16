@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcDirection;
 import org.bimserver.models.ifc4.IfcStructuralCurveMember;
 import org.bimserver.models.ifc4.IfcStructuralCurveMemberTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

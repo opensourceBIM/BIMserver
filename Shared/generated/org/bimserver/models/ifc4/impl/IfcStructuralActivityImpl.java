@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcGlobalOrLocalEnum;
 import org.bimserver.models.ifc4.IfcRelConnectsStructuralActivity;
 import org.bimserver.models.ifc4.IfcStructuralActivity;
 import org.bimserver.models.ifc4.IfcStructuralLoad;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

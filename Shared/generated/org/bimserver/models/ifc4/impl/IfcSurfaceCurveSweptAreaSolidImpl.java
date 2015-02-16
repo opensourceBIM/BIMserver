@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCurve;
 import org.bimserver.models.ifc4.IfcSurface;
 import org.bimserver.models.ifc4.IfcSurfaceCurveSweptAreaSolid;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

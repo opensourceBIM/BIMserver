@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcProjectedOrTrueLengthEnum;
 import org.bimserver.models.ifc4.IfcStructuralCurveAction;
 import org.bimserver.models.ifc4.IfcStructuralCurveActivityTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

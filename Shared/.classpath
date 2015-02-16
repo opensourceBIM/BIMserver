@@ -32,7 +32,7 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/servlet-api-3.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpclient-4.3.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpclient-4.3.6.jar" sourcepath="/BimServer/libsrc/httpcomponents-client-4.4-src.zip"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpcore-4.3.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-beanutils-1.8.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-beanutils-bean-collections-1.8.3.jar"/>

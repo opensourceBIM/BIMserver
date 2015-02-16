@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcObject;
 import org.bimserver.models.ifc4.IfcRelDefinesByObject;
 import org.bimserver.models.ifc4.IfcRelDefinesByProperties;
 import org.bimserver.models.ifc4.IfcRelDefinesByType;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

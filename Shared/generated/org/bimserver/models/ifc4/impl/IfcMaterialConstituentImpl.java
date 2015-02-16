@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcMaterial;
 import org.bimserver.models.ifc4.IfcMaterialConstituent;
 import org.bimserver.models.ifc4.IfcMaterialConstituentSet;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

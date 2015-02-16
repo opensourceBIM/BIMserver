@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcConstraint;
 import org.bimserver.models.ifc4.IfcLogicalOperatorEnum;
 import org.bimserver.models.ifc4.IfcObjective;
 import org.bimserver.models.ifc4.IfcObjectiveEnum;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

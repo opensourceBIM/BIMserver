@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcProduct;
 import org.bimserver.models.ifc4.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc4.IfcSpatialElement;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

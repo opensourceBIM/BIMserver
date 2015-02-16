@@ -22,7 +22,6 @@ import org.bimserver.models.ifc4.IfcColourRgb;
 import org.bimserver.models.ifc4.IfcLightDistributionDataSourceSelect;
 import org.bimserver.models.ifc4.IfcLightEmissionSourceEnum;
 import org.bimserver.models.ifc4.IfcLightSourceGoniometric;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

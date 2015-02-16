@@ -22,7 +22,6 @@ import org.bimserver.models.ifc4.IfcCurveFontOrScaledCurveFontSelect;
 import org.bimserver.models.ifc4.IfcCurveStyle;
 import org.bimserver.models.ifc4.IfcSizeSelect;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

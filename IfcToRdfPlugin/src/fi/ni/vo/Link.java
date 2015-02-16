@@ -1,11 +1,9 @@
 package fi.ni.vo;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import fi.ni.Thing;
-import fi.ni.ifc2x3.IfcRoot;
 
 
 /*

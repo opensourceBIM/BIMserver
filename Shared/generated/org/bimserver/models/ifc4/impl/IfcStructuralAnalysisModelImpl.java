@@ -23,9 +23,7 @@ import org.bimserver.models.ifc4.IfcObjectPlacement;
 import org.bimserver.models.ifc4.IfcStructuralAnalysisModel;
 import org.bimserver.models.ifc4.IfcStructuralLoadGroup;
 import org.bimserver.models.ifc4.IfcStructuralResultGroup;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

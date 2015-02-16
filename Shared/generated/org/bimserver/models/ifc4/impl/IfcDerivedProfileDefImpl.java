@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCartesianTransformationOperator2D;
 import org.bimserver.models.ifc4.IfcDerivedProfileDef;
 import org.bimserver.models.ifc4.IfcProfileDef;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

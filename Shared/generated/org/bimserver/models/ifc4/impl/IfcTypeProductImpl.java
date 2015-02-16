@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcRelAssignsToProduct;
 import org.bimserver.models.ifc4.IfcRepresentationMap;
 import org.bimserver.models.ifc4.IfcTypeProduct;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

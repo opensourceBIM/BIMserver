@@ -1,7 +1,7 @@
 package org.bimserver.deserializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -58,6 +58,7 @@ import com.google.gson.stream.JsonToken;
 public class JsonDeserializer extends EmfDeserializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonDeserializer.class);
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException {
 		IfcModelInterface model = new IfcModel(getPackageMetaData(), null);
@@ -91,7 +92,6 @@ public class JsonDeserializer extends EmfDeserializer {
 					if (eStructuralFeature.isMany()) {
 						List list = (List)value;
 						if (eStructuralFeature.isUnique()) {
-							StringBuilder sb = new StringBuilder();
 							Set<Object> t = new HashSet<>();
 							for (Object v : list) {
 								if (t.contains(v)) {

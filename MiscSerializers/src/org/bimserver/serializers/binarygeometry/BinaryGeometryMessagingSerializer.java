@@ -1,7 +1,7 @@
 package org.bimserver.serializers.binarygeometry;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,14 +41,11 @@ import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.ecore.EClass;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.LittleEndianDataOutputStream;
 
 public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
-	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometryMessagingSerializer.class);
 	private static final byte FORMAT_VERSION = 6;
 	private IfcModelInterface model;
 	
@@ -81,7 +78,6 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 	private Iterator<IdEObject> iterator;
 	private PackageMetaData packageMetaData;
 	private long splitCounter = -1;
-	private static final boolean LIMIT_VERTICES = true;
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin,
@@ -157,6 +153,7 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 		return nrObjects > 0;
 	}
 	
+	@SuppressWarnings("unchecked")
 	private boolean writeData(OutputStream outputStream) throws IOException {
 		IdEObject ifcProduct = iterator.next();
 		LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(outputStream);

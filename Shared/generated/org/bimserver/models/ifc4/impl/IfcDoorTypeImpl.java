@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcDoorType;
 import org.bimserver.models.ifc4.IfcDoorTypeEnum;
 import org.bimserver.models.ifc4.IfcDoorTypeOperationEnum;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

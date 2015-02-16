@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcDirectionSenseEnum;
 import org.bimserver.models.ifc4.IfcLayerSetDirectionEnum;
 import org.bimserver.models.ifc4.IfcMaterialLayerSet;
 import org.bimserver.models.ifc4.IfcMaterialLayerSetUsage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

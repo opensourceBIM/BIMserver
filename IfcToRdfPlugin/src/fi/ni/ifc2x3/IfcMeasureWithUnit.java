@@ -1,7 +1,9 @@
 package fi.ni.ifc2x3;
-import fi.ni.ifc2x3.interfaces.*;
-import fi.ni.*;
-import java.util.*;
+import fi.ni.Thing;
+import fi.ni.ifc2x3.interfaces.IfcAppliedValueSelect;
+import fi.ni.ifc2x3.interfaces.IfcConditionCriterionSelect;
+import fi.ni.ifc2x3.interfaces.IfcMetricValueSelect;
+import fi.ni.ifc2x3.interfaces.IfcUnit;
 
 /*
  * IFC Java class

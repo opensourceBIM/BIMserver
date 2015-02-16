@@ -17,14 +17,11 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.ServiceField;
 import org.bimserver.models.store.ServiceSimpleType;
 import org.bimserver.models.store.ServiceType;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

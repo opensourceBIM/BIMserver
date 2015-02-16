@@ -17,15 +17,12 @@
 package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcActorRole;
 import org.bimserver.models.ifc4.IfcAddress;
 import org.bimserver.models.ifc4.IfcPerson;
 import org.bimserver.models.ifc4.IfcPersonAndOrganization;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

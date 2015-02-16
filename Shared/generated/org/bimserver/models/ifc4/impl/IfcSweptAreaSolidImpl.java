@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcAxis2Placement3D;
 import org.bimserver.models.ifc4.IfcProfileDef;
 import org.bimserver.models.ifc4.IfcSweptAreaSolid;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

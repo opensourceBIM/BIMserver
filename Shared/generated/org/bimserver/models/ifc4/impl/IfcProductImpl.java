@@ -17,15 +17,12 @@
 package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.models.geometry.GeometryInfo;
-
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcObjectPlacement;
 import org.bimserver.models.ifc4.IfcProduct;
 import org.bimserver.models.ifc4.IfcProductRepresentation;
 import org.bimserver.models.ifc4.IfcRelAssignsToProduct;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

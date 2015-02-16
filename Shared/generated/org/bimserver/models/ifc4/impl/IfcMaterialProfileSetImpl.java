@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCompositeProfileDef;
 import org.bimserver.models.ifc4.IfcMaterialProfile;
 import org.bimserver.models.ifc4.IfcMaterialProfileSet;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

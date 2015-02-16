@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcComplexPropertyTemplate;
 import org.bimserver.models.ifc4.IfcPropertySetTemplate;
 import org.bimserver.models.ifc4.IfcPropertyTemplate;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

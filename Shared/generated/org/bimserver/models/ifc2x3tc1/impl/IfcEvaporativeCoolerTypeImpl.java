@@ -19,7 +19,6 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcEvaporativeCoolerType;
 import org.bimserver.models.ifc2x3tc1.IfcEvaporativeCoolerTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

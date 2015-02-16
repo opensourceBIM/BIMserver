@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcCurveInterpolationEnum;
 import org.bimserver.models.ifc4.IfcPropertyTableValue;
 import org.bimserver.models.ifc4.IfcUnit;
 import org.bimserver.models.ifc4.IfcValue;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

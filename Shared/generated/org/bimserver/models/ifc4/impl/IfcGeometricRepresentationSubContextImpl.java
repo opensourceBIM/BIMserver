@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcGeometricProjectionEnum;
 import org.bimserver.models.ifc4.IfcGeometricRepresentationContext;
 import org.bimserver.models.ifc4.IfcGeometricRepresentationSubContext;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

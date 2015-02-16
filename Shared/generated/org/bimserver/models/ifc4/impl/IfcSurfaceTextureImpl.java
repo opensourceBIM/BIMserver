@@ -22,9 +22,7 @@ import org.bimserver.models.ifc4.IfcSurfaceStyleWithTextures;
 import org.bimserver.models.ifc4.IfcSurfaceTexture;
 import org.bimserver.models.ifc4.IfcTextureCoordinate;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

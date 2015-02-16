@@ -1,7 +1,7 @@
 package org.bimserver.collada;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -322,6 +322,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private String doubleBufferToFloatingPointSpaceDelimitedString(DoubleBuffer buffer) {
 		// For each scalar in the buffer, turn it into a string, adding it to the overall list.
 		List<String> stringScalars = doubleBufferToStringList(buffer, decimalFormat);
@@ -336,6 +337,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		return StringUtils.join(stringScalars, " ");
 	}
 
+	@SuppressWarnings("unused")
 	private String byteBufferToIntPointSpaceDelimitedString(ByteBuffer buffer) {
 		// Prepare to store integers as a list of strings.
 		List<String> stringScalars = intBufferToStringList(buffer, intFormat);
@@ -407,6 +409,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 	
 	
 	//String leftLightLocationString = String.format("%f %f %f", leftLightLocation.x(), leftLightLocation.y(), leftLightLocation.z());
+	@SuppressWarnings("unused")
 	private void writeVisualScenes(PrintWriter out) {
 		// Open the section.
 		out.println(" <library_visual_scenes>");

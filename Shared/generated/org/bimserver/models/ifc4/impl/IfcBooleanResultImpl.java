@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcBooleanOperand;
 import org.bimserver.models.ifc4.IfcBooleanOperator;
 import org.bimserver.models.ifc4.IfcBooleanResult;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

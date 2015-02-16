@@ -19,7 +19,6 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcFooting;
 import org.bimserver.models.ifc4.IfcFootingTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

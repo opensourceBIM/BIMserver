@@ -20,7 +20,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAssemblyPlaceEnum;
 import org.bimserver.models.ifc2x3tc1.IfcElementAssembly;
 import org.bimserver.models.ifc2x3tc1.IfcElementAssemblyTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

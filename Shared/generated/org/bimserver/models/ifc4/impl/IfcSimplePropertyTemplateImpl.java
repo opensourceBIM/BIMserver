@@ -22,7 +22,6 @@ import org.bimserver.models.ifc4.IfcSimplePropertyTemplate;
 import org.bimserver.models.ifc4.IfcSimplePropertyTemplateTypeEnum;
 import org.bimserver.models.ifc4.IfcStateEnum;
 import org.bimserver.models.ifc4.IfcUnit;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcEvent;
 import org.bimserver.models.ifc4.IfcEventTime;
 import org.bimserver.models.ifc4.IfcEventTriggerTypeEnum;
 import org.bimserver.models.ifc4.IfcEventTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

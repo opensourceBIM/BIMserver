@@ -34,7 +34,6 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -44,7 +43,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class Colorizer {
-	private SchemaDefinition schema;
 	private PluginManager pluginManager;
 	private final Map<String, Map<String, String>> map = new HashMap<String, Map<String,String>>();
 
@@ -126,7 +124,6 @@ public class Colorizer {
 		}
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			schema = pluginManager.requireSchemaDefinition("ifc2x3tc1");
 		} catch (PluginException e) {
 			e.printStackTrace();
 		}
