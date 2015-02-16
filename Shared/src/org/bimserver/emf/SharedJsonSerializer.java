@@ -24,7 +24,6 @@ import java.util.List;
 
 import org.apache.mina.util.Base64;
 import org.bimserver.emf.IdEObjectImpl.State;
-import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -67,11 +66,6 @@ public class SharedJsonSerializer {
 			} else if (mode == Mode.BODY) {
 				if (iterator.hasNext()) {
 					IdEObject object = iterator.next();
-					if (object instanceof IfcFurnishingElement) {
-						if (((IfcFurnishingElement)object).getName().equals("ADDED FURNITURE")) {
-							System.out.println();
-						}
-					}
 					if (object.eClass().getEAnnotation("hidden") == null) {
 						if (!firstObject) {
 							out.write(",");
