@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcAppliedValue;
 import org.bimserver.models.ifc4.IfcConstructionResource;
 import org.bimserver.models.ifc4.IfcPhysicalQuantity;
 import org.bimserver.models.ifc4.IfcResourceTime;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

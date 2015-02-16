@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcProfileDef;
 import org.bimserver.models.ifc4.IfcSectionProperties;
 import org.bimserver.models.ifc4.IfcSectionTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

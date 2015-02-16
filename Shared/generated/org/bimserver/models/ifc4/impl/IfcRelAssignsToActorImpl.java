@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcActor;
 import org.bimserver.models.ifc4.IfcActorRole;
 import org.bimserver.models.ifc4.IfcRelAssignsToActor;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

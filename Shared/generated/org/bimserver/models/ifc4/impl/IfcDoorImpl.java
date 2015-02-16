@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcDoor;
 import org.bimserver.models.ifc4.IfcDoorTypeEnum;
 import org.bimserver.models.ifc4.IfcDoorTypeOperationEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

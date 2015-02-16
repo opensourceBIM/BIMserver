@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcPermeableCoveringOperationEnum;
 import org.bimserver.models.ifc4.IfcPermeableCoveringProperties;
 import org.bimserver.models.ifc4.IfcShapeAspect;
 import org.bimserver.models.ifc4.IfcWindowPanelPositionEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -1,7 +1,7 @@
 package org.bimserver.test;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.IOException;
 
 import org.bimserver.LocalDevSetup;
-import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -29,7 +28,6 @@ import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public class TestUploadSameModelALot {
-	private BimServerClient client;
 
 	public static void main(String[] args) {
 		new TestUploadSameModelALot().start();

@@ -1,7 +1,7 @@
 package fi.ni.ifc2x3;
-import fi.ni.ifc2x3.interfaces.*;
-import fi.ni.*;
-import java.util.*;
+import fi.ni.Thing;
+import fi.ni.ifc2x3.interfaces.IfcLightDistributionDataSourceSelect;
+import fi.ni.ifc2x3.interfaces.IfcObjectReferenceSelect;
 
 /*
  * IFC Java class

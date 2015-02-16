@@ -16,14 +16,16 @@
  */
 package org.bimserver.models.geometry.impl;
 
-import org.bimserver.models.geometry.*;
-
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryFactory;
+import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.GeometryInstance;
+import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.geometry.Vector3f;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

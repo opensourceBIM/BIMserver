@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcFaceBound;
 import org.bimserver.models.ifc4.IfcLoop;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

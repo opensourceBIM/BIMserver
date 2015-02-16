@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcReinforcingBar;
 import org.bimserver.models.ifc4.IfcReinforcingBarSurfaceEnum;
 import org.bimserver.models.ifc4.IfcReinforcingBarTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

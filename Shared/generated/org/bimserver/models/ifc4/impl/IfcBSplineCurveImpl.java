@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcBSplineCurve;
 import org.bimserver.models.ifc4.IfcBSplineCurveForm;
 import org.bimserver.models.ifc4.IfcCartesianPoint;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

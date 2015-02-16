@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcExternalSpatialElement;
 import org.bimserver.models.ifc4.IfcExternalSpatialElementTypeEnum;
 import org.bimserver.models.ifc4.IfcRelSpaceBoundary;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

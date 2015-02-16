@@ -29,12 +29,8 @@ import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
-import fi.ni.InverseLinksList;
 import fi.ni.ifc2x3.IfcRoot;
 import fi.ni.vo.Link;
 import fi.ni.vo.ValuePair;

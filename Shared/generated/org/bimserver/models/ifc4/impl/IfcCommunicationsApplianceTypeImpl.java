@@ -19,7 +19,6 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCommunicationsApplianceType;
 import org.bimserver.models.ifc4.IfcCommunicationsApplianceTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -22,7 +22,6 @@ import org.bimserver.models.ifc4.IfcTextStyle;
 import org.bimserver.models.ifc4.IfcTextStyleForDefinedFont;
 import org.bimserver.models.ifc4.IfcTextStyleTextModel;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcMeasureWithUnit;
 import org.bimserver.models.ifc4.IfcProcessSelect;
 import org.bimserver.models.ifc4.IfcRelAssignsToProcess;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

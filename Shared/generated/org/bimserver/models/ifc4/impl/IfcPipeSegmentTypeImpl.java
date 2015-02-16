@@ -19,7 +19,6 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcPipeSegmentType;
 import org.bimserver.models.ifc4.IfcPipeSegmentTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

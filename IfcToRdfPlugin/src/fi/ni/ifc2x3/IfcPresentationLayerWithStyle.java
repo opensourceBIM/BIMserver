@@ -1,7 +1,8 @@
 package fi.ni.ifc2x3;
-import fi.ni.ifc2x3.interfaces.*;
-import fi.ni.*;
-import java.util.*;
+import java.util.List;
+
+import fi.ni.IfcSet;
+import fi.ni.ifc2x3.interfaces.IfcPresentationStyleSelect;
 
 /*
  * IFC Java class

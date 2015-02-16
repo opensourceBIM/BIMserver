@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcDocumentInformation;
 import org.bimserver.models.ifc4.IfcDocumentReference;
 import org.bimserver.models.ifc4.IfcRelAssociatesDocument;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

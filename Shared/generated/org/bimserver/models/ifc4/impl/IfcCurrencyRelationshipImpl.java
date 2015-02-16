@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCurrencyRelationship;
 import org.bimserver.models.ifc4.IfcLibraryInformation;
 import org.bimserver.models.ifc4.IfcMonetaryUnit;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

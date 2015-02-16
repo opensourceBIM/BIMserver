@@ -19,7 +19,6 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcApproval;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesApproval;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

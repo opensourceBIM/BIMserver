@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcAxis2Placement3D;
 import org.bimserver.models.ifc4.IfcBoundedCurve;
 import org.bimserver.models.ifc4.IfcPolygonalBoundedHalfSpace;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

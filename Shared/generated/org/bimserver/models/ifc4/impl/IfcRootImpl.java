@@ -17,11 +17,9 @@
 package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcOwnerHistory;
 import org.bimserver.models.ifc4.IfcRoot;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

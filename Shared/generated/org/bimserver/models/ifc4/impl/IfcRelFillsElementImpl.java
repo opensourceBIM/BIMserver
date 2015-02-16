@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcElement;
 import org.bimserver.models.ifc4.IfcOpeningElement;
 import org.bimserver.models.ifc4.IfcRelFillsElement;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

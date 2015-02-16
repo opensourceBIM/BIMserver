@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcSIPrefix;
 import org.bimserver.models.ifc4.IfcSIUnit;
 import org.bimserver.models.ifc4.IfcSIUnitName;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

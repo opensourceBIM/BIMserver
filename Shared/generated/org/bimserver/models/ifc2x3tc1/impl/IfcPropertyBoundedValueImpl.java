@@ -20,7 +20,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcPropertyBoundedValue;
 import org.bimserver.models.ifc2x3tc1.IfcUnit;
 import org.bimserver.models.ifc2x3tc1.IfcValue;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

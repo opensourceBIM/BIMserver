@@ -22,9 +22,7 @@ import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelReferencedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelServicesBuildings;
 import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

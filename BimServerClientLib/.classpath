@@ -20,6 +20,6 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpclient-4.3.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpcore-4.3.3.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/httpclient-cache-4.3.2.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/httpmime-4.3.2.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/httpmime-4.3.2.jar" sourcepath="/BimServer/libsrc/httpcomponents-client-4.4-src.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

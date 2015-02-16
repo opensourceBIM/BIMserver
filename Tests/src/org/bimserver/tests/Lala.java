@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,7 +24,6 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +37,6 @@ public class Lala {
 
 	private void start() {
 		BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
-		UsernamePasswordAuthenticationInfo info = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 		try {
 			// ..Snippet..//
 			log.info("Getting User details:");

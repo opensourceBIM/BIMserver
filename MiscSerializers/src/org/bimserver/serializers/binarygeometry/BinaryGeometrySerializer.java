@@ -1,7 +1,7 @@
 package org.bimserver.serializers.binarygeometry;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@ package org.bimserver.serializers.binarygeometry;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,7 +28,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
-import org.bimserver.plugins.serializers.AligningOutputStream;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.ecore.EClass;

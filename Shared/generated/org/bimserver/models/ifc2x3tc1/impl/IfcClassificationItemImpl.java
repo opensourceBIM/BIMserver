@@ -17,15 +17,12 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcClassification;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationItem;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationItemRelationship;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationNotationFacet;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

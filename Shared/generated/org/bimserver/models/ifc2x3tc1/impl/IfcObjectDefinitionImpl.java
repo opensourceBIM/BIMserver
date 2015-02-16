@@ -21,9 +21,7 @@ import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssigns;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

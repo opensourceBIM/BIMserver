@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcBoundaryEdgeCondition;
 import org.bimserver.models.ifc4.IfcModulusOfRotationalSubgradeReactionSelect;
 import org.bimserver.models.ifc4.IfcModulusOfTranslationalSubgradeReactionSelect;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

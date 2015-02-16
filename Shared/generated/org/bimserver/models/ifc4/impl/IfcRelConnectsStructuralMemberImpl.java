@@ -23,7 +23,6 @@ import org.bimserver.models.ifc4.IfcRelConnectsStructuralMember;
 import org.bimserver.models.ifc4.IfcStructuralConnection;
 import org.bimserver.models.ifc4.IfcStructuralConnectionCondition;
 import org.bimserver.models.ifc4.IfcStructuralMember;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

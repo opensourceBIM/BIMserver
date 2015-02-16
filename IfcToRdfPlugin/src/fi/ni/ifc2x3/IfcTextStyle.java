@@ -1,7 +1,8 @@
 package fi.ni.ifc2x3;
-import fi.ni.ifc2x3.interfaces.*;
-import fi.ni.*;
-import java.util.*;
+import fi.ni.ifc2x3.interfaces.IfcCharacterStyleSelect;
+import fi.ni.ifc2x3.interfaces.IfcPresentationStyleSelect;
+import fi.ni.ifc2x3.interfaces.IfcTextFontSelect;
+import fi.ni.ifc2x3.interfaces.IfcTextStyleSelect;
 
 /*
  * IFC Java class

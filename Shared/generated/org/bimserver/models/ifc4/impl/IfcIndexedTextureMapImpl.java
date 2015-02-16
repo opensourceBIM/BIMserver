@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcIndexedTextureMap;
 import org.bimserver.models.ifc4.IfcTessellatedFaceSet;
 import org.bimserver.models.ifc4.IfcTextureVertexList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

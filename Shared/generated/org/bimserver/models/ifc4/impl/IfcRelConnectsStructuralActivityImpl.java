@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcRelConnectsStructuralActivity;
 import org.bimserver.models.ifc4.IfcStructuralActivity;
 import org.bimserver.models.ifc4.IfcStructuralActivityAssignmentSelect;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

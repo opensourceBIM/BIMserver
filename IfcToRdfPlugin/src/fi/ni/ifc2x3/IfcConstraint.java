@@ -1,7 +1,8 @@
 package fi.ni.ifc2x3;
-import fi.ni.ifc2x3.interfaces.*;
-import fi.ni.*;
-import java.util.*;
+import fi.ni.InverseLinksList;
+import fi.ni.Thing;
+import fi.ni.ifc2x3.interfaces.IfcActorSelect;
+import fi.ni.ifc2x3.interfaces.IfcDateTimeSelect;
 
 /*
  * IFC Java class

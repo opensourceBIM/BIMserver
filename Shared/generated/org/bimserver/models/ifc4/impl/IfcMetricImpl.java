@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcBenchmarkEnum;
 import org.bimserver.models.ifc4.IfcMetric;
 import org.bimserver.models.ifc4.IfcMetricValueSelect;
 import org.bimserver.models.ifc4.IfcReference;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

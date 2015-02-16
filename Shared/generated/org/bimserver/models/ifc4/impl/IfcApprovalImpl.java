@@ -17,7 +17,6 @@
 package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcActorSelect;
 import org.bimserver.models.ifc4.IfcApproval;
@@ -25,9 +24,7 @@ import org.bimserver.models.ifc4.IfcApprovalRelationship;
 import org.bimserver.models.ifc4.IfcExternalReferenceRelationship;
 import org.bimserver.models.ifc4.IfcRelAssociatesApproval;
 import org.bimserver.models.ifc4.IfcResourceApprovalRelationship;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcReinforcementBarProperties;
 import org.bimserver.models.ifc4.IfcReinforcingBarRoleEnum;
 import org.bimserver.models.ifc4.IfcSectionProperties;
 import org.bimserver.models.ifc4.IfcSectionReinforcementProperties;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

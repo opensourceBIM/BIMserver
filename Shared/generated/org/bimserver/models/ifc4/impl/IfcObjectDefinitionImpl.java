@@ -23,9 +23,7 @@ import org.bimserver.models.ifc4.IfcRelAssigns;
 import org.bimserver.models.ifc4.IfcRelAssociates;
 import org.bimserver.models.ifc4.IfcRelDeclares;
 import org.bimserver.models.ifc4.IfcRelNests;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

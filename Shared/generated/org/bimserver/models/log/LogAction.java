@@ -19,7 +19,6 @@ package org.bimserver.models.log;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.bimserver.models.store.User;
 
 /**

@@ -1,5 +1,22 @@
 package org.bimserver.plugins.services;
 
+/******************************************************************************
+ * Copyright (C) 2009-2015  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,6 +48,7 @@ public class Geometry {
 	private IntBuffer indices;
 	private FloatBuffer vertices;
 	private FloatBuffer normals;
+	@SuppressWarnings("unused")
 	private FloatBuffer materials;
 	private float minX;
 	private float minY;
@@ -39,6 +57,7 @@ public class Geometry {
 	private float maxY;
 	private float maxZ;
 
+	@SuppressWarnings("unused")
 	public Geometry(InputStream inputStream, long oidToUse) throws IOException {
 		DataInputStream dataInputStream = new DataInputStream(inputStream);
 		String protocol = dataInputStream.readUTF();

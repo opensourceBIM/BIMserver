@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcLagTime;
 import org.bimserver.models.ifc4.IfcProcess;
 import org.bimserver.models.ifc4.IfcRelSequence;
 import org.bimserver.models.ifc4.IfcSequenceEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

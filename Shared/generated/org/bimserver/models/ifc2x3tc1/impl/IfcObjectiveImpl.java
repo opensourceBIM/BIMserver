@@ -20,7 +20,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMetric;
 import org.bimserver.models.ifc2x3tc1.IfcObjective;
 import org.bimserver.models.ifc2x3tc1.IfcObjectiveEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

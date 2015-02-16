@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcBendingParameterSelect;
 import org.bimserver.models.ifc4.IfcReinforcingMeshType;
 import org.bimserver.models.ifc4.IfcReinforcingMeshTypeEnum;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

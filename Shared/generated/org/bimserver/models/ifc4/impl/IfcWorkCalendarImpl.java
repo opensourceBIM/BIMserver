@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcWorkCalendar;
 import org.bimserver.models.ifc4.IfcWorkCalendarTypeEnum;
 import org.bimserver.models.ifc4.IfcWorkTime;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

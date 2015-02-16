@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcAxis2Placement;
 import org.bimserver.models.ifc4.IfcLocalPlacement;
 import org.bimserver.models.ifc4.IfcObjectPlacement;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

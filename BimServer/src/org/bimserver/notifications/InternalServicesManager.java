@@ -1,7 +1,7 @@
 package org.bimserver.notifications;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -133,7 +133,6 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	
 	private class P {
 		public BimServerClientInterface client;
-		public long configurationId;
 		public SObjectType settings;
 	}
 	
@@ -163,8 +162,6 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 				}
 				final SObjectType settings = bimServer.getSConverter().convertToSObject(internalServicePluginConfiguration.getSettings());
 				
-				final InternalServicePluginConfiguration finalInternalServicePluginConfiguration = internalServicePluginConfiguration;
-				
 				BimServerClientInterface bimServerClient = null;
 				BimServerClientFactory factory = null;
 				if (apiUrl == null) {
@@ -183,7 +180,6 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 				
 				p.client = bimServerClient;
 				p.settings = settings;
-				p.configurationId = finalInternalServicePluginConfiguration.getOid();
 				
 				return p;
 			} catch (BimserverDatabaseException e) {

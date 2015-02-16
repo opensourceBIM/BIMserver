@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcConversionBasedUnit;
 import org.bimserver.models.ifc4.IfcExternalReferenceRelationship;
 import org.bimserver.models.ifc4.IfcMeasureWithUnit;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

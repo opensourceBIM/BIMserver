@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcPile;
 import org.bimserver.models.ifc4.IfcPileConstructionEnum;
 import org.bimserver.models.ifc4.IfcPileTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

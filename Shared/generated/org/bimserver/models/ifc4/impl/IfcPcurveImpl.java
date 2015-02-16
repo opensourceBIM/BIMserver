@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCurve;
 import org.bimserver.models.ifc4.IfcPcurve;
 import org.bimserver.models.ifc4.IfcSurface;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

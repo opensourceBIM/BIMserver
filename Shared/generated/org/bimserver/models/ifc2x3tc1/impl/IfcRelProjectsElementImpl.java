@@ -20,7 +20,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
 import org.bimserver.models.ifc2x3tc1.IfcFeatureElementAddition;
 import org.bimserver.models.ifc2x3tc1.IfcRelProjectsElement;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

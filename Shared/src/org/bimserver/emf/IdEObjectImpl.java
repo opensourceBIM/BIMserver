@@ -1,7 +1,7 @@
 package org.bimserver.emf;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,8 +25,6 @@ import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl.InternalSettingDelegate
 import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl.InternalSettingDelegateSingleEObject;
 import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl.InternalSettingDelegateSingleEObjectUnsettable;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
@@ -34,7 +32,6 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		NO_LAZY_LOADING, TO_BE_LOADED, LOADING, LOADED, OPPOSITE_SETTING
 	}
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(IdEObjectImpl.class);
 	private long oid = -1;
 	private int pid;
 	private int rid;

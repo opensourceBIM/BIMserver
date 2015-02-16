@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcColourOrFactor;
 import org.bimserver.models.ifc4.IfcReflectanceMethodEnum;
 import org.bimserver.models.ifc4.IfcSpecularHighlightSelect;
 import org.bimserver.models.ifc4.IfcSurfaceStyleRendering;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

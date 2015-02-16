@@ -19,7 +19,6 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcBuilding;
 import org.bimserver.models.ifc4.IfcPostalAddress;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

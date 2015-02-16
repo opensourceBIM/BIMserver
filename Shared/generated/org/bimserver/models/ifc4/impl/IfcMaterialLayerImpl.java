@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcMaterial;
 import org.bimserver.models.ifc4.IfcMaterialLayer;
 import org.bimserver.models.ifc4.IfcMaterialLayerSet;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

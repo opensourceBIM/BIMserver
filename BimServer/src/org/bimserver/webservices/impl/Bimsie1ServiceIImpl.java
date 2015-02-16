@@ -1,7 +1,7 @@
 package org.bimserver.webservices.impl;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -64,11 +64,11 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.longaction.DownloadParameters.DownloadType;
 import org.bimserver.longaction.LongBranchAction;
 import org.bimserver.longaction.LongCheckoutAction;
 import org.bimserver.longaction.LongDownloadAction;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
-import org.bimserver.longaction.DownloadParameters.DownloadType;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Project;

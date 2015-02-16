@@ -24,9 +24,7 @@ import org.bimserver.models.ifc4.IfcDocumentInformationRelationship;
 import org.bimserver.models.ifc4.IfcDocumentReference;
 import org.bimserver.models.ifc4.IfcDocumentStatusEnum;
 import org.bimserver.models.ifc4.IfcRelAssociatesDocument;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

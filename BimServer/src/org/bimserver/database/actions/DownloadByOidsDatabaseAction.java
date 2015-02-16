@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -53,7 +53,6 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 	private final Set<Long> oids;
 	private final Set<Long> roids;
 	private int progress;
-	private final ObjectIDM objectIDM;
 	private long serializerOid;
 	private Deep deep;
 
@@ -62,7 +61,6 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 		this.roids = roids;
 		this.oids = oids;
 		this.serializerOid = serializerOid;
-		this.objectIDM = objectIDM;
 		this.deep = deep;
 	}
 

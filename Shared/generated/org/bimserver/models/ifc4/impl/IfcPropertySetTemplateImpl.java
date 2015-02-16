@@ -21,9 +21,7 @@ import org.bimserver.models.ifc4.IfcPropertySetTemplate;
 import org.bimserver.models.ifc4.IfcPropertySetTemplateTypeEnum;
 import org.bimserver.models.ifc4.IfcPropertyTemplate;
 import org.bimserver.models.ifc4.IfcRelDefinesByTemplate;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

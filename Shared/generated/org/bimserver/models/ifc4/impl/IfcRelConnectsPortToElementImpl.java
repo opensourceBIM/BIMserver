@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcDistributionElement;
 import org.bimserver.models.ifc4.IfcPort;
 import org.bimserver.models.ifc4.IfcRelConnectsPortToElement;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

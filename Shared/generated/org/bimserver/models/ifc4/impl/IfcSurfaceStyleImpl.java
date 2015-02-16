@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcSurfaceSide;
 import org.bimserver.models.ifc4.IfcSurfaceStyle;
 import org.bimserver.models.ifc4.IfcSurfaceStyleElementSelect;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

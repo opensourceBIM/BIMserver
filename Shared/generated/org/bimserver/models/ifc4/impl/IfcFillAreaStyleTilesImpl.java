@@ -20,9 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcFillAreaStyleTiles;
 import org.bimserver.models.ifc4.IfcStyledItem;
 import org.bimserver.models.ifc4.IfcVector;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

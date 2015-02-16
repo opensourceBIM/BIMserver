@@ -17,15 +17,12 @@
 package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcExternalReferenceRelationship;
 import org.bimserver.models.ifc4.IfcProfileDef;
 import org.bimserver.models.ifc4.IfcProfileProperties;
 import org.bimserver.models.ifc4.IfcProfileTypeEnum;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

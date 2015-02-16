@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcMaterial;
 import org.bimserver.models.ifc4.IfcMaterialProfile;
 import org.bimserver.models.ifc4.IfcMaterialProfileSet;
 import org.bimserver.models.ifc4.IfcProfileDef;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

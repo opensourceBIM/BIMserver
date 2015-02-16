@@ -19,7 +19,6 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcClosedShell;
 import org.bimserver.models.ifc4.IfcManifoldSolidBrep;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

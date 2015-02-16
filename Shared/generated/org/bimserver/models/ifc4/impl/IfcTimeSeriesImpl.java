@@ -17,16 +17,13 @@
 package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcDataOriginEnum;
 import org.bimserver.models.ifc4.IfcExternalReferenceRelationship;
 import org.bimserver.models.ifc4.IfcTimeSeries;
 import org.bimserver.models.ifc4.IfcTimeSeriesDataTypeEnum;
 import org.bimserver.models.ifc4.IfcUnit;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

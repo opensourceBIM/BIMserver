@@ -21,7 +21,6 @@ import org.bimserver.models.ifc4.IfcDistributionPort;
 import org.bimserver.models.ifc4.IfcDistributionPortTypeEnum;
 import org.bimserver.models.ifc4.IfcDistributionSystemEnum;
 import org.bimserver.models.ifc4.IfcFlowDirectionEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -1,5 +1,5 @@
 package fi.ni.ifc2x3;
-import fi.ni.ifc2x3.interfaces.*;
+import fi.ni.ifc2x3.interfaces.IfcOrientationSelect;
 
 /*
  * IFC Java class for String valued unknown interface type
