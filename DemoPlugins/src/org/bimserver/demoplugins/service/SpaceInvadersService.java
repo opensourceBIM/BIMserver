@@ -97,7 +97,7 @@ public class SpaceInvadersService extends ServicePlugin {
 					
 					try {
 						SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
-						IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true);
+						IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true, false);
 						for (IfcSpace ifcSpace : model.getAllWithSubTypes(IfcSpace.class)) {
 //							GeometryInfo geometry = ifcSpace.getGeometry();
 							bimServerClientInterface.getGeometry(roid, ifcSpace);

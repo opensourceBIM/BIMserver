@@ -92,7 +92,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 				if (eClassifier == null) {
 					throw new UserException("Class " + className + " not found");
 				}
-				eClasses.addAll(getBimServer().getDatabase().getMetaDataManager().getEPackage(schema).getAllSubClasses((EClass)eClassifier));
+				eClasses.addAll(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(schema).getAllSubClasses((EClass)eClassifier));
 			}
 		}
 		String name = "";
@@ -115,7 +115,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			}
 			int size = 0;
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 				try {
 					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getBimServer().getPluginManager().requireSchemaDefinition(schema));
 					

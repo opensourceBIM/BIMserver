@@ -217,7 +217,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
 			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
-			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getEPackage(project.getSchema()));
+			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
 			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), inputStream, deserializer, fileSize, comment, fileName, merge);
 			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 			getBimServer().getLongActionManager().start(longAction);
@@ -276,7 +276,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
 			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
-			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getEPackage("ifc2x3tc1"));
+			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), inputStream, deserializer, contentLength, comment, fileName, merge);
 			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 			getBimServer().getLongActionManager().start(longAction);

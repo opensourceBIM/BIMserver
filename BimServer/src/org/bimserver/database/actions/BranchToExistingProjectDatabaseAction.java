@@ -74,7 +74,7 @@ public class BranchToExistingProjectDatabaseAction extends AbstractBranchDatabas
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		PackageMetaData lastMetaData = null;
 		for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
-			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(subRevision.getProject().getSchema());
+			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(subRevision.getProject().getSchema());
 			IfcModel subModel = new IfcModel(packageMetaData, null);
 			getDatabaseSession().getMap(subModel, new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), -1, Deep.YES));
 			subModel.getModelMetaData().setDate(subRevision.getDate());

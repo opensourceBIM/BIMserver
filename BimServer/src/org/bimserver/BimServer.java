@@ -359,7 +359,7 @@ public class BimServer {
 			schemaConverterManager.registerConverter(new Ifc2x3tc1ToIfc4SchemaConverterFactory());
 			schemaConverterManager.registerConverter(new Ifc4ToIfc2x3tc1SchemaConverterFactory());
 			
-			Query.setPackageMetaDataForDefaultQuery(metaDataManager.getEPackage("store"));
+			Query.setPackageMetaDataForDefaultQuery(metaDataManager.getPackageMetaData("store"));
 			
 			bimDatabase = new Database(this, packages, keyValueStore, metaDataManager);
 			try {

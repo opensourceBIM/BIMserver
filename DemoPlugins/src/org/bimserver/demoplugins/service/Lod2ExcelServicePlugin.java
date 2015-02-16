@@ -124,7 +124,7 @@ public class Lod2ExcelServicePlugin extends ServicePlugin {
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
 					SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
-					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true);
+					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true, false);
 					
 					try {
 					    WorkbookSettings wbSettings = new WorkbookSettings();

@@ -277,7 +277,7 @@ public class TestDatabase {
 
 	private void init() throws DatabaseInitException {
 		keyValueStore = new BerkeleyKeyValueStore(dataDir);
-		database = new Database(null, CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), keyValueStore);
+		database = new Database(null, CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), keyValueStore, null);
 		try {
 			database.init();
 		} catch (DatabaseInitException e) {

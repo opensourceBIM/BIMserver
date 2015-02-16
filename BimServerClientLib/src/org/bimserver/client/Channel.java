@@ -26,22 +26,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.zip.DeflaterInputStream;
 
-import org.apache.http.Header;
-import org.apache.http.HeaderElement;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpException;
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpResponseInterceptor;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.GzipDecompressingEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HttpContext;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
@@ -74,7 +65,11 @@ public abstract class Channel implements ServiceHolder {
 	private final Map<String, PublicInterface> serviceInterfaces = new HashMap<String, PublicInterface>();
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 	private static final Logger LOGGER = LoggerFactory.getLogger(Channel.class);
-	private final DefaultHttpClient httpclient = new DefaultHttpClient();
+	private CloseableHttpClient closeableHttpClient;
+
+	public Channel(CloseableHttpClient closeableHttpClient) {
+		this.closeableHttpClient = closeableHttpClient;
+	}
 
 	@SuppressWarnings("unchecked")
 	public <T extends PublicInterface> T get(String interfaceClass) {
@@ -114,31 +109,6 @@ public abstract class Channel implements ServiceHolder {
 
 	public long checkin(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, boolean sync, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
 		String address = baseAddress + "/upload";
-		httpclient.addRequestInterceptor(new HttpRequestInterceptor() {
-			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {
-				if (!request.containsHeader("Accept-Encoding")) {
-					request.addHeader("Accept-Encoding", "gzip");
-				}
-			}
-		});
-
-		httpclient.addResponseInterceptor(new HttpResponseInterceptor() {
-			public void process(final HttpResponse response, final HttpContext context) throws HttpException, IOException {
-				HttpEntity entity = response.getEntity();
-				if (entity != null) {
-					Header ceheader = entity.getContentEncoding();
-					if (ceheader != null) {
-						HeaderElement[] codecs = ceheader.getElements();
-						for (int i = 0; i < codecs.length; i++) {
-							if (codecs[i].getName().equalsIgnoreCase("gzip")) {
-								response.setEntity(new GzipDecompressingEntity(response.getEntity()));
-								return;
-							}
-						}
-					}
-				}
-			}
-		});
 		HttpPost httppost = new HttpPost(address);
 		try {
 			// TODO find some GzipInputStream variant that _compresses_ instead of _decompresses_ using deflate for now
@@ -155,7 +125,7 @@ public abstract class Channel implements ServiceHolder {
 			reqEntity.addPart("compression", new StringBody("deflate"));
 			httppost.setEntity(reqEntity);
 			
-			HttpResponse httpResponse = httpclient.execute(httppost);
+			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
 				JsonParser jsonParser = new JsonParser();
 				InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent());
@@ -190,35 +160,9 @@ public abstract class Channel implements ServiceHolder {
 
 	public InputStream getDownloadData(String  baseAddress, String token, long download, long serializerOid) throws IOException {
 		String address = baseAddress + "/download?token=" + token + "&longActionId=" + download + "&serializerOid=" + serializerOid;
-		DefaultHttpClient httpclient = new DefaultHttpClient();
-		httpclient.addRequestInterceptor(new HttpRequestInterceptor() {
-			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {
-				if (!request.containsHeader("Accept-Encoding")) {
-					request.addHeader("Accept-Encoding", "gzip");
-				}
-			}
-
-		});
-		httpclient.addResponseInterceptor(new HttpResponseInterceptor() {
-			public void process(final HttpResponse response, final HttpContext context) throws HttpException, IOException {
-				HttpEntity entity = response.getEntity();
-				if (entity != null) {
-					Header ceheader = entity.getContentEncoding();
-					if (ceheader != null) {
-						HeaderElement[] codecs = ceheader.getElements();
-						for (int i = 0; i < codecs.length; i++) {
-							if (codecs[i].getName().equalsIgnoreCase("gzip")) {
-								response.setEntity(new GzipDecompressingEntity(response.getEntity()));
-								return;
-							}
-						}
-					}
-				}
-			}
-		});
 		HttpPost httppost = new HttpPost(address);
 		try {
-			HttpResponse httpResponse = httpclient.execute(httppost);
+			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
 				return httpResponse.getEntity().getContent();
 			} else {
@@ -228,8 +172,6 @@ public abstract class Channel implements ServiceHolder {
 			LOGGER.error("", e);
 		} catch (IOException e) {
 			LOGGER.error("", e);
-		} finally {
-			httppost.releaseConnection();
 		}
 		return null;
 	}

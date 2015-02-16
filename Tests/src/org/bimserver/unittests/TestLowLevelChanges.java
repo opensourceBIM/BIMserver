@@ -170,7 +170,7 @@ public class TestLowLevelChanges {
 		try {
 			long poid = createProject();
 			long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long wallOid = bimsie1LowLevelInterface.createObject(tid, "IfcWall");
+			long wallOid = bimsie1LowLevelInterface.createObject(tid, "IfcWall", true);
 			long roid = bimsie1LowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
@@ -192,7 +192,7 @@ public class TestLowLevelChanges {
 		try {
 			long poid = createProject();
 			long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long windowOid = bimsie1LowLevelInterface.createObject(tid, "IfcWindow");
+			long windowOid = bimsie1LowLevelInterface.createObject(tid, "IfcWindow", true);
 			String name = "TestX";
 			bimsie1LowLevelInterface.setStringAttribute(tid, windowOid, "Name", name);
 			long roid = bimsie1LowLevelInterface.commitTransaction(tid, "test");
@@ -220,7 +220,7 @@ public class TestLowLevelChanges {
 		try {
 			long poid = createProject();
 			long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long windowOid = bimsie1LowLevelInterface.createObject(tid, "IfcWindow");
+			long windowOid = bimsie1LowLevelInterface.createObject(tid, "IfcWindow", true);
 			double overallHeight = 200.5;
 			bimsie1LowLevelInterface.setDoubleAttribute(tid, windowOid, "OverallHeight", overallHeight);
 			long roid = bimsie1LowLevelInterface.commitTransaction(tid, "test");
@@ -248,8 +248,8 @@ public class TestLowLevelChanges {
 		try {
 			long poid = createProject();
 			long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long siteId = bimsie1LowLevelInterface.createObject(tid, "IfcSite");
-			long ownerHistoryId = bimsie1LowLevelInterface.createObject(tid, "IfcOwnerHistory");
+			long siteId = bimsie1LowLevelInterface.createObject(tid, "IfcSite", true);
+			long ownerHistoryId = bimsie1LowLevelInterface.createObject(tid, "IfcOwnerHistory", true);
 			bimsie1LowLevelInterface.setReference(tid, siteId, "OwnerHistory", ownerHistoryId); // TODO test
 			long roid = bimsie1LowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
@@ -278,7 +278,7 @@ public class TestLowLevelChanges {
 		try {
 			long poid = createProject();
 			Long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long cartesianPointId = bimsie1LowLevelInterface.createObject(tid, "IfcCartesianPoint");
+			long cartesianPointId = bimsie1LowLevelInterface.createObject(tid, "IfcCartesianPoint", true);
 			double firstVal = 5.1;
 			bimsie1LowLevelInterface.addDoubleAttribute(tid, cartesianPointId, "Coordinates", firstVal);
 			double secondVal = 6.2;
@@ -309,7 +309,7 @@ public class TestLowLevelChanges {
 		try {
 			long poid = createProject();
 			long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long windowId = bimsie1LowLevelInterface.createObject(tid, "IfcWindow");
+			long windowId = bimsie1LowLevelInterface.createObject(tid, "IfcWindow", true);
 			bimsie1LowLevelInterface.commitTransaction(tid, "test");
 			tid = bimsie1LowLevelInterface.startTransaction(poid);
 			bimsie1LowLevelInterface.removeObject(tid, windowId);
@@ -335,7 +335,7 @@ public class TestLowLevelChanges {
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
-			PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
+			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
 			deserializer.init(packageMetaData);
 			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), "test.ifc", 0);

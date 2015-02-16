@@ -41,11 +41,11 @@ public class TestIfcFile {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile());
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
+			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, false);
 			serializer.writeToFile(new File("tes.ifc"), null);
 		} catch (PluginException e) {
 			e.printStackTrace();

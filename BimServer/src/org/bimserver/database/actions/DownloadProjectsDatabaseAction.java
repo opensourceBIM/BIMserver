@@ -85,7 +85,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 			pidRoidMap.put(project.getId(), roid);
 			if (getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 					lastPackageMetaData = packageMetaData;
 					IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 					int highestStopId = findHighestStopRid(project, concreteRevision);

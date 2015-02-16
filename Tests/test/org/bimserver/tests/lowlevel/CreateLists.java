@@ -23,12 +23,12 @@ public class CreateLists extends TestWithEmbeddedServer {
 			Bimsie1LowLevelInterface lowLevelInterface = bimServerClient.getBimsie1LowLevelInterface();
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			Long cartesianPointOid = lowLevelInterface.createObject(tid, "IfcCartesianPoint");
+			Long cartesianPointOid = lowLevelInterface.createObject(tid, "IfcCartesianPoint", true);
 			
 			double firstVal = 5.1;
 			lowLevelInterface.addDoubleAttribute(tid, cartesianPointOid, "Coordinates", firstVal);

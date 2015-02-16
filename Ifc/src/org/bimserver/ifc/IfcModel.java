@@ -34,6 +34,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ModelMetaData;
@@ -818,7 +819,7 @@ public class IfcModel implements IfcModelInterface {
 
 	@Override
 	public ModelMetaData getModelMetaData() {
-		return modelMetaData ;
+		return modelMetaData;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -828,6 +829,22 @@ public class IfcModel implements IfcModelInterface {
 		long oid = oidCounter++;
 		((IdEObjectImpl) object).setOid(oid);
 		return (T) object;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends IdEObject> T createAndAdd(Class<T> clazz) throws IfcModelInterfaceException {
+		EClass eClass = packageMetaData.getEClass(clazz);
+		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		object.setLoadingState(State.LOADED);
+		long oid = oidCounter++;
+		add(oid, object);
+		return (T) object;
+	}
+	
+	@Override
+	public <T extends IdEObject> T create(EClass eClass, long oid) throws IfcModelInterfaceException {
+		return null;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -839,8 +856,6 @@ public class IfcModel implements IfcModelInterface {
 		add(oid, object, false, false);
 		return (T) object;
 	}
-	
-	
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -884,7 +899,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	@Override
-	public IfcModelInterface branch(long poid) {
+	public IfcModelInterface branch(long poid, boolean recordChanges) {
 		throw new UnsupportedOperationException();
 	}
 

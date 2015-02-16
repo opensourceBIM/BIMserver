@@ -81,11 +81,11 @@ public class TestIfcEngineEmbedded {
 				// Authenticate
 				client.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 				
-				SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+				SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", -1L);
 				
 				
 				// Create a project
-				SProject project = client.getBimsie1ServiceInterface().addProject("test" + Math.random());
+				SProject project = client.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 				
 				// This is the test file
 				File testIfcFile = new File("../TestData/data/" + filename);
@@ -178,7 +178,7 @@ public class TestIfcEngineEmbedded {
 			}
 			
 			// Get a deserializer
-			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", -1L);
 			if (deserializer == null) {
 				throw new Exception("No deserializer found for IFC-SPF. Make sure plugin directories are correctly configured");
 			}

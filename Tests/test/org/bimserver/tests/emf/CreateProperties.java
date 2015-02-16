@@ -36,10 +36,10 @@ public class CreateProperties extends TestWithEmbeddedServer  {
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a project
-			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
+			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Look for a deserializer
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			
 			bimServerClient.checkin(project.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 			
@@ -47,7 +47,7 @@ public class CreateProperties extends TestWithEmbeddedServer  {
 			project = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
 			
 			// Load model without lazy loading (complete model at once)
-			IfcModelInterface model = bimServerClient.getModel(project.getOid(), project.getLastRevisionId(), true);
+			IfcModelInterface model = bimServerClient.getModel(project, project.getLastRevisionId(), true, false);
 
 			String propertyName = "BooleanProperty";
 
@@ -61,7 +61,7 @@ public class CreateProperties extends TestWithEmbeddedServer  {
 			model.commit("Added boolean properties to " + nrWindowsFirst + " windows");
 			
 			project = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
-			model = bimServerClient.getModel(project.getOid(), project.getLastRevisionId(), true);
+			model = bimServerClient.getModel(project, project.getLastRevisionId(), true, false);
 			int foundOke = 0;
 			int nrWindowsSecond = 0;
 			Set<Long> counted = new HashSet<Long>();

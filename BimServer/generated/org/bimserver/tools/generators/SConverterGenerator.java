@@ -246,11 +246,11 @@ public class SConverterGenerator
     stringBuffer.append(TEXT_30);
     stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_31);
-     if (!metaDataManager.getEPackage(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
-	for (EClass subClass : metaDataManager.getEPackage(ePackage.getName()).getDirectSubClasses(eClass)) {
+     if (!metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
+	for (EClass subClass : metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass)) {
 
     stringBuffer.append(TEXT_32);
-    stringBuffer.append(metaDataManager.getEPackage(ePackage.getName()).getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else ");
+    stringBuffer.append(metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else ");
     stringBuffer.append(TEXT_33);
     stringBuffer.append(subClass.getName());
     stringBuffer.append(TEXT_34);
@@ -398,11 +398,11 @@ public class SConverterGenerator
     stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_89);
     
-	if (!metaDataManager.getEPackage(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
-		for (EClass subClass : metaDataManager.getEPackage(ePackage.getName()).getDirectSubClasses(eClass)) {
+	if (!metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
+		for (EClass subClass : metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass)) {
 
     stringBuffer.append(TEXT_90);
-    stringBuffer.append(metaDataManager.getEPackage(ePackage.getName()).getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else ");
+    stringBuffer.append(metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else ");
     stringBuffer.append(TEXT_91);
     stringBuffer.append(subClass.getName());
     stringBuffer.append(TEXT_92);

@@ -111,7 +111,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 			final AtomicLong total = new AtomicLong();
 
 			for (ConcreteRevision concreteRevision : map.keySet()) {
-				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
 				IfcModel subModel = new IfcModel(packageMetaData, ridRoidMap);
 				int highestStopId = findHighestStopRid(project, concreteRevision);

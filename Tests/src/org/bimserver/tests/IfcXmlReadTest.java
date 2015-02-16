@@ -49,7 +49,7 @@ public class IfcXmlReadTest {
 				File outFile = new File("out.ifc");
 				SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 				Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
+				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, false);
 				try {
 					serializer.writeToFile(outFile, null);
 				} catch (SerializerException e) {
@@ -58,7 +58,7 @@ public class IfcXmlReadTest {
 				
 				DeserializerPlugin deserializerPlugin2 = pluginManager.getFirstDeserializer("ifc", true);
 				Deserializer deserializer2 = deserializerPlugin2.createDeserializer(new PluginConfiguration());
-				deserializer2.init(pluginManager.requireSchemaDefinition());
+				deserializer2.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 				deserializer2.read(outFile);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

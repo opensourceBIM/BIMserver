@@ -20,13 +20,12 @@ package org.bimserver.test;
 import java.io.File;
 import java.io.IOException;
 
+import org.bimserver.LocalDevSetup;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -40,16 +39,15 @@ public class TestUploadDir {
 	}
 
 	private void start() {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 		try {
-			client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 			client.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 			
 			File directory = new File("d:\\testfiles");
 			for (File f : directory.listFiles()) {
 				process(f, null);
 			}
-		} catch (ServiceException | ChannelConnectionException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
@@ -62,9 +60,9 @@ public class TestUploadDir {
 		if (directory.isDirectory()) {
 			SProject project = null;
 			if (parentProject == null) {
-				project = client.getBimsie1ServiceInterface().addProject(directory.getName());
+				project = client.getBimsie1ServiceInterface().addProject(directory.getName(), "ifc2x3tc1");
 			} else {
-				project = client.getBimsie1ServiceInterface().addProjectAsSubProject(directory.getName(), parentProject.getOid());
+				project = client.getBimsie1ServiceInterface().addProjectAsSubProject(directory.getName(), parentProject.getOid(), "ifc2x3tc1");
 			}
 			for (File file : directory.listFiles()) {
 				process(file, project);
@@ -72,7 +70,7 @@ public class TestUploadDir {
 		} else {
 			String lowerCase = directory.getName().toLowerCase();
 			if (lowerCase.endsWith("ifc") || lowerCase.endsWith("ifcxml") || lowerCase.endsWith("ifczip")) {
-				SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(directory.getName().substring(directory.getName().lastIndexOf(".") + 1));
+				SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(directory.getName().substring(directory.getName().lastIndexOf(".") + 1), parentProject.getOid());
 				System.out.println("Checking in " + directory.getAbsolutePath() + " - " + Formatters.bytesToString(directory.length()));
 				try {
 					client.checkin(parentProject.getOid(), "", deserializerForExtension.getOid(), false, true, directory);

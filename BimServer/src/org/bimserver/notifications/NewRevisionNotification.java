@@ -218,7 +218,7 @@ public class NewRevisionNotification extends Notification {
 							ModelCheckerResult result;
 							try {
 								if (model == null) {
-									PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(project.getSchema());
+									PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
 									model = new IfcModel(packageMetaData, null);
 									Revision revision;
 									try {

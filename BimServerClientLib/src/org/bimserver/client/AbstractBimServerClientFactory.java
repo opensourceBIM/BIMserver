@@ -17,6 +17,20 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.IOException;
+
+import org.apache.http.Header;
+import org.apache.http.HeaderElement;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpException;
+import org.apache.http.HttpRequest;
+import org.apache.http.HttpRequestInterceptor;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpResponseInterceptor;
+import org.apache.http.client.entity.GzipDecompressingEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.protocol.HttpContext;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -43,6 +57,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 
 	private final SServicesMap servicesMap;
 	private final MetaDataManager metaDataManager;
+	private CloseableHttpClient httpClient;
 
 	public AbstractBimServerClientFactory(SServicesMap servicesMap, MetaDataManager metaDataManager) {
 		this.servicesMap = servicesMap;
@@ -50,6 +65,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 			throw new IllegalArgumentException("MetaDataManager cannot be null");
 		}
 		this.metaDataManager = metaDataManager;
+		initHttpClient();
 	}
 
 	public AbstractBimServerClientFactory(MetaDataManager metaDataManager) {
@@ -73,6 +89,43 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		addService(new SService(servicesMap, null, Bimsie1NotificationRegistryInterface.class));
 		addService(new SService(servicesMap, null, Bimsie1ServiceInterface.class));
 		servicesMap.initialize();
+		initHttpClient();
+	}
+	
+	public CloseableHttpClient getHttpClient() {
+		return httpClient;
+	}
+	
+	public void initHttpClient() {
+		HttpClientBuilder builder = HttpClientBuilder.create();
+		
+//		builder.addInterceptorFirst(new HttpRequestInterceptor() {
+//			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {
+//				if (!request.containsHeader("Accept-Encoding")) {
+//					request.addHeader("Accept-Encoding", "gzip");
+//				}
+//			}
+//		});
+//
+//		builder.addInterceptorFirst(new HttpResponseInterceptor() {
+//			public void process(final HttpResponse response, final HttpContext context) throws HttpException, IOException {
+//				HttpEntity entity = response.getEntity();
+//				if (entity != null) {
+//					Header ceheader = entity.getContentEncoding();
+//					if (ceheader != null) {
+//						HeaderElement[] codecs = ceheader.getElements();
+//						for (int i = 0; i < codecs.length; i++) {
+//							if (codecs[i].getName().equalsIgnoreCase("gzip")) {
+//								response.setEntity(new GzipDecompressingEntity(response.getEntity()));
+//								return;
+//							}
+//						}
+//					}
+//				}
+//			}
+//		});
+
+		httpClient = builder.build();
 	}
 	
 	@Override

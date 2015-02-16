@@ -107,7 +107,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		PackageMetaData lastPackageMetaData = null;
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
-			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(subRevision.getProject().getSchema());
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(subRevision.getProject().getSchema());
 			lastPackageMetaData = packageMetaData;
 			IfcModel subModel = new IfcModel(packageMetaData, null);
 			int highestStopId = findHighestStopRid(project, subRevision);

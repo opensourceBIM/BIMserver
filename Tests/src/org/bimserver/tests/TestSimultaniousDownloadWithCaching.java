@@ -105,7 +105,7 @@ public class TestSimultaniousDownloadWithCaching {
 			serviceInterface = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL).get(ServiceInterface.class);
 			settingsInterface.setCacheOutputFiles(true);
 			settingsInterface.setGenerateGeometryOnCheckin(false);
-			final SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test");
+			final SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializerByName = serviceMap.getBimsie1ServiceInterface().getDeserializerByName("IfcStepDeserializer");
 			File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
 			serviceInterface.checkin(project.getOid(), "test", deserializerByName.getOid(), file.length(), file.getName(), new DataHandler(new FileDataSource(file)), false, true);

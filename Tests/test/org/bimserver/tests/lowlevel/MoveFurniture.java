@@ -25,10 +25,10 @@ public class MoveFurniture extends TestWithEmbeddedServer {
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Get the appropriate deserializer
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 
 			// Checkin the file
 			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
@@ -39,7 +39,7 @@ public class MoveFurniture extends TestWithEmbeddedServer {
 			
 			long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcFurnishingElement", false);
+			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "ifc2x3tc1", "IfcFurnishingElement", false);
 			int i=0;
 			for (SDataObject furnishingElement : dataObjectsByType) {
 				i++;
@@ -60,7 +60,7 @@ public class MoveFurniture extends TestWithEmbeddedServer {
 
 			long newRoid = lowLevelInterface.commitTransaction(tid, "Moved furniture 50 meters up");
 
-			System.out.println(lowLevelInterface.getDataObjectsByType(newRoid, "IfcFurnishingElement", false).size());
+			System.out.println(lowLevelInterface.getDataObjectsByType(newRoid, "ifc2x3tc1", "IfcFurnishingElement", false).size());
 
 			SSerializerPluginConfiguration ifcSerializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
 			bimServerClient.download(newRoid, ifcSerializer.getOid(), new File("movedf.ifc"));

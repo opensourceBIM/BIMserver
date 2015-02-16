@@ -62,7 +62,7 @@ public class Visualise extends JFrame {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("application/ifc");
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			IfcModelInterface model1 = deserializer.read(TestFile.EXPORT1.getFile());
 			IfcModelInterface model1b = deserializer.read(TestFile.EXPORT1.getFile());
 			IfcModelInterface model2 = deserializer.read(TestFile.EXPORT3.getFile());
@@ -77,7 +77,7 @@ public class Visualise extends JFrame {
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-			serializer.init(merged, null, null, pluginManager.requireRenderEngine(), false);
+			serializer.init(merged, null, null, pluginManager.requireRenderEngine(), null, false);
 			serializer.writeToFile(new File("merged.ifc"), null);
 			new Visualise().start(model1b, "Model 1");
 			new Visualise().start(model2b, "Model 2");

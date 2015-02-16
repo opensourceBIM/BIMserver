@@ -76,7 +76,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema()); 
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema()); 
 			lastPackageMetaData = packageMetaData;
 			IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);

@@ -188,7 +188,7 @@ public class GeometryMatcher extends ServicePlugin {
 					for (SProjectSmall project : allRelatedProjects) {
 						if (project.getLastRevisionId() != -1 && project.getNrSubProjects() == 0) {
 							projectNames.put(project.getOid(), project.getName());
-							IfcModelInterface model = bimServerClientInterface.getModel(null, project.getLastRevisionId(), false); // TODO
+							IfcModelInterface model = bimServerClientInterface.getModel(null, project.getLastRevisionId(), false, false); // TODO
 							Map<BoundingBox, IfcOpeningElement> boundingBoxes = new HashMap<>();
 							map.put(project, boundingBoxes);
 							for (IfcOpeningElement ifcOpeningElement : model.getAll(IfcOpeningElement.class)) {

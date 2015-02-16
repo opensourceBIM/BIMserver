@@ -29,11 +29,11 @@ public class TestGen {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"), new OptionsParser(args).getPluginDirectories());
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(null);
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			IfcModelInterface model = deserializer.read(new File("../TestData/data/HITOS_070308.ifc"));
 			
 			RenderEnginePlugin renderEnginePlugin = pluginManager.getRenderEngine("org.bimserver.ifcengine.JvmRenderEnginePlugin", true);
-			RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(null);
+			RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(null, "ifc2x3tc1");
 			renderEngine.init();
 			RenderEngineModel renderEngineModel = renderEngine.openModel(new FileInputStream(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc")));
 			RenderEngineSettings settings = new RenderEngineSettings();
@@ -48,7 +48,6 @@ public class TestGen {
 			renderEngine.close();
 
 			long start = System.nanoTime();
-			System.out.println(model.generateMinimalExpressIds());
 			long end = System.nanoTime();
 			System.out.println(((end - start) / 1000000) + " ms");
 		} catch (PluginException e) {

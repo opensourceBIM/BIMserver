@@ -17,6 +17,7 @@ package org.bimserver.client.json;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.bimserver.client.Channel;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.TokenHolder;
@@ -32,9 +33,10 @@ public class JsonChannel extends Channel {
 	private JsonReflector reflector;
 	private String address;
 	private SServicesMap sServicesMap;
+	private CloseableHttpClient closeableHttpClient;
 
-	public JsonChannel(ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory, String address, SServicesMap sServicesMap) {
-		super();
+	public JsonChannel(CloseableHttpClient closeableHttpClient, ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory, String address, SServicesMap sServicesMap) {
+		super(closeableHttpClient);
 		this.reflectorFactory = reflectorFactory;
 		this.jsonReflectorFactory = jsonReflectorFactory;
 		this.address = address;

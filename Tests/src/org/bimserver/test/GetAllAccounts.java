@@ -17,9 +17,11 @@ package org.bimserver.test;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.LocalDevSetup;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -31,15 +33,12 @@ public class GetAllAccounts {
 	}
 
 	private void start() {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://demobs.logic-labs.nl");
 		try {
-			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@logic-labs.nl", "blaat"));
+			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 			for (SUser user : client.getServiceInterface().getAllUsers()) {
 				System.out.println(user.getUsername());
 			}
 		} catch (ServiceException e) {
-			e.printStackTrace();
-		} catch (ChannelConnectionException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
