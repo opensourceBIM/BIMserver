@@ -17,7 +17,10 @@ package org.bimserver.tests;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.List;
+
 import org.bimserver.LocalDevSetup;
+import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -30,8 +33,12 @@ public class TestGetDataObjects {
 	private void start() {
 		try {
 			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
-			long roid = 262147l;
-			client.getBimsie1LowLevelInterface().getDataObjects(roid);
+			long roid = 65539;
+			List<SDataObject> dataObjects = client.getBimsie1LowLevelInterface().getDataObjects(roid);
+			System.out.println(dataObjects.size());
+			for (SDataObject sDataObject : dataObjects) {
+				System.out.println(sDataObject.getGuid());
+			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
