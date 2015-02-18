@@ -31,9 +31,10 @@ import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
-import org.codehaus.jettison.json.JSONArray;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class ValidationReport {
 
@@ -53,12 +54,12 @@ public class ValidationReport {
 		return sb.toString();
 	}
 	
-	public JSONObject toJson() throws JSONException {
-		JSONObject result = new JSONObject();
-		JSONArray itemsJson = new JSONArray();
-		result.put("items", itemsJson);
+	public ObjectNode toJson(ObjectMapper objectMapper) {
+		ObjectNode result = objectMapper.createObjectNode();
+		ArrayNode itemsJson = objectMapper.createArrayNode();
+		result.set("items", itemsJson);
 		for (Item item : items) {
-			itemsJson.put(item.toJson());
+			itemsJson.add(item.toJson(objectMapper));
 		}
 		return result;
 	}

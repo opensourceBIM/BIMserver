@@ -17,8 +17,8 @@ package org.bimserver.shared.meta;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -82,11 +82,11 @@ public class SField implements Comparable<SField> {
 		return doc;
 	}
 
-	public JSONObject toJson() throws JSONException {
-		JSONObject json = new JSONObject();
+	public ObjectNode toJson(ObjectMapper objectMapper) {
+		ObjectNode json = objectMapper.createObjectNode();
 		json.put("name", name);
-		json.put("type", getType().toJson());
-		json.put("genericType", getGenericType().toJson());
+		json.set("type", getType().toJson(objectMapper));
+		json.set("genericType", getGenericType().toJson(objectMapper));
 		json.put("doc", getDoc());
 		return json;
 	}

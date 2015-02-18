@@ -17,18 +17,20 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.mina.util.Base64;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
-import org.codehaus.jettison.json.JSONObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -38,7 +40,7 @@ public class SharedJsonSerializer {
 	enum Mode {
 		HEADER, BODY, FOOTER, DONE
 	}
-	
+
 	private static final boolean SERIALIZE_EMPTY_LISTS = false;
 
 	private UTF8PrintWriter out;
@@ -51,7 +53,7 @@ public class SharedJsonSerializer {
 	public SharedJsonSerializer(IfcModelInterface model) {
 		this.model = model;
 	}
-	
+
 	public boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		try {
 			if (out == null) {
@@ -84,7 +86,8 @@ public class SharedJsonSerializer {
 							out.write("\"_t\":\"" + object.eClass().getName() + "\",");
 							out.write("\"_s\":1");
 							for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-								if (eStructuralFeature.getEAnnotation("nolazyload") == null && eStructuralFeature.getEAnnotation("hidden") == null) {
+								if (eStructuralFeature.getEAnnotation("nolazyload") == null
+										&& eStructuralFeature.getEAnnotation("hidden") == null) {
 									if (eStructuralFeature instanceof EReference) {
 										Object value = object.eGet(eStructuralFeature);
 										if (value != null) {
@@ -95,8 +98,13 @@ public class SharedJsonSerializer {
 													int wrapped = 0;
 													int referred = 0;
 													for (Object o : list) {
-														if (((IdEObject)o).eClass().getEAnnotation("wrapped") != null) {
-															// A little tricky, can we assume if one object in this list is embedded, they all are?
+														if (((IdEObject) o).eClass().getEAnnotation("wrapped") != null) {
+															// A little tricky,
+															// can we assume if
+															// one object in
+															// this list is
+															// embedded, they
+															// all are?
 															wrapped++;
 														} else {
 															referred++;
@@ -109,7 +117,9 @@ public class SharedJsonSerializer {
 													} else if (wrapped == 0 && referred == 0) {
 														// should not happen
 													} else {
-														// both, this can occur, for example IfcTrimmedCurve.Trim1
+														// both, this can occur,
+														// for example
+														// IfcTrimmedCurve.Trim1
 														out.write("\"_e" + eStructuralFeature.getName() + "\":[");
 													}
 													boolean f = true;
@@ -124,7 +134,17 @@ public class SharedJsonSerializer {
 															writeObject(out, ref);
 														} else {
 															if (wrapped != 0 && referred != 0) {
-																// Special situation, where we have to construct an object around the OID to make it distinguishable from embedded objects
+																// Special
+																// situation,
+																// where we have
+																// to construct
+																// an object
+																// around the
+																// OID to make
+																// it
+																// distinguishable
+																// from embedded
+																// objects
 																out.write("{");
 																out.write("\"i\":");
 																out.write("" + ref.getOid());
@@ -141,12 +161,14 @@ public class SharedJsonSerializer {
 												IdEObject ref = (IdEObject) value;
 												if (ref instanceof IfcGloballyUniqueId) {
 													out.write("\"" + eStructuralFeature.getName() + "\":");
-													writePrimitive(out, eStructuralFeature, ((IfcGloballyUniqueId)ref).getWrappedValue());
-												} else if (((IdEObject)ref).eClass().getEAnnotation("wrapped") != null) {
+													writePrimitive(out, eStructuralFeature,
+															((IfcGloballyUniqueId) ref).getWrappedValue());
+												} else if (((IdEObject) ref).eClass().getEAnnotation("wrapped") != null) {
 													out.write("\"_e" + eStructuralFeature.getName() + "\":");
 													writeObject(out, ref);
 												} else {
-													out.write("\"_r" + eStructuralFeature.getName() + "\":" + ref.getOid());
+													out.write("\"_r" + eStructuralFeature.getName() + "\":"
+															+ ref.getOid());
 												}
 											}
 										}
@@ -211,18 +233,90 @@ public class SharedJsonSerializer {
 			out.write("" + object.getOid());
 		}
 	}
+	
+	// Following two methods copied from http://www.json.org/java/org/json/JSONObject.java
+	public static String quote(String string) {
+		StringWriter sw = new StringWriter();
+		synchronized (sw.getBuffer()) {
+			try {
+				return quote(string, sw).toString();
+			} catch (IOException ignored) {
+				// will never happen - we are writing to a string writer
+				return "";
+			}
+		}
+	}
+	
+	public static Writer quote(String string, Writer w) throws IOException {
+        if (string == null || string.length() == 0) {
+            w.write("\"\"");
+            return w;
+        }
+
+        char b;
+        char c = 0;
+        String hhhh;
+        int i;
+        int len = string.length();
+
+        w.write('"');
+        for (i = 0; i < len; i += 1) {
+            b = c;
+            c = string.charAt(i);
+            switch (c) {
+            case '\\':
+            case '"':
+                w.write('\\');
+                w.write(c);
+                break;
+            case '/':
+                if (b == '<') {
+                    w.write('\\');
+                }
+                w.write(c);
+                break;
+            case '\b':
+                w.write("\\b");
+                break;
+            case '\t':
+                w.write("\\t");
+                break;
+            case '\n':
+                w.write("\\n");
+                break;
+            case '\f':
+                w.write("\\f");
+                break;
+            case '\r':
+                w.write("\\r");
+                break;
+            default:
+                if (c < ' ' || (c >= '\u0080' && c < '\u00a0')
+                        || (c >= '\u2000' && c < '\u2100')) {
+                    w.write("\\u");
+                    hhhh = Integer.toHexString(c);
+                    w.write("0000", 0, 4 - hhhh.length());
+                    w.write(hhhh);
+                } else {
+                    w.write(c);
+                }
+            }
+        }
+        w.write('"');
+        return w;
+    }
 
 	private void writePrimitive(PrintWriter out, EStructuralFeature feature, Object value) {
 		if (value instanceof String) {
-			out.write(JSONObject.quote((String)value));
+			out.write(quote((String) value));
 		} else if (value instanceof byte[]) {
-			out.write("\"" + new String(Base64.encodeBase64((byte[])value), Charsets.UTF_8) + "\"");
+			out.write("\"" + new String(Base64.getEncoder().encode((byte[]) value), Charsets.UTF_8) + "\"");
 		} else if (value instanceof Enum) {
-			 if (value.toString().equalsIgnoreCase("true") || value.toString().equalsIgnoreCase("false")) {
-				 out.write(value.toString().toLowerCase());
-			 } else {
+			if (value.toString().equalsIgnoreCase("true") || value.toString().equalsIgnoreCase("false")) {
+				out.write(value.toString().toLowerCase());
+			} else {
 				out.write("\"" + value + "\"");
-			 }
+			}
 		} else {
 			out.write("" + value);
 		}

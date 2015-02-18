@@ -3,46 +3,48 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="generated"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/antlr-2.7.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/aopalliance-1.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-manifest.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/geronimo-jms_1.1_spec-1.1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/xml-resolver-1.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/logging/log4j-1.2.16.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-io-1.4.jar"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.core.contenttype_3.4.200.v20120523-2004.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.core.jobs_3.5.200.v20120521-2346.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.core.resources_3.8.0.v20120522-2034.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.core.runtime_3.8.0.v20120521-2346.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.equinox.common_3.6.100.v20120522-1841.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.equinox.preferences_3.5.0.v20120522-1841.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.osgi_3.8.0.v20120529-1548.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/openmali.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/javassist.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/protocolbuffers2.5.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/gson-2.2.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="genclasses"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-cli-1.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf_2.6.0.v20130902-0605.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen_2.9.0.v20130902-0605.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen.ecore_2.9.1.v20130902-0605.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.common_2.9.1.v20130827-0309.jar" sourcepath="/BimServer/libsrc/org.eclipse.emf.common.source_2.9.1.v20130827-0309.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/servlet-api-3.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpclient-4.3.6.jar" sourcepath="/BimServer/libsrc/httpcomponents-client-4.4-src.zip"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpcore-4.3.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-beanutils-1.8.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-beanutils-bean-collections-1.8.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-beanutils-core-1.8.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-codec-1.9.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-collections-3.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-fileupload-1.2.1.jar" sourcepath="/BimServer/libsrc/commons-fileupload-1.2.2-src.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-lang-2.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-logging-1.1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-pool-1.5.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-beanutils-1.8.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-beanutils-bean-collections-1.8.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-beanutils-core-1.8.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-cli-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-codec-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-collections-3.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-fileupload-1.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-io-1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-lang-2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-logging-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-pool-1.5.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/other/guava-18.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/logging/log4j-1.2.16.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/logging/slf4j-api-1.6.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/logging/slf4j-log4j12-1.6.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf_2.6.0.v20130902-0605.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.codegen_2.9.0.v20130902-0605.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.codegen.ecore_2.9.1.v20130902-0605.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.common_2.9.1.v20130827-0309.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.contenttype_3.4.200.v20120523-2004.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.jobs_3.5.200.v20120521-2346.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.resources_3.8.0.v20120522-2034.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.core.runtime_3.8.0.v20120521-2346.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.equinox.common_3.6.100.v20120522-1841.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.equinox.preferences_3.5.0.v20120522-1841.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.osgi_3.8.0.v20120529-1548.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/other/mail.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/other/javassist.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/other/protocolbuffers2.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/other/gson-2.2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/httpclient/httpclient-4.3.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/httpclient/httpclient-cache-4.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/httpclient/httpcore-4.3.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/httpclient/httpmime-4.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/other/servlet-api-3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/other/openmali.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/other/jackson-core-2.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/other/jackson-databind-2.5.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.4.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.4.3-src.zip"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.7.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.7.3-src.zip"/>

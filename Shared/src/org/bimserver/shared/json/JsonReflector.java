@@ -24,7 +24,6 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
-import org.codehaus.jettison.json.JSONException;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
@@ -109,7 +108,7 @@ public abstract class JsonReflector implements Reflector {
 		return false;
 	}
 
-	public abstract JsonObject call(JsonObject request) throws JSONException, ReflectorException;
+	public abstract JsonObject call(JsonObject request) throws ReflectorException;
 
 	public void close() {
 	}

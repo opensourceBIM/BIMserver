@@ -37,7 +37,8 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.webservices.ServiceMap;
-import org.codehaus.jettison.json.JSONException;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface {
 	public MetaServiceImpl(ServiceMap serviceMap) {
@@ -170,11 +171,6 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public String getAllAsJson() throws ServerException, UserException {
-		try {
-			return getBimServer().getServicesMap().toJson().toString(2);
-		} catch (JSONException e) {
-			handleException(e);
-		}
-		return null;
+		return getBimServer().getServicesMap().toJson(new ObjectMapper()).toString();
 	}
 }

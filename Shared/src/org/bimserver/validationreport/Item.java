@@ -17,11 +17,11 @@ package org.bimserver.validationreport;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public abstract class Item {
 
 	public abstract void toHtml(StringBuilder sb);
-	public abstract JSONObject toJson() throws JSONException;
+	public abstract ObjectNode toJson(ObjectMapper objectMapper);
 }
