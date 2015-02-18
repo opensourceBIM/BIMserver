@@ -18,9 +18,13 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlTransient;
-import org.bimserver.shared.meta.*;
+
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SDataBase;
+import org.bimserver.shared.meta.SField;
 
 
 @XmlRootElement
@@ -55,6 +59,7 @@ public class SServerSettings implements SDataBase
 	private int smtpPort;
 	private SSmtpProtocol smtpProtocol;
 	private boolean reuseGeometry;
+	private boolean allowCreateValidatedUser;
 
 	public long getOid() {
 		return this.oid;
@@ -153,6 +158,9 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("reuseGeometry")) {
 			return isReuseGeometry();
+		}
+		if (sField.getName().equals("allowCreateValidatedUser")) {
+			return isAllowCreateValidatedUser();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -259,6 +267,10 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("reuseGeometry")) {
 			setReuseGeometry((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("allowCreateValidatedUser")) {
+			setAllowCreateValidatedUser((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -463,6 +475,14 @@ public class SServerSettings implements SDataBase
 
 	public void setReuseGeometry(boolean reuseGeometry) {
 		this.reuseGeometry = reuseGeometry;
+	}
+	
+	public boolean isAllowCreateValidatedUser() {
+		return allowCreateValidatedUser;
+	}
+
+	public void setAllowCreateValidatedUser(boolean allowCreateValidatedUser) {
+		this.allowCreateValidatedUser = allowCreateValidatedUser;
 	}
 	
 	@Override

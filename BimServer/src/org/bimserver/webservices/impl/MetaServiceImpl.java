@@ -1,7 +1,7 @@
 package org.bimserver.webservices.impl;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -93,19 +93,12 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 	}
 
 	@Override
-	public List<SServiceType> getServiceTypes(String serviceInterfaceName) throws ServerException, UserException {
-//		List<SServiceType> sServiceTypes = new ArrayList<SServiceType>();
-//		SService serviceInterface = getBimServer().getServicesMap().getByName(serviceInterfaceName);
-//		if (serviceInterface == null) {
-//			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
-//		}
-//		for (SClass sType : serviceInterface.getTypes()) {
-//			SServiceType sServiceType = new SServiceType();
-//			sServiceType.setName(sType.getName());
-//			sServiceTypes.add(sServiceType);
-//		}
-//		return sServiceTypes;
-		return null;
+	public List<SServiceType> getServiceTypes() throws ServerException, UserException {
+		List<SServiceType> sServiceTypes = new ArrayList<SServiceType>();
+		for (SClass sType : getBimServer().getServicesMap().getTypes()) {
+			sServiceTypes.add(createSServiceType(sType, false));
+		}
+		return sServiceTypes;
 	}
 
 	public List<String> getEnumLiterals(String enumName) throws UserException {
@@ -118,7 +111,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 	}
 	
 	// TODO Recursion to same type will result in endless loop
-	public SServiceType createSServiceType(SClass sClass) throws UserException, ServerException {
+	public SServiceType createSServiceType(SClass sClass, boolean recurse) throws UserException, ServerException {
 		if (sClass == null) {
 			return null;
 		}
@@ -129,8 +122,10 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 		for (SField field : sClass.getOwnFields()) {
 			SServiceField sServiceField = new SServiceField();
 			sServiceField.setName(field.getName());
-			sServiceField.setType(createSServiceType(field.getType()));
-			sServiceField.setGenericType(createSServiceType(field.getGenericType()));
+			if (recurse) {
+				sServiceField.setType(createSServiceType(field.getType(), recurse));
+				sServiceField.setGenericType(createSServiceType(field.getGenericType(), recurse));
+			}
 			sServiceField.setDoc(field.getDoc());
 			sServiceType.getFields().add(sServiceField);
 		}
@@ -152,8 +147,8 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 			SServiceParameter sServiceParameter = new SServiceParameter();
 			sServiceParameter.setName(sParameter.getName());
 			sServiceParameter.setDoc(sParameter.getDoc());
-			sServiceParameter.setType(createSServiceType(sParameter.getType()));
-			sServiceParameter.setGenericType(createSServiceType(sParameter.getGenericType()));
+			sServiceParameter.setType(createSServiceType(sParameter.getType(), false));
+			sServiceParameter.setGenericType(createSServiceType(sParameter.getGenericType(), false));
 			sServiceParameters.add(sServiceParameter);
 		}
 		return sServiceParameters;

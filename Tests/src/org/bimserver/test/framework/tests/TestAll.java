@@ -1,7 +1,7 @@
 package org.bimserver.test.framework.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -32,11 +32,11 @@ public class TestAll {
 		TestConfiguration testConfiguration = new TestConfiguration();
 		TestFramework testFramework = new TestFramework(testConfiguration, new OptionsParser(args).getPluginDirectories());
 
-		testConfiguration.setHomeDir(new File("D:\\Test"));
+		testConfiguration.setHomeDir(new File("E:\\Test"));
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
 		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON));
-		testConfiguration.setTestFileProvider(new FolderWalker(new File("D:\\flatifcfiles"), testFramework));
-		testConfiguration.setOutputFolder(new File("D:\\Output"));
+		testConfiguration.setTestFileProvider(new FolderWalker(new File("E:\\Ifc Files"), testFramework));
+		testConfiguration.setOutputFolder(new File("E:\\Output"));
 		testConfiguration.setNrVirtualUsers(8);
 
 		testFramework.start();

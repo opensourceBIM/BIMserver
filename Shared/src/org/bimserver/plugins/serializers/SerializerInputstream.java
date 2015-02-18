@@ -1,7 +1,7 @@
 package org.bimserver.plugins.serializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -55,7 +55,7 @@ public class SerializerInputstream extends InputStream {
 			buffer = null;
 			pos = 0;
 			try {
-				boolean write = emfSerializer.write(out);
+				boolean write = emfSerializer.write(out, null);
 				if (write) {
 					buffer = out.toByteArray();
 					if (buffer.length > 0) {
@@ -87,7 +87,7 @@ public class SerializerInputstream extends InputStream {
 				buffer = null;
 				while (buffer == null) {
 					out.reset();
-					boolean write = emfSerializer.write(out);
+					boolean write = emfSerializer.write(out, null);
 					byte[] newBuffer = out.toByteArray();
 					if (newBuffer.length > 0) {
 						buffer = newBuffer;

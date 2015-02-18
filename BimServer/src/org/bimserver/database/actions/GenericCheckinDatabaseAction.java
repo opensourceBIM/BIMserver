@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,7 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -32,11 +33,14 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.shared.exceptions.UserException;
 
 public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<ConcreteRevision>{
 
-	private final IfcModelInterface model;
+	private IfcModelInterface model;
+	private InputStream inputStream;
+	private Deserializer deserializer;
 
 	public static class CreateRevisionResult {
 		private final List<Revision> revisions = new ArrayList<Revision>();
@@ -59,9 +63,15 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		}
 	}
 	
-	public GenericCheckinDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcModelInterface model) {
+	public GenericCheckinDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, InputStream inputStream, Deserializer deserializer) {
 		super(databaseSession, accessMethod);
-		this.model = model;
+		this.inputStream = inputStream;
+		this.deserializer = deserializer;
+	}
+
+	public GenericCheckinDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcModelInterface ifcModel) {
+		super(databaseSession, accessMethod);
+		model = ifcModel;
 	}
 
 	protected void checkCheckSum(Project project) throws UserException {
@@ -80,6 +90,10 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 				}
 			}
 		}
+	}
+	
+	public void setModel(IfcModelInterface model) {
+		this.model = model;
 	}
 	
 	public CreateRevisionResult createNewConcreteRevision(DatabaseSession session, long size, Project project, User user, String comment) throws BimserverDatabaseException, BimserverLockConflictException {
@@ -158,5 +172,13 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 
 	public IfcModelInterface getModel() {
 		return model;
+	}
+	
+	public Deserializer getDeserializer() {
+		return deserializer;
+	}
+	
+	public InputStream getInputStream() {
+		return inputStream;
 	}
 }

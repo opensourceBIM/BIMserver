@@ -16,8 +16,8 @@ package org.bimserver.shared.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.PluginInterface {
 
@@ -185,6 +185,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public org.bimserver.interfaces.objects.SInternalServicePluginConfiguration getInternalServiceById(java.lang.Long oid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration getMessagingSerializerByPluginClassName(java.lang.String pluginClassName) throws UserException, ServerException {
 		return null;
 	}
 	

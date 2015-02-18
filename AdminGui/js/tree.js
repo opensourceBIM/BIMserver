@@ -2,7 +2,8 @@ function Tree(selector) {
 	var o = this;
 	
 	o.idToNodeMap = {};
-	o.rootNode = new Node(-1);
+	o.rootNode = Object.create(Node.prototype);
+	o.rootNode.init(-1);
 	o.selectedNode = null;
 	o.selectionListeners = [];
 
@@ -33,139 +34,231 @@ function Tree(selector) {
 	o.rootNode.ul = ul;
 }
 
-function Node(id, title) {
-	var o = this;
-	o.id = id;
-	o.title = title;
-	o.isOpen = false;
-	o.parent = null;
-	o.children = [];
+function Node() {};
 
-	this.add = function(node){
-		node.parent = o;
-		if (!o.children.length > 0) {
-			o.img.addClass("treenodeclosed");
-		}
-		o.children.push(node);
-		o.img.show();
-		node.tree = o.tree;
-		node.tree.idToNodeMap[node.id] = node;
-		o.ul.append(node.li);
-	};
-	
-	this.click = function(click){
-		o.onClick = click;
-	};
-	
-	this.open = function(){
-		o.isOpen = true;
-		o.ul.show();
-		if (o.children.length > 0) {
-			o.img.removeClass("treenodeclosed");
-			o.img.addClass("treenodeopen");
-		}
-	};
-	
-	this.close = function(){
-		o.isOpen = false;
-		o.ul.hide();
-		if (o.children.length > 0) {
-			o.img.removeClass("treenodeopen");
-			o.img.addClass("treenodeclosed");
-		}
-	};
+Node.prototype.init = function(id, title){
+	this.id = id;
+	this.title = title;
+	this.isOpen = false;
+	this.parent = null;
+	this.children = [];
+	this.sort = false;
+	this.onLoadListeners;
 
-	this.openRecursive = function(){
-		o.open();
-		if (o.parent != null) {
-			o.parent.openRecursive();
-		}
-	};
-	
-	this.select = function(){
-		if (o.tree.selectedNode != null) {
-			o.tree.selectedNode.unselect();
-		}
-		o.tree.setSelectedNode(o);
-		o.li.addClass("selected");
-	};
+	this.li = $("<li class=\"treenode\">");
+	this.li.attr("nodeid", id);
+	this.div = $("<div class=\"treelabel\">");
+	this.a = $("<a>" + title + "</a>");
+	this.img = $("<div class=\"treeicon\"/>");
+	this.img.click(this.toggle.bind(this));
+	this.li.append(this.img);
+	this.icon = $("<div class=\"treepreicon\">");
+	this.li.append(this.icon);
+	this.div.append(this.a);
+	this.li.append(this.div);
+	this.ul = $("<ul>");
+	this.ul.hide();
+	this.li.append(this.ul);
 
-	this.unselect = function(){
-		o.tree.selectedNode = null;
-		o.li.removeClass("selected");
-	};
+	this.a.click(this.linkClick.bind(this));
+};
+
+Node.prototype.linkClick = function(){
+	if (this.onClick != null) {
+		this.onClick(this);
+		this.toggle();
+		this.select();
+	}
+};
+
+Node.prototype.getOnLoadListeners = function(){
+	if (this.onLoadListeners == null) {
+		this.onLoadListeners = new EventRegistry();
+	}
+	return this.onLoadListeners;
+};
+
+Node.prototype.add = function(node){
+	node.parent = this;
+	node.tree = this.tree;
+	node.tree.idToNodeMap[node.id] = node;
+
+	if (this.sort) {
+		var found = false;
+		for (var i=0; i<this.children.length; i++) {
+			var diff = node.title.localeCompare(this.children[i].title);
+			if (diff < 0) {
+				if (i == 0) {
+					this.ul.prepend(node.li);
+				} else {
+					this.ul.children().eq(i-1).after(node.li);
+				}
+				found = true;
+				break;
+			}
+		}
+		if (!found) {
+			this.ul.append(node.li);
+		}
+	} else {
+		this.ul.append(node.li);
+	}
+	// TODO sync order in array with dom nodes order?
+	this.children.push(node);
 	
-	this.hint = function(hint) {
-		o.a.attr("title", hint);
-	};
-	
-	this.setTitle = function(title){
-		o.a.html(title);
-	};
-	
-	this.hide = function(){
-		o.li.hide();
-	};
-	
-	this.setLoading = function(){
-		o.img.addClass("loading");
-	};
-	
-	this.doneLoading = function(){
-		o.img.removeClass("loading");
-	};
-	
-	this.toggle = function(){
-		if (o.isOpen) {
-			o.close();
+	if (this.isOpen) {
+		this.img.addClass("treenodeopen");
+	} else {
+		this.img.addClass("treenodeclosed");
+	}
+	this.img.css("display: inline");
+};
+
+Node.prototype.setIcon = function(icon){
+	this.icon.addClass(icon);
+};
+
+Node.prototype.onLoad = function(listener){
+	this.getOnLoadListeners().register(listener);
+	this.img.addClass("treenodeclosed");
+};
+
+Node.prototype.click = function(click){
+	this.onClick = click;
+};
+
+Node.prototype.open = function(){
+	var promise = new Promise();
+	this.isOpen = true;
+	if (this.onLoadListeners != null) {
+		this.onLoadListeners.trigger(function(listener){
+			promise.chain(listener());
+		});
+		this.onLoadListeners.clear();
+	}
+	this.ul.show();
+	if (this.children.length > 0) {
+		this.img.removeClass("treenodeclosed");
+		this.img.addClass("treenodeopen");
+	}
+	return promise;
+};
+
+Node.prototype.close = function(){
+	this.isOpen = false;
+	this.ul.hide();
+	if (this.children.length > 0) {
+		this.img.removeClass("treenodeopen");
+		this.img.addClass("treenodeclosed");
+	}
+};
+
+Node.prototype.openRecursive = function(){
+	this.open();
+	if (this.parent != null) {
+		this.parent.openRecursive();
+	}
+};
+
+Node.prototype.select = function(){
+	if (this.tree.selectedNode != null) {
+		this.tree.selectedNode.unselect();
+	}
+	this.tree.setSelectedNode(this);
+	this.li.addClass("selected");
+};
+
+Node.prototype.unselect = function(){
+	this.tree.selectedNode = null;
+	this.li.removeClass("selected");
+};
+
+Node.prototype.hint = function(hint) {
+	this.a.attr("title", hint);
+};
+
+Node.prototype.setTitle = function(title){
+	this.a.html(title);
+};
+
+Node.prototype.hide = function(){
+	this.li.hide();
+};
+
+Node.prototype.setLoading = function(){
+	this.img.removeClass("treenodeopen");
+	this.img.removeClass("treenodeclosed");
+	this.img.addClass("loading");
+};
+
+Node.prototype.doneLoading = function(){
+	this.img.removeClass("loading");
+	if (this.children.length > 0) {
+		if (this.isOpen) {
+			this.img.addClass("treenodeopen");
 		} else {
-			o.open();
+			this.img.addClass("treenodeclosed");
 		}
-	};
+	}			
+};
 
-	this.findFirstParentWithAttr = function(attrName){
-		if (o[attrName] != null) {
-			return o;
-		}
-		if (o.parent != null) {
-			return o.parent.findFirstParentWithAttr(attrName);
-		} else {
-			return null;
-		}
-	};
+Node.prototype.toggle = function(){
+	if (this.isOpen) {
+		this.close();
+	} else {
+		this.open();
+	}
+};
 
-	this.remove = function(){
-		removeA(o.parent.children, o);
-		if (o.parent.children.length == 0) {
-			o.parent.img.removeClass("treenodeopen");
-			o.parent.img.removeClass("treenodeclosed");
-		}
-		o.tree.remove(o);
-		o.li.remove();
-	};
-	
-	this.addButton = function(button){
-		o.div.after(button);
-	};
-	
-	o.li = $("<li class=\"treenode\">");
-	o.li.attr("nodeid", id);
-	o.div = $("<div class=\"treelabel\">");
-	o.a = $("<a>" + title + "</a>");
-	o.img = $("<div class=\"treeicon\"/>");
-	o.img.click(o.toggle);
-	o.li.append(o.img);
-	o.div.append(o.a);
-	o.li.append(o.div);
-	o.ul = $("<ul>");
-	o.ul.hide();
-	o.li.append(o.ul);
+Node.prototype.findFirstParentWithAttr = function(attrName){
+	if (this[attrName] != null) {
+		return this;
+	}
+	if (this.parent != null) {
+		return this.parent.findFirstParentWithAttr(attrName);
+	} else {
+		return null;
+	}
+};
 
-	o.a.click(function(){
-		if (o.onClick != null) {
-			o.onClick(o);
-			o.toggle();
-			o.select();
-		}
+Node.prototype.remove = function(){
+	removeA(this.parent.children, this);
+	if (this.parent.children.length == 0) {
+		this.parent.img.removeClass("treenodeopen");
+		this.parent.img.removeClass("treenodeclosed");
+	}
+	this.tree.remove(this);
+	this.li.remove();
+};
+
+Node.prototype.listFilterByType = function(type){
+	var result = [];
+	this.internalListFilterByType(result, type);
+	return result;
+};
+
+Node.prototype.list = function(){
+	var result = [];
+	this.internalList(result);
+	return result;
+};
+
+Node.prototype.internalList = function(result){
+	result.push(this);
+	this.children.forEach(function(subNode){
+		subNode.internalList(result);
 	});
-}
+};
+
+Node.prototype.internalListFilterByType = function(result, type){
+	if (this.type == type) {
+		result.push(this);
+	}
+	this.children.forEach(function(subNode){
+		subNode.internalListFilterByType(result, type);
+	});
+};
+
+Node.prototype.addButton = function(button){
+	this.div.after(button);
+};

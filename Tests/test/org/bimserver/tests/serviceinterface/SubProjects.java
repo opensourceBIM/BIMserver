@@ -23,10 +23,10 @@ public class SubProjects extends TestWithEmbeddedServer {
 
 			long s = System.nanoTime();
 			// Create a new project
-			SProject mainProject = bimServerClient.getBimsie1ServiceInterface().addProject("main" + Math.random(), "ifc4");
-			SProject sub1 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub1" + Math.random(), mainProject.getOid(), "ifc4");
-			SProject sub2 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub2" + Math.random(), mainProject.getOid(), "ifc4");
-			SProject sub3 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub3" + Math.random(), mainProject.getOid(), "ifc4");
+			SProject mainProject = bimServerClient.getBimsie1ServiceInterface().addProject("main" + Math.random(), "ifc2x3tc1");
+			SProject sub1 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub1" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
+			SProject sub2 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub2" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
+			SProject sub3 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub3" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
 
 			// This is the file we will be checking in
 			File ifcFile1 = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");

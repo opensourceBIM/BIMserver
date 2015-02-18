@@ -1,7 +1,7 @@
 package org.bimserver.notifications;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -63,10 +63,17 @@ public class NotificationsManager {
 	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private final BimServer bimServer;
 	private String url;
+	private final NotificationsProcessor notificationsProcessor;
 
 	public NotificationsManager(BimServer bimServer, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
 		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 		this.bimServer = bimServer;
+		notificationsProcessor = new NotificationsProcessor(bimServer);
+		notificationsProcessor.start();
+	}
+	
+	public BimServer getBimServer() {
+		return bimServer;
 	}
 
 	public void notify(Notification notification) {
@@ -78,7 +85,7 @@ public class NotificationsManager {
 	}
 
 	public void addToQueue(Notification notification) {
-		bimServer.getExecutorService().execute(notification);
+		notificationsProcessor.queue(notification);
 	}
 	
 	public void init() {
@@ -89,11 +96,11 @@ public class NotificationsManager {
 	public Channel getChannel(Service service) throws ChannelConnectionException {
 		switch (service.getNotificationProtocol()) {
 		case JSON:
-			JsonChannel jsonChannel = new JsonChannel(bimServer.getReflectorFactory(), jsonSocketReflectorFactory, service.getUrl() + "/json", bimServer.getServicesMap());
+			JsonChannel jsonChannel = new JsonChannel(null, bimServer.getReflectorFactory(), jsonSocketReflectorFactory, service.getUrl() + "/json", bimServer.getServicesMap());
 			jsonChannel.connect(new SimpleTokenHolder());
 			return jsonChannel;
 		case INTERNAL:
-			DirectChannel directChannel = new DirectChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
+			DirectChannel directChannel = new DirectChannel(null, bimServer.getServiceFactory(), bimServer.getServicesMap());
 			try {
 				directChannel.connect();
 			} catch (UserException e) {
@@ -107,6 +114,7 @@ public class NotificationsManager {
 	}
 	
 	public void shutdown() {
+		notificationsProcessor.termintate();
 	}
 
 	public NewRevisionTopic getNewRevisionTopic() {
@@ -278,6 +286,11 @@ public class NotificationsManager {
 	}
 
 	public void removeProgressTopic(ProgressTopicKey key) {
-		progressTopicsById.remove(key.getId());
+		if (key instanceof ProgressOnProjectTopicKey) {
+			progressOnProjectTopics.remove((ProgressOnProjectTopicKey)key);
+		} else if (key instanceof ProgressOnRevisionTopicKey) {
+			progressOnRevisionTopics.remove((ProgressOnRevisionTopicKey)key);
+		}
+ 		progressTopicsById.remove(key.getId());
 	}
 }

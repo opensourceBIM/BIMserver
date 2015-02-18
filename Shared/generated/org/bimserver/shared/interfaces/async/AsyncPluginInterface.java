@@ -17,6 +17,7 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
+
 import org.bimserver.shared.interfaces.PluginInterface;
 
 public class AsyncPluginInterface {
@@ -256,6 +257,11 @@ public class AsyncPluginInterface {
 	
 	public interface GetInternalServiceByIdCallback {
 		void success(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration result);
+		void error(Throwable e);
+	}
+	
+	public interface GetMessagingSerializerByPluginClassNameCallback {
+		void success(org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration result);
 		void error(Throwable e);
 	}
 	
@@ -983,6 +989,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getInternalServiceById(oid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getMessagingSerializerByPluginClassName(final java.lang.String pluginClassName, final GetMessagingSerializerByPluginClassNameCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getMessagingSerializerByPluginClassName(pluginClassName));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

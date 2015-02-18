@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -238,7 +238,8 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStairFlightTypeEnum[] VALUES_ARRAY = new IfcStairFlightTypeEnum[] { NULL, SPIRAL, WINDER, FREEFORM, NOTDEFINED, CURVED, STRAIGHT, USERDEFINED, };
+	private static final IfcStairFlightTypeEnum[] VALUES_ARRAY = new IfcStairFlightTypeEnum[] { NULL, SPIRAL, WINDER, FREEFORM, NOTDEFINED, CURVED, STRAIGHT,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Stair Flight Type Enum</b></em>' enumerators.

@@ -1,7 +1,7 @@
 package org.bimserver.plugins.deserializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -38,14 +38,19 @@ public abstract class EmfDeserializer implements Deserializer {
 		return packageMetaData;
 	}
 	
-	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException;
+	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException;
+
+	public IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException {
+		return read(in, filename, fileSize, null);
+	}
 	
-	public IfcModelInterface read(File file) throws DeserializeException {
+	@Override
+	public IfcModelInterface read(File file, ByteProgressReporter progressReporter) throws DeserializeException {
 		FileInputStream fileInputStream;
 		try {
 			fileInputStream = new FileInputStream(file);
 			try {
-				return read(fileInputStream, file.getName(), file.length());
+				return read(fileInputStream, file.getName(), file.length(), progressReporter);
 			} finally {
 				try {
 					fileInputStream.close();
@@ -56,5 +61,9 @@ public abstract class EmfDeserializer implements Deserializer {
 		} catch (FileNotFoundException e) {
 			throw new DeserializeException(e);
 		}
+	}
+	
+	public IfcModelInterface read(File file) throws DeserializeException {
+		return read(file, null);
 	}
 }

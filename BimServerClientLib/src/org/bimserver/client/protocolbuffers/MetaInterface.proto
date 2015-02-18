@@ -160,7 +160,6 @@ message GetServiceMethodsResponse {
 }
 
 message GetServiceTypesRequest {
-	optional string serviceInterfaceName = 1;
 }
 
 message GetServiceTypesResponse {

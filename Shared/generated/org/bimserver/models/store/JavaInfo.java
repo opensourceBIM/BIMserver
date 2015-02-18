@@ -17,7 +17,6 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -27,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.JavaInfo#getHeapTotal <em>Heap Total</em>}</li>
  *   <li>{@link org.bimserver.models.store.JavaInfo#getHeapUsed <em>Heap Used</em>}</li>
@@ -52,7 +52,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.JavaInfo#getJavaPathSeparator <em>Java Path Separator</em>}</li>
  *   <li>{@link org.bimserver.models.store.JavaInfo#getJavaLineSeparator <em>Java Line Separator</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getJavaInfo()
  * @model

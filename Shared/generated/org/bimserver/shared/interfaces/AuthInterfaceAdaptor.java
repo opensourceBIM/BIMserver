@@ -16,8 +16,8 @@ package org.bimserver.shared.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class AuthInterfaceAdaptor implements org.bimserver.shared.interfaces.AuthInterface {
 
@@ -30,6 +30,9 @@ public class AuthInterfaceAdaptor implements org.bimserver.shared.interfaces.Aut
 	}
 	
 	public void requestPasswordChange(java.lang.String username, java.lang.String resetUrl) throws UserException, ServerException {
+	}
+	
+	public void setHash(java.lang.Long uoid, byte[] hash, byte[] salt) throws UserException, ServerException {
 	}
 	
 	public org.bimserver.interfaces.objects.SUser validateAccount(java.lang.Long uoid, java.lang.String token, java.lang.String password) throws UserException, ServerException {

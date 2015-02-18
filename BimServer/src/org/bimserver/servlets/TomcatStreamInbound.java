@@ -1,7 +1,7 @@
 package org.bimserver.servlets;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,6 +25,7 @@ import java.nio.CharBuffer;
 
 import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WsOutbound;
+import org.bimserver.shared.StreamingSocketInterface;
 
 import com.google.gson.JsonObject;
 
@@ -70,6 +71,15 @@ public class TomcatStreamInbound extends StreamInbound implements StreamingSocke
 
 	@Override
 	public void send(byte[] data, int start, int length) {
+		try {
+			outbound.writeBinaryMessage(ByteBuffer.wrap(data, start, length));
+			outbound.flush();
+		} catch (IOException e) {
+		}
+	}
+
+	@Override
+	public void sendBlocking(byte[] data, int start, int length) {
 		try {
 			outbound.writeBinaryMessage(ByteBuffer.wrap(data, start, length));
 			outbound.flush();

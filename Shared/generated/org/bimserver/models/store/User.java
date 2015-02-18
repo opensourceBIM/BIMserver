@@ -19,9 +19,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.bimserver.models.log.UserRelated;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -31,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.User#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getPasswordHash <em>Password Hash</em>}</li>
@@ -52,7 +51,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getLogs <em>Logs</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getUser()
  * @model

@@ -16,8 +16,8 @@ package org.bimserver.shared.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class MetaInterfaceAdaptor implements org.bimserver.shared.interfaces.MetaInterface {
 
@@ -49,7 +49,7 @@ public class MetaInterfaceAdaptor implements org.bimserver.shared.interfaces.Met
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SServiceType> getServiceTypes(java.lang.String serviceInterfaceName) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SServiceType> getServiceTypes() throws UserException, ServerException {
 		return null;
 	}
 	

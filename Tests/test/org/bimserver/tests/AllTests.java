@@ -127,7 +127,7 @@ public class AllTests {
 
 	public static BimServerClientFactory getFactory() {
 		if (factory == null) {
-			factory = new JsonBimServerClientFactory("http://localhost:8080");
+			factory = new JsonBimServerClientFactory(null, "http://localhost:8080");
 //			factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
 		}
 		return factory;

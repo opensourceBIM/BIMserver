@@ -1,7 +1,7 @@
 package org.bimserver.database.berkeley;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,6 +20,7 @@ package org.bimserver.database.berkeley;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -65,7 +66,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	private CursorConfig cursorConfig;
 	private long lastPrintedReads = 0;
 	private long lastPrintedCommittedWrites = 0;
-	private static final boolean MONITOR_CURSOR_STACK_TRACES = true;
+	private static final boolean MONITOR_CURSOR_STACK_TRACES = false;
 	private final AtomicLong cursorCounter = new AtomicLong();
 	private final Map<Long, StackTraceElement[]> openCursors = new ConcurrentHashMap<>();
 
@@ -93,6 +94,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		envConfig.setTransactional(true);
 		envConfig.setTxnTimeout(10, TimeUnit.SECONDS);
 		envConfig.setLockTimeout(2000, TimeUnit.MILLISECONDS);
+		envConfig.setConfigParam(EnvironmentConfig.CHECKPOINTER_HIGH_PRIORITY, "true");
+		envConfig.setConfigParam(EnvironmentConfig.CLEANER_THREADS, "5");
 		try {
 			environment = new Environment(dataDir, envConfig);
 		} catch (EnvironmentLockedException e) {
@@ -235,7 +238,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		try {
 			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
 			BerkeleyRecordIterator berkeleyRecordIterator = new BerkeleyRecordIterator(cursor, this, cursorCounter.incrementAndGet());
-			openCursors.put(berkeleyRecordIterator.getCursorId(), new Exception().getStackTrace());
+			if (MONITOR_CURSOR_STACK_TRACES) {
+				openCursors.put(berkeleyRecordIterator.getCursorId(), new Exception().getStackTrace());
+			}
 			return berkeleyRecordIterator;
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
@@ -249,7 +254,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		try {
 			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
 			BerkeleySearchingRecordIterator berkeleySearchingRecordIterator = new BerkeleySearchingRecordIterator(cursor, this, cursorCounter.incrementAndGet(), mustStartWith, startSearchingAt);
-			openCursors.put(berkeleySearchingRecordIterator.getCursorId(), new Exception().getStackTrace());
+			if (MONITOR_CURSOR_STACK_TRACES) {
+				openCursors.put(berkeleySearchingRecordIterator.getCursorId(), new Exception().getStackTrace());
+			}
 			return berkeleySearchingRecordIterator;
 		} catch (BimserverLockConflictException e) {
 			if (cursor != null) {
@@ -410,7 +417,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	}
 	
 	public Set<String> getAllTableNames() {
-		return tables.keySet();
+		return new HashSet<String>(environment.getDatabaseNames());
 	}
 	
 	public synchronized void incrementReads(int reads) {

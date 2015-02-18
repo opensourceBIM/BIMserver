@@ -23,11 +23,11 @@ public class UnsetReferenceWithOpposite extends TestWithEmbeddedServer {
 			
 			Bimsie1LowLevelInterface service = bimServerClient.getBimsie1LowLevelInterface();
 			
-			Long projectId = bimServerClient.getBimsie1ServiceInterface().addProject("PG-unsetReferenceTest" + new Random().nextInt(), "ifc4").getOid();
+			Long projectId = bimServerClient.getBimsie1ServiceInterface().addProject("PG-unsetReferenceTest" + new Random().nextInt(), "ifc2x3tc1").getOid();
 			Long transactionId = service.startTransaction(projectId);
 
-			Long ifcRelContainedInSpatialStructureId = service.createObject(transactionId, "IfcRelContainedInSpatialStructure");
-			Long ifcBuildingId = service.createObject(transactionId, "IfcBuilding");
+			Long ifcRelContainedInSpatialStructureId = service.createObject(transactionId, "IfcRelContainedInSpatialStructure", true);
+			Long ifcBuildingId = service.createObject(transactionId, "IfcBuilding", true);
 			service.setReference(transactionId, ifcRelContainedInSpatialStructureId,"RelatingStructure", ifcBuildingId);
 
 //			Long revisionId = service.commitTransaction(transactionId, "comment");

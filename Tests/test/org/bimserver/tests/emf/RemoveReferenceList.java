@@ -23,9 +23,9 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			bimServerClient.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
-			IfcModelInterface model = bimServerClient.newModel(newProject);
+			IfcModelInterface model = bimServerClient.newModel(newProject, false);
 			
 			IfcFurnishingElement furnishingElement = model.create(IfcFurnishingElement.class);
 			furnishingElement.setName("Furnishing 1");
@@ -50,7 +50,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			// refresh
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 			
-			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true);
+			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
 				if (ifcFurnishingElement.getContainedInStructure().size() != 3) {
 					fail("Size should be 3, is " + ifcFurnishingElement.getContainedInStructure().size());
@@ -73,7 +73,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 					fail("Second one should be link 3");
 				}
 			}
-			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true);
+			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			if (e instanceof AssertionError) {

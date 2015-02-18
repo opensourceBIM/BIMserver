@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,7 +18,9 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
@@ -62,22 +64,26 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 
 	@Override
 	public List<DataObject> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		EClass eClass = getDatabaseSession().getEClass(packageName, className);
+		EClass eClass = getDatabaseSession().getEClassForName(packageName, className);
 		Revision virtualRevision = getRevisionByRoid(roid);
 		if (virtualRevision == null) {
 			throw new UserException("No revision with roid " + roid + " found");
 		}
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
+		PackageMetaData lastPackageMetaData = null;
 		Project project = virtualRevision.getProject();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 			int highestStopId = findHighestStopRid(project, concreteRevision);
-			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
-			IfcModelInterface subModel = getDatabaseSession().getAllOfType(packageName, className, query);
+			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), -1, null, Deep.NO, highestStopId);
+			lastPackageMetaData = packageMetaData;
+			IfcModelInterface subModel = getDatabaseSession().getAllOfType(packageMetaData.getEPackage().getName(), className, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel = new IfcModel(null); //TODO
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

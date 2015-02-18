@@ -1,7 +1,7 @@
 package org.bimserver.emf;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,6 +20,7 @@ package org.bimserver.emf;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.log.LogPackage;
@@ -31,28 +32,31 @@ public class MetaDataManager {
 	private final Map<String, PackageMetaData> ePackages = new TreeMap<String, PackageMetaData>();
 	private PluginManager pluginManager;
 
-//	public MetaDataManager(Set<EPackage> ePackages, PluginManager pluginManager) {
-//		this.pluginManager = pluginManager;
-//		for (EPackage ePackage : ePackages) {
-//			addEPackage(ePackage);
-//		}
-//	}
-	
 	public MetaDataManager(PluginManager pluginManager) {
 		this.pluginManager = pluginManager;
+	}
+	
+	public void init() {
 		addEPackage(Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1);
 		addEPackage(Ifc4Package.eINSTANCE, Schema.IFC4);
+		addEPackage(GeometryPackage.eINSTANCE, Schema.GEOMETRY);
 		addEPackage(StorePackage.eINSTANCE, Schema.STORE);
 		addEPackage(LogPackage.eINSTANCE, Schema.LOG);
 	}
 	
-	public PackageMetaData getEPackage(String schema) {
-		schema = schema.toLowerCase();
-		return ePackages.get(schema);
+	public PackageMetaData getPackageMetaData(String schema) {
+		if (schema == null) {
+			throw new IllegalArgumentException("schema cannot be null");
+		}
+		PackageMetaData packageMetaData = ePackages.get(schema.toLowerCase());
+		if (packageMetaData == null) {
+			throw new RuntimeException("No PackageMetaData found for " + schema);
+		}
+		return packageMetaData;
 	}
 
 	public void addEPackage(EPackage ePackage, Schema schema) {
-		ePackages.put(ePackage.getName(), new PackageMetaData(this, ePackage, schema));
+		ePackages.put(ePackage.getName().toLowerCase(), new PackageMetaData(this, ePackage, schema));
 	}
 
 	public PluginManager getPluginManager() {

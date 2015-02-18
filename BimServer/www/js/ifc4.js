@@ -8746,6 +8746,11 @@
           "type": "IfcRelAssignsToProduct",
           "reference": true,
           "many": true
+        },
+        "geometry": {
+          "type": "GeometryInfo",
+          "reference": true,
+          "many": false
         }
       }
     },

@@ -19,9 +19,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.bimserver.models.log.CheckoutRelated;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -31,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.Checkout#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.Checkout#getRevision <em>Revision</em>}</li>
@@ -40,7 +39,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Checkout#getActive <em>Active</em>}</li>
  *   <li>{@link org.bimserver.models.store.Checkout#getLogs <em>Logs</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getCheckout()
  * @model

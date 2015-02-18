@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -188,7 +188,8 @@ public enum IfcInventoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcInventoryTypeEnum[] VALUES_ARRAY = new IfcInventoryTypeEnum[] { NULL, SPACEINVENTORY, NOTDEFINED, ASSETINVENTORY, FURNITUREINVENTORY, USERDEFINED, };
+	private static final IfcInventoryTypeEnum[] VALUES_ARRAY = new IfcInventoryTypeEnum[] { NULL, SPACEINVENTORY, NOTDEFINED, ASSETINVENTORY,
+			FURNITUREINVENTORY, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Inventory Type Enum</b></em>' enumerators.

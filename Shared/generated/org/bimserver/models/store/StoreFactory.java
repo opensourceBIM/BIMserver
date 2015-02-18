@@ -882,6 +882,15 @@ public interface StoreFactory extends EFactory {
 	ModelCheckerPluginDescriptor createModelCheckerPluginDescriptor();
 
 	/**
+	 * Returns a new object of class '<em>Messaging Serializer Plugin Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Messaging Serializer Plugin Configuration</em>'.
+	 * @generated
+	 */
+	MessagingSerializerPluginConfiguration createMessagingSerializerPluginConfiguration();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

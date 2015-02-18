@@ -16,9 +16,12 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlTransient;
-import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SDataBase;
+import org.bimserver.shared.meta.SField;
 
 
 @XmlRootElement
@@ -31,6 +34,7 @@ public class SServerInfo implements SDataBase
 	private static SClass sClass;
 	private SServerState serverState;
 	private java.lang.String errorMessage;
+	private SVersion version;
 
 	public long getOid() {
 		return this.oid;
@@ -64,6 +68,9 @@ public class SServerInfo implements SDataBase
 		if (sField.getName().equals("errorMessage")) {
 			return getErrorMessage();
 		}
+		if (sField.getName().equals("version")) {
+			return getVersion();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -80,6 +87,10 @@ public class SServerInfo implements SDataBase
 		}
 		if (sField.getName().equals("errorMessage")) {
 			setErrorMessage((String)val);
+			return;
+		}
+		if (sField.getName().equals("version")) {
+			setVersion((SVersion)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -108,6 +119,15 @@ public class SServerInfo implements SDataBase
 	public void setErrorMessage(java.lang.String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
+	
+	public SVersion getVersion() {
+		return version;
+	}
+
+	public void setVersion(SVersion version) {
+		this.version = version;
+	}
+	
 	
 	@Override
 	public int hashCode() {

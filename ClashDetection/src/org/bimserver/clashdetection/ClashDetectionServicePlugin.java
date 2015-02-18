@@ -16,6 +16,7 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
@@ -59,17 +60,17 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		initialized = true;
 	}
 
-	public void register(final PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalServicePluginConfiguration, final PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor clashDetection = StoreFactory.eINSTANCE.createServiceDescriptor();
 		clashDetection.setProviderName("BIMserver");
-		clashDetection.setIdentifier(getClass().getName());
+		clashDetection.setIdentifier("" + internalServicePluginConfiguration.getOid());
 		clashDetection.setName("Clashdetection");
 		clashDetection.setDescription("Clashdetection");
 		clashDetection.setNotificationProtocol(AccessMethod.INTERNAL);
 		clashDetection.setReadRevision(true);
 		clashDetection.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
-		registerNewRevisionHandler(clashDetection, new NewRevisionHandler() {
+		registerNewRevisionHandler(uoid, clashDetection, new NewRevisionHandler() {
 			@SuppressWarnings("unused")
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();
@@ -87,11 +88,11 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						if (dataSource instanceof ByteArrayDataSource) {
 							org.apache.commons.io.IOUtils.copy(((ByteArrayDataSource) dataSource).getInputStream(), baos);
 						} else {
-							((EmfSerializerDataSource) dataSource).getSerializer().writeToOutputStream(baos);
+							((EmfSerializerDataSource) dataSource).getSerializer().writeToOutputStream(baos, null);
 						}
 
 						Deserializer deserializer = getPluginManager().requireDeserializer("ifc").createDeserializer(new PluginConfiguration());
-//						deserializer.init(getPluginManager().requireSchemaDefinition("ifc2x3tc1"), null, null); TODO
+//						deserializer.init(getPluginManager().requireSchemaDefinition());
 						IfcModelInterface model = deserializer.read(new ByteArrayInputStream(baos.toByteArray()), "test.ifc", baos.size());
 						List<IfcProject> ifcProjects = model.getAll(IfcProject.class);
 						IfcProject mainIfcProject = null;
@@ -276,5 +277,9 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		marginParameter.setType(doubleDefinition);
 		objectDefinition.getParameters().add(marginParameter);
 		return objectDefinition;
+	}
+
+	@Override
+	public void unregister(SInternalServicePluginConfiguration internalService) {
 	}
 }

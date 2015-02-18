@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -105,7 +105,7 @@ public class TestSimultaniousDownloadWithCaching {
 			serviceInterface = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL).get(ServiceInterface.class);
 			settingsInterface.setCacheOutputFiles(true);
 			settingsInterface.setGenerateGeometryOnCheckin(false);
-			final SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test", "ifc4");
+			final SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializerByName = serviceMap.getBimsie1ServiceInterface().getDeserializerByName("IfcStepDeserializer");
 			File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
 			serviceInterface.checkin(project.getOid(), "test", deserializerByName.getOid(), file.length(), file.getName(), new DataHandler(new FileDataSource(file)), false, true);
@@ -124,7 +124,7 @@ public class TestSimultaniousDownloadWithCaching {
 								CacheStoringEmfSerializerDataSource c = (CacheStoringEmfSerializerDataSource)downloadData.getFile().getDataSource();
 								try {
 									ByteArrayOutputStream baos = new ByteArrayOutputStream();
-									c.writeToOutputStream(baos);
+									c.writeToOutputStream(baos, null);
 									System.out.println(baos.size());
 								} catch (SerializerException e) {
 									e.printStackTrace();

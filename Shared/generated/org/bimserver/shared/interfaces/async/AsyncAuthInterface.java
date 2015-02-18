@@ -17,6 +17,7 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
+
 import org.bimserver.shared.interfaces.AuthInterface;
 
 public class AsyncAuthInterface {
@@ -40,6 +41,11 @@ public class AsyncAuthInterface {
 	}
 	
 	public interface RequestPasswordChangeCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface SetHashCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -80,6 +86,19 @@ public class AsyncAuthInterface {
 			public void run(){
 				try {
 					syncService.requestPasswordChange(username, resetUrl);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setHash(final java.lang.Long uoid, final byte[] hash, final byte[] salt, final SetHashCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setHash(uoid, hash, salt);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

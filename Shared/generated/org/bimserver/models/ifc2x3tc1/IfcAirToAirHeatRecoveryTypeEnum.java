@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -339,8 +339,8 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcAirToAirHeatRecoveryTypeEnum[] VALUES_ARRAY = new IfcAirToAirHeatRecoveryTypeEnum[] { NULL, THERMOSIPHONCOILTYPEHEATEXCHANGERS,
-			TWINTOWERENTHALPYRECOVERYLOOPS, NOTDEFINED, HEATPIPE, FIXEDPLATECROSSFLOWEXCHANGER, RUNAROUNDCOILLOOP, ROTARYWHEEL, FIXEDPLATECOUNTERFLOWEXCHANGER, USERDEFINED,
-			FIXEDPLATEPARALLELFLOWEXCHANGER, THERMOSIPHONSEALEDTUBEHEATEXCHANGERS, };
+			TWINTOWERENTHALPYRECOVERYLOOPS, NOTDEFINED, HEATPIPE, FIXEDPLATECROSSFLOWEXCHANGER, RUNAROUNDCOILLOOP, ROTARYWHEEL, FIXEDPLATECOUNTERFLOWEXCHANGER,
+			USERDEFINED, FIXEDPLATEPARALLELFLOWEXCHANGER, THERMOSIPHONSEALEDTUBEHEATEXCHANGERS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Air To Air Heat Recovery Type Enum</b></em>' enumerators.

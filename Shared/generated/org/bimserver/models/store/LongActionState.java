@@ -19,7 +19,6 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -29,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.LongActionState#getStart <em>Start</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getEnd <em>End</em>}</li>
@@ -40,7 +40,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.LongActionState#getWarnings <em>Warnings</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getInfos <em>Infos</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getLongActionState()
  * @model

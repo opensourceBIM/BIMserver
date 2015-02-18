@@ -7,45 +7,66 @@
 		</p>
 		<form class="form-horizontal" style="width: 500px">
 			<div class="form-group">
-				<label class="control-label" for="inputSiteAddress">Site address</label>
+				<label for="inputSiteAddress">Site address</label>
 				<div class="input-group">
  					<span class="siteAddressProtocol input-group-addon">http://</span>
 					<input type="text" class="siteAddressInput form-control" id="inputSiteAddress"/>
 				</div>
 			</div>
-			<h3>E-mail</h3>
-			<div class="form-group">
-				<label class="control-label" for="inputStmpServer">SMTP Server</label>
-				<div class="controls">
-					<input type="text" class="smtpServerInput form-control" id="inputStmpServer" placeholder="Address of the SMTP server to use">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label" for="inputEmailSender">Email sender address</label>
-				<div class="input-group">
-  					<span class="input-group-addon">@</span>
-					<input type="text" class="smtpSenderInput form-control" id="inputEmailSender" placeholder="E-mail adres from which to send e-mails">
-				</div>
-			</div>
 			<h3>Administrator</h3>
 			<div class="form-group">
-				<label class="control-label" for="inputAdminName">Admin name</label>
-				<div class="controls">
-					<input type="text" class="adminNameInput form-control" id="inputAdminName" value="Administrator">
-				</div>
+				<label for="inputAdminName">Administrator name</label>
+				<input type="text" class="adminNameInput form-control" id="inputAdminName" value="Administrator">
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="inputAdminUsername">Admin username</label>
+				<label for="inputAdminUsername">Administrator username</label>
 				<div class="input-group">
   					<span class="input-group-addon">@</span>
 					<input type="text" class="adminUsernameInput form-control" id="inputAdminUsername" placeholder="Username (e-mail address)">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="inputAdminPassword">Admin password</label>
+				<label for="inputAdminPassword">Administrator password</label>
 				<div class="input-group">
 	 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 					<input type="password" class="adminPasswordInput form-control" id="inputAdminPassword">
+				</div>
+			</div>
+			<div class="form-group">
+				<a class="emailLink">Setup e-mail</a>
+			</div>
+			<div class="emailDiv ih">
+				<h3>E-mail</h3>
+				<div class="form-group">
+					<label class="control-label" for="smtpServer"><a rel="tooltip" data-original-title="SMTP server to use for sending emails" data-placement="right">SMTP server</a></label>
+					<input type="text" class="form-control smtpServer" id="smtpServer" placeholder="Address">
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="smtpUsername"><a rel="tooltip" data-original-title="SMTP username" data-placement="right">SMTP username</a></label>
+					<input type="text" class="form-control smtpUsername" id="smtpUsername" placeholder="SMTP username">
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="smtpPassword"><a rel="tooltip" data-original-title="SMTP password" data-placement="right">SMTP password</a></label>
+					<input type="password" class="form-control smtpPassword" id="smtpPassword" placeholder="SMTP password">
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="smtpPort"><a rel="tooltip" data-original-title="SMTP port" data-placement="right">SMTP port</a></label>
+					<input type="text" class="form-control smtpPort" id="smtpPort" placeholder="SMTP port" value="25">
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="smtpProtocol"><a rel="tooltip" data-original-title="SMTP protocol" data-placement="right">SMTP protocol</a></label>
+					<select class="form-control smtpProtocol" id="smtpProtocol">
+						<option value="SMTP">SMTP</option>
+						<option value="SMTPS">SMTPS</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="emailSenderAddress"><a rel="tooltip" data-original-title="Email address to send emails from" data-placement="right">E-mail sender address</a></label>
+					<input type="text" class="form-control emailSenderAddress" id="emailSenderAddress" placeholder="Name">
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="emailSenderName"><a rel="tooltip" data-original-title="Name to use for sending emails" data-placement="right">E-mail sender name</a></label>
+					<input type="text" class="form-control emailSenderName" id="emailSenderName" placeholder="Name">
 				</div>
 			</div>
 			<div class="form-group">
@@ -62,26 +83,74 @@ function Setup(address) {
 	if (address.startsWith("http://")) {
 		address = address.substring(7);
 	}
+	if (address.endsWith(":80")) {
+		address = address.substring(0, address.length - 3);
+	}
 	$(".setup .siteAddressInput").val(address);
 	
-	this.setup = function(event){
-		event.preventDefault();
+	$(".emailLink").click(function(){
+		$(this).hide();
+		$(".emailDiv").show();
+	});
+	
+	othis.stage = 0;
+	
+	this.stage1 = function(next){
 		Global.bimServerApi.call("AdminInterface", "setup", {
 			siteAddress: $(".setup .siteAddressProtocol").html() + $(".setup .siteAddressInput").val(),
-			smtpServer: $(".setup .smtpServerInput").val(),
-			smtpSender: $(".setup .smtpSenderInput").val(),
+			smtpServer: $(".setup .smtpServer").val() == "" ? "localhost" : $(".setup .smtpServer").val(),
+			smtpSender: $(".setup .emailSenderAddress").val() == "" ? "noreply@bimserver.org" : $(".setup .emailSenderAddress").val(),
 			adminName: $(".setup .adminNameInput").val(),
 			adminUsername: $(".setup .adminUsernameInput").val(),
 			adminPassword: $(".setup .adminPasswordInput").val()
 		}, function(){
-			var address = $(".setup .siteAddressInput").val();
-			var username = $(".setup .adminUsernameInput").val();
-			$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-				new Login(address, username);
+			othis.stage = 1;
+			next();
+		});		
+	};
+	
+	this.stage2 = function(){
+		Global.bimServerApi.login($(".setup .adminUsernameInput").val(), $(".setup .adminPasswordInput").val(), true, function(data){
+			Global.bimServerApi.call("SettingsInterface", "getServerSettings", {}, function(serverSettings){
+				serverSettings.smtpServer = $(".setup .smtpServer").val();
+				serverSettings.smtpProtocol = $(".setup .smtpProtocol").val();
+				serverSettings.smtpPort = $(".setup .smtpPort").val();
+				serverSettings.smtpUsername = $(".setup .smtpUsername").val();
+				serverSettings.smtpPassword = $(".setup .smtpPassword").val();
+				serverSettings.emailSenderAddress = $(".setup .emailSenderAddress").val();
+				serverSettings.emailSenderName = $(".setup .emailSenderName").val();
+				Global.bimServerApi.callWithFullIndication("SettingsInterface", "setServerSettings", {serverSettings: serverSettings}, function(data){
+					othis.finalStage();
+				});			
 			});
 		});
 	};
 	
+	this.nostage2 = function(){
+		Global.bimServerApi.login($(".setup .adminUsernameInput").val(), $(".setup .adminPasswordInput").val(), true, function(data){
+			othis.finalStage();
+		});
+	};
+	
+	this.finalStage = function(){
+		Global.bimServerApi.resolveUser(function(user){
+			var address = $(".setup .siteAddressInput").val();
+			$(".indexcontainer").load(Global.baseDir + "main.html", function(){
+				new Main(address, user).show(false);
+			});
+		});
+	};
+	
+	this.setup = function(event){
+		event.preventDefault(); // Required because the button is a "submit" button -> page refresh
+		if (othis.stage == 0) {
+			othis.stage1($(".setup .emailDiv").is(":visible") ? othis.stage2 : othis.nostage2);
+		} else {
+			othis.stage2();
+		}
+	};
+	
+	$("[rel=tooltip]").tooltip();
 	$(".setup .setupButton").click(othis.setup);
 }
 </script>

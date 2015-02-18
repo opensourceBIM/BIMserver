@@ -1,7 +1,7 @@
 package org.bimserver.shared.meta;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -54,6 +54,13 @@ public class SClass implements Comparable<SClass> {
 		this.sConstructor = sConstructor;
 		if (instanceClass == null) {
 			throw new RuntimeException("InstanceClass cannot be null");
+		}
+		if (instanceClass.isEnum() || instanceClass.isArray() || instanceClass == Enum.class || instanceClass.getName().equals("java.lang.Object") || instanceClass.isPrimitive() || instanceClass == String.class || instanceClass.getName().startsWith("java.")) {
+			
+		} else {
+			if (sConstructor == null) {
+				throw new RuntimeException("No constructor for " + instanceClass.getName());
+			}
 		}
 		this.instanceClass = instanceClass;
 		this.name = instanceClass.getName();

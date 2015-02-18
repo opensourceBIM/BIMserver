@@ -16,11 +16,104 @@
  */
 package org.bimserver.models.store.util;
 
-import org.bimserver.models.store.*;
-
+import org.bimserver.models.store.ArrayDefinition;
+import org.bimserver.models.store.ArrayType;
+import org.bimserver.models.store.BimServerInfo;
+import org.bimserver.models.store.BooleanType;
+import org.bimserver.models.store.ByteArrayType;
+import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.CheckoutResult;
+import org.bimserver.models.store.CompareContainer;
+import org.bimserver.models.store.CompareItem;
+import org.bimserver.models.store.CompareResult;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DataObject;
+import org.bimserver.models.store.DataValue;
+import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformationCategory;
+import org.bimserver.models.store.DatabaseInformationItem;
+import org.bimserver.models.store.DeserializerPluginConfiguration;
+import org.bimserver.models.store.DeserializerPluginDescriptor;
+import org.bimserver.models.store.DoubleType;
+import org.bimserver.models.store.DownloadResult;
+import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.ExtendedDataSchema;
+import org.bimserver.models.store.File;
+import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.IfcHeader;
+import org.bimserver.models.store.ImmediateNotificationResult;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.JavaInfo;
+import org.bimserver.models.store.ListDataValue;
+import org.bimserver.models.store.LongAction;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.LongType;
+import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
+import org.bimserver.models.store.Migration;
+import org.bimserver.models.store.ModelCheckerInstance;
+import org.bimserver.models.store.ModelCheckerPluginDescriptor;
+import org.bimserver.models.store.ModelCheckerResult;
+import org.bimserver.models.store.ModelCheckerResultHeader;
+import org.bimserver.models.store.ModelCheckerResultItem;
+import org.bimserver.models.store.ModelCheckerResultLine;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
+import org.bimserver.models.store.ModelComparePluginDescriptor;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
+import org.bimserver.models.store.ModelMergerPluginDescriptor;
+import org.bimserver.models.store.ObjectAdded;
+import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
+import org.bimserver.models.store.ObjectIDMPluginDescriptor;
+import org.bimserver.models.store.ObjectModified;
+import org.bimserver.models.store.ObjectRemoved;
+import org.bimserver.models.store.ObjectType;
+import org.bimserver.models.store.Parameter;
+import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PercentageChange;
+import org.bimserver.models.store.PluginConfiguration;
+import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.PrimitiveDefinition;
+import org.bimserver.models.store.PrimitiveType;
+import org.bimserver.models.store.ProfileDescriptor;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.ProjectSmall;
+import org.bimserver.models.store.QueryEnginePluginConfiguration;
+import org.bimserver.models.store.QueryEnginePluginDescriptor;
+import org.bimserver.models.store.ReferenceDataValue;
+import org.bimserver.models.store.RemoteServiceUpdate;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
+import org.bimserver.models.store.RenderEnginePluginDescriptor;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.RevisionSummary;
+import org.bimserver.models.store.RevisionSummaryContainer;
+import org.bimserver.models.store.RevisionSummaryType;
+import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.models.store.SerializerPluginDescriptor;
+import org.bimserver.models.store.ServerInfo;
+import org.bimserver.models.store.ServerSettings;
+import org.bimserver.models.store.Service;
+import org.bimserver.models.store.ServiceDescriptor;
+import org.bimserver.models.store.ServiceField;
+import org.bimserver.models.store.ServiceInterface;
+import org.bimserver.models.store.ServiceMethod;
+import org.bimserver.models.store.ServiceParameter;
+import org.bimserver.models.store.ServicePluginDescriptor;
+import org.bimserver.models.store.ServiceType;
+import org.bimserver.models.store.SimpleDataValue;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.StringType;
+import org.bimserver.models.store.SystemInfo;
+import org.bimserver.models.store.Token;
+import org.bimserver.models.store.Type;
+import org.bimserver.models.store.TypeDefinition;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSession;
+import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.Version;
+import org.bimserver.models.store.WebModulePluginConfiguration;
+import org.bimserver.models.store.WebModulePluginDescriptor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -61,7 +154,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -822,6 +915,15 @@ public class StoreSwitch<T> extends Switch<T> {
 			T result = caseModelCheckerPluginDescriptor(modelCheckerPluginDescriptor);
 			if (result == null)
 				result = casePluginDescriptor(modelCheckerPluginDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION: {
+			MessagingSerializerPluginConfiguration messagingSerializerPluginConfiguration = (MessagingSerializerPluginConfiguration) theEObject;
+			T result = caseMessagingSerializerPluginConfiguration(messagingSerializerPluginConfiguration);
+			if (result == null)
+				result = casePluginConfiguration(messagingSerializerPluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -2238,6 +2340,21 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelCheckerPluginDescriptor(ModelCheckerPluginDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Messaging Serializer Plugin Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Messaging Serializer Plugin Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMessagingSerializerPluginConfiguration(MessagingSerializerPluginConfiguration object) {
 		return null;
 	}
 

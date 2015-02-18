@@ -1,7 +1,7 @@
 package org.bimserver.utils;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -172,5 +172,13 @@ public class StringUtils {
 			return baseAddress.substring(8);
 		}
 		return baseAddress;
+	}
+
+	public static String gen(String string, int indent) {
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<indent; i++) {
+			sb.append(string);
+		}
+		return sb.toString();
 	}
 }

@@ -39,4 +39,9 @@ public class AdminWebModulePlugin extends AbstractWebModulePlugin {
 	public String getDefaultContextPath() {
 		return "/admin";
 	}
+
+	@Override
+	public String getIdentifier() {
+		return "admin";
+	}
 }

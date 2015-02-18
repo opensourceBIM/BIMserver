@@ -17,7 +17,6 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
-
 import org.bimserver.models.log.AccessMethod;
 
 /**
@@ -27,6 +26,7 @@ import org.bimserver.models.log.AccessMethod;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getUrl <em>Url</em>}</li>
@@ -44,7 +44,6 @@ import org.bimserver.models.log.AccessMethod;
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getTokenUrl <em>Token Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getNewProfileUrl <em>New Profile Url</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getServiceDescriptor()
  * @model

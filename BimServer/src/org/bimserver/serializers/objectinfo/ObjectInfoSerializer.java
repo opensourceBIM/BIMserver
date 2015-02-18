@@ -1,7 +1,7 @@
 package org.bimserver.serializers.objectinfo;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,6 +22,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -36,7 +37,7 @@ public class ObjectInfoSerializer extends EmfSerializer {
 	}
 	
 	@Override
-	public boolean write(OutputStream outputStream) throws SerializerException {
+	public boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			PrintWriter out = new PrintWriter(outputStream);
 			for (EObject eObject : model.getObjects().values()) {

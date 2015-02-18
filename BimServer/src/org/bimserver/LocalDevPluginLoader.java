@@ -1,7 +1,7 @@
 package org.bimserver;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -41,16 +41,20 @@ public class LocalDevPluginLoader {
 		}
 	}
 	
+	public static PluginManager createPluginManager(File home, File[] pluginDirectories) throws PluginException {
+		return createPluginManager(home, new File(".."), pluginDirectories);
+	}
+
 	public static PluginManager createPluginManager(File home) throws PluginException {
-		return createPluginManager(home, new File(".."));
+		return createPluginManager(home, new File(".."), null);
 	}
 	
-	public static PluginManager createPluginManager(File home, File current) throws PluginException {
+	public static PluginManager createPluginManager(File home, File current, File[] pluginDirectories) throws PluginException {
 		if (!home.exists()) {
 			home.mkdir();
 		}
 		PluginManager pluginManager = new PluginManager(new File(home, "tmp"), System.getProperty("java.class.path"), null, null, null);
-		loadPlugins(pluginManager, current, null);
+		loadPlugins(pluginManager, current, pluginDirectories);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;
 	}

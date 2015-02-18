@@ -1,7 +1,7 @@
 package org.bimserver.citygml;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -81,7 +81,7 @@ public class CityGmlSerializerPlugin extends AbstractSerializerPlugin {
 	public ObjectDefinition getSettingsDefinition() {
 		return super.getSettingsDefinition();
 	}
-
+	
 	@Override
 	public Set<Schema> getSupportedSchemas() {
 		return Schema.IFC2X3TC1.toSet();

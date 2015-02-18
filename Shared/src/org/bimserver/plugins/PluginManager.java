@@ -1,7 +1,7 @@
 package org.bimserver.plugins;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -26,7 +26,6 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -38,11 +37,13 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.classloaders.DelegatingClassLoader;
 import org.bimserver.plugins.classloaders.EclipsePluginClassloader;
 import org.bimserver.plugins.classloaders.FileJarClassLoader;
+import org.bimserver.plugins.classloaders.PublicFindClassClassLoader;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
@@ -57,6 +58,7 @@ import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
+import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
@@ -85,6 +87,7 @@ public class PluginManager {
 	private NotificationsManagerInterface notificationsManagerInterface;
 	private SServicesMap servicesMap;
 	private BimServerClientFactory bimServerClientFactory;
+	private MetaDataManager metaDataManager;
 
 	public PluginManager(File tempDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
 		LOGGER.debug("Creating new PluginManager");
@@ -100,14 +103,6 @@ public class PluginManager {
 		this.baseClassPath = null;
 	}
 
-	public void loadPluginsFromEclipseProject(File projectRoot, boolean exceptions) throws PluginException {
-		if (exceptions) {
-			loadPluginsFromEclipseProject(projectRoot);
-		} else {
-			loadPluginsFromEclipseProjectNoExceptions(projectRoot);
-		}
-	}
-	
 	public void loadPluginsFromEclipseProjectNoExceptions(File projectRoot) {
 		try {
 			loadPluginsFromEclipseProject(projectRoot);
@@ -137,6 +132,39 @@ public class PluginManager {
 		try {
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(new FileInputStream(pluginFile));
 			DelegatingClassLoader delegatingClassLoader = new DelegatingClassLoader(getClass().getClassLoader());
+			PublicFindClassClassLoader previous = new PublicFindClassClassLoader(getClass().getClassLoader()){
+				@Override
+				public Class<?> findClass(String name) throws ClassNotFoundException {
+					return null;
+				}
+
+				@Override
+				public URL findResource(String name) {
+					return null;
+				}
+
+				@Override
+				public void dumpStructure(int indent) {
+				}
+			};
+			for (Dependency dependency : pluginDescriptor.getDependencies()) {
+				String path = dependency.getPath();
+				
+				DelegatingClassLoader depDelLoader = new DelegatingClassLoader(previous);
+				File depLibFolder = new File(path, "lib");
+				if (depLibFolder.isDirectory()) {
+					for (File libFile : depLibFolder.listFiles()) {
+						if (libFile.getName().toLowerCase().endsWith(".jar")) {
+							FileJarClassLoader jarClassLoader = new FileJarClassLoader(depDelLoader, libFile, tempDir);
+							depDelLoader.add(jarClassLoader);
+						}
+					}
+				}
+				
+				EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, new File(path));
+				previous = depLoader;
+			}
+			delegatingClassLoader.add(previous);
 			File libFolder = new File(projectRoot, "lib");
 			if (libFolder.isDirectory()) {
 				for (File libFile : libFolder.listFiles()) {
@@ -147,6 +175,7 @@ public class PluginManager {
 				}
 			}
 			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
+//			pluginClassloader.dumpStructure(0);
 			loadedLocations.add(projectRoot.toPath().toAbsolutePath());
 			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), new File(projectRoot, "bin").getAbsolutePath(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT);
 		} catch (JAXBException e) {
@@ -161,28 +190,30 @@ public class PluginManager {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void loadPlugins(ClassLoader classLoader, String location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType) throws PluginException {
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
-			String interfaceClassName = pluginImplementation.getInterfaceClass().trim().replace("\n", "");
-			try {
-				Class interfaceClass = classLoader.loadClass(interfaceClassName);
-				String implementationClassName = pluginImplementation.getImplementationClass().trim().replace("\n", "");
+			if (pluginImplementation.isEnabled()) {
+				String interfaceClassName = pluginImplementation.getInterfaceClass().trim().replace("\n", "");
 				try {
-					Class implementationClass = classLoader.loadClass(implementationClassName);
-					Plugin plugin = (Plugin) implementationClass.newInstance();
-					loadPlugin(interfaceClass, location, classLocation, plugin, classLoader, pluginType);
-				} catch (NoClassDefFoundError e) {
-					throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
+					Class interfaceClass = classLoader.loadClass(interfaceClassName);
+					String implementationClassName = pluginImplementation.getImplementationClass().trim().replace("\n", "");
+					try {
+						Class implementationClass = classLoader.loadClass(implementationClassName);
+						Plugin plugin = (Plugin) implementationClass.newInstance();
+						loadPlugin(interfaceClass, location, classLocation, plugin, classLoader, pluginType);
+					} catch (NoClassDefFoundError e) {
+						throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
+					} catch (ClassNotFoundException e) {
+						throw new PluginException("Implementation class '" + implementationClassName + "' not found in " + location, e);
+					} catch (InstantiationException e) {
+						throw new PluginException(e);
+					} catch (IllegalAccessException e) {
+						throw new PluginException(e);
+					}
 				} catch (ClassNotFoundException e) {
-					throw new PluginException("Implementation class '" + implementationClassName + "' not found in " + location, e);
-				} catch (InstantiationException e) {
-					throw new PluginException(implementationClassName, e);
-				} catch (IllegalAccessException e) {
-					throw new PluginException(implementationClassName, e);
+					throw new PluginException("Interface class '" + interfaceClassName + "' not found", e);
+				} catch (Error e) {
+					throw new PluginException(e);
 				}
-			} catch (ClassNotFoundException e) {
-				throw new PluginException("Interface class '" + interfaceClassName + "' not found", e);
-			} catch (Error e) {
-				throw new PluginException(pluginImplementation.getImplementationClass(), e);
-			}
+			}	
 		}
 	}
 
@@ -277,6 +308,10 @@ public class PluginManager {
 		return getPlugins(SerializerPlugin.class, onlyEnabled);
 	}
 
+	public Collection<MessagingSerializerPlugin> getAllMessagingSerializerPlugins(boolean onlyEnabled) {
+		return getPlugins(MessagingSerializerPlugin.class, onlyEnabled);
+	}
+
 	public Collection<DeserializerPlugin> getAllDeserializerPlugins(boolean onlyEnabled) {
 		return getPlugins(DeserializerPlugin.class, onlyEnabled);
 	}
@@ -286,6 +321,7 @@ public class PluginManager {
 	}
 
 	public PluginContext getPluginContext(Plugin plugin) {
+		// TODO make more efficient
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
 			for (PluginContext pluginContext : pluginContexts) {
 				if (pluginContext.getPlugin() == plugin) {
@@ -296,23 +332,23 @@ public class PluginManager {
 		throw new RuntimeException("No plugin context found for " + plugin);
 	}
 
-	public void loadPluginsFromCurrentClassloader() {
-		try {
-			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugin/plugin.xml");
-			while (resources.hasMoreElements()) {
-				URL url = resources.nextElement();
-				LOGGER.info("Loading " + url);
-				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
-				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL);
-			}
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		} catch (JAXBException e) {
-			LOGGER.error("", e);
-		} catch (PluginException e) {
-			LOGGER.error("", e);
-		}
-	}
+//	public void loadPluginsFromCurrentClassloader() {
+//		try {
+//			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugin/plugin.xml");
+//			while (resources.hasMoreElements()) {
+//				URL url = resources.nextElement();
+//				LOGGER.info("Loading " + url);
+//				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
+//				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL);
+//			}
+//		} catch (IOException e) {
+//			LOGGER.error("", e);
+//		} catch (JAXBException e) {
+//			LOGGER.error("", e);
+//		} catch (PluginException e) {
+//			LOGGER.error("", e);
+//		}
+//	}
 	
 	public void enablePlugin(String name) {
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
@@ -386,7 +422,7 @@ public class PluginManager {
 			if (!schemaPlugin.isInitialized()) {
 				schemaPlugin.init(this);
 			}
-			if (schemaPlugin.getSchemaVersion().equals(name)) {
+			if (schemaPlugin.getSchemaVersion().toLowerCase().equals(name.toLowerCase())) {
 				return schemaPlugin.getSchemaDefinition(new PluginConfiguration());
 			}
 		}
@@ -456,6 +492,7 @@ public class PluginManager {
 						plugin.init(this);
 					}
 				} catch (Throwable e) {
+					LOGGER.error("", e);
 					pluginContext.setEnabled(false, false);
 				}
 			}
@@ -541,23 +578,6 @@ public class PluginManager {
 				}
 			}
 		}
-		if (file.isDirectory()) {
-			loadIfIsPlugin(showExceptions, file);
-			for (File project : file.listFiles()) {
-				loadIfIsPlugin(showExceptions, project);
-			}
-		}
-	}
-
-	private void loadIfIsPlugin(boolean showExceptions, File project)
-			throws PluginException {
-		File pluginDir = new File(project, "plugin");
-		if (pluginDir.exists()) {
-			File pluginFile = new File(pluginDir, "plugin.xml");
-			if (pluginFile.exists()) {
-				loadPluginsFromEclipseProject(project, showExceptions);
-			}
-		}
 	}
 	
 	public void loadAllPluginsFromEclipseWorkspaces(File directory, boolean showExceptions) throws PluginException {
@@ -604,9 +624,15 @@ public class PluginManager {
 		return serviceFactory;
 	}
 
-	public void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler) {
+	public void registerNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler) {
 		if (notificationsManagerInterface != null) {
-			notificationsManagerInterface.registerInternalNewRevisionHandler(serviceDescriptor, newRevisionHandler);
+			notificationsManagerInterface.registerInternalNewRevisionHandler(uoid, serviceDescriptor, newRevisionHandler);
+		}
+	}
+
+	public void unregisterNewRevisionHandler(ServiceDescriptor serviceDescriptor) {
+		if (notificationsManagerInterface != null) {
+			notificationsManagerInterface.unregisterInternalNewRevisionHandler(serviceDescriptor);
 		}
 	}
 	
@@ -635,6 +661,10 @@ public class PluginManager {
 		return (SerializerPlugin) getPlugin(className, onlyEnabled);
 	}
 
+	public MessagingSerializerPlugin getMessagingSerializerPlugin(String className, boolean onlyEnabled) {
+		return (MessagingSerializerPlugin) getPlugin(className, onlyEnabled);
+	}
+
 	public Collection<WebModulePlugin> getAllWebPlugins(boolean onlyEnabled) {
 		return getPlugins(WebModulePlugin.class, onlyEnabled);
 	}
@@ -655,19 +685,27 @@ public class PluginManager {
 		this.bimServerClientFactory = bimServerClientFactory;
 	}
 
-	public void registerNewExtendedDataOnProjectHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
+	public void registerNewExtendedDataOnProjectHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
 		if (notificationsManagerInterface != null) {
-			notificationsManagerInterface.registerInternalNewExtendedDataOnProjectHandler(serviceDescriptor, newExtendedDataHandler);
+			notificationsManagerInterface.registerInternalNewExtendedDataOnProjectHandler(uoid, serviceDescriptor, newExtendedDataHandler);
 		}
 	}
 
-	public void registerNewExtendedDataOnRevisionHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
+	public void registerNewExtendedDataOnRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
 		if (notificationsManagerInterface != null) {
-			notificationsManagerInterface.registerInternalNewExtendedDataOnRevisionHandler(serviceDescriptor, newExtendedDataHandler);
+			notificationsManagerInterface.registerInternalNewExtendedDataOnRevisionHandler(uoid, serviceDescriptor, newExtendedDataHandler);
 		}
 	}
-
+	
 	public DeserializerPlugin getDeserializerPlugin(String pluginClassName, boolean onlyEnabled) {
 		return getPluginByClassName(DeserializerPlugin.class, pluginClassName, onlyEnabled);
+	}
+
+	public MetaDataManager getMetaDataManager() {
+		return metaDataManager;
+	}
+	
+	public void setMetaDataManager(MetaDataManager metaDataManager) {
+		this.metaDataManager = metaDataManager;
 	}
 }

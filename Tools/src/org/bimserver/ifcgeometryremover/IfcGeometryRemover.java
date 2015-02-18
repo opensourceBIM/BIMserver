@@ -60,7 +60,7 @@ public class IfcGeometryRemover {
 		Set<IdEObject> toRemove = new HashSet<IdEObject>();
 		while (iterator.hasNext()) {
 			String classname = iterator.next();
-			EClassifier eClassifier = metaDataManager.getEPackage("ifc2x3tc1").getEClassifierCaseInsensitive(classname);
+			EClassifier eClassifier = metaDataManager.getPackageMetaData("ifc2x3tc1").getEClassifierCaseInsensitive(classname);
 			if (eClassifier instanceof EClass) {
 				toRemove.addAll(model.getAllWithSubTypes((EClass)eClassifier));
 			}
@@ -89,7 +89,7 @@ public class IfcGeometryRemover {
 		try {
 			model.resetExpressIds();
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, true);
-			serializer.writeToFile(outFile);
+			serializer.writeToFile(outFile, null);
 		} catch (SerializerException e) {
 			e.printStackTrace();
 		} catch (PluginException e) {

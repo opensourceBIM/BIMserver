@@ -30,7 +30,7 @@ public class QueryJava extends TestWithEmbeddedServer {
 		// Create a new project
 		SProject newProject;
 		try {
-			newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
+			newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			// This is the file we will be checking in
 			File ifcFile = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 			

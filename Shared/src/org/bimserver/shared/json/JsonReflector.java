@@ -1,7 +1,7 @@
 package org.bimserver.shared.json;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -77,6 +77,12 @@ public abstract class JsonReflector implements Reflector {
 						} else {
 							throw new ServerException(message);
 						}
+					} else {
+						if (exceptionJson.has("errorCode")) {
+							throw new ServerException(message, ErrorCode.parse(exceptionJson.get("errorCode").getAsInt()));
+						} else {
+							throw new ServerException(message);
+						}
 					}
 				} else if (response.has("result")) {
 					Object result = response.get("result");
@@ -97,7 +103,6 @@ public abstract class JsonReflector implements Reflector {
 		} catch (Exception e) {
 			throw new ReflectorException(e);
 		}
-		return null;
 	}
 
 	protected boolean isOneWay() {

@@ -1,7 +1,7 @@
 package org.bimserver.serializers.objectinfo;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -80,9 +80,9 @@ public class ObjectInfoSerializerPlugin extends AbstractSerializerPlugin {
 	public ObjectDefinition getSettingsDefinition() {
 		return super.getSettingsDefinition();
 	}
-	
+
 	@Override
 	public Set<Schema> getSupportedSchemas() {
-		return Schema.asSet(Schema.IFC2X3TC1, Schema.IFC4);
+		return Schema.IFC2X3TC1.toSet();
 	}
 }

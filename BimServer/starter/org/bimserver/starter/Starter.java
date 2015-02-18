@@ -47,6 +47,7 @@ import java.util.jar.Manifest;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -57,6 +58,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.UIManager;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -68,6 +71,7 @@ public class Starter extends JFrame {
 	private JTextField portField;
 	private JTextField heapSizeField;
 	private JTextField permSizeField;
+	private JCheckBox forceIpv4Field;
 	private JTextField stackSizeField;
 	private JButton browserHomeDir;
 	private JButton browserJvm;
@@ -78,6 +82,22 @@ public class Starter extends JFrame {
 		new Starter().start();
 	}
 
+	public void save() {
+		try {
+			jarSettings.setAddress(addressField.getText());
+			jarSettings.setPort(Integer.parseInt(portField.getText()));
+			jarSettings.setJvm(jvmField.getText());
+			jarSettings.setStacksize(stackSizeField.getText());
+			jarSettings.setHeapsize(heapSizeField.getText());
+			jarSettings.setPermsize(permSizeField.getText());
+			jarSettings.setHomedir(homeDirField.getText());
+			jarSettings.setForceipv4(forceIpv4Field.isSelected());
+			jarSettings.save();
+		} catch (Exception e) {
+			// ignore
+		}
+	}
+	
 	private void start() {
 		final JTextArea logField = new JTextArea();
 
@@ -195,7 +215,14 @@ public class Starter extends JFrame {
 		stackSizeField = new JTextField(jarSettings.getStacksize());
 		fields.add(stackSizeField);
 
-		SpringUtilities.makeCompactGrid(fields, 7, 2, // rows, cols
+		JLabel forceIpv4Label = new JLabel("Force IPv4");
+		fields.add(forceIpv4Label);
+		
+		forceIpv4Field = new JCheckBox();
+		forceIpv4Field.setSelected(jarSettings.isForceipv4());
+		fields.add(forceIpv4Field);
+		
+		SpringUtilities.makeCompactGrid(fields, 8, 2, // rows, cols
 				6, 6, // initX, initY
 				6, 6); // xPad, yPad
 
@@ -231,7 +258,7 @@ public class Starter extends JFrame {
 			}
 		});
 		
-		DocumentListener documentChangeListener = new DocumentListener() {
+		final DocumentListener documentChangeListener = new DocumentListener() {
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				save();
@@ -246,21 +273,6 @@ public class Starter extends JFrame {
 			public void changedUpdate(DocumentEvent e) {
 				save();
 			}
-
-			private void save() {
-				try {
-					jarSettings.setAddress(addressField.getText());
-					jarSettings.setPort(Integer.parseInt(portField.getText()));
-					jarSettings.setJvm(jvmField.getText());
-					jarSettings.setStacksize(stackSizeField.getText());
-					jarSettings.setHeapsize(heapSizeField.getText());
-					jarSettings.setPermsize(permSizeField.getText());
-					jarSettings.setHomedir(homeDirField.getText());
-					jarSettings.save();
-				} catch (Exception e) {
-					// ignore
-				}
-			}
 		};
 
 		jvmField.getDocument().addDocumentListener(documentChangeListener);
@@ -270,6 +282,12 @@ public class Starter extends JFrame {
 		permSizeField.getDocument().addDocumentListener(documentChangeListener);
 		heapSizeField.getDocument().addDocumentListener(documentChangeListener);
 		stackSizeField.getDocument().addDocumentListener(documentChangeListener);
+		forceIpv4Field.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				save();
+			}
+		});
 		
 		buttons.add(startStopButton);
 

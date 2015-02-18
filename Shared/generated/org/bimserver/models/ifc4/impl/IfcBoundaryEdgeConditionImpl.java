@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcBoundaryEdgeCondition;
 import org.bimserver.models.ifc4.IfcModulusOfRotationalSubgradeReactionSelect;
 import org.bimserver.models.ifc4.IfcModulusOfTranslationalSubgradeReactionSelect;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -67,7 +66,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcModulusOfTranslationalSubgradeReactionSelect getTranslationalStiffnessByLengthX() {
-		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_X, true);
+		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_X,
+				true);
 	}
 
 	/**
@@ -103,7 +103,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcModulusOfTranslationalSubgradeReactionSelect getTranslationalStiffnessByLengthY() {
-		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_Y, true);
+		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_Y,
+				true);
 	}
 
 	/**
@@ -139,7 +140,8 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcModulusOfTranslationalSubgradeReactionSelect getTranslationalStiffnessByLengthZ() {
-		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_Z, true);
+		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_Z,
+				true);
 	}
 
 	/**

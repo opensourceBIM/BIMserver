@@ -17,6 +17,7 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
+
 import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class AsyncServiceInterface {
@@ -30,7 +31,7 @@ public class AsyncServiceInterface {
 	}
 
 	public interface AddExtendedDataSchemaCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
@@ -55,7 +56,7 @@ public class AsyncServiceInterface {
 	}
 	
 	public interface AddServiceToProjectCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
@@ -71,6 +72,11 @@ public class AsyncServiceInterface {
 	
 	public interface AddUserToProjectCallback {
 		void success(java.lang.Boolean result);
+		void error(Throwable e);
+	}
+	
+	public interface AddUserWithPasswordCallback {
+		void success(org.bimserver.interfaces.objects.SUser result);
 		void error(Throwable e);
 	}
 	
@@ -324,6 +330,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface ImportDataCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface RemoveModelCheckerFromProjectCallback {
 		void success();
 		void error(Throwable e);
@@ -415,8 +426,7 @@ public class AsyncServiceInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addExtendedDataSchema(extendedDataSchema);
-					callback.success();
+					callback.success(syncService.addExtendedDataSchema(extendedDataSchema));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -479,8 +489,7 @@ public class AsyncServiceInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addServiceToProject(poid, sService);
-					callback.success();
+					callback.success(syncService.addServiceToProject(poid, sService));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -518,6 +527,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.addUserToProject(uoid, poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void addUserWithPassword(final java.lang.String username, final java.lang.String password, final java.lang.String name, final org.bimserver.interfaces.objects.SUserType type, final java.lang.Boolean selfRegistration, final java.lang.String resetUrl, final AddUserWithPasswordCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.addUserWithPassword(username, password, name, type, selfRegistration, resetUrl));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -1121,6 +1142,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getUsersProjects(uoid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void importData(final java.lang.String address, final java.lang.String username, final java.lang.String password, final java.lang.String path, final ImportDataCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.importData(address, username, password, path);
+					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
 				}

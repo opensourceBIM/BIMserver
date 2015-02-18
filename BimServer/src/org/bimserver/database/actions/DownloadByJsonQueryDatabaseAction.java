@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,10 @@ package org.bimserver.database.actions;
 
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -35,11 +38,12 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.models.ifc2x3tc1.IfcClassificationReference;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -75,10 +79,13 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		User user = getUserByUoid(getAuthorization().getUoid());
 		Project project = null;
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		String name = "";
+		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
+			pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
 			try {
@@ -99,25 +106,29 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 				try {
 					int highestStopId = findHighestStopRid(project, concreteRevision);
 					
-					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
-					IfcModelInterface subModel = new IfcModel(packageMetaData);
+					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
+					lastPackageMetaData = packageMetaData;
+					IfcModelInterface subModel = new IfcModel(packageMetaData, pidRoidMap);
 					
-					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
+					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.NO, highestStopId);
 					JsonObject queryObject = (JsonObject)query;
 					JsonArray queries = queryObject.get("queries").getAsJsonArray();
+					String lowerCaseSchema = concreteRevision.getProject().getSchema().toLowerCase();
 					for (JsonElement queryElement : queries) {
-						processQueryPart(concreteRevision.getProject().getSchema().toLowerCase(), queryObject, (JsonObject) queryElement, subModel, databaseQuery);
+						processQueryPart(lowerCaseSchema, queryObject, (JsonObject) queryElement, subModel, databaseQuery);
 					}
 					
 					size += subModel.size();
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());
+					subModel.fixInverseMismatches();
 					checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 					ifcModelSet.add(subModel);
 				} catch (GeometryGeneratingException | IfcModelInterfaceException e) {
 					throw new UserException(e);
 				}
 			}
-			IfcModelInterface ifcModel = new IfcModel(null, size); // TODO
+
+			IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap, size);
 			if (ifcModelSet.size() > 1) {
 				try {
 					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
@@ -135,7 +146,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
 		// TODO check, double merging??
-		IfcModelInterface ifcModel = new IfcModel(null); // TODO
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
@@ -161,7 +172,12 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 		if (typeQuery.has("type")) {
 			String type = typeQuery.get("type").getAsString();
 			EClass typeClass = getDatabaseSession().getEClass(schema, type);
-			getDatabaseSession().getAllOfType(model, schema, type, queryInterface);
+			Set<EClass> eClasses = new HashSet<EClass>();
+			eClasses.add(typeClass);
+			if (typeQuery.has("includeAllSubtypes") && typeQuery.get("includeAllSubtypes").getAsBoolean()) {
+				eClasses.addAll(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(schema).getAllSubClasses((EClass)typeClass));
+			}
+			getDatabaseSession().getAllOfTypes(model, eClasses, queryInterface);
 			if (typeQuery.has("include")) {
 				processInclude(query, typeQuery, model, queryInterface, model.getAllWithSubTypes(typeClass));
 			}
@@ -215,6 +231,10 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					if (eStructuralFeature instanceof EReference) {
 						List<?> list = ((List<?>)value);
 						for (Object o : list) {
+							if (o instanceof IfcClassificationReference) {
+								System.out.println();
+							}
+
 							if (!model.contains(((IdEObject)o).getOid())) {
 								model.add(((IdEObject)o).getOid(), ((IdEObject)o));
 							}

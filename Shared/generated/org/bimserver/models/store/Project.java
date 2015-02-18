@@ -19,9 +19,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.bimserver.models.log.ProjectRelated;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -31,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.Project#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getName <em>Name</em>}</li>
@@ -54,7 +53,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Project#getModelCheckers <em>Model Checkers</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getSchema <em>Schema</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getProject()
  * @model

@@ -1,7 +1,7 @@
 package org.bimserver.changes;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -60,8 +60,8 @@ public class RemoveObjectChange implements Change {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getEPackage(project.getSchema());
-		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId() - 1));
+		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
+		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId() - 1, -1));
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
@@ -70,8 +70,8 @@ public class RemoveObjectChange implements Change {
 		}
 
 		int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
-		Query query = new Query(packageMetaData, project.getId(), concreteRevision.getId(), null, Deep.YES, highestStopId);
-		IfcModel subModel = new IfcModel(packageMetaData);
+		Query query = new Query(packageMetaData, project.getId(), concreteRevision.getId(), -1, null, Deep.YES, highestStopId);
+		IfcModel subModel = new IfcModel(packageMetaData, null);
 		databaseSession.getMap(subModel, query);
 		for (IdEObject idEObject2 : subModel.getValues()) {
 			if (idEObject2 == idEObject) {

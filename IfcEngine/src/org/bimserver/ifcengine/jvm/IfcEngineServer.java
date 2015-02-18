@@ -1,7 +1,7 @@
 package org.bimserver.ifcengine.jvm;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -97,6 +97,13 @@ public class IfcEngineServer extends Thread {
 					out.writeInt(newPointerKey);
 				}
 					break;
+				case OPEN_MODEL_STREAMING_PARTS: {
+					ConvertingInputStream convertingInputStream = new ConvertingInputStream(in);
+					Pointer modelId = ifcEngine.loadFromInputStream(convertingInputStream, schemaFileName);
+					int newPointerKey = savePointer(modelId);
+					out.writeInt(newPointerKey);
+				}
+				break;
 				case FINALIZE_MODELLING: {
 					int modelId = in.readInt();
 					int indicesCount = in.readInt();
@@ -137,7 +144,7 @@ public class IfcEngineServer extends Thread {
 					out.writeInt(surfaceProperties.getIndicesCount());
 					out.writeInt(surfaceProperties.getVerticesCount());
 				}
-				break;
+					break;
 				case SET_POSTPROCESSING: {
 					int modelId = in.readInt();
 					ifcEngine.setPostProcessing(pointers.get(modelId), in.readBoolean() ? 1 : 0);

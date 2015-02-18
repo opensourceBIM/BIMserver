@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -42,6 +42,7 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 	private RevisionSummaryContainer revisionSummaryContainerRelations;
 	private RevisionSummaryContainer revisionSummaryContainerPrimitives;
 	private RevisionSummaryContainer revisionSummaryContainerOther;
+	
 	private Map<EClass, Integer> map = new TreeMap<EClass, Integer>(new Comparator<EClass>() {
 		@Override
 		public int compare(EClass o1, EClass o2) {

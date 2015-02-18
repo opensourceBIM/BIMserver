@@ -1,7 +1,7 @@
 package org.bimserver.mail;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -55,13 +55,10 @@ public class EmailMessage {
 	public void send() throws MessagingException {
 		Properties props = new Properties();
 		ServerSettings serverSettings = bimServer.getServerSettingsCache().getServerSettings();
-		
-		//in order to use the port specified in server settings.
+		props.put("mail.smtp.localhost", "bimserver.org");
 		String smtpProps = serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS ? "mail.smtps.port" : "mail.smtp.port";
 		props.put(smtpProps, serverSettings.getSmtpPort());
 		
-		
-		props.put("mail.smtp.localhost", "bimserver.org");
 		Session mailSession = Session.getDefaultInstance(props);
 		
 		Transport transport = null;

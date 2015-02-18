@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -738,9 +738,9 @@ public enum IfcActionSourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcActionSourceTypeEnum[] VALUES_ARRAY = new IfcActionSourceTypeEnum[] { NULL, NOTDEFINED, PRESTRESSING_P, SNOW_S, ERECTION, SETTLEMENT_U, IMPACT,
-			LIVE_LOAD_Q, COMPLETION_G1, BUOYANCY, EARTHQUAKE_E, CURRENT, FIRE, WAVE, TEMPERATURE_T, ICE, CREEP, RAIN, PROPPING, SYSTEM_IMPERFECTION, TRANSPORT, IMPULSE, BRAKES,
-			USERDEFINED, SHRINKAGE, DEAD_LOAD_G, WIND_W, LACK_OF_FIT, };
+	private static final IfcActionSourceTypeEnum[] VALUES_ARRAY = new IfcActionSourceTypeEnum[] { NULL, NOTDEFINED, PRESTRESSING_P, SNOW_S, ERECTION,
+			SETTLEMENT_U, IMPACT, LIVE_LOAD_Q, COMPLETION_G1, BUOYANCY, EARTHQUAKE_E, CURRENT, FIRE, WAVE, TEMPERATURE_T, ICE, CREEP, RAIN, PROPPING,
+			SYSTEM_IMPERFECTION, TRANSPORT, IMPULSE, BRAKES, USERDEFINED, SHRINKAGE, DEAD_LOAD_G, WIND_W, LACK_OF_FIT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Action Source Type Enum</b></em>' enumerators.

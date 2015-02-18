@@ -1,7 +1,7 @@
 package org.bimserver.shared.json;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,9 +25,9 @@ import java.io.InputStreamReader;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.bimserver.shared.TokenHolder;
@@ -44,11 +44,11 @@ public class JsonSocketReflector extends JsonReflector {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonSocketReflector.class);
 	private final String remoteAddress;
-	private final DefaultHttpClient httpclient;
+	private final HttpClient httpclient;
 	private final HttpContext context;
 	private TokenHolder tokenHolder;
 
-	public JsonSocketReflector(DefaultHttpClient httpclient, SServicesMap servicesMap, String remoteAddress, TokenHolder tokenHolder) {
+	public JsonSocketReflector(HttpClient httpclient, SServicesMap servicesMap, String remoteAddress, TokenHolder tokenHolder) {
 		super(servicesMap);
 		this.httpclient = httpclient;
 		this.remoteAddress = remoteAddress;

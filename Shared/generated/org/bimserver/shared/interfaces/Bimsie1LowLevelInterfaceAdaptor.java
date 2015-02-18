@@ -16,8 +16,8 @@ package org.bimserver.shared.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface {
 
@@ -47,7 +47,7 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 		return null;
 	}
 	
-	public java.lang.Long createObject(java.lang.Long tid, java.lang.String className) throws UserException, ServerException {
+	public java.lang.Long createObject(java.lang.Long tid, java.lang.String className, java.lang.Boolean generateGuid) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -83,7 +83,7 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SDataObject> getDataObjectsByType(java.lang.Long roid, java.lang.String schema, java.lang.String className, java.lang.Boolean flat) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SDataObject> getDataObjectsByType(java.lang.Long roid, java.lang.String packageName, java.lang.String className, java.lang.Boolean flat) throws UserException, ServerException {
 		return null;
 	}
 	

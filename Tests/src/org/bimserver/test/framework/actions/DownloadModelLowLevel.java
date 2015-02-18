@@ -1,7 +1,7 @@
 package org.bimserver.test.framework.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,8 +20,6 @@ package org.bimserver.test.framework.actions;
 import java.io.File;
 
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.MetaDataManager;
-import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.plugins.PluginConfiguration;
@@ -51,17 +49,13 @@ public class DownloadModelLowLevel extends Action {
 			IfcModelInterface model;
 			try {
 				SProject project = virtualUser.getBimServerClient().getBimsie1ServiceInterface().getProjectByPoid(randomRevision.getProjectId());
-				model = virtualUser.getBimServerClient().getModel(project, randomRevision.getOid(), true);
+				model = virtualUser.getBimServerClient().getModel(project, randomRevision.getOid(), true, false);
 				PluginManager pluginManager = getTestFramework().getPluginManager();
-				
-				MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
-				PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
-				
 				SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 				Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 				model.generateMinimalExpressIds();
-				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
-				serializer.writeToFile(new File(getTestFramework().getTestConfiguration().getOutputFolder(), "test.ifc"));
+				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, false);
+				serializer.writeToFile(new File(getTestFramework().getTestConfiguration().getOutputFolder(), "test.ifc"), null);
 			} catch (BimServerClientException e1) {
 				e1.printStackTrace();
 			} catch (RenderEngineException e) {

@@ -1,7 +1,7 @@
 package org.bimserver.longaction;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -54,9 +54,9 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 				@Override
 				public void progress(int current, int max) {
 					if (count == 0) {
-						updateProgress("Checkin of " + fileName, current * 100 / max);
+						updateProgress("Saving to database (" + fileName + ")", current * 100 / max);
 					} else {
-						updateProgress("Checkin of " + fileName + " (" + count + ")", current * 100 / max);
+						updateProgress("Saving to database (" + fileName + ", " + count + " try)", current * 100 / max);
 					}
 				}
 

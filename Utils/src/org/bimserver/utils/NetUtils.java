@@ -1,7 +1,7 @@
 package org.bimserver.utils;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,6 +20,7 @@ package org.bimserver.utils;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -37,5 +38,16 @@ public class NetUtils {
 		IOUtils.copy(in, byteArrayOutputStream);
 		in.close();
 		return new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8);
+	}
+	
+	public static void main(String[] args) {
+		try {
+			String content = getContent(new URL("https://berlotti.github.io/Elasstic/services.json"), 5000);
+			System.out.println(content);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,12 +17,9 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.JavaInfo;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -30,7 +27,9 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Java Info</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.JavaInfoImpl#getHeapTotal <em>Heap Total</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.JavaInfoImpl#getHeapUsed <em>Heap Used</em>}</li>
@@ -56,7 +55,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.JavaInfoImpl#getJavaPathSeparator <em>Java Path Separator</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.JavaInfoImpl#getJavaLineSeparator <em>Java Line Separator</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

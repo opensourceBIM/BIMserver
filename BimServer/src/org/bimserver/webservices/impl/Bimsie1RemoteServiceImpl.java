@@ -1,7 +1,7 @@
 package org.bimserver.webservices.impl;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -55,7 +55,7 @@ public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bims
 			IfcModelInterface modelInterface = session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), Query.getDefault());
 			for (InternalServicePluginConfiguration internalServicePluginConfiguration : modelInterface.getAll(InternalServicePluginConfiguration.class)) {
 				if (internalServicePluginConfiguration.isPublicProfile()) {
-					if (internalServicePluginConfiguration.getPluginDescriptor().getPluginClassName().equals(serviceIdentifier)) {
+					if (serviceIdentifier.equals("" + internalServicePluginConfiguration.getOid())) {
 						SProfileDescriptor sProfileDescriptor = new SProfileDescriptor();
 						descriptors.add(sProfileDescriptor);
 						
@@ -104,12 +104,16 @@ public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bims
 	
 	@Override
 	public void newRevision(Long poid, Long roid, Long soid, String serviceIdentifier, String profileIdentifier, String userToken, String token, String apiUrl) throws UserException, ServerException {
-		bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier).newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
+		Bimsie1RemoteServiceInterface localRemoteServiceInterface = bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier);
+		if (localRemoteServiceInterface == null) {
+			throw new UserException("No local remote service found " + serviceIdentifier);
+		}
+		localRemoteServiceInterface.newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, userToken, token, apiUrl);
 	}
 
 	@Override
 	public SServiceDescriptor getService(String serviceIdentifier) throws UserException, ServerException {
-		ServiceDescriptor internalService = getBimServer().getInternalServicesManager().getInternalService(serviceIdentifier);
+		ServiceDescriptor internalService = getBimServer().getInternalServicesManager().getInternalService(getAuthorization().getUoid(), serviceIdentifier);
 		return getBimServer().getSConverter().convertToSObject(internalService);
 	}
 
