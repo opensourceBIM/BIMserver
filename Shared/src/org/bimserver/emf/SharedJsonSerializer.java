@@ -22,10 +22,10 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.ProgressReporter;
@@ -310,7 +310,7 @@ public class SharedJsonSerializer {
 		if (value instanceof String) {
 			out.write(quote((String) value));
 		} else if (value instanceof byte[]) {
-			out.write("\"" + new String(Base64.getEncoder().encode((byte[]) value), Charsets.UTF_8) + "\"");
+			out.write("\"" + new String(Base64.encodeBase64((byte[]) value), Charsets.UTF_8) + "\"");
 		} else if (value instanceof Enum) {
 			if (value.toString().equalsIgnoreCase("true") || value.toString().equalsIgnoreCase("false")) {
 				out.write(value.toString().toLowerCase());
