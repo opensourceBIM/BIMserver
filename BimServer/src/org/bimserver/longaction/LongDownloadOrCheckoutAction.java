@@ -1,7 +1,7 @@
 package org.bimserver.longaction;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -28,6 +28,8 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
@@ -37,6 +39,7 @@ import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.plugins.serializers.MessagingSerializer;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -50,17 +53,13 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 	protected final AccessMethod accessMethod;
 	protected final DownloadParameters downloadParameters;
 	protected SCheckoutResult checkoutResult;
+	protected MessagingSerializer messagingSerializer;
 
 	protected LongDownloadOrCheckoutAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, AccessMethod accessMethod,
 			Authorization authorization) {
 		super(bimServer, username, userUsername, authorization);
 		this.accessMethod = accessMethod;
 		this.downloadParameters = downloadParameters;
-	}
-	
-	@Override
-	public void init(Thread thread) {
-		super.init(thread);
 	}
 
 	public SCheckoutResult getCheckoutResult() {
@@ -78,9 +77,9 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				if (serializer == null) {
 					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerOid());
 				}
-				if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles()) {
+				if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles() && serializer.allowCaching()) {
 					if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
-						checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
+						checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters));
 					} else {
 						checkoutResult.setFile(new DataHandler(new CacheStoringEmfSerializerDataSource(serializer, getBimServer().getDiskCacheManager().startCaching(downloadParameters))));
 					}
@@ -93,13 +92,17 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		}
 		return checkoutResult;
 	}
+	
+	public MessagingSerializer getMessagingSerializer() {
+		return messagingSerializer;
+	}
 
 	protected void executeAction(BimDatabaseAction<? extends IfcModelInterface> action, DownloadParameters downloadParameters, DatabaseSession session, boolean commit)
 			throws BimserverDatabaseException, UserException, NoSerializerFoundException, ServerException {
 		try {
 			if (action == null) {
 				checkoutResult = new SCheckoutResult();
-				checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
+				checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters));
 			} else {
 				Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), Query.getDefault());
 				if (revision == null) {
@@ -118,11 +121,20 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				DatabaseSession newSession = getBimServer().getDatabase().createSession();
 				RenderEnginePlugin renderEnginePlugin = null;
 				try {
-					SerializerPluginConfiguration serializerPluginConfiguration = newSession.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
+					PluginConfiguration serializerPluginConfiguration = newSession.get(StorePackage.eINSTANCE.getPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
 					if (serializerPluginConfiguration != null) {
-						RenderEnginePluginConfiguration renderEngine = serializerPluginConfiguration.getRenderEngine();
-						if (renderEngine != null) {
-							renderEnginePlugin = getBimServer().getPluginManager().getRenderEngine(renderEngine.getPluginDescriptor().getPluginClassName(), true);
+						if (serializerPluginConfiguration instanceof SerializerPluginConfiguration) {
+							RenderEnginePluginConfiguration renderEngine = ((SerializerPluginConfiguration)serializerPluginConfiguration).getRenderEngine();
+							if (renderEngine != null) {
+								renderEnginePlugin = getBimServer().getPluginManager().getRenderEngine(renderEngine.getPluginDescriptor().getPluginClassName(), true);
+							}
+							checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, renderEnginePlugin, downloadParameters);
+						} else if (serializerPluginConfiguration instanceof MessagingSerializerPluginConfiguration) {
+							try {
+								messagingSerializer = getBimServer().getSerializerFactory().createMessagingSerializer(getUserName(), ifcModel, renderEnginePlugin, downloadParameters);
+							} catch (SerializerException e) {
+								e.printStackTrace();
+							}
 						}
 					}
 				} catch (BimserverDatabaseException e) {
@@ -130,8 +142,6 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				} finally {
 					newSession.close();
 				}
-
-				checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, renderEnginePlugin, downloadParameters);
 			}
 		} finally {
 			done();

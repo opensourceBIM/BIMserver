@@ -5,31 +5,21 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/antlr-2.7.7.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/aopalliance-1.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/commons-collections-3.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/commons-lang-2.6.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/commons-logging-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-manifest.jar" sourcepath="C:/Software/JavaLibs/apache-cxf-2.3.0-src"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/geronimo-javamail_1.4_spec-1.7.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/geronimo-jms_1.1_spec-1.1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/isorelax-20030108.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/joda-time-1.6.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/js-1.7R2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/relaxngDatatype-20020414.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/stax2-api-3.1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/wsdl4j-1.6.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/xml-resolver-1.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/xsdlib-2010.1.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/junit-4.8.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/httpasyncclient-4.0-beta3.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/httpclient-4.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/httpcore-4.2.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/httpcore-nio-4.2.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/httpmime-4.2.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-api-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-client-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-common-9.1.2.v20140210.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/jetty-util-9.1.2.v20140210.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-api-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-client-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-common-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/jetty-util-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpclient-4.3.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpcore-4.3.3.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/httpclient-cache-4.3.2.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/httpmime-4.3.2.jar" sourcepath="/BimServer/libsrc/httpcomponents-client-4.4-src.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

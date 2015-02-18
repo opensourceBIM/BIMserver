@@ -17,7 +17,6 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -27,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.GeoTag#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.GeoTag#getProjects <em>Projects</em>}</li>
@@ -36,7 +36,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.GeoTag#getEpsg <em>Epsg</em>}</li>
  *   <li>{@link org.bimserver.models.store.GeoTag#getDirectionAngle <em>Direction Angle</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getGeoTag()
  * @model

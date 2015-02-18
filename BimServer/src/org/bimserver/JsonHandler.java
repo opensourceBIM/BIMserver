@@ -1,7 +1,7 @@
 package org.bimserver;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -61,8 +61,8 @@ public class JsonHandler {
 			} else if (incomingMessage.has("requests")) {
 				processMultiRequest(incomingMessage.getAsJsonArray("requests"), token, httpRequest, jsonWriter);
 			}
-		} catch (Exception exception) {
-			handleException(jsonWriter, exception);
+		} catch (Throwable throwable) {
+			handleThrowable(jsonWriter, throwable);
 		} finally {
 			try {
 				jsonWriter.endObject();
@@ -79,13 +79,14 @@ public class JsonHandler {
 			try {
 				processSingleRequest((JsonObject) requests.get(r), jsonToken, httpRequest, out);
 			} catch (Exception e) {
-				handleException(out, e);
+				handleThrowable(out, e);
 			}
 		}
 		out.endArray();
 	}
 
 	private void processSingleRequest(JsonObject request, String jsonToken, HttpServletRequest httpRequest, JsonWriter writer) throws Exception {
+		long s = System.nanoTime();
 		String interfaceName = request.get("interface").getAsString();
 		String methodName = request.get("method").getAsString();
 		SService sService = bimServer.getServicesMap().getByName(interfaceName);
@@ -119,6 +120,7 @@ public class JsonHandler {
 		}
 
 		PublicInterface service = getServiceInterface(httpRequest, bimServer, sService.getInterfaceClass(), methodName, jsonToken);
+		Thread.currentThread().setName(interfaceName + "." + methodName);
 		Object result = method.invoke(sService.getInterfaceClass(), service, parameters);
 
 		// When we have managed to get here, no exceptions have been thrown. We
@@ -138,22 +140,28 @@ public class JsonHandler {
 				writer.endObject();
 			}
 		}
+		long e = System.nanoTime();
+		LOGGER.debug(interfaceName + "." + methodName + " " + ((e - s) / 1000000) + "ms");
 	}
 
-	private void handleException(JsonWriter writer, Exception exception) {
-		if (LoggerFactory.getLogger(JsonHandler.class).isDebugEnabled()) {
-			LoggerFactory.getLogger(JsonHandler.class).debug("", exception);
+	private void handleThrowable(JsonWriter writer, Throwable throwable) {
+		if (!(throwable instanceof ServiceException)) {
+			LoggerFactory.getLogger(JsonHandler.class).error("", throwable);
+		} else {
+			if (LoggerFactory.getLogger(JsonHandler.class).isDebugEnabled()) {
+				LoggerFactory.getLogger(JsonHandler.class).debug("", throwable);
+			}
 		}
 		try {
 			writer.beginObject();
 			writer.name("exception");
 			writer.beginObject();
 			writer.name("__type");
-			writer.value(exception.getClass().getSimpleName());
+			writer.value(throwable.getClass().getSimpleName());
 			writer.name("message");
-			writer.value(exception.getMessage() == null ? exception.toString() : exception.getMessage());
-			if (exception instanceof ServiceException) {
-				ServiceException serviceException = (ServiceException) exception;
+			writer.value(throwable.getMessage() == null ? throwable.toString() : throwable.getMessage());
+			if (throwable instanceof ServiceException) {
+				ServiceException serviceException = (ServiceException) throwable;
 				if (serviceException.getErrorCode() != null) {
 					writer.name("errorCode");
 					writer.value(serviceException.getErrorCode().getCode());

@@ -1,7 +1,7 @@
 package org.bimserver.shared.json;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -31,8 +31,8 @@ import java.util.Set;
 import javax.activation.DataHandler;
 import javax.mail.util.ByteArrayDataSource;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
+import org.apache.mina.util.Base64;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.meta.SBase;
@@ -82,7 +82,7 @@ public class JsonConverter {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			if (dataHandler.getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
 				CacheStoringEmfSerializerDataSource cacheStoringEmfSerializerDataSource = (CacheStoringEmfSerializerDataSource) dataHandler.getDataSource();
-				cacheStoringEmfSerializerDataSource.writeToOutputStream(baos);
+				cacheStoringEmfSerializerDataSource.writeToOutputStream(baos, null);
 				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
 			} else {
 				InputStream inputStream = dataHandler.getInputStream();

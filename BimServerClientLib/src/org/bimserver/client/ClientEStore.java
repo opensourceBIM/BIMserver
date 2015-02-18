@@ -1,7 +1,7 @@
 package org.bimserver.client;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,8 +20,6 @@ package org.bimserver.client;
 import org.bimserver.client.ClientIfcModel.ModelState;
 import org.bimserver.emf.BimServerEStore;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.emf.IdEObjectImpl;
-import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -64,6 +62,16 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 		}
 	}
 
+	public Object get(InternalEObject eObject, EStructuralFeature feature, int index) {
+		((IdEObject) eObject).load();
+		Entry entry = new Entry(eObject, feature);
+		if (index == NO_INDEX) {
+			return map.get(entry);
+		} else {
+			return getList(entry).get(index);
+		}
+	}
+	
 	@Override
 	public void add(InternalEObject eObject, EStructuralFeature eFeature, int index, Object newValue) {
 		IdEObject idEObject = (IdEObject) eObject;
@@ -228,14 +236,5 @@ public class ClientEStore extends EStoreImpl implements BimServerEStore {
 
 	private Bimsie1LowLevelInterface lowLevelInterface() throws PublicInterfaceNotFoundException {
 		return clientIfcModel.getBimServerClient().getBimsie1LowLevelInterface();
-	}
-	
-	@Override
-	public Object get(InternalEObject eObject, EStructuralFeature feature, int index) {
-		IdEObjectImpl impl = (IdEObjectImpl)eObject;
-		if (impl.getLoadingState() == State.TO_BE_LOADED) {
-			impl.load();
-		}
-		return super.get(eObject, feature, index);
 	}
 }

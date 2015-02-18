@@ -1,7 +1,7 @@
 package org.bimserver.client.protocolbuffers;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,6 +19,7 @@ package org.bimserver.client.protocolbuffers;
 
 import org.bimserver.client.AbstractBimServerClientFactory;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -34,8 +35,8 @@ public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClie
 	private final ReflectorFactory reflectorFactory;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 
-	public ProtocolBuffersBimServerClientFactory(String address, int port, int httpPort, ProtocolBuffersMetaData protocolBuffersMetaData) {
-		super();
+	public ProtocolBuffersBimServerClientFactory(String address, int port, int httpPort, ProtocolBuffersMetaData protocolBuffersMetaData, MetaDataManager metaDataManager) {
+		super(metaDataManager);
 		this.httpPort = httpPort;
 		this.address = address;
 		this.port = port;
@@ -46,7 +47,7 @@ public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClie
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
-		ProtocolBuffersChannel channel = new ProtocolBuffersChannel(getServicesMap(), protocolBuffersMetaData, reflectorFactory, address, port);
+		ProtocolBuffersChannel channel = new ProtocolBuffersChannel(getHttpClient(), getServicesMap(), protocolBuffersMetaData, reflectorFactory, address, port);
 		// TODO people using https or a non-root context-path will get in trouble here
 		BimServerClient bimServerClient = new BimServerClient(this, "http://" + address + ":" + httpPort, getServicesMap(), channel);
 		bimServerClient.setAuthentication(authenticationInfo);

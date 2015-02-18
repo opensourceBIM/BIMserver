@@ -19,6 +19,7 @@ import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -99,7 +100,7 @@ public class Lod2ExcelServicePlugin extends ServicePlugin {
 	}
 
 	@Override
-	public void register(PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalService, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
 		serviceDescriptor.setIdentifier(getClass().getName());
@@ -109,7 +110,7 @@ public class Lod2ExcelServicePlugin extends ServicePlugin {
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		serviceDescriptor.setReadRevision(true);
 		serviceDescriptor.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/excellod");
-		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
+		registerNewRevisionHandler(uoid, serviceDescriptor, new NewRevisionHandler() {
 			@Override
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				try {
@@ -123,7 +124,7 @@ public class Lod2ExcelServicePlugin extends ServicePlugin {
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
 					SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
-					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true);
+					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true, false);
 					
 					try {
 					    WorkbookSettings wbSettings = new WorkbookSettings();
@@ -385,5 +386,9 @@ public class Lod2ExcelServicePlugin extends ServicePlugin {
 		public String toString() {
 			return minX + ", " + minY + ", " + minZ + ", " + maxX + ", " + maxY + ", " + maxZ;
 		}
+	}
+
+	@Override
+	public void unregister(SInternalServicePluginConfiguration internalService) {
 	}
 }

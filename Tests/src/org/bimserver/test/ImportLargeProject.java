@@ -1,26 +1,38 @@
 package org.bimserver.test;
 
+/******************************************************************************
+ * Copyright (C) 2009-2015  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 import java.io.File;
 import java.io.IOException;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 
 public class ImportLargeProject {
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+		BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 		try {
-			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			
 			File baseFolder = new File("C:\\Users\\Ruben de Laat\\Documents\\ttt");
 			
 			Bimsie1ServiceInterface serviceInterface = client.getBimsie1ServiceInterface();
@@ -35,11 +47,11 @@ public class ImportLargeProject {
 			SProject teklaHouseFoundationRebars = serviceInterface.addProjectAsSubProject("Tekla Hose Foundation Rebars", foundation.getOid(), "ifc2x3tc1");
 			SProject teklaHouseFoundationEmbedments = serviceInterface.addProjectAsSubProject("Tekla Hose Foundation Embedments", foundation.getOid(), "ifc2x3tc1");
 			SProject cipConcreteContractor = serviceInterface.addProjectAsSubProject("CIP Concrete Contractor", mainProject.getOid(), "ifc2x3tc1");
-			SProject teklaHouseCIPPours = serviceInterface.addProjectAsSubProject("Tekla House CIP Pours", cipConcreteContractor.getOid(), "ifc2x3tc1");
+			serviceInterface.addProjectAsSubProject("Tekla House CIP Pours", cipConcreteContractor.getOid(), "ifc2x3tc1");
 			SProject teklaHouseCIPRebars = serviceInterface.addProjectAsSubProject("Tekla House CIP Rebars", cipConcreteContractor.getOid(), "ifc2x3tc1");
 			SProject teklaHouseCIPColumns = serviceInterface.addProjectAsSubProject("Tekla House CIP Columns", cipConcreteContractor.getOid(), "ifc2x3tc1");
 			SProject formWork = serviceInterface.addProjectAsSubProject("Formwork", mainProject.getOid(), "ifc2x3tc1");
-			SProject columnFormwork = serviceInterface.addProjectAsSubProject("Column Formwork", formWork.getOid(), "ifc2x3tc1");
+			serviceInterface.addProjectAsSubProject("Column Formwork", formWork.getOid(), "ifc2x3tc1");
 			SProject precast = serviceInterface.addProjectAsSubProject("Precast", mainProject.getOid(), "ifc2x3tc1");
 			SProject teklaHousePrecastRebars = serviceInterface.addProjectAsSubProject("Tekla House Precast Rebars", precast.getOid(), "ifc2x3tc1");
 			SProject teklaHousePrecastConcrete = serviceInterface.addProjectAsSubProject("Tekla House Precast Concrete", precast.getOid(), "ifc2x3tc1");
@@ -50,14 +62,14 @@ public class ImportLargeProject {
 			SProject teklaHouseMEP3 = serviceInterface.addProjectAsSubProject("Tekla House MEP, 3rd", mep.getOid(), "ifc2x3tc1");
 			SProject teklaHouseMEPRoof = serviceInterface.addProjectAsSubProject("Tekla House MEP, Roof", mep.getOid(), "ifc2x3tc1");
 			SProject site = serviceInterface.addProjectAsSubProject("Site", mainProject.getOid(), "ifc2x3tc1");
-			SProject siteSkp = serviceInterface.addProjectAsSubProject("Site.skp", site.getOid(), "ifc2x3tc1");
-			SProject towerCrane = serviceInterface.addProjectAsSubProject("Tower crane", site.getOid(), "ifc2x3tc1");
-			SProject caterpillar = serviceInterface.addProjectAsSubProject("Caterpillar", site.getOid(), "ifc2x3tc1");
-			SProject excavator = serviceInterface.addProjectAsSubProject("Excavator", site.getOid(), "ifc2x3tc1");
+			serviceInterface.addProjectAsSubProject("Site.skp", site.getOid(), "ifc2x3tc1");
+			serviceInterface.addProjectAsSubProject("Tower crane", site.getOid(), "ifc2x3tc1");
+			serviceInterface.addProjectAsSubProject("Caterpillar", site.getOid(), "ifc2x3tc1");
+			serviceInterface.addProjectAsSubProject("Excavator", site.getOid(), "ifc2x3tc1");
 			SProject grid = serviceInterface.addProjectAsSubProject("Grid", mainProject.getOid(), "ifc2x3tc1");
 			SProject teklaHouseGrids = serviceInterface.addProjectAsSubProject("Tekla House Grids", grid.getOid(), "ifc2x3tc1");
 			
-			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", teklaHouseStructural.getOid());
+			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", grid.getOid());
 			
 			client.checkin(teklaHouseStructural.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Structural.ifcZIP"));
 			client.checkin(teklaHouseGrids.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Grids.ifc"));
@@ -80,7 +92,7 @@ public class ImportLargeProject {
 			mainProject = serviceInterface.getProjectByPoid(mainProject.getOid());
 			SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
 			client.download(mainProject.getLastRevisionId(), serializer.getOid(), new File("output.ifc"));
-		} catch (ServiceException | ChannelConnectionException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -263,8 +263,8 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRampTypeEnum[] VALUES_ARRAY = new IfcRampTypeEnum[] { NULL, QUARTER_TURN_RAMP, SPIRAL_RAMP, NOTDEFINED, STRAIGHT_RUN_RAMP, TWO_STRAIGHT_RUN_RAMP,
-			HALF_TURN_RAMP, USERDEFINED, TWO_QUARTER_TURN_RAMP, };
+	private static final IfcRampTypeEnum[] VALUES_ARRAY = new IfcRampTypeEnum[] { NULL, QUARTER_TURN_RAMP, SPIRAL_RAMP, NOTDEFINED, STRAIGHT_RUN_RAMP,
+			TWO_STRAIGHT_RUN_RAMP, HALF_TURN_RAMP, USERDEFINED, TWO_QUARTER_TURN_RAMP, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Ramp Type Enum</b></em>' enumerators.

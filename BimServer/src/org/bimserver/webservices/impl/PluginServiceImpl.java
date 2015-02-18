@@ -1,7 +1,7 @@
 package org.bimserver.webservices.impl;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -46,6 +46,7 @@ import org.bimserver.database.actions.DeleteQueryEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteRenderEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
 import org.bimserver.database.actions.GetByIdDatabaseAction;
+import org.bimserver.database.actions.GetMessagingSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByIdDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByNameDatabaseAction;
 import org.bimserver.database.actions.GetModelMergerByIdDatabaseAction;
@@ -57,9 +58,7 @@ import org.bimserver.database.actions.GetRenderEngineByNameDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByIdDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByNameDatabaseAction;
-import org.bimserver.database.actions.ServerSettingsSetter;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
-import org.bimserver.database.actions.SetServerSettingDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
 import org.bimserver.database.actions.UpdateDatabaseAction;
 import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
@@ -75,6 +74,7 @@ import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
+import org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
@@ -107,13 +107,13 @@ import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SerializerPluginConfiguration;
-import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.schemaconverter.SchemaConverterFactory;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -709,6 +709,20 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		} finally {
 			session.close();
 		}
+
+		session = getBimServer().getDatabase().createSession();
+		try {
+			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, Query.getDefault());
+			ServicePlugin servicePlugin = getBimServer().getPluginManager().getServicePlugin(pluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+			SInternalServicePluginConfiguration sInternalService = (SInternalServicePluginConfiguration) getBimServer().getSConverter().convertToSObject(pluginConfiguration);
+	
+			servicePlugin.unregister(sInternalService);
+			servicePlugin.register(getAuthorization().getUoid(), sInternalService, new org.bimserver.plugins.PluginConfiguration(settings));
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
@@ -721,71 +735,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			for (SerializerPluginConfiguration serializerPluginConfiguration : userSettings.getSerializers()) {
 				if (!onlyEnabled || (serializerPluginConfiguration.getEnabled() && serializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
 					sSerializers.add(getBimServer().getSConverter().convertToSObject(serializerPluginConfiguration));
-				}
-			}
-			Collections.sort(sSerializers, new SPluginConfigurationComparator());
-			return sSerializers;
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public List<SSerializerPluginConfiguration> getAllSerializersForRoids(Boolean onlyEnabled, Set<Long> roids) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			Set<Schema> uniqueSchemas = new HashSet<>();
-			for (Long roid : roids) {
-				Revision revision = session.get(roid, Query.getDefault());
-				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-					uniqueSchemas.add(Schema.valueOf(concreteRevision.getProject().getSchema().toUpperCase()));
-				}
-			}
-
-			Set<Schema> schemaOr = new HashSet<>();
-			
-			if (uniqueSchemas.size() == 0) {
-				// Wierd, no schemas
-			} else if (uniqueSchemas.size() == 1) {
-				// Easy, just add it, and see if there are converter targets and add those too
-				Schema schema = uniqueSchemas.iterator().next();
-				schemaOr.add(schema);
-				// TODO make recursive
-				for (Schema target : getBimServer().getSchemaConverterManager().getSchemaTargets(schema)) {
-					schemaOr.add(target);
-				}
-			} else if (uniqueSchemas.size() == 2) {
-				// This is harder, if we have 2 schema, we must figure out a way to convert to 1 schema, and then filter the allowed source schemas
-				Iterator<Schema> iterator = uniqueSchemas.iterator();
-				Schema schema1 = iterator.next();
-				Schema schema2 = iterator.next();
-				SchemaConverterFactory converter1 = getBimServer().getSchemaConverterManager().getSchemaConverterFactory(schema1, schema2);
-				SchemaConverterFactory converter2 = getBimServer().getSchemaConverterManager().getSchemaConverterFactory(schema2, schema1);
-				if (converter1 != null) {
-					schemaOr.add(schema1);
-				}
-				if (converter2 != null) {
-					schemaOr.add(schema2);
-				}
-			} else {
-				throw new ServerException("Unimplemented, no support for > 2 schemas");
-			}
-			
-			UserSettings userSettings = getUserSettings(session);
-			List<SSerializerPluginConfiguration> sSerializers = new ArrayList<SSerializerPluginConfiguration>();
-			for (SerializerPluginConfiguration serializerPluginConfiguration : userSettings.getSerializers()) {
-				SerializerPlugin plugin = getBimServer().getPluginManager().getSerializerPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-				for (Schema schema : plugin.getSupportedSchemas()) {
-					if (schemaOr.contains(schema)) {
-						if (!onlyEnabled || (serializerPluginConfiguration.getEnabled() && serializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
-							sSerializers.add(getBimServer().getSConverter().convertToSObject(serializerPluginConfiguration));
-							break;
-						}
-					}
 				}
 			}
 			Collections.sort(sSerializers, new SPluginConfigurationComparator());
@@ -962,22 +911,80 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public void setDefaultWebModule(final Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
+		try {
+			getBimServer().getWebModuleManager().setDefault(oid);
+		} catch (Exception e) {
+			handleException(e);
+		}
+	}
+
+	@Override
+	public List<SSerializerPluginConfiguration> getAllSerializersForRoids(Boolean onlyEnabled, Set<Long> roids) throws ServerException, UserException {
+		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			final WebModulePluginConfiguration defaultWebModule = session.get(StorePackage.eINSTANCE.getWebModulePluginConfiguration(), oid, Query.getDefault());
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
-				@Override
-				public void set(ServerSettings serverSettings) {
-					serverSettings.setWebModule(defaultWebModule);
-				}});
-			session.executeAndCommitAction(action);
-		} catch (BimserverDatabaseException e) {
+			Set<Schema> uniqueSchemas = new HashSet<>();
+			for (Long roid : roids) {
+				Revision revision = session.get(roid, Query.getDefault());
+				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
+					uniqueSchemas.add(Schema.valueOf(concreteRevision.getProject().getSchema().toUpperCase()));
+				}
+			}
+
+			Set<Schema> schemaOr = new HashSet<>();
+			
+			if (uniqueSchemas.size() == 0) {
+				// Wierd, no schemas
+			} else if (uniqueSchemas.size() == 1) {
+				// Easy, just add it, and see if there are converter targets and add those too
+				Schema schema = uniqueSchemas.iterator().next();
+				schemaOr.add(schema);
+				// TODO make recursive
+				for (Schema target : getBimServer().getSchemaConverterManager().getSchemaTargets(schema)) {
+					schemaOr.add(target);
+				}
+			} else if (uniqueSchemas.size() == 2) {
+				// This is harder, if we have 2 schema, we must figure out a way to convert to 1 schema, and then filter the allowed source schemas
+				Iterator<Schema> iterator = uniqueSchemas.iterator();
+				Schema schema1 = iterator.next();
+				Schema schema2 = iterator.next();
+				SchemaConverterFactory converter1 = getBimServer().getSchemaConverterManager().getSchemaConverterFactory(schema1, schema2);
+				SchemaConverterFactory converter2 = getBimServer().getSchemaConverterManager().getSchemaConverterFactory(schema2, schema1);
+				if (converter1 != null) {
+					schemaOr.add(schema1);
+				}
+				if (converter2 != null) {
+					schemaOr.add(schema2);
+				}
+			} else {
+				throw new ServerException("Unimplemented, no support for > 2 schemas");
+			}
+			
+			UserSettings userSettings = getUserSettings(session);
+			List<SSerializerPluginConfiguration> sSerializers = new ArrayList<SSerializerPluginConfiguration>();
+			for (SerializerPluginConfiguration serializerPluginConfiguration : userSettings.getSerializers()) {
+				SerializerPlugin plugin = getBimServer().getPluginManager().getSerializerPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+				if (plugin != null) {
+					for (Schema schema : plugin.getSupportedSchemas()) {
+						if (schemaOr.contains(schema)) {
+							if (!onlyEnabled || (serializerPluginConfiguration.getEnabled() && serializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
+								sSerializers.add(getBimServer().getSConverter().convertToSObject(serializerPluginConfiguration));
+								break;
+							}
+						}
+					}
+				}
+			}
+			Collections.sort(sSerializers, new SPluginConfigurationComparator());
+			return sSerializers;
+		} catch (Exception e) {
 			handleException(e);
 		} finally {
 			session.close();
 		}
+		return null;
 	}
-
+	
 	public void setDefaultModelCompare(final Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1079,34 +1086,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public List<SDeserializerPluginConfiguration> getAllDeserializersForProject(Boolean onlyEnabled, Long poid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			Project project = session.get(poid, Query.getDefault());
-
-			UserSettings userSettings = getUserSettings(session);
-			EList<DeserializerPluginConfiguration> deserializers = userSettings.getDeserializers();
-			List<SDeserializerPluginConfiguration> sDeserializers = new ArrayList<SDeserializerPluginConfiguration>();
-			for (DeserializerPluginConfiguration deserializerPluginConfiguration : deserializers) {
-				DeserializerPlugin plugin = getBimServer().getPluginManager().getDeserializerPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-				if (plugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
-					if (!onlyEnabled || (deserializerPluginConfiguration.getEnabled() && deserializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
-						sDeserializers.add(getBimServer().getSConverter().convertToSObject(deserializerPluginConfiguration));
-					}
-				}
-			}
-			Collections.sort(sDeserializers, new SPluginConfigurationComparator());
-			return sDeserializers;
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
 	public SWebModulePluginConfiguration getWebModuleById(Long oid) throws ServerException, UserException {
 		requireAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1127,6 +1106,21 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+	
+	@Override
+	public SMessagingSerializerPluginConfiguration getMessagingSerializerByPluginClassName(String pluginClassName) throws ServerException, UserException {
+		// Not checking for real authentication here because a remote service should be able to use a serializer for download call
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetMessagingSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -1255,5 +1249,33 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		} finally {
 			session.close();
 		}
+	}
+	
+	@Override
+	public List<SDeserializerPluginConfiguration> getAllDeserializersForProject(Boolean onlyEnabled, Long poid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Project project = session.get(poid, Query.getDefault());
+
+			UserSettings userSettings = getUserSettings(session);
+			EList<DeserializerPluginConfiguration> deserializers = userSettings.getDeserializers();
+			List<SDeserializerPluginConfiguration> sDeserializers = new ArrayList<SDeserializerPluginConfiguration>();
+			for (DeserializerPluginConfiguration deserializerPluginConfiguration : deserializers) {
+				DeserializerPlugin plugin = getBimServer().getPluginManager().getDeserializerPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+				if (plugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
+					if (!onlyEnabled || (deserializerPluginConfiguration.getEnabled() && deserializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
+						sDeserializers.add(getBimServer().getSConverter().convertToSObject(deserializerPluginConfiguration));
+					}
+				}
+			}
+			Collections.sort(sDeserializers, new SPluginConfigurationComparator());
+			return sDeserializers;
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
 	}
 }

@@ -1,7 +1,7 @@
 package org.bimserver.serializers.objectcsv;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,6 +41,7 @@ import org.bimserver.models.ifc2x3tc1.IfcValue;
 import org.bimserver.models.ifc2x3tc1.impl.IfcObjectImpl;
 import org.bimserver.models.ifc2x3tc1.impl.IfcRootImpl;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -56,7 +57,7 @@ public class ObjectCSVSerializer extends EmfSerializer {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean write(OutputStream outputStream) throws SerializerException {
+	public boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			PrintWriter out = new PrintWriter(outputStream);
 			out.println("GUID; Enitity; Attribute; Attibute Value; Property Set | Quantity; Property | Quantity; Value");

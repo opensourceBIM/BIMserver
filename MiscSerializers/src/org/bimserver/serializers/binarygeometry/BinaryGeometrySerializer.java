@@ -1,7 +1,7 @@
 package org.bimserver.serializers.binarygeometry;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@ package org.bimserver.serializers.binarygeometry;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
@@ -29,15 +28,19 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
-import org.bimserver.plugins.serializers.AligningOutputStream;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.LittleEndianDataOutputStream;
+
+@Deprecated
 public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometrySerializer.class);
-	private static final byte FORMAT_VERSION = 5;
+	private static final byte FORMAT_VERSION = 6;
 	private static final byte GEOMETRY_TYPE_TRIANGLES = 0;
 	private static final byte GEOMETRY_TYPE_INSTANCE = 1;
 
@@ -47,7 +50,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	}
 
 	@Override
-	protected boolean write(OutputStream outputStream) throws SerializerException {
+	protected boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			try {
 				calculateGeometryExtents();
@@ -66,7 +69,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private void writeGeometries(OutputStream outputStream) throws IOException {
 		long start = System.nanoTime();
 
-		DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+		LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(outputStream);
 		// Identifier for clients to determine if this server is even serving binary geometry
 		dataOutputStream.writeUTF("BGS");
 		
@@ -102,13 +105,15 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		// Flushing here so the client can show progressbar etc...
 		dataOutputStream.flush();
 		
+		int bytes = 6;
 		int counter = 0;
 		
 		// Second iteration actually writing the geometry
 		for (IdEObject ifcProduct : products) {
 			GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
 			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
-				dataOutputStream.writeUTF(ifcProduct.eClass().getName());
+				String type = ifcProduct.eClass().getName();
+				dataOutputStream.writeUTF(type);
 				dataOutputStream.writeLong(ifcProduct.getOid());
 
 				GeometryData geometryData = geometryInfo.getData();
@@ -120,15 +125,15 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 				byte geometryType = concreteGeometrySent.contains(geometryData.getOid()) ? GEOMETRY_TYPE_INSTANCE : GEOMETRY_TYPE_TRIANGLES;
 				dataOutputStream.write(geometryType);
 				
+				bytes += (type.getBytes(Charsets.UTF_8).length + 3);
+				
 				// This is an ugly hack to align the bytes, but for 2 different kinds of output (this first one is the websocket implementation)
-				if (outputStream instanceof AligningOutputStream) {
-					((AligningOutputStream)outputStream).align4();
-				} else {
-					int skip = 4 - (dataOutputStream.size() % 4);
-					if(skip != 0 && skip != 4) {
-						dataOutputStream.write(new byte[skip]);
-					}
+				int skip = 4 - (bytes % 4); // TODO fix
+				if(skip != 0 && skip != 4) {
+					dataOutputStream.write(new byte[skip]);
 				}
+				
+				bytes = 0;
 				
 				dataOutputStream.write(geometryInfo.getTransformation());
 				

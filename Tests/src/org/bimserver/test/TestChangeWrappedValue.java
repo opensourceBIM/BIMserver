@@ -1,7 +1,7 @@
 package org.bimserver.test;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,17 +17,15 @@ package org.bimserver.test;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ClientIfcModel;
-import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.LocalDevSetup;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcLabel;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
 import org.bimserver.plugins.services.BimServerClientException;
-import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public class TestChangeWrappedValue {
@@ -36,15 +34,12 @@ public class TestChangeWrappedValue {
 	}
 
 	private void start() {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 		try {
-			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 			long poid = 2686977;
 			long roid = 720899;
-			
 			SProject project = client.getBimsie1ServiceInterface().getProjectByPoid(poid);
-			
-			ClientIfcModel model = client.getModel(project, roid, true);
+			IfcModelInterface model = client.getModel(project, roid, true, false);
 			
 			for (IfcPropertySingleValue prop : model.getAll(IfcPropertySingleValue.class)) {
 //				IfcValue value = ((IfcPropertySingleValue) prop).getNominalValue();
@@ -59,7 +54,7 @@ public class TestChangeWrappedValue {
 			}
 			
 			model.commit("blaat");
-		} catch (ServiceException | ChannelConnectionException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (BimServerClientException e) {
 			e.printStackTrace();

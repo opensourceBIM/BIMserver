@@ -1,7 +1,7 @@
 package org.bimserver.longaction;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -63,16 +63,16 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			executeAction(action, downloadParameters, session, false);
  		} catch (UserException e) {
  			error(e);
- 		} catch (BimserverDatabaseException e) {
- 			error(e);
  		} catch (Exception e) {
- 			LOGGER.error("", e);
  			error(e);
+			LOGGER.error("", e);
 		} finally {
 			if (session != null) {
 				session.close();
 			}
-			changeActionState(ActionState.FINISHED, "Done", 100);
+			if (getErrors().size() == 0) {
+				changeActionState(ActionState.STARTED, "Done preparing", 0);
+			}
 		}
 	}
 

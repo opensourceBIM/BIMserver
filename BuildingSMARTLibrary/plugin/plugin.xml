@@ -3,9 +3,11 @@
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.schema.SchemaPlugin</interfaceClass>
 		<implementationClass>nl.tue.buildingsmart.emf.BuildingSmartLibraryIfc2x3tc1SchemaPlugin</implementationClass>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.schema.SchemaPlugin</interfaceClass>
 		<implementationClass>nl.tue.buildingsmart.emf.BuildingSmartLibraryIfc4SchemaPlugin</implementationClass>
+		<enabled>true</enabled>
 	</PluginImplementation>
 </PluginDescriptor>

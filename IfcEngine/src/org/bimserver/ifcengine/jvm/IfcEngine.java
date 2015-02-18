@@ -4,7 +4,7 @@
 package org.bimserver.ifcengine.jvm;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -75,13 +75,13 @@ public class IfcEngine {
 				}
 				ByteBuffer byteBuffer = pointer.getByteBuffer(0, 1024);
 				try {
-					int red = in.read(buffer, 0, Math.min(1024, size - total));
-					if (red == -1) {
+					int read = in.read(buffer, 0, Math.min(1024, size - total));
+					if (read == -1) {
 						return -1;
 					}
-					total += red;
-					byteBuffer.put(buffer, 0, red);
-					return red;
+					total += read;
+					byteBuffer.put(buffer, 0, read);
+					return read;
 				} catch (IOException e) {
 				}
 				return -1;
@@ -91,6 +91,27 @@ public class IfcEngine {
 		return engine.xxxxOpenModelByStream(0, fn, schemaName);
 	}
 
+	public Pointer loadFromInputStream(final InputStream in, String schemaName) {
+		final byte[] buffer = new byte[1024];
+		IfcEngineInterface.StreamCallback fn = new IfcEngineInterface.StreamCallback() {
+			public int invoke(Pointer pointer) {
+				try {
+					int read = in.read(buffer, 0, 1024);
+					if (read == -1) {
+						return -1;
+					}
+					ByteBuffer byteBuffer = pointer.getByteBuffer(0, read);
+					byteBuffer.put(buffer, 0, read);
+					return read;
+				} catch (IOException e) {
+				}
+				return -1;
+			}
+		};
+		callBacks.add(fn);
+		return engine.xxxxOpenModelByStream(0, fn, schemaName);
+	}
+	
 	static public class SurfaceProperties {
 		private Pointer model;
 		private Pointer instance;

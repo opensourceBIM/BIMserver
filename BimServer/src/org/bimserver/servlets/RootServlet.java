@@ -1,7 +1,7 @@
 package org.bimserver.servlets;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,6 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +27,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
-import org.bimserver.plugins.web.WebModulePlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +41,6 @@ public class RootServlet extends HttpServlet {
 	private JsonApiServlet jsonApiServlet;
 	private UploadServlet uploadServlet;
 	private DownloadServlet downloadServlet;
-
 	private BimServer bimServer;
 
 	@Override
@@ -63,6 +60,18 @@ public class RootServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			String requestUri = request.getRequestURI();
+			String servletContextPath = getServletContext().getContextPath();
+			if (requestUri.startsWith(servletContextPath)) {
+				requestUri = requestUri.substring(servletContextPath.length());
+			}
+			if (requestUri == null) {
+				LOGGER.error("RequestURI is null");
+			} else {
+				LOGGER.debug(requestUri);
+//				LOGGER.info(requestUri);
+			}
+			setContentType(response, requestUri);
 			if (request.getRequestURI().endsWith("getbimserveraddress")) {
 				response.setContentType("application/json");
 				String siteAddress = bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
@@ -75,52 +84,46 @@ public class RootServlet extends HttpServlet {
 				}
 				response.getWriter().print("{\"address\":\"" + siteAddress + "\"}");
 				return;
-			} else if (request.getRequestURI().startsWith("/openid")) {
+			} else if (requestUri.startsWith("/stream")) {
+				LOGGER.warn("Stream request should not be going to this servlet!");
+			} else if (requestUri.startsWith("/openid")) {
 				bimServer.getOpenIdManager().verifyResponse(request, response);
-			} else if (request.getRequestURI().endsWith(".js")) {
-				response.setContentType("application/javascript");
-			} else if (request.getRequestURI().endsWith(".css")) {
-				response.setContentType("text/css");
-			} else if (request.getRequestURI().endsWith(".png")) {
-				response.setContentType("image/png");
-			} else if (request.getRequestURI().endsWith(".gif")) {
-				response.setContentType("image/gif");
-			}
-			String pathInfo = request.getPathInfo();
-			if (pathInfo == null) {
-				LOGGER.error("PathInfo of Request is null");
-			} else if (pathInfo.startsWith("/soap11/") || pathInfo.equals("/soap11")) {
+			} else if (requestUri.startsWith("/soap11/") || requestUri.equals("/soap11")) {
 				soap11Servlet.service(request, response);
-			} else if (pathInfo.startsWith("/soap12/") || pathInfo.equals("/soap12")) {
+			} else if (requestUri.startsWith("/soap12/") || requestUri.equals("/soap12")) {
 				soap12Servlet.service(request, response);
-			} else if (pathInfo.startsWith("/syndication/") || pathInfo.equals("/syndication")) {
+			} else if (requestUri.startsWith("/syndication/") || requestUri.equals("/syndication")) {
 				syndicationServlet.service(request, response);
-			} else if (pathInfo.startsWith("/json/") || pathInfo.equals("/json")) {
+			} else if (requestUri.startsWith("/json/") || requestUri.equals("/json")) {
 				jsonApiServlet.service(request, response);
-			} else if (pathInfo.startsWith("/upload/") || pathInfo.equals("/upload")) {
+			} else if (requestUri.startsWith("/upload/") || requestUri.equals("/upload")) {
 				uploadServlet.service(request, response);
-			} else if (pathInfo.startsWith("/download/") || pathInfo.equals("/download")) {
+			} else if (requestUri.startsWith("/download/") || requestUri.equals("/download")) {
 				downloadServlet.service(request, response);
 			} else {
-				if (pathInfo.equals("") || pathInfo.equals("/") || pathInfo == null) {
-					pathInfo = "/index.html";
+				if (requestUri.equals("") || requestUri.equals("/") || requestUri == null) {
+					requestUri = "/index.html";
 				}
-				if (bimServer.getWebModules() != null) {
-					for (Entry<String, WebModulePlugin> entry : bimServer.getWebModules().entrySet()) {
-						if (pathInfo != null && entry.getValue() != null && pathInfo.startsWith(entry.getKey())) {
-							if (entry.getValue().service(request, response)) {
-								return;
-							}
-						}
-					}
+				if (bimServer.getDefaultWebModule() == null) {
+					LOGGER.info("No default web module");
 				}
-				if (bimServer.getDefaultWebModule() != null) {
-					if (bimServer.getDefaultWebModule().service(request, response)) {
+				String modulePath = requestUri;
+				if (modulePath.indexOf("/", 1) != -1) {
+					modulePath = modulePath.substring(0, modulePath.indexOf("/", 1));
+				}
+				if (bimServer.getWebModules().containsKey(modulePath)) {
+					String substring = requestUri.substring(modulePath.length());
+					if (bimServer.getWebModules().get(modulePath).service(substring, response)) {
 						return;
 					}
 				}
-
-				InputStream resourceAsStream = getServletContext().getResourceAsStream(pathInfo);
+				if (bimServer.getDefaultWebModule() != null) {
+					if (bimServer.getDefaultWebModule().service(requestUri, response)) {
+						return;
+					}
+				}
+				
+				InputStream resourceAsStream = getServletContext().getResourceAsStream(requestUri);
 				if (resourceAsStream != null) {
 					IOUtils.copy(resourceAsStream, response.getOutputStream());
 				} else {
@@ -137,6 +140,18 @@ public class RootServlet extends HttpServlet {
 			} else {
 				LOGGER.error("", e);
 			}
+		}
+	}
+
+	private void setContentType(HttpServletResponse response, String requestUri) {
+		if (requestUri.endsWith(".js")) {
+			response.setContentType("application/javascript");
+		} else if (requestUri.endsWith(".css")) {
+			response.setContentType("text/css");
+		} else if (requestUri.endsWith(".png")) {
+			response.setContentType("image/png");
+		} else if (requestUri.endsWith(".gif")) {
+			response.setContentType("image/gif");
 		}
 	}
 }

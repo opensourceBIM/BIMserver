@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,6 +18,8 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -34,9 +36,9 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -51,7 +53,6 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 	private final Set<Long> oids;
 	private final Set<Long> roids;
 	private int progress;
-	private final ObjectIDM objectIDM;
 	private long serializerOid;
 	private Deep deep;
 
@@ -60,7 +61,6 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 		this.roids = roids;
 		this.oids = oids;
 		this.serializerOid = serializerOid;
-		this.objectIDM = objectIDM;
 		this.deep = deep;
 	}
 
@@ -70,7 +70,9 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		Project project = null;
 		long incrSize = 0L;
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
+		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
 			project = virtualRevision.getProject();
@@ -80,11 +82,13 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 			incrSize += virtualRevision.getConcreteRevisions().size();
 			final long totalSize = incrSize;
 			final AtomicLong total = new AtomicLong();
+			pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
-				IfcModel subModel = new IfcModel(packageMetaData);
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
+				lastPackageMetaData = packageMetaData;
+				IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, deep, highestStopId);
+				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {
@@ -111,7 +115,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 				// }
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel(null); // TODO
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

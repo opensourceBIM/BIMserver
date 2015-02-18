@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -213,8 +213,8 @@ public enum IfcUnitaryEquipmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcUnitaryEquipmentTypeEnum[] VALUES_ARRAY = new IfcUnitaryEquipmentTypeEnum[] { NULL, SPLITSYSTEM, NOTDEFINED, ROOFTOPUNIT, USERDEFINED,
-			AIRCONDITIONINGUNIT, AIRHANDLER, };
+	private static final IfcUnitaryEquipmentTypeEnum[] VALUES_ARRAY = new IfcUnitaryEquipmentTypeEnum[] { NULL, SPLITSYSTEM, NOTDEFINED, ROOFTOPUNIT,
+			USERDEFINED, AIRCONDITIONINGUNIT, AIRHANDLER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Unitary Equipment Type Enum</b></em>' enumerators.

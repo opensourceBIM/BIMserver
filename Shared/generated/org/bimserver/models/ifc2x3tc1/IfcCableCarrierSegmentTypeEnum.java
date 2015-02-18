@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -213,8 +213,8 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCableCarrierSegmentTypeEnum[] VALUES_ARRAY = new IfcCableCarrierSegmentTypeEnum[] { NULL, NOTDEFINED, CABLETRUNKINGSEGMENT, CABLETRAYSEGMENT,
-			USERDEFINED, CABLELADDERSEGMENT, CONDUITSEGMENT, };
+	private static final IfcCableCarrierSegmentTypeEnum[] VALUES_ARRAY = new IfcCableCarrierSegmentTypeEnum[] { NULL, NOTDEFINED, CABLETRUNKINGSEGMENT,
+			CABLETRAYSEGMENT, USERDEFINED, CABLELADDERSEGMENT, CONDUITSEGMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cable Carrier Segment Type Enum</b></em>' enumerators.

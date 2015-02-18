@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -238,8 +238,8 @@ public enum IfcActuatorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcActuatorTypeEnum[] VALUES_ARRAY = new IfcActuatorTypeEnum[] { NULL, ELECTRICACTUATOR, NOTDEFINED, PNEUMATICACTUATOR, HANDOPERATEDACTUATOR,
-			THERMOSTATICACTUATOR, USERDEFINED, HYDRAULICACTUATOR, };
+	private static final IfcActuatorTypeEnum[] VALUES_ARRAY = new IfcActuatorTypeEnum[] { NULL, ELECTRICACTUATOR, NOTDEFINED, PNEUMATICACTUATOR,
+			HANDOPERATEDACTUATOR, THERMOSTATICACTUATOR, USERDEFINED, HYDRAULICACTUATOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Actuator Type Enum</b></em>' enumerators.

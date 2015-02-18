@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,7 +18,6 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.models.store.ObjectModified;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -26,13 +25,14 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Object Modified</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ObjectModifiedImpl#getFieldName <em>Field Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ObjectModifiedImpl#getOldValue <em>Old Value</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ObjectModifiedImpl#getNewValue <em>New Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

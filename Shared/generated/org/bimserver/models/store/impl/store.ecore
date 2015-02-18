@@ -198,6 +198,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="smtpProtocol" eType="#//SmtpProtocol"
         defaultValueLiteral="SMTP"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reuseGeometry" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowCreateValidatedUser"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserSettings">
     <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
@@ -222,6 +224,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#//ObjectIDMPluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
         eType="#//InternalServicePluginConfiguration" eOpposite="#//InternalServicePluginConfiguration/userSettings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="messagingSerializerPlugins"
+        upperBound="-1" eType="#//MessagingSerializerPluginConfiguration" eOpposite="#//MessagingSerializerPluginConfiguration/userSettings"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -431,6 +435,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="serverState" eType="#//ServerState"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="errorMessage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="version" eType="#//Version">
+      <eAnnotations source="embedsreference"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Version">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="major" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -827,5 +834,10 @@
   <eClassifiers xsi:type="ecore:EEnum" name="SmtpProtocol">
     <eLiterals name="SMTP"/>
     <eLiterals name="SMTPS" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MessagingSerializerPluginConfiguration"
+      eSuperTypes="#//PluginConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
+        eOpposite="#//UserSettings/messagingSerializerPlugins"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -1,7 +1,7 @@
 package org.bimserver.build;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,13 @@ package org.bimserver.build;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.net.ssl.HostnameVerifier;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -30,11 +35,17 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.AuthCache;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContextBuilder;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.eclipse.egit.github.core.client.GitHubClient;
 
 import com.google.gson.JsonObject;
@@ -72,10 +83,16 @@ public class CreateGitHubRelease {
 			
 			HttpHost httpHost = new HttpHost("uploads.github.com", 443, "https");
 
-			DefaultHttpClient client = new DefaultHttpClient();
 			BasicCredentialsProvider basicCredentialsProvider = new BasicCredentialsProvider();
 			basicCredentialsProvider.setCredentials(new AuthScope(httpHost), new UsernamePasswordCredentials(username, password));
-			client.setCredentialsProvider(basicCredentialsProvider);
+
+			HostnameVerifier hostnameVerifier = new AllowAllHostnameVerifier();
+
+			SSLContextBuilder builder = new SSLContextBuilder();
+			builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
+			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(builder.build());
+			CloseableHttpClient client = HttpClients.custom().setDefaultCredentialsProvider(basicCredentialsProvider)
+					.setHostnameVerifier((X509HostnameVerifier) hostnameVerifier).setSSLSocketFactory(sslsf).build();
 			
 			AuthCache authCache = new BasicAuthCache();
 			BasicScheme basicAuth = new BasicScheme();
@@ -96,6 +113,12 @@ public class CreateGitHubRelease {
 				execute.getEntity().getContent().close();
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (KeyStoreException e) {
+			e.printStackTrace();
+		} catch (KeyManagementException e) {
 			e.printStackTrace();
 		}
 	}

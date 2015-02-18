@@ -1,7 +1,7 @@
 package org.bimserver.shared;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.eclipse.emf.common.util.AbstractEList;
@@ -61,7 +62,9 @@ public class WaitingList<T> {
 					ListWaitingObject listWaitingObject = (ListWaitingObject)waitingObject;
 					if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
 						while (list.size() <= listWaitingObject.getIndex()) {
-							list.addUnique(ec.getEPackage().getEFactoryInstance().create(eObject.eClass()));
+							EObject create = ec.getEPackage().getEFactoryInstance().create(eObject.eClass());
+							((IdEObjectImpl)create).setOid(-2);
+							list.addUnique(create);
 						}
 						list.setUnique(listWaitingObject.getIndex(), eObject);
 					} else {

@@ -1,7 +1,7 @@
 package org.bimserver.utils;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -52,19 +52,25 @@ public class Tokenizer {
 		if (!trimmed.startsWith(startChar)) {
 			throw new TokenizeException("No " + startChar + " found in " + input.substring(leftPositionInclude, rightPositionInclude));
 		}
+		String specialChar = "'";
 		int leftIndex = input.indexOf(startChar, leftPositionInclude);
 		int rightIndex = -1;
 		int depth = 0;
+		int altDepth = 0;
 		for (int i=leftIndex + 1; i<=rightPositionInclude; i++) {
 			String c = input.substring(i, i + endChar.length());
 			if (c.equals(endChar)) {
-				if (depth == 0) {
+				if (depth == 0 && altDepth == 0) {
 					rightIndex = i;
 					break;
 				} else {
-					depth--;
+					if (altDepth == 0) {
+						depth--;
+					}
 				}
-			} else if (c.equals(startChar)) {
+			} else if (c.equals(specialChar)) {
+				altDepth = 1 - altDepth;
+			} else if (c.equals(startChar) && altDepth == 0) {
 				depth++;
 			}
 		}
@@ -96,9 +102,17 @@ public class Tokenizer {
 		}
 		int add = toString.indexOf("'");
 		int endIndex = trimmed.indexOf("'", 1);
+
+		// Never ending loop protection, can probably be done by changing the loop condition to something smarter...
+		int lastEndIndex = -2;
+		
 		while (trimmed.length() > endIndex + 1 && trimmed.charAt(endIndex + 1) == '\'') {
 			// Two quotes
 			endIndex = trimmed.indexOf("'", endIndex + 2);
+			if (lastEndIndex != -2 && lastEndIndex == endIndex) {
+				throw new TokenizeException("No closing \"'\" found in " + trimmed);
+			}
+			lastEndIndex = endIndex;
 		}
 		if (endIndex == -1) {
 			throw new TokenizeException("No closing \"'\" found in " + trimmed);

@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -52,6 +52,20 @@ public interface AuthInterface extends PublicInterface {
 		@WebParam(name = "uoid", partName = "changePassword.uoid") Long uoid,
 		@WebParam(name = "oldPassword", partName = "changePassword.oldPassword") String oldPassword,
 		@WebParam(name = "newPassword", partName = "changePassword.newPassword") String newPassword) throws ServerException, UserException;
+
+	/**
+	 * Change a User's password, not the preferred way, use requestPasswordChange for a safer version
+	 * @param uoid The ObjectID of the User
+	 * @param oldPassword The old password
+	 * @param newPassword The new password
+	 * @return Whether the password was successfully changed
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setHash")
+	void setHash(
+			@WebParam(name = "uoid", partName = "setHash.uoid") Long uoid,
+			@WebParam(name = "hash", partName = "setHash.hash") byte[] hash,
+			@WebParam(name = "salt", partName = "setHash.salt") byte[] salt) throws ServerException, UserException;
 	
 	/**
 	 * Request a password change, an e-mail will be send with a validation url

@@ -16,14 +16,17 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
-import org.bimserver.shared.meta.*;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SField;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SArrayDefinition.class, SObjectDefinition.class, SPrimitiveDefinition.class})
+@XmlSeeAlso(value={SArrayDefinition.class, SPrimitiveDefinition.class, SObjectDefinition.class})
 public class STypeDefinition implements SBase
 {
 

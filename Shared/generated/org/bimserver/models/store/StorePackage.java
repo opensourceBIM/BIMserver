@@ -1141,13 +1141,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__REUSE_GEOMETRY = 23;
 
 	/**
+	 * The feature id for the '<em><b>Allow Create Validated User</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER = 24;
+
+	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 24;
+	int SERVER_SETTINGS_FEATURE_COUNT = 25;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -1286,13 +1295,22 @@ public interface StorePackage extends EPackage {
 	int USER_SETTINGS__SERVICES = 13;
 
 	/**
+	 * The feature id for the '<em><b>Messaging Serializer Plugins</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_SETTINGS__MESSAGING_SERIALIZER_PLUGINS = 14;
+
+	/**
 	 * The number of structural features of the '<em>User Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SETTINGS_FEATURE_COUNT = 14;
+	int USER_SETTINGS_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginConfigurationImpl <em>Plugin Configuration</em>}' class.
@@ -3110,13 +3128,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_INFO__ERROR_MESSAGE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_INFO__VERSION = 2;
+
+	/**
 	 * The number of structural features of the '<em>Server Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_INFO_FEATURE_COUNT = 2;
+	int SERVER_INFO_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.VersionImpl <em>Version</em>}' class.
@@ -6565,6 +6592,79 @@ public interface StorePackage extends EPackage {
 	int MODEL_CHECKER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.MessagingSerializerPluginConfigurationImpl <em>Messaging Serializer Plugin Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.MessagingSerializerPluginConfigurationImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMessagingSerializerPluginConfiguration()
+	 * @generated
+	 */
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION = 94;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__NAME = PLUGIN_CONFIGURATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__ENABLED = PLUGIN_CONFIGURATION__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
+
+	/**
+	 * The feature id for the '<em><b>Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__SETTINGS = PLUGIN_CONFIGURATION__SETTINGS;
+
+	/**
+	 * The feature id for the '<em><b>User Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = PLUGIN_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Messaging Serializer Plugin Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6572,7 +6672,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 94;
+	int USER_TYPE = 95;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -6582,7 +6682,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 95;
+	int SI_PREFIX = 96;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -6592,7 +6692,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 96;
+	int OBJECT_STATE = 97;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -6602,7 +6702,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 97;
+	int COMPARE_TYPE = 98;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -6612,7 +6712,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 98;
+	int ACTION_STATE = 99;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -6622,7 +6722,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 99;
+	int SERVER_STATE = 100;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -6632,7 +6732,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 100;
+	int EXTENDED_DATA_SCHEMA_TYPE = 101;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -6642,7 +6742,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 101;
+	int TRIGGER = 102;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -6652,7 +6752,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 102;
+	int SERVICE_SIMPLE_TYPE = 103;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -6662,7 +6762,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 103;
+	int PRIMITIVE_ENUM = 104;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -6672,7 +6772,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 104;
+	int NOTIFICTION_RESULT_ENUM = 105;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -6682,7 +6782,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 105;
+	int PROGRESS_TOPIC_TYPE = 106;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ModelCheckerResultType <em>Model Checker Result Type</em>}' enum.
@@ -6692,7 +6792,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultType()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_TYPE = 106;
+	int MODEL_CHECKER_RESULT_TYPE = 107;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
@@ -6702,7 +6802,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
 	 * @generated
 	 */
-	int SMTP_PROTOCOL = 107;
+	int SMTP_PROTOCOL = 108;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -6712,7 +6812,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 108;
+	int DATA_HANDLER = 109;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -7940,6 +8040,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerSettings_ReuseGeometry();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Allow Create Validated User</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#isAllowCreateValidatedUser()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_AllowCreateValidatedUser();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.UserSettings <em>User Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8102,6 +8213,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUserSettings_Services();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getMessagingSerializerPlugins <em>Messaging Serializer Plugins</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Messaging Serializer Plugins</em>'.
+	 * @see org.bimserver.models.store.UserSettings#getMessagingSerializerPlugins()
+	 * @see #getUserSettings()
+	 * @generated
+	 */
+	EReference getUserSettings_MessagingSerializerPlugins();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginConfiguration <em>Plugin Configuration</em>}'.
@@ -9400,6 +9522,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServerInfo_ErrorMessage();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ServerInfo#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Version</em>'.
+	 * @see org.bimserver.models.store.ServerInfo#getVersion()
+	 * @see #getServerInfo()
+	 * @generated
+	 */
+	EReference getServerInfo_Version();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Version <em>Version</em>}'.
@@ -12022,6 +12155,27 @@ public interface StorePackage extends EPackage {
 	EClass getModelCheckerPluginDescriptor();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.MessagingSerializerPluginConfiguration <em>Messaging Serializer Plugin Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Messaging Serializer Plugin Configuration</em>'.
+	 * @see org.bimserver.models.store.MessagingSerializerPluginConfiguration
+	 * @generated
+	 */
+	EClass getMessagingSerializerPluginConfiguration();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.MessagingSerializerPluginConfiguration#getUserSettings <em>User Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>User Settings</em>'.
+	 * @see org.bimserver.models.store.MessagingSerializerPluginConfiguration#getUserSettings()
+	 * @see #getMessagingSerializerPluginConfiguration()
+	 * @generated
+	 */
+	EReference getMessagingSerializerPluginConfiguration_UserSettings();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13105,6 +13259,14 @@ public interface StorePackage extends EPackage {
 		EAttribute SERVER_SETTINGS__REUSE_GEOMETRY = eINSTANCE.getServerSettings_ReuseGeometry();
 
 		/**
+		 * The meta object literal for the '<em><b>Allow Create Validated User</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER = eINSTANCE.getServerSettings_AllowCreateValidatedUser();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -13225,6 +13387,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference USER_SETTINGS__SERVICES = eINSTANCE.getUserSettings_Services();
+
+		/**
+		 * The meta object literal for the '<em><b>Messaging Serializer Plugins</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_SETTINGS__MESSAGING_SERIALIZER_PLUGINS = eINSTANCE.getUserSettings_MessagingSerializerPlugins();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginConfigurationImpl <em>Plugin Configuration</em>}' class.
@@ -14259,6 +14429,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_INFO__ERROR_MESSAGE = eINSTANCE.getServerInfo_ErrorMessage();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVER_INFO__VERSION = eINSTANCE.getServerInfo_Version();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.VersionImpl <em>Version</em>}' class.
@@ -16309,6 +16487,24 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass MODEL_CHECKER_PLUGIN_DESCRIPTOR = eINSTANCE.getModelCheckerPluginDescriptor();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.MessagingSerializerPluginConfigurationImpl <em>Messaging Serializer Plugin Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.MessagingSerializerPluginConfigurationImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getMessagingSerializerPluginConfiguration()
+		 * @generated
+		 */
+		EClass MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION = eINSTANCE.getMessagingSerializerPluginConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>User Settings</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getMessagingSerializerPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

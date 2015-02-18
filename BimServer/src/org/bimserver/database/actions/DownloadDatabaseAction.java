@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,8 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
@@ -33,9 +35,9 @@ import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.IfcHeader;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -66,7 +68,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		Revision revision = getRevisionByRoid(roid);
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		getAuthorization().canDownload(roid);
 		if (revision == null) {
 			throw new UserException("Revision with oid " + roid + " not found");
@@ -92,13 +94,17 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		final long totalSize = incrSize;
 		final AtomicLong total = new AtomicLong();
 		IfcHeader ifcHeader = null;
+		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
+		pidRoidMap.put(project.getId(), roid);
 		for (ConcreteRevision subRevision : concreteRevisions) {
 			if (subRevision.getUser().getOid() != ignoreUoid) {
-				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(subRevision.getProject().getSchema());
-				IfcModel subModel = new IfcModel(packageMetaData);
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(subRevision.getProject().getSchema());
+				lastPackageMetaData = packageMetaData;
+				IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
 				ifcHeader = subRevision.getIfcHeader();
 				int highestStopId = findHighestStopRid(project, subRevision);
-				Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), objectIDM, Deep.YES, highestStopId);
+				Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), subRevision.getOid(), objectIDM, Deep.YES, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {
@@ -122,8 +128,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				ifcModelSet.add(subModel);
 			}
 		}
-		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(project.getSchema());
-		IfcModelInterface ifcModel = new IfcModel(packageMetaData);
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(revision.getProject(), ifcModelSet, new ModelHelper(ifcModel));

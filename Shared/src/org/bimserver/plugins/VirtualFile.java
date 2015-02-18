@@ -1,7 +1,7 @@
 package org.bimserver.plugins;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -77,7 +77,7 @@ public class VirtualFile implements JavaFileObject {
 				if (parent.toUri() != null) {
 					this.uri = new URI(parent.toUri() + "/" + name);
 				} else {
-					this.uri = new URI(name);
+					this.uri = new URI(name.replace("\\", "/"));
 				}
 			} catch (URISyntaxException e) {
 				LOGGER.error("", e);
@@ -104,15 +104,15 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	public VirtualFile createFile(String path) {
-		if (path.contains(File.separator)) {
-			String newName = path.substring(0, path.indexOf(File.separator));
+		if (path.contains("/")) {
+			String newName = path.substring(0, path.indexOf("/"));
 			if (files.containsKey(newName)) {
 				VirtualFile virtualFile = files.get(newName);
-				return virtualFile.createFile(path.substring(path.indexOf(File.separator) + 1));
+				return virtualFile.createFile(path.substring(path.indexOf("/") + 1));
 			} else {
 				VirtualFile virtualFile = new VirtualFile(this, newName);
 				files.put(newName, virtualFile);
-				return virtualFile.createFile(path.substring(path.indexOf(File.separator) + 1));
+				return virtualFile.createFile(path.substring(path.indexOf("/") + 1));
 			}
 		} else {
 			VirtualFile virtualFile = new VirtualFile(this, path);
@@ -196,7 +196,7 @@ public class VirtualFile implements JavaFileObject {
 
 	public String getName() {
 		if (parent != null && parent.getName() != null) {
-			return parent.getName() + File.separator + name;
+			return parent.getName() + "/" + name;
 		} else {
 			return name;
 		}
@@ -282,7 +282,7 @@ public class VirtualFile implements JavaFileObject {
 
 	public String getPackageName() {
 		String name = getName();
-		return name.replace(File.separator, ".");
+		return name.replace("/", ".");
 	}
 
 	public Collection<VirtualFile> getFiles() {
@@ -330,10 +330,10 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	public Collection<VirtualFile> getFiles(Set<Kind> kinds, String path) {
-		if (path.contains(File.separator)) {
-			String substring = path.substring(0, path.indexOf(File.separator));
+		if (path.contains("/")) {
+			String substring = path.substring(0, path.indexOf("/"));
 			if (files.containsKey(substring)) {
-				return files.get(substring).getFiles(kinds, path.substring(path.indexOf(File.separator) + 1));
+				return files.get(substring).getFiles(kinds, path.substring(path.indexOf("/") + 1));
 			}
 		} else {
 			if (files.containsKey(path)) {
@@ -352,14 +352,14 @@ public class VirtualFile implements JavaFileObject {
 		if (name.contains(".")) {
 			name = name.substring(0, name.indexOf("."));
 		}
-		return name.replace(File.separator, ".");
+		return name.replace("/", ".");
 	}
 
 	public boolean containsType(String path) {
-		if (path.contains(File.separator)) {
-			String newName = path.substring(0, path.indexOf(File.separator));
+		if (path.contains("/")) {
+			String newName = path.substring(0, path.indexOf("/"));
 			if (files.containsKey(newName)) {
-				return files.get(newName).containsType(path.substring(path.indexOf(File.separator) + 1));
+				return files.get(newName).containsType(path.substring(path.indexOf("/") + 1));
 			} else {
 				return false;
 			}
@@ -399,7 +399,11 @@ public class VirtualFile implements JavaFileObject {
 
 	public VirtualFile getClass(String name) {
 		if (name.contains(".")) {
-			return files.get(name.substring(0, name.indexOf("."))).getClass(name.substring(name.indexOf(".") + 1));
+			VirtualFile virtualFile = files.get(name.substring(0, name.indexOf(".")));
+			if (virtualFile == null) {
+				throw new RuntimeException("Not found: " + name);
+			}
+			return virtualFile.getClass(name.substring(name.indexOf(".") + 1));
 		}
 		return files.get(name + ".class");
 	}

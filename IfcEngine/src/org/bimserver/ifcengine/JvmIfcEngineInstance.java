@@ -1,7 +1,7 @@
 package org.bimserver.ifcengine;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -65,7 +65,7 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 			return new RenderEngineSurfaceProperties(modelId, noVertices, noIndices, 0.0);
 		}		
 	}
-
+	
 	@Override
 	public RenderEngineGeometry generateGeometry() throws RenderEngineException {
 		RenderEngineSurfaceProperties initialize = initialize();
@@ -79,7 +79,7 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 			failSafeIfcEngine.writeInt(initialize.getIndicesCount());
 			failSafeIfcEngine.writeInt(initialize.getVerticesCount());
 			failSafeIfcEngine.flush();
-
+			
 			int[] indices = new int[initialize.getIndicesCount()];
 			float[] vertices = new float[initialize.getVerticesCount() * 3];
 			float[] normals = new float[initialize.getVerticesCount() * 3];

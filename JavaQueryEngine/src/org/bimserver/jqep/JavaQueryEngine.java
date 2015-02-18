@@ -14,7 +14,6 @@ import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
 
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.VirtualClassLoader;
@@ -41,9 +40,8 @@ public class JavaQueryEngine implements QueryEngine {
 	public IfcModelInterface query(IfcModelInterface model, String code, Reporter reporter, ModelHelper modelHelper) {
 		try {
 			QueryInterface queryInterface = createQueryInterface(code);
-			IfcModelInterface dest = new IfcModel(null); // TODO
-			queryInterface.query(model, dest, reporter, modelHelper);
-			return dest;
+			queryInterface.query(model, reporter, modelHelper);
+			return modelHelper.getTargetModel();
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			reporter.error(e);
@@ -80,7 +78,7 @@ public class JavaQueryEngine implements QueryEngine {
 			throw new CompileException("JDK needed for compile tasks");
 		}
 		VirtualFile baseDir = new VirtualFile();
-		VirtualFile file = baseDir.createFile("org" + File.separator + "bimserver" + File.separator + "jqep" + File.separator + "Query.java");
+		VirtualFile file = baseDir.createFile("org/bimserver/jqep/Query.java");
 		file.setStringContent(code);
 		VirtualFileManager myFileManager = new VirtualFileManager(pluginFileManager, classLoader, baseDir);
 

@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,16 +25,12 @@ import java.io.InputStream;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.shared.BimServerClientFactory;
-import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 
 public class TestSceneJsDownload {
@@ -44,9 +40,7 @@ public class TestSceneJsDownload {
 
 	private void start() {
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
-			
-			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface bimServerClient = LocalDevSetup.setupJson("http://localhost:8080");
 			bimServerClient.getBimsie1AuthInterface().login("admin@bimserver.org", "admin");
 			SSerializerPluginConfiguration serializerByContentType = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/json");
 			List<SProject> projects = bimServerClient.getBimsie1ServiceInterface().getProjectsByName("test");
@@ -64,8 +58,6 @@ public class TestSceneJsDownload {
 					System.out.println(((System.nanoTime() - start) / 1000000) + " ms");
 				}
 			}
-		} catch (ChannelConnectionException e) {
-			e.printStackTrace();
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
@@ -73,8 +65,6 @@ public class TestSceneJsDownload {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();

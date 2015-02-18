@@ -17,31 +17,20 @@
 package org.bimserver.models.store.impl;
 
 import java.io.IOException;
-
 import java.net.URL;
 
 import org.bimserver.models.geometry.GeometryPackage;
-
 import org.bimserver.models.geometry.impl.GeometryPackageImpl;
-
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-
 import org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1PackageImpl;
-
 import org.bimserver.models.ifc4.Ifc4Package;
-
 import org.bimserver.models.ifc4.impl.Ifc4PackageImpl;
-
 import org.bimserver.models.log.LogPackage;
-
 import org.bimserver.models.log.impl.LogPackageImpl;
-
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -49,11 +38,8 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 
 /**
@@ -733,6 +719,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass messagingSerializerPluginConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -874,8 +867,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 			return (StorePackage) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI);
 
 		// Obtain or create and register package
-		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-				: new StorePackageImpl());
+		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE
+				.get(eNS_URI) : new StorePackageImpl());
 
 		isInited = true;
 
@@ -1945,6 +1938,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getServerSettings_AllowCreateValidatedUser() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(24);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUserSettings() {
 		if (userSettingsEClass == null) {
 			userSettingsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(10);
@@ -2076,6 +2078,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getUserSettings_Services() {
 		return (EReference) getUserSettings().getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUserSettings_MessagingSerializerPlugins() {
+		return (EReference) getUserSettings().getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -3264,6 +3275,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getServerInfo_ErrorMessage() {
 		return (EAttribute) getServerInfo().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getServerInfo_Version() {
+		return (EReference) getServerInfo().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -5610,6 +5630,27 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 			modelCheckerPluginDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(107);
 		}
 		return modelCheckerPluginDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMessagingSerializerPluginConfiguration() {
+		if (messagingSerializerPluginConfigurationEClass == null) {
+			messagingSerializerPluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(109);
+		}
+		return messagingSerializerPluginConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMessagingSerializerPluginConfiguration_UserSettings() {
+		return (EReference) getMessagingSerializerPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,7 +20,6 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcProfileDef;
 import org.bimserver.models.ifc4.IfcSectionProperties;
 import org.bimserver.models.ifc4.IfcSectionTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

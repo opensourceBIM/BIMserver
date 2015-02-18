@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -363,8 +363,8 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSanitaryTerminalTypeEnum[] VALUES_ARRAY = new IfcSanitaryTerminalTypeEnum[] { NULL, TOILETPAN, BATH, CISTERN, BIDET, NOTDEFINED, WASHHANDBASIN,
-			SANITARYFOUNTAIN, URINAL, SINK, USERDEFINED, WCSEAT, SHOWER, };
+	private static final IfcSanitaryTerminalTypeEnum[] VALUES_ARRAY = new IfcSanitaryTerminalTypeEnum[] { NULL, TOILETPAN, BATH, CISTERN, BIDET, NOTDEFINED,
+			WASHHANDBASIN, SANITARYFOUNTAIN, URINAL, SINK, USERDEFINED, WCSEAT, SHOWER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sanitary Terminal Type Enum</b></em>' enumerators.

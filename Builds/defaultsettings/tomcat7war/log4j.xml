@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+	<logger name="org.quartz">
+		<level value="error" />
+	</logger>
+	<logger name="org.apache.cxf">
+		<level value="error" />
+	</logger>
+	<logger name="org.mortbay">
+		<level value="error" />
+	</logger>
+	<logger name="org.eclipse.jetty">
+		<level value="error" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="error" />
+	</logger>
+	<logger name="org.bimserver.ifcengine">
+		<level value="error" />
+	</logger>
+	<logger name="org.apache.velocity">
+		<level value="error" />
+	</logger>
+	<logger name="org.openid4java">
+		<level value="error" />
+	</logger>
+	<logger name="org.bimserver.ifcengine.jvm">
+		<level value="error" />
+	</logger>
+	<root>
+		<priority value="info" />
+	</root>
+</log4j:configuration>

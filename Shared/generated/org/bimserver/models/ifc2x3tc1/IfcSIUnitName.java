@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -813,8 +813,9 @@ public enum IfcSIUnitName implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSIUnitName[] VALUES_ARRAY = new IfcSIUnitName[] { NULL, TESLA, HENRY, METRE, SECOND, AMPERE, JOULE, GRAM, KELVIN, LUMEN, FARAD, STERADIAN, LUX,
-			DEGREE_CELSIUS, SIEVERT, CUBIC_METRE, NEWTON, WATT, CANDELA, RADIAN, PASCAL, VOLT, WEBER, COULOMB, SQUARE_METRE, HERTZ, SIEMENS, BECQUEREL, MOLE, OHM, GRAY, };
+	private static final IfcSIUnitName[] VALUES_ARRAY = new IfcSIUnitName[] { NULL, TESLA, HENRY, METRE, SECOND, AMPERE, JOULE, GRAM, KELVIN, LUMEN, FARAD,
+			STERADIAN, LUX, DEGREE_CELSIUS, SIEVERT, CUBIC_METRE, NEWTON, WATT, CANDELA, RADIAN, PASCAL, VOLT, WEBER, COULOMB, SQUARE_METRE, HERTZ, SIEMENS,
+			BECQUEREL, MOLE, OHM, GRAY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc SI Unit Name</b></em>' enumerators.

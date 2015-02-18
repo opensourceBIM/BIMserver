@@ -4,7 +4,7 @@ function RelaticsPlugin() {
 RelaticsPlugin.prototype.init = function(containerDiv, projectPage){
 	this.containerDiv = containerDiv;
 	this.projectPage = projectPage;
-	projectPage.selectListeners.push(this.pick.bind(this));
+	projectPage.selectListeners.register(this.pick.bind(this));
 };
 
 RelaticsPlugin.prototype.show = function(){
@@ -36,12 +36,160 @@ RelaticsPlugin.prototype.loadData = function(username, password, object, callbac
 	o.containerDiv.find("table").remove();
 	o.containerDiv.append("<span>Loading...</span>");
 	var ifcGuid = object.getGlobalId();
+//	ifcGuid = "3e_Z0UB95FzQ84RHxlySBA";
 	var request = {
 			"bimdataservice_request": {
-				"ifc_guid": "3e_Z0UB95FzQ84RHxlySBA",
+				"ifc_guid": ifcGuid,
 				"data_report_name": "test-report"
 			}
 	};
+	
+	function processJson(report) {
+		var table = $("<table class=\"table table-no-top\">");
+		table.append("<caption>Ruimte</caption>");
+		table.append("<thead></thead>");
+		var tbody = $("<tbody>");
+		table.append(tbody);
+		o.containerDiv.append(table);
+
+		tbody.append("<tr><td>" + report.Algemeen.ruimte['@naam'] + "</td></tr>");
+
+		var table = $("<table class=\"table table-no-top\">");
+		table.append("<caption>Algemeen</caption>");
+		table.append("<thead></thead>");
+		var tbody = $("<tbody>");
+		table.append(tbody);
+		o.containerDiv.append(table);
+		
+		tbody.append("<tr><td>naam</td><td>" + report.Algemeen.ruimte['@naam'] + "</td></tr>");
+		tbody.append("<tr><td>definitie</td><td>" + report.Algemeen.ruimte['@definitie'] + "</td></tr>");
+		tbody.append("<tr><td>opmerking</td><td>" + report.Algemeen.ruimte['@opmerking'] + "</td></tr>");
+		tbody.append("<tr><td>type</td><td>" + report.Algemeen.ruimte.type['@type'] + "</td></tr>");
+		tbody.append("<tr><td>toegankelijkheid</td><td>" + report.Algemeen.ruimte.toegankelijkheid['@toegankelijkheid'] + "</td></tr>");
+		tbody.append("<tr><td>bedrijfstijd week / weekend</td><td>" + report.Algemeen.ruimte.bedrijfstijd_week__weekeind['@bedrijfstijd_week__weekeind'] + "</td></tr>");
+		tbody.append("<tr><td>ID</td><td>" + report.Algemeen.ruimte.ID['@ID'] + "</td></tr>");
+		tbody.append("<tr><td>GUID</td><td>" + report.Algemeen.ruimte['@GUID'] + "</td></tr>");
+
+		if (report.Kenmerken_bibliotheek != null) {
+			var table = $("<table class=\"table table-no-top\">");
+			table.append("<caption>Kenmerken (bibliotheek)</caption>");
+			table.append("<thead><tr><th>naam</th><th>waarde</th><th>opmerking</th></tr></thead>");
+			var tbody = $("<tbody>");
+			table.append(tbody);
+			o.containerDiv.append(table);
+			report.Kenmerken_bibliotheek.Property.forEach(function(kenmerk){
+				tbody.append("<tr><td>" + kenmerk["@naam"] + "</td><td>" + kenmerk["@waarde"] + "</td><td>" + kenmerk["@opmerking"] + "</td></tr>");
+			});
+		}
+
+		if (report.Kenmerken_Fase_I__II != null) {
+			var table = $("<table class=\"table table-no-top\">");
+			table.append("<caption>Kenmerken Fase I & II</caption>");
+			table.append("<thead><tr><th>naam</th><th>waarde</th><th>opmerking</th><th>fase</th></tr></thead>");
+			var tbody = $("<tbody>");
+			table.append(tbody);
+			o.containerDiv.append(table);
+			report.Kenmerken_Fase_I__II.Property.forEach(function(kenmerk){
+				tbody.append("<tr><td>" + kenmerk["@naam"] + "</td><td>" + kenmerk["@waarde"] + "</td><td>" + kenmerk["@opmerking"] + "</td><td>" + kenmerk.fase["@fase"] + "</td></tr>");
+			});
+		}
+
+		if (report.Kenmerken_Fase_II != null) {
+			var table = $("<table class=\"table table-no-top\">");
+			table.append("<caption>Kenmerken Fase II</caption>");
+			table.append("<thead><tr><th>naam</th><th>waarde</th><th>opmerking</th><th>fase</th></tr></thead>");
+			var tbody = $("<tbody>");
+			table.append(tbody);
+			o.containerDiv.append(table);
+			report.Kenmerken_Fase_II.Property.forEach(function(kenmerk){
+				tbody.append("<tr><td>" + kenmerk["@naam"] + "</td><td>" + kenmerk["@waarde"] + "</td><td>" + kenmerk["@opmerking"] + "</td><td>" + kenmerk.fase["@fase"] + "</td></tr>");
+			});
+		}
+
+		if (report.Kenmerken_bij_Vervanging != null) {
+			var table = $("<table class=\"table table-no-top\">");
+			table.append("<caption>Kenmerken bij Vervanging</caption>");
+			table.append("<thead><tr><th>naam</th><th>waarde</th><th>opmerking</th><th>fase</th></tr></thead>");
+			var tbody = $("<tbody>");
+			table.append(tbody);
+			o.containerDiv.append(table);
+			if (Array.isArray(report.Kenmerken_bij_Vervanging.Property)) {
+				report.Kenmerken_bij_Vervanging.Property.forEach(function(kenmerk){
+					tbody.append("<tr><td>" + kenmerk["@naam"] + "</td><td>" + kenmerk["@waarde"] + "</td><td>" + kenmerk["@opmerking"] + "</td><td>" + kenmerk.fase["@fase"] + "</td></tr>");
+				});
+			} else {
+				var kenmerk = report.Kenmerken_bij_Vervanging.Property;
+				tbody.append("<tr><td>" + kenmerk["@naam"] + "</td><td>" + kenmerk["@waarde"] + "</td><td>" + kenmerk["@opmerking"] + "</td><td>" + kenmerk.fase["@fase"] + "</td></tr>");
+			}
+		}
+		
+		function doComfort(title, comfort) {
+			if (comfort != null) {
+				var table = $("<table class=\"table table-no-top\">");
+				table.append("<caption>" + title + "</caption>");
+				table.append("<thead><tr><th>naam</th><th>fase</th><th>waarde</th><th>fase</th></tr></thead>");
+				var tbody = $("<tbody>");
+				table.append(tbody);
+				o.containerDiv.append(table);
+				comfort.comfort.forEach(function(item){
+					if (Array.isArray(item.Property)) {
+						tbody.append("<tr><td rowspan=\"" + item.Property.length + "\">" + item["@naam"] + "</td></tr>");
+						item.Property.forEach(function(property){
+							tbody.append("<tr><td>" + property["@kenmerk"] + "</td><td>" + property["@waarde"] + "</td><td>" + (property.fase == null ? "" : property.fase["@fase"]) + "</td></tr>");
+						});
+					} else {
+						var property = item.Property;
+						tbody.append("<tr><td>" + property["@kenmerk"] + "</td><td>" + property["@kenmerk"] + "</td><td>" + property["@waarde"] + "</td><td>" + (property.fase == null ? "" : property.fase["@fase"]) + "</td></tr>");
+					}
+				});
+			}
+		}
+
+		doComfort("Comfort", report.Comfort);
+		doComfort("Comfort Fase I & II", report.Comfort_Fase_I__II);
+		doComfort("Comfort Fase II", report.Comfort_Fase_II);
+		doComfort("Comfort bij Vervanging", report.Comfort_bij_Vervanging);
+		
+		if (report.Voorziening != null) {
+			var table = $("<table class=\"table table-no-top\">");
+			table.append("<caption>Voorziening</caption>");
+			table.append("<thead><tr><th>naam</th><th>fase</th></tr></thead>");
+			var tbody = $("<tbody>");
+			table.append(tbody);
+			o.containerDiv.append(table);
+			var fase = report.Voorziening.fase["@fase"];
+			if (Array.isArray(report.Voorziening.Element)) {
+				report.Voorziening.Element.forEach(function(element){
+					tbody.append("<tr><td>" + element["@naam"] + "</td><td>" + fase + "</td></tr>");
+				});
+			} else {
+				var element = report.Voorziening.Element;
+				tbody.append("<tr><td>" + element["@naam"] + "</td><td>" + fase + "</td></tr>");
+			}
+		}
+
+		if (report.Normen != null) {
+			var table = $("<table class=\"table table-no-top\">");
+			table.append("<caption>Normen</caption>");
+			table.append("<thead><tr><th>titel</th><th>fase</th></tr></thead>");
+			var tbody = $("<tbody>");
+			table.append(tbody);
+			o.containerDiv.append(table);
+			report.Normen.norm.forEach(function(element){
+				tbody.append("<tr><td>" + element["@Element"] + "</td><td>" + "" + "</td></tr>");
+			});
+		}
+
+		o.containerDiv.find("span").remove();
+	}
+	
+	if ('localStorage' in window && window['localStorage'] !== null) {
+		var localItem = localStorage.getItem(ifcGuid);
+		if (localItem != null) {
+			processJson(JSON.parse(localItem));
+			return;
+		}
+	}
 	$.ajax({
 		type: "POST",
 		crossDomain: true,
@@ -58,22 +206,18 @@ RelaticsPlugin.prototype.loadData = function(username, password, object, callbac
 		success: function (response){
 			$.cookie("relatics-wso2-username", username);
 			$.cookie("relatics-wso2-password", password);
-			console.log(response);
-			var realResponse = response.bimdataservice_riesponse;
-			if (realResponse.succesfull == true) {
-				var table = $("<table class=\"table table-no-top\">");
-				table.append("<thead></thead>");
-				var tbody = $("<tbody>");
-				table.append(tbody);
-				var array = realResponse.result.element;
-				array.forEach(function(item){
-					tbody.append("<tr><td>" + item + "</td></tr>");
-				});
-				o.containerDiv.find("span").remove();
-				o.containerDiv.append(table);
-			} else {
-				console.log("Error");
+			
+			var report = response.GetResultResponse.GetResultResult.Report;
+			
+			if ('localStorage' in window && window['localStorage'] !== null) {
+				localStorage.setItem(ifcGuid, JSON.stringify(report));
 			}
+			
+			processJson(report);
+		},
+		error: function(jqXHR, textStatus, error) {
+			o.containerDiv.find("span").remove();
+			o.containerDiv.append("<span>Error loading data</span>");
 		}
 	});
 };

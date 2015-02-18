@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,7 +18,9 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
@@ -56,16 +58,20 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 	public List<DataObject> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision virtualRevision = getRevisionByRoid(roid);
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
+		pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);
-			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
-			IfcModel subModel = new IfcModel(packageMetaData);
-			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.YES, highestStopId);
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
+			lastPackageMetaData = packageMetaData;
+			IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
+			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.YES, highestStopId);
 			getDatabaseSession().getMap(subModel, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel = new IfcModel(null); // TODO
+		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {
@@ -96,6 +102,7 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 				dataObjects.add(dataObject);
 			}
 		}
+		System.out.println(dataObjects.size());
 		return dataObjects;
 	}
 }

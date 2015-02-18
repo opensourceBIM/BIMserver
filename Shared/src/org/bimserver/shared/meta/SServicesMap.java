@@ -1,7 +1,7 @@
 package org.bimserver.shared.meta;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,6 +18,7 @@ package org.bimserver.shared.meta;
  *****************************************************************************/
 
 import java.lang.reflect.GenericDeclaration;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -87,9 +88,27 @@ public class SServicesMap {
 		return servicesBySimpleName.keySet();
 	}
 
-	public void addType(Class<?> type) {
+	public void addType(final Class<?> type) {
 		if (!types.containsKey(type.getSimpleName())) {
-			SClass sClass = new SClass(this, type, null);
+			// TODO reflective constructor use can be slow
+			SClass sClass = new SClass(this, type, new SConstructor(){
+				@Override
+				public Object newInstance() {
+					try {
+						return type.getConstructors()[0].newInstance();
+					} catch (InstantiationException e) {
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					} catch (IllegalArgumentException e) {
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						e.printStackTrace();
+					} catch (SecurityException e) {
+						e.printStackTrace();
+					}
+					return null;
+				}});
 			types.put(sClass.getSimpleName(), sClass);
 			types.put(sClass.getName(), sClass);
 			addRelatedTypes(type);

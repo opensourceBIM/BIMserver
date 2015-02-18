@@ -1,7 +1,7 @@
 package org.bimserver.webservices.impl;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -70,7 +70,8 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 			LongActionState lastProgress = progressTopic.getLastProgress();
 			if (lastProgress != null && lastProgress.getState() == ActionState.FINISHED) {
 				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("Sending update directly for topic " + progressTopic.getKey().getId());
-				progressTopic.updateProgress(lastProgress);
+				// TODO!!
+//				progressTopic.stageProgressUpdate(ate, title)updateProgress(lastProgress);
 			} else {
 				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("NOT Sending update directly for topic " + progressTopic.getKey().getId());
 			}
@@ -291,8 +292,9 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 		ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
 		if (progressTopic != null) {
 			return getBimServer().getSConverter().convertToSObject(progressTopic.getLastProgress());
+		} else {
+			throw new UserException("No topic found with topicId " + topicId);
 		}
-		return null;
 	}
 	
 	@Override

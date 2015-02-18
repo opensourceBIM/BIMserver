@@ -1,7 +1,7 @@
 package org.bimserver.plugins.web;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,7 +17,6 @@ package org.bimserver.plugins.web;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.plugins.Plugin;
@@ -30,5 +29,5 @@ public interface WebModulePlugin extends Plugin {
 	 * @param request The HTTP request
 	 * @param response The HTTP response
 	 */
-	boolean service(HttpServletRequest request, HttpServletResponse response);
+	boolean service(String requestUrl, HttpServletResponse response);
 }

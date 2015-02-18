@@ -5,20 +5,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/aopalliance-1.0.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-manifest.jar" sourcepath="C:/Software/JavaLibs/apache-cxf-2.3.0-src"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-javamail_1.4_spec-1.7.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-jms_1.1_spec-1.1.1.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/isorelax-20030108.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/joda-time-1.6.2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/js-1.7R2.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/relaxngDatatype-20020414.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/stax2-api-3.1.1.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/wsdl4j-1.6.2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xml-resolver-1.2.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/xsdlib-2010.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/logging/slf4j-api-1.6.2.jar" sourcepath="/BimServer/libsrc/slf4j-api-1.6.4-sources.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/logging/log4j-1.2.16.jar" sourcepath="/BimServer/libsrc/log4j.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/logging/slf4j-log4j12-1.6.2.jar" sourcepath="/BimServer/libsrc/slf4j-log4j12-1.6.4-sources.jar"/>

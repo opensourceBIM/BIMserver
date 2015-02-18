@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -188,8 +188,8 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAnalysisModelTypeEnum[] VALUES_ARRAY = new IfcAnalysisModelTypeEnum[] { NULL, LOADING_3D, NOTDEFINED, IN_PLANE_LOADING_2D, USERDEFINED,
-			OUT_PLANE_LOADING_2D, };
+	private static final IfcAnalysisModelTypeEnum[] VALUES_ARRAY = new IfcAnalysisModelTypeEnum[] { NULL, LOADING_3D, NOTDEFINED, IN_PLANE_LOADING_2D,
+			USERDEFINED, OUT_PLANE_LOADING_2D, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Analysis Model Type Enum</b></em>' enumerators.

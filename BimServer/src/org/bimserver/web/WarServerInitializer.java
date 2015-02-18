@@ -1,7 +1,7 @@
 package org.bimserver.web;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -59,7 +59,11 @@ public class WarServerInitializer implements ServletContextListener {
 			autoMigrate = Boolean.valueOf(servletContext.getInitParameter("autoMigrate"));
 		}
 		
-		File baseDir = new File(servletContext.getRealPath("/") + "WEB-INF");
+		String realPath = servletContext.getRealPath("/");
+		if (!realPath.endsWith("/")) {
+			realPath = realPath + "/";
+		}
+		File baseDir = new File(realPath + "WEB-INF");
 		if (homeDir == null) {
 			homeDir = baseDir;
 		}
@@ -91,6 +95,10 @@ public class WarServerInitializer implements ServletContextListener {
 	}
 	
 	private String makeClassPath(File file) {
+		// Added for Tomcat8
+		if (file == null) {
+			return "";
+		}
 		StringBuilder sb = new StringBuilder();
 		for (File f : file.listFiles()) {
 			if (f.getName().toLowerCase().endsWith(".jar")) {

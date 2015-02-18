@@ -17,6 +17,7 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
+
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 
 public class AsyncBimsie1LowLevelInterface {
@@ -433,11 +434,11 @@ public class AsyncBimsie1LowLevelInterface {
 		});
 	}
 	
-	public void createObject(final java.lang.Long tid, final java.lang.String className, final CreateObjectCallback callback) {
+	public void createObject(final java.lang.Long tid, final java.lang.String className, final java.lang.Boolean generateGuid, final CreateObjectCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.createObject(tid, className));
+					callback.success(syncService.createObject(tid, className, generateGuid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -541,11 +542,11 @@ public class AsyncBimsie1LowLevelInterface {
 		});
 	}
 	
-	public void getDataObjectsByType(final java.lang.Long roid, final java.lang.String schema, final java.lang.String className, final java.lang.Boolean flat, final GetDataObjectsByTypeCallback callback) {
+	public void getDataObjectsByType(final java.lang.Long roid, final java.lang.String packageName, final java.lang.String className, final java.lang.Boolean flat, final GetDataObjectsByTypeCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getDataObjectsByType(roid, schema, className, flat));
+					callback.success(syncService.getDataObjectsByType(roid, packageName, className, flat));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

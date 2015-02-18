@@ -3,5 +3,6 @@
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.web.WebModulePlugin</interfaceClass>
 		<implementationClass>org.bimserver.admin.AdminWebModulePlugin</implementationClass>
+		<enabled>true</enabled>
 	</PluginImplementation>
 </PluginDescriptor>

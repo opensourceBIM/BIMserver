@@ -1,7 +1,7 @@
 package org.bimserver.plugins.services;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,7 @@ package org.bimserver.plugins.services;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.Plugin;
@@ -33,13 +34,18 @@ public abstract class ServicePlugin implements Plugin {
 
 	public abstract String getTitle();
 	private PluginManager pluginManager;
+	private boolean initialized;
 	
 	public ServiceInterface getServiceInterface(String token) throws UserException {
 		return pluginManager.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 	}
 
-	protected void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
-		pluginManager.registerNewRevisionHandler(serviceDescriptor, newRevisionHandler);
+	protected void registerNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
+		pluginManager.registerNewRevisionHandler(uoid, serviceDescriptor, newRevisionHandler);
+	}
+
+	protected void unregisterNewRevisionHandler(ServiceDescriptor serviceDescriptor) {
+		pluginManager.unregisterNewRevisionHandler(serviceDescriptor);
 	}
 	
 	protected BimServerClientInterface getLocalBimServerClientInterface(AuthenticationInfo tokenAuthentication) throws ServiceException, ChannelConnectionException {
@@ -49,18 +55,24 @@ public abstract class ServicePlugin implements Plugin {
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
+		initialized = true;
+	}
+	
+	@Override
+	public boolean isInitialized() {
+		return initialized;
 	}
 	
 	public PluginManager getPluginManager() {
 		return pluginManager;
 	}
 
-	public void registerNewExtendedDataOnProjectHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
-		pluginManager.registerNewExtendedDataOnProjectHandler(serviceDescriptor, newExtendedDataHandler);
+	public void registerNewExtendedDataOnProjectHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
+		pluginManager.registerNewExtendedDataOnProjectHandler(uoid, serviceDescriptor, newExtendedDataHandler);
 	}
 
-	public void registerNewExtendedDataOnRevisionHandler(ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
-		pluginManager.registerNewExtendedDataOnRevisionHandler(serviceDescriptor, newExtendedDataHandler);
+	public void registerNewExtendedDataOnRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
+		pluginManager.registerNewExtendedDataOnRevisionHandler(uoid, serviceDescriptor, newExtendedDataHandler);
 	}
 	
 	/**
@@ -68,5 +80,6 @@ public abstract class ServicePlugin implements Plugin {
 	 * 
 	 * @param pluginConfiguration
 	 */
-	public abstract void register(PluginConfiguration pluginConfiguration);
+	public abstract void register(long uoid, SInternalServicePluginConfiguration internalService, PluginConfiguration pluginConfiguration);
+	public abstract void unregister(SInternalServicePluginConfiguration internalService);
 }

@@ -1,7 +1,7 @@
 package org.bimserver.test.framework.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -33,6 +33,6 @@ public class CreateProjectAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		String name = "Project " + randomString();
 		virtualUser.getActionResults().setText("Creating new project " + name);
-		virtualUser.getBimServerClient().getBimsie1ServiceInterface().addProject(name, "ifc4");
+		virtualUser.getBimServerClient().getBimsie1ServiceInterface().addProject(name, "ifc2x3tc1");
 	}
 }

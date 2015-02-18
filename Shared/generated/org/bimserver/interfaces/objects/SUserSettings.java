@@ -18,9 +18,13 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlTransient;
-import org.bimserver.shared.meta.*;
+
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SDataBase;
+import org.bimserver.shared.meta.SField;
 
 
 @XmlRootElement
@@ -45,6 +49,7 @@ public class SUserSettings implements SDataBase
 	private long defaultSerializerId = -1;
 	private long defaultObjectIDMId = -1;
 	private List<Long> services = new ArrayList<Long>();
+	private List<Long> messagingSerializerPlugins = new ArrayList<Long>();
 
 	public long getOid() {
 		return this.oid;
@@ -114,6 +119,9 @@ public class SUserSettings implements SDataBase
 		if (sField.getName().equals("services")) {
 			return getServices();
 		}
+		if (sField.getName().equals("messagingSerializerPlugins")) {
+			return getMessagingSerializerPlugins();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -179,6 +187,10 @@ public class SUserSettings implements SDataBase
 		}
 		if (sField.getName().equals("services")) {
 			setServices((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("messagingSerializerPlugins")) {
+			setMessagingSerializerPlugins((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -302,6 +314,14 @@ public class SUserSettings implements SDataBase
 
 	public void setServices(List<Long> services) {
 		this.services = services;
+	}
+	
+	public List<Long> getMessagingSerializerPlugins() {
+		return messagingSerializerPlugins;
+	}
+
+	public void setMessagingSerializerPlugins(List<Long> messagingSerializerPlugins) {
+		this.messagingSerializerPlugins = messagingSerializerPlugins;
 	}
 	
 	@Override

@@ -25,7 +25,7 @@ public class LoadCompleteModel extends TestWithEmbeddedServer {
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a project
-			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
+			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Look for a deserializer
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
@@ -37,7 +37,7 @@ public class LoadCompleteModel extends TestWithEmbeddedServer {
 			project = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
 			
 			// Load model without lazy loading (complete model at once)
-			IfcModelInterface model = bimServerClient.getModel(project, project.getLastRevisionId(), false);
+			IfcModelInterface model = bimServerClient.getModel(project, project.getLastRevisionId(), false, false);
 
 			// Change the window names
 			for (IfcWindow window : model.getAllWithSubTypes(IfcWindow.class)) {
@@ -45,7 +45,7 @@ public class LoadCompleteModel extends TestWithEmbeddedServer {
 			}
 			long newRoid = model.commit("Changed window names");
 			
-			IfcModelInterface newModel = bimServerClient.getModel(project, newRoid, true);
+			IfcModelInterface newModel = bimServerClient.getModel(project, newRoid, true, false);
 			List<IfcWindow> windows = newModel.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWindow());
 			for (IfcWindow window : windows) {
 				assertTrue(window.getName().endsWith(" Changed"));

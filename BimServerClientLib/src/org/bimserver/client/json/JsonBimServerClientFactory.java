@@ -1,7 +1,7 @@
 package org.bimserver.client.json;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -40,8 +40,8 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 		this.reflectorFactory = reflectorFactory;
 	}
 
-	public JsonBimServerClientFactory(String address) {
-		super();
+	public JsonBimServerClientFactory(MetaDataManager metaDataManager, String address) {
+		super(metaDataManager);
 		this.address = address;
 		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(getServicesMap());
 		FileBasedReflectorFactoryBuilder reflectorBuilder = new FileBasedReflectorFactoryBuilder();
@@ -50,7 +50,7 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
-		JsonChannel jsonChannel = new JsonChannel(reflectorFactory, jsonSocketReflectorFactory, address + "/json", getServicesMap());
+		JsonChannel jsonChannel = new JsonChannel(getHttpClient(), reflectorFactory, jsonSocketReflectorFactory, address + "/json", getServicesMap());
 		BimServerClient bimServerClient = new BimServerClient(this, address, getServicesMap(), jsonChannel);
 		jsonChannel.connect(bimServerClient);
 		bimServerClient.setAuthentication(authenticationInfo);

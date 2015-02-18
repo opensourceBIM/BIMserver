@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,7 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.InputStream;
 import java.util.Date;
 
 import org.bimserver.BimServer;
@@ -43,6 +44,9 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewRevisionNotification;
+import org.bimserver.plugins.deserializers.ByteProgressReporter;
+import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.shared.exceptions.UserException;
@@ -63,10 +67,23 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private Authorization authorization;
 	private final GeometryCache geometryCache = new GeometryCache();
 	private String fileName;
+	private long fileSize;
 
-	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model,
+	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, InputStream inputStream, Deserializer deserializer, long fileSize,
 			String comment, String fileName, boolean merge) {
-		super(databaseSession, accessMethod, model);
+		super(databaseSession, accessMethod, inputStream, deserializer);
+		this.bimServer = bimServer;
+		this.poid = poid;
+		this.authorization = authorization;
+		this.fileSize = fileSize;
+		this.comment = comment;
+		this.fileName = fileName;
+		this.merge = merge;
+	}
+
+	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface ifcModel,
+			String comment, String fileName, boolean merge) {
+		super(databaseSession, accessMethod, ifcModel);
 		this.bimServer = bimServer;
 		this.poid = poid;
 		this.authorization = authorization;
@@ -78,6 +95,20 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
+			if (fileSize == -1) {
+				setProgress("Deserializing IFC file...", -1);
+			} else {
+				setProgress("Deserializing IFC file...", 0);
+			}
+			setModel(getDeserializer().read(getInputStream(), fileName, 0, new ByteProgressReporter() {
+				@Override
+				public void progress(long byteNumber) {
+					setProgress("Deserializing IFC file...", (int) (100.0 * byteNumber / fileSize));
+				}
+			}));
+			if (getModel().size() == 0) {
+				throw new DeserializeException("Cannot checkin empty model");
+			}
 			authorization.canCheckin(poid);
 			project = getProjectByPoid(poid);
 			int nrConcreteRevisionsBefore = project.getConcreteRevisions().size();
@@ -102,6 +133,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 						size++;
 					}
 				}
+				getModel().fixInverseMismatches();
 			}
 			
 			for (ModelCheckerInstance modelCheckerInstance : project.getModelCheckers()) {
@@ -200,13 +232,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	}
 	
 	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
-		throw new RuntimeException("Not implemented");
 //		IfcModelSet ifcModelSet = new IfcModelSet();
 //		for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
 //			if (concreteRevision != subRevision) {
-//				PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
-//				IfcModel subModel = new IfcModel(packageMetaData);
-//				Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), Deep.YES);
+//				IfcModel subModel = new IfcModel();
+//				Query query = new Query(subRevision.getProject().getId(), subRevision.getId(), Deep.YES);
 //				getDatabaseSession().getMap(subModel, query);
 //				subModel.getModelMetaData().setDate(subRevision.getDate());
 //				ifcModelSet.add(subModel);
@@ -240,7 +270,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 //			((IdEObjectImpl) idEObject).setRid(concreteRevision.getId());
 //			((IdEObjectImpl) idEObject).setPid(concreteRevision.getProject().getId());
 //		}
-//		return ifcModel;
+		return null;
 	}
 
 	public ConcreteRevision getConcreteRevision() {

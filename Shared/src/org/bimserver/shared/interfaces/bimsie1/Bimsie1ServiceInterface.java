@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.bimsie1;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -89,6 +89,17 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 		@WebParam(name = "sync", partName = "checkinFromUrl.sync") Boolean sync) throws ServerException, UserException;
 	
 	/**
+	 * Terminate a long running action
+	 * 
+	 * @param actionId The actionId returned by one of the download or checkout methods
+	 * @return An SDownloadResult containing the serialized data
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "terminateLongRunningAction")
+	void terminateLongRunningAction(
+		@WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
+
+	/**
 	 * Checkout an existing model, checkout is the same as download, except a "checkout" will tell the server and other users you are working on it
 	 * 
 	 * @param roid Revision ObjectID
@@ -133,7 +144,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	Long downloadByOids(
 		@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
 		@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "serializerOid", partName = "downloadCompareResults.serializerOid") Long serializerOid,
 		@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync,
 		@WebParam(name = "deep", partName = "downloadCompareResults.deep") Boolean deep) throws ServerException, UserException;
 
@@ -220,7 +231,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "downloadRevisions")
 	Long downloadRevisions(
 		@WebParam(name = "roids", partName = "downloadRevisions.roids") Set<Long> roids,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "serializerOid", partName = "downloadRevisions.serializerOid") Long serializerOid,
 		@WebParam(name = "sync", partName = "downloadRevisions.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
@@ -248,17 +259,6 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	SDownloadResult getDownloadData(
 		@WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
 
-	/**
-	 * Terminate a long running action
-	 * 
-	 * @param actionId The actionId returned by one of the download or checkout methods
-	 * @return An SDownloadResult containing the serialized data
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "terminateLongRunningAction")
-	void terminateLongRunningAction(
-			@WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
-	
 	/**
 	 * @param serializerName Name of the Serializer
 	 * @return Serializer

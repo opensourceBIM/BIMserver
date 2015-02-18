@@ -17,9 +17,7 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
-
 import org.bimserver.models.log.AccessMethod;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -29,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.Service#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getServiceName <em>Service Name</em>}</li>
@@ -52,7 +51,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Service#getInternalService <em>Internal Service</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getModelCheckers <em>Model Checkers</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getService()
  * @model

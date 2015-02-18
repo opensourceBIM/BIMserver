@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -238,8 +238,8 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSwitchingDeviceTypeEnum[] VALUES_ARRAY = new IfcSwitchingDeviceTypeEnum[] { NULL, NOTDEFINED, CONTACTOR, SWITCHDISCONNECTOR, STARTER, USERDEFINED,
-			EMERGENCYSTOP, TOGGLESWITCH, };
+	private static final IfcSwitchingDeviceTypeEnum[] VALUES_ARRAY = new IfcSwitchingDeviceTypeEnum[] { NULL, NOTDEFINED, CONTACTOR, SWITCHDISCONNECTOR,
+			STARTER, USERDEFINED, EMERGENCYSTOP, TOGGLESWITCH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Switching Device Type Enum</b></em>' enumerators.

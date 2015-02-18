@@ -19,9 +19,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.bimserver.models.log.RevisionRelated;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -31,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.Revision#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getUser <em>User</em>}</li>
@@ -49,7 +48,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Revision#getService <em>Service</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#isHasGeometry <em>Has Geometry</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getRevision()
  * @model

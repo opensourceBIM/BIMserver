@@ -17,13 +17,11 @@
 package org.bimserver.models.geometry.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryInstance;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

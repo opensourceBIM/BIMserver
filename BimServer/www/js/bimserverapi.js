@@ -28,7 +28,7 @@ function BimServerApi(baseUrl, notifier) {
 		SETSERVERSETTINGS_DONE: "Server settings successfully updated",
 		ENABLEPLUGIN_DONE: "Plugin successfully enabled",
 		DISABLEPLUGIN_DONE: "Plugin successfully disabled",
-		SETDEFAULTWEBMODULE_DONE: "Default webmodule changed, a restart of the BIMserver is required for the changes to take effect",
+		SETDEFAULTWEBMODULE_DONE: "Default webmodule changed",
 		SETDEFAULTQUERYENGINE_DONE: "Default Query Engine successfully changed",
 		SETDEFAULTMODELMERGER_DONE: "Default Model Merger successfully changed",
 		SETDEFAULTSERIALIZER_DONE: "Default Serializer successfully changed",
@@ -53,7 +53,23 @@ function BimServerApi(baseUrl, notifier) {
 		VALIDATEACCOUNT_DONE: "Account successfully validated, you can now login",
 		ADDPROJECTASSUBPROJECT_DONE: "Sub project added successfully",
 		DOWNLOADBYJSONQUERY_BUSY: "Downloading BIM",
-		GETLOGGEDINUSER_BUSY: "Getting user information"
+		CHECKINFROMURL_DONE: "Done checking in from URL",
+		GETLOGGEDINUSER_BUSY: "Getting user details",
+		SETPLUGINSETTINGS_DONE: "Plugin settings successfully saved",
+		GETSERVERINFO_BUSY: "Getting server info",
+		GETVERSION_BUSY: "Getting server version",
+		GETPROJECTBYPOID_BUSY: "Getting project details",
+		GETALLRELATEDPROJECTS_BUSY: "Getting related project's details",
+		GETSERIALIZERBYPLUGINCLASSNAME_BUSY: "Getting serializer info",
+		CLEANUPLONGACTION_BUSY: "Cleaning up",
+		GETREVISIONSUMMARY_BUSY: "Getting revision summary",
+		DOWNLOADBYOIDS_BUSY: "Downloading model data",
+		REGISTERPROGsSHANDLER_BUSY: "Registering for updates on progress",
+		GETALLREVISIONSOFPROJECT_BUSY: "Getting all revisions of project",
+		GETPLUGINDESCRIPTOR_BUSY: "Getting plugin information",
+		GETUSERSETTINGS_BUSY: "Getting user settings",
+		GETALLQUERYENGINES_BUSY: "Getting query engines",
+		REGISTERNEWPROJECTHANDLER_BUSY: "Registering for updates on new projects"
 	}
 
 	othis.token = null;
@@ -84,15 +100,59 @@ function BimServerApi(baseUrl, notifier) {
 	othis.schemas = {};
 
 	this.init = function(callback) {
-		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.js", function(result){
-			othis.schemas["ifc2x3tc1"] = result.classes;
-			$.getJSON(othis.baseUrl + "/js/ifc4.js", function(result){
-				othis.schemas["ifc4"] = result.classes;
-				callback();
+		othis.call("AdminInterface", "getServerInfo", {}, function(serverInfo){
+			othis.version = serverInfo.version;
+			var versionString = othis.version.major + "." + othis.version.minor + "." + othis.version.revision;
+			
+			// Let's do the callback here, saves us 2 roundtrips to the server, and no body is going to use the schema's that soon... (we hope)
+			callback(this, serverInfo);
+			$.ajax({
+				dataType: "json",
+				url: othis.baseUrl + "/js/ifc2x3tc1.js?_v=" + versionString,
+				cache: true,
+				success: function(result){
+					othis.schemas["ifc2x3tc1"] = result.classes;
+					othis.addSubtypesToSchema(result.classes);
+					$.ajax({
+						dataType: "json",
+						url: othis.baseUrl + "/js/ifc4.js?_v=" + versionString,
+						cache: true,
+						success: function(result){
+							othis.schemas["ifc4"] = result.classes;
+							othis.addSubtypesToSchema(result.classes);
+						}
+					});
+				}
 			});
 		});
 	};
 
+	this.addSubtypesToSchema = function(classes) {
+		for (var typeName in classes) {
+			var type = classes[typeName];
+			if (type.superclasses != null) {
+				type.superclasses.forEach(function(superClass){
+					var directSubClasses = classes[superClass].directSubClasses;
+					if (directSubClasses == null) {
+						directSubClasses = [];
+						classes[superClass].directSubClasses = directSubClasses;
+					}
+					directSubClasses.push(typeName);
+				});
+			}
+		}
+	};
+	
+	this.getAllSubTypes = function(schema, typeName, callback) {
+		var type = schema[typeName];
+		if (type.directSubClasses != null) {
+			type.directSubClasses.forEach(function(subTypeName){
+				callback(subTypeName);
+				othis.getAllSubTypes(schema, subTypeName, callback);
+			});
+		}
+	};
+	
 	this.log = function(message, message2){
 		if (othis.debug) {
 			console.log(message, message2);
@@ -187,7 +247,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.generateRevisionDownloadUrl = function(settings) {
-		return othis.baseUrl + "/download?token=" + othis.token + "&longActionId=" + settings.laid + (settings.zip ? "&zip=on" : "") + "&serializerOid=" + settings.serializerOid;
+		return othis.baseUrl + "/download?token=" + othis.token + "&longActionId=" + settings.laid + (settings.zip ? "&zip=on" : "") + "&serializerOid=" + settings.serializerOid + "&topicId=" + settings.topicId;
 	};
 
 	this.generateExtendedDataDownloadUrl = function(edid) {
@@ -197,6 +257,17 @@ function BimServerApi(baseUrl, notifier) {
 	this.getSerializerByPluginClassName = function(pluginClassName, callback) {
 		if (othis.serializersByPluginClassName[name] == null) {
 			othis.call("PluginInterface", "getSerializerByPluginClassName", {pluginClassName : pluginClassName}, function(serializer) {
+				othis.serializersByPluginClassName[name] = serializer;
+				callback(serializer);
+			});
+		} else {
+			callback(othis.serializersByPluginClassName[name]);
+		}
+	},
+
+	this.getMessagingSerializerByPluginClassName = function(pluginClassName, callback) {
+		if (othis.serializersByPluginClassName[name] == null) {
+			othis.call("PluginInterface", "getMessagingSerializerByPluginClassName", {pluginClassName : pluginClassName}, function(serializer) {
 				othis.serializersByPluginClassName[name] = serializer;
 				callback(serializer);
 			});
@@ -240,7 +311,7 @@ function BimServerApi(baseUrl, notifier) {
 			});
 		});
 	};
-
+	
 	this.registerNewUserHandler = function(handler, callback) {
 		othis.register("Bimsie1NotificationInterface", "newUser", handler, function(){
 			othis.call("Bimsie1NotificationRegistryInterface", "registerNewUserHandler", {endPointId: othis.server.endPointId}, function(){
@@ -671,6 +742,7 @@ function Model(bimServerApi, poid, roid, schema) {
 	othis.guidsFetching = {};
 	othis.namesFetching = {};
 
+	// Those are only fully loaded types (all of them), should not be stored here if loaded partially
 	othis.loadedTypes = [];
 	othis.loadedDeep = false;
 	othis.changedObjectOids = {};
@@ -709,11 +781,12 @@ function Model(bimServerApi, poid, roid, schema) {
 				}, function(laid){
 					var url = bimServerApi.generateRevisionDownloadUrl({
 						laid: laid,
+						topicId: laid,
 						serializerOid: jsonSerializerOid
 					});
 					$.getJSON(url, function(data, textStatus, jqXHR){
 						data.objects.forEach(function(object){
-							othis.objects[object.__oid] = othis.createWrapper(object, object.__type);
+							othis.objects[object._i] = othis.createWrapper(object, object._t);
 						});
 						othis.loading = false;
 						othis.loadedDeep = true;
@@ -741,12 +814,12 @@ function Model(bimServerApi, poid, roid, schema) {
 	this.create = function(className, object, callback) {
 		othis.incrementRunningCalls("create (" + className + ")");
 		othis.transactionSynchronizer.fetch(function(tid){
-			object.__type = className;
+			object._t = className;
 			var wrapper = othis.createWrapper({}, className);
 			bimServerApi.call("Bimsie1LowLevelInterface", "createObject", {tid: tid, className: className}, function(oid){
-				wrapper.__oid = oid;
-				othis.objects[object.__oid] = wrapper;
-				object.__state = "LOADED";
+				wrapper._i = oid;
+				othis.objects[object._i] = wrapper;
+				object._s = 1;
 				if (callback != null) {
 					callback(object);
 				}
@@ -829,7 +902,7 @@ function Model(bimServerApi, poid, roid, schema) {
 			(function(field, fieldName){
 				if (field.reference) {
 					wrapperClass["set" + fieldName.firstUpper() + "Wrapped"] = function(typeName, value) {
-						this.object[fieldName] = {__type: typeName, value: value};
+						this.object[fieldName] = {_t: typeName, value: value};
 						othis.incrementRunningCalls("set" + fieldName.firstUpper() + "Wrapped");
 						othis.transactionSynchronizer.fetch(function(tid){
 							var type = othis.bimServerApi.schema[typeName];
@@ -837,7 +910,7 @@ function Model(bimServerApi, poid, roid, schema) {
 							if (wrappedValueType.type == "string") {
 								bimServerApi.call("Bimsie1LowLevelInterface", "setWrappedStringAttribute", {
 									tid: tid,
-									oid: this.object.__oid,
+									oid: this.object._i,
 									attributeName: fieldName,
 									type: typeName,
 									value: value
@@ -860,7 +933,7 @@ function Model(bimServerApi, poid, roid, schema) {
 							if (value == null) {
 								bimServerApi.call("Bimsie1LowLevelInterface", "unsetReference", {
 									tid: tid,
-									oid: this.object.__oid,
+									oid: this.object._i,
 									referenceName: fieldName,
 								}, function(){
 									othis.decrementRunningCalls("set" + fieldName.firstUpper());
@@ -873,9 +946,9 @@ function Model(bimServerApi, poid, roid, schema) {
 							} else {
 								bimServerApi.call("Bimsie1LowLevelInterface", "setReference", {
 									tid: tid,
-									oid: this.object.__oid,
+									oid: this.object._i,
 									referenceName: fieldName,
-									referenceOid: value.__oid
+									referenceOid: value._i
 								}, function(){
 									othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									if (this.object.changedFields == null) {
@@ -896,9 +969,9 @@ function Model(bimServerApi, poid, roid, schema) {
 							othis.incrementRunningCalls("add" + fieldName.firstUpper());
 							bimServerApi.call("Bimsie1LowLevelInterface", "addReference", {
 								tid: tid,
-								oid: this.object.__oid,
+								oid: this.object._i,
 								referenceName: fieldName,
-								referenceOid: value.__oid
+								referenceOid: value._i
 							}, function(){
 								othis.decrementRunningCalls("add" + fieldName.firstUpper());
 								if (this.object.changedFields == null) {
@@ -921,7 +994,7 @@ function Model(bimServerApi, poid, roid, schema) {
 							othis.incrementRunningCalls("remove" + fieldName.firstUpper());
 							bimServerApi.call("Bimsie1LowLevelInterface", "removeReference", {
 								tid: tid,
-								oid: this.object.__oid,
+								oid: this.object._i,
 								referenceName: fieldName,
 								index: index
 							}, function(){
@@ -944,36 +1017,27 @@ function Model(bimServerApi, poid, roid, schema) {
 						if (object[fieldName] != null) {
 							if (field.many) {
 								object[fieldName].forEach(function(item){
-									if (item.object.__state == "NOT_LOADED") {
-										console.log("oho");
-									}
 									callback(item);
 								});
 							} else {
-								if (object[fieldName].object.__state == "NOT_LOADED") {
-									console.log("oho");
-								}
 								callback(object[fieldName]);
 							}							
 							promise.fire();
 							return promise;
 						}
-						var embValue = object["__emb" + fieldName];
+						var embValue = object["_e" + fieldName];
 						if (embValue != null) {
 							callback(embValue);
 							promise.fire();
 							return promise;
 						}
-						var value = object["__ref" + fieldName];
+						var value = object["_r" + fieldName];
 						if (field.many) {
 							if (object[fieldName] == null) {
 								object[fieldName] = [];
 							}
 							if (value != null) {
 								model.get(value, function(v){
-									if (v.object.__state == "NOT_LOADED") {
-										console.log("oho");
-									}
 									object[fieldName].push(v);
 									callback(v);
 								}).done(function(){
@@ -988,20 +1052,14 @@ function Model(bimServerApi, poid, roid, schema) {
 								if (value == -1) {
 									callback(null);
 									promise.fire();
-								} else if (ref == null || ref.object.__state == "NOT_LOADED") {
+								} else if (ref == null || ref.object._s == 0) {
 									model.get(value, function(v){
 										object[fieldName] = v;
-										if (v.object.__state == "NOT_LOADED") {
-											console.log("oho");
-										}
 										callback(v);
 									}).done(function(){
 										promise.fire();
 									});
 								} else {
-									if (ref.object.__state == "NOT_LOADED") {
-										console.log("oho");
-									}
 									object[fieldName] = ref;
 									callback(ref);
 									promise.fire();
@@ -1035,7 +1093,7 @@ function Model(bimServerApi, poid, roid, schema) {
 							if (field.many) {
 								bimServerApi.call("Bimsie1LowLevelInterface", "setDoubleAttributes", {
 									tid: tid,
-									oid: this.object.__oid,
+									oid: this.object._i,
 									attributeName: fieldName,
 									values: value
 								}, function(){
@@ -1045,7 +1103,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								if (value == null) {
 									bimServerApi.call("Bimsie1LowLevelInterface", "unsetAttribute", {
 										tid: tid,
-										oid: this.object.__oid,
+										oid: this.object._i,
 										attributeName: fieldName
 									}, function(){
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
@@ -1053,7 +1111,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								} else if (field.type == "string") {
 									bimServerApi.call("Bimsie1LowLevelInterface", "setStringAttribute", {
 										tid: tid,
-										oid: this.object.__oid,
+										oid: this.object._i,
 										attributeName: fieldName,
 										value: value
 									}, function(){
@@ -1062,7 +1120,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								} else if (field.type == "double") {
 									bimServerApi.call("Bimsie1LowLevelInterface", "setDoubleAttribute", {
 										tid: tid,
-										oid: this.object.__oid,
+										oid: this.object._i,
 										attributeName: fieldName,
 										value: value
 									}, function(){
@@ -1071,7 +1129,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								} else if (field.type == "boolean") {
 									bimServerApi.call("Bimsie1LowLevelInterface", "setBooleanAttribute", {
 										tid: tid,
-										oid: this.object.__oid,
+										oid: this.object._i,
 										attributeName: fieldName,
 										value: value
 									}, function(){
@@ -1080,7 +1138,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								} else if (field.type == "int") {
 									bimServerApi.call("Bimsie1LowLevelInterface", "setIntegerAttribute", {
 										tid: tid,
-										oid: this.object.__oid,
+										oid: this.object._i,
 										attributeName: fieldName,
 										value: value
 									}, function(){
@@ -1089,7 +1147,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								} else if (field.type == "enum") {
 									bimServerApi.call("Bimsie1LowLevelInterface", "setEnumAttribute", {
 										tid: tid,
-										oid: this.object.__oid,
+										oid: this.object._i,
 										attributeName: fieldName,
 										value: value
 									}, function(){
@@ -1113,6 +1171,39 @@ function Model(bimServerApi, poid, roid, schema) {
 		}
 	};
 	
+	this.dumpByType = function(){
+		var mapLoaded = {};
+		var mapNotLoaded = {};
+		for (var oid in othis.objects) {
+			var object = othis.objects[oid];
+			var type = object.getType();
+			var counter = mapLoaded[type];
+			if (object.object._s == 1) {
+				if (counter == null) {
+					mapLoaded[type] = 1;
+				} else {
+					mapLoaded[type] = counter + 1;
+				}
+			}
+			if (object.object._s == 0) {
+				var counter = mapNotLoaded[type];
+				if (counter == null) {
+					mapNotLoaded[type] = 1;
+				} else {
+					mapNotLoaded[type] = counter + 1;
+				}
+			}
+		}
+		console.log("LOADED");
+		for (var type in mapLoaded) {
+			console.log(type, mapLoaded[type]);
+		}
+		console.log("NOT_LOADED");
+		for (var type in mapNotLoaded) {
+			console.log(type, mapNotLoaded[type]);
+		}
+	};
+	
 	this.getClass = function(typeName){
 		if (othis.bimServerApi.classes[typeName] == null) {
 			var realType = othis.bimServerApi.schemas[othis.schema][typeName];
@@ -1123,19 +1214,19 @@ function Model(bimServerApi, poid, roid, schema) {
 			var wrapperClass = {};
 			
 			wrapperClass.isA = function(typeName){
-				return othis.bimServerApi.isA(othis.schema, this.object.__type, typeName);
+				return othis.bimServerApi.isA(othis.schema, this.object._t, typeName);
 			};
 			wrapperClass.getType = function(){
-				return this.object.__type;
+				return this.object._t;
 			};
 			wrapperClass.remove = function(removeCallback){
 				othis.incrementRunningCalls("removeObject");
 				othis.transactionSynchronizer.fetch(function(tid){
-					bimServerApi.call("Bimsie1LowLevelInterface", "removeObject", {tid: tid, oid: this.object.__oid}, function(){
+					bimServerApi.call("Bimsie1LowLevelInterface", "removeObject", {tid: tid, oid: this.object._i}, function(){
 						if (removeCallback != null) {
 							removeCallback();
 						}
-						delete othis.objects[this.object.__oid];
+						delete othis.objects[this.object._i];
 						othis.decrementRunningCalls("removeObject");
 					});
 				});
@@ -1149,15 +1240,15 @@ function Model(bimServerApi, poid, roid, schema) {
 	};
 	
 	this.createWrapper = function(object, typeName) {
-		if (othis.objects[object.__oid] != null) {
+		if (othis.objects[object._i] != null) {
 			console.log("Warning!", object);
 		}
-		object.oid = object.__oid;
+		object.oid = object._i;
 		var cl = othis.getClass(typeName);
 		var wrapper = Object.create(cl);
 		// transient variables
 		wrapper.trans = {
-			mode: 0
+			mode: 2
 		};
 		wrapper.oid = object.oid;
 		wrapper.model = othis;
@@ -1193,7 +1284,8 @@ function Model(bimServerApi, poid, roid, schema) {
 				var item = list[len];
 				if (targetMap[item] != null) {
 					// Already loaded? Remove from list and call callback
-					if (targetMap[item].object.__state == "LOADED") {
+					var existingObject = targetMap[item].object;
+					if (existingObject._s == 1) {
 						var index = list.indexOf(item);
 						list.splice(index, 1);
 						callback(targetMap[item]);
@@ -1207,6 +1299,7 @@ function Model(bimServerApi, poid, roid, schema) {
 			}
 			// Any left?
 			if (list.length > 0) {
+//				debugger;
 				list.forEach(function(item){
 					fetchingMap[item] = [];
 				});
@@ -1221,6 +1314,7 @@ function Model(bimServerApi, poid, roid, schema) {
 					bimServerApi.call("Bimsie1ServiceInterface", interfaceMethodName, request, function(laid){
 						var url = bimServerApi.generateRevisionDownloadUrl({
 							laid: laid,
+							topicId: laid,
 							serializerOid: jsonSerializerOid
 						});
 						$.getJSON(url, function(data, textStatus, jqXHR){
@@ -1228,13 +1322,13 @@ function Model(bimServerApi, poid, roid, schema) {
 								var done = 0;
 								data.objects.forEach(function(object){
 									var wrapper = null;
-									if (othis.objects[object.__oid] != null) {
-										wrapper = othis.objects[object.__oid];
-										if (wrapper.object.__state != "LOADED") {
+									if (othis.objects[object._i] != null) {
+										wrapper = othis.objects[object._i];
+										if (wrapper.object._s != 1) {
 											wrapper.object = object;
 										}											
 									} else {
-										wrapper = othis.createWrapper(object, object.__type);
+										wrapper = othis.createWrapper(object, object._t);
 									}
 									var item = getValueMethod(object);
 									// Checking the value again, because sometimes serializers send more objects...
@@ -1277,7 +1371,7 @@ function Model(bimServerApi, poid, roid, schema) {
 	};
 
 	this.get = function(oids, callback) {
-		return othis.getByX("get", "OID", othis.oidsFetching, othis.objects, "downloadByOids", "oids", function(object){return object.__oid}, oids, callback);
+		return othis.getByX("get", "OID", othis.oidsFetching, othis.objects, "downloadByOids", "oids", function(object){return object._i}, oids, callback);
 	};
 
 	this.getByName = function(names, callback) {
@@ -1311,11 +1405,18 @@ function Model(bimServerApi, poid, roid, schema) {
 			if (subQuery.type != null) {
 				fullTypesLoading[subQuery.type] = true;
 				othis.loadedTypes[subQuery.type] = {};
+				if (subQuery.includeAllSubTypes) {
+					var schema = othis.bimServerApi.schemas[othis.schema];
+					othis.bimServerApi.getAllSubTypes(schema, subQuery.type, function(subTypeName){
+						fullTypesLoading[subTypeName] = true;
+						othis.loadedTypes[subTypeName] = {};
+					});
+				}
 			}
 		});
 		othis.waitForLoaded(function(){
 			othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
-				bimServerApi.call("Bimsie1ServiceInterface", "downloadByJsonQuery", {
+				bimServerApi.callWithFullIndication("Bimsie1ServiceInterface", "downloadByJsonQuery", {
 					roids: [othis.roid],
 					jsonQuery: JSON.stringify(query),
 					serializerOid: jsonSerializerOid,
@@ -1323,32 +1424,37 @@ function Model(bimServerApi, poid, roid, schema) {
 				}, function(laid){
 					var url = bimServerApi.generateRevisionDownloadUrl({
 						laid: laid,
+						topicId: laid,
 						serializerOid: jsonSerializerOid
 					});
+					Global.notifier.setInfo("Getting model data...", -1);
 					$.getJSON(url, function(data, textStatus, jqXHR){
+//						console.log("query", data.objects.length);
 						data.objects.forEach(function(object){
-							var wrapper = othis.objects[object.__oid];
+							var wrapper = othis.objects[object._i];
 							if (wrapper == null) {
-								wrapper = othis.createWrapper(object, object.__type);
-								othis.objects[object.__oid] = wrapper;
-								if (fullTypesLoading[object.__type] != null) {
-									othis.loadedTypes[object.__type][wrapper.oid] = wrapper;
+								wrapper = othis.createWrapper(object, object._t);
+								othis.objects[object._i] = wrapper;
+								if (fullTypesLoading[object._t] != null) {
+									othis.loadedTypes[object._t][wrapper.oid] = wrapper;
 								}
 							} else {
-								if (object.__state == "LOADED") {
+								if (object._s == 1) {
 									wrapper.object = object;
 								}
 							}
 //							if (othis.loadedTypes[wrapper.getType()] == null) {
 //								othis.loadedTypes[wrapper.getType()] = {};
 //							}
-//							othis.loadedTypes[wrapper.getType()][object.__oid] = wrapper;
-							if (object.__state == "LOADED") {
+//							othis.loadedTypes[wrapper.getType()][object._i] = wrapper;
+							if (object._s == 1) {
 								callback(wrapper);
 							}
 						});
+//						othis.dumpByType();
 						bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
 							promise.fire();
+							Global.notifier.setSuccess("Model data successfully downloaded...");
 						});
 					});
 				});
@@ -1364,16 +1470,18 @@ function Model(bimServerApi, poid, roid, schema) {
 			if (othis.loadedDeep) {
 				for (var oid in othis.objects) {
 					var object = othis.objects[oid];
-					if (object.__type == type) {
+					if (object._t == type) {
 						callback(object);
 					}
 				}
 				othis.decrementRunningCalls("getAllOfType");
+				promise.fire();
 			} if (othis.loadedTypes[type] != null) {
 				for (var oid in othis.loadedTypes[type]) {
 					callback(othis.loadedTypes[type][oid]);
 				}
 				othis.decrementRunningCalls("getAllOfType");
+				promise.fire();
 			} else {
 				othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
 					bimServerApi.call("Bimsie1ServiceInterface", "downloadByTypes", {
@@ -1388,6 +1496,7 @@ function Model(bimServerApi, poid, roid, schema) {
 					}, function(laid){
 						var url = bimServerApi.generateRevisionDownloadUrl({
 							laid: laid,
+							topicId: laid,
 							serializerOid: jsonSerializerOid
 						});
 						$.getJSON(url, function(data, textStatus, jqXHR){
@@ -1395,27 +1504,27 @@ function Model(bimServerApi, poid, roid, schema) {
 								othis.loadedTypes[type] = {};
 							}
 							data.objects.forEach(function(object){
-								if (othis.objects[object.__oid] != null) {
+								if (othis.objects[object._i] != null) {
 									// Hmm we are doing a query on type, but some objects have already loaded, let's use those instead
-									var wrapper = othis.objects[object.__oid];
-									if (wrapper.object.__state == "LOADED") {
+									var wrapper = othis.objects[object._i];
+									if (wrapper.object._s == 1) {
 										if (wrapper.isA(type)) {
-											othis.loadedTypes[type][object.__oid] = wrapper;
+											othis.loadedTypes[type][object._i] = wrapper;
 											callback(wrapper);
 										}
 									} else {
 										// Replace the value with something that's LOADED
 										wrapper.object = object;
 										if (wrapper.isA(type)) {
-											othis.loadedTypes[type][object.__oid] = wrapper;
+											othis.loadedTypes[type][object._i] = wrapper;
 											callback(wrapper);
 										}
 									}
 								} else {
-									var wrapper = othis.createWrapper(object, object.__type);
-									othis.objects[object.__oid] = wrapper;
-									if (wrapper.isA(type) && object.__state == "LOADED") {
-										othis.loadedTypes[type][object.__oid] = wrapper;
+									var wrapper = othis.createWrapper(object, object._t);
+									othis.objects[object._i] = wrapper;
+									if (wrapper.isA(type) && object._s == 1) {
+										othis.loadedTypes[type][object._i] = wrapper;
 										callback(wrapper);
 									}
 								}
@@ -1441,6 +1550,7 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	this.listener = null;
 	this.tosend = [];
 	this.tosendAfterConnect = [];
+	this.messagesReceived = 0;
 
 	this.connect = function(callback) {
 		othis.openCallbacks.push(callback);
@@ -1462,16 +1572,17 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this._onerror = function(err) {
+		console.log(err);
 		bimServerApi.notifier.setError("WebSocket error" + (err.message != null ? (": " + err.message) : ""));
 	};
-	
+
 	this._onopen = function() {
 		while (othis.tosendAfterConnect.length > 0 && othis._ws.readyState == 1) {
 			var messageArray = othis.tosendAfterConnect.splice(0, 1);
 			othis._sendWithoutEndPoint(messageArray[0]);
 		}
 	};
-	
+
 	this._sendWithoutEndPoint = function(message) {
 		if (othis._ws && othis._ws.readyState == 1) {
 			othis._ws.send(message);
@@ -1496,6 +1607,10 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this._onmessage = function(message) {
+		othis.messagesReceived++;
+		if (othis.messagesReceived % 10 == 0) {
+//			console.log(othis.messagesReceived);
+		}
 		if (message.data instanceof ArrayBuffer) {
 			othis.listener(message.data);
 		} else {

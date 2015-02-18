@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,10 +17,8 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.ServiceInterface;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -28,13 +26,14 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Service Interface</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServiceInterfaceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceInterfaceImpl#getNameSpace <em>Name Space</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceInterfaceImpl#getSimpleName <em>Simple Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

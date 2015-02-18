@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.bimsie1;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -80,7 +80,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	@WebMethod(action = "createObject")
 	Long createObject(
 		@WebParam(name = "tid", partName = "createObject.tid") Long tid,
-		@WebParam(name = "className", partName = "createObject.className") String className) throws ServerException, UserException;
+		@WebParam(name = "className", partName = "createObject.className") String className,
+		@WebParam(name = "generateGuid", partName = "createObject.generateGuid") Boolean generateGuid) throws ServerException, UserException;
 	
 	/**
 	 * Remove an object
@@ -932,7 +933,7 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	@WebMethod(action = "getDataObjectsByType")
 	List<SDataObject> getDataObjectsByType(
 		@WebParam(name = "roid", partName = "getDataObjectsByType.roid") Long roid,
-		@WebParam(name = "schema", partName = "getDataObjectsByType.schema") String schema,
+		@WebParam(name = "packageName", partName = "getDataObjectsByType.packageName") String packageName,
 		@WebParam(name = "className", partName = "getDataObjectsByType.className") String className,
 		@WebParam(name = "flat", partName = "getDataObjectsByType.flat") Boolean flat) throws ServerException, UserException;
 

@@ -31,6 +31,8 @@ import org.bimserver.models.ifc2x3tc1.IfcText;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -130,11 +132,13 @@ public class Colorizer {
 	public IfcModelInterface readModel(File file) {
 		try {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			deserializerPlugin.createDeserializer(new PluginConfiguration());
-//			deserializer.init(schema, null, null); TODO
-			IfcModelInterface model = null;//deserializer.read(file);
+			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
+//			deserializer.init(schema); // TODO
+			IfcModelInterface model = deserializer.read(file);
 			return model;
 		} catch (PluginException e) {
+			e.printStackTrace();
+		} catch (DeserializeException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -243,8 +247,9 @@ public class Colorizer {
 		Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 		try {
 			model.resetExpressIds();
+			// TODO
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, true);
-			serializer.writeToFile(outFile);
+			serializer.writeToFile(outFile, null);
 		} catch (SerializerException e) {
 			e.printStackTrace();
 		} catch (PluginException e) {

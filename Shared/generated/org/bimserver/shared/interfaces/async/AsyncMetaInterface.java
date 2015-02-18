@@ -17,6 +17,7 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
+
 import org.bimserver.shared.interfaces.MetaInterface;
 
 public class AsyncMetaInterface {
@@ -155,11 +156,11 @@ public class AsyncMetaInterface {
 		});
 	}
 	
-	public void getServiceTypes(final java.lang.String serviceInterfaceName, final GetServiceTypesCallback callback) {
+	public void getServiceTypes(final GetServiceTypesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getServiceTypes(serviceInterfaceName));
+					callback.success(syncService.getServiceTypes());
 				} catch (Throwable e) {
 					callback.error(e);
 				}

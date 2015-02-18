@@ -1,7 +1,7 @@
 package org.bimserver.longaction;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -56,12 +56,16 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	private Thread thread;
 
 	public LongAction(BimServer bimServer, String username, String userUsername, Authorization authorization) {
-		this.start = new GregorianCalendar();
+		start = new GregorianCalendar();
 		this.authorization = authorization;
 		this.userUsername = userUsername;
 		this.username = username;
 		this.bimServer = bimServer;
 		this.actionState = ActionState.STARTED;
+	}
+
+	public void init(Thread thread) {
+		this.thread = thread;
 	}
 
 	public void setProgressTopic(ProgressTopic progressTopic) {
@@ -90,11 +94,6 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		}
 	}
 
-	public void terminate() {
-		LOGGER.info("Terminating long action with id " + progressTopic.getKey().getId());
-		thread.interrupt();
-	}
-	
 	public GregorianCalendar getStop() {
 		return stop;
 	}
@@ -116,12 +115,6 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	}
 
 	public abstract String getDescription();
-
-	public void init(Thread thread) {
-		this.thread = thread;
-	}
-	
-	
 
 	public abstract void execute();
 
@@ -159,6 +152,11 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		}
 	}
 
+	public void terminate() {
+		LOGGER.info("Terminating long action with id " + progressTopic.getKey().getId());
+		thread.interrupt();
+	}
+	
 	public int getProgress() {
 		return progress.get();
 	}
@@ -178,6 +176,10 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 			ds.setProgress(100);
 		}
 		return ds;
+	}
+	
+	public List<String> getErrors() {
+		return errors;
 	}
 	
 	@Override

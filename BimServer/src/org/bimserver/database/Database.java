@@ -1,7 +1,7 @@
 package org.bimserver.database;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -88,7 +88,7 @@ public class Database implements BimDatabase {
 	 * database-schema change. Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 13;
+	public static final int APPLICATION_SCHEMA_VERSION = 14;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore, MetaDataManager metaDataManager) throws DatabaseInitException {
 		this.bimServer = bimServer;
@@ -109,6 +109,14 @@ public class Database implements BimDatabase {
 
 	public int getDatabaseSchemaVersion() {
 		return databaseSchemaVersion;
+	}
+
+	public EClass getEClassForName(String packageName, String className) {
+		EPackage ePackage = emfPackages.get(packageName);
+		if (ePackage.getEClassifier(className) != null) {
+			return (EClass) ePackage.getEClassifier(className);
+		}
+		return null;
 	}
 
 	public void init() throws DatabaseInitException, DatabaseRestartRequiredException, InconsistentModelsException {
@@ -205,12 +213,13 @@ public class Database implements BimDatabase {
 		settings.setSmtpPort(25);
 		settings.setSmtpProtocol(SmtpProtocol.SMTP);
 		settings.setProtocolBuffersPort(-1);
+		settings.setAllowCreateValidatedUser(true);
 		settings.setAllowSelfRegistration(false);
 		settings.setAllowUsersToCreateTopLevelProjects(false);
 		settings.setCheckinMergingEnabled(false);
 		settings.setHideUserListForNonAdmin(true);
 		settings.setCacheOutputFiles(false);
-		settings.setServiceRepositoryUrl("http://extend.bimserver.org");
+		settings.setServiceRepositoryUrl("https://raw.githubusercontent.com/opensourceBIM/BIMserver-Repository/master");
 		settings.setAllowOnlyWhitelisted(false);
 		settings.setGenerateGeometryOnCheckin(true);
 		settings.setSessionTimeOutSeconds(60 * 60 * 24 * 30); // 1 month
@@ -268,30 +277,25 @@ public class Database implements BimDatabase {
 	}
 
 	public void initCounters(DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
-		DatabaseSession session = createSession();
-		try {
-			for (EClass eClass : classifiers.keyBSet()) {
-				RecordIterator iterator = keyValueStore.getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), databaseSession);
-				try {
-					Record record = iterator.last();
-					initCounter(eClass);
-					if (record != null) {
-						ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
-						int pid = buffer.getInt();
-						long oid = buffer.getLong();
-						if (oid > oidCounters.get(eClass).get()) {
-							oidCounters.put(eClass, new AtomicLong(oid));
-						}
-						if (pid > pidCounter.get()) {
-							pidCounter.set(pid);
-						}
+		for (EClass eClass : classifiers.keyBSet()) {
+			RecordIterator iterator = keyValueStore.getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), databaseSession);
+			try {
+				Record record = iterator.last();
+				initCounter(eClass);
+				if (record != null) {
+					ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
+					int pid = buffer.getInt();
+					long oid = buffer.getLong();
+					if (oid > oidCounters.get(eClass).get()) {
+						oidCounters.put(eClass, new AtomicLong(oid));
 					}
-				} finally {
-					iterator.close();
+					if (pid > pidCounter.get()) {
+						pidCounter.set(pid);
+					}
 				}
+			} finally {
+				iterator.close();
 			}
-		} finally {
-			session.close();
 		}
 	}
 

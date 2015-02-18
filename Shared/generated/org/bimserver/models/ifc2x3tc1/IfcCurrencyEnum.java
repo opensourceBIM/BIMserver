@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -2138,9 +2138,10 @@ public enum IfcCurrencyEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCurrencyEnum[] VALUES_ARRAY = new IfcCurrencyEnum[] { NULL, CNY, JPY, KYD, TTD, LKR, MXN, XEU, CAD, ZAR, AUD, DEM, NOK, ILS, AES, FAK, PKR, BBD, THB,
-			SCR, FKP, ATS, FIM, IDR, AED, PGK, GIP, QAR, BHD, BWP, BSD, IRP, DKK, SEK, MYR, FJD, DDP, GRX, KRW, JMD, EST, BGL, ZWD, CZK, FRF, KWD, VEB, VND, TRL, JOD, NZD, CLP,
-			GBP, KES, CHF, EGL, MUR, SAR, BZD, INR, PTN, TWD, BMD, ITL, OMR, SGD, NLG, SKP, HKD, RUR, GMD, CYS, CBD, BRL, EUR, ICK, BEG, PHP, HUF, PLN, USD, MTL, LUF, BND, };
+	private static final IfcCurrencyEnum[] VALUES_ARRAY = new IfcCurrencyEnum[] { NULL, CNY, JPY, KYD, TTD, LKR, MXN, XEU, CAD, ZAR, AUD, DEM, NOK, ILS, AES,
+			FAK, PKR, BBD, THB, SCR, FKP, ATS, FIM, IDR, AED, PGK, GIP, QAR, BHD, BWP, BSD, IRP, DKK, SEK, MYR, FJD, DDP, GRX, KRW, JMD, EST, BGL, ZWD, CZK,
+			FRF, KWD, VEB, VND, TRL, JOD, NZD, CLP, GBP, KES, CHF, EGL, MUR, SAR, BZD, INR, PTN, TWD, BMD, ITL, OMR, SGD, NLG, SKP, HKD, RUR, GMD, CYS, CBD,
+			BRL, EUR, ICK, BEG, PHP, HUF, PLN, USD, MTL, LUF, BND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Currency Enum</b></em>' enumerators.

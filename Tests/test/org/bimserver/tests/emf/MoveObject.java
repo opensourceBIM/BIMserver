@@ -27,7 +27,7 @@ public class MoveObject extends TestWithEmbeddedServer{
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Get the appropriate deserializer
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
@@ -38,7 +38,7 @@ public class MoveObject extends TestWithEmbeddedServer{
 			// Refresh project info
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 
-			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true);
+			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAllWithSubTypes(IfcFurnishingElement.class)) {
 				IfcObjectPlacement objectPlacement = ifcFurnishingElement.getObjectPlacement();
 				if (objectPlacement != null && objectPlacement instanceof IfcLocalPlacement) {
