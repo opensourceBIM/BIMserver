@@ -4,13 +4,15 @@
 		<include name="**/*.jar" />
 		<exclude name="**tomcat*"/>
 	</fileset>
+	<fileset id="sharedlib" dir="../../Shared">
+		<include name="**/*.jar" />
+	</fileset>
 	<fileset id="buildlib" dir="builds/lib">
 		<include name="**/*.jar" />
 	</fileset>
 	<target name="Build">
 		<mkdir dir="builds/lib" />
 		<mkdir dir="builds/pluginlibs" />
-		<antcall target="Utils" />
 		<antcall target="Shared" />
 		<antcall target="Ifc" />
 		<antcall target="BimServerClientLib" />
@@ -39,6 +41,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="sharedlib" />
 					<fileset refid="buildlib" />
 					<fileset dir="builds/pluginlibs"/>
 				</path>
@@ -58,6 +61,7 @@
 			<src path="../../BimServer/generated" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -79,6 +83,7 @@
 			<src path="../../BimServerClientLib/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -94,27 +99,13 @@
 			<fileset dir="builds/bimserverclientlib"/>
 		</jar>
 	</target>
-	<target name="Utils">
-		<mkdir dir="builds/utils" />
-		<javac destdir="builds/utils" debug="on" fork="false" includeantruntime="false">
-			<src path="../../Utils/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<jar destfile="builds/lib/bimserver-${version}-utils.jar">
-			<fileset dir="builds/utils"/>
-		</jar>
-	</target>
 	<target name="FileBasedObjectIDM">
 		<mkdir dir="builds/filebasedobjectidm" />
 		<javac destdir="builds/filebasedobjectidm" debug="on" fork="false" includeantruntime="false">
 			<src path="../../FileBasedObjectIDM/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -139,6 +130,7 @@
 			<src path="../../BuildingSMARTLibrary/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -162,6 +154,7 @@
 			<src path="../../MiscSerializers/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -181,6 +174,7 @@
 			<src path="../../IfcEngine/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -203,6 +197,7 @@
 			<src path="../../IfcPlugins/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -222,6 +217,7 @@
 			<src path="../../JavaQueryEngine/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -241,6 +237,7 @@
 			<src path="../../JavaModelChecker/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -260,6 +257,7 @@
 			<src path="../../Mergers/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -279,6 +277,7 @@
 			<src path="../../XsltSerializer/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -294,6 +293,7 @@
 			<src path="../../DemoPlugins/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -317,6 +317,7 @@
 			<src path="../../AdminGui/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -357,6 +358,7 @@
 			<src path="../../DefaultWebModulePlugin/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -397,6 +399,7 @@
 			<src path="../../Collada/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -416,6 +419,7 @@
 			<src path="../../SceneJS/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -439,6 +443,7 @@
 					<fileset dir="../../CityGML/lib" />
 				</path>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -462,6 +467,7 @@
 			<src path="../../Ifc/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -479,6 +485,7 @@
 			<classpath>
 				<pathelement location="../../Shared/genclasses"/>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
