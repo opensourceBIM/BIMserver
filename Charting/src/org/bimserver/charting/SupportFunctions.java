@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.mutable.MutableInt;
 import org.bimserver.charting.Charts.Chart;
 import org.bimserver.charting.Export.IfcObjectWithTrace;
 import org.bimserver.charting.Export.StackTrace;
@@ -60,7 +61,6 @@ import org.bimserver.models.ifc2x3tc1.IfcUnitAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
 import org.bimserver.models.store.SIPrefix;
 import org.eclipse.emf.common.util.EList;
-import org.openmali.types.primitives.MutableInteger;
 import org.openmali.vecmath2.Vector3d;
 
 public class SupportFunctions {
@@ -267,7 +267,7 @@ public class SupportFunctions {
 		}
 	};
 
-	public static ArrayList<LinkedHashMap<String, Object>> getIfcMaterialsByClassWithTreeStructure(String structureKeyword, IfcModelInterface model, Chart chart, MutableInteger subChartCount) {
+	public static ArrayList<LinkedHashMap<String, Object>> getIfcMaterialsByClassWithTreeStructure(String structureKeyword, IfcModelInterface model, Chart chart, MutableInt subChartCount) {
 		// Derive the column name.
 		String leafColumnName = structureKeyword;
 		// Update the chart configuration.
@@ -402,7 +402,7 @@ public class SupportFunctions {
 		return materialName;
 	}
 
-	public static ArrayList<LinkedHashMap<String, Object>> getIfcMaterialsByNameWithTreeStructure(String structureKeyword, IfcModelInterface model, Chart chart, MutableInteger subChartCount) {
+	public static ArrayList<LinkedHashMap<String, Object>> getIfcMaterialsByNameWithTreeStructure(String structureKeyword, IfcModelInterface model, Chart chart, MutableInt subChartCount) {
 		// Derive the column name.
 		String leafColumnName = structureKeyword;
 		// Update the chart configuration.

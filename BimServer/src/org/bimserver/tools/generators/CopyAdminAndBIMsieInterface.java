@@ -24,9 +24,10 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.meta.SServicesMap;
-import org.codehaus.jettison.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CopyAdminAndBIMsieInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CopyAdminAndBIMsieInterface.class);
@@ -45,9 +46,7 @@ public class CopyAdminAndBIMsieInterface {
 	protected void copyBimsieInterface() {
 		SServicesMap servicesMap = InterfaceList.createBimsie1SServicesMap();
 		try {
-			FileUtils.writeStringToFile(new File(bimsie, "js/services.json"), servicesMap.toJson().toString(2));
-		} catch (JSONException e) {
-			LOGGER.error("", e);
+			FileUtils.writeStringToFile(new File(bimsie, "js/services.json"), servicesMap.toJson(new ObjectMapper()).toString());
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}

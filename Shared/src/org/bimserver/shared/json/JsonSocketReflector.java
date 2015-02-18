@@ -32,7 +32,6 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.meta.SServicesMap;
-import org.codehaus.jettison.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +55,7 @@ public class JsonSocketReflector extends JsonReflector {
 		this.context = new BasicHttpContext();
 	}
 	
-	public JsonObject call(JsonObject request) throws JSONException, ReflectorException {
+	public JsonObject call(JsonObject request) throws ReflectorException {
 		try {
 			if (tokenHolder.getToken() != null) {
 				request.addProperty("token", tokenHolder.getToken());

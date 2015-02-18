@@ -10,8 +10,6 @@
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/geronimo-jms_1.1_spec-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/js-1.7R2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xml-resolver-1.2.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/logging/slf4j-api-1.6.2.jar" sourcepath="/BimServer/libsrc/slf4j-api-1.6.4-sources.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/logging/log4j-1.2.16.jar" sourcepath="/BimServer/libsrc/log4j.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/logging/slf4j-log4j12-1.6.2.jar" sourcepath="/BimServer/libsrc/slf4j-log4j12-1.6.4-sources.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

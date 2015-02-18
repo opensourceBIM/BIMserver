@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.geronimo.mail.util.Hex;
+import org.apache.commons.codec.binary.Hex;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.interfaces.objects.SIfcHeader;
@@ -214,7 +214,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 					print("" + c);
 				} else if (c < 255) {
 					//  ISO 10646 and ISO 8859-1 are the same < 255 , using ISO_8859_1
-					print("\\X\\" + new String(Hex.encode(Charsets.ISO_8859_1.encode(CharBuffer.wrap(new char[]{(char) c})).array()), Charsets.UTF_8).toUpperCase());
+					print("\\X\\" + new String(Hex.encodeHex(Charsets.ISO_8859_1.encode(CharBuffer.wrap(new char[]{(char) c})).array())).toUpperCase());
 				} else {
 					if (useIso8859_1) {
 						// ISO 8859-1 with -128 offset
@@ -235,7 +235,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 									throw new SerializerException("High surrogate char should be followed by char in low surrogate range");
 								}
 								try {
-									print("\\X4\\" + new String(Hex.encode(Charset.forName("UTF-32").encode(new String(new char[]{c, low})).array()), Charsets.UTF_8).toUpperCase() + "\\X0\\");
+									print("\\X4\\" + new String(Hex.encodeHex(Charset.forName("UTF-32").encode(new String(new char[]{c, low})).array())).toUpperCase() + "\\X0\\");
 								} catch (UnsupportedCharsetException e) {
 									throw new SerializerException(e);
 								}
@@ -245,7 +245,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 							}
 						} else {
 							// UCS-2 will do
-							print("\\X2\\" + new String(Hex.encode(Charsets.UTF_16BE.encode(CharBuffer.wrap(new char[]{c})).array()), Charsets.UTF_8).toUpperCase() + "\\X0\\");
+							print("\\X2\\" + new String(Hex.encodeHex(Charsets.UTF_16BE.encode(CharBuffer.wrap(new char[]{c})).array())).toUpperCase() + "\\X0\\");
 						}
 					}
 				}

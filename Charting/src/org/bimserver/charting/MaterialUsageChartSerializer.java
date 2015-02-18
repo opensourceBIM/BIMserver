@@ -21,6 +21,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import org.apache.commons.lang.mutable.MutableInt;
 import org.bimserver.charting.Charts.SmallMultiplesArea;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
@@ -30,7 +31,6 @@ import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
-import org.openmali.types.primitives.MutableInteger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,7 +52,7 @@ public class MaterialUsageChartSerializer extends ChartEmfSerializer {
 	protected boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			// Get data.
-			MutableInteger subChartCount = new MutableInteger(0);
+			MutableInt subChartCount = new MutableInt(0);
 			rawData = SupportFunctions.getIfcMaterialsByClassWithTreeStructure("group", model, chart, subChartCount);
 			// Adjust height if there wasn't something explicit.
 			int count = subChartCount.intValue();

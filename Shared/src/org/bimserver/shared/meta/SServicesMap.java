@@ -36,17 +36,14 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.bimserver.utils.StringUtils;
-import org.codehaus.jettison.json.JSONArray;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class SServicesMap {
-	private static final Logger LOGGER = LoggerFactory.getLogger(SServicesMap.class);
-	
 	// Must be LinkedHashMap because order IS important for dependencies
 	private final Map<String, SService> servicesByName = new LinkedHashMap<String, SService>();
 	private final Map<String, SService> servicesBySimpleName = new LinkedHashMap<String, SService>();
@@ -236,27 +233,22 @@ public class SServicesMap {
 		return null;
 	}
 
-	public JSONObject toJson() {
-		try {
-			JSONObject result = new JSONObject();
-			JSONArray servicesJson = new JSONArray();
-			result.put("services", servicesJson);
-			for (SService sService : servicesByName.values()) {
-				JSONObject serviceJson = new JSONObject();
-				serviceJson.put("name", sService.getName());
-				serviceJson.put("simpleName", sService.getSimpleName());
-				servicesJson.put(serviceJson);
-				JSONArray methodsJson = new JSONArray();
-				serviceJson.put("methods", methodsJson);
-				for (SMethod method : sService.getMethods()) {
-					methodsJson.put(method.toJson());
-				}
+	public ObjectNode toJson(ObjectMapper objectMapper) {
+		ObjectNode result = objectMapper.createObjectNode();
+		ArrayNode servicesJson = objectMapper.createArrayNode();
+		result.set("services", servicesJson);
+		for (SService sService : servicesByName.values()) {
+			ObjectNode serviceJson = objectMapper.createObjectNode();
+			serviceJson.put("name", sService.getName());
+			serviceJson.put("simpleName", sService.getSimpleName());
+			servicesJson.add(serviceJson);
+			ArrayNode methodsJson = objectMapper.createArrayNode();
+			serviceJson.set("methods", methodsJson);
+			for (SMethod method : sService.getMethods()) {
+				methodsJson.add(method.toJson(objectMapper));
 			}
-			return result;
-		} catch (JSONException e) {
-			LOGGER.error("", e);
 		}
-		return null;
+		return result;
 	}
 
 	public void initialize() {

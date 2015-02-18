@@ -22,6 +22,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -32,14 +33,12 @@ import javax.activation.DataHandler;
 import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.mina.util.Base64;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SServicesMap;
-import org.codehaus.jettison.json.JSONException;
 
 import com.google.common.base.Charsets;
 import com.google.gson.JsonArray;
@@ -83,15 +82,15 @@ public class JsonConverter {
 			if (dataHandler.getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
 				CacheStoringEmfSerializerDataSource cacheStoringEmfSerializerDataSource = (CacheStoringEmfSerializerDataSource) dataHandler.getDataSource();
 				cacheStoringEmfSerializerDataSource.writeToOutputStream(baos, null);
-				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
+				out.value(new String(Base64.getEncoder().encode(baos.toByteArray()), Charsets.UTF_8));
 			} else {
 				InputStream inputStream = dataHandler.getInputStream();
 				IOUtils.copy(inputStream, baos);
-				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
+				out.value(new String(Base64.getEncoder().encode(baos.toByteArray()), Charsets.UTF_8));
 			}
 		} else if (object instanceof byte[]) {
 			byte[] data = (byte[]) object;
-			out.value(new String(Base64.encodeBase64(data), Charsets.UTF_8));
+			out.value(new String(Base64.getEncoder().encode(data), Charsets.UTF_8));
 		} else if (object instanceof String) {
 			out.value((String) object);
 		} else if (object instanceof Number) {
@@ -107,7 +106,7 @@ public class JsonConverter {
 		}
 	}
 
-	public JsonElement toJson(Object object) throws JSONException, IOException {
+	public JsonElement toJson(Object object) throws IOException {
 		if (object instanceof SBase) {
 			SBase base = (SBase) object;
 			JsonObject jsonObject = new JsonObject();
@@ -130,7 +129,7 @@ public class JsonConverter {
 			InputStream inputStream = dataHandler.getInputStream();
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			IOUtils.copy(inputStream, out);
-			return new JsonPrimitive(new String(Base64.encodeBase64(out.toByteArray()), Charsets.UTF_8));
+			return new JsonPrimitive(new String(Base64.getEncoder().encode(out.toByteArray()), Charsets.UTF_8));
 		} else if (object instanceof Boolean) {
 			return new JsonPrimitive((Boolean) object);
 		} else if (object instanceof String) {
@@ -147,12 +146,12 @@ public class JsonConverter {
 			return JsonNull.INSTANCE;
 		} else if (object instanceof byte[]) {
 			byte[] data = (byte[]) object;
-			return new JsonPrimitive(new String(Base64.encodeBase64(data), Charsets.UTF_8));
+			return new JsonPrimitive(new String(Base64.getEncoder().encode(data), Charsets.UTF_8));
 		}
 		throw new UnsupportedOperationException(object.getClass().getName());
 	}
 
-	public Object fromJson(SClass definedType, SClass genericType, Object object) throws JSONException, ConvertException, IOException {
+	public Object fromJson(SClass definedType, SClass genericType, Object object) throws ConvertException, IOException {
 		try {
 			if (object instanceof JsonObject) {
 				JsonObject jsonObject = (JsonObject) object;
@@ -193,12 +192,12 @@ public class JsonConverter {
 			} else if (definedType.isByteArray()) {
 				if (object instanceof JsonPrimitive) {
 					JsonPrimitive jsonPrimitive = (JsonPrimitive) object;
-					return Base64.decodeBase64(jsonPrimitive.getAsString().getBytes(Charsets.UTF_8));
+					return Base64.getDecoder().decode(jsonPrimitive.getAsString().getBytes(Charsets.UTF_8));
 				}
 			} else if (definedType.isDataHandler()) {
 				if (object instanceof JsonPrimitive) {
 					JsonPrimitive jsonPrimitive = (JsonPrimitive) object;
-					byte[] data = Base64.decodeBase64(jsonPrimitive.getAsString().getBytes(Charsets.UTF_8));
+					byte[] data = Base64.getDecoder().decode(jsonPrimitive.getAsString().getBytes(Charsets.UTF_8));
 					return new DataHandler(new ByteArrayDataSource(new ByteArrayInputStream(data), null));
 				}
 			} else if (definedType.isInteger()) {
