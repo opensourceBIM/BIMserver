@@ -26,7 +26,7 @@ import java.net.SocketException;
 
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
@@ -84,14 +84,15 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 					throw new UserException("Method " + methodName + " not found on " + serviceName);
 				}
 				
-				ServiceInterface service = null;
+				Class<? extends PublicInterface> clazz = sService.getInterfaceClass();
+				PublicInterface service = null;
 				if (token.equals("")) {
-					service = serviceFactory.get(AccessMethod.PROTOCOL_BUFFERS).get(ServiceInterface.class);
+					service = serviceFactory.get(AccessMethod.PROTOCOL_BUFFERS).get(clazz);
 				} else {
-					service = serviceFactory.get(token, AccessMethod.PROTOCOL_BUFFERS).get(ServiceInterface.class);
+					service = serviceFactory.get(token, AccessMethod.PROTOCOL_BUFFERS).get(clazz);
 				}
 
-				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(ServiceInterface.class, service, protocolBuffersMetaData, servicesMap);
+				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(clazz, service, protocolBuffersMetaData, servicesMap);
 				MethodDescriptorContainer pbMethod = protocolBuffersMetaData.getMethod(serviceName, methodName);
 				Builder requestBuilder = DynamicMessage.getDefaultInstance(pbMethod.getInputDescriptor()).newBuilderForType();
 				requestBuilder.mergeDelimitedFrom(dataInputStream);
