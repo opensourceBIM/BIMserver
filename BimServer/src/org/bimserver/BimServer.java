@@ -767,9 +767,10 @@ public class BimServer {
 				ses.close();
 			}
 
-			if (getServerSettingsCache().getServerSettings().getProtocolBuffersPort() != -1) {
+			Integer protocolBuffersPort = getServerSettingsCache().getServerSettings().getProtocolBuffersPort();
+			if (protocolBuffersPort >= 1 && protocolBuffersPort <= 65535) {
 				try {
-					protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, config.getInitialProtocolBuffersPort());
+					protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, protocolBuffersPort);
 					protocolBuffersServer.start();
 				} catch (Exception e) {
 					LOGGER.error("", e);
