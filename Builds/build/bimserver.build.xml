@@ -217,6 +217,12 @@
 				<exclude name="tomcat/**" />
 				<exclude name="**/*servlet*" />
 			</fileset>
+			<fileset dir="../../Shared/lib">
+				<include name="**/*.jar" />
+				<exclude name="ant-1.6.5.jar" />
+				<exclude name="core-3.1.1.jar" />
+				<exclude name="**/*servlet*" />
+			</fileset>
 		</copy>
 		<antcall target="Build"/>
 		<copy todir="builds/BuildWar/WEB-INF/lib">
