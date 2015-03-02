@@ -64,7 +64,7 @@ function BimServerApi(baseUrl, notifier) {
 		CLEANUPLONGACTION_BUSY: "Cleaning up",
 		GETREVISIONSUMMARY_BUSY: "Getting revision summary",
 		DOWNLOADBYOIDS_BUSY: "Downloading model data",
-		REGISTERPROGsSHANDLER_BUSY: "Registering for updates on progress",
+		REGISTERPROGRESSHANDLER_BUSY: "Registering for updates on progress",
 		GETALLREVISIONSOFPROJECT_BUSY: "Getting all revisions of project",
 		GETPLUGINDESCRIPTOR_BUSY: "Getting plugin information",
 		GETUSERSETTINGS_BUSY: "Getting user settings",
