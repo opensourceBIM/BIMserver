@@ -1087,13 +1087,14 @@ function Model(bimServerApi, poid, roid, schema) {
 						return object[fieldName];
 					};
 					wrapperClass["set" + fieldName.firstUpper()] = function(value) {
-						this.object[fieldName] = value;
+						var object = this.object;
+						object[fieldName] = value;
 						othis.incrementRunningCalls("set" + fieldName.firstUpper());
 						othis.transactionSynchronizer.fetch(function(tid){
 							if (field.many) {
 								bimServerApi.call("Bimsie1LowLevelInterface", "setDoubleAttributes", {
 									tid: tid,
-									oid: this.object._i,
+									oid: object._i,
 									attributeName: fieldName,
 									values: value
 								}, function(){
@@ -1103,7 +1104,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								if (value == null) {
 									bimServerApi.call("Bimsie1LowLevelInterface", "unsetAttribute", {
 										tid: tid,
-										oid: this.object._i,
+										oid: object._i,
 										attributeName: fieldName
 									}, function(){
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
@@ -1111,7 +1112,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								} else if (field.type == "string") {
 									bimServerApi.call("Bimsie1LowLevelInterface", "setStringAttribute", {
 										tid: tid,
-										oid: this.object._i,
+										oid: object._i,
 										attributeName: fieldName,
 										value: value
 									}, function(){
@@ -1120,7 +1121,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								} else if (field.type == "double") {
 									bimServerApi.call("Bimsie1LowLevelInterface", "setDoubleAttribute", {
 										tid: tid,
-										oid: this.object._i,
+										oid: object._i,
 										attributeName: fieldName,
 										value: value
 									}, function(){
@@ -1129,7 +1130,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								} else if (field.type == "boolean") {
 									bimServerApi.call("Bimsie1LowLevelInterface", "setBooleanAttribute", {
 										tid: tid,
-										oid: this.object._i,
+										oid: object._i,
 										attributeName: fieldName,
 										value: value
 									}, function(){
@@ -1138,7 +1139,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								} else if (field.type == "int") {
 									bimServerApi.call("Bimsie1LowLevelInterface", "setIntegerAttribute", {
 										tid: tid,
-										oid: this.object._i,
+										oid: object._i,
 										attributeName: fieldName,
 										value: value
 									}, function(){
@@ -1147,7 +1148,7 @@ function Model(bimServerApi, poid, roid, schema) {
 								} else if (field.type == "enum") {
 									bimServerApi.call("Bimsie1LowLevelInterface", "setEnumAttribute", {
 										tid: tid,
-										oid: this.object._i,
+										oid: object._i,
 										attributeName: fieldName,
 										value: value
 									}, function(){
@@ -1157,12 +1158,12 @@ function Model(bimServerApi, poid, roid, schema) {
 									othis.bimServerApi.log("Unimplemented type " + typeof value);
 									othis.decrementRunningCalls("set" + fieldName.firstUpper());
 								}
-								this.object[fieldName] = value;
+								object[fieldName] = value;
 							}
-							if (this.object.changedFields == null) {
-								this.object.changedFields = {};
+							if (object.changedFields == null) {
+								object.changedFields = {};
 							}
-							this.object.changedFields[fieldName] = true;
+							object.changedFields[fieldName] = true;
 							othis.changedObjectOids[object.oid] = true;
 						});
 					};
