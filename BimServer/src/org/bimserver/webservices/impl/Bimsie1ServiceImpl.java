@@ -88,10 +88,10 @@ import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Bimsie1ServiceIImpl extends GenericServiceImpl implements Bimsie1ServiceInterface {
+public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1ServiceInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Bimsie1ServiceInterface.class);
 
-	public Bimsie1ServiceIImpl(ServiceMap serviceMap) {
+	public Bimsie1ServiceImpl(ServiceMap serviceMap) {
 		super(serviceMap);
 	}
 

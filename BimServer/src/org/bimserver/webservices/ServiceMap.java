@@ -54,7 +54,7 @@ import org.bimserver.webservices.impl.Bimsie1LowLevelServiceImpl;
 import org.bimserver.webservices.impl.Bimsie1NotificationImpl;
 import org.bimserver.webservices.impl.Bimsie1NotificationRegistryServiceImpl;
 import org.bimserver.webservices.impl.Bimsie1RemoteServiceImpl;
-import org.bimserver.webservices.impl.Bimsie1ServiceIImpl;
+import org.bimserver.webservices.impl.Bimsie1ServiceImpl;
 import org.bimserver.webservices.impl.MetaServiceImpl;
 import org.bimserver.webservices.impl.PluginServiceImpl;
 import org.bimserver.webservices.impl.ServiceImpl;
@@ -119,7 +119,7 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 		} else if (clazz == Bimsie1NotificationRegistryInterface.class) {
 			publicInterface = new Bimsie1NotificationRegistryServiceImpl(this);
 		} else if (clazz == Bimsie1ServiceInterface.class) {
-			publicInterface = new Bimsie1ServiceIImpl(this);
+			publicInterface = new Bimsie1ServiceImpl(this);
 		} else if (clazz == PluginInterface.class) {
 			publicInterface = new PluginServiceImpl(this);
 		} else {
