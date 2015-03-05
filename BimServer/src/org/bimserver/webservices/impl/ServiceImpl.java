@@ -479,7 +479,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		roids.add(roid2);
 		downloadParameters.setRoids(roids);
 		
-		return ((Bimsie1ServiceIImpl)getServiceMap().getBimsie1ServiceInterface()).download(downloadParameters, sync);
+		return ((Bimsie1ServiceImpl)getServiceMap().getBimsie1ServiceInterface()).download(downloadParameters, sync);
 	}
 
 	@Override
