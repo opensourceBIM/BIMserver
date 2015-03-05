@@ -530,7 +530,7 @@ function BimServerApi(baseUrl, notifier) {
 
 		$.ajax(othis.address, {
 			type: "POST",
-			contentType: 'application/json',
+			contentType: 'application/json; charset=UTF-8',
 			data: JSON.stringify(request),
 			dataType: "json",
 			success: function(data) {
