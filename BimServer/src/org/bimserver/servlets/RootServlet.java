@@ -73,7 +73,7 @@ public class RootServlet extends HttpServlet {
 			}
 			setContentType(response, requestUri);
 			if (request.getRequestURI().endsWith("getbimserveraddress")) {
-				response.setContentType("application/json");
+				response.setContentType("application/json; charset=utf-8");
 				String siteAddress = bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
 				if (siteAddress == null || siteAddress.trim().isEmpty()) {
 					// Only when in setup-mode
@@ -145,13 +145,15 @@ public class RootServlet extends HttpServlet {
 
 	private void setContentType(HttpServletResponse response, String requestUri) {
 		if (requestUri.endsWith(".js")) {
-			response.setContentType("application/javascript");
+			response.setContentType("application/javascript; charset=utf-8");
 		} else if (requestUri.endsWith(".css")) {
-			response.setContentType("text/css");
+			response.setContentType("text/css; charset=utf-8");
 		} else if (requestUri.endsWith(".png")) {
 			response.setContentType("image/png");
 		} else if (requestUri.endsWith(".gif")) {
 			response.setContentType("image/gif");
+		} else {
+			response.setContentType("text/html; charset=utf-8");
 		}
 	}
 }
