@@ -126,6 +126,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_IsDecomposedBy());
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcOpeningElement_HasFillings());
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations());
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcGroup_IsGroupedBy());
 					
 					int highestStopId = findHighestStopRid(project, concreteRevision);
 					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, deep, highestStopId));
