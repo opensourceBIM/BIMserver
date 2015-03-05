@@ -32,8 +32,6 @@ import org.apache.commons.codec.binary.Hex;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.interfaces.objects.SIfcHeader;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.serializers.ProgressReporter;
@@ -172,13 +170,12 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 	}
 	
 	private void writePrimitive(Object val) throws SerializerException, IOException {
-		if (val instanceof Tristate) {
-			Tristate bool = (Tristate) val;
-			if (bool == Tristate.TRUE) {
+		if (val.getClass().getSimpleName().equals("Tristate")) {
+			if (val.equals("TRUE")) {
 				print(BOOLEAN_TRUE);
-			} else if (bool == Tristate.FALSE) {
+			} else if (val.equals("FALSE")) {
 				print(BOOLEAN_FALSE);
-			} else if (bool == Tristate.UNDEFINED) {
+			} else if (val.equals("UNDEFINED")) {
 				print(BOOLEAN_UNDEFINED);
 			}
 		} else if (val instanceof Double) {
@@ -560,7 +557,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 
 	private void writeEnum(EObject object, EStructuralFeature feature) throws SerializerException, IOException {
 		Object val = object.eGet(feature);
-		if (feature.getEType() == Ifc2x3tc1Package.eINSTANCE.getTristate()) {
+		if (feature.getEType().getName().equals("Tristate")) {
 			writePrimitive( val);
 		} else {
 			if (val == null) {
