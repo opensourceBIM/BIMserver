@@ -23,6 +23,7 @@ import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.client.soap.SoapBimServerClientFactory;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -41,6 +42,42 @@ import org.slf4j.LoggerFactory;
  */
 public class LocalDevSetup {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevSetup.class);
+
+	public static void loadPlugins(PluginManager pluginManager, File current, File[] pluginDirectories) throws PluginException {
+		LOGGER.info("Loading plugins from " + current.getAbsolutePath());
+
+		if (pluginDirectories != null) {
+			for (File pluginDirectory : pluginDirectories) {
+				try {
+					pluginManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
+				} catch (PluginException e) {
+					LOGGER.error("", e);
+				}
+			}
+		}
+	}
+	
+	public static final PluginManager setupPluginManager(String[] args) {
+		try {
+			File home = new File("home");
+			
+			if (!home.exists()) {
+				home.mkdir();
+			}
+			PluginManager pluginManager = new PluginManager(new File(home, "tmp"), System.getProperty("java.class.path"), null, null, null);
+
+			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			pluginManager.setMetaDataManager(metaDataManager);
+			loadPlugins(pluginManager, new File(".."), new OptionsParser(args).getPluginDirectories());
+			metaDataManager.init();
+
+			pluginManager.initAllLoadedPlugins();
+			return pluginManager;
+		} catch (PluginException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	public static final BimServerClientInterface setupJson(String address) {
 		try {
