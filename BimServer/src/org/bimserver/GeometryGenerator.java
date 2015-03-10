@@ -123,12 +123,15 @@ public class GeometryGenerator {
 						renderEngineModel.generateGeneralGeometry();
 
 						EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
+						EClass productRepresentationClass = model.getPackageMetaData().getEClass("IfcProductRepresentation");
 						List<IdEObject> products = model.getAllWithSubTypes(productClass);
 						
 						EStructuralFeature geometryFeature = productClass.getEStructuralFeature("geometry");
 						EStructuralFeature representationFeature = productClass.getEStructuralFeature("Representation");
+						EStructuralFeature representationsFeature = productRepresentationClass.getEStructuralFeature("Representations");
 						for (IdEObject ifcProduct : products) {
-							if (ifcProduct.eGet(representationFeature) != null) {
+							IdEObject representation = (IdEObject) ifcProduct.eGet(representationFeature);
+							if (representation != null && ((List<?>)representation.eGet(representationsFeature)).size() > 0) {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
 								RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
 								if (geometry != null && geometry.getNrIndices() > 0) {
