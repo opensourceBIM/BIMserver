@@ -247,7 +247,7 @@ public abstract class AbstractModel implements Model {
 			for (int index2 : curr) {
 				ModelObject m2 = objectsAsList.get(index2);
 				fingerprint.add(m1.getReferencesTo().contains(m2) ? 1 : 0);
-			}			
+			}
 		}
 		return fingerprint;
 	}
@@ -269,6 +269,7 @@ public abstract class AbstractModel implements Model {
 	public Fingerprint toCanonicalForm() {
 		Fingerprint highest = null;
 		for (Fingerprint fingerprint : getAllPermutations()) {
+			System.out.println(fingerprint);
 			if (highest == null || fingerprint.isHigher(highest)) {
 				highest = fingerprint;
 			}
