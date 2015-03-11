@@ -1371,8 +1371,8 @@ function Model(bimServerApi, poid, roid, schema) {
 		return promise;
 	};
 
-	this.getByGuid = function(guids, callback) {
-		othis.getByX("getByGuid", "guid", othis.guidsFetching, othis.objectsByGuid, "downloadByGuids", "guids", function(object){return object.getGlobalId()}, guids, callback);
+	this.getByGuids = function(guids, callback) {
+		return othis.getByX("getByGuid", "guid", othis.guidsFetching, othis.objectsByGuid, "downloadByGuids", "guids", function(object){return object.GlobalId}, guids, callback);
 	};
 
 	this.get = function(oids, callback) {
@@ -1380,7 +1380,7 @@ function Model(bimServerApi, poid, roid, schema) {
 	};
 
 	this.getByName = function(names, callback) {
-		othis.getByX("getByName", "name", othis.namesFetching, othis.objectsByName, "downloadByNames", "names", function(object){return object.getName == null ? null : object.getName()}, names, callback);
+		return othis.getByX("getByName", "name", othis.namesFetching, othis.objectsByName, "downloadByNames", "names", function(object){return object.getName == null ? null : object.getName()}, names, callback);
 	};
 
 	this.createPromise = function(){
