@@ -171,11 +171,11 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 	
 	private void writePrimitive(Object val) throws SerializerException, IOException {
 		if (val.getClass().getSimpleName().equals("Tristate")) {
-			if (val.equals("TRUE")) {
+			if (val.toString().equals("TRUE")) {
 				print(BOOLEAN_TRUE);
-			} else if (val.equals("FALSE")) {
+			} else if (val.toString().equals("FALSE")) {
 				print(BOOLEAN_FALSE);
-			} else if (val.equals("UNDEFINED")) {
+			} else if (val.toString().equals("UNDEFINED")) {
 				print(BOOLEAN_UNDEFINED);
 			}
 		} else if (val instanceof Double) {
