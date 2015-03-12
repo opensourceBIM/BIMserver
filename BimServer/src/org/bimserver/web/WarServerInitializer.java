@@ -43,6 +43,7 @@ public class WarServerInitializer implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		ServletContext servletContext = servletContextEvent.getServletContext();
+		LOGGER.info("Servlet Context Name: " + servletContext.getServletContextName());
 		File homeDir = null;
 		if (servletContext.getAttribute("homedir") != null) {
 			homeDir = new File((String) servletContext.getAttribute("homedir"));
