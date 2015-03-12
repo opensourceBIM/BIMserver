@@ -199,7 +199,7 @@ public class BimServerImporter {
 								Project project = databaseSession.get(updatedProject.getOid(), Query.getDefault());
 								Revision revision = project.getLastRevision();
 								revision.setDate(key.date);
-								revision.setUser(databaseSession.get(key.userId, Query.getDefault()));
+								revision.setUser((User)databaseSession.get(key.userId, Query.getDefault()));
 								databaseSession.commit();
 							} catch (BimserverDatabaseException | ServiceException e) {
 								LOGGER.error("", e);
