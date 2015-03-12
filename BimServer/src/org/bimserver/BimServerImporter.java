@@ -166,7 +166,7 @@ public class BimServerImporter {
 								GregorianCalendar fileDate = new GregorianCalendar();
 								fileDate.setTime(parse);
 								long millisDiff = Math.abs(fileDate.getTimeInMillis() - revision.getDate().getTime());
-								if (millisDiff > 1000 * 60 * 60) { // 60 minutes
+								if (millisDiff > 1000 * 60 * 120) { // 120 minutes
 									continue;
 								}
 								comments.put(gregorianCalendar, new Key(file, project.getOid(), revision.getComment(), revision.getDate(), revision.getUserId()));
@@ -198,8 +198,10 @@ public class BimServerImporter {
 								LOGGER.info("Done");
 								Project project = databaseSession.get(updatedProject.getOid(), Query.getDefault());
 								Revision revision = project.getLastRevision();
+								DateFormat m = new SimpleDateFormat("dd-MM-yyyy");
+								LOGGER.info("Setting date to " + m.format(key.date));
 								revision.setDate(key.date);
-								revision.setUser((User)databaseSession.get(key.userId, Query.getDefault()));
+								revision.setUser((User)databaseSession.get(users.get(key.userId).getOid(), Query.getDefault()));
 								databaseSession.store(revision);
 								databaseSession.commit();
 							} catch (BimserverDatabaseException | ServiceException e) {
