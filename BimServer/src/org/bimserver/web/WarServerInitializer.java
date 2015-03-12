@@ -37,13 +37,11 @@ import org.slf4j.LoggerFactory;
 
 public class WarServerInitializer implements ServletContextListener {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 	private BimServer bimServer;
 	
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		ServletContext servletContext = servletContextEvent.getServletContext();
-		LOGGER.info("Servlet Context Name: " + servletContext.getServletContextName());
 		File homeDir = null;
 		if (servletContext.getAttribute("homedir") != null) {
 			homeDir = new File((String) servletContext.getAttribute("homedir"));
@@ -76,6 +74,9 @@ public class WarServerInitializer implements ServletContextListener {
 		config.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
 		config.setStartEmbeddedWebServer(false);
 		bimServer = new BimServer(config);
+		
+		Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
+		LOGGER.info("Servlet Context Name: " + servletContext.getServletContextName());
 		
 		File file = resourceFetcher.getFile("plugins");
 		try {
