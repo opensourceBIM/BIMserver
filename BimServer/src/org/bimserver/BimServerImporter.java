@@ -200,8 +200,8 @@ public class BimServerImporter {
 								Revision revision = project.getLastRevision();
 								DateFormat m = new SimpleDateFormat("dd-MM-yyyy");
 								LOGGER.info("Setting date to " + m.format(key.date));
-								revision.setDate(key.date);
 								revision.setUser((User)databaseSession.get(users.get(key.userId).getOid(), Query.getDefault()));
+								revision.setDate(key.date);
 								databaseSession.store(revision);
 								databaseSession.commit();
 							} catch (BimserverDatabaseException | ServiceException e) {

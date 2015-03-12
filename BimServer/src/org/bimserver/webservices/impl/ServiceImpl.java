@@ -259,7 +259,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			
 			URL url = new URL(urlString);
 			URLConnection openConnection = url.openConnection();
-			int contentLength = openConnection.getContentLength();
 			InputStream input = openConnection.getInputStream();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 			if (fileName == null) {

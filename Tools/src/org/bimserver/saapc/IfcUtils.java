@@ -36,6 +36,7 @@ public class IfcUtils {
 			Object reference = basePath.getLastObject().eGet(eReference);
 			if (reference != null) {
 				if (eReference.isMany()) {
+					@SuppressWarnings("rawtypes")
 					List list = (List)reference;
 					for (int index=0; index<list.size(); index++) {
 						Object refObject = list.get(index);

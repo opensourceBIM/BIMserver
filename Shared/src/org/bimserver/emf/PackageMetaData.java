@@ -99,6 +99,10 @@ public class PackageMetaData {
 	public EClass getEClass(String name) {
 		return (EClass) ePackage.getEClassifier(name);
 	}
+
+	public EEnum getEEnum(String name) {
+		return (EEnum) ePackage.getEClassifier(name);
+	}
 	
 	public Set<EClass> getEClasses() {
 		return eClassClassMap.keySet();
