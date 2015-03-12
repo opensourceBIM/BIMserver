@@ -88,14 +88,14 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 	private Mode mode = Mode.HEADER;
 	private IfcModelInterface model;
 	private int lineNumber;
-	private Schema schema2;
+	private Schema schema;
 
 	public enum Mode {
 		HEADER, DATA, FOOTER, DONE
 	}
 
 	public IfcStepDeserializer(Schema schema) {
-		schema2 = schema;
+		this.schema = schema;
 	}
 
 	public IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter byteProgressReporter) throws DeserializeException {
@@ -149,6 +149,9 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 		lineNumber = 0;
 		try {
 			String line = reader.readLine();
+			if (line == null) {
+				throw new DeserializeException("Unexpected end of stream reading first line " + model);
+			}
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			while (line != null) {
 				byte[] bytes = line.getBytes(Charsets.UTF_8);
@@ -321,8 +324,8 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 			} else if (line.startsWith("FILE_SCHEMA")) {
 				Tokenizer tokenizer = new Tokenizer(line.substring(line.indexOf("(")));
 				String ifcSchemaVersion = tokenizer.zoomIn("(", ")").zoomIn("(", ")").readSingleQuoted();
-				if (!ifcSchemaVersion.toLowerCase().equalsIgnoreCase(schema2.getHeaderName().toLowerCase())) {
-					throw new DeserializeException(lineNumber, ifcSchemaVersion + " is not supported by this deserializer (" + schema2.getHeaderName() + " is)");
+				if (!ifcSchemaVersion.toLowerCase().equalsIgnoreCase(schema.getHeaderName().toLowerCase())) {
+					throw new DeserializeException(lineNumber, ifcSchemaVersion + " is not supported by this deserializer (" + schema.getHeaderName() + " is)");
 				}
 				ifcHeader.setIfcSchemaVersion(ifcSchemaVersion);
 			} else if (line.startsWith("ENDSEC;")) {

@@ -18,10 +18,8 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -33,41 +31,12 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
-import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.shared.exceptions.UserException;
 
 public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<ConcreteRevision>{
 
 	private IfcModelInterface model;
 	private InputStream inputStream;
-	private Deserializer deserializer;
-
-	public static class CreateRevisionResult {
-		private final List<Revision> revisions = new ArrayList<Revision>();
-		private ConcreteRevision concreteRevision;
-		
-		public void addRevision(Revision revision) {
-			this.revisions.add(revision);
-		}
-
-		public List<Revision> getRevisions() {
-			return revisions;
-		}
-		
-		public void setConcreteRevision(ConcreteRevision concreteRevision) {
-			this.concreteRevision = concreteRevision;
-		}
-		
-		public ConcreteRevision getConcreteRevision() {
-			return concreteRevision;
-		}
-	}
-	
-	public GenericCheckinDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, InputStream inputStream, Deserializer deserializer) {
-		super(databaseSession, accessMethod);
-		this.inputStream = inputStream;
-		this.deserializer = deserializer;
-	}
 
 	public GenericCheckinDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcModelInterface ifcModel) {
 		super(databaseSession, accessMethod);
@@ -172,10 +141,6 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 
 	public IfcModelInterface getModel() {
 		return model;
-	}
-	
-	public Deserializer getDeserializer() {
-		return deserializer;
 	}
 	
 	public InputStream getInputStream() {
