@@ -218,7 +218,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
 			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
-			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), inputStream, deserializer, fileSize, comment, fileName, merge);
+			
+			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);
+			
+			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
 			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 			getBimServer().getLongActionManager().start(longAction);
 			if (sync) {
@@ -277,7 +280,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
 			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
-			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), inputStream, deserializer, contentLength, comment, fileName, merge);
+
+			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);
+			
+			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
 			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 			getBimServer().getLongActionManager().start(longAction);
 			if (sync) {
