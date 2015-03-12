@@ -117,7 +117,6 @@ public abstract class Channel implements ServiceHolder {
 			
 			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
 			
-			multipartEntityBuilder.addPart("data", data);
 			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("deserializerOid", new StringBody("" + deserializerOid, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("merge", new StringBody("" + merge, ContentType.DEFAULT_TEXT));
@@ -125,6 +124,7 @@ public abstract class Channel implements ServiceHolder {
 			multipartEntityBuilder.addPart("comment", new StringBody("" + comment, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("sync", new StringBody("" + sync, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("compression", new StringBody("deflate", ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("data", data);
 			
 			httppost.setEntity(multipartEntityBuilder.build());
 			
