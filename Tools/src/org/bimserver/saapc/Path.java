@@ -29,7 +29,7 @@ public class Path {
 		this.objects = new HashSet<>(path.getObjects());
 		this.links = new ArrayList<Link>(path.getLinks());
 		this.objects.add(refIdEObject);
-		this.links.add(new Link(eReference, index, refIdEObject));
+		this.links.add(new Link(eReference, refIdEObject));
 		this.lastObject = refIdEObject;
 	}
 	

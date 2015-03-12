@@ -50,9 +50,6 @@ import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
@@ -181,7 +178,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				if (DEVELOPER_DEBUG) {
 					LOGGER.info("Write: " + object.eClass().getName() + " " + "pid=" + object.getPid() + " oid=" + object.getOid() + " rid=" + object.getRid());
 				}
-				ByteBuffer valueBuffer = convertObjectToByteArray(object, reusableBuffer);
+				ByteBuffer valueBuffer = convertObjectToByteArray(object, reusableBuffer, getMetaDataManager().getPackageMetaData(object.eClass().getEPackage().getName()));
 				if (object.eClass().getEAnnotation("nolazyload") == null && !overwriteEnabled) {
 					database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
 							valueBuffer.array(), 0, valueBuffer.position(), this);
@@ -369,7 +366,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 								int listSize = buffer.getInt();
 								BasicEList<Object> list = new BasicEList<Object>(listSize);
 								for (int i = 0; i < listSize; i++) {
-									Object reference = readPrimitiveValue(feature.getEType(), buffer);
+									Object reference = readPrimitiveValue(feature.getEType(), buffer, query);
 									if (reference != null) {
 										list.addUnique(reference);
 									}
@@ -410,7 +407,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 									// }
 								}
 							} else if (feature.getEType() instanceof EDataType) {
-								newValue = readPrimitiveValue(feature.getEType(), buffer);
+								newValue = readPrimitiveValue(feature.getEType(), buffer, query);
 							}
 						}
 						if (newValue != null) {
@@ -451,7 +448,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return false;
 	}
 	
-	private ByteBuffer convertObjectToByteArray(IdEObject object, ByteBuffer buffer) throws BimserverDatabaseException {
+	private ByteBuffer convertObjectToByteArray(IdEObject object, ByteBuffer buffer, PackageMetaData packageMetaData) throws BimserverDatabaseException {
 		int bufferSize = getExactSize(object);
 		if (bufferSize > buffer.capacity()) {
 			LOGGER.debug("Buffer too small (" + bufferSize + ")");
@@ -483,7 +480,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 							} else {
 								IdEObject listObject = (IdEObject) o;
 								if (listObject.eClass().getEAnnotation("wrapped") != null || listObject.eClass().getEStructuralFeature("wrappedValue") != null) {
-									writeWrappedValue(object.getPid(), object.getRid(), listObject, buffer);
+									writeWrappedValue(object.getPid(), object.getRid(), listObject, buffer, packageMetaData);
 								} else {
 									writeReference(object, listObject, buffer, feature);
 								}
@@ -518,7 +515,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 							IdEObject referencedObject = (IdEObject) value;
 							EClass referencedClass = referencedObject.eClass();
 							if (referencedClass.getEAnnotation("wrapped") != null) {
-								writeWrappedValue(object.getPid(), object.getRid(), value, buffer);
+								writeWrappedValue(object.getPid(), object.getRid(), value, buffer, packageMetaData);
 							} else {
 								writeReference(object, value, buffer, feature);
 							}
@@ -1192,7 +1189,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public ObjectIdentifier getOidOfGuid(String schema, String guid, int pid, int rid) throws BimserverDatabaseException {
-		for (EClass eClass : getMetaDataManager().getPackageMetaData(schema).getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
+		for (EClass eClass : getMetaDataManager().getPackageMetaData(schema).getAllSubClasses(getMetaDataManager().getPackageMetaData(schema).getEClass("IfcRoot"))) {
 			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid),
 					BinUtils.intToByteArray(pid), this);
 			try {
@@ -1233,7 +1230,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	public Set<ObjectIdentifier> getOidsOfName(String schema, String name, int pid, int rid) throws BimserverDatabaseException, MetaDataException {
 		Set<ObjectIdentifier> result = new HashSet<ObjectIdentifier>();
-		for (EClass eClass : getMetaDataManager().getPackageMetaData(schema).getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
+		for (EClass eClass : getMetaDataManager().getPackageMetaData(schema).getAllSubClasses(getMetaDataManager().getPackageMetaData(schema).getEClass("IfcRoot"))) {
 			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid),
 					BinUtils.intToByteArray(pid), this);
 			try {
@@ -1331,7 +1328,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public boolean perRecordVersioning(EClass eClass) {
-		return eClass.getEPackage() != Ifc2x3tc1Package.eINSTANCE;
+		return eClass.getEPackage().getName().equals("Ifc2x3tc1") || eClass.getEPackage().getName().equals("Ifc4");
 	}
 
 	public IfcModelInterface createModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap) {
@@ -1416,7 +1413,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return values.iterator().next();
 	}
 
-	private Object readPrimitiveValue(EClassifier classifier, ByteBuffer buffer) {
+	private Object readPrimitiveValue(EClassifier classifier, ByteBuffer buffer, QueryInterface query) {
 		if (classifier == ECORE_PACKAGE.getEString()) {
 			int length = buffer.getInt();
 			if (length != -1) {
@@ -1445,9 +1442,10 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			byte[] result = new byte[size];
 			buffer.get(result);
 			return result;
-		} else if (classifier == Ifc2x3tc1Package.eINSTANCE.getTristate()) {
+		} else if (classifier.getName().equals("Tristate")) {
 			int ordinal = buffer.getInt();
-			return Tristate.get(ordinal);
+			EEnum tristateEnum = query.getPackageMetaData().getEEnum("Tristate");
+			return tristateEnum.getEEnumLiteral(ordinal);
 		} else if (classifier instanceof EEnum) {
 			int ordinal = buffer.getInt();
 			EEnum eEnum = (EEnum) classifier;
@@ -1567,7 +1565,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	private IdEObject readWrappedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass, QueryInterface query) {
 		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature("wrappedValue");
-		Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
+		Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer, query);
 		IdEObject eObject = createInternal(eClass, query);
 		((IdEObjectImpl) eObject).setLoaded(); // We don't want to go lazy load
 												// this
@@ -1694,7 +1692,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			} else {
 				buffer.putLong(((Date) value).getTime());
 			}
-		} else if (type == Ifc2x3tc1Package.eINSTANCE.getTristate()) {
+		} else if (type.getName().equals("Tristate")) {
 			Enumerator eEnumLiteral = (Enumerator) value;
 			buffer.putInt(eEnumLiteral.getValue());
 		} else if (value instanceof Enumerator) {
@@ -1723,21 +1721,21 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		buffer.putLong(idEObject.getOid());
 	}
 
-	private void writeWrappedValue(int pid, int rid, Object value, ByteBuffer buffer) throws BimserverDatabaseException {
+	private void writeWrappedValue(int pid, int rid, Object value, ByteBuffer buffer, PackageMetaData packageMetaData) throws BimserverDatabaseException {
 		IdEObject wrappedValue = (IdEObject) value;
 		EStructuralFeature eStructuralFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
 		Short cid = database.getCidOfEClass(wrappedValue.eClass());
 		buffer.putShort((short) -cid);
 		writePrimitiveValue(eStructuralFeature, wrappedValue.eGet(eStructuralFeature), buffer);
-		if (wrappedValue instanceof IfcGloballyUniqueId) {
+		if (wrappedValue.eClass().getName().equals("IfcGloballyUniqueId")) {
+			EClass eClass = packageMetaData.getEClass("IfcGloballyUniqueId");
 			if (wrappedValue.getOid() == -1) {
-				((IdEObjectImpl) wrappedValue).setOid(newOid(Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId()));
+				((IdEObjectImpl) wrappedValue).setOid(newOid(eClass));
 			}
-			ByteBuffer valueBuffer = convertObjectToByteArray(wrappedValue, ByteBuffer.allocate(getExactSize(wrappedValue)));
+			ByteBuffer valueBuffer = convertObjectToByteArray(wrappedValue, ByteBuffer.allocate(getExactSize(wrappedValue)), packageMetaData);
 			ByteBuffer keyBuffer = createKeyBuffer(pid, wrappedValue.getOid(), rid);
 			try {
-				EClass ifcGloballyUniqueIdEClass = Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId();
-				database.getKeyValueStore().storeNoOverwrite(ifcGloballyUniqueIdEClass.getEPackage().getName() + "_" + ifcGloballyUniqueIdEClass.getName(),
+				database.getKeyValueStore().storeNoOverwrite(eClass.getEPackage().getName() + "_" + eClass.getName(),
 						keyBuffer.array(), valueBuffer.array(), this);
 				database.incrementCommittedWrites(1);
 			} catch (BimserverLockConflictException e) {
