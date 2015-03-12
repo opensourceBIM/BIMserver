@@ -123,7 +123,7 @@ public class BimServerImporter {
 			LOGGER.info("Importing...");
 			BimServerClientFactory factory = new JsonBimServerClientFactory(bimServer.getMetaDataManager(), address);
 			remoteClient = factory.create(new UsernamePasswordAuthenticationInfo(username, password));
-			BimDatabase database = bimServer.getDatabase();
+			final BimDatabase database = bimServer.getDatabase();
 			DatabaseSession databaseSession = database.createSession();
 			try {
 				LOGGER.info("Users...");
