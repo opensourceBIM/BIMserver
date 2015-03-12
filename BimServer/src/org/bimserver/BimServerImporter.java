@@ -19,6 +19,10 @@ package org.bimserver;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -139,6 +143,7 @@ public class BimServerImporter {
 //			}
 			File incoming = new File(path);
 			final Map<GregorianCalendar, Key> comments = new TreeMap<>();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
 			for (SProject project : remoteClient.getBimsie1ServiceInterface().getAllProjects(false, false)) {
 				for (SRevision revision : remoteClient.getBimsie1ServiceInterface().getAllRevisionsOfProject(project.getOid())) {
 					GregorianCalendar gregorianCalendar = new GregorianCalendar();
@@ -149,6 +154,14 @@ public class BimServerImporter {
 						boolean found = false;
 						for (File file : userFolder.listFiles()) {
 							if (file.getName().endsWith(revision.getComment())) {
+								String dateStr = file.getName().substring(0, 19);
+								Date parse = dateFormat.parse(dateStr);
+								GregorianCalendar fileDate = new GregorianCalendar();
+								fileDate.setTime(parse);
+								long millisDiff = Math.abs(fileDate.getTimeInMillis() - revision.getDate().getTime());
+								if (millisDiff > 1000 * 60) {
+									continue;
+								}
 								comments.put(gregorianCalendar, new Key(file, project.getOid(), revision.getComment()));
 								found = true;
 								break;
@@ -185,6 +198,8 @@ public class BimServerImporter {
 		} catch (ChannelConnectionException e) {
 			LOGGER.error("", e);
 		} catch (PublicInterfaceNotFoundException e) {
+			LOGGER.error("", e);
+		} catch (ParseException e) {
 			LOGGER.error("", e);
 		}
 	}
