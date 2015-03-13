@@ -836,6 +836,7 @@ public class BimServer {
 				pluginDescriptor.setDescription(plugin.getDescription() + " " + plugin.getVersion());
 				pluginDescriptor.setLocation(pluginContext.getLocation());
 				pluginDescriptor.setPluginInterfaceClassName(getPluginInterfaceClass(plugin).getName());
+				session.store(pluginDescriptor);
 				pluginManager.getPluginContext(plugin).setEnabled(pluginDescriptor.getEnabled(), false);
 			} else {
 				LOGGER.error("Multiple plugin descriptor objects found with the same name: " + plugin.getClass().getName());
