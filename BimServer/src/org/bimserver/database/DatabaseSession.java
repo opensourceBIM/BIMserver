@@ -1445,7 +1445,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		} else if (classifier.getName().equals("Tristate")) {
 			int ordinal = buffer.getInt();
 			EEnum tristateEnum = query.getPackageMetaData().getEEnum("Tristate");
-			return tristateEnum.getEEnumLiteral(ordinal);
+			return tristateEnum.getEEnumLiteral(ordinal).getInstance();
 		} else if (classifier instanceof EEnum) {
 			int ordinal = buffer.getInt();
 			EEnum eEnum = (EEnum) classifier;
