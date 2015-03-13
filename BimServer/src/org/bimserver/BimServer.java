@@ -707,6 +707,7 @@ public class BimServer {
 			createDatabaseObjects(session);
 			
 			ServerSettings serverSettings = serverSettingsCache.getServerSettings();
+			
 			for (WebModulePlugin webModulePlugin : pluginManager.getAllWebPlugins(true)) {
 				WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), webModulePlugin.getClass().getName());
 				if (webPluginConfiguration == null) {
@@ -714,15 +715,17 @@ public class BimServer {
 					serverSettings.getWebModules().add(webPluginConfiguration);
 					genericPluginConversion(session, webModulePlugin, webPluginConfiguration, getPluginDescriptor(session, webModulePlugin.getClass().getName()));
 				}
-				if (webPluginConfiguration == serverSettings.getWebModule()) {
-					setDefaultWebModule(webModulePlugin);
-				} else {
+				if (serverSettings.getWebModule() == null) {
 					if (webModulePlugin.getClass().getName().equals("org.bimserver.bimviews.BimViewsWebModulePlugin")) {
 						serverSettings.setWebModule(webPluginConfiguration);
 						setDefaultWebModule(webModulePlugin);
 					}
 					if (webModulePlugin.getClass().getName().equals("org.bimserver.defaultwebmodule.DefaultWebModulePlugin")) {
 						serverSettings.setWebModule(webPluginConfiguration);
+						setDefaultWebModule(webModulePlugin);
+					}
+				} else {
+					if (webPluginConfiguration == serverSettings.getWebModule()) {
 						setDefaultWebModule(webModulePlugin);
 					}
 				}
