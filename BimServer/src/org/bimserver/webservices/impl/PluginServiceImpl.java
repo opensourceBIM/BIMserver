@@ -696,9 +696,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 				throw new UserException("No plugin with class name " + pluginDescriptor.getPluginClassName() + " found");
 			}
 			ObjectDefinition settingsDefinition = plugin.getSettingsDefinition();
-			if (settingsDefinition == null) {
-				throw new UserException("No settings definition");
-			}
 			return getBimServer().getSConverter().convertToSObject(settingsDefinition);
 		} catch (Exception e) {
 			return handleException(e);
