@@ -109,10 +109,6 @@ public class UploadServlet extends SubServlet {
 						name = item.getName();
 						in = item.openStream();
 						
-						if (in instanceof ByteArrayInputStream) {
-							System.out.println("lala");
-						}
-						
 						if ("file".equals(action)) {
 							ServiceInterface serviceInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 							SFile file = new SFile();

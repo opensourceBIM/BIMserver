@@ -192,12 +192,12 @@ public class JsonConverter {
 			} else if (definedType.isByteArray()) {
 				if (object instanceof JsonPrimitive) {
 					JsonPrimitive jsonPrimitive = (JsonPrimitive) object;
-					return Base64.encodeBase64(jsonPrimitive.getAsString().getBytes(Charsets.UTF_8));
+					return Base64.decodeBase64(jsonPrimitive.getAsString().getBytes(Charsets.UTF_8));
 				}
 			} else if (definedType.isDataHandler()) {
 				if (object instanceof JsonPrimitive) {
 					JsonPrimitive jsonPrimitive = (JsonPrimitive) object;
-					byte[] data = Base64.encodeBase64(jsonPrimitive.getAsString().getBytes(Charsets.UTF_8));
+					byte[] data = Base64.decodeBase64(jsonPrimitive.getAsString().getBytes(Charsets.UTF_8));
 					return new DataHandler(new ByteArrayDataSource(new ByteArrayInputStream(data), null));
 				}
 			} else if (definedType.isInteger()) {
