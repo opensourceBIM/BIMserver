@@ -99,6 +99,7 @@ import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
@@ -110,6 +111,7 @@ import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.WebModulePluginConfiguration;
+import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -689,7 +691,15 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			if (pluginDescriptor == null) {
 				throw new UserException("No PluginDescriptor found with oid " + oid);
 			}
-			return getBimServer().getSConverter().convertToSObject(getBimServer().getPluginManager().getPlugin(pluginDescriptor.getPluginClassName(), false).getSettingsDefinition());
+			Plugin plugin = getBimServer().getPluginManager().getPlugin(pluginDescriptor.getPluginClassName(), false);
+			if (plugin == null) {
+				throw new UserException("No plugin with class name " + pluginDescriptor.getPluginClassName() + " found");
+			}
+			ObjectDefinition settingsDefinition = plugin.getSettingsDefinition();
+			if (settingsDefinition == null) {
+				throw new UserException("No settings definition");
+			}
+			return getBimServer().getSConverter().convertToSObject(settingsDefinition);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
