@@ -824,12 +824,18 @@ public class BimServer {
 				PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);
 				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 				pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
-				pluginDescriptor.setDescription(plugin.getDescription());
+				pluginDescriptor.setDescription(plugin.getDescription() + " " + plugin.getVersion());
 				pluginDescriptor.setLocation(pluginContext.getLocation());
 				pluginDescriptor.setPluginInterfaceClassName(getPluginInterfaceClass(plugin).getName());
 				pluginDescriptor.setEnabled(true); // New plugins are enabled by default
 			} else if (results.size() == 1) {
+				PluginContext pluginContext = pluginManager.getPluginContext(plugin);
 				PluginDescriptor pluginDescriptor = results.values().iterator().next();
+				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
+				pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
+				pluginDescriptor.setDescription(plugin.getDescription() + " " + plugin.getVersion());
+				pluginDescriptor.setLocation(pluginContext.getLocation());
+				pluginDescriptor.setPluginInterfaceClassName(getPluginInterfaceClass(plugin).getName());
 				pluginManager.getPluginContext(plugin).setEnabled(pluginDescriptor.getEnabled(), false);
 			} else {
 				LOGGER.error("Multiple plugin descriptor objects found with the same name: " + plugin.getClass().getName());
