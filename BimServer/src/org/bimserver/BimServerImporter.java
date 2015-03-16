@@ -159,7 +159,7 @@ public class BimServerImporter {
 								GregorianCalendar fileDate = new GregorianCalendar();
 								fileDate.setTime(parse);
 								long millisDiff = Math.abs(fileDate.getTimeInMillis() - revision.getDate().getTime());
-								if (millisDiff > 1000 * 60 * 10) { // 10 minutes
+								if (millisDiff > 1000 * 60) {
 									continue;
 								}
 								comments.put(gregorianCalendar, new Key(file, project.getOid(), revision.getComment()));
@@ -185,7 +185,6 @@ public class BimServerImporter {
 						try {
 							SDeserializerPluginConfiguration desserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 							client.checkin(project.getOid(), key.comment, desserializer.getOid(), false, true, key.file);
-							// Fix dates/times and auth
 						} catch (IOException | UserException | ServerException | PublicInterfaceNotFoundException e) {
 							LOGGER.error("", e);
 						}
