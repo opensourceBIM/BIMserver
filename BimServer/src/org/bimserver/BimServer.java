@@ -707,6 +707,7 @@ public class BimServer {
 			createDatabaseObjects(session);
 			
 			ServerSettings serverSettings = serverSettingsCache.getServerSettings();
+			
 			for (WebModulePlugin webModulePlugin : pluginManager.getAllWebPlugins(true)) {
 				WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), webModulePlugin.getClass().getName());
 				if (webPluginConfiguration == null) {
@@ -714,15 +715,17 @@ public class BimServer {
 					serverSettings.getWebModules().add(webPluginConfiguration);
 					genericPluginConversion(session, webModulePlugin, webPluginConfiguration, getPluginDescriptor(session, webModulePlugin.getClass().getName()));
 				}
-				if (webPluginConfiguration == serverSettings.getWebModule()) {
-					setDefaultWebModule(webModulePlugin);
-				} else {
+				if (serverSettings.getWebModule() == null) {
 					if (webModulePlugin.getClass().getName().equals("org.bimserver.bimviews.BimViewsWebModulePlugin")) {
 						serverSettings.setWebModule(webPluginConfiguration);
 						setDefaultWebModule(webModulePlugin);
 					}
 					if (webModulePlugin.getClass().getName().equals("org.bimserver.defaultwebmodule.DefaultWebModulePlugin")) {
 						serverSettings.setWebModule(webPluginConfiguration);
+						setDefaultWebModule(webModulePlugin);
+					}
+				} else {
+					if (webPluginConfiguration == serverSettings.getWebModule()) {
 						setDefaultWebModule(webModulePlugin);
 					}
 				}
@@ -824,12 +827,19 @@ public class BimServer {
 				PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);
 				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 				pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
-				pluginDescriptor.setDescription(plugin.getDescription());
+				pluginDescriptor.setDescription(plugin.getDescription() + " " + plugin.getVersion());
 				pluginDescriptor.setLocation(pluginContext.getLocation());
 				pluginDescriptor.setPluginInterfaceClassName(getPluginInterfaceClass(plugin).getName());
 				pluginDescriptor.setEnabled(true); // New plugins are enabled by default
 			} else if (results.size() == 1) {
+				PluginContext pluginContext = pluginManager.getPluginContext(plugin);
 				PluginDescriptor pluginDescriptor = results.values().iterator().next();
+				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
+				pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
+				pluginDescriptor.setDescription(plugin.getDescription() + " " + plugin.getVersion());
+				pluginDescriptor.setLocation(pluginContext.getLocation());
+				pluginDescriptor.setPluginInterfaceClassName(getPluginInterfaceClass(plugin).getName());
+				session.store(pluginDescriptor);
 				pluginManager.getPluginContext(plugin).setEnabled(pluginDescriptor.getEnabled(), false);
 			} else {
 				LOGGER.error("Multiple plugin descriptor objects found with the same name: " + plugin.getClass().getName());

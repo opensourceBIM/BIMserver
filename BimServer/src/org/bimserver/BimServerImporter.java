@@ -36,12 +36,14 @@ import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
@@ -102,13 +104,18 @@ public class BimServerImporter {
 	
 	class Key {
 		public String comment;
-		public Key(File file, long oid, String comment) {
+		public long userId;
+		public Date date;
+		public File file;
+		public long poid;
+
+		public Key(File file, long oid, String comment, Date date, long userId) {
 			this.file = file;
 			poid = oid;
 			this.comment = comment;
+			this.date = date;
+			this.userId = userId;
 		}
-		public File file;
-		public long poid;
 	}
 	
 	public void start() {
@@ -116,7 +123,7 @@ public class BimServerImporter {
 			LOGGER.info("Importing...");
 			BimServerClientFactory factory = new JsonBimServerClientFactory(bimServer.getMetaDataManager(), address);
 			remoteClient = factory.create(new UsernamePasswordAuthenticationInfo(username, password));
-			BimDatabase database = bimServer.getDatabase();
+			final BimDatabase database = bimServer.getDatabase();
 			DatabaseSession databaseSession = database.createSession();
 			try {
 				LOGGER.info("Users...");
@@ -159,10 +166,10 @@ public class BimServerImporter {
 								GregorianCalendar fileDate = new GregorianCalendar();
 								fileDate.setTime(parse);
 								long millisDiff = Math.abs(fileDate.getTimeInMillis() - revision.getDate().getTime());
-								if (millisDiff > 1000 * 60) {
+								if (millisDiff > 1000 * 60 * 120) { // 120 minutes
 									continue;
 								}
-								comments.put(gregorianCalendar, new Key(file, project.getOid(), revision.getComment()));
+								comments.put(gregorianCalendar, new Key(file, project.getOid(), revision.getComment(), revision.getDate(), revision.getUserId()));
 								found = true;
 								break;
 							}
@@ -173,18 +180,35 @@ public class BimServerImporter {
 					}
 				}
 			}
-			ExecutorService executorService = new ThreadPoolExecutor(8, 8, 1, TimeUnit.DAYS, new ArrayBlockingQueue<Runnable>(1000));
-			
+			ExecutorService executorService = new ThreadPoolExecutor(1, 1, 1, TimeUnit.DAYS, new ArrayBlockingQueue<Runnable>(1000));
+
 			for (final GregorianCalendar gregorianCalendar : comments.keySet()) {
 				executorService.submit(new Runnable(){
 					@Override
 					public void run() {
 						Key key = comments.get(gregorianCalendar);
 						LOGGER.info("Checking in: " + key.file.getName() + " " + Formatters.bytesToString(key.file.length()));
-						Project project = projects.get(key.poid);
+						Project sProject = projects.get(key.poid);
 						try {
-							SDeserializerPluginConfiguration desserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-							client.checkin(project.getOid(), key.comment, desserializer.getOid(), false, true, key.file);
+							SDeserializerPluginConfiguration desserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", sProject.getOid());
+							client.checkin(sProject.getOid(), key.comment, desserializer.getOid(), false, true, key.file);
+							SProject updatedProject = client.getBimsie1ServiceInterface().getProjectByPoid(sProject.getOid());
+							DatabaseSession databaseSession = database.createSession();
+							try {
+								LOGGER.info("Done");
+								Project project = databaseSession.get(updatedProject.getOid(), Query.getDefault());
+								Revision revision = project.getLastRevision();
+								DateFormat m = new SimpleDateFormat("dd-MM-yyyy");
+								LOGGER.info("Setting date to " + m.format(key.date));
+								revision.setUser((User)databaseSession.get(users.get(key.userId).getOid(), Query.getDefault()));
+								revision.setDate(key.date);
+								databaseSession.store(revision);
+								databaseSession.commit();
+							} catch (BimserverDatabaseException | ServiceException e) {
+								LOGGER.error("", e);
+							} finally {
+								databaseSession.close();
+							}
 						} catch (IOException | UserException | ServerException | PublicInterfaceNotFoundException e) {
 							LOGGER.error("", e);
 						}

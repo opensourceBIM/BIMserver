@@ -39,10 +39,11 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.utils.InputStreamDataSource;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class UploadServlet extends SubServlet {
 
@@ -63,7 +64,9 @@ public class UploadServlet extends SubServlet {
 		
 		String token = (String)request.getSession().getAttribute("token");
 		
-		JSONObject result = new JSONObject();
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		ObjectNode result = objectMapper.createObjectNode();
 		response.setContentType("text/json");
 		try {
 			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -110,10 +113,6 @@ public class UploadServlet extends SubServlet {
 						name = item.getName();
 						in = item.openStream();
 						
-						if (in instanceof ByteArrayInputStream) {
-							System.out.println("lala");
-						}
-						
 						if ("file".equals(action)) {
 							ServiceInterface serviceInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 							SFile file = new SFile();
@@ -149,26 +148,22 @@ public class UploadServlet extends SubServlet {
 			sendException(response, e);
 			return;
 		}
-		try {
-			result.write(response.getWriter());
-		} catch (JSONException e) {
-			LOGGER.error("", e);
-		}
+		response.getWriter().write(result.toString());
 	}
 
 	private void sendException(HttpServletResponse response, Exception exception) {
 		try {
-			JSONObject responseObject = new JSONObject();
-			JSONObject exceptionJson = new JSONObject();
+			ObjectMapper objectMapper = new ObjectMapper();
+			ObjectNode responseObject = objectMapper.createObjectNode();
+			ObjectNode exceptionJson = objectMapper.createObjectNode();
 			exceptionJson.put("__type", exception.getClass().getSimpleName());
 			if (exception.getMessage() == null) {
 				exceptionJson.put("message", "Unknown exception");
 			} else {
 				exceptionJson.put("message", exception.getMessage());
 			}
-			responseObject.put("exception", exceptionJson);
-			responseObject.write(response.getWriter());
-		} catch (JSONException e) {
+			responseObject.set("exception", exceptionJson);
+			response.getWriter().write(responseObject.toString());
 		} catch (IOException e) {
 		}
 	}
