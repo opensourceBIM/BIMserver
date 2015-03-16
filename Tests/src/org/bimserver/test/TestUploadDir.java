@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.IOException;
 
 import org.bimserver.LocalDevSetup;
-import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -32,7 +31,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Formatters;
 
 public class TestUploadDir {
-	private BimServerClient client;
+	private BimServerClientInterface client;
 
 	public static void main(String[] args) {
 		new TestUploadDir().start();
@@ -40,7 +39,7 @@ public class TestUploadDir {
 
 	private void start() {
 		try {
-			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
+			client = LocalDevSetup.setupJson("http://localhost:8080");
 			client.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 			
 			File directory = new File("d:\\testfiles");
