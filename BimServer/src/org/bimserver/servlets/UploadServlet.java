@@ -76,6 +76,7 @@ public class UploadServlet extends SubServlet {
 				String name = "";
 				long deserializerOid = -1;
 				boolean merge = false;
+				boolean sync = false;
 				String compression = null;
 				String action = null;
 				while (iter.hasNext()) {
@@ -92,6 +93,9 @@ public class UploadServlet extends SubServlet {
 						}
 						if ("comment".equals(item.getFieldName())) {
 							comment = Streams.asString(item.openStream());
+						}
+						if ("sync".equals(item.getFieldName())) {
+							sync = Streams.asString(item.openStream()).equals("true");
 						}
 						if ("merge".equals(item.getFieldName())) {
 							merge = Streams.asString(item.openStream()).equals("true");
@@ -131,7 +135,7 @@ public class UploadServlet extends SubServlet {
 							
 							if (token != null) {
 								ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-								long checkinId = service.checkin(poid, comment, deserializerOid, -1L, name, ifcFile, merge, false);
+								long checkinId = service.checkin(poid, comment, deserializerOid, -1L, name, ifcFile, merge, sync);
 								result.put("checkinid", checkinId);
 							}
 						} else {
