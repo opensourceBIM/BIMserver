@@ -26,6 +26,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.TracingGarbageCollector;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
@@ -44,7 +45,7 @@ public class RevisionMerger {
 	public RevisionMerger(IfcModelInterface oldModel, IfcModelInterface newModel) {
 		this.oldModel = oldModel;
 		this.newModel = newModel;
-		resultModel = new IfcModel(null, null, (int)oldModel.size()); //TODO
+		resultModel = new BasicIfcModel(null, null, (int)oldModel.size()); //TODO
 	}
 	
 	public IfcModel merge() throws IfcModelInterfaceException {

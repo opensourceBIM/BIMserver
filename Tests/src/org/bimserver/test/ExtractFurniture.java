@@ -24,7 +24,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.plugins.ModelHelper;
@@ -56,7 +56,7 @@ public class ExtractFurniture {
 			
 			IfcFurnishingElement picknick = (IfcFurnishingElement) model.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
 
-			IfcModelInterface newModel = new IfcModel(packageMetaData, null);
+			IfcModelInterface newModel = new BasicIfcModel(packageMetaData, null);
 			ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition("ifc2x3tc1")), newModel);
 			
 			modelHelper.copy(picknick);

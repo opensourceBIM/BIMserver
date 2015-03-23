@@ -23,6 +23,7 @@ import java.util.Random;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -55,7 +56,7 @@ public class RandomIfcGenerator {
 				i--;
 			}
 		}
-		IfcModel ifcModel = new IfcModel(null, null, objects.size()); // TODO
+		IfcModel ifcModel = new BasicIfcModel(null, null, objects.size()); // TODO
 		long i=0;
 		for (IdEObject idEObject : objects) {
 			try {

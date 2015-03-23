@@ -7,7 +7,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcAsymmetricIShapeProfileDef;
 import org.bimserver.models.ifc2x3tc1.IfcBlock;
 import org.bimserver.models.ifc2x3tc1.IfcBoundingBox;
@@ -105,7 +105,7 @@ public abstract class AbstractModelMerger implements ModelMerger {
 			size += ifcModel.size();
 			packageMetaData = ifcModel.getPackageMetaData();
 		}
-		IfcModelInterface endModel = new IfcModel(packageMetaData, null, (int) size);
+		IfcModelInterface endModel = new BasicIfcModel(packageMetaData, null, (int) size);
 		modelHelper.setTargetModel(endModel);
 		modelHelper.setObjectFactory(endModel);
 		modelHelper.setKeepOriginalOids(true);

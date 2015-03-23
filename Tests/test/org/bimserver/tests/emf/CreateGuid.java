@@ -25,7 +25,7 @@ public class CreateGuid extends TestWithEmbeddedServer {
 			// Create a new project
 			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
-			IfcModelInterface model = bimServerClient.newModel(newProject, false);
+			IfcModelInterface model = bimServerClient.newModel(newProject, true);
 			IfcFurnishingElement furnishing = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement());
 			furnishing.setGlobalId("0uyjn9Jan3nRq36Uj6gwws");
 			
@@ -33,9 +33,9 @@ public class CreateGuid extends TestWithEmbeddedServer {
 
 			IfcModelInterface newModel = bimServerClient.getModel(newProject, roid, true, false);
 			List<IfcFurnishingElement> furnishingElements = newModel.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement());
-			assertTrue(furnishingElements.size() == 1);
+			assertTrue("There must be 1 furnishing element", furnishingElements.size() == 1);
 			IfcFurnishingElement newF = furnishingElements.get(0);
-			assertTrue(newF.getGlobalId().equals("0uyjn9Jan3nRq36Uj6gwws"));
+			assertTrue("GUID must be 0uyjn9Jan3nRq36Uj6gwws", newF.getGlobalId().equals("0uyjn9Jan3nRq36Uj6gwws"));
 		} catch (Throwable e) {
 			if (e instanceof AssertionError) {
 				throw (AssertionError)e;

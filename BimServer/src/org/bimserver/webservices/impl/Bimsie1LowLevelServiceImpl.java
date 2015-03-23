@@ -86,7 +86,7 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 				rid = lastConcreteRevision.getId();
 				roid = revision.getOid();
 			}
-			LongTransaction longTransaction = getBimServer().getLongTransactionManager().newLongTransaction(poid, pid, rid, roid, project.getSchema());
+			LongTransaction longTransaction = getBimServer().getLongTransactionManager().newLongTransaction(getBimServer().getMetaDataManager().getPackageMetaData(project.getSchema()), poid, pid, rid, roid);
 			return longTransaction.getTid();
 		} catch (Exception e) {
 			return handleException(e);
@@ -257,14 +257,15 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 			if (longTransaction == null) {
 				throw new UserException("No transaction with tid " + tid + " was found");
 			}
-			EClass eClass = ((Database) getBimServer().getDatabase()).getEClass(longTransaction.getSchemaName(), className);
-			if (eClass == null) {
+			try {
+				EClass eClass = ((Database) getBimServer().getDatabase()).getEClass(longTransaction.getPackageMetaData().getEPackage().getName(), className);
+				Long oid = getBimServer().getDatabase().newOid(eClass);
+				CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass, generateGuid);
+				longTransaction.add(createObject);
+				return oid;
+			} catch (BimserverDatabaseException e) {
 				throw new UserException("Unknown type: \"" + className + "\"");
 			}
-			Long oid = getBimServer().getDatabase().newOid(eClass);
-			CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass, generateGuid);
-			longTransaction.add(createObject);
-			return oid;
 		} catch (Exception e) {
 			return handleException(e);
 		}

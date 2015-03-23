@@ -28,6 +28,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.PluginConfiguration;
@@ -54,7 +55,7 @@ public class PerformanceTestIfcStepSerializer {
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
-			IfcModel model = new IfcModel(packageMetaData, null);
+			IfcModel model = new BasicIfcModel(packageMetaData, null);
 			EList<EClassifier> classifiers = Ifc2x3tc1Package.eINSTANCE.getEClassifiers();
 			for (int i=0; i<100000; i++) {
 				EClassifier eClassifier = classifiers.get(new Random().nextInt(classifiers.size()));

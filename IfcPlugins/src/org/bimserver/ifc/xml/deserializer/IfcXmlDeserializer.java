@@ -31,6 +31,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -53,7 +54,7 @@ public abstract class IfcXmlDeserializer extends EmfDeserializer {
 	@Override
 	public void init(PackageMetaData packageMetaData) {
 		super.init(packageMetaData);
-		 model = new IfcModel(packageMetaData, null);
+		 model = new BasicIfcModel(packageMetaData, null);
 	}
 	
 	@Override

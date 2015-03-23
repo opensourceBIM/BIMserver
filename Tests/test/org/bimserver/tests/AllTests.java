@@ -98,8 +98,7 @@ public class AllTests {
 		bimServer = new BimServer(config);
 		try {
 			// CHANGE THESE TO MATCH YOUR CONFIGURATION
-			File[] pluginDirectories = new File[]{new File("E:\\Git"), new File("E:\\Workspaces\\BIMserver")};
-			
+			File[] pluginDirectories = new File[]{new File("E:\\Git\\BIMserverMaster2")};
 			
 			// Load plugins
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), pluginDirectories);
@@ -127,7 +126,7 @@ public class AllTests {
 
 	public static BimServerClientFactory getFactory() {
 		if (factory == null) {
-			factory = new JsonBimServerClientFactory(null, "http://localhost:8080");
+			factory = new JsonBimServerClientFactory(bimServer.getMetaDataManager(), "http://localhost:8080");
 //			factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
 		}
 		return factory;

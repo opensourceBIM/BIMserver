@@ -88,9 +88,12 @@ public class GeometryGenerator {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin";
 		}
 		
-		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(pluginName, true);
-		Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 		try {
+			SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(pluginName, true);
+			if (serializerPlugin == null) {
+				throw new UserException("No IFC serializer found");
+			}
+			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			// Make sure we have minimal express ids
 			model.generateMinimalExpressIds();
 

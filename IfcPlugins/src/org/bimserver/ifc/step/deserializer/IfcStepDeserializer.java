@@ -44,7 +44,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.MetaDataException;
 import org.bimserver.emf.Schema;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.DeserializeException;
@@ -144,7 +144,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 	private IfcModelInterface read(InputStream inputStream, long fileSize, ByteProgressReporter byteProgressReporter) throws DeserializeException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
-		model = new IfcModel(getPackageMetaData(), null, initialCapacity);
+		model = new BasicIfcModel(getPackageMetaData(), null, initialCapacity);
 		long bytesRead = 0;
 		lineNumber = 0;
 		try {

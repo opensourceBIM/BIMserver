@@ -26,6 +26,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
@@ -62,6 +63,11 @@ public class CreateObjectChange implements Change {
 		eObject.setPid(project.getId());
 		eObject.setRid(concreteRevision.getId());
 		eObject.setLoaded();
+		try {
+			model.add(oid, eObject);
+		} catch (IfcModelInterfaceException e) {
+			throw new UserException(e);
+		}
 		if (generateGuid) {
 			EStructuralFeature globalIdFeature = eObject.eClass().getEStructuralFeature("GlobalId");
 			if (globalIdFeature != null) {

@@ -174,6 +174,9 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 
 	public ClientIfcModel getModel(SProject project, long roid, boolean deep, boolean recordChanges) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException {
+		if (roid == -1) {
+			throw new UserException("Roid cannot be -1");
+		}
 		return new ClientIfcModel(this, project.getOid(), roid, deep, getMetaDataManager().getPackageMetaData(project.getSchema()), recordChanges);
 	}
 

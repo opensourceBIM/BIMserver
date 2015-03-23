@@ -39,31 +39,12 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	private IfcModelInterface model;
 	private State loadingState = State.NO_LAZY_LOADING;
 	private QueryInterface queryInterface;
-	private BimServerEStore bimServerEStore;
 	private boolean useInverses = true;
-
-	// @Override
-	// public EStore eStore() {
-	// if (this.eStore == null) {
-	// this.eStore = new DefaultBimServerEStore();
-	// }
-	// return this.eStore;
-	// }
-	//
-	// @Override
-	// protected boolean eIsCaching() {
-	// return false;
-	// }
 
 	@Override
 	public long getOid() {
 		return oid;
 	}
-
-	// @Override
-	// protected EList<?> createList(EStructuralFeature eStructuralFeature) {
-	// return (EList<?>) new SpecialList(this, eStructuralFeature);
-	// }
 
 	public void setOid(long oid) {
 		this.oid = oid;
@@ -95,6 +76,7 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 			return eSettingDelegate;
 		}
 		if (eFeature instanceof EReference && ((EReference)eFeature).getEOpposite() != null) {
+			// TODO cache/pre-generate the objects created in this block
 			if (eFeature.isMany()) {
 				if (eFeature.isUnsettable()) {
 					return new InternalSettingDelegateMany(InternalSettingDelegateMany.EOBJECT_UNSETTABLE, eFeature);
@@ -138,13 +120,13 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
 	public void load() {
 		if (loadingState == State.TO_BE_LOADED && oid != -1) {
-			bimServerEStore.load(this);
+			model.load(this);
 		}
 	}
 
 	public void forceLoad() {
 		if (loadingState != State.LOADED && loadingState != State.LOADING && oid != -1) {
-			bimServerEStore.load(this);
+			model.load(this);
 		}
 	}
 
@@ -190,7 +172,7 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	}
 
 	public void remove() {
-		((BimServerEStore) eStore()).remove(this);
+		model.remove(this);
 	}
 
 	public void setLoadingState(State state) {
@@ -199,10 +181,6 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
 	public State getLoadingState() {
 		return loadingState;
-	}
-
-	public void setBimserverEStore(BimServerEStore eStore) {
-		this.bimServerEStore = eStore;
 	}
 	
 	@Override

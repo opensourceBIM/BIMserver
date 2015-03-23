@@ -28,11 +28,11 @@ public class CreateReferenceListsAndClear extends TestWithEmbeddedServer {
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			Long ifcShapeRepresentationOid = lowLevelInterface.createObject(tid, "IfcShapeRepresentation", true);
+			Long ifcShapeRepresentationOid = lowLevelInterface.createObject(tid, "IfcShapeRepresentation", false);
 			
-			long ifcRepresentationItem1 = lowLevelInterface.createObject(tid, "IfcStyledItem", true);
-			long ifcRepresentationItem2 = lowLevelInterface.createObject(tid, "IfcMappedItem", true);
-			long ifcRepresentationItem3 = lowLevelInterface.createObject(tid, "IfcGeometricRepresentationItem", true);
+			long ifcRepresentationItem1 = lowLevelInterface.createObject(tid, "IfcStyledItem", false);
+			long ifcRepresentationItem2 = lowLevelInterface.createObject(tid, "IfcMappedItem", false);
+			long ifcRepresentationItem3 = lowLevelInterface.createObject(tid, "IfcGeometricRepresentationItem", false);
 			
 			lowLevelInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem1);
 			lowLevelInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem2);

@@ -31,6 +31,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
@@ -78,7 +79,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema()); 
 			lastPackageMetaData = packageMetaData;
-			IfcModel subModel = new IfcModel(packageMetaData, pidRoidMap);
+			IfcModel subModel = new BasicIfcModel(packageMetaData, pidRoidMap);
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.NO, highestStopId);
 			eObject = getDatabaseSession().get(null, oid, subModel, query);
@@ -89,7 +90,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 			}
 		}
 
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
+		IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

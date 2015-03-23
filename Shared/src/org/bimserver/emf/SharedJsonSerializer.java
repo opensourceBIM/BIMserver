@@ -146,7 +146,7 @@ public class SharedJsonSerializer {
 																// from embedded
 																// objects
 																out.write("{");
-																out.write("\"i\":");
+																out.write("\"_i\":");
 																out.write("" + ref.getOid());
 																out.write("}");
 															} else {

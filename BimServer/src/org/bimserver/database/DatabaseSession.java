@@ -32,12 +32,11 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-import org.bimserver.ServerEStore;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
-import org.bimserver.emf.BimServerEStore;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
@@ -49,7 +48,7 @@ import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
@@ -99,7 +98,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	private StackTraceElement[] stackTrace;
 	private final ObjectCache objectCache = new ObjectCache();
 	private int reads;
-	private BimServerEStore eStore;
 
 	private enum SessionState {
 		OPEN, CLOSED
@@ -116,7 +114,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			LOGGER.info("");
 			LOGGER.info("NEW SESSION");
 		}
-		this.eStore = new ServerEStore(this);
 	}
 	
 	public void setOverwriteEnabled(boolean overwriteEnabled) {
@@ -190,6 +187,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					progressHandler.progress(++current, objectsToCommit.size());
 				}
 				writes++;
+				reusableBuffer = valueBuffer; // bimServerClient may have increased the size of the buffer by creating a new one, we keep using it for other objects
 				reusableBuffer.position(0);
 			}
 			bimTransaction.commit();
@@ -211,7 +209,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	private IdEObjectImpl createInternal(EClass eClass, QueryInterface queryInterface) {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		object.setBimserverEStore(eStore);
 		object.setQueryInterface(queryInterface);
 		return object;
 	}
@@ -1332,13 +1329,13 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public IfcModelInterface createModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap) {
-		return new IfcModel(packageMetaData, pidRoidMap);
+		return new BasicIfcModel(packageMetaData, pidRoidMap);
 	}
 
 	public IfcModelInterface createModel(QueryInterface queryInterface) {
 		HashMap<Integer, Long> map = new HashMap<Integer, Long>();
 		map.put(queryInterface.getPid(), queryInterface.getRoid());
-		return new IfcModel(queryInterface.getPackageMetaData(), map);
+		return new ServerIfcModel(queryInterface.getPackageMetaData(), map, this);
 	}
 
 	@SuppressWarnings("unused")

@@ -25,7 +25,7 @@ public class DeleteObjects extends TestWithEmbeddedServer {
 			// Create a new project
 			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
-			IfcModelInterface model = bimServerClient.newModel(newProject, false);
+			IfcModelInterface model = bimServerClient.newModel(newProject, true);
 			
 			for (int i=0; i<10; i++) {
 				IfcWall wall = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
@@ -35,7 +35,7 @@ public class DeleteObjects extends TestWithEmbeddedServer {
 
 			long roid = model.commit("Initial model");
 
-			model = bimServerClient.getModel(newProject, roid, true, false);
+			model = bimServerClient.getModel(newProject, roid, true, true);
 			List<IfcWall> walls = model.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			assertTrue(walls.size() == 10);
 			IfcWall wall6 = (IfcWall) model.getByGuid("Wall 6");
