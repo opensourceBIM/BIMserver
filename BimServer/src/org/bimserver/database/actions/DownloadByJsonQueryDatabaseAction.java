@@ -37,7 +37,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationReference;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -108,7 +108,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					
 					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 					lastPackageMetaData = packageMetaData;
-					IfcModelInterface subModel = new IfcModel(packageMetaData, pidRoidMap);
+					IfcModelInterface subModel = new BasicIfcModel(packageMetaData, pidRoidMap);
 					
 					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.NO, highestStopId);
 					JsonObject queryObject = (JsonObject)query;
@@ -128,7 +128,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 				}
 			}
 
-			IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap, size);
+			IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap, size);
 			if (ifcModelSet.size() > 1) {
 				try {
 					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
@@ -146,7 +146,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
 		// TODO check, double merging??
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
+		IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));

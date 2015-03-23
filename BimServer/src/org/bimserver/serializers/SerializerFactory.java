@@ -29,6 +29,7 @@ import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.Schema;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
@@ -128,7 +129,7 @@ public class SerializerFactory {
 							throw new SerializerException("No usable converter found for schema " + model.getPackageMetaData().getSchema() + " for serializer " + serializerPlugin.getClass().getName());
 						}
 						try {
-							IfcModel targetModel = new IfcModel(bimServer.getMetaDataManager().getPackageMetaData(converterFactory.getTargetSchema().getEPackageName()), new HashMap<Integer, Long>(), (int) model.size());
+							IfcModel targetModel = new BasicIfcModel(bimServer.getMetaDataManager().getPackageMetaData(converterFactory.getTargetSchema().getEPackageName()), new HashMap<Integer, Long>(), (int) model.size());
 							SchemaConverter converter = converterFactory.create(model, targetModel);
 							converter.convert();
 							model = targetModel;

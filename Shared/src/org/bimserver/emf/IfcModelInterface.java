@@ -215,4 +215,10 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	<T extends IdEObject> T create(EClass eClass, long oid) throws IfcModelInterfaceException;
 
 	<T extends IdEObject> T createAndAdd(Class<T> class1) throws IfcModelInterfaceException;
+
+	boolean containsNoFetch(long oid);
+
+	IdEObject getNoFetch(long oid);
+
+	void load(IdEObject idEObject);
 }

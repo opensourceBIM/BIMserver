@@ -27,7 +27,7 @@ public class IfcMeasureWithUnit extends TestWithEmbeddedServer {
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
 			// Create furnishing
-			Long ifcMeasureWithUnitOid = lowLevelInterface.createObject(tid, "IfcMeasureWithUnit", true);
+			Long ifcMeasureWithUnitOid = lowLevelInterface.createObject(tid, "IfcMeasureWithUnit", false);
 			lowLevelInterface.setWrappedDoubleAttribute(tid, ifcMeasureWithUnitOid, "ValueComponent", "IfcPlaneAngleMeasure", 0.12345);
 
 			// Commit the transaction

@@ -25,6 +25,7 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
@@ -47,7 +48,7 @@ public class TestIfcStepSerializer {
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
-			IfcModel model = new IfcModel(packageMetaData, null);
+			IfcModel model = new BasicIfcModel(packageMetaData, null);
 			IfcWall wall = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			wall.setName("Test with 'quotes");
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);

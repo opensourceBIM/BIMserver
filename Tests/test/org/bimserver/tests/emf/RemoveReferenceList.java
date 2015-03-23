@@ -2,6 +2,8 @@ package org.bimserver.tests.emf;
 
 import static org.junit.Assert.fail;
 
+import java.io.File;
+
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
@@ -25,7 +27,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			// Create a new project
 			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
-			IfcModelInterface model = bimServerClient.newModel(newProject, false);
+			IfcModelInterface model = bimServerClient.newModel(newProject, true);
 			
 			IfcFurnishingElement furnishingElement = model.create(IfcFurnishingElement.class);
 			furnishingElement.setName("Furnishing 1");
@@ -37,10 +39,6 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			IfcRelContainedInSpatialStructure link3 = model.create(IfcRelContainedInSpatialStructure.class);
 			link3.setName("link3");
 
-			link1.getRelatedElements().add(furnishingElement);
-			link2.getRelatedElements().add(furnishingElement);
-			link3.getRelatedElements().add(furnishingElement);
-			
 			furnishingElement.getContainedInStructure().add(link1);
 			furnishingElement.getContainedInStructure().add(link2);
 			furnishingElement.getContainedInStructure().add(link3);
@@ -49,8 +47,10 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			
 			// refresh
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
-			
-			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
+
+			bimServerClient.download(newProject.getLastRevisionId(), bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc").getOid(), new File("testX.ifc"));
+
+			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, true);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
 				if (ifcFurnishingElement.getContainedInStructure().size() != 3) {
 					fail("Size should be 3, is " + ifcFurnishingElement.getContainedInStructure().size());
@@ -58,10 +58,14 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 				// Remove the middle one
 				ifcFurnishingElement.getContainedInStructure().remove(1);
 			}
+			
+			System.out.println(newProject.getLastRevisionId());
+			
 			model.commit("removed middle link");
 			
 			// refresh
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
+			System.out.println(newProject.getLastRevisionId());
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
 				if (ifcFurnishingElement.getContainedInStructure().size() != 2) {
 					fail("Size should be 2");

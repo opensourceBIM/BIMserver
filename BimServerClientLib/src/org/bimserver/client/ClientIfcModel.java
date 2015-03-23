@@ -19,8 +19,6 @@ package org.bimserver.client;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -32,41 +30,36 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.mina.util.Base64;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.emf.SharedJsonDeserializer;
 import org.bimserver.emf.SharedJsonSerializer;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.plugins.serializers.SerializerInputstream;
 import org.bimserver.plugins.services.BimServerClientException;
-import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.SingleWaitingObject;
-import org.bimserver.shared.WaitingList;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
-import org.eclipse.emf.common.util.AbstractEList;
-import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -88,13 +81,11 @@ public class ClientIfcModel extends IfcModel {
 	private long ifcSerializerOid = -1;
 	private long jsonGeometrySerializerOid = -1;
 	private long binaryGeometrySerializerOid = -1;
-	private ClientEStore eStore;
 	private boolean recordChanges;
 
 	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData, boolean recordChanges) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
 		super(packageMetaData, null);
 		this.recordChanges = recordChanges;
-		this.eStore = new ClientEStore(this);
 		this.bimServerClient = bimServerClient;
 		this.roid = roid;
 		if (recordChanges) {
@@ -227,7 +218,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 	
 	private void loadDeep() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
-		if (modelState != ModelState.FULLY_LOADED) {
+		if (modelState != ModelState.FULLY_LOADED && modelState != ModelState.LOADING) {
 			modelState = ModelState.LOADING;
 			Long download = bimServerClient.getBimsie1ServiceInterface().download(roid, getIfcSerializerOid(), true, true);
 			try {
@@ -241,212 +232,216 @@ public class ClientIfcModel extends IfcModel {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void processDownload(Long download) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
-		WaitingList<Long> waitingList = new WaitingList<Long>();
-		try {
+//		try {
 			InputStream downloadData = bimServerClient.getDownloadData(download, getIfcSerializerOid());
 			try {
-				boolean log = false;
-				// TODO Make this streaming again, make sure the EmfSerializer getInputStream method is working properly
-				if (log) {
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					if (downloadData instanceof SerializerInputstream) {
-						SerializerInputstream serializerInputStream = (SerializerInputstream)downloadData;
-						serializerInputStream.getEmfSerializer().writeToOutputStream(baos, null);
-					} else {
-						IOUtils.copy((InputStream) downloadData, baos);
-					}
-					FileOutputStream fos = new FileOutputStream(new File(download + ".json"));
-					IOUtils.write(baos.toByteArray(), fos);
-					fos.close();
-					downloadData = new ByteArrayInputStream(baos.toByteArray());
-				} else {
+				new SharedJsonDeserializer().read(downloadData, this);
+			} catch (DeserializeException e) {
+				e.printStackTrace();
+			}
+				
+//				boolean log = true;
+//				// TODO Make this streaming again, make sure the EmfSerializer getInputStream method is working properly
+//				if (log) {
 //					ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //					if (downloadData instanceof SerializerInputstream) {
 //						SerializerInputstream serializerInputStream = (SerializerInputstream)downloadData;
-//						serializerInputStream.getEmfSerializer().writeToOutputStream(baos);
+//						serializerInputStream.getEmfSerializer().writeToOutputStream(baos, null);
 //					} else {
 //						IOUtils.copy((InputStream) downloadData, baos);
 //					}
+//					FileOutputStream fos = new FileOutputStream(new File(download + ".json"));
+//					IOUtils.write(baos.toByteArray(), fos);
+//					fos.close();
 //					downloadData = new ByteArrayInputStream(baos.toByteArray());
-				}
-				JsonReader jsonReader = new JsonReader(new InputStreamReader(downloadData, Charsets.UTF_8));
-				try {
-					jsonReader.beginObject();
-					if (jsonReader.nextName().equals("objects")) {
-						jsonReader.beginArray();
-						while (jsonReader.hasNext()) {
-							jsonReader.beginObject();
-							if (jsonReader.nextName().equals("_i")) {
-								long oid = jsonReader.nextLong();
-								if (jsonReader.nextName().equals("_t")) {
-									String type = jsonReader.nextString();
-									EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(type);
-									if (eClass == null) {
-										throw new BimServerClientException("No class found with name " + type);
-									}
-									if (jsonReader.nextName().equals("_s")) {
-										int state = jsonReader.nextInt();
-										IdEObject object = null;
-										if (containsNoFetch(oid)) {
-											object = getNoFetch(oid);
-										} else {
-											object = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
-											((IdEObjectImpl) object).setBimserverEStore(eStore);
-											((IdEObjectImpl) object).setOid(oid);
-											add(oid, object);
-										}
-										if (state == 0) {
-											((IdEObjectImpl) object).setLoadingState(State.TO_BE_LOADED);
-										} else {
-											while (jsonReader.hasNext()) {
-												String featureName = jsonReader.nextName();
-												boolean embedded = false;
-												if (featureName.startsWith("_r")) {
-													featureName = featureName.substring(2);
-												} else if (featureName.startsWith("_e")) {
-													embedded = true;
-													featureName = featureName.substring(2);
-												}
-												EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureName);
-												if (eStructuralFeature == null) {
-													throw new BimServerClientException("Unknown field (" + featureName + ") on class " + eClass.getName());
-												}
-												if (eStructuralFeature.isMany()) {
-													jsonReader.beginArray();
-													if (eStructuralFeature instanceof EAttribute) {
-														List list = (List) object.eGet(eStructuralFeature);
-														List<String> stringList = null;
-		
-														if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()
-																|| eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-															EStructuralFeature asStringFeature = eClass.getEStructuralFeature(eStructuralFeature.getName() + "AsString");
-															stringList = (List<String>) object.eGet(asStringFeature);
-														}
-		
-														while (jsonReader.hasNext()) {
-															Object e = readPrimitive(jsonReader, eStructuralFeature);
-															list.add(e);
-															if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-																double val = (Double) e;
-																stringList.add("" + val); // TODO this is losing precision, maybe also send the string value?
-															}
-														}
-													} else if (eStructuralFeature instanceof EReference) {
-														int index = 0;
-														while (jsonReader.hasNext()) {
-															if (embedded) {
-																List list = (List)object.eGet(eStructuralFeature);
-																jsonReader.beginObject();
-																String n = jsonReader.nextName();
-																if (n.equals("_t")) {
-																	String t = jsonReader.nextString();
-																	IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
-																	((IdEObjectImpl) wrappedObject).setOid(object.getOid()); // crazy hack, to make sure the wrapped objects know to which object they belong, otherwise we would never know what to do when user calls setWrappedValue
-																	((IdEObjectImpl) wrappedObject).eSetStore(eStore);
-																	if (jsonReader.nextName().equals("value")) {
-																		EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
-																		wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
-																		list.add(wrappedObject);
-																	} else {
-																		// error
-																	}
-																} else if (n.equals("oid")) {
-																	// Sometimes embedded is true, but also referenced are included, those are always embedded in an object
-																	long refOid = jsonReader.nextLong();
-																	if (containsNoFetch(refOid)) {
-																		IdEObject refObj = getNoFetch(refOid);
-																		AbstractEList l = (AbstractEList)object.eGet(eStructuralFeature);
-																		while (l.size() <= index) {
-																			l.addUnique(refObj.eClass().getEPackage().getEFactoryInstance().create(refObj.eClass()));
-																		}
-																		l.setUnique(index, refObj);
-																	} else {
-																		waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
-																	}
-																}
-																jsonReader.endObject();
-															} else {
-																long refOid = jsonReader.nextLong();
-																if (containsNoFetch(refOid)) {
-																	IdEObject refObj = getNoFetch(refOid);
-																	AbstractEList l = (AbstractEList)object.eGet(eStructuralFeature);
-																	while (l.size() <= index) {
-																		l.addUnique(refObj.eClass().getEPackage().getEFactoryInstance().create(refObj.eClass()));
-																	}
-																	l.setUnique(index, refObj);
-																} else {
-																	waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
-																}
-																index++;
-															}
-														}
-													}
-													jsonReader.endArray();
-												} else {
-													if (eStructuralFeature instanceof EAttribute) {
-														Object x = readPrimitive(jsonReader, eStructuralFeature);
-														if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-															EStructuralFeature asStringFeature = object.eClass().getEStructuralFeature(eStructuralFeature.getName() + "AsString");
-															object.eSet(asStringFeature, "" + x); // TODO this is losing precision, maybe also send the string value?
-														}
-														object.eSet(eStructuralFeature, x);
-													} else if (eStructuralFeature instanceof EReference) {
-														if (embedded) {
-															jsonReader.beginObject();
-															if (jsonReader.nextName().equals("_t")) {
-																String t = jsonReader.nextString();
-																IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
-																((IdEObjectImpl) wrappedObject).setBimserverEStore(eStore);
-																((IdEObjectImpl) wrappedObject).setOid(object.getOid()); // crazy hack, to make sure the wrapped objects know to which object they belong, otherwise we would never know what to do when user calls setWrappedValue
-																if (jsonReader.nextName().equals("_v")) {
-																	EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
-																	wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
-																	object.eSet(eStructuralFeature, wrappedObject);
-																} else {
-																	// error
-																}
-															}
-															jsonReader.endObject();
-														} else {
-															long refOid = jsonReader.nextLong();
-															if (containsNoFetch(refOid)) {
-																IdEObject refObj = getNoFetch(refOid);
-																object.eSet(eStructuralFeature, refObj);
-															} else {
-																waitingList.add(refOid, new SingleWaitingObject(-1, object, eStructuralFeature));
-															}
-														}
-													}
-												}
-											}
-										}
-										if (waitingList.containsKey(oid)) {
-											try {
-												waitingList.updateNode(oid, eClass, object);
-											} catch (DeserializeException e) {
-												LOGGER.error("", e);
-											}
-										}
-									}
-								}
-							}
-							jsonReader.endObject();
-						}
-						jsonReader.endArray();
-					}
-					jsonReader.endObject();
-				} finally {
-					jsonReader.close();
-				}
-				waitingList.dumpIfNotEmpty();				
-			} finally {
-				downloadData.close();
-			}
-		} catch (Exception e) {
-			throw new BimServerClientException(e);
-		} finally {
-			bimServerClient.getServiceInterface().cleanupLongAction(download);
-		}
+//				} else {
+////					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+////					if (downloadData instanceof SerializerInputstream) {
+////						SerializerInputstream serializerInputStream = (SerializerInputstream)downloadData;
+////						serializerInputStream.getEmfSerializer().writeToOutputStream(baos);
+////					} else {
+////						IOUtils.copy((InputStream) downloadData, baos);
+////					}
+////					downloadData = new ByteArrayInputStream(baos.toByteArray());
+//				}
+//				JsonReader jsonReader = new JsonReader(new InputStreamReader(downloadData, Charsets.UTF_8));
+//				try {
+//					jsonReader.beginObject();
+//					if (jsonReader.nextName().equals("objects")) {
+//						jsonReader.beginArray();
+//						while (jsonReader.hasNext()) {
+//							jsonReader.beginObject();
+//							if (jsonReader.nextName().equals("_i")) {
+//								long oid = jsonReader.nextLong();
+//								if (jsonReader.nextName().equals("_t")) {
+//									String type = jsonReader.nextString();
+//									EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(type);
+//									if (eClass == null) {
+//										throw new BimServerClientException("No class found with name " + type);
+//									}
+//									if (jsonReader.nextName().equals("_s")) {
+//										int state = jsonReader.nextInt();
+//										IdEObject object = null;
+//										if (containsNoFetch(oid)) {
+//											object = getNoFetch(oid);
+//										} else {
+//											object = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
+//											((IdEObjectImpl) object).setBimserverEStore(eStore);
+//											((IdEObjectImpl) object).setOid(oid);
+//											add(oid, object);
+//										}
+//										if (state == 0) {
+//											((IdEObjectImpl) object).setLoadingState(State.TO_BE_LOADED);
+//										} else {
+//											while (jsonReader.hasNext()) {
+//												String featureName = jsonReader.nextName();
+//												boolean embedded = false;
+//												if (featureName.startsWith("_r")) {
+//													featureName = featureName.substring(2);
+//												} else if (featureName.startsWith("_e")) {
+//													embedded = true;
+//													featureName = featureName.substring(2);
+//												}
+//												EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureName);
+//												if (eStructuralFeature == null) {
+//													throw new BimServerClientException("Unknown field (" + featureName + ") on class " + eClass.getName());
+//												}
+//												if (eStructuralFeature.isMany()) {
+//													jsonReader.beginArray();
+//													if (eStructuralFeature instanceof EAttribute) {
+//														List list = (List) object.eGet(eStructuralFeature);
+//														List<String> stringList = null;
+//		
+//														if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()
+//																|| eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+//															EStructuralFeature asStringFeature = eClass.getEStructuralFeature(eStructuralFeature.getName() + "AsString");
+//															stringList = (List<String>) object.eGet(asStringFeature);
+//														}
+//		
+//														while (jsonReader.hasNext()) {
+//															Object e = readPrimitive(jsonReader, eStructuralFeature);
+//															list.add(e);
+//															if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+//																double val = (Double) e;
+//																stringList.add("" + val); // TODO this is losing precision, maybe also send the string value?
+//															}
+//														}
+//													} else if (eStructuralFeature instanceof EReference) {
+//														int index = 0;
+//														while (jsonReader.hasNext()) {
+//															if (embedded) {
+//																List list = (List)object.eGet(eStructuralFeature);
+//																jsonReader.beginObject();
+//																String n = jsonReader.nextName();
+//																if (n.equals("_t")) {
+//																	String t = jsonReader.nextString();
+//																	IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
+//																	((IdEObjectImpl) wrappedObject).setOid(object.getOid()); // crazy hack, to make sure the wrapped objects know to which object they belong, otherwise we would never know what to do when user calls setWrappedValue
+//																	((IdEObjectImpl) wrappedObject).setBimserverEStore(eStore);
+//																	if (jsonReader.nextName().equals("value")) {
+//																		EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
+//																		wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
+//																		list.add(wrappedObject);
+//																	} else {
+//																		// error
+//																	}
+//																} else if (n.equals("_i")) {
+//																	// Sometimes embedded is true, but also referenced are included, those are always embedded in an object
+//																	long refOid = jsonReader.nextLong();
+//																	if (containsNoFetch(refOid)) {
+//																		IdEObject refObj = getNoFetch(refOid);
+//																		AbstractEList l = (AbstractEList)object.eGet(eStructuralFeature);
+//																		while (l.size() <= index) {
+//																			l.addUnique(refObj.eClass().getEPackage().getEFactoryInstance().create(refObj.eClass()));
+//																		}
+//																		l.setUnique(index, refObj);
+//																	} else {
+//																		waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
+//																	}
+//																}
+//																jsonReader.endObject();
+//															} else {
+//																long refOid = jsonReader.nextLong();
+//																if (containsNoFetch(refOid)) {
+//																	IdEObject refObj = getNoFetch(refOid);
+//																	AbstractEList l = (AbstractEList)object.eGet(eStructuralFeature);
+//																	while (l.size() <= index) {
+//																		l.addUnique(refObj.eClass().getEPackage().getEFactoryInstance().create(refObj.eClass()));
+//																	}
+//																	l.setUnique(index, refObj);
+//																} else {
+//																	waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
+//																}
+//																index++;
+//															}
+//														}
+//													}
+//													jsonReader.endArray();
+//												} else {
+//													if (eStructuralFeature instanceof EAttribute) {
+//														Object x = readPrimitive(jsonReader, eStructuralFeature);
+//														if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+//															EStructuralFeature asStringFeature = object.eClass().getEStructuralFeature(eStructuralFeature.getName() + "AsString");
+//															object.eSet(asStringFeature, "" + x); // TODO this is losing precision, maybe also send the string value?
+//														}
+//														object.eSet(eStructuralFeature, x);
+//													} else if (eStructuralFeature instanceof EReference) {
+//														if (embedded) {
+//															jsonReader.beginObject();
+//															if (jsonReader.nextName().equals("_t")) {
+//																String t = jsonReader.nextString();
+//																IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
+//																((IdEObjectImpl) wrappedObject).setBimserverEStore(eStore);
+//																((IdEObjectImpl) wrappedObject).setOid(object.getOid()); // crazy hack, to make sure the wrapped objects know to which object they belong, otherwise we would never know what to do when user calls setWrappedValue
+//																if (jsonReader.nextName().equals("_v")) {
+//																	EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
+//																	wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
+//																	object.eSet(eStructuralFeature, wrappedObject);
+//																} else {
+//																	// error
+//																}
+//															}
+//															jsonReader.endObject();
+//														} else {
+//															long refOid = jsonReader.nextLong();
+//															if (containsNoFetch(refOid)) {
+//																IdEObject refObj = getNoFetch(refOid);
+//																object.eSet(eStructuralFeature, refObj);
+//															} else {
+//																waitingList.add(refOid, new SingleWaitingObject(-1, object, eStructuralFeature));
+//															}
+//														}
+//													}
+//												}
+//											}
+//										}
+//										if (waitingList.containsKey(oid)) {
+//											try {
+//												waitingList.updateNode(oid, eClass, object);
+//											} catch (DeserializeException e) {
+//												LOGGER.error("", e);
+//											}
+//										}
+//									}
+//								}
+//							}
+//							jsonReader.endObject();
+//						}
+//						jsonReader.endArray();
+//					}
+//					jsonReader.endObject();
+//				} finally {
+//					jsonReader.close();
+//				}
+//				waitingList.dumpIfNotEmpty();				
+//			} finally {
+//				downloadData.close();
+//			}
+//		} catch (Exception e) {
+//			throw new BimServerClientException(e);
+//		} finally {
+//			bimServerClient.getServiceInterface().cleanupLongAction(download);
+//		}
 	}
 
 	private Object readPrimitive(JsonReader jsonReader, EStructuralFeature eStructuralFeature) throws IOException {
@@ -653,12 +648,6 @@ public class ClientIfcModel extends IfcModel {
 		return idEObject;
 	}
 
-	@Override
-	public void remove(IdEObject idEObject) {
-		// TODO
-		super.remove(idEObject);
-	}
-
 	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
 		return create((EClass)Ifc2x3tc1Package.eINSTANCE.getEClassifier(clazz.getSimpleName()));
 	}
@@ -667,7 +656,7 @@ public class ClientIfcModel extends IfcModel {
 	@Override
 	public <T extends IdEObject> T create(EClass eClass, long oid) throws IfcModelInterfaceException {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		object.setBimserverEStore(eStore);
+		object.setModel(this);
 		object.setOid(oid);
 		add(oid, object);
 		return (T) object;
@@ -676,18 +665,59 @@ public class ClientIfcModel extends IfcModel {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException {
-		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		object.setBimserverEStore(eStore);
+		final IdEObjectImpl idEObject = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		
+		EContentAdapter adapter = new EContentAdapter() {
+			public void notifyChanged(Notification notification) {
+				super.notifyChanged(notification);
+				EStructuralFeature eFeature = (EStructuralFeature) notification.getFeature();
+				if (notification.getEventType() == Notification.ADD) {
+					if (getModelState() != ModelState.LOADING) {
+						try {
+							if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+								bimServerClient.getBimsie1LowLevelInterface().addStringAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewStringValue());
+							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
+								throw new UnsupportedOperationException();
+							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
+								bimServerClient.getBimsie1LowLevelInterface().addDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewDoubleValue());
+							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
+								bimServerClient.getBimsie1LowLevelInterface().addBooleanAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewBooleanValue());
+							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
+								bimServerClient.getBimsie1LowLevelInterface().addIntegerAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewIntValue());
+							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+								throw new UnsupportedOperationException();
+							} else if (eFeature.getEType() instanceof EEnum) {
+								throw new UnsupportedOperationException();
+							} else if (eFeature instanceof EReference) {
+								if (notification.getNewValue() == null) {
+								} else {
+									bimServerClient.getBimsie1LowLevelInterface().addReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) notification.getNewValue()).getOid());
+								}
+							} else {
+								throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + notification.getNewValue());
+							}
+						} catch (ServiceException e) {
+							LOGGER.error("", e);
+						} catch (PublicInterfaceNotFoundException e) {
+							LOGGER.error("", e);
+						}
+					}
+				}
+			}
+		};
+		
+		idEObject.eAdapters().add(adapter);
+		idEObject.setModel(this);
 		if (recordChanges) {
 			try {
 				Long oid = bimServerClient.getBimsie1LowLevelInterface().createObject(tid, eClass.getName(), true);
-				object.setOid(oid);
+				idEObject.setOid(oid);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
 		}
-		add(object.getOid(), object);
-		return (T) object;
+		add(idEObject.getOid(), idEObject);
+		return (T) idEObject;
 	}
 
 	@SuppressWarnings({ "unused", "resource" })
@@ -843,8 +873,185 @@ public class ClientIfcModel extends IfcModel {
 					LOGGER.error("", e);
 				}
 			}
-		} else {
-			if (getModelState() != ModelState.LOADING) {
+		}
+	}
+	
+	public void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
+		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this);
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			boolean mode = sharedJsonSerializer.write(baos, null);
+			while (mode) {
+				mode = sharedJsonSerializer.write(baos, null);
+			}
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("json", poid);
+			bimServerClient.checkin(poid, comment, deserializer.getOid(), false, true, baos.size(), "test", new ByteArrayInputStream(baos.toByteArray()));
+		} catch (SerializerException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void load(IdEObject object) {
+		loadExplicit(object.getOid());
+	}
+
+	@Override
+	public void remove(IdEObject object) {
+		try {
+			bimServerClient.getBimsie1LowLevelInterface().removeObject(getTransactionId(), object.getOid());
+		} catch (PublicInterfaceNotFoundException e) {
+			LOGGER.error("", e);
+		} catch (ServerException e) {
+			LOGGER.error("", e);
+		} catch (UserException e) {
+			LOGGER.error("", e);
+		}
+	}
+
+//	public Object get(InternalEObject eObject, EStructuralFeature feature, int index) {
+//		((IdEObject) eObject).load();
+//		Entry entry = new Entry(eObject, feature);
+//		if (index == NO_INDEX) {
+//			return map.get(entry);
+//		} else {
+//			return getList(entry).get(index);
+//		}
+//	}
+	
+//	public void add(InternalEObject eObject, EStructuralFeature eFeature, int index, Object newValue) {
+//		IdEObject idEObject = (IdEObject) eObject;
+//		if (getModelState() != ModelState.LOADING) {
+//			try {
+//				if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+//					bimServerClient.getBimsie1LowLevelInterface().addStringAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (String) newValue);
+//				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
+//					throw new UnsupportedOperationException();
+//				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
+//					bimServerClient.getBimsie1LowLevelInterface().addDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Double) newValue);
+//				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
+//					bimServerClient.getBimsie1LowLevelInterface().addBooleanAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Boolean) newValue);
+//				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
+//					bimServerClient.getBimsie1LowLevelInterface().addIntegerAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Integer) newValue);
+//				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+//					throw new UnsupportedOperationException();
+//				} else if (eFeature.getEType() instanceof EEnum) {
+//					throw new UnsupportedOperationException();
+//				} else if (eFeature instanceof EReference) {
+//					if (newValue == null) {
+//					} else {
+//						bimServerClient.getBimsie1LowLevelInterface().addReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) newValue).getOid());
+//					}
+//				} else {
+//					throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
+//				}
+//			} catch (ServiceException e) {
+//				LOGGER.error("", e);
+//			} catch (PublicInterfaceNotFoundException e) {
+//				LOGGER.error("", e);
+//			}
+//		}
+//		super.add(eObject, eFeature, index, newValue);
+//	}
+//
+//	@Override
+//	public Object set(InternalEObject eObject, EStructuralFeature eFeature, int index, Object newValue) {
+//		IdEObject idEObject = (IdEObject) eObject;
+//		if (index == NO_INDEX) {
+//			if (getModelState() != ModelState.LOADING) {
+//				try {
+//					if (newValue != EStructuralFeature.Internal.DynamicValueHolder.NIL) {
+//						Bimsie1LowLevelInterface lowLevelInterface = getBimServerClient().getBimsie1LowLevelInterface();
+//						if (eFeature.getName().equals("wrappedValue")) {
+//							// Wrapped objects get the same oid as their "parent" object, so we know which object the client wants to update. That's why we can use idEObject.getOid() here
+//							// We are making this crazy hack ever crazier, let's iterate over our parents features, and see if there is one matching our wrapped type...
+//							// Seriously, when there are multiple fields of the same type, this fails miserably, a real fix should probably store the parent-oid + feature name in the wrapped object (requires two extra, volatile, fields),
+//							// or we just don't support this (just create a new wrapped object too), we could even throw some sort of exception. Hack morally okay because it's client-side...
+//							EReference foundReference = null;
+//							if (contains(idEObject.getOid())) {
+//								IdEObject parentObject = get(idEObject.getOid());
+//								int found = 0;
+//								foundReference = null;
+//								for (EReference testReference : parentObject.eClass().getEAllReferences()) {
+//									if (((EClass)testReference.getEType()).isSuperTypeOf(idEObject.eClass())) {
+//										foundReference = testReference;
+//										found++;
+//										if (found > 1) {
+//											throw new RuntimeException("Sorry, crazy hack could not resolve the right field, please let BIMserver developer know (debug info: " + parentObject.eClass().getName() + ", " + idEObject.eClass().getName() + ")");
+//										}
+//									}
+//								}
+//								if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+//									lowLevelInterface.setWrappedStringAttribute(getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (String) newValue);
+//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
+//									lowLevelInterface.setWrappedLongAttribute(getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Long) newValue);
+//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
+//									lowLevelInterface.setWrappedDoubleAttribute(getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Double) newValue);
+//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
+//									lowLevelInterface.setWrappedBooleanAttribute(getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Boolean) newValue);
+//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
+//									lowLevelInterface.setWrappedIntegerAttribute(getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Integer) newValue);
+//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+//									throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
+//								}
+//							} else {
+//								if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+//									lowLevelInterface.setStringAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (String) newValue);
+//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
+//									lowLevelInterface.setLongAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Long) newValue);
+//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
+//									lowLevelInterface.setDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Double) newValue);
+//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
+//									lowLevelInterface.setBooleanAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Boolean) newValue);
+//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
+//									lowLevelInterface.setIntegerAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Integer) newValue);
+//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+//									lowLevelInterface.setByteArrayAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Byte[]) newValue);
+//								} else if (eFeature.getEType() instanceof EEnum) {
+//									lowLevelInterface.setEnumAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((Enum<?>) newValue).toString());
+//								} else if (eFeature instanceof EReference) {
+//									if (newValue == null) {
+//										lowLevelInterface.setReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), -1L);
+//									} else {
+//										lowLevelInterface.setReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) newValue).getOid());
+//									}
+//								} else {
+//									throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
+//								}
+//							}
+//						} else {
+//							if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+//								lowLevelInterface.setStringAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (String) newValue);
+//							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
+//								lowLevelInterface.setLongAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Long) newValue);
+//							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
+//								lowLevelInterface.setDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Double) newValue);
+//							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
+//								lowLevelInterface.setBooleanAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Boolean) newValue);
+//							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
+//								lowLevelInterface.setIntegerAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Integer) newValue);
+//							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+//								lowLevelInterface.setByteArrayAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Byte[]) newValue);
+//							} else if (eFeature.getEType() instanceof EEnum) {
+//								lowLevelInterface.setEnumAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((Enum<?>) newValue).toString());
+//							} else if (eFeature instanceof EReference) {
+//								if (newValue == null) {
+//									lowLevelInterface.setReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), -1L);
+//								} else {
+//									lowLevelInterface.setReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) newValue).getOid());
+//								}
+//							} else {
+//								throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
+//							}
+//						}
+//					}
+//				} catch (ServiceException e) {
+//					LOGGER.error("", e);
+//				} catch (PublicInterfaceNotFoundException e) {
+//					LOGGER.error("", e);
+//				}
+//			}
+//		} else {
+//			if (getModelState() != ModelState.LOADING) {
 //				try {
 //					Bimsie1LowLevelInterface lowLevelInterface = getBimServerClient().getBimsie1LowLevelInterface();
 //					if (newValue instanceof String) {
@@ -867,22 +1074,8 @@ public class ClientIfcModel extends IfcModel {
 //				} catch (PublicInterfaceNotFoundException e) {
 //					LOGGER.error("", e);
 //				}
-			}
-		}
-	}
-	
-	public void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
-		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this);
-		try {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			boolean mode = sharedJsonSerializer.write(baos, null);
-			while (mode) {
-				mode = sharedJsonSerializer.write(baos, null);
-			}
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("json", poid);
-			bimServerClient.checkin(poid, comment, deserializer.getOid(), false, true, baos.size(), "test", new ByteArrayInputStream(baos.toByteArray()));
-		} catch (SerializerException e) {
-			e.printStackTrace();
-		}
-	}
+//			}
+//		}
+//		return super.set(eObject, eFeature, index, newValue);
+//	}
 }

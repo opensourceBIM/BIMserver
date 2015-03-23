@@ -32,7 +32,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -142,7 +142,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					throw new UserException(e);
 				}
 			}
-			IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap, size);
+			IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap, size);
 			if (ifcModelSet.size() > 1) {
 				try {
 					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
@@ -160,7 +160,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
 		// TODO check, double merging??
-		IfcModelInterface ifcModel = new IfcModel(lastPackageMetaData, pidRoidMap);
+		IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));

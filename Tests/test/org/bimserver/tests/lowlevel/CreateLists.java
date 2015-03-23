@@ -28,7 +28,7 @@ public class CreateLists extends TestWithEmbeddedServer {
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			Long cartesianPointOid = lowLevelInterface.createObject(tid, "IfcCartesianPoint", true);
+			Long cartesianPointOid = lowLevelInterface.createObject(tid, "IfcCartesianPoint", false);
 			
 			double firstVal = 5.1;
 			lowLevelInterface.addDoubleAttribute(tid, cartesianPointOid, "Coordinates", firstVal);

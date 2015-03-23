@@ -37,7 +37,7 @@ public class LoadCompleteModel extends TestWithEmbeddedServer {
 			project = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
 			
 			// Load model without lazy loading (complete model at once)
-			IfcModelInterface model = bimServerClient.getModel(project, project.getLastRevisionId(), false, false);
+			IfcModelInterface model = bimServerClient.getModel(project, project.getLastRevisionId(), false, true);
 
 			// Change the window names
 			for (IfcWindow window : model.getAllWithSubTypes(IfcWindow.class)) {

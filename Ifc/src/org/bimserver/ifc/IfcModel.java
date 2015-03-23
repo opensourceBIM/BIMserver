@@ -78,7 +78,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
-public class IfcModel implements IfcModelInterface {
+public abstract class IfcModel implements IfcModelInterface {
 
 	private final ModelMetaData modelMetaData = new ModelMetaData();
 	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
@@ -987,4 +987,16 @@ public class IfcModel implements IfcModelInterface {
 	@Override
 	public void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
 	}
+
+	@Override
+	public boolean containsNoFetch(long oid) {
+		return contains(oid);
+	}
+
+	@Override
+	public IdEObject getNoFetch(long oid) {
+		return get(oid);
+	}
+
+	public abstract void load(IdEObject idEObject);
 }

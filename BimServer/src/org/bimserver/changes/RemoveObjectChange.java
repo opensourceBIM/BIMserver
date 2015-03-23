@@ -30,6 +30,7 @@ import org.bimserver.database.actions.AbstractDownloadDatabaseAction;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -71,7 +72,7 @@ public class RemoveObjectChange implements Change {
 
 		int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
 		Query query = new Query(packageMetaData, project.getId(), concreteRevision.getId(), -1, null, Deep.YES, highestStopId);
-		IfcModel subModel = new IfcModel(packageMetaData, null);
+		IfcModel subModel = new BasicIfcModel(packageMetaData, null);
 		databaseSession.getMap(subModel, query);
 		for (IdEObject idEObject2 : subModel.getValues()) {
 			if (idEObject2 == idEObject) {
