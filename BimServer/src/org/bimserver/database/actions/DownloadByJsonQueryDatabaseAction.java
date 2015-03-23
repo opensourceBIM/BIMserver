@@ -27,6 +27,7 @@ import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -108,7 +109,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					
 					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 					lastPackageMetaData = packageMetaData;
-					IfcModelInterface subModel = new BasicIfcModel(packageMetaData, pidRoidMap);
+					IfcModelInterface subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
 					
 					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.NO, highestStopId);
 					JsonObject queryObject = (JsonObject)query;
@@ -128,7 +129,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 				}
 			}
 
-			IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap, size);
+			IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, size, getDatabaseSession());
 			if (ifcModelSet.size() > 1) {
 				try {
 					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));

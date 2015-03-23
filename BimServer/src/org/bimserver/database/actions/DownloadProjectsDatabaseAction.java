@@ -24,6 +24,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -88,7 +89,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 					lastPackageMetaData = packageMetaData;
-					IfcModel subModel = new BasicIfcModel(packageMetaData, pidRoidMap);
+					IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
 					int highestStopId = findHighestStopRid(project, concreteRevision);
 					Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), objectIDM, Deep.YES, highestStopId);
 					subModel.addChangeListener(new IfcModelChangeListener() {
@@ -118,7 +119,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap);
+		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

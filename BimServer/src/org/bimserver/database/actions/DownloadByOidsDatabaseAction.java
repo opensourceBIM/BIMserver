@@ -25,6 +25,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -32,7 +33,6 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
@@ -87,7 +87,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
-				IfcModel subModel = new BasicIfcModel(packageMetaData, pidRoidMap);
+				IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
 				int highestStopId = findHighestStopRid(project, concreteRevision);
 				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
@@ -116,7 +116,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 				// }
 			}
 		}
-		IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap);
+		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {

@@ -17,6 +17,11 @@ public class ServerIfcModel extends IfcModel {
 		super(packageMetaData, pidRoidMap);
 		this.databaseSession = databaseSession;
 	}
+
+	public ServerIfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap, int size, DatabaseSession databaseSession) {
+		super(packageMetaData, pidRoidMap, size);
+		this.databaseSession = databaseSession;
+	}
 	
 	public void load(IdEObject idEObject) {
 		((IdEObjectImpl)idEObject).setLoadingState(State.LOADING);
