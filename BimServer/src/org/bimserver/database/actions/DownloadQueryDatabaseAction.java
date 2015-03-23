@@ -18,13 +18,13 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
@@ -72,7 +72,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 				QueryEnginePlugin queryEnginePlugin = getBimServer().getPluginManager().getQueryEngine(queryEngineObject.getPluginDescriptor().getPluginClassName(), true);
 				if (queryEnginePlugin != null) {
 					QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(new PluginConfiguration(queryEngineObject.getSettings()));
-					IfcModelInterface result = new BasicIfcModel(packageMetaData, null); // TODO
+					IfcModelInterface result = new ServerIfcModel(packageMetaData, null, getDatabaseSession()); // TODO
 					IfcModelInterface finalResult = queryEngine.query(ifcModel, code, new Reporter(){
 						@Override
 						public void error(Exception error) {

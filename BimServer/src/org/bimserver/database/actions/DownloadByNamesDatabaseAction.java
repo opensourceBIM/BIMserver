@@ -26,6 +26,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -35,7 +36,6 @@ import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataException;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
@@ -114,7 +114,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 			for (ConcreteRevision concreteRevision : map.keySet()) {
 				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
-				IfcModel subModel = new BasicIfcModel(packageMetaData, ridRoidMap);
+				IfcModel subModel = new ServerIfcModel(packageMetaData, ridRoidMap, getDatabaseSession());
 				int highestStopId = findHighestStopRid(project, concreteRevision);
 				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), objectIDM, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
@@ -137,7 +137,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, ridRoidMap);
+		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, ridRoidMap, getDatabaseSession());
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 			ifcModel.getModelMetaData().setName("query");

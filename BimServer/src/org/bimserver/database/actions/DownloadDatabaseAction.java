@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -102,7 +103,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			if (subRevision.getUser().getOid() != ignoreUoid) {
 				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(subRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
-				IfcModel subModel = new BasicIfcModel(packageMetaData, pidRoidMap);
+				IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
 				ifcHeader = subRevision.getIfcHeader();
 				int highestStopId = findHighestStopRid(project, subRevision);
 				Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), subRevision.getOid(), objectIDM, Deep.YES, highestStopId);
@@ -129,7 +130,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap);
+		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(revision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
