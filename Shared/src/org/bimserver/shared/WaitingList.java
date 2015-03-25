@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.services.BimServerClientException;
@@ -52,7 +53,7 @@ public class WaitingList<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void updateNode(T expressId, EClass ec, EObject eObject) throws DeserializeException {
+	public void updateNode(T expressId, EClass ec, IdEObject eObject) throws DeserializeException {
 		for (WaitingObject waitingObject : waitingObjects.get(expressId)) {
 			if (waitingObject.getStructuralFeature().isMany()) {
 				AbstractEList<EObject> list = (AbstractEList<EObject>) waitingObject.getObject().eGet(waitingObject.getStructuralFeature());
@@ -77,7 +78,7 @@ public class WaitingList<T> {
 					waitingObject.getObject().eSet(waitingObject.getStructuralFeature(), eObject);
 				} else {
 					throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
-							+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
+							+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName() + "/" + eObject.getOid());
 				}
 			}
 		}

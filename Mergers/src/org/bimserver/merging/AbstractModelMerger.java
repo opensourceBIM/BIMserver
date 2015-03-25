@@ -121,7 +121,7 @@ public abstract class AbstractModelMerger implements ModelMerger {
 							continue;
 					}
 					try {
-						modelHelper.copy(ideObject);
+						modelHelper.copy(ideObject, true);
 					} catch (IfcModelInterfaceException e) {
 						throw new MergeException(e);
 					}
@@ -285,7 +285,7 @@ public abstract class AbstractModelMerger implements ModelMerger {
 				}
 				for (long key : ifcModel.keySet()) {
 					try {
-						modelHelper.copy((IdEObject) ifcModel.get(key));
+						modelHelper.copy((IdEObject) ifcModel.get(key), true);
 					} catch (IfcModelInterfaceException e) {
 						throw new MergeException(e);
 					}

@@ -461,6 +461,11 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		buffer.put((byte) unsetted.length);
 		buffer.put(unsetted);
+		
+		EClass eClass = getEClassForOid(object.getOid());
+		if (!eClass.isSuperTypeOf(object.eClass())) {
+			throw new BimserverDatabaseException("Object with oid " + object.getOid() + " is a " + object.eClass().getName() + " but it's cid-part says it's a " + eClass.getName());
+		}
 
 		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
 			if (!useUnsetBit(feature, object)) {

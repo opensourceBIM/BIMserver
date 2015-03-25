@@ -35,6 +35,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.SharedJsonDeserializer;
 import org.bimserver.emf.SharedJsonSerializer;
@@ -131,7 +132,7 @@ public class ClientIfcModel extends IfcModel {
 		Map<IdEObject, IdEObject> map = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject sourceObject : getValues()) {
 			try {
-				IdEObjectImpl targetObject = branch.create(sourceObject.eClass(), sourceObject.getOid());
+				IdEObjectImpl targetObject = branch.create(sourceObject.eClass());
 				targetObject.setLoadingState(State.LOADED);
 				map.put(sourceObject, targetObject);
 			} catch (IfcModelInterfaceException e) {
@@ -235,7 +236,7 @@ public class ClientIfcModel extends IfcModel {
 //		try {
 			InputStream downloadData = bimServerClient.getDownloadData(download, getIfcSerializerOid());
 			try {
-				new SharedJsonDeserializer().read(downloadData, this);
+				new SharedJsonDeserializer(true).read(downloadData, this);
 			} catch (DeserializeException e) {
 				e.printStackTrace();
 			}
@@ -706,7 +707,9 @@ public class ClientIfcModel extends IfcModel {
 			}
 		};
 		
-		idEObject.eAdapters().add(adapter);
+		if (recordChanges) {
+			idEObject.eAdapters().add(adapter);
+		}
 		idEObject.setModel(this);
 		if (recordChanges) {
 			try {
@@ -877,6 +880,13 @@ public class ClientIfcModel extends IfcModel {
 	}
 	
 	public void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
+		this.fixOids(new OidProvider<Long>() {
+			private long c = 1;
+			@Override
+			public Long newOid(EClass eClass) {
+				return c++;
+			}
+		});
 		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this);
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();

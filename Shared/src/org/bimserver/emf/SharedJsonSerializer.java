@@ -27,6 +27,7 @@ import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
 import org.bimserver.emf.IdEObjectImpl.State;
+import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -47,6 +48,7 @@ public class SharedJsonSerializer {
 	private Mode mode = Mode.HEADER;
 	private boolean firstObject = true;
 	private Iterator<IdEObject> iterator;
+	private long oidCounter = 1;
 
 	private IfcModelInterface model;
 
@@ -68,6 +70,18 @@ public class SharedJsonSerializer {
 			} else if (mode == Mode.BODY) {
 				if (iterator.hasNext()) {
 					IdEObject object = iterator.next();
+					if (object.getOid() == -1) {
+						throw new SerializerException("Object cannot have oid -1 " + object.eClass().getName());
+					}
+					if (object.getOid() == -1) {
+						((IdEObjectImpl)object).setOid(oidCounter++);
+					}
+					if (object instanceof IfcFurnishingElement) {
+						IfcFurnishingElement ifcFurnishingElement = (IfcFurnishingElement)object;
+						if (ifcFurnishingElement.getName().equals("ADDED FURNITURE")) {
+							System.out.println();
+						}
+					}
 					if (object.eClass().getEAnnotation("hidden") == null) {
 						if (!firstObject) {
 							out.write(",");

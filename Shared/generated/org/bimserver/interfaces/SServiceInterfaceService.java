@@ -1,16 +1,13 @@
 package org.bimserver.interfaces;
 
 
-import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.meta.SClass;
-import org.bimserver.shared.meta.SConstructor;
-import org.bimserver.shared.meta.SServicesMap;
-import org.bimserver.shared.meta.SourceCodeFetcher;
+import org.bimserver.shared.meta.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.bimserver.shared.interfaces.PublicInterface;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as

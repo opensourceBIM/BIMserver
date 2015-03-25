@@ -40,7 +40,12 @@ import com.google.gson.stream.JsonToken;
 
 public class SharedJsonDeserializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SharedJsonDeserializer.class);
+	private boolean skipInverses;
 
+	public SharedJsonDeserializer(boolean skipInverses) {
+		this.skipInverses = skipInverses;
+	}
+	
 	@SuppressWarnings("rawtypes")
 	public IfcModelInterface read(InputStream in, IfcModelInterface model) throws DeserializeException {
 		WaitingList<Long> waitingList = new WaitingList<Long>();
@@ -120,11 +125,9 @@ public class SharedJsonDeserializer {
 					object = (IdEObjectImpl) model.getNoFetch(oid);
 				} else {
 					object = (IdEObjectImpl) model.getPackageMetaData().create(eClass);
-					((IdEObjectImpl) object).setModel(model);
-					((IdEObjectImpl) object).setOid(oid);
 					model.add(oid, object);
 				}
-				
+
 				if (jsonReader.nextName().equals("_s")) {
 					int state = jsonReader.nextInt();
 					if (state == 1) {
@@ -195,7 +198,9 @@ public class SharedJsonDeserializer {
 											long refOid = jsonReader.nextLong();
 											EntityDefinition entityBN = model.getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName());
 											Attribute attributeBN = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
-//											if (!(attributeBN instanceof InverseAttribute)) {
+											if (skipInverses && attributeBN instanceof InverseAttribute) {
+												// skip
+											} else {
 												if (model.contains(refOid)) {
 													EObject referencedObject = model.get(refOid);
 													if (referencedObject != null) {
@@ -211,7 +216,7 @@ public class SharedJsonDeserializer {
 												} else {
 													waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
 												}
-//											}
+											}
 											index++;
 										}
 									}

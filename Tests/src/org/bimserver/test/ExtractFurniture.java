@@ -59,7 +59,7 @@ public class ExtractFurniture {
 			IfcModelInterface newModel = new BasicIfcModel(packageMetaData, null);
 			ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition("ifc2x3tc1")), newModel);
 			
-			modelHelper.copy(picknick);
+			modelHelper.copy(picknick, false);
 			
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(null);

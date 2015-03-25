@@ -62,6 +62,7 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 		revision.getExtendedData().add(getIdEObject());
 		getDatabaseSession().store(revision);
 		getIdEObject().setProject(revision.getProject());
+		getIdEObject().setRevision(revision);
 		
 		if (getIdEObject().getSchema() != null) {
 			getDatabaseSession().store(getIdEObject().getSchema());

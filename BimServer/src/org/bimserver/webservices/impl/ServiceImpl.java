@@ -87,6 +87,7 @@ import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
 import org.bimserver.database.actions.RemoveModelCheckerFromProjectDatabaseAction;
+import org.bimserver.database.actions.RemoveServiceFromProjectDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
 import org.bimserver.database.actions.SetRevisionTagDatabaseAction;
@@ -1486,6 +1487,20 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new RemoveModelCheckerFromProjectDatabaseAction(getBimServer(), session, getInternalAccessMethod(), modelCheckerOid, poid, getAuthorization());
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void removeServiceFromProject(Long poid, Long serviceOid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Boolean> action = new RemoveServiceFromProjectDatabaseAction(getBimServer(), session, getInternalAccessMethod(), serviceOid, poid, getAuthorization());
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);

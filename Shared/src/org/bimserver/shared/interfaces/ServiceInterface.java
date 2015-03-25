@@ -667,6 +667,11 @@ public interface ServiceInterface extends PublicInterface {
 	void removeModelCheckerFromProject(
 		@WebParam(name = "poid", partName = "removeModelCheckerFromProject.poid") Long poid, 
 		@WebParam(name = "modelCheckerOid", partName = "removeModelCheckerFromProject.modelCheckerOid") Long modelCheckerOid) throws ServerException, UserException;
+
+	@WebMethod(action = "removeServiceFromProject")
+	void removeServiceFromProject(
+			@WebParam(name = "poid", partName = "removeServiceFromProject.poid") Long poid, 
+			@WebParam(name = "serviceOid", partName = "removeServiceFromProject.serviceOid") Long serviceOid) throws ServerException, UserException;
 	
 	@WebMethod(action = "importData")
 	void importData(

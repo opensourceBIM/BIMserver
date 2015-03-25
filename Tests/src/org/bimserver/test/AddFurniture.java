@@ -79,9 +79,9 @@ public class AddFurniture {
 			for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {
 				IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)ifcRepresentation;
 				if (ifcShapeRepresentation.getRepresentationType().equals("SurfaceModel")) {
-					surfaceModel = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation);
+					surfaceModel = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, false);
 				} else if (ifcShapeRepresentation.getRepresentationType().equals("BoundingBox")) {
-					boundingBox	 = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation);
+					boundingBox	 = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, false);
 				}
 			}
 
