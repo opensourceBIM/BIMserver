@@ -29,15 +29,15 @@ import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 
-public class Test {
+public class TriggerImportDataRemote {
 	public static void main(String[] args) {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			pluginManager.setMetaDataManager(metaDataManager);
-			JsonBimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, "http://ec.logic-labs.nl");
-			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@elassticbim.eu", "GIWSELOVSlSWaQ7dSlkp"));
-			client.getServiceInterface().importData("http://elassticbim.eu", "admin@elassticbim.eu", "GIWSELOVSlSWaQ7dSlkp", "/var/incoming");
+			JsonBimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, args[0]);
+			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo(args[1], args[2]));
+			client.getServiceInterface().importData(args[3], args[1], args[2], "/var/incoming");
 		} catch (PluginException e) {
 			e.printStackTrace();
 		} catch (ServiceException e) {

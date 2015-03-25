@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.async;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,7 +17,6 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
-
 import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class AsyncServiceInterface {
@@ -336,6 +335,11 @@ public class AsyncServiceInterface {
 	}
 	
 	public interface RemoveModelCheckerFromProjectCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface RemoveServiceFromProjectCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -1167,6 +1171,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					syncService.removeModelCheckerFromProject(poid, modelCheckerOid);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void removeServiceFromProject(final java.lang.Long poid, final java.lang.Long serviceOid, final RemoveServiceFromProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.removeServiceFromProject(poid, serviceOid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

@@ -25,6 +25,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ObjectFactory;
 import org.bimserver.emf.OidProvider;
+import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.AbstractEList;
@@ -57,8 +58,8 @@ public class ModelHelper {
 		this.objectFactory = targetModel;
 	}
 
-	public IdEObject copy(IdEObject object) throws IfcModelInterfaceException {
-		return copy(object.eClass(), object);
+	public IdEObject copy(IdEObject object, boolean setOid) throws IfcModelInterfaceException {
+		return copy(object.eClass(), object, setOid);
 	}
 
 	public void setKeepOriginalOids(boolean keepOriginalOids) {
@@ -66,7 +67,7 @@ public class ModelHelper {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private IdEObject copy(EClass originalEClass, IdEObject original) throws IfcModelInterfaceException {
+	private IdEObject copy(EClass originalEClass, IdEObject original, boolean setOid) throws IfcModelInterfaceException {
 		if (!((IdEObjectImpl)original).isLoadedOrLoading()) {
 			return null;
 		}
@@ -74,16 +75,21 @@ public class ModelHelper {
 			return converted.get(original);
 		}
 		IdEObject newObject = (IdEObject) objectFactory.create(original.eClass());
+		((IdEObjectImpl)newObject).setLoadingState(State.LOADED);
+		long oid = -1;
 		if (keepOriginalOids) {
-			((IdEObjectImpl)newObject).setOid(original.getOid());
+			oid = original.getOid();
 		} else {
 			if (newObject.getOid() == -1) {
 				if (oidProvider != null) {
-					((IdEObjectImpl)newObject).setOid(oidProvider.newOid(newObject.eClass()));
+					oid = oidProvider.newOid(newObject.eClass());
 				} else {
-					((IdEObjectImpl)newObject).setOid(original.getOid());
+					oid = original.getOid();
 				}
 			}
+		}
+		if (setOid) {
+			((IdEObjectImpl)newObject).setOid(oid);
 		}
 		converted.put(original, newObject);
 		if (newObject.eClass().getEAnnotation("wrapped") == null) {
@@ -122,7 +128,7 @@ public class ModelHelper {
 								toList.addUnique(converted.get(o));
 							} else {
 								if (canFollow) {
-									IdEObject result = copy(originalEClass, (IdEObject) o);
+									IdEObject result = copy(originalEClass, (IdEObject) o, setOid);
 									if (result != null) {
 										toList.addUnique(result);
 									}
@@ -140,7 +146,7 @@ public class ModelHelper {
 							newObject.eSet(eStructuralFeature, converted.get(get));
 						} else {
 							if (canFollow) {
-								newObject.eSet(eStructuralFeature, copy(originalEClass, (IdEObject) get));
+								newObject.eSet(eStructuralFeature, copy(originalEClass, (IdEObject) get, setOid));
 							}
 						}
 					}

@@ -17,33 +17,35 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ExtendedData;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Service;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
-public class GetExtendedDataByIdDatabaseAction extends GetByIdDatabaseAction<ExtendedData> {
+public class RemoveServiceFromProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 
-	private Authorization authorization;
+	private final long poid;
+	private long soid;
 
-	public GetExtendedDataByIdDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long oid) {
-		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getExtendedData());
-		this.authorization = authorization;
+	public RemoveServiceFromProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long soid, long poid,
+			Authorization authorization) {
+		super(databaseSession, accessMethod);
+		this.soid = soid;
+		this.poid = poid;
 	}
-	
+
 	@Override
-	public ExtendedData execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		ExtendedData extendedData = super.execute();
-		Revision revision = extendedData.getRevision();
-		if (authorization == null) {
-			throw new UserException("Authorization required for this call");
-		}
-		authorization.canReadExtendedData(revision.getOid());
-		return extendedData;
+	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
+		Service service = getDatabaseSession().get(soid, Query.getDefault());
+		Project project = getDatabaseSession().get(poid, Query.getDefault());
+		project.getServices().remove(service);
+		getDatabaseSession().store(project);
+		return true;
 	}
 }

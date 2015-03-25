@@ -215,7 +215,7 @@ public class GeometryGenerator {
 									}
 								} catch (EntityNotFoundException e) {
 									if (!(ifcProduct instanceof IfcAnnotation)) {
-										LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + ifcProduct.getExpressId());
+										LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + ifcProduct.getExpressId() + "/" + ifcProduct.getOid());
 									}
 								}
 							}

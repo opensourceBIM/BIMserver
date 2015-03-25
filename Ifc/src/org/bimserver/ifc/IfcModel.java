@@ -853,6 +853,7 @@ public abstract class IfcModel implements IfcModelInterface {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		long oid = oidProvider.newOid(eClass);
 		((IdEObjectImpl) object).setOid(oid);
+		((IdEObjectImpl) object).setLoadingState(State.LOADED);
 		add(oid, object, false, false);
 		return (T) object;
 	}

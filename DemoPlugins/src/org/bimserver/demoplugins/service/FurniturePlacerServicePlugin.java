@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.OidProvider;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
@@ -17,6 +18,7 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
+import org.bimserver.models.ifc2x3tc1.IfcBoundingBox;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
@@ -27,6 +29,7 @@ import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.log.AccessMethod;
@@ -47,6 +50,7 @@ import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
+import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,7 +128,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					SService service = bimServerClientInterface.getServiceInterface().getService(soid);
 					
 					SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
-					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true, false);
+					final IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true, false);
 					
 					DeserializerPlugin deserializerPlugin = getPluginManager().getDeserializerPlugin("org.bimserver.ifc.step.deserializer.Ifc2x3tc1StepDeserializerPlugin", true);
 					
@@ -141,6 +145,14 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 
 					modelHelper.setTargetModel(model);
 					modelHelper.setObjectFactory(model);
+					OidProvider<Long> oidProvider = new OidProvider<Long>() {
+						long c = model.getHighestOid() + 1;
+						@Override
+						public Long newOid(EClass eClass) {
+							return c++;
+						}
+					};
+					modelHelper.setOidProvider(oidProvider);
 					
 					IfcProductDefinitionShape representation = (IfcProductDefinitionShape) picknick.getRepresentation();
 					IfcRepresentation surfaceModel = null;
@@ -148,9 +160,9 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {
 						IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)ifcRepresentation;
 						if (ifcShapeRepresentation.getRepresentationType().equals("SurfaceModel")) {
-							surfaceModel = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation);
+							surfaceModel = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, true);
 						} else if (ifcShapeRepresentation.getRepresentationType().equals("BoundingBox")) {
-							boundingBox	= (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation);
+							boundingBox	= (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, true);
 						}
 					}
 
@@ -159,6 +171,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					if (all.size() > 0) {
 						 ownerHistory = all.get(0);
 					}
+					int newFurniture = 0;
 					for (IfcBuildingStorey ifcBuildingStorey : model.getAll(IfcBuildingStorey.class)) {
 						for (IfcRelDecomposes ifcRelDecomposes : ifcBuildingStorey.getIsDecomposedBy()) {
 							for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
@@ -175,43 +188,43 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 //										}
 //									}
 									
-									IfcFurnishingElement newFurnishing = model.createAndAdd(IfcFurnishingElement.class);
+									IfcFurnishingElement newFurnishing = model.create(IfcFurnishingElement.class, oidProvider);
 									newFurnishing.setName("ADDED FURNITURE");
 									
-									IfcRelContainedInSpatialStructure containedInSpatialStructure2 = model.createAndAdd(IfcRelContainedInSpatialStructure.class);
+									IfcRelContainedInSpatialStructure containedInSpatialStructure2 = model.create(IfcRelContainedInSpatialStructure.class, oidProvider);
 									containedInSpatialStructure2.setRelatingStructure(ifcBuildingStorey);
 									containedInSpatialStructure2.getRelatedElements().add(newFurnishing);
 									
-									newFurnishing.setName("Generated");
 									newFurnishing.setGlobalId("TEST");
 									newFurnishing.setOwnerHistory(ownerHistory);
-									IfcProductDefinitionShape definitionShape = model.createAndAdd(IfcProductDefinitionShape.class);
+									IfcProductDefinitionShape definitionShape = model.create(IfcProductDefinitionShape.class, oidProvider);
 									newFurnishing.setRepresentation(definitionShape);
 									
 									definitionShape.getRepresentations().add(boundingBox);
 									definitionShape.getRepresentations().add(surfaceModel);
 									
-									IfcLocalPlacement localPlacement = model.createAndAdd(IfcLocalPlacement.class);
+									IfcLocalPlacement localPlacement = model.create(IfcLocalPlacement.class, oidProvider);
 									localPlacement.setPlacementRelTo(ifcSpace.getObjectPlacement());
-									IfcAxis2Placement3D axis2Placement3D = model.createAndAdd(IfcAxis2Placement3D.class);
+									IfcAxis2Placement3D axis2Placement3D = model.create(IfcAxis2Placement3D.class, oidProvider);
 									localPlacement.setRelativePlacement(axis2Placement3D);
 									
-									IfcCartesianPoint pos = model.createAndAdd(IfcCartesianPoint.class);
+									IfcCartesianPoint pos = model.create(IfcCartesianPoint.class, oidProvider);
 									pos.getCoordinates().add(-3d);
 									pos.getCoordinates().add(+0.5d);
 									pos.getCoordinates().add(0d);
 									axis2Placement3D.setLocation(pos);
 									
 									newFurnishing.setObjectPlacement(localPlacement);
+									
+									newFurniture++;
 								}
 							}
 						}
 					}
+					LOGGER.info("New furniture: " + newFurniture);
 
-					if (service.getWriteRevisionId() != -1) {
-						IfcModelInterface branch = model.branch(service.getWriteRevisionId(), false);
-						System.out.println(branch.size());
-						branch.checkin(service.getWriteRevisionId(), "Added furniture");
+					if (service.getWriteRevisionId() != -1 && service.getWriteRevisionId() != project.getOid()) {
+						model.checkin(service.getWriteRevisionId(), "Added furniture");
 					} else {
 						model.commit("Added furniture");
 					}

@@ -15,7 +15,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-lang-2.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-logging-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-pool-1.5.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/other/guava-18.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/other/guava-18.0.jar" sourcepath="/BimServer/libsrc/guava-16.0.1-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/logging/log4j-1.2.16.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/logging/slf4j-api-1.6.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/logging/slf4j-log4j12-1.6.2.jar"/>

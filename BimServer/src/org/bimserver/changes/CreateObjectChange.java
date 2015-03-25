@@ -27,6 +27,8 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.models.ifc2x3tc1.IfcFrequencyMeasure;
+import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
@@ -54,6 +56,12 @@ public class CreateObjectChange implements Change {
 	
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		if (eObject instanceof IfcFurnishingElement) {
+			IfcFurnishingElement ifcFurnishingElement = (IfcFurnishingElement)eObject;
+			if (ifcFurnishingElement.getName().equals("ADDED FURNITURE")) {
+				System.out.println();
+			}
+		}
 		EClass eClass = databaseSession.getEClass(project.getSchema(), type);
 		if (eClass == null) {
 			throw new UserException("Type " + type + " does not exist");
