@@ -665,6 +665,10 @@ public class PluginManager {
 		return (MessagingSerializerPlugin) getPlugin(className, onlyEnabled);
 	}
 
+	public WebModulePlugin getWebModulePlugin(String className, boolean onlyEnabled) {
+		return (WebModulePlugin) getPlugin(className, onlyEnabled);
+	}
+
 	public Collection<WebModulePlugin> getAllWebPlugins(boolean onlyEnabled) {
 		return getPlugins(WebModulePlugin.class, onlyEnabled);
 	}

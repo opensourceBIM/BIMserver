@@ -686,6 +686,16 @@ public class BimServer {
 		return null;
 	}
 
+	private WebModulePluginConfiguration findWebModule(ServerSettings serverSettings, String name) {
+		for (WebModulePlugin webModulePlugin : pluginManager.getAllWebPlugins(true)) {
+			WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), webModulePlugin.getClass().getName());
+			if (webModulePlugin.getClass().getName().equals(name)) {
+				return webPluginConfiguration;
+			}
+		}
+		return null;
+	}
+	
 	private void initDatabaseDependantItems() throws BimserverDatabaseException {
 		serverSettingsCache.init();
 		notificationsManager.init();
@@ -714,20 +724,23 @@ public class BimServer {
 					webPluginConfiguration = session.create(WebModulePluginConfiguration.class);
 					serverSettings.getWebModules().add(webPluginConfiguration);
 					genericPluginConversion(session, webModulePlugin, webPluginConfiguration, getPluginDescriptor(session, webModulePlugin.getClass().getName()));
-				}
-				if (serverSettings.getWebModule() == null) {
-					if (webModulePlugin.getClass().getName().equals("org.bimserver.bimviews.BimViewsWebModulePlugin")) {
-						serverSettings.setWebModule(webPluginConfiguration);
-						setDefaultWebModule(webModulePlugin);
-					}
-					if (webModulePlugin.getClass().getName().equals("org.bimserver.defaultwebmodule.DefaultWebModulePlugin")) {
-						serverSettings.setWebModule(webPluginConfiguration);
-						setDefaultWebModule(webModulePlugin);
-					}
 				} else {
 					if (webPluginConfiguration == serverSettings.getWebModule()) {
 						setDefaultWebModule(webModulePlugin);
 					}
+				}
+			}
+			
+			// Set the default
+			if (serverSettings.getWebModule() == null) {
+				WebModulePluginConfiguration bimviewsWebModule = findWebModule(serverSettings, "org.bimserver.bimviews.BimViewsWebModulePlugin");
+				if (bimviewsWebModule != null) {
+					serverSettings.setWebModule(bimviewsWebModule);
+					setDefaultWebModule(pluginManager.getWebModulePlugin(bimviewsWebModule.getPluginDescriptor().getPluginClassName(), true));
+				} else {
+					WebModulePluginConfiguration defaultWebModule = findWebModule(serverSettings, "org.bimserver.defaultwebmodule.DefaultWebModulePlugin");
+					serverSettings.setWebModule(defaultWebModule);
+					setDefaultWebModule(pluginManager.getWebModulePlugin(defaultWebModule.getPluginDescriptor().getPluginClassName(), true));
 				}
 			}
 			session.store(serverSettings);
@@ -763,9 +776,9 @@ public class BimServer {
 					}
 					webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(webModulePluginConfiguration.getPluginDescriptor().getPluginClassName(), true));
 				}
-				if (serverSettingsCache.getServerSettings().getWebModule() != null) {
-					defaultWebModule = (WebModulePlugin) pluginManager.getPlugin(serverSettingsCache.getServerSettings().getWebModule().getPluginDescriptor().getPluginClassName(), true);
-				}
+//				if (serverSettingsCache.getServerSettings().getWebModule() != null) {
+//					defaultWebModule = (WebModulePlugin) pluginManager.getPlugin(serverSettingsCache.getServerSettings().getWebModule().getPluginDescriptor().getPluginClassName(), true);
+//				}
 			} finally {
 				ses.close();
 			}
