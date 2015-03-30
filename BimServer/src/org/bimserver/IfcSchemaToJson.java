@@ -39,7 +39,7 @@ import com.google.gson.stream.JsonWriter;
 
 public class IfcSchemaToJson {
 	public static void main(String[] args) {
-		generateIfc2x3tc1();
+//		generateIfc2x3tc1();
 		generateIfc4();
 	}
 
@@ -47,7 +47,7 @@ public class IfcSchemaToJson {
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(new File("www/js/ifc4.js"));
-			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\20130305_IFC4_HTML_distribution\\IFC4"), Ifc4Package.eINSTANCE);
+			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\20130305_IFC4_HTML_distribution\\IFC4\\schema"), Ifc4Package.eINSTANCE);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

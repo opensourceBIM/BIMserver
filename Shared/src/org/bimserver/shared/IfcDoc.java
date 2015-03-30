@@ -50,7 +50,7 @@ public class IfcDoc {
 	}
 
 	public String getDomain(String name) {
-		return classesToDomain.get(name);
+		return classesToDomain.get(name.toLowerCase());
 	}
 	
 	public Set<String> getClassNames(String domain) {
