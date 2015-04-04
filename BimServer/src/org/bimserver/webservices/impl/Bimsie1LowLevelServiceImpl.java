@@ -288,6 +288,8 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 			getBimServer().getLongTransactionManager().get(tid).add(new RemoveObjectChange(oid, getBimServer().getDatabase().getEClassForOid(oid)));
 		} catch (NoTransactionException e) {
 			handleException(e);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
 		}
 	}
 
