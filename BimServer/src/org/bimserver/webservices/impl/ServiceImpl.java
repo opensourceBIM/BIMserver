@@ -193,6 +193,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		try {
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
 			Project project = session.get(poid, Query.getDefault());
+			if (project == null) {
+				throw new UserException("No project found with poid " + poid);
+			}
 			username = user.getName();
 			userUsername = user.getUsername();
 			File homeDirIncoming = new File(getBimServer().getHomeDir(), "incoming");

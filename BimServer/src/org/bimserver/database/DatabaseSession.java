@@ -1824,7 +1824,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return allOfType.getAllWithSubTypes(clazz);
 	}
 
-	public EClass getEClassForOid(long oid) {
+	public EClass getEClassForOid(long oid) throws BimserverDatabaseException {
 		return database.getEClassForOid(oid);
 	}
 }
