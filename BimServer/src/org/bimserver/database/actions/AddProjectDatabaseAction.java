@@ -92,6 +92,10 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			}
 			project.setGeoTag(parent.getGeoTag());
 		}
+		if (project.getSchema() == null || (!project.getSchema().equals("ifc2x3tc1") && !project.getSchema().equals("ifc4"))) {
+			throw new UserException("Invalid schema, the only 2 valid options are: \"ifc2x3tc1\" and \"ifc4\"");
+		}
+		
 		final NewProjectAdded newProjectAdded = getDatabaseSession().create(NewProjectAdded.class);
 		newProjectAdded.setDate(new Date());
 		newProjectAdded.setExecutor(actingUser);
