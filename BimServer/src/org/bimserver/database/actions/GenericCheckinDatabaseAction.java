@@ -98,13 +98,15 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 				for (ConcreteRevision oldRevision : lastRevision.getConcreteRevisions()) {
 					if (oldRevision.getProject() != project && oldRevision.getProject() != parent) {
 						revision.getConcreteRevisions().add(oldRevision);
+						oldRevision.getRevisions().add(revision);
 						revision.setSize((revision.getSize() == null ? 0 : revision.getSize()) + oldRevision.getSize());
 						session.store(revision);
+						session.store(oldRevision);
 					}
-					session.store(oldRevision);
 				}
 			}
 			revision.getConcreteRevisions().add(concreteRevision);
+			concreteRevision.getRevisions().add(revision);
 			revision.setSize((revision.getSize() == null ? 0 : revision.getSize()) + concreteRevision.getSize());
 			revision.setLastConcreteRevision(concreteRevision);
 			if (parent.getLastRevision() == null) {
