@@ -136,7 +136,6 @@ public class ModelHelper {
 									// In some cases the object is not already converted AND canFollow = false AND there is an opposite mismatch
 									if (eStructuralFeature.getName().equals("RelatedElements")) {
 										inverseFixes.put(((IdEObject)o).getOid(), new InverseFix(Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements(), newObject));
-										System.out.println("YEP");
 									}
 								}
 							}
