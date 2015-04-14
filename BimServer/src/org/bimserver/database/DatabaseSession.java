@@ -1548,6 +1548,11 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			newObject.setPid(query.getPid());
 		}
 		newObject.setRid(query.getRid());
+		try {
+			newObject.setModel(model);
+		} catch (IfcModelInterfaceException e) {
+			LOGGER.error("", e);
+		}
 		objectCache.put(recordIdentifier, newObject);
 		if (query.isDeep() && object.eClass().getEAnnotation("wrapped") == null) {
 			if (feature.getEAnnotation("nolazyload") == null) {

@@ -126,6 +126,9 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
 	public void forceLoad() {
 		if (loadingState != State.LOADED && loadingState != State.LOADING && oid != -1) {
+			if (model == null) {
+				throw new RuntimeException("Object has no model");
+			}
 			model.load(this);
 		}
 	}
