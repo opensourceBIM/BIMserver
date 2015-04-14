@@ -155,6 +155,9 @@
 			<src path="../../Charting/src" />
 			<classpath>
 				<path>
+					<fileset dir="../../Charting/lib">
+						<include name="*.jar" />
+					</fileset>
 					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
