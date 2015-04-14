@@ -198,9 +198,15 @@ public class BimServerImporter {
 								LOGGER.info("Done");
 								Project project = databaseSession.get(updatedProject.getOid(), Query.getDefault());
 								Revision revision = project.getLastRevision();
+								User user = (User)databaseSession.get(users.get(key.userId).getOid(), Query.getDefault());
+								for (Revision otherRevision : revision.getConcreteRevisions().get(0).getRevisions()) {
+									otherRevision.setDate(key.date);
+									otherRevision.setComment(otherRevision.getComment().replace("Administrator", user.getName()));
+									databaseSession.store(otherRevision);
+								}
 								DateFormat m = new SimpleDateFormat("dd-MM-yyyy");
 								LOGGER.info("Setting date to " + m.format(key.date));
-								revision.setUser((User)databaseSession.get(users.get(key.userId).getOid(), Query.getDefault()));
+								revision.setUser(user);
 								revision.setDate(key.date);
 								databaseSession.store(revision);
 								databaseSession.commit();
