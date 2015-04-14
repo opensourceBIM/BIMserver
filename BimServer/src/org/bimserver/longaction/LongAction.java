@@ -154,7 +154,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 
 	public void terminate() {
 		LOGGER.info("Terminating long action with id " + progressTopic.getKey().getId());
-		thread.interrupt();
+//		thread.interrupt();
 	}
 	
 	public int getProgress() {
