@@ -3,61 +3,61 @@
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcTreemapChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcPackingChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcTreeviewChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcDepthClusteredTreeviewChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcRadialDendrogramChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcClusterForceChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcClassPackingChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcClassificationPackingChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcMaterialUsageChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcMaterialUsageOwnScaleChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcRawMaterialUsageChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.charting.IfcLevelOfDetailMetricsChartSerializerPlugin</implementationClass>
-		<enable>true</enable>
+		<enabled>true</enabled>
 	</PluginImplementation>
 </PluginDescriptor>
