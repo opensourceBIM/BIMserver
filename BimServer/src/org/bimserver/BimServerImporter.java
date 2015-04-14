@@ -200,6 +200,7 @@ public class BimServerImporter {
 								Revision revision = project.getLastRevision();
 								User user = (User)databaseSession.get(users.get(key.userId).getOid(), Query.getDefault());
 								for (Revision otherRevision : revision.getConcreteRevisions().get(0).getRevisions()) {
+									otherRevision.load();
 									otherRevision.setDate(key.date);
 									otherRevision.setComment(otherRevision.getComment().replace("Administrator", user.getName()));
 									databaseSession.store(otherRevision);
