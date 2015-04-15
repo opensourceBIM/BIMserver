@@ -26,13 +26,12 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Token</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.TokenImpl#getTokenString <em>Token String</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.TokenImpl#getExpires <em>Expires</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

@@ -30,9 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Long Action State</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getStart <em>Start</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getEnd <em>End</em>}</li>
@@ -44,6 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getWarnings <em>Warnings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getInfos <em>Infos</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

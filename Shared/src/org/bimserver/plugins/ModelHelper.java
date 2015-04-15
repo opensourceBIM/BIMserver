@@ -18,15 +18,18 @@ package org.bimserver.plugins;
  *****************************************************************************/
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ObjectFactory;
 import org.bimserver.emf.OidProvider;
-import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
+import org.bimserver.models.ifc2x3tc1.IfcSite;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.EList;
@@ -62,12 +65,20 @@ public class ModelHelper {
 		return copy(object.eClass(), object, setOid);
 	}
 
+	public IdEObject copy(IdEObject object, boolean setOid, ObjectIDM objectIDM) throws IfcModelInterfaceException {
+		return copy(object.eClass(), object, setOid, objectIDM);
+	}
+
 	public void setKeepOriginalOids(boolean keepOriginalOids) {
 		this.keepOriginalOids = keepOriginalOids;
 	}
+
+	private IdEObject copy(EClass originalEClass, IdEObject original, boolean setOid) throws IfcModelInterfaceException {
+		return copy(originalEClass, original, setOid, this.objectIDM);
+	}
 	
 	@SuppressWarnings("unchecked")
-	private IdEObject copy(EClass originalEClass, IdEObject original, boolean setOid) throws IfcModelInterfaceException {
+	private IdEObject copy(EClass originalEClass, IdEObject original, boolean setOid, ObjectIDM objectIDM) throws IfcModelInterfaceException {
 		if (!((IdEObjectImpl)original).isLoadedOrLoading()) {
 			return null;
 		}
@@ -102,21 +113,22 @@ public class ModelHelper {
 		}
 
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
-			boolean canFollow = objectIDM == null ||  objectIDM.shouldFollowReference(originalEClass, original.eClass(), eStructuralFeature);
+			boolean canFollow = objectIDM == null || objectIDM.shouldFollowReference(originalEClass, original.eClass(), eStructuralFeature);
 			Object get = original.eGet(eStructuralFeature);
 			if (eStructuralFeature instanceof EAttribute) {
-				if (get instanceof Double) {
-					EStructuralFeature doubleStringFeature = original.eClass().getEStructuralFeature("wrappedValueAsString");
-					if (doubleStringFeature != null) {
-						Object doubleString = original.eGet(doubleStringFeature);
-						newObject.eSet(doubleStringFeature, doubleString);
-					} else {
-						newObject.eSet(eStructuralFeature, get);
+				if (get instanceof List) {
+					List list = (List)get;
+					List targetList = (List)newObject.eGet(eStructuralFeature);
+					for (Object o : list) {
+						targetList.add(o);
 					}
 				} else {
 					newObject.eSet(eStructuralFeature, get);
 				}
 			} else if (eStructuralFeature instanceof EReference) {
+				if (!canFollow) {
+					continue;
+				}
 				if (get == null) {
 				} else {
 					if (eStructuralFeature.isMany()) {
@@ -128,7 +140,7 @@ public class ModelHelper {
 								toList.addUnique(converted.get(o));
 							} else {
 								if (canFollow) {
-									IdEObject result = copy(originalEClass, (IdEObject) o, setOid);
+									IdEObject result = copy(originalEClass, (IdEObject) o, setOid, objectIDM);
 									if (result != null) {
 										toList.addUnique(result);
 									}
@@ -145,7 +157,7 @@ public class ModelHelper {
 							newObject.eSet(eStructuralFeature, converted.get(get));
 						} else {
 							if (canFollow) {
-								newObject.eSet(eStructuralFeature, copy(originalEClass, (IdEObject) get, setOid));
+								newObject.eSet(eStructuralFeature, copy(originalEClass, (IdEObject) get, setOid, objectIDM));
 							}
 						}
 					}

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Object Removed</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * </p>
  *
  * @generated
  */

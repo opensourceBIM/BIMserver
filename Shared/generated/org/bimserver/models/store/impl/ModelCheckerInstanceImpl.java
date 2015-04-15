@@ -26,9 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Model Checker Instance</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getDescription <em>Description</em>}</li>
@@ -37,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#isValid <em>Valid</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getModelCheckerPluginClassName <em>Model Checker Plugin Class Name</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

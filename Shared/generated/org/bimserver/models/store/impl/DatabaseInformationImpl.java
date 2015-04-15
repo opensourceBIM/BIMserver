@@ -30,9 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Database Information</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.DatabaseInformationImpl#getNumberOfProjects <em>Number Of Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DatabaseInformationImpl#getNumberOfUsers <em>Number Of Users</em>}</li>
@@ -45,6 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.DatabaseInformationImpl#getSchemaVersion <em>Schema Version</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DatabaseInformationImpl#getCategories <em>Categories</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

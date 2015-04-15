@@ -89,6 +89,8 @@ public class DownloadParameters extends LongActionKey {
 	}
 	
 	public String getId() {
+		// TODO the ID is used to determine the name on disk, no equals check can be done as the original DownloadParameter object is not available, 
+		// therefore (not easily recognizable) collisions might occur. Better to just write all data to a string and maybe hash with a bigger key size than 'int'
 		return String.valueOf(((long) hashCode()) + (long) Integer.MAX_VALUE);
 	}
 

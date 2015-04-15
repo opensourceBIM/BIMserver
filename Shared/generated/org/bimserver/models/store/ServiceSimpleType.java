@@ -413,8 +413,8 @@ public enum ServiceSimpleType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ServiceSimpleType[] VALUES_ARRAY = new ServiceSimpleType[] { ENUM, STRING, LONG, INT, BOOLEAN, FLOAT, DOUBLE, DATE, CLASS,
-			DATAHANDLER, BYTEARRAY, LIST, SET, VOID, UNKNOWN, };
+	private static final ServiceSimpleType[] VALUES_ARRAY = new ServiceSimpleType[] { ENUM, STRING, LONG, INT, BOOLEAN, FLOAT, DOUBLE, DATE, CLASS, DATAHANDLER, BYTEARRAY, LIST,
+			SET, VOID, UNKNOWN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Service Simple Type</b></em>' enumerators.
@@ -428,8 +428,6 @@ public enum ServiceSimpleType implements Enumerator {
 	 * Returns the '<em><b>Service Simple Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param literal the literal.
-	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ServiceSimpleType get(String literal) {
@@ -446,8 +444,6 @@ public enum ServiceSimpleType implements Enumerator {
 	 * Returns the '<em><b>Service Simple Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param name the name.
-	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ServiceSimpleType getByName(String name) {
@@ -464,8 +460,6 @@ public enum ServiceSimpleType implements Enumerator {
 	 * Returns the '<em><b>Service Simple Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the integer value.
-	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ServiceSimpleType get(int value) {

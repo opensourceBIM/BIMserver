@@ -27,9 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Project Small</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getParentId <em>Parent Id</em>}</li>
@@ -40,6 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getLastRevisionId <em>Last Revision Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectSmallImpl#getSchema <em>Schema</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

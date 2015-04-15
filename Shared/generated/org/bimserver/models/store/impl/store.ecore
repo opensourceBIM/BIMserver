@@ -200,6 +200,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reuseGeometry" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowCreateValidatedUser"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="renderEngineProcesses"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserSettings">
     <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"

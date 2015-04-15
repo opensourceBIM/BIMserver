@@ -25,7 +25,6 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getParentId <em>Parent Id</em>}</li>
@@ -36,6 +35,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getLastRevisionId <em>Last Revision Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getSchema <em>Schema</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getProjectSmall()
  * @model

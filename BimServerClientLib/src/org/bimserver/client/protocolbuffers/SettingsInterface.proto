@@ -119,21 +119,22 @@ message SServerSettings {
 	optional bool hideUserListForNonAdmin = 10;
 	optional int64 oid = 11;
 	optional int32 protocolBuffersPort = 12;
-	optional bool reuseGeometry = 13;
-	optional int32 rid = 14;
-	optional bool sendConfirmationEmailAfterRegistration = 15;
-	optional bool sendEmailOnNewRevision = 16;
-	optional string serviceRepositoryUrl = 17;
-	optional int32 sessionTimeOutSeconds = 18;
-	optional string siteAddress = 19;
-	optional string smtpPassword = 20;
-	optional int32 smtpPort = 21;
-	optional SSmtpProtocol smtpProtocol = 22;
-	optional string smtpServer = 23;
-	optional string smtpUsername = 24;
-	optional int64 webModuleId = 25;
-	repeated int64 webModules = 26;
-	repeated string whitelistedDomains = 27;
+	optional int32 renderEngineProcesses = 13;
+	optional bool reuseGeometry = 14;
+	optional int32 rid = 15;
+	optional bool sendConfirmationEmailAfterRegistration = 16;
+	optional bool sendEmailOnNewRevision = 17;
+	optional string serviceRepositoryUrl = 18;
+	optional int32 sessionTimeOutSeconds = 19;
+	optional string siteAddress = 20;
+	optional string smtpPassword = 21;
+	optional int32 smtpPort = 22;
+	optional SSmtpProtocol smtpProtocol = 23;
+	optional string smtpServer = 24;
+	optional string smtpUsername = 25;
+	optional int64 webModuleId = 26;
+	repeated int64 webModules = 27;
+	repeated string whitelistedDomains = 28;
 }
 
 message GetServerSettingsResponse {

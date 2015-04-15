@@ -26,15 +26,14 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Profile Descriptor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ProfileDescriptorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProfileDescriptorImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProfileDescriptorImpl#isPublicProfile <em>Public Profile</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProfileDescriptorImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

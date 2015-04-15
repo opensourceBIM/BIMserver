@@ -25,13 +25,13 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ProfileDescriptor#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProfileDescriptor#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProfileDescriptor#isPublicProfile <em>Public Profile</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProfileDescriptor#getIdentifier <em>Identifier</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getProfileDescriptor()
  * @model

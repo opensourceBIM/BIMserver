@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getSimpleName <em>Simple Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getDefaultName <em>Default Name</em>}</li>
@@ -37,6 +36,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getPluginInterfaceClassName <em>Plugin Interface Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getConfigurations <em>Configurations</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getPluginDescriptor()
  * @model

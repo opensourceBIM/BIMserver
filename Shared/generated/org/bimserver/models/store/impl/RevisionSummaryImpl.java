@@ -28,12 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Revision Summary</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryImpl#getList <em>List</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

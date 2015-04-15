@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.ArrayType;
 import org.bimserver.models.store.BimServerInfo;
@@ -154,7 +155,7 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param ePackage the package in question.
+	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */

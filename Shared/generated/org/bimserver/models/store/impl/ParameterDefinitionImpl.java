@@ -28,9 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Parameter Definition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#isRequired <em>Required</em>}</li>
@@ -38,6 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

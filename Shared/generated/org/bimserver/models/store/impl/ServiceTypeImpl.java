@@ -29,15 +29,14 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Service Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServiceTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceTypeImpl#getSimpleName <em>Simple Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceTypeImpl#getFields <em>Fields</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceTypeImpl#getSimpleType <em>Simple Type</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

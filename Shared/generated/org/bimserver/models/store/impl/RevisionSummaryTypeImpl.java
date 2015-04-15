@@ -26,14 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Revision Summary Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getCount <em>Count</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getSchema <em>Schema</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

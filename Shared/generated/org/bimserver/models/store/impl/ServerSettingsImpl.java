@@ -29,9 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Server Settings</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isSendConfirmationEmailAfterRegistration <em>Send Confirmation Email After Registration</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getAllowSelfRegistration <em>Allow Self Registration</em>}</li>
@@ -58,7 +56,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpProtocol <em>Smtp Protocol</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isReuseGeometry <em>Reuse Geometry</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getRenderEngineProcesses <em>Render Engine Processes</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
@@ -524,6 +524,24 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setAllowCreateValidatedUser(boolean newAllowCreateValidatedUser) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER, newAllowCreateValidatedUser);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getRenderEngineProcesses() {
+		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__RENDER_ENGINE_PROCESSES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRenderEngineProcesses(int newRenderEngineProcesses) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__RENDER_ENGINE_PROCESSES, newRenderEngineProcesses);
 	}
 
 } //ServerSettingsImpl
