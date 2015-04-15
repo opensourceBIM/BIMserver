@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isSendConfirmationEmailAfterRegistration <em>Send Confirmation Email After Registration</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getAllowSelfRegistration <em>Allow Self Registration</em>}</li>
@@ -53,7 +52,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpProtocol <em>Smtp Protocol</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isReuseGeometry <em>Reuse Geometry</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getRenderEngineProcesses <em>Render Engine Processes</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getServerSettings()
  * @model
@@ -698,5 +699,32 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setAllowCreateValidatedUser(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Render Engine Processes</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Render Engine Processes</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Render Engine Processes</em>' attribute.
+	 * @see #setRenderEngineProcesses(int)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_RenderEngineProcesses()
+	 * @model default="1"
+	 * @generated
+	 */
+	int getRenderEngineProcesses();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getRenderEngineProcesses <em>Render Engine Processes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Render Engine Processes</em>' attribute.
+	 * @see #getRenderEngineProcesses()
+	 * @generated
+	 */
+	void setRenderEngineProcesses(int value);
 
 } // ServerSettings

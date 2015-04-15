@@ -36,9 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>User Settings</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getObjectIDMs <em>Object ID Ms</em>}</li>
@@ -56,6 +54,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getMessagingSerializerPlugins <em>Messaging Serializer Plugins</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

@@ -56,6 +56,7 @@ public class SServerSettings implements SDataBase
 	private SSmtpProtocol smtpProtocol;
 	private boolean reuseGeometry;
 	private boolean allowCreateValidatedUser;
+	private int renderEngineProcesses;
 
 	public long getOid() {
 		return this.oid;
@@ -157,6 +158,9 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("allowCreateValidatedUser")) {
 			return isAllowCreateValidatedUser();
+		}
+		if (sField.getName().equals("renderEngineProcesses")) {
+			return getRenderEngineProcesses();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -267,6 +271,10 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("allowCreateValidatedUser")) {
 			setAllowCreateValidatedUser((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("renderEngineProcesses")) {
+			setRenderEngineProcesses((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -479,6 +487,14 @@ public class SServerSettings implements SDataBase
 
 	public void setAllowCreateValidatedUser(boolean allowCreateValidatedUser) {
 		this.allowCreateValidatedUser = allowCreateValidatedUser;
+	}
+	
+	public int getRenderEngineProcesses() {
+		return renderEngineProcesses;
+	}
+
+	public void setRenderEngineProcesses(int renderEngineProcesses) {
+		this.renderEngineProcesses = renderEngineProcesses;
 	}
 	
 	@Override

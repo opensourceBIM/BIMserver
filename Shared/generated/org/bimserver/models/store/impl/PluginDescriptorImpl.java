@@ -28,9 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Plugin Descriptor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getSimpleName <em>Simple Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getDefaultName <em>Default Name</em>}</li>
@@ -41,6 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getPluginInterfaceClassName <em>Plugin Interface Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getConfigurations <em>Configurations</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

@@ -26,12 +26,11 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Deserializer Plugin Configuration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.DeserializerPluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

@@ -1150,13 +1150,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER = 24;
 
 	/**
+	 * The feature id for the '<em><b>Render Engine Processes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__RENDER_ENGINE_PROCESSES = 25;
+
+	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 25;
+	int SERVER_SETTINGS_FEATURE_COUNT = 26;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -8051,6 +8060,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerSettings_AllowCreateValidatedUser();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getRenderEngineProcesses <em>Render Engine Processes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Render Engine Processes</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#getRenderEngineProcesses()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_RenderEngineProcesses();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.UserSettings <em>User Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13265,6 +13285,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER = eINSTANCE.getServerSettings_AllowCreateValidatedUser();
+
+		/**
+		 * The meta object literal for the '<em><b>Render Engine Processes</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__RENDER_ENGINE_PROCESSES = eINSTANCE.getServerSettings_RenderEngineProcesses();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.

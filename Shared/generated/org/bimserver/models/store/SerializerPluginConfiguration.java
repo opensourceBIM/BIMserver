@@ -23,12 +23,12 @@ package org.bimserver.models.store;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getUserSettings <em>User Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getRenderEngine <em>Render Engine</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getSerializerPluginConfiguration()
  * @model

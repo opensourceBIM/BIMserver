@@ -1660,19 +1660,34 @@ function Promise() {
 	
 	o.isDone = false;
 	o.chains = [];
+	o.callback = null;
 
 	this.done = function(callback){
 		if (o.isDone) {
 			callback();
 		} else {
-			o.callback = callback;
+			if (o.callback != null) {
+				if (o.callback instanceof Array) {
+					o.callback.push(callback);
+				} else {
+					o.callback = [o.callback, callback];
+				}
+			} else {
+				o.callback = callback;
+			}
 		}
 	};
 
 	this.fire = function(){
 		o.isDone = true;
 		if (o.callback != null) {
-			o.callback();
+			if (o.callback instanceof Array) {
+				o.callback.forEach(function(cb){
+					cb();
+				});
+			} else {
+				o.callback();
+			}
 		}
 	};
 	

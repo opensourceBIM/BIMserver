@@ -26,14 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>File</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.FileImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.FileImpl#getFilename <em>Filename</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.FileImpl#getMime <em>Mime</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

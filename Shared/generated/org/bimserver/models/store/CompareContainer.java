@@ -26,11 +26,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.CompareContainer#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.CompareContainer#getItems <em>Items</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getCompareContainer()
  * @model

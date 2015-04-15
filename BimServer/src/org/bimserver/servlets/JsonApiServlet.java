@@ -61,6 +61,9 @@ public class JsonApiServlet extends SubServlet {
 		try {
 			ServletInputStream inputStream = request.getInputStream();
 			byte[] bytes = IOUtils.toByteArray(inputStream); // Not streaming here, because we want to be able to show the request-data when it's not valid
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug("Incoming JSON " + new String(bytes, Charsets.UTF_8));
+			}
 			JsonReader jsonReader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(bytes), Charsets.UTF_8));
 			JsonParser parser = new JsonParser();
 			JsonElement parse = parser.parse(jsonReader);

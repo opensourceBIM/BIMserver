@@ -28,9 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>System Info</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.SystemInfoImpl#getCpucores <em>Cpucores</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SystemInfoImpl#getDatetime <em>Datetime</em>}</li>
@@ -40,6 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SystemInfoImpl#getUserHome <em>User Home</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SystemInfoImpl#getUserDir <em>User Dir</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

@@ -27,9 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Java Info</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.JavaInfoImpl#getHeapTotal <em>Heap Total</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.JavaInfoImpl#getHeapUsed <em>Heap Used</em>}</li>
@@ -55,6 +53,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.JavaInfoImpl#getJavaPathSeparator <em>Java Path Separator</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.JavaInfoImpl#getJavaLineSeparator <em>Java Line Separator</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

@@ -80,7 +80,7 @@ public class DownloadServlet extends SubServlet {
 			response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 			String acceptEncoding = request.getHeader("Accept-Encoding");
 			boolean useGzip = false;
-			if (acceptEncoding != null && acceptEncoding.equals("gzip")) {
+			if (acceptEncoding != null && acceptEncoding.contains("gzip")) {
 				useGzip = true;
 			}
 			OutputStream outputStream = response.getOutputStream();

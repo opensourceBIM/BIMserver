@@ -29,9 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Ifc Header</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.IfcHeaderImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.IfcHeaderImpl#getImplementationLevel <em>Implementation Level</em>}</li>
@@ -44,6 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.IfcHeaderImpl#getIfcSchemaVersion <em>Ifc Schema Version</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.IfcHeaderImpl#getAuthorization <em>Authorization</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

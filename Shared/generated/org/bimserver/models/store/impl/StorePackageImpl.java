@@ -867,8 +867,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 			return (StorePackage) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI);
 
 		// Obtain or create and register package
-		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI) : new StorePackageImpl());
+		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
+				: new StorePackageImpl());
 
 		isInited = true;
 
@@ -1940,6 +1940,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getServerSettings_AllowCreateValidatedUser() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(24);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_RenderEngineProcesses() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(25);
 	}
 
 	/**

@@ -28,14 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Serializer Plugin Configuration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getRenderEngine <em>Render Engine</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

@@ -31,9 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>User Session</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.UserSessionImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSessionImpl#getUsername <em>Username</em>}</li>
@@ -44,6 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserSessionImpl#getLastActive <em>Last Active</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSessionImpl#getAccessMethod <em>Access Method</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

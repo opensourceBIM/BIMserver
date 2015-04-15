@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getUrl <em>Url</em>}</li>
@@ -39,6 +38,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getUsers <em>Users</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getExtendedDataSchema()
  * @model

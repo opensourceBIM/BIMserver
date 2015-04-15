@@ -23,12 +23,12 @@ package org.bimserver.models.store;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ObjectModified#getFieldName <em>Field Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ObjectModified#getOldValue <em>Old Value</em>}</li>
  *   <li>{@link org.bimserver.models.store.ObjectModified#getNewValue <em>New Value</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getObjectModified()
  * @model

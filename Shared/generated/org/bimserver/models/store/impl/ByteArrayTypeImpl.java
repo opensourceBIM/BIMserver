@@ -25,12 +25,11 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Byte Array Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ByteArrayTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
