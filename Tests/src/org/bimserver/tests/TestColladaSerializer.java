@@ -21,6 +21,7 @@ import java.io.File;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -43,7 +44,7 @@ public class TestColladaSerializer {
 			File output = new File("output");
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			
-			DeserializerPlugin ifcDeserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin ifcDeserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.collada.ColladaSerializerPlugin", true);
 			for (File file : testFiles.listFiles()) {

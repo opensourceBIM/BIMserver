@@ -21,6 +21,7 @@ import java.io.File;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -38,7 +39,7 @@ public class TestSize {
 	private void start() {
 		try {
 			final PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			final DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			final DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
