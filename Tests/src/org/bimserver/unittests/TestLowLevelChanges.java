@@ -37,6 +37,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -331,7 +332,7 @@ public class TestLowLevelChanges {
 		SDownloadResult downloadData = bimsie1Interface.getDownloadData(downloadId);
 		DataHandler dataHandler = downloadData.getFile();
 		try {
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);

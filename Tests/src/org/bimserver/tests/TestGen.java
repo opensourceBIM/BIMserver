@@ -22,6 +22,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import org.bimserver.LocalDevPluginLoader;
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -42,7 +43,7 @@ public class TestGen {
 	private void start(String[] args) {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"), new OptionsParser(args).getPluginDirectories());
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(null);
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			

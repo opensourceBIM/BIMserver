@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -40,7 +41,7 @@ public class IfcXmlReadTest {
 	private void start() {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifcxml", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifcxml", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			try {
 				File file = TestFile.AC11_XML.getFile();
@@ -56,7 +57,7 @@ public class IfcXmlReadTest {
 					e.printStackTrace();
 				}
 				
-				DeserializerPlugin deserializerPlugin2 = pluginManager.getFirstDeserializer("ifc", true);
+				DeserializerPlugin deserializerPlugin2 = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 				Deserializer deserializer2 = deserializerPlugin2.createDeserializer(new PluginConfiguration());
 				deserializer2.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 				deserializer2.read(outFile);

@@ -38,6 +38,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.Schema;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.classloaders.DelegatingClassLoader;
@@ -516,8 +517,15 @@ public class PluginManager {
 		return sb.toString();
 	}
 	
-	public DeserializerPlugin getFirstDeserializer(String extension, boolean onlyEnabled) throws PluginException {
+	public DeserializerPlugin getFirstDeserializer(String extension, Schema schema, boolean onlyEnabled) throws PluginException {
 		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(extension, onlyEnabled);
+		Iterator<DeserializerPlugin> iterator = allDeserializerPlugins.iterator();
+		while (iterator.hasNext()) {
+			DeserializerPlugin next = iterator.next();
+			if (!next.getSupportedSchemas().contains(schema)) {
+				iterator.remove();
+			}
+		}
 		if (allDeserializerPlugins.size() == 0) {
 			throw new PluginException("No deserializers with extension " + extension + " found");
 		}

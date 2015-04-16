@@ -99,7 +99,7 @@ public class IfcGeometryRemover {
 
 	public IfcModelInterface readModel(File file) {
 		try {
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			deserializerPlugin.createDeserializer(new PluginConfiguration());
 //			deserializer.init(schema, null, null); // TODO
 			IfcModelInterface model = null;//deserializer.read(file);

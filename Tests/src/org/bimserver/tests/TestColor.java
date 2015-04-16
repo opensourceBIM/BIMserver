@@ -23,6 +23,7 @@ import java.util.Random;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.Schema;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
 import org.bimserver.plugins.PluginConfiguration;
@@ -40,7 +41,7 @@ public class TestColor {
 		PluginManager pluginManager;
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 //			IfcModelInterface model = deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));

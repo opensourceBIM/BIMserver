@@ -13,6 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.Schema;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
@@ -131,7 +132,7 @@ public class Colorizer {
 
 	public IfcModelInterface readModel(File file) {
 		try {
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 //			deserializer.init(schema); // TODO
 			IfcModelInterface model = deserializer.read(file);
