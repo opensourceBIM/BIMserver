@@ -65,7 +65,6 @@ import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
 import org.bimserver.models.ifc2x3tc1.IfcUnit;
 import org.bimserver.models.ifc2x3tc1.IfcUnitAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
-import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -102,6 +101,7 @@ public class GeometryGenerator {
 	private final BimServer bimServer;
 	private final Map<Integer, GeometryData> hashes = new ConcurrentHashMap<Integer, GeometryData>();
 	private final ObjectIDM skipRepresentation;
+	private long oidCounter = -1;
 
 	private static void initObjectIdmCache(BimServer bimServer) {
 		objectIdmCache = new HashMap<EClass, ObjectIDM>();
@@ -221,10 +221,10 @@ public class GeometryGenerator {
 			LOGGER.debug("Using " + maxSimultanousThreads + " processes for geometry generation");
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(classes.size()));
 
+			oidCounter = model.getHighestOid() + 1;
 			final Map<IdEObject, IdEObject> bigMap = new HashMap<IdEObject, IdEObject>();
 			
-			HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.getMetaDataManager()
-					.getPackageMetaData("ifc2x3tc1").getSchemaDefinition());
+			HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1").getSchemaDefinition());
 			for (final EClass eClass : classes) {
 				if (eClass.getName().equals("IfcOpeningElement")) {
 					continue;
@@ -259,6 +259,7 @@ public class GeometryGenerator {
 				for (IdEObject idEObject : model.getAllWithSubTypes(IfcUnitAssignment.class)) {
 					bigMap.put(modelHelper.copy(idEObject, false, skipRepresentation), idEObject);
 				}
+				
 				executor.submit(new Runnable() {
 					@Override
 					public void run() {
@@ -395,8 +396,6 @@ public class GeometryGenerator {
 		}
 	}
 	
-	int oidCounter = 500000;
-
 	private void copyDecomposes(IfcObjectDefinition ifcObjectDefinition, ModelHelper modelHelper) throws IfcModelInterfaceException {
 		IfcObjectDefinition newObjectDefinition = (IfcObjectDefinition) modelHelper.copy(ifcObjectDefinition, false, skipRepresentation);
 		for (IfcRelDecomposes ifcRelDecomposes : ifcObjectDefinition.getDecomposes()) {

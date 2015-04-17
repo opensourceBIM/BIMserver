@@ -39,7 +39,7 @@ import com.google.gson.stream.JsonWriter;
 
 public class IfcSchemaToJson {
 	public static void main(String[] args) {
-//		generateIfc2x3tc1();
+		generateIfc2x3tc1();
 		generateIfc4();
 	}
 

@@ -51,6 +51,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Charsets;
 
 public abstract class IfcStepSerializer extends IfcSerializer {
+	private static final byte[] NEW_LINE = "\n".getBytes(Charsets.UTF_8);
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(IfcStepSerializer.class);
 	private static final boolean useIso8859_1 = false;
 	private static final EcorePackage ECORE_PACKAGE_INSTANCE = EcorePackage.eINSTANCE;
@@ -158,14 +159,13 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void println(String line) throws IOException {
-		byte[] bytes = line.getBytes();
+		byte[] bytes = line.getBytes(Charsets.UTF_8);
 		outputStream.write(bytes, 0, bytes.length);
-		byte[] newLine = "\n".getBytes();
-		outputStream.write(newLine, 0, newLine.length);
+		outputStream.write(NEW_LINE, 0, NEW_LINE.length);
 	}
 
 	private void print(String text) throws IOException {
-		byte[] bytes = text.getBytes();
+		byte[] bytes = text.getBytes(Charsets.UTF_8);
 		outputStream.write(bytes, 0, bytes.length);
 	}
 	

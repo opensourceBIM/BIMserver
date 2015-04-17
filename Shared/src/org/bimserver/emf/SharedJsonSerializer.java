@@ -55,7 +55,7 @@ public class SharedJsonSerializer {
 	}
 
 	private void print(String line) throws IOException {
-		byte[] bytes = line.getBytes();
+		byte[] bytes = line.getBytes(Charsets.UTF_8);
 		outputStream.write(bytes, 0, bytes.length);
 	}
 	
