@@ -1000,4 +1000,12 @@ public abstract class IfcModel implements IfcModelInterface {
 	}
 
 	public abstract void load(IdEObject idEObject);
+	
+	@Override
+	public Set<EClass> getUsedClasses() {
+		if (indexPerClass == null) {
+			buildIndex();
+		}
+		return indexPerClass.keySet();
+	}
 }

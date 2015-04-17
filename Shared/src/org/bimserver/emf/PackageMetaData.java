@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -42,7 +41,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
-public class PackageMetaData {
+public class PackageMetaData implements ObjectFactory {
 	private final Map<String, Set<EClass>> directSubClasses = new TreeMap<String, Set<EClass>>();
 	private final Map<String, Set<EClass>> allSubClasses = new TreeMap<String, Set<EClass>>();
 	private final Map<String, EClassifier> caseInsensitive = new TreeMap<String, EClassifier>();
@@ -205,12 +204,16 @@ public class PackageMetaData {
 		return ePackage;
 	}
 
-	public EObject create(EClass eClass) {
-		return ePackage.getEFactoryInstance().create(eClass);
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends IdEObject> T create(EClass eClass) {
+		return (T) ePackage.getEFactoryInstance().create(eClass);
 	}
 
-	public EObject create(Class<?> clazz) {
-		return ePackage.getEFactoryInstance().create(getEClass(clazz));
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends IdEObject> T create(Class<T> clazz) {
+		return (T) ePackage.getEFactoryInstance().create(getEClass(clazz));
 	}
 
 	public SchemaDefinition getSchemaDefinition() {

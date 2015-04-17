@@ -31,7 +31,6 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
@@ -99,14 +98,14 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		PackageMetaData lastPackageMetaData = null;
 		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		pidRoidMap.put(project.getId(), roid);
-		for (ConcreteRevision subRevision : concreteRevisions) {
-			if (subRevision.getUser().getOid() != ignoreUoid) {
-				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(subRevision.getProject().getSchema());
+		for (ConcreteRevision concreteRevision : concreteRevisions) {
+			if (concreteRevision.getUser().getOid() != ignoreUoid) {
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
 				IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
-				ifcHeader = subRevision.getIfcHeader();
-				int highestStopId = findHighestStopRid(project, subRevision);
-				Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), subRevision.getOid(), objectIDM, Deep.YES, highestStopId);
+				ifcHeader = concreteRevision.getIfcHeader();
+				int highestStopId = findHighestStopRid(project, concreteRevision);
+				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), concreteRevision.getOid(), objectIDM, Deep.YES, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {
@@ -118,15 +117,16 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 						}
 					}
 				});
+				updateOidCounters(concreteRevision, query);
 				getDatabaseSession().getMap(subModel, query);
 				if (serializerPluginConfiguration != null) {
 					try {
-						checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, subRevision, revision);
+						checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, revision);
 					} catch (GeometryGeneratingException e) {
 						throw new UserException(e);
 					}
 				}
-				subModel.getModelMetaData().setDate(subRevision.getDate());
+				subModel.getModelMetaData().setDate(concreteRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
 		}

@@ -19,7 +19,6 @@ package org.bimserver.emf;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Iterator;
@@ -27,11 +26,9 @@ import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
 import org.bimserver.emf.IdEObjectImpl.State;
-import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.utils.UTF8PrintWriter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -44,7 +41,6 @@ public class SharedJsonSerializer {
 
 	private static final boolean SERIALIZE_EMPTY_LISTS = false;
 
-	private UTF8PrintWriter out;
 	private Mode mode = Mode.HEADER;
 	private boolean firstObject = true;
 	private Iterator<IdEObject> iterator;
@@ -52,18 +48,23 @@ public class SharedJsonSerializer {
 
 	private IfcModelInterface model;
 
+	private OutputStream outputStream;
+
 	public SharedJsonSerializer(IfcModelInterface model) {
 		this.model = model;
 	}
 
+	private void print(String line) throws IOException {
+		byte[] bytes = line.getBytes();
+		outputStream.write(bytes, 0, bytes.length);
+	}
+	
 	public boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
+		this.outputStream = outputStream;
 		try {
-			if (out == null) {
-				out = new UTF8PrintWriter(outputStream);
-			}
 			if (mode == Mode.HEADER) {
-				out.write("{");
-				out.write("\"objects\":[");
+				print("{");
+				print("\"objects\":[");
 				mode = Mode.BODY;
 				iterator = model.iterator();
 				return true;
@@ -76,39 +77,32 @@ public class SharedJsonSerializer {
 					if (object.getOid() == -1) {
 						((IdEObjectImpl)object).setOid(oidCounter++);
 					}
-					if (object instanceof IfcFurnishingElement) {
-						IfcFurnishingElement ifcFurnishingElement = (IfcFurnishingElement)object;
-						if (ifcFurnishingElement.getName().equals("ADDED FURNITURE")) {
-							System.out.println();
-						}
-					}
 					if (object.eClass().getEAnnotation("hidden") == null) {
 						if (!firstObject) {
-							out.write(",");
+							print(",");
 						} else {
 							firstObject = false;
 						}
 						if (((IdEObjectImpl) object).getLoadingState() != State.LOADED) {
-							out.write("{");
-							out.write("\"_i\":" + object.getOid() + ",");
-							out.write("\"_t\":\"" + object.eClass().getName() + "\",");
-							out.write("\"_s\":0");
-							out.write("}\n");
+							print("{");
+							print("\"_i\":" + object.getOid() + ",");
+							print("\"_t\":\"" + object.eClass().getName() + "\",");
+							print("\"_s\":0");
+							print("}\n");
 						} else {
-							out.write("{");
-							out.write("\"_i\":" + object.getOid() + ",");
-							out.write("\"_t\":\"" + object.eClass().getName() + "\",");
-							out.write("\"_s\":1");
+							print("{");
+							print("\"_i\":" + object.getOid() + ",");
+							print("\"_t\":\"" + object.eClass().getName() + "\",");
+							print("\"_s\":1");
 							for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-								if (eStructuralFeature.getEAnnotation("nolazyload") == null
-										&& eStructuralFeature.getEAnnotation("hidden") == null) {
+								if (eStructuralFeature.getEAnnotation("nolazyload") == null && eStructuralFeature.getEAnnotation("hidden") == null) {
 									if (eStructuralFeature instanceof EReference) {
 										Object value = object.eGet(eStructuralFeature);
 										if (value != null) {
 											if (eStructuralFeature.isMany()) {
 												List<?> list = (List<?>) value;
 												if (SERIALIZE_EMPTY_LISTS || !list.isEmpty()) {
-													out.write(",");
+													print(",");
 													int wrapped = 0;
 													int referred = 0;
 													for (Object o : list) {
@@ -125,27 +119,27 @@ public class SharedJsonSerializer {
 														}
 													}
 													if (wrapped == 0 && referred != 0) {
-														out.write("\"_r" + eStructuralFeature.getName() + "\":[");
+														print("\"_r" + eStructuralFeature.getName() + "\":[");
 													} else if (wrapped != 0 && referred == 0) {
-														out.write("\"_e" + eStructuralFeature.getName() + "\":[");
+														print("\"_e" + eStructuralFeature.getName() + "\":[");
 													} else if (wrapped == 0 && referred == 0) {
 														// should not happen
 													} else {
 														// both, this can occur,
 														// for example
 														// IfcTrimmedCurve.Trim1
-														out.write("\"_e" + eStructuralFeature.getName() + "\":[");
+														print("\"_e" + eStructuralFeature.getName() + "\":[");
 													}
 													boolean f = true;
 													for (Object o : list) {
 														if (!f) {
-															out.write(",");
+															print(",");
 														} else {
 															f = false;
 														}
 														IdEObject ref = (IdEObject) o;
 														if (ref.getOid() == -1) {
-															writeObject(out, ref);
+															writeObject(ref);
 														} else {
 															if (wrapped != 0 && referred != 0) {
 																// Special
@@ -159,30 +153,28 @@ public class SharedJsonSerializer {
 																// distinguishable
 																// from embedded
 																// objects
-																out.write("{");
-																out.write("\"_i\":");
-																out.write("" + ref.getOid());
-																out.write("}");
+																print("{");
+																print("\"_i\":");
+																print("" + ref.getOid());
+																print("}");
 															} else {
-																out.write("" + ref.getOid());
+																print("" + ref.getOid());
 															}
 														}
 													}
-													out.write("]");
+													print("]");
 												}
 											} else {
-												out.write(",");
+												print(",");
 												IdEObject ref = (IdEObject) value;
 												if (ref instanceof IfcGloballyUniqueId) {
-													out.write("\"" + eStructuralFeature.getName() + "\":");
-													writePrimitive(out, eStructuralFeature,
-															((IfcGloballyUniqueId) ref).getWrappedValue());
+													print("\"" + eStructuralFeature.getName() + "\":");
+													writePrimitive(eStructuralFeature, ((IfcGloballyUniqueId) ref).getWrappedValue());
 												} else if (((IdEObject) ref).eClass().getEAnnotation("wrapped") != null) {
-													out.write("\"_e" + eStructuralFeature.getName() + "\":");
-													writeObject(out, ref);
+													print("\"_e" + eStructuralFeature.getName() + "\":");
+													writeObject(ref);
 												} else {
-													out.write("\"_r" + eStructuralFeature.getName() + "\":"
-															+ ref.getOid());
+													print("\"_r" + eStructuralFeature.getName() + "\":"	+ ref.getOid());
 												}
 											}
 										}
@@ -192,40 +184,39 @@ public class SharedJsonSerializer {
 											if (eStructuralFeature.isMany()) {
 												List<?> list = (List<?>) value;
 												if (SERIALIZE_EMPTY_LISTS || !list.isEmpty()) {
-													out.write(",");
-													out.write("\"" + eStructuralFeature.getName() + "\":[");
+													print(",");
+													print("\"" + eStructuralFeature.getName() + "\":[");
 													boolean f = true;
 													for (Object o : list) {
 														if (!f) {
-															out.write(",");
+															print(",");
 														} else {
 															f = false;
 														}
-														writePrimitive(out, eStructuralFeature, o);
+														writePrimitive(eStructuralFeature, o);
 													}
-													out.write("]");
+													print("]");
 												}
 											} else {
-												out.write(",");
-												out.write("\"" + eStructuralFeature.getName() + "\":");
-												writePrimitive(out, eStructuralFeature, value);
+												print(",");
+												print("\"" + eStructuralFeature.getName() + "\":");
+												writePrimitive(eStructuralFeature, value);
 											}
 										}
 									}
 								}
 							}
-							out.write("}\n");
+							print("}\n");
 						}
 					}
 					return true;
 				} else {
+					print("]");
+					print("}");
 					mode = Mode.FOOTER;
 					return true;
 				}
 			} else if (mode == Mode.FOOTER) {
-				out.write("]");
-				out.write("}");
-				out.flush();
 				mode = Mode.DONE;
 				return false;
 			}
@@ -235,16 +226,16 @@ public class SharedJsonSerializer {
 		return false;
 	}
 
-	private void writeObject(UTF8PrintWriter out, IdEObject object) {
+	private void writeObject(IdEObject object) throws IOException {
 		if (object.eClass().getEAnnotation("wrapped") != null) {
 			EStructuralFeature wrappedFeature = object.eClass().getEStructuralFeature("wrappedValue");
-			out.write("{");
-			out.write("\"_t\":\"" + object.eClass().getName() + "\",");
-			out.write("\"_v\":");
-			writePrimitive(out, wrappedFeature, object.eGet(wrappedFeature));
-			out.write("}");
+			print("{");
+			print("\"_t\":\"" + object.eClass().getName() + "\",");
+			print("\"_v\":");
+			writePrimitive(wrappedFeature, object.eGet(wrappedFeature));
+			print("}");
 		} else {
-			out.write("" + object.getOid());
+			print("" + object.getOid());
 		}
 	}
 	
@@ -320,19 +311,19 @@ public class SharedJsonSerializer {
         return w;
     }
 
-	private void writePrimitive(PrintWriter out, EStructuralFeature feature, Object value) {
+	private void writePrimitive(EStructuralFeature feature, Object value) throws IOException {
 		if (value instanceof String) {
-			out.write(quote((String) value));
+			print(quote((String) value));
 		} else if (value instanceof byte[]) {
-			out.write("\"" + new String(Base64.encodeBase64((byte[]) value), Charsets.UTF_8) + "\"");
+			print("\"" + new String(Base64.encodeBase64((byte[]) value), Charsets.UTF_8) + "\"");
 		} else if (value instanceof Enum) {
 			if (value.toString().equalsIgnoreCase("true") || value.toString().equalsIgnoreCase("false")) {
-				out.write(value.toString().toLowerCase());
+				print(value.toString().toLowerCase());
 			} else {
-				out.write("\"" + value + "\"");
+				print("\"" + value + "\"");
 			}
 		} else {
-			out.write("" + value);
+			print("" + value);
 		}
 	}
 }

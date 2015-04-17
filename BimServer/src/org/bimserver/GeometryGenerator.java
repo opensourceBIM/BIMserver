@@ -201,6 +201,10 @@ public class GeometryGenerator {
 					classes.add(object.eClass());
 				}
 			}
+			
+			if (classes.size() == 0) {
+				return;
+			}
 
 			final RenderEngineSettings settings = new RenderEngineSettings();
 			settings.setPrecision(Precision.SINGLE);

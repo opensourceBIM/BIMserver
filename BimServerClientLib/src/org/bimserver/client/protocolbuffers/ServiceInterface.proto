@@ -595,12 +595,13 @@ message SRevision {
 	optional string lastError = 10;
 	repeated int64 logs = 11;
 	optional int64 oid = 12;
-	optional int64 projectId = 13;
-	optional int32 rid = 14;
-	optional int64 serviceId = 15;
-	optional int64 size = 16;
-	optional string tag = 17;
-	optional int64 userId = 18;
+	optional bytes oidCounters = 13;
+	optional int64 projectId = 14;
+	optional int32 rid = 15;
+	optional int64 serviceId = 16;
+	optional int64 size = 17;
+	optional string tag = 18;
+	optional int64 userId = 19;
 }
 
 message SCheckout {

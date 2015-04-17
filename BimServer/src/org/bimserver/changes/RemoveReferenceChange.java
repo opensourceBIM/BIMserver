@@ -29,6 +29,9 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
+import org.bimserver.plugins.schema.Attribute;
+import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.InverseAttribute;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -65,11 +68,24 @@ public class RemoveReferenceChange implements Change {
 			throw new UserException("Reference is not of type 'many'");
 		}
 		List list = (List) idEObject.eGet(eReference);
+		EntityDefinition entityBN = packageMetaData.getSchemaDefinition().getEntityBN(idEObject.eClass().getName());
+		Attribute attributeBNWithSuper = entityBN.getAttributeBNWithSuper(eReference.getName());
 		if (eReference.getEOpposite() != null) {
 			IdEObject referenced = (IdEObject) list.get(index);
 			referenced.eSet(eReference.getEOpposite(), null); // This will automatically remove the object from the list
 			databaseSession.store(referenced, project.getId(), concreteRevision.getId());
 		} else {
+			if (attributeBNWithSuper instanceof InverseAttribute) {
+				InverseAttribute inverse = (InverseAttribute) attributeBNWithSuper;
+				IdEObject referenced = (IdEObject) list.get(index);
+				EReference inverseReference = (EReference) referenced.eClass().getEStructuralFeature(inverse.getInverted_attr().getName());
+				if (referenced instanceof List) {
+					((List)referenced).remove(idEObject);
+				} else {
+					referenced.eUnset(inverseReference);
+				}
+				databaseSession.store(referenced, project.getId(), concreteRevision.getId());
+			}
 			list.remove(index);
 		}
 		databaseSession.store(idEObject, project.getId(), concreteRevision.getId());

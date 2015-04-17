@@ -45,7 +45,7 @@ public class SharedJsonDeserializer {
 	public SharedJsonDeserializer(boolean skipInverses) {
 		this.skipInverses = skipInverses;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public IfcModelInterface read(InputStream in, IfcModelInterface model) throws DeserializeException {
 		WaitingList<Long> waitingList = new WaitingList<Long>();
@@ -62,15 +62,18 @@ public class SharedJsonDeserializer {
 		}
 		JsonReader jsonReader = new JsonReader(new InputStreamReader(in, Charsets.UTF_8));
 		try {
-			jsonReader.beginObject();
-			if (jsonReader.nextName().equals("objects")) {
-				jsonReader.beginArray();
-				while (jsonReader.hasNext()) {
-					processObject(model, waitingList, jsonReader);
+			JsonToken peek = jsonReader.peek();
+			if (peek != null && peek == JsonToken.BEGIN_OBJECT) {
+				jsonReader.beginObject();
+				if (jsonReader.nextName().equals("objects")) {
+					jsonReader.beginArray();
+					while (jsonReader.hasNext()) {
+						processObject(model, waitingList, jsonReader);
+					}
+					jsonReader.endArray();
 				}
-				jsonReader.endArray();
+				jsonReader.endObject();
 			}
-			jsonReader.endObject();
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		} catch (IfcModelInterfaceException e) {
@@ -108,8 +111,7 @@ public class SharedJsonDeserializer {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void processObject(IfcModelInterface model, WaitingList<Long> waitingList, JsonReader jsonReader) throws IOException, DeserializeException,
-			IfcModelInterfaceException {
+	private void processObject(IfcModelInterface model, WaitingList<Long> waitingList, JsonReader jsonReader) throws IOException, DeserializeException, IfcModelInterfaceException {
 		jsonReader.beginObject();
 		if (jsonReader.nextName().equals("_i")) {
 			long oid = jsonReader.nextLong();
@@ -124,8 +126,7 @@ public class SharedJsonDeserializer {
 				if (model.containsNoFetch(oid)) {
 					object = (IdEObjectImpl) model.getNoFetch(oid);
 				} else {
-					object = (IdEObjectImpl) model.getPackageMetaData().create(eClass);
-					model.add(oid, object);
+					object = (IdEObjectImpl) model.create(eClass, oid);
 				}
 
 				if (jsonReader.nextName().equals("_s")) {
@@ -183,8 +184,7 @@ public class SharedJsonDeserializer {
 											jsonReader.beginObject();
 											if (jsonReader.nextName().equals("_t")) {
 												String t = jsonReader.nextString();
-												IdEObject wrappedObject = (IdEObject) model.getPackageMetaData().create(model.getPackageMetaData().getEClass(t));
-												model.add(-1, wrappedObject);
+												IdEObject wrappedObject = (IdEObject) model.create(model.getPackageMetaData().getEClass(t), -1);
 												if (jsonReader.nextName().equals("_v")) {
 													EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
 													wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
@@ -198,7 +198,7 @@ public class SharedJsonDeserializer {
 											long refOid = jsonReader.nextLong();
 											EntityDefinition entityBN = model.getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName());
 											Attribute attributeBN = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
-											if (skipInverses && attributeBN instanceof InverseAttribute) {
+											if (skipInverses && attributeBN instanceof InverseAttribute && ((EReference)eStructuralFeature).getEOpposite() != null) {
 												// skip
 											} else {
 												if (model.contains(refOid)) {
@@ -249,8 +249,7 @@ public class SharedJsonDeserializer {
 										jsonReader.beginObject();
 										if (jsonReader.nextName().equals("_t")) {
 											String t = jsonReader.nextString();
-											IdEObject wrappedObject = (IdEObject) model.getPackageMetaData().create(model.getPackageMetaData().getEClass(t));
-											model.add(-1, wrappedObject);
+											IdEObject wrappedObject = (IdEObject) model.create(model.getPackageMetaData().getEClass(t), -1);
 											if (jsonReader.nextName().equals("_v")) {
 												EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
 												wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));

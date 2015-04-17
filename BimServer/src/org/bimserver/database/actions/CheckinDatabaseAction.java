@@ -17,7 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.nio.ByteBuffer;
 import java.util.Date;
+import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryCache;
@@ -49,6 +51,7 @@ import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
+import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -180,6 +183,13 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				// There already was a revision, lets delete it (only when not merging)
 				concreteRevision.setClear(true);
 			}
+			Set<EClass> eClasses = ifcModel.getUsedClasses();
+			ByteBuffer buffer = ByteBuffer.allocate(10 * eClasses.size());
+			for (EClass eClass : eClasses) {
+				buffer.putShort(getDatabaseSession().getCid(eClass));
+				buffer.putLong(getDatabaseSession().getCounter(eClass));
+			}
+			concreteRevision.setOidCounters(buffer.array());
 
 			if (ifcModel != null) {
 				getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());

@@ -1,6 +1,7 @@
 package org.bimserver.tests.emf;
 
 import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
@@ -15,6 +16,8 @@ import org.junit.Test;
 
 public class RemoveReferenceList extends TestWithEmbeddedServer {
 
+	
+	// This test makes no sense, since getContainedInStructure is a Set (unordered)
 	@Test
 	public void test() {
 		try {
@@ -39,9 +42,9 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			IfcRelContainedInSpatialStructure link3 = model.create(IfcRelContainedInSpatialStructure.class);
 			link3.setName("link3");
 
-			furnishingElement.getContainedInStructure().add(link1);
-			furnishingElement.getContainedInStructure().add(link2);
-			furnishingElement.getContainedInStructure().add(link3);
+			link1.getRelatedElements().add(furnishingElement);
+			link2.getRelatedElements().add(furnishingElement);
+			link3.getRelatedElements().add(furnishingElement);
 			
 			model.commit("initial");
 			
@@ -55,21 +58,20 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 				if (ifcFurnishingElement.getContainedInStructure().size() != 3) {
 					fail("Size should be 3, is " + ifcFurnishingElement.getContainedInStructure().size());
 				}
+				assertTrue(ifcFurnishingElement.getContainedInStructure().get(0).getName() + " should be link1", ifcFurnishingElement.getContainedInStructure().get(0).getName().equals("link1"));
+				assertTrue(ifcFurnishingElement.getContainedInStructure().get(1).getName() + " should be link2", ifcFurnishingElement.getContainedInStructure().get(1).getName().equals("link2"));
+				assertTrue(ifcFurnishingElement.getContainedInStructure().get(2).getName() + " should be link3", ifcFurnishingElement.getContainedInStructure().get(2).getName().equals("link3"));
 				// Remove the middle one
 				ifcFurnishingElement.getContainedInStructure().remove(1);
 			}
-			
-			System.out.println(newProject.getLastRevisionId());
 			
 			model.commit("removed middle link");
 			
 			// refresh
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
-			System.out.println(newProject.getLastRevisionId());
+			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
-				if (ifcFurnishingElement.getContainedInStructure().size() != 2) {
-					fail("Size should be 2");
-				}
+				assertTrue("Size should be 2, is " + ifcFurnishingElement.getContainedInStructure().size(), ifcFurnishingElement.getContainedInStructure().size() == 2);
 				if (!ifcFurnishingElement.getContainedInStructure().get(0).getName().equals("link1")) {
 					fail("First one should be link 1");
 				}
@@ -77,7 +79,6 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 					fail("Second one should be link 3");
 				}
 			}
-			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			if (e instanceof AssertionError) {

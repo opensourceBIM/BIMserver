@@ -29,6 +29,9 @@ public class Step0015 extends Migration {
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		EClass serverSettings = schema.getEClass("store", "ServerSettings");
 		schema.createEAttribute(serverSettings, "renderEngineProcesses", EcorePackage.eINSTANCE.getEInt()).setDefaultValue(1);
+		
+		EClass concreteRevisionClass = schema.getEClass("store", "ConcreteRevision");
+		schema.createEAttribute(concreteRevisionClass, "oidCounters", EcorePackage.eINSTANCE.getEByteArray());
 	}
 
 	@Override

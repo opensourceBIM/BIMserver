@@ -134,6 +134,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="summary" eType="#//RevisionSummary"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#//User"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ifcHeader" eType="#//IfcHeader"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="oidCounters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GeoTag">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>

@@ -233,6 +233,10 @@ public class Database implements BimDatabase {
 		return oidCounters.get(eClass).addAndGet(65536);
 	}
 
+	public long getCounter(EClass eClass) {
+		return oidCounters.get(eClass).get();
+	}
+
 	public EClassifier getEClassifier(String packageName, String classifierName) throws BimserverDatabaseException {
 		if (packageName == null) {
 			throw new BimserverDatabaseException("No package name given");

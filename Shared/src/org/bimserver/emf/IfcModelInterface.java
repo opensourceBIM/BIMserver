@@ -221,4 +221,6 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	IdEObject getNoFetch(long oid);
 
 	void load(IdEObject idEObject);
+
+	Set<EClass> getUsedClasses();
 }

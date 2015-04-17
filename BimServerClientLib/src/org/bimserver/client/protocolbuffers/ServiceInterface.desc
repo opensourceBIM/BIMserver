@@ -1,5 +1,5 @@
 
-ð†
+…‡
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -270,7 +270,7 @@ dataObject (2.org.bimserver.pb.SDataObject
 errorMessage (	&
 value (2.org.bimserver.pb.SUser",
 GetAllCheckoutsByUserRequest
-uoid ("È
+uoid ("Ý
 	SRevision
 bmi (
 	checkouts (
@@ -285,13 +285,14 @@ dataObject (2.org.bimserver.pb.SDataObject
 	lastError
  (	
 logs (
-oid (
-	projectId (
-rid (
-	serviceId (
-size (
-tag (	
-userId ("Ñ
+oid (
+oidCounters (
+	projectId (
+rid (
+	serviceId (
+size (
+tag (	
+userId ("Ñ
 	SCheckout
 active (,
 checkin (2.org.bimserver.pb.SRevision

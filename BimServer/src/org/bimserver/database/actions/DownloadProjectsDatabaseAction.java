@@ -32,7 +32,6 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
@@ -103,6 +102,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 							}
 						}
 					});
+					updateOidCounters(concreteRevision, query);
 					getDatabaseSession().getMap(subModel, query);
 					projectName += concreteRevision.getProject().getName() + "-";
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());

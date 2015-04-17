@@ -17,6 +17,8 @@ package org.bimserver.database;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Map;
+
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.plugins.objectidms.ObjectIDM;
@@ -37,6 +39,7 @@ public class Query implements QueryInterface {
 	private final Deep deep;
 	private final int stopRid;
 	private PackageMetaData packageMetaData;
+	private Map<EClass, Long> oidCounters;
 
 	private static final Query DEFAULT = new Query();
 	
@@ -46,6 +49,14 @@ public class Query implements QueryInterface {
 	
 	public static Query getDefault() {
 		return DEFAULT;
+	}
+	
+	public void setOidCounters(Map<EClass, Long> oidCounters) {
+		this.oidCounters = oidCounters;
+	}
+	
+	public Map<EClass, Long> getOidCounters() {
+		return oidCounters;
 	}
 	
 	private Query() {
