@@ -1017,7 +1017,7 @@ function Model(bimServerApi, poid, roid, schema) {
 					wrapperClass["get" + fieldName.firstUpper()] = function(callback) {
 						var object = this.object;
 						var model = this.model;
-						var promise = model.createPromise();
+						var promise = new Promise();
 						if (object[fieldName] != null) {
 							if (field.many) {
 								object[fieldName].forEach(function(item){
@@ -1277,7 +1277,7 @@ function Model(bimServerApi, poid, roid, schema) {
 	};
 
 	this.getByX = function(methodName, keyname, fetchingMap, targetMap, interfaceMethodName, interfaceFieldName, getValueMethod, list, callback) {
-		var promise = othis.createPromise();
+		var promise = new Promise();
 		othis.incrementRunningCalls(methodName + "(" + list + ")");
 		if (typeof list == "string" || typeof list == "number") {
 			list = [list];
@@ -1383,28 +1383,8 @@ function Model(bimServerApi, poid, roid, schema) {
 		return othis.getByX("getByName", "name", othis.namesFetching, othis.objectsByName, "downloadByNames", "names", function(object){return object.getName == null ? null : object.getName()}, names, callback);
 	};
 
-	this.createPromise = function(){
-		var promise = {
-			isDone: false,
-			done: function(callback){
-				if (promise.isDone) {
-					callback();
-				} else {
-					promise.callback = callback;
-				}
-			},
-			fire: function(){
-				promise.isDone = true;
-				if (promise.callback != null) {
-					promise.callback();
-				}
-			}
-		};
-		return promise;
-	};
-
 	this.query = function(query, callback){
-		var promise = othis.createPromise();
+		var promise = new Promise();
 		var fullTypesLoading = {};
 		query.queries.forEach(function(subQuery){
 			if (subQuery.type != null) {
@@ -1469,7 +1449,7 @@ function Model(bimServerApi, poid, roid, schema) {
 	};
 	
 	this.getAllOfType = function(type, includeAllSubTypes, callback) {
-		var promise = othis.createPromise();
+		var promise = new Promise();
 		othis.incrementRunningCalls("getAllOfType");
 		othis.waitForLoaded(function(){
 			if (othis.loadedDeep) {
@@ -1676,6 +1656,7 @@ function Promise() {
 				o.callback = callback;
 			}
 		}
+		return o;
 	};
 
 	this.fire = function(){
