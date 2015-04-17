@@ -17,24 +17,20 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public interface QueryInterface {
 
 	int getPid();
-
 	int getRid();
-
 	boolean isDeep();
-
 	int getStopRid();
-
 	boolean shouldFollowReference(EClass originalQueryClass, EClass eClass, EStructuralFeature feature);
-
 	boolean shouldIncludeClass(EClass eClass);
-	
 	PackageMetaData getPackageMetaData();
-
 	long getRoid();
+	Map<EClass, Long> getOidCounters();
 }

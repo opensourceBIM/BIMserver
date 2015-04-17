@@ -112,6 +112,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					IfcModelInterface subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
 					
 					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.NO, highestStopId);
+					updateOidCounters(concreteRevision, databaseQuery);
 					JsonObject queryObject = (JsonObject)query;
 					JsonArray queries = queryObject.get("queries").getAsJsonArray();
 					String lowerCaseSchema = concreteRevision.getProject().getSchema().toLowerCase();
@@ -232,10 +233,6 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					if (eStructuralFeature instanceof EReference) {
 						List<?> list = ((List<?>)value);
 						for (Object o : list) {
-							if (o instanceof IfcClassificationReference) {
-								System.out.println();
-							}
-
 							if (!model.contains(((IdEObject)o).getOid())) {
 								model.add(((IdEObject)o).getOid(), ((IdEObject)o));
 							}

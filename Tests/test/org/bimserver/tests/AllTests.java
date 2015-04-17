@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
+import org.bimserver.client.DirectBimServerClientFactory;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
@@ -126,7 +127,8 @@ public class AllTests {
 
 	public static BimServerClientFactory getFactory() {
 		if (factory == null) {
-			factory = new JsonBimServerClientFactory(bimServer.getMetaDataManager(), "http://localhost:8080");
+			factory = bimServer.getBimServerClientFactory();
+//			factory = new JsonBimServerClientFactory(bimServer.getMetaDataManager(), "http://localhost:8080");
 //			factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
 		}
 		return factory;

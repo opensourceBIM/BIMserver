@@ -47,6 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getIfcHeader <em>Ifc Header</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getOidCounters <em>Oid Counters</em>}</li>
  * </ul>
  * </p>
  *
@@ -270,6 +271,24 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 */
 	public void setIfcHeader(IfcHeader newIfcHeader) {
 		eSet(StorePackage.Literals.CONCRETE_REVISION__IFC_HEADER, newIfcHeader);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public byte[] getOidCounters() {
+		return (byte[]) eGet(StorePackage.Literals.CONCRETE_REVISION__OID_COUNTERS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOidCounters(byte[] newOidCounters) {
+		eSet(StorePackage.Literals.CONCRETE_REVISION__OID_COUNTERS, newOidCounters);
 	}
 
 } //ConcreteRevisionImpl

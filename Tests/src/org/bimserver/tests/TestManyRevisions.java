@@ -27,13 +27,13 @@ public class TestManyRevisions {
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			pluginManager.setMetaDataManager(metaDataManager);
 			BimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, "http://localhost:8080");
-			BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("", ""));
+			BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			try {
 				SProject project = client.getBimsie1ServiceInterface().addProject("lots2", "ifc2x3tc1");
 				File[] files = new File[]{new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), new File("../TestData/data/AC11-FZK-Haus-IFC - Alt.ifc")};
 				SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 				int fn = 0;
-				for (int i=0; i<100; i++) {
+				for (int i=0; i<20; i++) {
 					System.out.println(i + ": " + files[fn].getName());
 					client.checkin(project.getOid(), "comment" + i, deserializer.getOid(), false, true, files[fn]);
 					fn = 1 - fn;
