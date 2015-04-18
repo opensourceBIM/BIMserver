@@ -154,8 +154,9 @@
 		</jar>
 		<delete dir="builds/BuildWar/WEB-INF/classes" />
 		<mkdir dir="builds/BuildWar/WEB-INF/classes" />
+		<property name="log4j" value="${defaultsettings}/${target}/log4j.xml"/>
 		<copy todir="builds/BuildWar/WEB-INF/classes">
-			<fileset file="${defaultsettings}/${target}/log4j.xml" />
+			<fileset file="${log4j}" />
 		</copy>
 		<jar destfile="builds/bimserver-${version}.war">
 			<fileset dir="builds/BuildWar">
