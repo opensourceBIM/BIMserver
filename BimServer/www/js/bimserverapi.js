@@ -1304,7 +1304,6 @@ function Model(bimServerApi, poid, roid, schema) {
 			}
 			// Any left?
 			if (list.length > 0) {
-//				debugger;
 				list.forEach(function(item){
 					fetchingMap[item] = [];
 				});
@@ -1660,6 +1659,11 @@ function Promise() {
 	};
 
 	this.fire = function(){
+		if (o.isDone) {
+			console.log("Promise already fired, not triggering again...");
+			debugger;
+			return;
+		}
 		o.isDone = true;
 		if (o.callback != null) {
 			if (o.callback instanceof Array) {
@@ -1673,16 +1677,29 @@ function Promise() {
 	};
 	
 	this.chain = function(otherPromise) {
-		o.chains.push(otherPromise);
-		otherPromise.done(function(){
-			for (var i=o.chains.length-1; i>=0; i--) {
-				if (o.chains[i] == otherPromise) {
-					o.chains.splice(i, 1);
-				}
-			}
-			if (o.chains.length == 0) {
-				o.fire();
+		var promises;
+		if (otherPromise instanceof Array) {
+			promises = otherPromise;
+		} else {
+			promises = [otherPromise];
+		}
+		promises.forEach(function(promise){
+			if (!promise.isDone) {
+				o.chains.push(promise);
+				promise.done(function(){
+					for (var i=o.chains.length-1; i>=0; i--) {
+						if (o.chains[i] == promise) {
+							o.chains.splice(i, 1);
+						}
+					}
+					if (o.chains.length == 0) {
+						o.fire();
+					}
+				});
 			}
 		});
+		if (o.chains.length == 0) {
+			o.fire();
+		}
 	};
 }
