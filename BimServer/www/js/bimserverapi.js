@@ -103,7 +103,7 @@ function BimServerApi(baseUrl, notifier) {
 		othis.call("AdminInterface", "getServerInfo", {}, function(serverInfo){
 			othis.version = serverInfo.version;
 			var versionString = othis.version.major + "." + othis.version.minor + "." + othis.version.revision;
-			
+
 			// Let's do the callback here, saves us 2 roundtrips to the server, and no body is going to use the schema's that soon... (we hope)
 			callback(this, serverInfo);
 			$.ajax({
