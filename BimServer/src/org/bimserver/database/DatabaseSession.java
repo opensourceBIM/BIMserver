@@ -20,6 +20,7 @@ package org.bimserver.database;
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -89,7 +90,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public static final int DEFAULT_CONFLICT_RETRIES = 10;
 	private static final boolean DEVELOPER_DEBUG = false;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
-	private static final EcorePackage ECORE_PACKAGE = EcorePackage.eINSTANCE;
 	private final Database database;
 	private BimTransaction bimTransaction;
 	private final Set<PostCommitAction> postCommitActions = new LinkedHashSet<PostCommitAction>();
@@ -1248,24 +1248,24 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private int getPrimitiveSize(EDataType eDataType, Object val) {
-		if (eDataType == ECORE_PACKAGE.getEInt() || eDataType == ECORE_PACKAGE.getEIntegerObject()) {
+		if (eDataType == EcorePackage.eINSTANCE.getEInt() || eDataType == EcorePackage.eINSTANCE.getEIntegerObject()) {
 			return 4;
-		} else if (eDataType == ECORE_PACKAGE.getEFloat() || eDataType == ECORE_PACKAGE.getEFloatObject()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getEFloat() || eDataType == EcorePackage.eINSTANCE.getEFloatObject()) {
 			return 4;
-		} else if (eDataType == ECORE_PACKAGE.getEBoolean() || eDataType == ECORE_PACKAGE.getEBooleanObject()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getEBoolean() || eDataType == EcorePackage.eINSTANCE.getEBooleanObject()) {
 			return 1;
-		} else if (eDataType == ECORE_PACKAGE.getEDate()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getEDate()) {
 			return 8;
-		} else if (eDataType == ECORE_PACKAGE.getELong() || eDataType == ECORE_PACKAGE.getELongObject()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getELong() || eDataType == EcorePackage.eINSTANCE.getELongObject()) {
 			return 8;
-		} else if (eDataType == ECORE_PACKAGE.getEDouble() || eDataType == ECORE_PACKAGE.getEDoubleObject()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getEDouble() || eDataType == EcorePackage.eINSTANCE.getEDoubleObject()) {
 			return 8;
-		} else if (eDataType == ECORE_PACKAGE.getEString()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getEString()) {
 			if (val != null) {
 				return 4 + ((String) val).getBytes(Charsets.UTF_8).length;
 			}
 			return 4;
-		} else if (eDataType == ECORE_PACKAGE.getEByteArray()) {
+		} else if (eDataType == EcorePackage.eINSTANCE.getEByteArray()) {
 			if (val != null) {
 				return 4 + ((byte[]) val).length;
 			}
@@ -1359,19 +1359,19 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		Map<Long, T> map = new HashMap<Long, T>();
 		Set<EClass> eClasses = new HashSet<EClass>();
 		condition.getEClassRequirements(eClasses);
-		TodoList todoList = new TodoList();
 		for (EClass eClass : eClasses) {
+			TodoList todoList = new TodoList();
 			getMap(eClass, model, query, todoList);
-			for (Long oid : model.keySet()) {
-				IdEObject object = model.get(oid);
+			processTodoList(model, todoList, query);
+			List<IdEObject> list = new ArrayList<IdEObject>(model.getValues());
+			for (IdEObject object : list) {
 				if (clazz.isInstance(object)) {
 					if (condition.matches(object)) {
-						map.put(oid, clazz.cast(object));
+						map.put(object.getOid(), clazz.cast(object));
 					}
 				}
 			}
 		}
-		processTodoList(model, todoList, query);
 		return map;
 	}
 
@@ -1385,24 +1385,24 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private Object readPrimitiveValue(EClassifier classifier, ByteBuffer buffer, QueryInterface query) {
-		if (classifier == ECORE_PACKAGE.getEString()) {
+		if (classifier == EcorePackage.eINSTANCE.getEString()) {
 			int length = buffer.getInt();
 			if (length != -1) {
 				return BinUtils.readString(buffer, length);
 			} else {
 				return null;
 			}
-		} else if (classifier == ECORE_PACKAGE.getEInt() || classifier == ECORE_PACKAGE.getEIntegerObject()) {
+		} else if (classifier == EcorePackage.eINSTANCE.getEInt() || classifier == EcorePackage.eINSTANCE.getEIntegerObject()) {
 			return buffer.getInt();
-		} else if (classifier == ECORE_PACKAGE.getELong() || classifier == ECORE_PACKAGE.getELongObject()) {
+		} else if (classifier == EcorePackage.eINSTANCE.getELong() || classifier == EcorePackage.eINSTANCE.getELongObject()) {
 			return buffer.getLong();
-		} else if (classifier == ECORE_PACKAGE.getEFloat() || classifier == ECORE_PACKAGE.getEFloatObject()) {
+		} else if (classifier == EcorePackage.eINSTANCE.getEFloat() || classifier == EcorePackage.eINSTANCE.getEFloatObject()) {
 			return buffer.getFloat();
-		} else if (classifier == ECORE_PACKAGE.getEDouble() || classifier == ECORE_PACKAGE.getEDoubleObject()) {
+		} else if (classifier == EcorePackage.eINSTANCE.getEDouble() || classifier == EcorePackage.eINSTANCE.getEDoubleObject()) {
 			return buffer.getDouble();
-		} else if (classifier == ECORE_PACKAGE.getEBoolean() || classifier == ECORE_PACKAGE.getEBooleanObject()) {
+		} else if (classifier == EcorePackage.eINSTANCE.getEBoolean() || classifier == EcorePackage.eINSTANCE.getEBooleanObject()) {
 			return buffer.get() == 1;
-		} else if (classifier == ECORE_PACKAGE.getEDate()) {
+		} else if (classifier == EcorePackage.eINSTANCE.getEDate()) {
 			long val = buffer.getLong();
 			if (val == -1L) {
 				return null;
@@ -1620,7 +1620,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	private void writePrimitiveValue(EStructuralFeature feature, Object value, ByteBuffer buffer) throws BimserverDatabaseException {
 		EClassifier type = feature.getEType();
-		if (type == ECORE_PACKAGE.getEString()) {
+		if (type == EcorePackage.eINSTANCE.getEString()) {
 			if (value == null) {
 				buffer.putInt(-1);
 			} else {
@@ -1632,37 +1632,37 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				buffer.putInt(bytes.length);
 				buffer.put(bytes);
 			}
-		} else if (type == ECORE_PACKAGE.getEInt() || type == ECORE_PACKAGE.getEIntegerObject()) {
+		} else if (type == EcorePackage.eINSTANCE.getEInt() || type == EcorePackage.eINSTANCE.getEIntegerObject()) {
 			if (value == null) {
 				buffer.putInt(0);
 			} else {
 				buffer.putInt((Integer) value);
 			}
-		} else if (type == ECORE_PACKAGE.getEDouble() || type == ECORE_PACKAGE.getEDoubleObject()) {
+		} else if (type == EcorePackage.eINSTANCE.getEDouble() || type == EcorePackage.eINSTANCE.getEDoubleObject()) {
 			if (value == null) {
 				buffer.putDouble(0D);
 			} else {
 				buffer.putDouble((Double) value);
 			}
-		} else if (type == ECORE_PACKAGE.getEFloat() || type == ECORE_PACKAGE.getEFloatObject()) {
+		} else if (type == EcorePackage.eINSTANCE.getEFloat() || type == EcorePackage.eINSTANCE.getEFloatObject()) {
 			if (value == null) {
 				buffer.putFloat(0F);
 			} else {
 				buffer.putFloat((Float) value);
 			}
-		} else if (type == ECORE_PACKAGE.getELong() || type == ECORE_PACKAGE.getELongObject()) {
+		} else if (type == EcorePackage.eINSTANCE.getELong() || type == EcorePackage.eINSTANCE.getELongObject()) {
 			if (value == null) {
 				buffer.putLong(0L);
 			} else {
 				buffer.putLong((Long) value);
 			}
-		} else if (type == ECORE_PACKAGE.getEBoolean() || type == ECORE_PACKAGE.getEBooleanObject()) {
+		} else if (type == EcorePackage.eINSTANCE.getEBoolean() || type == EcorePackage.eINSTANCE.getEBooleanObject()) {
 			if (value == null) {
 				buffer.put((byte) 0);
 			} else {
 				buffer.put(((Boolean) value) ? (byte) 1 : (byte) 0);
 			}
-		} else if (type == ECORE_PACKAGE.getEDate()) {
+		} else if (type == EcorePackage.eINSTANCE.getEDate()) {
 			if (value == null) {
 				buffer.putLong(-1L);
 			} else {
