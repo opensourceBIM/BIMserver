@@ -39,7 +39,6 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.ifc.BasicIfcModel;
-import org.bimserver.models.ifc2x3tc1.IfcClassificationReference;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.PluginConfiguration;

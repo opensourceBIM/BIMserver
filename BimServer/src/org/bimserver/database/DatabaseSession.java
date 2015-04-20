@@ -980,7 +980,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					return GetResult.CONTINUE_WITH_NEXT_OID;
 				} else {
 					IdEObject object = null;
-					if (model.contains(keyOid)) {
+					if (model.contains(keyOid) && ((IdEObjectImpl)cachedObject).getLoadingState() == State.LOADED) {
 						object = model.get(keyOid);
 					} else {
 						if (buffer.capacity() == 1 && buffer.get(0) == -1) {

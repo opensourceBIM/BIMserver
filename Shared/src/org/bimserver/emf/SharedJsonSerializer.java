@@ -74,9 +74,6 @@ public class SharedJsonSerializer {
 					if (object.getOid() == -1) {
 						throw new SerializerException("Object cannot have oid -1 " + object.eClass().getName());
 					}
-					if (object.getOid() == -1) {
-						((IdEObjectImpl)object).setOid(oidCounter++);
-					}
 					if (object.eClass().getEAnnotation("hidden") == null) {
 						if (!firstObject) {
 							print(",");

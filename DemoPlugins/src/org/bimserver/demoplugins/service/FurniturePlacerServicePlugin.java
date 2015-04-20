@@ -2,10 +2,12 @@ package org.bimserver.demoplugins.service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.bimserver.GuidCompressor;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.interfaces.objects.SActionState;
@@ -18,7 +20,6 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
-import org.bimserver.models.ifc2x3tc1.IfcBoundingBox;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
@@ -28,8 +29,8 @@ import org.bimserver.models.ifc2x3tc1.IfcOwnerHistory;
 import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
+import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.log.AccessMethod;
@@ -137,6 +138,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					InputStream resourceAsInputStream = getPluginManager().getPluginContext(FurniturePlacerServicePlugin.this).getResourceAsInputStream("data/picknicktable.ifc");
 					ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 					IOUtils.copy(resourceAsInputStream, byteArrayOutputStream);
+					resourceAsInputStream.close();
 					IfcModelInterface furnishingModel = deserializer.read(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()), "picknicktable.ifc", byteArrayOutputStream.size());
 					
 					IfcFurnishingElement picknick = (IfcFurnishingElement) furnishingModel.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
@@ -165,6 +167,10 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 							boundingBox	= (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, true);
 						}
 					}
+					List<IfcRelDefines> newDefines = new ArrayList<>();
+					for (IfcRelDefines ifcRelDefines : picknick.getIsDefinedBy()) {
+						newDefines.add((IfcRelDefines) modelHelper.copy(ifcRelDefines, true));
+					}
 
 					IfcOwnerHistory ownerHistory = null;
 					List<IfcOwnerHistory> all = model.getAll(IfcOwnerHistory.class);
@@ -177,31 +183,21 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 							for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
 								if (ifcObjectDefinition instanceof IfcSpace) {
 									IfcSpace ifcSpace = (IfcSpace)ifcObjectDefinition;
-//									IfcProductDefinitionShape slabRepr = (IfcProductDefinitionShape) ifcSpace.getRepresentation();
-//									IfcBoundingBox box = null;
-//									for (IfcRepresentation representation2 : slabRepr.getRepresentations()) {
-//										IfcShapeRepresentation shapeRepresentation = (IfcShapeRepresentation)representation2;
-//										if (shapeRepresentation.getRepresentationType().equals("BoundingBox")) {
-//											for (IfcRepresentationItem i2 : shapeRepresentation.getItems()) {
-//												box = (IfcBoundingBox)i2;
-//											}
-//										}
-//									}
 									
 									IfcFurnishingElement newFurnishing = model.create(IfcFurnishingElement.class, oidProvider);
 									newFurnishing.setName("ADDED FURNITURE");
 									
-									IfcRelContainedInSpatialStructure containedInSpatialStructure2 = model.create(IfcRelContainedInSpatialStructure.class, oidProvider);
-									containedInSpatialStructure2.setRelatingStructure(ifcBuildingStorey);
-									containedInSpatialStructure2.getRelatedElements().add(newFurnishing);
-									
-									newFurnishing.setGlobalId("TEST");
+									newFurnishing.setGlobalId(GuidCompressor.getNewIfcGloballyUniqueId());
 									newFurnishing.setOwnerHistory(ownerHistory);
 									IfcProductDefinitionShape definitionShape = model.create(IfcProductDefinitionShape.class, oidProvider);
 									newFurnishing.setRepresentation(definitionShape);
 									
 									definitionShape.getRepresentations().add(boundingBox);
 									definitionShape.getRepresentations().add(surfaceModel);
+									
+									for (IfcRelDefines ifcRelDefines : newDefines) {
+										newFurnishing.getIsDefinedBy().add(ifcRelDefines);
+									}
 									
 									IfcLocalPlacement localPlacement = model.create(IfcLocalPlacement.class, oidProvider);
 									localPlacement.setPlacementRelTo(ifcSpace.getObjectPlacement());
@@ -213,6 +209,17 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 									pos.getCoordinates().add(+0.5d);
 									pos.getCoordinates().add(0d);
 									axis2Placement3D.setLocation(pos);
+									
+									if (ifcSpace.getContainsElements().size() > 0) {
+										IfcRelContainedInSpatialStructure rel = ifcSpace.getContainsElements().get(0);
+										rel.getRelatedElements().add(newFurnishing);
+									} else {
+										IfcRelContainedInSpatialStructure decomposes = model.create(IfcRelContainedInSpatialStructure.class, oidProvider);
+										decomposes.setGlobalId(GuidCompressor.getNewIfcGloballyUniqueId());
+										decomposes.setOwnerHistory(ownerHistory);
+										decomposes.getRelatedElements().add(newFurnishing);
+										decomposes.setRelatingStructure(ifcSpace);
+									}
 									
 									newFurnishing.setObjectPlacement(localPlacement);
 									

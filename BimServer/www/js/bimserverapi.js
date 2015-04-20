@@ -652,13 +652,16 @@ function BimServerApi(baseUrl, notifier) {
 		if (subject == null) {
 			console.log(typeSubject, "not found");
 		}
-		subject.superclasses.forEach(function(superclass){
+		subject.superclasses.some(function(superclass){
 			if (superclass == typeName) {
 				isa = true;
+				return true;
 			}
 			if (othis.isA(schema, superclass, typeName)) {
 				isa = true;
+				return true;
 			}
+			return false;
 		});
 		return isa;
 	};
@@ -1460,66 +1463,86 @@ function Model(bimServerApi, poid, roid, schema) {
 				}
 				othis.decrementRunningCalls("getAllOfType");
 				promise.fire();
-			} if (othis.loadedTypes[type] != null) {
-				for (var oid in othis.loadedTypes[type]) {
-					callback(othis.loadedTypes[type][oid]);
-				}
-				othis.decrementRunningCalls("getAllOfType");
-				promise.fire();
 			} else {
-				othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
-					bimServerApi.call("Bimsie1ServiceInterface", "downloadByTypes", {
-						roids: [othis.roid],
-						classNames: [type],
-						schema: "ifc2x3tc1",
-						includeAllSubtypes: includeAllSubTypes,
-						serializerOid: jsonSerializerOid,
-						useObjectIDM: false,
-						deep: false,
-						sync: true
-					}, function(laid){
-						var url = bimServerApi.generateRevisionDownloadUrl({
-							laid: laid,
-							topicId: laid,
-							serializerOid: jsonSerializerOid
-						});
-						$.getJSON(url, function(data, textStatus, jqXHR){
-							if (othis.loadedTypes[type] == null) {
-								othis.loadedTypes[type] = {};
-							}
-							data.objects.forEach(function(object){
-								if (othis.objects[object._i] != null) {
-									// Hmm we are doing a query on type, but some objects have already loaded, let's use those instead
-									var wrapper = othis.objects[object._i];
-									if (wrapper.object._s == 1) {
-										if (wrapper.isA(type)) {
-											othis.loadedTypes[type][object._i] = wrapper;
-											callback(wrapper);
+				var types = [];
+				if (includeAllSubTypes) {
+					othis.bimServerApi.getAllSubTypes(othis.bimServerApi.schemas[othis.schema], type, function(type){
+						types.push(type);
+					});
+				} else {
+					types.push(type);
+				}
+				
+				var typesToLoad = [];
+				
+				types.forEach(function(type){
+					if (othis.loadedTypes[type] != null) {
+						for (var oid in othis.loadedTypes[type]) {
+							callback(othis.loadedTypes[type][oid]);
+						}
+					} else {
+						typesToLoad.push(type);
+					}
+				});
+
+				if (typesToLoad.length > 0) {
+					othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
+						bimServerApi.call("Bimsie1ServiceInterface", "downloadByTypes", {
+							roids: [othis.roid],
+							classNames: typesToLoad,
+							schema: "ifc2x3tc1",
+							includeAllSubtypes: false,
+							serializerOid: jsonSerializerOid,
+							useObjectIDM: false,
+							deep: false,
+							sync: true
+						}, function(laid){
+							var url = bimServerApi.generateRevisionDownloadUrl({
+								laid: laid,
+								topicId: laid,
+								serializerOid: jsonSerializerOid
+							});
+							$.getJSON(url, function(data, textStatus, jqXHR){
+								if (othis.loadedTypes[type] == null) {
+									othis.loadedTypes[type] = {};
+								}
+								data.objects.forEach(function(object){
+									if (othis.objects[object._i] != null) {
+										// Hmm we are doing a query on type, but some objects have already loaded, let's use those instead
+										var wrapper = othis.objects[object._i];
+										if (wrapper.object._s == 1) {
+											if (wrapper.isA(type)) {
+												othis.loadedTypes[type][object._i] = wrapper;
+												callback(wrapper);
+											}
+										} else {
+											// Replace the value with something that's LOADED
+											wrapper.object = object;
+											if (wrapper.isA(type)) {
+												othis.loadedTypes[type][object._i] = wrapper;
+												callback(wrapper);
+											}
 										}
 									} else {
-										// Replace the value with something that's LOADED
-										wrapper.object = object;
-										if (wrapper.isA(type)) {
+										var wrapper = othis.createWrapper(object, object._t);
+										othis.objects[object._i] = wrapper;
+										if (wrapper.isA(type) && object._s == 1) {
 											othis.loadedTypes[type][object._i] = wrapper;
 											callback(wrapper);
 										}
 									}
-								} else {
-									var wrapper = othis.createWrapper(object, object._t);
-									othis.objects[object._i] = wrapper;
-									if (wrapper.isA(type) && object._s == 1) {
-										othis.loadedTypes[type][object._i] = wrapper;
-										callback(wrapper);
-									}
-								}
-							});
-							bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
-								othis.decrementRunningCalls("getAllOfType");
-								promise.fire();
+								});
+								bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
+									othis.decrementRunningCalls("getAllOfType");
+									promise.fire();
+								});
 							});
 						});
-					});
-				});
+					});					
+				} else {
+					othis.decrementRunningCalls("getAllOfType");
+					promise.fire();
+				}
 			}
 		});
 		return promise;
@@ -1661,7 +1684,6 @@ function Promise() {
 	this.fire = function(){
 		if (o.isDone) {
 			console.log("Promise already fired, not triggering again...");
-			debugger;
 			return;
 		}
 		o.isDone = true;
