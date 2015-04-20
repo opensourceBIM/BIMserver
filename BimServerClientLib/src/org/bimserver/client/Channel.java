@@ -157,6 +157,8 @@ public abstract class Channel implements ServiceHolder {
 			LOGGER.error("", e);
 		} catch (IOException e) {
 			LOGGER.error("", e);
+		} finally {
+			httppost.releaseConnection();
 		}
 		return -1;
 	}
@@ -170,6 +172,7 @@ public abstract class Channel implements ServiceHolder {
 				return httpResponse.getEntity().getContent();
 			} else {
 				LOGGER.error(httpResponse.getStatusLine().getStatusCode() + " - " + httpResponse.getStatusLine().getReasonPhrase());
+				httppost.releaseConnection();
 			}
 		} catch (ClientProtocolException e) {
 			LOGGER.error("", e);

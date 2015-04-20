@@ -842,9 +842,14 @@ public abstract class IfcModel implements IfcModelInterface {
 		return (T) object;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(EClass eClass, long oid) throws IfcModelInterfaceException {
-		return null;
+		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		object.setModel(this);
+		object.setOid(oid);
+		add(oid, object);
+		return (T) object;
 	}
 	
 	@SuppressWarnings("unchecked")

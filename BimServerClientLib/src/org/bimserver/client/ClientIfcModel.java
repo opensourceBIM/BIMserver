@@ -21,7 +21,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -42,7 +41,6 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -61,8 +59,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.gson.stream.JsonReader;
 
 public class ClientIfcModel extends IfcModel {
 	public enum ModelState {
@@ -286,7 +282,9 @@ public class ClientIfcModel extends IfcModel {
 		try {
 			new SharedJsonDeserializer(true).read(downloadData, this);
 		} catch (DeserializeException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
+		} finally {
+			downloadData.close();
 		}
 	}
 
@@ -462,13 +460,10 @@ public class ClientIfcModel extends IfcModel {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(EClass eClass, long oid) throws IfcModelInterfaceException {
-		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		object.setModel(this);
-		object.setOid(oid);
+		IdEObjectImpl object = super.create(eClass, oid);
 		if (recordChanges) {
 			object.eAdapters().add(adapter);
 		}
-		add(oid, object);
 		return (T) object;
 	}
 
@@ -491,60 +486,6 @@ public class ClientIfcModel extends IfcModel {
 		return (T) idEObject;
 	}
 
-	@SuppressWarnings({ "unused", "resource" })
-	public void getGeometry(IfcProduct ifcProduct) {
-		try {
-			Long downloadByOids = bimServerClient.getBimsie1ServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(ifcProduct.getOid()), getJsonGeometrySerializerOid(), true, false);
-			InputStream downloadData = bimServerClient.getDownloadData(downloadByOids, getJsonGeometrySerializerOid());
-			try {
-				JsonReader jsonReader = new JsonReader(new InputStreamReader(downloadData));
-				jsonReader.beginObject();
-				if (jsonReader.nextName().equals("geometry")) {
-					jsonReader.beginArray();
-					while (jsonReader.hasNext()) {
-						jsonReader.beginObject();
-						if (jsonReader.nextName().equals("material")) {
-							String material = jsonReader.nextString();
-							if (jsonReader.nextName().equals("type")) {
-								String type = jsonReader.nextString();
-								if (jsonReader.nextName().equals("coreId")) {
-									String coreid = jsonReader.nextString();
-									if (jsonReader.nextName().equals("primitive")) {
-										String primitive = jsonReader.nextString();
-										if (jsonReader.nextName().equals("positions")) {
-											jsonReader.beginArray();
-											while (jsonReader.hasNext()) {
-												double position = jsonReader.nextDouble();
-											}
-											jsonReader.endArray();
-											if (jsonReader.nextName().equals("normals")) {
-												jsonReader.beginArray();
-												while (jsonReader.hasNext()) {
-													double normal = jsonReader.nextDouble();
-												}
-												jsonReader.endArray();
-												if (jsonReader.nextName().equals("nrindices")) {
-													int nrindices = jsonReader.nextInt();
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-						jsonReader.endObject();
-					}
-					jsonReader.endArray();
-				}
-				jsonReader.endObject();
-			} finally {
-				downloadData.close();
-			}
-		} catch (Exception e) {
-			LOGGER.error("", e);
-		}
-	}
-	
 	@Override
 	public void set(IdEObject idEObject, EStructuralFeature eFeature, Object newValue) {
 		if (!recordChanges) {
@@ -655,6 +596,7 @@ public class ClientIfcModel extends IfcModel {
 				return c++;
 			}
 		});
+		// TODO make streaming
 		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this);
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -685,175 +627,4 @@ public class ClientIfcModel extends IfcModel {
 			LOGGER.error("", e);
 		}
 	}
-
-//	public Object get(InternalEObject eObject, EStructuralFeature feature, int index) {
-//		((IdEObject) eObject).load();
-//		Entry entry = new Entry(eObject, feature);
-//		if (index == NO_INDEX) {
-//			return map.get(entry);
-//		} else {
-//			return getList(entry).get(index);
-//		}
-//	}
-	
-//	public void add(InternalEObject eObject, EStructuralFeature eFeature, int index, Object newValue) {
-//		IdEObject idEObject = (IdEObject) eObject;
-//		if (getModelState() != ModelState.LOADING) {
-//			try {
-//				if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
-//					bimServerClient.getBimsie1LowLevelInterface().addStringAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (String) newValue);
-//				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
-//					throw new UnsupportedOperationException();
-//				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
-//					bimServerClient.getBimsie1LowLevelInterface().addDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Double) newValue);
-//				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
-//					bimServerClient.getBimsie1LowLevelInterface().addBooleanAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Boolean) newValue);
-//				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
-//					bimServerClient.getBimsie1LowLevelInterface().addIntegerAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Integer) newValue);
-//				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
-//					throw new UnsupportedOperationException();
-//				} else if (eFeature.getEType() instanceof EEnum) {
-//					throw new UnsupportedOperationException();
-//				} else if (eFeature instanceof EReference) {
-//					if (newValue == null) {
-//					} else {
-//						bimServerClient.getBimsie1LowLevelInterface().addReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) newValue).getOid());
-//					}
-//				} else {
-//					throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
-//				}
-//			} catch (ServiceException e) {
-//				LOGGER.error("", e);
-//			} catch (PublicInterfaceNotFoundException e) {
-//				LOGGER.error("", e);
-//			}
-//		}
-//		super.add(eObject, eFeature, index, newValue);
-//	}
-//
-//	@Override
-//	public Object set(InternalEObject eObject, EStructuralFeature eFeature, int index, Object newValue) {
-//		IdEObject idEObject = (IdEObject) eObject;
-//		if (index == NO_INDEX) {
-//			if (getModelState() != ModelState.LOADING) {
-//				try {
-//					if (newValue != EStructuralFeature.Internal.DynamicValueHolder.NIL) {
-//						Bimsie1LowLevelInterface lowLevelInterface = getBimServerClient().getBimsie1LowLevelInterface();
-//						if (eFeature.getName().equals("wrappedValue")) {
-//							// Wrapped objects get the same oid as their "parent" object, so we know which object the client wants to update. That's why we can use idEObject.getOid() here
-//							// We are making this crazy hack ever crazier, let's iterate over our parents features, and see if there is one matching our wrapped type...
-//							// Seriously, when there are multiple fields of the same type, this fails miserably, a real fix should probably store the parent-oid + feature name in the wrapped object (requires two extra, volatile, fields),
-//							// or we just don't support this (just create a new wrapped object too), we could even throw some sort of exception. Hack morally okay because it's client-side...
-//							EReference foundReference = null;
-//							if (contains(idEObject.getOid())) {
-//								IdEObject parentObject = get(idEObject.getOid());
-//								int found = 0;
-//								foundReference = null;
-//								for (EReference testReference : parentObject.eClass().getEAllReferences()) {
-//									if (((EClass)testReference.getEType()).isSuperTypeOf(idEObject.eClass())) {
-//										foundReference = testReference;
-//										found++;
-//										if (found > 1) {
-//											throw new RuntimeException("Sorry, crazy hack could not resolve the right field, please let BIMserver developer know (debug info: " + parentObject.eClass().getName() + ", " + idEObject.eClass().getName() + ")");
-//										}
-//									}
-//								}
-//								if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
-//									lowLevelInterface.setWrappedStringAttribute(getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (String) newValue);
-//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
-//									lowLevelInterface.setWrappedLongAttribute(getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Long) newValue);
-//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
-//									lowLevelInterface.setWrappedDoubleAttribute(getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Double) newValue);
-//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
-//									lowLevelInterface.setWrappedBooleanAttribute(getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Boolean) newValue);
-//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
-//									lowLevelInterface.setWrappedIntegerAttribute(getTransactionId(), idEObject.getOid(), foundReference.getName(), idEObject.eClass().getName(), (Integer) newValue);
-//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
-//									throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
-//								}
-//							} else {
-//								if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
-//									lowLevelInterface.setStringAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (String) newValue);
-//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
-//									lowLevelInterface.setLongAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Long) newValue);
-//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
-//									lowLevelInterface.setDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Double) newValue);
-//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
-//									lowLevelInterface.setBooleanAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Boolean) newValue);
-//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
-//									lowLevelInterface.setIntegerAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Integer) newValue);
-//								} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
-//									lowLevelInterface.setByteArrayAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Byte[]) newValue);
-//								} else if (eFeature.getEType() instanceof EEnum) {
-//									lowLevelInterface.setEnumAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((Enum<?>) newValue).toString());
-//								} else if (eFeature instanceof EReference) {
-//									if (newValue == null) {
-//										lowLevelInterface.setReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), -1L);
-//									} else {
-//										lowLevelInterface.setReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) newValue).getOid());
-//									}
-//								} else {
-//									throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
-//								}
-//							}
-//						} else {
-//							if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
-//								lowLevelInterface.setStringAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (String) newValue);
-//							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
-//								lowLevelInterface.setLongAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Long) newValue);
-//							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
-//								lowLevelInterface.setDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Double) newValue);
-//							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
-//								lowLevelInterface.setBooleanAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Boolean) newValue);
-//							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
-//								lowLevelInterface.setIntegerAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Integer) newValue);
-//							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
-//								lowLevelInterface.setByteArrayAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Byte[]) newValue);
-//							} else if (eFeature.getEType() instanceof EEnum) {
-//								lowLevelInterface.setEnumAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((Enum<?>) newValue).toString());
-//							} else if (eFeature instanceof EReference) {
-//								if (newValue == null) {
-//									lowLevelInterface.setReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), -1L);
-//								} else {
-//									lowLevelInterface.setReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) newValue).getOid());
-//								}
-//							} else {
-//								throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
-//							}
-//						}
-//					}
-//				} catch (ServiceException e) {
-//					LOGGER.error("", e);
-//				} catch (PublicInterfaceNotFoundException e) {
-//					LOGGER.error("", e);
-//				}
-//			}
-//		} else {
-//			if (getModelState() != ModelState.LOADING) {
-//				try {
-//					Bimsie1LowLevelInterface lowLevelInterface = getBimServerClient().getBimsie1LowLevelInterface();
-//					if (newValue instanceof String) {
-//						lowLevelInterface.setStringAttributeAtIndex(getTransactionId(), idEObject.getOid(), eFeature.getName(), index, (String) newValue);
-//					} else if (newValue instanceof Double) {
-//						lowLevelInterface.setDoubleAttributeAtIndex(getTransactionId(), idEObject.getOid(), eFeature.getName(), index, (Double) newValue);
-//					} else if (newValue instanceof Boolean) {
-//						lowLevelInterface.setBooleanAttributeAtIndex(getTransactionId(), idEObject.getOid(), eFeature.getName(), index, (Boolean) newValue);
-//					} else if (newValue instanceof Integer) {
-//						lowLevelInterface.setIntegerAttributeAtIndex(getTransactionId(), idEObject.getOid(), eFeature.getName(), index, (Integer) newValue);
-//					} else if (newValue instanceof IdEObject) {
-//						lowLevelInterface.addReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) newValue).getOid());
-//					} else {
-//						throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
-//					}
-//				} catch (ServerException e) {
-//					LOGGER.error("", e);
-//				} catch (UserException e) {
-//					LOGGER.error("", e);
-//				} catch (PublicInterfaceNotFoundException e) {
-//					LOGGER.error("", e);
-//				}
-//			}
-//		}
-//		return super.set(eObject, eFeature, index, newValue);
-//	}
 }

@@ -49,12 +49,12 @@ public class SharedJsonDeserializer {
 	@SuppressWarnings("rawtypes")
 	public IfcModelInterface read(InputStream in, IfcModelInterface model) throws DeserializeException {
 		WaitingList<Long> waitingList = new WaitingList<Long>();
-		final boolean log = true;
+		final boolean log = false;
 		if (log) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			try {
 				IOUtils.copy(in, baos);
-				FileUtils.writeByteArrayToFile(new File("ruben.json"), baos.toByteArray());
+				FileUtils.writeByteArrayToFile(new File("debug.json"), baos.toByteArray());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

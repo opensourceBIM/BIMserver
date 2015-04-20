@@ -120,28 +120,33 @@ public class JsonHandler {
 		}
 
 		PublicInterface service = getServiceInterface(httpRequest, bimServer, sService.getInterfaceClass(), methodName, jsonToken);
+		String oldThreadName = Thread.currentThread().getName();
 		Thread.currentThread().setName(interfaceName + "." + methodName);
-		Object result = method.invoke(sService.getInterfaceClass(), service, parameters);
-
-		// When we have managed to get here, no exceptions have been thrown. We
-		// can safely assume further serialization to JSON won't fail. So now we
-		// can start streaming
-		if (writer != null) {
-			if (result == null) {
-				writer.beginObject();
-				writer.name("result");
-				writer.beginObject();
-				writer.endObject();
-				writer.endObject();
-			} else {
-				writer.beginObject();
-				writer.name("result");
-				converter.toJson(result, writer);
-				writer.endObject();
+		try {
+			Object result = method.invoke(sService.getInterfaceClass(), service, parameters);
+			
+			// When we have managed to get here, no exceptions have been thrown. We
+			// can safely assume further serialization to JSON won't fail. So now we
+			// can start streaming
+			if (writer != null) {
+				if (result == null) {
+					writer.beginObject();
+					writer.name("result");
+					writer.beginObject();
+					writer.endObject();
+					writer.endObject();
+				} else {
+					writer.beginObject();
+					writer.name("result");
+					converter.toJson(result, writer);
+					writer.endObject();
+				}
 			}
+			long e = System.nanoTime();
+			LOGGER.debug(interfaceName + "." + methodName + " " + ((e - s) / 1000000) + "ms");
+		} finally {
+			Thread.currentThread().setName(oldThreadName);
 		}
-		long e = System.nanoTime();
-		LOGGER.debug(interfaceName + "." + methodName + " " + ((e - s) / 1000000) + "ms");
 	}
 
 	private void handleThrowable(JsonWriter writer, Throwable throwable) {

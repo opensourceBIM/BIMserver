@@ -17,8 +17,10 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -86,6 +88,9 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 	
 	public void initHttpClient() {
 		HttpClientBuilder builder = HttpClientBuilder.create();
+		
+		HttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
+		builder.setConnectionManager(connManager);
 		
 //		builder.addInterceptorFirst(new HttpRequestInterceptor() {
 //			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {

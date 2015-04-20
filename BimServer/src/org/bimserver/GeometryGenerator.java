@@ -17,7 +17,11 @@ package org.bimserver;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -34,6 +38,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.IOUtils;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
@@ -73,6 +78,7 @@ import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.plugins.renderengine.EntityNotFoundException;
 import org.bimserver.plugins.renderengine.IndexFormat;
 import org.bimserver.plugins.renderengine.Precision;
 import org.bimserver.plugins.renderengine.RenderEngine;
@@ -276,7 +282,19 @@ public class GeometryGenerator {
 							renderEngine.init();
 							ifcSerializer.init(targetModel, null, pluginManager, null, pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), true);
 
-							RenderEngineModel renderEngineModel = renderEngine.openModel(ifcSerializer.getInputStream());
+							boolean debug = false;
+							InputStream in = null;
+							if (debug) {
+								File file = new File(eClass.getName() + ".ifc");
+								FileOutputStream fos = new FileOutputStream(file);
+								IOUtils.copy(ifcSerializer.getInputStream(), fos);
+								fos.close();
+								in = new FileInputStream(file);
+							} else {
+								in = ifcSerializer.getInputStream();
+							}
+							
+							RenderEngineModel renderEngineModel = renderEngine.openModel(in);
 							try {
 								renderEngineModel.setSettings(settings);
 
@@ -363,10 +381,12 @@ public class GeometryGenerator {
 													databaseSession.store(bigMap.get(ifcProduct), pid, rid);
 												}
 											}
-										} catch (BimserverDatabaseException | RenderEngineException e) {
+										} catch (EntityNotFoundException e) {
 											if (!(ifcProduct instanceof IfcAnnotation)) {
 												LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + ifcProduct.getExpressId() + "/" + ifcProduct.getOid());
 											}
+										} catch (BimserverDatabaseException | RenderEngineException e) {
+											LOGGER.error("", e);
 										}
 									}
 								}								
