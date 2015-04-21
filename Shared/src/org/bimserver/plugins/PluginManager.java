@@ -199,7 +199,7 @@ public class PluginManager {
 					try {
 						Class implementationClass = classLoader.loadClass(implementationClassName);
 						Plugin plugin = (Plugin) implementationClass.newInstance();
-						loadPlugin(interfaceClass, location, classLocation, plugin, classLoader, pluginType);
+						loadPlugin(interfaceClass, location, classLocation, plugin, classLoader, pluginType, pluginImplementation);
 					} catch (NoClassDefFoundError e) {
 						throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
 					} catch (ClassNotFoundException e) {
@@ -214,7 +214,9 @@ public class PluginManager {
 				} catch (Error e) {
 					throw new PluginException(e);
 				}
-			}	
+			} else {
+				LOGGER.info("Plugin " + pluginImplementation.getImplementationClass() + " is disabled in plugin.xml");
+			}
 		}
 	}
 
@@ -463,7 +465,7 @@ public class PluginManager {
 		return tempDir;
 	}
 
-	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType) throws PluginException {
+	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType, PluginImplementation pluginImplementation) throws PluginException {
 		LOGGER.debug("Loading plugin " + plugin.getClass().getSimpleName() + " of type " + interfaceClass.getSimpleName());
 		if (!Plugin.class.isAssignableFrom(interfaceClass)) {
 			throw new PluginException("Given interface class (" + interfaceClass.getName() + ") must be a subclass of " + Plugin.class.getName());
@@ -474,6 +476,7 @@ public class PluginManager {
 		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
 		try {
 			PluginContext pluginContext = new PluginContext(this, classLoader, pluginType, location);
+			pluginContext.setConfig(pluginImplementation);
 			pluginContext.setPlugin(plugin);
 			pluginContext.setClassLocation(classLocation);
 			set.add(pluginContext);
