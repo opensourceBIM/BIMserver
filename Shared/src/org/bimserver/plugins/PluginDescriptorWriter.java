@@ -38,6 +38,8 @@ public class PluginDescriptorWriter {
 		PluginImplementation pluginImplementation = new PluginImplementation();
 		pluginImplementation.setInterfaceClass("blabla");
 		pluginImplementation.setImplementationClass("blabla");
+		pluginImplementation.setEnabled(true);
+		pluginImplementation.getRequires().add("test");
 		pluginDescriptor.getImplementations().add(pluginImplementation);
 		
 		try {

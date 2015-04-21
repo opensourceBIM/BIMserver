@@ -333,7 +333,7 @@ public class BimServer {
 						}
 					}
 				});
-				pluginManager.loadPlugin(ObjectIDMPlugin.class, new File(".").getAbsolutePath(), "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
+				pluginManager.loadPlugin(ObjectIDMPlugin.class, new File(".").getAbsolutePath(), "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL, null);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}

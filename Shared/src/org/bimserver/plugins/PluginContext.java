@@ -32,6 +32,7 @@ import javax.tools.JavaFileManager;
 import javax.tools.ToolProvider;
 
 import org.bimserver.models.store.Parameter;
+import org.bimserver.plugins.web.WebModulePlugin;
 
 public class PluginContext {
 
@@ -44,6 +45,7 @@ public class PluginContext {
 	private JavaFileManager javaFileManager;
 	private final ClassLoader classLoader;
 	private VirtualFile virtualFile;
+	private PluginImplementation pluginImplementation;
 
 	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginSourceType pluginType, String location) throws IOException {
 		this.pluginManager = pluginManager;
@@ -100,7 +102,16 @@ public class PluginContext {
 		if (resourceAsStream == null) {
 			File file = new File(location + File.separator + name);
 			if (file.exists()) {
-				return new FileInputStream(file);
+				resourceAsStream = new FileInputStream(file);
+			}
+		}
+		if (resourceAsStream == null && !pluginImplementation.getRequires().isEmpty()) {
+			for (String dep : pluginImplementation.getRequires()) {
+				WebModulePlugin webModulePlugin = pluginManager.getWebModulePlugin(dep, true);
+				InputStream resourceAsInputStream = pluginManager.getPluginContext(webModulePlugin).getResourceAsInputStream(name);
+				if (resourceAsInputStream != null) {
+					return resourceAsInputStream;
+				}
 			}
 		}
 		return resourceAsStream;
@@ -171,5 +182,13 @@ public class PluginContext {
 	
 	public Parameter getParameter(String name) {
 		return pluginManager.getParameter(this, name);
+	}
+
+	public void setConfig(PluginImplementation pluginImplementation) {
+		this.pluginImplementation = pluginImplementation;
+	}
+	
+	public PluginImplementation getPluginImplementation() {
+		return pluginImplementation;
 	}
 }

@@ -1657,12 +1657,13 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 }
 
-function Promise() {
+function Promise(counter) {
 	var o = this;
 	
 	o.isDone = false;
 	o.chains = [];
 	o.callback = null;
+	o.counter = counter;
 
 	this.done = function(callback){
 		if (o.isDone) {
@@ -1679,6 +1680,24 @@ function Promise() {
 			}
 		}
 		return o;
+	};
+	
+	this.inc = function(){
+		if (o.counter == null) {
+			o.counter = 0;
+		}
+		o.counter++;
+	};
+
+	this.dec = function(){
+		if (o.counter == null) {
+			o.counter = 0;
+		}
+		o.counter--;
+		if (o.counter == 0) {
+			o.done = true;
+			o.fire();
+		}
 	};
 
 	this.fire = function(){
@@ -1723,5 +1742,63 @@ function Promise() {
 		if (o.chains.length == 0) {
 			o.fire();
 		}
+	};
+}
+
+function Variable(initialValue) {
+	var o = this;
+	o.value = initialValue;
+	o.eventRegistry = new EventRegistry();
+	
+	this.set = function(value){
+		o.value = value;
+		o.eventRegistry.trigger(function(cb){
+			cb(value);
+		});
+	};
+	
+	this.get = function(){
+		return o.value;
+	};
+	
+	this.register = o.eventRegistry.register;
+	this.unregister = o.eventRegistry.unregister;
+}
+
+function EventRegistry() {
+	var o = this;
+	o.registry = [];
+	
+	this.register = function(fn) {
+		var skip = false;
+		o.registry.forEach(function(existing){
+			if (existing == fn) {
+				skip = true;
+			}
+		});
+		if (!skip) {
+			o.registry.push(fn);
+		}
+	};
+	
+	this.unregister = function(fn) {
+		var len = o.registry.length;
+		while (len--) {
+			if (o.registry[len] == fn) {
+				o.registry.splice(len, 1);
+			}
+		}
+	};
+	
+	this.size = function(){
+		return o.registry.length;
+	};
+	
+	this.trigger = function(callback){
+		o.registry.forEach(callback);
+	};
+	
+	this.clear = function(){
+		o.registry = [];
 	};
 }
