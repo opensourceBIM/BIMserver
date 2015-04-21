@@ -10,6 +10,7 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.GuidCompressor;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.OidProvider;
+import org.bimserver.ifc.Scaler;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
@@ -31,8 +32,12 @@ import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcSIPrefix;
+import org.bimserver.models.ifc2x3tc1.IfcSIUnit;
+import org.bimserver.models.ifc2x3tc1.IfcSIUnitName;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
+import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ServiceDescriptor;
@@ -140,8 +145,27 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 					IOUtils.copy(resourceAsInputStream, byteArrayOutputStream);
 					resourceAsInputStream.close();
 					IfcModelInterface furnishingModel = deserializer.read(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()), "picknicktable.ifc", byteArrayOutputStream.size());
+
+					IfcSIPrefix prefix = IfcSIPrefix.NULL;
+					for (IfcSIUnit ifcUnit : model.getAllWithSubTypes(IfcSIUnit.class)) {
+						if (ifcUnit.getUnitType() == IfcUnitEnum.LENGTHUNIT && ifcUnit.getName() == IfcSIUnitName.METRE) {
+							prefix = ifcUnit.getPrefix();
+							break;
+						}
+					}
+					LOGGER.info("Length exponent: " + prefix);
 					
 					IfcFurnishingElement picknick = (IfcFurnishingElement) furnishingModel.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
+					
+					if (prefix != IfcSIPrefix.NULL) {
+						if (prefix == IfcSIPrefix.MILLI) {
+							// Picknick model is in meter, target model in millis, so we have to convert the picknick model first
+							Scaler scaler = new Scaler(furnishingModel);
+							scaler.scale(1000f);
+						} else {
+							LOGGER.info("Unimplemented prefix: " + prefix);
+						}
+					}
 
 					ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getPluginManager().requireSchemaDefinition("ifc2x3tc1")), model);
 
@@ -167,6 +191,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 							boundingBox	= (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, true);
 						}
 					}
+					
 					List<IfcRelDefines> newDefines = new ArrayList<>();
 					for (IfcRelDefines ifcRelDefines : picknick.getIsDefinedBy()) {
 						newDefines.add((IfcRelDefines) modelHelper.copy(ifcRelDefines, true));
@@ -205,8 +230,8 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 									localPlacement.setRelativePlacement(axis2Placement3D);
 									
 									IfcCartesianPoint pos = model.create(IfcCartesianPoint.class, oidProvider);
-									pos.getCoordinates().add(-3d);
-									pos.getCoordinates().add(+0.5d);
+									pos.getCoordinates().add(0d);
+									pos.getCoordinates().add(0d);
 									pos.getCoordinates().add(0d);
 									axis2Placement3D.setLocation(pos);
 									

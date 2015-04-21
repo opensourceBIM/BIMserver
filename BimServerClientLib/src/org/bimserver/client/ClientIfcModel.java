@@ -17,8 +17,6 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -43,7 +41,7 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.deserializers.DeserializeException;
-import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerInputstream;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -596,19 +594,9 @@ public class ClientIfcModel extends IfcModel {
 				return c++;
 			}
 		});
-		// TODO make streaming
 		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this);
-		try {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			boolean mode = sharedJsonSerializer.write(baos, null);
-			while (mode) {
-				mode = sharedJsonSerializer.write(baos, null);
-			}
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("json", poid);
-			bimServerClient.checkin(poid, comment, deserializer.getOid(), false, true, baos.size(), "test", new ByteArrayInputStream(baos.toByteArray()));
-		} catch (SerializerException e) {
-			e.printStackTrace();
-		}
+		SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("json", poid);
+		bimServerClient.checkin(poid, comment, deserializer.getOid(), false, true, -1, "test", new SerializerInputstream(sharedJsonSerializer));
 	}
 	
 	public void load(IdEObject object) {
