@@ -77,31 +77,12 @@ public class Streamer implements EndPoint {
 			// Heartbeat, ignore
 		} else if (request.has("action")) {
 			if (request.get("action").getAsString().equals("download")) {
-//				String token = request.get("token").getAsString();
 				final int topicId = request.get("topicId").getAsInt();
-//					final ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL);
 					final long downloadId = request.get("longActionId").getAsLong();
-					new Thread(){
+					Thread thread = new Thread(){
 						@Override
 						public void run() {
 							try {
-//								final ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
-
-//								ProgressReporter progressReporter = new ProgressReporter() {
-//									@Override
-//									public void update(long progress, long max) {
-//										if (progressTopic != null) {
-//											LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
-//											ds.setStart(new Date());
-//											ds.setState(progress == max ? ActionState.FINISHED : ActionState.STARTED);
-//											ds.setTitle("Downloading...");
-//											ds.setStage(3);
-//											ds.setProgress((int) Math.round(100.0 * progress / max));
-//
-//											progressTopic.stageProgressUpdate(ds);
-//										}
-//									}
-//								};
 								LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(downloadId);
 								MessagingSerializer messagingSerializer = longAction.getMessagingSerializer();
 								boolean writeMessage = true;
@@ -128,12 +109,14 @@ public class Streamer implements EndPoint {
 										counter++;
 									}
 								} while (writeMessage);
-								LOGGER.debug(counter + " messages written " + Formatters.bytesToString(bytes));
+								LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes));
 							} catch (IOException e) {
 								LOGGER.error("", e);
 							}
 						}
-					}.start();
+					};
+					thread.setName("Streamer " + downloadId);
+					thread.start();
 			}
 		} else if (request.has("token")) {
 			String token = request.get("token").getAsString();

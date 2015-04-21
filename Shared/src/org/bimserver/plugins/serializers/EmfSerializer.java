@@ -34,7 +34,7 @@ import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class EmfSerializer implements Serializer {
+public abstract class EmfSerializer implements Serializer, StreamingReader {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializer.class);
 	protected IfcModelInterface model;
@@ -149,5 +149,15 @@ public abstract class EmfSerializer implements Serializer {
 
 	public PluginManager getPluginManager() {
 		return pluginManager;
+	}
+	
+	@Override
+	public boolean write(OutputStream out) {
+		try {
+			return write(out, null);
+		} catch (SerializerException e) {
+			LOGGER.error("", e);
+		}
+		return false;
 	}
 }

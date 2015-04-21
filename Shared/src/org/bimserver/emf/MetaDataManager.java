@@ -17,7 +17,10 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.bimserver.models.geometry.GeometryPackage;
@@ -61,5 +64,16 @@ public class MetaDataManager {
 
 	public PluginManager getPluginManager() {
 		return pluginManager;
+	}
+
+	public Collection<PackageMetaData> getAll() {
+		return ePackages.values();
+	}
+
+	public Collection<PackageMetaData> getAllIfc() {
+		Set<PackageMetaData> result = new HashSet<>();
+		result.add(getPackageMetaData("Ifc2x3tc1"));
+		result.add(getPackageMetaData("Ifc4"));
+		return result;
 	}
 }

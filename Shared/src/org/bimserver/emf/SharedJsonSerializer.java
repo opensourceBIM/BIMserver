@@ -29,12 +29,16 @@ import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.StreamingReader;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 
-public class SharedJsonSerializer {
+public class SharedJsonSerializer implements StreamingReader {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SharedJsonSerializer.class);
 	enum Mode {
 		HEADER, BODY, FOOTER, DONE
 	}
@@ -44,7 +48,6 @@ public class SharedJsonSerializer {
 	private Mode mode = Mode.HEADER;
 	private boolean firstObject = true;
 	private Iterator<IdEObject> iterator;
-	private long oidCounter = 1;
 
 	private IfcModelInterface model;
 
@@ -322,5 +325,15 @@ public class SharedJsonSerializer {
 		} else {
 			print("" + value);
 		}
+	}
+
+	@Override
+	public boolean write(OutputStream out) {
+		try {
+			return write(out, null);
+		} catch (SerializerException e) {
+			LOGGER.error("", e);
+		}
+		return false;
 	}
 }
