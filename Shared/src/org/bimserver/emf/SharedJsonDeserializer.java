@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.emf.IdEObjectImpl.State;
@@ -61,6 +62,7 @@ public class SharedJsonDeserializer {
 			in = new ByteArrayInputStream(baos.toByteArray());
 		}
 		JsonReader jsonReader = new JsonReader(new InputStreamReader(in, Charsets.UTF_8));
+		int nrObjects = 0;
 		try {
 			JsonToken peek = jsonReader.peek();
 			if (peek != null && peek == JsonToken.BEGIN_OBJECT) {
@@ -68,6 +70,7 @@ public class SharedJsonDeserializer {
 				if (jsonReader.nextName().equals("objects")) {
 					jsonReader.beginArray();
 					while (jsonReader.hasNext()) {
+						nrObjects++;
 						processObject(model, waitingList, jsonReader);
 					}
 					jsonReader.endArray();
@@ -79,25 +82,29 @@ public class SharedJsonDeserializer {
 		} catch (IfcModelInterfaceException e) {
 			LOGGER.error("", e);
 		} finally {
+			LOGGER.info("# Objects: " + nrObjects);
 			try {
 				jsonReader.close();
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
 		}
-		for (IdEObject idEObject : model.getValues()) {
-			for (EStructuralFeature eStructuralFeature : idEObject.eClass().getEAllStructuralFeatures()) {
-				Object value = idEObject.eGet(eStructuralFeature);
-				if (eStructuralFeature instanceof EReference) {
-					if (eStructuralFeature.isMany()) {
-						List list = (List)value;
-						if (eStructuralFeature.isUnique()) {
-							Set<Object> t = new HashSet<>();
-							for (Object v : list) {
-								if (t.contains(v)) {
+		boolean checkUnique = false;
+		if (checkUnique) {
+			for (IdEObject idEObject : model.getValues()) {
+				for (EStructuralFeature eStructuralFeature : idEObject.eClass().getEAllStructuralFeatures()) {
+					Object value = idEObject.eGet(eStructuralFeature);
+					if (eStructuralFeature instanceof EReference) {
+						if (eStructuralFeature.isMany()) {
+							List list = (List)value;
+							if (eStructuralFeature.isUnique()) {
+								Set<Object> t = new HashSet<>();
+								for (Object v : list) {
+									if (t.contains(v)) {
 //									LOGGER.error("NOT UNIQUE " + idEObject.eClass().getName() + "." + eStructuralFeature.getName());
+									}
+									t.add(v);
 								}
-								t.add(v);
 							}
 						}
 					}
@@ -117,7 +124,7 @@ public class SharedJsonDeserializer {
 			long oid = jsonReader.nextLong();
 			if (jsonReader.nextName().equals("_t")) {
 				String type = jsonReader.nextString();
-				EClass eClass = model.getPackageMetaData().getEClass(type);
+				EClass eClass = model.getPackageMetaData().getEClassIncludingDependencies(type);
 				if (eClass == null) {
 					throw new DeserializeException("No class found with name " + type);
 				}
@@ -261,15 +268,24 @@ public class SharedJsonDeserializer {
 										jsonReader.endObject();
 									} else {
 										long refOid = jsonReader.nextLong();
+										boolean isInverse = false;
 										EntityDefinition entityBN = model.getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName());
-										Attribute attributeBN = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
-										if (!(attributeBN instanceof InverseAttribute)) {
+										if (entityBN != null) {
+											// Some entities like GeometryInfo/Data are not in IFC schema, but valid
+											Attribute attributeBN = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
+											if (attributeBN != null) {
+												if (attributeBN instanceof InverseAttribute) {
+													isInverse = true;
+												}
+											}
+										}
+										if (!isInverse) {
 											if (model.contains(refOid)) {
 												object.eSet(eStructuralFeature, model.get(refOid));
 											} else {
 												waitingList.add(refOid, new SingleWaitingObject(-1, object, eStructuralFeature));
 											}
-										}
+										}												
 									}
 								}
 							}
@@ -303,6 +319,12 @@ public class SharedJsonDeserializer {
 			return jsonReader.nextBoolean();
 		} else if (eClassifier == EcorePackage.eINSTANCE.getEInt()) {
 			return jsonReader.nextInt();
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEIntegerObject()) {
+			return jsonReader.nextInt();
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEByteArray()) {
+			return Base64.decodeBase64(jsonReader.nextString());
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEFloat()) {
+			return (float)jsonReader.nextDouble();
 		} else if (eClassifier == EcorePackage.eINSTANCE.getEEnum()) {
 			EEnum eEnum = (EEnum) eStructuralFeature.getEType();
 			return eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance();

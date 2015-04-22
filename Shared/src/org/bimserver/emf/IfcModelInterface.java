@@ -29,6 +29,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.BiMap;
 
 /**
@@ -223,4 +224,6 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	void load(IdEObject idEObject);
 
 	Set<EClass> getUsedClasses();
+
+	void query(ObjectNode query);
 }

@@ -29,7 +29,10 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginManager;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 public class MetaDataManager {
 	private final Map<String, PackageMetaData> ePackages = new TreeMap<String, PackageMetaData>();
@@ -45,8 +48,25 @@ public class MetaDataManager {
 		addEPackage(GeometryPackage.eINSTANCE, Schema.GEOMETRY);
 		addEPackage(StorePackage.eINSTANCE, Schema.STORE);
 		addEPackage(LogPackage.eINSTANCE, Schema.LOG);
+		
+		initDependencies();
 	}
-	
+
+	private void initDependencies() {
+		for (PackageMetaData packageMetaData : ePackages.values()) {
+			for (EClassifier eClassifier : packageMetaData.getEPackage().getEClassifiers()) {
+				if (eClassifier instanceof EClass) {
+					EClass eClass = (EClass)eClassifier;
+					for (EReference eReference : eClass.getEReferences()) {
+						if (eReference.getEType().getEPackage() != packageMetaData.getEPackage()) {
+							packageMetaData.addDependency(getPackageMetaData(eReference.getEType().getEPackage().getName()));
+						}
+					}
+				}
+			}
+		}
+	}
+
 	public PackageMetaData getPackageMetaData(String schema) {
 		if (schema == null) {
 			throw new IllegalArgumentException("schema cannot be null");

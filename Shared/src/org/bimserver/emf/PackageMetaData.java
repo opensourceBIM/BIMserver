@@ -49,9 +49,10 @@ public class PackageMetaData implements ObjectFactory {
 	private final Map<EClassifier, String> upperCases = new HashMap<>();
 	private final BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
 	private final Map<EStructuralFeature, Boolean> inverseCache = new HashMap<EStructuralFeature, Boolean>();
-	private EPackage ePackage;
+	private final EPackage ePackage;
+	private final Schema schema;
+	private final Set<PackageMetaData> dependencies = new HashSet<>();
 	private SchemaDefinition schemaDefinition;
-	private Schema schema;
 
 	public PackageMetaData(MetaDataManager metaDataManager, EPackage ePackage, Schema schema) {
 		this.ePackage = ePackage;
@@ -95,6 +96,32 @@ public class PackageMetaData implements ObjectFactory {
 		return eClassClassMap.inverse().get(clazz);
 	}
 
+	public EClass getEClassIncludingDependencies(String type) {
+		EClass eClass = getEClass(type);
+		if (eClass == null) {
+			for (PackageMetaData packageMetaData : dependencies) {
+				EClass eClass2 = packageMetaData.getEClass(type);
+				if (eClass2 != null) {
+					return eClass2;
+				}
+			}
+		}
+		return eClass;
+	}
+	
+	public EClass getEClassIncludingDependencies(Class<?> clazz) {
+		EClass eClass = getEClass(clazz);
+		if (eClass == null) {
+			for (PackageMetaData packageMetaData : dependencies) {
+				EClass eClass2 = packageMetaData.getEClass(clazz);
+				if (eClass2 != null) {
+					return eClass2;
+				}
+			}
+		}
+		return eClass;
+	}
+	
 	public EClass getEClass(String name) {
 		return (EClass) ePackage.getEClassifier(name);
 	}
@@ -213,7 +240,8 @@ public class PackageMetaData implements ObjectFactory {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(Class<T> clazz) {
-		return (T) ePackage.getEFactoryInstance().create(getEClass(clazz));
+		EClass eClassIncludingDependencies = getEClassIncludingDependencies(clazz);
+		return (T) eClassIncludingDependencies.getEPackage().getEFactoryInstance().create(eClassIncludingDependencies);
 	}
 
 	public SchemaDefinition getSchemaDefinition() {
@@ -222,5 +250,13 @@ public class PackageMetaData implements ObjectFactory {
 	
 	public Schema getSchema() {
 		return schema;
+	}
+
+	public Set<PackageMetaData> getDependencies() {
+		return dependencies;
+	}
+	
+	void addDependency(PackageMetaData dependency) {
+		dependencies.add(dependency);
 	}
 }

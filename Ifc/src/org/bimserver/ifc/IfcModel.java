@@ -75,6 +75,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
@@ -286,7 +287,7 @@ public abstract class IfcModel implements IfcModelInterface {
 	}
 
 	public <T extends IdEObject> List<T> getAll(Class<T> interfaceClass) {
-		return getAll(packageMetaData.getEClass(interfaceClass));
+		return getAll(packageMetaData.getEClassIncludingDependencies(interfaceClass));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -361,6 +362,7 @@ public abstract class IfcModel implements IfcModelInterface {
 		add(oid, eObject, false, true);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void add(long oid, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException {
 		if (((IdEObjectImpl) eObject).hasModel() && !allowMultiModel && ((IdEObjectImpl) eObject).getModel() != this) {
 			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel() + ", not this " + this);
@@ -386,6 +388,14 @@ public abstract class IfcModel implements IfcModelInterface {
 //					if (indexPerClassWithSubTypes.get(eObject.eClass()) != null) {
 						buildIndexWithSuperTypes(eObject, eObject.eClass());
 //					}
+				}
+				if (indexPerClass != null) {
+					List<IdEObject> list = (List<IdEObject>) indexPerClass.get(eObject.eClass());
+					if (list == null) {
+						list = new ArrayList<>();
+						indexPerClass.put(eObject.eClass(), list);
+					}
+					list.add(eObject);
 				}
 			}
 			for (IfcModelChangeListener ifcModelChangeListener : changeListeners) {
@@ -866,7 +876,7 @@ public abstract class IfcModel implements IfcModelInterface {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
-		return (T) create(packageMetaData.getEClass(clazz));
+		return (T) create(packageMetaData.getEClassIncludingDependencies(clazz));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -1012,5 +1022,9 @@ public abstract class IfcModel implements IfcModelInterface {
 			buildIndex();
 		}
 		return indexPerClass.keySet();
+	}
+	
+	@Override
+	public void query(ObjectNode query) {
 	}
 }

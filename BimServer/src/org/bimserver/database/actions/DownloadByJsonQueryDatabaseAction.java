@@ -114,9 +114,8 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					updateOidCounters(concreteRevision, databaseQuery);
 					JsonObject queryObject = (JsonObject)query;
 					JsonArray queries = queryObject.get("queries").getAsJsonArray();
-					String lowerCaseSchema = concreteRevision.getProject().getSchema().toLowerCase();
 					for (JsonElement queryElement : queries) {
-						processQueryPart(lowerCaseSchema, queryObject, (JsonObject) queryElement, subModel, databaseQuery);
+						processQueryPart(packageMetaData, queryObject, (JsonObject) queryElement, subModel, databaseQuery);
 					}
 					
 					size += subModel.size();
@@ -169,14 +168,14 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 		return ifcModel;
 	}
 	
-	private void processQueryPart(String schema, JsonObject query, JsonObject typeQuery, IfcModelInterface model, QueryInterface queryInterface) throws BimserverDatabaseException, IfcModelInterfaceException {
+	private void processQueryPart(PackageMetaData packageMetaData, JsonObject query, JsonObject typeQuery, IfcModelInterface model, QueryInterface queryInterface) throws BimserverDatabaseException, IfcModelInterfaceException {
 		if (typeQuery.has("type")) {
 			String type = typeQuery.get("type").getAsString();
-			EClass typeClass = getDatabaseSession().getEClass(schema, type);
+			EClass typeClass = packageMetaData.getEClassIncludingDependencies(type);
 			Set<EClass> eClasses = new HashSet<EClass>();
 			eClasses.add(typeClass);
 			if (typeQuery.has("includeAllSubtypes") && typeQuery.get("includeAllSubtypes").getAsBoolean()) {
-				eClasses.addAll(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(schema).getAllSubClasses((EClass)typeClass));
+				eClasses.addAll(packageMetaData.getAllSubClasses((EClass)typeClass));
 			}
 			getDatabaseSession().getAllOfTypes(model, eClasses, queryInterface);
 			if (typeQuery.has("include")) {
