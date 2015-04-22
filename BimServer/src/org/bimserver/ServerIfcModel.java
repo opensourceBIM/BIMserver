@@ -1,5 +1,6 @@
 package org.bimserver;
 
+import java.util.List;
 import java.util.Map;
 
 import org.bimserver.database.DatabaseSession;
@@ -8,6 +9,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
+import org.eclipse.emf.ecore.EClass;
 
 public class ServerIfcModel extends IfcModel {
 
@@ -31,6 +33,11 @@ public class ServerIfcModel extends IfcModel {
 
 	@Override
 	public void remove(IdEObject object) {
+	}
+	
+	@Override
+	public <T extends IdEObject> List<T> getAll(EClass eClass) {
+		return super.getAll(eClass);
 	}
 	
 //	@SuppressWarnings({ "unchecked" })

@@ -77,7 +77,7 @@ public class SharedJsonSerializer implements StreamingReader {
 					if (object.getOid() == -1) {
 						throw new SerializerException("Object cannot have oid -1 " + object.eClass().getName());
 					}
-					if (object.eClass().getEAnnotation("hidden") == null) {
+//					if (object.eClass().getEAnnotation("hidden") == null) {
 						if (!firstObject) {
 							print(",");
 						} else {
@@ -95,7 +95,7 @@ public class SharedJsonSerializer implements StreamingReader {
 							print("\"_t\":\"" + object.eClass().getName() + "\",");
 							print("\"_s\":1");
 							for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-								if (eStructuralFeature.getEAnnotation("nolazyload") == null && eStructuralFeature.getEAnnotation("hidden") == null) {
+								if (eStructuralFeature.getEAnnotation("nolazyload") == null) {
 									if (eStructuralFeature instanceof EReference) {
 										Object value = object.eGet(eStructuralFeature);
 										if (value != null) {
@@ -208,7 +208,7 @@ public class SharedJsonSerializer implements StreamingReader {
 							}
 							print("}\n");
 						}
-					}
+//					}
 					return true;
 				} else {
 					print("]");

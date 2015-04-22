@@ -6,6 +6,11 @@
 		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.serializers.JsonSerializerPluginWithGeometry</implementationClass>
+		<enabled>true</enabled>
+	</PluginImplementation>
+	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.deserializers.JsonDeserializerPlugin</implementationClass>
 		<enabled>true</enabled>

@@ -37,6 +37,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.database.BimserverDatabaseException;
@@ -156,9 +157,9 @@ public class GeometryGenerator {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void generateGeometry(long uoid, final PluginManager pluginManager, final DatabaseSession databaseSession, IfcModelInterface model, final int pid, final int rid,
+	public void generateGeometry(long uoid, final PluginManager pluginManager, final DatabaseSession databaseSession, final IfcModelInterface model, final int pid, final int rid,
 			final boolean store, GeometryCache geometryCache) throws BimserverDatabaseException, GeometryGeneratingException {
-		PackageMetaData packageMetaData = model.getPackageMetaData();
+		final PackageMetaData packageMetaData = model.getPackageMetaData();
 		if (geometryCache != null && !geometryCache.isEmpty()) {
 			returnCachedData(model, geometryCache, databaseSession, pid, rid);
 			return;
@@ -227,6 +228,7 @@ public class GeometryGenerator {
 			final Map<IdEObject, IdEObject> bigMap = new HashMap<IdEObject, IdEObject>();
 
 			HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1").getSchemaDefinition());
+			final AtomicLong oidCounter = new AtomicLong(model.getHighestOid() + 1);
 			for (final EClass eClass : classes) {
 				final BasicIfcModel targetModel = new BasicIfcModel(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), null);
 				ModelHelper modelHelper = new ModelHelper(targetModel);
@@ -263,7 +265,8 @@ public class GeometryGenerator {
 				for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcUnitAssignment"))) {
 					bigMap.put(modelHelper.copy(idEObject, false, skipRepresentation), idEObject);
 				}
-				
+
+
 				executor.submit(new Runnable() {
 					@Override
 					public void run() {
@@ -291,7 +294,6 @@ public class GeometryGenerator {
 							} else {
 								in = ifcSerializer.getInputStream();
 							}
-							
 							RenderEngineModel renderEngineModel = renderEngine.openModel(in);
 							try {
 								renderEngineModel.setSettings(settings);
@@ -308,17 +310,19 @@ public class GeometryGenerator {
 											if (geometry != null && geometry.getNrIndices() > 0) {
 												GeometryInfo geometryInfo = null;
 												if (store) {
-													geometryInfo = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryInfo(), pid, rid);
+													geometryInfo = packageMetaData.create(GeometryInfo.class);
+													model.add(oidCounter.incrementAndGet(), geometryInfo);
 												} else {
 													geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
 												}
 
-												geometryInfo.setMinBounds(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-												geometryInfo.setMaxBounds(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
+												geometryInfo.setMinBounds(createVector3f(packageMetaData, model, oidCounter, Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+												geometryInfo.setMaxBounds(createVector3f(packageMetaData, model, oidCounter, Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
 
 												GeometryData geometryData = null;
 												if (store) {
-													geometryData = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryData(), pid, rid);
+													geometryData = packageMetaData.create(GeometryData.class);
+													model.add(oidCounter.incrementAndGet(), geometryData);
 												} else {
 													geometryData = GeometryFactory.eINSTANCE.createGeometryData();
 												}
@@ -327,6 +331,8 @@ public class GeometryGenerator {
 												geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
 												geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
 												geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
+												
+												geometryInfo.setPrimitiveCount(geometry.getIndices().length / 3);
 
 												if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 													boolean hasMaterial = false;
@@ -382,6 +388,8 @@ public class GeometryGenerator {
 										} catch (EntityNotFoundException e) {
 											LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + ifcProduct.getExpressId() + "/" + ifcProduct.getOid());
 										} catch (BimserverDatabaseException | RenderEngineException e) {
+											LOGGER.error("", e);
+										} catch (IfcModelInterfaceException e) {
 											LOGGER.error("", e);
 										}
 									}
@@ -826,10 +834,11 @@ public class GeometryGenerator {
 		}
 	}
 
-	private Vector3f createVector3f(float defaultValue, DatabaseSession session, boolean store, int pid, int rid) throws BimserverDatabaseException {
+	private Vector3f createVector3f(PackageMetaData packageMetaData, IfcModelInterface model, AtomicLong oidCounter, float defaultValue, DatabaseSession session, boolean store, int pid, int rid) throws BimserverDatabaseException, IfcModelInterfaceException {
 		Vector3f vector3f = null;
 		if (store) {
-			vector3f = (Vector3f) session.create(GeometryPackage.eINSTANCE.getVector3f(), pid, rid);
+			vector3f = packageMetaData.create(Vector3f.class);
+			model.add(oidCounter.incrementAndGet(), vector3f);
 		} else {
 			vector3f = GeometryFactory.eINSTANCE.createVector3f();
 		}

@@ -177,7 +177,14 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		if (roid == -1) {
 			throw new UserException("Roid cannot be -1");
 		}
-		return new ClientIfcModel(this, project.getOid(), roid, deep, getMetaDataManager().getPackageMetaData(project.getSchema()), recordChanges);
+		return new ClientIfcModel(this, project.getOid(), roid, deep, getMetaDataManager().getPackageMetaData(project.getSchema()), recordChanges, false);
+	}
+
+	public ClientIfcModel getModel(SProject project, long roid, boolean deep, boolean recordChanges, boolean includeGeometry) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException {
+		if (roid == -1) {
+			throw new UserException("Roid cannot be -1");
+		}
+		return new ClientIfcModel(this, project.getOid(), roid, deep, getMetaDataManager().getPackageMetaData(project.getSchema()), recordChanges, includeGeometry);
 	}
 
 	public boolean isConnected() {
@@ -289,7 +296,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 
 	public IfcModelInterface newModel(SProject project, boolean recordChanges) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
-		return new ClientIfcModel(this, project.getOid(), -1, false, getMetaDataManager().getPackageMetaData(project.getSchema()), recordChanges);
+		return new ClientIfcModel(this, project.getOid(), -1, false, getMetaDataManager().getPackageMetaData(project.getSchema()), recordChanges, false);
 	}
 
 	public <T extends PublicInterface> T get(Class<T> clazz) throws PublicInterfaceNotFoundException {

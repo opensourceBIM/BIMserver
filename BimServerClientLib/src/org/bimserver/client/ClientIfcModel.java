@@ -58,6 +58,8 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class ClientIfcModel extends IfcModel {
 	public enum ModelState {
 		NONE, LOADING, FULLY_LOADED
@@ -72,13 +74,16 @@ public class ClientIfcModel extends IfcModel {
 	private long ifcSerializerOid = -1;
 	private long jsonGeometrySerializerOid = -1;
 	private long binaryGeometrySerializerOid = -1;
+	private long ifcSerializerWithGeometryOid = -1;
 	private boolean recordChanges;
+	private boolean includeGeometry;
 
-	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData, boolean recordChanges) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
+	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData, boolean recordChanges, boolean includeGeometry) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
 		super(packageMetaData, null);
 		this.recordChanges = recordChanges;
 		this.bimServerClient = bimServerClient;
 		this.roid = roid;
+		this.includeGeometry = includeGeometry;
 		if (recordChanges) {
 			try {
 				tid = bimServerClient.getBimsie1LowLevelInterface().startTransaction(poid);
@@ -229,7 +234,7 @@ public class ClientIfcModel extends IfcModel {
 		return bimServerClient.getBimsie1LowLevelInterface().commitTransaction(tid, comment);
 	}
 
-	public long getIfcSerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
+	public long getJsonSerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (ifcSerializerOid == -1) {
 			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName(
 					"org.bimserver.serializers.JsonSerializerPlugin");
@@ -238,6 +243,17 @@ public class ClientIfcModel extends IfcModel {
 			}
 		}
 		return ifcSerializerOid;
+	}
+
+	public long getJsonSerializerWithGeometryOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
+		if (ifcSerializerWithGeometryOid == -1) {
+			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName(
+					"org.bimserver.serializers.JsonSerializerPluginWithGeometry");
+			if (serializerPluginConfiguration != null) {
+				ifcSerializerWithGeometryOid = serializerPluginConfiguration.getOid();
+			}
+		}
+		return ifcSerializerWithGeometryOid;
 	}
 
 	public long getJsonGeometrySerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
@@ -265,7 +281,7 @@ public class ClientIfcModel extends IfcModel {
 	private void loadDeep() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
 		if (modelState != ModelState.FULLY_LOADED && modelState != ModelState.LOADING) {
 			modelState = ModelState.LOADING;
-			Long download = bimServerClient.getBimsie1ServiceInterface().download(roid, getIfcSerializerOid(), true, true);
+			Long download = bimServerClient.getBimsie1ServiceInterface().download(roid, includeGeometry ? getJsonSerializerWithGeometryOid() : getJsonSerializerOid(), true, true);
 			try {
 				processDownload(download);
 				modelState = ModelState.FULLY_LOADED;
@@ -276,7 +292,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	private void processDownload(Long download) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
-		InputStream downloadData = bimServerClient.getDownloadData(download, getIfcSerializerOid());
+		InputStream downloadData = bimServerClient.getDownloadData(download, getJsonSerializerOid());
 		try {
 			new SharedJsonDeserializer(true).read(downloadData, this);
 		} catch (DeserializeException e) {
@@ -293,7 +309,7 @@ public class ClientIfcModel extends IfcModel {
 			try {
 				modelState = ModelState.LOADING;
 				Long downloadByTypes = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(roid), "ifc2x3tc1", Collections.singleton(eClass.getName()),
-						getIfcSerializerOid(), false, false, false, true);
+						getJsonSerializerOid(), false, false, false, true);
 				processDownload(downloadByTypes);
 				loadedClasses.add(eClass.getName());
 				rebuildIndexPerClass(eClass);
@@ -359,7 +375,7 @@ public class ClientIfcModel extends IfcModel {
 			if (idEObjectImpl != null && !idEObjectImpl.isLoadedOrLoading()) {
 				idEObjectImpl.setLoadingState(State.LOADING);
 				modelState = ModelState.LOADING;
-				Long downloadByOids = bimServerClient.getBimsie1ServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(oid), getIfcSerializerOid(), true,
+				Long downloadByOids = bimServerClient.getBimsie1ServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(oid), getJsonSerializerOid(), true,
 						false);
 				processDownload(downloadByOids);
 				idEObjectImpl.setLoadingState(State.LOADED);
@@ -390,7 +406,7 @@ public class ClientIfcModel extends IfcModel {
 			try {
 				modelState = ModelState.LOADING;
 				Long downloadByTypes = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(roid), "ifc2x3tc1", Collections.singleton(eClass.getName()),
-						getIfcSerializerOid(), true, false, false, true);
+						getJsonSerializerOid(), true, false, false, true);
 				processDownload(downloadByTypes);
 				for (EClass subClass : bimServerClient.getMetaDataManager().getPackageMetaData(eClass.getEPackage().getName()).getAllSubClasses(eClass)) {
 					loadedClasses.add(subClass.getName());
@@ -440,7 +456,7 @@ public class ClientIfcModel extends IfcModel {
 		if (idEObject == null) {
 			try {
 				modelState = ModelState.LOADING;
-				Long downloadByGuids = bimServerClient.getBimsie1ServiceInterface().downloadByGuids(Collections.singleton(roid), Collections.singleton(guid), getIfcSerializerOid(), false, false);
+				Long downloadByGuids = bimServerClient.getBimsie1ServiceInterface().downloadByGuids(Collections.singleton(roid), Collections.singleton(guid), getJsonSerializerOid(), false, false);
 				processDownload(downloadByGuids);
 				modelState = ModelState.NONE;
 				return super.getByGuid(guid);
@@ -612,6 +628,18 @@ public class ClientIfcModel extends IfcModel {
 		} catch (ServerException e) {
 			LOGGER.error("", e);
 		} catch (UserException e) {
+			LOGGER.error("", e);
+		}
+	}
+
+	@Override
+	public void query(ObjectNode query) {
+		try {
+			modelState = ModelState.LOADING;
+			Long downloadByTypes = bimServerClient.getBimsie1ServiceInterface().downloadByJsonQuery(Collections.singleton(roid), query.toString(), getJsonSerializerOid(), true);
+			processDownload(downloadByTypes);
+			modelState = ModelState.NONE;
+		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 	}
