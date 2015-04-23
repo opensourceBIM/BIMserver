@@ -88,7 +88,9 @@ public class IfcEngine {
 			}
 		};
 		callBacks.add(fn);
-		return engine.xxxxOpenModelByStream(0, fn, schemaName);
+		Pointer xxxxOpenModelByStream = engine.xxxxOpenModelByStream(0, fn, schemaName);
+		engine.sdaiSaveModelBN(0, "C:\\test\\tmp.ifc");
+		return xxxxOpenModelByStream;
 	}
 
 	public Pointer loadFromInputStream(final InputStream in, String schemaName) {
@@ -109,7 +111,9 @@ public class IfcEngine {
 			}
 		};
 		callBacks.add(fn);
-		return engine.xxxxOpenModelByStream(0, fn, schemaName);
+		Pointer xxxxOpenModelByStream = engine.xxxxOpenModelByStream(0, fn, schemaName);
+		engine.sdaiSaveModelBN(0, "C:\\test\\tmp.ifc");
+		return xxxxOpenModelByStream;
 	}
 	
 	static public class SurfaceProperties {
@@ -1338,8 +1342,8 @@ public class IfcEngine {
 		return engine.internalGetP21Line(instanceId);
 	}
 	
-	public Pointer internalGetInstanceFromP21Line(int expressId) {
-		return engine.internalGetInstanceFromP21Line(expressId);
+	public Pointer internalGetInstanceFromP21Line(Pointer modelId, int expressId) {
+		return engine.internalGetInstanceFromP21Line(modelId, expressId);
 	}
 	
 	/**

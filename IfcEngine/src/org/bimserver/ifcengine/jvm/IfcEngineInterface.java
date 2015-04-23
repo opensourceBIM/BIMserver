@@ -168,7 +168,7 @@ public interface IfcEngineInterface extends Library {
 
 	public int internalGetP21Line(Pointer instanceId);
 
-	public Pointer internalGetInstanceFromP21Line(int expressId);
+	public Pointer internalGetInstanceFromP21Line(Pointer instanceId, int expressId);
 
 	
 	/**
