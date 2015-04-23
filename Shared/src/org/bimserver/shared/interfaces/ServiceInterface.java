@@ -37,6 +37,7 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SModelCheckerInstance;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
@@ -679,4 +680,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "username", partName = "importData.username") String username,
 		@WebParam(name = "password", partName = "importData.password") String password,
 		@WebParam(name = "path", partName = "importData.path") String path) throws ServerException, UserException;
+	
+	@WebMethod(action = "getIfcHeader")
+	SIfcHeader getIfcHeader(@WebParam(name = "croid", partName = "getIfcHeader.croid") Long croid) throws UserException, ServerException;
 }

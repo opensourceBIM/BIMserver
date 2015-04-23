@@ -1216,6 +1216,9 @@ function Model(bimServerApi, poid, roid, schema) {
 		if (othis.bimServerApi.classes[typeName] == null) {
 			var realType = othis.bimServerApi.schemas[othis.schema][typeName];
 			if (realType == null) {
+				if (typeName == "GeometryInfo") {
+					return null;
+				}
 				throw "Type " + typeName + " not found in schema " + othis.schema;
 			}
 

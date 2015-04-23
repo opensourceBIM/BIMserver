@@ -269,6 +269,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetIfcHeaderCallback {
+		void success(org.bimserver.interfaces.objects.SIfcHeader result);
+		void error(Throwable e);
+	}
+	
 	public interface GetModelCheckerInstanceCallback {
 		void success(org.bimserver.interfaces.objects.SModelCheckerInstance result);
 		void error(Throwable e);
@@ -1002,6 +1007,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getGeoTag(goid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getIfcHeader(final java.lang.Long croid, final GetIfcHeaderCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getIfcHeader(croid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

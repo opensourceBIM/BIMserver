@@ -149,7 +149,7 @@ public class PluginManager {
 				}
 			};
 			for (Dependency dependency : pluginDescriptor.getDependencies()) {
-				String path = dependency.getPath();
+				File path = new File(projectRoot.getParentFile(), dependency.getPath());
 				
 				DelegatingClassLoader depDelLoader = new DelegatingClassLoader(previous);
 				File depLibFolder = new File(path, "lib");
@@ -162,7 +162,7 @@ public class PluginManager {
 					}
 				}
 				
-				EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, new File(path));
+				EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, path);
 				previous = depLoader;
 			}
 			delegatingClassLoader.add(previous);

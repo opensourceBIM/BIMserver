@@ -21,6 +21,7 @@ public interface RenderEngineModel {
 	public static final int PRECISION = Precision.BIT;
 	public static final int INDEX_BITS = IndexFormat.BIT;
 	public static final int NORMALS = 32;
+	public static final int TRANSFORM_GEOMETRY = 128;
 	public static final int TRIANGLES = 256;
 	public static final int WIREFRAME = 4096;
 
@@ -29,4 +30,5 @@ public interface RenderEngineModel {
 	RenderEngineInstance getInstanceFromExpressId(int oid) throws RenderEngineException;
 	void generateGeneralGeometry() throws RenderEngineException;
 	void close() throws RenderEngineException;
+	void setFilter(RenderEngineFilter renderEngineFilter) throws RenderEngineException;
 }
