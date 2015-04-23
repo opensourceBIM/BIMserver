@@ -88,9 +88,7 @@ public class IfcEngine {
 			}
 		};
 		callBacks.add(fn);
-		Pointer xxxxOpenModelByStream = engine.xxxxOpenModelByStream(0, fn, schemaName);
-		engine.sdaiSaveModelBN(0, "C:\\test\\tmp.ifc");
-		return xxxxOpenModelByStream;
+		return engine.xxxxOpenModelByStream(0, fn, schemaName);
 	}
 
 	public Pointer loadFromInputStream(final InputStream in, String schemaName) {
@@ -111,9 +109,7 @@ public class IfcEngine {
 			}
 		};
 		callBacks.add(fn);
-		Pointer xxxxOpenModelByStream = engine.xxxxOpenModelByStream(0, fn, schemaName);
-		engine.sdaiSaveModelBN(0, "C:\\test\\tmp.ifc");
-		return xxxxOpenModelByStream;
+		return engine.xxxxOpenModelByStream(0, fn, schemaName);
 	}
 	
 	static public class SurfaceProperties {
@@ -360,6 +356,107 @@ public class IfcEngine {
 
 	}
 
+	public class InstanceTransformationMatrix {
+		Pointer model;
+		Pointer instance;
+		double _11, _12, _13, _14, _21, _22, _23, _24, _31, _32, _33, _34, _41, _42, _43, _44;
+		
+		public InstanceTransformationMatrix(Pointer model, Pointer instance, double _11, double _12, double _13, double _14, double _21, double _22, double _23, double _24,
+				double _31, double _32, double _33, double _34, double _41, double _42, double _43, double _44) {
+			this.model = model;
+			this.instance = instance;
+			this._11 = _11;
+			this._12 = _12;
+			this._13 = _13;
+			this._14 = _14;
+			this._21 = _21;
+			this._22 = _22;
+			this._23 = _23;
+			this._24 = _24;
+			this._31 = _31;
+			this._32 = _32;
+			this._33 = _33;
+			this._34 = _34;
+			this._41 = _41;
+			this._42 = _42;
+			this._43 = _43;
+			this._44 = _44;
+		}
+		
+		public Pointer getModel() {
+			return model;
+		}
+		
+		public Pointer getInstance() {
+			return instance;
+		}
+		
+		public double get_11() {
+			return _11;
+		}
+		
+		public double get_12() {
+			return _12;
+		}
+		
+		public double get_13() {
+			return _13;
+		}
+		
+		public double get_14() {
+			return _14;
+		}
+		
+		public double get_21() {
+			return _21;
+		}
+		
+		public double get_22() {
+			return _22;
+		}
+		
+		public double get_23() {
+			return _23;
+		}
+		
+		public double get_24() {
+			return _24;
+		}
+		
+		public double get_31() {
+			return _31;
+		}
+		
+		public double get_32() {
+			return _32;
+		}
+		
+		public double get_33() {
+			return _33;
+		}
+		
+		public double get_34() {
+			return _34;
+		}
+		
+		public double get_41() {
+			return _41;
+		}
+		
+		public double get_42() {
+			return _42;
+		}
+		
+		public double get_43() {
+			return _43;
+		}
+		
+		public double get_44() {
+			return _44;
+		}
+		
+	}
+
 	/**
 	 * Change the number of segments a circle should be represented as.
 	 * 
@@ -377,6 +474,10 @@ public class IfcEngine {
 	
 	public void setFormat(Pointer modelId, int format, int mask) {
 		engine.setFormat(modelId, format, mask);
+	}
+
+	public void setFilter(Pointer modelId, int format, int mask) {
+		engine.setFilter(modelId, format, mask);
 	}
 
 	/**
@@ -804,6 +905,43 @@ public class IfcEngine {
 		return new InstanceDerivedTransformationMatrix(model, instance, _11, _12, _13, _14, _21, _22, _23, _24, _31, _32, _33, _34, _41, _42, _43, _44);
 	}
 
+	public InstanceTransformationMatrix getInstanceTransformationMatrix(Pointer model, Pointer instance) {
+		DoubleByReference p_11 = new DoubleByReference();
+		DoubleByReference p_12 = new DoubleByReference();
+		DoubleByReference p_13 = new DoubleByReference();
+		DoubleByReference p_14 = new DoubleByReference();
+		DoubleByReference p_21 = new DoubleByReference();
+		DoubleByReference p_22 = new DoubleByReference();
+		DoubleByReference p_23 = new DoubleByReference();
+		DoubleByReference p_24 = new DoubleByReference();
+		DoubleByReference p_31 = new DoubleByReference();
+		DoubleByReference p_32 = new DoubleByReference();
+		DoubleByReference p_33 = new DoubleByReference();
+		DoubleByReference p_34 = new DoubleByReference();
+		DoubleByReference p_41 = new DoubleByReference();
+		DoubleByReference p_42 = new DoubleByReference();
+		DoubleByReference p_43 = new DoubleByReference();
+		DoubleByReference p_44 = new DoubleByReference();
+		engine.getInstanceDerivedTransformationMatrix(model, instance, p_11, p_12, p_13, p_14, p_21, p_22, p_23, p_24, p_31, p_32, p_33, p_34, p_41, p_42, p_43, p_44);
+		double _11 = p_11.getValue();
+		double _12 = p_12.getValue();
+		double _13 = p_13.getValue();
+		double _14 = p_14.getValue();
+		double _21 = p_21.getValue();
+		double _22 = p_22.getValue();
+		double _23 = p_23.getValue();
+		double _24 = p_24.getValue();
+		double _31 = p_31.getValue();
+		double _32 = p_32.getValue();
+		double _33 = p_33.getValue();
+		double _34 = p_34.getValue();
+		double _41 = p_41.getValue();
+		double _42 = p_42.getValue();
+		double _43 = p_43.getValue();
+		double _44 = p_44.getValue();
+		return new InstanceTransformationMatrix(model, instance, _11, _12, _13, _14, _21, _22, _23, _24, _31, _32, _33, _34, _41, _42, _43, _44);
+	}
+	
 	/**
 	 * @param model
 	 * @param instance

@@ -49,6 +49,13 @@ public interface IfcEngineInterface extends Library {
 	}
 
 	void setFormat(Pointer modelId, int format, int mask);
+	void setFilter(Pointer modelId, int format, int mask);
+
+	void getInstanceTransformationMatrix(Pointer modelId, Pointer instance, 
+			DoubleByReference d11, DoubleByReference d12, DoubleByReference d13, DoubleByReference d14, 
+			DoubleByReference d21, DoubleByReference d22, DoubleByReference d23, DoubleByReference d24, 
+			DoubleByReference d31, DoubleByReference d32, DoubleByReference d33, DoubleByReference d34, 
+			DoubleByReference d41, DoubleByReference d42, DoubleByReference d43, DoubleByReference d44);
 	
 	Pointer xxxxOpenModelByStream(int repository, StreamCallback callbackAddress, String schemaName);
 

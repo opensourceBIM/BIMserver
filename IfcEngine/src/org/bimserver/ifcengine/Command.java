@@ -47,7 +47,8 @@ public enum Command {
 	SET_FORMAT,
 	GET_TRANSFORMATION_MATRIX, 
 	INITIALIZE_MODELLING_INSTANCE,
-	OPEN_MODEL_STREAMING_PARTS;
+	OPEN_MODEL_STREAMING_PARTS,
+	SET_FILTER;
 
 	private static final Map<Byte, Command> map = initMap();
 	private byte id;

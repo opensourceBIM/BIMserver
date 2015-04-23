@@ -30,6 +30,7 @@ import java.util.Set;
 
 import org.bimserver.plugins.renderengine.RenderEngineClash;
 import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineFilter;
 import org.bimserver.plugins.renderengine.RenderEngineGeometry;
 import org.bimserver.plugins.renderengine.RenderEngineInstance;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
@@ -81,6 +82,16 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 		}
 	}
 
+	public void setFilter(int format, int mask) throws RenderEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.SET_FILTER);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(format);
+			failSafeIfcEngine.writeInt(mask);
+			failSafeIfcEngine.flush();
+		}
+	}
+	
 	public RenderEngineGeometry finalizeModelling(RenderEngineSurfaceProperties surfaceProperties) throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			if (surfaceProperties.getIndicesCount() == 0 || surfaceProperties.getVerticesCount() == 0) {
@@ -208,5 +219,14 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 	@Override
 	public void generateGeneralGeometry() throws RenderEngineException {
 		// Do nothing, geometry is generated on instance level...
+	}
+
+	@Override
+	public void setFilter(RenderEngineFilter renderEngineFilter) throws RenderEngineException {
+        int setting = 0;
+        int mask = 0;
+        mask += TRANSFORM_GEOMETRY;
+        setting += renderEngineFilter.isTranslateGeometry() ? 0 : TRANSFORM_GEOMETRY;
+        setFilter(setting, mask);
 	}
 }

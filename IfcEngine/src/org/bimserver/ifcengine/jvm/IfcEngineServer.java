@@ -36,6 +36,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.ifcengine.Command;
+import org.bimserver.ifcengine.jvm.IfcEngine.InstanceTransformationMatrix;
 import org.bimserver.ifcengine.jvm.IfcEngine.SurfaceProperties;
 import org.bimserver.plugins.renderengine.RenderEngineClash;
 import org.bimserver.plugins.renderengine.RenderEngineException;
@@ -218,6 +219,11 @@ public class IfcEngineServer extends Thread {
 					ifcEngine.setFormat(pointers.get(modelId), in.readInt(), in.readInt());
 				}
 					break;
+				case SET_FILTER: {
+					int modelId = in.readInt();
+					ifcEngine.setFilter(pointers.get(modelId), in.readInt(), in.readInt());
+				}
+				break;
 				case GET_INSTANCE_FROM_EXPRESSID: {
 					int modelId = in.readInt();
 					int expressId = in.readInt();
@@ -230,29 +236,25 @@ public class IfcEngineServer extends Thread {
 					break;
 				}
 				case GET_TRANSFORMATION_MATRIX: {
-					in.readInt(); // modelid
-					in.readInt(); // instanceid
-//					long owlInstance = ifcEngine.owlGetInstance(pointers.get(modelId), pointers.get(instanceId));
-//					float[] transformationMatrix = ifcEngine.owlGetMappedItem(pointers.get(modelId), pointers.get(instanceId), owlInstance);
-//					for (int i=0; i<16; i++) {
-//						out.writeFloat(transformationMatrix[i]);
-//					}
-					out.writeFloat(1f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(1f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(1f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(1f);
+					int modelId = in.readInt();
+					int instanceId = in.readInt();
+					InstanceTransformationMatrix instanceTransformationMatrix = ifcEngine.getInstanceTransformationMatrix(pointers.get(modelId), pointers.get(instanceId));
+					out.writeFloat((float) instanceTransformationMatrix._11);
+					out.writeFloat((float) instanceTransformationMatrix._12);
+					out.writeFloat((float) instanceTransformationMatrix._13);
+					out.writeFloat((float) instanceTransformationMatrix._14);
+					out.writeFloat((float) instanceTransformationMatrix._21);
+					out.writeFloat((float) instanceTransformationMatrix._22);
+					out.writeFloat((float) instanceTransformationMatrix._23);
+					out.writeFloat((float) instanceTransformationMatrix._24);
+					out.writeFloat((float) instanceTransformationMatrix._31);
+					out.writeFloat((float) instanceTransformationMatrix._32);
+					out.writeFloat((float) instanceTransformationMatrix._33);
+					out.writeFloat((float) instanceTransformationMatrix._34);
+					out.writeFloat((float) instanceTransformationMatrix._41);
+					out.writeFloat((float) instanceTransformationMatrix._42);
+					out.writeFloat((float) instanceTransformationMatrix._43);
+					out.writeFloat((float) instanceTransformationMatrix._44);
 					break;					
 				}
 				case CLOSE: {

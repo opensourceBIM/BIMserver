@@ -341,4 +341,13 @@ public class JvmIfcEngine implements RenderEngine {
 			throw new RenderEngineException("Unknown IFC Engine error");
 		}
 	}
+
+	public double readDouble() throws RenderEngineException {
+		checkRunning();
+		try {
+			return in.readDouble();
+		} catch (IOException e) {
+			throw new RenderEngineException("Unknown IFC Engine error");
+		}
+	}
 }
