@@ -219,9 +219,9 @@ public class IfcEngineServer extends Thread {
 				}
 					break;
 				case GET_INSTANCE_FROM_EXPRESSID: {
-					in.readInt(); // modelid
+					int modelId = in.readInt();
 					int expressId = in.readInt();
-					Pointer internalGetInstanceFromP21Line = ifcEngine.internalGetInstanceFromP21Line(expressId);
+					Pointer internalGetInstanceFromP21Line = ifcEngine.internalGetInstanceFromP21Line(pointers.get(modelId), expressId);
 					if (internalGetInstanceFromP21Line == Pointer.NULL) {
 						out.writeInt(-1);
 					} else {
