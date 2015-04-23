@@ -46,6 +46,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 public class JsonConverter {
@@ -150,7 +151,7 @@ public class JsonConverter {
 		}
 		throw new UnsupportedOperationException(object.getClass().getName());
 	}
-
+	
 	public Object fromJson(SClass definedType, SClass genericType, Object object) throws ConvertException, IOException {
 		try {
 			if (object instanceof JsonObject) {

@@ -12,6 +12,11 @@
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
+		<implementationClass>org.bimserver.demoplugins.service.AnonymizerService</implementationClass>
+		<enabled>true</enabled>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
 		<implementationClass>org.bimserver.demoplugins.service.FurniturePlacerServicePlugin</implementationClass>
 		<enabled>true</enabled>
 	</PluginImplementation>

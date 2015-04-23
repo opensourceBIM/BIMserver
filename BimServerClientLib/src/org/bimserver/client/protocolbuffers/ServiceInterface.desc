@@ -1,5 +1,5 @@
 
-…‡
+ßŠ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -270,7 +270,7 @@ dataObject (2.org.bimserver.pb.SDataObject
 errorMessage (	&
 value (2.org.bimserver.pb.SUser",
 GetAllCheckoutsByUserRequest
-uoid ("Ý
+uoid ("È
 	SRevision
 bmi (
 	checkouts (
@@ -285,14 +285,13 @@ dataObject (2.org.bimserver.pb.SDataObject
 	lastError
  (	
 logs (
-oid (
-oidCounters (
-	projectId (
-rid (
-	serviceId (
-size (
-tag (	
-userId ("Ñ
+oid (
+	projectId (
+rid (
+	serviceId (
+size (
+tag (	
+userId ("Ñ
 	SCheckout
 active (,
 checkin (2.org.bimserver.pb.SRevision
@@ -517,7 +516,27 @@ $GetAvailableClassesInRevisionRequest
 z	 ("S
 GetGeoTagResponse
 errorMessage (	(
-value (2.org.bimserver.pb.SGeoTag"0
+value (2.org.bimserver.pb.SGeoTag"$
+GetIfcHeaderRequest
+croid ("Œ
+
+SIfcHeader
+author (	
+authorization (	
+description (	
+filename (	
+ifcSchemaVersion (	
+implementationLevel (	
+oid (
+organization (	
+originatingSystem	 (	
+preProcessorVersion
+ (	
+rid (
+	timeStamp ("Y
+GetIfcHeaderResponse
+errorMessage (	+
+value (2.org.bimserver.pb.SIfcHeader"0
 GetModelCheckerInstanceRequest
 mcioid ("o
 GetModelCheckerInstanceResponse
@@ -1034,7 +1053,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2ÉF
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2¨G
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponsem
@@ -1084,7 +1103,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getCheckoutWarnings,.org.bimserver.pb.GetCheckoutWarningsRequest-.org.bimserver.pb.GetCheckoutWarningsResponse¢
 #getExtendedDataSchemaFromRepository<.org.bimserver.pb.GetExtendedDataSchemaFromRepositoryRequest=.org.bimserver.pb.GetExtendedDataSchemaFromRepositoryResponseN
 getFile .org.bimserver.pb.GetFileRequest!.org.bimserver.pb.GetFileResponseT
-	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponse~
+	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponse]
+getIfcHeader%.org.bimserver.pb.GetIfcHeaderRequest&.org.bimserver.pb.GetIfcHeaderResponse~
 getModelCheckerInstance0.org.bimserver.pb.GetModelCheckerInstanceRequest1.org.bimserver.pb.GetModelCheckerInstanceResponse]
 getOidByGuid%.org.bimserver.pb.GetOidByGuidRequest&.org.bimserver.pb.GetOidByGuidResponsex
 getQueryEngineExample..org.bimserver.pb.GetQueryEngineExampleRequest/.org.bimserver.pb.GetQueryEngineExampleResponse„

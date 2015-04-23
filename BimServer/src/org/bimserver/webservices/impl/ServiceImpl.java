@@ -80,6 +80,7 @@ import org.bimserver.database.actions.GetAvailableClassesInRevisionDatabaseActio
 import org.bimserver.database.actions.GetCheckinWarningsDatabaseAction;
 import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
+import org.bimserver.database.actions.GetIfcHeaderDatabaseAction;
 import org.bimserver.database.actions.GetModelCheckerOidDatabaseAction;
 import org.bimserver.database.actions.GetOidByGuidDatabaseAction;
 import org.bimserver.database.actions.GetProjectsOfUserDatabaseAction;
@@ -115,6 +116,7 @@ import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SModelCheckerInstance;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
@@ -1511,9 +1513,23 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public void importData(String address, String username, String password, String path) {
 		new BimServerImporter(getBimServer(), address, username, password, path).start();
+	}
+
+	@Override
+	public SIfcHeader getIfcHeader(Long croid) throws UserException, ServerException {
+		requireAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<SIfcHeader> action = new GetIfcHeaderDatabaseAction(getBimServer(), session, getInternalAccessMethod(), croid, getAuthorization());
+			return session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

@@ -23,6 +23,7 @@ import org.bimserver.plugins.schema.InverseAttribute;
 import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
+import org.bimserver.shared.json.StreamingJsonConverter;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -67,13 +68,21 @@ public class SharedJsonDeserializer {
 			JsonToken peek = jsonReader.peek();
 			if (peek != null && peek == JsonToken.BEGIN_OBJECT) {
 				jsonReader.beginObject();
-				if (jsonReader.nextName().equals("objects")) {
-					jsonReader.beginArray();
-					while (jsonReader.hasNext()) {
-						nrObjects++;
-						processObject(model, waitingList, jsonReader);
+				peek = jsonReader.peek();
+				while (peek == JsonToken.NAME) {
+					String nextName = jsonReader.nextName();
+					if (nextName.equals("objects")) {
+						jsonReader.beginArray();
+						while (jsonReader.hasNext()) {
+							nrObjects++;
+							processObject(model, waitingList, jsonReader);
+						}
+						jsonReader.endArray();
+					} else if (nextName.equals("header")) {
+						StreamingJsonConverter jsonConverter = new StreamingJsonConverter();
+						jsonConverter.fromJson(jsonReader);
 					}
-					jsonReader.endArray();
+					peek = jsonReader.peek();
 				}
 				jsonReader.endObject();
 			}

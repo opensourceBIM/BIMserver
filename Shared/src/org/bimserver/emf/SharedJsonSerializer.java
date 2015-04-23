@@ -26,10 +26,13 @@ import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
 import org.bimserver.emf.IdEObjectImpl.State;
+import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.StreamingReader;
+import org.bimserver.shared.json.JsonConverter;
+import org.bimserver.shared.meta.SServicesMap;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
@@ -53,8 +56,11 @@ public class SharedJsonSerializer implements StreamingReader {
 
 	private OutputStream outputStream;
 
-	public SharedJsonSerializer(IfcModelInterface model) {
+	private SServicesMap sServicesMap;
+
+	public SharedJsonSerializer(IfcModelInterface model, SServicesMap sServicesMap) {
 		this.model = model;
+		this.sServicesMap = sServicesMap;
 	}
 
 	private void print(String line) throws IOException {
@@ -67,6 +73,13 @@ public class SharedJsonSerializer implements StreamingReader {
 		try {
 			if (mode == Mode.HEADER) {
 				print("{");
+				SIfcHeader ifcHeader = model.getIfcHeader();
+				if (ifcHeader != null) {
+					print("\"header\":{");
+					JsonConverter jsonConverter = new JsonConverter(sServicesMap);
+					print(jsonConverter.toJson(ifcHeader).toString());
+					print("}");
+				}
 				print("\"objects\":[");
 				mode = Mode.BODY;
 				iterator = model.iterator();

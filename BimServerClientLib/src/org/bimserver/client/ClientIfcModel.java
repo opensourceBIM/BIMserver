@@ -37,6 +37,8 @@ import org.bimserver.emf.SharedJsonDeserializer;
 import org.bimserver.emf.SharedJsonSerializer;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
+import org.bimserver.interfaces.objects.SIfcHeader;
+import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
@@ -610,7 +612,7 @@ public class ClientIfcModel extends IfcModel {
 				return c++;
 			}
 		});
-		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this);
+		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this, getBimServerClient().getServicesMap());
 		SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("json", poid);
 		bimServerClient.checkin(poid, comment, deserializer.getOid(), false, true, -1, "test", new SerializerInputstream(sharedJsonSerializer));
 	}
@@ -642,5 +644,29 @@ public class ClientIfcModel extends IfcModel {
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
+	}
+	
+	@Override
+	public SIfcHeader getIfcHeader() {
+		SIfcHeader ifcHeader = super.getIfcHeader();
+		if (ifcHeader == null) {
+			try {
+				SRevision revision = bimServerClient.getBimsie1ServiceInterface().getRevision(roid);
+				if (revision.getConcreteRevisions().size() == 1) {
+					ifcHeader = bimServerClient.getServiceInterface().getIfcHeader(revision.getConcreteRevisions().get(0));
+					if (ifcHeader != null) {
+						setIfcHeader(ifcHeader);
+					}
+					return ifcHeader;
+				}
+			} catch (ServerException e) {
+				LOGGER.error("", e);
+			} catch (UserException e) {
+				LOGGER.error("", e);
+			} catch (PublicInterfaceNotFoundException e) {
+				LOGGER.error("", e);
+			}
+		}
+		return null;
 	}
 }

@@ -69,6 +69,7 @@ import org.bimserver.plugins.renderengine.IndexFormat;
 import org.bimserver.plugins.renderengine.Precision;
 import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineFilter;
 import org.bimserver.plugins.renderengine.RenderEngineGeometry;
 import org.bimserver.plugins.renderengine.RenderEngineInstance;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
@@ -94,7 +95,15 @@ public class GeometryGenerator {
 
 	private final BimServer bimServer;
 	private final Map<Integer, GeometryData> hashes = new ConcurrentHashMap<Integer, GeometryData>();
-	private long oidCounter = -1;
+
+	private EClass productClass;
+	private EClass productRepresentationClass;
+	private EStructuralFeature geometryFeature;
+	private EStructuralFeature representationFeature;
+	private EStructuralFeature representationsFeature;
+	private PackageMetaData packageMetaData;
+
+	private AtomicLong oidCounter;
 
 	private static void initObjectIdmCache(final BimServer bimServer) {
 		hideAllInverseMap = new HashMap<EPackage, HideAllInversesObjectIDM>();
@@ -156,10 +165,212 @@ public class GeometryGenerator {
 		return objectIdmCache.get(onlyIncludeRepresentationForThisClass);
 	}
 	
+	public class Runner implements Runnable {
+
+		private EClass eClass;
+		private RenderEnginePlugin renderEnginePlugin;
+		private DatabaseSession databaseSession;
+		private RenderEngineSettings renderEngineSettings;
+		private RenderEngineFilter renderEngineFilter;
+		private RenderEngineFilter renderEngineFilterTransformed = new RenderEngineFilter(true);
+		private boolean store;
+		private IfcModelInterface targetModel;
+		private SerializerPlugin ifcSerializerPlugin;
+		private IfcModelInterface model;
+		private AtomicLong oidCounter;
+		private int pid;
+		private int rid;
+		private Map<IdEObject, IdEObject> bigMap;
+
+		public Runner(EClass eClass, RenderEnginePlugin renderEnginePlugin, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, boolean store, IfcModelInterface targetModel, SerializerPlugin ifcSerializerPlugin, IfcModelInterface model, AtomicLong oidCounter, int pid, int rid, Map<IdEObject, IdEObject> bigMap, RenderEngineFilter renderEngineFilter) {
+			this.eClass = eClass;
+			this.renderEnginePlugin = renderEnginePlugin;
+			this.databaseSession = databaseSession;
+			this.renderEngineSettings = renderEngineSettings;
+			this.store = store;
+			this.targetModel = targetModel;
+			this.ifcSerializerPlugin = ifcSerializerPlugin;
+			this.model = model;
+			this.oidCounter = oidCounter;
+			this.pid = pid;
+			this.rid = rid;
+			this.bigMap = bigMap;
+			this.renderEngineFilter = renderEngineFilter;
+		}
+		
+		@Override
+		public void run() {
+			targetModel.generateMinimalExpressIds();
+
+			Serializer ifcSerializer = ifcSerializerPlugin.createSerializer(new PluginConfiguration());
+			RenderEngine renderEngine = null;
+			try {
+				renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration(), "ifc2x3tc1");
+			} catch (RenderEngineException e) {
+				LOGGER.error("", e);
+			}
+			try {
+				renderEngine.init();
+				ifcSerializer.init(targetModel, null, bimServer.getPluginManager(), null, bimServer.getPluginManager().getMetaDataManager().getPackageMetaData("ifc2x3tc1"), true);
+
+				boolean debug = false;
+				InputStream in = null;
+				if (debug) {
+					File file = new File((eClass == null ? "all" : eClass.getName()) + ".ifc");
+					FileOutputStream fos = new FileOutputStream(file);
+					IOUtils.copy(ifcSerializer.getInputStream(), fos);
+					fos.close();
+					in = new FileInputStream(file);
+				} else {
+					in = ifcSerializer.getInputStream();
+				}
+				RenderEngineModel renderEngineModel = renderEngine.openModel(in);
+				try {
+					renderEngineModel.setSettings(renderEngineSettings);
+					renderEngineModel.setFilter(renderEngineFilter);
+
+					renderEngineModel.generateGeneralGeometry();
+
+					List<IdEObject> allWithSubTypes = null;
+					if (eClass == null) {
+						allWithSubTypes = targetModel.getAllWithSubTypes(packageMetaData.getEClass("IfcProduct"));
+					} else {
+						allWithSubTypes = targetModel.getAll(eClass);
+					}
+					for (IdEObject ifcProduct : allWithSubTypes) {
+						IdEObject representation = (IdEObject) ifcProduct.eGet(representationFeature);
+						if (representation != null && ((List<?>) representation.eGet(representationsFeature)).size() > 0) {
+							try {
+								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
+								RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
+								boolean translate = true;
+								if (geometry == null || geometry.getIndices().length == 0) {
+									renderEngineModel.setFilter(renderEngineFilterTransformed);
+									geometry = renderEngineInstance.generateGeometry();
+									if (geometry != null) {
+										translate = false;
+									}
+									renderEngineModel.setFilter(renderEngineFilter);
+								}
+								if (geometry != null && geometry.getNrIndices() > 0) {
+									GeometryInfo geometryInfo = null;
+									if (store) {
+										geometryInfo = packageMetaData.create(GeometryInfo.class);
+										model.add(oidCounter.incrementAndGet(), geometryInfo);
+									} else {
+										geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
+									}
+
+									geometryInfo.setMinBounds(createVector3f(packageMetaData, model, oidCounter, Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+									geometryInfo.setMaxBounds(createVector3f(packageMetaData, model, oidCounter, Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
+
+									GeometryData geometryData = null;
+									if (store) {
+										geometryData = packageMetaData.create(GeometryData.class);
+										model.add(oidCounter.incrementAndGet(), geometryData);
+									} else {
+										geometryData = GeometryFactory.eINSTANCE.createGeometryData();
+									}
+
+									geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
+									geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
+									geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
+									geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
+									
+									geometryInfo.setPrimitiveCount(geometry.getIndices().length / 3);
+
+									if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
+										boolean hasMaterial = false;
+										float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
+										for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
+											int c = geometry.getMaterialIndices()[i];
+											for (int j = 0; j < 3; ++j) {
+												int k = geometry.getIndices()[i * 3 + j];
+												if (c > -1) {
+													hasMaterial = true;
+													for (int l = 0; l < 4; ++l) {
+														vertex_colors[4 * k + l] = geometry.getMaterials()[4 * c + l];
+													}
+												}
+											}
+										}
+										if (hasMaterial) {
+											geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
+										}
+									}
+
+									float[] tranformationMatrix = new float[16];
+									if (translate && renderEngineInstance.getTransformationMatrix() != null) {
+										tranformationMatrix = renderEngineInstance.getTransformationMatrix();
+									} else {
+										Matrix.setIdentityM(tranformationMatrix, 0);
+									}
+
+									for (int i = 0; i < geometry.getIndices().length; i++) {
+										processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3);
+									}
+
+									geometryInfo.setData(geometryData);
+
+									setTransformationMatrix(geometryInfo, tranformationMatrix);
+									if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
+										int hash = hash(geometryData);
+										if (hashes.containsKey(hash)) {
+											databaseSession.removeFromCommit(geometryData);
+											geometryInfo.setData(hashes.get(hash));
+										} else {
+											hashes.put(hash, geometryData);
+										}
+									}
+
+									if (bigMap == null) {
+										ifcProduct.eSet(geometryFeature, geometryInfo);
+										if (store) {
+											databaseSession.store(ifcProduct, pid, rid);
+										}
+									} else {
+										bigMap.get(ifcProduct).eSet(geometryFeature, geometryInfo);
+										ifcProduct.eSet(geometryFeature, geometryInfo); // ??
+										if (store) {
+											databaseSession.store(bigMap.get(ifcProduct), pid, rid);
+										}
+									}
+								}
+							} catch (EntityNotFoundException e) {
+								LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + ifcProduct.getExpressId() + "/" + ifcProduct.getOid());
+							} catch (BimserverDatabaseException | RenderEngineException e) {
+								LOGGER.error("", e);
+							} catch (IfcModelInterfaceException e) {
+								LOGGER.error("", e);
+							}
+						}
+					}								
+				} finally {
+					in.close();
+					renderEngineModel.close();
+				}
+			} catch (SerializerException | RenderEngineException | IOException e) {
+				LOGGER.error("", e);
+			} finally {
+				try {
+					renderEngine.close();
+				} catch (RenderEngineException e) {
+					LOGGER.error("", e);
+				}
+			}
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public void generateGeometry(long uoid, final PluginManager pluginManager, final DatabaseSession databaseSession, final IfcModelInterface model, final int pid, final int rid,
 			final boolean store, GeometryCache geometryCache) throws BimserverDatabaseException, GeometryGeneratingException {
-		final PackageMetaData packageMetaData = model.getPackageMetaData();
+		packageMetaData = model.getPackageMetaData();
+		productClass = packageMetaData.getEClass("IfcProduct");
+		productRepresentationClass = packageMetaData.getEClass("IfcProductRepresentation");
+		geometryFeature = productClass.getEStructuralFeature("geometry");
+		representationFeature = productClass.getEStructuralFeature("Representation");
+		representationsFeature = productRepresentationClass.getEStructuralFeature("Representations");
+
 		if (geometryCache != null && !geometryCache.isEmpty()) {
 			returnCachedData(model, geometryCache, databaseSession, pid, rid);
 			return;
@@ -189,22 +400,9 @@ public class GeometryGenerator {
 				throw new UserException("No (enabled) render engine found of type " + defaultRenderEngine.getPluginDescriptor().getPluginClassName());
 			}
 
-			final EClass productClass = packageMetaData.getEClass("IfcProduct");
-			final EClass productRepresentationClass = packageMetaData.getEClass("IfcProductRepresentation");
-			final EStructuralFeature geometryFeature = productClass.getEStructuralFeature("geometry");
-			final EStructuralFeature representationFeature = productClass.getEStructuralFeature("Representation");
-			final EStructuralFeature representationsFeature = productRepresentationClass.getEStructuralFeature("Representations");
-
-			Set<EClass> classes = new HashSet<>();
-			for (IdEObject object : model.getAllWithSubTypes(packageMetaData.getEClass("IfcProduct"))) {
-				IdEObject representation = (IdEObject)object.eGet(representationFeature);
-				if (representation != null && ((List<?>)representation.eGet(representationsFeature)).size() > 0) {
-					classes.add(object.eClass());
-				}
-			}
-			
-			if (classes.size() == 0) {
-				return;
+			int maxSimultanousThreads = Math.min(bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses(), Runtime.getRuntime().availableProcessors());
+			if (maxSimultanousThreads < 1) {
+				maxSimultanousThreads = 1;
 			}
 
 			final RenderEngineSettings settings = new RenderEngineSettings();
@@ -214,204 +412,77 @@ public class GeometryGenerator {
 			settings.setGenerateTriangles(true);
 			settings.setGenerateWireFrame(false);
 			
-			classes.remove(packageMetaData.getEClass("IfcAnnotation"));
-			classes.remove(packageMetaData.getEClass("IfcOpeningElement"));
-			
-			int maxSimultanousThreads = Math.min(bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses(), Runtime.getRuntime().availableProcessors());
-			if (maxSimultanousThreads < 1) {
-				maxSimultanousThreads = 1;
-			}
-			LOGGER.debug("Using " + maxSimultanousThreads + " processes for geometry generation");
-			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(classes.size()));
+			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
-			oidCounter = model.getHighestOid() + 1;
-			final Map<IdEObject, IdEObject> bigMap = new HashMap<IdEObject, IdEObject>();
+			oidCounter = new AtomicLong(model.getHighestOid() + 1);
 
-			HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1").getSchemaDefinition());
-			final AtomicLong oidCounter = new AtomicLong(model.getHighestOid() + 1);
-			for (final EClass eClass : classes) {
-				final BasicIfcModel targetModel = new BasicIfcModel(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), null);
-				ModelHelper modelHelper = new ModelHelper(targetModel);
-				modelHelper.setObjectIDM(idm);
-				IdEObject newProject = null;
-				for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcProject"))) {
-					newProject = modelHelper.copy(idEObject, false, skipRepresentation);
-					bigMap.put(newProject, idEObject);
+			if (maxSimultanousThreads == 1) {
+				Runner runner = new Runner(null, renderEnginePlugin, databaseSession, settings, store, model, ifcSerializerPlugin, model, oidCounter, pid, rid, null, renderEngineFilter);
+				runner.run();
+			} else {
+				Set<EClass> classes = new HashSet<>();
+				for (IdEObject object : model.getAllWithSubTypes(packageMetaData.getEClass("IfcProduct"))) {
+					IdEObject representation = (IdEObject)object.eGet(representationFeature);
+					if (representation != null && ((List<?>)representation.eGet(representationsFeature)).size() > 0) {
+						classes.add(object.eClass());
+					}
 				}
-				IdEObject newOwnerHistory = null;
-				for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcOwnerHistory"))) {
-					newOwnerHistory = modelHelper.copy(idEObject, false, skipRepresentation);
-					bigMap.put(newOwnerHistory, idEObject);
+				
+				if (classes.size() == 0) {
+					return;
 				}
-				for (IdEObject idEObject : model.getAll(eClass)) {
-					IdEObject newObject = modelHelper.copy(idEObject, false, createObjectIdm(idEObject.eClass()));
-					copyDecomposes(idEObject, modelHelper, newOwnerHistory);
-					bigMap.put(newObject, idEObject);
-					if (eClass.getName().equals("IfcWallStandardCase")) {
-						EStructuralFeature hasOpeningsFeature = idEObject.eClass().getEStructuralFeature("HasOpenings");
-						for (IdEObject ifcRelVoidsElement : ((List<IdEObject>)idEObject.eGet(hasOpeningsFeature))) {
-							bigMap.put(modelHelper.copy(ifcRelVoidsElement, false), ifcRelVoidsElement);
-							EStructuralFeature relatedOpeningElementFeature = ifcRelVoidsElement.eClass().getEStructuralFeature("RelatedOpeningElement");
-							IdEObject relatedOpeningElement = (IdEObject) ifcRelVoidsElement.eGet(relatedOpeningElementFeature);
-							if (relatedOpeningElement != null) {
-								bigMap.put(modelHelper.copy(relatedOpeningElement, false), relatedOpeningElement);
+				
+				classes.remove(packageMetaData.getEClass("IfcAnnotation"));
+				classes.remove(packageMetaData.getEClass("IfcOpeningElement"));
+				
+				LOGGER.debug("Using " + maxSimultanousThreads + " processes for geometry generation");
+				ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(classes.size()));
+
+				final Map<IdEObject, IdEObject> bigMap = new HashMap<IdEObject, IdEObject>();
+
+				HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1").getSchemaDefinition());
+				for (final EClass eClass : classes) {
+					final BasicIfcModel targetModel = new BasicIfcModel(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), null);
+					ModelHelper modelHelper = new ModelHelper(targetModel);
+					modelHelper.setObjectIDM(idm);
+					IdEObject newProject = null;
+					for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcProject"))) {
+						newProject = modelHelper.copy(idEObject, false, skipRepresentation);
+						bigMap.put(newProject, idEObject);
+					}
+					IdEObject newOwnerHistory = null;
+					for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcOwnerHistory"))) {
+						newOwnerHistory = modelHelper.copy(idEObject, false, skipRepresentation);
+						bigMap.put(newOwnerHistory, idEObject);
+					}
+					for (IdEObject idEObject : model.getAll(eClass)) {
+						IdEObject newObject = modelHelper.copy(idEObject, false, createObjectIdm(idEObject.eClass()));
+						copyDecomposes(idEObject, modelHelper, newOwnerHistory);
+						bigMap.put(newObject, idEObject);
+						if (eClass.getName().equals("IfcWallStandardCase")) {
+							EStructuralFeature hasOpeningsFeature = idEObject.eClass().getEStructuralFeature("HasOpenings");
+							for (IdEObject ifcRelVoidsElement : ((List<IdEObject>)idEObject.eGet(hasOpeningsFeature))) {
+								bigMap.put(modelHelper.copy(ifcRelVoidsElement, false), ifcRelVoidsElement);
+								EStructuralFeature relatedOpeningElementFeature = ifcRelVoidsElement.eClass().getEStructuralFeature("RelatedOpeningElement");
+								IdEObject relatedOpeningElement = (IdEObject) ifcRelVoidsElement.eGet(relatedOpeningElementFeature);
+								if (relatedOpeningElement != null) {
+									bigMap.put(modelHelper.copy(relatedOpeningElement, false), relatedOpeningElement);
+								}
 							}
 						}
 					}
-				}
-				for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcUnit"))) {
-					bigMap.put(modelHelper.copy(idEObject, false, skipRepresentation), idEObject);
-				}
-				for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcUnitAssignment"))) {
-					bigMap.put(modelHelper.copy(idEObject, false, skipRepresentation), idEObject);
-				}
-
-
-				executor.submit(new Runnable() {
-					@Override
-					public void run() {
-						targetModel.generateMinimalExpressIds();
-
-						Serializer ifcSerializer = ifcSerializerPlugin.createSerializer(new PluginConfiguration());
-						RenderEngine renderEngine = null;
-						try {
-							renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration(), "ifc2x3tc1");
-						} catch (RenderEngineException e2) {
-							e2.printStackTrace();
-						}
-						try {
-							renderEngine.init();
-							ifcSerializer.init(targetModel, null, pluginManager, null, pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), true);
-
-							boolean debug = false;
-							InputStream in = null;
-							if (debug) {
-								File file = new File(eClass.getName() + ".ifc");
-								FileOutputStream fos = new FileOutputStream(file);
-								IOUtils.copy(ifcSerializer.getInputStream(), fos);
-								fos.close();
-								in = new FileInputStream(file);
-							} else {
-								in = ifcSerializer.getInputStream();
-							}
-							RenderEngineModel renderEngineModel = renderEngine.openModel(in);
-							try {
-								renderEngineModel.setSettings(settings);
-
-								renderEngineModel.generateGeneralGeometry();
-
-								List<IdEObject> allWithSubTypes = targetModel.getAll(eClass);
-								for (IdEObject ifcProduct : allWithSubTypes) {
-									IdEObject representation = (IdEObject) ifcProduct.eGet(representationFeature);
-									if (representation != null && ((List<?>) representation.eGet(representationsFeature)).size() > 0) {
-										try {
-											RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
-											RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
-											if (geometry != null && geometry.getNrIndices() > 0) {
-												GeometryInfo geometryInfo = null;
-												if (store) {
-													geometryInfo = packageMetaData.create(GeometryInfo.class);
-													model.add(oidCounter.incrementAndGet(), geometryInfo);
-												} else {
-													geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
-												}
-
-												geometryInfo.setMinBounds(createVector3f(packageMetaData, model, oidCounter, Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-												geometryInfo.setMaxBounds(createVector3f(packageMetaData, model, oidCounter, Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
-
-												GeometryData geometryData = null;
-												if (store) {
-													geometryData = packageMetaData.create(GeometryData.class);
-													model.add(oidCounter.incrementAndGet(), geometryData);
-												} else {
-													geometryData = GeometryFactory.eINSTANCE.createGeometryData();
-												}
-
-												geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
-												geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
-												geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
-												geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
-												
-												geometryInfo.setPrimitiveCount(geometry.getIndices().length / 3);
-
-												if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
-													boolean hasMaterial = false;
-													float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
-													for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
-														int c = geometry.getMaterialIndices()[i];
-														for (int j = 0; j < 3; ++j) {
-															int k = geometry.getIndices()[i * 3 + j];
-															if (c > -1) {
-																hasMaterial = true;
-																for (int l = 0; l < 4; ++l) {
-																	vertex_colors[4 * k + l] = geometry.getMaterials()[4 * c + l];
-																}
-															}
-														}
-													}
-													if (hasMaterial) {
-														geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
-													}
-												}
-
-												float[] tranformationMatrix = new float[16];
-												if (renderEngineInstance.getTransformationMatrix() != null) {
-													tranformationMatrix = renderEngineInstance.getTransformationMatrix();
-													tranformationMatrix = Matrix.changeOrientation(tranformationMatrix);
-												} else {
-													Matrix.setIdentityM(tranformationMatrix, 0);
-												}
-
-												for (int i = 0; i < geometry.getIndices().length; i++) {
-													processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3);
-												}
-
-												geometryInfo.setData(geometryData);
-
-												setTransformationMatrix(geometryInfo, tranformationMatrix);
-												if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
-													int hash = hash(geometryData);
-													if (hashes.containsKey(hash)) {
-														databaseSession.removeFromCommit(geometryData);
-														geometryInfo.setData(hashes.get(hash));
-													} else {
-														hashes.put(hash, geometryData);
-													}
-												}
-
-												bigMap.get(ifcProduct).eSet(geometryFeature, geometryInfo);
-												ifcProduct.eSet(geometryFeature, geometryInfo);
-												if (store) {
-													databaseSession.store(bigMap.get(ifcProduct), pid, rid);
-												}
-											}
-										} catch (EntityNotFoundException e) {
-											LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + ifcProduct.getExpressId() + "/" + ifcProduct.getOid());
-										} catch (BimserverDatabaseException | RenderEngineException e) {
-											LOGGER.error("", e);
-										} catch (IfcModelInterfaceException e) {
-											LOGGER.error("", e);
-										}
-									}
-								}								
-							} finally {
-								in.close();
-								renderEngineModel.close();
-							}
-						} catch (SerializerException | RenderEngineException | IOException e) {
-							LOGGER.error("", e);
-						} finally {
-							try {
-								renderEngine.close();
-							} catch (RenderEngineException e) {
-								LOGGER.error("", e);
-							}
-						}
+					for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcUnit"))) {
+						bigMap.put(modelHelper.copy(idEObject, false, skipRepresentation), idEObject);
 					}
-				});
+					for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcUnitAssignment"))) {
+						bigMap.put(modelHelper.copy(idEObject, false, skipRepresentation), idEObject);
+					}
+
+					executor.submit(new Runner(eClass, renderEnginePlugin, databaseSession, settings, store, targetModel, ifcSerializerPlugin, model, oidCounter, pid, rid, bigMap, renderEngineFilter));
+				}
+				executor.shutdown();
+				executor.awaitTermination(24, TimeUnit.HOURS);				
 			}
-			executor.shutdown();
-			executor.awaitTermination(24, TimeUnit.HOURS);
 			
 			long end = System.nanoTime();
 			LOGGER.info("Rendertime: " + ((end - start) / 1000000) + "ms");
@@ -444,7 +515,7 @@ public class GeometryGenerator {
 				EStructuralFeature relatingStructureFeature = containedInStructure.eClass().getEStructuralFeature("RelatingStructure");
 				IdEObject newRelatingStructre = modelHelper.copy(((IdEObject)containedInStructure.eGet(relatingStructureFeature)), false, skipRepresentation);
 				newContainedInSpatialStructure.eSet(relatingStructureFeature, newRelatingStructre);
-				modelHelper.getTargetModel().add(oidCounter++, newContainedInSpatialStructure);
+				modelHelper.getTargetModel().add(oidCounter.incrementAndGet(), newContainedInSpatialStructure);
 				copyDecomposes((IdEObject)containedInStructure.eGet(relatingStructureFeature), modelHelper, ownerHistory);
 			}
 		}

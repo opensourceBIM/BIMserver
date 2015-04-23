@@ -206,6 +206,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SIfcHeader getIfcHeader(java.lang.Long croid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SModelCheckerInstance getModelCheckerInstance(java.lang.Long mcioid) throws UserException, ServerException {
 		return null;
 	}
