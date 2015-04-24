@@ -115,10 +115,11 @@ public abstract class AbstractModifyRevisionService extends ServicePlugin {
 	}
 	
 	@Override
-	public void register(long uoid, SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalService, PluginConfiguration pluginConfiguration) {
+		System.out.println(internalService.getOid());
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
-		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
+		serviceDescriptor.setIdentifier("" + internalService.getOid());
 		serviceDescriptor.setName(name);
 		serviceDescriptor.setDescription(description);
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);

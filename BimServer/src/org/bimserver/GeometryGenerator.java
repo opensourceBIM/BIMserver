@@ -80,6 +80,7 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
+import org.bimserver.utils.Formatters;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -104,6 +105,8 @@ public class GeometryGenerator {
 	private PackageMetaData packageMetaData;
 
 	private AtomicLong oidCounter;
+	private AtomicLong bytesSaved = new AtomicLong();
+	private AtomicLong totalBytes = new AtomicLong();
 
 	private static void initObjectIdmCache(final BimServer bimServer) {
 		hideAllInverseMap = new HashMap<EPackage, HideAllInversesObjectIDM>();
@@ -312,16 +315,24 @@ public class GeometryGenerator {
 
 									geometryInfo.setData(geometryData);
 
+									long length = (geometryData.getIndices() != null ? geometryData.getIndices().length : 0) + 
+												  (geometryData.getVertices() != null ? geometryData.getVertices().length : 0) + 
+												  (geometryData.getNormals() != null ? geometryData.getNormals().length : 0) + 
+												  (geometryData.getMaterials() != null ? geometryData.getMaterials().length : 0) +
+												  (geometryData.getMaterialIndices() != null ? geometryData.getMaterialIndices().length : 0);
+
 									setTransformationMatrix(geometryInfo, tranformationMatrix);
 									if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
 										int hash = hash(geometryData);
 										if (hashes.containsKey(hash)) {
 											databaseSession.removeFromCommit(geometryData);
 											geometryInfo.setData(hashes.get(hash));
+											bytesSaved.addAndGet(length);
 										} else {
 											hashes.put(hash, geometryData);
 										}
 									}
+									totalBytes.addAndGet(length);
 
 									if (bigMap == null) {
 										ifcProduct.eSet(geometryFeature, geometryInfo);
@@ -485,7 +496,7 @@ public class GeometryGenerator {
 			}
 			
 			long end = System.nanoTime();
-			LOGGER.info("Rendertime: " + ((end - start) / 1000000) + "ms");
+			LOGGER.info("Rendertime: " + ((end - start) / 1000000) + "ms, " + "Reused: " + Formatters.bytesToString(bytesSaved.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(totalBytes.get() - bytesSaved.get()));
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			throw new GeometryGeneratingException(e);
