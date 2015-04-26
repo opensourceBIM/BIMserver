@@ -68,12 +68,11 @@ public class TestFramework {
 			bimServerConfig.setPort(8080);
 			bimServerConfig.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 			bimServerConfig.setClassPath(System.getProperty("java.class.path"));
-			bimServerConfig.setInitialProtocolBuffersPort(8020);
 			bimServer = new BimServer(bimServerConfig);
 			EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
 		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
 			try {
-				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), pluginDirectories);
+				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 				bimServer.start();
 				// Convenience, setup the server to make sure it is in RUNNING state
 				if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {

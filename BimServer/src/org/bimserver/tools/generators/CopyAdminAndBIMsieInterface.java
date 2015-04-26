@@ -31,11 +31,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CopyAdminAndBIMsieInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CopyAdminAndBIMsieInterface.class);
-	private static final File baseGitDir = new File("D:\\git");
+	private static final File baseGitDir = new File("E:\\git");
 //	private static final File baseGitDir = new File("D:\\git");
 	private static final File bootstrap = new File(baseGitDir, "bimvie.ws2");
 	private static final File bimsie = new File(baseGitDir, "BIMSie");
-	private static final File admin = new File(baseGitDir, "BIMserver1.3\\AdminGui");;
+	private static final File admin = new File(baseGitDir, "BIMserverMaster2\\AdminGui");;
 
 	public static void main(String[] args) {
 		CopyAdminAndBIMsieInterface copyAdminAndBIMsieInterface = new CopyAdminAndBIMsieInterface();

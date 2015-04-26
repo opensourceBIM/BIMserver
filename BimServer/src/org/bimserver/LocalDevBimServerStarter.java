@@ -51,14 +51,13 @@ public class LocalDevBimServerStarter {
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		config.setStartEmbeddedWebServer(true);
 		config.setClassPath(System.getProperty("java.class.path"));
-		config.setInitialProtocolBuffersPort(pbport);
 		config.setLocalDev(true);
 		config.setPort(port);
 		config.setStartCommandLine(true);
 		bimServer = new BimServer(config);
 		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
 		try {
-	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), pluginDirectories);
+	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);

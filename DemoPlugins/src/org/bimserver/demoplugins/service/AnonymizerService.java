@@ -6,8 +6,10 @@ import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SService;
+import org.bimserver.models.ifc2x3tc1.IfcAddressTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcOrganization;
 import org.bimserver.models.ifc2x3tc1.IfcPerson;
+import org.bimserver.models.ifc2x3tc1.IfcPostalAddress;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
@@ -38,6 +40,17 @@ public class AnonymizerService extends AbstractModifyRevisionService {
 			ifcOrganization.setDescription(ANONYMIZED);
 			ifcOrganization.setId(ANONYMIZED);
 			ifcOrganization.setName(ANONYMIZED);
+		}
+		for (IfcPostalAddress ifcPostalAddress : model.getAll(IfcPostalAddress.class)) {
+			ifcPostalAddress.setCountry(ANONYMIZED);
+			ifcPostalAddress.setDescription(ANONYMIZED);
+			ifcPostalAddress.setInternalLocation(ANONYMIZED);
+			ifcPostalAddress.setPostalBox(ANONYMIZED);
+			ifcPostalAddress.setPurpose(IfcAddressTypeEnum.NULL);
+			ifcPostalAddress.setPostalCode(ANONYMIZED);
+			ifcPostalAddress.setRegion(ANONYMIZED);
+			ifcPostalAddress.setTown(ANONYMIZED);
+			ifcPostalAddress.setUserDefinedPurpose(ANONYMIZED);
 		}
 		ModelMetaData modelMetaData = model.getModelMetaData();
 		modelMetaData.setAuthorizedUser(ANONYMIZED);
