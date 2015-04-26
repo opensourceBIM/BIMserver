@@ -133,7 +133,6 @@ public class TestIfcEngineEmbedded {
 		config.setHomeDir(home);
 		config.setStartEmbeddedWebServer(true);
 		config.setPort(8080);
-		config.setInitialProtocolBuffersPort(8020);
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		config.setClassPath(System.getProperty("java.class.path"));
 		
@@ -145,7 +144,7 @@ public class TestIfcEngineEmbedded {
 			File[] pluginDirs = new File[] {
 				// TODO: Set these up yourself...
 			};
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), pluginDirs);
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirs);
 			
 			// Start it
 			bimServer.start();

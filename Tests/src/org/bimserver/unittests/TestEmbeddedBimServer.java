@@ -74,7 +74,7 @@ public class TestEmbeddedBimServer {
 			bimServer = new BimServer(config);
 
 			// Load plugins
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), null);
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), null);
 
 			// Start
 			bimServer.start();

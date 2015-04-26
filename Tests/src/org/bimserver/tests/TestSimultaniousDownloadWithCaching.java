@@ -72,13 +72,12 @@ public class TestSimultaniousDownloadWithCaching {
 		}
 		config.setClassPath(System.getProperty("java.class.path"));
 		config.setHomeDir(homeDir);
-		config.setInitialProtocolBuffersPort(8020);
 		config.setPort(8080);
 		config.setStartEmbeddedWebServer(true);
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		final BimServer bimServer = new BimServer(config);
 		try {
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), null);
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), null);
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getService(AdminInterface.class).setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");

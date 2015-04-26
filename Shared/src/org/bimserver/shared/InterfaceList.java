@@ -17,16 +17,9 @@ package org.bimserver.shared;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
@@ -43,39 +36,8 @@ import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
-import org.bimserver.shared.meta.SourceCodeFetcher;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class InterfaceList {
-	private static final class CodeFetcher implements SourceCodeFetcher {
-		@Override
-		public String get(Class<?> clazz) {
-			URL url = clazz.getResource(clazz.getSimpleName() + ".java");
-			if (url == null) {
-				try {
-					url = new File("../Shared/src/" + clazz.getName().replace(".", "/") + ".java").toURI().toURL();
-				} catch (MalformedURLException e) {
-					LOGGER.error("", e);				}
-			}
-			if (url != null) {
-				try {
-					InputStream inputStream = url.openStream();
-					if (inputStream == null) {
-						return null;
-					}
-					StringWriter out = new StringWriter();
-					IOUtils.copy(inputStream, out);
-					return out.toString();
-				} catch (IOException e) {
-					LOGGER.error("", e);
-				}
-			}
-			return null;
-		}
-	}
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(InterfaceList.class);
 	private static final Set<Class<? extends PublicInterface>> interfaces = new LinkedHashSet<Class<? extends PublicInterface>>();
 	private static final Set<Class<? extends PublicInterface>> bimsie1Interfaces = new LinkedHashSet<Class<? extends PublicInterface>>();
 	

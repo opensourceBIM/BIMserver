@@ -48,14 +48,13 @@ public class TestInOut {
 		}
 		config.setClassPath(System.getProperty("java.class.path"));
 		config.setHomeDir(homeDir);
-		config.setInitialProtocolBuffersPort(8020);
 		config.setPort(8080);
 		config.setStartEmbeddedWebServer(true);
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 
 		BimServer bimServer = new BimServer(config);
 		try {
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), new OptionsParser(args).getPluginDirectories());
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new OptionsParser(args).getPluginDirectories());
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
