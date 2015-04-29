@@ -1,6 +1,8 @@
 "use strict"
 
 function BimServerApi(baseUrl, notifier) {
+	if(typeof jQuery !== 'undefined' && $ !== jQuery)
+		var $ = jQuery;
 	var othis = this;
 	othis.interfaceMapping = {
 		"ServiceInterface": "org.bimserver.ServiceInterface",
@@ -730,6 +732,8 @@ function Synchronizer(fetcher) {
 }
 
 function Model(bimServerApi, poid, roid, schema) {
+	if(typeof jQuery !== 'undefined' && $ !== jQuery)
+		var $ = jQuery;
 	var othis = this;
 	othis.schema = schema;
 	othis.bimServerApi = bimServerApi;
