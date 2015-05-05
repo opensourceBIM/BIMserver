@@ -1526,4 +1526,8 @@ public class IfcEngine {
 			return memory.getFloatArray(0, 16);
 		}
 	}
+
+	public double getArea(Pointer model, Pointer instance) {
+		return engine.GetArea(instance, Pointer.NULL, Pointer.NULL);
+	}
 }

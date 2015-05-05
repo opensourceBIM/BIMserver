@@ -20,4 +20,5 @@ package org.bimserver.plugins.renderengine;
 public interface RenderEngineInstance {
 	float[] getTransformationMatrix() throws RenderEngineException;
 	RenderEngineGeometry generateGeometry() throws RenderEngineException;
+	double getArea() throws RenderEngineException;
 }

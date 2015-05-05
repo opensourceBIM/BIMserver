@@ -54,6 +54,17 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 		}
 	}
 
+	@Override
+	public double getArea() throws RenderEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.GET_AREA);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(instanceId);
+			failSafeIfcEngine.flush();
+			return failSafeIfcEngine.readDouble();
+		}
+	}
+
 	private RenderEngineSurfaceProperties initialize() throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.INITIALIZE_MODELLING_INSTANCE);
