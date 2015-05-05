@@ -29,7 +29,7 @@
 			<fileset file="../../BimServer/lib/cxf/wsdl4j-1.6.2.jar"/>
 			<fileset file="../../BimServer/lib/cxf/xmlschema-core-2.0.3.jar"/>
 			<fileset file="../../Shared/lib/other/gson-2.2.4.jar"/>
-			<fileset file="../../Shared/lib/other/guava-16.0.1.jar"/>
+			<fileset file="../../Shared/lib/other/guava-18.0.1.jar"/>
 			<fileset file="../../Shared/lib/httpclient/httpclient-4.3.6.jar"/>
 			<fileset file="../../Shared/lib/httpclient/httpclient-cache-4.3.2.jar"/>
 			<fileset file="../../Shared/lib/httpclient/httpcore-4.3.3.jar"/>
