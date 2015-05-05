@@ -77,7 +77,6 @@ public class AllTests {
 
 	private static void setup() {
 		// Create a config
-		BimServerConfig config = new BimServerConfig();
 		File home = new File("home");
 		
 		// Remove the home dir if it's there
@@ -89,10 +88,10 @@ public class AllTests {
 			}
 		}
 		
+		BimServerConfig config = new BimServerConfig();
 		config.setHomeDir(home);
 		config.setStartEmbeddedWebServer(true);
 		config.setPort(8080);
-		config.setInitialProtocolBuffersPort(8020);
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		config.setClassPath(System.getProperty("java.class.path"));
 		
@@ -102,7 +101,7 @@ public class AllTests {
 			File[] pluginDirectories = new File[]{new File("E:\\Git\\BIMserverMaster2")};
 			
 			// Load plugins
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), pluginDirectories);
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 
 			// Start it
 			bimServer.start();

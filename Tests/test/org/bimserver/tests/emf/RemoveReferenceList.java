@@ -15,7 +15,6 @@ import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class RemoveReferenceList extends TestWithEmbeddedServer {
-
 	
 	// This test makes no sense, since getContainedInStructure is a Set (unordered)
 	@Test
