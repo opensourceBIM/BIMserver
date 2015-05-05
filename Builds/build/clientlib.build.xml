@@ -16,6 +16,9 @@
 			<fileset file="builds/pluginlibs/bimserver-${version}-ifcplugins.jar"/>
 		</copy>
 		<copy todir="builds/BuildLib/dep" flatten="true">
+			<fileset file="../../Shared/lib/other/jackson-annotations-2.5.0.jar"/>
+			<fileset file="../../Shared/lib/other/jackson-core-2.5.1.jar"/>
+			<fileset file="../../Shared/lib/other/jackson-databind-2.5.1.jar"/>
 			<fileset file="../../Shared/lib/commons/commons-logging-1.1.1.jar"/>
 			<fileset file="../../Shared/lib/commons/commons-io-1.4.jar"/>
 			<fileset file="../../Shared/lib/commons/commons-codec-1.7.jar"/>
