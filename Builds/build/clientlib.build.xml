@@ -30,9 +30,10 @@
 			<fileset file="../../BimServer/lib/cxf/xmlschema-core-2.0.3.jar"/>
 			<fileset file="../../Shared/lib/other/gson-2.2.4.jar"/>
 			<fileset file="../../Shared/lib/other/guava-16.0.1.jar"/>
-			<fileset file="../../BimServer/lib/cxf/httpclient-4.2.1.jar"/>
-			<fileset file="../../BimServer/lib/cxf/httpcore-4.2.2.jar"/>
-			<fileset file="../../BimServer/lib/cxf/httpmime-4.2.2.jar"/>
+			<fileset file="../../Shared/lib/httpclient/httpclient-4.3.6.jar"/>
+			<fileset file="../../Shared/lib/httpclient/httpclient-cache-4.3.2.jar"/>
+			<fileset file="../../Shared/lib/httpclient/httpcore-4.3.3.jar"/>
+			<fileset file="../../Shared/lib/httpclient/httpmime-4.3.2.jar"/>
 			<fileset file="../../BimServer/lib/cxf/jettison-1.3.3.jar"/>
 			<fileset file="../../Shared/lib/other/javassist.jar"/>
 			<fileset file="../../Shared/lib/other/mail.jar"/>
