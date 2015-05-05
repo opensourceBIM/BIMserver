@@ -1,6 +1,8 @@
 "use strict"
 
 function BimServerApi(baseUrl, notifier) {
+	if(typeof jQuery !== 'undefined' && $ !== jQuery)
+		var $ = jQuery;
 	var othis = this;
 	othis.interfaceMapping = {
 		"ServiceInterface": "org.bimserver.ServiceInterface",
@@ -730,6 +732,8 @@ function Synchronizer(fetcher) {
 }
 
 function Model(bimServerApi, poid, roid, schema) {
+	if(typeof jQuery !== 'undefined' && $ !== jQuery)
+		var $ = jQuery;
 	var othis = this;
 	othis.schema = schema;
 	othis.bimServerApi = bimServerApi;
@@ -1417,7 +1421,7 @@ function Model(bimServerApi, poid, roid, schema) {
 						topicId: laid,
 						serializerOid: jsonSerializerOid
 					});
-					Global.notifier.setInfo("Getting model data...", -1);
+					othis.bimServerApi.notifier.setInfo("Getting model data...", -1);
 					$.getJSON(url, function(data, textStatus, jqXHR){
 //						console.log("query", data.objects.length);
 						data.objects.forEach(function(object){
@@ -1444,7 +1448,7 @@ function Model(bimServerApi, poid, roid, schema) {
 //						othis.dumpByType();
 						bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
 							promise.fire();
-							Global.notifier.setSuccess("Model data successfully downloaded...");
+							othis.bimServerApi.notifier.setSuccess("Model data successfully downloaded...");
 						});
 					});
 				});
