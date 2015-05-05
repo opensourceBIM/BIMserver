@@ -275,40 +275,46 @@ function formatLogState(state) {
 	}
 }
 
-function EventRegistry() {
-	var o = this;
-	o.registry = [];
-	
-	this.register = function(fn) {
-		var skip = false;
-		o.registry.forEach(function(existing){
-			if (existing == fn) {
-				skip = true;
-			}
-		});
-		if (!skip) {
-			o.registry.push(fn);
+function load(element, url, constructor) {
+	var promise = new Promise();
+	element.load(url, function(){
+		var res = constructor.call(element);
+		if (res instanceof Promise) {
+			promise.chain(res);
+		} else {
+			promise.fire();
 		}
-	};
-	
-	this.unregister = function(fn) {
-		var len = o.registry.length;
-		while (len--) {
-			if (o.registry[len] == fn) {
-				o.registry.splice(len, 1);
-			}
-		}
-	};
-	
-	this.trigger = function(callback){
-		o.registry.forEach(callback);
-	};
-	
-	this.clear = function(){
-		o.registry = [];
-	};
+	});
+	return promise;
 }
 
-function ModelManager() {
+function Tab(tabs, label) {
+	var o = this;
+
+	this.setActive = function(){
+		tabs.tabsDiv.find("label").removeClass("active");
+		label.addClass("active");
+		label.find("input").attr("selected", "selected");
+		console.log(label);
+		tabs.contentDiv.load(o.page, o.callback);
+	};
 	
+	label.find("input").change(function(){
+		o.setActive();
+	});
+}
+
+function Tabs(tabsDiv, contentDiv) {
+	var o = this;
+	o.tabsDiv = tabsDiv;
+	o.contentDiv = contentDiv;
+	
+	this.addTab = function(title, page, callback){
+		var label = $("<label class=\"btn btn-default\"> <input type=\"radio\" name=\"options\" id=\"" + title + "\" autocomplete=\"off\" />" + title + "</label>");
+		var tab = new Tab(o, label);
+		tab.page = page;
+		tab.callback = callback;
+		tabsDiv.append(label);
+		return tab;
+	};
 }
