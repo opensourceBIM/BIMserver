@@ -204,6 +204,11 @@ public class AsyncBimsie1LowLevelInterface {
 		void error(Throwable e);
 	}
 	
+	public interface RemoveReferenceByOidCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface SetBooleanAttributeCallback {
 		void success();
 		void error(Throwable e);
@@ -753,6 +758,19 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					syncService.removeReference(tid, oid, referenceName, index);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void removeReferenceByOid(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String referenceName, final java.lang.Long referencedOid, final RemoveReferenceByOidCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.removeReferenceByOid(tid, oid, referenceName, referencedOid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

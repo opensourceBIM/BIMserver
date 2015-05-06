@@ -41,11 +41,33 @@ public class RemoveReferenceChange implements Change {
 	private final long oid;
 	private final String referenceName;
 	private final int index;
+	private final long referencedOid;
 
 	public RemoveReferenceChange(long oid, String referenceName, int index) {
 		this.oid = oid;
 		this.referenceName = referenceName;
 		this.index = index;
+		this.referencedOid = -1;
+	}
+
+	public RemoveReferenceChange(long oid, String referenceName, long referencedOid) {
+		this.oid = oid;
+		this.referenceName = referenceName;
+		this.referencedOid = referencedOid;
+		this.index = -1;
+	}
+	
+	private IdEObject getReferencedObject(List<?> list) {
+		if (index != -1) {
+			return (IdEObject) list.get(index);
+		} else if (referencedOid != -1) {
+			for (Object ref : list) {
+				if (((IdEObject)ref).getOid() == referencedOid) {
+					return (IdEObject) ref;
+				}
+			}
+		}
+		return null;
 	}
 	
 	@SuppressWarnings("rawtypes")
@@ -71,13 +93,13 @@ public class RemoveReferenceChange implements Change {
 		EntityDefinition entityBN = packageMetaData.getSchemaDefinition().getEntityBN(idEObject.eClass().getName());
 		Attribute attributeBNWithSuper = entityBN.getAttributeBNWithSuper(eReference.getName());
 		if (eReference.getEOpposite() != null) {
-			IdEObject referenced = (IdEObject) list.get(index);
+			IdEObject referenced = getReferencedObject(list);
 			referenced.eSet(eReference.getEOpposite(), null); // This will automatically remove the object from the list
 			databaseSession.store(referenced, project.getId(), concreteRevision.getId());
 		} else {
+			IdEObject referenced = getReferencedObject(list);
 			if (attributeBNWithSuper instanceof InverseAttribute) {
 				InverseAttribute inverse = (InverseAttribute) attributeBNWithSuper;
-				IdEObject referenced = (IdEObject) list.get(index);
 				EReference inverseReference = (EReference) referenced.eClass().getEStructuralFeature(inverse.getInverted_attr().getName());
 				if (referenced instanceof List) {
 					((List)referenced).remove(idEObject);
@@ -86,7 +108,11 @@ public class RemoveReferenceChange implements Change {
 				}
 				databaseSession.store(referenced, project.getId(), concreteRevision.getId());
 			}
-			list.remove(index);
+			if (index != -1) {
+				list.remove(index);
+			} else if (referencedOid != -1) {
+				list.remove(referenced);
+			}
 		}
 		databaseSession.store(idEObject, project.getId(), concreteRevision.getId());
 	}

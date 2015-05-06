@@ -883,6 +883,22 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "index", partName = "removeReference.index") Integer index) throws ServerException, UserException;
 
 	/**
+	 * Remove a single reference by it's oid
+	 * 
+	 * @param tid The TransactionID
+	 * @param oid ObjectID of the object to change
+	 * @param referenceName Name of the reference from which to remove an item
+	 * @param referencedOid Index of the item to remove
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "removeReferenceByOid")
+	void removeReferenceByOid(
+			@WebParam(name = "tid", partName = "removeReference.tid") Long tid,
+			@WebParam(name = "oid", partName = "removeReference.oid") Long oid, 
+			@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
+			@WebParam(name = "referencedOid", partName = "removeReference.referencedOid") Long referencedOid) throws ServerException, UserException;
+
+	/**
 	 * Remove all references (clear the list of references) of the given object + reference
 	 * 
 	 * @param tid The TransactionID

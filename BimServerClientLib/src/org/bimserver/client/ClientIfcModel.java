@@ -151,7 +151,8 @@ public class ClientIfcModel extends IfcModel {
 				if (getModelState() != ModelState.LOADING) {
 					try {
 						if (eFeature instanceof EReference) {
-							bimServerClient.getBimsie1LowLevelInterface().removeReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getPosition());
+							IdEObject oldValue = (IdEObject) notification.getOldValue();
+							bimServerClient.getBimsie1LowLevelInterface().removeReferenceByOid(getTransactionId(), idEObject.getOid(), eFeature.getName(), oldValue.getOid());
 						} else {
 							throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + notification.getNewValue());
 						}

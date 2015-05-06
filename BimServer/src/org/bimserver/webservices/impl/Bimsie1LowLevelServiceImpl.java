@@ -304,6 +304,16 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 	}
 	
 	@Override
+	public void removeReferenceByOid(Long tid, Long oid, String referenceName, Long referencedOid) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new RemoveReferenceChange(oid, referenceName, referencedOid));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
 	public void removeAllReferences(Long tid, Long oid, String referenceName) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		try {
