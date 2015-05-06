@@ -1,5 +1,5 @@
 
-­l
+ûm
 Bimsie1LowLevelInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoBimsie1ServiceInterface.proto"Bimsie1NotificationInterface.proto#Bimsie1RemoteServiceInterface.protoBimsie1AuthInterface.proto"&
 AbortTransactionRequest
 tid ("\
@@ -218,7 +218,12 @@
 tid (
 oid (
 referenceName (	
-index ("\
+index ("e
+RemoveReferenceByOidRequest
+tid (
+oid (
+referenceName (	
+referencedOid ("\
 SetBooleanAttributeRequest
 tid (
 oid (
@@ -351,7 +356,7 @@
 UnsetReferenceRequest
 tid (
 oid (
-referenceName (	2¤2
+referenceName (	2‹3
 Bimsie1LowLevelInterface]
 abortTransaction).org.bimserver.pb.AbortTransactionRequest.org.bimserver.pb.VoidResponsec
 addBooleanAttribute,.org.bimserver.pb.AddBooleanAttributeRequest.org.bimserver.pb.VoidResponsea
@@ -387,7 +392,8 @@
 removeAllReferences,.org.bimserver.pb.RemoveAllReferencesRequest.org.bimserver.pb.VoidResponse[
 removeAttribute(.org.bimserver.pb.RemoveAttributeRequest.org.bimserver.pb.VoidResponseU
 removeObject%.org.bimserver.pb.RemoveObjectRequest.org.bimserver.pb.VoidResponse[
-removeReference(.org.bimserver.pb.RemoveReferenceRequest.org.bimserver.pb.VoidResponsec
+removeReference(.org.bimserver.pb.RemoveReferenceRequest.org.bimserver.pb.VoidResponsee
+removeReferenceByOid-.org.bimserver.pb.RemoveReferenceByOidRequest.org.bimserver.pb.VoidResponsec
 setBooleanAttribute,.org.bimserver.pb.SetBooleanAttributeRequest.org.bimserver.pb.VoidResponseq
 setBooleanAttributeAtIndex3.org.bimserver.pb.SetBooleanAttributeAtIndexRequest.org.bimserver.pb.VoidResponsee
 setBooleanAttributes-.org.bimserver.pb.SetBooleanAttributesRequest.org.bimserver.pb.VoidResponseg

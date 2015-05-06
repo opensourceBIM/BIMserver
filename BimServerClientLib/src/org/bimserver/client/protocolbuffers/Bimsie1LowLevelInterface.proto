@@ -103,6 +103,8 @@ service Bimsie1LowLevelInterface {
 
 	rpc removeReference (RemoveReferenceRequest) returns (VoidResponse);
 
+	rpc removeReferenceByOid (RemoveReferenceByOidRequest) returns (VoidResponse);
+
 	rpc setBooleanAttribute (SetBooleanAttributeRequest) returns (VoidResponse);
 
 	rpc setBooleanAttributeAtIndex (SetBooleanAttributeAtIndexRequest) returns (VoidResponse);
@@ -491,6 +493,13 @@ message RemoveReferenceRequest {
 	optional int64 oid = 2;
 	optional string referenceName = 3;
 	optional int32 index = 4;
+}
+
+message RemoveReferenceByOidRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string referenceName = 3;
+	optional int64 referencedOid = 4;
 }
 
 message SetBooleanAttributeRequest {

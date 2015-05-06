@@ -151,6 +151,9 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 	public void removeReference(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName, java.lang.Integer index) throws UserException, ServerException {
 	}
 	
+	public void removeReferenceByOid(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName, java.lang.Long referencedOid) throws UserException, ServerException {
+	}
+	
 	public void setBooleanAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Boolean value) throws UserException, ServerException {
 	}
 	
