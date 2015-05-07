@@ -15,10 +15,6 @@
 	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask" classpathref="catalina-ant-classpath" />
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" classpathref="catalina-ant-classpath" />
 	
-	<tstamp>
-		<format property="builddate" pattern="yyyy-MM-dd" />
-	</tstamp>
-
 	<import file="version.build.xml"/>
 
 	<property name="type" value="DEV"/>
@@ -26,10 +22,7 @@
 	<property name="version" value="${majorversion}.${minorversion}.${revisionversion}-${type}-${builddate}"/>
 
 	<target name="deploy">
-		<delete dir="additionalplugins" failonerror="false"></delete>
 		<property name="target" value="war" />
-		<mkdir dir="additionalplugins"/>
-		<get src="https://github.com/opensourceBIM/bimvie.ws/releases/download/bimviews-1.3.9-FINAL-2014-11-21/bimviews-1.3.9-FINAL-2014-11-21.jar" dest="additionalplugins"/>
 		<ant antfile="bimserver.build.xml" target="Build War"></ant>
 		<undeploy url="${tomcat_server}" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
 		<deploy url="${tomcat_server}" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />
