@@ -1,7 +1,7 @@
 package org.bimserver.webservices.authorization;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,21 +20,22 @@ package org.bimserver.webservices.authorization;
 import java.nio.ByteBuffer;
 import java.util.concurrent.TimeUnit;
 
+import org.bimserver.BimServer;
 import org.bimserver.shared.exceptions.UserException;
 
 public class ExplicitRightsAuthorization extends Authorization {
 	public static final byte ID = 2;
-	private long readRevisionRoid = -1;
+	private long[] readRevisionRoids;
 	private long writeProjectPoid = -1;
 	private long readExtendedDataRoid = -1;
 	private long writeExtendedDataRoid = -1;
 	private long soid;
 
-	public ExplicitRightsAuthorization(long uoid, long soid, long readRevisionRoid, long writeProjectPoid, long readExtendedDataRoid, long writeExtendedDataRoid) {
-		super(1, TimeUnit.HOURS);
+	public ExplicitRightsAuthorization(BimServer bimServer, long uoid, long soid, long[] readRevisionRoids, long writeProjectPoid, long readExtendedDataRoid, long writeExtendedDataRoid) {
+		super(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 		this.soid = soid;
 		this.setUoid(uoid);
-		this.setReadRevisionRoid(readRevisionRoid);
+		this.setReadRevisionRoids(readRevisionRoids);
 		this.setWriteProjectPoid(writeProjectPoid);
 		this.setReadExtendedDataRoid(readExtendedDataRoid);
 		this.setWriteExtendedDataRoid(writeExtendedDataRoid);
@@ -49,9 +50,12 @@ public class ExplicitRightsAuthorization extends Authorization {
 	}
 	
 	public void canDownload(long roid) throws UserException {
-		if (getReadRevisionRoid() != roid) {
-			throw new UserException("No rights to download revision");
+		for (long rroid : getReadRevisionRoids()) {
+			if (rroid == roid) {
+				return;
+			}
 		}
+		throw new UserException("No rights to download revision");
 	}
 	
 	public void canCheckin(long poid) throws UserException {
@@ -76,7 +80,12 @@ public class ExplicitRightsAuthorization extends Authorization {
 		ExplicitRightsAuthorization explicitRightsAuthorization = new ExplicitRightsAuthorization();
 		explicitRightsAuthorization.setUoid(buffer.getLong());
 		explicitRightsAuthorization.setSoid(buffer.getLong());
-		explicitRightsAuthorization.setReadRevisionRoid(buffer.getLong());
+		int nrRoids = buffer.getInt();
+		long[] roids = new long[nrRoids];
+		for (int i=0; i<nrRoids; i++) {
+			roids[i] = buffer.getLong();
+		}
+		explicitRightsAuthorization.setReadRevisionRoids(roids);
 		explicitRightsAuthorization.setWriteProjectPoid(buffer.getLong());
 		explicitRightsAuthorization.setReadExtendedDataRoid(buffer.getLong());
 		explicitRightsAuthorization.setWriteExtendedDataRoid(buffer.getLong());
@@ -93,25 +102,28 @@ public class ExplicitRightsAuthorization extends Authorization {
 	
 	@Override
 	protected int getBufferSize() {
-		return 48;
+		return 44 + getReadRevisionRoids().length * 8;
 	}
 
 	@Override
 	public void getBytes(ByteBuffer buffer) {
 		buffer.putLong(getUoid());
 		buffer.putLong(getSoid());
-		buffer.putLong(getReadRevisionRoid());
+		buffer.putInt(getReadRevisionRoids().length);
+		for (long roid : getReadRevisionRoids()) {
+			buffer.putLong(roid);
+		}
 		buffer.putLong(getWriteProjectPoid());
 		buffer.putLong(getReadExtendedDataRoid());
 		buffer.putLong(getWriteExtendedDataRoid());
 	}
 
-	public long getReadRevisionRoid() {
-		return readRevisionRoid;
+	public long[] getReadRevisionRoids() {
+		return readRevisionRoids;
 	}
 
-	public void setReadRevisionRoid(long readRevisionRoid) {
-		this.readRevisionRoid = readRevisionRoid;
+	public void setReadRevisionRoids(long[] readRevisionRoids) {
+		this.readRevisionRoids = readRevisionRoids;
 	}
 
 	public long getWriteProjectPoid() {

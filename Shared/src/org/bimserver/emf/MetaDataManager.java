@@ -1,7 +1,7 @@
 package org.bimserver.emf;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,110 +17,83 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
+import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
-import org.eclipse.emf.ecore.EAttribute;
+import org.bimserver.plugins.PluginManager;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class MetaDataManager {
-	private final Map<String, EPackage> ePackages = new HashMap<String, EPackage>();
-	private final Map<EClass, Set<EClass>> directSubClasses = new HashMap<EClass, Set<EClass>>();
-	private final Map<EClass, Set<EClass>> allSubClasses = new HashMap<EClass, Set<EClass>>();
-	private final Map<String, EClassifier> caseInsensitive = new HashMap<String, EClassifier>();
-	private final Map<String, EClassifier> caseSensitive = new HashMap<String, EClassifier>();
-	
-	public MetaDataManager(Set<EPackage> ePackages) {
-		for (EPackage ePackage : ePackages) {
-			addEPackage(ePackage);
-		}
+	private final Map<String, PackageMetaData> ePackages = new TreeMap<String, PackageMetaData>();
+	private PluginManager pluginManager;
+
+	public MetaDataManager(PluginManager pluginManager) {
+		this.pluginManager = pluginManager;
 	}
 	
-	public MetaDataManager() {
-		addEPackage(Ifc2x3tc1Package.eINSTANCE);
-		addEPackage(StorePackage.eINSTANCE);
-		addEPackage(LogPackage.eINSTANCE);
+	public void init() {
+		addEPackage(Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1);
+		addEPackage(Ifc4Package.eINSTANCE, Schema.IFC4);
+		addEPackage(GeometryPackage.eINSTANCE, Schema.GEOMETRY);
+		addEPackage(StorePackage.eINSTANCE, Schema.STORE);
+		addEPackage(LogPackage.eINSTANCE, Schema.LOG);
+		
+		initDependencies();
 	}
 
-	public void addEPackage(EPackage ePackage) {
-		ePackages.put(ePackage.getName(), ePackage);
-		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-			caseInsensitive.put(eClassifier.getName().toLowerCase(), eClassifier);
-			caseSensitive.put(eClassifier.getName(), eClassifier);
-			if (eClassifier instanceof EClass) {
-				EClass eClass = (EClass)eClassifier;
-				if (!allSubClasses.containsKey(eClass)) {
-					allSubClasses.put(eClass, new HashSet<EClass>());
-				}
-				if (!directSubClasses.containsKey(eClass)) {
-					directSubClasses.put(eClass, new HashSet<EClass>());
-				}
-				for (EClass superClass : eClass.getEAllSuperTypes()) {
-					if (!allSubClasses.containsKey(superClass)) {
-						allSubClasses.put(superClass, new HashSet<EClass>());
+	private void initDependencies() {
+		for (PackageMetaData packageMetaData : ePackages.values()) {
+			for (EClassifier eClassifier : packageMetaData.getEPackage().getEClassifiers()) {
+				if (eClassifier instanceof EClass) {
+					EClass eClass = (EClass)eClassifier;
+					for (EReference eReference : eClass.getEReferences()) {
+						if (eReference.getEType().getEPackage() != packageMetaData.getEPackage()) {
+							packageMetaData.addDependency(getPackageMetaData(eReference.getEType().getEPackage().getName()));
+						}
 					}
-					allSubClasses.get(superClass).add(eClass);
-				}
-				for (EClass superClass : eClass.getESuperTypes()) {
-					if (!directSubClasses.containsKey(superClass)) {
-						directSubClasses.put(superClass, new HashSet<EClass>());
-					}
-					directSubClasses.get(superClass).add(eClass);
 				}
 			}
 		}
 	}
 
-	public Set<EClass> getDirectSubClasses(EClass superClass) {
-		return directSubClasses.get(superClass);
-	}
-	
-	public Set<EClass> getAllSubClasses(EClass superClass) {
-		return allSubClasses.get(superClass);
+	public PackageMetaData getPackageMetaData(String schema) {
+		if (schema == null) {
+			throw new IllegalArgumentException("schema cannot be null");
+		}
+		PackageMetaData packageMetaData = ePackages.get(schema.toLowerCase());
+		if (packageMetaData == null) {
+			throw new RuntimeException("No PackageMetaData found for " + schema);
+		}
+		return packageMetaData;
 	}
 
-	public EClassifier getEClassifier(String type) {
-		return caseSensitive.get(type);
+	public void addEPackage(EPackage ePackage, Schema schema) {
+		ePackages.put(ePackage.getName().toLowerCase(), new PackageMetaData(this, ePackage, schema));
 	}
 
-	public EClassifier getEClassifierCaseInsensitive(String type) {
-		return caseInsensitive.get(type.toLowerCase());
+	public PluginManager getPluginManager() {
+		return pluginManager;
 	}
-	
-	public EAttribute getEAttribute(String className, String attributeName) {
-		for (EPackage ePackage : ePackages.values()) {
-			EClassifier eClassifier = ePackage.getEClassifier(className);
-			if (eClassifier instanceof EClass) {
-				EClass eClass = (EClass)eClassifier;
-				EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(attributeName);
-				if (eStructuralFeature instanceof EAttribute) {
-					return (EAttribute) eStructuralFeature;
-				}
-			}
-		}
-		return null;
+
+	public Collection<PackageMetaData> getAll() {
+		return ePackages.values();
 	}
-	
-	public EReference getEReference(String className, String referenceName) {
-		for (EPackage ePackage : ePackages.values()) {
-			EClassifier eClassifier = ePackage.getEClassifier(className);
-			if (eClassifier instanceof EClass) {
-				EClass eClass = (EClass)eClassifier;
-				EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(referenceName);
-				if (eStructuralFeature instanceof EReference) {
-					return (EReference) eStructuralFeature;
-				}
-			}
-		}
-		return null;
+
+	public Collection<PackageMetaData> getAllIfc() {
+		Set<PackageMetaData> result = new HashSet<>();
+		result.add(getPackageMetaData("Ifc2x3tc1"));
+		result.add(getPackageMetaData("Ifc4"));
+		return result;
 	}
 }

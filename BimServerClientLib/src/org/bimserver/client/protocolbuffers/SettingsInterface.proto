@@ -1,7 +1,7 @@
 package org.bimserver.pb;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -101,26 +101,40 @@ message GetProtocolBuffersPortResponse {
 message GetServerSettingsRequest {
 }
 
+enum SSmtpProtocol{
+	SSmtpProtocol_SMTP = 0;
+	SSmtpProtocol_SMTPS = 1;
+}
+
 message SServerSettings {
-	optional bool sendConfirmationEmailAfterRegistration = 1;
-	optional bool generateGeometryOnCheckin = 2;
-	optional bool allowOnlyWhitelisted = 3;
-	optional int32 protocolBuffersPort = 4;
-	optional string siteAddress = 5;
-	optional bool allowUsersToCreateTopLevelProjects = 6;
-	optional string serviceRepositoryUrl = 7;
-	repeated int64 webModules = 8;
-	optional string smtpServer = 9;
-	optional int32 rid = 10;
-	optional bool allowSelfRegistration = 11;
-	repeated string whitelistedDomains = 12;
-	optional int64 oid = 13;
-	optional string emailSenderAddress = 14;
-	optional bool cacheOutputFiles = 15;
-	optional bool hideUserListForNonAdmin = 16;
-	optional string emailSenderName = 17;
-	optional int64 webModuleId = 18;
-	optional bool checkinMergingEnabled = 19;
+	optional bool allowCreateValidatedUser = 1;
+	optional bool allowOnlyWhitelisted = 2;
+	optional bool allowSelfRegistration = 3;
+	optional bool allowUsersToCreateTopLevelProjects = 4;
+	optional bool cacheOutputFiles = 5;
+	optional bool checkinMergingEnabled = 6;
+	optional string emailSenderAddress = 7;
+	optional string emailSenderName = 8;
+	optional bool generateGeometryOnCheckin = 9;
+	optional bool hideUserListForNonAdmin = 10;
+	optional int64 oid = 11;
+	optional int32 protocolBuffersPort = 12;
+	optional int32 renderEngineProcesses = 13;
+	optional bool reuseGeometry = 14;
+	optional int32 rid = 15;
+	optional bool sendConfirmationEmailAfterRegistration = 16;
+	optional bool sendEmailOnNewRevision = 17;
+	optional string serviceRepositoryUrl = 18;
+	optional int32 sessionTimeOutSeconds = 19;
+	optional string siteAddress = 20;
+	optional string smtpPassword = 21;
+	optional int32 smtpPort = 22;
+	optional SSmtpProtocol smtpProtocol = 23;
+	optional string smtpServer = 24;
+	optional string smtpUsername = 25;
+	optional int64 webModuleId = 26;
+	repeated int64 webModules = 27;
+	repeated string whitelistedDomains = 28;
 }
 
 message GetServerSettingsResponse {

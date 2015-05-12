@@ -41,6 +41,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultObjectIDM <em>Default Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getServices <em>Services</em>}</li>
+ *   <li>{@link org.bimserver.models.store.UserSettings#getMessagingSerializerPlugins <em>Messaging Serializer Plugins</em>}</li>
  * </ul>
  * </p>
  *
@@ -349,5 +350,23 @@ public interface UserSettings extends IdEObject {
 	 * @generated
 	 */
 	EList<InternalServicePluginConfiguration> getServices();
+
+	/**
+	 * Returns the value of the '<em><b>Messaging Serializer Plugins</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.MessagingSerializerPluginConfiguration}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.MessagingSerializerPluginConfiguration#getUserSettings <em>User Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Messaging Serializer Plugins</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Messaging Serializer Plugins</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getUserSettings_MessagingSerializerPlugins()
+	 * @see org.bimserver.models.store.MessagingSerializerPluginConfiguration#getUserSettings
+	 * @model opposite="userSettings"
+	 * @generated
+	 */
+	EList<MessagingSerializerPluginConfiguration> getMessagingSerializerPlugins();
 
 } // UserSettings

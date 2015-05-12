@@ -1,7 +1,7 @@
 package org.bimserver.notifications;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,8 +23,8 @@ public class ProgressOnRevisionTopic extends ProgressTopic {
 	private long poid;
 	private long roid;
 
-	public ProgressOnRevisionTopic(ProgressOnRevisionTopicKey key, long poid, long roid, SProgressTopicType type, String description) {
-		super(key, type, description);
+	public ProgressOnRevisionTopic(NotificationsManager notificationsManager, ProgressOnRevisionTopicKey key, long poid, long roid, SProgressTopicType type, String description) {
+		super(notificationsManager, key, type, description);
 		this.poid = poid;
 		this.roid = roid;
 	}

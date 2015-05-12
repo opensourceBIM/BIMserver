@@ -1,7 +1,7 @@
 package org.bimserver.database.migrations;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -28,8 +28,6 @@ import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,83 +64,21 @@ public class NewAttributeChange implements Change {
 							byte x = buffer.get();
 							
 							if (x != nrStartBytesBefore) {
-								throw new BimserverDatabaseException("Size to not match");
+								throw new BimserverDatabaseException("Size does not match");
 							}
 							
 							byte[] unsetted = new byte[nrStartBytesAfter];
 							buffer.get(unsetted, 0, x);
 							
-							if (eAttribute.isUnsettable()) {
-								unsetted[(nrFeaturesBefore + 1) / 8] |= (1 << ((nrFeaturesBefore + 1) % 8));
-							}
+							unsetted[(nrFeaturesBefore) / 8] |= (1 << ((nrFeaturesBefore) % 8));
 							
 							int extra = 0;
-							
-							if (!eAttribute.isUnsettable()) {
-								if (eAttribute.isMany()) {
-									extra = 4;
-								} else {
-									if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-										extra = 2;
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-										extra = 4;
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-										extra = 8;
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-										extra = 4;
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getELong()) {
-										extra = 8;
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
-										extra = 1;
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDate()) {
-										extra = 8;
-									} else if (eAttribute.getEType().getName().equals("Tristate")) {
-										extra = 1;
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
-										extra = 4;
-									} else if (eAttribute.getEType() instanceof EEnum) {
-										extra = 4;
-									} else {
-										throw new NotImplementedException("Type " + eAttribute.getEType().getName() + " has not been implemented");
-									}
-								}
-							}
 							
 							ByteBuffer newBuffer = ByteBuffer.allocate(record.getValue().length + (nrStartBytesAfter - nrStartBytesBefore) + extra);
 							newBuffer.put((byte)nrStartBytesAfter);
 							newBuffer.put(unsetted);
 							buffer.position(1 + nrStartBytesBefore);
 							newBuffer.put(buffer);
-							
-							if (!eAttribute.isUnsettable()) {
-								if (eAttribute.isMany()) {
-									newBuffer.putInt(0);
-								} else {
-									if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-										newBuffer.putShort((short)-1);
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-										newBuffer.putInt(0);
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-										newBuffer.putDouble(0.0);
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-										newBuffer.putFloat(0.0f);
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getELong()) {
-										newBuffer.putLong(0L);
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
-										newBuffer.put((byte) 0);
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDate()) {
-										newBuffer.putLong(-1L);
-									} else if (eAttribute.getEType().getName().equals("Tristate")) {
-										newBuffer.putInt(0);
-									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
-										newBuffer.putInt(0);
-									} else if (eAttribute.getEType() instanceof EEnum) {
-										newBuffer.putInt(-1);
-									} else {
-										throw new NotImplementedException("Type " + eAttribute.getEType().getName() + " has not been implemented");
-									}
-								}
-							}
 							
 							keyValueStore.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), newBuffer.array(), databaseSession);
 							record = recordIterator.next();

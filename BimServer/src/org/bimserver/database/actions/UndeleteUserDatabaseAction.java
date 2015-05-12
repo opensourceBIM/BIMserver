@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -26,7 +26,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserUndeleted;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.User;
@@ -57,7 +56,7 @@ public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 		if (user == null) {
 			throw new UserException("No User with oid " + uoid + " found");
 		}
-		final UserUndeleted userUndeleted = LogFactory.eINSTANCE.createUserUndeleted();
+		final UserUndeleted userUndeleted = getDatabaseSession().create(UserUndeleted.class);
 		userUndeleted.setAccessMethod(getAccessMethod());
 		userUndeleted.setDate(new Date());
 		userUndeleted.setExecutor(actingUser);
@@ -70,7 +69,6 @@ public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 		});
 		user.setState(ObjectState.ACTIVE);
 		getDatabaseSession().store(user);
-		getDatabaseSession().store(userUndeleted);
 		return true;
 	}
 }

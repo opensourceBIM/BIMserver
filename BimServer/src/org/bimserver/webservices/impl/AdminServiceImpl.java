@@ -1,7 +1,7 @@
 package org.bimserver.webservices.impl;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -29,6 +29,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.bimserver.GeometryGenerator;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -38,6 +39,9 @@ import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetLogsDatabaseAction;
 import org.bimserver.database.migrations.Migrator;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.interfaces.objects.SBimServerInfo;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SJavaInfo;
@@ -49,6 +53,7 @@ import org.bimserver.interfaces.objects.SSystemInfo;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogAction;
+import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.StorePackage;
@@ -317,6 +322,25 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			return convertToSListPluginDescriptor;
 		} catch (Exception e) {
 			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void regenerateGeometry(Long croid) throws ServerException, UserException {
+		LOGGER.info("Regenerating geometry for concrete revision" + croid);
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			session.setOverwriteEnabled(true); // Normally we wouldn't be allowed to change existing data
+			ConcreteRevision concreteRevision = session.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, Query.getDefault());
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
+			IfcModelInterface model = new BasicIfcModel(packageMetaData, null);
+			session.getMap(model, new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), -1));
+			new GeometryGenerator(getBimServer()).generateGeometry(getAuthorization().getUoid(), getBimServer().getPluginManager(), session, model, concreteRevision.getProject().getId(), concreteRevision.getId(), true, null);
+			session.commit();
+		} catch (Exception e) {
+			handleException(e);
 		} finally {
 			session.close();
 		}

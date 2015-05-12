@@ -1,5 +1,5 @@
 
-¶
+¿	
 AuthInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.proto"O
 ChangePasswordRequest
 uoid (
@@ -14,16 +14,21 @@
 value (2.org.bimserver.pb.SUser"B
 RequestPasswordChangeRequest
 username (	
-resetUrl (	"G
+resetUrl (	":
+SetHashRequest
+uoid (
+hash (
+salt ("G
 ValidateAccountRequest
 uoid (
 token (	
 password (	"W
 ValidateAccountResponse
 errorMessage (	&
-value (2.org.bimserver.pb.SUser2­
+value (2.org.bimserver.pb.SUser2ú
 AuthInterfacec
 changePassword'.org.bimserver.pb.ChangePasswordRequest(.org.bimserver.pb.ChangePasswordResponsef
 getLoggedInUser(.org.bimserver.pb.GetLoggedInUserRequest).org.bimserver.pb.GetLoggedInUserResponseg
-requestPasswordChange..org.bimserver.pb.RequestPasswordChangeRequest.org.bimserver.pb.VoidResponsef
+requestPasswordChange..org.bimserver.pb.RequestPasswordChangeRequest.org.bimserver.pb.VoidResponseK
+setHash .org.bimserver.pb.SetHashRequest.org.bimserver.pb.VoidResponsef
 validateAccount(.org.bimserver.pb.ValidateAccountRequest).org.bimserver.pb.ValidateAccountResponseBBAuthInterfaceImplHˆ

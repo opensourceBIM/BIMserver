@@ -1,7 +1,7 @@
 package org.bimserver.client;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,9 +17,11 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Collections;
-import java.util.List;
-
+import org.apache.http.conn.HttpClientConnectionManager;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.reflector.ReflectorFactoryImpl1;
@@ -43,29 +45,85 @@ import org.bimserver.shared.meta.SServicesMap;
 
 public abstract class AbstractBimServerClientFactory implements BimServerClientFactory {
 
-	private SServicesMap servicesMap;
+	private final SServicesMap servicesMap;
+	private final MetaDataManager metaDataManager;
+	private CloseableHttpClient httpClient;
 
-	public AbstractBimServerClientFactory(SServicesMap servicesMap) {
+	public AbstractBimServerClientFactory(SServicesMap servicesMap, MetaDataManager metaDataManager) {
 		this.servicesMap = servicesMap;
+		if (metaDataManager == null) {
+			throw new IllegalArgumentException("MetaDataManager cannot be null");
+		}
+		this.metaDataManager = metaDataManager;
+		initHttpClient();
 	}
 
-	public AbstractBimServerClientFactory() {
+	public AbstractBimServerClientFactory(MetaDataManager metaDataManager) {
+		if (metaDataManager == null) {
+			throw new IllegalArgumentException("MetaDataManager cannot be null");
+		}
+		this.metaDataManager = metaDataManager;
 		this.servicesMap = new SServicesMap();
 		servicesMap.setReflectorFactory(new ReflectorFactoryImpl1());
-		SService serviceInterface = new SServiceInterfaceService(null, ServiceInterface.class);
+		SService serviceInterface = new SServiceInterfaceService(servicesMap, null, ServiceInterface.class);
 		addService(serviceInterface);
-		List<SService> serviceInterfaceDep = Collections.singletonList(serviceInterface);
-		addService(new SService(null, MetaInterface.class, serviceInterfaceDep));
-		addService(new SService(null, AdminInterface.class, serviceInterfaceDep));
-		addService(new SService(null, AuthInterface.class, serviceInterfaceDep));
-		addService(new SService(null, SettingsInterface.class, serviceInterfaceDep));
-		addService(new SService(null, PluginInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1NotificationInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1RemoteServiceInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1AuthInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1LowLevelInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1NotificationRegistryInterface.class, serviceInterfaceDep));
-		addService(new SService(null, Bimsie1ServiceInterface.class, serviceInterfaceDep));
+		addService(new SService(servicesMap, null, MetaInterface.class));
+		addService(new SService(servicesMap, null, AdminInterface.class));
+		addService(new SService(servicesMap, null, AuthInterface.class));
+		addService(new SService(servicesMap, null, SettingsInterface.class));
+		addService(new SService(servicesMap, null, PluginInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1NotificationInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1RemoteServiceInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1AuthInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1LowLevelInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1NotificationRegistryInterface.class));
+		addService(new SService(servicesMap, null, Bimsie1ServiceInterface.class));
+		servicesMap.initialize();
+		initHttpClient();
+	}
+	
+	public CloseableHttpClient getHttpClient() {
+		return httpClient;
+	}
+	
+	public void initHttpClient() {
+		HttpClientBuilder builder = HttpClientBuilder.create();
+		
+		HttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
+		builder.setConnectionManager(connManager);
+		
+//		builder.addInterceptorFirst(new HttpRequestInterceptor() {
+//			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {
+//				if (!request.containsHeader("Accept-Encoding")) {
+//					request.addHeader("Accept-Encoding", "gzip");
+//				}
+//			}
+//		});
+//
+//		builder.addInterceptorFirst(new HttpResponseInterceptor() {
+//			public void process(final HttpResponse response, final HttpContext context) throws HttpException, IOException {
+//				HttpEntity entity = response.getEntity();
+//				if (entity != null) {
+//					Header ceheader = entity.getContentEncoding();
+//					if (ceheader != null) {
+//						HeaderElement[] codecs = ceheader.getElements();
+//						for (int i = 0; i < codecs.length; i++) {
+//							if (codecs[i].getName().equalsIgnoreCase("gzip")) {
+//								response.setEntity(new GzipDecompressingEntity(response.getEntity()));
+//								return;
+//							}
+//						}
+//					}
+//				}
+//			}
+//		});
+
+		httpClient = builder.build();
+	}
+	
+	@Override
+	public MetaDataManager getMetaDataManager() {
+		return metaDataManager;
 	}
 	
 	@Override

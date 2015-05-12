@@ -184,6 +184,7 @@ public class SConverterGenerator
     stringBuffer.append(Licenser.getCommentedLicenseText(new File("license.txt")));
     stringBuffer.append(TEXT_4);
     
+	try {
 	Object[] argumentsArray = (Object[])argument;
 	MetaDataManager metaDataManager = (MetaDataManager)argumentsArray[0];
 	@SuppressWarnings("unchecked") Set<EPackage> ePackages = (Set<EPackage>)argumentsArray[1];
@@ -245,11 +246,11 @@ public class SConverterGenerator
     stringBuffer.append(TEXT_30);
     stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_31);
-     if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) {
-	for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
+     if (!metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
+	for (EClass subClass : metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass)) {
 
     stringBuffer.append(TEXT_32);
-    stringBuffer.append(metaDataManager.getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else ");
+    stringBuffer.append(metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else ");
     stringBuffer.append(TEXT_33);
     stringBuffer.append(subClass.getName());
     stringBuffer.append(TEXT_34);
@@ -397,11 +398,11 @@ public class SConverterGenerator
     stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_89);
     
-	if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) {
-		for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
+	if (!metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
+		for (EClass subClass : metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass)) {
 
     stringBuffer.append(TEXT_90);
-    stringBuffer.append(metaDataManager.getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else ");
+    stringBuffer.append(metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else ");
     stringBuffer.append(TEXT_91);
     stringBuffer.append(subClass.getName());
     stringBuffer.append(TEXT_92);
@@ -530,6 +531,9 @@ public class SConverterGenerator
     
 		}
 	}
+}
+} catch (Exception e) {
+	e.printStackTrace();
 }
 
     stringBuffer.append(TEXT_137);

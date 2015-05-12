@@ -31,6 +31,10 @@
 		<level value="error" />
 		<appender-ref ref="Console" />
 	</logger>
+	<logger name="org.apache.velocity">
+		<level value="error" />
+		<appender-ref ref="Console" />
+	</logger>
 	<logger name="org.openid4java">
 		<level value="error" />
 		<appender-ref ref="Console" />
@@ -40,7 +44,7 @@
 		<appender-ref ref="Console" />
 	</logger>
 	<root>
-		<priority value="debug" />
+		<priority value="info" />
 		<appender-ref ref="Console" />
 	</root>
 </log4j:configuration>

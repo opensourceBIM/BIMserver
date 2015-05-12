@@ -1,7 +1,7 @@
 package org.bimserver.plugins.schema;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,12 +22,14 @@ public class DerivedAttribute2 {
 	private BaseType type;
 	private String expressCode;
 	private final boolean collection;
+	private boolean hasSuper;
 
-	public DerivedAttribute2 (String name, BaseType type, String expressCode, boolean collection) {
+	public DerivedAttribute2 (String name, BaseType type, String expressCode, boolean collection, boolean hasSuper) {
 		this.name = name;
 		this.type = type;
 		this.expressCode = expressCode;
 		this.collection = collection;
+		this.hasSuper = hasSuper;
 	}
 
 	public String getName() {
@@ -44,5 +46,9 @@ public class DerivedAttribute2 {
 	
 	public boolean isCollection() {
 		return collection;
+	}
+
+	public boolean hasSuper() {
+		return hasSuper;
 	}
 }

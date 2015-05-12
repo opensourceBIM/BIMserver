@@ -1,7 +1,7 @@
 package org.bimserver.plugins.serializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -32,11 +32,12 @@ public class CacheStoringEmfSerializerDataSource extends EmfSerializerDataSource
 	}
 	
 	@Override
-	public void writeToOutputStream(OutputStream outputStream) throws SerializerException, IOException {
+	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException, IOException {
 		try {
-			super.writeToOutputStream(new MultiplexingOutputStream(outputStream, diskCacheOutputStream));
+			super.writeToOutputStream(new MultiplexingOutputStream(outputStream, diskCacheOutputStream), progressReporter);
 		} catch (Exception e) {
 			diskCacheOutputStream.remove();
+			throw e;
 		}
 	}
 }

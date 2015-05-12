@@ -2,6 +2,7 @@
 <PluginDescriptor>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.renderengine.RenderEnginePlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifcengine.TNOJvmRenderEnginePlugin</implementationClass>
+		<implementationClass>org.bimserver.ifcengine.JvmRenderEnginePlugin</implementationClass>
+		<enabled>true</enabled>
 	</PluginImplementation>
 </PluginDescriptor>

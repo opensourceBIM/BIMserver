@@ -8,9 +8,11 @@ import java.util.Map;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SActionState;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectDefinition;
@@ -70,17 +72,17 @@ public class GuidFixerService extends ServicePlugin {
 	}
 
 	@Override
-	public void register(PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
-		serviceDescriptor.setIdentifier(getClass().getName());
+		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
 		serviceDescriptor.setName("GUID fixer");
 		serviceDescriptor.setDescription("This service will make sure no double GUIDs exist in the model. This is done by appending an incrementing number.");
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		serviceDescriptor.setReadRevision(true);
 		serviceDescriptor.setWriteRevision(true);
-		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
+		registerNewRevisionHandler(uoid, serviceDescriptor, new NewRevisionHandler() {
 			@Override
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				try {
@@ -93,7 +95,8 @@ public class GuidFixerService extends ServicePlugin {
 					state.setProgress(-1);
 					state.setStart(startDate);
 
-					IfcModelInterface model = bimServerClientInterface.getModel(poid, roid, false);
+					SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
+					IfcModelInterface model = bimServerClientInterface.getModel(project, roid, false, false);
 					Map<String, List<IfcRoot>> guids = new HashMap<String, List<IfcRoot>>();
 					int fixed = 0;
 					// Iterate over all objects that can have a GUID
@@ -140,5 +143,9 @@ public class GuidFixerService extends ServicePlugin {
 				}
 			}
 		});
+	}
+
+	@Override
+	public void unregister(SInternalServicePluginConfiguration internalService) {
 	}
 }

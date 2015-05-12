@@ -1,7 +1,7 @@
 package org.bimserver;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -34,7 +34,7 @@ public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
 
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
-		SchemaDefinition schema = pluginManager.requireSchemaDefinition();
+		SchemaDefinition schema = pluginManager.requireSchemaDefinition("ifc2x3tc1");
 		objectIDM = new SchemaFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), schema);
 		initialized = true;
 	}

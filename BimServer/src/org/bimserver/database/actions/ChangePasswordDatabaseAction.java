@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -27,7 +27,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.PasswordChanged;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
@@ -78,7 +77,7 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 			user.setPasswordHash(authenticator.createHash(newPassword, salt));
 			user.setPasswordSalt(salt);
 			
-			final PasswordChanged passwordchanged = LogFactory.eINSTANCE.createPasswordChanged();
+			final PasswordChanged passwordchanged = databaseSession.create(PasswordChanged.class);
 			passwordchanged.setAccessMethod(getAccessMethod());
 			passwordchanged.setDate(new Date());
 			passwordchanged.setExecutor(actingUser);
@@ -90,7 +89,6 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 				}
 			});
 			databaseSession.store(user);
-			databaseSession.store(passwordchanged);
 			return true;
 		} else {
 			throw new UserException("Old password does not match user's password");

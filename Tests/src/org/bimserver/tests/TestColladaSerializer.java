@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,6 +21,7 @@ import java.io.File;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -43,7 +44,7 @@ public class TestColladaSerializer {
 			File output = new File("output");
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			
-			DeserializerPlugin ifcDeserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin ifcDeserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.collada.ColladaSerializerPlugin", true);
 			for (File file : testFiles.listFiles()) {
@@ -54,12 +55,12 @@ public class TestColladaSerializer {
 					projectInfo.setDescription("");
 					
 					Deserializer ifcDeserializer = ifcDeserializerPlugin.createDeserializer(new PluginConfiguration());
-					ifcDeserializer.init(pluginManager.requireSchemaDefinition());
+					ifcDeserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 					IfcModelInterface model = ifcDeserializer.read(file);
 
 					Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-					serializer.init(model, projectInfo, pluginManager, pluginManager.requireRenderEngine(), false);
-					serializer.writeToFile(new File(output, file.getName() + ".dae"));
+					serializer.init(model, projectInfo, pluginManager, pluginManager.requireRenderEngine(), null, false);
+					serializer.writeToFile(new File(output, file.getName() + ".dae"), null);
 				}
 			}
 		} catch (PluginException e) {

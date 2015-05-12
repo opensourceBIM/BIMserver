@@ -1,7 +1,7 @@
 package org.bimserver.tools.generators;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,30 +24,29 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.meta.SServicesMap;
-import org.codehaus.jettison.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class CopyAdminAndBIMsieInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CopyAdminAndBIMsieInterface.class);
-	private static final File baseGitDir = new File("C:\\Users\\Ruben de Laat\\git");
+	private static final File baseGitDir = new File("E:\\git");
 //	private static final File baseGitDir = new File("D:\\git");
-	private static final File bootstrap = new File(baseGitDir, "bimvie.ws");
-	private static final File bimsie = new File(baseGitDir, "BIMSie2");
-	private static final File admin = new File(baseGitDir, "BIMserver2\\AdminGui");;
+	private static final File bootstrap = new File(baseGitDir, "bimvie.ws2");
+	private static final File bimsie = new File(baseGitDir, "BIMSie");
+	private static final File admin = new File(baseGitDir, "BIMserverMaster2\\AdminGui");;
 
 	public static void main(String[] args) {
 		CopyAdminAndBIMsieInterface copyAdminAndBIMsieInterface = new CopyAdminAndBIMsieInterface();
 		copyAdminAndBIMsieInterface.copyAdminInterface();
-		copyAdminAndBIMsieInterface.copyBimsieInterface();
+//		copyAdminAndBIMsieInterface.copyBimsieInterface();
 	}
 
-	private void copyBimsieInterface() {
+	protected void copyBimsieInterface() {
 		SServicesMap servicesMap = InterfaceList.createBimsie1SServicesMap();
 		try {
-			FileUtils.writeStringToFile(new File(bimsie, "js/services.json"), servicesMap.toJson().toString(2));
-		} catch (JSONException e) {
-			LOGGER.error("", e);
+			FileUtils.writeStringToFile(new File(bimsie, "js/services.json"), servicesMap.toJson(new ObjectMapper()).toString());
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
@@ -82,7 +81,6 @@ public class CopyAdminAndBIMsieInterface {
 	private void copyAdminInterface() {
 		try {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "setup.html"), admin);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "header.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "index.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "login.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "basicserversettings.html"), admin);
@@ -93,7 +91,7 @@ public class CopyAdminAndBIMsieInterface {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "console.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "extendeddataschemas.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "extendeddataschema.html"), admin);
-			FileUtils.copyFileToDirectory(new File(bootstrap, "addnewextendeddataschema.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "addextendeddataschema.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "addrepoextendeddataschema.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "main.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "migrations.html"), admin);
@@ -106,6 +104,8 @@ public class CopyAdminAndBIMsieInterface {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "modelcheckers.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "addrepomodelchecker.html"), admin);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "addnewmodelchecker.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "plugin.html"), admin);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "modelchecker.html"), admin);
 			
 			FileUtils.copyDirectory(new File(bootstrap, "js"), new File(admin, "js"), new FileFilter() {
 				@Override
@@ -117,7 +117,15 @@ public class CopyAdminAndBIMsieInterface {
 				}
 			});
 			FileUtils.copyDirectory(new File(bootstrap, "img"), new File(admin, "img"));
-			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(admin, "css"));
+			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(admin, "css"), new FileFilter() {
+				@Override
+				public boolean accept(File pathname) {
+					if (pathname.getName().equals("magic-bootstrap-min.css")) {
+						return false;
+					}
+					return true;
+				}
+			});
 			FileUtils.copyDirectory(new File(bootstrap, "fonts"), new File(admin, "fonts"));
 		} catch (IOException e) {
 			LOGGER.error("", e);

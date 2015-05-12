@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -129,7 +129,7 @@ public class CompareTest {
 
 	private IfcModelInterface readModel(File file1, PluginManager pluginManager) throws DeserializeException, PluginException {
 		Deserializer deserializer = pluginManager.requireDeserializer("ifc").createDeserializer(new PluginConfiguration());
-		deserializer.init(pluginManager.requireSchemaDefinition());
+		deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 		IfcModelInterface model1 = deserializer.read(file1);
 		return model1;
 	}

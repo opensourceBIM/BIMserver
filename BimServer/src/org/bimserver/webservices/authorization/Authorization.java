@@ -1,7 +1,7 @@
 package org.bimserver.webservices.authorization;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -71,6 +71,9 @@ public abstract class Authorization {
 	protected abstract byte getId();
 
 	public boolean hasRightsOnProjectOrSuperProjectsOrSubProjects(User user, Project project) {
+		if (user == null) {
+			return false;
+		}
 		if (user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.SYSTEM) {
 			return true;
 		}
@@ -206,7 +209,7 @@ public abstract class Authorization {
 				throw new AuthenticationException("Given token is corrupt");
 			}
 		} catch (GeneralSecurityException e) {
-			throw new AuthenticationException("Invalid token (" + token + ")", e);
+			throw new AuthenticationException("Invalid token", e);
 		} catch (DecoderException e) {
 			throw new AuthenticationException(e);
 		}

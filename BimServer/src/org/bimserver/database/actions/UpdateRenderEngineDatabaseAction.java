@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -38,7 +38,7 @@ public class UpdateRenderEngineDatabaseAction extends UpdateDatabaseAction<Rende
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		RenderEnginePluginConfiguration oldRenderEngine = getDatabaseSession().get(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration(), renderEngine.getOid(), Query.getDefault());
-		if (oldRenderEngine.getEnabled() == true && renderEngine.getEnabled() == false && !renderEngine.getSerializers().isEmpty()) {
+		if (oldRenderEngine.getEnabled() && !renderEngine.getEnabled() && !renderEngine.getSerializers().isEmpty()) {
 			throw new UserException("Cannot disable render engine with serializers");
 		}
 		return super.execute();

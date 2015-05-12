@@ -1,7 +1,7 @@
 package nl.tue.buildingsmart.emf;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -87,12 +87,12 @@ public class DerivedReader {
 						if (entityBN2 == null) {
 							System.out.println("Not found: " + type);
 						}
-						DerivedAttribute2 derivedAttribute2 = new DerivedAttribute2(derivedName, entityBN2, expressCode, collection);
+						DerivedAttribute2 derivedAttribute2 = new DerivedAttribute2(derivedName, entityBN2, expressCode, collection, false);
 						EntityDefinition entityBN = schema.getEntityBN(entityName);
 						if (entityBN == null) {
 							System.out.println("unknown entity " + entityName);
 						} else {
-							entityBN.addDerived(derivedAttribute2);
+							entityBN.addDerived(derivedAttribute2, true);
 						}
 					}
 				}

@@ -1,7 +1,7 @@
 package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,7 @@ package org.bimserver.database.migrations.steps;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 public class Step0004 extends Migration {
 
 	@Override
-	public void migrate(Schema schema) {
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		// Model checker results
 		EClass modelCheckerResultItem = schema.createEClass("store", "ModelCheckerResultItem");
 		
@@ -69,12 +70,12 @@ public class Step0004 extends Migration {
 		EClass internalServicePluginConfiguration = schema.getEClass("store", "InternalServicePluginConfiguration");
 		schema.createEAttribute(internalServicePluginConfiguration, "publicProfile", EcorePackage.eINSTANCE.getEBoolean());
 		
-		EClass geometryInstance = schema.createEClass("ifc2x3tc1", "GeometryInstance");
-		schema.createEReference(geometryInstance, "data", schema.getEClass("ifc2x3tc1", "GeometryData"), Multiplicity.SINGLE);
-		schema.createEAttribute(geometryInstance, "transformation", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
-		geometryInstance.getEAnnotations().add(createHiddenAnnotation());
+//		EClass geometryInstance = schema.createEClass("ifc2x3tc1", "GeometryInstance");
+//		schema.createEReference(geometryInstance, "data", schema.getEClass("ifc2x3tc1", "GeometryData"), Multiplicity.SINGLE);
+//		schema.createEAttribute(geometryInstance, "transformation", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
+//		geometryInstance.getEAnnotations().add(createHiddenAnnotation());
 		
-		schema.createEReference(schema.getEClass("ifc2x3tc1", "GeometryInfo"), "instance", geometryInstance, Multiplicity.SINGLE);
+//		schema.createEReference(schema.getEClass("ifc2x3tc1", "GeometryInfo"), "instance", geometryInstance, Multiplicity.SINGLE);
 	}
 
 	@Override

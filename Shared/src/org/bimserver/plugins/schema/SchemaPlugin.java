@@ -1,7 +1,7 @@
 package org.bimserver.plugins.schema;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,4 +25,5 @@ import org.bimserver.plugins.PluginConfiguration;
 public interface SchemaPlugin extends Plugin {
 	SchemaDefinition getSchemaDefinition(PluginConfiguration pluginConfiguration);
 	File getExpressSchemaFile();
+	String getSchemaVersion();
 }

@@ -13,6 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.Schema;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
@@ -34,7 +35,6 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -44,7 +44,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class Colorizer {
-	private SchemaDefinition schema;
 	private PluginManager pluginManager;
 	private final Map<String, Map<String, String>> map = new HashMap<String, Map<String,String>>();
 
@@ -126,7 +125,6 @@ public class Colorizer {
 		}
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			schema = pluginManager.requireSchemaDefinition();
 		} catch (PluginException e) {
 			e.printStackTrace();
 		}
@@ -134,9 +132,9 @@ public class Colorizer {
 
 	public IfcModelInterface readModel(File file) {
 		try {
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(schema);
+//			deserializer.init(schema); // TODO
 			IfcModelInterface model = deserializer.read(file);
 			return model;
 		} catch (PluginException e) {
@@ -250,8 +248,9 @@ public class Colorizer {
 		Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 		try {
 			model.resetExpressIds();
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), true);
-			serializer.writeToFile(outFile);
+			// TODO
+			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, true);
+			serializer.writeToFile(outFile, null);
 		} catch (SerializerException e) {
 			e.printStackTrace();
 		} catch (PluginException e) {

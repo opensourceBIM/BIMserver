@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -80,6 +80,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginConfiguration> getAllDeserializersForProject(java.lang.Boolean onlyEnabled, java.lang.Long poid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> getAllInternalServices(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
@@ -136,6 +140,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> getAllSerializersForRoids(java.lang.Boolean onlyEnabled, java.util.Set<java.lang.Long> roids) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor> getAllServicePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
@@ -177,6 +185,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public org.bimserver.interfaces.objects.SInternalServicePluginConfiguration getInternalServiceById(java.lang.Long oid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration getMessagingSerializerByPluginClassName(java.lang.String pluginClassName) throws UserException, ServerException {
 		return null;
 	}
 	

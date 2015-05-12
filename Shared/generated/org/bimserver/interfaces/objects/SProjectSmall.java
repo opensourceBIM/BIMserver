@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -31,6 +31,12 @@ public class SProjectSmall implements SDataBase
 	private static SClass sClass;
 	private java.lang.String name;
 	private long parentId;
+	private SObjectState state;
+	private int nrRevisions;
+	private int nrSubProjects;
+	private boolean hasCheckinRights;
+	private long lastRevisionId;
+	private java.lang.String schema;
 
 	public long getOid() {
 		return this.oid;
@@ -64,6 +70,24 @@ public class SProjectSmall implements SDataBase
 		if (sField.getName().equals("parentId")) {
 			return getParentId();
 		}
+		if (sField.getName().equals("state")) {
+			return getState();
+		}
+		if (sField.getName().equals("nrRevisions")) {
+			return getNrRevisions();
+		}
+		if (sField.getName().equals("nrSubProjects")) {
+			return getNrSubProjects();
+		}
+		if (sField.getName().equals("hasCheckinRights")) {
+			return isHasCheckinRights();
+		}
+		if (sField.getName().equals("lastRevisionId")) {
+			return getLastRevisionId();
+		}
+		if (sField.getName().equals("schema")) {
+			return getSchema();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -80,6 +104,30 @@ public class SProjectSmall implements SDataBase
 		}
 		if (sField.getName().equals("parentId")) {
 			setParentId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("state")) {
+			setState((SObjectState)val);
+			return;
+		}
+		if (sField.getName().equals("nrRevisions")) {
+			setNrRevisions((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("nrSubProjects")) {
+			setNrSubProjects((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("hasCheckinRights")) {
+			setHasCheckinRights((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("lastRevisionId")) {
+			setLastRevisionId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("schema")) {
+			setSchema((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -107,6 +155,54 @@ public class SProjectSmall implements SDataBase
 
 	public void setParentId(long parentId) {
 		this.parentId = parentId;
+	}
+	
+	public SObjectState getState() {
+		return state;
+	}
+
+	public void setState(SObjectState state) {
+		this.state = state;
+	}
+	
+	public int getNrRevisions() {
+		return nrRevisions;
+	}
+
+	public void setNrRevisions(int nrRevisions) {
+		this.nrRevisions = nrRevisions;
+	}
+	
+	public int getNrSubProjects() {
+		return nrSubProjects;
+	}
+
+	public void setNrSubProjects(int nrSubProjects) {
+		this.nrSubProjects = nrSubProjects;
+	}
+	
+	public boolean isHasCheckinRights() {
+		return hasCheckinRights;
+	}
+
+	public void setHasCheckinRights(boolean hasCheckinRights) {
+		this.hasCheckinRights = hasCheckinRights;
+	}
+	
+	public long getLastRevisionId() {
+		return lastRevisionId;
+	}
+
+	public void setLastRevisionId(long lastRevisionId) {
+		this.lastRevisionId = lastRevisionId;
+	}
+	
+	public java.lang.String getSchema() {
+		return schema;
+	}
+
+	public void setSchema(java.lang.String schema) {
+		this.schema = schema;
 	}
 	
 	@Override

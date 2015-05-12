@@ -1,0 +1,116 @@
+<div class="users">
+	<div class="well well-sm buttonBar">
+		<button class="addUserButton btn btn-default">Add user</button>
+	</div>
+	<table class="usersTable table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Username</th>
+				<th>Type</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+<script>
+function Users(containerDiv, main) {
+	var othis = this;
+
+	this.show = function(){
+	};
+	
+	this.userClick = function(event) {
+		if (!$(event.target).is("a, button, span.caret")) {
+			main.showUser($(this).parents("tr").andSelf().data("user"), null, true);
+			othis.close();
+		}
+	};
+	
+	this.close = function() {
+		Global.bimServerApi.unregisterNewUserHandler(othis.newUserHandler);
+	};
+
+	this.deleteUser = function(user) {
+		Global.bimServerApi.callWithFullIndication("ServiceInterface", "deleteUser", {uoid: user.oid}, function(){
+			othis.loadUsers();
+		});
+	};
+	
+	this.undeleteUser = function(user) {
+		Global.bimServerApi.callWithFullIndication("ServiceInterface", "undeleteUser", {uoid: user.oid}, function(){
+			othis.loadUsers();
+		});
+	};
+	
+	this.loginAs = function(user) {
+		
+	};
+	
+	this.sendPasswordReset = function(user){
+		Global.bimServerApi.callWithFullIndication("AuthInterface", "requestPasswordChange", {username: user.username, resetUrl: Global.baseDir + "?page=ResetPassword"}, function(){
+		});
+	};
+	
+	this.addUser = function(user) {
+		var userRow = $("<tr>");
+		userRow.click(othis.userClick);
+		userRow.data("user", user);
+		userRow.append("<td>" + user.name + "</td>");
+		userRow.append("<td>" + user.username + "</td>");
+		userRow.append("<td>" + formatUserType(user.userType) + "</td>");
+		var actions = newDropdownTd("Actions");
+		
+		actions.find(".dropdown-toggle").click(function(){
+			actions.find("ul li").remove();
+			var user = $(this).parents("tr").data("user");
+			if (user.state == "ACTIVE") {
+				var li = $("<li><a>Delete</a></li>");
+				li.find("a").click(function(){othis.deleteUser(user)});
+				actions.find("ul").append(li);
+			} else {
+				var li = $("<li><a>Undelete</a></li>");
+				li.find("a").click(function(){othis.undeleteUser(user)});
+				actions.find("ul").append(li);
+			}
+//			var loginAs = $("<li><a>Login as</a></li>");
+//			loginAs.find("a").click(function(){othis.loginAs(user)});
+//			actions.find("ul").append(loginAs);
+
+			var loginAs = $("<li><a>Send password reset</a></li>");
+			loginAs.find("a").click(function(){othis.sendPasswordReset(user)});
+			actions.find("ul").append(loginAs);
+		});
+
+		userRow.append(actions);
+		
+		if ($.cookie(main.user.oid + "showdeleteditems") != "true" && user.state == "DELETED") {
+			userRow.hide();
+		}
+		
+		$(".usersTable tbody").append(userRow);
+	};
+
+	this.loadUsers = function(){
+		$(".usersTable tbody tr").remove();
+		Global.bimServerApi.call("ServiceInterface", "getAllUsers", {}, function(data){
+			data.forEach(function(user){
+				othis.addUser(user);
+			});
+		});
+	};
+	
+	this.newUserHandler = function(uoid){
+		Global.bimServerApi.call("ServiceInterface", "getUserByUoid", {uoid: uoid}, function(data){
+			othis.addUser(data);
+		});
+	};
+	
+	othis.loadUsers();
+	
+	Global.bimServerApi.registerNewUserHandler(othis.newUserHandler);
+	$(".users .addUserButton").click(function(){main.showAddUser()});
+}
+</script>

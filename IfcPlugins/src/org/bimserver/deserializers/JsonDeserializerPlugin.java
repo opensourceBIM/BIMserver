@@ -1,7 +1,7 @@
 package org.bimserver.deserializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,9 @@ package org.bimserver.deserializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Set;
+
+import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -66,5 +69,10 @@ public class JsonDeserializerPlugin implements DeserializerPlugin {
 	@Override
 	public boolean canHandleExtension(String extension) {
 		return extension.equals("json");
+	}
+
+	@Override
+	public Set<Schema> getSupportedSchemas() {
+		return Schema.IFC2X3TC1.toSet();
 	}
 }

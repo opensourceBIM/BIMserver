@@ -1,7 +1,7 @@
 package org.bimserver.plugins.classloaders;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,10 +25,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EclipsePluginClassloader extends ClassLoader {
+public class EclipsePluginClassloader extends PublicFindClassClassLoader {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EclipsePluginClassloader.class);
 	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
@@ -52,7 +53,7 @@ public class EclipsePluginClassloader extends ClassLoader {
 	}
 	
 	@Override
-	protected URL findResource(String name) {
+	public URL findResource(String name) {
 		File file = new File(projectFolder, name);
 		if (file.exists()) {
 			try {
@@ -65,7 +66,7 @@ public class EclipsePluginClassloader extends ClassLoader {
 	}
 	
 	@Override
-	protected Class<?> findClass(String name) throws ClassNotFoundException {
+	public Class<?> findClass(String name) throws ClassNotFoundException {
 		String filename = name.replace(".", File.separator) + ".class";
 		if (loadedClasses.containsKey(filename)) {
 			return loadedClasses.get(filename);
@@ -77,6 +78,24 @@ public class EclipsePluginClassloader extends ClassLoader {
 				Class<?> definedClass = defineClass(name, bytes, 0, bytes.length);
 				if (definedClass != null) {
 					loadedClasses.put(filename, definedClass);
+					
+					/*
+					 * This is a fix to actually load the package-info.class file with
+					 * the annotations about for example namespaces required for JAXB to
+					 * work. Found this code here:
+					 * https://issues.jboss.org/browse/JBPM-1404
+					 */
+					if (definedClass != null) {
+						final int packageIndex = name.lastIndexOf('.');
+						if (packageIndex != -1) {
+							final String packageName = name.substring(0, packageIndex);
+							final Package classPackage = getPackage(packageName);
+							if (classPackage == null) {
+								definePackage(packageName, null, null, null, null, null, null, null);
+							}
+						}
+					}				
+					
 					return definedClass;
 				}
 			} catch (IOException e) {
@@ -84,5 +103,15 @@ public class EclipsePluginClassloader extends ClassLoader {
 			}
 		}
 		throw new ClassNotFoundException(name);
+	}
+
+	public void dumpStructure(int indent) {
+		System.out.print(StringUtils.gen("  ", indent));
+		System.out.println("EclipsePluginClassloader " + projectFolder);
+		ClassLoader parentLoader = getParent();
+		if (parentLoader instanceof DelegatingClassLoader) {
+			DelegatingClassLoader delegatingClassLoader = (DelegatingClassLoader)parentLoader;
+			delegatingClassLoader.dumpStructure(indent + 1);
+		}
 	}
 }

@@ -1,7 +1,7 @@
 package org.bimserver.servlets;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -49,7 +49,7 @@ public class WebModuleServlet extends HttpServlet {
 			} else if (request.getRequestURI().endsWith(".gif")) {
 				response.setContentType("image/gif");
 			}
-			webModule.service(request, response);
+			webModule.service(request.getRequestURI(), response);
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 		}

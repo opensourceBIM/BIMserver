@@ -1,7 +1,7 @@
 package org.bimserver.plugins.serializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,7 @@ package org.bimserver.plugins.serializers;
 
 import java.util.HashMap;
 
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.slf4j.LoggerFactory;

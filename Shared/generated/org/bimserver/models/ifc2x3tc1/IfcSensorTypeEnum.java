@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -123,16 +123,6 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	SMOKESENSOR(8, "SMOKESENSOR", "SMOKESENSOR"),
 
 	/**
-	 * The '<em><b>GASSENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASSENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASSENSOR(9, "GASSENSOR", "GASSENSOR"),
-
-	/**
 	 * The '<em><b>TEMPERATURESENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,7 +130,17 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TEMPERATURESENSOR(10, "TEMPERATURESENSOR", "TEMPERATURESENSOR"),
+	TEMPERATURESENSOR(9, "TEMPERATURESENSOR", "TEMPERATURESENSOR"),
+
+	/**
+	 * The '<em><b>GASSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #GASSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	GASSENSOR(10, "GASSENSOR", "GASSENSOR"),
 
 	/**
 	 * The '<em><b>PRESSURESENSOR</b></em>' literal object.
@@ -328,21 +328,6 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	public static final int SMOKESENSOR_VALUE = 8;
 
 	/**
-	 * The '<em><b>GASSENSOR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GASSENSOR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GASSENSOR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GASSENSOR_VALUE = 9;
-
-	/**
 	 * The '<em><b>TEMPERATURESENSOR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -355,7 +340,22 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEMPERATURESENSOR_VALUE = 10;
+	public static final int TEMPERATURESENSOR_VALUE = 9;
+
+	/**
+	 * The '<em><b>GASSENSOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GASSENSOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GASSENSOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GASSENSOR_VALUE = 10;
 
 	/**
 	 * The '<em><b>PRESSURESENSOR</b></em>' literal value.
@@ -438,8 +438,8 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSensorTypeEnum[] VALUES_ARRAY = new IfcSensorTypeEnum[] { NULL, FIRESENSOR, NOTDEFINED, HEATSENSOR, MOVEMENTSENSOR, FLOWSENSOR, MOISTURESENSOR,
-			LIGHTSENSOR, SMOKESENSOR, GASSENSOR, TEMPERATURESENSOR, PRESSURESENSOR, USERDEFINED, HUMIDITYSENSOR, CO2SENSOR, SOUNDSENSOR, };
+	private static final IfcSensorTypeEnum[] VALUES_ARRAY = new IfcSensorTypeEnum[] { NULL, FIRESENSOR, NOTDEFINED, HEATSENSOR, MOVEMENTSENSOR, FLOWSENSOR,
+			MOISTURESENSOR, LIGHTSENSOR, SMOKESENSOR, TEMPERATURESENSOR, GASSENSOR, PRESSURESENSOR, USERDEFINED, HUMIDITYSENSOR, CO2SENSOR, SOUNDSENSOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sensor Type Enum</b></em>' enumerators.
@@ -507,10 +507,10 @@ public enum IfcSensorTypeEnum implements Enumerator {
 			return LIGHTSENSOR;
 		case SMOKESENSOR_VALUE:
 			return SMOKESENSOR;
-		case GASSENSOR_VALUE:
-			return GASSENSOR;
 		case TEMPERATURESENSOR_VALUE:
 			return TEMPERATURESENSOR;
+		case GASSENSOR_VALUE:
+			return GASSENSOR;
 		case PRESSURESENSOR_VALUE:
 			return PRESSURESENSOR;
 		case USERDEFINED_VALUE:

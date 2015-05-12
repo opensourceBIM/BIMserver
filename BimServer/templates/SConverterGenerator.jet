@@ -32,6 +32,7 @@ import org.bimserver.database.Query;
 
 public class SConverter {
 <%
+	try {
 	Object[] argumentsArray = (Object[])argument;
 	MetaDataManager metaDataManager = (MetaDataManager)argumentsArray[0];
 	@SuppressWarnings("unchecked") Set<EPackage> ePackages = (Set<EPackage>)argumentsArray[1];
@@ -77,10 +78,10 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		<% if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) {
-	for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
+		<% if (!metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
+	for (EClass subClass : metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass)) {
 %>
-		<%=metaDataManager.getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else "%>if (input instanceof <%=subClass.getName()%>) {
+		<%=metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else "%>if (input instanceof <%=subClass.getName()%>) {
 			return convertToSObject((<%=subClass.getName()%>)input);
 		}
 <%
@@ -160,10 +161,10 @@ public class SConverter {
 			return null;
 		}
 <%
-	if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) {
-		for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
+	if (!metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
+		for (EClass subClass : metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass)) {
 %>
-		<%=metaDataManager.getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else "%>if (input instanceof S<%=subClass.getName()%>) {
+		<%=metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else "%>if (input instanceof S<%=subClass.getName()%>) {
 			return convertFromSObject((S<%=subClass.getName()%>)input, session);
 		}
 <%
@@ -232,6 +233,9 @@ public class SConverter {
 <%
 		}
 	}
+}
+} catch (Exception e) {
+	e.printStackTrace();
 }
 %>
 }

@@ -1,7 +1,7 @@
 package org.bimserver.servlets;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.BimServer;
-import org.eclipse.jetty.websocket.api.UpgradeRequest;
-import org.eclipse.jetty.websocket.api.UpgradeResponse;
+import org.eclipse.jetty.websocket.servlet.ServletUpgradeRequest;
+import org.eclipse.jetty.websocket.servlet.ServletUpgradeResponse;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
@@ -33,12 +33,11 @@ public class StreamingServlet extends org.eclipse.jetty.websocket.servlet.WebSoc
 
 	private static final long serialVersionUID = -1813872488590907887L;
 
-	
 	@Override
 	public void configure(WebSocketServletFactory factory) {
 		factory.setCreator(new WebSocketCreator() {
 			@Override
-			public Object createWebSocket(UpgradeRequest arg0, UpgradeResponse arg1) {
+			public Object createWebSocket(ServletUpgradeRequest arg0, ServletUpgradeResponse arg1) {
 				StreamingSocket streamingSocket = new StreamingSocket();
 				Streamer streamer = new Streamer(streamingSocket, (BimServer)getServletContext().getAttribute("bimserver"));
 				streamingSocket.setStreamer(streamer);

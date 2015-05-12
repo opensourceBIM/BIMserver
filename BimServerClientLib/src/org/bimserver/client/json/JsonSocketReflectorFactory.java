@@ -1,7 +1,7 @@
 package org.bimserver.client.json;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,36 +17,37 @@ package org.bimserver.client.json;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.apache.http.HttpVersion;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.PoolingClientConnectionManager;
-import org.apache.http.params.CoreProtocolPNames;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.json.JsonSocketReflector;
 import org.bimserver.shared.meta.SServicesMap;
 
 public class JsonSocketReflectorFactory implements JsonReflectorFactory {
 	private SServicesMap servicesMap;
-	private DefaultHttpClient httpclient;
-	private PoolingClientConnectionManager connectionManager;
+	private CloseableHttpClient httpclient;
+	private PoolingHttpClientConnectionManager poolingHttpClientConnectionManager;
 
 	public JsonSocketReflectorFactory(SServicesMap servicesMap) {
 		if (servicesMap == null) {
 			throw new IllegalArgumentException("servicesMap cannot be null");
 		}
 		this.servicesMap = servicesMap;
+		
+		poolingHttpClientConnectionManager = new PoolingHttpClientConnectionManager();
+		
+		poolingHttpClientConnectionManager.setDefaultMaxPerRoute(5);
+		poolingHttpClientConnectionManager.setMaxTotal(20);
 
-		connectionManager = new PoolingClientConnectionManager();
-		connectionManager.setDefaultMaxPerRoute(5);
-		connectionManager.setMaxTotal(20);
-
-		httpclient = new DefaultHttpClient(connectionManager);
-		httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
-		httpclient.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, "UTF-8");
+		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+		httpClientBuilder.setConnectionManager(poolingHttpClientConnectionManager);
+		
+		httpclient = httpClientBuilder.build();
 	}
 
 	public void close() {
-		connectionManager.shutdown();
+		poolingHttpClientConnectionManager.shutdown();
 	}
 
 	public JsonSocketReflector create(String remoteAddress, TokenHolder tokenHolder) {

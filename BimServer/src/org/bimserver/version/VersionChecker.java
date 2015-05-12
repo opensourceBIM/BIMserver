@@ -1,7 +1,7 @@
 package org.bimserver.version;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -115,12 +115,12 @@ public class VersionChecker {
 	public boolean updateNeeded() {
 		SVersion localVersion = getLocalVersion();
 		SVersion onlineVersion = getOnlineVersion();
-		if (localVersion.getMajor() < onlineVersion.getMajor()) {
+		if (localVersion.getMajor().compareTo(onlineVersion.getMajor()) < 0) {
 			return true;
 		} else if (localVersion.getMajor() == onlineVersion.getMajor()) {
-			if (localVersion.getMinor() < onlineVersion.getMinor()) {
+			if (localVersion.getMinor().compareTo(onlineVersion.getMinor()) > 0) {
 				return true;
-			} else if (localVersion.getMinor() == onlineVersion.getMinor()) {
+			} else if (localVersion.getMinor().equals(onlineVersion.getMinor())) {
 				if (onlineVersion.getRevision() != null && localVersion.getRevision() < onlineVersion.getRevision()) {
 					return true;
 				}

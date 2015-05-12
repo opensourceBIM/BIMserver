@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.async;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -44,6 +44,11 @@ public class AsyncAuthInterface {
 		void error(Throwable e);
 	}
 	
+	public interface SetHashCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface ValidateAccountCallback {
 		void success(org.bimserver.interfaces.objects.SUser result);
 		void error(Throwable e);
@@ -80,6 +85,19 @@ public class AsyncAuthInterface {
 			public void run(){
 				try {
 					syncService.requestPasswordChange(username, resetUrl);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setHash(final java.lang.Long uoid, final byte[] hash, final byte[] salt, final SetHashCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setHash(uoid, hash, salt);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

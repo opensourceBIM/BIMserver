@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -33,13 +33,15 @@ import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -54,14 +56,12 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 	private final Set<String> guids;
 	private final Set<Long> roids;
 	private int progress;
-	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private long serializerOid;
 	private Deep deep;
 
 	public DownloadByGuidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long serializerOid, Authorization authorization, ObjectIDM objectIDM, Deep deep) {
-		super(databaseSession, accessMethod, authorization);
-		this.bimServer = bimServer;
+		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roids = roids;
 		this.guids = guids;
 		this.serializerOid = serializerOid;
@@ -76,11 +76,14 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		Project project = null;
 		long incrSize = 0L;
+		PackageMetaData lastPackageMetaData = null;
 		
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		
+		Map<Integer, Long> ridRoidMap = new HashMap<Integer, Long>();
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
+			ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
 			project = virtualRevision.getProject();
 			if (!getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
@@ -89,7 +92,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 			for (String guid : guids) {
 				if (!foundGuids.contains(guid)) {
 					for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-						ObjectIdentifier objectIdentifier = getDatabaseSession().getOidOfGuid(guid, concreteRevision.getProject().getId(),
+						ObjectIdentifier objectIdentifier = getDatabaseSession().getOidOfGuid(concreteRevision.getProject().getSchema(), guid, concreteRevision.getProject().getId(),
 								concreteRevision.getId());
 						if (objectIdentifier != null) {
 							foundGuids.add(guid);
@@ -106,14 +109,16 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 			final AtomicLong total = new AtomicLong();
 
 			for (ConcreteRevision concreteRevision : map.keySet()) {
-				IfcModel subModel = new IfcModel();
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
+				lastPackageMetaData = packageMetaData;
+				IfcModel subModel = new BasicIfcModel(packageMetaData, ridRoidMap);
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
+				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), objectIDM, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {
 						total.incrementAndGet();
-						progress = Math.round(100L * total.get() / totalSize);
+						progress = (int) Math.round(100.0 * total.get() / totalSize);
 					}
 				});
 				Set<Long> oids = map.get(concreteRevision);
@@ -121,7 +126,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 				subModel.getModelMetaData().setDate(concreteRevision.getDate());
 				
 				try {
-					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
+					checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 				} catch (GeometryGeneratingException e) {
 					throw new UserException(e);
 				}
@@ -130,8 +135,8 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 			}
 		}
 		try {
-			IfcModelInterface ifcModel = new IfcModel();
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+			IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, ridRoidMap);
+			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 			ifcModel.getModelMetaData().setName("query");
 			for (String guid : guids) {
 				if (!foundGuids.contains(guid)) {

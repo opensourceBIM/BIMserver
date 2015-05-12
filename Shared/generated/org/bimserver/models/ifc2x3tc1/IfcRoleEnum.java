@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -103,6 +103,16 @@ public enum IfcRoleEnum implements Enumerator {
 	ARCHITECT(6, "ARCHITECT", "ARCHITECT"),
 
 	/**
+	 * The '<em><b>PROJECTMANAGER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PROJECTMANAGER_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	PROJECTMANAGER(7, "PROJECTMANAGER", "PROJECTMANAGER"),
+
+	/**
 	 * The '<em><b>CLIENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,7 +120,7 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CLIENT(7, "CLIENT", "CLIENT"),
+	CLIENT(8, "CLIENT", "CLIENT"),
 
 	/**
 	 * The '<em><b>ELECTRICALENGINEER</b></em>' literal object.
@@ -120,17 +130,7 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICALENGINEER(8, "ELECTRICALENGINEER", "ELECTRICALENGINEER"),
-
-	/**
-	 * The '<em><b>PROJECTMANAGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROJECTMANAGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROJECTMANAGER(9, "PROJECTMANAGER", "PROJECTMANAGER"),
+	ELECTRICALENGINEER(9, "ELECTRICALENGINEER", "ELECTRICALENGINEER"),
 
 	/**
 	 * The '<em><b>CIVILENGINEER</b></em>' literal object.
@@ -378,6 +378,21 @@ public enum IfcRoleEnum implements Enumerator {
 	public static final int ARCHITECT_VALUE = 6;
 
 	/**
+	 * The '<em><b>PROJECTMANAGER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PROJECTMANAGER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PROJECTMANAGER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PROJECTMANAGER_VALUE = 7;
+
+	/**
 	 * The '<em><b>CLIENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -390,7 +405,7 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CLIENT_VALUE = 7;
+	public static final int CLIENT_VALUE = 8;
 
 	/**
 	 * The '<em><b>ELECTRICALENGINEER</b></em>' literal value.
@@ -405,22 +420,7 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICALENGINEER_VALUE = 8;
-
-	/**
-	 * The '<em><b>PROJECTMANAGER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PROJECTMANAGER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PROJECTMANAGER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PROJECTMANAGER_VALUE = 9;
+	public static final int ELECTRICALENGINEER_VALUE = 9;
 
 	/**
 	 * The '<em><b>CIVILENGINEER</b></em>' literal value.
@@ -638,9 +638,9 @@ public enum IfcRoleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRoleEnum[] VALUES_ARRAY = new IfcRoleEnum[] { NULL, COSTENGINEER, COMISSIONINGENGINEER, BUILDINGOPERATOR, RESELLER, ENGINEER, ARCHITECT, CLIENT,
-			ELECTRICALENGINEER, PROJECTMANAGER, CIVILENGINEER, SUPPLIER, CONTRACTOR, FIELDCONSTRUCTIONMANAGER, FACILITIESMANAGER, OWNER, CONSTRUCTIONMANAGER, STRUCTURALENGINEER,
-			MECHANICALENGINEER, USERDEFINED, CONSULTANT, MANUFACTURER, SUBCONTRACTOR, BUILDINGOWNER, };
+	private static final IfcRoleEnum[] VALUES_ARRAY = new IfcRoleEnum[] { NULL, COSTENGINEER, COMISSIONINGENGINEER, BUILDINGOPERATOR, RESELLER, ENGINEER,
+			ARCHITECT, PROJECTMANAGER, CLIENT, ELECTRICALENGINEER, CIVILENGINEER, SUPPLIER, CONTRACTOR, FIELDCONSTRUCTIONMANAGER, FACILITIESMANAGER, OWNER,
+			CONSTRUCTIONMANAGER, STRUCTURALENGINEER, MECHANICALENGINEER, USERDEFINED, CONSULTANT, MANUFACTURER, SUBCONTRACTOR, BUILDINGOWNER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Role Enum</b></em>' enumerators.
@@ -704,12 +704,12 @@ public enum IfcRoleEnum implements Enumerator {
 			return ENGINEER;
 		case ARCHITECT_VALUE:
 			return ARCHITECT;
+		case PROJECTMANAGER_VALUE:
+			return PROJECTMANAGER;
 		case CLIENT_VALUE:
 			return CLIENT;
 		case ELECTRICALENGINEER_VALUE:
 			return ELECTRICALENGINEER;
-		case PROJECTMANAGER_VALUE:
-			return PROJECTMANAGER;
 		case CIVILENGINEER_VALUE:
 			return CIVILENGINEER;
 		case SUPPLIER_VALUE:

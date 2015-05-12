@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SBooleanType.class, SDoubleType.class, SStringType.class, SByteArrayType.class, SLongType.class})
+@XmlSeeAlso(value={SLongType.class, SDoubleType.class, SByteArrayType.class, SStringType.class, SBooleanType.class})
 public class SPrimitiveType extends SType implements SDataBase
 {
 	private long oid = -1;

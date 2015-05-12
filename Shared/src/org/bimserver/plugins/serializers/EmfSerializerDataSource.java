@@ -1,7 +1,7 @@
 package org.bimserver.plugins.serializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -56,8 +56,8 @@ public class EmfSerializerDataSource implements DataSource {
 		return serializer;
 	}
 
-	public void writeToOutputStream(OutputStream outputStream) throws SerializerException, IOException {
-		serializer.writeToOutputStream(outputStream);
+	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException, IOException {
+		serializer.writeToOutputStream(outputStream, progressReporter);
 		try {
 			outputStream.close();
 		} catch (EOFException e) {

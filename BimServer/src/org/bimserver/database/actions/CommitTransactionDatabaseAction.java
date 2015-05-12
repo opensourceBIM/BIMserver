@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,9 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.BimServer;
+import org.bimserver.GeometryCache;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.GeometryGenerator;
-import org.bimserver.GeometryGenerator.GeometryCache;
 import org.bimserver.SummaryMap;
 import org.bimserver.changes.Change;
 import org.bimserver.changes.CreateObjectChange;
@@ -37,11 +37,11 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -98,22 +98,24 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				size--;
 			}
 		}
+		
 		Revision oldLastRevision = project.getLastRevision();
 		CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), size, project, user, comment.trim());
 		ConcreteRevision concreteRevision = result.getConcreteRevision();
 		revision = concreteRevision.getRevisions().get(0);
 		project.setLastRevision(revision);
-		final NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
+		final NewRevisionAdded newRevisionAdded = getDatabaseSession().create(NewRevisionAdded.class);
 		newRevisionAdded.setDate(new Date());
 		newRevisionAdded.setExecutor(user);
 		newRevisionAdded.setRevision(concreteRevision.getRevisions().get(0));
 		newRevisionAdded.setProject(project);
 		newRevisionAdded.setAccessMethod(getAccessMethod());
-
-		IfcModelInterface ifcModel = new IfcModel();
+		
+		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
+		IfcModelInterface ifcModel = new BasicIfcModel(packageMetaData, null);
 		if (oldLastRevision != null) {
 			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
-			getDatabaseSession().getMap(ifcModel, new Query(project.getId(), oldLastRevision.getId(), null, Deep.YES, highestStopId));
+			getDatabaseSession().getMap(ifcModel, new Query(longTransaction.getPackageMetaData(), project.getId(), oldLastRevision.getId(), -1, null, Deep.YES, highestStopId));
 		}
 		
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
@@ -130,11 +132,14 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 
 		SummaryMap summaryMap = null;
 		if (oldLastRevision != null && oldLastRevision.getConcreteRevisions().size() == 1 && oldLastRevision.getConcreteRevisions().get(0).getSummary() != null) {
-			summaryMap = new SummaryMap(oldLastRevision.getConcreteRevisions().get(0).getSummary());
+			summaryMap = new SummaryMap(packageMetaData, oldLastRevision.getConcreteRevisions().get(0).getSummary());
 		} else {
-			summaryMap = new SummaryMap();
+			summaryMap = new SummaryMap(packageMetaData);
 		}
 
+		boolean geometryChanged = true;
+		// TODO actually change this variable...
+		
 		// First create all new objects
 		Map<Long, IdEObject> created = new HashMap<Long, IdEObject>();
 		Map<Long, IdEObject> deleted = new HashMap<Long, IdEObject>();
@@ -153,11 +158,13 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				change.execute(ifcModel, project, concreteRevision, getDatabaseSession(), created, deleted);
 			}
 		}
-		
-		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
+
+		ifcModel.fixInverseMismatches();
+
+		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin() && geometryChanged) {
 			setProgress("Generating Geometry...", -1);
 			try {
-				new GeometryGenerator().generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), revision, true, geometryCache);
+				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
 			} catch (GeometryGeneratingException e) {
 				throw new UserException(e);
 			}
@@ -166,7 +173,6 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		
 		concreteRevision.setSummary(summaryMap.toRevisionSummary(getDatabaseSession()));
 
-		getDatabaseSession().store(newRevisionAdded);
 		getDatabaseSession().store(concreteRevision);
 		getDatabaseSession().store(project);
 		return concreteRevision;

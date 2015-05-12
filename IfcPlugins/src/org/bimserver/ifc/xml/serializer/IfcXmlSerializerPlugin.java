@@ -1,7 +1,7 @@
 package org.bimserver.ifc.xml.serializer;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,20 +23,13 @@ import org.bimserver.models.store.PrimitiveDefinition;
 import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StringType;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
-import org.bimserver.plugins.serializers.EmfSerializer;
 
-public class IfcXmlSerializerPlugin extends AbstractSerializerPlugin {
+public abstract class IfcXmlSerializerPlugin extends AbstractSerializerPlugin {
 
 	private boolean initialized = false;
-
-	@Override
-	public EmfSerializer createSerializer(PluginConfiguration pluginConfiguration) {
-		return new IfcXmlSerializer();
-	}
 
 	@Override
 	public String getDescription() {
@@ -55,13 +48,8 @@ public class IfcXmlSerializerPlugin extends AbstractSerializerPlugin {
 
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
-		pluginManager.requireSchemaDefinition();
+		pluginManager.requireSchemaDefinition("ifc2x3tc1");
 		initialized = true;
-	}
-
-	@Override
-	public String getDefaultName() {
-		return "IfcXML";
 	}
 
 	@Override

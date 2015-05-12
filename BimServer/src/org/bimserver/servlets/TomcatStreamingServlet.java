@@ -1,7 +1,7 @@
 package org.bimserver.servlets;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,6 +23,7 @@ import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WebSocketServlet;
 import org.bimserver.BimServer;
 
+// This is only used/usable for Tomcat 7 as Tomcat 8 actually implemented the JSR-356 standard
 public class TomcatStreamingServlet extends WebSocketServlet {
 
 	private static final long serialVersionUID = -3886850416536157915L;

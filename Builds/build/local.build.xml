@@ -1,0 +1,14 @@
+<project name="BIMserver Local Build">
+	<import file="version.build.xml"/>
+	
+	<property name="type" value="FINAL"/>
+	<property name="revisiondate" value="${builddate}"/>
+	<property name="version" value="${majorversion}.${minorversion}.${revisionversion}-${type}-${revisiondate}"/>
+
+	<target name="war">
+		<ant antfile="bimserver.build.xml" target="Build War Tomcat7"/>
+	</target>
+	<target name="jar">
+		<ant antfile="bimserver.build.xml" target="Build Jar"/>
+	</target>
+</project>

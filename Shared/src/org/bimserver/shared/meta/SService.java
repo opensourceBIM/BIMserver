@@ -1,7 +1,7 @@
 package org.bimserver.shared.meta;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,19 +22,14 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
 import javax.jws.WebService;
-import javax.xml.bind.annotation.XmlSeeAlso;
 
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.utils.StringUtils;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -50,34 +45,21 @@ import org.slf4j.LoggerFactory;
 public class SService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SService.class);
 	private final Map<String, SMethod> methods = new TreeMap<String, SMethod>();
-	private final Map<String, SClass> types = new TreeMap<String, SClass>();
 	private final String fullName;
 	private final Class<? extends PublicInterface> interfaceClass;
-
-	// Disabled for now, makes the deployed JAR stop at this point
 	private boolean processJavaDoc = true;
-	private List<SService> others;
 	private SServicesMap servicesMap;
 	private String simpleName;
 	private SourceCodeFetcher sourceCodeFetcher;
 	private String nameSpace;
 
-	public SService(SourceCodeFetcher sourceCodeFetcher, Class<? extends PublicInterface> clazz) {
-		this(sourceCodeFetcher, clazz, new ArrayList<SService>());
-		this.sourceCodeFetcher = sourceCodeFetcher;
-	}
-	
-	public SService(SourceCodeFetcher sourceCodeFetcher, Class<? extends PublicInterface> interfaceClass, List<SService> others) {
+	public SService(SServicesMap servicesMap, SourceCodeFetcher sourceCodeFetcher, Class<? extends PublicInterface> interfaceClass) {
+		this.servicesMap = servicesMap;
 		this.sourceCodeFetcher = sourceCodeFetcher;
 		this.interfaceClass = interfaceClass;
-		this.others = others;
 		this.nameSpace = interfaceClass.getAnnotation(WebService.class).targetNamespace();
 		this.fullName = interfaceClass.getAnnotation(WebService.class).targetNamespace() + "." + interfaceClass.getAnnotation(WebService.class).name();
 		this.simpleName = interfaceClass.getAnnotation(WebService.class).name();
-		init();
-		if (processJavaDoc && sourceCodeFetcher != null) {
-			processClass(interfaceClass);
-		}
 	}
 	
 	private void processClass(Class<?> clazz) {
@@ -159,19 +141,22 @@ public class SService {
 
 	public void init() {
 		for (Method method : interfaceClass.getMethods()) {
-			addType(method.getReturnType());
+			getServicesMap().addType(method.getReturnType());
 			if (getGenericType(method) != null) {
-				addType(getGenericType(method));
+				getServicesMap().addType(getGenericType(method));
 			}
 			for (Class<?> paramType : method.getParameterTypes()) {
-				addType(paramType);
+				getServicesMap().addType(paramType);
 			}
 		}
-		for (SClass sType : types.values()) {
+		for (SClass sType : getServicesMap().getTypes()) {
 			sType.init();
 		}
 		for (Method method : interfaceClass.getMethods()) {
 			methods.put(method.getName(), new SMethod(this, method));
+		}
+		if (processJavaDoc && sourceCodeFetcher != null) {
+			processClass(interfaceClass);
 		}
 	}
 
@@ -196,51 +181,6 @@ public class SService {
 		return null;
 	}
 
-	private void addType(Class<?> type) {
-		if (!types.containsKey(type.getSimpleName())) {
-			SClass sClass = new SClass(this, type, null);
-			types.put(sClass.getSimpleName(), sClass);
-			types.put(sClass.getName(), sClass);
-			addRelatedTypes(type);
-		}
-	}
-
-	private void addRelatedTypes(Class<?> type) {
-		for (Method method : type.getMethods()) {
-			if (method.getName().startsWith("get") && method.getName().length() > 3 && !method.getName().equals("getSClass")) {
-				if (type.getAnnotation(XmlSeeAlso.class) != null) {
-					XmlSeeAlso xmlSeeAlso = type.getAnnotation(XmlSeeAlso.class);
-					for (Class<?> c : xmlSeeAlso.value()) {
-						addType(c);
-					}
-				}
-				if (type.getSuperclass() != null) {
-					addType(type.getSuperclass());
-				}
-				String fieldName = StringUtils.firstLowerCase(method.getName().substring(3));
-				try {
-					if (type.getMethod("set" + StringUtils.firstUpperCase(fieldName), method.getReturnType()) != null) {
-						addType(method.getReturnType());
-					}
-				} catch (SecurityException e) {
-				} catch (NoSuchMethodException e) {
-				}
-				if (getGenericType(method) != null) {
-					addType(getGenericType(method));
-				}
-				for (Class<?> pt : method.getParameterTypes()) {
-					addType(pt);
-				}
-			}
-		}
-	}
-
-	public void addType(SClass type) {
-		types.put(type.getSimpleName(), type);
-		types.put(type.getName(), type);
-		addRelatedTypes(type.getInstanceClass());
-	}
-
 	public String getName() {
 		return fullName;
 	}
@@ -253,69 +193,33 @@ public class SService {
 		return methods.get(name);
 	}
 
-	public Set<SClass> getTypes() {
-		return new HashSet<SClass>(types.values());
-	}
-
 	public Class<? extends PublicInterface> getInterfaceClass() {
 		return interfaceClass;
 	}
 
-	public SClass getSType(String name) {
-		return getSType(name, new HashSet<SService>());
-	}
+//	public void dump() {
+//		System.out.println(getMethods().size());
+//		for (SMethod method : getMethods()) {
+//			System.out.println(method.getName() + ": " + method.getReturnType().getName() + " (" + method.getDoc() + ")");
+//			for (SParameter parameter : method.getParameters()) {
+//				System.out.println("\t" + parameter.getName() + " " + parameter.getType().getName() + " (" + parameter.getDoc() + ")");
+//			}
+//			System.out.println();
+//		}
+//		for (SClass type : getTypes()) {
+//			System.out.println(type.getName());
+//			for (SField sField : type.getAllFields()) {
+//				SClass type2 = sField.getType();
+//				if (type2 == null) {
+//					System.err.println("type for " + sField.getName() + " = null");
+//				} else {
+//					System.out.println("\t" + sField.getName() + " " + type2.getName());
+//				}
+//			}
+//			System.out.println();
+//		}
+//	}
 
-	public SClass getSType(String name, Set<SService> checked) {
-		checked.add(this);
-		SClass sType = types.get(name);
-		if (sType == null) {
-			if (name.contains(".")) {
-				name = name.substring(name.lastIndexOf(".") + 1);
-				return getSType(name, checked);
-			}
-		}
-		if (sType == null) {
-			for (SService other : others) {
-				if (!checked.contains(other)) {
-					SClass otherClass = other.getSType(name, checked);
-					if (otherClass != null) {
-						return otherClass;
-					}
-				}
-			}
-		}
-		return sType;
-	}
-	
-	public void dump() {
-		System.out.println(getMethods().size());
-		for (SMethod method : getMethods()) {
-			System.out.println(method.getName() + ": " + method.getReturnType().getName() + " (" + method.getDoc() + ")");
-			for (SParameter parameter : method.getParameters()) {
-				System.out.println("\t" + parameter.getName() + " " + parameter.getType().getName() + " (" + parameter.getDoc() + ")");
-			}
-			System.out.println();
-		}
-		for (SClass type : getTypes()) {
-			System.out.println(type.getName());
-			if (type instanceof SClass) {
-				SClass sClass = (SClass) type;
-				for (SField sField : sClass.getFields()) {
-					SClass type2 = sField.getType();
-					if (type2 == null) {
-						System.err.println("type for " + sField.getName() + " = null");
-					}
-					System.out.println("\t" + sField.getName() + " " + type2.getName());
-				}
-			}
-			System.out.println();
-		}
-	}
-
-	public void setServicesMap(SServicesMap servicesMap) {
-		this.servicesMap = servicesMap;
-	}
-	
 	public SServicesMap getServicesMap() {
 		return servicesMap;
 	}

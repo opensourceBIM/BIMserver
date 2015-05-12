@@ -1,7 +1,7 @@
 package org.bimserver.validationreport;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,8 +17,8 @@ package org.bimserver.validationreport;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class Line extends Item {
 	private String fieldOrClass;
@@ -50,8 +50,8 @@ public class Line extends Item {
 	}
 
 	@Override
-	public JSONObject toJson() throws JSONException {
-		JSONObject result = new JSONObject();
+	public ObjectNode toJson(ObjectMapper objectMapper) {
+		ObjectNode result = objectMapper.createObjectNode();
 		result.put("type", "line");
 		result.put("status", type.name());
 		result.put("oid", oid);

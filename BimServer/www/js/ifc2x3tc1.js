@@ -8023,13 +8023,8 @@
           "reference": true,
           "many": true
         },
-        "geometryInstance": {
-          "type": "GeometryInstance",
-          "reference": true,
-          "many": false
-        },
-        "bounds": {
-          "type": "Bounds",
+        "geometry": {
+          "type": "GeometryInfo",
           "reference": true,
           "many": false
         }
@@ -16721,79 +16716,6 @@
       "domain": "ifcgeometryresource",
       "superclasses": [],
       "fields": {}
-    },
-    "Bounds": {
-      "domain": "unknown",
-      "superclasses": [],
-      "fields": {
-        "min": {
-          "type": "Vector3f",
-          "reference": true,
-          "many": false
-        },
-        "max": {
-          "type": "Vector3f",
-          "reference": true,
-          "many": false
-        }
-      }
-    },
-    "Vector3f": {
-      "domain": "unknown",
-      "superclasses": [],
-      "fields": {
-        "x": {
-          "type": "EFloat",
-          "reference": false,
-          "many": false
-        },
-        "y": {
-          "type": "EFloat",
-          "reference": false,
-          "many": false
-        },
-        "z": {
-          "type": "EFloat",
-          "reference": false,
-          "many": false
-        }
-      }
-    },
-    "GeometryInstance": {
-      "domain": "unknown",
-      "superclasses": [],
-      "fields": {
-        "startVertex": {
-          "type": "int",
-          "reference": false,
-          "many": false
-        },
-        "startIndex": {
-          "type": "int",
-          "reference": false,
-          "many": false
-        },
-        "primitiveCount": {
-          "type": "int",
-          "reference": false,
-          "many": false
-        },
-        "indices": {
-          "type": "bytearray",
-          "reference": false,
-          "many": false
-        },
-        "vertices": {
-          "type": "bytearray",
-          "reference": false,
-          "many": false
-        },
-        "normals": {
-          "type": "bytearray",
-          "reference": false,
-          "many": false
-        }
-      }
     }
   }
 }

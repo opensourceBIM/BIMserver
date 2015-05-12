@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.async;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -115,6 +115,11 @@ public class AsyncAdminInterface {
 	}
 	
 	public interface MigrateDatabaseCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface RegenerateGeometryCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -342,6 +347,19 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					syncService.migrateDatabase();
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void regenerateGeometry(final java.lang.Long croid, final RegenerateGeometryCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.regenerateGeometry(croid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

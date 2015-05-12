@@ -1,0 +1,17 @@
+<div class="plugin">
+	<h1>Plugin</h1>
+	<table class="table">
+		<thead></thead>
+		<tbody></tbody>
+	</table>
+</div>
+<script>
+	function Plugin(containerDiv, plugin) {
+		containerDiv.find(".plugin table").append("<tr><td>Name</td><td>" + plugin.simpleName + "</td></tr>");
+		containerDiv.find(".plugin table").append("<tr><td>Description</td><td>" + plugin.description + "</td></tr>");
+		containerDiv.find(".plugin table").append("<tr><td>Enabled</td><td>" + plugin.enabled + "</td></tr>");
+		containerDiv.find(".plugin table").append("<tr><td>Location</td><td>" + plugin.location + "</td></tr>");
+		containerDiv.find(".plugin table").append("<tr><td>Interface Class</td><td>" + plugin.pluginInterfaceClassName + "</td></tr>");
+		containerDiv.find(".plugin table").append("<tr><td>Implementation Class</td><td>" + plugin.pluginClassName + "</td></tr>");
+	}
+</script>

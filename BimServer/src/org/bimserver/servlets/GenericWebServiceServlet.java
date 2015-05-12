@@ -1,7 +1,7 @@
 package org.bimserver.servlets;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -38,7 +38,6 @@ import javax.xml.bind.JAXBException;
 import org.apache.cxf.Bus;
 import org.apache.cxf.BusException;
 import org.apache.cxf.BusFactory;
-import org.apache.cxf.common.WSDLConstants;
 import org.apache.cxf.databinding.DataBinding;
 import org.apache.cxf.headers.HeaderManager;
 import org.apache.cxf.headers.HeaderProcessor;
@@ -55,6 +54,7 @@ import org.apache.cxf.transport.http.HTTPTransportFactory;
 import org.apache.cxf.transport.servlet.ServletContextResourceResolver;
 import org.apache.cxf.transport.servlet.ServletController;
 import org.apache.cxf.transport.servlet.servicelist.ServiceListGeneratorServlet;
+import org.apache.cxf.wsdl.WSDLConstants;
 import org.bimserver.BimServer;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.interfaces.PublicInterface;
@@ -347,7 +347,7 @@ public class GenericWebServiceServlet extends SubServlet {
 			serverFactoryBean.setServiceClass(clazz);
 			serverFactoryBean.getOutFaultInterceptors().add(new StatusCodeModifyingFaultInterceptor());
 			serverFactoryBean.setInvoker(new CustomInvoker(getBimServer().getServiceFactory(), clazz));
-			serverFactoryBean.setAddress((bindingId == WSDLConstants.NS_SOAP11 ? "/soap11/" : "/soap12/") + clazz.getSimpleName());
+			serverFactoryBean.setAddress((bindingId == WSDLConstants.NS_SOAP11 ? "/soap11/" : "/soap12/") + clazz.getSimpleName()); // equals check allowed, just keep using the constant
 			serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");
 			serverFactoryBean.create();
 		}

@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SUserUndeleted.class, SUserChanged.class, SPasswordChanged.class, SUserDeleted.class, SUserRemovedFromProject.class, SUserAddedToProject.class, SPasswordReset.class, SNewUserAdded.class})
+@XmlSeeAlso(value={SUserAddedToProject.class, SUserChanged.class, SPasswordReset.class, SUserUndeleted.class, SNewUserAdded.class, SUserRemovedFromProject.class, SPasswordChanged.class, SUserDeleted.class})
 public class SUserRelated extends SLogAction implements SDataBase
 {
 	private long oid = -1;

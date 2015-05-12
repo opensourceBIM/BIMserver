@@ -28,6 +28,12 @@ import org.bimserver.emf.IdEObject;
  * <ul>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ProjectSmall#getParentId <em>Parent Id</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#getState <em>State</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#getNrRevisions <em>Nr Revisions</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#getNrSubProjects <em>Nr Sub Projects</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#isHasCheckinRights <em>Has Checkin Rights</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#getLastRevisionId <em>Last Revision Id</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ProjectSmall#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,5 +94,164 @@ public interface ProjectSmall extends IdEObject {
 	 * @generated
 	 */
 	void setParentId(long value);
+
+	/**
+	 * Returns the value of the '<em><b>State</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.store.ObjectState}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>State</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State</em>' attribute.
+	 * @see org.bimserver.models.store.ObjectState
+	 * @see #setState(ObjectState)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_State()
+	 * @model
+	 * @generated
+	 */
+	ObjectState getState();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#getState <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>State</em>' attribute.
+	 * @see org.bimserver.models.store.ObjectState
+	 * @see #getState()
+	 * @generated
+	 */
+	void setState(ObjectState value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Revisions</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Revisions</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Revisions</em>' attribute.
+	 * @see #setNrRevisions(int)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_NrRevisions()
+	 * @model
+	 * @generated
+	 */
+	int getNrRevisions();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#getNrRevisions <em>Nr Revisions</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Revisions</em>' attribute.
+	 * @see #getNrRevisions()
+	 * @generated
+	 */
+	void setNrRevisions(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Sub Projects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Sub Projects</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Sub Projects</em>' attribute.
+	 * @see #setNrSubProjects(int)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_NrSubProjects()
+	 * @model
+	 * @generated
+	 */
+	int getNrSubProjects();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#getNrSubProjects <em>Nr Sub Projects</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Sub Projects</em>' attribute.
+	 * @see #getNrSubProjects()
+	 * @generated
+	 */
+	void setNrSubProjects(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Has Checkin Rights</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Has Checkin Rights</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Has Checkin Rights</em>' attribute.
+	 * @see #setHasCheckinRights(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_HasCheckinRights()
+	 * @model
+	 * @generated
+	 */
+	boolean isHasCheckinRights();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#isHasCheckinRights <em>Has Checkin Rights</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Has Checkin Rights</em>' attribute.
+	 * @see #isHasCheckinRights()
+	 * @generated
+	 */
+	void setHasCheckinRights(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Last Revision Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Last Revision Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Last Revision Id</em>' attribute.
+	 * @see #setLastRevisionId(long)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_LastRevisionId()
+	 * @model
+	 * @generated
+	 */
+	long getLastRevisionId();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#getLastRevisionId <em>Last Revision Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Last Revision Id</em>' attribute.
+	 * @see #getLastRevisionId()
+	 * @generated
+	 */
+	void setLastRevisionId(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Schema</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Schema</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Schema</em>' attribute.
+	 * @see #setSchema(String)
+	 * @see org.bimserver.models.store.StorePackage#getProjectSmall_Schema()
+	 * @model
+	 * @generated
+	 */
+	String getSchema();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ProjectSmall#getSchema <em>Schema</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Schema</em>' attribute.
+	 * @see #getSchema()
+	 * @generated
+	 */
+	void setSchema(String value);
 
 } // ProjectSmall

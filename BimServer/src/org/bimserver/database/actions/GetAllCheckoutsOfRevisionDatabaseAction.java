@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,7 +18,6 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.List;
-import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -46,6 +45,6 @@ public class GetAllCheckoutsOfRevisionDatabaseAction extends BimDatabaseAction<L
 	public List<Checkout> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_Revision(), revision);
-		return CollectionUtils.mapToList((Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, Query.getDefault()));
+		return CollectionUtils.mapToList(getDatabaseSession().query(condition, Checkout.class, Query.getDefault()));
 	}
 }

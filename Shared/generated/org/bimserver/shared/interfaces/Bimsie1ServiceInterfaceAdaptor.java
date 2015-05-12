@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,11 +24,11 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 	public void addExtendedDataToRevision(java.lang.Long roid, org.bimserver.interfaces.objects.SExtendedData extendedData) throws UserException, ServerException {
 	}
 	
-	public org.bimserver.interfaces.objects.SProject addProject(java.lang.String projectName) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SProject addProject(java.lang.String projectName, java.lang.String schema) throws UserException, ServerException {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SProject addProjectAsSubProject(java.lang.String projectName, java.lang.Long parentPoid) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SProject addProjectAsSubProject(java.lang.String projectName, java.lang.Long parentPoid, java.lang.String schema) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -64,6 +64,10 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 		return null;
 	}
 	
+	public java.lang.Long downloadByJsonQuery(java.util.Set<java.lang.Long> roids, java.lang.String jsonQuery, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.Long downloadByNames(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> names, java.lang.Long serializerOid, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
@@ -72,7 +76,7 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 		return null;
 	}
 	
-	public java.lang.Long downloadByTypes(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> classNames, java.lang.Long serializerOid, java.lang.Boolean includeAllSubtypes, java.lang.Boolean useObjectIDM, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
+	public java.lang.Long downloadByTypes(java.util.Set<java.lang.Long> roids, java.lang.String schema, java.util.Set<java.lang.String> classNames, java.lang.Long serializerOid, java.lang.Boolean includeAllSubtypes, java.lang.Boolean useObjectIDM, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -89,6 +93,10 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllProjects(java.lang.Boolean onlyTopLevel, java.lang.Boolean onlyActive) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SProjectSmall> getAllProjectsSmall() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -124,6 +132,10 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SProjectSmall getProjectSmallByPoid(java.lang.Long poid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getProjectsByName(java.lang.String name) throws UserException, ServerException {
 		return null;
 	}
@@ -156,8 +168,11 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(java.lang.String extension) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(java.lang.String extension, java.lang.Long poid) throws UserException, ServerException {
 		return null;
+	}
+	
+	public void terminateLongRunningAction(java.lang.Long actionId) throws UserException, ServerException {
 	}
 	
 	public java.lang.Boolean undeleteProject(java.lang.Long poid) throws UserException, ServerException {

@@ -4,7 +4,6 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Collections;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -24,10 +23,10 @@ public class SubProjects extends TestWithEmbeddedServer {
 
 			long s = System.nanoTime();
 			// Create a new project
-			SProject mainProject = bimServerClient.getBimsie1ServiceInterface().addProject("main" + Math.random());
-			SProject sub1 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub1" + Math.random(), mainProject.getOid());
-			SProject sub2 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub2" + Math.random(), mainProject.getOid());
-			SProject sub3 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub3" + Math.random(), mainProject.getOid());
+			SProject mainProject = bimServerClient.getBimsie1ServiceInterface().addProject("main" + Math.random(), "ifc2x3tc1");
+			SProject sub1 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub1" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
+			SProject sub2 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub2" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
+			SProject sub3 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub3" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
 
 			// This is the file we will be checking in
 			File ifcFile1 = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
@@ -35,7 +34,7 @@ public class SubProjects extends TestWithEmbeddedServer {
 			File ifcFile3 = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 
 			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", mainProject.getOid());
 
 			// Checkin
 			bimServerClient.checkin(sub1.getOid(), "test", deserializer.getOid(), false, true, ifcFile1);

@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -49,7 +49,7 @@ public class MetaInterfaceAdaptor implements org.bimserver.shared.interfaces.Met
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SServiceType> getServiceTypes(java.lang.String serviceInterfaceName) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SServiceType> getServiceTypes() throws UserException, ServerException {
 		return null;
 	}
 	

@@ -1,7 +1,7 @@
 package org.bimserver.collada;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,19 +20,29 @@ package org.bimserver.collada;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.geometry.Matrix;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingElementProxy;
 import org.bimserver.models.ifc2x3tc1.IfcColumn;
 import org.bimserver.models.ifc2x3tc1.IfcCurtainWall;
@@ -63,19 +73,20 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.eclipse.emf.common.util.EList;
+import org.openmali.vecmath2.Vector3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ColladaSerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
 	private static final Map<Class<? extends IfcProduct>, Convertor<? extends IfcProduct>> convertors = new LinkedHashMap<Class<? extends IfcProduct>, Convertor<? extends IfcProduct>>();
-	private final Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
+	private final Map<String, Set<IfcProduct>> converted = new HashMap<String, Set<IfcProduct>>();
 	private SIPrefix lengthUnitPrefix;
-	private int idCounter;
 
 	private static <T extends IfcProduct> void addConvertor(Convertor<T> convertor) {
 		convertors.put(convertor.getCl(), convertor);
@@ -111,9 +122,18 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		addConvertor(new Convertor<IfcProduct>(IfcProduct.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
 	}
 
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
+	// Prepare a transformer for floating-point numbers into a strings, clipping extraneous zeros.
+	private static final DecimalFormat decimalFormat = new DecimalFormat("#.##########");
+	// Prepare a transformer for integers into strings.
+	private static final DecimalFormat intFormat = new DecimalFormat("#");
+
+	private Vector3d lowestObserved = new Vector3d();
+	private Vector3d highestObserved = new Vector3d();
+
+	@Override
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
 		this.lengthUnitPrefix = getLengthUnitPrefix(model);
+		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 	}
 
 	@Override
@@ -122,14 +142,13 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 	}
 
 	@Override
-	public boolean write(OutputStream out) throws SerializerException {
+	public boolean write(OutputStream out, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			PrintWriter writer = new UTF8PrintWriter(out);
 			try {
 				writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-				writer.println("<COLLADA xmlns=\"http://www.collada.org/2005/11/COLLADASchema\" version=\"1.4.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.collada.org/2005/11/COLLADASchema http://www.khronos.org/files/collada_schema_1_4\" >");
-				// writer.println("<COLLADA xmlns=\"http://www.collada.org/2008/03/COLLADASchema\" version=\"1.5.0\">");
-
+				writer.println("<COLLADA xmlns=\"http://www.collada.org/2008/03/COLLADASchema\" version=\"1.5.0\">");
+				// Data sections.
 				writeAssets(writer);
 				writeCameras(writer);
 				writeLights(writer);
@@ -138,7 +157,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 				writeGeometries(writer);
 				writeVisualScenes(writer);
 				writeScene(writer);
-
+				// End of root section.
 				writer.print("</COLLADA>");
 				writer.flush();
 			} catch (Exception e) {
@@ -153,32 +172,35 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		return false;
 	}
 
+	// Provide a date formatter.
+	private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+
 	private void writeAssets(PrintWriter out) {
-		out.println("    <asset>");
-		out.println("        <contributor>");
-		out.println("            <author>" + (getProjectInfo() == null ? "" : getProjectInfo().getAuthorName()) + "</author>");
-		out.println("            <authoring_tool>BIMserver</authoring_tool>");
-		out.println("            <comments>" + (getProjectInfo() == null ? "" : getProjectInfo().getDescription()) + "</comments>");
-		out.println("            <copyright>Copyright</copyright>");
-		out.println("        </contributor>");
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+		// Produce a date based on now.
 		String date = dateFormat.format(new Date());
-		out.println("        <created>" + date + "</created>");
-		out.println("        <modified>" + date + "</modified>");
-		if (lengthUnitPrefix == null) {
-			out.println("        <unit meter=\"1\" name=\"meter\"/>");
-		} else {
-			out.println("        <unit meter=\"" + Math.pow(10.0, lengthUnitPrefix.getValue()) + "\" name=\"" + lengthUnitPrefix.name().toLowerCase() + "\"/>");
-		}
-		out.println("        <up_axis>Y_UP</up_axis>");
-		out.println("    </asset>");
+		// Determine what a meter is and what to logically refer to that transformation as.
+		Number unitMeter = (lengthUnitPrefix == null) ? 1 : Math.pow(10.0, lengthUnitPrefix.getValue());
+		String unitName = (lengthUnitPrefix == null) ? "meter" : lengthUnitPrefix.name().toLowerCase();
+		// Write the asset block.
+		out.println(" <asset>");
+		out.println("  <contributor>");
+		out.println("   <author>" + (getProjectInfo() == null ? "" : getProjectInfo().getAuthorName()) + "</author>");
+		out.println("   <authoring_tool>BIMserver</authoring_tool>");
+		out.println("   <comments>" + (getProjectInfo() == null ? "" : getProjectInfo().getDescription()) + "</comments>");
+		out.println("   <copyright>Copyright</copyright>");
+		out.println("  </contributor>");
+		out.println("  <created>" + date + "</created>");
+		out.println("  <modified>" + date + "</modified>");
+		out.println("  <unit meter=\"" + unitMeter + "\" name=\"" + unitName + "\"/>");
+		out.println("  <up_axis>Z_UP</up_axis>");
+		out.println(" </asset>");
 	}
 
 	private void writeGeometries(PrintWriter out) throws RenderEngineException, SerializerException {
-		out.println("      <library_geometries>");
-
+		// Prepare the section.
+		out.println(" <library_geometries>");
+		// For each IfcProduct, get the geometry for each object in the product.
 		Set<IfcProduct> convertedObjects = new HashSet<IfcProduct>();
-
 		for (Class<? extends IfcProduct> cl : convertors.keySet()) {
 			Convertor<? extends IfcProduct> convertor = convertors.get(cl);
 			for (IfcProduct object : model.getAllWithSubTypes(cl)) {
@@ -188,434 +210,374 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 				}
 			}
 		}
-		out.println("      </library_geometries>");
-	}
-
-	private String generateId() {
-		return "" + (idCounter++);
+		// Close the section.
+		out.println(" </library_geometries>");
 	}
 
 	private void setGeometry(PrintWriter out, IfcProduct ifcProductObject, String material) throws RenderEngineException, SerializerException {
-		// boolean materialFound = false;
-		// boolean added = false;
-		// if (ifcRootObject instanceof IfcProduct) {
-		// IfcProduct ifcProduct = (IfcProduct) ifcRootObject;
-		//
-		// EList<IfcRelDecomposes> isDecomposedBy =
-		// ifcProduct.getIsDecomposedBy();
-		// for (IfcRelDecomposes dcmp : isDecomposedBy) {
-		// EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
-		// for (IfcObjectDefinition relatedObject : relatedObjects) {
-		// setGeometry(out, relatedObject, material);
-		// }
-		// }
-		// if (isDecomposedBy != null && isDecomposedBy.size() > 0) {
-		// return;
-		// }
-		//
-		// Iterator<IfcRelAssociatesMaterial> ramIter =
-		// model.getAll(IfcRelAssociatesMaterial.class).iterator();
-		// boolean found = false;
-		// IfcMaterialSelect relatingMaterial = null;
-		// while (!found && ramIter.hasNext()) {
-		// IfcRelAssociatesMaterial ram = ramIter.next();
-		// if (ram.getRelatedObjects().contains(ifcProduct)) {
-		// found = true;
-		// relatingMaterial = ram.getRelatingMaterial();
-		// }
-		// }
-		// if (found && relatingMaterial instanceof IfcMaterialLayerSetUsage) {
-		// IfcMaterialLayerSetUsage mlsu = (IfcMaterialLayerSetUsage)
-		// relatingMaterial;
-		// IfcMaterialLayerSet forLayerSet = mlsu.getForLayerSet();
-		// if (forLayerSet != null) {
-		// EList<IfcMaterialLayer> materialLayers =
-		// forLayerSet.getMaterialLayers();
-		// for (IfcMaterialLayer ml : materialLayers) {
-		// IfcMaterial ifcMaterial = ml.getMaterial();
-		// if (ifcMaterial != null) {
-		// String name = ifcMaterial.getName();
-		// String filterSpaces = fitNameForQualifiedName(name);
-		// materialFound = converted.containsKey(filterSpaces);
-		// if (materialFound) {
-		// material = filterSpaces;
-		// }
-		// }
-		// }
-		// }
-		// } else if (found && relatingMaterial instanceof IfcMaterial) {
-		// IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
-		// String name = ifcMaterial.getName();
-		// String filterSpaces = fitNameForQualifiedName(name);
-		// materialFound = converted.containsKey(filterSpaces);
-		// if (materialFound) {
-		// material = filterSpaces;
-		// }
-		// }
-		//
-		// if (!materialFound) {
-		// IfcProductRepresentation representation =
-		// ifcProduct.getRepresentation();
-		// if (representation instanceof IfcProductDefinitionShape) {
-		// IfcProductDefinitionShape pds = (IfcProductDefinitionShape)
-		// representation;
-		// EList<IfcRepresentation> representations = pds.getRepresentations();
-		// for (IfcRepresentation rep : representations) {
-		// if (rep instanceof IfcShapeRepresentation) {
-		// IfcShapeRepresentation sRep = (IfcShapeRepresentation) rep;
-		// EList<IfcRepresentationItem> items = sRep.getItems();
-		// for (IfcRepresentationItem item : items) {
-		// EList<IfcStyledItem> styledByItem = item.getStyledByItem();
-		// for (IfcStyledItem sItem : styledByItem) {
-		// EList<IfcPresentationStyleAssignment> styles = sItem.getStyles();
-		// for (IfcPresentationStyleAssignment sa : styles) {
-		// EList<IfcPresentationStyleSelect> styles2 = sa.getStyles();
-		// for (IfcPresentationStyleSelect pss : styles2) {
-		// if (pss instanceof IfcSurfaceStyle) {
-		// IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
-		// String name = ss.getName();
-		// String filterSpaces = fitNameForQualifiedName(name);
-		// added = true;
-		// if (!converted.containsKey(filterSpaces)) {
-		// converted.put(filterSpaces, new HashSet<String>());
-		// }
-		// converted.get(filterSpaces).add(id);
-		// }
-		// }
-		// }
-		// }
-		// }
-		// }
-		// }
-		// }
-		// }
-		// }
-		//
-		// if (!added) {
-		// }
-
-		if (ifcProductObject instanceof IfcFeatureElementSubtraction) {
-			// Mostly just skips IfcOpeningElements which one would probably not
-			// want to end up in the Collada file.
+		// Mostly just skips IfcOpeningElements which one would probably not want to end up in the Collada file.
+		if (ifcProductObject instanceof IfcFeatureElementSubtraction)
 			return;
-		}
-
+		//
 		GeometryInfo geometryInfo = ifcProductObject.getGeometry();
-		if (geometryInfo != null) {
+		if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 			GeometryData geometryData = geometryInfo.getData();
-			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
+			ByteBuffer indicesBuffer = ByteBuffer.wrap(geometryData.getIndices());
+			indicesBuffer.order(ByteOrder.LITTLE_ENDIAN);
+			// TODO: In Blender (3d modeling tool) and Three.js, normals are ignored in favor of vertex order. The incoming geometry seems to be in order 0 1 2 when it needs to be in 1 0 2. Need more test cases.
+			// Failing order: (0, 1050, 2800), (0, 1050, 3100), (3580, 1050, 3100)
+			// Successful order: (0, 1050, 3100), (0, 1050, 2800), (3580, 1050, 3100)
+			List<Integer> list = new ArrayList<Integer>();
+			while (indicesBuffer.hasRemaining())
+				list.add(indicesBuffer.getInt());
+			indicesBuffer.rewind();
+			for (int i = 0; i < list.size(); i += 3)
+			{
+				Integer first = list.get(i);
+				Integer next = list.get(i + 1);
+				list.set(i, next);
+				list.set(i + 1, first);
+			}
+			// Positions the X or the Y or the Z of (X, Y, Z).
+			ByteBuffer positionsBuffer = ByteBuffer.wrap(geometryData.getVertices());
+			positionsBuffer.order(ByteOrder.LITTLE_ENDIAN);
+			// Do pass to find highest Z for considered objects.
+			while (positionsBuffer.hasRemaining())
+			{
+				float x = positionsBuffer.getFloat();
+				float y = positionsBuffer.getFloat();
+				float z = positionsBuffer.getFloat();
+				// X
+				if (x > highestObserved.x())
+					highestObserved.x(x);
+				else if (x < lowestObserved.x())
+					lowestObserved.x(x);
+				// Y
+				if (y > highestObserved.y())
+					highestObserved.y(y);
+				else if (y < lowestObserved.y())
+					lowestObserved.y(y);
+				// Z
+				if (z > highestObserved.z())
+					highestObserved.z(z);
+				else if (z < lowestObserved.z())
+					lowestObserved.z(z);
+			}
+			positionsBuffer.rewind();
+			//
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
-
-			String id = generateId();
-			if (!converted.containsKey(material)) {
-				converted.put(material, new HashSet<String>());
-			}
-			converted.get(material).add(id);
-
-			String name = "[NO_GUID]";
-			if (ifcProductObject.getGlobalId() != null && ifcProductObject.getGlobalId() != null) {
-				name = ifcProductObject.getGlobalId();
-			}
-
-			int t = geometryInfo.getPrimitiveCount() * 3 * 3;
-
-			out.println("      <geometry id=\"geom-" + id + "\" name=\"" + name + "\">");
-			out.println("                      <mesh>");
-			out.println("                                     <source id=\"positions-" + id + "\" name=\"positions-" + id + "\">");
-			out.print("                                                         <float_array id=\"positions-array-" + id + "\" count=\""
-					+ t + "\">");
-
-			for (int i = 0; i < t; i++) {
-				if (i < t - 1) {
-					out.print(verticesBuffer.getFloat() + " ");
-				} else {
-					out.print(verticesBuffer.getFloat());
-				}
-			}
-
-			out.println("</float_array>");
-			out.println("                                                     <technique_common>");
-			out.println("                                                                     <accessor count=\"" + (geometryInfo.getPrimitiveCount() * 3)
-					+ "\" offset=\"0\" source=\"#positions-array-" + id + "\" stride=\"3\">");
-			out.println("                                                                                    <param name=\"X\" type=\"float\"></param>");
-			out.println("                                                                                    <param name=\"Y\" type=\"float\"></param>");
-			out.println("                                                                                    <param name=\"Z\" type=\"float\"></param>");
-			out.println("                                                                     </accessor>");
-			out.println("                                                     </technique_common>");
-			out.println("                                     </source>");
-
-			out.println("                                     <source id=\"normals-" + id + "\" name=\"normals-" + id + "\">");
-			out.print("                                                         <float_array id=\"normals-array-" + id + "\" count=\""
-					+ t + "\">");
-			
-			for (int i = 0; i < t; i++) {
-				if (i < t - 1) {
-					out.print(normalsBuffer.getFloat() * 1000.0f + " ");
-				} else {
-					out.print(normalsBuffer.getFloat() * 1000.0f);
-				}
-			}
-
-			out.println("</float_array>");
-			out.println("                                                     <technique_common>");
-			out.println("                                                                     <accessor count=\"" + (geometryInfo.getPrimitiveCount() * 3)
-					+ "\" offset=\"0\" source=\"#normals-array-" + id + "\" stride=\"3\">");
-			out.println("                                                                                    <param name=\"X\" type=\"float\"></param>");
-			out.println("                                                                                    <param name=\"Y\" type=\"float\"></param>");
-			out.println("                                                                                    <param name=\"Z\" type=\"float\"></param>");
-			out.println("                                                                     </accessor>");
-			out.println("                                                     </technique_common>");
-			out.println("                                     </source>");
-
-			out.println("                                     <vertices id=\"vertices-" + id + "\">");
-			out.println("                                                     <input semantic=\"POSITION\" source=\"#positions-" + id + "\"/>");
-			out.println("                                                     <input semantic=\"NORMAL\" source=\"#normals-" + id + "\"/>");
-			out.println("                                     </vertices>");
-
-			out.println("                                     <triangles count=\"" + (geometryInfo.getPrimitiveCount()) * 3 + "\" material=\"Material-" + id + "\">");
-			out.println("                                                     <input offset=\"0\" semantic=\"VERTEX\" source=\"#vertices-" + id + "\"/>");
-			out.print("                                                         <p>");
-
-			int count = geometryInfo.getPrimitiveCount() * 3;
-			for (int i = 0; i < count; i += 3) {
-				out.print(i + " ");
-				out.print((i + 2)  + " ");
-				out.print(i + 1);
-				if (i + 3 != count) {
-					out.print(" ");
-				}
-			}
-			out.println("</p>");
-			out.println("                                     </triangles>");
-			out.println("                      </mesh>");
-			out.println("      </geometry>");
+			normalsBuffer.order(ByteOrder.LITTLE_ENDIAN);
+			// Create a geometry identification number in the form of: geom-320450
+			long oid = ifcProductObject.getOid();
+			String id = String.format("geom-%d", oid);
+			// If the material doesn't exist in the converted map, add it.
+			if (!converted.containsKey(material))
+				converted.put(material, new HashSet<IfcProduct>());
+			// Add the current IfcProduct to the appropriate entry in the material map.
+			converted.get(material).add(ifcProductObject);
+			// Name for geometry.
+			String name = (ifcProductObject.getGlobalId() == null) ? "[NO_GUID]" : ifcProductObject.getGlobalId();
+			// Counts.
+			int vertexComponentsTotal = positionsBuffer.capacity() / 4, normalComponentsTotal = normalsBuffer.capacity() / 4;
+			int verticesCount = positionsBuffer.capacity() / 12, normalsCount = normalsBuffer.capacity() / 12, triangleCount = indicesBuffer.capacity() / 12;
+			// Vertex scalars as one long string: 4.05 2 1 55.0 34.01 2
+			String stringPositionScalars = byteBufferToFloatingPointSpaceDelimitedString(positionsBuffer);
+			// Normal scalars as one long string: 4.05 2 1 55.0 34.01 2
+			String stringNormalScalars = byteBufferToFloatingPointSpaceDelimitedString(normalsBuffer); //doubleBufferToFloatingPointSpaceDelimitedString(flippedNormalsBuffer);
+			// Vertex indices as one long string: 1 0 2 0 3 2 5 4 6
+			String stringIndexScalars = listToSpaceDelimitedString(list, intFormat);
+			// Write geometry block for this IfcProduct (i.e. IfcRoof, IfcSlab, etc).
+			out.println(" <geometry id=\"" + id + "\" name=\"" + name + "\">");
+			out.println("  <mesh>");
+			out.println("   <source id=\"positions-" + oid + "\" name=\"positions-" + oid + "\">");
+			out.println("    <float_array id=\"positions-array-" + oid + "\" count=\"" + vertexComponentsTotal + "\">" + stringPositionScalars + "</float_array>");
+			out.println("    <technique_common>");
+			out.println("     <accessor count=\"" + verticesCount + "\" offset=\"0\" source=\"#positions-array-" + oid + "\" stride=\"3\">");
+			out.println("      <param name=\"X\" type=\"float\"></param>");
+			out.println("      <param name=\"Y\" type=\"float\"></param>");
+			out.println("      <param name=\"Z\" type=\"float\"></param>");
+			out.println("     </accessor>");
+			out.println("    </technique_common>");
+			out.println("   </source>");
+			out.println("   <source id=\"normals-" + oid + "\" name=\"normals-" + oid + "\">");
+			out.println("    <float_array id=\"normals-array-" + oid + "\" count=\"" + normalComponentsTotal + "\">" + stringNormalScalars + "</float_array>");
+			out.println("    <technique_common>");
+			out.println("     <accessor count=\"" + normalsCount + "\" offset=\"0\" source=\"#normals-array-" + oid + "\" stride=\"3\">");
+			out.println("      <param name=\"X\" type=\"float\"></param>");
+			out.println("      <param name=\"Y\" type=\"float\"></param>");
+			out.println("      <param name=\"Z\" type=\"float\"></param>");
+			out.println("     </accessor>");
+			out.println("    </technique_common>");
+			out.println("   </source>");
+			out.println("   <vertices id=\"vertices-" + oid + "\">");
+			out.println("    <input semantic=\"POSITION\" source=\"#positions-" + oid + "\"/>");
+			out.println("    <input semantic=\"NORMAL\" source=\"#normals-" + oid + "\"/>");
+			out.println("   </vertices>");
+			out.println("   <triangles count=\"" + triangleCount + "\" material=\"Material-" + oid + "\">");
+			out.println("    <input offset=\"0\" semantic=\"VERTEX\" source=\"#vertices-" + oid + "\"/>");
+			out.println("    <p>" + stringIndexScalars + "</p>");
+			out.println("   </triangles>");
+			out.println("  </mesh>");
+			out.println(" </geometry>");
 		}
+	}
+
+	@SuppressWarnings("unused")
+	private String doubleBufferToFloatingPointSpaceDelimitedString(DoubleBuffer buffer) {
+		// For each scalar in the buffer, turn it into a string, adding it to the overall list.
+		List<String> stringScalars = doubleBufferToStringList(buffer, decimalFormat);
+		// Send back a space-delimited list of the strings: 1 2.45 0
+		return StringUtils.join(stringScalars, " ");
+	}
+
+	private String byteBufferToFloatingPointSpaceDelimitedString(ByteBuffer buffer) {
+		// For each scalar in the buffer, turn it into a string, adding it to the overall list.
+		List<String> stringScalars = floatBufferToStringList(buffer, decimalFormat);
+		// Send back a space-delimited list of the strings: 1 2.45 0
+		return StringUtils.join(stringScalars, " ");
+	}
+
+	@SuppressWarnings("unused")
+	private String byteBufferToIntPointSpaceDelimitedString(ByteBuffer buffer) {
+		// Prepare to store integers as a list of strings.
+		List<String> stringScalars = intBufferToStringList(buffer, intFormat);
+		// Send back a space-delimited list of the strings: 1 2 0
+		return StringUtils.join(stringScalars, " ");
+	}
+
+	private List<String> doubleBufferToStringList(DoubleBuffer buffer, Format formatter) {
+		// Transform the array into a list.
+		List<Float> list = new ArrayList<Float>();
+		while (buffer.hasRemaining())
+			list.add(new Float(buffer.get()));
+		// Get the data as a list of String objects.
+		return listToStringList(list, formatter);
+	}
+
+	private List<String> floatBufferToStringList(ByteBuffer buffer, Format formatter) {
+		// Transform the array into a list.
+		List<Float> list = new ArrayList<Float>();
+		while (buffer.hasRemaining())
+			list.add(new Float(buffer.getFloat()));
+		// Get the data as a list of String objects.
+		return listToStringList(list, formatter);
+	}
+
+	private List<String> intBufferToStringList(ByteBuffer buffer, Format formatter) {
+		List<Integer> list = new ArrayList<Integer>();
+		while (buffer.hasRemaining())
+			list.add(new Integer(buffer.getInt()));
+		// Get the data as a list of String objects.
+		return listToStringList(list, formatter);
+	}
+
+	private String floatArrayToSpaceDelimitedString(float[] matrix) {
+		List<Float> floatMatrix = floatArrayToFloatList(matrix);
+		List<String> list = listToStringList(floatMatrix, decimalFormat);
+		// Get data as space-delimited string: 1.004 5.0 24.00145
+		return StringUtils.join(list, " ");
+	}
+
+	private List<Float> floatArrayToFloatList(float[] array) {
+		List<Float> list = new ArrayList<Float>();
+		for (float f : array)
+			list.add(new Float(f));
+		return list;
+	}
+	
+	private String listToSpaceDelimitedString(List<?> list, Format formatter) {
+		List<String> stringScalars = listToStringList(list, formatter);
+		return StringUtils.join(stringScalars, " ");
+	}
+
+	private List<String> listToStringList(List<?> list, Format formatter) {
+		// Prepare to store floating-points as a list of strings.
+		List<String> stringScalars = new ArrayList<String>();
+		// For each scalar in the buffer, turn it into a string, adding it to the overall list.
+		for (Object scalar : list) {
+			String scalarAsString = formatter.format(scalar);
+			stringScalars.add(scalarAsString);
+		}
+		return stringScalars;
 	}
 
 	private void writeScene(PrintWriter out) {
-		out.println("      <scene>");
-		out.println("                      <instance_visual_scene url=\"#VisualSceneNode\"/>");
-		out.println("      </scene>");
+		out.println(" <scene>");
+		out.println("  <instance_visual_scene url=\"#VisualSceneNode\"/>");
+		out.println(" </scene>");
 	}
-
+	
+	
+	//String leftLightLocationString = String.format("%f %f %f", leftLightLocation.x(), leftLightLocation.y(), leftLightLocation.z());
+	@SuppressWarnings("unused")
 	private void writeVisualScenes(PrintWriter out) {
-		out.println("    <library_visual_scenes>");
-		out.println("        <visual_scene id=\"VisualSceneNode\" name=\"VisualSceneNode\">");
-		out.println("            <node id=\"Camera\" name=\"Camera\">");
-		out.println("                <translate sid=\"translate\">-427.749 333.855 655.017</translate>");
-		out.println("                <rotate sid=\"rotateX\">1 0 0 -22.1954</rotate>");
-		out.println("                <rotate sid=\"rotateY\">0 1 0 -33</rotate>");
-		out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		out.println("                <instance_camera url=\"#PerspCamera\"/>");
-		out.println("            </node>");
-		out.println("            <node id=\"Light\" name=\"Light\">");
-		out.println("                <translate sid=\"translate\">-500 1000 400</translate>");
-		out.println("                <rotate sid=\"rotateX\">1 0 0 0</rotate>");
-		out.println("                <rotate sid=\"rotateY\">0 1 0 0</rotate>");
-		out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		out.println("                <instance_light url=\"#light-lib\"/>");
-		out.println("            </node>");
+		// Open the section.
+		out.println(" <library_visual_scenes>");
+		out.println("  <visual_scene id=\"VisualSceneNode\" name=\"VisualSceneNode\">");
+		// Write each IFC object as a node entry (maps to a displayed object).
 		for (String material : converted.keySet()) {
-			Set<String> ids = converted.get(material);
-			for (String id : ids) {
-				out.println("            <node id=\"node-" + id + "\" name=\"node-" + id + "\">");
-				out.println("                <rotate sid=\"rotateX\">1 0 0 90</rotate>");
-				out.println("                <rotate sid=\"rotateY\">0 1 0 180</rotate>");
-				out.println("                <rotate sid=\"rotateZ\">0 0 1 90</rotate>");
-				out.println("                <instance_geometry url=\"#geom-" + id + "\">");
-				out.println("                    <bind_material>");
-				out.println("                        <technique_common>");
-				out.println("                            <instance_material symbol=\"Material-" + id + "\" target=\"#" + material + "Material\"/>");
-				out.println("                        </technique_common>");
-				out.println("                    </bind_material>");
-				out.println("                </instance_geometry>");
-				out.println("            </node>");
+			Set<IfcProduct> ids = converted.get(material);
+			for (IfcProduct product : ids) {
+				GeometryInfo geometryInfo = product.getGeometry();
+				if (geometryInfo != null && geometryInfo.getTransformation() != null) {
+					out.println("   <node id=\"node-" + product.getOid() + "\" name=\"node-" + product.getOid() + "\">");
+					printMatrix(out, geometryInfo);
+					out.println("    <instance_geometry url=\"#geom-" + product.getOid() + "\">");
+					out.println("     <bind_material>");
+					out.println("      <technique_common>");
+					out.println("       <instance_material symbol=\"Material-" + product.getOid() + "\" target=\"#" + material + "Material\"/>");
+					out.println("      </technique_common>");
+					out.println("     </bind_material>");
+					out.println("    </instance_geometry>");
+					out.println("   </node>");
+				}
 			}
 		}
-		// out.println("            <node id=\"testCamera\" name=\"testCamera\">");
-		// out.println("                <translate sid=\"translate\">-427.749 333.855 655.017</translate>");
-		// out.println("                <rotate sid=\"rotateY\">0 1 0 -33</rotate>");
-		// out.println("                <rotate sid=\"rotateX\">1 0 0 -22.1954</rotate>");
-		// out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		// out.println("                <instance_camera url=\"#testCameraShape\"/>");
-		// out.println("            </node>");
-		// out.println("            <node id=\"pointLight1\" name=\"pointLight1\">");
-		// out.println("                <translate sid=\"translate\">3 4 10</translate>");
-		// out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		// out.println("                <rotate sid=\"rotateY\">0 1 0 0</rotate>");
-		// out.println("                <rotate sid=\"rotateX\">1 0 0 0</rotate>");
-		// out.println("                <instance_light url=\"#pointLightShape1-lib\"/>");
-		// out.println("            </node>");
-		out.println("        </visual_scene>");
-		out.println("    </library_visual_scenes>");
+		// Create convenience variables to simplify the perceived complexity of the equations.
+		float lx = (float) lowestObserved.x(), ly = (float) lowestObserved.y(), lz = (float) lowestObserved.z();
+		float hx = (float) highestObserved.x(), hy = (float) highestObserved.y(), hz = (float) highestObserved.z();
+		// Derive useful information from the observed boundary of the IFC objects.
+		Vector3d delta = new Vector3d(hx, hy, hz);
+		delta.sub(lowestObserved);
+		// Move the light left (-x) and back (-y) and up (+z) at 20% of the size of the observed objects. 
+		Vector3d leftLightLocation = new Vector3d(lx - (0.2 * delta.x()), ly - (0.2 * delta.y()), hz + (0.2 * delta.z()));
+		float x = (float) leftLightLocation.x(), y = (float) leftLightLocation.y(), z = (float) leftLightLocation.z();
+		// Move left (-x) and back (-y) at 500% and up (+z) at 200% of the light (so that the objects are in sensing range of the camera). 
+		Vector3d leftCameraLocation = new Vector3d(5 * x, 5 * y, 2 * z);
+		float cx = (float) leftCameraLocation.x(), cy = (float) leftCameraLocation.y(), cz = (float) leftCameraLocation.z();
+		// TODO: Three.js doesn't seem to care about the camera and the light.
+		// Include the camera.
+		out.println("   <node id=\"Camera\" name=\"Camera\">");
+		out.println("    <translate>"+ cx + " " + cy + " " + cz + "</translate>");
+		out.println("    <rotate>"+ 0f + " " + 0f + " " + 1f + " " + -45f + "</rotate>");
+		out.println("    <rotate>"+ 1f + " " + 0f + " " + 0f + " " + 45f + "</rotate>");
+		out.println("    <instance_camera url=\"#PerspCamera\"/>");
+		out.println("   </node>");
+		// Include the light.
+		out.println("   <node id=\"Light\" name=\"Light\">");
+		out.println("    <translate>"+ x + " " + y + " " + z + "</translate>");
+		out.println("    <rotate>"+ 0f + " " + 0f + " " + 1f + " " + 225f + "</rotate>");
+		out.println("    <rotate>"+ 0f + " " + 1f + " " + 0f + " " + 45f + "</rotate>");
+		out.println("    <instance_light url=\"#light-lib\"/>");
+		out.println("   </node>");
+		// Close the section.
+		out.println("  </visual_scene>");
+		out.println(" </library_visual_scenes>");
+	}
+
+	private void printMatrix(PrintWriter out, GeometryInfo geometryInfo) {
+		ByteBuffer transformation = ByteBuffer.wrap(geometryInfo.getTransformation());
+		transformation.order(ByteOrder.LITTLE_ENDIAN);
+		FloatBuffer floatBuffer = transformation.asFloatBuffer();
+		// Prepare to create the transform matrix.
+		float[] matrix = new float[16];
+		// Add the first 16 values of the buffer.
+		for (int i = 0; i < matrix.length; i++)
+			matrix[i] = floatBuffer.get();
+		// Switch from column-major (x.x ... x.y ... x.z ... 0 ...) to row-major orientation (x.x x.y x.z 0 ...)?
+		matrix = Matrix.changeOrientation(matrix);
+		// List all 16 elements of the matrix as a single space-delimited String object.
+		out.println("    <matrix>" + floatArrayToSpaceDelimitedString(matrix) + "</matrix>");
 	}
 
 	private void writeEffects(PrintWriter out) {
-		out.println("      <library_effects>");
-		for (Convertor<? extends IfcProduct> convertor : convertors.values()) {
+		out.println(" <library_effects>");
+		for (Convertor<? extends IfcProduct> convertor : convertors.values())
 			writeEffect(out, convertor.getMaterialName(null), convertor.getColors(), convertor.getOpacity());
-		}
-		// List<IfcSurfaceStyle> listSurfaceStyles =
-		// model.getAll(IfcSurfaceStyle.class);
-		// for (IfcSurfaceStyle ss : listSurfaceStyles) {
-		// EList<IfcSurfaceStyleElementSelect> styles = ss.getStyles();
-		// for (IfcSurfaceStyleElementSelect style : styles) {
-		// if (style instanceof IfcSurfaceStyleRendering) {
-		// IfcSurfaceStyleRendering ssr = (IfcSurfaceStyleRendering) style;
-		// IfcColourRgb colour = null;
-		// IfcColourOrFactor surfaceColour = ssr.getSurfaceColour();
-		// if (surfaceColour instanceof IfcColourRgb) {
-		// colour = (IfcColourRgb) surfaceColour;
-		// }
-		// String name = fitNameForQualifiedName(ss.getName());
-		// writeEffect(out, name, new double[] { colour.getRed(),
-		// colour.getGreen(), colour.getBlue() }, (ssr.isSetTransparency() ?
-		// (ssr.getTransparency()) : 1.0f));
-		// break;
-		// }
-		// }
-		// }
-		out.println("    </library_effects>");
+		out.println(" </library_effects>");
 	}
 
-	// private String fitNameForQualifiedName(String name) {
-	// if (name == null) {
-	// return "";
-	// }
-	// StringBuilder builder = new StringBuilder(name);
-	// int indexOfSpace = builder.indexOf(" ");
-	// while (indexOfSpace >= 0) {
-	// builder.deleteCharAt(indexOfSpace);
-	// indexOfSpace = builder.indexOf(" ");
-	// }
-	// indexOfSpace = builder.indexOf(",");
-	// while (indexOfSpace >= 0) {
-	// builder.setCharAt(indexOfSpace, '_');
-	// indexOfSpace = builder.indexOf(",");
-	// }
-	// indexOfSpace = builder.indexOf("/");
-	// while (indexOfSpace >= 0) {
-	// builder.setCharAt(indexOfSpace, '_');
-	// indexOfSpace = builder.indexOf("/");
-	// }
-	// indexOfSpace = builder.indexOf("*");
-	// while (indexOfSpace >= 0) {
-	// builder.setCharAt(indexOfSpace, '_');
-	// indexOfSpace = builder.indexOf("/");
-	// }
-	// return builder.toString();
-	// }
-
 	private void writeEffect(PrintWriter out, String name, double[] colors, double transparency) {
-		out.println("        <effect id=\"" + name + "-fx\">");
-		out.println("            <profile_COMMON>");
-		out.println("                <technique sid=\"common\">");
-		out.println("                    <phong>");
-		out.println("                        <emission>");
-		out.println("                            <color>0 0 0 1</color>");
-		out.println("                        </emission>");
-		out.println("                        <ambient>");
-		out.println("                            <color>0 0 0 1</color>");
-		out.println("                        </ambient>");
-		out.println("                        <diffuse>");
-		out.println("                            <color>" + colors[0] + " " + colors[1] + " " + colors[2] + " " + transparency + "</color>");
-		out.println("                        </diffuse>");
-		out.println("                        <specular>");
-		out.println("                            <color>0.5 0.5 0.5 1</color>");
-		out.println("                        </specular>");
-		out.println("                        <shininess>");
-		out.println("                            <float>16</float>");
-		out.println("                        </shininess>");
-		out.println("                        <reflective>");
-		out.println("                            <color>0 0 0 1</color>");
-		out.println("                        </reflective>");
-		out.println("                        <reflectivity>");
-		out.println("                            <float>0.5</float>");
-		out.println("                        </reflectivity>");
-//		out.println("                        <transparent>");
-//		out.println("                            <color>" + transparency + " " + transparency + " " + transparency + " " + 1 + "</color>");
-//		out.println("                        </transparent>");
-//		out.println("                        <transparency>");
-//		out.println("                            <float>" + transparency + "</float>");
-//		out.println("                        </transparency>");
-		out.println("                        <index_of_refraction>");
-		out.println("                            <float>0</float>");
-		out.println("                        </index_of_refraction>");
-		out.println("                    </phong>");
-		out.println("                </technique>");
-		out.println("            </profile_COMMON>");
-		out.println("        </effect>");
+		out.println("  <effect id=\"" + name + "-fx\">");
+		out.println("   <profile_COMMON>");
+		out.println("    <technique sid=\"common\">");
+		out.println("     <phong>");
+		out.println("      <emission>");
+		out.println("       <color>0 0 0 1</color>");
+		out.println("      </emission>");
+		out.println("      <ambient>");
+		out.println("       <color>0 0 0 1</color>");
+		out.println("      </ambient>");
+		out.println("      <diffuse>");
+		out.println("       <color>" + colors[0] + " " + colors[1] + " " + colors[2] + " " + transparency + "</color>");
+		out.println("      </diffuse>");
+		out.println("      <specular>");
+		out.println("       <color>0.5 0.5 0.5 1</color>");
+		out.println("      </specular>");
+		out.println("      <shininess>");
+		out.println("       <float>16</float>");
+		out.println("      </shininess>");
+		out.println("      <reflective>");
+		out.println("       <color>0 0 0 1</color>");
+		out.println("      </reflective>");
+		out.println("      <reflectivity>");
+		out.println("       <float>0.5</float>");
+		out.println("      </reflectivity>");
+		out.println("      <index_of_refraction>");
+		out.println("       <float>0</float>");
+		out.println("      </index_of_refraction>");
+		out.println("     </phong>");
+		out.println("    </technique>");
+		out.println("   </profile_COMMON>");
+		out.println("  </effect>");
 	}
 
 	private void writeLights(PrintWriter out) {
-		out.println("    <library_lights>");
-		out.println("        <light id=\"light-lib\" name=\"light\">");
-		out.println("            <technique_common>");
-		out.println("                <point>");
-		out.println("                    <color>1 1 1</color>");
-		out.println("                    <constant_attenuation>1</constant_attenuation>");
-		out.println("                    <linear_attenuation>0</linear_attenuation>");
-		out.println("                    <quadratic_attenuation>0</quadratic_attenuation>");
-		out.println("                </point>");
-		out.println("            </technique_common>");
-		out.println("            <technique profile=\"MAX3D\">");
-		out.println("                <intensity>1.000000</intensity>");
-		out.println("            </technique>");
-		out.println("        </light>");
-		out.println("        <light id=\"pointLightShape1-lib\" name=\"pointLightShape1\">");
-		out.println("            <technique_common>");
-		out.println("                <point>");
-		out.println("                    <color>1 1 1</color>");
-		out.println("                    <constant_attenuation>1</constant_attenuation>");
-		out.println("                    <linear_attenuation>0</linear_attenuation>");
-		out.println("                    <quadratic_attenuation>0</quadratic_attenuation>");
-		out.println("                </point>");
-		out.println("            </technique_common>");
-		out.println("        </light>");
-		out.println("    </library_lights>");
+		// TODO: Lights defined in library_lights of COLLADA file must be used in some visual_scene to prevent crashes with collada2gltf (stand-alone OpenGL Transmission Format exporter).
+		out.println(" <library_lights>");
+		out.println("  <light id=\"light-lib\" name=\"light\">");
+		out.println("   <technique_common>");
+		out.println("    <directional>");
+		out.println("     <color>1 1 1</color>");
+		out.println("    </directional>");
+		out.println("   </technique_common>");
+		out.println("   <technique profile=\"MAX3D\">");
+		out.println("    <intensity>1.000000</intensity>");
+		out.println("   </technique>");
+		out.println("  </light>");
+		out.println(" </library_lights>");
 	}
 
 	private void writeCameras(PrintWriter out) {
-		out.println("    <library_cameras>");
-		out.println("        <camera id=\"PerspCamera\" name=\"PerspCamera\">");
-		out.println("            <optics>");
-		out.println("                <technique_common>");
-		out.println("                    <perspective>");
-		out.println("                        <yfov>37.8493</yfov>");
-		out.println("                        <aspect_ratio>1</aspect_ratio>");
-		out.println("                        <znear>10</znear>");
-		out.println("                        <zfar>1000</zfar>");
-		out.println("                    </perspective>");
-		out.println("                </technique_common>");
-		out.println("            </optics>");
-		out.println("        </camera>");
-		out.println("        <camera id=\"testCameraShape\" name=\"testCameraShape\">");
-		out.println("            <optics>");
-		out.println("                <technique_common>");
-		out.println("                    <perspective>");
-		out.println("                        <yfov>37.8501</yfov>");
-		out.println("                        <aspect_ratio>1</aspect_ratio>");
-		out.println("                        <znear>0.01</znear>");
-		out.println("                        <zfar>1000</zfar>");
-		out.println("                    </perspective>");
-		out.println("                </technique_common>");
-		out.println("            </optics>");
-		out.println("        </camera>");
-		out.println("    </library_cameras>");
+		out.println(" <library_cameras>");
+		out.println("  <camera id=\"PerspCamera\" name=\"PerspCamera\">");
+		out.println("   <optics>");
+		out.println("    <technique_common>");
+		out.println("     <perspective>");
+		out.println("      <yfov>37.8493</yfov>");
+		out.println("      <aspect_ratio>1</aspect_ratio>");
+		out.println("      <znear>10</znear>");
+		out.println("      <zfar>1000</zfar>");
+		out.println("     </perspective>");
+		out.println("    </technique_common>");
+		out.println("   </optics>");
+		out.println("  </camera>");
+		out.println("  <camera id=\"testCameraShape\" name=\"testCameraShape\">");
+		out.println("   <optics>");
+		out.println("    <technique_common>");
+		out.println("     <perspective>");
+		out.println("      <yfov>37.8501</yfov>");
+		out.println("      <aspect_ratio>1</aspect_ratio>");
+		out.println("      <znear>0.01</znear>");
+		out.println("      <zfar>1000</zfar>");
+		out.println("     </perspective>");
+		out.println("    </technique_common>");
+		out.println("   </optics>");
+		out.println("  </camera>");
+		out.println(" </library_cameras>");
 	}
 
 	private void writeMaterials(PrintWriter out) {
-		out.println("      <library_materials>");
-		for (Convertor<? extends IfcProduct> convertor : convertors.values()) {
+		out.println(" <library_materials>");
+		for (Convertor<? extends IfcProduct> convertor : convertors.values())
 			writeMaterial(out, convertor.getMaterialName(null));
-		}
-		out.println("      </library_materials>");
+		out.println(" </library_materials>");
 	}
 
 	private void writeMaterial(PrintWriter out, String materialName) {
-		out.println("                      <material id=\"" + materialName + "Material\" name=\"" + materialName + "Material\">");
-		out.println("                                     <instance_effect url=\"#" + materialName + "-fx\"/>");
-		out.println("                      </material>");
+		out.println("  <material id=\"" + materialName + "Material\" name=\"" + materialName + "Material\">");
+		out.println("   <instance_effect url=\"#" + materialName + "-fx\"/>");
+		out.println("  </material>");
 	}
 
 	private static SIPrefix getLengthUnitPrefix(IfcModelInterface model) {

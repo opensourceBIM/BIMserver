@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -42,6 +42,7 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 	private RevisionSummaryContainer revisionSummaryContainerRelations;
 	private RevisionSummaryContainer revisionSummaryContainerPrimitives;
 	private RevisionSummaryContainer revisionSummaryContainerOther;
+	
 	private Map<EClass, Integer> map = new TreeMap<EClass, Integer>(new Comparator<EClass>() {
 		@Override
 		public int compare(EClass o1, EClass o2) {
@@ -95,6 +96,7 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 				subMap = revisionSummaryContainerOther;
 			}
 			RevisionSummaryType createRevisionSummaryType = StoreFactory.eINSTANCE.createRevisionSummaryType();
+			createRevisionSummaryType.setSchema(eClass.getEPackage().getName());
 			createRevisionSummaryType.setCount(map.get(eClass));
 			createRevisionSummaryType.setName(eClass.getName());
 			subMap.getTypes().add(createRevisionSummaryType);
@@ -102,13 +104,13 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 		return revisionSummary;
 	}
 
-	private void merge(RevisionSummary add) {
+	private void merge(RevisionSummary add) throws BimserverDatabaseException {
 		for (RevisionSummaryContainer summaryContainer : add.getList()) {
 			for (RevisionSummaryType revisionSummaryType : summaryContainer.getTypes()) {
-				if (!map.containsKey(getDatabaseSession().getEClassForName(revisionSummaryType.getName()))) {
-					map.put(getDatabaseSession().getEClassForName(revisionSummaryType.getName()), revisionSummaryType.getCount());
+				if (!map.containsKey(getDatabaseSession().getEClass(revisionSummaryType.getSchema(), revisionSummaryType.getName()))) {
+					map.put(getDatabaseSession().getEClass(revisionSummaryType.getSchema(), revisionSummaryType.getName()), revisionSummaryType.getCount());
 				} else {
-					map.put(getDatabaseSession().getEClassForName(revisionSummaryType.getName()), map.get(getDatabaseSession().getEClassForName(revisionSummaryType.getName())) + revisionSummaryType.getCount());
+					map.put(getDatabaseSession().getEClass(revisionSummaryType.getSchema(), revisionSummaryType.getName()), map.get(getDatabaseSession().getEClass(revisionSummaryType.getSchema(), revisionSummaryType.getName())) + revisionSummaryType.getCount());
 				}
 			}
 		}

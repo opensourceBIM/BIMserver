@@ -4,23 +4,36 @@ var Settings = {
 			callback(data.servers);
 		}).error(function(error) {console.log(error); });
 	},
+	createStartPage: function(container, main){
+		main.pageChanger.changePage($(".serverinfoLink"), "start.html", function(){
+			return new Start($(this), main);
+		});
+	},
 	getStaticServerAddress: function(callback){
 		$.getJSON("getbimserveraddress", function(data){
 			callback(data.address);
 		});
 	},
+	useBimSurfer: function(){
+		return false;
+	},
+	getTitle: function(){
+		return "BIMserver Admin GUI";
+	},
 	usableBimServerVersion: function(version) {
-		return version.major == 1 && version.minor == 2 && version.revision == 1;
+		return (version.major == 1 && version.minor == 3) || (version.major == 1 && version.minor == 4);
 	},
 	getMenuItems: function(){
 		return [
-		        "serversettingsLink",
-		        "usersettingsLink",
-		        "serverinfoLink",
-		        "gettingStartedLink"
+	        "serversettingsLink",
+	        "gettingStartedLink"
 		];
 	},
 	allowBimServerAddress: function() {
 		return false;
-	}
+	},
+	getPlugins: function(){
+		return {
+		};
+	},
 }

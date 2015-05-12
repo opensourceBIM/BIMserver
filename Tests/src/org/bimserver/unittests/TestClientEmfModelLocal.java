@@ -1,7 +1,7 @@
 package org.bimserver.unittests;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -29,6 +29,9 @@ import org.bimserver.BimServer;
 import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.step.serializer.Ifc4StepSerializer;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
@@ -63,7 +66,7 @@ public class TestClientEmfModelLocal {
 			}
 
 			LocalDevBimServerStarter localDevBimWebServerStarter = new LocalDevBimServerStarter();
-			localDevBimWebServerStarter.start(1, "localhost", 8082, 8085);
+			localDevBimWebServerStarter.start(1, "localhost", 8082, 8085, null);
 			bimServer = localDevBimWebServerStarter.getBimServer();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -77,7 +80,7 @@ public class TestClientEmfModelLocal {
 
 	private SProject createProject() throws PublicInterfaceNotFoundException {
 		try {
-			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("Project " + new Random().nextInt());
+			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("Project " + new Random().nextInt(), "ifc4");
 			return project;
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -89,7 +92,7 @@ public class TestClientEmfModelLocal {
 	public void test() {
 		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		protocolBuffersMetaData.load(bimServer.getServicesMap(), ProtocolBuffersBimServerClientFactory.class);
-		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData);
+		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData, null);
 		UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 		try {
 			bimServerClient = factory.create(usernamePasswordAuthenticationInfo);
@@ -103,34 +106,38 @@ public class TestClientEmfModelLocal {
 			e.printStackTrace();
 		}
 		try {
-			IfcModelInterface model = bimServerClient.newModel(createProject());
+			IfcModelInterface model = bimServerClient.newModel(createProject(), false);
 			SProject project = createProject();
 			CreateFromScratch createFromScratch = new CreateFromScratch();
 			createFromScratch.createIfcProject(model);
 			long roid = model.commit("tralala");
 
-			dumpToFile(project.getOid(), roid);
+			dumpToFile(project, roid);
 			
 			createFromScratch.createWall(model);
 			roid = model.commit("test");
 			
-			dumpToFile(project.getOid(), roid);
+			dumpToFile(project, roid);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}
 
-	private void dumpToFile(long poid, long roid) throws SerializerException {
+	private void dumpToFile(SProject project, long roid) throws SerializerException {
 		try {
-			IfcModelInterface model = bimServerClient.getModel(poid, roid, false);
-			IfcStepSerializer serializer = new IfcStepSerializer(new PluginConfiguration());
-			serializer.init(model, null, bimServer.getPluginManager(), null, false);
+			IfcModelInterface model = bimServerClient.getModel(project, roid, false, false);
+			IfcStepSerializer serializer = new Ifc4StepSerializer(new PluginConfiguration());
+			
+			MetaDataManager metaDataManager = new MetaDataManager(bimServer.getPluginManager());
+			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
+			
+			serializer.init(model, null, bimServer.getPluginManager(), null, packageMetaData, false);
 			File output = new File("output");
 			if (!output.exists()) {
 				output.mkdir();
 			}
-			serializer.writeToFile(new File(output, roid + ".ifc"));
+			serializer.writeToFile(new File(output, roid + ".ifc"), null);
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		} catch (UserException e) {

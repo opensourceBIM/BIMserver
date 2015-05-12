@@ -1,7 +1,7 @@
 package org.bimserver.notifications;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,7 +21,7 @@ import org.bimserver.interfaces.objects.SProgressTopicType;
 
 public class ProgressOnProjectTopic extends ProgressTopic {
 
-	public ProgressOnProjectTopic(ProgressOnProjectTopicKey key, long poid, SProgressTopicType type, String description) {
-		super(key, type, description);
+	public ProgressOnProjectTopic(NotificationsManager notificationsManager, ProgressOnProjectTopicKey key, long poid, SProgressTopicType type, String description) {
+		super(notificationsManager, key, type, description);
 	}
 }

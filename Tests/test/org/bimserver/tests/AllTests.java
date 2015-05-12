@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
+import org.bimserver.client.DirectBimServerClientFactory;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
@@ -76,7 +77,6 @@ public class AllTests {
 
 	private static void setup() {
 		// Create a config
-		BimServerConfig config = new BimServerConfig();
 		File home = new File("home");
 		
 		// Remove the home dir if it's there
@@ -88,17 +88,20 @@ public class AllTests {
 			}
 		}
 		
+		BimServerConfig config = new BimServerConfig();
 		config.setHomeDir(home);
 		config.setStartEmbeddedWebServer(true);
 		config.setPort(8080);
-		config.setInitialProtocolBuffersPort(8020);
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		config.setClassPath(System.getProperty("java.class.path"));
 		
 		bimServer = new BimServer(config);
 		try {
+			// CHANGE THESE TO MATCH YOUR CONFIGURATION
+			File[] pluginDirectories = new File[]{new File("E:\\Git\\BIMserverMaster2")};
+			
 			// Load plugins
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."));
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 
 			// Start it
 			bimServer.start();
@@ -123,7 +126,8 @@ public class AllTests {
 
 	public static BimServerClientFactory getFactory() {
 		if (factory == null) {
-			factory = new JsonBimServerClientFactory("http://localhost:8080");
+			factory = bimServer.getBimServerClientFactory();
+//			factory = new JsonBimServerClientFactory(bimServer.getMetaDataManager(), "http://localhost:8080");
 //			factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
 		}
 		return factory;

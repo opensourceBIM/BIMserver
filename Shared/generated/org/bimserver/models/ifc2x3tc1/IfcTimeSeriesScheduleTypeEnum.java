@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -213,7 +213,8 @@ public enum IfcTimeSeriesScheduleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTimeSeriesScheduleTypeEnum[] VALUES_ARRAY = new IfcTimeSeriesScheduleTypeEnum[] { NULL, NOTDEFINED, WEEKLY, MONTHLY, DAILY, USERDEFINED, ANNUAL, };
+	private static final IfcTimeSeriesScheduleTypeEnum[] VALUES_ARRAY = new IfcTimeSeriesScheduleTypeEnum[] { NULL, NOTDEFINED, WEEKLY, MONTHLY, DAILY,
+			USERDEFINED, ANNUAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Time Series Schedule Type Enum</b></em>' enumerators.

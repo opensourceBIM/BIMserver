@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.bimsie1;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -80,7 +80,8 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	@WebMethod(action = "createObject")
 	Long createObject(
 		@WebParam(name = "tid", partName = "createObject.tid") Long tid,
-		@WebParam(name = "className", partName = "createObject.className") String className) throws ServerException, UserException;
+		@WebParam(name = "className", partName = "createObject.className") String className,
+		@WebParam(name = "generateGuid", partName = "createObject.generateGuid") Boolean generateGuid) throws ServerException, UserException;
 	
 	/**
 	 * Remove an object
@@ -882,6 +883,22 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 		@WebParam(name = "index", partName = "removeReference.index") Integer index) throws ServerException, UserException;
 
 	/**
+	 * Remove a single reference by it's oid
+	 * 
+	 * @param tid The TransactionID
+	 * @param oid ObjectID of the object to change
+	 * @param referenceName Name of the reference from which to remove an item
+	 * @param referencedOid Index of the item to remove
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "removeReferenceByOid")
+	void removeReferenceByOid(
+			@WebParam(name = "tid", partName = "removeReference.tid") Long tid,
+			@WebParam(name = "oid", partName = "removeReference.oid") Long oid, 
+			@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
+			@WebParam(name = "referencedOid", partName = "removeReference.referencedOid") Long referencedOid) throws ServerException, UserException;
+
+	/**
 	 * Remove all references (clear the list of references) of the given object + reference
 	 * 
 	 * @param tid The TransactionID
@@ -932,6 +949,7 @@ public interface Bimsie1LowLevelInterface extends PublicInterface {
 	@WebMethod(action = "getDataObjectsByType")
 	List<SDataObject> getDataObjectsByType(
 		@WebParam(name = "roid", partName = "getDataObjectsByType.roid") Long roid,
+		@WebParam(name = "packageName", partName = "getDataObjectsByType.packageName") String packageName,
 		@WebParam(name = "className", partName = "getDataObjectsByType.className") String className,
 		@WebParam(name = "flat", partName = "getDataObjectsByType.flat") Boolean flat) throws ServerException, UserException;
 

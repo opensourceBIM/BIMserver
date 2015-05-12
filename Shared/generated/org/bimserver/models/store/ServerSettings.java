@@ -44,6 +44,15 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getWebModules <em>Web Modules</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getWebModule <em>Web Module</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getSessionTimeOutSeconds <em>Session Time Out Seconds</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpUsername <em>Smtp Username</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpPassword <em>Smtp Password</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpPort <em>Smtp Port</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpProtocol <em>Smtp Protocol</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#isReuseGeometry <em>Reuse Geometry</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getRenderEngineProcesses <em>Render Engine Processes</em>}</li>
  * </ul>
  * </p>
  *
@@ -476,5 +485,246 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setServiceRepositoryUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Send Email On New Revision</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Send Email On New Revision</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Send Email On New Revision</em>' attribute.
+	 * @see #setSendEmailOnNewRevision(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SendEmailOnNewRevision()
+	 * @model
+	 * @generated
+	 */
+	boolean isSendEmailOnNewRevision();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Send Email On New Revision</em>' attribute.
+	 * @see #isSendEmailOnNewRevision()
+	 * @generated
+	 */
+	void setSendEmailOnNewRevision(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Session Time Out Seconds</b></em>' attribute.
+	 * The default value is <code>"2592000"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Session Time Out Seconds</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Session Time Out Seconds</em>' attribute.
+	 * @see #setSessionTimeOutSeconds(int)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SessionTimeOutSeconds()
+	 * @model default="2592000"
+	 * @generated
+	 */
+	int getSessionTimeOutSeconds();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getSessionTimeOutSeconds <em>Session Time Out Seconds</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Session Time Out Seconds</em>' attribute.
+	 * @see #getSessionTimeOutSeconds()
+	 * @generated
+	 */
+	void setSessionTimeOutSeconds(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Smtp Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Smtp Username</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Smtp Username</em>' attribute.
+	 * @see #setSmtpUsername(String)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SmtpUsername()
+	 * @model
+	 * @generated
+	 */
+	String getSmtpUsername();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getSmtpUsername <em>Smtp Username</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Smtp Username</em>' attribute.
+	 * @see #getSmtpUsername()
+	 * @generated
+	 */
+	void setSmtpUsername(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Smtp Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Smtp Password</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Smtp Password</em>' attribute.
+	 * @see #setSmtpPassword(String)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SmtpPassword()
+	 * @model
+	 * @generated
+	 */
+	String getSmtpPassword();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getSmtpPassword <em>Smtp Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Smtp Password</em>' attribute.
+	 * @see #getSmtpPassword()
+	 * @generated
+	 */
+	void setSmtpPassword(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Smtp Port</b></em>' attribute.
+	 * The default value is <code>"25"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Smtp Port</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Smtp Port</em>' attribute.
+	 * @see #setSmtpPort(int)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SmtpPort()
+	 * @model default="25"
+	 * @generated
+	 */
+	int getSmtpPort();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getSmtpPort <em>Smtp Port</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Smtp Port</em>' attribute.
+	 * @see #getSmtpPort()
+	 * @generated
+	 */
+	void setSmtpPort(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Smtp Protocol</b></em>' attribute.
+	 * The default value is <code>"SMTP"</code>.
+	 * The literals are from the enumeration {@link org.bimserver.models.store.SmtpProtocol}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Smtp Protocol</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Smtp Protocol</em>' attribute.
+	 * @see org.bimserver.models.store.SmtpProtocol
+	 * @see #setSmtpProtocol(SmtpProtocol)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_SmtpProtocol()
+	 * @model default="SMTP"
+	 * @generated
+	 */
+	SmtpProtocol getSmtpProtocol();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getSmtpProtocol <em>Smtp Protocol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Smtp Protocol</em>' attribute.
+	 * @see org.bimserver.models.store.SmtpProtocol
+	 * @see #getSmtpProtocol()
+	 * @generated
+	 */
+	void setSmtpProtocol(SmtpProtocol value);
+
+	/**
+	 * Returns the value of the '<em><b>Reuse Geometry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Reuse Geometry</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reuse Geometry</em>' attribute.
+	 * @see #setReuseGeometry(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_ReuseGeometry()
+	 * @model
+	 * @generated
+	 */
+	boolean isReuseGeometry();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#isReuseGeometry <em>Reuse Geometry</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reuse Geometry</em>' attribute.
+	 * @see #isReuseGeometry()
+	 * @generated
+	 */
+	void setReuseGeometry(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Allow Create Validated User</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Allow Create Validated User</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Allow Create Validated User</em>' attribute.
+	 * @see #setAllowCreateValidatedUser(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_AllowCreateValidatedUser()
+	 * @model
+	 * @generated
+	 */
+	boolean isAllowCreateValidatedUser();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Allow Create Validated User</em>' attribute.
+	 * @see #isAllowCreateValidatedUser()
+	 * @generated
+	 */
+	void setAllowCreateValidatedUser(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Render Engine Processes</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Render Engine Processes</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Render Engine Processes</em>' attribute.
+	 * @see #setRenderEngineProcesses(int)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_RenderEngineProcesses()
+	 * @model default="1"
+	 * @generated
+	 */
+	int getRenderEngineProcesses();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getRenderEngineProcesses <em>Render Engine Processes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Render Engine Processes</em>' attribute.
+	 * @see #getRenderEngineProcesses()
+	 * @generated
+	 */
+	void setRenderEngineProcesses(int value);
 
 } // ServerSettings

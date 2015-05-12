@@ -1,7 +1,7 @@
 package nl.tue.buildingsmart.emf;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -60,7 +60,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -80,7 +79,7 @@ public class Express2EMF {
 	private final Map<String, EDataType> simpleTypeReplacementMap = new HashMap<String, EDataType>();
 	private EEnum tristate;
 
-	public Express2EMF(File schemaFileName, String modelName) {
+	public Express2EMF(File schemaFileName, String modelName, String nsUri) {
 		schema = new SchemaLoader(schemaFileName.getAbsolutePath()).getSchema();
 		eFactory = EcoreFactory.eINSTANCE;
 		ePackage = EcorePackage.eINSTANCE;
@@ -92,7 +91,7 @@ public class Express2EMF {
 		}
 		schemaPack.setName(modelName);
 		schemaPack.setNsPrefix("iai");
-		schemaPack.setNsURI("http:///buildingsmart.ifc.ecore");
+		schemaPack.setNsURI(nsUri);
 
 		createTristate();
 
@@ -108,30 +107,7 @@ public class Express2EMF {
 		EClass ifcBooleanClass = (EClass) schemaPack.getEClassifier("IfcBoolean");
 		ifcBooleanClass.getESuperTypes().add((EClass) schemaPack.getEClassifier("IfcValue"));
 		doRealDerivedAttributes();
-		updateDerivedAttributes();
 		clean();
-	}
-
-	private void updateDerivedAttributes() {
-		for (EClassifier eClassifier : schemaPack.getEClassifiers()) {
-			if (eClassifier instanceof EClass) {
-				EClass eClass = (EClass)eClassifier;
-				EntityDefinition entityDefinition = schema.getEntityBN(eClass.getName());
-				if (entityDefinition != null) {
-					for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
-						if (entityDefinition.isDerived(eStructuralFeature.getName())) {
-							eStructuralFeature.getEAnnotations().add(createDerivedAnnotation());
-						}
-					}
-				}
-			}
-		}
-	}
-
-	private EAnnotation createDerivedAnnotation() {
-		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-		eAnnotation.setSource("derived");
-		return eAnnotation;
 	}
 
 	private void addHackedTypes() {
@@ -201,7 +177,7 @@ public class Express2EMF {
 				EClass eClass = (EClass) schemaPack.getEClassifier(entityDefinition.getName());
 				// EStructuralFeature derivedAttribute =
 				// eFactory.createEReference();
-				if (attributeName.getType() != null) {
+				if (attributeName.getType() != null && !attributeName.hasSuper()) {
 					// if (attributeName.getType() instanceof EntityDefinition)
 					// {
 					// derivedAttribute.setEType(schemaPack.getEClassifier(((EntityDefinition)
@@ -217,7 +193,7 @@ public class Express2EMF {
 					if (attributeName.getType() instanceof DefinedType) {
 						EClassifier eType = schemaPack.getEClassifier(((DefinedType) attributeName.getType()).getName());
 						boolean found = false;
-						for (EClass eSuperType : eClass.getESuperTypes()) {
+						for (EClass eSuperType : eClass.getEAllSuperTypes()) {
 							if (eSuperType.getEStructuralFeature(attributeName.getName()) != null) {
 								found = true;
 								break;
@@ -419,6 +395,18 @@ public class Express2EMF {
 	private void processAttribute(EntityDefinition ent, Attribute attrib) {
 		ExplicitAttribute expAttrib = (ExplicitAttribute) attrib;
 		BaseType domain = expAttrib.getDomain();
+		if (ent.getName().equals("IfcRelConnectsPathElements") && (attrib.getName().equals("RelatingPriorities") || attrib.getName().equals("RelatedPriorities"))) {
+			// HACK, express parser does not recognize LIST [0:?] OF NUMBER
+			EClass cls = (EClass) schemaPack.getEClassifier(ent.getName());			
+			EAttribute eAttribute = eFactory.createEAttribute();
+			eAttribute.setName(attrib.getName());
+			eAttribute.setUpperBound(-1);
+			eAttribute.setUnique(false);
+			eAttribute.setEType(EcorePackage.eINSTANCE.getEInt());
+			eAttribute.setUnsettable(expAttrib.isOptional());
+			cls.getEStructuralFeatures().add(eAttribute);
+			return;
+		}
 		if (domain instanceof NamedType) {
 			NamedType nt = (NamedType) domain;
 			if (nt instanceof EnumerationType) {
@@ -559,6 +547,14 @@ public class Express2EMF {
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEInt());
 				eAttribute.setUnsettable(expAttrib.isOptional());
 				cls.getEStructuralFeatures().add(eAttribute);
+			} else if (bt instanceof NumberType) {
+				EAttribute eAttribute = eFactory.createEAttribute();
+				eAttribute.setName(attrib.getName());
+				eAttribute.setUpperBound(-1);
+				eAttribute.setUnique(false);
+				eAttribute.setEType(EcorePackage.eINSTANCE.getEInt());
+				eAttribute.setUnsettable(expAttrib.isOptional());
+				cls.getEStructuralFeatures().add(eAttribute);
 			} else if (bt instanceof LogicalType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
 				eAttribute.setName(attrib.getName());
@@ -567,6 +563,9 @@ public class Express2EMF {
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEBoolean());
 				eAttribute.setUnsettable(expAttrib.isOptional());
 				cls.getEStructuralFeatures().add(eAttribute);
+			} else if (bt == null) {
+				// TODO These are the new 2-dimensional arrays in IFC4, there is 4 of them
+				System.out.println(ent.getName() + "." + attrib.getName() + " not implemented");
 			}
 			if (domain instanceof ArrayType) {
 				// TODO this is not yet implmented in simpelSDAI

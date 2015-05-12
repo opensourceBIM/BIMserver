@@ -1,7 +1,7 @@
 package org.bimserver.pb;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -51,6 +51,8 @@ service Bimsie1ServiceInterface {
 
 	rpc downloadByGuids (DownloadByGuidsRequest) returns (DownloadByGuidsResponse);
 
+	rpc downloadByJsonQuery (DownloadByJsonQueryRequest) returns (DownloadByJsonQueryResponse);
+
 	rpc downloadByNames (DownloadByNamesRequest) returns (DownloadByNamesResponse);
 
 	rpc downloadByOids (DownloadByOidsRequest) returns (DownloadByOidsResponse);
@@ -64,6 +66,8 @@ service Bimsie1ServiceInterface {
 	rpc getAllExtendedDataOfRevision (GetAllExtendedDataOfRevisionRequest) returns (GetAllExtendedDataOfRevisionResponse);
 
 	rpc getAllProjects (GetAllProjectsRequest) returns (GetAllProjectsResponse);
+
+	rpc getAllProjectsSmall (GetAllProjectsSmallRequest) returns (GetAllProjectsSmallResponse);
 
 	rpc getAllRevisionsOfProject (GetAllRevisionsOfProjectRequest) returns (GetAllRevisionsOfProjectResponse);
 
@@ -80,6 +84,8 @@ service Bimsie1ServiceInterface {
 	rpc getExtendedDataSchemaByNamespace (GetExtendedDataSchemaByNamespaceRequest) returns (GetExtendedDataSchemaByNamespaceResponse);
 
 	rpc getProjectByPoid (GetProjectByPoidRequest) returns (GetProjectByPoidResponse);
+
+	rpc getProjectSmallByPoid (GetProjectSmallByPoidRequest) returns (GetProjectSmallByPoidResponse);
 
 	rpc getProjectsByName (GetProjectsByNameRequest) returns (GetProjectsByNameResponse);
 
@@ -99,6 +105,8 @@ service Bimsie1ServiceInterface {
 
 	rpc getSuggestedDeserializerForExtension (GetSuggestedDeserializerForExtensionRequest) returns (GetSuggestedDeserializerForExtensionResponse);
 
+	rpc terminateLongRunningAction (TerminateLongRunningActionRequest) returns (VoidResponse);
+
 	rpc undeleteProject (UndeleteProjectRequest) returns (UndeleteProjectResponse);
 
 }
@@ -110,6 +118,7 @@ message AddExtendedDataToRevisionRequest {
 
 message AddProjectRequest {
 	optional string projectName = 1;
+	optional string schema = 2;
 }
 
 message AddProjectResponse {
@@ -120,6 +129,7 @@ message AddProjectResponse {
 message AddProjectAsSubProjectRequest {
 	optional string projectName = 1;
 	optional int64 parentPoid = 2;
+	optional string schema = 3;
 }
 
 message AddProjectAsSubProjectResponse {
@@ -196,6 +206,18 @@ message DownloadByGuidsResponse {
 	optional int64 value = 2;
 }
 
+message DownloadByJsonQueryRequest {
+	repeated int64 roids = 1;
+	optional string jsonQuery = 2;
+	optional int64 serializerOid = 3;
+	optional bool sync = 4;
+}
+
+message DownloadByJsonQueryResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
 message DownloadByNamesRequest {
 	repeated int64 roids = 1;
 	repeated string names = 2;
@@ -224,12 +246,13 @@ message DownloadByOidsResponse {
 
 message DownloadByTypesRequest {
 	repeated int64 roids = 1;
-	repeated string classNames = 2;
-	optional int64 serializerOid = 3;
-	optional bool includeAllSubtypes = 4;
-	optional bool useObjectIDM = 5;
-	optional bool deep = 6;
-	optional bool sync = 7;
+	optional string schema = 2;
+	repeated string classNames = 3;
+	optional int64 serializerOid = 4;
+	optional bool includeAllSubtypes = 5;
+	optional bool useObjectIDM = 6;
+	optional bool deep = 7;
+	optional bool sync = 8;
 }
 
 message DownloadByTypesResponse {
@@ -280,6 +303,14 @@ message GetAllProjectsResponse {
 	repeated SProject value = 2;
 }
 
+message GetAllProjectsSmallRequest {
+}
+
+message GetAllProjectsSmallResponse {
+	optional string errorMessage = 1;
+	repeated SProjectSmall value = 2;
+}
+
 message GetAllRevisionsOfProjectRequest {
 	optional int64 poid = 1;
 }
@@ -312,18 +343,21 @@ message GetDownloadDataRequest {
 }
 
 message SCheckoutResult {
-	optional int32 rid = 1;
+	optional bytes file = 1;
 	optional int64 oid = 2;
+	optional string projectName = 3;
+	optional int32 revisionNr = 4;
+	optional int32 rid = 5;
 }
 
 message SDownloadResult {
 	required string __actual_type = 1;
 	optional SCheckoutResult __SCheckoutResult = 2;
-	optional int32 rid = 3;
+	optional bytes file = 3;
 	optional int64 oid = 4;
-	optional bytes file = 5;
+	optional string projectName = 5;
 	optional int32 revisionNr = 6;
-	optional string projectName = 7;
+	optional int32 rid = 7;
 }
 
 message GetDownloadDataResponse {
@@ -365,6 +399,15 @@ message GetProjectByPoidRequest {
 message GetProjectByPoidResponse {
 	optional string errorMessage = 1;
 	optional SProject value = 2;
+}
+
+message GetProjectSmallByPoidRequest {
+	optional int64 poid = 1;
+}
+
+message GetProjectSmallByPoidResponse {
+	optional string errorMessage = 1;
+	optional SProjectSmall value = 2;
 }
 
 message GetProjectsByNameRequest {
@@ -441,11 +484,16 @@ message GetSubProjectsResponse {
 
 message GetSuggestedDeserializerForExtensionRequest {
 	optional string extension = 1;
+	optional int64 poid = 2;
 }
 
 message GetSuggestedDeserializerForExtensionResponse {
 	optional string errorMessage = 1;
 	optional SDeserializerPluginConfiguration value = 2;
+}
+
+message TerminateLongRunningActionRequest {
+	optional int64 actionId = 1;
 }
 
 message UndeleteProjectRequest {

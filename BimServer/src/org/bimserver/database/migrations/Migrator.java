@@ -1,7 +1,7 @@
 package org.bimserver.database.migrations;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -30,8 +30,11 @@ import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Migrator {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Migrator.class);
 	private final Database database;
 
 	public Migrator(Database database) {
@@ -43,12 +46,13 @@ public class Migrator {
 		String name = "org.bimserver.database.migrations.steps.Step" + StringUtils.leftPad("" + number, 4, "0");
 		try {
 			Class<Migration> migrationClass = (Class<Migration>) Class.forName(name);
-			return (Migration) migrationClass.newInstance();
-		} catch (ClassNotFoundException e) {
-			return null;
-		} catch (InstantiationException e) {
-			return null;
-		} catch (IllegalAccessException e) {
+			return migrationClass.newInstance();
+		} catch (Exception e) {
+			if (e instanceof ClassNotFoundException) {
+				// ignore
+			} else {
+				LOGGER.error("", e);
+			}
 			return null;
 		}
 	}
@@ -60,11 +64,14 @@ public class Migrator {
 		while (moreUpgrades && i <= targetVersion) {
 			Migration migration = getMigration(i);
 			if (migration != null) {
-				migration.migrate(schema);
+				migration.migrate(schema, null);
 				i++;
 			} else {
 				moreUpgrades = false;
 			}
+		}
+		if (i < targetVersion) {
+			LOGGER.warn("Not upgraded to " + targetVersion + ", probably missing Step files!");
 		}
 		return schema;
 	}
@@ -105,7 +112,7 @@ public class Migrator {
 		for (int i = 0; i <= applicationSchemaVersion; i++) {
 			Migration migration = getMigration(i);
 			if (migration != null) {
-				migration.migrate(schema);
+				migration.migrate(schema, databaseSession);
 				if (i > databaseSchemaVersion) {
 					schema.upgradeDatabase(database, i, databaseSession);
 				}

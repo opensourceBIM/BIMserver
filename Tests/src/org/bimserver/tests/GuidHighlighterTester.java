@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -28,15 +28,14 @@ import java.util.Set;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.schema.SchemaDefinition;
 
 public class GuidHighlighterTester {
-	private SchemaDefinition schema;
 
 	public static void main(String[] args) {
 		new GuidHighlighterTester().start();
@@ -74,9 +73,9 @@ public class GuidHighlighterTester {
 		PluginManager pluginManager;
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(schema);
+			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			try {
 				IfcModelInterface model = deserializer.read(file);
 				return model;

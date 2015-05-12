@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -26,6 +26,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -33,13 +34,15 @@ import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.MetaDataException;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -53,15 +56,13 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 
 	private final Set<Long> roids;
 	private int progress;
-	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private long serializerOid;
 	private Set<String> names;
 	private Deep deep;
 
 	public DownloadByNamesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> names, long serializerOid, Authorization authorization, ObjectIDM objectIDM, Deep deep) {
-		super(databaseSession, accessMethod, authorization);
-		this.bimServer = bimServer;
+		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roids = roids;
 		this.names = names;
 		this.serializerOid = serializerOid;
@@ -77,10 +78,12 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 		Project project = null;
 		long incrSize = 0L;
 		
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
-		
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
+		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> ridRoidMap = new HashMap<Integer, Long>();
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
+			ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
 			project = virtualRevision.getProject();
 			if (!getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
@@ -89,14 +92,18 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 			for (String name : names) {
 				if (!foundNames.contains(name)) {
 					for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-						for (ObjectIdentifier objectIdentifier : getDatabaseSession().getOidsOfName(name, concreteRevision.getProject().getId(),
-								concreteRevision.getId())) {
-							foundNames.add(name);
-							if (!map.containsKey(concreteRevision)) {
-								map.put(concreteRevision, new HashSet<Long>());
-								incrSize += concreteRevision.getSize();
+						try {
+							for (ObjectIdentifier objectIdentifier : getDatabaseSession().getOidsOfName(concreteRevision.getProject().getSchema(), name, concreteRevision.getProject().getId(),
+									concreteRevision.getId())) {
+								foundNames.add(name);
+								if (!map.containsKey(concreteRevision)) {
+									map.put(concreteRevision, new HashSet<Long>());
+									incrSize += concreteRevision.getSize();
+								}
+								map.get(concreteRevision).add(objectIdentifier.getOid());
 							}
-							map.get(concreteRevision).add(objectIdentifier.getOid());
+						} catch (MetaDataException e) {
+							e.printStackTrace();
 						}
 					}
 				}
@@ -105,14 +112,16 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 			final AtomicLong total = new AtomicLong();
 
 			for (ConcreteRevision concreteRevision : map.keySet()) {
-				IfcModel subModel = new IfcModel();
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
+				lastPackageMetaData = packageMetaData;
+				IfcModel subModel = new ServerIfcModel(packageMetaData, ridRoidMap, getDatabaseSession());
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
+				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), objectIDM, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {
 						total.incrementAndGet();
-						progress = Math.round(100L * total.get() / totalSize);
+						progress = (int) Math.round(100.0 * total.get() / totalSize);
 					}
 				});
 				Set<Long> oids = map.get(concreteRevision);
@@ -120,7 +129,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 				subModel.getModelMetaData().setDate(concreteRevision.getDate());
 				
 				try {
-					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
+					checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 				} catch (GeometryGeneratingException e) {
 					throw new UserException(e);
 				}
@@ -128,9 +137,9 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel();
+		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, ridRoidMap, getDatabaseSession());
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 			ifcModel.getModelMetaData().setName("query");
 			for (String name : names) {
 				if (!foundNames.contains(name)) {

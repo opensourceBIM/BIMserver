@@ -28,6 +28,7 @@ import org.bimserver.emf.IdEObject;
  * <ul>
  *   <li>{@link org.bimserver.models.store.ServerInfo#getServerState <em>Server State</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerInfo#getErrorMessage <em>Error Message</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerInfo#getVersion <em>Version</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,5 +92,31 @@ public interface ServerInfo extends IdEObject {
 	 * @generated
 	 */
 	void setErrorMessage(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Version</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Version</em>' reference.
+	 * @see #setVersion(Version)
+	 * @see org.bimserver.models.store.StorePackage#getServerInfo_Version()
+	 * @model
+	 * @generated
+	 */
+	Version getVersion();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerInfo#getVersion <em>Version</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Version</em>' reference.
+	 * @see #getVersion()
+	 * @generated
+	 */
+	void setVersion(Version value);
 
 } // ServerInfo

@@ -1,7 +1,7 @@
 package org.bimserver.changes;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -26,6 +26,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
@@ -47,7 +48,8 @@ public class SetReferenceChange implements Change {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(model, oid, new Query(project.getId(), concreteRevision.getId()));
+		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
+		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId(), -1));
 		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
@@ -55,7 +57,7 @@ public class SetReferenceChange implements Change {
 		if (idEObject == null) {
 			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + project.getId());
 		}
-		EReference eReference = databaseSession.getMetaDataManager().getEReference(eClass.getName(), referenceName);
+		EReference eReference = packageMetaData.getEReference(eClass.getName(), referenceName);
 		if (eReference == null) {
 			throw new UserException("No reference with the name " + referenceName + " found in class " + eClass.getName());
 		}
@@ -79,7 +81,7 @@ public class SetReferenceChange implements Change {
 			idEObject.eSet(eReference, null);
 		} else {
 			EClass referenceEClass = databaseSession.getEClassForOid(referenceOid);
-			IdEObject referencedObject = databaseSession.get(referenceOid, new Query(project.getId(), concreteRevision.getId()));
+			IdEObject referencedObject = databaseSession.get(referenceOid, new Query(packageMetaData, project.getId(), concreteRevision.getId(), -1));
 			if (referencedObject == null) {
 				throw new UserException("Referenced object of type " + referenceEClass.getName() + " with oid " + referenceOid + " not found");
 			}

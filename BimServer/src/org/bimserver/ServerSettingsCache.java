@@ -1,7 +1,7 @@
 package org.bimserver;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -38,13 +38,15 @@ public class ServerSettingsCache {
 
 	public ServerSettingsCache(BimDatabase database) {
 		this.database = database;
-		updateCache();
 	}
 
 	public synchronized void updateCache() {
 		DatabaseSession session = database.createSession();
 		try {
-			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), new Query(true));
+			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), new Query(session.getMetaDataManager().getPackageMetaData("store"), true));
+			if (serverSettings.getSessionTimeOutSeconds() == 0) {
+				serverSettings.setSessionTimeOutSeconds(60 * 60 * 24 * 30);
+			}
 			allowedHosts.clear();
 			for (String domain : serverSettings.getWhitelistedDomains()) {
 				allowedHosts.add(domain);
@@ -67,6 +69,13 @@ public class ServerSettingsCache {
 	}
 
 	public ServerSettings getServerSettings() {
+		if (serverSettings == null) {
+			updateCache();
+		}
 		return serverSettings;
+	}
+
+	public void init() {
+		updateCache();
 	}
 }

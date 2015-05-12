@@ -229,6 +229,25 @@ function ServerInfo(containerDiv, main) {
 		});
 	};
 
+	this.showSystem = function(){
+		$(".systemLink").tab("show");
+	};
+	this.showJava = function(){
+		$(".javaLink").tab("show");
+	};
+	this.showBimServer = function(){
+		$(".bimserverLink").tab("show");
+	};
+	this.showDatabase = function(){
+		$(".databaseLink").tab("show");
+	};
+	this.showWebServices = function(){
+		$(".webservicesLink").tab("show");
+	};
+	this.showLog = function(){
+		$(".logLink").tab("show");
+	};
+	
 	containerDiv.find(".logLink").click(othis.loadLog);
 	
 	containerDiv.find(".transactionsLink, .longrunningactionsLink").hide();

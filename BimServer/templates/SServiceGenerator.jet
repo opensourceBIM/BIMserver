@@ -36,8 +36,8 @@ EPackage ePackage = (EPackage)args[1];
 public class S<%=cl.getSimpleName()%>Service extends org.bimserver.shared.meta.SService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(S<%=cl.getSimpleName()%>Service.class);
 
-	public S<%=cl.getSimpleName()%>Service(SourceCodeFetcher sourceCodeFetcher, Class<? extends PublicInterface> cl) {
-		super(sourceCodeFetcher, cl);
+	public S<%=cl.getSimpleName()%>Service(SServicesMap servicesMap, SourceCodeFetcher sourceCodeFetcher, Class<? extends PublicInterface> cl) {
+		super(servicesMap, sourceCodeFetcher, cl);
 	}
 	
 		public void init() {
@@ -46,7 +46,7 @@ public class S<%=cl.getSimpleName()%>Service extends org.bimserver.shared.meta.S
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
 %>
-				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>"), new SConstructor(){
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>();
 					}
@@ -54,7 +54,7 @@ public class S<%=cl.getSimpleName()%>Service extends org.bimserver.shared.meta.S
 <%
 			} else if (eClassifier instanceof EEnum) {
 %>
-				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>"), null));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>"), null));
 <%
 			}
 		}

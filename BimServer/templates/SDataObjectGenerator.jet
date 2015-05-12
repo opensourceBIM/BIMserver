@@ -1,4 +1,4 @@
-<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.utils.* org.bimserver.emf.MetaDataManager java.io.File org.bimserver.tools.generators.GenerateUtils org.bimserver.utils.StringUtils" class="ServiceInterfaceObjectGenerator" %>
+<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* org.bimserver.utils.* org.bimserver.emf.MetaDataManager java.io.File org.bimserver.utils.StringUtils" class="ServiceInterfaceObjectGenerator" %>
 package org.bimserver.interfaces.objects;
 <%
 /******************************************************************************
@@ -44,12 +44,12 @@ package org.bimserver.interfaces.objects;
 @XmlRootElement
 <%
 importManager.getImport("javax.xml.bind.annotation.XmlTransient");
-if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) { 
+if (!metaDataManager.getPackageMetaData(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass).isEmpty()) { 
 importManager.getImport("javax.xml.bind.annotation.XmlSeeAlso");
 %>
 @XmlSeeAlso(value={
 <%
-java.util.Set<EClass> subClasses = metaDataManager.getDirectSubClasses(eClass);
+java.util.Set<EClass> subClasses = metaDataManager.getPackageMetaData(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass);
 int i=0;
 for (EClass subClass : subClasses) {
 	%>S<%=subClass.getName()%>.class<%

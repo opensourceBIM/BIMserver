@@ -1,7 +1,7 @@
 package org.bimserver.changes;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -26,6 +26,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.ErrorCode;
@@ -48,7 +49,8 @@ public class AddReferenceChange implements Change {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(model, oid, new Query(project.getId(), concreteRevision.getId()));
+		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
+		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId(), -1));
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
@@ -56,14 +58,14 @@ public class AddReferenceChange implements Change {
 		if (idEObject == null) {
 			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + project.getId());
 		}
-		EReference eReference = databaseSession.getMetaDataManager().getEReference(eClass.getName(), referenceName);
+		EReference eReference = packageMetaData.getEReference(eClass.getName(), referenceName);
 		if (eReference == null) {
 			throw new UserException("No reference with the name " + referenceName + " found in class " + eClass.getName());
 		}
 		if (!eReference.isMany()) {
 			throw new UserException("Reference is not of type 'many'");
 		}
-		IdEObject referencedObject = databaseSession.get(referenceOid, new Query(project.getId(), concreteRevision.getId()));
+		IdEObject referencedObject = databaseSession.get(referenceOid, new Query(packageMetaData, project.getId(), concreteRevision.getId(), -1));
 		if (referencedObject == null) {
 			referencedObject = created.get(oid);
 		}
@@ -76,7 +78,10 @@ public class AddReferenceChange implements Change {
 		
 		if (eReference.getEOpposite() != null) {
 			if (eReference.getEOpposite().isMany()) {
-				// TODO This never happens, no N-N??
+				List oppositeList = (List)referencedObject.eGet(eReference.getEOpposite());
+				oppositeList.add(idEObject);
+				databaseSession.store(referencedObject, project.getId(), concreteRevision.getId());
+				added = true;
 			} else {
 				IdEObject oldReferencing = (IdEObject) referencedObject.eGet(eReference.getEOpposite());
 				if (oldReferencing != null) {

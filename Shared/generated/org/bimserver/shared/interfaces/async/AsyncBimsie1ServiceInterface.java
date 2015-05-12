@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.async;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -84,6 +84,11 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface DownloadByJsonQueryCallback {
+		void success(java.lang.Long result);
+		void error(Throwable e);
+	}
+	
 	public interface DownloadByNamesCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
@@ -116,6 +121,11 @@ public class AsyncBimsie1ServiceInterface {
 	
 	public interface GetAllProjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
+		void error(Throwable e);
+	}
+	
+	public interface GetAllProjectsSmallCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SProjectSmall> result);
 		void error(Throwable e);
 	}
 	
@@ -156,6 +166,11 @@ public class AsyncBimsie1ServiceInterface {
 	
 	public interface GetProjectByPoidCallback {
 		void success(org.bimserver.interfaces.objects.SProject result);
+		void error(Throwable e);
+	}
+	
+	public interface GetProjectSmallByPoidCallback {
+		void success(org.bimserver.interfaces.objects.SProjectSmall result);
 		void error(Throwable e);
 	}
 	
@@ -204,6 +219,11 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface TerminateLongRunningActionCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface UndeleteProjectCallback {
 		void success(java.lang.Boolean result);
 		void error(Throwable e);
@@ -224,11 +244,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void addProject(final java.lang.String projectName, final AddProjectCallback callback) {
+	public void addProject(final java.lang.String projectName, final java.lang.String schema, final AddProjectCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.addProject(projectName));
+					callback.success(syncService.addProject(projectName, schema));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -236,11 +256,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void addProjectAsSubProject(final java.lang.String projectName, final java.lang.Long parentPoid, final AddProjectAsSubProjectCallback callback) {
+	public void addProjectAsSubProject(final java.lang.String projectName, final java.lang.Long parentPoid, final java.lang.String schema, final AddProjectAsSubProjectCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.addProjectAsSubProject(projectName, parentPoid));
+					callback.success(syncService.addProjectAsSubProject(projectName, parentPoid, schema));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -344,6 +364,18 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
+	public void downloadByJsonQuery(final java.util.Set<java.lang.Long> roids, final java.lang.String jsonQuery, final java.lang.Long serializerOid, final java.lang.Boolean sync, final DownloadByJsonQueryCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.downloadByJsonQuery(roids, jsonQuery, serializerOid, sync));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void downloadByNames(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> names, final java.lang.Long serializerOid, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByNamesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -368,11 +400,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void downloadByTypes(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> classNames, final java.lang.Long serializerOid, final java.lang.Boolean includeAllSubtypes, final java.lang.Boolean useObjectIDM, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByTypesCallback callback) {
+	public void downloadByTypes(final java.util.Set<java.lang.Long> roids, final java.lang.String schema, final java.util.Set<java.lang.String> classNames, final java.lang.Long serializerOid, final java.lang.Boolean includeAllSubtypes, final java.lang.Boolean useObjectIDM, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByTypesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.downloadByTypes(roids, classNames, serializerOid, includeAllSubtypes, useObjectIDM, deep, sync));
+					callback.success(syncService.downloadByTypes(roids, schema, classNames, serializerOid, includeAllSubtypes, useObjectIDM, deep, sync));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -421,6 +453,18 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllProjects(onlyTopLevel, onlyActive));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllProjectsSmall(final GetAllProjectsSmallCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllProjectsSmall());
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -524,6 +568,18 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
+	public void getProjectSmallByPoid(final java.lang.Long poid, final GetProjectSmallByPoidCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getProjectSmallByPoid(poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getProjectsByName(final java.lang.String name, final GetProjectsByNameCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -620,11 +676,24 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void getSuggestedDeserializerForExtension(final java.lang.String extension, final GetSuggestedDeserializerForExtensionCallback callback) {
+	public void getSuggestedDeserializerForExtension(final java.lang.String extension, final java.lang.Long poid, final GetSuggestedDeserializerForExtensionCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getSuggestedDeserializerForExtension(extension));
+					callback.success(syncService.getSuggestedDeserializerForExtension(extension, poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void terminateLongRunningAction(final java.lang.Long actionId, final TerminateLongRunningActionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.terminateLongRunningAction(actionId);
+					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
 				}

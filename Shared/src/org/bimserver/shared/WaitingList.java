@@ -1,7 +1,7 @@
 package org.bimserver.shared;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.eclipse.emf.common.util.AbstractEList;
@@ -51,7 +53,7 @@ public class WaitingList<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void updateNode(T expressId, EClass ec, EObject eObject) throws DeserializeException {
+	public void updateNode(T expressId, EClass ec, IdEObject eObject) throws DeserializeException {
 		for (WaitingObject waitingObject : waitingObjects.get(expressId)) {
 			if (waitingObject.getStructuralFeature().isMany()) {
 				AbstractEList<EObject> list = (AbstractEList<EObject>) waitingObject.getObject().eGet(waitingObject.getStructuralFeature());
@@ -61,11 +63,13 @@ public class WaitingList<T> {
 					ListWaitingObject listWaitingObject = (ListWaitingObject)waitingObject;
 					if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
 						while (list.size() <= listWaitingObject.getIndex()) {
-							list.addUnique(ec.getEPackage().getEFactoryInstance().create(eObject.eClass()));
+							EObject create = ec.getEPackage().getEFactoryInstance().create(eObject.eClass());
+							((IdEObjectImpl)create).setOid(-2);
+							list.addUnique(create);
 						}
 						list.setUnique(listWaitingObject.getIndex(), eObject);
 					} else {
-						throw new DeserializeException("Field " + waitingObject.getStructuralFeature().getName() + " of "
+						throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
 								+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
 					}
 				}
@@ -73,8 +77,8 @@ public class WaitingList<T> {
 				if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
 					waitingObject.getObject().eSet(waitingObject.getStructuralFeature(), eObject);
 				} else {
-					throw new DeserializeException("Field " + waitingObject.getStructuralFeature().getName() + " of "
-							+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
+					throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
+							+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName() + "/" + eObject.getOid());
 				}
 			}
 		}
@@ -88,7 +92,7 @@ public class WaitingList<T> {
 	public void dumpIfNotEmpty() throws BimServerClientException {
 		if (size() > 0) {
 			for (Entry<T, List<WaitingObject>> entry : waitingObjects.entrySet()) {
-				StringBuilder sb = new StringBuilder("" + entry.getKey());
+				StringBuilder sb = new StringBuilder("" + entry.getKey() + " ");
 				for (WaitingObject waitingObject : entry.getValue()) {
 					sb.append(waitingObject.toString() + " ");
 				}

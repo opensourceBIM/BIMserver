@@ -1,7 +1,7 @@
 package org.bimserver.database;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -38,5 +38,5 @@ public interface BimDatabase {
 
 	Registry getRegistry();
 
-	EClass getEClassForOid(long oid);
+	EClass getEClassForOid(long oid) throws BimserverDatabaseException;
 }

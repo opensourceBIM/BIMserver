@@ -1,0 +1,33 @@
+<div class="start">
+	<h1>Getting Started</h1>
+	<p>This page is mainly intended for developers</p>
+	<h2>Internal Links</h2>
+	<ul>
+		<li><a href="console.html">Console</a> Useful to learn about the methods you can call, you can also try them out</li>
+	</ul>
+	<h2>External Links</h2>
+	<ul>
+		<li><a href="http://wiki.bimserver.org">Wiki</a></li>
+		<li><a href="https://opensourcebim.zendesk.com/hc/communities/public/topics">Forum</a></li>
+	</ul>
+	<h2>FAQ</h2>
+	<p><span class="label label-primary">Question</span>
+		How do I create projects and checkin building models
+	</p>
+	<p><span class="label label-success">Answer</span>
+	BIMserver is not meant to be interacting with people directly, that's why it has no interface for that. However, it does have <a class="interfacesLink">interfaces</a> for other computer systems. You can write software that creates projects and uploads models etcetera...
+	</p>
+</div>
+<script>
+function Start(containerDiv, main) {
+	pushHistory({page: "Start"}, "Start");
+	
+	this.show = function(){};
+	
+	$(".interfacesLink").click(function(){
+		main.showServerInfo(function(){
+			this.containerDiv.find(".webservicesLink").click();
+		});
+	});
+}
+</script>

@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.bimsie1;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -35,6 +35,7 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SProjectSmall;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -54,7 +55,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param fileSize The size of the file in bytes
 	 * @param ifcFile The actual file
 	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "checkin")
@@ -75,7 +76,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
 	 * @param url A URL to the file
 	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getCheckinState method
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "checkinFromUrl")
@@ -88,12 +89,23 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 		@WebParam(name = "sync", partName = "checkinFromUrl.sync") Boolean sync) throws ServerException, UserException;
 	
 	/**
+	 * Terminate a long running action
+	 * 
+	 * @param actionId The actionId returned by one of the download or checkout methods
+	 * @return An SDownloadResult containing the serialized data
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "terminateLongRunningAction")
+	void terminateLongRunningAction(
+		@WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
+
+	/**
 	 * Checkout an existing model, checkout is the same as download, except a "checkout" will tell the server and other users you are working on it
 	 * 
 	 * @param roid Revision ObjectID
 	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState method
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "checkout")
@@ -109,7 +121,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param showOwn Whether to return revisions created by the current user
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "download")
@@ -125,14 +137,14 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param oids A set of ObjectIDs
 	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "downloadByOids")
 	Long downloadByOids(
 		@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
 		@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "serializerOid", partName = "downloadCompareResults.serializerOid") Long serializerOid,
 		@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync,
 		@WebParam(name = "deep", partName = "downloadCompareResults.deep") Boolean deep) throws ServerException, UserException;
 
@@ -143,19 +155,37 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param includeAllSubtypes Whether to query all (recursive) subtypes of each gives class
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "downloadByTypes")
 	Long downloadByTypes(
 		@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
+		@WebParam(name = "schema", partName = "downloadByTypes.schema") String schema,
 		@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "serializerOid", partName = "downloadByTypes.serializerOid") Long serializerOid,
 		@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
 		@WebParam(name = "useObjectIDM", partName = "downloadByTypes.useObjectIDM") Boolean useObjectIDM,
 		@WebParam(name = "deep", partName = "downloadByTypes.deep") Boolean deep,
-		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "sync", partName = "downloadByTypes.sync") Boolean sync) throws ServerException, UserException;
 
+	/**
+	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
+	 * @param roids A set of Revision ObjectIDs
+	 * @param classNames A set of class names to filter on (e.g. "IfcWindow")
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param includeAllSubtypes Whether to query all (recursive) subtypes of each gives class
+	 * @param sync Whether to return immediately (async) or wait for completion (sync)
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "downloadByJsonQuery")
+	Long downloadByJsonQuery(
+		@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
+		@WebParam(name = "jsonQuery", partName = "downloadByTypes.jsonQuery") String jsonQuery,
+		@WebParam(name = "serializerOid", partName = "downloadByTypes.serializerOid") Long serializerOid,
+		@WebParam(name = "sync", partName = "downloadByTypes.sync") Boolean sync) throws ServerException, UserException;
+	
 	/**
 	 * Download a model in a serialized format by giving a set of revisions and a set of guids to filter on
 	 * @param roids A set of Revision ObjectIDs
@@ -201,7 +231,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "downloadRevisions")
 	Long downloadRevisions(
 		@WebParam(name = "roids", partName = "downloadRevisions.roids") Set<Long> roids,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "serializerOid", partName = "downloadRevisions.serializerOid") Long serializerOid,
 		@WebParam(name = "sync", partName = "downloadRevisions.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
@@ -298,7 +328,8 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getSuggestedDeserializerForExtension")
 	SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(
-		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension) throws ServerException, UserException;
+		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension,
+		@WebParam(name = "poid", partName = "getSuggestedDeserializerForExtension.poid") Long poid) throws ServerException, UserException;
 	
 	/**
 	 * @param roid ObjectID of the Revision
@@ -309,7 +340,6 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	void addExtendedDataToRevision(
 		@WebParam(name = "roid", partName = "addExtendedDataToRevision.roid") Long roid,
 		@WebParam(name = "extendedData", partName = "addExtendedDataToRevision.extendedData") SExtendedData extendedData) throws ServerException, UserException;
-	
 
 	/**
 	 * @param oid ObjectID of the ExtendedData
@@ -338,8 +368,16 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getProjectByPoid")
 	SProject getProjectByPoid(
 		@WebParam(name = "poid", partName = "getProjectByPoid.poid") Long poid) throws ServerException, UserException;
-	
 
+	/**
+	 * @param poid ObjectID of the Project
+	 * @return The Project
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getProjectSmallByPoid")
+	SProjectSmall getProjectSmallByPoid(
+			@WebParam(name = "poid", partName = "getProjectSmallByPoid.poid") Long poid) throws ServerException, UserException;
+	
 	/**
 	 * @param roid ObjectID of the Revision
 	 * @return The Revision
@@ -348,7 +386,6 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getRevision")
 	SRevision getRevision(
 		@WebParam(name = "roid", partName = "getRevision.roid") Long roid) throws ServerException, UserException;
-	
 
 	/**
 	 * Undelete a previously deleted Project, Projets can be deleted with the deleteProject method
@@ -451,7 +488,8 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addProject")
 	SProject addProject(
-		@WebParam(name = "projectName", partName = "addProject.projectName") String projectName) throws ServerException, UserException;
+		@WebParam(name = "projectName", partName = "addProject.projectName") String projectName,
+		@WebParam(name = "schema", partName = "addProject.schema") String schema) throws ServerException, UserException;
 
 	/**
 	 * Add a new project as a subproject of another project
@@ -463,7 +501,8 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "addProjectAsSubProject")
 	SProject addProjectAsSubProject(
 		@WebParam(name = "projectName", partName = "addProjectAsSubProject.projectName") String projectName,
-		@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid) throws ServerException, UserException;
+		@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid,
+		@WebParam(name = "schema", partName = "addProjectAsSubProject.schema") String schema) throws ServerException, UserException;
 
 	/**
 	 * Delete a Project, Projects can be undeleted with the undeleteProject method
@@ -478,4 +517,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getExtendedDataSchemaByNamespace")
 	SExtendedDataSchema getExtendedDataSchemaByNamespace(
 		@WebParam(name = "namespace", partName = "getExtendedDataSchemaByNamespace.namespace") String namespace) throws UserException, ServerException;
+
+	@WebMethod(action = "getAllProjectsSmall")
+	List<SProjectSmall> getAllProjectsSmall() throws ServerException, UserException;
 }

@@ -19,8 +19,12 @@ package org.bimserver.models.log.impl;
 import java.io.IOException;
 import java.net.URL;
 
+import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.geometry.impl.GeometryPackageImpl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1PackageImpl;
+import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4.impl.Ifc4PackageImpl;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
@@ -322,19 +326,27 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 		isInited = true;
 
 		// Obtain or create and register interdependencies
+		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI) instanceof GeometryPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(GeometryPackage.eNS_URI) : GeometryPackage.eINSTANCE);
 		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI) instanceof Ifc2x3tc1PackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(Ifc2x3tc1Package.eNS_URI) : Ifc2x3tc1Package.eINSTANCE);
+		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI) instanceof Ifc4PackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(Ifc4Package.eNS_URI) : Ifc4Package.eINSTANCE);
 		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(StorePackage.eNS_URI) : StorePackage.eINSTANCE);
 
 		// Load packages
 		theLogPackage.loadPackage();
+		theGeometryPackage.loadPackage();
 		theIfc2x3tc1Package.loadPackage();
+		theIfc4Package.loadPackage();
 		theStorePackage.loadPackage();
 
 		// Fix loaded packages
 		theLogPackage.fixPackageContents();
+		theGeometryPackage.fixPackageContents();
 		theIfc2x3tc1Package.fixPackageContents();
+		theIfc4Package.fixPackageContents();
 		theStorePackage.fixPackageContents();
 
 		// Mark meta-data to indicate it can't be changed

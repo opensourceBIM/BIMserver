@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -213,8 +213,8 @@ public enum IfcBSplineCurveForm implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBSplineCurveForm[] VALUES_ARRAY = new IfcBSplineCurveForm[] { NULL, PARABOLIC_ARC, ELLIPTIC_ARC, HYPERBOLIC_ARC, UNSPECIFIED, POLYLINE_FORM,
-			CIRCULAR_ARC, };
+	private static final IfcBSplineCurveForm[] VALUES_ARRAY = new IfcBSplineCurveForm[] { NULL, PARABOLIC_ARC, ELLIPTIC_ARC, HYPERBOLIC_ARC, UNSPECIFIED,
+			POLYLINE_FORM, CIRCULAR_ARC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc BSpline Curve Form</b></em>' enumerators.

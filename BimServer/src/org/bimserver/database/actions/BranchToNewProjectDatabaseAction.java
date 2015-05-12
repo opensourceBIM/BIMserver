@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,6 +24,8 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -73,20 +75,25 @@ public class BranchToNewProjectDatabaseAction extends AbstractBranchDatabaseActi
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		PackageMetaData lastMetaData = null;
 		for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
-			IfcModel subModel = new IfcModel();
-			getDatabaseSession().getMap(subModel, new Query(subRevision.getProject().getId(), subRevision.getId(), Deep.NO));
+			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(subRevision.getProject().getSchema());
+			if (lastMetaData != null && lastMetaData != packageMetaData) {
+				throw new UserException("Branching not possible for revision with multiple schemas");
+			}
+			IfcModel subModel = new BasicIfcModel(packageMetaData, null);
+			getDatabaseSession().getMap(subModel, new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), -1, Deep.NO));
 			subModel.getModelMetaData().setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface model = new IfcModel();
+		IfcModelInterface model = new BasicIfcModel(lastMetaData, null);
 		try {
 			model = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(oldRevision.getProject(), ifcModelSet, new ModelHelper(model));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}
 		model.resetOids();
-		final Project newProject = new AddProjectDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), projectName, authorization).execute();
+		final Project newProject = new AddProjectDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), projectName, "ifc2x3tc1", authorization).execute();
 		CheckinDatabaseAction createCheckinAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), newProject.getOid(), authorization, model, comment, comment, false);
 		return createCheckinAction.execute();
 	}

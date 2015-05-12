@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -48,6 +48,15 @@ public class SServerSettings implements SDataBase
 	private List<Long> webModules = new ArrayList<Long>();
 	private long webModuleId = -1;
 	private java.lang.String serviceRepositoryUrl;
+	private boolean sendEmailOnNewRevision;
+	private int sessionTimeOutSeconds;
+	private java.lang.String smtpUsername;
+	private java.lang.String smtpPassword;
+	private int smtpPort;
+	private SSmtpProtocol smtpProtocol;
+	private boolean reuseGeometry;
+	private boolean allowCreateValidatedUser;
+	private int renderEngineProcesses;
 
 	public long getOid() {
 		return this.oid;
@@ -126,6 +135,33 @@ public class SServerSettings implements SDataBase
 		if (sField.getName().equals("serviceRepositoryUrl")) {
 			return getServiceRepositoryUrl();
 		}
+		if (sField.getName().equals("sendEmailOnNewRevision")) {
+			return isSendEmailOnNewRevision();
+		}
+		if (sField.getName().equals("sessionTimeOutSeconds")) {
+			return getSessionTimeOutSeconds();
+		}
+		if (sField.getName().equals("smtpUsername")) {
+			return getSmtpUsername();
+		}
+		if (sField.getName().equals("smtpPassword")) {
+			return getSmtpPassword();
+		}
+		if (sField.getName().equals("smtpPort")) {
+			return getSmtpPort();
+		}
+		if (sField.getName().equals("smtpProtocol")) {
+			return getSmtpProtocol();
+		}
+		if (sField.getName().equals("reuseGeometry")) {
+			return isReuseGeometry();
+		}
+		if (sField.getName().equals("allowCreateValidatedUser")) {
+			return isAllowCreateValidatedUser();
+		}
+		if (sField.getName().equals("renderEngineProcesses")) {
+			return getRenderEngineProcesses();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -203,6 +239,42 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("serviceRepositoryUrl")) {
 			setServiceRepositoryUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("sendEmailOnNewRevision")) {
+			setSendEmailOnNewRevision((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("sessionTimeOutSeconds")) {
+			setSessionTimeOutSeconds((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("smtpUsername")) {
+			setSmtpUsername((String)val);
+			return;
+		}
+		if (sField.getName().equals("smtpPassword")) {
+			setSmtpPassword((String)val);
+			return;
+		}
+		if (sField.getName().equals("smtpPort")) {
+			setSmtpPort((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("smtpProtocol")) {
+			setSmtpProtocol((SSmtpProtocol)val);
+			return;
+		}
+		if (sField.getName().equals("reuseGeometry")) {
+			setReuseGeometry((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("allowCreateValidatedUser")) {
+			setAllowCreateValidatedUser((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("renderEngineProcesses")) {
+			setRenderEngineProcesses((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -351,6 +423,78 @@ public class SServerSettings implements SDataBase
 
 	public void setServiceRepositoryUrl(java.lang.String serviceRepositoryUrl) {
 		this.serviceRepositoryUrl = serviceRepositoryUrl;
+	}
+	
+	public boolean isSendEmailOnNewRevision() {
+		return sendEmailOnNewRevision;
+	}
+
+	public void setSendEmailOnNewRevision(boolean sendEmailOnNewRevision) {
+		this.sendEmailOnNewRevision = sendEmailOnNewRevision;
+	}
+	
+	public int getSessionTimeOutSeconds() {
+		return sessionTimeOutSeconds;
+	}
+
+	public void setSessionTimeOutSeconds(int sessionTimeOutSeconds) {
+		this.sessionTimeOutSeconds = sessionTimeOutSeconds;
+	}
+	
+	public java.lang.String getSmtpUsername() {
+		return smtpUsername;
+	}
+
+	public void setSmtpUsername(java.lang.String smtpUsername) {
+		this.smtpUsername = smtpUsername;
+	}
+	
+	public java.lang.String getSmtpPassword() {
+		return smtpPassword;
+	}
+
+	public void setSmtpPassword(java.lang.String smtpPassword) {
+		this.smtpPassword = smtpPassword;
+	}
+	
+	public int getSmtpPort() {
+		return smtpPort;
+	}
+
+	public void setSmtpPort(int smtpPort) {
+		this.smtpPort = smtpPort;
+	}
+	
+	public SSmtpProtocol getSmtpProtocol() {
+		return smtpProtocol;
+	}
+
+	public void setSmtpProtocol(SSmtpProtocol smtpProtocol) {
+		this.smtpProtocol = smtpProtocol;
+	}
+	
+	public boolean isReuseGeometry() {
+		return reuseGeometry;
+	}
+
+	public void setReuseGeometry(boolean reuseGeometry) {
+		this.reuseGeometry = reuseGeometry;
+	}
+	
+	public boolean isAllowCreateValidatedUser() {
+		return allowCreateValidatedUser;
+	}
+
+	public void setAllowCreateValidatedUser(boolean allowCreateValidatedUser) {
+		this.allowCreateValidatedUser = allowCreateValidatedUser;
+	}
+	
+	public int getRenderEngineProcesses() {
+		return renderEngineProcesses;
+	}
+
+	public void setRenderEngineProcesses(int renderEngineProcesses) {
+		this.renderEngineProcesses = renderEngineProcesses;
 	}
 	
 	@Override

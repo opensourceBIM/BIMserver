@@ -1,7 +1,7 @@
 package org.bimserver.serializers.binarygeometry;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,44 +17,32 @@ package org.bimserver.serializers.binarygeometry;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcMaterial;
-import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;
-import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet;
-import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSetUsage;
-import org.bimserver.models.ifc2x3tc1.IfcMaterialSelect;
-import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
-import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
-import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesMaterial;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
-import org.bimserver.models.ifc2x3tc1.IfcSlab;
-import org.bimserver.models.ifc2x3tc1.IfcSlabTypeEnum;
-import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
-import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
+import org.bimserver.emf.IdEObject;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.LittleEndianDataOutputStream;
+
+@Deprecated
 public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometrySerializer.class);
-	private static final byte FORMAT_VERSION = 3;
-	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
+	private static final byte FORMAT_VERSION = 6;
+	private static final byte GEOMETRY_TYPE_TRIANGLES = 0;
+	private static final byte GEOMETRY_TYPE_INSTANCE = 1;
 
 	@Override
 	public void reset() {
@@ -62,7 +50,7 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	}
 
 	@Override
-	protected boolean write(OutputStream outputStream) throws SerializerException {
+	protected boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			try {
 				calculateGeometryExtents();
@@ -79,15 +67,27 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 	}
 
 	private void writeGeometries(OutputStream outputStream) throws IOException {
-		DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+		long start = System.nanoTime();
+
+		LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(outputStream);
+		// Identifier for clients to determine if this server is even serving binary geometry
 		dataOutputStream.writeUTF("BGS");
+		
+		// Version of the current format being outputted, should be changed for every (released) change in protocol 
 		dataOutputStream.writeByte(FORMAT_VERSION);
 		
 		Bounds modelBounds = new Bounds();
 		int nrObjects = 0;
-		for (IfcProduct ifcProduct : getModel().getAllWithSubTypes(IfcProduct.class)) {
-			GeometryInfo geometryInfo = ifcProduct.getGeometry();
-			if (geometryInfo != null) {
+		
+		// All access to EClass is being done generically to support multiple IFC schema's with 1 serializer
+		EClass productClass = getModel().getPackageMetaData().getEClass("IfcProduct");
+		
+		List<IdEObject> products = getModel().getAllWithSubTypes(productClass);
+		
+		// First iteration, to determine number of objects with geometry and calculate model bounds
+		for (IdEObject ifcProduct : products) {
+			GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
+			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 				Bounds objectBounds = new Bounds(new Float3(geometryInfo.getMinBounds().getX(), geometryInfo.getMinBounds().getY(), geometryInfo.getMinBounds()
 						.getZ()), new Float3(geometryInfo.getMaxBounds().getX(), geometryInfo.getMaxBounds().getY(), geometryInfo.getMaxBounds().getZ()));
 				modelBounds.integrate(objectBounds);
@@ -96,188 +96,94 @@ public class BinaryGeometrySerializer extends AbstractGeometrySerializer {
 		}
 		modelBounds.writeTo(dataOutputStream);
 		dataOutputStream.writeInt(nrObjects);
-		for (IfcProduct ifcProduct : getModel().getAllWithSubTypes(IfcProduct.class)) {
-			GeometryInfo geometryInfo = ifcProduct.getGeometry();
-			if (geometryInfo != null) {
-				String materialName = ifcProduct.eClass().getName();
-				try {
-					materialName = getMaterial(ifcProduct);
-				} catch (Exception e) {
-				}
-				dataOutputStream.writeUTF(materialName);
-				String type = null;
-				if (ifcProduct instanceof IfcSlab && ((IfcSlab) ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-					type = "IfcRoof";
-				} else {
-					type = ifcProduct.eClass().getName();
-				}
+		int bytesSaved = 0;
+		int bytesTotal = 0;
+		
+		// Keeping track of geometry already sent, this can be used for instancing of reused geometry
+		Set<Long> concreteGeometrySent = new HashSet<>();
+		
+		// Flushing here so the client can show progressbar etc...
+		dataOutputStream.flush();
+		
+		int bytes = 6;
+		int counter = 0;
+		
+		// Second iteration actually writing the geometry
+		for (IdEObject ifcProduct : products) {
+			GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
+			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
+				String type = ifcProduct.eClass().getName();
 				dataOutputStream.writeUTF(type);
-				
 				dataOutputStream.writeLong(ifcProduct.getOid());
 
-				int skip = 4 - (dataOutputStream.size() % 4);
+				GeometryData geometryData = geometryInfo.getData();
+				byte[] vertices = geometryData.getVertices();
+				
+				// BEWARE, ByteOrder is always LITTLE_ENDIAN, because that's what GPU's seem to prefer, Java's ByteBuffer default is BIG_ENDIAN though!
+				
+				bytesTotal += vertices.length;
+				byte geometryType = concreteGeometrySent.contains(geometryData.getOid()) ? GEOMETRY_TYPE_INSTANCE : GEOMETRY_TYPE_TRIANGLES;
+				dataOutputStream.write(geometryType);
+				
+				bytes += (type.getBytes(Charsets.UTF_8).length + 3);
+				
+				// This is an ugly hack to align the bytes, but for 2 different kinds of output (this first one is the websocket implementation)
+				int skip = 4 - (bytes % 4); // TODO fix
 				if(skip != 0 && skip != 4) {
 					dataOutputStream.write(new byte[skip]);
 				}
 				
-				Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
-				objectBounds.writeTo(dataOutputStream);
+				bytes = 0;
 				
-				dataOutputStream.writeInt(geometryInfo.getPrimitiveCount() * 3);
-
-				GeometryData geometryData = geometryInfo.getData();
-				byte[] vertices = geometryData.getVertices();
-				ByteBuffer buffer = ByteBuffer.wrap(vertices);
-				convertOrder(buffer);
-				dataOutputStream.writeInt(buffer.capacity() / 4);
-				dataOutputStream.write(buffer.array());
+				dataOutputStream.write(geometryInfo.getTransformation());
 				
-				byte[] normals = geometryData.getNormals();
-				buffer = ByteBuffer.wrap(normals);
-				convertOrder(buffer);
-				dataOutputStream.writeInt(buffer.capacity() / 4);
-				dataOutputStream.write(buffer.array());
+				if (concreteGeometrySent.contains(geometryData.getOid())) {
+					// Reused geometry, only send the id of the reused geometry data
+					dataOutputStream.writeLong(geometryData.getOid());
+					bytesSaved += vertices.length;
+				} else {
+					ByteBuffer vertexByteBuffer = ByteBuffer.wrap(vertices);
+					dataOutputStream.writeLong(geometryData.getOid());
+					
+					Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
+					objectBounds.writeTo(dataOutputStream);
+					
+					ByteBuffer indicesBuffer = ByteBuffer.wrap(geometryData.getIndices());
+					dataOutputStream.writeInt(indicesBuffer.capacity() / 4);
+					dataOutputStream.write(indicesBuffer.array());
+					
+					dataOutputStream.writeInt(vertexByteBuffer.capacity() / 4);
+					dataOutputStream.write(vertexByteBuffer.array());
+					
+					ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
+					dataOutputStream.writeInt(normalsBuffer.capacity() / 4);
+					dataOutputStream.write(normalsBuffer.array());
+					
+					// Only when materials are used we send them
+					if (geometryData.getMaterials() != null) {
+						ByteBuffer materialsByteBuffer = ByteBuffer.wrap(geometryData.getMaterials());
+						
+						dataOutputStream.writeInt(materialsByteBuffer.capacity() / 4);
+						dataOutputStream.write(materialsByteBuffer.array());
+					} else {
+						// No materials used
+						dataOutputStream.writeInt(0);
+					}
+					
+					concreteGeometrySent.add(geometryData.getOid());
+				}
+				counter++;
+				if (counter % 12 == 0) {
+					// Flushing in batches, this is to limit the amount of WebSocket messages
+					dataOutputStream.flush();
+				}
 			}
 		}
 		dataOutputStream.flush();
-	}
-	
-	public String getMaterial(IfcProduct ifcProduct) throws Exception {
-		boolean materialFound = false;
-		String material = ifcProduct.eClass().getName();
-		if (ifcProduct instanceof IfcSlab && ((IfcSlab)ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-			material = Ifc2x3tc1Package.eINSTANCE.getIfcRoof().getName();
+		if (bytesTotal != 0 && bytesSaved != 0) {
+			LOGGER.info((100 * bytesSaved / bytesTotal) + "% saved");
 		}
-		
-		IfcMaterialSelect relatingMaterial = null;
-		for (IfcRelAssociates ifcRelAssociates : ifcProduct.getHasAssociations()) {
-			if (ifcRelAssociates instanceof IfcRelAssociatesMaterial) {
-				IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (IfcRelAssociatesMaterial)ifcRelAssociates;
-				relatingMaterial = ifcRelAssociatesMaterial.getRelatingMaterial();
-			}
-		}
-
-		// Try to find the IFC material name
-		if (relatingMaterial instanceof IfcMaterialLayerSetUsage) {
-			IfcMaterialLayerSetUsage mlsu = (IfcMaterialLayerSetUsage) relatingMaterial;
-			IfcMaterialLayerSet forLayerSet = mlsu.getForLayerSet();
-			if (forLayerSet != null) {
-				EList<IfcMaterialLayer> materialLayers = forLayerSet.getMaterialLayers();
-				for (IfcMaterialLayer ml : materialLayers) {
-					IfcMaterial ifcMaterial = ml.getMaterial();
-					if (ifcMaterial != null) {
-						String name = ifcMaterial.getName();
-						String filterSpaces = fitNameForQualifiedName(name);
-//						materialFound = surfaceStyleIds.contains(filterSpaces);
-//						if (materialFound) {
-							material = filterSpaces;
-//						}
-					}
-				}
-			}
-		} else if (relatingMaterial instanceof IfcMaterial) {
-			IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
-			String name = ifcMaterial.getName();
-			String filterSpaces = fitNameForQualifiedName(name);
-//			materialFound = surfaceStyleIds.contains(filterSpaces);
-//			if (materialFound) {
-				material = filterSpaces;
-//			}
-		}
-
-		// If no material was found then derive one from the presentation style
-		if (!materialFound) {
-			IfcProductRepresentation representation = ifcProduct.getRepresentation();
-			if (representation != null) {
-				EList<IfcRepresentation> representations = representation.getRepresentations();
-				for (IfcRepresentation rep : representations) {
-					EList<IfcRepresentationItem> items = rep.getItems();
-					for (IfcRepresentationItem item : items) {
-						if (item instanceof IfcStyledItem) {
-							material = processStyledItem(material, (IfcStyledItem) item);
-						} else {
-							EList<IfcStyledItem> styledByItem = item.getStyledByItem();
-							for (IfcStyledItem sItem : styledByItem) {
-								material = processStyledItem(material, sItem);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		HashMap<String, HashSet<Long>> materialGeometryRel = typeMaterialGeometryRel.get(ifcProduct.eClass().getName());
-		if (materialGeometryRel == null) {
-			materialGeometryRel = new HashMap<String, HashSet<Long>>();
-			typeMaterialGeometryRel.put(ifcProduct.eClass().getName(), materialGeometryRel);
-		}
-
-		HashSet<Long> hashSet = materialGeometryRel.get(material);
-		if (hashSet == null) {
-			hashSet = new HashSet<Long>();
-			materialGeometryRel.put(material, hashSet);
-		}
-		hashSet.add(ifcProduct.getOid());
-		if (material == null) {
-			return "UNKNOWN";
-		}
-		return material;
-	}
-	
-	private void convertOrder(ByteBuffer input) {
-		input.position(0);
-		for (int i = 0; i < input.capacity(); i += 4) {
-			input.order(ByteOrder.BIG_ENDIAN);
-			float x = input.getFloat();
-			input.order(ByteOrder.nativeOrder());
-			input.position(input.position() - 4);
-			input.putFloat(x);
-		}
-		input.position(0);
-	}
-	
-	private String processStyledItem(String material, IfcStyledItem sItem) {
-		for (IfcStyledItem ifc : sItem.getStyledByItem()) {
-			processStyledItem(material, ifc);
-		}
-		EList<IfcPresentationStyleAssignment> styles = sItem.getStyles();
-		for (IfcPresentationStyleAssignment sa : styles) {
-			EList<IfcPresentationStyleSelect> styles2 = sa.getStyles();
-			for (IfcPresentationStyleSelect pss : styles2) {
-				if (pss instanceof IfcSurfaceStyle) {
-					IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
-					material = "" + ss.getOid();
-				}
-			}
-		}
-		return material;
-	}
-	
-	private String fitNameForQualifiedName(String name) {
-		if (name == null) {
-			return "Null";
-		}
-		StringBuilder builder = new StringBuilder(name);
-		int indexOfChar = builder.indexOf(" ");
-		while (indexOfChar >= 0) {
-			builder.deleteCharAt(indexOfChar);
-			indexOfChar = builder.indexOf(" ");
-		}
-		indexOfChar = builder.indexOf(",");
-		while (indexOfChar >= 0) {
-			builder.setCharAt(indexOfChar, '_');
-			indexOfChar = builder.indexOf(",");
-		}
-		indexOfChar = builder.indexOf("/");
-		while (indexOfChar >= 0) {
-			builder.setCharAt(indexOfChar, '_');
-			indexOfChar = builder.indexOf("/");
-		}
-		indexOfChar = builder.indexOf("*");
-		while (indexOfChar >= 0) {
-			builder.setCharAt(indexOfChar, '_');
-			indexOfChar = builder.indexOf("/");
-		}
-		return builder.toString();
+		long end = System.nanoTime();
+		LOGGER.debug(((end - start) / 1000000) + " ms");
 	}
 }

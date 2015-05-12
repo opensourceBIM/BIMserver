@@ -1,7 +1,7 @@
 package org.bimserver.geometry.json;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,13 +22,14 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;
@@ -49,6 +50,7 @@ import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
@@ -78,7 +80,7 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 	}
 
 	@Override
-	public boolean write(OutputStream out) throws SerializerException {
+	public boolean write(OutputStream out, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(out, Charsets.UTF_8);
 			try {
@@ -217,8 +219,10 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 		if (geometryInfo != null) {
 			GeometryData geometryData = geometryInfo.getData();
 			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
+			verticesBuffer.order(ByteOrder.LITTLE_ENDIAN);
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
-
+			normalsBuffer.order(ByteOrder.LITTLE_ENDIAN);
+			
 			int totalNrVertexValues = verticesBuffer.capacity() / 4;
 			int maxVertexValues = 49167; // Must be divisible by 9!
 

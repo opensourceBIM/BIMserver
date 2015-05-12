@@ -1,7 +1,7 @@
 package org.bimserver.plugins.web;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,8 +20,14 @@ package org.bimserver.plugins.web;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
@@ -34,36 +40,68 @@ import org.bimserver.models.store.StringType;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginSourceType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Charsets;
 
 public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractWebModulePlugin.class);
 	private PluginContext pluginContext;
+	private static final DateFormat HTTP_EXPIRES = expiresDateFormat();
+	public static final String FAR_FUTURE_EXPIRE_DATE = HTTP_EXPIRES.format(makeExpiresDate());
+
+	public static DateFormat expiresDateFormat() {
+		DateFormat httpDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+		httpDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+		return httpDateFormat;
+	}
 	
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		pluginContext = pluginManager.getPluginContext(this);
 	}
 	
+	private static Date makeExpiresDate() {
+		GregorianCalendar gregorianCalendar = new GregorianCalendar();
+		gregorianCalendar.add(Calendar.DAY_OF_YEAR, 120);
+		return gregorianCalendar.getTime();
+	}
+	
 	@Override
-	public boolean service(HttpServletRequest request, HttpServletResponse response) {
+	public boolean service(String requestUri, HttpServletResponse response) {
 		try {
-			String path = request.getPathInfo();
-			if (path.startsWith(getDefaultContextPath())) {
-				path = path.substring(getDefaultContextPath().length());
+			if (requestUri.startsWith(getDefaultContextPath())) {
+				requestUri = requestUri.substring(getDefaultContextPath().length());
 			}
-			if (path == null || path.equals("")) {
-				response.sendRedirect(request.getContextPath() + getDefaultContextPath() + "/");
-			} else if (path.equals("/")) {
-				path = "index.html";
+			while (requestUri.startsWith("/")) {
+				requestUri = requestUri.substring(1);
 			}
-			if (path.startsWith("/")) {
-				path = path.substring(1);
+			if (requestUri.equals("")) {
+				requestUri = "index.html";
 			}
-			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(getSubDir() + path);
+			if (requestUri.endsWith("plugin.version")) {
+				if (getPluginContext().getPluginType() == PluginSourceType.INTERNAL) {
+					// Probably the default plugin
+					return false;
+				} else if (getPluginContext().getPluginType() == PluginSourceType.ECLIPSE_PROJECT) {
+					// We don't want to cache in Eclipse, because we change files without changing the plugin version everytime
+					response.getOutputStream().write(("{\"version\":\"" + getIdentifier() + "-" + System.nanoTime() + "\"}").getBytes(Charsets.UTF_8));
+					return true;
+				} else if (getPluginContext().getPluginType() == PluginSourceType.JAR_FILE) {
+					response.getOutputStream().write(("{\"version\":\"" + getIdentifier() + "-" + getVersion() + "\"}").getBytes(Charsets.UTF_8));
+					return true;
+				}
+			}
+			if (!requestUri.equals("index.html")) {
+				response.setHeader("Expires", FAR_FUTURE_EXPIRE_DATE);
+			}
+			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(getSubDir() + requestUri);
+//			LOGGER.info("Getting " + getSubDir() + path + " results in: " + resourceAsInputStream);
 			if (resourceAsInputStream != null) {
 				IOUtils.copy(resourceAsInputStream, response.getOutputStream());
+				resourceAsInputStream.close();
 				return true;
 			} else {
 				return false;
@@ -79,6 +117,12 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	public String getSubDir() {
 		return "";
 	}
+	
+	
+	/**
+	 * @return An identifier for this specific WebModule that will be used in the version-string that can be used for caching purposes
+	 */
+	public abstract String getIdentifier();
 	
 	/**
 	 * @return The context path on which to serve this webmodule

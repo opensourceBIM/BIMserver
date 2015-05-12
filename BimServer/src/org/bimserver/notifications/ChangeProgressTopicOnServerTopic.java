@@ -1,7 +1,7 @@
 package org.bimserver.notifications;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,6 +24,10 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class ChangeProgressTopicOnServerTopic extends Topic {
 
+	public ChangeProgressTopicOnServerTopic(NotificationsManager notificationsManager) {
+		super(notificationsManager);
+	}
+
 	public void notifyOfNewTopic(final NewProgressTopicOnServerNotification notification) throws UserException, ServerException, BimserverDatabaseException {
 		map(new Mapper(){
 			@Override
@@ -31,5 +35,10 @@ public class ChangeProgressTopicOnServerTopic extends Topic {
 				endPoint.getNotificationInterface().newProgressOnServerTopic(notification.getTopicId());
 			}
 		});
+	}
+
+	@Override
+	public void remove() {
+		// Do nothing, there is only one topic of this type
 	}
 }

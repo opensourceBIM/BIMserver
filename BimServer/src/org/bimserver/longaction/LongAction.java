@@ -1,7 +1,7 @@
 package org.bimserver.longaction;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -53,6 +53,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	private String title = "Unknown";
 	private int stage = 0;
 	private ProgressTopic progressTopic;
+	private Thread thread;
 
 	public LongAction(BimServer bimServer, String username, String userUsername, Authorization authorization) {
 		start = new GregorianCalendar();
@@ -61,6 +62,10 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		this.username = username;
 		this.bimServer = bimServer;
 		this.actionState = ActionState.STARTED;
+	}
+
+	public void init(Thread thread) {
+		this.thread = thread;
 	}
 
 	public void setProgressTopic(ProgressTopic progressTopic) {
@@ -82,7 +87,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		this.progress.set(progress);
 		this.actionState = actiontState;
 		if (oldState != actiontState || progress != oldProgress || !oldTitle.equals(title)) {
-			if (!title.equals(oldTitle)) {
+			if (title != null && oldTitle != null && !title.equals(oldTitle)) {
 				stage++;
 			}
 			bimServer.getNotificationsManager().notify(new ProgressNotification(bimServer, progressTopic, getState()));
@@ -110,8 +115,6 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	}
 
 	public abstract String getDescription();
-
-	public abstract void init();
 
 	public abstract void execute();
 
@@ -143,12 +146,17 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		this.progress.set(progress);
 		if (progress != oldProgress || !oldTitle.equals(title)) {
 			if (!title.equals(oldTitle)) {
-				stage ++;
+				stage++;
 			}
 			bimServer.getNotificationsManager().notify(new ProgressNotification(bimServer, progressTopic, getState()));
 		}
 	}
 
+	public void terminate() {
+		LOGGER.info("Terminating long action with id " + progressTopic.getKey().getId());
+//		thread.interrupt();
+	}
+	
 	public int getProgress() {
 		return progress.get();
 	}
@@ -170,6 +178,10 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		return ds;
 	}
 	
+	public List<String> getErrors() {
+		return errors;
+	}
+	
 	@Override
 	public void error(Exception error) {
 		LOGGER.error("", error);
@@ -189,5 +201,6 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	}
 
 	public void stop() {
+		progressTopic.remove();
 	}
 }

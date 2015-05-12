@@ -1,7 +1,7 @@
 package org.bimserver.test.framework;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -44,8 +44,11 @@ public class TestFramework {
 	private final TestResults testResults = new TestResults();
 	private BimServer bimServer;
 
-	public TestFramework(TestConfiguration testConfiguration) {
+	private File[] pluginDirectories;
+
+	public TestFramework(TestConfiguration testConfiguration, File[] pluginDirectories) {
 		this.testConfiguration = testConfiguration;
+		this.pluginDirectories = pluginDirectories;
 	}
 	
 	public void start() {
@@ -65,17 +68,17 @@ public class TestFramework {
 			bimServerConfig.setPort(8080);
 			bimServerConfig.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 			bimServerConfig.setClassPath(System.getProperty("java.class.path"));
-			bimServerConfig.setInitialProtocolBuffersPort(8020);
 			bimServer = new BimServer(bimServerConfig);
 			EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
 		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
 			try {
-				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."));
+				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 				bimServer.start();
 				// Convenience, setup the server to make sure it is in RUNNING state
 				if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 					bimServer.getService(AdminInterface.class).setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 					bimServer.getService(SettingsInterface.class).setGenerateGeometryOnCheckin(false);
+					bimServer.getService(SettingsInterface.class).setSendConfirmationEmailAfterRegistration(false);
 				}
 				
 				// Change a setting so normal users can create projects
@@ -95,7 +98,7 @@ public class TestFramework {
 		for (VirtualUser virtualUser : virtualUsers) {
 			virtualUser.start();
 		}
-		CommandLine commandLine = new CommandLine(this);
+		org.bimserver.CommandLine commandLine = new org.bimserver.CommandLine(bimServer);
 		commandLine.start();
 	}
 

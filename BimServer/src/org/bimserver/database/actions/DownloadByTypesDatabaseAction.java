@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,24 +18,27 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -56,17 +59,17 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 	private final Set<String> classNames;
 	private final Set<Long> roids;
 	private int progress;
-	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final boolean includeAllSubtypes;
 	private long serializerOid;
 	private boolean useObjectIDM;
 	private Deep deep;
+	private String schema;
 
-	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, long serializerOid, boolean includeAllSubtypes, boolean useObjectIDM, Authorization authorization, ObjectIDM objectIDM, Deep deep) {
-		super(databaseSession, accessMethod, authorization);
-		this.bimServer = bimServer;
+	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, String schema, Set<String> classNames, long serializerOid, boolean includeAllSubtypes, boolean useObjectIDM, Authorization authorization, ObjectIDM objectIDM, Deep deep) {
+		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roids = roids;
+		this.schema = schema;
 		this.serializerOid = serializerOid;
 		this.includeAllSubtypes = includeAllSubtypes;
 		this.useObjectIDM = useObjectIDM;
@@ -81,20 +84,23 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		User user = getUserByUoid(getAuthorization().getUoid());
 		Project project = null;
 		Set<EClass> eClasses = new HashSet<EClass>();
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		for (String className : classNames) {
-			eClasses.add(getDatabaseSession().getEClassForName(className));
+			eClasses.add(getDatabaseSession().getEClassForName(schema, className));
 			if (includeAllSubtypes) {
 				EClassifier eClassifier = Ifc2x3tc1Package.eINSTANCE.getEClassifier(className);
 				if (eClassifier == null) {
 					throw new UserException("Class " + className + " not found");
 				}
-				eClasses.addAll(bimServer.getDatabase().getMetaDataManager().getAllSubClasses((EClass)eClassifier));
+				eClasses.addAll(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(schema).getAllSubClasses((EClass)eClassifier));
 			}
 		}
 		String name = "";
+		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
+			pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
 			try {
@@ -109,29 +115,37 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			}
 			int size = 0;
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 				try {
-					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), bimServer.getPluginManager().requireSchemaDefinition());
+					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getBimServer().getPluginManager().requireSchemaDefinition(schema));
 					
 					// This hack makes sure the JsonGeometrySerializer can look at the styles, probably more subtypes of getIfcRepresentationItem should be added (not ignored), also this code should not be here at all...
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(new StructuralFeatureIdentifier(Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem().getName(), Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_StyledByItem().getName()));
 					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(new StructuralFeatureIdentifier(Ifc2x3tc1Package.eINSTANCE.getIfcExtrudedAreaSolid().getName(), Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_StyledByItem().getName()));
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcObject_IsDefinedBy());
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_IsDecomposedBy());
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcOpeningElement_HasFillings());
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations());
+					hideAllInversesObjectIDM.removeFromGeneralIgnoreSet(Ifc2x3tc1Package.eINSTANCE.getIfcGroup_IsGroupedBy());
 					
 					int highestStopId = findHighestStopRid(project, concreteRevision);
-					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, deep, highestStopId));
+					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, deep, highestStopId));
 					size += subModel.size();
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());
-					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
+					checkGeometry(serializerPluginConfiguration, getBimServer().getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 					ifcModelSet.add(subModel);
+					
+					lastPackageMetaData = packageMetaData;
 				} catch (PluginException e) {
 					throw new UserException(e);
 				} catch (GeometryGeneratingException e) {
 					throw new UserException(e);
 				}
 			}
-			IfcModelInterface ifcModel = new IfcModel(size);
+			IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, size, getDatabaseSession());
 			if (ifcModelSet.size() > 1) {
 				try {
-					ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 				} catch (MergeException e) {
 					throw new UserException(e);
 				}
@@ -146,10 +160,10 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
 		// TODO check, double merging??
-		IfcModelInterface ifcModel = new IfcModel();
+		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
 		if (ifcModelSet.size() > 1) {
 			try {
-				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
 			} catch (MergeException e) {
 				throw new UserException(e);
 			}

@@ -1,7 +1,7 @@
 package org.bimserver.webservices.impl;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -37,7 +37,8 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.webservices.ServiceMap;
-import org.codehaus.jettison.json.JSONException;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface {
 	public MetaServiceImpl(ServiceMap serviceMap) {
@@ -93,16 +94,10 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 	}
 
 	@Override
-	public List<SServiceType> getServiceTypes(String serviceInterfaceName) throws ServerException, UserException {
+	public List<SServiceType> getServiceTypes() throws ServerException, UserException {
 		List<SServiceType> sServiceTypes = new ArrayList<SServiceType>();
-		SService serviceInterface = getBimServer().getServicesMap().getByName(serviceInterfaceName);
-		if (serviceInterface == null) {
-			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
-		}
-		for (SClass sType : serviceInterface.getTypes()) {
-			SServiceType sServiceType = new SServiceType();
-			sServiceType.setName(sType.getName());
-			sServiceTypes.add(sServiceType);
+		for (SClass sType : getBimServer().getServicesMap().getTypes()) {
+			sServiceTypes.add(createSServiceType(sType, false));
 		}
 		return sServiceTypes;
 	}
@@ -117,7 +112,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 	}
 	
 	// TODO Recursion to same type will result in endless loop
-	public SServiceType createSServiceType(SClass sClass) throws UserException, ServerException {
+	public SServiceType createSServiceType(SClass sClass, boolean recurse) throws UserException, ServerException {
 		if (sClass == null) {
 			return null;
 		}
@@ -125,11 +120,13 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 		sServiceType.setName(sClass.getName());
 		sServiceType.setSimpleName(sClass.getSimpleName());
 		sServiceType.setSimpleType(SServiceSimpleType.valueOf(sClass.getSimpleType().name()));
-		for (SField field : sClass.getAllFields()) {
+		for (SField field : sClass.getOwnFields()) {
 			SServiceField sServiceField = new SServiceField();
 			sServiceField.setName(field.getName());
-			sServiceField.setType(createSServiceType(field.getType()));
-			sServiceField.setGenericType(createSServiceType(field.getGenericType()));
+			if (recurse) {
+				sServiceField.setType(createSServiceType(field.getType(), recurse));
+				sServiceField.setGenericType(createSServiceType(field.getGenericType(), recurse));
+			}
 			sServiceField.setDoc(field.getDoc());
 			sServiceType.getFields().add(sServiceField);
 		}
@@ -151,8 +148,8 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 			SServiceParameter sServiceParameter = new SServiceParameter();
 			sServiceParameter.setName(sParameter.getName());
 			sServiceParameter.setDoc(sParameter.getDoc());
-			sServiceParameter.setType(createSServiceType(sParameter.getType()));
-			sServiceParameter.setGenericType(createSServiceType(sParameter.getGenericType()));
+			sServiceParameter.setType(createSServiceType(sParameter.getType(), false));
+			sServiceParameter.setGenericType(createSServiceType(sParameter.getGenericType(), false));
 			sServiceParameters.add(sServiceParameter);
 		}
 		return sServiceParameters;
@@ -174,11 +171,6 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public String getAllAsJson() throws ServerException, UserException {
-		try {
-			return getBimServer().getServicesMap().toJson().toString(2);
-		} catch (JSONException e) {
-			handleException(e);
-		}
-		return null;
+		return getBimServer().getServicesMap().toJson(new ObjectMapper()).toString();
 	}
 }

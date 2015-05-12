@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -217,4 +217,11 @@ public interface AdminInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getServerStartTime")
 	Date getServerStartTime() throws ServerException, UserException;
+
+	/**
+	 * Regenerate the geometry for a specified croid
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "regenerateGeometry")
+	void regenerateGeometry(@WebParam(name = "croid", partName = "regenerateGeometry.croid") Long croid) throws ServerException, UserException;
 }

@@ -61,3 +61,56 @@ function TabChanger(navElement, mainContainer) {
 		othis.currentContentElement = contentElement;
 	};
 }
+
+function TabChanger2(navElement, mainContainer) {
+	var othis = this;
+	othis.current = null;
+	othis.currentContentElement = null;
+	
+	this.changeTab = function(linkElement, page, contentElement, constructorFunction, callback) {
+		if (othis.currentContentElement != null && contentElement != null && othis.currentContentElement.get(0) == contentElement.get(0)) {
+			othis.current = constructorFunction.call(contentElement);
+			if (callback != null) {
+				callback.call(othis.current);
+			}
+			return;
+		}
+		if (othis.current != null) {
+			if (othis.current.close != null) {
+				othis.current.close();
+			}
+		}
+		linkElement.parent().find("label").removeClass("active");
+		linkElement.addClass("active");
+		mainContainer.find("> div").hide();
+		if (page != null) {
+			if (typeof page == "string") {
+				contentElement.load(page, function(response, status, xhr) {
+					if (status == "error") {
+						console.log(response, xhr.status, xhr.statusText);
+					} else {
+						othis.current = constructorFunction.call(this);
+						contentElement.show();
+						if (callback != null) {
+							callback.call(othis.current);
+						}
+					}
+				});
+			} else {
+				othis.current = page;
+				contentElement.append(page);
+				contentElement.show();
+				if (callback != null) {
+					callback.call(othis.current);
+				}
+			}
+		} else {
+			othis.current = constructorFunction.call(contentElement);
+			if (callback != null) {
+				callback.call(othis.current);
+			}
+			contentElement.show();
+		}
+		othis.currentContentElement = contentElement;
+	};
+}

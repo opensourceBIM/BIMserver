@@ -1,7 +1,7 @@
 package org.bimserver.validationreport;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,11 +17,11 @@ package org.bimserver.validationreport;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public abstract class Item {
 
 	public abstract void toHtml(StringBuilder sb);
-	public abstract JSONObject toJson() throws JSONException;
+	public abstract ObjectNode toJson(ObjectMapper objectMapper);
 }

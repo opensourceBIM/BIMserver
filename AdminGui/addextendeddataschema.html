@@ -1,0 +1,88 @@
+<div class="addextendeddataschema">
+	<form class="form-horizontal">
+		<legend>Add extended data schema</legend>
+		<div class="form-group">
+			<label class="control-label" for="inputName">Name</label>
+			<div class="controls">
+				<input type="text" class="form-control inputName input-xxlarge" id="inputName" placeholder="Name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="inputNamespace">Namespace</label>
+			<div class="controls">
+				<input type="text" class="form-control inputNamespace input-xxlarge" id="inputNamespace" placeholder="Namespace">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="inputUrl">URL/Data</label>
+			<div class="controls">
+				<input type="text" class="form-control inputUrl input-xxlarge" id="inputUrl" placeholder="URL"><br/>
+				- OR -<br/>
+				<input type="file" class="file inputData" id="inputData">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="controls">
+				<label class="validateInput checkbox"> <input type="checkbox"> Validate
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="inputPassword">Type</label>
+			<div class="controls">
+				<select class="form-control typeSelect">
+					<option>XSD</option>
+					<option>PDF</option>
+					<option>TXT</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-actions">
+			<button type="submit" class="btn addButton btn-primary">Add</button>
+			<button type="button" class="btn btn-default cancelButton">Cancel</button>
+		</div>
+	</form>
+</div>
+<script>
+function AddExtendedDataSchema(main, serversettings, extendedDataSchema) {
+	var othis = this;
+
+	this.close = function() {
+	};
+	
+	this.show = function() {
+	};
+	
+	if (extendedDataSchema != null) {
+		$(".addextendeddataschema .inputName").val(extendedDataSchema.name);
+		$(".addextendeddataschema .inputNamespace").val(extendedDataSchema.namespace);
+		$(".addextendeddataschema .inputUrl").val(extendedDataSchema.url);
+		$(".addextendeddataschema .typeSelect").val(extendedDataSchema.type);
+	}
+	
+	$(".addextendeddataschema .cancelButton").click(function(event){
+		event.preventDefault();
+		serversettings.showExtendedDataSchemas();
+	});
+	
+	this.createObject = function() {
+		var extendedDataSchema = {
+			__type: "SExtendedDataSchema",
+			name: $(".addextendeddataschema .inputName").val(),
+			namespace: $(".addextendeddataschema .inputNamespace").val(),
+			url: $(".addextendeddataschema .inputUrl").val(),
+			type: $(".addextendeddataschema .typeSelect").val()
+		};
+		return extendedDataSchema;
+	}
+	
+	$(".addextendeddataschema .addButton").click(function(event){
+		event.preventDefault();
+		Global.bimServerApi.call("ServiceInterface", "addExtendedDataSchema", {extendedDataSchema: othis.createObject()}, function(data){
+			serversettings.showExtendedDataSchemas();
+		});
+	});
+	
+	$(".addextendeddataschema .inputName").focus();
+}
+</script>

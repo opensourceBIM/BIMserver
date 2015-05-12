@@ -1,8 +1,8 @@
 <div class="basicserversettings">
 	<form class="form-horizontal" role="form">
 		<div class="form-group">
-			<label class="col-sm-2 control-label" for="inputRepositoryServer"><a rel="tooltip" data-original-title="Central repository server from which services, plugins and extended data schemas can be loaded" data-placement="right">Repository Server</a></label>
-			<div class="col-sm-8">
+			<label class="col-lg-2 control-label" for="inputRepositoryServer"><a rel="tooltip" data-original-title="Central repository server from which services, plugins and extended data schemas can be loaded" data-placement="right">Repository Server</a></label>
+			<div class="col-lg-8">
 				<input type="text" class="form-control inputRepositoryServer" id="inputRepositoryServer" placeholder="Name">
 			</div>
 		</div>
@@ -16,6 +16,33 @@
 			<label class="col-lg-2 control-label" for="smtpServer"><a rel="tooltip" data-original-title="SMTP server to use for sending emails" data-placement="right">SMTP server</a></label>
 			<div class="col-lg-8">
 				<input type="text" class="form-control smtpServer" id="smtpServer" placeholder="Name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label" for="smtpUsername"><a rel="tooltip" data-original-title="SMTP username" data-placement="right">SMTP username</a></label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control smtpUsername" id="smtpUsername" placeholder="SMTP username">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label" for="smtpPassword"><a rel="tooltip" data-original-title="SMTP password" data-placement="right">SMTP password</a></label>
+			<div class="col-lg-8">
+				<input type="password" class="form-control smtpPassword" id="smtpPassword" placeholder="SMTP password">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label" for="smtpPort"><a rel="tooltip" data-original-title="SMTP port" data-placement="right">SMTP port</a></label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control smtpPort" id="smtpPort" placeholder="SMTP port">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label" for="smtpProtocol"><a rel="tooltip" data-original-title="SMTP protocol" data-placement="right">SMTP protocol</a></label>
+			<div class="col-lg-8">
+				<select class="form-control smtpProtocol" id="smtpProtocol">
+					<option value="SMTP">SMTP</option>
+					<option value="SMTPS">SMTPS</option>
+				</select>
 			</div>
 		</div>
 		<div class="form-group">
@@ -37,6 +64,12 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-lg-2 control-label" for="sessionTimeOutSeconds"><a rel="tooltip" data-original-title="Session timeout in seconds" data-placement="right">Session timeout (s)</a></label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control sessionTimeOutSeconds" id="sessionTimeOutSeconds">
+			</div>
+		</div>
+		<div class="form-group">
 			<div class="col-lg-8">
 				<label class="checkbox" for="hideUserList"><a rel="tooltip" data-original-title="Whether to hide the list of users for non-admin users" data-placement="right">Hide userlist for non-admin users</a>
 					<input type="checkbox" class="hideUserList" id="hideUserList">
@@ -45,51 +78,72 @@
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="cacheOutputFiles"><a rel="tooltip" data-original-title="Whether serialized versions of models should be cached on disk. The first time a model is downloaded a cache file will be created. The server administrator is responsible for cleaning up cached files" data-placement="right">Cache output files</a>
-					<input type="checkbox" class="input-xxlarge cacheOutputFiles" id="cacheOutputFiles">
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether serialized versions of models should be cached on disk. The first time a model is downloaded a cache file will be created. The server administrator is responsible for cleaning up cached files" data-placement="right">Cache output files</a>
+					<input type="checkbox" class="input-xxlarge cacheOutputFiles">
 				</label>
 				<button class="btn btn-default clearCacheButton">Clear cache</button>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="checkinMergingEnabled"><a rel="tooltip" data-original-title="Whether checkin-merging is enabled" data-placement="right">Checkin merging enabled</a>
-					<input type="checkbox" class="checkinMergingEnabled" id="checkinMergingEnabled">
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether checkin-merging is enabled" data-placement="right">Checkin merging enabled</a>
+					<input type="checkbox" class="checkinMergingEnabled">
 				</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="generateGeometryCheckin"><a rel="tooltip" data-original-title="Whether to generate geometry on checkin" data-placement="right">Generate geometry on checkin</a>
-					<input type="checkbox" class="generateGeometryCheckin" id="generateGeometryCheckin">
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether geometry reuse is enabled" data-placement="right">Geometry reuse</a>
+					<input type="checkbox" class="geometryReuseEnabled">
 				</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="createTopLevelProjects"><a rel="tooltip" data-original-title="Allow user to create top level projects" data-placement="right">Allow user to create top level projects</a>
-					<input type="checkbox" class="createTopLevelProjects" id="createTopLevelProjects">
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether to generate geometry on checkin" data-placement="right">Generate geometry on checkin</a>
+					<input type="checkbox" class="generateGeometryCheckin">
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-lg-2"><a rel="tooltip" data-original-title="Maximum amount of processes to use concurrently when generating geometry for 1 revision" data-placement="right">Max Render Engine Processes (BETA)</a>
+			</label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control renderEngineProcesses">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-lg-8">
+				<label class="checkbox"><a rel="tooltip" data-original-title="Allow user to create top level projects" data-placement="right">Allow user to create top level projects</a>
+					<input type="checkbox" class="createTopLevelProjects">
 				</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="allowSelfRegistration"><a rel="tooltip" data-original-title="Whether to allow users to register themselves" data-placement="right">Allow self registration</a>
-					<input type="checkbox" class="allowSelfRegistration" id="allowSelfRegistration"/>
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether to allow users to register themselves" data-placement="right">Allow self registration</a>
+					<input type="checkbox" class="allowSelfRegistration"/>
 				</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="sendConfirmationEmailAfterRegistration"><a rel="tooltip" data-original-title="Whether a confirmation e-mail should be send after a new user has been registered" data-placement="right">Send confirmation email after registration</a>
-					<input type="checkbox" class="sendConfirmationEmailAfterRegistration" id="sendConfirmationEmailAfterRegistration"/>
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether a confirmation e-mail should be send after a new user has been registered" data-placement="right">Send confirmation email after registration</a>
+					<input type="checkbox" class="sendConfirmationEmailAfterRegistration"/>
 				</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-lg-8">
-				<label class="checkbox" for="allowOnlyWhitelisted"><a rel="tooltip" data-original-title="Whether only whitelisted (below) domains should be authorized to connect" data-placement="right">Only white listed domains</a>
-					<input type="checkbox" class="allowOnlyWhitelisted" id="allowOnlyWhitelisted"/>
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether an email should be send to all authorized users of a project when there is new revision" data-placement="right">Send email on new revision</a>
+					<input type="checkbox" class="sendEmailOnNewRevision"/>
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-lg-8">
+				<label class="checkbox"><a rel="tooltip" data-original-title="Whether only whitelisted (below) domains should be authorized to connect" data-placement="right">Only white listed domains</a>
+					<input type="checkbox" class="allowOnlyWhitelisted"/>
 				</label>
 			</div>
 		</div>
@@ -104,6 +158,8 @@
 function BasicServerSettings(main, serversettings) {
 	var othis = this;
 	othis.change = false;
+	
+	this.show = function(){};
 	
 	this.removeDomainButton = function(){
 		$(this).parent().remove();		
@@ -152,15 +208,23 @@ function BasicServerSettings(main, serversettings) {
 			serverSettings.serviceRepositoryUrl = $(".basicserversettings .inputRepositoryServer").val();
 			serverSettings.siteAddress = $(".basicserversettings .siteAddress").val();
 			serverSettings.smtpServer = $(".basicserversettings .smtpServer").val();
+			serverSettings.smtpProtocol = $(".basicserversettings .smtpProtocol").val();
+			serverSettings.smtpPort = $(".basicserversettings .smtpPort").val();
+			serverSettings.smtpUsername = $(".basicserversettings .smtpUsername").val();
+			serverSettings.smtpPassword = $(".basicserversettings .smtpPassword").val();
 			serverSettings.emailSenderAddress = $(".basicserversettings .emailSenderAddress").val();
 			serverSettings.emailSenderName = $(".basicserversettings .emailSenderName").val();
 			serverSettings.hideUserListForNonAdmin = $(".basicserversettings .hideUserList").prop("checked");
 			serverSettings.protocolBuffersPort = $(".basicserversettings .protocolBuffersPort").val();
+			serverSettings.sessionTimeOutSeconds = $(".basicserversettings .sessionTimeOutSeconds").val();
 			serverSettings.cacheOutputFiles = $(".basicserversettings .cacheOutputFiles").prop("checked");
+			serverSettings.renderEngineProcesses = $(".basicserversettings .renderEngineProcesses").val();
+			serverSettings.reuseGeometry = $(".basicserversettings .geometryReuseEnabled").prop("checked");
 			serverSettings.checkinMergingEnabled = $(".basicserversettings .checkinMergingEnabled").prop("checked");
 			serverSettings.allowUsersToCreateTopLevelProjects = $(".basicserversettings .createTopLevelProjects").prop("checked");
 			serverSettings.allowSelfRegistration = $(".basicserversettings .allowSelfRegistration").prop("checked");
 			serverSettings.sendConfirmationEmailAfterRegistration = $(".basicserversettings .sendConfirmationEmailAfterRegistration").prop("checked");
+			serverSettings.sendEmailOnNewRevision = $(".basicserversettings .sendEmailOnNewRevision").prop("checked");
 			serverSettings.allowOnlyWhitelisted = $(".basicserversettings .allowOnlyWhitelisted").prop("checked");
 			serverSettings.generateGeometryOnCheckin = $(".basicserversettings .generateGeometryCheckin").prop("checked");
 			Global.bimServerApi.callWithFullIndication("SettingsInterface", "setServerSettings", {serverSettings: serverSettings}, function(data){
@@ -194,17 +258,26 @@ function BasicServerSettings(main, serversettings) {
 			$(".basicserversettings .inputRepositoryServer").val(data.serviceRepositoryUrl);
 			$(".basicserversettings .siteAddress").val(data.siteAddress);
 			$(".basicserversettings .smtpServer").val(data.smtpServer);
+			$(".basicserversettings .smtpUsername").val(data.smtpUsername);
+			$(".basicserversettings .smtpPassword").val(data.smtpPassword);
+			$(".basicserversettings .smtpPort").val(data.smtpPort);
+			$(".basicserversettings .smtpProtocol").val(data.smtpProtocol);
 			$(".basicserversettings .emailSenderAddress").val(data.emailSenderAddress);
 			$(".basicserversettings .emailSenderName").val(data.emailSenderName);
 			$(".basicserversettings .hideUserList").prop("checked", data.hideUserListForNonAdmin);
 			$(".basicserversettings .protocolBuffersPort").val(data.protocolBuffersPort);
+			$(".basicserversettings .renderEngineProcesses").val(data.renderEngineProcesses);
+			$(".basicserversettings .sessionTimeOutSeconds").val(data.sessionTimeOutSeconds);
 			$(".basicserversettings .cacheOutputFiles").prop("checked", data.cacheOutputFiles);
+			$(".basicserversettings .geometryReuseEnabled").prop("checked", data.reuseGeometry);
 			$(".basicserversettings .checkinMergingEnabled").prop("checked", data.checkinMergingEnabled);
 			$(".basicserversettings .createTopLevelProjects").prop("checked", data.allowUsersToCreateTopLevelProjects);
 			$(".basicserversettings .allowSelfRegistration").prop("checked", data.allowSelfRegistration);
 			$(".basicserversettings .sendConfirmationEmailAfterRegistration").prop("checked", data.sendConfirmationEmailAfterRegistration);
+			$(".basicserversettings .sendEmailOnNewRevision").prop("checked", data.sendEmailOnNewRevision);
 			$(".basicserversettings .allowOnlyWhitelisted").prop("checked", data.allowOnlyWhitelisted);
 			$(".basicserversettings .generateGeometryCheckin").prop("checked", data.generateGeometryOnCheckin);
+			$(".basicserversettings .whiteListedDomains .whiteListedDomainDiv").remove();
 			data.whitelistedDomains.forEach(function(domain){
 				othis.addWhiteListedDomain(domain);
 			});
@@ -243,10 +316,11 @@ function BasicServerSettings(main, serversettings) {
 	this.close = function(){
 	};
 	
+	$(".basicserversettings select").change(function(){othis.change = true; othis.save()});
 	$(".basicserversettings input[type='checkbox']").change(function(){othis.change = true; othis.save()});
-	$(".basicserversettings input[type='text']").blur(othis.save);
-	$(".basicserversettings input[type='text']").enterpress(othis.save);
-	$(".basicserversettings input[type='text']").keyup(function(event){
+	$(".basicserversettings input[type='text'], .basicserversettings input[type='password']").blur(othis.save);
+	$(".basicserversettings input[type='text'], .basicserversettings input[type='password']").enterpress(othis.save);
+	$(".basicserversettings input[type='text'], .basicserversettings input[type='password']").keyup(function(event){
 		if (event.which != 13 && event.which != 9) {
 			othis.change = true;
 		}

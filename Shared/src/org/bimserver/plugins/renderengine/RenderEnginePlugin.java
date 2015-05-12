@@ -1,7 +1,7 @@
 package org.bimserver.plugins.renderengine;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -26,5 +26,5 @@ public interface RenderEnginePlugin extends Plugin {
 	 * @return A RenderEngine instance
 	 * @throws RenderEngineException
 	 */
-	RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration) throws RenderEngineException;
+	RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration, String schema) throws RenderEngineException;
 }

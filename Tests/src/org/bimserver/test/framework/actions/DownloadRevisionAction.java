@@ -1,7 +1,7 @@
 package org.bimserver.test.framework.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -67,7 +67,7 @@ public class DownloadRevisionAction extends Action {
 				SRevision revision = virtualUser.getBimServerClient().getBimsie1ServiceInterface().getRevision(project.getLastRevisionId());
 				long topicId = virtualUser.getBimServerClient().getBimsie1ServiceInterface().download(project.getLastRevisionId(), serializer.getOid(), true, sync);
 				SActionState state = virtualUser.getBimServerClient().getRegistry().getProgress(topicId).getState();
-				while (state != SActionState.FINISHED) {
+				while (state != SActionState.FINISHED && state != SActionState.AS_ERROR) {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {

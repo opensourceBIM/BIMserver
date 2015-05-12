@@ -40,6 +40,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getIfcHeader <em>Ifc Header</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ConcreteRevision#getOidCounters <em>Oid Counters</em>}</li>
  * </ul>
  * </p>
  *
@@ -328,5 +329,31 @@ public interface ConcreteRevision extends IdEObject {
 	 * @generated
 	 */
 	void setIfcHeader(IfcHeader value);
+
+	/**
+	 * Returns the value of the '<em><b>Oid Counters</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Oid Counters</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Oid Counters</em>' attribute.
+	 * @see #setOidCounters(byte[])
+	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_OidCounters()
+	 * @model
+	 * @generated
+	 */
+	byte[] getOidCounters();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getOidCounters <em>Oid Counters</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Oid Counters</em>' attribute.
+	 * @see #getOidCounters()
+	 * @generated
+	 */
+	void setOidCounters(byte[] value);
 
 } // ConcreteRevision

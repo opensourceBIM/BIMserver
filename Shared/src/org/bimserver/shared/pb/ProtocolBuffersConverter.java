@@ -1,7 +1,7 @@
 package org.bimserver.shared.pb;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -62,7 +62,7 @@ public class ProtocolBuffersConverter {
 			Message subTypeMessage = null;
 			for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 				if (fieldDescriptor.getName().equals("__actual_type")) {
-					sClass = sClass.getsService().getSType((String)message.getField(fieldDescriptor));
+					sClass = sClass.getServicesMap().getSType((String)message.getField(fieldDescriptor));
 					newInstance = sClass.newInstance();
 				} else if (fieldDescriptor.getName().startsWith("__")) {
 					if (fieldDescriptor.getName().substring(2).equals(sClass.getSimpleName())) {
@@ -161,7 +161,7 @@ public class ProtocolBuffersConverter {
 			builder.setField(messageDescriptor.getField("__actual_type"), sClass.getSimpleName());
 			builder.setField(messageDescriptor.getField("__" + sClass.getSimpleName()), convertSObjectToProtocolBuffersObject(object, sClass));
 		}
-		for (SField field : definedType.getFields()) {
+		for (SField field : definedType.getAllFields()) {
 			try {
 				Object value = object.sGet(field);
 				FieldDescriptor fieldDescriptor = messageDescriptor.getField(field.getName());

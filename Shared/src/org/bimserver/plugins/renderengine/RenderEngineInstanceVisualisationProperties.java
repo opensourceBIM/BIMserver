@@ -1,7 +1,7 @@
 package org.bimserver.plugins.renderengine;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,25 +18,37 @@ package org.bimserver.plugins.renderengine;
  *****************************************************************************/
 
 public class RenderEngineInstanceVisualisationProperties {
-	private int startVertex;
-	private int startIndex;
-	private int primitiveCount;
+	private final float[] vertices;
+	private final int[] indices;
+	private final float[] normals;
+	private int[] materialIndices;
+	private float[] materials;
 
-	public RenderEngineInstanceVisualisationProperties(int startVertex, int startIndex, int primitiveCount) {
-		this.startVertex = startVertex;
-		this.startIndex = startIndex;
-		this.primitiveCount = primitiveCount;
+	public RenderEngineInstanceVisualisationProperties(int[] indices, float[] vertices, float[] normals, int[] materialIndices, float[] materials) {
+		this.indices = indices;
+		this.vertices = vertices;
+		this.normals = normals;
+		this.materialIndices = materialIndices;
+		this.materials = materials;
+	}
+	
+	public float[] getVertices() {
+		return vertices;
 	}
 
-	public int getStartVertex() {
-		return startVertex;
+	public int[] getIndices() {
+		return indices;
 	}
 
-	public int getStartIndex() {
-		return startIndex;
+	public float[] getMaterials() {
+		return materials;
 	}
 
-	public int getPrimitiveCount() {
-		return primitiveCount;
+	public int[] getMaterialIndices() {
+		return materialIndices;
+	}
+
+	public float[] getNormals() {
+		return normals;
 	}
 }

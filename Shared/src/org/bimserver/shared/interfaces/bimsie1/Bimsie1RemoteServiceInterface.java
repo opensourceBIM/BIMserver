@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.bimsie1;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -47,6 +47,29 @@ public interface Bimsie1RemoteServiceInterface extends PublicInterface {
 		@WebParam(name = "userToken", partName = "newRevision.userToken") String userToken,
 		@WebParam(name = "token", partName = "newRevision.token") String token,
 		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws UserException, ServerException;
+
+	@WebMethod(action = "newExtendedDataOnProject")
+	void newExtendedDataOnProject(
+		@WebParam(name = "poid", partName = "newExtendedDataOnProject.poid") Long poid,
+		@WebParam(name = "edid", partName = "newExtendedDataOnProject.edid") Long edid,
+		@WebParam(name = "soid", partName = "newExtendedDataOnProject.soid") Long soid,
+		@WebParam(name = "serviceIdentifier", partName = "newExtendedDataOnProject.serviceIdentifier") String serviceIdentifier,
+		@WebParam(name = "profileIdentifier", partName = "newExtendedDataOnProject.profileIdentifier") String profileIdentifier,
+		@WebParam(name = "userToken", partName = "newExtendedDataOnProject.userToken") String userToken,
+		@WebParam(name = "token", partName = "newExtendedDataOnProject.token") String token,
+		@WebParam(name = "apiUrl", partName = "newExtendedDataOnProject.apiUrl") String apiUrl) throws UserException, ServerException;
+
+	@WebMethod(action = "newExtendedDataOnRevision")
+	void newExtendedDataOnRevision(
+		@WebParam(name = "poid", partName = "newExtendedDataOnRevision.poid") Long poid,
+		@WebParam(name = "roid", partName = "newExtendedDataOnRevision.roid") Long roid,
+		@WebParam(name = "edid", partName = "newExtendedDataOnRevision.edid") Long edid,
+		@WebParam(name = "soid", partName = "newExtendedDataOnRevision.soid") Long soid,
+		@WebParam(name = "serviceIdentifier", partName = "newExtendedDataOnRevision.serviceIdentifier") String serviceIdentifier,
+		@WebParam(name = "profileIdentifier", partName = "newExtendedDataOnRevision.profileIdentifier") String profileIdentifier,
+		@WebParam(name = "userToken", partName = "newExtendedDataOnRevision.userToken") String userToken,
+		@WebParam(name = "token", partName = "newExtendedDataOnRevision.token") String token,
+		@WebParam(name = "apiUrl", partName = "newExtendedDataOnRevision.apiUrl") String apiUrl) throws UserException, ServerException;
 	
 	@WebMethod(action = "getPublicProfiles")
 	List<SProfileDescriptor> getPublicProfiles(

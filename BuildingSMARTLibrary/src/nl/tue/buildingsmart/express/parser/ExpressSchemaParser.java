@@ -1,7 +1,7 @@
 package nl.tue.buildingsmart.express.parser;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -269,4 +269,11 @@ public class ExpressSchemaParser {
 		return (((hours < 10) ? "0" + hours : "" + hours) + ":" + ((minutes < 10) ? "0" + minutes : "" + minutes) + ":" + ((seconds < 10) ? "0" + seconds : "" + seconds));
 	}
 
+	public void close() {
+		try {
+			inputStream.close();
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
+	}
 }

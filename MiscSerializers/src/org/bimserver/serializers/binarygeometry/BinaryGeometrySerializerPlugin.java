@@ -1,7 +1,7 @@
 package org.bimserver.serializers.binarygeometry;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,12 +17,16 @@ package org.bimserver.serializers.binarygeometry;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Set;
+
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 
+@Deprecated
 public class BinaryGeometrySerializerPlugin extends AbstractSerializerPlugin {
 
 	private boolean initialized;
@@ -70,5 +74,10 @@ public class BinaryGeometrySerializerPlugin extends AbstractSerializerPlugin {
 	@Override
 	public String getDefaultContentType() {
 		return "binarygeometry";
+	}
+	
+	@Override
+	public Set<Schema> getSupportedSchemas() {
+		return Schema.asSet(Schema.IFC2X3TC1, Schema.IFC4);
 	}
 }

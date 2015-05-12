@@ -1,7 +1,7 @@
 package org.bimserver;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,6 +23,8 @@ import java.util.Set;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
+import org.bimserver.database.migrations.InconsistentModelsException;
+import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.store.ServerInfo;
@@ -38,9 +40,9 @@ import org.slf4j.LoggerFactory;
 public class ServerInfoManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServerInfoManager.class);
 	private BimServer bimServer;
-	private Set<StateChangeListener> stateChangeListeners = new HashSet<StateChangeListener>();
+	private final Set<StateChangeListener> stateChangeListeners = new HashSet<StateChangeListener>();
 	private final ServerInfo serverInfo = StoreFactory.eINSTANCE.createServerInfo();
-
+	
 	public void registerStateChangeListener(StateChangeListener stateChangeListener) {
 		stateChangeListeners.add(stateChangeListener);
 	}
@@ -52,8 +54,21 @@ public class ServerInfoManager {
 	}
 
 	public void update() {
+		try {
+			serverInfo.setVersion(bimServer.getSConverter().convertFromSObject(bimServer.getVersionChecker().getLocalVersion(), null));
+		} catch (BimserverDatabaseException e) {
+			LOGGER.error("", e);
+		}
 		if (bimServer.getDatabase().getMigrator().migrationRequired()) {
 			setServerState(ServerState.MIGRATION_REQUIRED);
+			if (bimServer.getConfig().isAutoMigrate()) {
+				try {
+					bimServer.getDatabase().getMigrator().migrate();
+					setServerState(ServerState.RUNNING);
+				} catch (MigrationException | InconsistentModelsException e) {
+					LOGGER.error("", e);
+				}
+			}
 		} else if (bimServer.getDatabase().getMigrator().migrationImpossible()) {
 			setServerState(ServerState.MIGRATION_IMPOSSIBLE);
 		} else {
@@ -89,7 +104,7 @@ public class ServerInfoManager {
 	}
 
 	public void setOutOfMemory() {
-		serverInfo.setErrorMessage("This server is out of memory, more info on how to fix this can be found on <a href=\"http://support.bimserver.org/\">support.bimserver.org</a>. Or let us handle the hosting stuff and join our VIP hosting solutions at <a href=\"http://vip.bimserver.org/\">vip.bimserver.org</a>.  ");
+		serverInfo.setErrorMessage("This server is out of memory, more info on how to fix this can be found on <a href=\"http://support.opensourcebim.org/\">support.opensourcebim.org</a>. Or let us handle the hosting stuff and join our VIP hosting solutions at <a href=\"http://vip.bimserver.org/\">vip.bimserver.org</a>.  ");
 	}
 
 	public void setServerState(ServerState serverState) {

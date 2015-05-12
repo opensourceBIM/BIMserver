@@ -14,6 +14,8 @@
 function Migrations(main, serversettings) {
 	var othis = this;
 	
+	this.show = function(){};
+	
 	this.loadMigrations = function(){
 		Global.bimServerApi.call("AdminInterface", "getMigrations", {}, function(data){
 			$(".migrations table tbody tr").remove();

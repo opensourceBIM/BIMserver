@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,21 +23,18 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 
 // Test downloading with JsonSerializer 2 revisions of model
 
 public class TestJsonSerializerMultipleRevisions {
 	public static void main(String[] args) {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 		try {
-			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 			SSerializerPluginConfiguration jsonSerializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/json");
 			long roid1 = 65539;
 			long roid2 = 131075;
@@ -50,8 +47,6 @@ public class TestJsonSerializerMultipleRevisions {
 			InputStream downloadData2 = client.getDownloadData(download2, jsonSerializer.getOid());
 			IOUtils.copy(downloadData2, new FileOutputStream(new File("roid2.json")));
 		} catch (ServiceException e) {
-			e.printStackTrace();
-		} catch (ChannelConnectionException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();

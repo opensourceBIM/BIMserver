@@ -4,7 +4,6 @@ import org.eclipse.emf.ecore.*;
 import org.bimserver.utils.*;
 import org.bimserver.emf.MetaDataManager;
 import java.io.File;
-import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.StringUtils;
 
 public class ServiceInterfaceObjectGenerator
@@ -201,12 +200,12 @@ public class ServiceInterfaceObjectGenerator
     stringBuffer.append(TEXT_5);
     
 importManager.getImport("javax.xml.bind.annotation.XmlTransient");
-if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) { 
+if (!metaDataManager.getPackageMetaData(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass).isEmpty()) { 
 importManager.getImport("javax.xml.bind.annotation.XmlSeeAlso");
 
     stringBuffer.append(TEXT_6);
     
-java.util.Set<EClass> subClasses = metaDataManager.getDirectSubClasses(eClass);
+java.util.Set<EClass> subClasses = metaDataManager.getPackageMetaData(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass);
 int i=0;
 for (EClass subClass : subClasses) {
 	

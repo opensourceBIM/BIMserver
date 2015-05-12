@@ -1,7 +1,7 @@
 package org.bimserver.plugins.objectidms;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,8 +20,6 @@ package org.bimserver.plugins.objectidms;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.bimserver.plugins.objectidms.FieldIgnoreMap;
-import org.bimserver.plugins.objectidms.StructuralFeatureIdentifier;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;

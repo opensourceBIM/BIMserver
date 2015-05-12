@@ -1,7 +1,7 @@
 package org.bimserver.test.framework.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,6 +20,7 @@ package org.bimserver.test.framework.actions;
 import java.io.File;
 
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -47,12 +48,14 @@ public class DownloadModelLowLevel extends Action {
 		if (randomRevision != null) {
 			IfcModelInterface model;
 			try {
-				model = virtualUser.getBimServerClient().getModel(randomRevision.getProjectId(), randomRevision.getOid(), true);
+				SProject project = virtualUser.getBimServerClient().getBimsie1ServiceInterface().getProjectByPoid(randomRevision.getProjectId());
+				model = virtualUser.getBimServerClient().getModel(project, randomRevision.getOid(), true, false);
 				PluginManager pluginManager = getTestFramework().getPluginManager();
 				SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 				Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
-				serializer.writeToFile(new File(getTestFramework().getTestConfiguration().getOutputFolder(), "test.ifc"));
+				model.generateMinimalExpressIds();
+				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, false);
+				serializer.writeToFile(new File(getTestFramework().getTestConfiguration().getOutputFolder(), "test.ifc"), null);
 			} catch (BimServerClientException e1) {
 				e1.printStackTrace();
 			} catch (RenderEngineException e) {

@@ -1,7 +1,7 @@
 package org.bimserver.web;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -37,7 +37,6 @@ import org.slf4j.LoggerFactory;
 
 public class WarServerInitializer implements ServletContextListener {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 	private BimServer bimServer;
 	
 	@Override
@@ -50,18 +49,34 @@ public class WarServerInitializer implements ServletContextListener {
 		if (homeDir == null && servletContext.getInitParameter("homedir") != null) {
 			homeDir = new File(servletContext.getInitParameter("homedir"));
 		}
+
+		boolean autoMigrate = false;
+		if (servletContext.getAttribute("autoMigrate") != null) {
+			autoMigrate = (boolean) servletContext.getAttribute("autoMigrate");
+		}
+		if (autoMigrate == false && servletContext.getInitParameter("autoMigrate") != null) {
+			autoMigrate = Boolean.valueOf(servletContext.getInitParameter("autoMigrate"));
+		}
 		
-		File baseDir = new File(servletContext.getRealPath("/") + "WEB-INF");
+		String realPath = servletContext.getRealPath("/");
+		if (!realPath.endsWith("/")) {
+			realPath = realPath + "/";
+		}
+		File baseDir = new File(realPath + "WEB-INF");
 		if (homeDir == null) {
 			homeDir = baseDir;
 		}
 		ResourceFetcher resourceFetcher = new WarResourceFetcher(servletContext, homeDir);
 		BimServerConfig config = new BimServerConfig();
+		config.setAutoMigrate(autoMigrate);
 		config.setHomeDir(homeDir);
 		config.setResourceFetcher(resourceFetcher);
 		config.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
 		config.setStartEmbeddedWebServer(false);
 		bimServer = new BimServer(config);
+		
+		Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
+		LOGGER.info("Servlet Context Name: " + servletContext.getServletContextName());
 		
 		File file = resourceFetcher.getFile("plugins");
 		try {
@@ -82,6 +97,10 @@ public class WarServerInitializer implements ServletContextListener {
 	}
 	
 	private String makeClassPath(File file) {
+		// Added for Tomcat8
+		if (file == null) {
+			return "";
+		}
 		StringBuilder sb = new StringBuilder();
 		for (File f : file.listFiles()) {
 			if (f.getName().toLowerCase().endsWith(".jar")) {
@@ -93,6 +112,7 @@ public class WarServerInitializer implements ServletContextListener {
 
 	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
+		servletContextEvent.getServletContext().removeAttribute("bimserver");
 		if (bimServer != null) {
 			bimServer.stop();
 		}

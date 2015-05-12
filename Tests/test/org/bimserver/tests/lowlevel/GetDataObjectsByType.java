@@ -24,21 +24,21 @@ public class GetDataObjectsByType extends TestWithEmbeddedServer{
 			Bimsie1LowLevelInterface lowLevelInterface = bimServerClient.getBimsie1LowLevelInterface();
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
 			// Create furnishing
-			Long wallOid = lowLevelInterface.createObject(tid, "IfcWall");
-			Long relContainedInSpatialStructure = lowLevelInterface.createObject(tid, "IfcRelContainedInSpatialStructure");
+			Long wallOid = lowLevelInterface.createObject(tid, "IfcWall", true);
+			Long relContainedInSpatialStructure = lowLevelInterface.createObject(tid, "IfcRelContainedInSpatialStructure", true);
 			lowLevelInterface.addReference(tid, relContainedInSpatialStructure, "RelatedElements", wallOid);
 			
 			// Commit the transaction
 			lowLevelInterface.commitTransaction(tid, "test");
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 
-			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcRelContainedInSpatialStructure", false);
+			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "ifc2x3tc1", "IfcRelContainedInSpatialStructure", false);
 			for (SDataObject sDataObject : dataObjectsByType) {
 				System.out.println(sDataObject);
 			}

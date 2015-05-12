@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -31,6 +31,12 @@ public class Bimsie1RemoteServiceInterfaceAdaptor implements org.bimserver.share
 	
 	public org.bimserver.interfaces.objects.SServiceDescriptor getService(java.lang.String serviceIdentifier) throws UserException, ServerException {
 		return null;
+	}
+	
+	public void newExtendedDataOnProject(java.lang.Long poid, java.lang.Long edid, java.lang.Long soid, java.lang.String serviceIdentifier, java.lang.String profileIdentifier, java.lang.String userToken, java.lang.String token, java.lang.String apiUrl) throws UserException, ServerException {
+	}
+	
+	public void newExtendedDataOnRevision(java.lang.Long poid, java.lang.Long roid, java.lang.Long edid, java.lang.Long soid, java.lang.String serviceIdentifier, java.lang.String profileIdentifier, java.lang.String userToken, java.lang.String token, java.lang.String apiUrl) throws UserException, ServerException {
 	}
 	
 	public void newRevision(java.lang.Long poid, java.lang.Long roid, java.lang.Long soid, java.lang.String serviceIdentifier, java.lang.String profileIdentifier, java.lang.String userToken, java.lang.String token, java.lang.String apiUrl) throws UserException, ServerException {

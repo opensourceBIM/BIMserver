@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,7 +21,8 @@ import org.bimserver.shared.exceptions.ServerException;
 
 public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.ServiceInterface {
 
-	public void addExtendedDataSchema(org.bimserver.interfaces.objects.SExtendedDataSchema extendedDataSchema) throws UserException, ServerException {
+	public java.lang.Long addExtendedDataSchema(org.bimserver.interfaces.objects.SExtendedDataSchema extendedDataSchema) throws UserException, ServerException {
+		return null;
 	}
 	
 	public void addExtendedDataToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SExtendedData extendedData) throws UserException, ServerException {
@@ -37,7 +38,8 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	public void addModelCheckerToProject(java.lang.Long poid, java.lang.Long modelCheckerOid) throws UserException, ServerException {
 	}
 	
-	public void addServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SService sService) throws UserException, ServerException {
+	public java.lang.Long addServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SService sService) throws UserException, ServerException {
+		return null;
 	}
 	
 	public org.bimserver.interfaces.objects.SUser addUser(java.lang.String username, java.lang.String name, org.bimserver.interfaces.objects.SUserType type, java.lang.Boolean selfRegistration, java.lang.String resetUrl) throws UserException, ServerException {
@@ -48,6 +50,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	}
 	
 	public java.lang.Boolean addUserToProject(java.lang.Long uoid, java.lang.Long poid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SUser addUserWithPassword(java.lang.String username, java.lang.String password, java.lang.String name, org.bimserver.interfaces.objects.SUserType type, java.lang.Boolean selfRegistration, java.lang.String resetUrl) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -200,6 +206,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SIfcHeader getIfcHeader(java.lang.Long croid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SModelCheckerInstance getModelCheckerInstance(java.lang.Long mcioid) throws UserException, ServerException {
 		return null;
 	}
@@ -248,7 +258,13 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public void importData(java.lang.String address, java.lang.String username, java.lang.String password, java.lang.String path) throws UserException, ServerException {
+	}
+	
 	public void removeModelCheckerFromProject(java.lang.Long poid, java.lang.Long modelCheckerOid) throws UserException, ServerException {
+	}
+	
+	public void removeServiceFromProject(java.lang.Long poid, java.lang.Long serviceOid) throws UserException, ServerException {
 	}
 	
 	public void removeUserFromExtendedDataSchema(java.lang.Long uoid, java.lang.Long edsid) throws UserException, ServerException {
@@ -268,7 +284,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public void triggerNewExtendedData(java.lang.Long edid) throws UserException, ServerException {
+	public void triggerNewExtendedData(java.lang.Long edid, java.lang.Long soid) throws UserException, ServerException {
 	}
 	
 	public void triggerNewRevision(java.lang.Long roid, java.lang.Long soid) throws UserException, ServerException {

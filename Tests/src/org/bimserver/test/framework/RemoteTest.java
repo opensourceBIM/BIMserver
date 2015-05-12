@@ -1,7 +1,7 @@
 package org.bimserver.test.framework;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,13 +19,14 @@ package org.bimserver.test.framework;
 
 import java.io.File;
 
+import org.bimserver.plugins.OptionsParser;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.actions.AllActionsFactory;
 
 public class RemoteTest {
 	public static void main(String[] args) {
 		TestConfiguration testConfiguration = new TestConfiguration();
-		TestFramework testFramework = new TestFramework(testConfiguration);
+		TestFramework testFramework = new TestFramework(testConfiguration, new OptionsParser(args).getPluginDirectories());
 
 		testConfiguration.setHomeDir(new File("/opt/bimservertest"));
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));

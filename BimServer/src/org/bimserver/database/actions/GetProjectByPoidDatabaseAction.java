@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -46,6 +46,9 @@ public class GetProjectByPoidDatabaseAction extends BimDatabaseAction<Project> {
 			throw new UserException("Project with oid " + poid + " does not exist");
 		}
 		User user = getUserByUoid(authorization.getUoid());
+		if (user == null) {
+			throw new UserException("Authenticated user required");
+		}
 		if (project.getState() == ObjectState.DELETED && user.getUserType() != UserType.ADMIN) {
 			throw new UserException("Project has been deleted");
 		}

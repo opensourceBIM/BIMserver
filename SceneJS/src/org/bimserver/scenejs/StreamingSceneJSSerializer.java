@@ -1,7 +1,7 @@
 package org.bimserver.scenejs;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -33,8 +33,9 @@ import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcActorRole;
 import org.bimserver.models.ifc2x3tc1.IfcApplication;
 import org.bimserver.models.ifc2x3tc1.IfcBuilding;
@@ -114,6 +115,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.common.util.EList;
@@ -130,8 +132,8 @@ public class StreamingSceneJSSerializer extends AbstractGeometrySerializer {
 	private List<String> surfaceStyleIds;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 		this.surfaceStyleIds = new ArrayList<String>();
 	}
 
@@ -141,7 +143,7 @@ public class StreamingSceneJSSerializer extends AbstractGeometrySerializer {
 	}
 
 	@Override
-	public boolean write(OutputStream out) throws SerializerException {
+	public boolean write(OutputStream out, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(out, Charsets.UTF_8);
 			try {

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -313,8 +313,8 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDistributionChamberElementTypeEnum[] VALUES_ARRAY = new IfcDistributionChamberElementTypeEnum[] { NULL, METERCHAMBER, MANHOLE, NOTDEFINED,
-			VALVECHAMBER, INSPECTIONPIT, USERDEFINED, SUMP, TRENCH, INSPECTIONCHAMBER, FORMEDDUCT, };
+	private static final IfcDistributionChamberElementTypeEnum[] VALUES_ARRAY = new IfcDistributionChamberElementTypeEnum[] { NULL, METERCHAMBER, MANHOLE,
+			NOTDEFINED, VALVECHAMBER, INSPECTIONPIT, USERDEFINED, SUMP, TRENCH, INSPECTIONCHAMBER, FORMEDDUCT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Distribution Chamber Element Type Enum</b></em>' enumerators.

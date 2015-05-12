@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,6 +23,7 @@ import java.util.List;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -41,9 +42,9 @@ public class LargeFileTest {
 		PluginManager pluginManager;
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Shared\\BIMserver\\arcadis\\KW02.ifc"));
 			for (IdEObject idEObject : model.getValues()) {
 				for (EStructuralFeature eStructuralFeature : idEObject.eClass().getEAllStructuralFeatures()) {

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -103,16 +103,6 @@ public enum IfcSIUnitName implements Enumerator {
 	JOULE(6, "JOULE", "JOULE"),
 
 	/**
-	 * The '<em><b>KELVIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KELVIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	KELVIN(7, "KELVIN", "KELVIN"),
-
-	/**
 	 * The '<em><b>GRAM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,7 +110,17 @@ public enum IfcSIUnitName implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GRAM(8, "GRAM", "GRAM"),
+	GRAM(7, "GRAM", "GRAM"),
+
+	/**
+	 * The '<em><b>KELVIN</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #KELVIN_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	KELVIN(8, "KELVIN", "KELVIN"),
 
 	/**
 	 * The '<em><b>LUMEN</b></em>' literal object.
@@ -448,21 +448,6 @@ public enum IfcSIUnitName implements Enumerator {
 	public static final int JOULE_VALUE = 6;
 
 	/**
-	 * The '<em><b>KELVIN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>KELVIN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #KELVIN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int KELVIN_VALUE = 7;
-
-	/**
 	 * The '<em><b>GRAM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -475,7 +460,22 @@ public enum IfcSIUnitName implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GRAM_VALUE = 8;
+	public static final int GRAM_VALUE = 7;
+
+	/**
+	 * The '<em><b>KELVIN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>KELVIN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #KELVIN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int KELVIN_VALUE = 8;
 
 	/**
 	 * The '<em><b>LUMEN</b></em>' literal value.
@@ -813,8 +813,9 @@ public enum IfcSIUnitName implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSIUnitName[] VALUES_ARRAY = new IfcSIUnitName[] { NULL, TESLA, HENRY, METRE, SECOND, AMPERE, JOULE, KELVIN, GRAM, LUMEN, FARAD, STERADIAN, LUX,
-			DEGREE_CELSIUS, SIEVERT, CUBIC_METRE, NEWTON, WATT, CANDELA, RADIAN, PASCAL, VOLT, WEBER, COULOMB, SQUARE_METRE, HERTZ, SIEMENS, BECQUEREL, MOLE, OHM, GRAY, };
+	private static final IfcSIUnitName[] VALUES_ARRAY = new IfcSIUnitName[] { NULL, TESLA, HENRY, METRE, SECOND, AMPERE, JOULE, GRAM, KELVIN, LUMEN, FARAD,
+			STERADIAN, LUX, DEGREE_CELSIUS, SIEVERT, CUBIC_METRE, NEWTON, WATT, CANDELA, RADIAN, PASCAL, VOLT, WEBER, COULOMB, SQUARE_METRE, HERTZ, SIEMENS,
+			BECQUEREL, MOLE, OHM, GRAY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc SI Unit Name</b></em>' enumerators.
@@ -878,10 +879,10 @@ public enum IfcSIUnitName implements Enumerator {
 			return AMPERE;
 		case JOULE_VALUE:
 			return JOULE;
-		case KELVIN_VALUE:
-			return KELVIN;
 		case GRAM_VALUE:
 			return GRAM;
+		case KELVIN_VALUE:
+			return KELVIN;
 		case LUMEN_VALUE:
 			return LUMEN;
 		case FARAD_VALUE:

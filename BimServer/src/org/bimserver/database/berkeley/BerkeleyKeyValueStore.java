@@ -1,7 +1,7 @@
 package org.bimserver.database.berkeley;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,9 +20,12 @@ package org.bimserver.database.berkeley;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.database.BimTransaction;
 import org.bimserver.database.BimserverDatabaseException;
@@ -63,6 +66,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	private CursorConfig cursorConfig;
 	private long lastPrintedReads = 0;
 	private long lastPrintedCommittedWrites = 0;
+	private static final boolean MONITOR_CURSOR_STACK_TRACES = false;
+	private final AtomicLong cursorCounter = new AtomicLong();
+	private final Map<Long, StackTraceElement[]> openCursors = new ConcurrentHashMap<>();
 
 	public BerkeleyKeyValueStore(File dataDir) throws DatabaseInitException {
 		if (dataDir.isDirectory()) {
@@ -83,11 +89,13 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			}
 		}
 		EnvironmentConfig envConfig = new EnvironmentConfig();
-		envConfig.setCachePercent(1);
+		envConfig.setCachePercent(30);
 		envConfig.setAllowCreate(true);
 		envConfig.setTransactional(true);
-		envConfig.setTxnTimeout(5, TimeUnit.SECONDS);
-		envConfig.setLockTimeout(500, TimeUnit.MILLISECONDS);
+		envConfig.setTxnTimeout(10, TimeUnit.SECONDS);
+		envConfig.setLockTimeout(2000, TimeUnit.MILLISECONDS);
+		envConfig.setConfigParam(EnvironmentConfig.CHECKPOINTER_HIGH_PRIORITY, "true");
+		envConfig.setConfigParam(EnvironmentConfig.CLEANER_THREADS, "5");
 		try {
 			environment = new Environment(dataDir, envConfig);
 		} catch (EnvironmentLockedException e) {
@@ -133,6 +141,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			return false;
 		}
 		tables.put(tableName, database);
+		
 		return true;
 	}
 
@@ -228,7 +237,11 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		Cursor cursor = null;
 		try {
 			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
-			return new BerkeleyRecordIterator(cursor);
+			BerkeleyRecordIterator berkeleyRecordIterator = new BerkeleyRecordIterator(cursor, this, cursorCounter.incrementAndGet());
+			if (MONITOR_CURSOR_STACK_TRACES) {
+				openCursors.put(berkeleyRecordIterator.getCursorId(), new Exception().getStackTrace());
+			}
+			return berkeleyRecordIterator;
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}
@@ -240,13 +253,19 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		Cursor cursor = null;
 		try {
 			cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
-			return new BerkeleySearchingRecordIterator(cursor, mustStartWith, startSearchingAt);
+			BerkeleySearchingRecordIterator berkeleySearchingRecordIterator = new BerkeleySearchingRecordIterator(cursor, this, cursorCounter.incrementAndGet(), mustStartWith, startSearchingAt);
+			if (MONITOR_CURSOR_STACK_TRACES) {
+				openCursors.put(berkeleySearchingRecordIterator.getCursorId(), new Exception().getStackTrace());
+			}
+			return berkeleySearchingRecordIterator;
 		} catch (BimserverLockConflictException e) {
-			try {
-				cursor.close();
-				throw e;
-			} catch (DatabaseException e1) {
-				LOGGER.error("", e1);
+			if (cursor != null) {
+				try {
+					cursor.close();
+					throw e;
+				} catch (DatabaseException e1) {
+					LOGGER.error("", e1);
+				}
 			}
 		} catch (DatabaseException e1) {
 			LOGGER.error("", e1);
@@ -331,8 +350,13 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 
 	@Override
 	public void store(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException {
+		store(tableName, key, value, 0, value.length, databaseSession);
+	}
+	
+	@Override
+	public void store(String tableName, byte[] key, byte[] value, int offset, int length, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException {
 		DatabaseEntry dbKey = new DatabaseEntry(key);
-		DatabaseEntry dbValue = new DatabaseEntry(value);
+		DatabaseEntry dbValue = new DatabaseEntry(value, offset, length);
 		try {
 			Database database = getDatabase(tableName);
 			database.put(getTransaction(databaseSession), dbKey, dbValue);
@@ -345,8 +369,13 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 
 	@Override
 	public void storeNoOverwrite(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException, BimserverConcurrentModificationDatabaseException {
+		storeNoOverwrite(tableName, key, value, 0, value.length, databaseSession);
+	}
+	
+	@Override
+	public void storeNoOverwrite(String tableName, byte[] key, byte[] value, int index, int length, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException, BimserverConcurrentModificationDatabaseException {
 		DatabaseEntry dbKey = new DatabaseEntry(key);
-		DatabaseEntry dbValue = new DatabaseEntry(value);
+		DatabaseEntry dbValue = new DatabaseEntry(value, index, length);
 		try {
 			Database database = getDatabase(tableName);
 			OperationStatus putNoOverwrite = database.putNoOverwrite(getTransaction(databaseSession), dbKey, dbValue);
@@ -388,7 +417,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	}
 	
 	public Set<String> getAllTableNames() {
-		return tables.keySet();
+		return new HashSet<String>(environment.getDatabaseNames());
 	}
 	
 	public synchronized void incrementReads(int reads) {
@@ -405,6 +434,21 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		if (this.committedWrites / 100000 != lastPrintedCommittedWrites) {
 			LOGGER.info("writes: " + this.committedWrites);
 			lastPrintedCommittedWrites = this.committedWrites / 100000;
+		}
+	}
+
+	public void removeOpenCursor(long cursorId) {
+		openCursors.remove(cursorId);
+	}
+
+	@Override
+	public void dumpOpenCursors() {
+		for (StackTraceElement[] ste : openCursors.values()) {
+			System.out.println("Open cursor");
+			for (StackTraceElement stackTraceElement : ste) {
+				LOGGER.info("\t" + stackTraceElement.getClassName() + ":" + stackTraceElement.getLineNumber() + "."
+						+ stackTraceElement.getMethodName());
+			}
 		}
 	}
 }

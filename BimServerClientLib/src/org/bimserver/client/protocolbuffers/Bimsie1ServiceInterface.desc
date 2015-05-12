@@ -1,18 +1,20 @@
 
-«L
+íT
 Bimsie1ServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"g
  AddExtendedDataToRevisionRequest
 roid (5
-extendedData (2.org.bimserver.pb.SExtendedData"(
+extendedData (2.org.bimserver.pb.SExtendedData"8
 AddProjectRequest
-projectName (	"U
+projectName (	
+schema (	"U
 AddProjectResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"H
+value (2.org.bimserver.pb.SProject"X
 AddProjectAsSubProjectRequest
 projectName (	
 
-parentPoid ("a
+parentPoid (
+schema (	"a
 AddProjectAsSubProjectResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"_
@@ -60,6 +62,14 @@ parentPoid ("a
 sync (">
 DownloadByGuidsResponse
 errorMessage (	
+value ("c
+DownloadByJsonQueryRequest
+roids (
+	jsonQuery (	
+serializerOid (
+sync ("B
+DownloadByJsonQueryResponse
+errorMessage (	
 value ("i
 DownloadByNamesRequest
 roids (
@@ -78,16 +88,17 @@ parentPoid ("a
 deep ("=
 DownloadByOidsResponse
 errorMessage (	
-value (" 
+value ("°
 DownloadByTypesRequest
-roids (
+roids (
+schema (	
 
-classNames (	
-serializerOid (
-includeAllSubtypes (
-useObjectIDM (
-deep (
-sync (">
+classNames (	
+serializerOid (
+includeAllSubtypes (
+useObjectIDM (
+deep (
+sync (">
 DownloadByTypesResponse
 errorMessage (	
 value ("e
@@ -118,7 +129,11 @@ $GetAllExtendedDataOfRevisionResponse
 onlyActive ("Y
 GetAllProjectsResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"/
+value (2.org.bimserver.pb.SProject"
+GetAllProjectsSmallRequest"c
+GetAllProjectsSmallResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SProjectSmall"/
 GetAllRevisionsOfProjectRequest
 poid ("d
  GetAllRevisionsOfProjectResponse
@@ -135,19 +150,23 @@ onlyActive ("Y
 errorMessage (	A
 value (22.org.bimserver.pb.SDeserializerPluginConfiguration"*
 GetDownloadDataRequest
-actionId ("+
-SCheckoutResult
-rid (
-oid ("·
+actionId ("b
+SCheckoutResult
+file (
+oid (
+projectName (	
+
+revisionNr (
+rid ("·
 SDownloadResult
 __actual_type (	<
-__SCheckoutResult (2!.org.bimserver.pb.SCheckoutResult
-rid (
-oid (
-file (
+__SCheckoutResult (2!.org.bimserver.pb.SCheckoutResult
+file (
+oid (
+projectName (	
 
-revisionNr (
-projectName (	"a
+revisionNr (
+rid ("a
 GetDownloadDataResponse
 errorMessage (	0
 value (2!.org.bimserver.pb.SDownloadResult"%
@@ -170,7 +189,12 @@ revisionNr (
 poid ("[
 GetProjectByPoidResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"(
+value (2.org.bimserver.pb.SProject",
+GetProjectSmallByPoidRequest
+poid ("e
+GetProjectSmallByPoidResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SProjectSmall"(
 GetProjectsByNameRequest
 name (	"\
 GetProjectsByNameResponse
@@ -210,17 +234,20 @@ revisionNr (
 poid ("Y
 GetSubProjectsResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"@
+value (2.org.bimserver.pb.SProject"N
 +GetSuggestedDeserializerForExtensionRequest
-	extension (	"‡
+	extension (	
+poid ("‡
 ,GetSuggestedDeserializerForExtensionResponse
 errorMessage (	A
-value (22.org.bimserver.pb.SDeserializerPluginConfiguration"&
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration"5
+!TerminateLongRunningActionRequest
+actionId ("&
 UndeleteProjectRequest
 poid (">
 UndeleteProjectResponse
 errorMessage (	
-value (2Ó
+value (2¨#
 Bimsie1ServiceInterfaceo
 addExtendedDataToRevision2.org.bimserver.pb.AddExtendedDataToRevisionRequest.org.bimserver.pb.VoidResponseW
 
@@ -233,14 +260,16 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 checkout!.org.bimserver.pb.CheckoutRequest".org.bimserver.pb.CheckoutResponse`
 deleteProject&.org.bimserver.pb.DeleteProjectRequest'.org.bimserver.pb.DeleteProjectResponseQ
 download!.org.bimserver.pb.DownloadRequest".org.bimserver.pb.DownloadResponsef
-downloadByGuids(.org.bimserver.pb.DownloadByGuidsRequest).org.bimserver.pb.DownloadByGuidsResponsef
+downloadByGuids(.org.bimserver.pb.DownloadByGuidsRequest).org.bimserver.pb.DownloadByGuidsResponser
+downloadByJsonQuery,.org.bimserver.pb.DownloadByJsonQueryRequest-.org.bimserver.pb.DownloadByJsonQueryResponsef
 downloadByNames(.org.bimserver.pb.DownloadByNamesRequest).org.bimserver.pb.DownloadByNamesResponsec
 downloadByOids'.org.bimserver.pb.DownloadByOidsRequest(.org.bimserver.pb.DownloadByOidsResponsef
 downloadByTypes(.org.bimserver.pb.DownloadByTypesRequest).org.bimserver.pb.DownloadByTypesResponse`
 downloadQuery&.org.bimserver.pb.DownloadQueryRequest'.org.bimserver.pb.DownloadQueryResponsel
 downloadRevisions*.org.bimserver.pb.DownloadRevisionsRequest+.org.bimserver.pb.DownloadRevisionsResponse
 getAllExtendedDataOfRevision5.org.bimserver.pb.GetAllExtendedDataOfRevisionRequest6.org.bimserver.pb.GetAllExtendedDataOfRevisionResponsec
-getAllProjects'.org.bimserver.pb.GetAllProjectsRequest(.org.bimserver.pb.GetAllProjectsResponse
+getAllProjects'.org.bimserver.pb.GetAllProjectsRequest(.org.bimserver.pb.GetAllProjectsResponser
+getAllProjectsSmall,.org.bimserver.pb.GetAllProjectsSmallRequest-.org.bimserver.pb.GetAllProjectsSmallResponse
 getAllRevisionsOfProject1.org.bimserver.pb.GetAllRevisionsOfProjectRequest2.org.bimserver.pb.GetAllRevisionsOfProjectResponser
 getDeserializerById,.org.bimserver.pb.GetDeserializerByIdRequest-.org.bimserver.pb.GetDeserializerByIdResponsex
 getDeserializerByName..org.bimserver.pb.GetDeserializerByNameRequest/.org.bimserver.pb.GetDeserializerByNameResponsef
@@ -248,7 +277,8 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 getExtendedData(.org.bimserver.pb.GetExtendedDataRequest).org.bimserver.pb.GetExtendedDataResponse„
 getExtendedDataSchemaById2.org.bimserver.pb.GetExtendedDataSchemaByIdRequest3.org.bimserver.pb.GetExtendedDataSchemaByIdResponse™
  getExtendedDataSchemaByNamespace9.org.bimserver.pb.GetExtendedDataSchemaByNamespaceRequest:.org.bimserver.pb.GetExtendedDataSchemaByNamespaceResponsei
-getProjectByPoid).org.bimserver.pb.GetProjectByPoidRequest*.org.bimserver.pb.GetProjectByPoidResponsel
+getProjectByPoid).org.bimserver.pb.GetProjectByPoidRequest*.org.bimserver.pb.GetProjectByPoidResponsex
+getProjectSmallByPoid..org.bimserver.pb.GetProjectSmallByPoidRequest/.org.bimserver.pb.GetProjectSmallByPoidResponsel
 getProjectsByName*.org.bimserver.pb.GetProjectsByNameRequest+.org.bimserver.pb.GetProjectsByNameResponseo
 getQueryEngineById+.org.bimserver.pb.GetQueryEngineByIdRequest,.org.bimserver.pb.GetQueryEngineByIdResponseu
 getQueryEngineByName-.org.bimserver.pb.GetQueryEngineByNameRequest..org.bimserver.pb.GetQueryEngineByNameResponseZ
@@ -257,5 +287,6 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 getSerializerById*.org.bimserver.pb.GetSerializerByIdRequest+.org.bimserver.pb.GetSerializerByIdResponser
 getSerializerByName,.org.bimserver.pb.GetSerializerByNameRequest-.org.bimserver.pb.GetSerializerByNameResponsec
 getSubProjects'.org.bimserver.pb.GetSubProjectsRequest(.org.bimserver.pb.GetSubProjectsResponse¥
-$getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserializerForExtensionRequest>.org.bimserver.pb.GetSuggestedDeserializerForExtensionResponsef
+$getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserializerForExtensionRequest>.org.bimserver.pb.GetSuggestedDeserializerForExtensionResponseq
+terminateLongRunningAction3.org.bimserver.pb.TerminateLongRunningActionRequest.org.bimserver.pb.VoidResponsef
 undeleteProject(.org.bimserver.pb.UndeleteProjectRequest).org.bimserver.pb.UndeleteProjectResponseB"BBimsie1ServiceInterfaceImplHˆ

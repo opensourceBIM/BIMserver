@@ -24,10 +24,10 @@ public class ReadTrim extends TestWithEmbeddedServer {
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Get the appropriate deserializer
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 			
 			// Checkin the file
 			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/TST.ifc"));
@@ -35,7 +35,7 @@ public class ReadTrim extends TestWithEmbeddedServer {
 			// Refresh project info
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 			
-			IfcModelInterface model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
+			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 			for (IfcTrimmedCurve ifcTrimmedCurve : model.getAllWithSubTypes(IfcTrimmedCurve.class)) {
 				for (IfcTrimmingSelect ifcTrimmingSelect : ifcTrimmedCurve.getTrim1()) {
 					if (ifcTrimmingSelect instanceof IfcParameterValue) {

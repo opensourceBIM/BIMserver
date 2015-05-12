@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -62,6 +62,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getModelCheckers <em>Model Checkers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
  *
@@ -383,6 +384,24 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	@SuppressWarnings("unchecked")
 	public EList<ModelCheckerInstance> getModelCheckers() {
 		return (EList<ModelCheckerInstance>) eGet(StorePackage.Literals.PROJECT__MODEL_CHECKERS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSchema() {
+		return (String) eGet(StorePackage.Literals.PROJECT__SCHEMA, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSchema(String newSchema) {
+		eSet(StorePackage.Literals.PROJECT__SCHEMA, newSchema);
 	}
 
 } //ProjectImpl

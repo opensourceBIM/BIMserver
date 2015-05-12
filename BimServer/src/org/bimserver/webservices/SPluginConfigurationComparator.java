@@ -1,7 +1,7 @@
 package org.bimserver.webservices;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,6 +25,14 @@ public class SPluginConfigurationComparator implements Comparator<SPluginConfigu
 
 	@Override
 	public int compare(SPluginConfiguration o1, SPluginConfiguration o2) {
-		return o1.getName().compareTo(o2.getName());
+		if (o1.getName() == null && o2.getName() != null) {
+			return 1;
+		} else if (o1.getName() != null && o2.getName() == null) {
+			return -1;
+		} else if (o1.getName() == null && o2.getName() == null) {
+			return 0;
+		} else {
+			return o1.getName().compareTo(o2.getName());
+		}
 	}
 }

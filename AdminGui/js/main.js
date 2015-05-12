@@ -12,6 +12,17 @@ function stripLastSlash(str) {
     return str;
 }
 
+function removeA(arr) {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
+
 function createUserLink(main, uoid) {
 	if (uoid == -1) {
 		return "";			
@@ -92,8 +103,7 @@ function pushHistoryAppend(obj, title) {
 		str = str.substring(0, str.length - 1);
 	}
 	if (!current.cleanUrl.endsWith(str)) {
-		console.log("pha ", obj);
-		History.pushState(obj, "BIM Views" + (title == null ? "" : " - " + title), str);
+		History.pushState(obj, Settings.getTitle() + (title == null ? "" : " - " + title), str);
 	}
 	pushing = false;
 }
@@ -109,8 +119,8 @@ function pushHistory(obj, title, initial) {
 		str = str.substring(0, str.length - 1);
 	}
 	if (title != null) {
-		if (!title.startsWith("BIM Views")) {
-			title = "BIM Views - " + title;
+		if (!title.startsWith(Settings.getTitle())) {
+			title = Settings.getTitle() + " - " + title;
 		}
 	} else {
 		title = current.title;
@@ -218,9 +228,11 @@ function newDropdownTd(title) {
 	return td;
 }
 
-function stripHttp(url) {
+function stripHttps(url) {
 	if (url.startsWith("http://")) {
 		return url.substring(7);
+	} else if (url.startsWith("https://")) {
+		return url.substring(8);
 	}
 	return url;
 }
@@ -228,10 +240,14 @@ function stripHttp(url) {
 // http://stackoverflow.com/questions/4498866/actual-numbers-to-the-human-readable-values/4506030#4506030 //
 var SizePrefixes = ' KMGTPEZYXWVU';
 
-function getHumanSize(size) {
-	if(size <= 0) return '0';
-	var t2 = Math.min(Math.round(Math.log(size)/Math.log(1024)), 12);
-	return (Math.round(size * 100 / Math.pow(1024, t2)) / 100) + SizePrefixes.charAt(t2).replace(' ', '') + 'B';
+function getHumanSize(bytes) {
+	var s = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'];
+    var e = Math.floor(Math.log(bytes) / Math.log(1024));
+    var result = (bytes / Math.pow(1024, e)).toFixed(2);
+    if (result.endsWith(".00")) {
+    	result = result.substring(0, result.length - 3);
+    }
+    return result + " " + s[e];
 }
 //http://stackoverflow.com/questions/4498866/actual-numbers-to-the-human-readable-values/4506030#4506030 //
 
@@ -242,7 +258,7 @@ function getParameterByName(name)
   var regex = new RegExp(regexS);
   var results = regex.exec(window.location.search);
   if(results == null)
-    return "";
+    return null;
   else
     return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
@@ -257,4 +273,48 @@ function formatLogState(state) {
 	} else if (state == "FINISHED") {
 		return "Done";
 	}
+}
+
+function load(element, url, constructor) {
+	var promise = new Promise();
+	element.load(url, function(){
+		var res = constructor.call(element);
+		if (res instanceof Promise) {
+			promise.chain(res);
+		} else {
+			promise.fire();
+		}
+	});
+	return promise;
+}
+
+function Tab(tabs, label) {
+	var o = this;
+
+	this.setActive = function(){
+		tabs.tabsDiv.find("label").removeClass("active");
+		label.addClass("active");
+		label.find("input").attr("selected", "selected");
+		console.log(label);
+		tabs.contentDiv.load(o.page, o.callback);
+	};
+	
+	label.find("input").change(function(){
+		o.setActive();
+	});
+}
+
+function Tabs(tabsDiv, contentDiv) {
+	var o = this;
+	o.tabsDiv = tabsDiv;
+	o.contentDiv = contentDiv;
+	
+	this.addTab = function(title, page, callback){
+		var label = $("<label class=\"btn btn-default\"> <input type=\"radio\" name=\"options\" id=\"" + title + "\" autocomplete=\"off\" />" + title + "</label>");
+		var tab = new Tab(o, label);
+		tab.page = page;
+		tab.callback = callback;
+		tabsDiv.append(label);
+		return tab;
+	};
 }

@@ -1,7 +1,7 @@
 package org.bimserver.openid;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -139,7 +139,7 @@ public class OpenIdManager {
 			StringBuffer receivingURL = httpReq.getRequestURL();
 			String queryString = httpReq.getQueryString();
 			if (queryString != null && queryString.length() > 0)
-				receivingURL.append("?").append(httpReq.getQueryString());
+				receivingURL.append('?').append(httpReq.getQueryString());
 
 			// verify the response; ConsumerManager needs to be the same
 			// (static) instance used to place the authentication request
@@ -169,9 +169,9 @@ public class OpenIdManager {
 							}
 							Authorization authorization = null;
 							if (user.getUserType() == UserType.ADMIN) {
-								authorization = new AdminAuthorization(30, TimeUnit.DAYS);
+								authorization = new AdminAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 							} else {
-								authorization = new UserAuthorization(30, TimeUnit.DAYS);
+								authorization = new UserAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 							}
 							authorization.setUoid(user.getOid());
 							String asHexToken = authorization.asHexToken(bimServer.getEncryptionKey());

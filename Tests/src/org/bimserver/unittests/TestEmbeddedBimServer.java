@@ -1,7 +1,7 @@
 package org.bimserver.unittests;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -74,7 +74,7 @@ public class TestEmbeddedBimServer {
 			bimServer = new BimServer(config);
 
 			// Load plugins
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."));
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), null);
 
 			// Start
 			bimServer.start();
@@ -132,7 +132,7 @@ public class TestEmbeddedBimServer {
 			ServiceMap serviceMap = bimServer.getServiceFactory().get(AccessMethod.INTERNAL);
 			ServiceInterface service = serviceMap.get(ServiceInterface.class);
 			serviceMap.get(Bimsie1AuthInterface.class).login(username, password);
-			SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test " + new Random().nextInt());
+			SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test " + new Random().nextInt(), "ifc4");
 			File sourceFile = TestFile.AC11.getFile();
 			service.checkin(project.getOid(), "test", -1L, sourceFile.length(), "test", new DataHandler(new FileDataSource(sourceFile)), false, true); // TODO
 		} catch (ServiceException e) {

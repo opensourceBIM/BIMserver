@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,10 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.ArrayList;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -31,38 +30,17 @@ import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 
 public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<ConcreteRevision>{
 
-	private final IfcModelInterface model;
+	private IfcModelInterface model;
+	private InputStream inputStream;
 
-	public static class CreateRevisionResult {
-		private final List<Revision> revisions = new ArrayList<Revision>();
-		private ConcreteRevision concreteRevision;
-		
-		public void addRevision(Revision revision) {
-			this.revisions.add(revision);
-		}
-
-		public List<Revision> getRevisions() {
-			return revisions;
-		}
-		
-		public void setConcreteRevision(ConcreteRevision concreteRevision) {
-			this.concreteRevision = concreteRevision;
-		}
-		
-		public ConcreteRevision getConcreteRevision() {
-			return concreteRevision;
-		}
-	}
-	
-	public GenericCheckinDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcModelInterface model) {
+	public GenericCheckinDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcModelInterface ifcModel) {
 		super(databaseSession, accessMethod);
-		this.model = model;
+		model = ifcModel;
 	}
 
 	protected void checkCheckSum(Project project) throws UserException {
@@ -81,6 +59,10 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 				}
 			}
 		}
+	}
+	
+	public void setModel(IfcModelInterface model) {
+		this.model = model;
 	}
 	
 	public CreateRevisionResult createNewConcreteRevision(DatabaseSession session, long size, Project project, User user, String comment) throws BimserverDatabaseException, BimserverLockConflictException {
@@ -118,8 +100,8 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 						revision.getConcreteRevisions().add(oldRevision);
 						revision.setSize((revision.getSize() == null ? 0 : revision.getSize()) + oldRevision.getSize());
 						session.store(revision);
+						session.store(oldRevision);
 					}
-					session.store(oldRevision);
 				}
 			}
 			revision.getConcreteRevisions().add(concreteRevision);
@@ -144,7 +126,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 
 	private Revision createNewVirtualRevision(DatabaseSession session, Project project, ConcreteRevision concreteRevision, String comment, Date date, User user, long size)
 			throws BimserverLockConflictException, BimserverDatabaseException {
-		Revision revision = StoreFactory.eINSTANCE.createRevision();
+		Revision revision = session.create(Revision.class);
 		revision.setLastConcreteRevision(concreteRevision);
 		revision.setComment(comment);
 		revision.setDate(date);
@@ -154,11 +136,14 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		revision.setId(project.getRevisions().size() + 1);
 		revision.getConcreteRevisions().add(concreteRevision);
 		revision.setProject(project);
-		session.store(revision);
 		return revision;
 	}
 
 	public IfcModelInterface getModel() {
 		return model;
+	}
+	
+	public InputStream getInputStream() {
+		return inputStream;
 	}
 }

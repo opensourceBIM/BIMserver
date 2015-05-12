@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -638,9 +638,9 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcValveTypeEnum[] VALUES_ARRAY = new IfcValveTypeEnum[] { NULL, FAUCET, NOTDEFINED, ISOLATING, COMMISSIONING, DOUBLECHECK, STOPCOCK, PRESSUREREDUCING,
-			STEAMTRAP, GASTAP, DOUBLEREGULATING, ANTIVACUUM, SAFETYCUTOFF, REGULATING, CHANGEOVER, CHECK, DIVERTING, DRAWOFFCOCK, PRESSURERELIEF, MIXING, FLUSHING, USERDEFINED,
-			GASCOCK, AIRRELEASE, };
+	private static final IfcValveTypeEnum[] VALUES_ARRAY = new IfcValveTypeEnum[] { NULL, FAUCET, NOTDEFINED, ISOLATING, COMMISSIONING, DOUBLECHECK, STOPCOCK,
+			PRESSUREREDUCING, STEAMTRAP, GASTAP, DOUBLEREGULATING, ANTIVACUUM, SAFETYCUTOFF, REGULATING, CHANGEOVER, CHECK, DIVERTING, DRAWOFFCOCK,
+			PRESSURERELIEF, MIXING, FLUSHING, USERDEFINED, GASCOCK, AIRRELEASE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Valve Type Enum</b></em>' enumerators.

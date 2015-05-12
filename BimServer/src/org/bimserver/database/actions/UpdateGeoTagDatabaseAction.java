@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -29,7 +29,6 @@ import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.GeoTagUpdated;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
@@ -68,7 +67,7 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 			geoTag.setZ(sGeoTag.getZ());
 			geoTag.setDirectionAngle(sGeoTag.getDirectionAngle());
 			geoTag.setEpsg(sGeoTag.getEpsg());
-			final GeoTagUpdated geoTagUpdated = LogFactory.eINSTANCE.createGeoTagUpdated();
+			final GeoTagUpdated geoTagUpdated = getDatabaseSession().create(GeoTagUpdated.class);
 			geoTagUpdated.setGeoTag(geoTag);
 			geoTagUpdated.setAccessMethod(getAccessMethod());
 			geoTagUpdated.setDate(new Date());
@@ -79,7 +78,6 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(geoTagUpdated));
 				}
 			});
-			getDatabaseSession().store(geoTagUpdated);
 			getDatabaseSession().store(geoTag);
 		} else {
 			throw new UserException("User has no rights on any projects associated with this geotag");

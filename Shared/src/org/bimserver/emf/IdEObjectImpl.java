@@ -1,7 +1,7 @@
 package org.bimserver.emf;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,13 +17,16 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Iterator;
-
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.EStoreEObjectImpl;
+import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
+import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl.InternalSettingDelegateMany;
+import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl.InternalSettingDelegateSingleEObject;
+import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl.InternalSettingDelegateSingleEObjectUnsettable;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
+public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
 	public static enum State {
 		NO_LAZY_LOADING, TO_BE_LOADED, LOADING, LOADED, OPPOSITE_SETTING
@@ -36,31 +39,60 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 	private IfcModelInterface model;
 	private State loadingState = State.NO_LAZY_LOADING;
 	private QueryInterface queryInterface;
+	private boolean useInverses = true;
 
-	public IdEObjectImpl() {
-		eSetStore(new DefaultBimServerEStore());
-	}
-	
 	@Override
 	public long getOid() {
 		return oid;
 	}
-	
-	@Override
-	protected EList<?> createList(EStructuralFeature eStructuralFeature) {
-		return new BasicEStoreEList<Object>(this, eStructuralFeature){
-			private static final long serialVersionUID = 6865419120828460240L;
 
-			@Override
-			public Iterator<Object> iterator() {
-				load();
-				return super.iterator();
-			}
-		};
-	}
-	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+
+	@Override
+	public Object dynamicGet(int dynamicFeatureID) {
+		load();
+		return super.dynamicGet(dynamicFeatureID);
+	}
+
+	@Override
+	public void dynamicSet(int dynamicFeatureID, Object newValue) {
+		super.dynamicSet(dynamicFeatureID, newValue);
+	}
+
+	public void useInverses(boolean useInverses) {
+		this.useInverses = useInverses;
+	}
+	
+	@Override
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		super.eSet(eFeature, newValue);
+	}
+
+	protected EStructuralFeature.Internal.SettingDelegate eSettingDelegate(EStructuralFeature eFeature) {
+		SettingDelegate eSettingDelegate = super.eSettingDelegate(eFeature);
+		if (useInverses) {
+			return eSettingDelegate;
+		}
+		if (eFeature instanceof EReference && ((EReference)eFeature).getEOpposite() != null) {
+			// TODO cache/pre-generate the objects created in this block
+			if (eFeature.isMany()) {
+				if (eFeature.isUnsettable()) {
+					return new InternalSettingDelegateMany(InternalSettingDelegateMany.EOBJECT_UNSETTABLE, eFeature);
+				} else {
+					return new InternalSettingDelegateMany(InternalSettingDelegateMany.EOBJECT, eFeature);
+				}
+			} else {
+				if (eFeature.isUnsettable()) {
+					return new InternalSettingDelegateSingleEObjectUnsettable((EClass) eFeature.getEType(), eFeature);
+				} else {
+					return new InternalSettingDelegateSingleEObject((EClass) eFeature.getEType(), eFeature);
+				}
+			}
+		} else {
+			return eSettingDelegate;
+		}
 	}
 
 	public void setModel(IfcModelInterface model) throws IfcModelInterfaceException {
@@ -88,18 +120,17 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 
 	public void load() {
 		if (loadingState == State.TO_BE_LOADED && oid != -1) {
-			loadExplicit();
+			model.load(this);
 		}
 	}
 
-	public void loadExplicit() {
-		loadingState = State.LOADING;
-		internalLoad();
-		loadingState = State.LOADED;
-	}
-
-	private void internalLoad() {
-		((BimServerEStore)eStore).load(this);
+	public void forceLoad() {
+		if (loadingState != State.LOADED && loadingState != State.LOADING && oid != -1) {
+			if (model == null) {
+				throw new RuntimeException("Object has no model");
+			}
+			model.load(this);
+		}
 	}
 
 	public void setLoaded() {
@@ -127,7 +158,7 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 	}
 
 	public void setLoading() {
-		loadingState = State.LOADING;
+		setLoadingState(State.LOADING);
 	}
 
 	public void setQueryInterface(QueryInterface queryInterface) {
@@ -144,7 +175,7 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 	}
 
 	public void remove() {
-		((BimServerEStore)eStore).remove(this);
+		model.remove(this);
 	}
 
 	public void setLoadingState(State state) {
@@ -153,5 +184,13 @@ public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 
 	public State getLoadingState() {
 		return loadingState;
+	}
+	
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		if (model != null) {
+			model.set(this, eClass().getEStructuralFeature(featureID), newValue);
+		}
+		super.eSet(featureID, newValue);
 	}
 }

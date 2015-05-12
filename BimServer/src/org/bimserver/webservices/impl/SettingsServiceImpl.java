@@ -1,7 +1,7 @@
 package org.bimserver.webservices.impl;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,8 +18,6 @@ package org.bimserver.webservices.impl;
  *****************************************************************************/
 
 import java.util.List;
-
-import javax.jws.WebMethod;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -348,7 +346,6 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	
 	
 	@Override
-	@WebMethod(action = "getServerSettings")
 	public SServerSettings getServerSettings() throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {

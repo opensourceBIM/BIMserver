@@ -1,7 +1,7 @@
 package org.bimserver.templating;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,7 +23,9 @@ public enum TemplateIdentifier {
 	ADMIN_REGISTRATION_EMAIL_BODY("admin_registration_email_body.template"),
 	ADMIN_REGISTRATION_EMAIL_SUBJECT("admin_registration_email_subject.template"),
 	PASSWORD_RESET_EMAIL_BODY("password_reset_email_body.template"),
-	PASSWORD_RESET_EMAIL_SUBJECT("password_reset_email_subject.template");
+	PASSWORD_RESET_EMAIL_SUBJECT("password_reset_email_subject.template"),
+	NEW_REVISION_EMAIL_BODY("new_revision_email_body.template"),
+	NEW_REVISION_EMAIL_SUBJECT("new_revision_email_subject.template");
 	
 	private final String fileName;
 

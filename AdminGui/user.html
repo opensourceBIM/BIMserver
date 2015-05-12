@@ -1,0 +1,415 @@
+<div class="user">
+	<h1></h1>
+	<div class="buttonBar well well-sm">
+		<button class="btn btn-default editButton">Edit</button>
+		<button class="btn btn-primary saveButton initialhide">Save</button>
+		<button class="btn btn-default cancelButton initialhide">Cancel</button>
+		<button class="btn btn-default sendPasswordResetLinkButton initialhide">Send password reset link</button>
+	</div>
+	<ul class="nav nav-tabs">
+	  <li class="detailsLink active"><a>Details</a></li>
+	  <li class="revisionsLink"><a>Revisions</a></li>
+	  <li class="checkoutsLink"><a>Checkouts</a></li>
+	  <li class="projectsLink"><a>Projects</a></li>
+	</ul>
+	<div class="content">	
+		<div class="details tab-pane">
+			<table class="table detailsTable">
+				<thead></thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		<div class="revisions tab-pane initialhide">
+			<div class="well well-sm norevisions">No revisions</div>
+			<table class="revisionsTable initialhide table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Date</th>
+						<th>Project</th>
+						<th>Comment</th>
+						<th>Size</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		<div class="tab-pane checkouts initialhide">
+			<div class="well well-sm nocheckouts">No checkouts</div>
+			<table class="checkoutsTable initialhide table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Date</th>
+						<th>User</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+		<div class="projects tab-pane initialhide">
+			<div class="well well-sm noprojects">No projects</div>
+			<div class="linkspacer">
+				<a class="addProjectLink">Add project</a>
+			</div>
+			<div class="well well-sm noProjectsMessage initialhide"></div>
+			<div class="addProjectToUserDiv initialhide">
+				<form class="form-inline">
+					<div class="form-group">
+						<select class="form-control"></select>
+					</div>
+					<button class="btn btn-default">Add</button>
+				</form>
+			</div>
+			<table class="projectsTable initialhide table table-striped table-hover">
+				<thead>
+					<tr><th>Name</th><th>Sub Projects</th><th>Revisions</th><th>Actions</th></tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="initialhide tab-pane dropdowntemplate">
+		<div class="btn-group">
+			<a class="btn dropdown-toggle" data-toggle="dropdown">
+				Actions
+			<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a>Download/Checkout</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script>
+function User(containerDiv, main, user) {
+	var othis = this;
+	othis.user = user;
+	
+	this.close = function() {
+	};
+	
+	this.show = function(){
+		if (typeof user == "number" || typeof user == "string") {
+			othis.reloadUser(user);
+		} else {
+			othis.user = user;
+			othis.updateUser();
+		}
+	};
+
+	this.reloadUser = function(uoid) {
+		if (uoid == null) {
+			uoid = othis.user.oid;
+		}
+		Global.bimServerApi.call("ServiceInterface", "getUserByUoid", {uoid: uoid}, function(user){
+			othis.user = user;
+			othis.updateUser();
+		});
+	};
+
+	this.updateUser = function() {
+		$(".user h1").html(othis.user.name);
+		$(".user .revisionsLink a").html("Revisions" + (othis.user.revisions.length == 0 ? "" : (" (" + othis.user.revisions.length + ")")));
+		$(".user .checkoutsLink a").html("Checkouts" + (othis.user.checkouts == null || othis.user.checkouts.length == 0 ? "" : (" (" + othis.user.checkouts.length + ")")));
+		$(".user .projectsLink a").html("Projects" + (othis.user.hasRightsOn.length == 0 ? "" : (" (" + othis.user.hasRightsOn.length + ")")));
+		
+		containerDiv.find(".detailsTable tbody").empty();
+		containerDiv.find(".detailsTable").append("<tr><td>Username</td><td>" + othis.user.username + "</td></tr>");
+		containerDiv.find(".detailsTable").append("<tr><td>Name</td><td>" + othis.user.name + "</td></tr>");
+		containerDiv.find(".detailsTable").append("<tr><td>Created on</td><td>" + formatDateTime(new Date(othis.user.createdOn)) + " (by <span class=\"createdBy\"></span>)</td></tr>");
+		containerDiv.find(".createdBy").append(createUserLink(main, othis.user.createdById));
+		containerDiv.find(".detailsTable").append("<tr><td>Type</td><td><div class=\"ro\">" + formatUserType(othis.user.userType) + "</div><div class=\"w\"><select class=\"form-control usertypeSelect\"><option value=\"ADMIN\">Administrator</option><option value=\"USER\">User</option><option value=\"READ_ONLY\">Read only</option></select></div></td></tr>");
+		containerDiv.find(".usertypeSelect").val(othis.user.userType);
+		containerDiv.find(".detailsTable").append("<tr><td>State</td><td>" + othis.user.state + "</td></tr>");
+		containerDiv.find(".detailsTable").append("<tr><td>Service Token</td><td>" + othis.user.token + "</td></tr>");
+
+		Global.bimServerApi.call("ServiceInterface", "getAllCheckoutsByUser", {uoid: othis.user.oid}, function(checkouts){
+			$(".user .checkoutsLink a").html("Checkouts" + (checkouts == null || checkouts.length == 0 ? "" : (" (" + checkouts.length + ")")));
+		});
+		
+		$(".user .w").hide();
+
+		var history = History.getState().data;
+		if (history.tab == "details") {
+			othis.showDetails();
+		} else if (history.tab == "revisions") {
+			othis.showRevisions();
+		} else if (history.tab == "checkouts") {
+			othis.showCheckouts();
+		} else if (history.tab == "projects") {
+			othis.showProjects();
+		} else {
+			othis.showDetails();
+		}
+	};
+
+	this.showDetails = function() {
+		pushHistory({page: "User", uoid: othis.user.oid, tab: "details"}, "User " + othis.user.name);
+		$(".user .nav li").removeClass("active");
+		$(".user .detailsLink").addClass("active");
+		$(".user .content > div").hide();
+		$(".user .details").show();
+	};
+	
+	this.projectClick = function() {
+		main.showProject($(this).data("project"), null, true);
+		othis.close();
+	};
+	
+	this.revisionClick = function(event) {
+		if (!$(event.target).is("a, button, span.caret")) {
+			main.showRevision($(this).parents("tr").andSelf().data("revision"), null, true);
+			othis.close();
+		}
+	};
+
+	this.addRevision = function(revision) {
+		$(".user .norevisions").hide();
+		$(".user .revisionsTable").show();
+		var revisionRow = $("<tr class=\"revision\">");
+		revisionRow.data("revision", revision);
+		revisionRow.click(othis.revisionClick);
+		revisionRow.append("<td>" + revision.id + "</td>");
+
+		revisionRow.append("<td><span title=\"" + formatDateTime(new Date(revision.date)) + "\" class=\"timespan\" datetime=\"" + revision.date + "\">" + formatTimeSpan(new Date().getTime() - revision.date, false) + "</span></td>");
+
+		var projectTd = $("<td></td>");
+		var projectA = $("<a>loading...</a>");
+		projectA.attr("poid", revision.projectId);
+		loadProject(projectA);
+		projectA.click(othis.projectClick);
+		projectTd.append(projectA);
+		revisionRow.append(projectTd);
+
+		revisionRow.append("<td>" + revision.comment + "</td>");
+		revisionRow.append("<td>" + revision.size + "</td>");
+
+		var actions = $("<td></td>");
+		var dd = $(".dropdowntemplaterevision").clone();
+		dd.removeClass("dropdowntemplaterevision");
+		dd.find(".downloadCheckoutRevisionButton").click(othis.downloadCheckoutClick);
+		dd.show();
+		actions.append(dd);
+		revisionRow.append(actions);
+		$(".revisionsTable tbody").append(revisionRow);
+	};
+	
+	this.downloadCheckoutClick = function(event) {
+		event.preventDefault();
+		othis.showDownloadCheckoutPopup($(this).parents("tr").andSelf().data("revision"));
+	};
+
+	this.showDownloadCheckoutPopup = function(revision) {
+		var div = $("<div class=\"modal fade\">");
+		$(document.body).append(div);
+		var params = {
+			downloadType: "single",
+			allowCheckouts: true,
+			poid: revision.projectId,
+			roid: revision.oid
+		};
+		div.load(Global.baseDir + "download.html", function(){
+			new Download($(this), params);
+		}).modal({keyboard:true});
+	};
+	
+	this.showRevisions = function() {
+		pushHistoryAppend({tab: "revisions"}, "User " + othis.user.name);
+		$(".user .nav li").removeClass("active");
+		$(".user .revisionsLink").addClass("active");
+		$(".user .content > div").hide();
+		$(".user .revisions").show();
+		Global.bimServerApi.call("ServiceInterface", "getAllRevisionsByUser", {uoid: othis.user.oid}, function(data){
+			$(".revisionsTable tr.revision").remove();
+			data.forEach(function(revision){
+				othis.addRevision(revision);
+			});
+		});
+	};
+	
+	this.addCheckout = function(checkout) {
+		$(".user .nocheckouts").hide();
+		$(".user .checkoutsTable").show();
+		var checkoutRow = $("<tr>");
+		checkoutRow.data("checkout", checkout);
+		checkoutRow.data("revision", checkout.revision);
+		checkoutRow.click(othis.checkoutClick);
+
+		checkoutRow.append("<td>" + checkout.revision.id + "</td>");
+		checkoutRow.append("<td><span title=\"" + formatDateTime(new Date(checkout.date)) + "\" class=\"timespan\" datetime=\"" + checkout.date + "\">" + formatTimeSpan(new Date().getTime() - checkout.date, false) + "</span></td>");
+		var userTd = $("<td></td>");
+		var userA = $("<a>loading...</a>");
+		userA.attr("uoid", checkout.userId);
+		userA.click(othis.userClick);
+		userTd.append(userA);
+		loadUser(userA);
+		checkoutRow.append(userTd);
+
+		var actions = newSplitDropDownTd("Download", othis.downloadCheckoutClick);
+		checkoutRow.append(actions);
+		$(".user .checkoutsTable tbody").prepend(checkoutRow);
+	};
+	
+	this.showCheckouts = function() {
+		pushHistoryAppend({tab: "checkouts"}, "User " + othis.user.name);
+		$(".user .nav li").removeClass("active");
+		$(".user .checkoutsLink").addClass("active");
+		$(".user .content > div").hide();
+		$(".user .checkouts").show();
+		Global.bimServerApi.call("ServiceInterface", "getAllCheckoutsByUser", {uoid: othis.user.oid}, function(data){
+			$(".user .checkoutsTable tbody tr").remove();
+			data.forEach(function(checkout){
+				othis.addCheckout(checkout);
+			});
+		});
+	};
+
+	this.addProject = function(project) {
+		$(".user .noprojects").hide();
+		$(".user .projectsTable").show();
+		$(".projects .projectsTable").show();
+		$(".projects .noprojects").hide();
+		var projectRow = $("<tr class=\"project\">");
+		projectRow.data("project", project);
+
+		var nameTd = $("<td></td>");
+		var nameLink = $("<a>" + project.name + "</a>");
+		nameLink.data("project", project);
+		nameLink.click(othis.projectClick);
+		nameTd.append(nameLink);
+		projectRow.append(nameTd);
+
+		projectRow.append("<td>" + project.subProjects.length + "</td>");
+		projectRow.append("<td>" + project.revisions.length + "</td>");
+		if (main.user.userType == "ADMIN") {
+			projectRow.append(newButtonTd("Revoke", othis.revokeProject));
+		} else {
+			projectRow.append("<td></td>");
+		}
+		$(".projectsTable tbody").append(projectRow);
+	};
+	
+	this.revokeProject = function(){
+		var project = $(this).parents("tr").data("project");
+		Global.bimServerApi.callWithFullIndication("ServiceInterface", "removeUserFromProject", {
+			uoid: othis.user.oid,
+			poid: project.oid
+		}, function(data){
+			othis.showProjects();
+		});
+	};
+	
+	this.showProjects = function() {
+		pushHistoryAppend({tab: "projects"}, "User " + othis.user.name);
+		$(".user .nav li").removeClass("active");
+		$(".user .projectsLink").addClass("active");
+		$(".user .content > div").hide();
+		$(".user .projects").show();
+		Global.bimServerApi.call("ServiceInterface", "getUsersProjects", {uoid: othis.user.oid}, function(data){
+			$(".projectsTable tr.project").remove();
+			data.forEach(function(project){
+				othis.addProject(project);
+			});
+		});
+		if (main.user.userType == "ADMIN") {
+			Global.bimServerApi.call("ServiceInterface", "getAllNonAuthorizedProjectsOfUser", {uoid: othis.user.oid}, function(data){
+				if (data.length == 0) {
+					containerDiv.find(".noProjectsMessage").html("No projects available to add").show();
+					containerDiv.find(".addProjectLink").hide();
+					containerDiv.find(".addProjectToUserDiv").hide();
+				} else {
+					containerDiv.find(".noProjectsMessage").hide();
+					containerDiv.find(".addProjectLink").show();
+				}
+			});
+		} else {
+			containerDiv.find(".addProjectLink").hide();
+		}
+	};
+	
+	this.editButtonClick = function(){
+		$(".user .w").show();
+		$(".user .ro").hide();
+		$(".user .editButton").hide();
+		$(".user .cancelButton").show();
+		$(".user .saveButton").show();
+	};
+	
+	this.cancelButtonClick = function(){
+		$(".user .editButton").show();
+		$(".user .cancelButton").hide();
+		$(".user .saveButton").hide();
+		$(".user .ro").show();
+		$(".user .w").hide();
+		containerDiv.find(".usertypeSelect").val(othis.user.userType);
+	};
+	
+	this.saveButtonClick = function(){
+		Global.bimServerApi.callWithFullIndication("ServiceInterface", "changeUserType", {
+			uoid: othis.user.oid,
+			userType: $(".user .usertypeSelect").val()
+		}, function(){
+			othis.reloadUser();
+			$(".user .editButton").show();
+			$(".user .cancelButton").hide();
+			$(".user .saveButton").hide();
+			$(".user .ro").show();
+			$(".user .w").hide();
+		});
+	};
+	
+	this.sendPasswordResetLink = function(){
+		Global.bimServerApi.callWithFullIndication("AuthInterface", "requestPasswordChange", {username: othis.user.username, resetUrl: Global.baseDir + "?page=ResetPassword"}, function(){
+		});
+	};
+	
+	if (main.user.userType == "ADMIN") {
+		$(".sendPasswordResetLinkButton").show();
+	}
+	
+	this.addProjectLinkClick = function() {
+		Global.bimServerApi.call("ServiceInterface", "getAllNonAuthorizedProjectsOfUser", {uoid: othis.user.oid}, function(data){
+			containerDiv.find(".addProjectToUserDiv select option").remove();
+			if (data.length == 0) {
+				containerDiv.find(".noProjectsMessage").html("No projects available to add").show();
+				containerDiv.find(".addProjectLink").hide();
+				containerDiv.find(".addProjectToUserDiv").hide();
+			} else {
+				data.forEach(function(project){
+					var option = $("<option value=\"" + project.oid + "\">" + project.name + "</option>");
+					containerDiv.find(".addProjectToUserDiv select").append(option);
+				});
+				containerDiv.find(".addProjectLink").hide();
+				containerDiv.find(".addProjectToUserDiv").show();
+			}
+		});
+	};
+	
+	this.addProjectToUser = function(event){
+		event.preventDefault();
+		Global.bimServerApi.callWithFullIndication("ServiceInterface", "addUserToProject", {
+			uoid: othis.user.oid,
+			poid: containerDiv.find(".addProjectToUserDiv select option:selected").val()
+		}, function(data){
+			othis.showProjects();
+			othis.addProjectLinkClick();
+		});
+	};
+
+	containerDiv.find(".addProjectToUserDiv button").click(othis.addProjectToUser);
+	containerDiv.find(".addProjectLink").click(othis.addProjectLinkClick);
+	$(".user .sendPasswordResetLinkButton").click(othis.sendPasswordResetLink);
+	$(".user .saveButton").click(othis.saveButtonClick);
+	$(".user .cancelButton").click(othis.cancelButtonClick);
+	$(".user .detailsLink").click(othis.showDetails);
+	$(".user .revisionsLink").click(othis.showRevisions);
+	$(".user .checkoutsLink").click(othis.showCheckouts);
+	$(".user .projectsLink").click(othis.showProjects);
+	$(".user .editButton").click(othis.editButtonClick);
+}
+</script>

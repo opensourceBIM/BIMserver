@@ -1,7 +1,7 @@
 package org.bimserver.longaction;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -61,7 +61,8 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	}
 	
 	@Override
-	public void init() {
+	public void init(Thread thread) {
+		super.init(thread);
 		session = getBimServer().getDatabase().createSession();
 		action = new CheckoutDatabaseAction(getBimServer(), session, accessMethod, getAuthorization(), downloadParameters.getRoid(), downloadParameters.getSerializerOid());
 		action.addProgressListener(this);

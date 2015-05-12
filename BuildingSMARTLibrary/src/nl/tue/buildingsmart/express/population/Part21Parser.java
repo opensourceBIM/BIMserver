@@ -2,7 +2,7 @@
 package nl.tue.buildingsmart.express.population;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -49,7 +49,7 @@ public class Part21Parser implements Part21ParserConstants {
 
 	private FileInputStream inputStream;
 
-	static boolean verbose;
+	private boolean verbose;
 
 	public void init() {
 		this.instances = new HashMap<Integer, EntityInstance>();

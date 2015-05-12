@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,6 +22,7 @@ import java.io.File;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -37,10 +38,10 @@ public class TestDeserializer {
 	private void start() {
 		try {
 			final PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			final DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			final DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-			deserializer.init(pluginManager.getFirstSchemaPlugin(true).getSchemaDefinition(new PluginConfiguration()));
+			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\Atrium%20Offices%20-%20PROJETO_EXECUTIVO%20-%202012.05.03.ifc"));
 			
 			for (IdEObject idEObject : model.getValues()) {

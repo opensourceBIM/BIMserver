@@ -53,7 +53,7 @@
 		<appender-ref ref="OutConsole" />
 	</logger>
 	<logger name="org.bimserver.shared.json">
-		<level value="info" />
+		<level value="error" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
 	</logger>

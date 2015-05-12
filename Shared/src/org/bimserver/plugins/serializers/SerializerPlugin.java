@@ -1,7 +1,7 @@
 package org.bimserver.plugins.serializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,9 @@ package org.bimserver.plugins.serializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Set;
+
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 
@@ -34,4 +37,9 @@ public interface SerializerPlugin extends Plugin {
 	 * @return Whether this plugin will be needing geometry
 	 */
 	boolean needsGeometry();
+	
+	/**
+	 * @return The schema supported by this serializer
+	 */
+	Set<Schema> getSupportedSchemas();
 }

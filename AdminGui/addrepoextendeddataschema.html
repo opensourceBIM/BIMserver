@@ -23,11 +23,13 @@
 function AddRepoExtendedDataSchema(main, serversettings) {
 	var othis = this;
 
+	this.show = function(){};
+	
 	this.close = function() {
 	};
 	
 	this.addButtonClick = function() {
-		serversettings.showAddNewExtendedDataSchema($(this).parents("tr").data("extendeddataschema"));
+		serversettings.showAddExtendedDataSchema($(this).parents("tr").data("extendeddataschema"));
 	};
 	
 	this.addExtendedDataSchema = function(extendedDataSchema) {

@@ -19,8 +19,12 @@ package org.bimserver.models.store.impl;
 import java.io.IOException;
 import java.net.URL;
 
+import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.geometry.impl.GeometryPackageImpl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1PackageImpl;
+import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4.impl.Ifc4PackageImpl;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.impl.LogPackageImpl;
 import org.bimserver.models.store.StoreFactory;
@@ -715,6 +719,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass messagingSerializerPluginConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -806,6 +817,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum smtpProtocolEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType dataHandlerEDataType = null;
 
 	/**
@@ -855,19 +873,27 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		isInited = true;
 
 		// Obtain or create and register interdependencies
+		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI) instanceof GeometryPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(GeometryPackage.eNS_URI) : GeometryPackage.eINSTANCE);
 		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI) instanceof Ifc2x3tc1PackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(Ifc2x3tc1Package.eNS_URI) : Ifc2x3tc1Package.eINSTANCE);
+		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI) instanceof Ifc4PackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(Ifc4Package.eNS_URI) : Ifc4Package.eINSTANCE);
 		LogPackageImpl theLogPackage = (LogPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI) instanceof LogPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(LogPackage.eNS_URI) : LogPackage.eINSTANCE);
 
 		// Load packages
 		theStorePackage.loadPackage();
+		theGeometryPackage.loadPackage();
 		theIfc2x3tc1Package.loadPackage();
+		theIfc4Package.loadPackage();
 		theLogPackage.loadPackage();
 
 		// Fix loaded packages
 		theStorePackage.fixPackageContents();
+		theGeometryPackage.fixPackageContents();
 		theIfc2x3tc1Package.fixPackageContents();
+		theIfc4Package.fixPackageContents();
 		theLogPackage.fixPackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -1068,6 +1094,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getProject_ModelCheckers() {
 		return (EReference) getProject().getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProject_Schema() {
+		return (EAttribute) getProject().getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -1525,6 +1560,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getConcreteRevision_OidCounters() {
+		return (EAttribute) getConcreteRevision().getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGeoTag() {
 		if (geoTagEClass == null) {
 			geoTagEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(7);
@@ -1840,6 +1884,87 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getServerSettings_SendEmailOnNewRevision() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_SessionTimeOutSeconds() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_SmtpUsername() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_SmtpPassword() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_SmtpPort() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_SmtpProtocol() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_ReuseGeometry() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(23);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_AllowCreateValidatedUser() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(24);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_RenderEngineProcesses() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(25);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUserSettings() {
 		if (userSettingsEClass == null) {
 			userSettingsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(10);
@@ -1971,6 +2096,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getUserSettings_Services() {
 		return (EReference) getUserSettings().getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUserSettings_MessagingSerializerPlugins() {
+		return (EReference) getUserSettings().getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -2770,6 +2904,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getRevisionSummaryType_Schema() {
+		return (EAttribute) getRevisionSummaryType().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRevisionSummaryContainer() {
 		if (revisionSummaryContainerEClass == null) {
 			revisionSummaryContainerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(33);
@@ -3150,6 +3293,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getServerInfo_ErrorMessage() {
 		return (EAttribute) getServerInfo().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getServerInfo_Version() {
+		return (EReference) getServerInfo().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -5149,6 +5301,60 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getProjectSmall_State() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSmall_NrRevisions() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSmall_NrSubProjects() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSmall_HasCheckinRights() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSmall_LastRevisionId() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSmall_Schema() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfcHeader() {
 		if (ifcHeaderEClass == null) {
 			ifcHeaderEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(100);
@@ -5449,6 +5655,27 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMessagingSerializerPluginConfiguration() {
+		if (messagingSerializerPluginConfigurationEClass == null) {
+			messagingSerializerPluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(109);
+		}
+		return messagingSerializerPluginConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMessagingSerializerPluginConfiguration_UserSettings() {
+		return (EReference) getMessagingSerializerPluginConfiguration().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getUserType() {
 		if (userTypeEEnum == null) {
 			userTypeEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(0);
@@ -5598,6 +5825,18 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 			modelCheckerResultTypeEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(103);
 		}
 		return modelCheckerResultTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getSmtpProtocol() {
+		if (smtpProtocolEEnum == null) {
+			smtpProtocolEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(108);
+		}
+		return smtpProtocolEEnum;
 	}
 
 	/**

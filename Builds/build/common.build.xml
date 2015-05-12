@@ -4,13 +4,15 @@
 		<include name="**/*.jar" />
 		<exclude name="**tomcat*"/>
 	</fileset>
+	<fileset id="sharedlib" dir="../../Shared">
+		<include name="**/*.jar" />
+	</fileset>
 	<fileset id="buildlib" dir="builds/lib">
 		<include name="**/*.jar" />
 	</fileset>
 	<target name="Build">
 		<mkdir dir="builds/lib" />
 		<mkdir dir="builds/pluginlibs" />
-		<antcall target="Utils" />
 		<antcall target="Shared" />
 		<antcall target="Ifc" />
 		<antcall target="BimServerClientLib" />
@@ -22,9 +24,12 @@
 		<antcall target="IfcEngine" />
 		<antcall target="Mergers" />
 		<antcall target="JavaQueryEngine" />
+		<antcall target="JavaModelChecker" />
 		<antcall target="IfcPlugins" />
+		<antcall target="Charting" />
 		<antcall target="DemoPlugins" />
 		<antcall target="AdminGui" />
+		<antcall target="DefaultWebModule" />
 		<antcall target="MiscSerializers" />
 		<antcall target="BuildingSMARTLibrary" />
 		<antcall target="FileBasedObjectIDM" />
@@ -37,6 +42,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="sharedlib" />
 					<fileset refid="buildlib" />
 					<fileset dir="builds/pluginlibs"/>
 				</path>
@@ -56,13 +62,16 @@
 			<src path="../../BimServer/generated" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
+		<delete file="builds/bimserver/org/bimserver/servlets/websockets/jsr356/Jsr356Impl.class"></delete>
 		<copy todir="builds/bimserver/org/bimserver/database/migrations/steps">
 			<fileset file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3_TC1.ecore"></fileset>
+			<fileset file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC4.ecore"></fileset>
 		</copy>
 		<mkdir dir="builds/bimserver/plugin"/>
 		<jar destfile="builds/lib/bimserver-${version}.jar">
@@ -75,6 +84,7 @@
 			<src path="../../BimServerClientLib/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -90,27 +100,13 @@
 			<fileset dir="builds/bimserverclientlib"/>
 		</jar>
 	</target>
-	<target name="Utils">
-		<mkdir dir="builds/utils" />
-		<javac destdir="builds/utils" debug="on" fork="false" includeantruntime="false">
-			<src path="../../Utils/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<jar destfile="builds/lib/bimserver-${version}-utils.jar">
-			<fileset dir="builds/utils"/>
-		</jar>
-	</target>
 	<target name="FileBasedObjectIDM">
 		<mkdir dir="builds/filebasedobjectidm" />
 		<javac destdir="builds/filebasedobjectidm" debug="on" fork="false" includeantruntime="false">
 			<src path="../../FileBasedObjectIDM/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -135,6 +131,7 @@
 			<src path="../../BuildingSMARTLibrary/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -152,12 +149,40 @@
 			<fileset dir="builds/BuildingSMARTLibrary"/>
 		</jar>
 	</target>
+	<target name="Charting">
+		<mkdir dir="builds/Charting" />
+		<javac destdir="builds/Charting" debug="on" includeantruntime="false">
+			<src path="../../Charting/src" />
+			<classpath>
+				<path>
+					<fileset dir="../../Charting/lib">
+						<include name="*.jar" />
+					</fileset>
+					<fileset refid="sharedlib" />
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/Charting/plugin"/>
+		<copy todir="builds/Charting/plugin">
+			<fileset dir="../../Charting/plugin"></fileset>
+		</copy>
+		<mkdir dir="builds/Charting/lib"/>
+		<copy todir="builds/Charting/lib">
+			<fileset dir="../../Charting/lib"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-charting.jar">
+			<fileset dir="builds/Charting"/>
+		</jar>
+	</target>
 	<target name="MiscSerializers">
 		<mkdir dir="builds/miscserializers" />
 		<javac destdir="builds/miscserializers" debug="on" includeantruntime="false">
 			<src path="../../MiscSerializers/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -177,6 +202,7 @@
 			<src path="../../IfcEngine/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -199,6 +225,7 @@
 			<src path="../../IfcPlugins/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -218,6 +245,7 @@
 			<src path="../../JavaQueryEngine/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -231,12 +259,33 @@
 			<fileset dir="builds/javaqueryengine"/>
 		</jar>
 	</target>
+	<target name="JavaModelChecker">
+		<mkdir dir="builds/javamodelchecker" />
+		<javac destdir="builds/javamodelchecker" debug="on" includeantruntime="false">
+			<src path="../../JavaModelChecker/src" />
+			<classpath>
+				<path>
+					<fileset refid="sharedlib" />
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/javamodelchecker/plugin"/>
+		<copy todir="builds/javamodelchecker/plugin">
+			<fileset dir="../../JavaModelChecker/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-javamodelchecker.jar">
+			<fileset dir="builds/javamodelchecker"/>
+		</jar>
+	</target>
 	<target name="Mergers">
 		<mkdir dir="builds/mergers" />
 		<javac destdir="builds/mergers" debug="on" includeantruntime="false">
 			<src path="../../Mergers/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -256,6 +305,7 @@
 			<src path="../../XsltSerializer/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -271,6 +321,7 @@
 			<src path="../../DemoPlugins/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -294,6 +345,7 @@
 			<src path="../../AdminGui/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -328,12 +380,54 @@
 			<fileset dir="builds/admingui"/>
 		</jar>
 	</target>
+	<target name="DefaultWebModule">
+		<mkdir dir="builds/defaultwebmodule" />
+		<javac destdir="builds/defaultwebmodule" debug="on" includeantruntime="false">
+			<src path="../../DefaultWebModulePlugin/src" />
+			<classpath>
+				<path>
+					<fileset refid="sharedlib" />
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/defaultwebmodule/plugin"/>
+		<copy todir="builds/defaultwebmodule/plugin">
+			<fileset dir="../../DefaultWebModulePlugin/plugin"></fileset>
+		</copy>
+		<mkdir dir="builds/defaultwebmodule/css"/>
+		<copy todir="builds/defaultwebmodule/css">
+			<fileset dir="../../DefaultWebModulePlugin/css"></fileset>
+		</copy>
+		<mkdir dir="builds/defaultwebmodule/fonts"/>
+		<copy todir="builds/defaultwebmodule/fonts">
+			<fileset dir="../../DefaultWebModulePlugin/fonts"></fileset>
+		</copy>
+		<mkdir dir="builds/defaultwebmodule/js"/>
+		<copy todir="builds/defaultwebmodule/js">
+			<fileset dir="../../DefaultWebModulePlugin/js"></fileset>
+		</copy>
+		<mkdir dir="builds/defaultwebmodule/img"/>
+		<copy todir="builds/defaultwebmodule/img">
+			<fileset dir="../../DefaultWebModulePlugin/img"></fileset>
+		</copy>
+		<copy todir="builds/defaultwebmodule">
+			<fileset dir="../../DefaultWebModulePlugin">
+				<include name="*.html"/>
+			</fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-${version}-defaultwebmodule.jar">
+			<fileset dir="builds/defaultwebmodule"/>
+		</jar>
+	</target>
 	<target name="Collada">
 		<mkdir dir="builds/collada" />
 		<javac destdir="builds/collada" debug="on" includeantruntime="false">
 			<src path="../../Collada/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -353,6 +447,7 @@
 			<src path="../../SceneJS/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -376,6 +471,7 @@
 					<fileset dir="../../CityGML/lib" />
 				</path>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -399,6 +495,7 @@
 			<src path="../../Ifc/src" />
 			<classpath>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -416,6 +513,7 @@
 			<classpath>
 				<pathelement location="../../Shared/genclasses"/>
 				<path>
+					<fileset refid="sharedlib" />
 					<fileset refid="lib" />
 					<fileset refid="buildlib" />
 				</path>
@@ -432,6 +530,8 @@
 		<copy file="../../Shared/generated/org/bimserver/models/ifc2x3tc1/impl/ifc2x3tc1.ecore" todir="builds/shared/org/bimserver/models/ifc2x3tc1/impl" />
 		<copy file="../../Shared/generated/org/bimserver/models/store/impl/store.ecore" todir="builds/shared/org/bimserver/models/store/impl" />
 		<copy file="../../Shared/generated/org/bimserver/models/log/impl/log.ecore" todir="builds/shared/org/bimserver/models/log/impl" />
+		<copy file="../../Shared/generated/org/bimserver/models/geometry/impl/geometry.ecore" todir="builds/shared/org/bimserver/models/geometry/impl" />
+		<copy file="../../Shared/generated/org/bimserver/models/ifc4/impl/ifc4.ecore" todir="builds/shared/org/bimserver/models/ifc4/impl" />
 		<copy todir="builds/shared/org/bimserver/shared/interfaces/bimsie1">
 			<fileset dir="../../Shared/src/org/bimserver/shared/interfaces/bimsie1">
 				<include name="*.java"/>

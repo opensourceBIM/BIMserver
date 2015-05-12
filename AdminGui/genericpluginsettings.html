@@ -24,6 +24,9 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 	this.close = function(){
 	};
 
+	this.show = function(){
+	};
+
 	this.loadGenericPluginSettings = function() {
 		$(".genericpluginsettings .detailsTable tbody").append("<tr><td>Name</td><td>" + othis.pluginsettings.name + "</td></tr>");
 		$(".genericpluginsettings .detailsTable tbody").append("<tr><td>Description</td><td>" + othis.pluginsettings.description + "</td></tr>");
@@ -48,10 +51,16 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 					objectDefinition.parameters.forEach(function(parameter){
 						var input = $(".genericpluginsettings").find("input[parameter=\"" + parameter.name + "\"]");
 						var value = parameter.value;
-						if (value.__type == "SDoubleType" || value.__type == "SStringType" || value.__type == "SBooleanType" || value.__type == "SLongType") {
-							input.val(value.value);
-						} else if (value.__type == "SObjectType") {
-						} else if (value.__type == "SArrayType") {
+						if (value != null) {
+							if (value.__type == "SDoubleType" || value.__type == "SStringType" || value.__type == "SBooleanType" || value.__type == "SLongType") {
+								input.val(value.value);
+							} else if (value.__type == "SObjectType") {
+							} else if (value.__type == "SArrayType") {
+							} else if (value.__type == "SByteArrayType") {
+								if (value.value != null) {
+									input.parent().append("<span>Current: " + atob(value.value).length + " bytes</span>");
+								}
+							}
 						}
 					});
 				}
@@ -75,21 +84,37 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 						var primitiveDefinition = parameter.type;
 						var input = null;
 						if (primitiveDefinition.type == "LONG") {
-							input = $("<input parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
+							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
 							input.numeric({ decimal: false, negative: false });
 							td.append(input);
 						} else if (primitiveDefinition.type == "DOUBLE") {
-							input = $("<input parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
+							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
 							input.numeric({ decimal: ".", negative: false });
 							td.append(input);
 						} else if (primitiveDefinition.type == "STRING") {
-							input = $("<input parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
+							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"text\"/>");
 							td.append(input);
 						} else if (primitiveDefinition.type == "BYTE_ARRAY") {
-							input = $("<input parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"file\"/>");
+							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"file\"/>");
+							
+							var reader = new FileReader();
+							reader.onload = function (event) {
+								var data = event.target.result;
+								var encoded = data.substr(data.indexOf(",") + 1);
+								input.data("base64", encoded);
+							};
+							input.change(function(){
+								var get = input.get(0);
+								var files = get.files;
+								if (files != null && files.length == 1) {
+									var oFile = files[0];
+									reader.readAsDataURL(oFile);
+								}
+							});
+							
 							td.append(input);
 						} else if (primitiveDefinition.type == "BOOLEAN") {
-							input = $("<input parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"checkbox\"/>");
+							input = $("<input class=\"form-control\" parameter=\"" + parameter.name + "\" dtype=\"" + primitiveDefinition.type + "\" type=\"checkbox\"/>");
 							td.append(input);
 						}
 					}
@@ -100,13 +125,14 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 		});
 	};
 
-	this.saveSettings = function() {
+	this.saveSettings = function(callback) {
 		var settings = {
 			__type: "SObjectType",
 			parameters: []
 		};
 		$(".genericpluginsettings").find("input[parameter]").each(function(){
 			var type = null;
+			var input = $(this);
 			if ($(this).attr("dtype") == "DOUBLE") {
 				type = {
 					__type: "SDoubleType",
@@ -122,6 +148,11 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 					__type: "SStringType",
 					value: parseInt($(this).val())
 				};
+			} else if ($(this).attr("dtype") == "BYTE_ARRAY") {
+				type = {
+					__type: "SByteArrayType",
+					value: $(this).data("base64")
+				};
 			} else if ($(this).attr("dtype") == "BOOLEAN") {
 				type = {
 					__type: "SStringType",
@@ -136,7 +167,9 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 			settings.parameters.push(parameter);
 		});
 		Global.bimServerApi.callWithFullIndication("PluginInterface", "setPluginSettings", {poid: othis.pluginsettings.oid, settings: settings}, function(data){
-			
+			if (callback != null) {
+				callback();
+			}
 		});
 	};
 	
@@ -145,9 +178,11 @@ function GenericPluginSettings(main, usersettings, pluginsettingsoid, configurat
 			othis.pluginsettings.remoteAccessible = $(".genericpluginsettings .remoteAccessible").is(":checked");
 			othis.pluginsettings.publicProfile = $(".genericpluginsettings .publicProfile").is(":checked");
 			Global.bimServerApi.call("PluginInterface", "updateInternalService", {internalService: othis.pluginsettings}, function(data){
+				othis.saveSettings();
 			});
+		} else {
+			othis.saveSettings();
 		}
-		othis.saveSettings();
 	};
 	
 	this.save = function(event) {

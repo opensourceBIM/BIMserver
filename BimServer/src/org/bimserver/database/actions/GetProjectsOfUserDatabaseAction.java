@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -50,7 +50,7 @@ public class GetProjectsOfUserDatabaseAction extends BimDatabaseAction<List<Proj
 			if (user != null) {
 				List<Project> result = new ArrayList<Project>();
 				for (Project project : user.getHasRightsOn()) {
-					if (project.getState() == ObjectState.ACTIVE || user.getUserType() == UserType.ADMIN) {
+					if (project.getState() == ObjectState.ACTIVE || actingUser.getUserType() == UserType.ADMIN) {
 						result.add(project);
 					}
 				}

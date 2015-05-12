@@ -1,0 +1,13 @@
+## Available parameters:
+##   name: The users full name
+##   username: The users username (usually e-mail address)
+##   siteaddress: The address of the running BIMserver
+##   validationlink: A link where the user can set his/her password
+#parse("inc/header.template")
+Dear $name,<br/>
+
+A new revision ($revisionId) with comment "$comment" has been checked-in on project "$projectName".
+
+<a href="http://localhost:8080/thebimfederation/?token=$token&page=Results&roid=$roid">link</a>
+
+#parse("inc/footer.template")

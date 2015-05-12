@@ -1,0 +1,381 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION (
+        ('ViewDefinition [CoordinationView, QuantityTakeOffAddOnView]'),
+        '2;1');
+FILE_NAME (
+        'example.ifc',
+        '2012-09-24T14:40:06',
+        ('Architect'),
+        ('Building Designer Office'),
+        'IFC Engine DLL version 1.03 beta',
+        'IFC Engine DLL version 1.03 beta',
+        'The authorising person');
+FILE_SCHEMA (('IFC4RC4'));
+ENDSEC;
+DATA;
+
+/* --------------------------------------------------------------------------------------------- */
+/* general entities required for all IFC data sets, defining the context for the exchange ------ */
+#1 = IFCPROJECT('3yPRnn7zfEjO2IWgiG2wfc', #2, 'Default Project', 'Description of Default Project', $, $, $, (#20), #7);
+
+/* single owner history sufficient if not otherwise required by the view definition ------------ */
+/* provides the person and application creating the data set, and the time it is created ------- */
+#2 = IFCOWNERHISTORY(#3, #6, $, .NOTDEFINED., $, $, $, 1348486806);
+#3 = IFCPERSONANDORGANIZATION(#4, #5, $);
+#4 = IFCPERSON($, 'Bonsma', 'Peter', $, $, $, $, $);
+#5 = IFCORGANIZATION($, 'RDF', 'RDF Ltd.', $, $);
+#6 = IFCAPPLICATION(#5, '0.10', 'Test Application', 'TA 1001');
+
+/* each IFC data set containing geometry has to define at absolute minimum length and angle ---- */
+/* here length is milli metre as SI unit, and plane angle is 'degree' as non SI unit ----------- */
+#7 = IFCUNITASSIGNMENT((#8, #9, #10, #11, #15, #16, #17, #18, #19));
+#8 = IFCSIUNIT(*, .LENGTHUNIT., .MILLI., .METRE.);
+#9 = IFCSIUNIT(*, .AREAUNIT., $, .SQUARE_METRE.);
+#10 = IFCSIUNIT(*, .VOLUMEUNIT., $, .CUBIC_METRE.);
+#11 = IFCCONVERSIONBASEDUNIT(#12, .PLANEANGLEUNIT., 'DEGREE', #13);
+#12 = IFCDIMENSIONALEXPONENTS(0, 0, 0, 0, 0, 0, 0);
+#13 = IFCMEASUREWITHUNIT(IFCPLANEANGLEMEASURE(1.745E-2), #14);
+#14 = IFCSIUNIT(*, .PLANEANGLEUNIT., $, .RADIAN.);
+#15 = IFCSIUNIT(*, .SOLIDANGLEUNIT., $, .STERADIAN.);
+#16 = IFCSIUNIT(*, .MASSUNIT., $, .GRAM.);
+#17 = IFCSIUNIT(*, .TIMEUNIT., $, .SECOND.);
+#18 = IFCSIUNIT(*, .THERMODYNAMICTEMPERATUREUNIT., $, .DEGREE_CELSIUS.);
+#19 = IFCSIUNIT(*, .LUMINOUSINTENSITYUNIT., $, .LUMEN.);
+#20 = IFCGEOMETRICREPRESENTATIONCONTEXT($, 'Model', 3, 1.E-5, #21, #23);
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#21 = IFCAXIS2PLACEMENT3D(#22, $, $);
+#22 = IFCCARTESIANPOINT((0., 0., 0.));
+#23 = IFCDIRECTION((0., 1., 0.));
+
+/* shared coordinates - it is permissable to share common instances to reduce file size -------- */
+#24 = IFCCARTESIANPOINT((0., 0., 0.));
+#25 = IFCDIRECTION((1., 0., 0.));
+#26 = IFCDIRECTION((0., 1., 0.));
+#27 = IFCDIRECTION((0., 0., 1.));
+#28 = IFCDIRECTION((-1., 0., 0.));
+#29 = IFCDIRECTION((0., -1., 0.));
+#30 = IFCDIRECTION((0., 0., -1.));
+
+/* if site is irrelevant Building could be connected to project directly ----------------------- */
+#31 = IFCSITE('3BoQ8L5UXBEOT1kW0PLzej', #2, 'Default Site', 'Description of Default Site', $, #32, $, $, .ELEMENT., (24, 28, 0), (54, 25, 0), 10., $, $);
+#32 = IFCLOCALPLACEMENT($, #33);
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#33 = IFCAXIS2PLACEMENT3D(#24, $, $);
+
+/* each IFC data set containing elements in a building context has to include a building ------- */
+/* at absolute minimum (could have a site and stories as well) --------------------------------- */
+#34 = IFCBUILDING('0WE2bIjCj8sAuWvkNGFsRh', #2, 'Default Building', 'Description of Default Building', $, #35, $, $, .ELEMENT., $, $, #37);
+/* if the building is the uppermost spatial structure element it defines the absolut position -- */
+#35 = IFCLOCALPLACEMENT(#32, #36);
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#36 = IFCAXIS2PLACEMENT3D(#24, $, $);
+#37 = IFCPOSTALADDRESS($, $, $, $, ('RDF Ltd.', 'Main Office'), '32', 'Bankya', 'Sofia', '1320', 'Bulgaria');
+#38 = IFCBUILDINGSTOREY('0TqcpX835BMOFRhGvB6_Tu', #2, 'Default Building Storey', 'Description of Default Building Storey', $, #39, $, $, .ELEMENT., 0.);
+#39 = IFCLOCALPLACEMENT(#35, #40);
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#40 = IFCAXIS2PLACEMENT3D(#24, $, $);
+#41 = IFCRELAGGREGATES('0iL9EJKq95bRo5gB3il1c2', #2, 'BuildingContainer', 'BuildingContainer for BuildigStories', #34, (#38));
+#42 = IFCRELAGGREGATES('2jatLdN_z0WeSagQKLy$7j', #2, 'SiteContainer', 'SiteContainer For Buildings', #31, (#34));
+#43 = IFCRELAGGREGATES('15yRTZWFvF$O7$FwQVn1cn', #2, 'ProjectContainer', 'ProjectContainer for Sites', #1, (#31));
+#44 = IFCRELCONTAINEDINSPATIALSTRUCTURE('3$zwcwnLv1_QDYHw6p7GXO', #2, 'Default Building', 'Contents of Building Storey', (#60, #87, #111, #134, #158, #173, #188), #38);
+
+/* properties for the wall, standard property set from PSet collection ------------------------- */
+#45 = IFCPROPERTYSET('3tHNUXbZH5vxePn_rLyQFg', #2, 'Pset_WallCommon', $, (#46, #47, #48, #49, #50, #51, #52, #53, #54, #55));
+#46 = IFCPROPERTYSINGLEVALUE('Reference', 'Reference', IFCIDENTIFIER(''), $);
+#47 = IFCPROPERTYSINGLEVALUE('AcousticRating', 'AcousticRating', IFCLABEL(''), $);
+#48 = IFCPROPERTYSINGLEVALUE('FireRating', 'FireRating', IFCLABEL(''), $);
+#49 = IFCPROPERTYSINGLEVALUE('Combustible', 'Combustible', IFCBOOLEAN(.F.), $);
+#50 = IFCPROPERTYSINGLEVALUE('SurfaceSpreadOfFlame', 'SurfaceSpreadOfFlame', IFCLABEL(''), $);
+#51 = IFCPROPERTYSINGLEVALUE('ThermalTransmittance', 'ThermalTransmittance', IFCTHERMALTRANSMITTANCEMEASURE(2.4E-1), $);
+#52 = IFCPROPERTYSINGLEVALUE('IsExternal', 'IsExternal', IFCBOOLEAN(.T.), $);
+#53 = IFCPROPERTYSINGLEVALUE('ExtendToStructure', 'ExtendToStructure', IFCBOOLEAN(.F.), $);
+#54 = IFCPROPERTYSINGLEVALUE('LoadBearing', 'LoadBearing', IFCBOOLEAN(.F.), $);
+#55 = IFCPROPERTYSINGLEVALUE('Compartmentation', 'Compartmentation', IFCBOOLEAN(.F.), $);
+#56 = IFCMATERIALLAYERSETUSAGE(#57, .AXIS2., .POSITIVE., -150., $);
+#57 = IFCMATERIALLAYERSET((#58), $, $);
+#58 = IFCMATERIALLAYER(#59, 300., $, $, $, $, $);
+#59 = IFCMATERIAL('Name of the material used for the wall', $, $);
+#60 = IFCWALL('3IclONJQ5D5gm$TM3V7U1j', #2, 'Outer Wall Back', 'Description of Wall', $, #61, #65, $, .STANDARD.);
+#61 = IFCLOCALPLACEMENT(#39, #62);
+#62 = IFCAXIS2PLACEMENT3D(#63, #27, #64);
+#63 = IFCCARTESIANPOINT((3950., 6000., 0.));
+#64 = IFCDIRECTION((-9.999987317E-1, -1.592652916E-3, 0.));
+#65 = IFCPRODUCTDEFINITIONSHAPE($, $, (#77));
+#66 = IFCWALLTYPE('0gdkW8K411DwAbwkQeyDKo', #2, 'Outer Wall Back', 'Description of Window Type', $, $, $, $, $, .STANDARD.);
+#67 = IFCRELDEFINESBYTYPE('2lF9AHcET2svkKuyfUegwb', #2, $, $, (#60), #66);
+#68 = IFCRELDECLARES('3uukm7EKDFPOUbFxQ$qVVN', #2, $, $, #69, (#66, #93, #116, #140));
+#69 = IFCPROJECTLIBRARY('2SEa_NMfv9lOphiPOi$air', #2, $, $, $, $, $, $, $);
+#70 = IFCRELDECLARES('3h6$l6MKL25wDhFLQrbqpQ', #2, $, $, #69, (#1));
+#71 = IFCRELDEFINESBYPROPERTIES('216ALtDN52CwWJ8J4fpIVi', #2, $, $, (#60), #45);
+
+/* material (layers) of the wall --------------------------------------------------------------- */
+#72 = IFCMATERIALLAYERSETUSAGE(#73, .AXIS2., .POSITIVE., -2.16907085E7, $);
+#73 = IFCMATERIALLAYERSET((#74), $, $);
+#74 = IFCMATERIALLAYER(#75, 4.3381417E7, $, $, $, $, $);
+#75 = IFCMATERIAL('Name of the material used for the wall', $, $);
+/* connection of material description to the wall ---------------------------------------------- */
+#76 = IFCRELASSOCIATESMATERIAL('2B$$FAy3TCFRmytNeHGO89', #2, $, $, (#60), #72);
+
+/* geometry (shape representation), extruded polygon in z direction ---------------------------- */
+#77 = IFCSHAPEREPRESENTATION(#20, 'Body', 'SweptSolid', (#78));
+#78 = IFCEXTRUDEDAREASOLID(#79, #86, #27, 2800.);
+#79 = IFCARBITRARYCLOSEDPROFILEDEF(.AREA., $, #80);
+#80 = IFCPOLYLINE((#81, #82, #83, #84, #85));
+#81 = IFCCARTESIANPOINT((-150., -150.));
+#82 = IFCCARTESIANPOINT((150., 150.));
+#83 = IFCCARTESIANPOINT((3650., 150.));
+#84 = IFCCARTESIANPOINT((3950., -150.));
+#85 = IFCCARTESIANPOINT((-150., -150.));
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#86 = IFCAXIS2PLACEMENT3D(#24, $, $);
+#87 = IFCWALL('3DUVa8WNv44vpjf_VXmcpb', #2, 'Outer Wall Left', 'Description of Wall', $, #88, #92, $, .STANDARD.);
+#88 = IFCLOCALPLACEMENT(#39, #89);
+#89 = IFCAXIS2PLACEMENT3D(#90, #27, #91);
+#90 = IFCCARTESIANPOINT((150., 6000., 0.));
+#91 = IFCDIRECTION((7.963267107E-4, -9.999996829E-1, 0.));
+#92 = IFCPRODUCTDEFINITIONSHAPE($, $, (#101));
+#93 = IFCWALLTYPE('1mrgnu0C55ceTTelA8G5dx', #2, 'Outer Wall Left', 'Description of Window Type', $, $, $, $, $, .STANDARD.);
+#94 = IFCRELDEFINESBYTYPE('3Ow4zlZMX8p9e6EdVJaxfZ', #2, $, $, (#87), #93);
+#95 = IFCRELDEFINESBYPROPERTIES('36NxysuFXFngObqpJ4oz$D', #2, $, $, (#87), #45);
+
+/* material (layers) of the wall --------------------------------------------------------------- */
+#96 = IFCMATERIALLAYERSETUSAGE(#97, .AXIS2., .POSITIVE., -2.16907085E7, $);
+#97 = IFCMATERIALLAYERSET((#98), $, $);
+#98 = IFCMATERIALLAYER(#99, 4.3381417E7, $, $, $, $, $);
+#99 = IFCMATERIAL('Name of the material used for the wall', $, $);
+/* connection of material description to the wall ---------------------------------------------- */
+#100 = IFCRELASSOCIATESMATERIAL('234PUIwhP9XfHgSGM7sAvU', #2, $, $, (#87), #96);
+
+/* geometry (shape representation), extruded polygon in z direction ---------------------------- */
+#101 = IFCSHAPEREPRESENTATION(#20, 'Body', 'SweptSolid', (#102));
+#102 = IFCEXTRUDEDAREASOLID(#103, #110, #27, 2800.);
+#103 = IFCARBITRARYCLOSEDPROFILEDEF(.AREA., $, #104);
+#104 = IFCPOLYLINE((#105, #106, #107, #108, #109));
+#105 = IFCCARTESIANPOINT((-150., -150.));
+#106 = IFCCARTESIANPOINT((150., 150.));
+#107 = IFCCARTESIANPOINT((4650., 150.));
+#108 = IFCCARTESIANPOINT((4950., -150.));
+#109 = IFCCARTESIANPOINT((-150., -150.));
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#110 = IFCAXIS2PLACEMENT3D(#24, $, $);
+#111 = IFCWALL('2oph4E6kD8c8E0H7fsOtL_', #2, 'Outer Wall Front', 'Description of Wall', $, #112, #115, $, .STANDARD.);
+#112 = IFCLOCALPLACEMENT(#39, #113);
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#113 = IFCAXIS2PLACEMENT3D(#114, $, $);
+#114 = IFCCARTESIANPOINT((150., 1200., 0.));
+#115 = IFCPRODUCTDEFINITIONSHAPE($, $, (#124));
+#116 = IFCWALLTYPE('0Q$c8FVxz5vPNexMoFHU_T', #2, 'Outer Wall Front', 'Description of Window Type', $, $, $, $, $, .STANDARD.);
+#117 = IFCRELDEFINESBYTYPE('0uIFnadBrBYgjhKDPiWlPn', #2, $, $, (#111), #116);
+#118 = IFCRELDEFINESBYPROPERTIES('1836sJKtb1ox0kiQoQ8TsC', #2, $, $, (#111), #45);
+
+/* material (layers) of the wall --------------------------------------------------------------- */
+#119 = IFCMATERIALLAYERSETUSAGE(#120, .AXIS2., .POSITIVE., -2.16907085E7, $);
+#120 = IFCMATERIALLAYERSET((#121), $, $);
+#121 = IFCMATERIALLAYER(#122, 4.3381417E7, $, $, $, $, $);
+#122 = IFCMATERIAL('Name of the material used for the wall', $, $);
+/* connection of material description to the wall ---------------------------------------------- */
+#123 = IFCRELASSOCIATESMATERIAL('3Wq2lmdXL96uhhISadL2f5', #2, $, $, (#111), #119);
+
+/* geometry (shape representation), extruded polygon in z direction ---------------------------- */
+#124 = IFCSHAPEREPRESENTATION(#20, 'Body', 'SweptSolid', (#125));
+#125 = IFCEXTRUDEDAREASOLID(#126, #133, #27, 2800.);
+#126 = IFCARBITRARYCLOSEDPROFILEDEF(.AREA., $, #127);
+#127 = IFCPOLYLINE((#128, #129, #130, #131, #132));
+#128 = IFCCARTESIANPOINT((-150., -150.));
+#129 = IFCCARTESIANPOINT((150., 150.));
+#130 = IFCCARTESIANPOINT((3650., 150.));
+#131 = IFCCARTESIANPOINT((3950., -150.));
+#132 = IFCCARTESIANPOINT((-150., -150.));
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#133 = IFCAXIS2PLACEMENT3D(#24, $, $);
+#134 = IFCWALL('06tMcU2CTCA8K37K_3uqzH', #2, 'Outer Wall Right', 'Description of Wall', $, #135, #139, $, .STANDARD.);
+#135 = IFCLOCALPLACEMENT(#39, #136);
+#136 = IFCAXIS2PLACEMENT3D(#137, #27, #138);
+#137 = IFCCARTESIANPOINT((3950., 1200., 0.));
+#138 = IFCDIRECTION((-2.388978112E-3, 9.999971464E-1, 0.));
+#139 = IFCPRODUCTDEFINITIONSHAPE($, $, (#148));
+#140 = IFCWALLTYPE('0chhmc_fT3SRm4SMZlzC9Q', #2, 'Outer Wall Right', 'Description of Window Type', $, $, $, $, $, .STANDARD.);
+#141 = IFCRELDEFINESBYTYPE('07gWSgjGv7PAorT1iiJo$_', #2, $, $, (#134), #140);
+#142 = IFCRELDEFINESBYPROPERTIES('2wAmnFEwP4I9k29AizJgjh', #2, $, $, (#134), #45);
+
+/* material (layers) of the wall --------------------------------------------------------------- */
+#143 = IFCMATERIALLAYERSETUSAGE(#144, .AXIS2., .POSITIVE., -2.16907085E7, $);
+#144 = IFCMATERIALLAYERSET((#145), $, $);
+#145 = IFCMATERIALLAYER(#146, 4.3381417E7, $, $, $, $, $);
+#146 = IFCMATERIAL('Name of the material used for the wall', $, $);
+/* connection of material description to the wall ---------------------------------------------- */
+#147 = IFCRELASSOCIATESMATERIAL('0ppI0UEBP0TgVWm4ufpgS4', #2, $, $, (#134), #143);
+
+/* geometry (shape representation), extruded polygon in z direction ---------------------------- */
+#148 = IFCSHAPEREPRESENTATION(#20, 'Body', 'SweptSolid', (#149));
+#149 = IFCEXTRUDEDAREASOLID(#150, #157, #27, 2800.);
+#150 = IFCARBITRARYCLOSEDPROFILEDEF(.AREA., $, #151);
+#151 = IFCPOLYLINE((#152, #153, #154, #155, #156));
+#152 = IFCCARTESIANPOINT((-150., -150.));
+#153 = IFCCARTESIANPOINT((150., 150.));
+#154 = IFCCARTESIANPOINT((4650., 150.));
+#155 = IFCCARTESIANPOINT((4950., -150.));
+#156 = IFCCARTESIANPOINT((-150., -150.));
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#157 = IFCAXIS2PLACEMENT3D(#24, $, $);
+#158 = IFCSLAB('30KDbIwvz0TvaeeFaxIyOI', #2, 'Floor', 'Description of Slab', $, #159, #162, $, $);
+#159 = IFCLOCALPLACEMENT(#39, #160);
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#160 = IFCAXIS2PLACEMENT3D(#161, $, $);
+#161 = IFCCARTESIANPOINT((0., 0., -300.));
+#162 = IFCPRODUCTDEFINITIONSHAPE($, $, (#163));
+
+/* geometry (shape representation), extruded polygon in z direction ---------------------------- */
+#163 = IFCSHAPEREPRESENTATION(#20, 'Body', 'SweptSolid', (#164));
+#164 = IFCEXTRUDEDAREASOLID(#165, #172, #27, 300.);
+#165 = IFCARBITRARYCLOSEDPROFILEDEF(.AREA., $, #166);
+#166 = IFCPOLYLINE((#167, #168, #169, #170, #171));
+#167 = IFCCARTESIANPOINT((0., 1050.));
+#168 = IFCCARTESIANPOINT((0., 6150.));
+#169 = IFCCARTESIANPOINT((4100., 6150.));
+#170 = IFCCARTESIANPOINT((4100., 1050.));
+#171 = IFCCARTESIANPOINT((0., 1050.));
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#172 = IFCAXIS2PLACEMENT3D(#24, $, $);
+#173 = IFCROOF('2Boan9KyD2MwwgDRwhXKUL', #2, 'Roof', 'Description of Roof', $, #174, #177, $, $);
+#174 = IFCLOCALPLACEMENT(#39, #175);
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#175 = IFCAXIS2PLACEMENT3D(#176, $, $);
+#176 = IFCCARTESIANPOINT((0., 0., 2800.));
+#177 = IFCPRODUCTDEFINITIONSHAPE($, $, (#178));
+
+/* geometry (shape representation), extruded polygon in z direction ---------------------------- */
+#178 = IFCSHAPEREPRESENTATION(#20, 'Body', 'SweptSolid', (#179));
+#179 = IFCEXTRUDEDAREASOLID(#180, #187, #27, 300.);
+#180 = IFCARBITRARYCLOSEDPROFILEDEF(.AREA., $, #181);
+#181 = IFCPOLYLINE((#182, #183, #184, #185, #186));
+#182 = IFCCARTESIANPOINT((0., 1050.));
+#183 = IFCCARTESIANPOINT((0., 6150.));
+#184 = IFCCARTESIANPOINT((4100., 6150.));
+#185 = IFCCARTESIANPOINT((4100., 1050.));
+#186 = IFCCARTESIANPOINT((0., 1050.));
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#187 = IFCAXIS2PLACEMENT3D(#24, $, $);
+#188 = IFCSPACE('2s0CkOMXXBRgU1nmmQpb6z', #2, 'Room I', 'Description of Space', $, #189, #192, $, $, $, $);
+#189 = IFCLOCALPLACEMENT(#39, #190);
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#190 = IFCAXIS2PLACEMENT3D(#191, $, $);
+#191 = IFCCARTESIANPOINT((300., 1350., 0.));
+#192 = IFCPRODUCTDEFINITIONSHAPE($, $, (#193));
+
+/* geometry (shape representation), extruded polygon in z direction ---------------------------- */
+#193 = IFCSHAPEREPRESENTATION(#20, 'Body', 'SweptSolid', (#194));
+#194 = IFCEXTRUDEDAREASOLID(#195, #202, #27, 2800.);
+#195 = IFCARBITRARYCLOSEDPROFILEDEF(.AREA., $, #196);
+#196 = IFCPOLYLINE((#197, #198, #199, #200, #201));
+#197 = IFCCARTESIANPOINT((0., 0.));
+#198 = IFCCARTESIANPOINT((0., 4500.));
+#199 = IFCCARTESIANPOINT((3500., 4500.));
+#200 = IFCCARTESIANPOINT((3500., 0.));
+#201 = IFCCARTESIANPOINT((0., 0.));
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#202 = IFCAXIS2PLACEMENT3D(#24, $, $);
+
+/* Create Space Boundary (Second Level Space boundary, ----------------------------------------- */
+/* although in this example these are the same objects as first level) ------------------------- */
+#203 = IFCRELSPACEBOUNDARY2NDLEVEL('0C6Cdu5$j0Pf3dWTRbe7xr', #2, '2ndLevel', 'Space Boundary Bottom', #188, #158, #204, .PHYSICAL., .EXTERNAL., $, $);
+#204 = IFCCONNECTIONSURFACEGEOMETRY(#205, $);
+#205 = IFCCURVEBOUNDEDPLANE(#206, #208, ());
+#206 = IFCPLANE(#207);
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#207 = IFCAXIS2PLACEMENT3D(#24, $, $);
+#208 = IFCCOMPOSITECURVE((#209), .U.);
+#209 = IFCCOMPOSITECURVESEGMENT(.CONTINUOUS., .F., #210);
+#210 = IFCPOLYLINE((#211, #212, #213, #214, #215));
+#211 = IFCCARTESIANPOINT((0., 0.));
+#212 = IFCCARTESIANPOINT((3500., 0.));
+#213 = IFCCARTESIANPOINT((3500., 4500.));
+#214 = IFCCARTESIANPOINT((0., 4500.));
+#215 = IFCCARTESIANPOINT((0., 0.));
+
+/* Create Space Boundary (Second Level Space boundary, ----------------------------------------- */
+/* although in this example these are the same objects as first level) ------------------------- */
+#216 = IFCRELSPACEBOUNDARY2NDLEVEL('1o1HJeNT9899eqqd_ig9de', #2, '2ndLevel', 'Space Boundary Top', #188, #158, #217, .PHYSICAL., .EXTERNAL., $, $);
+#217 = IFCCONNECTIONSURFACEGEOMETRY(#218, $);
+#218 = IFCCURVEBOUNDEDPLANE(#219, #222, ());
+#219 = IFCPLANE(#220);
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */
+#220 = IFCAXIS2PLACEMENT3D(#221, $, $);
+#221 = IFCCARTESIANPOINT((0., 0., 2800.));
+#222 = IFCCOMPOSITECURVE((#223), .U.);
+#223 = IFCCOMPOSITECURVESEGMENT(.CONTINUOUS., .F., #224);
+#224 = IFCPOLYLINE((#225, #226, #227, #228, #229));
+#225 = IFCCARTESIANPOINT((0., 0.));
+#226 = IFCCARTESIANPOINT((3500., 0.));
+#227 = IFCCARTESIANPOINT((3500., 2200.));
+#228 = IFCCARTESIANPOINT((0., 2200.));
+#229 = IFCCARTESIANPOINT((0., 0.));
+
+/* Create Space Boundary (Second Level Space boundary, ----------------------------------------- */
+/* although in this example these are the same objects as first level) ------------------------- */
+#230 = IFCRELSPACEBOUNDARY2NDLEVEL('0U6hnv3c91HA09Yrzxts4c', #2, '2ndLevel', 'Space Boundary Back Wall', #188, #60, #231, .PHYSICAL., .EXTERNAL., $, $);
+#231 = IFCCONNECTIONSURFACEGEOMETRY(#232, $);
+#232 = IFCCURVEBOUNDEDPLANE(#233, #236, ());
+#233 = IFCPLANE(#234);
+#234 = IFCAXIS2PLACEMENT3D(#235, #29, #25);
+#235 = IFCCARTESIANPOINT((0., 4500., 0.));
+#236 = IFCCOMPOSITECURVE((#237), .U.);
+#237 = IFCCOMPOSITECURVESEGMENT(.CONTINUOUS., .F., #238);
+#238 = IFCPOLYLINE((#239, #240, #241, #242, #243));
+#239 = IFCCARTESIANPOINT((0., 0.));
+#240 = IFCCARTESIANPOINT((3500., 0.));
+#241 = IFCCARTESIANPOINT((3500., 2800.));
+#242 = IFCCARTESIANPOINT((0., 2800.));
+#243 = IFCCARTESIANPOINT((0., 0.));
+
+/* Create Space Boundary (Second Level Space boundary, ----------------------------------------- */
+/* although in this example these are the same objects as first level) ------------------------- */
+#244 = IFCRELSPACEBOUNDARY2NDLEVEL('0eUoHns0b4fwRhWDDJaR0x', #2, '2ndLevel', 'Space Boundary Left Wall', #188, #87, #245, .PHYSICAL., .EXTERNAL., $, $);
+#245 = IFCCONNECTIONSURFACEGEOMETRY(#246, $);
+#246 = IFCCURVEBOUNDEDPLANE(#247, #249, ());
+#247 = IFCPLANE(#248);
+#248 = IFCAXIS2PLACEMENT3D(#24, #25, #26);
+#249 = IFCCOMPOSITECURVE((#250), .U.);
+#250 = IFCCOMPOSITECURVESEGMENT(.CONTINUOUS., .F., #251);
+#251 = IFCPOLYLINE((#252, #253, #254, #255, #256));
+#252 = IFCCARTESIANPOINT((0., 0.));
+#253 = IFCCARTESIANPOINT((4500., 0.));
+#254 = IFCCARTESIANPOINT((4500., 2800.));
+#255 = IFCCARTESIANPOINT((0., 2800.));
+#256 = IFCCARTESIANPOINT((0., 0.));
+
+/* Create Space Boundary (Second Level Space boundary, ----------------------------------------- */
+/* although in this example these are the same objects as first level) ------------------------- */
+#257 = IFCRELSPACEBOUNDARY2NDLEVEL('1tlPcQCsf3ZhJbNFdV1x5t', #2, '2ndLevel', 'Space Boundary Front Wall', #188, #111, #258, .PHYSICAL., .EXTERNAL., $, $);
+#258 = IFCCONNECTIONSURFACEGEOMETRY(#259, $);
+#259 = IFCCURVEBOUNDEDPLANE(#260, #262, ());
+#260 = IFCPLANE(#261);
+#261 = IFCAXIS2PLACEMENT3D(#24, #29, #25);
+#262 = IFCCOMPOSITECURVE((#263), .U.);
+#263 = IFCCOMPOSITECURVESEGMENT(.CONTINUOUS., .F., #264);
+#264 = IFCPOLYLINE((#265, #266, #267, #268, #269));
+#265 = IFCCARTESIANPOINT((0., 0.));
+#266 = IFCCARTESIANPOINT((3500., 0.));
+#267 = IFCCARTESIANPOINT((3500., 2800.));
+#268 = IFCCARTESIANPOINT((0., 2800.));
+#269 = IFCCARTESIANPOINT((0., 0.));
+
+/* Create Space Boundary (Second Level Space boundary, ----------------------------------------- */
+/* although in this example these are the same objects as first level) ------------------------- */
+#270 = IFCRELSPACEBOUNDARY2NDLEVEL('39iunT4y92UOBmk37WYXix', #2, '2ndLevel', 'Space Boundary Right Wall', #188, #134, #271, .PHYSICAL., .EXTERNAL., $, $);
+#271 = IFCCONNECTIONSURFACEGEOMETRY(#272, $);
+#272 = IFCCURVEBOUNDEDPLANE(#273, #276, ());
+#273 = IFCPLANE(#274);
+#274 = IFCAXIS2PLACEMENT3D(#275, #25, #26);
+#275 = IFCCARTESIANPOINT((3500., 0., 0.));
+#276 = IFCCOMPOSITECURVE((#277), .U.);
+#277 = IFCCOMPOSITECURVESEGMENT(.CONTINUOUS., .F., #278);
+#278 = IFCPOLYLINE((#279, #280, #281, #282, #283));
+#279 = IFCCARTESIANPOINT((0., 0.));
+#280 = IFCCARTESIANPOINT((4500., 0.));
+#281 = IFCCARTESIANPOINT((4500., 2800.));
+#282 = IFCCARTESIANPOINT((0., 2800.));
+#283 = IFCCARTESIANPOINT((0., 0.));
+ENDSEC;
+END-ISO-10303-21;

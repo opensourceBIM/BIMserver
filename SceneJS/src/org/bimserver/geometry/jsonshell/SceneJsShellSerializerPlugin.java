@@ -1,7 +1,7 @@
 package org.bimserver.geometry.jsonshell;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,9 @@ package org.bimserver.geometry.jsonshell;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Set;
+
+import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -76,5 +79,10 @@ public class SceneJsShellSerializerPlugin extends AbstractSerializerPlugin {
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
 		return super.getSettingsDefinition();
+	}
+
+	@Override
+	public Set<Schema> getSupportedSchemas() {
+		return Schema.IFC2X3TC1.toSet();
 	}
 }

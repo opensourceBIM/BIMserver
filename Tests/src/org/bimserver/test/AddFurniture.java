@@ -1,7 +1,7 @@
 package org.bimserver.test;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,6 +23,7 @@ import java.util.List;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.Schema;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
@@ -54,15 +55,15 @@ public class AddFurniture {
 	public static void main(String[] args) {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			
 			Deserializer deserializer = deserializerPlugin.createDeserializer(null);
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			
 			IfcModelInterface model = deserializer.read(new File("../TestData/data/AC9R1-Haus-G-H-Ver2-2x3.ifc"));
 
 			deserializer = deserializerPlugin.createDeserializer(null);
-			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			IfcModelInterface furnishingModel = deserializer.read(new File("test.ifc"));
 			
 			model.fixOids(new IncrementingOidProvider());
@@ -71,7 +72,7 @@ public class AddFurniture {
 
 			IfcFurnishingElement picknick = (IfcFurnishingElement) furnishingModel.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
 
-			ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition()), model);
+			ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition("ifc2x3tc1")), model);
 
 			IfcProductDefinitionShape representation = (IfcProductDefinitionShape) picknick.getRepresentation();
 			IfcRepresentation surfaceModel = null;
@@ -79,9 +80,9 @@ public class AddFurniture {
 			for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {
 				IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)ifcRepresentation;
 				if (ifcShapeRepresentation.getRepresentationType().equals("SurfaceModel")) {
-					surfaceModel = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation);
+					surfaceModel = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, false);
 				} else if (ifcShapeRepresentation.getRepresentationType().equals("BoundingBox")) {
-					boundingBox	 = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation);
+					boundingBox	 = (IfcRepresentation) modelHelper.copy(ifcShapeRepresentation, false);
 				}
 			}
 
@@ -143,8 +144,8 @@ public class AddFurniture {
 
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(null);
-			serializer.init(model, null, pluginManager, null, true);
-			serializer.writeToFile(new File("withfurn.ifc"));
+			serializer.init(model, null, pluginManager, null, null, true);
+			serializer.writeToFile(new File("withfurn.ifc"), null);
 		} catch (PluginException e) {
 			e.printStackTrace();
 		} catch (DeserializeException e) {

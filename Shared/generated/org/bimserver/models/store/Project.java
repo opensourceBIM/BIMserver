@@ -50,6 +50,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Project#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getModelCheckers <em>Model Checkers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Project#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
  *
@@ -514,5 +515,31 @@ public interface Project extends IdEObject {
 	 * @generated
 	 */
 	EList<ModelCheckerInstance> getModelCheckers();
+
+	/**
+	 * Returns the value of the '<em><b>Schema</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Schema</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Schema</em>' attribute.
+	 * @see #setSchema(String)
+	 * @see org.bimserver.models.store.StorePackage#getProject_Schema()
+	 * @model
+	 * @generated
+	 */
+	String getSchema();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Project#getSchema <em>Schema</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Schema</em>' attribute.
+	 * @see #getSchema()
+	 * @generated
+	 */
+	void setSchema(String value);
 
 } // Project

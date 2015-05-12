@@ -1,7 +1,7 @@
 package org.bimserver.ifcengine.jvm;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -49,6 +49,13 @@ public interface IfcEngineInterface extends Library {
 	}
 
 	void setFormat(Pointer modelId, int format, int mask);
+	void setFilter(Pointer modelId, int format, int mask);
+
+	void getInstanceTransformationMatrix(Pointer modelId, Pointer instance, 
+			DoubleByReference d11, DoubleByReference d12, DoubleByReference d13, DoubleByReference d14, 
+			DoubleByReference d21, DoubleByReference d22, DoubleByReference d23, DoubleByReference d24, 
+			DoubleByReference d31, DoubleByReference d32, DoubleByReference d33, DoubleByReference d34, 
+			DoubleByReference d41, DoubleByReference d42, DoubleByReference d43, DoubleByReference d44);
 	
 	Pointer xxxxOpenModelByStream(int repository, StreamCallback callbackAddress, String schemaName);
 
@@ -168,7 +175,7 @@ public interface IfcEngineInterface extends Library {
 
 	public int internalGetP21Line(Pointer instanceId);
 
-	public Pointer internalGetInstanceFromP21Line(int expressId);
+	public Pointer internalGetInstanceFromP21Line(Pointer instanceId, int expressId);
 
 	
 	/**
@@ -205,6 +212,18 @@ public interface IfcEngineInterface extends Library {
 	Pointer getInstanceInModelling(Pointer model, Pointer instance, int mode,
 			IntByReference pV, IntByReference pI, IntByReference pC);
 
+	/**
+	 * @param model
+	 * @param instance
+	 * @param mode
+	 * @param pV
+	 * @param pI
+	 * @param pC
+	 * @return
+	 */
+	double GetArea(Pointer instance, Pointer insdices, Pointer vertices);
+
+	
 	/**
 	 * Returns an integer representing internal 'clock'.
 	 * 

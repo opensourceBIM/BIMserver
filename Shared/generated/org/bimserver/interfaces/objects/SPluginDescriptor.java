@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SModelCheckerPluginDescriptor.class, SModelMergerPluginDescriptor.class, SSerializerPluginDescriptor.class, SQueryEnginePluginDescriptor.class, SServicePluginDescriptor.class, SWebModulePluginDescriptor.class, SModelComparePluginDescriptor.class, SRenderEnginePluginDescriptor.class, SDeserializerPluginDescriptor.class})
+@XmlSeeAlso(value={SModelComparePluginDescriptor.class, SDeserializerPluginDescriptor.class, SServicePluginDescriptor.class, SQueryEnginePluginDescriptor.class, SModelCheckerPluginDescriptor.class, SModelMergerPluginDescriptor.class, SWebModulePluginDescriptor.class, SRenderEnginePluginDescriptor.class, SSerializerPluginDescriptor.class})
 public class SPluginDescriptor implements SDataBase
 {
 	private long oid = -1;

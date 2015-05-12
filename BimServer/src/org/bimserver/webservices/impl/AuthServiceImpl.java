@@ -1,7 +1,7 @@
 package org.bimserver.webservices.impl;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,6 +18,7 @@ package org.bimserver.webservices.impl;
  *****************************************************************************/
 
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.ChangePasswordDatabaseAction;
 import org.bimserver.database.actions.RequestPasswordChangeDatabaseAction;
@@ -82,6 +83,22 @@ public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface
 			session.close();
 		}
 		return null;
+	}
+
+	@Override
+	public void setHash(Long uoid, byte[] hash, byte[] salt) throws ServerException, UserException {
+		requireAdminAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			User user = session.get(uoid, Query.getDefault());
+			user.setPasswordHash(hash);
+			user.setPasswordSalt(salt);
+			session.commit();
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 	
 //

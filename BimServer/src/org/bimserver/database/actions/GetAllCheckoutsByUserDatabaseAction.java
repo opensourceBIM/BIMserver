@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -47,7 +47,7 @@ public class GetAllCheckoutsByUserDatabaseAction extends BimDatabaseAction<List<
 		User user = getUserByUoid(uoid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_User(), user);
 //		condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getCheckout_Active(), new BooleanLiteral(true)));
-		Map<Long, Checkout> query = (Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, Query.getDefault());
+		Map<Long, Checkout> query = getDatabaseSession().query(condition, Checkout.class, Query.getDefault());
 		return CollectionUtils.mapToList(query);
 	}
 }

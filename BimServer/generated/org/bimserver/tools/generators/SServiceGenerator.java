@@ -23,11 +23,11 @@ public class SServiceGenerator
   protected final String TEXT_5 = NL + NL + "public class S";
   protected final String TEXT_6 = "Service extends org.bimserver.shared.meta.SService {" + NL + "\tprivate static final Logger LOGGER = LoggerFactory.getLogger(S";
   protected final String TEXT_7 = "Service.class);" + NL + "" + NL + "\tpublic S";
-  protected final String TEXT_8 = "Service(SourceCodeFetcher sourceCodeFetcher, Class<? extends PublicInterface> cl) {" + NL + "\t\tsuper(sourceCodeFetcher, cl);" + NL + "\t}" + NL + "\t" + NL + "\t\tpublic void init() {" + NL + "\t\t\ttry {";
-  protected final String TEXT_9 = NL + "\t\t\t\taddType(new SClass(this, Class.forName(\"org.bimserver.interfaces.objects.S";
+  protected final String TEXT_8 = "Service(SServicesMap servicesMap, SourceCodeFetcher sourceCodeFetcher, Class<? extends PublicInterface> cl) {" + NL + "\t\tsuper(servicesMap, sourceCodeFetcher, cl);" + NL + "\t}" + NL + "\t" + NL + "\t\tpublic void init() {" + NL + "\t\t\ttry {";
+  protected final String TEXT_9 = NL + "\t\t\t\tgetServicesMap().addType(new SClass(getServicesMap(), Class.forName(\"org.bimserver.interfaces.objects.S";
   protected final String TEXT_10 = "\"), new SConstructor(){" + NL + "\t\t\t\t\tpublic Object newInstance() {" + NL + "\t\t\t\t\t\treturn new org.bimserver.interfaces.objects.S";
   protected final String TEXT_11 = "();" + NL + "\t\t\t\t\t}" + NL + "\t\t\t\t}));";
-  protected final String TEXT_12 = NL + "\t\t\t\taddType(new SClass(this, Class.forName(\"org.bimserver.interfaces.objects.S";
+  protected final String TEXT_12 = NL + "\t\t\t\tgetServicesMap().addType(new SClass(getServicesMap(), Class.forName(\"org.bimserver.interfaces.objects.S";
   protected final String TEXT_13 = "\"), null));";
   protected final String TEXT_14 = NL + "\t\t\tsuper.init();" + NL + "\t\t} catch (ClassNotFoundException e) {" + NL + "\t\t\tLOGGER.error(\"\", e);" + NL + "\t\t}" + NL + "\t}" + NL + "}";
 

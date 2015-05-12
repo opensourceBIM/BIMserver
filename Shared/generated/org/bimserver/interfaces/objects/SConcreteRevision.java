@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -43,6 +43,7 @@ public class SConcreteRevision implements SDataBase
 	private long summaryId = -1;
 	private long userId = -1;
 	private long ifcHeaderId = -1;
+	private byte[] oidCounters;
 
 	public long getOid() {
 		return this.oid;
@@ -103,6 +104,9 @@ public class SConcreteRevision implements SDataBase
 		if (sField.getName().equals("ifcHeaderId")) {
 			return getIfcHeaderId();
 		}
+		if (sField.getName().equals("oidCounters")) {
+			return getOidCounters();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -156,6 +160,10 @@ public class SConcreteRevision implements SDataBase
 		}
 		if (sField.getName().equals("ifcHeaderId")) {
 			setIfcHeaderId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("oidCounters")) {
+			setOidCounters((byte[])val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -255,6 +263,14 @@ public class SConcreteRevision implements SDataBase
 
 	public void setIfcHeaderId(long ifcHeaderId) {
 		this.ifcHeaderId = ifcHeaderId;
+	}
+	
+	public byte[] getOidCounters() {
+		return oidCounters;
+	}
+
+	public void setOidCounters(byte[] oidCounters) {
+		this.oidCounters = oidCounters;
 	}
 	
 	@Override

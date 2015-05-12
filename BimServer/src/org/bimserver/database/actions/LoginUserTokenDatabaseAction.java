@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -64,9 +64,9 @@ public class LoginUserTokenDatabaseAction extends BimDatabaseAction<String> {
 			}
 			Authorization authorization = null;
 			if (user.getUserType() == UserType.ADMIN) {
-				authorization = new AdminAuthorization(30, TimeUnit.DAYS);
+				authorization = new AdminAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 			} else {
-				authorization = new UserAuthorization(30, TimeUnit.DAYS);
+				authorization = new UserAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 			}
 			authorization.setUoid(user.getOid());
 			String asHexToken = authorization.asHexToken(bimServer.getEncryptionKey());
@@ -81,6 +81,6 @@ public class LoginUserTokenDatabaseAction extends BimDatabaseAction<String> {
 		} catch (InterruptedException e) {
 			LOGGER.error("", e);
 		}
-		throw new UserException("Invalid username/password combination");
+		throw new UserException("Invalid token");
 	}
 }

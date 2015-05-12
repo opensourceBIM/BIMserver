@@ -257,6 +257,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createModelCheckerInstance();
 		case StorePackage.MODEL_CHECKER_PLUGIN_DESCRIPTOR:
 			return (EObject) createModelCheckerPluginDescriptor();
+		case StorePackage.MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION:
+			return (EObject) createMessagingSerializerPluginConfiguration();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -296,6 +298,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createProgressTopicTypeFromString(eDataType, initialValue);
 		case StorePackage.MODEL_CHECKER_RESULT_TYPE:
 			return createModelCheckerResultTypeFromString(eDataType, initialValue);
+		case StorePackage.SMTP_PROTOCOL:
+			return createSmtpProtocolFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
 			return createDataHandlerFromString(eDataType, initialValue);
 		default:
@@ -337,6 +341,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertProgressTopicTypeToString(eDataType, instanceValue);
 		case StorePackage.MODEL_CHECKER_RESULT_TYPE:
 			return convertModelCheckerResultTypeToString(eDataType, instanceValue);
+		case StorePackage.SMTP_PROTOCOL:
+			return convertSmtpProtocolToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
 			return convertDataHandlerToString(eDataType, instanceValue);
 		default:
@@ -1289,6 +1295,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MessagingSerializerPluginConfiguration createMessagingSerializerPluginConfiguration() {
+		MessagingSerializerPluginConfigurationImpl messagingSerializerPluginConfiguration = new MessagingSerializerPluginConfigurationImpl();
+		return messagingSerializerPluginConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
 		UserType result = UserType.get(initialValue);
 		if (result == null)
@@ -1554,6 +1570,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertModelCheckerResultTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SmtpProtocol createSmtpProtocolFromString(EDataType eDataType, String initialValue) {
+		SmtpProtocol result = SmtpProtocol.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSmtpProtocolToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

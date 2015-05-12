@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,7 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
@@ -28,6 +30,8 @@ import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
@@ -57,11 +61,9 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 
 	private final long oid;
 	private final long roid;
-	private final BimServer bimServer;
 
 	public GetDataObjectByOidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long oid, Authorization authorization) {
-		super(databaseSession, accessMethod, authorization);
-		this.bimServer = bimServer;
+		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roid = roid;
 		this.oid = oid;
 	}
@@ -71,10 +73,15 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 		Revision virtualRevision = getRevisionByRoid(roid);
 		EObject eObject = null;
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
+		pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-			IfcModel subModel = new IfcModel();
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema()); 
+			lastPackageMetaData = packageMetaData;
+			IfcModel subModel = new BasicIfcModel(packageMetaData, pidRoidMap);
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);
-			Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
+			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.NO, highestStopId);
 			eObject = getDatabaseSession().get(null, oid, subModel, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
@@ -83,9 +90,9 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 			}
 		}
 
-		IfcModelInterface ifcModel = new IfcModel();
+		IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap);
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
+			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}
@@ -132,15 +139,17 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 								listDataValue.getValues().add(dataValue);
 							}
 						} else {
-							List list = (List)eGet;
-							for (Object o : list) {
-								SimpleDataValue dataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
-								if (eGet != null) {
-									dataValue.setStringValue(o.toString());
-								} else {
-									dataValue.setStringValue(null);
+							if (eGet != null) {
+								List list = (List)eGet;
+								for (Object o : list) {
+									SimpleDataValue dataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
+									if (eGet != null) {
+										dataValue.setStringValue(o.toString());
+									} else {
+										dataValue.setStringValue(null);
+									}
+									listDataValue.getValues().add(dataValue);
 								}
-								listDataValue.getValues().add(dataValue);
 							}
 						}
 					} else {
@@ -176,7 +185,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 							dataValue.setFieldName(eStructuralFeature.getName());
 							for (EObject item : list) {
 								if (item.eClass().getEAnnotation("wrapped") != null) {
-									EObject referenceEObject = (EObject) item;
+									EObject referenceEObject = item;
 									SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
 									simpleDataValue.setStringValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue")).toString());
 									dataValue.getValues().add(simpleDataValue);

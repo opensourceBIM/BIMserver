@@ -1,7 +1,7 @@
 package org.bimserver.geometry.jsonshell;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,7 @@ import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.IfcActorRole;
 import org.bimserver.models.ifc2x3tc1.IfcApplication;
 import org.bimserver.models.ifc2x3tc1.IfcBuilding;
@@ -93,6 +94,7 @@ import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.Extends;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.common.util.EList;
@@ -108,9 +110,9 @@ public class SceneJs3ShellSerializer extends AbstractGeometrySerializer {
 	private final List<Long> surfaceStyleIds = new ArrayList<Long>();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids)
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids)
 			throws SerializerException {
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
+		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 	}
 
 	@Override
@@ -121,7 +123,7 @@ public class SceneJs3ShellSerializer extends AbstractGeometrySerializer {
 	}
 
 	@Override
-	public boolean write(OutputStream out) throws SerializerException {
+	public boolean write(OutputStream out, ProgressReporter progressReporter) throws SerializerException {
 		try {
 			if (getMode() == Mode.BODY) {
 				OutputStreamWriter outputStreamWriter = new OutputStreamWriter(out, Charsets.UTF_8);
@@ -141,7 +143,7 @@ public class SceneJs3ShellSerializer extends AbstractGeometrySerializer {
 					writeGeometries(jsonWriter);
 					jsonWriter.endArray();
 					jsonWriter.endObject();
-					writeVisualScenes(jsonWriter);
+					//writeVisualScenes(jsonWriter);
 					jsonWriter.endArray();
 
 					// Append additional custom data to the scene node
@@ -238,6 +240,7 @@ public class SceneJs3ShellSerializer extends AbstractGeometrySerializer {
 		jsonWriter.endObject();
 	}
 
+	@SuppressWarnings("unused")
 	private void writeVisualScenes(JsonWriter jsonWriter) throws IOException {
 		Extends sceneExtends = getSceneExtends();
 		// Calculate the maximum ray length through the scene (using the two
@@ -266,63 +269,43 @@ public class SceneJs3ShellSerializer extends AbstractGeometrySerializer {
 							.name("y").value(0.0)								
 							.name("z").value(0.0)
 						.endObject()				
-							.name("up").beginObject()								
-											.name("x").value(0.0)								
-											.name("y").value(0.0)
-											.name("z").value(1.0)
-										.endObject()
-							.name("nodes").beginArray().beginObject()
-											.name("type").value("camera")
-											.name("id").value("main-camera")
-											.name("optics").beginObject()
-															.name("type").value("perspective")
-															.name("far").value(extentsDiffLength * 6)
-															.name("near").value(extentsDiffLength * 0.001f)
-															.name("aspect").value(1.0)
-															.name("fovy").value(37.8493)
-														.endObject()
-											.name("nodes").beginArray().beginObject()
+			.name("up").beginObject()								
+							.name("x").value(0.0)								
+							.name("y").value(0.0)
+							.name("z").value(1.0)
+						.endObject()
+			.name("nodes").beginArray()
+							.beginObject()
+								.name("type").value("camera")
+								.name("id").value("main-camera")
+								.name("optics").beginObject()
+													.name("type").value("perspective")
+													.name("far").value(extentsDiffLength * 6)
+													.name("near").value(extentsDiffLength * 0.001f)
+													.name("aspect").value(1.0)
+													.name("fovy").value(37.8493)
+												.endObject()
+								.name("nodes").beginArray()
+													.beginObject()
 															.name("type").value("renderer")
 															.name("id").value("main-renderer")
 															.name("clear").beginObject()
-																			.name("color").value(true)
-																			.name("depth").value(true)
-																			.name("stencil").value(false)
-																		.endObject()
-															.name("nodes").beginArray()
-																			.beginObject()
-																				.name("type").value("lights")
-																				.name("id").value("my-lights")
-																				.name("lights").beginArray()
-																									.beginObject()
-																										.name("mode").value("ambient")
-																										.name("color").beginObject()
-																														.name("r").value(0.2)
-																														.name("g").value(0.2)
-																														.name("b").value(0.2)
-																													.endObject()
-																									.endObject()
-																									.beginObject()
-																										.name("mode").value("dir")
-																										.name("color").beginObject()
-																														.name("r").value(0.8)
-																														.name("g").value(0.8)
-																														.name("b").value(0.8)
-																													.endObject()
-																										.name("dir").beginObject()
-																														.name("x").value(-0.5)
-																														.name("y").value(-0.5)
-																														.name("z").value(-1.0)
-																													.endObject()
-																										.name("diffuse").value(true)
-																										.name("specular").value(true)
-																									.endObject()
-																								.endArray()
+																				.name("color").value(true)
+																				.name("depth").value(true)
+																				.name("stencil").value(false)
 																			.endObject()
+															.name("nodes").beginArray()
+																				.beginObject()
+																					.name("type").value("lights")
+																					.name("id").value("my-lights")
+																					.name("lights").beginArray().endArray()
+																				.endObject()
 																		.endArray()
-														.endObject().endArray()
-										.endObject().endArray()
-						.endObject();
+													.endObject()
+											.endArray()
+							.endObject()
+						.endArray()
+		.endObject();
 	}
 
 	private void writeGeometricObject(JsonWriter jsonWriter, IfcProduct ifcProduct) throws RenderEngineException, SerializerException, IOException {

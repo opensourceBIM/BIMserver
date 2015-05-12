@@ -1,7 +1,7 @@
 package org.bimserver.client.soap;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,6 +19,7 @@ package org.bimserver.client.soap;
 
 import org.bimserver.client.AbstractBimServerClientFactory;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -28,19 +29,20 @@ public class SoapBimServerClientFactory extends AbstractBimServerClientFactory {
 
 	private String address;
 
-	public SoapBimServerClientFactory(String address, SServicesMap servicesMap) {
-		super(servicesMap);
+	public SoapBimServerClientFactory(String address, SServicesMap servicesMap, MetaDataManager metaDataManager) {
+		super(servicesMap, metaDataManager);
 		this.address = address;
 	}
 	
-	public SoapBimServerClientFactory(String address) {
+	public SoapBimServerClientFactory(MetaDataManager metaDataManager, String address) {
+		super(metaDataManager);
 		this.address = address;
 	}
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
-		SoapChannel soapChannel = new SoapChannel(address + "/soap11", true, getServicesMap().getInterfaceClasses());
-		BimServerClient bimServerClient = new BimServerClient(address, getServicesMap(), soapChannel);
+		SoapChannel soapChannel = new SoapChannel(getHttpClient(), address + "/soap11", true, getServicesMap().getInterfaceClasses());
+		BimServerClient bimServerClient = new BimServerClient(this, address, getServicesMap(), soapChannel);
 		soapChannel.connect(bimServerClient);
 		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connect();

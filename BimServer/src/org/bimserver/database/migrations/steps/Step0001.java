@@ -1,7 +1,7 @@
 package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,7 @@ package org.bimserver.database.migrations.steps;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EClass;
@@ -27,8 +28,8 @@ import org.eclipse.emf.ecore.EClass;
 public class Step0001 extends Migration {
 
 	@Override
-	public void migrate(Schema schema) {
-		schema.loadEcore(getClass().getResourceAsStream("IFC2X3_TC1.ecore"));
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
+		schema.loadEcore("ifc2x3_tc1.ecore", getClass().getResourceAsStream("IFC2X3_TC1.ecore"));
 		EClass ifcRoot = schema.getEClass("ifc2x3tc1", "IfcRoot");
 		ifcRoot.getEStructuralFeature("GlobalId").getEAnnotations().add(createIndexAnnotation());
 		ifcRoot.getEStructuralFeature("Name").getEAnnotations().add(createIndexAnnotation());

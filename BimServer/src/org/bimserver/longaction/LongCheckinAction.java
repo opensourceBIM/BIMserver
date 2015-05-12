@@ -1,7 +1,7 @@
 package org.bimserver.longaction;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -54,9 +54,9 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 				@Override
 				public void progress(int current, int max) {
 					if (count == 0) {
-						updateProgress("Checkin of " + fileName, current * 100 / max);
+						updateProgress("Saving to database (" + fileName + ")", current * 100 / max);
 					} else {
-						updateProgress("Checkin of " + fileName + " (" + count + ")", current * 100 / max);
+						updateProgress("Saving to database (" + fileName + ", " + count + " try)", current * 100 / max);
 					}
 				}
 
@@ -88,16 +88,11 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 		// This is very important! The LongCheckinAction will probably live another 30 minutes 
 		// before it will be cleaned up (this is useful for clients asking for the progress/status of this checkin)
-		checkinDatabaseAction.getModel().clear();
 		checkinDatabaseAction = null;
 	}
 
 	@Override
 	public String getDescription() {
 		return getClass().getSimpleName();
-	}
-	
-	@Override
-	public void init() {
 	}
 }

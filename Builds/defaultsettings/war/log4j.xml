@@ -19,6 +19,9 @@
 	<logger name="org.bimserver.ifcengine">
 		<level value="error" />
 	</logger>
+	<logger name="org.apache.velocity">
+		<level value="error" />
+	</logger>
 	<logger name="org.openid4java">
 		<level value="error" />
 	</logger>
@@ -26,6 +29,6 @@
 		<level value="error" />
 	</logger>
 	<root>
-		<priority value="info" />
+		<priority value="debug" />
 	</root>
 </log4j:configuration>

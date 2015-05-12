@@ -1,7 +1,7 @@
 package org.bimserver.ifcengine;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,8 +24,9 @@ package org.bimserver.ifcengine;
  *****************************************************************************/
 
 import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineGeometry;
 import org.bimserver.plugins.renderengine.RenderEngineInstance;
-import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.renderengine.RenderEngineSurfaceProperties;
 
 public class JvmIfcEngineInstance implements RenderEngineInstance {
 	private final JvmIfcEngine failSafeIfcEngine;
@@ -36,16 +37,6 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 		this.failSafeIfcEngine = failSafeIfcEngine;
 		this.modelId = modelId;
 		this.instanceId = instanceId;
-	}
-
-	public RenderEngineInstanceVisualisationProperties getVisualisationProperties() throws RenderEngineException {
-		synchronized (failSafeIfcEngine) {
-			failSafeIfcEngine.writeCommand(Command.GET_VISUALISATION_PROPERTIES);
-			failSafeIfcEngine.writeInt(modelId);
-			failSafeIfcEngine.writeInt(instanceId);
-			failSafeIfcEngine.flush();
-			return new RenderEngineInstanceVisualisationProperties(failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt());
-		}
 	}
 
 	@Override
@@ -60,6 +51,59 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 				result[i] = failSafeIfcEngine.readFloat();
 			}
 			return result;
+		}
+	}
+
+	@Override
+	public double getArea() throws RenderEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.GET_AREA);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(instanceId);
+			failSafeIfcEngine.flush();
+			return failSafeIfcEngine.readDouble();
+		}
+	}
+
+	private RenderEngineSurfaceProperties initialize() throws RenderEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.INITIALIZE_MODELLING_INSTANCE);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(instanceId);
+			failSafeIfcEngine.flush();
+			int noIndices = failSafeIfcEngine.readInt();
+			int noVertices = failSafeIfcEngine.readInt();
+			return new RenderEngineSurfaceProperties(modelId, noVertices, noIndices, 0.0);
+		}		
+	}
+	
+	@Override
+	public RenderEngineGeometry generateGeometry() throws RenderEngineException {
+		RenderEngineSurfaceProperties initialize = initialize();
+		return finalize(initialize);
+	}
+
+	private RenderEngineGeometry finalize(RenderEngineSurfaceProperties initialize) throws RenderEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.FINALIZE_MODELLING);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(initialize.getIndicesCount());
+			failSafeIfcEngine.writeInt(initialize.getVerticesCount());
+			failSafeIfcEngine.flush();
+			
+			int[] indices = new int[initialize.getIndicesCount()];
+			float[] vertices = new float[initialize.getVerticesCount() * 3];
+			float[] normals = new float[initialize.getVerticesCount() * 3];
+			for (int i = 0; i < indices.length; i++) {
+				indices[i] = failSafeIfcEngine.readInt();
+			}
+			for (int i = 0; i < vertices.length; i++) {
+				vertices[i] = failSafeIfcEngine.readFloat();
+			}
+			for (int i = 0; i < normals.length; i++) {
+				normals[i] = failSafeIfcEngine.readFloat();
+			}
+			return new RenderEngineGeometry(indices, vertices, normals, null, null);
 		}
 	}
 }

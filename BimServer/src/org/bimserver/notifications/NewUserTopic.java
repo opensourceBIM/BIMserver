@@ -1,7 +1,7 @@
 package org.bimserver.notifications;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -28,13 +28,10 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
 public class NewUserTopic extends Topic {
-
-	@Override
-	public void register(EndPoint endPoint) throws TopicRegisterException {
-		// TODO check rights here too
-		super.register(endPoint);
+	public NewUserTopic(NotificationsManager notificationsManager) {
+		super(notificationsManager);
 	}
-	
+
 	public void process(final DatabaseSession session, final long uoid, NewUserNotification newUserNotification) throws BimserverDatabaseException, UserException, ServerException {
 		map(new Mapper(){
 			@Override
@@ -44,5 +41,10 @@ public class NewUserTopic extends Topic {
 					endPoint.getNotificationInterface().newUser(uoid);
 				}
 			}});
+	}
+
+	@Override
+	public void remove() {
+		// Do nothing, there is only one topic of this type
 	}
 }

@@ -1,7 +1,7 @@
 package org.bimserver.plugins.classloaders;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -36,22 +36,33 @@ import java.util.jar.JarInputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class FileJarClassLoader extends JarClassLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileJarClassLoader.class);
-	private final File jarFile;
 	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
 	private File tempDir;
+	private File jarFile;
 
 	public FileJarClassLoader(ClassLoader parentClassLoader, File jarFile, File tempDir) throws FileNotFoundException, IOException {
 		super(parentClassLoader);
 		this.jarFile = jarFile;
-		this.tempDir = tempDir;
-		if (!tempDir.exists()) {
-			tempDir.mkdir();
+		FileInputStream fis = new FileInputStream(jarFile);
+		try {
+			String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(fis);
+			this.tempDir = new File(tempDir, md5);
+ 		} finally {
+ 			fis.close();
+ 		}
+		
+		if (this.tempDir.exists()) {
+			// This exact file has been extracted before, do nothing
+			return;
 		}
+		this.tempDir.mkdir();
+		
 		JarInputStream jarInputStream = new JarInputStream(new FileInputStream(jarFile));
 		JarEntry entry = jarInputStream.getNextJarEntry();
 		while (entry != null) {
@@ -63,7 +74,6 @@ public class FileJarClassLoader extends JarClassLoader {
 				loadSubJars(byteArrayOutputStream.toByteArray());
 			} else {
 				if (!entry.isDirectory()) {
-					// Files are being stored deflated in memory because most of the time a lot of files are not being used (or the complete plugin is not being used)
 					addDataToMap(jarInputStream, entry);
 				}
 			}
@@ -77,7 +87,12 @@ public class FileJarClassLoader extends JarClassLoader {
 		if (!file.getParentFile().exists()) {
 			FileUtils.forceMkdir(file.getParentFile());
 		}
-		IOUtils.copy(jarInputStream, new FileOutputStream(file));
+		FileOutputStream fileOutputStream = new FileOutputStream(file);
+		try {
+			IOUtils.copy(jarInputStream, fileOutputStream);
+		} finally {
+			fileOutputStream.close();
+		}
 	}
 
 	private void loadSubJars(byte[] byteArray) {
@@ -98,8 +113,12 @@ public class FileJarClassLoader extends JarClassLoader {
 
 	@Override
 	public URL findResource(final String name) {
+		final File file = new File(tempDir, name);
+		if (!file.exists()) {
+			return null;
+		}
 		try {
-			return new URL(new URL("jar:" + jarFile.toURI().toURL() + "!/" + name), name, new URLStreamHandler() {
+			return new URL(new URL("file:" + this.tempDir.getAbsolutePath() + "/" + name), name, new URLStreamHandler() {
 				@Override
 				protected URLConnection openConnection(URL u) throws IOException {
 					return new URLConnection(u) {
@@ -109,7 +128,7 @@ public class FileJarClassLoader extends JarClassLoader {
 
 						@Override
 						public InputStream getInputStream() throws IOException {
-							return new FileInputStream(new File(tempDir, name));
+							return new FileInputStream(file);
 						}
 					};
 				}
@@ -127,10 +146,17 @@ public class FileJarClassLoader extends JarClassLoader {
 			return loadedClasses.get(fileName);
 		}
 		try {
-			FileInputStream fileInputStream = new FileInputStream(new File(tempDir, fileName));
+			File file = new File(tempDir, fileName);
+			if (!file.exists()) {
+				throw new ClassNotFoundException();
+			}
+			FileInputStream fileInputStream = new FileInputStream(file);
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-			IOUtils.copy(fileInputStream, byteArrayOutputStream);
-			fileInputStream.close();
+			try {
+				IOUtils.copy(fileInputStream, byteArrayOutputStream);
+			} finally {
+				fileInputStream.close();
+			}
 			Class<?> defineClass = defineClass(name, byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.toByteArray().length);
 			loadedClasses.put(fileName, defineClass);
 			/*
@@ -155,5 +181,11 @@ public class FileJarClassLoader extends JarClassLoader {
 		} catch (IOException e) {
 			throw new ClassNotFoundException();
 		}
+	}
+
+	@Override
+	public void dumpStructure(int indent) {
+		System.out.print(StringUtils.gen("  ", indent));
+		System.out.println("FileJarClassLoader " + jarFile.getName());
 	}
 }

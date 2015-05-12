@@ -1,7 +1,7 @@
 package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,6 +19,7 @@ package org.bimserver.database.migrations.steps;
 
 import javax.activation.DataHandler;
 
+import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
@@ -69,7 +70,7 @@ public class Step0000 extends Migration {
 	private EReference userRevisions;
 
 	@Override
-	public void migrate(Schema schema) {
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		this.schema = schema;
 		storePackage = schema.createEPackage("store");
 		
@@ -286,7 +287,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(referenceDataValue, "guid", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
 		EClass listDataValue = schema.createEClass(storePackage, "ListDataValue", dataValue);
-		schema.createEReference(listDataValue, "values", dataValue, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());;
+		schema.createEReference(listDataValue, "values", dataValue, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		EClass simpleDataValue = schema.createEClass(storePackage, "SimpleDataValue", dataValue);
 		schema.createEAttribute(simpleDataValue, "stringValue", ecorePackage.getEString(), Multiplicity.SINGLE);

@@ -1,7 +1,7 @@
 package org.bimserver.emf;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,14 +19,18 @@ package org.bimserver.emf;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.BiMap;
 
 /**
@@ -187,6 +191,8 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	void fixOids();
 	void generateMinimalExpressIds();
 
+	void fixInverseMismatches();
+	
 	Collection<IdEObject> getUnidentifiedValues();
 	int countWithSubtypes(EClass eClass);
 
@@ -194,10 +200,33 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 
 	void resetExpressIds();
 
-	IfcModelInterface branch(long poid);
+	IfcModelInterface branch(long poid, boolean recordChanges);
 
 	long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException;
 
 	<T extends IdEObject> T create(Class<T> class1, OidProvider<Long> oidProvider) throws IfcModelInterfaceException;
 	<T extends IdEObject> T create(EClass eClass, OidProvider<Long> oidProvider) throws IfcModelInterfaceException;
+	
+	PackageMetaData getPackageMetaData();
+	Map<Integer, Long> getPidRoidMap();
+
+	void set(IdEObject idEObject, EStructuralFeature eFeature, Object newValue);
+
+	void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException;
+
+	<T extends IdEObject> T create(EClass eClass, long oid) throws IfcModelInterfaceException;
+
+	<T extends IdEObject> T createAndAdd(Class<T> class1) throws IfcModelInterfaceException;
+
+	boolean containsNoFetch(long oid);
+
+	IdEObject getNoFetch(long oid);
+
+	void load(IdEObject idEObject);
+
+	Set<EClass> getUsedClasses();
+
+	void query(ObjectNode query);
+
+	SIfcHeader getIfcHeader();
 }

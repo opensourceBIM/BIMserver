@@ -1,7 +1,7 @@
 package org.bimserver.changes;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,16 +19,19 @@ package org.bimserver.changes;
 
 import java.util.Map;
 
+import org.bimserver.GuidCompressor;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class CreateObjectChange implements Change {
 
@@ -36,11 +39,13 @@ public class CreateObjectChange implements Change {
 	private final String type;
 	private IdEObjectImpl eObject;
 	private EClass eClass;
+	private Boolean generateGuid;
 
-	public CreateObjectChange(String type, long oid, EClass eClass) {
+	public CreateObjectChange(String type, long oid, EClass eClass, Boolean generateGuid) {
 		this.type = type;
 		this.oid = oid;
 		this.eClass = eClass;
+		this.generateGuid = generateGuid;
 	}
 
 	public EClass geteClass() {
@@ -49,7 +54,7 @@ public class CreateObjectChange implements Change {
 	
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		EClass eClass = databaseSession.getEClassForName(type);
+		EClass eClass = databaseSession.getEClass(project.getSchema(), type);
 		if (eClass == null) {
 			throw new UserException("Type " + type + " does not exist");
 		}
@@ -57,7 +62,20 @@ public class CreateObjectChange implements Change {
 		eObject.setOid(oid);
 		eObject.setPid(project.getId());
 		eObject.setRid(concreteRevision.getId());
-		((IdEObjectImpl)eObject).setLoaded();
+		eObject.setLoaded();
+		try {
+			model.add(oid, eObject);
+		} catch (IfcModelInterfaceException e) {
+			throw new UserException(e);
+		}
+		if (generateGuid) {
+			EStructuralFeature globalIdFeature = eObject.eClass().getEStructuralFeature("GlobalId");
+			if (globalIdFeature != null) {
+				eObject.eSet(globalIdFeature, GuidCompressor.getNewIfcGloballyUniqueId());
+			} else {
+				throw new UserException("Cannot generate GUID for " + eObject.eClass().getName() + ", no GlobalId property");
+			}
+		}
 		databaseSession.store(eObject, project.getId(), concreteRevision.getId());
 		created.put(oid, eObject);
 	}

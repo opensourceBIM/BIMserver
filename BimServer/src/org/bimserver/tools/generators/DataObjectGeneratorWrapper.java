@@ -1,7 +1,7 @@
 package org.bimserver.tools.generators;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -27,9 +27,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.plugins.PluginException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -59,36 +61,45 @@ public class DataObjectGeneratorWrapper {
 		}
 		ServiceInterfaceObjectGenerator dataObjectGenerator = new ServiceInterfaceObjectGenerator();
 		Set<String> fileNamesCreated = new HashSet<String>();
-		for (EPackage ePackage : ePackages) {
-			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-				if (eClassifier instanceof EClass || eClassifier instanceof EEnum) {
-					Object[] arguments = new Object[]{
-						eClassifier,
-						new ImportManager(),
-						new MetaDataManager(ePackages)
-					};
-					String generated = dataObjectGenerator.generate(arguments);
-					String fileName = "S" + eClassifier.getName() + ".java";
-					fileNamesCreated.add(fileName);
-					File file = new File(packageFolder, fileName);
-					try {
-						OutputStream fileOutputStream = new FileOutputStream(file);
-						fileOutputStream.write(generated.getBytes(Charsets.UTF_8));
-						fileOutputStream.close();
-					} catch (FileNotFoundException e) {
-						LOGGER.error("", e);
-					} catch (UnsupportedEncodingException e) {
-						LOGGER.error("", e);
-					} catch (IOException e) {
-						LOGGER.error("", e);
+		org.bimserver.plugins.PluginManager pluginManager;
+		try {
+			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			pluginManager.setMetaDataManager(metaDataManager);
+			metaDataManager.init();
+			for (EPackage ePackage : ePackages) {
+				for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+					if (eClassifier instanceof EClass || eClassifier instanceof EEnum) {
+						Object[] arguments = new Object[]{
+							eClassifier,
+							new ImportManager(),
+							metaDataManager
+						};
+						String generated = dataObjectGenerator.generate(arguments);
+						String fileName = "S" + eClassifier.getName() + ".java";
+						fileNamesCreated.add(fileName);
+						File file = new File(packageFolder, fileName);
+						try {
+							OutputStream fileOutputStream = new FileOutputStream(file);
+							fileOutputStream.write(generated.getBytes(Charsets.UTF_8));
+							fileOutputStream.close();
+						} catch (FileNotFoundException e) {
+							LOGGER.error("", e);
+						} catch (UnsupportedEncodingException e) {
+							LOGGER.error("", e);
+						} catch (IOException e) {
+							LOGGER.error("", e);
+						}
 					}
 				}
 			}
-		}
-		for (File file : packageFolder.listFiles()) {
-			if (!fileNamesCreated.contains(file.getName())) {
-				file.delete();
+			for (File file : packageFolder.listFiles()) {
+				if (!fileNamesCreated.contains(file.getName())) {
+					file.delete();
+				}
 			}
+		} catch (PluginException e1) {
+			e1.printStackTrace();
 		}
 	}
 }

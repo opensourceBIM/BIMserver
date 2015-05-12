@@ -1,7 +1,7 @@
 package org.bimserver.shared.meta;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,8 +17,8 @@ package org.bimserver.shared.meta;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -37,7 +37,7 @@ import org.codehaus.jettison.json.JSONObject;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public class SField {
+public class SField implements Comparable<SField> {
 	private String name;
 	private final SClass type;
 	private final boolean aggregate;
@@ -82,11 +82,11 @@ public class SField {
 		return doc;
 	}
 
-	public JSONObject toJson() throws JSONException {
-		JSONObject json = new JSONObject();
+	public ObjectNode toJson(ObjectMapper objectMapper) {
+		ObjectNode json = objectMapper.createObjectNode();
 		json.put("name", name);
-		json.put("type", getType().toJson());
-		json.put("genericType", getGenericType().toJson());
+		json.set("type", getType().toJson(objectMapper));
+		json.set("genericType", getGenericType().toJson(objectMapper));
 		json.put("doc", getDoc());
 		return json;
 	}
@@ -96,6 +96,7 @@ public class SField {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -113,6 +114,16 @@ public class SField {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(SField o) {
+		return name.compareTo(o.getName());
 	}
 }

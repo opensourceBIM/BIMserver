@@ -24,6 +24,10 @@ public class Issue {
 		this.uuid = uuid;
 	}
 
+	public Issue() {
+		this.uuid = UUID.randomUUID();
+	}
+	
 	public void setMarkup(Markup markup) {
 		this.markup = markup;
 	}

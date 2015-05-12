@@ -1,7 +1,7 @@
 package org.bimserver.database.berkeley;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -30,13 +30,21 @@ import com.sleepycat.je.LockMode;
 import com.sleepycat.je.OperationStatus;
 
 public class BerkeleyRecordIterator implements RecordIterator {
+	private long cursorId;
 	private static final Logger LOGGER = LoggerFactory.getLogger(BerkeleyRecordIterator.class);
 	private final Cursor cursor;
+	private BerkeleyKeyValueStore berkeleyKeyValueStore;
 
-	public BerkeleyRecordIterator(Cursor cursor) {
+	public BerkeleyRecordIterator(Cursor cursor, BerkeleyKeyValueStore berkeleyKeyValueStore, long cursorId) {
 		this.cursor = cursor;
+		this.berkeleyKeyValueStore = berkeleyKeyValueStore;
+		this.cursorId = cursorId;
 	}
 
+	public long getCursorId() {
+		return cursorId;
+	}
+	
 	public Record next() {
 		DatabaseEntry key = new DatabaseEntry();
 		DatabaseEntry value = new DatabaseEntry();
@@ -48,6 +56,7 @@ public class BerkeleyRecordIterator implements RecordIterator {
 				return null;
 			}
 		} catch (DatabaseException e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -56,6 +65,7 @@ public class BerkeleyRecordIterator implements RecordIterator {
 	public void close() {
 		try {
 			cursor.close();
+			berkeleyKeyValueStore.removeOpenCursor(cursorId);
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}

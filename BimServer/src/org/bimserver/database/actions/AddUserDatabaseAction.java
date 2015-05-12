@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,10 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 import org.bimserver.Authenticator;
 import org.bimserver.BimServer;
@@ -33,6 +30,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
+import org.bimserver.mail.EmailMessage;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewUserAdded;
@@ -45,7 +43,6 @@ import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
 import org.bimserver.utils.Hashers;
 import org.bimserver.webservices.authorization.Authorization;
-import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,7 +55,6 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 	private final String password;
 	private boolean createSystemUser = false;
 	private final BimServer bimServer;
-	private Authorization authorization;
 	private String resetUrl;
 
 	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String name, UserType userType,
@@ -68,7 +64,6 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		this.name = name;
 		this.username = username;
 		this.userType = userType;
-		this.authorization = authorization;
 		this.selfRegistration = selfRegistration;
 		this.resetUrl = resetUrl;
 		this.password = null;
@@ -82,13 +77,12 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		this.name = name;
 		this.username = username;
 		this.userType = userType;
-		this.authorization = authorization;
 		this.selfRegistration = selfRegistration;
 		this.resetUrl = resetUrl;
 	}
 
 	public User execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		String trimmedUserName = username.trim();
+		String trimmedUserName = username.trim().toLowerCase();
 		String trimmedName = name.trim();
 		if (userType == UserType.SYSTEM && !createSystemUser) {
 			throw new UserException("Cannot create system users");
@@ -109,14 +103,16 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 			throw new UserException("A user with the username " + trimmedUserName + " already exists");
 		}
 		User actingUser = null;
-		if (authorization != null && !(authorization instanceof SystemAuthorization)) {
-			actingUser = getUserByUoid(authorization.getUoid());
-			if (actingUser == null || actingUser.getUserType() != UserType.SYSTEM) {
-				if (authorization.getUoid() != -1 && actingUser.getUserType() != UserType.ADMIN) {
-					throw new UserException("Only admin users can create other users");
-				}
-			}
-		}
+//		if (bimServer.getServerSettingsCache() != null && !bimServer.getServerSettingsCache().getServerSettings().isAllowCreateValidatedUser()) {
+//			if (authorization != null && !(authorization instanceof SystemAuthorization)) {
+//				actingUser = getUserByUoid(authorization.getUoid());
+//				if (actingUser == null || actingUser.getUserType() != UserType.SYSTEM) {
+//					if (authorization.getUoid() != -1 && actingUser.getUserType() != UserType.ADMIN) {
+//						throw new UserException("Only admin users can create other users");
+//					}
+//				}
+//			}
+//		}
 		final User user = getDatabaseSession().create(User.class);
 		if (password != null) {
 			byte[] salt = new byte[32];
@@ -145,7 +141,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					bimServer.getNotificationsManager().notify(new NewUserNotification(bimServer,user.getOid()));
+					bimServer.getNotificationsManager().notify(new NewUserNotification(bimServer, user.getOid()));
 				}
 			});
 			bimServer.updateUserSettings(getDatabaseSession(), user);
@@ -162,16 +158,15 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 						String body = null;
 						try {
 							if (MailSystem.isValidEmailAddress(user.getUsername())) {
-								Session mailSession = bimServer.getMailSystem().createMailSession();
+								EmailMessage message = bimServer.getMailSystem().createMessage();
 								
-								Message msg = new MimeMessage(mailSession);
 								String emailSenderAddress = serverSettings.getEmailSenderAddress();
 								InternetAddress addressFrom = new InternetAddress(emailSenderAddress);
-								msg.setFrom(addressFrom);
+								message.setFrom(addressFrom);
 								
 								InternetAddress[] addressTo = new InternetAddress[1];
 								addressTo[0] = new InternetAddress(user.getUsername());
-								msg.setRecipients(Message.RecipientType.TO, addressTo);
+								message.setRecipients(Message.RecipientType.TO, addressTo);
 								
 								Map<String, Object> context = new HashMap<String, Object>();
 								context.put("name", user.getName());
@@ -186,12 +181,12 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 									body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_BODY);
 									subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_SUBJECT);
 								}
-								msg.setContent(body, "text/html");
-								msg.setSubject(subject.trim());
+								message.setContent(body, "text/html");
+								message.setSubject(subject.trim());
 								
 								LOGGER.info("Sending registration e-mail to " + user.getUsername());
 								
-								Transport.send(msg);
+								message.send();
 							}
 						} catch (Exception e) {
 							LOGGER.error(body);

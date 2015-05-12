@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,6 +19,7 @@ package org.bimserver.models.store.impl;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.ObjectIDMPluginConfiguration;
@@ -51,6 +52,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultObjectIDM <em>Default Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getServices <em>Services</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getMessagingSerializerPlugins <em>Messaging Serializer Plugins</em>}</li>
  * </ul>
  * </p>
  *
@@ -272,6 +274,16 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	@SuppressWarnings("unchecked")
 	public EList<InternalServicePluginConfiguration> getServices() {
 		return (EList<InternalServicePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__SERVICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<MessagingSerializerPluginConfiguration> getMessagingSerializerPlugins() {
+		return (EList<MessagingSerializerPluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__MESSAGING_SERIALIZER_PLUGINS, true);
 	}
 
 } //UserSettingsImpl

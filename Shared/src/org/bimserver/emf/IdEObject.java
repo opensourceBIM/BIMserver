@@ -1,7 +1,7 @@
 package org.bimserver.emf;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,6 +25,6 @@ public interface IdEObject extends EObject {
 	int getRid();
 	int getPid();
 	void load();
-	void loadExplicit();
+	void forceLoad();
 	void remove();
 }

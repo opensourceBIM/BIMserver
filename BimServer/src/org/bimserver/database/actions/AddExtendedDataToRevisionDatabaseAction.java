@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -27,7 +27,6 @@ import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.ExtendedDataAddedToRevision;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
@@ -63,22 +62,24 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 		revision.getExtendedData().add(getIdEObject());
 		getDatabaseSession().store(revision);
 		getIdEObject().setProject(revision.getProject());
+		getIdEObject().setRevision(revision);
 		
 		if (getIdEObject().getSchema() != null) {
 			getDatabaseSession().store(getIdEObject().getSchema());
 		}
 
-		final ExtendedDataAddedToRevision extendedDataAddedToRevision = LogFactory.eINSTANCE.createExtendedDataAddedToRevision();
+		final ExtendedDataAddedToRevision extendedDataAddedToRevision = getDatabaseSession().create(ExtendedDataAddedToRevision.class);
 		extendedDataAddedToRevision.setAccessMethod(getAccessMethod());
 		extendedDataAddedToRevision.setDate(new Date());
 		extendedDataAddedToRevision.setExecutor(actingUser);
 		extendedDataAddedToRevision.setExtendedData(getIdEObject());
 		extendedDataAddedToRevision.setRevision(revision);
-		getDatabaseSession().store(extendedDataAddedToRevision);
+		final long poid = revision.getProject().getOid();
+		final long roid = revision.getOid();
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
-				bimServer.getNotificationsManager().notify(new NewExtendedDataOnRevisionNotification(bimServer, getIdEObject().getOid(), roid));
+				bimServer.getNotificationsManager().notify(new NewExtendedDataOnRevisionNotification(bimServer, getIdEObject().getOid(), poid, roid, -1));
 				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(extendedDataAddedToRevision));
 			}
 		});

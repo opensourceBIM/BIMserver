@@ -1,7 +1,7 @@
 package org.bimserver.longaction;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,6 +23,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
+import org.bimserver.database.actions.DownloadByJsonQueryDatabaseAction;
 import org.bimserver.database.actions.DownloadByNamesDatabaseAction;
 import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByTypesDatabaseAction;
@@ -69,31 +70,36 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			if (session != null) {
 				session.close();
 			}
-			changeActionState(ActionState.FINISHED, "Done", 100);
+			if (getErrors().size() == 0) {
+				changeActionState(ActionState.STARTED, "Done preparing", 0);
+			}
 		}
 	}
 
-	public void init() {
+	public void init(Thread thread) {
+		super.init(thread);
 		if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles() && getBimServer().getDiskCacheManager().contains(downloadParameters)) {
 			return;
 		}
 		ObjectIDM objectIDM = null;
-		session = getBimServer().getDatabase().createSession();
-		try {
-			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
-			if (serializerPluginConfiguration != null) {
-				ObjectIDMPluginConfiguration objectIdm = serializerPluginConfiguration.getObjectIDM();
-				if (objectIdm != null) {
-					ObjectIDMPlugin objectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getPluginDescriptor().getPluginClassName(), true);
-					if (objectIDMPlugin != null) {
-						objectIDM = objectIDMPlugin.getObjectIDM(new PluginConfiguration());
+		if (downloadParameters.getUseObjectIDM()) {
+			session = getBimServer().getDatabase().createSession();
+			try {
+				SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
+				if (serializerPluginConfiguration != null) {
+					ObjectIDMPluginConfiguration objectIdm = serializerPluginConfiguration.getObjectIDM();
+					if (objectIdm != null) {
+						ObjectIDMPlugin objectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getPluginDescriptor().getPluginClassName(), true);
+						if (objectIDMPlugin != null) {
+							objectIDM = objectIDMPlugin.getObjectIDM(new PluginConfiguration());
+						}
 					}
 				}
+			} catch (BimserverDatabaseException e) {
+				LOGGER.error("", e);
+			} finally {
+				session.close();
 			}
-		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
-		} finally {
-			session.close();
 		}
 
 		session = getBimServer().getDatabase().createSession();
@@ -111,7 +117,10 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			action = new DownloadByNamesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getNames(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, downloadParameters.getDeep());
 			break;
 		case DOWNLOAD_OF_TYPE:
-			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), downloadParameters.getUseObjectIDM(), getAuthorization(), objectIDM, downloadParameters.getDeep());
+			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSchema(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), downloadParameters.getUseObjectIDM(), getAuthorization(), objectIDM, downloadParameters.getDeep());
+			break;
+		case DOWNLOAD_JSON_QUERY:
+			action = new DownloadByJsonQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());
 			break;
 		case DOWNLOAD_PROJECTS:
 			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM);

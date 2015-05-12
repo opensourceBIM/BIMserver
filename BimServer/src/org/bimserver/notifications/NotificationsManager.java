@@ -1,7 +1,7 @@
 package org.bimserver.notifications;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -42,16 +42,16 @@ import org.slf4j.LoggerFactory;
 public class NotificationsManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotificationsManager.class);
 
-	private final NewRevisionTopic newRevisionTopic = new NewRevisionTopic();
-	private final NewProjectTopic newProjectTopic = new NewProjectTopic();
-	private final NewUserTopic newUserTopic = new NewUserTopic();
+	private final NewRevisionTopic newRevisionTopic = new NewRevisionTopic(this);
+	private final NewProjectTopic newProjectTopic = new NewProjectTopic(this);
+	private final NewUserTopic newUserTopic = new NewUserTopic(this);
 	private final Map<NewExtendedDataOnRevisionTopicKey, NewExtendedDataOnRevisionTopic> newExtendedDataOnRevisionTopics = new HashMap<NewExtendedDataOnRevisionTopicKey, NewExtendedDataOnRevisionTopic>();
 	private final Map<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic> newRevisionOnSpecificProjectTopics = new HashMap<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic>();
 
 	// These are for keeping track of new/removed progress topics
 	private final Map<ChangeProgressTopicOnProjectTopicKey, ChangeProgressTopicOnProjectTopic> changeProgressTopicOnProjectTopics = new HashMap<ChangeProgressTopicOnProjectTopicKey, ChangeProgressTopicOnProjectTopic>();
 	private final Map<ChangeProgressTopicOnRevisionTopicKey, ChangeProgressTopicOnRevisionTopic> changeProgressTopicOnRevisionTopics = new HashMap<ChangeProgressTopicOnRevisionTopicKey, ChangeProgressTopicOnRevisionTopic>();
-	private final ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = new ChangeProgressTopicOnServerTopic();
+	private final ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = new ChangeProgressTopicOnServerTopic(this);
 
 	// All progress topics have an id for easy referencing
 	private final Map<Long, ProgressTopic> progressTopicsById = new HashMap<Long, ProgressTopic>();
@@ -63,10 +63,17 @@ public class NotificationsManager {
 	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private final BimServer bimServer;
 	private String url;
+	private final NotificationsProcessor notificationsProcessor;
 
 	public NotificationsManager(BimServer bimServer, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
 		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 		this.bimServer = bimServer;
+		notificationsProcessor = new NotificationsProcessor(bimServer);
+		notificationsProcessor.start();
+	}
+	
+	public BimServer getBimServer() {
+		return bimServer;
 	}
 
 	public void notify(Notification notification) {
@@ -78,7 +85,7 @@ public class NotificationsManager {
 	}
 
 	public void addToQueue(Notification notification) {
-		bimServer.getExecutorService().execute(notification);
+		notificationsProcessor.queue(notification);
 	}
 	
 	public void init() {
@@ -89,11 +96,11 @@ public class NotificationsManager {
 	public Channel getChannel(Service service) throws ChannelConnectionException {
 		switch (service.getNotificationProtocol()) {
 		case JSON:
-			JsonChannel jsonChannel = new JsonChannel(bimServer.getReflectorFactory(), jsonSocketReflectorFactory, service.getUrl(), bimServer.getServicesMap());
+			JsonChannel jsonChannel = new JsonChannel(null, bimServer.getReflectorFactory(), jsonSocketReflectorFactory, service.getUrl() + "/json", bimServer.getServicesMap());
 			jsonChannel.connect(new SimpleTokenHolder());
 			return jsonChannel;
 		case INTERNAL:
-			DirectChannel directChannel = new DirectChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
+			DirectChannel directChannel = new DirectChannel(null, bimServer.getServiceFactory(), bimServer.getServicesMap());
 			try {
 				directChannel.connect();
 			} catch (UserException e) {
@@ -107,6 +114,7 @@ public class NotificationsManager {
 	}
 	
 	public void shutdown() {
+		notificationsProcessor.termintate();
 	}
 
 	public NewRevisionTopic getNewRevisionTopic() {
@@ -123,14 +131,14 @@ public class NotificationsManager {
 	
 	public NewExtendedDataOnRevisionTopic getOrCreateNewExtendedDataOnRevisionTopic(NewExtendedDataOnRevisionTopicKey key) {
 		if (!newExtendedDataOnRevisionTopics.containsKey(key)) {
-			newExtendedDataOnRevisionTopics.put(key, new NewExtendedDataOnRevisionTopic(key.getRoid()));
+			newExtendedDataOnRevisionTopics.put(key, new NewExtendedDataOnRevisionTopic(this, key));
 		}
 		return newExtendedDataOnRevisionTopics.get(key);
 	}
 	
 	public NewRevisionOnSpecificProjectTopic getOrCreateNewRevisionOnSpecificProjectTopic(NewRevisionOnSpecificProjectTopicKey key) {
 		if (!newRevisionOnSpecificProjectTopics.containsKey(key)) {
-			newRevisionOnSpecificProjectTopics.put(key, new NewRevisionOnSpecificProjectTopic(key.getPoid()));
+			newRevisionOnSpecificProjectTopics.put(key, new NewRevisionOnSpecificProjectTopic(this, key));
 		}
 		return newRevisionOnSpecificProjectTopics.get(key);
 	}
@@ -167,9 +175,9 @@ public class NotificationsManager {
 		return url;
 	}
 
-	public ProgressTopic createProgressTopic(SProgressTopicType type, String description) {
+	public synchronized ProgressTopic createProgressTopic(SProgressTopicType type, String description) {
 		ProgressTopicKey key = new ProgressTopicKey();
-		ProgressTopic topic = new ProgressTopic(key, type, description);
+		ProgressTopic topic = new ProgressTopic(this, key, type, description);
 		progressTopicsById.put(key.getId(), topic);
 		addToQueue(new NewProgressTopicOnServerNotification(bimServer, key.getId()));
 		return topic;
@@ -184,7 +192,7 @@ public class NotificationsManager {
 			topics = new HashSet<ProgressOnProjectTopic>();
 			progressOnProjectTopics.put(key, topics);
 		}
-		ProgressOnProjectTopic topic = new ProgressOnProjectTopic(key, poid, type, description);
+		ProgressOnProjectTopic topic = new ProgressOnProjectTopic(this, key, poid, type, description);
 		progressTopicsById.put(key.getId(), topic);
 		topics.add(topic);
 		addToQueue(new NewProgressTopicOnProjectNotification(bimServer, poid, key.getId()));
@@ -200,7 +208,7 @@ public class NotificationsManager {
 			topics = new HashSet<ProgressOnRevisionTopic>();
 			progressOnRevisionTopics.put(key, topics);
 		}
-		ProgressOnRevisionTopic topic = new ProgressOnRevisionTopic(key, poid, roid, type, description);
+		ProgressOnRevisionTopic topic = new ProgressOnRevisionTopic(this, key, poid, roid, type, description);
 		progressTopicsById.put(key.getId(), topic);
 		topics.add(topic);
 		addToQueue(new NewProgressTopicOnRevisionNotification(bimServer, poid, roid, key.getId()));
@@ -237,7 +245,7 @@ public class NotificationsManager {
 		ChangeProgressTopicOnProjectTopicKey key = new ChangeProgressTopicOnProjectTopicKey(poid);
 		ChangeProgressTopicOnProjectTopic topic = changeProgressTopicOnProjectTopics.get(key);
 		if (topic == null) {
-			topic = new ChangeProgressTopicOnProjectTopic();
+			topic = new ChangeProgressTopicOnProjectTopic(this, key);
 			changeProgressTopicOnProjectTopics.put(key, topic);
 		}
 		return topic;
@@ -251,7 +259,7 @@ public class NotificationsManager {
 		ChangeProgressTopicOnRevisionTopicKey key = new ChangeProgressTopicOnRevisionTopicKey(poid, roid);
 		ChangeProgressTopicOnRevisionTopic topic = changeProgressTopicOnRevisionTopics.get(key);
 		if (topic == null) {
-			topic = new ChangeProgressTopicOnRevisionTopic();
+			topic = new ChangeProgressTopicOnRevisionTopic(this, key);
 			changeProgressTopicOnRevisionTopics.put(key, topic);
 		}
 		return topic;
@@ -259,5 +267,30 @@ public class NotificationsManager {
 
 	public NewExtendedDataOnRevisionTopic getNewExtendedDataOnRevisionTopic(NewExtendedDataOnRevisionTopicKey key) {
 		return newExtendedDataOnRevisionTopics.get(key);
+	}
+
+	public void removeChangeProgressTopicOnProject(ChangeProgressTopicOnProjectTopicKey key) {
+		this.changeProgressTopicOnProjectTopics.remove(key);
+	}
+
+	public void removeChangeProgressTopicOnRevision(ChangeProgressTopicOnRevisionTopicKey key) {
+		this.changeProgressTopicOnRevisionTopics.remove(key);
+	}
+
+	public void removeNewExtendedDataOnRevisionTopic(NewExtendedDataOnRevisionTopicKey key) {
+		this.newExtendedDataOnRevisionTopics.remove(key);
+	}
+
+	public void removeNewRevisionOnSpecificProjectTopic(NewRevisionOnSpecificProjectTopicKey key) {
+		this.newRevisionOnSpecificProjectTopics.remove(key);
+	}
+
+	public void removeProgressTopic(ProgressTopicKey key) {
+		if (key instanceof ProgressOnProjectTopicKey) {
+			progressOnProjectTopics.remove((ProgressOnProjectTopicKey)key);
+		} else if (key instanceof ProgressOnRevisionTopicKey) {
+			progressOnRevisionTopics.remove((ProgressOnRevisionTopicKey)key);
+		}
+ 		progressTopicsById.remove(key.getId());
 	}
 }

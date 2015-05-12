@@ -1,7 +1,7 @@
 package org.bimserver.plugins.renderengine;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,6 +18,7 @@ package org.bimserver.plugins.renderengine;
  *****************************************************************************/
 
 public interface RenderEngineInstance {
-	RenderEngineInstanceVisualisationProperties getVisualisationProperties() throws RenderEngineException;
 	float[] getTransformationMatrix() throws RenderEngineException;
+	RenderEngineGeometry generateGeometry() throws RenderEngineException;
+	double getArea() throws RenderEngineException;
 }

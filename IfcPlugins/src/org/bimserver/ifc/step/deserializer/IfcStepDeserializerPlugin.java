@@ -1,7 +1,7 @@
 package org.bimserver.ifc.step.deserializer;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,27 +18,15 @@ package org.bimserver.ifc.step.deserializer;
  *****************************************************************************/
 
 import org.bimserver.models.store.ObjectDefinition;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.schema.SchemaException;
 
-public class IfcStepDeserializerPlugin implements DeserializerPlugin {
+public abstract class IfcStepDeserializerPlugin implements DeserializerPlugin {
 
 	boolean initialized = false;
 	
-	@Override
-	public Deserializer createDeserializer(PluginConfiguration pluginConfiguration) {
-		return new IfcStepDeserializer();
-	}
-
-	@Override
-	public String getDescription() {
-		return "IfcStepDeserializer";
-	}
-
 	@Override
 	public String getVersion() {
 		return "1.0";
@@ -46,7 +34,6 @@ public class IfcStepDeserializerPlugin implements DeserializerPlugin {
 
 	@Override
 	public void init(PluginManager pluginManager) throws SchemaException, PluginException {
-		pluginManager.requireSchemaDefinition();
 		initialized = true;
 	}
 
@@ -58,11 +45,6 @@ public class IfcStepDeserializerPlugin implements DeserializerPlugin {
 	@Override
 	public boolean isInitialized() {
 		return initialized;
-	}
-
-	@Override
-	public String getDefaultName() {
-		return "IfcStepDeserializer";
 	}
 
 	@Override

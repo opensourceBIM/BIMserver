@@ -10,8 +10,6 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/antlr-3.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/ifcNamespaces.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/java-getopt-1.0.13.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-io-1.4.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

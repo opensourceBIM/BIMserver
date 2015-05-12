@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -55,6 +55,7 @@ public class XSDSchemaReader {
 		new XSDSchemaReader().start();
 	}
 
+	@SuppressWarnings("deprecation")
 	private void start() {
 		ePackage = ecoreFactory.createEPackage();
 		ePackage.setName("ifc2x3");

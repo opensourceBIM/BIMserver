@@ -1,7 +1,7 @@
 package org.bimserver;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -26,6 +26,7 @@ import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
+import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -40,24 +41,23 @@ public class LocalDevBimServerStarter {
 	private BimServer bimServer;
 	
 	public static void main(String[] args) {
-		new LocalDevBimServerStarter().start(1, "localhost", 8080, 8085);
-//		new LocalDevBimServerStarter().start(2, "localhost", 8081, 8086);
+		new LocalDevBimServerStarter().start(1, "localhost", 8080, 8085, new OptionsParser(args).getPluginDirectories());
+//		new LocalDevBimServerStarter().start(2, "localhost", 8081, 8086, gitDir);
 	}
 
-	public void start(int id, String address, int port, int pbport) {
+	public void start(int id, String address, int port, int pbport, File[] pluginDirectories) {
 		BimServerConfig config = new BimServerConfig();
 		config.setHomeDir(new File("home" + id));
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		config.setStartEmbeddedWebServer(true);
 		config.setClassPath(System.getProperty("java.class.path"));
-		config.setInitialProtocolBuffersPort(pbport);
 		config.setLocalDev(true);
 		config.setPort(port);
 		config.setStartCommandLine(true);
 		bimServer = new BimServer(config);
 		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
 		try {
-	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."));
+	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);

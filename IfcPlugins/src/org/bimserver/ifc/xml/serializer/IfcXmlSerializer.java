@@ -1,7 +1,7 @@
 package org.bimserver.ifc.xml.serializer;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,12 +24,13 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3tc1.Tristate;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.schema.Attribute;
@@ -40,9 +41,9 @@ import org.bimserver.plugins.schema.ExplicitAttribute;
 import org.bimserver.plugins.schema.IntegerType;
 import org.bimserver.plugins.schema.ListType;
 import org.bimserver.plugins.schema.RealType;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SetType;
 import org.bimserver.plugins.schema.StringType;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
@@ -57,24 +58,18 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
-public class IfcXmlSerializer extends IfcSerializer {
+public abstract class IfcXmlSerializer extends IfcSerializer {
 
 	private PrintWriter out;
 	private Map<EObject, Long> objectToOidMap;
 	private int tabs;
-	private SchemaDefinition schema;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 		objectToOidMap = new HashMap<EObject, Long>((int) model.size());
 		for (Long key : model.keySet()) {
 			objectToOidMap.put(model.get(key), key);
-		}
-		try {
-			schema = getPluginManager().requireSchemaDefinition();
-		} catch (PluginException e) {
-			throw new SerializerException(e);
 		}
 	}
 
@@ -84,7 +79,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 	}
 	
 	@Override
-	public boolean write(OutputStream out) throws SerializerException {
+	public boolean write(OutputStream out, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			this.out = new UTF8PrintWriter(out);
 			printLineTabbed("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
@@ -93,11 +88,14 @@ public class IfcXmlSerializer extends IfcSerializer {
 			tabs++;
 			printLineTabbed("<uos id=\"uos_1\" description=\"\" configuration=\"i-ifc2x3\" edo=\"\" xmlns=\"http://www.iai-tech.org/ifcXML/IFC2x3/FINAL\" xmlns:ex=\"urn:iso.org:standard:10303:part(28):version(2):xmlschema:common\" xsi:schemaLocation=\"http://www.iai-tech.org/ifcXML/IFC2x3/FINAL http://www.iai-tech.org/ifcXML/IFC2x3/FINAL/IFC2X3.xsd\">");
 			tabs++;
-			for (Long key : model.getObjects().keySet()) {
+			Set<Long> keySet = model.getObjects().keySet();
+			int progress = 0;
+			for (Long key : keySet) {
 				EObject object = model.getObjects().get(key);
 				if (object.eClass().getEStructuralFeature("wrappedValue") == null) {
 					store(key, object);
 				}
+				progressReporter.update(progress++, keySet.size());
 			}
 			tabs--;
 			printLineTabbed("</uos>");
@@ -112,8 +110,8 @@ public class IfcXmlSerializer extends IfcSerializer {
 		return false;
 	}
 
-	public void write(File file) throws FileNotFoundException, SerializerException {
-		write(new FileOutputStream(file));
+	public void write(File file, ProgressReporter progressReporter) throws FileNotFoundException, SerializerException {
+		write(new FileOutputStream(file), progressReporter);
 	}
 
 	/**
@@ -140,10 +138,10 @@ public class IfcXmlSerializer extends IfcSerializer {
 			if (structuralFeature.getEAnnotation("hidden") != null) {
 				continue;
 			}
-			EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName().toUpperCase());
+			EntityDefinition entityBN = getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName().toUpperCase());
 			Attribute attributeBN = entityBN != null ? entityBN.getAttributeBNWithSuper(structuralFeature.getName()) : null;
 			boolean derived = entityBN.isDerived(structuralFeature.getName());
-			if (!isInverse(structuralFeature) && !structuralFeature.isDerived() && !derived) {
+			if (!getPackageMetaData().isInverse(structuralFeature) && !structuralFeature.isDerived() && !derived) {
 				// Because of small deviations in the string/float/string
 				// conversions some float attributes are also stored in the
 				// original string representations. These auxiliary attribute

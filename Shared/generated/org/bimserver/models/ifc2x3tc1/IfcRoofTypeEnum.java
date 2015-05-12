@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -103,6 +103,16 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	PAVILION_ROOF(6, "PAVILION_ROOF", "PAVILION_ROOF"),
 
 	/**
+	 * The '<em><b>FREEFORM</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #FREEFORM_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	FREEFORM(7, "FREEFORM", "FREEFORM"),
+
+	/**
 	 * The '<em><b>GABLE ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,7 +120,7 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GABLE_ROOF(7, "GABLE_ROOF", "GABLE_ROOF"),
+	GABLE_ROOF(8, "GABLE_ROOF", "GABLE_ROOF"),
 
 	/**
 	 * The '<em><b>BARREL ROOF</b></em>' literal object.
@@ -120,17 +130,7 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BARREL_ROOF(8, "BARREL_ROOF", "BARREL_ROOF"),
-
-	/**
-	 * The '<em><b>FREEFORM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FREEFORM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FREEFORM(9, "FREEFORM", "FREEFORM"),
+	BARREL_ROOF(9, "BARREL_ROOF", "BARREL_ROOF"),
 
 	/**
 	 * The '<em><b>MANSARD ROOF</b></em>' literal object.
@@ -288,6 +288,21 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	public static final int PAVILION_ROOF_VALUE = 6;
 
 	/**
+	 * The '<em><b>FREEFORM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FREEFORM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FREEFORM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FREEFORM_VALUE = 7;
+
+	/**
 	 * The '<em><b>GABLE ROOF</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -300,7 +315,7 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GABLE_ROOF_VALUE = 7;
+	public static final int GABLE_ROOF_VALUE = 8;
 
 	/**
 	 * The '<em><b>BARREL ROOF</b></em>' literal value.
@@ -315,22 +330,7 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BARREL_ROOF_VALUE = 8;
-
-	/**
-	 * The '<em><b>FREEFORM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FREEFORM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FREEFORM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FREEFORM_VALUE = 9;
+	public static final int BARREL_ROOF_VALUE = 9;
 
 	/**
 	 * The '<em><b>MANSARD ROOF</b></em>' literal value.
@@ -413,8 +413,8 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRoofTypeEnum[] VALUES_ARRAY = new IfcRoofTypeEnum[] { NULL, HIPPED_GABLE_ROOF, NOTDEFINED, SHED_ROOF, HIP_ROOF, DOME_ROOF, PAVILION_ROOF, GABLE_ROOF,
-			BARREL_ROOF, FREEFORM, MANSARD_ROOF, FLAT_ROOF, RAINBOW_ROOF, GAMBREL_ROOF, BUTTERFLY_ROOF, };
+	private static final IfcRoofTypeEnum[] VALUES_ARRAY = new IfcRoofTypeEnum[] { NULL, HIPPED_GABLE_ROOF, NOTDEFINED, SHED_ROOF, HIP_ROOF, DOME_ROOF,
+			PAVILION_ROOF, FREEFORM, GABLE_ROOF, BARREL_ROOF, MANSARD_ROOF, FLAT_ROOF, RAINBOW_ROOF, GAMBREL_ROOF, BUTTERFLY_ROOF, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Roof Type Enum</b></em>' enumerators.
@@ -478,12 +478,12 @@ public enum IfcRoofTypeEnum implements Enumerator {
 			return DOME_ROOF;
 		case PAVILION_ROOF_VALUE:
 			return PAVILION_ROOF;
+		case FREEFORM_VALUE:
+			return FREEFORM;
 		case GABLE_ROOF_VALUE:
 			return GABLE_ROOF;
 		case BARREL_ROOF_VALUE:
 			return BARREL_ROOF;
-		case FREEFORM_VALUE:
-			return FREEFORM;
 		case MANSARD_ROOF_VALUE:
 			return MANSARD_ROOF;
 		case FLAT_ROOF_VALUE:

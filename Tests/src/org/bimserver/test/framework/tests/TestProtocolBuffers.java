@@ -1,7 +1,7 @@
 package org.bimserver.test.framework.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,6 +19,7 @@ package org.bimserver.test.framework.tests;
 
 import java.io.File;
 
+import org.bimserver.plugins.OptionsParser;
 import org.bimserver.test.framework.RandomBimServerClientFactory;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.TestConfiguration;
@@ -30,7 +31,7 @@ import org.bimserver.tests.TestFileConstants;
 public class TestProtocolBuffers {
 	public static void main(String[] args) {
 		TestConfiguration testConfiguration = new TestConfiguration();
-		TestFramework testFramework = new TestFramework(testConfiguration);
+		TestFramework testFramework = new TestFramework(testConfiguration, new OptionsParser(args).getPluginDirectories());
 
 		testConfiguration.setHomeDir(new File("C:\\Test"));
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));

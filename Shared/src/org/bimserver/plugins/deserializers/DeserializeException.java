@@ -1,7 +1,7 @@
 package org.bimserver.plugins.deserializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,16 +20,36 @@ package org.bimserver.plugins.deserializers;
 public class DeserializeException extends Exception {
 
 	private static final long serialVersionUID = -7216984454398041095L;
+	private int lineNumber;
+
+	public DeserializeException(int lineNumber, String message, Exception e) {
+		super("Error on line " + lineNumber + ": " + message, e);
+		this.lineNumber = lineNumber;
+	}
 
 	public DeserializeException(String message, Exception e) {
 		super(message, e);
 	}
-
+	
+	public int getLineNumber() {
+		return lineNumber;
+	}
+	
 	public DeserializeException(String message) {
 		super(message);
+	}
+	
+	public DeserializeException(int lineNumber, String message) {
+		super("Error on line " + lineNumber + ": " + message);
+		this.lineNumber = lineNumber;
 	}
 
 	public DeserializeException(Exception e) {
 		super(e);
+	}
+
+	public DeserializeException(int lineNumber, Exception e) {
+		super(e);
+		this.lineNumber = lineNumber;
 	}
 }

@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -60,6 +60,9 @@ public class LoginDatabaseAction extends BimDatabaseAction<String> {
 		BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(getDatabaseSession(), getAccessMethod(), username);
 		User user = action.execute();
 		if (user != null) {
+			if (user.getPasswordHash() == null || user.getPasswordHash().length == 0) {
+				throw new UserException("Your email address has not been validated yet");
+			}
 			if (new Authenticator().validate(password, user.getPasswordHash(), user.getPasswordSalt())) {
 				if (user.getState() == ObjectState.DELETED) {
 					throw new UserException("User account has been deleted");
@@ -68,9 +71,9 @@ public class LoginDatabaseAction extends BimDatabaseAction<String> {
 				}
 				Authorization authorization = null;
 				if (user.getUserType() == UserType.ADMIN) {
-					authorization = new AdminAuthorization(30, TimeUnit.DAYS);
+					authorization = new AdminAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 				} else {
-					authorization = new UserAuthorization(30, TimeUnit.DAYS);
+					authorization = new UserAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 				}
 				authorization.setUoid(user.getOid());
 				String asHexToken = authorization.asHexToken(bimServer.getEncryptionKey());

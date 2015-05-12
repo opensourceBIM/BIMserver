@@ -1,7 +1,7 @@
 package org.bimserver.database.migrations;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -27,7 +27,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
@@ -228,9 +227,7 @@ public class Schema {
 		for (Change change : changes) {
 			try {
 				change.change(database, databaseSession);
-			} catch (NotImplementedException e) {
-				LOGGER.error("", e);
-			} catch (BimserverDatabaseException e) {
+			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
 		}
@@ -242,7 +239,11 @@ public class Schema {
 	}
 
 	public EClass getEClass(String packageName, String name) {
-		EClass eClassifier = (EClass) packages.get(packageName).getEClassifier(name);
+		EPackage ePackage = packages.get(packageName);
+		if (ePackage == null) {
+			throw new RuntimeException("Package with name " + name + " not found");
+		}
+		EClass eClassifier = (EClass) ePackage.getEClassifier(name);
 		if (eClassifier == null) {
 			throw new RuntimeException("Class " + name + " not found in " + packageName);
 		}
@@ -254,10 +255,10 @@ public class Schema {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public void loadEcore(InputStream inputStream) {
+	public void loadEcore(String name, InputStream inputStream) {
         ResourceSet resourceSet = new ResourceSetImpl();
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-        Resource resource = resourceSet.createResource(URI.createURI("ifc2x3.ecore"));
+        Resource resource = resourceSet.createResource(URI.createURI(name));
         try {
 			resource.load(inputStream, new HashMap());
 			for (EObject eObject : resource.getContents()) {
@@ -309,5 +310,9 @@ public class Schema {
 
 	public EClass createEClass(String packageName, String className, EClass... superTypes) {
 		return createEClass(getEPackage(packageName), className, superTypes);
+	}
+
+	public void removeEReference(EClass eClass, String name) {
+		eClass.getEStructuralFeatures().remove(eClass.getEStructuralFeature(name));
 	}
 }

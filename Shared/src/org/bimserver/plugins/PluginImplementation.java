@@ -1,7 +1,7 @@
 package org.bimserver.plugins;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,9 @@ package org.bimserver.plugins;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -24,11 +27,17 @@ import javax.xml.bind.annotation.XmlElement;
 @XmlAccessorType(XmlAccessType.NONE)
 public class PluginImplementation {
 	@XmlElement
+	private boolean enabled;
+
+	@XmlElement
 	private String interfaceClass;
 
 	@XmlElement
 	private String implementationClass;
-
+	
+	@XmlElement
+	private List<String> requires = new ArrayList<String>();
+	
 	public String getInterfaceClass() {
 		return interfaceClass;
 	}
@@ -48,5 +57,21 @@ public class PluginImplementation {
 	@Override
 	public String toString() {
 		return interfaceClass + " / " + implementationClass;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public List<String> getRequires() {
+		return requires;
+	}
+
+	public void setRequires(List<String> requires) {
+		this.requires = requires;
 	}
 }

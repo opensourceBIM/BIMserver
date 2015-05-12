@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -41,7 +41,8 @@ public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<
 	public SerializerPluginConfiguration execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		for (SerializerPluginConfiguration serializerPluginConfiguration : getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, Query.getDefault())) {
 			PluginConfiguration pluginConfiguration = new PluginConfiguration(serializerPluginConfiguration.getSettings());
-			if (pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE).equals(contentType)) {
+			String string = pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE);
+			if (string != null && string.equals(contentType)) {
 				return serializerPluginConfiguration;
 			}
 		}

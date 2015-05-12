@@ -1,7 +1,7 @@
 package org.bimserver.objectidms;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		try {
-			fileBasedObjectIDM = new FileBasedObjectIDM(pluginManager.requireSchemaDefinition(), pluginManager.getPluginContext(this));
+			fileBasedObjectIDM = new FileBasedObjectIDM(pluginManager.requireSchemaDefinition("ifc2x3tc1"), pluginManager.getPluginContext(this), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 		} catch (ObjectIDMException e) {
 			throw new PluginException(e);
 		}

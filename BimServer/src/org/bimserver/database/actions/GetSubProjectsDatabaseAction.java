@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -28,6 +28,7 @@ import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.AdminAuthorization;
 import org.bimserver.webservices.authorization.Authorization;
 
 public class GetSubProjectsDatabaseAction extends BimDatabaseAction<Set<Project>> {
@@ -50,7 +51,7 @@ public class GetSubProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 		}
 		Set<Project> subProjects = new HashSet<Project>();
 		for (Project subProject : project.getSubProjects()) {
-			if (subProject.getState() == ObjectState.ACTIVE) {
+			if (subProject.getState() == ObjectState.ACTIVE || authorization instanceof AdminAuthorization) {
 				subProjects.add(subProject);
 			}
 		}

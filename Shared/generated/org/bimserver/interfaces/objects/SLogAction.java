@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SServerStarted.class, SProjectRelated.class, SExtendedDataAddedToProject.class, SExtendedDataAddedToRevision.class, SCheckoutRelated.class, SGeoTagUpdated.class, SDatabaseCreated.class, SRemoteServiceCalled.class, SNewObjectIDMUploaded.class, SUserRelated.class, SRevisionRelated.class, SSettingsSaved.class, SDownload.class, SRevisionBranched.class})
+@XmlSeeAlso(value={SExtendedDataAddedToRevision.class, SDownload.class, SUserRelated.class, SProjectRelated.class, SRevisionBranched.class, SSettingsSaved.class, SCheckoutRelated.class, SExtendedDataAddedToProject.class, SServerStarted.class, SNewObjectIDMUploaded.class, SDatabaseCreated.class, SRevisionRelated.class, SRemoteServiceCalled.class, SGeoTagUpdated.class})
 public class SLogAction implements SDataBase
 {
 	private long oid = -1;

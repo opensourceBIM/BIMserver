@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -31,6 +31,7 @@ public class SRevisionSummaryType implements SDataBase
 	private static SClass sClass;
 	private java.lang.String name;
 	private java.lang.Integer count;
+	private java.lang.String schema;
 
 	public long getOid() {
 		return this.oid;
@@ -64,6 +65,9 @@ public class SRevisionSummaryType implements SDataBase
 		if (sField.getName().equals("count")) {
 			return getCount();
 		}
+		if (sField.getName().equals("schema")) {
+			return getSchema();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -80,6 +84,10 @@ public class SRevisionSummaryType implements SDataBase
 		}
 		if (sField.getName().equals("count")) {
 			setCount((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("schema")) {
+			setSchema((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -107,6 +115,14 @@ public class SRevisionSummaryType implements SDataBase
 
 	public void setCount(java.lang.Integer count) {
 		this.count = count;
+	}
+	
+	public java.lang.String getSchema() {
+		return schema;
+	}
+
+	public void setSchema(java.lang.String schema) {
+		this.schema = schema;
 	}
 	
 	@Override

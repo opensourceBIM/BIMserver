@@ -1,7 +1,7 @@
 package org.bimserver.ifcengine;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -30,15 +30,22 @@ import java.util.Set;
 
 import org.bimserver.plugins.renderengine.RenderEngineClash;
 import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineFilter;
 import org.bimserver.plugins.renderengine.RenderEngineGeometry;
 import org.bimserver.plugins.renderengine.RenderEngineInstance;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
 import org.bimserver.plugins.renderengine.RenderEngineSurfaceProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JvmIfcEngineModel implements RenderEngineModel {
+	private static final Logger LOGGER = LoggerFactory.getLogger(JvmIfcEngineModel.class);
 	private final int modelId;
 	private final JvmIfcEngine failSafeIfcEngine;
+	public int[] indices;
+	public float[] vertices;
+	public float[] normals;
 
 	public JvmIfcEngineModel(JvmIfcEngine failSafeIfcEngine, int modelId) {
 		this.failSafeIfcEngine = failSafeIfcEngine;
@@ -75,19 +82,36 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 		}
 	}
 
+	public void setFilter(int format, int mask) throws RenderEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.SET_FILTER);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(format);
+			failSafeIfcEngine.writeInt(mask);
+			failSafeIfcEngine.flush();
+		}
+	}
+	
 	public RenderEngineGeometry finalizeModelling(RenderEngineSurfaceProperties surfaceProperties) throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			if (surfaceProperties.getIndicesCount() == 0 || surfaceProperties.getVerticesCount() == 0) {
 				return null;
+			}
+			LOGGER.info(surfaceProperties.getIndicesCount() + " indices, " + surfaceProperties.getVerticesCount() + " vertices");
+			if (surfaceProperties.getIndicesCount() < 0) {
+				throw new RenderEngineException("Number of indices negative " + surfaceProperties.getIndicesCount());
+			}
+			if (surfaceProperties.getVerticesCount() < 0) {
+				throw new RenderEngineException("Number of vertices negative " + surfaceProperties.getVerticesCount());
 			}
 			failSafeIfcEngine.writeCommand(Command.FINALIZE_MODELLING);
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.writeInt(surfaceProperties.getIndicesCount());
 			failSafeIfcEngine.writeInt(surfaceProperties.getVerticesCount());
 			failSafeIfcEngine.flush();
-			int[] indices = new int[surfaceProperties.getIndicesCount()];
-			float[] vertices = new float[surfaceProperties.getVerticesCount() * 3];
-			float[] normals = new float[surfaceProperties.getVerticesCount() * 3];
+			indices = new int[surfaceProperties.getIndicesCount()];
+			vertices = new float[surfaceProperties.getVerticesCount() * 3];
+			normals = new float[surfaceProperties.getVerticesCount() * 3];
 			for (int i = 0; i < indices.length; i++) {
 				indices[i] = failSafeIfcEngine.readInt();
 			}
@@ -97,7 +121,7 @@ public class JvmIfcEngineModel implements RenderEngineModel {
 			for (int i = 0; i < normals.length; i++) {
 				normals[i] = failSafeIfcEngine.readFloat();
 			}
-			return new RenderEngineGeometry(indices, vertices, normals);
+			return new RenderEngineGeometry(indices, vertices, normals, new float[0], new int[0]);
 		}
 	}
 
@@ -190,5 +214,19 @@ public class JvmIfcEngineModel implements RenderEngineModel {
         mask += WIREFRAME;
         setting += settings.isGenerateWireFrame() ? WIREFRAME : 0;
         setFormat(setting, mask);
+	}
+
+	@Override
+	public void generateGeneralGeometry() throws RenderEngineException {
+		// Do nothing, geometry is generated on instance level...
+	}
+
+	@Override
+	public void setFilter(RenderEngineFilter renderEngineFilter) throws RenderEngineException {
+        int setting = 0;
+        int mask = 0;
+        mask += TRANSFORM_GEOMETRY;
+        setting += renderEngineFilter.isTranslateGeometry() ? 0 : TRANSFORM_GEOMETRY;
+        setFilter(setting, mask);
 	}
 }

@@ -18,8 +18,9 @@ import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.geometry.GeometryFactory;
+import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
@@ -32,7 +33,6 @@ import org.bimserver.models.ifc2x3tc1.IfcSIUnit;
 import org.bimserver.models.ifc2x3tc1.IfcSIUnitName;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
-import org.bimserver.models.ifc2x3tc1.Vector3f;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -52,7 +52,7 @@ public class LodToExcel {
 	private void export(File file) {
 		try {
 //			BimServerClientFactory factory = new JsonBimServerClientFactory("http://sandbox.bimserver.org");
-			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+			BimServerClientFactory factory = new JsonBimServerClientFactory(null, "http://localhost:8080");
 			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 		    WorkbookSettings wbSettings = new WorkbookSettings();
@@ -84,7 +84,7 @@ public class LodToExcel {
 				if (roid != -1) {
 					SRevision revision = bimServerClient.getBimsie1ServiceInterface().getRevision(roid);
 					System.out.println(revision.getComment());
-					IfcModelInterface model = bimServerClient.getModel(project.getOid(), roid, true);
+					IfcModelInterface model = bimServerClient.getModel(project, roid, true, false);
 					
 					float scaleFactorToMeter = 1;
 					
@@ -121,13 +121,13 @@ public class LodToExcel {
 					int nrIfcProducts = 0;
 					int nrIfcProductsNoFurniture = 0;
 					int nrIfcProductsNoProxies = 0;
-					GeometryInfo totalBounds = Ifc2x3tc1Factory.eINSTANCE.createGeometryInfo();
-					Vector3f totalMin = Ifc2x3tc1Factory.eINSTANCE.createVector3f();
+					GeometryInfo totalBounds = GeometryFactory.eINSTANCE.createGeometryInfo();
+					Vector3f totalMin = GeometryFactory.eINSTANCE.createVector3f();
 					totalMin.setX(Float.MAX_VALUE);
 					totalMin.setY(Float.MAX_VALUE);
 					totalMin.setZ(Float.MAX_VALUE);
 					totalBounds.setMinBounds(totalMin);
-					Vector3f totalMax = Ifc2x3tc1Factory.eINSTANCE.createVector3f();
+					Vector3f totalMax = GeometryFactory.eINSTANCE.createVector3f();
 					totalMax.setX(-Float.MAX_VALUE);
 					totalMax.setY(-Float.MAX_VALUE);
 					totalMax.setZ(-Float.MAX_VALUE);

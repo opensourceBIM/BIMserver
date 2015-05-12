@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ServerSettings;
+import org.bimserver.models.store.SmtpProtocol;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.eclipse.emf.common.util.EList;
@@ -47,6 +48,15 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getWebModules <em>Web Modules</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getWebModule <em>Web Module</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSessionTimeOutSeconds <em>Session Time Out Seconds</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpUsername <em>Smtp Username</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpPassword <em>Smtp Password</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpPort <em>Smtp Port</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpProtocol <em>Smtp Protocol</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isReuseGeometry <em>Reuse Geometry</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getRenderEngineProcesses <em>Render Engine Processes</em>}</li>
  * </ul>
  * </p>
  *
@@ -370,6 +380,168 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setServiceRepositoryUrl(String newServiceRepositoryUrl) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SERVICE_REPOSITORY_URL, newServiceRepositoryUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSendEmailOnNewRevision() {
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSendEmailOnNewRevision(boolean newSendEmailOnNewRevision) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION, newSendEmailOnNewRevision);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getSessionTimeOutSeconds() {
+		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__SESSION_TIME_OUT_SECONDS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSessionTimeOutSeconds(int newSessionTimeOutSeconds) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SESSION_TIME_OUT_SECONDS, newSessionTimeOutSeconds);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSmtpUsername() {
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_USERNAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSmtpUsername(String newSmtpUsername) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_USERNAME, newSmtpUsername);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSmtpPassword() {
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PASSWORD, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSmtpPassword(String newSmtpPassword) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PASSWORD, newSmtpPassword);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getSmtpPort() {
+		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PORT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSmtpPort(int newSmtpPort) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PORT, newSmtpPort);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SmtpProtocol getSmtpProtocol() {
+		return (SmtpProtocol) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PROTOCOL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSmtpProtocol(SmtpProtocol newSmtpProtocol) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PROTOCOL, newSmtpProtocol);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isReuseGeometry() {
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__REUSE_GEOMETRY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReuseGeometry(boolean newReuseGeometry) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__REUSE_GEOMETRY, newReuseGeometry);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isAllowCreateValidatedUser() {
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAllowCreateValidatedUser(boolean newAllowCreateValidatedUser) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER, newAllowCreateValidatedUser);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getRenderEngineProcesses() {
+		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__RENDER_ENGINE_PROCESSES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRenderEngineProcesses(int newRenderEngineProcesses) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__RENDER_ENGINE_PROCESSES, newRenderEngineProcesses);
 	}
 
 } //ServerSettingsImpl

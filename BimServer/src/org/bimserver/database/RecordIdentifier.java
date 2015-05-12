@@ -1,7 +1,7 @@
 package org.bimserver.database;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,11 +21,20 @@ public class RecordIdentifier {
 	private final int pid;
 	private final long oid;
 	private final int rid;
+	private int hashCode;
 
 	public RecordIdentifier(int pid, long oid, int rid) {
 		this.pid = pid;
 		this.oid = oid;
 		this.rid = rid;
+
+		// Pre caching the hashcode, because we know it's going to be used at least once, and usually more than once
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (oid ^ (oid >>> 32));
+		result = prime * result + pid;
+		result = prime * result + rid;
+		this.hashCode = result;
 	}
 
 	public int getRid() {
@@ -42,12 +51,7 @@ public class RecordIdentifier {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (oid ^ (oid >>> 32));
-		result = prime * result + pid;
-		result = prime * result + rid;
-		return result;
+		return hashCode;
 	}
 
 	@Override

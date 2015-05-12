@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getCount <em>Count</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
  *
@@ -99,6 +100,24 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSu
 	 */
 	public void setCount(Integer newCount) {
 		eSet(StorePackage.Literals.REVISION_SUMMARY_TYPE__COUNT, newCount);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSchema() {
+		return (String) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__SCHEMA, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSchema(String newSchema) {
+		eSet(StorePackage.Literals.REVISION_SUMMARY_TYPE__SCHEMA, newSchema);
 	}
 
 } //RevisionSummaryTypeImpl

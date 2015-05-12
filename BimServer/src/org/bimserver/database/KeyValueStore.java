@@ -1,7 +1,7 @@
 package org.bimserver.database;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -69,4 +69,10 @@ public interface KeyValueStore {
 	void incrementCommittedWrites(int committedWrites);
 
 	void incrementReads(int reads);
+
+	void storeNoOverwrite(String tableName, byte[] key, byte[] value, int offset, int length, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException;
+	
+	void store(String tableName, byte[] key, byte[] value, int offset, int length, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException;
+
+	void dumpOpenCursors();
 }

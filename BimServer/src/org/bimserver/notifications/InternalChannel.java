@@ -1,7 +1,7 @@
 package org.bimserver.notifications;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,7 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.bimserver.client.Channel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ChannelConnectionException;
@@ -34,7 +35,8 @@ public class InternalChannel extends Channel {
 	private ServiceFactory serviceFactory;
 	private SServicesMap sServicesMap;
 
-	public InternalChannel(ServiceFactory serviceFactory, SServicesMap sServicesMap) {
+	public InternalChannel(CloseableHttpClient httpClient, ServiceFactory serviceFactory, SServicesMap sServicesMap) {
+		super(httpClient);
 		this.serviceFactory = serviceFactory;
 		this.sServicesMap = sServicesMap;
 	}

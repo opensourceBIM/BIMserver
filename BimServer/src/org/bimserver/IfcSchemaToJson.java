@@ -1,7 +1,7 @@
 package org.bimserver;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,10 +25,12 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.shared.IfcDoc;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -37,25 +39,52 @@ import com.google.gson.stream.JsonWriter;
 
 public class IfcSchemaToJson {
 	public static void main(String[] args) {
+		generateIfc2x3tc1();
+		generateIfc4();
+	}
+
+	private static void generateIfc4() {
 		FileOutputStream fos = null;
 		try {
-			fos = new FileOutputStream(new File("www/js/ifc2x3tc1.json"));
-			new IfcSchemaToJson().convert(fos);
+			fos = new FileOutputStream(new File("www/js/ifc4.js"));
+			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\20130305_IFC4_HTML_distribution\\IFC4\\schema"), Ifc4Package.eINSTANCE);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				fos.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
 
-	private void convert(OutputStream outputStream) throws IOException {
-		IfcDoc ifcDoc = new IfcDoc(new File("C:\\Users\\Ruben de Laat\\Downloads\\IFC2x3_TC1_HTML_distribution-pset_errata\\R2x3_TC1"));
+	private static void generateIfc2x3tc1() {
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(new File("www/js/ifc2x3tc1.js"));
+			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\IFC2x3_TC1_HTML_distribution-pset_errata\\R2x3_TC1"), Ifc2x3tc1Package.eINSTANCE);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	private void convert(OutputStream outputStream, File docs, EPackage ePackage) throws IOException {
+		IfcDoc ifcDoc = new IfcDoc(docs);
 		
 		JsonWriter jsonWriter = new JsonWriter(new OutputStreamWriter(outputStream));
 		jsonWriter.setIndent("  ");
@@ -63,7 +92,7 @@ public class IfcSchemaToJson {
 			jsonWriter.beginObject();
 			jsonWriter.name("classes");
 			jsonWriter.beginObject();
-			for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
+			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 				jsonWriter.name(eClassifier.getName());
 				jsonWriter.beginObject();
 				if (eClassifier instanceof EEnum) {

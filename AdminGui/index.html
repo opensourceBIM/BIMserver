@@ -4,23 +4,27 @@
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
 	<base href="/"/>
+	<title>BIMvie.ws</title>
   </head>
-  <body>
-  	<div class="indexStatus">
+  <body style="margin: 0; padding: 0">
+  	<div class="indexStatus statusWrapper">
 		<div class="alert status">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			<div class="message"></div>
 		</div>
   	</div>
-	<div class="my-fluid-container">
-		<div class="row">
-			<div class="sidespan col-md-2"></div>
-			<div class="indexcontainer col-md-10"></div>
+	<div class="my-fluid-container" style="padding: 15px; padding-bottom: 0px;	margin-left: auto; margin-right: auto;">
+		<div class="row" style="margin-left: -15px; margin-right: -15px;">
+			<div class="indexcontainer col-md-12" style="padding-left: 20px; padding-right: 20px;">
+				<div style="text-align: center; color: #31708f; background-color: #d9edf7; border-color: #bce8f1; padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 14px; line-height: 1.42857143;">
+					Loading BIMviews...
+				</div>
+			</div>
 		</div>
 	</div>
 	<script>
 		Global = {};
 
+		// https://github.com/rgrove/lazyload
 		LazyLoad=function(k){function p(b,a){var g=k.createElement(b),c;for(c in a)a.hasOwnProperty(c)&&g.setAttribute(c,a[c]);return g}function l(b){var a=m[b],c,f;if(a)c=a.callback,f=a.urls,f.shift(),h=0,f.length||(c&&c.call(a.context,a.obj),m[b]=null,n[b].length&&j(b))}function w(){var b=navigator.userAgent;c={async:k.createElement("script").async===!0};(c.webkit=/AppleWebKit\//.test(b))||(c.ie=/MSIE/.test(b))||(c.opera=/Opera/.test(b))||(c.gecko=/Gecko\//.test(b))||(c.unknown=!0)}function j(b,a,g,f,h){var j=
 			function(){l(b)},o=b==="css",q=[],d,i,e,r;c||w();if(a)if(a=typeof a==="string"?[a]:a.concat(),o||c.async||c.gecko||c.opera)n[b].push({urls:a,callback:g,obj:f,context:h});else{d=0;for(i=a.length;d<i;++d)n[b].push({urls:[a[d]],callback:d===i-1?g:null,obj:f,context:h})}if(!m[b]&&(r=m[b]=n[b].shift())){s||(s=k.head||k.getElementsByTagName("head")[0]);a=r.urls;d=0;for(i=a.length;d<i;++d)g=a[d],o?e=c.gecko?p("style"):p("link",{href:g,rel:"stylesheet"}):(e=p("script",{src:g}),e.async=!1),e.className="lazyload",
 			e.setAttribute("charset","utf-8"),c.ie&&!o?e.onreadystatechange=function(){if(/loaded|complete/.test(e.readyState))e.onreadystatechange=null,j()}:o&&(c.gecko||c.webkit)?c.webkit?(r.urls[d]=e.href,t()):(e.innerHTML='@import "'+g+'";',u(e)):e.onload=e.onerror=j,q.push(e);d=0;for(i=q.length;d<i;++d)s.appendChild(q[d])}}function u(b){var a;try{a=!!b.sheet.cssRules}catch(c){h+=1;h<200?setTimeout(function(){u(b)},50):a&&l("css");return}l("css")}function t(){var b=m.css,a;if(b){for(a=v.length;--a>=0;)if(v[a].href===
@@ -39,263 +43,349 @@
 		var base = document.getElementsByTagName("base");
 		base[0].href = Global.baseDir;
 		
-		(function() {
-		    var link = document.createElement('link');
-		    link.type = 'image/x-icon';
-		    link.rel = 'shortcut icon';
-		    link.href = Global.baseDir + 'img/logo_small.png';
-		    document.getElementsByTagName('head')[0].appendChild(link);
-		}());
-		
-		LazyLoad.css([
-		    baseCssDir + "bootstrap.min.css",
-		    baseCssDir + "main.css", 
-		    baseCssDir + "bootstrap-vert-tabs.css", 
-		    baseCssDir + "openid.css"
-		], function(){});
-		
-		LazyLoad.js([
-		    baseJsDir + "jquery-2.0.3.min.js", 
-		    baseJsDir + "main.js", 
-		    baseJsDir + "history.js", 
-		    baseJsDir + "history.adapter.jquery.js", 
-		    baseJsDir + "jquery.cookie.js", 
-		    baseJsDir + "jquery.numeric.js", 
-		    baseJsDir + "jquery.enterpress.js", 
-		    baseJsDir + "jquery.ui.widget.js", 
-		    baseJsDir + "String.js", 
-		    baseJsDir + "bimserverapibootstrap.js", 
-		    baseJsDir + "bootstrap.min.js", 
-		    baseJsDir + "sha256.js", 
-		    baseJsDir + "openid-jquery.js", 
-		    baseJsDir + "openid-en.js", 
-		    baseJsDir + "utils.js", 
-		    baseJsDir + "formatters.js", 
-		    baseJsDir + "settings.js", 
-		    baseJsDir + "jquery.fileupload.js", 
-		    baseJsDir + "pagechanger.js"
-		], function () {
-			var othis = this;
+		function loadResources() {
+			(function() {
+			    var link = document.createElement('link');
+			    link.type = 'image/x-icon';
+			    link.rel = 'shortcut icon';
+			    link.href = Global.baseDir + 'img/logo_small.png';
+			    document.getElementsByTagName('head')[0].appendChild(link);
+			}());
+			
+			LazyLoad.css([
+			    baseCssDir + "bootstrap.min.css?_v=" + Global.version, 
+			    baseCssDir + "main.css?_v=" + Global.version, 
+			    baseCssDir + "bootstrap-vert-tabs.css?_v=" + Global.version, 
+			    baseCssDir + "magic-bootstrap-min.css?_v=" + Global.version
+			], function(){});
+			
+			LazyLoad.js([baseJsDir + "settings.js?_v=" + Global.version], function(){
+				var jsToLoad = [
+				        		baseJsDir + "jquery-2.1.3.min.js?_v=" + Global.version, 
+				       		    baseJsDir + "main.js?_v=" + Global.version, 
+				       		    baseJsDir + "history.js?_v=" + Global.version, 
+				       		    baseJsDir + "history.adapter.jquery.js?_v=" + Global.version, 
+				       		    baseJsDir + "jquery.cookie.js?_v=" + Global.version, 
+				       		    baseJsDir + "jquery.numeric.js?_v=" + Global.version, 
+				       		    baseJsDir + "jquery.enterpress.js?_v=" + Global.version, 
+				       		    baseJsDir + "base64unicode.js?_v=" + Global.version, 
+				       		    baseJsDir + "jquery.ui.widget.js?_v=" + Global.version, 
+				       		    baseJsDir + "String.js?_v=" + Global.version, 
+				       		    baseJsDir + "tree.js?_v=" + Global.version, 
+				       		    baseJsDir + "bimserverapibootstrap.js?_v=" + Global.version, 
+				       		    baseJsDir + "bootstrap.min.js?_v=" + Global.version, 
+				       		    baseJsDir + "sha256.js?_v=" + Global.version, 
+				       		    baseJsDir + "utils.js?_v=" + Global.version, 
+				       		    baseJsDir + "formatters.js?_v=" + Global.version, 
+				       		    baseJsDir + "jquery.fileupload.js?_v=" + Global.version, 
+				       		    baseJsDir + "jquery.scrollto.js?_v=" + Global.version, 
+				       		    baseJsDir + "pagechanger.js?_v=" + Global.version, 
+				       		    baseJsDir + "plugins/pluginmanager.js?_v=" + Global.version, 
+				       		    baseJsDir + "plugins/relaticsplugin.js?_v=" + Global.version,
+				       		    baseJsDir + "papaparse.min.js?_v=" + Global.version
+				    	 	];
+				    		
+				    		if (Settings.useBimSurfer()) {
+				    			jsToLoad = jsToLoad.concat([
+				    	   		    baseJsDir + "bimsurfer/api/BIMSURFER.js?_v=" + Global.version, 
+				    	   		    baseJsDir + "bimsurfer/lib/scenejs/scenejs.js?_v=" + Global.version, 
+				    	   		    baseJsDir + "bimsurfer/api/SceneJS.js?_v=" + Global.version, 
+				    	   		    baseJsDir + "bimsurfer/api/Constants.js?_v=" + Global.version, 
+				    	   		    baseJsDir + "bimsurfer/api/ProgressLoader.js?_v=" + Global.version, 
+				    	   		    baseJsDir + "bimsurfer/api/Types/Light.js?_v=" + Global.version, 
+				    	   		    baseJsDir + "bimsurfer/api/Types/Light/Ambient.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/Types/Light/Sun.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/Control.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/Control/ClickSelect.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/Control/LayerList.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/Control/ProgressBar.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/Control/PickFlyOrbit.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/Control/ObjectTreeView.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/Events.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/StringView.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/GeometryLoader.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/AsyncStream.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/DataInputStream.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/Viewer.js?_v=" + Global.version, 
+				    	   			baseJsDir + "bimsurfer/api/Util.js?_v=" + Global.version
+				       			]);
+				    		}
+				    		
+				    		LazyLoad.js(jsToLoad, function () {
+				    			var othis = this;
 
-			Global.lastKey = null;
+				    			Global.lastKey = null;
 
-			$("body").on("keyup", function (e) {
-				if (e.target.nodeName == "BODY") {
-					if (e.keyCode == 67 && Global.lastKey == 67) {
-						console.log("Clearing cookies");
-						$.removeCookie("address", {path: "/"});
-						$.removeCookie("username", {path: "/"});
-						$.removeCookie("autologin", {path: "/"});
-						Global.lastKey = null;
-					} else {
-						Global.lastKey = e.keyCode;
-					}
-				}
+				    			$.ajaxSetup({
+				    				cache: true
+				    			});
+
+				    			SceneJS.configure({ pluginPath: baseJsDir + "bimsurfer/lib/scenejs/plugins" });
+				    			
+				    			var jQueryLoad = $.fn.load;
+				    			$.fn.load = function(url, params, callback) {
+				    				url += "?_v=" + Global.version;
+			    			        return jQueryLoad.apply(this, arguments);
+				    			}
+				    			
+				    			$("body").on("keyup", function (e) {
+				    				if (e.target.nodeName == "BODY") {
+				    					if (e.keyCode == 67 && Global.lastKey == 67) {
+				    						console.log("Clearing cookies");
+				    						$.removeCookie("address" + window.document.location.port, {path: "/"});
+				    						$.removeCookie("username" + window.document.location.port, {path: "/"});
+				    						$.removeCookie("autologin" + window.document.location.port, {path: "/"});
+				    						Global.lastKey = null;
+				    					} else {
+				    						Global.lastKey = e.keyCode;
+				    					}
+				    				}
+				    			});
+				    			
+				    			othis.loadBimServerApiFromAddress = function(address, successFunction, errorFunction){
+				    				loadBimServerApi(address, Global.notifier, function(serverInfo){
+				    					if (serverInfo.serverState == "NOT_SETUP") {
+				    						$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
+				    							new Setup(address);
+				    						});
+				    					} else if (serverInfo.serverState == "UNDEFINED") {
+				    					} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
+				    						$(".indexcontainer").load(Global.baseDir + "migrate.html", function(){
+				    							new Migrate(address);
+				    						});
+				    					} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
+				    					} else if (serverInfo.serverState == "FATAL_ERROR") {
+				    					} else if (serverInfo.serverState == "RUNNING") {
+				    						successFunction(address);
+				    					}
+				    				}, function(){
+				    					errorFunction(address);
+				    				});
+				    			};
+				    			
+				    			
+				    			function load() {
+				    				$(".sidespan").empty();
+				    				Global.history = pushInitialState();
+				    				var notLoggedInFunction = function(address){
+				    					if (Global.history.page == "Login") {
+				    						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+				    							othis.current = new Login(address);
+				    						});
+				    					} else if (Global.history.page == "SelectServer") {
+				    						$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+				    							othis.current = new SelectServer(null);
+				    						});
+				    					} else if (Global.history.page == "Register") {
+				    						$(".indexcontainer").load(Global.baseDir + "register.html", function(){
+				    							othis.current = new Register($(this));
+				    						});
+				    					} else if (Global.history.page == "ResetPassword") {
+				    						$(".indexcontainer").load(Global.baseDir + "resetpassword.html", function(){
+				    							othis.current = new ResetPassword($(this), null);
+				    						});
+				    					} else {
+				    						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+				    							othis.current = new Login(address);
+				    						});
+				    					}
+				    				};
+				    				
+				    				var successFunction = function(address){
+				    					// We do have an API
+				    					var token = getParameterByName("token");
+				    					if (token == null) {
+				    						token = $.cookie("autologin" + window.document.location.port);
+				    					}
+				    					if (token != null) {
+				    						Global.bimServerApi.setToken(token, function(){
+				    							$(".indexcontainer").load(Global.baseDir + "main.html", function(){
+				    								$(".indexStatus").hide();
+				    								othis.current = new Main(Global.bimServerApi.baseUrl, Global.bimServerApi.user.name).show(false);
+				    							});
+				    						}, function(){
+				    							$.removeCookie("autologin" + window.document.location.port);
+				    							notLoggedInFunction(address);
+				    						});
+				    					} else {
+				    						notLoggedInFunction(address);
+				    					}
+				    				};
+				    				
+				    				var errorFunction = function(){
+				    					$.removeCookie("username" + window.document.location.port, {path: "/"});
+				    					$.removeCookie("autologin" + window.document.location.port, {path: "/"});
+				    					$.removeCookie("address" + window.document.location.port, {path: "/"});
+				    				};
+
+				    				var address = getParameterByName("address");
+				    				
+				    				if (address != null) {
+				    					othis.loadBimServerApiFromAddress(address, successFunction, errorFunction);
+				    				} else if ($.cookie("address" + window.document.location.port) != null) {
+				    					othis.loadBimServerApiFromAddress($.cookie("address" + window.document.location.port), successFunction, errorFunction);
+				    				} else if (!Settings.allowBimServerAddress()) {
+				    					Settings.getStaticServerAddress(function(address){
+				    						if (address != null) {
+				    							othis.loadBimServerApiFromAddress(address, successFunction, errorFunction);
+				    						} else {
+				    							notLoggedInFunction(address);
+//				    							$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+//				    								new SelectServer();
+//				    							});
+				    						}
+				    					});
+				    				} else {
+				    					// NO API
+				    					$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+				    						new SelectServer();
+				    					});
+				    				}
+				    			}
+				    			
+				    			History.Adapter.bind(window, "statechange", function(){
+				    				if (!pushing) {
+				    					load();
+				    				}
+				    		    });
+
+				    			Global.bimServerApi = null;
+				    			Global.objectcache = {};
+				    			Global.timeoutId;
+				    			
+				    			function Notifier() {
+				    				var othis = this;
+				    				
+				    				this.setSelector = function(selector) {
+				    					var currentmessage = $(othis.selector).find(".message").html();
+				    					$(othis.selector).hide();
+				    					othis.selector = selector;
+				    					if (currentmessage != "" && currentmessage != undefined) {
+				    						$(selector).show();
+				    						$(selector).find(".message").html(currentmessage).parent().addClass("alert-success");
+				    					} else {
+				    						$(othis.selector).hide();
+				    					}
+				    					$(othis.selector).find(".close").click(othis.clear);
+				    				};
+
+				    				this.clear = function() {
+				    					$(othis.selector).find(".message").html("").parent().hide();
+				    				};
+
+				    				this.resetStatus = function(){
+				    					if (othis.lastTimeOut != null) {
+				    						clearTimeout(othis.lastTimeOut);
+				    						othis.lastTimeOut = null;
+				    					}
+				    					$(othis.selector).stop(true, true);
+				    					$(othis.selector).fadeOut(1000);
+				    				};
+
+				    				this.resetStatusQuick = function(){
+				    					if (othis.lastTimeOut != null) {
+				    						clearTimeout(othis.lastTimeOut);
+				    						othis.lastTimeOut = null;
+				    					}
+				    					$(othis.selector).hide();
+				    				};
+
+				    				this.setSuccess = function(status, timeToShow) {
+				    					if (timeToShow == null) {
+				    						timeToShow = 5000;
+				    					}
+				    					$(othis.selector).stop(true, true);
+				    					if (othis.lastTimeOut != null) {
+				    						clearTimeout(othis.lastTimeOut);
+				    						othis.lastTimeOut = null;
+				    					}
+				    					$(othis.selector).find(".message").html(status).parent().removeClass("initialhide").removeClass("alert-danger").removeClass("alert-info").addClass("alert-success").show();
+				    					var notifier = this;
+				    					if (timeToShow != -1) {
+				    						othis.lastTimeOut = setTimeout(function(){
+				    							notifier.resetStatus();
+				    						}, timeToShow);
+				    					}
+				    				};
+				    				
+				    				this.setInfo = function(status, timeToShow) {
+				    					if (timeToShow == null) {
+				    						timeToShow = 5000;
+				    					}
+				    					$(othis.selector).stop(true, true);
+				    					if (othis.lastTimeOut != null) {
+				    						clearTimeout(othis.lastTimeOut);
+				    						othis.lastTimeOut = null;
+				    					}
+				    					$(othis.selector).find(".message").html(status).parent().show().removeClass("alert-danger").removeClass("alert-success").addClass("alert-info");
+				    					var notifier = this;
+				    					if (timeToShow != -1) {
+				    						othis.lastTimeOut = setTimeout(function(){
+				    							notifier.resetStatus();
+				    						}, timeToShow);
+				    					}
+				    				};
+
+				    				this.setError = function(error) {
+				    					if (othis.lastTimeOut != null) {
+				    						clearTimeout(othis.lastTimeOut);
+				    						othis.lastTimeOut = null;
+				    					}
+				    					$(othis.selector).find(".message").html(error).parent().removeClass("alert-info").removeClass("alert-success").addClass("alert-danger").show();
+				    				};
+				    				
+				    				othis.setSelector(".indexStatus .status");
+				    			}
+
+				    			Global.notifier = new Notifier();
+
+				    			function loadError() {
+				    				window.clearTimeout(Global.timeoutId);
+				    				Global.notifier.error("Could not connect");
+				    				$.removeCookie("username" + window.document.location.port, {path: "/"});
+				    				$.removeCookie("autologin" + window.document.location.port, {path: "/"});
+				    				$.removeCookie("address" + window.document.location.port, {path: "/"});
+				    				$(".indexcontainer").load(Global.baseDir + "login.html", function(){
+				    					new Login();
+				    				});
+				    			}
+				    			
+				    			setInterval(function() {
+				    				var now = new Date().getTime();
+				    				$(".timespan").each(function() {
+				    					$(this).html(formatTimeSpan(now - $(this).attr("datetime"), false));
+				    				});
+				    				$(".duration").each(function() {
+				    					var start = new Date(parseInt($(this).attr("start")));
+				    					var end = $(this).attr("end") == null ? new Date() : new Date(parseInt($(this).attr("end")));
+				    					var diff = end.getTime() - start.getTime();
+				    					$(this).html(formatDuration(diff, true));
+				    				});
+				    			}, 1000);
+
+				    			load();
+				    		}, function (err) {
+				    			console.log(err);
+				    		});			
 			});
-			
-			othis.loadBimServerApiFromAddress = function(address, successFunction, errorFunction){
-				loadBimServerApi(address, Global.notifier, function(serverInfo){
-					if (serverInfo.serverState == "NOT_SETUP") {
-						$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
-							new Setup(address);
-						});
-					} else if (serverInfo.serverState == "UNDEFINED") {
-					} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
-						$(".indexcontainer").load(Global.baseDir + "migrate.html", function(){
-							new Migrate(address);
-						});
-					} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
-					} else if (serverInfo.serverState == "FATAL_ERROR") {
-					} else if (serverInfo.serverState == "RUNNING") {
-						successFunction();
-					}
-				}, function(){
-					errorFunction();
-				});
-			};
-			
-			function load() {
-				$(".sidespan").empty();
-				Global.history = pushInitialState();
-				var notLoggedInFunction = function(){
-					if (Global.history.page == "Login") {
-						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-							othis.current = new Login($.cookie("address" + window.document.location.port));
-						});
-					} else if (Global.history.page == "SelectServer") {
-						$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
-							othis.current = new SelectServer(null);
-						});
-					} else if (Global.history.page == "Register") {
-						$(".indexcontainer").load(Global.baseDir + "register.html", function(){
-							othis.current = new Register($(this));
-						});
-					} else if (Global.history.page == "ResetPassword") {
-						$(".indexcontainer").load(Global.baseDir + "resetpassword.html", function(){
-							othis.current = new ResetPassword($(this), null);
-						});
-					} else {
-						$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-							othis.current = new Login(null);
-						});
-					}
-				};
-				
-				var successFunction = function(){
-					// We do have an API
-					if ($.cookie("autologin" + window.document.location.port) != null) {
-						Global.bimServerApi.token = $.cookie("autologin" + window.document.location.port);
-						Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
-							$(".indexcontainer").load(Global.baseDir + "main.html", function(){
-								$(".indexStatus").hide();
-								othis.current = new Main(Global.bimServerApi.baseUrl, data.name).show(false);
-							});
-						}, function(){
-							$.removeCookie("autologin" + window.document.location.port);
-							notLoggedInFunction();
-						});
-					} else {
-						notLoggedInFunction();
-					}
-				};
-				
-				var errorFunction = function(){
-					$.removeCookie("username" + window.document.location.port, {path: "/"});
-					$.removeCookie("autologin" + window.document.location.port, {path: "/"});
-					$.removeCookie("address" + window.document.location.port, {path: "/"});
-				};
-				
-				if ($.cookie("address" + window.document.location.port) != null) {
-					othis.loadBimServerApiFromAddress($.cookie("address" + window.document.location.port), successFunction, errorFunction);
-				} else if (!Settings.allowBimServerAddress()) {
-					Settings.getStaticServerAddress(function(address){
-						if (address != null) {
-							othis.loadBimServerApiFromAddress(address, successFunction, errorFunction);
-						} else {
-							notLoggedInFunction();
-//							$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
-//								new SelectServer();
-//							});
-						}
-					});
-				} else {
-					// NO API
-					$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
-						new SelectServer();
-					});
-				}
+		}
+		
+		var myRequest = new XMLHttpRequest();
+		myRequest.onreadystatechange = function() {
+			if (myRequest.readyState != 4)  {
+				return;
 			}
-			
-			History.Adapter.bind(window, "statechange", function(){
-				if (!pushing) {
-					load();
-				}
-		    });
-
-			Global.bimServerApi = null;
-			Global.objectcache = {};
-			Global.timeoutId;
-			
-			function Notifier() {
-				var othis = this;
-				othis.selector = ".indexStatus .status";
-				
-				$(othis.selector).hide();
-
-				this.error = function(message){
-					if (othis.lastTimeOut != null) {
-						clearTimeout(othis.lastTimeOut);
-						othis.lastTimeOut = null;
-					}
-					$(othis.selector).find(".message").html(message).parent().show();
-				};
-
-				this.info = function(message) {
-					if (othis.lastTimeOut != null) {
-						clearTimeout(othis.lastTimeOut);
-						othis.lastTimeOut = null;
-					}
-					$(othis.selector).find(".message").html(message).parent().show();						
-				};
-
-				this.clear = function() {
-					$(othis.selector).find(".message").html("").parent().hide();
-				};
-
-				this.resetStatus = function(){
-					if (othis.lastTimeOut != null) {
-						clearTimeout(othis.lastTimeOut);
-						othis.lastTimeOut = null;
-					}
-					$(othis.selector).stop(true, true);
-					$(othis.selector).fadeOut(1000);
-				};
-
-				this.resetStatusQuick = function(){
-					if (othis.lastTimeOut != null) {
-						clearTimeout(othis.lastTimeOut);
-						othis.lastTimeOut = null;
-					}
-					$(othis.selector).hide();
-				};
-
-				this.setStatus = function(status, timeToShow) {
-					if (timeToShow == null) {
-						timeToShow = 5000;
-					}
-					$(othis.selector).stop(true, true);
-					if (othis.lastTimeOut != null) {
-						clearTimeout(othis.lastTimeOut);
-						othis.lastTimeOut = null;
-					}
-					$(othis.selector).find(".message").html(status).parent().show().removeClass("alert-danger").addClass("alert-info");
-					var notifier = this;
-					if (timeToShow != -1) {
-						othis.lastTimeOut = setTimeout(function(){
-							othis.resetStatus();
-						}, timeToShow);
-					}
-				};
-
-				this.setError = function(error) {
-					if (othis.lastTimeOut != null) {
-						clearTimeout(othis.lastTimeOut);
-						othis.lastTimeOut = null;
-					}
-					$(othis.selector).find(".message").html(error).parent().removeClass("alert-info").addClass("alert-danger").show();
-				};
+			if (myRequest.status != 200)  {
+				Global.version = new Date().getTime();
+				loadResources();
+				return;
+			} else {
+				Global.version = JSON.parse(myRequest.responseText).version;
+				loadResources();
 			}
-
-			Global.notifier = new Notifier();
-
-			function loadError() {
-				window.clearTimeout(Global.timeoutId);
-				Global.notifier.error("Could not connect");
-				$.removeCookie("username" + window.document.location.port, {path: "/"});
-				$.removeCookie("autologin" + window.document.location.port, {path: "/"});
-				$.removeCookie("address" + window.document.location.port, {path: "/"});
-				$(".indexcontainer").load(Global.baseDir + "login.html", function(){
-					new Login();
-				});
-			}
-			
-			setInterval(function() {
-				var now = new Date().getTime();
-				$(".timespan").each(function() {
-					$(this).html(formatTimeSpan(now - $(this).attr("datetime"), false));
-				});
-				$(".duration").each(function() {
-					var start = new Date(parseInt($(this).attr("start")));
-					var end = $(this).attr("end") == null ? new Date() : new Date(parseInt($(this).attr("end")));
-					var diff = end.getTime() - start.getTime();
-					$(this).html(formatDuration(diff, true));
-				});
-			}, 1000);
-
-			load();
-		}, function (err) {
-			console.log(err);
-		});
+		};
+		myRequest.open("GET", Global.baseDir + "plugin.version", true);
+		myRequest.send();
 	</script>
   </body>
 </html>

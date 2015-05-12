@@ -1,7 +1,7 @@
 package org.bimserver.plugins.serializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -28,12 +28,13 @@ import java.io.OutputStream;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class EmfSerializer implements Serializer {
+public abstract class EmfSerializer implements Serializer, StreamingReader {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializer.class);
 	protected IfcModelInterface model;
@@ -43,18 +44,29 @@ public abstract class EmfSerializer implements Serializer {
 	private RenderEnginePlugin renderEnginePlugin;
 	private boolean normalizeOids;
 	private int expressIdCounter = 1;
+	private PackageMetaData packageMetaData;
 
 	protected static enum Mode {
 		HEADER, BODY, FOOTER, FINISHED
 	}
 
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
 		this.model = model;
 		this.projectInfo = projectInfo;
 		this.renderEnginePlugin = renderEnginePlugin;
+		this.packageMetaData = packageMetaData;
 		this.normalizeOids = normalizeOids;
 		this.setPluginManager(pluginManager);
 		reset();
+	}
+	
+	public PackageMetaData getPackageMetaData() {
+		return packageMetaData;
+	}
+	
+	@Override
+	public boolean allowCaching() {
+		return true;
 	}
 
 	public RenderEnginePlugin getRenderEnginePlugin() {
@@ -87,7 +99,7 @@ public abstract class EmfSerializer implements Serializer {
 	public byte[] getBytes() {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		try {
-			writeToOutputStream(outputStream);
+			writeToOutputStream(outputStream, null);
 		} catch (SerializerException e) {
 			LOGGER.error("", e);
 		}
@@ -105,19 +117,20 @@ public abstract class EmfSerializer implements Serializer {
 	 * The implementation must return true when data has been written, or false
 	 * when no data has been written (this will stop the serialization).
 	 */
-	protected abstract boolean write(OutputStream outputStream) throws SerializerException;
+	protected abstract boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException;
 
-	public void writeToOutputStream(OutputStream outputStream) throws SerializerException {
-		boolean result = write(outputStream);
+	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
+		boolean result = write(outputStream, progressReporter);
 		while (result) {
-			result = write(outputStream);
+			result = write(outputStream, progressReporter);
 		}
+		progressReporter.update(1, 1);
 	}
 
-	public void writeToFile(File file) throws SerializerException {
+	public void writeToFile(File file, ProgressReporter progressReporter) throws SerializerException {
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
-			writeToOutputStream(fos);
+			writeToOutputStream(fos, progressReporter);
 			fos.close();
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);
@@ -136,5 +149,15 @@ public abstract class EmfSerializer implements Serializer {
 
 	public PluginManager getPluginManager() {
 		return pluginManager;
+	}
+	
+	@Override
+	public boolean write(OutputStream out) {
+		try {
+			return write(out, null);
+		} catch (SerializerException e) {
+			LOGGER.error("", e);
+		}
+		return false;
 	}
 }

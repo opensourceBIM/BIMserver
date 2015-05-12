@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -113,16 +113,6 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	COMPUTER(7, "COMPUTER", "COMPUTER"),
 
 	/**
-	 * The '<em><b>PHOTOCOPIER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PHOTOCOPIER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PHOTOCOPIER(8, "PHOTOCOPIER", "PHOTOCOPIER"),
-
-	/**
 	 * The '<em><b>INDIRECTWATERHEATER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,7 +120,17 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INDIRECTWATERHEATER(9, "INDIRECTWATERHEATER", "INDIRECTWATERHEATER"),
+	INDIRECTWATERHEATER(8, "INDIRECTWATERHEATER", "INDIRECTWATERHEATER"),
+
+	/**
+	 * The '<em><b>PHOTOCOPIER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PHOTOCOPIER_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	PHOTOCOPIER(9, "PHOTOCOPIER", "PHOTOCOPIER"),
 
 	/**
 	 * The '<em><b>FACSIMILE</b></em>' literal object.
@@ -423,21 +423,6 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	public static final int COMPUTER_VALUE = 7;
 
 	/**
-	 * The '<em><b>PHOTOCOPIER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PHOTOCOPIER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PHOTOCOPIER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PHOTOCOPIER_VALUE = 8;
-
-	/**
 	 * The '<em><b>INDIRECTWATERHEATER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -450,7 +435,22 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INDIRECTWATERHEATER_VALUE = 9;
+	public static final int INDIRECTWATERHEATER_VALUE = 8;
+
+	/**
+	 * The '<em><b>PHOTOCOPIER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PHOTOCOPIER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PHOTOCOPIER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PHOTOCOPIER_VALUE = 9;
 
 	/**
 	 * The '<em><b>FACSIMILE</b></em>' literal value.
@@ -713,9 +713,10 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] { NULL, FRIDGE_FREEZER, REFRIGERATOR, NOTDEFINED, WASHINGMACHINE,
-			SCANNER, FREEZER, COMPUTER, PHOTOCOPIER, INDIRECTWATERHEATER, FACSIMILE, VENDINGMACHINE, DISHWASHER, HANDDRYER, MICROWAVE, FREESTANDINGFAN, PRINTER, RADIANTHEATER,
-			ELECTRICHEATER, WATERCOOLER, TELEPHONE, WATERHEATER, DIRECTWATERHEATER, TUMBLEDRYER, USERDEFINED, ELECTRICCOOKER, TV, };
+	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] { NULL, FRIDGE_FREEZER, REFRIGERATOR, NOTDEFINED,
+			WASHINGMACHINE, SCANNER, FREEZER, COMPUTER, INDIRECTWATERHEATER, PHOTOCOPIER, FACSIMILE, VENDINGMACHINE, DISHWASHER, HANDDRYER, MICROWAVE,
+			FREESTANDINGFAN, PRINTER, RADIANTHEATER, ELECTRICHEATER, WATERCOOLER, TELEPHONE, WATERHEATER, DIRECTWATERHEATER, TUMBLEDRYER, USERDEFINED,
+			ELECTRICCOOKER, TV, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Appliance Type Enum</b></em>' enumerators.
@@ -781,10 +782,10 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 			return FREEZER;
 		case COMPUTER_VALUE:
 			return COMPUTER;
-		case PHOTOCOPIER_VALUE:
-			return PHOTOCOPIER;
 		case INDIRECTWATERHEATER_VALUE:
 			return INDIRECTWATERHEATER;
+		case PHOTOCOPIER_VALUE:
+			return PHOTOCOPIER;
 		case FACSIMILE_VALUE:
 			return FACSIMILE;
 		case VENDINGMACHINE_VALUE:

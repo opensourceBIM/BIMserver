@@ -1,7 +1,7 @@
 package org.bimserver.client;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,7 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
@@ -27,30 +28,23 @@ import org.bimserver.shared.meta.SServicesMap;
 
 public class DirectBimServerClientFactory<T extends PublicInterface> extends AbstractBimServerClientFactory {
 
+	@SuppressWarnings("unused")
 	private final PluginManager pluginManager;
 	private ServiceFactory serviceFactory;
 	private String baseAddress;
 
-	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap, PluginManager pluginManager) {
-		super(servicesMap);
+	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap, PluginManager pluginManager, MetaDataManager metaDataManager) {
+		super(servicesMap, metaDataManager);
 		this.baseAddress = baseAddress;
 		this.serviceFactory = serviceFactory;
 		this.pluginManager = pluginManager;
 	}
 	
-	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap) {
-		super(servicesMap);
-		this.baseAddress = baseAddress;
-		this.serviceFactory = serviceFactory;
-		pluginManager = new PluginManager();
-		pluginManager.loadPluginsFromCurrentClassloader();
-	}
-
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
-		DirectChannel channel = new DirectChannel(serviceFactory, getServicesMap());
+		DirectChannel channel = new DirectChannel(getHttpClient(), serviceFactory, getServicesMap());
 		channel.connect();
-		BimServerClient bimServerClient = new BimServerClient(baseAddress, getServicesMap(), channel);
+		BimServerClient bimServerClient = new BimServerClient(this, baseAddress, getServicesMap(), channel);
 		bimServerClient.setAuthentication(authenticationInfo);
 		return bimServerClient;
 	}

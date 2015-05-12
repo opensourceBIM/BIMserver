@@ -1,7 +1,7 @@
 package org.bimserver.test.framework.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -45,7 +45,7 @@ public class CheckinAction extends Action {
 		File randomFile = getTestFramework().getTestFile();
 		String fileName = randomFile.getName();
 		String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
-		SDeserializerPluginConfiguration suggestedDeserializerForExtension = virtualUser.getBimServerClient().getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(extension);
+		SDeserializerPluginConfiguration suggestedDeserializerForExtension = virtualUser.getBimServerClient().getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(extension, project.getOid());
 		
 		if (suggestedDeserializerForExtension == null) {
 			virtualUser.getActionResults().setText("No deserializer found for extension " + extension + " in file " + fileName);

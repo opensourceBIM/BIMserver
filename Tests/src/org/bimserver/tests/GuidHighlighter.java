@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -54,8 +54,8 @@ public class GuidHighlighter {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			try {
-				serializer.init(model, null, null, pluginManager.requireRenderEngine(), false);
-				serializer.writeToFile(outputFile);
+				serializer.init(model, null, null, pluginManager.requireRenderEngine(), null, false);
+				serializer.writeToFile(outputFile, null);
 			} catch (SerializerException e) {
 				e.printStackTrace();
 			}

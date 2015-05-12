@@ -1,7 +1,7 @@
 package org.bimserver.citygml;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -30,8 +30,9 @@ import javax.xml.bind.JAXBException;
 
 import org.bimserver.citygml.xbuilding.GlobalIdType;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.GeometryData;
-import org.bimserver.models.ifc2x3tc1.GeometryInfo;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcBuilding;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcColumn;
@@ -63,6 +64,7 @@ import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.citygml4j.CityGMLContext;
@@ -123,8 +125,8 @@ public class CityGmlSerializer extends AbstractGeometrySerializer {
 	}
 
 	@Override
-	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
-		super.init(ifcModel, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
+	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
+		super.init(ifcModel, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
 		this.model = ifcModel;
 		ctx = new CityGMLContext();
 		citygml = new CityGMLFactory();
@@ -146,7 +148,7 @@ public class CityGmlSerializer extends AbstractGeometrySerializer {
 		setMode(Mode.BODY);
 	}
 
-	public boolean write(OutputStream out) throws SerializerException {
+	public boolean write(OutputStream out, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			CityModel cityModel = citygml.createCityModel();
 			cityModel.setName(createNameList(getModel().getModelMetaData().getName()));

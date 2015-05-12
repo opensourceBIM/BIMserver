@@ -1,7 +1,7 @@
 package org.bimserver.longaction;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -31,7 +31,7 @@ import com.google.common.collect.HashBiMap;
 public class LongActionManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
-	private static final int FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
+	private static final int FIVE_MINUTES_IN_MS = 5000 * 60; // 5 minutes
 	private final BiMap<Long, LongAction<?>> actions = HashBiMap.create();
 	private volatile boolean running = true;
 
@@ -42,8 +42,8 @@ public class LongActionManager {
 				public void run() {
 					longAction.execute();
 				}
-			});
-			longAction.init();
+			}, "LongAction Runner");
+			longAction.init(thread);
 			thread.setDaemon(true);
 			thread.setName(longAction.getDescription());
 			actions.put(longAction.getProgressTopic().getKey().getId(), longAction);
@@ -70,7 +70,7 @@ public class LongActionManager {
 			if (longAction.getActionState() == ActionState.FINISHED) {
 				GregorianCalendar stop = longAction.getStop();
 				if (now.getTimeInMillis() - stop.getTimeInMillis() > FIVE_MINUTES_IN_MS) {
-					LOGGER.info("Cleaning up long running action: " + longAction.getDescription());
+					LOGGER.info("Cleaning up long running action: " + longAction.getDescription() + " - " + longAction.getClass().getSimpleName());
 					iterator.remove();
 				}
 			}
@@ -89,14 +89,14 @@ public class LongActionManager {
 		}
 	}
 
-	public synchronized void remove(long actionId) throws UserException {
-		LongAction<?> longAction = actions.get(actionId);
+	public synchronized void remove(long topicId) throws UserException {
+		LongAction<?> longAction = actions.get(topicId);
 		if (longAction != null) {
-			LOGGER.info("Cleaning up long running action: " + longAction.getDescription());
+			LOGGER.debug("Cleaning up long running action: " + longAction.getDescription() + " (" + longAction.getProgressTopic().getKey().getId() + ")");
 			longAction.stop();
-			actions.remove(actionId);
+			actions.remove(topicId);
 		} else {
-			throw new UserException("No long action with id " + actionId + " found");
+			throw new UserException("No long action with id " + topicId + " found");
 		}
 	}
 

@@ -1,7 +1,6 @@
 package org.bimserver.ifcengine.tests;
 
 import java.io.File;
-import java.util.List;
 
 import org.bimserver.ifcengine.JvmIfcEngine;
 import org.bimserver.plugins.renderengine.RenderEngine;
@@ -22,16 +21,9 @@ public class TestFailSafe {
 			failSafeIfcEngine.init();
 			RenderEngineModel model = failSafeIfcEngine.openModel(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 			model.setSettings(new RenderEngineSettings());
-			RenderEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
-
-			List<? extends RenderEngineInstance> instances = model.getInstances("IFCMAPPEDITEM");
-			for (RenderEngineInstance instance : instances) {
-				float[] transformationMatrix = instance.getTransformationMatrix();
-//				dumpMatrix(transformationMatrix);
-				int index = geometry.getIndex(instance.getVisualisationProperties().getStartIndex());
-				System.out.println(index);
-				System.out.println(geometry.getVertex(index * 3));
-			}
+			RenderEngineInstance instance = model.getInstanceFromExpressId(3008);
+			RenderEngineGeometry geometry = instance.generateGeometry();
+			System.out.println(geometry);
 			
 			model.close();
 			failSafeIfcEngine.close();
@@ -40,6 +32,7 @@ public class TestFailSafe {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void dumpMatrix(float...fs) {
 		for (int i=0; i<16; i++) {
 			System.out.print(fs[i]);

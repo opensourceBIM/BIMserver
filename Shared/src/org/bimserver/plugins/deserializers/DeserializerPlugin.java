@@ -1,7 +1,7 @@
 package org.bimserver.plugins.deserializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,9 @@ package org.bimserver.plugins.deserializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Set;
+
+import org.bimserver.emf.Schema;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 
@@ -32,4 +35,9 @@ public interface DeserializerPlugin extends Plugin {
 	 * @return Whether this plugin can handle the given extension
 	 */
 	boolean canHandleExtension(String extension);
+	
+	/**
+	 * @return A set of Schemas this deserializer can deserialize
+	 */
+	Set<Schema> getSupportedSchemas();
 }

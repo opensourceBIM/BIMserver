@@ -1,7 +1,7 @@
 package org.bimserver.servlets;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,17 +17,26 @@ package org.bimserver.servlets;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.Reader;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.GregorianCalendar;
 
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
 import org.bimserver.endpoints.EndPoint;
+import org.bimserver.longaction.LongDownloadOrCheckoutAction;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.plugins.serializers.MessagingSerializer;
+import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.utils.Formatters;
 import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +54,7 @@ public class Streamer implements EndPoint {
 	private Bimsie1NotificationInterface notificationInterface;
 	private Bimsie1RemoteServiceInterface remoteServiceInterface;
 	private StreamingSocketInterface streamingSocketInterface;
+	private static final int BUFFER_SIZE = -1; // -1 means just send every message on it's own
 
 	public Streamer(StreamingSocketInterface streamingSocketInterface, BimServer bimServer) {
 		this.streamingSocketInterface = streamingSocketInterface;
@@ -64,7 +74,50 @@ public class Streamer implements EndPoint {
 		JsonParser parser = new JsonParser();
 		JsonObject request = (JsonObject) parser.parse(jsonreader);
 		if (request.has("hb")) {
-			// Hearbeat, ignore
+			// Heartbeat, ignore
+		} else if (request.has("action")) {
+			if (request.get("action").getAsString().equals("download")) {
+				final int topicId = request.get("topicId").getAsInt();
+					final long downloadId = request.get("longActionId").getAsLong();
+					Thread thread = new Thread(){
+						@Override
+						public void run() {
+							try {
+								LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(downloadId);
+								MessagingSerializer messagingSerializer = longAction.getMessagingSerializer();
+								boolean writeMessage = true;
+								int counter = 0;
+								long bytes = 0;
+								do {
+									ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+									DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+									dataOutputStream.writeInt(topicId);
+									dataOutputStream.writeInt(0); // fake nr messages, to be replaced later
+									writeMessage = messagingSerializer.writeMessage(byteArrayOutputStream, null);
+									int messages = 1;
+									while (byteArrayOutputStream.size() < BUFFER_SIZE && writeMessage) {
+										messages++;
+										writeMessage = messagingSerializer.writeMessage(byteArrayOutputStream, null);
+									}
+									byte[] byteArray = byteArrayOutputStream.toByteArray();
+									ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);
+									byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+									byteBuffer.putInt(4, messages);
+									if (byteArrayOutputStream.size() > 8) {
+										bytes += byteArray.length;
+										streamingSocketInterface.sendBlocking(byteArray, 0, byteArray.length);
+										counter++;
+									}
+								} while (writeMessage);
+								LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes));
+							} catch (IOException e) {
+								LOGGER.error("", e);
+							}
+						}
+					};
+					thread.setName("Streamer " + downloadId);
+					thread.start();
+			}
 		} else if (request.has("token")) {
 			String token = request.get("token").getAsString();
 			try {
@@ -113,5 +166,10 @@ public class Streamer implements EndPoint {
 	@Override
 	public long getUoid() {
 		return uoid;
+	}
+	
+	@Override
+	public String toString() {
+		return "" + endpointid;
 	}
 }

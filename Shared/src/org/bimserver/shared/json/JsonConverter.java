@@ -1,7 +1,7 @@
 package org.bimserver.shared.json;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -39,7 +39,6 @@ import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SServicesMap;
-import org.codehaus.jettison.json.JSONException;
 
 import com.google.common.base.Charsets;
 import com.google.gson.JsonArray;
@@ -47,6 +46,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 public class JsonConverter {
@@ -82,7 +82,7 @@ public class JsonConverter {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			if (dataHandler.getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
 				CacheStoringEmfSerializerDataSource cacheStoringEmfSerializerDataSource = (CacheStoringEmfSerializerDataSource) dataHandler.getDataSource();
-				cacheStoringEmfSerializerDataSource.writeToOutputStream(baos);
+				cacheStoringEmfSerializerDataSource.writeToOutputStream(baos, null);
 				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
 			} else {
 				InputStream inputStream = dataHandler.getInputStream();
@@ -107,12 +107,12 @@ public class JsonConverter {
 		}
 	}
 
-	public JsonElement toJson(Object object) throws JSONException, IOException {
+	public JsonElement toJson(Object object) throws IOException {
 		if (object instanceof SBase) {
 			SBase base = (SBase) object;
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.add("__type", new JsonPrimitive(base.getSClass().getSimpleName()));
-			for (SField field : base.getSClass().getAllFields()) {
+			for (SField field : base.getSClass().getOwnFields()) {
 				jsonObject.add(field.getName(), toJson(base.sGet(field)));
 			}
 			return jsonObject;
@@ -151,8 +151,8 @@ public class JsonConverter {
 		}
 		throw new UnsupportedOperationException(object.getClass().getName());
 	}
-
-	public Object fromJson(SClass definedType, SClass genericType, Object object) throws JSONException, ConvertException, IOException {
+	
+	public Object fromJson(SClass definedType, SClass genericType, Object object) throws ConvertException, IOException {
 		try {
 			if (object instanceof JsonObject) {
 				JsonObject jsonObject = (JsonObject) object;

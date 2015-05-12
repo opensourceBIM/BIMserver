@@ -1,7 +1,7 @@
 package org.bimserver.servlets;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,9 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.ByteBuffer;
 
+import org.bimserver.shared.StreamingSocketInterface;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 import org.eclipse.jetty.websocket.api.WebSocketException;
@@ -55,12 +57,25 @@ public class StreamingSocket extends WebSocketAdapter implements StreamingSocket
 		this.session = session;
 		streamer.onOpen();
 	}
-	
+
 	public void send(JsonObject object) {
 		try {
-			session.getRemote().sendString(object.toString());
-		} catch (IOException e) {
+			session.getRemote().sendStringByFuture(object.toString());
 		} catch (WebSocketException e) {
+		}
+	}
+
+	@Override
+	public void send(byte[] data, int start, int length) {
+		session.getRemote().sendBytesByFuture(ByteBuffer.wrap(data, start, length));
+	}
+
+	@Override
+	public synchronized void sendBlocking(byte[] data, int start, int length) {
+		try {
+			session.getRemote().sendBytes(ByteBuffer.wrap(data, start, length));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

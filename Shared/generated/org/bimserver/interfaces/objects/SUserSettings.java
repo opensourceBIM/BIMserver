@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -45,6 +45,7 @@ public class SUserSettings implements SDataBase
 	private long defaultSerializerId = -1;
 	private long defaultObjectIDMId = -1;
 	private List<Long> services = new ArrayList<Long>();
+	private List<Long> messagingSerializerPlugins = new ArrayList<Long>();
 
 	public long getOid() {
 		return this.oid;
@@ -114,6 +115,9 @@ public class SUserSettings implements SDataBase
 		if (sField.getName().equals("services")) {
 			return getServices();
 		}
+		if (sField.getName().equals("messagingSerializerPlugins")) {
+			return getMessagingSerializerPlugins();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -179,6 +183,10 @@ public class SUserSettings implements SDataBase
 		}
 		if (sField.getName().equals("services")) {
 			setServices((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("messagingSerializerPlugins")) {
+			setMessagingSerializerPlugins((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -302,6 +310,14 @@ public class SUserSettings implements SDataBase
 
 	public void setServices(List<Long> services) {
 		this.services = services;
+	}
+	
+	public List<Long> getMessagingSerializerPlugins() {
+		return messagingSerializerPlugins;
+	}
+
+	public void setMessagingSerializerPlugins(List<Long> messagingSerializerPlugins) {
+		this.messagingSerializerPlugins = messagingSerializerPlugins;
 	}
 	
 	@Override

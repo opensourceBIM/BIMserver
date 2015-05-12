@@ -1,7 +1,7 @@
 package org.bimserver.webservices;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,6 +21,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.bimserver.changes.Change;
+import org.bimserver.emf.PackageMetaData;
 
 public class LongTransaction {
 
@@ -29,9 +30,13 @@ public class LongTransaction {
 	private int pid;
 	private int rid;
 	private long poid;
+	private long roid;
+	private PackageMetaData packageMetaData;
 
-	public LongTransaction(long poid, int pid, int rid, long tid) {
+	public LongTransaction(PackageMetaData packageMetaData, long poid, long roid, int pid, int rid, long tid) {
+		this.packageMetaData = packageMetaData;
 		this.poid = poid;
+		this.roid = roid;
 		this.pid = pid;
 		this.rid = rid;
 		this.tid = tid;
@@ -62,5 +67,13 @@ public class LongTransaction {
 
 	public long getPoid() {
 		return poid;
+	}
+
+	public PackageMetaData getPackageMetaData() {
+		return packageMetaData;
+	}
+
+	public long getRoid() {
+		return roid;
 	}
 }

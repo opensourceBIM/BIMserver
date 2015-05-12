@@ -1,0 +1,91 @@
+<div class="modelchecker">
+	<form class="form-horizontal" role="form">
+		<legend>Extended Data Schema</legend>
+		<div class="form-group">
+			<label class="control-label" for="inputName">Name</label>
+			<div class="controls">
+				<input type="text" class="inputName form-control" id="inputName" placeholder="Name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="inputDescription">Description</label>
+			<div class="controls">
+				<textarea class="inputDescription form-control" id="inputDescription" rows="6" placeholder="Description"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="inputCode">Code</label>
+			<div class="controls">
+				<textarea class="inputCode form-control" id="inputCode" rows="14" placeholder="Code"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="inputPlugin">Plugin</label>
+			<div class="controls">
+				<select class="inputPlugin form-control" id="inputPlugin"></select>
+			</div>
+		</div>
+		<div class="form-actions">
+			<button type="button" class="btn btn-default cancelButton">Back</button>
+			<button type="button" class="btn btn-primary saveButton">Save</button>
+			<button type="button" class="btn btn-primary validateButton">Validate</button>
+		</div>
+	</form>
+</div>
+<script>
+function ModelChecker(main, oid) {
+	var othis = this;
+	
+	this.close = function(){
+	};
+
+	this.show = function(){
+	};
+	
+	Global.bimServerApi.call("PluginInterface", "getAllModelCheckerPluginDescriptors", {}, function(modelCheckerPluginDescriptors){
+		modelCheckerPluginDescriptors.forEach(function(modelCheckerPluginDescriptor){
+			var option = $("<option>" + modelCheckerPluginDescriptor.pluginClassName + "</option>");
+			$(".inputPlugin").append(option);
+		});
+		Global.bimServerApi.call("ServiceInterface", "getModelCheckerInstance", {mcioid: oid}, function(modelChecker){
+			othis.modelChecker = modelChecker;
+			pushHistory({page: "ServerSettings", subpage: "ModelChecker", edsid: othis.modelChecker.oid}, "Server Settings - Model Checker");
+			$(".modelchecker .inputName").val(othis.modelChecker.name);
+			$(".modelchecker .inputDescription").val(othis.modelChecker.description);
+			$(".modelchecker .inputCode").val(othis.modelChecker.code);
+			$(".modelchecker .inputPlugin").val(othis.modelChecker.modelCheckerPluginClassName);
+		});
+	});
+	
+	this.saveClick = function(callback) {
+		othis.modelChecker.name = $(".modelchecker .inputName").val();
+		othis.modelChecker.description = $(".modelchecker .inputDescription").val();
+		othis.modelChecker.code = $(".modelchecker .inputCode").val();
+		othis.modelChecker.modelCheckerPluginClassName = $(".modelchecker .inputPlugin").val();
+		Global.bimServerApi.call("ServiceInterface", "updateModelChecker", {modelCheckerInstance: othis.modelChecker}, callback);
+	};
+	
+	this.cancelClick = function() {
+		main.showServerSettings(function(){
+			this.showModelCheckers();
+		});
+	};
+	
+	this.validateClick = function(response){
+		othis.saveClick(function(){
+			Global.bimServerApi.callWithFullIndication("ServiceInterface", "validateModelChecker", {oid: othis.modelChecker.oid}, function(){
+			});
+		});
+	};
+	
+	$(".modelchecker .cancelButton").click(othis.cancelClick);
+	$(".modelchecker .saveButton").click(function(){
+		othis.saveClick(function(){
+			main.showServerSettings(function(){
+				callback();
+			});
+		});
+	});
+	$(".modelchecker .validateButton").click(othis.validateClick);
+}
+</script>

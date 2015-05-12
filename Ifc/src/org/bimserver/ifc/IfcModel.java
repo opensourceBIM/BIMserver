@@ -1,7 +1,7 @@
 package org.bimserver.ifc;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -34,14 +34,35 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.interfaces.objects.SIfcHeader;
+import org.bimserver.models.ifc2x3tc1.IfcAnnotation;
+import org.bimserver.models.ifc2x3tc1.IfcAnnotationCurveOccurrence;
+import org.bimserver.models.ifc2x3tc1.IfcDimensionCurve;
+import org.bimserver.models.ifc2x3tc1.IfcElement;
+import org.bimserver.models.ifc2x3tc1.IfcGrid;
+import org.bimserver.models.ifc2x3tc1.IfcLayeredItem;
+import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
+import org.bimserver.models.ifc2x3tc1.IfcPresentationLayerAssignment;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
+import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcPropertyDefinition;
+import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
+import org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralActivity;
+import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
+import org.bimserver.models.ifc2x3tc1.IfcRelReferencedInSpatialStructure;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.models.log.LogPackage;
-import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.ifc2x3tc1.IfcStructuralActivityAssignmentSelect;
+import org.bimserver.models.ifc2x3tc1.IfcStructuralItem;
+import org.bimserver.models.ifc2x3tc1.IfcTerminatorSymbol;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -51,17 +72,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
-public class IfcModel implements IfcModelInterface {
-
-	private static final BiMap<EClass, Class<?>> eClassClassMap = initEClassClassMap();
+public abstract class IfcModel implements IfcModelInterface {
 
 	private final ModelMetaData modelMetaData = new ModelMetaData();
 	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
@@ -79,26 +98,21 @@ public class IfcModel implements IfcModelInterface {
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
 	private long oidCounter = 1;
 	private boolean useDoubleStrings = true;
+	private PackageMetaData packageMetaData;
+	private Map<Integer, Long> pidRoidMap;
+	private SIfcHeader ifcHeader;
 
-	private static BiMap<EClass, Class<?>> initEClassClassMap() {
-		BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
-		for (EPackage ePackage : new EPackage[] { Ifc2x3tc1Package.eINSTANCE, StorePackage.eINSTANCE, LogPackage.eINSTANCE }) {
-			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-				if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass) eClassifier;
-					eClassClassMap.put(eClass, eClass.getInstanceClass());
-				}
-			}
+	public IfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap, int size) {
+		this.pidRoidMap = pidRoidMap;
+		if (packageMetaData == null) {
+			throw new IllegalArgumentException();
 		}
-		return eClassClassMap;
-	}
-
-	public IfcModel() {
-		this.objects = HashBiMap.create();
-	}
-
-	public IfcModel(int size) {
+		this.packageMetaData = packageMetaData;
 		this.objects = HashBiMap.create(size);
+	}
+
+	public IfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap) {
+		this(packageMetaData, pidRoidMap, 16);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -133,9 +147,6 @@ public class IfcModel implements IfcModelInterface {
 
 	private void buildIndexWithSubTypes() {
 		indexPerClassWithSubTypes = new HashMap<EClass, List<? extends IdEObject>>();
-		for (EClass eClass : eClassClassMap.keySet()) {
-			indexPerClassWithSubTypes.put((EClass) eClass, new ArrayList<IdEObject>());
-		}
 		for (Long key : objects.keySet()) {
 			IdEObject idEObject = objects.get(key);
 			if (idEObject != null) {
@@ -146,6 +157,9 @@ public class IfcModel implements IfcModelInterface {
 
 	@SuppressWarnings("unchecked")
 	private void buildIndexWithSuperTypes(IdEObject eObject, EClass eClass) {
+		if (!indexPerClassWithSubTypes.containsKey(eClass)) {
+			indexPerClassWithSubTypes.put(eClass, new ArrayList<IdEObject>());
+		}
 		((List<IdEObject>) indexPerClassWithSubTypes.get(eClass)).add(eObject);
 		for (EClass superClass : eClass.getESuperTypes()) {
 			buildIndexWithSuperTypes(eObject, superClass);
@@ -275,7 +289,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	public <T extends IdEObject> List<T> getAll(Class<T> interfaceClass) {
-		return getAll(eClassClassMap.inverse().get(interfaceClass));
+		return getAll(packageMetaData.getEClassIncludingDependencies(interfaceClass));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -293,7 +307,7 @@ public class IfcModel implements IfcModelInterface {
 
 	@Override
 	public <T extends IdEObject> List<T> getAllWithSubTypes(Class<T> interfaceClass)  {
-		return getAllWithSubTypes(eClassClassMap.inverse().get(interfaceClass));
+		return getAllWithSubTypes(packageMetaData.getEClass(interfaceClass));
 	}
 
 	public Set<String> getGuids(EClass eClass) {
@@ -350,9 +364,10 @@ public class IfcModel implements IfcModelInterface {
 		add(oid, eObject, false, true);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void add(long oid, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException {
 		if (((IdEObjectImpl) eObject).hasModel() && !allowMultiModel && ((IdEObjectImpl) eObject).getModel() != this) {
-			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel());
+			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel() + ", not this " + this);
 		}
 		if (oid == -1 || eObject.eClass().getEAnnotation("wrapped") != null) {
 			unidentifiedObjects.add(eObject);
@@ -370,6 +385,19 @@ public class IfcModel implements IfcModelInterface {
 				}
 				if (guidIndexed != null) {
 					indexGuid(eObject);
+				}
+				if (indexPerClassWithSubTypes != null) {
+//					if (indexPerClassWithSubTypes.get(eObject.eClass()) != null) {
+						buildIndexWithSuperTypes(eObject, eObject.eClass());
+//					}
+				}
+				if (indexPerClass != null) {
+					List<IdEObject> list = (List<IdEObject>) indexPerClass.get(eObject.eClass());
+					if (list == null) {
+						list = new ArrayList<>();
+						indexPerClass.put(eObject.eClass(), list);
+					}
+					list.add(eObject);
 				}
 			}
 			for (IfcModelChangeListener ifcModelChangeListener : changeListeners) {
@@ -803,7 +831,7 @@ public class IfcModel implements IfcModelInterface {
 
 	@Override
 	public ModelMetaData getModelMetaData() {
-		return modelMetaData ;
+		return modelMetaData;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -814,6 +842,27 @@ public class IfcModel implements IfcModelInterface {
 		((IdEObjectImpl) object).setOid(oid);
 		return (T) object;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends IdEObject> T createAndAdd(Class<T> clazz) throws IfcModelInterfaceException {
+		EClass eClass = packageMetaData.getEClass(clazz);
+		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		object.setLoadingState(State.LOADED);
+		long oid = oidCounter++;
+		add(oid, object);
+		return (T) object;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends IdEObject> T create(EClass eClass, long oid) throws IfcModelInterfaceException {
+		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		object.setModel(this);
+		object.setOid(oid);
+		add(oid, object);
+		return (T) object;
+	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -821,22 +870,21 @@ public class IfcModel implements IfcModelInterface {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		long oid = oidProvider.newOid(eClass);
 		((IdEObjectImpl) object).setOid(oid);
+		((IdEObjectImpl) object).setLoadingState(State.LOADED);
 		add(oid, object, false, false);
 		return (T) object;
 	}
 	
-	
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
-		return (T) create(eClassClassMap.inverse().get(clazz));
+		return (T) create(packageMetaData.getEClassIncludingDependencies(clazz));
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(Class<T> clazz, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
-		return (T) create(eClassClassMap.inverse().get(clazz), oidProvider);
+		return (T) create(packageMetaData.getEClass(clazz), oidProvider);
 	}
 	
 	@Override
@@ -869,12 +917,124 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	@Override
-	public IfcModelInterface branch(long poid) {
+	public IfcModelInterface branch(long poid, boolean recordChanges) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public PackageMetaData getPackageMetaData() {
+		return packageMetaData;
+	}
+	@Override
+	public void fixInverseMismatches() {
+		for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : getAll(IfcRelContainedInSpatialStructure.class)) {
+			for (IfcProduct ifcProduct : ifcRelContainedInSpatialStructure.getRelatedElements()) {
+				if (ifcProduct instanceof IfcElement) {
+					IfcElement ifcElement = (IfcElement)ifcProduct;
+					ifcElement.getContainedInStructure().add(ifcRelContainedInSpatialStructure);
+				} else if (ifcProduct instanceof IfcAnnotation) {
+					IfcAnnotation ifcAnnotation = (IfcAnnotation)ifcProduct;
+					ifcAnnotation.getContainedInStructure().add(ifcRelContainedInSpatialStructure);
+				} else if (ifcProduct instanceof IfcGrid) {
+					IfcGrid ifcGrid = (IfcGrid)ifcProduct;
+					ifcGrid.getContainedInStructure().add(ifcRelContainedInSpatialStructure);
+				}
+			}
+		}
+		for (IfcPresentationLayerAssignment ifcPresentationLayerAssignment : getAllWithSubTypes(IfcPresentationLayerAssignment.class)) {
+			for (IfcLayeredItem ifcLayeredItem : ifcPresentationLayerAssignment.getAssignedItems()) {
+				if (ifcLayeredItem instanceof IfcRepresentation) {
+					IfcRepresentation ifcRepresentation = (IfcRepresentation)ifcLayeredItem;
+					ifcRepresentation.getLayerAssignments().add(ifcPresentationLayerAssignment);
+				} else if (ifcLayeredItem instanceof IfcRepresentationItem) {
+					IfcRepresentationItem ifcRepresentationItem = (IfcRepresentationItem)ifcLayeredItem;
+					ifcRepresentationItem.getLayerAssignments().add(ifcPresentationLayerAssignment);
+				}
+			}
+		}
+		for (IfcRelAssociates ifcRelAssociates : getAllWithSubTypes(IfcRelAssociates.class)) {
+			for (IfcRoot ifcRoot : ifcRelAssociates.getRelatedObjects()) {
+				if (ifcRoot instanceof IfcObjectDefinition) {
+					((IfcObjectDefinition)ifcRoot).getHasAssociations().add(ifcRelAssociates);
+				} else if (ifcRoot instanceof IfcPropertyDefinition) {
+					((IfcPropertyDefinition)ifcRoot).getHasAssociations().add(ifcRelAssociates);
+				}
+			}
+		}
+		for (IfcTerminatorSymbol ifcTerminatorSymbol : getAllWithSubTypes(IfcTerminatorSymbol.class)) {
+			IfcAnnotationCurveOccurrence ifcAnnotationCurveOccurrence = ifcTerminatorSymbol.getAnnotatedCurve();
+			if (ifcAnnotationCurveOccurrence instanceof IfcDimensionCurve) {
+				((IfcDimensionCurve)ifcAnnotationCurveOccurrence).setItem(ifcTerminatorSymbol);
+			}
+		}
+		for (IfcRelReferencedInSpatialStructure ifcRelReferencedInSpatialStructure : getAllWithSubTypes(IfcRelReferencedInSpatialStructure.class)) {
+			for (IfcProduct ifcProduct : ifcRelReferencedInSpatialStructure.getRelatedElements()) {
+				if (ifcProduct instanceof IfcElement) {
+					((IfcElement)ifcProduct).getReferencedInStructures().add(ifcRelReferencedInSpatialStructure);
+				}
+			}
+		}
+		for (IfcProduct ifcProduct : getAllWithSubTypes(IfcProduct.class)) {
+			IfcProductRepresentation ifcProductRepresentation = ifcProduct.getRepresentation();
+			if (ifcProductRepresentation instanceof IfcProductDefinitionShape) {
+				((IfcProductDefinitionShape)ifcProductRepresentation).getShapeOfProduct().add(ifcProduct);
+			}
+		}
+		for (IfcRelConnectsStructuralActivity ifcRelConnectsStructuralActivity : getAllWithSubTypes(IfcRelConnectsStructuralActivity.class)) {
+			IfcStructuralActivityAssignmentSelect ifcStructuralActivityAssignmentSelect = ifcRelConnectsStructuralActivity.getRelatingElement();
+			if (ifcStructuralActivityAssignmentSelect instanceof IfcStructuralItem) {
+				((IfcStructuralItem)ifcStructuralActivityAssignmentSelect).getAssignedStructuralActivity().add(ifcRelConnectsStructuralActivity);
+			}
+		}
+	}
+
+	@Override
+	public Map<Integer, Long> getPidRoidMap() {
+		return pidRoidMap;
+	}
+
+	@Override
+	public void set(IdEObject idEObject, EStructuralFeature eFeature, Object newValue) {
+	}
+
+	@Override
+	public void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
+	}
+
+	@Override
+	public boolean containsNoFetch(long oid) {
+		return contains(oid);
+	}
+
+	@Override
+	public IdEObject getNoFetch(long oid) {
+		return get(oid);
+	}
+
+	public abstract void load(IdEObject idEObject);
+	
+	@Override
+	public Set<EClass> getUsedClasses() {
+		if (indexPerClass == null) {
+			buildIndex();
+		}
+		return indexPerClass.keySet();
+	}
+	
+	@Override
+	public void query(ObjectNode query) {
+	}
+	
+	public void setIfcHeader(SIfcHeader ifcHeader) {
+		this.ifcHeader = ifcHeader;
+	}
+	
+	public SIfcHeader getIfcHeader() {
+		return ifcHeader;
 	}
 }

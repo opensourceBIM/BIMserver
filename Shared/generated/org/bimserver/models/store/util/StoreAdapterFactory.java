@@ -49,7 +49,14 @@ import org.bimserver.models.store.ListDataValue;
 import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.LongType;
+import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
 import org.bimserver.models.store.Migration;
+import org.bimserver.models.store.ModelCheckerInstance;
+import org.bimserver.models.store.ModelCheckerPluginDescriptor;
+import org.bimserver.models.store.ModelCheckerResult;
+import org.bimserver.models.store.ModelCheckerResultHeader;
+import org.bimserver.models.store.ModelCheckerResultItem;
+import org.bimserver.models.store.ModelCheckerResultLine;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginDescriptor;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
@@ -634,6 +641,11 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseModelCheckerPluginDescriptor(ModelCheckerPluginDescriptor object) {
 			return createModelCheckerPluginDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseMessagingSerializerPluginConfiguration(MessagingSerializerPluginConfiguration object) {
+			return createMessagingSerializerPluginConfigurationAdapter();
 		}
 
 		@Override
@@ -1968,6 +1980,20 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelCheckerPluginDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.MessagingSerializerPluginConfiguration <em>Messaging Serializer Plugin Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.MessagingSerializerPluginConfiguration
+	 * @generated
+	 */
+	public Adapter createMessagingSerializerPluginConfigurationAdapter() {
 		return null;
 	}
 

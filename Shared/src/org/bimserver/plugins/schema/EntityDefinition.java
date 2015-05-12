@@ -1,7 +1,7 @@
 package org.bimserver.plugins.schema;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,14 +19,16 @@ package org.bimserver.plugins.schema;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class EntityDefinition extends NamedType {
-	// store each supertype in both a list and a hashtable for convinience
+	// store each supertype in both a list and a hashtable for convenience
 	private ArrayList<EntityDefinition> supertypes = new ArrayList<EntityDefinition>();
 	private HashMap<String, EntityDefinition> supertypesBN = new HashMap<String, EntityDefinition>();
-	// store each attribute in both a list and a hashtable for convinience
+	// store each attribute in both a list and a hashtable for convenience
 	private ArrayList<Attribute> attributes = new ArrayList<Attribute>();
 	private HashMap<String, Attribute> attributesBN = new HashMap<String, Attribute>();
 
@@ -34,14 +36,14 @@ public class EntityDefinition extends NamedType {
 	private ArrayList<Attribute> attributesPlusSuper;
 
 	private ArrayList<EntityDefinition> subtypes = new ArrayList<EntityDefinition>();
-	private Map<String, DerivedAttribute2> derivedAttributes = new HashMap<String, DerivedAttribute2>();
+	private final Map<String, DerivedAttribute2> derivedAttributes = new HashMap<String, DerivedAttribute2>();
+	private final Set<String> derivedAttributesOverride = new HashSet<String>();
 	boolean complex;
 	boolean instantiable;
 	boolean independent;
 
 	public EntityDefinition(String name) {
 		super(name);
-
 	}
 
 	public boolean isDerived(String name) {
@@ -59,10 +61,29 @@ public class EntityDefinition extends NamedType {
 		return true;
 	}
 
-	public void addDerived(DerivedAttribute2 attribute) {
-		derivedAttributes.put(attribute.getName(), attribute);
+	public void addDerived(DerivedAttribute2 attribute, boolean firstOccurance) {
+		if (!derivedAttributes.containsKey(attribute.getName())) {
+			derivedAttributes.put(attribute.getName(), attribute);
+		} else {
+			if (firstOccurance) {
+				derivedAttributes.put(attribute.getName(), attribute);
+			}
+		}
+		for (EntityDefinition entityDefinition : supertypes) {
+			if (entityDefinition.getAttributeBNWithSuper(attribute.getName()) != null) {
+				derivedAttributesOverride.add(attribute.getName());
+			}
+		}
+		doSubtypes(attribute);
 	}
 
+	private void doSubtypes(DerivedAttribute2 attribute) {
+		for (EntityDefinition entityDefinition : subtypes) {
+			entityDefinition.addDerived(new DerivedAttribute2(attribute.getName(), attribute.getType(), attribute.getExpressCode(), attribute.isCollection(), true), false);
+			entityDefinition.doSubtypes(attribute);
+		}
+	}
+	
 	public Attribute getAttributeBN(String name) {
 		return attributesBN.get(name);
 	}
@@ -181,5 +202,9 @@ public class EntityDefinition extends NamedType {
 	
 	public Map<String, DerivedAttribute2> getDerivedAttributes() {
 		return derivedAttributes;
+	}
+
+	public boolean isDerivedOverride(String name) {
+		return derivedAttributesOverride.contains(name);
 	}
 }

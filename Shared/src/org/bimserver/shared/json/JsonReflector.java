@@ -1,7 +1,7 @@
 package org.bimserver.shared.json;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,7 +24,6 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
-import org.codehaus.jettison.json.JSONException;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
@@ -77,6 +76,12 @@ public abstract class JsonReflector implements Reflector {
 						} else {
 							throw new ServerException(message);
 						}
+					} else {
+						if (exceptionJson.has("errorCode")) {
+							throw new ServerException(message, ErrorCode.parse(exceptionJson.get("errorCode").getAsInt()));
+						} else {
+							throw new ServerException(message);
+						}
 					}
 				} else if (response.has("result")) {
 					Object result = response.get("result");
@@ -97,14 +102,13 @@ public abstract class JsonReflector implements Reflector {
 		} catch (Exception e) {
 			throw new ReflectorException(e);
 		}
-		return null;
 	}
 
 	protected boolean isOneWay() {
 		return false;
 	}
 
-	public abstract JsonObject call(JsonObject request) throws JSONException, ReflectorException;
+	public abstract JsonObject call(JsonObject request) throws ReflectorException;
 
 	public void close() {
 	}
