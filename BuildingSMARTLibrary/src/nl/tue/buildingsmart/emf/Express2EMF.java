@@ -382,9 +382,6 @@ public class Express2EMF {
 		Iterator<EntityDefinition> entIter = schema.getEntities().iterator();
 		while (entIter.hasNext()) {
 			EntityDefinition ent = (EntityDefinition) entIter.next();
-			if (ent.getName().equalsIgnoreCase("IfcRelConnectsPathElements")) {
-				System.out.println();
-			}
 			Iterator<Attribute> attribIter = ent.getAttributes(false).iterator();
 			while (attribIter.hasNext()) {
 				Attribute attrib = (Attribute) attribIter.next();
@@ -566,6 +563,9 @@ public class Express2EMF {
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEBoolean());
 				eAttribute.setUnsettable(expAttrib.isOptional());
 				cls.getEStructuralFeatures().add(eAttribute);
+			} else if (bt == null) {
+				// TODO These are the new 2-dimensional arrays in IFC4, there is 4 of them
+				System.out.println(ent.getName() + "." + attrib.getName() + " not implemented");
 			}
 			if (domain instanceof ArrayType) {
 				// TODO this is not yet implmented in simpelSDAI
