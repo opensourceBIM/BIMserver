@@ -16,15 +16,39 @@
  */
 package org.bimserver.models.ifc4;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc Texture Vertex List</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.bimserver.models.ifc4.IfcTextureVertexList#getTexCoordsList <em>Tex Coords List</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTextureVertexList()
  * @model
  * @generated
  */
 public interface IfcTextureVertexList extends IfcPresentationItem {
+
+	/**
+	 * Returns the value of the '<em><b>Tex Coords List</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.ListOfIfcParameterValue}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Tex Coords List</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tex Coords List</em>' reference list.
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTextureVertexList_TexCoordsList()
+	 * @model
+	 * @generated
+	 */
+	EList<ListOfIfcParameterValue> getTexCoordsList();
 } // IfcTextureVertexList

@@ -66,8 +66,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcModulusOfTranslationalSubgradeReactionSelect getTranslationalStiffnessByLengthX() {
-		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_X,
-				true);
+		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_X, true);
 	}
 
 	/**
@@ -103,8 +102,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcModulusOfTranslationalSubgradeReactionSelect getTranslationalStiffnessByLengthY() {
-		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_Y,
-				true);
+		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_Y, true);
 	}
 
 	/**
@@ -140,8 +138,7 @@ public class IfcBoundaryEdgeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcModulusOfTranslationalSubgradeReactionSelect getTranslationalStiffnessByLengthZ() {
-		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_Z,
-				true);
+		return (IfcModulusOfTranslationalSubgradeReactionSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_EDGE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_LENGTH_Z, true);
 	}
 
 	/**

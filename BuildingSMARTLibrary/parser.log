@@ -1,0 +1,276 @@
+PASS one:IfcBoxAlignment
+<AST>:0:0: unexpected end of subtree
+PASS one:IfcLanguageId
+PASS one:IfcNonNegativeLengthMeasure
+<AST>:0:0: unexpected end of subtree
+PASS one:IfcNormalisedRatioMeasure
+PASS one:IfcPositiveLengthMeasure
+<AST>:0:0: unexpected end of subtree
+PASS one:IfcPositivePlaneAngleMeasure
+<AST>:0:0: unexpected end of subtree
+PASS one:IfcPositiveRatioMeasure
+<AST>:0:0: unexpected end of subtree
+<AST>: expecting SIMPLE_FACTOR, found '<empty tree>'
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+aggregat
+aggregat
+aggregat
+aggregat
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+aggregat
+aggregat
+aggregat
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+aggregat
+aggregat
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+<AST>:0:0: unexpected end of subtree
+aggregat
+aggregat
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: expecting VARIABLE_ID, found 'PARAMETER_TYPE'
+<AST>:0:0: expecting PARAMETER_TYPE, found 'EXPRESSION'
+IfcBoxAlignmentPASS 2 get TYPEREF:IfcLabel
+<AST>:0:0: unexpected end of subtree
+IfcLanguageIdPASS 2 get TYPEREF:IfcIdentifier
+IfcNonNegativeLengthMeasurePASS 2 get TYPEREF:IfcLengthMeasure
+<AST>:0:0: unexpected end of subtree
+IfcNormalisedRatioMeasurePASS 2 get TYPEREF:IfcRatioMeasure
+IfcPositiveLengthMeasurePASS 2 get TYPEREF:IfcLengthMeasure
+<AST>:0:0: unexpected end of subtree
+IfcPositivePlaneAngleMeasurePASS 2 get TYPEREF:IfcPlaneAngleMeasure
+<AST>:0:0: unexpected end of subtree
+IfcPositiveRatioMeasurePASS 2 get TYPEREF:IfcRatioMeasure
+<AST>:0:0: unexpected end of subtree
+<AST>: expecting SIMPLE_FACTOR, found '<empty tree>'
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+aggregat
+aggregat
+aggregat
+WARNING: could not find (for +IfcBSplineSurface)
+aggregat
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+WARNING: could not find (for +IfcCartesianPointList3D)
+aggregat
+aggregat
+aggregat
+WARNING: could not find (for +IfcColourRgbList)
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+WARNING: could not find (for +IfcIndexedTriangleTextureMap)
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+aggregat
+WARNING: could not find (for +IfcRationalBSplineSurfaceWithKnots)
+aggregat
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+WARNING: could not find NUMBER(for +IfcRelConnectsPathElements)
+WARNING: could not find NUMBER(for +IfcRelConnectsPathElements)
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+WARNING: could not find (for +IfcStructuralLoadConfiguration)
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+WARNING: could not find (for +IfcTessellatedFaceSet)
+<AST>:0:0: unexpected end of subtree
+aggregat
+WARNING: could not find (for +IfcTextureVertexList)
+aggregat
+WARNING: could not find (for +IfcTriangulatedFaceSet)
+aggregat
+WARNING: could not find (for +IfcTriangulatedFaceSet)
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: expecting VARIABLE_ID, found 'PARAMETER_TYPE'
+<AST>:0:0: expecting PARAMETER_TYPE, found 'EXPRESSION'
+PASS one:IfcBoxAlignment
+<AST>:0:0: unexpected end of subtree
+PASS one:IfcLanguageId
+PASS one:IfcNonNegativeLengthMeasure
+<AST>:0:0: unexpected end of subtree
+PASS one:IfcNormalisedRatioMeasure
+PASS one:IfcPositiveLengthMeasure
+<AST>:0:0: unexpected end of subtree
+PASS one:IfcPositivePlaneAngleMeasure
+<AST>:0:0: unexpected end of subtree
+PASS one:IfcPositiveRatioMeasure
+<AST>:0:0: unexpected end of subtree
+<AST>: expecting SIMPLE_FACTOR, found '<empty tree>'
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+aggregat
+aggregat
+aggregat
+aggregat
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+aggregat
+aggregat
+aggregat
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+aggregat
+aggregat
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+aggregat
+<AST>:0:0: unexpected end of subtree
+aggregat
+aggregat
+aggregat
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: unexpected end of subtree
+<AST>:0:0: expecting VARIABLE_ID, found 'PARAMETER_TYPE'
+<AST>:0:0: expecting PARAMETER_TYPE, found 'EXPRESSION'

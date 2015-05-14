@@ -4833,6 +4833,36 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseListOfIfcCartesianPoint(ListOfIfcCartesianPoint object) {
+			return createListOfIfcCartesianPointAdapter();
+		}
+
+		@Override
+		public Adapter caseListOfIfcLengthMeasure(ListOfIfcLengthMeasure object) {
+			return createListOfIfcLengthMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseListOfIfcNormalisedRatioMeasure(ListOfIfcNormalisedRatioMeasure object) {
+			return createListOfIfcNormalisedRatioMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseListOfEInt(ListOfEInt object) {
+			return createListOfEIntAdapter();
+		}
+
+		@Override
+		public Adapter caseListOfEDouble(ListOfEDouble object) {
+			return createListOfEDoubleAdapter();
+		}
+
+		@Override
+		public Adapter caseListOfIfcParameterValue(ListOfIfcParameterValue object) {
+			return createListOfIfcParameterValueAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -18162,6 +18192,90 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcWarpingStiffnessSelectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.ListOfIfcCartesianPoint <em>List Of Ifc Cartesian Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.ListOfIfcCartesianPoint
+	 * @generated
+	 */
+	public Adapter createListOfIfcCartesianPointAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.ListOfIfcLengthMeasure <em>List Of Ifc Length Measure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.ListOfIfcLengthMeasure
+	 * @generated
+	 */
+	public Adapter createListOfIfcLengthMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.ListOfIfcNormalisedRatioMeasure <em>List Of Ifc Normalised Ratio Measure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.ListOfIfcNormalisedRatioMeasure
+	 * @generated
+	 */
+	public Adapter createListOfIfcNormalisedRatioMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.ListOfEInt <em>List Of EInt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.ListOfEInt
+	 * @generated
+	 */
+	public Adapter createListOfEIntAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.ListOfEDouble <em>List Of EDouble</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.ListOfEDouble
+	 * @generated
+	 */
+	public Adapter createListOfEDoubleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.ListOfIfcParameterValue <em>List Of Ifc Parameter Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.ListOfIfcParameterValue
+	 * @generated
+	 */
+	public Adapter createListOfIfcParameterValueAdapter() {
 		return null;
 	}
 

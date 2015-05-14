@@ -208,13 +208,13 @@ public class GeometryGenerator {
 			Serializer ifcSerializer = ifcSerializerPlugin.createSerializer(new PluginConfiguration());
 			RenderEngine renderEngine = null;
 			try {
-				renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration(), "ifc2x3tc1");
+				renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration(), model.getPackageMetaData().getSchema().getEPackageName());
 			} catch (RenderEngineException e) {
 				LOGGER.error("", e);
 			}
 			try {
 				renderEngine.init();
-				ifcSerializer.init(targetModel, null, bimServer.getPluginManager(), null, bimServer.getPluginManager().getMetaDataManager().getPackageMetaData("ifc2x3tc1"), true);
+				ifcSerializer.init(targetModel, null, bimServer.getPluginManager(), null, model.getPackageMetaData(), true);
 
 				boolean debug = false;
 				InputStream in = null;

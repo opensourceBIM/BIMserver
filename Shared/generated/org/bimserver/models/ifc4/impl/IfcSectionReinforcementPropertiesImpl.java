@@ -252,8 +252,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcReinforcementBarProperties> getCrossSectionReinforcementDefinitions() {
-		return (EList<IfcReinforcementBarProperties>) eGet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__CROSS_SECTION_REINFORCEMENT_DEFINITIONS,
-				true);
+		return (EList<IfcReinforcementBarProperties>) eGet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__CROSS_SECTION_REINFORCEMENT_DEFINITIONS, true);
 	}
 
 } //IfcSectionReinforcementPropertiesImpl

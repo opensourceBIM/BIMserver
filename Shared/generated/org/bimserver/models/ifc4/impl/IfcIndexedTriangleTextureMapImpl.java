@@ -18,6 +18,8 @@ package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcIndexedTriangleTextureMap;
+import org.bimserver.models.ifc4.ListOfEInt;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -25,6 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Ifc Indexed Triangle Texture Map</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedTriangleTextureMapImpl#getTexCoordIndex <em>Tex Coord Index</em>}</li>
+ * </ul>
  * </p>
  *
  * @generated
@@ -47,6 +53,16 @@ public class IfcIndexedTriangleTextureMapImpl extends IfcIndexedTextureMapImpl i
 	@Override
 	protected EClass eStaticClass() {
 		return Ifc4Package.Literals.IFC_INDEXED_TRIANGLE_TEXTURE_MAP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ListOfEInt> getTexCoordIndex() {
+		return (EList<ListOfEInt>) eGet(Ifc4Package.Literals.IFC_INDEXED_TRIANGLE_TEXTURE_MAP__TEX_COORD_INDEX, true);
 	}
 
 } //IfcIndexedTriangleTextureMapImpl
