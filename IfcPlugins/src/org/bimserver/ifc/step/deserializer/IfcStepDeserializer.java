@@ -470,6 +470,11 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 					} else {
 						waitingList.add(referenceId, new ListWaitingObject(lineNumber, object, structuralFeature, index));
 					}
+				} else if (stringValue.charAt(0) == '(') {
+					// Two dimensional list
+					IdEObject newObject = (IdEObject) getPackageMetaData().create((EClass) structuralFeature.getEType());
+					readList(stringValue, newObject, newObject.eClass().getEStructuralFeature("List"));
+					list.addUnique(newObject);
 				} else {
 					Object convert = convert(structuralFeature.getEType(), stringValue);
 					if (convert != null) {

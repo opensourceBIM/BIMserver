@@ -32,6 +32,7 @@ import org.apache.commons.codec.binary.Hex;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.interfaces.objects.SIfcHeader;
+import org.bimserver.models.ifc4.IfcRepresentation;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.serializers.ProgressReporter;
@@ -256,6 +257,9 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void write(IdEObject object) throws SerializerException, IOException {
+		if (object instanceof IfcRepresentation) {
+			System.out.println();
+		}
 //		throw new SerializerException("test");
 		EClass eClass = object.eClass();
 		if (eClass.getEAnnotation("hidden") != null) {
@@ -305,7 +309,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 		println(PAREN_CLOSE_SEMICOLON);
 	}
 
-	private void writeEDataType(EObject object, EntityDefinition entityBN, EStructuralFeature feature) throws SerializerException, IOException {
+	private void writeEDataType(IdEObject object, EntityDefinition entityBN, EStructuralFeature feature) throws SerializerException, IOException {
 		if (entityBN != null && entityBN.isDerived(feature.getName())) {
 			print(ASTERISK);
 		} else if (feature.isMany()) {
@@ -315,7 +319,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 		}
 	}
 
-	private void writeEClass(EObject object, EStructuralFeature feature) throws SerializerException, IOException {
+	private void writeEClass(IdEObject object, EStructuralFeature feature) throws SerializerException, IOException {
 		Object referencedObject = object.eGet(feature);
 		if (referencedObject instanceof IdEObject && ((IdEObject)referencedObject).eClass().getEAnnotation("wrapped") != null) {
 			writeWrappedValue(object, feature, ((EObject)referencedObject).eClass());
@@ -399,7 +403,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 		print(CLOSE_PAREN);
 	}
 
-	private void writeList(EObject object, EStructuralFeature feature) throws SerializerException, IOException {
+	private void writeList(IdEObject object, EStructuralFeature feature) throws SerializerException, IOException {
 		List<?> list = (List<?>) object.eGet(feature);
 		List<?> doubleStingList = null;
 		if (feature.getEType() == EcorePackage.eINSTANCE.getEDouble() && model.isUseDoubleStrings()) {
@@ -463,7 +467,11 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 								}
 								print(CLOSE_PAREN);
 							} else {
-								LOGGER.info("Unfollowable reference found from " + object + "." + feature.getName() + " to " + eObject);
+								if (feature.getEAnnotation("twodimensionalarray") != null) {
+									writeList(eObject, eObject.eClass().getEStructuralFeature("List"));
+								} else {
+									LOGGER.info("Unfollowable reference found from " + object + "(" + object.getOid() + ")." + feature.getName() + " to " + eObject + "(" + eObject.getOid() + ")");
+								}
 							}
 						} else {
 							if (doubleStingList != null) {

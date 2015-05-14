@@ -18,6 +18,8 @@ package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCartesianPointList3D;
+import org.bimserver.models.ifc4.ListOfIfcLengthMeasure;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -25,6 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Ifc Cartesian Point List3 D</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianPointList3DImpl#getCoordList <em>Coord List</em>}</li>
+ * </ul>
  * </p>
  *
  * @generated
@@ -47,6 +53,16 @@ public class IfcCartesianPointList3DImpl extends IfcCartesianPointListImpl imple
 	@Override
 	protected EClass eStaticClass() {
 		return Ifc4Package.Literals.IFC_CARTESIAN_POINT_LIST3_D;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ListOfIfcLengthMeasure> getCoordList() {
+		return (EList<ListOfIfcLengthMeasure>) eGet(Ifc4Package.Literals.IFC_CARTESIAN_POINT_LIST3_D__COORD_LIST, true);
 	}
 
 } //IfcCartesianPointList3DImpl
