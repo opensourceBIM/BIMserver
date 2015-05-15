@@ -1472,12 +1472,11 @@ function Model(bimServerApi, poid, roid, schema) {
 				promise.fire();
 			} else {
 				var types = [];
+				types.push(type);
 				if (includeAllSubTypes) {
-					othis.bimServerApi.getAllSubTypes(othis.bimServerApi.schemas[othis.schema], type, function(type){
-						types.push(type);
+					othis.bimServerApi.getAllSubTypes(othis.bimServerApi.schemas[othis.schema], type, function(subType){
+						types.push(subType);	
 					});
-				} else {
-					types.push(type);
 				}
 				
 				var typesToLoad = [];
