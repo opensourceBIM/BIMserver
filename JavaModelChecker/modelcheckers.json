@@ -1,0 +1,18 @@
+{
+  "modelcheckers" : [ {
+    "name" : "Check window widths",
+    "description" : "Check window widths",
+    "modelCheckerPluginClassName" : "org.bimserver.javamodelchecker.JavaModelCheckerPlugin",
+    "code" : "package org.bimserver.javamodelchecker;\r\n\r\nimport org.bimserver.emf.IfcModelInterface;\r\nimport org.bimserver.models.ifc2x3tc1.IfcWindow;\r\nimport org.bimserver.models.store.ModelCheckerResult;\r\nimport org.bimserver.models.store.ModelCheckerResultLine;\r\nimport org.bimserver.models.store.ModelCheckerResultType;\r\nimport org.bimserver.models.store.StoreFactory;\r\n\r\npublic class Implementation implements JavaModelCheckerInterface {\r\n\tpublic ModelCheckerResult check(IfcModelInterface model) {\r\n\t\tModelCheckerResult modelCheckerResult = StoreFactory.eINSTANCE.createModelCheckerResult();\r\n\t\tmodelCheckerResult.setValid(true);\r\n\t\tfor (IfcWindow ifcWindow : model.getAllWithSubTypes(IfcWindow.class)) {\r\n\t\t\tModelCheckerResultLine line = StoreFactory.eINSTANCE.createModelCheckerResultLine();\r\n\t\t\tline.setFieldOrClass(\"IfcWindow\");\r\n\t\t\tline.setObjectId(ifcWindow.getOid());\r\n\t\t\tline.setShouldBe(\"> 50\");\r\n\t\t\tline.setValue(\"\" + ifcWindow.getOverallWidth());\r\n\t\t\tmodelCheckerResult.getItems().add(line);\r\n\t\t\tif (ifcWindow.getOverallWidth() < 50) {\r\n\t\t\t\tmodelCheckerResult.setValid(false);\r\n\t\t\t\tline.setType(ModelCheckerResultType.ERROR);\r\n\t\t\t} else {\r\n\t\t\t\tline.setType(ModelCheckerResultType.SUCCESS);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn modelCheckerResult;\r\n\t}\r\n}"
+  }, {
+    "name" : "Pass always",
+    "description" : "Pass always",
+    "modelCheckerPluginClassName" : "org.bimserver.javamodelchecker.JavaModelCheckerPlugin",
+    "code" : "package org.bimserver.javamodelchecker;\r\n\r\nimport org.bimserver.emf.IfcModelInterface;\r\nimport org.bimserver.models.store.ModelCheckerResult;\r\nimport org.bimserver.models.store.StoreFactory;\r\n\r\npublic class Implementation implements JavaModelCheckerInterface {\r\n\tpublic ModelCheckerResult check(IfcModelInterface model) {\r\n\t\tModelCheckerResult modelCheckerResult = StoreFactory.eINSTANCE.createModelCheckerResult();\r\n\t\tmodelCheckerResult.setValid(true);\r\n\t\treturn modelCheckerResult;\r\n\t}\r\n}"
+  }, {
+    "name" : "Fail always",
+    "description" : "Fail always",
+    "modelCheckerPluginClassName" : "org.bimserver.javamodelchecker.JavaModelCheckerPlugin",
+    "code" : "package org.bimserver.javamodelchecker;\r\n\r\nimport org.bimserver.emf.IfcModelInterface;\r\nimport org.bimserver.models.store.ModelCheckerResult;\r\nimport org.bimserver.models.store.StoreFactory;\r\n\r\npublic class Implementation implements JavaModelCheckerInterface {\r\n\tpublic ModelCheckerResult check(IfcModelInterface model) {\r\n\t\tModelCheckerResult modelCheckerResult = StoreFactory.eINSTANCE.createModelCheckerResult();\r\n\t\tmodelCheckerResult.setValid(false);\r\n\t\treturn modelCheckerResult;\r\n\t}\r\n}\r\n"
+  } ]
+}

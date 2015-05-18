@@ -104,15 +104,15 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	public VirtualFile createFile(String path) {
-		if (path.contains("/")) {
-			String newName = path.substring(0, path.indexOf("/"));
+		if (path.contains(File.separator)) {
+			String newName = path.substring(0, path.indexOf(File.separator));
 			if (files.containsKey(newName)) {
 				VirtualFile virtualFile = files.get(newName);
-				return virtualFile.createFile(path.substring(path.indexOf("/") + 1));
+				return virtualFile.createFile(path.substring(path.indexOf(File.separator) + 1));
 			} else {
 				VirtualFile virtualFile = new VirtualFile(this, newName);
 				files.put(newName, virtualFile);
-				return virtualFile.createFile(path.substring(path.indexOf("/") + 1));
+				return virtualFile.createFile(path.substring(path.indexOf(File.separator) + 1));
 			}
 		} else {
 			VirtualFile virtualFile = new VirtualFile(this, path);

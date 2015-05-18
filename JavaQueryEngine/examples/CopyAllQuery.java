@@ -17,7 +17,7 @@ public class Query implements QueryInterface {
 	@Override
 	public void query(IfcModelInterface source, Reporter reporter, ModelHelper modelHelper) throws IfcModelInterfaceException {
         for (IdEObject idEObject : source.getValues()) {
-        	modelHelper.copy(idEObject);
+        	modelHelper.copy(idEObject, false);
         }
 	}
 }

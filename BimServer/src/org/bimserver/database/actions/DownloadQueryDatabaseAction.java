@@ -24,7 +24,9 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
@@ -33,13 +35,16 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.Reporter;
+import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.queryengine.QueryEngine;
 import org.bimserver.plugins.queryengine.QueryEngineException;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.utils.CollectionUtils;
 import org.bimserver.webservices.authorization.Authorization;
+import org.eclipse.emf.ecore.EClass;
 
 public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
@@ -68,11 +73,23 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 			QueryEnginePluginConfiguration queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), qeid, Query.getDefault());
 			Revision revision = session.get(roid, Query.getDefault());
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
+			
+			if (objectIDM == null) {
+				objectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), packageMetaData.getSchemaDefinition());
+			}
+			
 			if (queryEngineObject != null) {
 				QueryEnginePlugin queryEnginePlugin = getBimServer().getPluginManager().getQueryEngine(queryEngineObject.getPluginDescriptor().getPluginClassName(), true);
 				if (queryEnginePlugin != null) {
 					QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(new PluginConfiguration(queryEngineObject.getSettings()));
-					IfcModelInterface result = new ServerIfcModel(packageMetaData, null, getDatabaseSession());
+					final IfcModelInterface result = new ServerIfcModel(packageMetaData, null, getDatabaseSession());
+					ModelHelper modelHelper = new ModelHelper(getBimServer().getMetaDataManager(), objectIDM, result);
+					modelHelper.setOidProvider(new OidProvider<Long>(){
+						private long oid = 1000000;
+						@Override
+						public Long newOid(EClass eClass) {
+							return oid++;
+						}});
 					IfcModelInterface finalResult = queryEngine.query(ifcModel, code, new Reporter(){
 						@Override
 						public void error(Exception error) {
@@ -84,7 +101,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 
 						@Override
 						public void info(String info) {
-						}}, new ModelHelper(objectIDM, result));
+						}}, modelHelper);
 					return finalResult;
 				} else {
 					throw new UserException("No Query Engine found " + queryEngineObject.getPluginDescriptor().getPluginClassName());

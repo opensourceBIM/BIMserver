@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.GuidCompressor;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.ifc.Scaler;
@@ -53,6 +52,7 @@ import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
+import org.bimserver.shared.GuidCompressor;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
@@ -167,7 +167,7 @@ public class FurniturePlacerServicePlugin extends ServicePlugin {
 						}
 					}
 
-					ModelHelper modelHelper = new ModelHelper(new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getPluginManager().requireSchemaDefinition("ifc2x3tc1")), model);
+					ModelHelper modelHelper = new ModelHelper(getPluginManager().getMetaDataManager(), new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), getPluginManager().requireSchemaDefinition("ifc2x3tc1")), model);
 
 					modelHelper.setTargetModel(model);
 					modelHelper.setObjectFactory(model);

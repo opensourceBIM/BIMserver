@@ -139,7 +139,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 		}
 		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, ridRoidMap, getDatabaseSession());
 		try {
-			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
 			ifcModel.getModelMetaData().setName("query");
 			for (String name : names) {
 				if (!foundNames.contains(name)) {

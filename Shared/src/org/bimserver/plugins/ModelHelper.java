@@ -19,25 +19,36 @@ package org.bimserver.plugins;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.ObjectFactory;
 import org.bimserver.emf.OidProvider;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.shared.GuidCompressor;
+import org.bimserver.utils.CollectionUtils;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class ModelHelper {
+
+	private static ObjectIDM skipRepresentation;
+	private static Map<EPackage, HideAllInversesObjectIDM> hideAllInverseMap;
+	private static Map<EClass, ObjectIDM> objectIdmCache = null;
 
 	private ObjectIDM objectIDM;
 	private final HashMap<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
@@ -46,14 +57,74 @@ public class ModelHelper {
 	private OidProvider<Long> oidProvider;
 	private boolean keepOriginalOids;
 	private final HashMap<Long, InverseFix> inverseFixes = new HashMap<>();
+	
+	public static ObjectIDM createObjectIdm(final EClass onlyIncludeRepresentationForThisClass) {
+		return objectIdmCache.get(onlyIncludeRepresentationForThisClass);
+	}
 
-	public ModelHelper(ObjectIDM objectIDM, IfcModelInterface targetModel) {
+	private static void initObjectIdmCache(final MetaDataManager metaDataManager) {
+		hideAllInverseMap = new HashMap<EPackage, HideAllInversesObjectIDM>();
+		objectIdmCache = new HashMap<EClass, ObjectIDM>();
+		for (PackageMetaData packageMetaData : metaDataManager.getAllIfc()) {
+			final HideAllInversesObjectIDM hideAllInverse = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), packageMetaData.getSchemaDefinition());
+			hideAllInverseMap.put(packageMetaData.getEPackage(), hideAllInverse);
+			for (final EClass onlyIncludeRepresentationForThisClass : packageMetaData.getAllSubClasses(packageMetaData.getEClass("IfcProduct"))) {
+				ObjectIDM objectIdm = new ObjectIDM() {
+					@Override
+					public boolean shouldIncludeClass(EClass originalClass, EClass eClass) {
+						return hideAllInverse.shouldIncludeClass(originalClass, eClass);
+					}
+					
+					@Override
+					public boolean shouldFollowReference(EClass originalClass, EClass eClass, EStructuralFeature eStructuralFeature) {
+						if (eStructuralFeature.getName().equals("Representation") && onlyIncludeRepresentationForThisClass != eClass) {
+							return false;
+						} else {
+							if (eStructuralFeature.getName().equals("StyledByItem")) {
+								return true;
+							}
+							return hideAllInverse.shouldFollowReference(originalClass, eClass, eStructuralFeature);
+						}
+					}
+				};
+				objectIdmCache.put(onlyIncludeRepresentationForThisClass, objectIdm);
+			}
+		}
+		skipRepresentation = new ObjectIDM() {
+			private ObjectIDM hideAllInverse = new HideAllInversesObjectIDM(hideAllInverseMap.keySet(), metaDataManager.getPackageMetaData("ifc2x3tc1").getSchemaDefinition());
+			@Override
+			public boolean shouldIncludeClass(EClass originalClass, EClass eClass) {
+				return hideAllInverse.shouldIncludeClass(originalClass, eClass);
+			}
+			
+			@Override
+			public boolean shouldFollowReference(EClass originalClass, EClass eClass, EStructuralFeature eStructuralFeature) {
+				if (eStructuralFeature.getName().equals("Representation")) {
+					return false;
+				} else {
+					return hideAllInverse.shouldFollowReference(originalClass, eClass, eStructuralFeature);
+				}
+			}
+		};
+	}
+	
+	public ModelHelper(MetaDataManager metaDataManager, ObjectIDM objectIDM, IfcModelInterface targetModel) {
+		synchronized (ModelHelper.class) {
+			if (hideAllInverseMap == null) {
+				initObjectIdmCache(metaDataManager);
+			}
+		}
 		this.objectIDM = objectIDM;
 		this.targetModel = targetModel;
 		this.objectFactory = targetModel;
 	}
 	
-	public ModelHelper(IfcModelInterface targetModel) {
+	public ModelHelper(MetaDataManager metaDataManager, IfcModelInterface targetModel) {
+		synchronized (ModelHelper.class) {
+			if (hideAllInverseMap == null) {
+				initObjectIdmCache(metaDataManager);
+			}
+		}
 		this.targetModel = targetModel;
 		this.objectIDM = null;
 		this.objectFactory = targetModel;
@@ -73,6 +144,35 @@ public class ModelHelper {
 
 	private IdEObject copy(EClass originalEClass, IdEObject original, boolean setOid) throws IfcModelInterfaceException {
 		return copy(originalEClass, original, setOid, this.objectIDM);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void copyDecomposes(IdEObject ifcObjectDefinition, IdEObject ownerHistory) throws IfcModelInterfaceException {
+		IdEObject newObjectDefinition = copy(ifcObjectDefinition, false, skipRepresentation);
+		EStructuralFeature decomposesFeature = newObjectDefinition.eClass().getEStructuralFeature("Decomposes");
+		for (IdEObject ifcRelDecomposes : (List<IdEObject>)ifcObjectDefinition.eGet(decomposesFeature)) {
+			copy(ifcRelDecomposes, false, skipRepresentation);
+			EStructuralFeature relatingObjectFeature = ifcRelDecomposes.eClass().getEStructuralFeature("RelatingObject");
+			IdEObject relatingObject = (IdEObject) ifcRelDecomposes.eGet(relatingObjectFeature);
+			if (relatingObject != null) {
+				copyDecomposes(relatingObject, ownerHistory);
+			}
+		}
+		if (ifcObjectDefinition.eClass().getEPackage().getEClassifier("IfcElement").isInstance(ifcObjectDefinition)) {
+			EStructuralFeature containedInStructureFeature = ifcObjectDefinition.eClass().getEStructuralFeature("ContainedInStructure");
+			for (IdEObject containedInStructure : (List<IdEObject>)ifcObjectDefinition.eGet(containedInStructureFeature)) {
+				IdEObject newContainedInSpatialStructure = getTargetModel().create(containedInStructure.eClass());
+				newContainedInSpatialStructure.eSet(newContainedInSpatialStructure.eClass().getEStructuralFeature("GlobalId"), GuidCompressor.getNewIfcGloballyUniqueId());
+				newContainedInSpatialStructure.eSet(newContainedInSpatialStructure.eClass().getEStructuralFeature("OwnerHistory"), ownerHistory);
+				EStructuralFeature relatedElementsFeature = newContainedInSpatialStructure.eClass().getEStructuralFeature("RelatedElements");
+				((List<IdEObject>)newContainedInSpatialStructure.eGet(relatedElementsFeature)).add(newObjectDefinition);
+				EStructuralFeature relatingStructureFeature = containedInStructure.eClass().getEStructuralFeature("RelatingStructure");
+				IdEObject newRelatingStructre = copy(((IdEObject)containedInStructure.eGet(relatingStructureFeature)), false, skipRepresentation);
+				newContainedInSpatialStructure.eSet(relatingStructureFeature, newRelatingStructre);
+				getTargetModel().add(oidProvider.newOid(newContainedInSpatialStructure.eClass()), newContainedInSpatialStructure);
+				copyDecomposes((IdEObject)containedInStructure.eGet(relatingStructureFeature), ownerHistory);
+			}
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -187,5 +287,26 @@ public class ModelHelper {
 
 	public ObjectIDM getObjectIDM() {
 		return objectIDM;
+	}
+
+	public IdEObject copyBasicObjects(IfcModelInterface model, Map<IdEObject, IdEObject> bigMap) throws IfcModelInterfaceException {
+		PackageMetaData packageMetaData = model.getPackageMetaData();
+		IdEObject newProject = null;
+		for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcProject"))) {
+			newProject = copy(idEObject, false, skipRepresentation);
+			bigMap.put(newProject, idEObject);
+		}
+		IdEObject newOwnerHistory = null;
+		for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcOwnerHistory"))) {
+			newOwnerHistory = copy(idEObject, false, skipRepresentation);
+			bigMap.put(newOwnerHistory, idEObject);
+		}
+		for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcUnit"))) {
+			bigMap.put(copy(idEObject, false, skipRepresentation), idEObject);
+		}
+		for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcUnitAssignment"))) {
+			bigMap.put(copy(idEObject, false, skipRepresentation), idEObject);
+		}
+		return newOwnerHistory;
 	}
 }

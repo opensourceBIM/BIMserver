@@ -7,7 +7,7 @@ import org.bimserver.models.store.ModelCheckerResultLine;
 import org.bimserver.models.store.ModelCheckerResultType;
 import org.bimserver.models.store.StoreFactory;
 
-public class Implementation1 implements JavaModelCheckerInterface {
+public class WindowWidthChecker implements JavaModelCheckerInterface {
 	public ModelCheckerResult check(IfcModelInterface model) {
 		ModelCheckerResult modelCheckerResult = StoreFactory.eINSTANCE.createModelCheckerResult();
 		modelCheckerResult.setValid(true);
