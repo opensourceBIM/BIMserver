@@ -85,7 +85,7 @@ public class BranchToExistingProjectDatabaseAction extends AbstractBranchDatabas
 		IfcModelInterface model = new BasicIfcModel(lastMetaData, null);
 		try {
 			model = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid())
-					.merge(oldRevision.getProject(), ifcModelSet, new ModelHelper(model));
+					.merge(oldRevision.getProject(), ifcModelSet, new ModelHelper(bimServer.getMetaDataManager(), model));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

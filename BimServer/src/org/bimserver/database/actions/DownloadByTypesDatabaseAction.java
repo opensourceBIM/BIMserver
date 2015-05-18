@@ -145,7 +145,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, size, getDatabaseSession());
 			if (ifcModelSet.size() > 1) {
 				try {
-					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
 				} catch (MergeException e) {
 					throw new UserException(e);
 				}
@@ -163,7 +163,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
 		if (ifcModelSet.size() > 1) {
 			try {
-				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
 			} catch (MergeException e) {
 				throw new UserException(e);
 			}

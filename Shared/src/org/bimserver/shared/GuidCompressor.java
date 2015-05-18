@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.shared;
 
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org

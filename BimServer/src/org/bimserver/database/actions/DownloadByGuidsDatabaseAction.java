@@ -136,7 +136,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 		}
 		try {
 			IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, ridRoidMap);
-			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
 			ifcModel.getModelMetaData().setName("query");
 			for (String guid : guids) {
 				if (!foundGuids.contains(guid)) {
