@@ -1705,7 +1705,6 @@ function Promise(counter) {
 			o.counter = 0;
 		}
 		o.counter--;
-		console.log(o.counter);
 		if (o.counter == 0) {
 			o.done = true;
 			o.fire();

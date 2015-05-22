@@ -59,7 +59,7 @@ public interface IfcHeader extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getIfcHeader_Description()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<String> getDescription();
@@ -153,7 +153,7 @@ public interface IfcHeader extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Author</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getIfcHeader_Author()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<String> getAuthor();
@@ -169,7 +169,7 @@ public interface IfcHeader extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Organization</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getIfcHeader_Organization()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<String> getOrganization();

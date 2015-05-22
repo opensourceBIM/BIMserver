@@ -36,6 +36,7 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -79,6 +80,9 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 
 		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		PackageMetaData lastPackageMetaData = null;
+		
+		IfcHeader ifcHeader = null;
+		
 		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		for (long roid : roids) {
 			Revision revision = getRevisionByRoid(roid);
@@ -86,6 +90,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 			pidRoidMap.put(project.getId(), roid);
 			if (getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
+					ifcHeader = concreteRevision.getIfcHeader();
 					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 					lastPackageMetaData = packageMetaData;
 					IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
@@ -124,6 +129,10 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
 		} catch (MergeException e) {
 			throw new UserException(e);
+		}
+		if (ifcHeader != null) {
+			ifcHeader.load();
+			ifcModel.getModelMetaData().setIfcHeader(ifcHeader);
 		}
 		if (projectName.endsWith("-")) {
 			projectName = projectName.substring(0, projectName.length() - 1);
