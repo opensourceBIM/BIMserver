@@ -171,6 +171,9 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.login = function(username, password, rememberme, callback, errorCallback, options) {
+		if (options == null) {
+			options = {};
+		}
 		var request = {
 			username: username,
 			password: password
@@ -184,7 +187,7 @@ function BimServerApi(baseUrl, notifier) {
 				$.cookie("autologin" + window.document.location.port, othis.token, { path: "/"});
 				$.cookie("address" + window.document.location.port, othis.baseUrl, { path: "/"});
 			}
-			if (options == null || options.done != false) {
+			if (options.done != false) {
 				othis.notifier.setInfo("Login successful", 2000);
 			}
 			othis.resolveUser();
