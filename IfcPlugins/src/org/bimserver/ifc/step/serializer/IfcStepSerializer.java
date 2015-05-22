@@ -31,7 +31,6 @@ import java.util.List;
 import org.apache.commons.codec.binary.Hex;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
-import org.bimserver.models.ifc4.IfcRepresentation;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.schema.EntityDefinition;
@@ -257,9 +256,6 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void write(IdEObject object) throws SerializerException, IOException {
-		if (object instanceof IfcRepresentation) {
-			System.out.println();
-		}
 //		throw new SerializerException("test");
 		EClass eClass = object.eClass();
 		if (eClass.getEAnnotation("hidden") != null) {

@@ -97,6 +97,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	private final ObjectsToDelete objectsToDelete = new ObjectsToDelete();
 	private StackTraceElement[] stackTrace;
 	private final ObjectCache objectCache = new ObjectCache();
+	private final Map<EClass, Long> startOids = new HashMap<EClass, Long>();
 	private int reads;
 
 	private enum SessionState {
@@ -109,10 +110,13 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public DatabaseSession(Database database, BimTransaction bimTransaction) {
 		this.database = database;
 		this.bimTransaction = bimTransaction;
-		this.stackTrace = Thread.currentThread().getStackTrace();
 		if (DEVELOPER_DEBUG) {
+			this.stackTrace = Thread.currentThread().getStackTrace();
 			LOGGER.info("");
 			LOGGER.info("NEW SESSION");
+		}
+		for (EClass eClass : database.getClasses()) {
+			startOids.put(eClass, getCounter(eClass));
 		}
 	}
 	
@@ -600,6 +604,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				objectsToCommit.clear();
 				bimTransaction = database.getKeyValueStore().startTransaction();
 			} catch (BimserverLockConflictException e) {
+				LOGGER.info("BimserverLockConflictException");
 				bimTransaction.rollback();
 				objectCache.clear();
 				objectsToCommit.clear();
@@ -623,6 +628,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					}
 				}
 			} catch (UncheckedBimserverLockConflictException e) {
+				LOGGER.info("UncheckedBimserverLockConflictException");
 				bimTransaction.rollback();
 				objectCache.clear();
 				objectsToCommit.clear();
@@ -1334,7 +1340,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public boolean perRecordVersioning(EClass eClass) {
-		return eClass.getEPackage().getName().equals("Ifc2x3tc1") || eClass.getEPackage().getName().equals("Ifc4");
+		return eClass.getEPackage().getName().equals("ifc2x3tc1") || eClass.getEPackage().getName().equals("ifc4");
 	}
 
 	public IfcModelInterface createModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap) {
@@ -1378,7 +1384,15 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public Long newOid(EClass eClass) {
-		return database.newOid(eClass);
+		long newOid = database.newOid(eClass);
+//		if (!startOids.containsKey(eClass)) {
+//			startOids.put(eClass, newOid-1);
+//		}
+		return newOid;
+	}
+	
+	public Map<EClass, Long> getStartOids() {
+		return startOids;
 	}
 
 	public int newPid() {

@@ -198,7 +198,7 @@ public class GeometryGenerator {
 									GeometryInfo geometryInfo = null;
 									if (store) {
 										geometryInfo = packageMetaData.create(GeometryInfo.class);
-										model.add(oidCounter.incrementAndGet(), geometryInfo);
+										model.add(databaseSession.newOid(GeometryPackage.eINSTANCE.getGeometryInfo()), geometryInfo);
 									} else {
 										geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
 									}
@@ -209,7 +209,7 @@ public class GeometryGenerator {
 									GeometryData geometryData = null;
 									if (store) {
 										geometryData = packageMetaData.create(GeometryData.class);
-										model.add(oidCounter.incrementAndGet(), geometryData);
+										model.add(databaseSession.newOid(GeometryPackage.eINSTANCE.getGeometryData()), geometryData);
 									} else {
 										geometryData = GeometryFactory.eINSTANCE.createGeometryData();
 									}
