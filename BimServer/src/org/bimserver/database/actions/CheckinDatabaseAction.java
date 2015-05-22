@@ -19,6 +19,7 @@ package org.bimserver.database.actions;
 
 import java.nio.ByteBuffer;
 import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -182,11 +183,22 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				concreteRevision.setClear(true);
 			}
 			Set<EClass> eClasses = ifcModel.getUsedClasses();
-			ByteBuffer buffer = ByteBuffer.allocate(10 * eClasses.size());
+			Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
+			int s = 0;
 			for (EClass eClass : eClasses) {
-				buffer.putShort(getDatabaseSession().getCid(eClass));
-				buffer.putLong(getDatabaseSession().getCounter(eClass));
+				if (getDatabaseSession().perRecordVersioning(eClass)) {
+					s++;
+				}
 			}
+			ByteBuffer buffer = ByteBuffer.allocate(10 * s);
+			for (EClass eClass : eClasses) {
+				long oid = startOids.get(eClass);
+				if (getDatabaseSession().perRecordVersioning(eClass)) {
+					buffer.putShort(getDatabaseSession().getCid(eClass));
+					buffer.putLong(oid);
+				}
+			}
+			
 			concreteRevision.setOidCounters(buffer.array());
 
 			if (ifcModel != null) {

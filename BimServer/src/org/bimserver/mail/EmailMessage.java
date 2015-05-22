@@ -63,27 +63,30 @@ public class EmailMessage {
 		
 		Transport transport = null;
 		
-		if (serverSettings.getSmtpProtocol() == SmtpProtocol.SMTP) {
-			transport = new SMTPTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
-			transport.connect(serverSettings.getSmtpServer(), null, null);
-		} else if (serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS) {
-			transport = new SMTPSSLTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
-			String username = serverSettings.getSmtpUsername();
-			String password = serverSettings.getSmtpPassword();
-			try {
-				transport.connect(serverSettings.getSmtpServer(), username, password);
-			} catch (MessagingException e) {
-				LOGGER.error("", e);
+		try {
+			if (serverSettings.getSmtpProtocol() == SmtpProtocol.SMTP) {
+				transport = new SMTPTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
+				transport.connect(serverSettings.getSmtpServer(), null, null);
+			} else if (serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS) {
+				transport = new SMTPSSLTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
+				String username = serverSettings.getSmtpUsername();
+				String password = serverSettings.getSmtpPassword();
+				try {
+					transport.connect(serverSettings.getSmtpServer(), username, password);
+				} catch (MessagingException e) {
+					LOGGER.error("", e);
+				}
 			}
+			Message message = new MimeMessage(mailSession);
+			message.setSubject(subject);
+			message.setRecipients(to, addressTo);
+			message.setContent(body, contentType);
+			message.setFrom(from);
+			
+			transport.sendMessage(message, addressTo);
+		} catch (MessagingException e) {
+			LOGGER.error("Error sending email");
 		}
-		
-		Message message = new MimeMessage(mailSession);
-		message.setSubject(subject);
-		message.setRecipients(to, addressTo);
-		message.setContent(body, contentType);
-		message.setFrom(from);
-		
-		transport.sendMessage(message, addressTo);
 	}
 
 	public void setSubject(String subject) {
