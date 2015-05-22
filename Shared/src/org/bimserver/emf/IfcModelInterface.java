@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -227,6 +226,4 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	Set<EClass> getUsedClasses();
 
 	void query(ObjectNode query);
-
-	SIfcHeader getIfcHeader();
 }

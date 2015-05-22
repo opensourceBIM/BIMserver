@@ -2,7 +2,6 @@ package org.bimserver.demoplugins.service;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.ModelMetaData;
-import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SService;
@@ -10,6 +9,7 @@ import org.bimserver.models.ifc2x3tc1.IfcAddressTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcOrganization;
 import org.bimserver.models.ifc2x3tc1.IfcPerson;
 import org.bimserver.models.ifc2x3tc1.IfcPostalAddress;
+import org.bimserver.models.store.IfcHeader;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
@@ -55,7 +55,7 @@ public class AnonymizerService extends AbstractModifyRevisionService {
 		ModelMetaData modelMetaData = model.getModelMetaData();
 		modelMetaData.setAuthorizedUser(ANONYMIZED);
 		modelMetaData.setName(ANONYMIZED);
-		SIfcHeader ifcHeader = model.getIfcHeader();
+		IfcHeader ifcHeader = model.getModelMetaData().getIfcHeader();
 		ifcHeader.setAuthorization(ANONYMIZED);
 		ifcHeader.setFilename(ANONYMIZED);
 		ifcHeader.setOriginatingSystem(ANONYMIZED);

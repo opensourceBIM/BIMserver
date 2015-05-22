@@ -40,7 +40,6 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotation;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotationCurveOccurrence;
 import org.bimserver.models.ifc2x3tc1.IfcDimensionCurve;
@@ -100,7 +99,6 @@ public abstract class IfcModel implements IfcModelInterface {
 	private boolean useDoubleStrings = true;
 	private PackageMetaData packageMetaData;
 	private Map<Integer, Long> pidRoidMap;
-	private SIfcHeader ifcHeader;
 
 	public IfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap, int size) {
 		this.pidRoidMap = pidRoidMap;
@@ -1028,13 +1026,5 @@ public abstract class IfcModel implements IfcModelInterface {
 	
 	@Override
 	public void query(ObjectNode query) {
-	}
-	
-	public void setIfcHeader(SIfcHeader ifcHeader) {
-		this.ifcHeader = ifcHeader;
-	}
-	
-	public SIfcHeader getIfcHeader() {
-		return ifcHeader;
 	}
 }
