@@ -184,10 +184,12 @@ function BimServerApi(baseUrl, notifier) {
 				$.cookie("autologin" + window.document.location.port, othis.token, { path: "/"});
 				$.cookie("address" + window.document.location.port, othis.baseUrl, { path: "/"});
 			}
-			othis.notifier.setInfo("Login successful", 2000);
+			if (options == null || options.done != false) {
+				othis.notifier.setInfo("Login successful", 2000);
+			}
 			othis.resolveUser();
 			othis.server.connect(callback);
-		}, errorCallback);
+		}, errorCallback, options.busy == false ? false : true, options.done == false ? false : true, options.error == false ? false : true);
 	};
 
 	this.downloadViaWebsocket = function(msg){
