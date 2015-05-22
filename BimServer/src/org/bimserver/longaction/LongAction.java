@@ -53,7 +53,6 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	private String title = "Unknown";
 	private int stage = 0;
 	private ProgressTopic progressTopic;
-	private Thread thread;
 
 	public LongAction(BimServer bimServer, String username, String userUsername, Authorization authorization) {
 		start = new GregorianCalendar();
@@ -65,7 +64,6 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	}
 
 	public void init(Thread thread) {
-		this.thread = thread;
 	}
 
 	public void setProgressTopic(ProgressTopic progressTopic) {

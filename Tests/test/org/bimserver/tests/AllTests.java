@@ -9,8 +9,6 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.client.DirectBimServerClientFactory;
-import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;

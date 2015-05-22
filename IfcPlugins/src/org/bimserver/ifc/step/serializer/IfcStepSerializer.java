@@ -31,8 +31,8 @@ import java.util.List;
 import org.apache.commons.codec.binary.Hex;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
-import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.ifc4.IfcRepresentation;
+import org.bimserver.models.store.IfcHeader;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.serializers.ProgressReporter;
@@ -138,7 +138,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 		println("ISO-10303-21;");
 		println("HEADER;");
-		SIfcHeader ifcHeader = getModel().getModelMetaData().getIfcHeader();
+		IfcHeader ifcHeader = getModel().getModelMetaData().getIfcHeader();
 		if (ifcHeader == null) {
 			Date date = new Date();
 			println("FILE_DESCRIPTION ((''), '2;1');");

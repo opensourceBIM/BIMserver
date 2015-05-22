@@ -32,7 +32,6 @@ import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
@@ -133,11 +132,10 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			
 			CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), size, project, user, comment.trim());
 			concreteRevision = result.getConcreteRevision();
-			SIfcHeader ifcHeader = getModel().getModelMetaData().getIfcHeader();
+			IfcHeader ifcHeader = getModel().getModelMetaData().getIfcHeader();
 			if (ifcHeader != null) {
-				IfcHeader convertFromSObject = bimServer.getSConverter().convertFromSObject(ifcHeader, getDatabaseSession());
-				getDatabaseSession().store(convertFromSObject);
-				concreteRevision.setIfcHeader(convertFromSObject);
+				getDatabaseSession().store(ifcHeader);
+				concreteRevision.setIfcHeader(ifcHeader);
 			}
 			project.getConcreteRevisions().add(concreteRevision);
 			if (getModel() != null) {
