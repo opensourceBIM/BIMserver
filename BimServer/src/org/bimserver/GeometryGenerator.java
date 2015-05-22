@@ -46,6 +46,7 @@ import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.geometry.Matrix;
@@ -390,9 +391,15 @@ public class GeometryGenerator {
 				final Map<IdEObject, IdEObject> bigMap = new HashMap<IdEObject, IdEObject>();
 
 				HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1").getSchemaDefinition());
+				OidProvider<Long> oidProvider = new OidProvider<Long>(){
+					@Override
+					public Long newOid(EClass eClass) {
+						return oidCounter.incrementAndGet();
+					}};
 				for (final EClass eClass : classes) {
 					final BasicIfcModel targetModel = new BasicIfcModel(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), null);
 					ModelHelper modelHelper = new ModelHelper(bimServer.getMetaDataManager(), targetModel);
+					modelHelper.setOidProvider(oidProvider);
 					modelHelper.setObjectIDM(idm);
 					
 					IdEObject newOwnerHistory = modelHelper.copyBasicObjects(model, bigMap);
