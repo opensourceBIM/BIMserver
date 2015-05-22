@@ -55,7 +55,7 @@ import au.com.bytecode.opencsv.CSVWriter;
 import com.google.common.base.Charsets;
 
 public class Lod2CsvServicePlugin extends ServicePlugin {
-	private static final String NAMESPACE = "http://www.buildingsmart-tech.org/specifications/excelcsv";
+	private static final String NAMESPACE = "http://bimserver.org/lodcsv";
 	private static final Logger LOGGER = LoggerFactory.getLogger(DemoServicePlugin2.class);
 	private boolean initialized;
 
