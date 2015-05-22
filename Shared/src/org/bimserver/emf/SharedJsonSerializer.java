@@ -21,18 +21,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
 import org.bimserver.emf.IdEObjectImpl.State;
-import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.models.store.IfcHeader;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.StreamingReader;
-import org.bimserver.shared.json.JsonConverter;
-import org.bimserver.shared.meta.SServicesMap;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
@@ -56,13 +55,10 @@ public class SharedJsonSerializer implements StreamingReader {
 
 	private OutputStream outputStream;
 
-	private SServicesMap sServicesMap;
-
 	private boolean includeHidden;
 
-	public SharedJsonSerializer(IfcModelInterface model, SServicesMap sServicesMap, boolean includeHidden) {
+	public SharedJsonSerializer(IfcModelInterface model, boolean includeHidden) {
 		this.model = model;
-		this.sServicesMap = sServicesMap;
 		this.includeHidden = includeHidden;
 	}
 
@@ -76,12 +72,11 @@ public class SharedJsonSerializer implements StreamingReader {
 		try {
 			if (mode == Mode.HEADER) {
 				print("{");
-				SIfcHeader ifcHeader = model.getIfcHeader();
+				IfcHeader ifcHeader = model.getModelMetaData().getIfcHeader();
 				if (ifcHeader != null) {
-					print("\"header\":{");
-					JsonConverter jsonConverter = new JsonConverter(sServicesMap);
-					print(jsonConverter.toJson(ifcHeader).toString());
-					print("}");
+					print("\"header\":");
+					writeObject(ifcHeader);
+					print("\n,");
 				}
 				print("\"objects\":[");
 				mode = Mode.BODY;
@@ -99,131 +94,7 @@ public class SharedJsonSerializer implements StreamingReader {
 						} else {
 							firstObject = false;
 						}
-						if (((IdEObjectImpl) object).getLoadingState() != State.LOADED) {
-							print("{");
-							print("\"_i\":" + object.getOid() + ",");
-							print("\"_t\":\"" + object.eClass().getName() + "\",");
-							print("\"_s\":0");
-							print("}\n");
-						} else {
-							print("{");
-							print("\"_i\":" + object.getOid() + ",");
-							print("\"_t\":\"" + object.eClass().getName() + "\",");
-							print("\"_s\":1");
-							for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-								if (eStructuralFeature.getEAnnotation("nolazyload") == null && (eStructuralFeature.getEAnnotation("hidden") == null | includeHidden)) {
-									if (eStructuralFeature instanceof EReference) {
-										Object value = object.eGet(eStructuralFeature);
-										if (value != null) {
-											if (eStructuralFeature.isMany()) {
-												List<?> list = (List<?>) value;
-												if (SERIALIZE_EMPTY_LISTS || !list.isEmpty()) {
-													print(",");
-													int wrapped = 0;
-													int referred = 0;
-													for (Object o : list) {
-														if (((IdEObject) o).eClass().getEAnnotation("wrapped") != null) {
-															// A little tricky,
-															// can we assume if
-															// one object in
-															// this list is
-															// embedded, they
-															// all are?
-															wrapped++;
-														} else {
-															referred++;
-														}
-													}
-													if (wrapped == 0 && referred != 0) {
-														print("\"_r" + eStructuralFeature.getName() + "\":[");
-													} else if (wrapped != 0 && referred == 0) {
-														print("\"_e" + eStructuralFeature.getName() + "\":[");
-													} else if (wrapped == 0 && referred == 0) {
-														// should not happen
-													} else {
-														// both, this can occur,
-														// for example
-														// IfcTrimmedCurve.Trim1
-														print("\"_e" + eStructuralFeature.getName() + "\":[");
-													}
-													boolean f = true;
-													for (Object o : list) {
-														if (!f) {
-															print(",");
-														} else {
-															f = false;
-														}
-														IdEObject ref = (IdEObject) o;
-														if (ref.getOid() == -1) {
-															writeObject(ref);
-														} else {
-															if (wrapped != 0 && referred != 0) {
-																// Special
-																// situation,
-																// where we have
-																// to construct
-																// an object
-																// around the
-																// OID to make
-																// it
-																// distinguishable
-																// from embedded
-																// objects
-																print("{");
-																print("\"_i\":");
-																print("" + ref.getOid());
-																print("}");
-															} else {
-																print("" + ref.getOid());
-															}
-														}
-													}
-													print("]");
-												}
-											} else {
-												print(",");
-												IdEObject ref = (IdEObject) value;
-												if (ref instanceof IfcGloballyUniqueId) {
-													print("\"" + eStructuralFeature.getName() + "\":");
-													writePrimitive(eStructuralFeature, ((IfcGloballyUniqueId) ref).getWrappedValue());
-												} else if (((IdEObject) ref).eClass().getEAnnotation("wrapped") != null) {
-													print("\"_e" + eStructuralFeature.getName() + "\":");
-													writeObject(ref);
-												} else {
-													print("\"_r" + eStructuralFeature.getName() + "\":"	+ ref.getOid());
-												}
-											}
-										}
-									} else {
-										Object value = object.eGet(eStructuralFeature);
-										if (value != null) {
-											if (eStructuralFeature.isMany()) {
-												List<?> list = (List<?>) value;
-												if (SERIALIZE_EMPTY_LISTS || !list.isEmpty()) {
-													print(",");
-													print("\"" + eStructuralFeature.getName() + "\":[");
-													boolean f = true;
-													for (Object o : list) {
-														if (!f) {
-															print(",");
-														} else {
-															f = false;
-														}
-														writePrimitive(eStructuralFeature, o);
-													}
-													print("]");
-												}
-											} else {
-												print(",");
-												print("\"" + eStructuralFeature.getName() + "\":");
-												writePrimitive(eStructuralFeature, value);
-											}
-										}
-									}
-								}
-							}
-							print("}\n");
-						}
+						writeObject(object);
 					}
 					return true;
 				} else {
@@ -243,6 +114,134 @@ public class SharedJsonSerializer implements StreamingReader {
 	}
 
 	private void writeObject(IdEObject object) throws IOException {
+		if (((IdEObjectImpl) object).getLoadingState() != State.LOADED) {
+			print("{");
+			print("\"_i\":" + object.getOid() + ",");
+			print("\"_t\":\"" + object.eClass().getName() + "\",");
+			print("\"_s\":0");
+			print("}\n");
+		} else {
+			print("{");
+			print("\"_i\":" + object.getOid() + ",");
+			print("\"_t\":\"" + object.eClass().getName() + "\",");
+			print("\"_s\":1");
+			for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
+				if (eStructuralFeature.getEAnnotation("nolazyload") == null && (eStructuralFeature.getEAnnotation("hidden") == null | includeHidden)) {
+					if (eStructuralFeature instanceof EReference) {
+						Object value = object.eGet(eStructuralFeature);
+						if (value != null) {
+							if (eStructuralFeature.isMany()) {
+								List<?> list = (List<?>) value;
+								if (SERIALIZE_EMPTY_LISTS || !list.isEmpty()) {
+									print(",");
+									int wrapped = 0;
+									int referred = 0;
+									for (Object o : list) {
+										if (((IdEObject) o).eClass().getEAnnotation("wrapped") != null) {
+											// A little tricky,
+											// can we assume if
+											// one object in
+											// this list is
+											// embedded, they
+											// all are?
+											wrapped++;
+										} else {
+											referred++;
+										}
+									}
+									if (wrapped == 0 && referred != 0) {
+										print("\"_r" + eStructuralFeature.getName() + "\":[");
+									} else if (wrapped != 0 && referred == 0) {
+										print("\"_e" + eStructuralFeature.getName() + "\":[");
+									} else if (wrapped == 0 && referred == 0) {
+										// should not happen
+									} else {
+										// both, this can occur,
+										// for example
+										// IfcTrimmedCurve.Trim1
+										print("\"_e" + eStructuralFeature.getName() + "\":[");
+									}
+									boolean f = true;
+									for (Object o : list) {
+										if (!f) {
+											print(",");
+										} else {
+											f = false;
+										}
+										IdEObject ref = (IdEObject) o;
+										if (ref.getOid() == -1) {
+											write(ref);
+										} else {
+											if (wrapped != 0 && referred != 0) {
+												// Special
+												// situation,
+												// where we have
+												// to construct
+												// an object
+												// around the
+												// OID to make
+												// it
+												// distinguishable
+												// from embedded
+												// objects
+												print("{");
+												print("\"_i\":");
+												print("" + ref.getOid());
+												print("}");
+											} else {
+												print("" + ref.getOid());
+											}
+										}
+									}
+									print("]");
+								}
+							} else {
+								print(",");
+								IdEObject ref = (IdEObject) value;
+								if (ref instanceof IfcGloballyUniqueId) {
+									print("\"" + eStructuralFeature.getName() + "\":");
+									writePrimitive(eStructuralFeature, ((IfcGloballyUniqueId) ref).getWrappedValue());
+								} else if (((IdEObject) ref).eClass().getEAnnotation("wrapped") != null) {
+									print("\"_e" + eStructuralFeature.getName() + "\":");
+									write(ref);
+								} else {
+									print("\"_r" + eStructuralFeature.getName() + "\":"	+ ref.getOid());
+								}
+							}
+						}
+					} else {
+						Object value = object.eGet(eStructuralFeature);
+						if (value != null) {
+							if (eStructuralFeature.isMany()) {
+								List<?> list = (List<?>) value;
+								if (SERIALIZE_EMPTY_LISTS || !list.isEmpty()) {
+									print(",");
+									print("\"" + eStructuralFeature.getName() + "\":[");
+									boolean f = true;
+									for (Object o : list) {
+										if (!f) {
+											print(",");
+										} else {
+											f = false;
+										}
+										writePrimitive(eStructuralFeature, o);
+									}
+									print("]");
+								}
+							} else {
+								print(",");
+								print("\"" + eStructuralFeature.getName() + "\":");
+								writePrimitive(eStructuralFeature, value);
+							}
+						}
+					}
+				}
+			}
+			print("}\n");
+		}
+	}
+
+	private void write(IdEObject object) throws IOException {
 		if (object.eClass().getEAnnotation("wrapped") != null) {
 			EStructuralFeature wrappedFeature = object.eClass().getEStructuralFeature("wrappedValue");
 			print("{");
@@ -332,6 +331,8 @@ public class SharedJsonSerializer implements StreamingReader {
 			print(quote((String) value));
 		} else if (value instanceof byte[]) {
 			print("\"" + new String(Base64.encodeBase64((byte[]) value), Charsets.UTF_8) + "\"");
+		} else if (value instanceof Date) {
+			print(Long.toString(((Date)value).getTime()));
 		} else if (value instanceof Enum) {
 			if (value.toString().equalsIgnoreCase("true") || value.toString().equalsIgnoreCase("false")) {
 				print(value.toString().toLowerCase());

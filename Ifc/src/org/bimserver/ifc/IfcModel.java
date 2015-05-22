@@ -63,7 +63,6 @@ import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralActivityAssignmentSelect;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralItem;
 import org.bimserver.models.ifc2x3tc1.IfcTerminatorSymbol;
-import org.bimserver.models.ifc4.impl.IfcRepresentationImpl;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;

@@ -19,7 +19,7 @@ package org.bimserver.emf;
 
 import java.util.Date;
 
-import org.bimserver.interfaces.objects.SIfcHeader;
+import org.bimserver.models.store.IfcHeader;
 
 public class ModelMetaData {
 	private String authorizedUser;
@@ -27,7 +27,7 @@ public class ModelMetaData {
 	private byte[] checksum;
 	private Date date;
 	private int revisionId;
-	private SIfcHeader ifcHeader;
+	private IfcHeader ifcHeader;
 
 	public String getAuthorizedUser() {
 		return authorizedUser;
@@ -68,12 +68,12 @@ public class ModelMetaData {
 	public void setRevisionId(int revisionId) {
 		this.revisionId = revisionId;
 	}
-	
-	public SIfcHeader getIfcHeader() {
+
+	public IfcHeader getIfcHeader() {
 		return ifcHeader;
 	}
 	
-	public void setIfcHeader(SIfcHeader ifcHeader) {
+	public void setIfcHeader(IfcHeader ifcHeader) {
 		this.ifcHeader = ifcHeader;
 	}
 }

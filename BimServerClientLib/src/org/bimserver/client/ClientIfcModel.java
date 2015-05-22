@@ -613,7 +613,7 @@ public class ClientIfcModel extends IfcModel {
 				return c++;
 			}
 		});
-		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this, getBimServerClient().getServicesMap(), false);
+		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this, false);
 		SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("json", poid);
 		bimServerClient.checkin(poid, comment, deserializer.getOid(), false, true, -1, "test", new SerializerInputstream(sharedJsonSerializer));
 	}

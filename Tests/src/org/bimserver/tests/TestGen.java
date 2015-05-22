@@ -21,10 +21,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.LocalDevSetup;
 import org.bimserver.emf.Schema;
-import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;

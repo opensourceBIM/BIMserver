@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,9 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.models.store.IfcHeader;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
@@ -23,7 +27,6 @@ import org.bimserver.plugins.schema.InverseAttribute;
 import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
-import org.bimserver.shared.json.StreamingJsonConverter;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -75,12 +78,12 @@ public class SharedJsonDeserializer {
 						jsonReader.beginArray();
 						while (jsonReader.hasNext()) {
 							nrObjects++;
-							processObject(model, waitingList, jsonReader);
+							processObject(model, waitingList, jsonReader, null);
 						}
 						jsonReader.endArray();
 					} else if (nextName.equals("header")) {
-						StreamingJsonConverter jsonConverter = new StreamingJsonConverter();
-						jsonConverter.fromJson(jsonReader);
+						IfcHeader ifcHeader = (IfcHeader) processObject(model, waitingList, jsonReader, StorePackage.eINSTANCE.getIfcHeader());
+						model.getModelMetaData().setIfcHeader(ifcHeader);
 					}
 					peek = jsonReader.peek();
 				}
@@ -127,22 +130,28 @@ public class SharedJsonDeserializer {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void processObject(IfcModelInterface model, WaitingList<Long> waitingList, JsonReader jsonReader) throws IOException, DeserializeException, IfcModelInterfaceException {
+	private IdEObject processObject(IfcModelInterface model, WaitingList<Long> waitingList, JsonReader jsonReader, EClass eClass) throws IOException, DeserializeException, IfcModelInterfaceException {
+		IdEObjectImpl object = null;
 		jsonReader.beginObject();
 		if (jsonReader.nextName().equals("_i")) {
 			long oid = jsonReader.nextLong();
 			if (jsonReader.nextName().equals("_t")) {
 				String type = jsonReader.nextString();
-				EClass eClass = model.getPackageMetaData().getEClassIncludingDependencies(type);
+				if (eClass == null) {
+					eClass = model.getPackageMetaData().getEClassIncludingDependencies(type);
+				}
 				if (eClass == null) {
 					throw new DeserializeException("No class found with name " + type);
 				}
 				
-				IdEObjectImpl object = null;
 				if (model.containsNoFetch(oid)) {
 					object = (IdEObjectImpl) model.getNoFetch(oid);
 				} else {
-					object = (IdEObjectImpl) model.create(eClass, oid);
+					if (eClass == StorePackage.eINSTANCE.getIfcHeader()) {
+						object = (IdEObjectImpl) StoreFactory.eINSTANCE.createIfcHeader();
+					} else {
+						object = (IdEObjectImpl) model.create(eClass, oid);
+					}
 				}
 
 				if (jsonReader.nextName().equals("_s")) {
@@ -315,6 +324,7 @@ public class SharedJsonDeserializer {
 			LOGGER.info("_i expected");
 		}
 		jsonReader.endObject();
+		return object;
 	}
 	
 
@@ -332,6 +342,9 @@ public class SharedJsonDeserializer {
 			return jsonReader.nextInt();
 		} else if (eClassifier == EcorePackage.eINSTANCE.getEByteArray()) {
 			return Base64.decodeBase64(jsonReader.nextString());
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEDate()) {
+			long timestamp = jsonReader.nextLong();
+			return new Date(timestamp);
 		} else if (eClassifier == EcorePackage.eINSTANCE.getEFloat()) {
 			return (float)jsonReader.nextDouble();
 		} else if (eClassifier == EcorePackage.eINSTANCE.getEEnum()) {

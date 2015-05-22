@@ -175,7 +175,7 @@ public class ModelHelper {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private IdEObject copy(EClass originalEClass, IdEObject original, boolean setOid, ObjectIDM objectIDM) throws IfcModelInterfaceException {
 		if (!((IdEObjectImpl)original).isLoadedOrLoading()) {
 			return null;

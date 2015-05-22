@@ -45,7 +45,8 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.MetaDataException;
 import org.bimserver.emf.Schema;
 import org.bimserver.ifc.BasicIfcModel;
-import org.bimserver.interfaces.objects.SIfcHeader;
+import org.bimserver.models.store.IfcHeader;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
@@ -255,9 +256,9 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 
 	private void processHeader(String line) throws DeserializeException {
 		try {
-			SIfcHeader ifcHeader = model.getModelMetaData().getIfcHeader();
+			IfcHeader ifcHeader = model.getModelMetaData().getIfcHeader();
 			if (ifcHeader == null) {
-				ifcHeader = new SIfcHeader();
+				ifcHeader = StoreFactory.eINSTANCE.createIfcHeader();
 				model.getModelMetaData().setIfcHeader(ifcHeader);
 			}
 			if (line.startsWith("FILE_DESCRIPTION")) {

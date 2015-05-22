@@ -141,7 +141,8 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			ifcModel = ifcModelSet.iterator().next();
 		}
 		if (ifcHeader != null) {
-			ifcModel.getModelMetaData().setIfcHeader(getBimServer().getSConverter().convertToSObject(ifcHeader));
+			ifcHeader.load();
+			ifcModel.getModelMetaData().setIfcHeader(ifcHeader);
 		}
 		ifcModel.getModelMetaData().setName(project.getName() + "." + revision.getId());
 		ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(revision) + 1);

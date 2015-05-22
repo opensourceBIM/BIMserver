@@ -37,7 +37,7 @@ public class JsonSerializerWithGeometry extends IfcSerializer {
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin,
 			PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
 		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
-		sharedJsonSerializer = new SharedJsonSerializer(getModel(), pluginManager.getServicesMap(), true);
+		sharedJsonSerializer = new SharedJsonSerializer(getModel(), true);
 	}
 	
 	@Override
