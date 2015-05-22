@@ -72,12 +72,6 @@ public class DownloadServlet extends SubServlet {
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			if (request.getHeader("Origin") != null && !getBimServer().getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
-				response.setStatus(403);
-				return;
-			}
-			response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
-			response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 			String acceptEncoding = request.getHeader("Accept-Encoding");
 			boolean useGzip = false;
 			if (acceptEncoding != null && acceptEncoding.contains("gzip")) {
