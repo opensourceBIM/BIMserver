@@ -76,6 +76,7 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 				}
 			}
 		}
+		project.setSendEmailOnNewRevision(sProject.isSendEmailOnNewRevision());
 		project.setName(sProject.getName());
 		project.setDescription(sProject.getDescription());
 		project.setExportLengthMeasurePrefix(SIPrefix.get(sProject.getExportLengthMeasurePrefix().getOrdinal()));

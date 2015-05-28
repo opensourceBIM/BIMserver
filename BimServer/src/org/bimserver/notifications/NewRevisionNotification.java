@@ -75,12 +75,14 @@ public class NewRevisionNotification extends Notification {
 	private long roid;
 	private long poid;
 	private long soid;
+	private boolean sendEmail = true;
 
 	public NewRevisionNotification(BimServer bimServer, long poid, long roid, long soid) {
 		super(bimServer);
 		this.poid = poid;
 		this.roid = roid;
 		this.soid = soid;
+		sendEmail = false;
 	}
 
 	public NewRevisionNotification(BimServer bimServer, long poid, long roid) {
@@ -95,8 +97,12 @@ public class NewRevisionNotification extends Notification {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+			if (project == null) {
+				LOGGER.error("Project with oid " + poid + " not found");
+				return;
+			}
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
-			if (getBimServer().getServerSettingsCache().getServerSettings().isSendEmailOnNewRevision()) {
+			if  (project.isSendEmailOnNewRevision() && sendEmail) {
 				sendEmail(session, project, revision);
 			}
 			for (Service service : project.getServices()) {

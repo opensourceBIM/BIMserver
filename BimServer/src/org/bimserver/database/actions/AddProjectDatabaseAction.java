@@ -109,6 +109,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 //				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newProjectAdded));
 			}
 		});
+		project.setSendEmailOnNewRevision(bimServer.getServerSettingsCache().getServerSettings().isSendEmailOnNewRevision());
 		project.setId(getDatabaseSession().newPid());
 		project.setName(trimmedName);
 		project.setSchema(schema);
