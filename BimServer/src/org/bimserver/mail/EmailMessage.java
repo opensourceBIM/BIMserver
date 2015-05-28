@@ -34,6 +34,7 @@ import org.bimserver.models.store.SmtpProtocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sun.mail.handlers.message_rfc822;
 import com.sun.mail.smtp.SMTPSSLTransport;
 import com.sun.mail.smtp.SMTPTransport;
 
@@ -85,7 +86,7 @@ public class EmailMessage {
 			
 			transport.sendMessage(message, addressTo);
 		} catch (MessagingException e) {
-			LOGGER.error("Error sending email");
+			LOGGER.error("Error sending email " + body);
 		}
 	}
 

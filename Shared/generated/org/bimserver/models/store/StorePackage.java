@@ -271,13 +271,22 @@ public interface StorePackage extends EPackage {
 	int PROJECT__SCHEMA = 20;
 
 	/**
+	 * The feature id for the '<em><b>Send Email On New Revision</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__SEND_EMAIL_ON_NEW_REVISION = 21;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 21;
+	int PROJECT_FEATURE_COUNT = 22;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
@@ -7074,6 +7083,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getProject_Schema();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Project#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Send Email On New Revision</em>'.
+	 * @see org.bimserver.models.store.Project#isSendEmailOnNewRevision()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_SendEmailOnNewRevision();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12565,6 +12585,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROJECT__SCHEMA = eINSTANCE.getProject_Schema();
+
+		/**
+		 * The meta object literal for the '<em><b>Send Email On New Revision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__SEND_EMAIL_ON_NEW_REVISION = eINSTANCE.getProject_SendEmailOnNewRevision();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
