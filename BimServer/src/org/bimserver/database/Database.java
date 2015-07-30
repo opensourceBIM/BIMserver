@@ -395,11 +395,11 @@ public class Database implements BimDatabase {
 		return null;
 	}
 
-	public void incrementCommittedWrites(int committedWrites) {
+	public void incrementCommittedWrites(long committedWrites) {
 		keyValueStore.incrementCommittedWrites(committedWrites);
 	}
 
-	public void incrementReads(int reads) {
+	public void incrementReads(long reads) {
 		keyValueStore.incrementReads(reads);
 	}
 	
