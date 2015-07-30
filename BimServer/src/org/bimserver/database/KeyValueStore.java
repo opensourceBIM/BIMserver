@@ -66,9 +66,9 @@ public interface KeyValueStore {
 
 	void storeNoOverwrite(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException, BimserverConcurrentModificationDatabaseException;
 
-	void incrementCommittedWrites(int committedWrites);
+	void incrementCommittedWrites(long committedWrites);
 
-	void incrementReads(int reads);
+	void incrementReads(long reads);
 
 	void storeNoOverwrite(String tableName, byte[] key, byte[] value, int offset, int length, DatabaseSession databaseSession) throws BimserverDatabaseException, BimserverLockConflictException;
 	

@@ -98,7 +98,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	private StackTraceElement[] stackTrace;
 	private final ObjectCache objectCache = new ObjectCache();
 	private final Map<EClass, Long> startOids = new HashMap<EClass, Long>();
-	private int reads;
+	private long reads;
 
 	private enum SessionState {
 		OPEN, CLOSED
@@ -168,7 +168,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				progressHandler.progress(0, objectsToCommit.size());
 			}
 			int current = 0;
-			int writes = 0;
+			long writes = 0;
 			ByteBuffer keyBuffer = ByteBuffer.wrap(new byte[16]);
 			for (RecordIdentifierPlusType recordIdentifier : objectsToDelete) {
 				fillKeyBuffer(keyBuffer, recordIdentifier);

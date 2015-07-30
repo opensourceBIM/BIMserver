@@ -58,8 +58,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(BerkeleyKeyValueStore.class);
 	private Environment environment;
-	private int committedWrites;
-	private int reads;
+	private long committedWrites;
+	private long reads;
 	private final Map<String, Database> tables = new HashMap<String, Database>();
 	private boolean isNew;
 	private TransactionConfig transactionConfig;
@@ -209,7 +209,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		return null;
 	}
 
-	public int getTotalWrites() {
+	public long getTotalWrites() {
 		return committedWrites;
 	}
 
@@ -420,7 +420,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		return new HashSet<String>(environment.getDatabaseNames());
 	}
 	
-	public synchronized void incrementReads(int reads) {
+	public synchronized void incrementReads(long reads) {
 		this.reads += reads;
 		if (this.reads / 100000 != lastPrintedReads) {
 			LOGGER.info("reads: " + this.reads);
@@ -429,7 +429,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	}
 	
 	@Override
-	public synchronized void incrementCommittedWrites(int committedWrites) {
+	public synchronized void incrementCommittedWrites(long committedWrites) {
 		this.committedWrites += committedWrites;
 		if (this.committedWrites / 100000 != lastPrintedCommittedWrites) {
 			LOGGER.info("writes: " + this.committedWrites);
