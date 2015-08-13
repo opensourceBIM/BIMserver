@@ -86,7 +86,7 @@ public class EmailMessage {
 			
 			transport.sendMessage(message, addressTo);
 		} catch (MessagingException e) {
-			LOGGER.error("Error sending email " + body);
+			LOGGER.error("Error sending email " + body + " " + e.getMessage());
 		}
 	}
 
