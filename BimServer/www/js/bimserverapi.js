@@ -918,7 +918,7 @@ function Model(bimServerApi, poid, roid, schema) {
 						object[fieldName] = {_t: typeName, value: value};
 						othis.incrementRunningCalls("set" + fieldName.firstUpper() + "Wrapped");
 						othis.transactionSynchronizer.fetch(function(tid){
-							var type = othis.bimServerApi.schema[typeName];
+							var type = othis.bimServerApi.schemas[typeName];
 							var wrappedValueType = type.fields.wrappedValue;
 							if (wrappedValueType.type == "string") {
 								bimServerApi.call("Bimsie1LowLevelInterface", "setWrappedStringAttribute", {
