@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerResultLineImpl#getFieldOrClass <em>Field Or Class</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerResultLineImpl#getValue <em>Value</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerResultLineImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerResultLineImpl#getObjectId <em>Object Id</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

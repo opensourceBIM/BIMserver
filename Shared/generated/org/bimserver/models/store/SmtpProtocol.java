@@ -50,7 +50,15 @@ public enum SmtpProtocol implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SMTPS(1, "SMTPS", "SMTPS");
+	SMTPS(1, "SMTPS", "SMTPS"), /**
+								* The '<em><b>STARTTLS</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #STARTTLS_VALUE
+								* @generated
+								* @ordered
+								*/
+	STARTTLS(2, "STARTTLS", "STARTTLS");
 
 	/**
 	 * The '<em><b>SMTP</b></em>' literal value.
@@ -83,12 +91,27 @@ public enum SmtpProtocol implements Enumerator {
 	public static final int SMTPS_VALUE = 1;
 
 	/**
+	 * The '<em><b>STARTTLS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STARTTLS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STARTTLS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STARTTLS_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Smtp Protocol</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final SmtpProtocol[] VALUES_ARRAY = new SmtpProtocol[] { SMTP, SMTPS, };
+	private static final SmtpProtocol[] VALUES_ARRAY = new SmtpProtocol[] { SMTP, SMTPS, STARTTLS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Smtp Protocol</b></em>' enumerators.
@@ -102,6 +125,8 @@ public enum SmtpProtocol implements Enumerator {
 	 * Returns the '<em><b>Smtp Protocol</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static SmtpProtocol get(String literal) {
@@ -118,6 +143,8 @@ public enum SmtpProtocol implements Enumerator {
 	 * Returns the '<em><b>Smtp Protocol</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static SmtpProtocol getByName(String name) {
@@ -134,6 +161,8 @@ public enum SmtpProtocol implements Enumerator {
 	 * Returns the '<em><b>Smtp Protocol</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static SmtpProtocol get(int value) {
@@ -142,6 +171,8 @@ public enum SmtpProtocol implements Enumerator {
 			return SMTP;
 		case SMTPS_VALUE:
 			return SMTPS;
+		case STARTTLS_VALUE:
+			return STARTTLS;
 		}
 		return null;
 	}

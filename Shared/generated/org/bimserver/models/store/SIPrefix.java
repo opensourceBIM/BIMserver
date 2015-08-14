@@ -463,8 +463,9 @@ public enum SIPrefix implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final SIPrefix[] VALUES_ARRAY = new SIPrefix[] { METER, ATTOMETER, FEMTOMETER, PICOMETER, NANOMETER, MICROMETER, MILLIMETER, CENTIMETER, DECIMETER, DECAMETER,
-			HECTOMETER, KILOMETER, MEGAMETER, GIGAMETER, TERAMETER, PETAMETER, EXAMETER, };
+	private static final SIPrefix[] VALUES_ARRAY = new SIPrefix[] { METER, ATTOMETER, FEMTOMETER, PICOMETER, NANOMETER,
+			MICROMETER, MILLIMETER, CENTIMETER, DECIMETER, DECAMETER, HECTOMETER, KILOMETER, MEGAMETER, GIGAMETER,
+			TERAMETER, PETAMETER, EXAMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>SI Prefix</b></em>' enumerators.
@@ -478,6 +479,8 @@ public enum SIPrefix implements Enumerator {
 	 * Returns the '<em><b>SI Prefix</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static SIPrefix get(String literal) {
@@ -494,6 +497,8 @@ public enum SIPrefix implements Enumerator {
 	 * Returns the '<em><b>SI Prefix</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static SIPrefix getByName(String name) {
@@ -510,6 +515,8 @@ public enum SIPrefix implements Enumerator {
 	 * Returns the '<em><b>SI Prefix</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static SIPrefix get(int value) {

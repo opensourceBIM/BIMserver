@@ -574,16 +574,18 @@ public class PluginManager {
 	}
 
 	public void loadAllPluginsFromEclipseWorkspace(File file, boolean showExceptions) throws PluginException {
-		for (File project : file.listFiles()) {
-			if (project.isDirectory()) {
-				File pluginDir = new File(project, "plugin");
-				if (pluginDir.exists()) {
-					File pluginFile = new File(pluginDir, "plugin.xml");
-					if (pluginFile.exists()) {
-						if (showExceptions) {
-							loadPluginsFromEclipseProject(project);
-						} else {
-							loadPluginsFromEclipseProjectNoExceptions(project);
+		if (file != null && file.isDirectory()) {
+			for (File project : file.listFiles()) {
+				if (project.isDirectory()) {
+					File pluginDir = new File(project, "plugin");
+					if (pluginDir.exists()) {
+						File pluginFile = new File(pluginDir, "plugin.xml");
+						if (pluginFile.exists()) {
+							if (showExceptions) {
+								loadPluginsFromEclipseProject(project);
+							} else {
+								loadPluginsFromEclipseProjectNoExceptions(project);
+							}
 						}
 					}
 				}
@@ -592,6 +594,9 @@ public class PluginManager {
 	}
 	
 	public void loadAllPluginsFromEclipseWorkspaces(File directory, boolean showExceptions) throws PluginException {
+		if (!directory.isDirectory()) {
+			return;
+		}
 		if (new File(directory, "plugin/plugin.xml").exists()) {
 			if (showExceptions) {
 				loadPluginsFromEclipseProject(directory);
