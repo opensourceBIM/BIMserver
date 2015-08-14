@@ -34,7 +34,6 @@ import org.bimserver.models.store.SmtpProtocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.mail.handlers.message_rfc822;
 import com.sun.mail.smtp.SMTPSSLTransport;
 import com.sun.mail.smtp.SMTPTransport;
 
@@ -67,17 +66,11 @@ public class EmailMessage {
 		try {
 			if (serverSettings.getSmtpProtocol() == SmtpProtocol.SMTP) {
 				transport = new SMTPTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
-				transport.connect(serverSettings.getSmtpServer(), null, null);
 			} else if (serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS) {
 				transport = new SMTPSSLTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
-				String username = serverSettings.getSmtpUsername();
-				String password = serverSettings.getSmtpPassword();
-				try {
-					transport.connect(serverSettings.getSmtpServer(), username, password);
-				} catch (MessagingException e) {
-					LOGGER.error("", e);
-				}
 			}
+			transport.connect(serverSettings.getSmtpServer(), serverSettings.getSmtpUsername(), serverSettings.getSmtpPassword());
+
 			Message message = new MimeMessage(mailSession);
 			message.setSubject(subject);
 			message.setRecipients(to, addressTo);
