@@ -26,11 +26,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.DatabaseInformationCategory#getTitle <em>Title</em>}</li>
  *   <li>{@link org.bimserver.models.store.DatabaseInformationCategory#getItems <em>Items</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getDatabaseInformationCategory()
  * @model

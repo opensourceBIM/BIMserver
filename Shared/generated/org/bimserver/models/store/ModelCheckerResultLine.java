@@ -23,6 +23,7 @@ package org.bimserver.models.store;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ModelCheckerResultLine#getFieldOrClass <em>Field Or Class</em>}</li>
  *   <li>{@link org.bimserver.models.store.ModelCheckerResultLine#getValue <em>Value</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.store;
  *   <li>{@link org.bimserver.models.store.ModelCheckerResultLine#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.ModelCheckerResultLine#getObjectId <em>Object Id</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getModelCheckerResultLine()
  * @model

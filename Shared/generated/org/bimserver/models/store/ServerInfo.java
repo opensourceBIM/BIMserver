@@ -25,12 +25,12 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ServerInfo#getServerState <em>Server State</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerInfo#getErrorMessage <em>Error Message</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerInfo#getVersion <em>Version</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getServerInfo()
  * @model

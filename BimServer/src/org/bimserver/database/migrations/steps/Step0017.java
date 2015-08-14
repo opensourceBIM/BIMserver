@@ -1,4 +1,4 @@
-package org.bimserver.interfaces.objects;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
@@ -17,17 +17,21 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public enum SSmtpProtocol {
-	SMTP(0),
-	SMTPS(1),
-	STARTTLS(2);
-	int ordinal;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
+import org.eclipse.emf.ecore.EEnum;
 
-	SSmtpProtocol(int ordinal) {
-		this.ordinal = ordinal;
+public class Step0017 extends Migration {
+
+	@Override
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
+		EEnum smtpProtocol = schema.getEEnum("store", "SmtpProtocol");
+		schema.createEEnumLiteral(smtpProtocol, "STARTTLS");
 	}
-	
-	public int getOrdinal() {
-		return ordinal;
+
+	@Override
+	public String getDescription() {
+		return "Adding STARTTLS";
 	}
 }

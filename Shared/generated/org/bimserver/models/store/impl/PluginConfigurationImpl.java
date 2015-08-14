@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getEnabled <em>Enabled</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getPluginDescriptor <em>Plugin Descriptor</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getSettings <em>Settings</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

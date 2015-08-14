@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getFile <em>File</em>}</li>
@@ -45,7 +46,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getRevision <em>Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getProject <em>Project</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

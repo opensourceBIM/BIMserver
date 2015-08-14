@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getName <em>Name</em>}</li>
@@ -65,7 +66,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -163,7 +163,8 @@ public enum PrimitiveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PrimitiveEnum[] VALUES_ARRAY = new PrimitiveEnum[] { LONG, DOUBLE, BOOLEAN, STRING, BYTE_ARRAY, };
+	private static final PrimitiveEnum[] VALUES_ARRAY = new PrimitiveEnum[] { LONG, DOUBLE, BOOLEAN, STRING,
+			BYTE_ARRAY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Primitive Enum</b></em>' enumerators.
@@ -177,6 +178,8 @@ public enum PrimitiveEnum implements Enumerator {
 	 * Returns the '<em><b>Primitive Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static PrimitiveEnum get(String literal) {
@@ -193,6 +196,8 @@ public enum PrimitiveEnum implements Enumerator {
 	 * Returns the '<em><b>Primitive Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static PrimitiveEnum getByName(String name) {
@@ -209,6 +214,8 @@ public enum PrimitiveEnum implements Enumerator {
 	 * Returns the '<em><b>Primitive Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static PrimitiveEnum get(int value) {

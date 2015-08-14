@@ -27,6 +27,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.SystemInfo#getCpucores <em>Cpucores</em>}</li>
  *   <li>{@link org.bimserver.models.store.SystemInfo#getDatetime <em>Datetime</em>}</li>
@@ -36,7 +37,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.SystemInfo#getUserHome <em>User Home</em>}</li>
  *   <li>{@link org.bimserver.models.store.SystemInfo#getUserDir <em>User Dir</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getSystemInfo()
  * @model

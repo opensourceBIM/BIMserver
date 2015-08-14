@@ -29,16 +29,17 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getRenderEngine <em>Render Engine</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl implements SerializerPluginConfiguration {
+public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl
+		implements SerializerPluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,8 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * @generated
 	 */
 	public ObjectIDMPluginConfiguration getObjectIDM() {
-		return (ObjectIDMPluginConfiguration) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__OBJECT_IDM, true);
+		return (ObjectIDMPluginConfiguration) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__OBJECT_IDM,
+				true);
 	}
 
 	/**
@@ -100,7 +102,8 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * @generated
 	 */
 	public RenderEnginePluginConfiguration getRenderEngine() {
-		return (RenderEnginePluginConfiguration) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE, true);
+		return (RenderEnginePluginConfiguration) eGet(
+				StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE, true);
 	}
 
 	/**

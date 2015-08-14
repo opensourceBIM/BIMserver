@@ -59,6 +59,10 @@ public class EmailMessage {
 		String smtpProps = serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS ? "mail.smtps.port" : "mail.smtp.port";
 		props.put(smtpProps, serverSettings.getSmtpPort());
 		
+		if (serverSettings.getSmtpProtocol() == SmtpProtocol.STARTTLS) {
+			props.put("mail.smtp.starttls.enable","true");
+		}
+		
 		Session mailSession = Session.getDefaultInstance(props);
 		
 		Transport transport = null;

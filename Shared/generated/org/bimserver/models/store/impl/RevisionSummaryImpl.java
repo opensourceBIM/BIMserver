@@ -29,10 +29,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryImpl#getList <em>List</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

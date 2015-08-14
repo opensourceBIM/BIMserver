@@ -1,5 +1,5 @@
 
-ßŠ
+ÿŠ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -368,7 +368,7 @@ $GetAllModelCheckersOfProjectResponse
 errorMessage (	6
 value (2'.org.bimserver.pb.SModelCheckerInstance"8
 (GetAllNonAuthorizedProjectsOfUserRequest
-uoid ("—
+uoid ("·
 SProject
 	checkouts (
 concreteRevisions (
@@ -391,10 +391,11 @@ $GetAllModelCheckersOfProjectResponse
 parentId (
 	revisions (
 rid (
-schema (	
-services (-
-state (2.org.bimserver.pb.SObjectState
-subProjects ("l
+schema (	
+sendEmailOnNewRevision (
+services (-
+state (2.org.bimserver.pb.SObjectState
+subProjects ("l
 )GetAllNonAuthorizedProjectsOfUserResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"8
