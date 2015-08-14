@@ -57,8 +57,12 @@ import org.bimserver.webservices.NoTransactionException;
 import org.bimserver.webservices.ServiceMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bimsie1LowLevelInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Bimsie1LowLevelServiceImpl.class);
@@ -623,7 +627,7 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 			session.close();
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Long> getReferences(Long tid, Long oid, String referenceName) throws ServerException, UserException {
@@ -635,7 +639,13 @@ public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bi
 			if (object == null) {
 				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
 			}
-			List<IdEObject> list = (List<IdEObject>) object.eGet(object.eClass().getEStructuralFeature(referenceName));
+			final List<IdEObject> list = new ArrayList<IdEObject>();
+			if (object.eClass().getEStructuralFeature(referenceName) != null) {
+				final Object[] array = ((EObjectEList) object.eGet(object.eClass().getEStructuralFeature(referenceName))).toArray();
+				for (Object o : array) {
+					list.add((IdEObject) o);
+				}
+			}
 			List<Long> oidList = new ArrayList<Long>();
 			for (IdEObject idEObject : list) {
 				oidList.add(idEObject.getOid());
