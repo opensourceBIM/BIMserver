@@ -172,7 +172,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 								context.put("name", user.getName());
 								context.put("username", user.getUsername());
 								context.put("siteaddress", serverSettings.getSiteAddress());
-								context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token + "&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
+								context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&validationtoken=" + token + "&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
 								String subject = null;
 								if (selfRegistration) {
 									body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_BODY);
