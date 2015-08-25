@@ -60,11 +60,16 @@ public class RootServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			if (request.getHeader("Origin") != null && !bimServer.getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
+			String requestOrigin = request.getHeader("Origin");
+			if (requestOrigin != null && !bimServer.getServerSettingsCache().isHostAllowed(requestOrigin)) {
 				response.setStatus(403);
 				return;
 			}
-			response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+			if (requestOrigin != null) {
+				response.setHeader("Access-Control-Allow-Origin", requestOrigin);
+			} else {
+				response.setHeader("Access-Control-Allow-Origin", "*");
+			}
 			response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
 			String requestUri = request.getRequestURI();
