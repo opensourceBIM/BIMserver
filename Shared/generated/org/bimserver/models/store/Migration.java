@@ -25,12 +25,12 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.Migration#getNumber <em>Number</em>}</li>
  *   <li>{@link org.bimserver.models.store.Migration#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.Migration#getExecuted <em>Executed</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getMigration()
  * @model

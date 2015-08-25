@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.Project#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getName <em>Name</em>}</li>
@@ -53,7 +54,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Project#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getProject()
  * @model

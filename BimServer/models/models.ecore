@@ -20510,6 +20510,7 @@
     <eClassifiers xsi:type="ecore:EEnum" name="SmtpProtocol">
       <eLiterals name="SMTP"/>
       <eLiterals name="SMTPS" value="1"/>
+      <eLiterals name="STARTTLS" value="2"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MessagingSerializerPluginConfiguration"
         eSuperTypes="#/4/PluginConfiguration">

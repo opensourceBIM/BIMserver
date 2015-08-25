@@ -13148,7 +13148,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION = eINSTANCE.getServerSettings_SendConfirmationEmailAfterRegistration();
+		EAttribute SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION = eINSTANCE
+				.getServerSettings_SendConfirmationEmailAfterRegistration();
 
 		/**
 		 * The meta object literal for the '<em><b>Allow Self Registration</b></em>' attribute feature.
@@ -13164,7 +13165,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS = eINSTANCE.getServerSettings_AllowUsersToCreateTopLevelProjects();
+		EAttribute SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS = eINSTANCE
+				.getServerSettings_AllowUsersToCreateTopLevelProjects();
 
 		/**
 		 * The meta object literal for the '<em><b>Checkin Merging Enabled</b></em>' attribute feature.
@@ -13212,7 +13214,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN = eINSTANCE.getServerSettings_GenerateGeometryOnCheckin();
+		EAttribute SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN = eINSTANCE
+				.getServerSettings_GenerateGeometryOnCheckin();
 
 		/**
 		 * The meta object literal for the '<em><b>Allow Only Whitelisted</b></em>' attribute feature.
@@ -13236,7 +13239,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = eINSTANCE.getServerSettings_HideUserListForNonAdmin();
+		EAttribute SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = eINSTANCE
+				.getServerSettings_HideUserListForNonAdmin();
 
 		/**
 		 * The meta object literal for the '<em><b>Protocol Buffers Port</b></em>' attribute feature.
@@ -13340,7 +13344,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER = eINSTANCE.getServerSettings_AllowCreateValidatedUser();
+		EAttribute SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER = eINSTANCE
+				.getServerSettings_AllowCreateValidatedUser();
 
 		/**
 		 * The meta object literal for the '<em><b>Render Engine Processes</b></em>' attribute feature.
@@ -13554,7 +13559,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getSerializerPluginConfiguration_UserSettings();
+		EReference SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
+				.getSerializerPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '<em><b>Render Engine</b></em>' reference feature.
@@ -13562,7 +13568,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE = eINSTANCE.getSerializerPluginConfiguration_RenderEngine();
+		EReference SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE = eINSTANCE
+				.getSerializerPluginConfiguration_RenderEngine();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ObjectIDMPluginConfigurationImpl <em>Object IDM Plugin Configuration</em>}' class.
@@ -13580,7 +13587,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OBJECT_IDM_PLUGIN_CONFIGURATION__SERIALIZERS = eINSTANCE.getObjectIDMPluginConfiguration_Serializers();
+		EReference OBJECT_IDM_PLUGIN_CONFIGURATION__SERIALIZERS = eINSTANCE
+				.getObjectIDMPluginConfiguration_Serializers();
 
 		/**
 		 * The meta object literal for the '<em><b>User Settings</b></em>' reference feature.
@@ -13588,7 +13596,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OBJECT_IDM_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getObjectIDMPluginConfiguration_UserSettings();
+		EReference OBJECT_IDM_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
+				.getObjectIDMPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RenderEnginePluginConfigurationImpl <em>Render Engine Plugin Configuration</em>}' class.
@@ -13606,7 +13615,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RENDER_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS = eINSTANCE.getRenderEnginePluginConfiguration_Serializers();
+		EReference RENDER_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS = eINSTANCE
+				.getRenderEnginePluginConfiguration_Serializers();
 
 		/**
 		 * The meta object literal for the '<em><b>User Settings</b></em>' reference feature.
@@ -13614,7 +13624,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getRenderEnginePluginConfiguration_UserSettings();
+		EReference RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
+				.getRenderEnginePluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DeserializerPluginConfigurationImpl <em>Deserializer Plugin Configuration</em>}' class.
@@ -13632,7 +13643,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DESERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getDeserializerPluginConfiguration_UserSettings();
+		EReference DESERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
+				.getDeserializerPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DownloadResultImpl <em>Download Result</em>}' class.
@@ -14008,7 +14020,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES = eINSTANCE.getDatabaseInformation_DatabaseSizeInBytes();
+		EAttribute DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES = eINSTANCE
+				.getDatabaseInformation_DatabaseSizeInBytes();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -14114,7 +14127,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = eINSTANCE.getPluginDescriptor_PluginInterfaceClassName();
+		EAttribute PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = eINSTANCE
+				.getPluginDescriptor_PluginInterfaceClassName();
 
 		/**
 		 * The meta object literal for the '<em><b>Configurations</b></em>' reference list feature.
@@ -14830,7 +14844,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference QUERY_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getQueryEnginePluginConfiguration_UserSettings();
+		EReference QUERY_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
+				.getQueryEnginePluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.WebModulePluginDescriptorImpl <em>Web Module Plugin Descriptor</em>}' class.
@@ -14858,7 +14873,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WEB_MODULE_PLUGIN_CONFIGURATION__SERVER_SETTINGS = eINSTANCE.getWebModulePluginConfiguration_ServerSettings();
+		EReference WEB_MODULE_PLUGIN_CONFIGURATION__SERVER_SETTINGS = eINSTANCE
+				.getWebModulePluginConfiguration_ServerSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelMergerPluginDescriptorImpl <em>Model Merger Plugin Descriptor</em>}' class.
@@ -14886,7 +14902,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_MERGER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getModelMergerPluginConfiguration_UserSettings();
+		EReference MODEL_MERGER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
+				.getModelMergerPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelComparePluginDescriptorImpl <em>Model Compare Plugin Descriptor</em>}' class.
@@ -14914,7 +14931,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_COMPARE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getModelComparePluginConfiguration_UserSettings();
+		EReference MODEL_COMPARE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
+				.getModelComparePluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ProfileDescriptorImpl <em>Profile Descriptor</em>}' class.
@@ -15318,7 +15336,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE = eINSTANCE.getInternalServicePluginConfiguration_RemoteAccessible();
+		EAttribute INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE = eINSTANCE
+				.getInternalServicePluginConfiguration_RemoteAccessible();
 
 		/**
 		 * The meta object literal for the '<em><b>User Settings</b></em>' reference feature.
@@ -15326,7 +15345,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getInternalServicePluginConfiguration_UserSettings();
+		EReference INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
+				.getInternalServicePluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '<em><b>Public Profile</b></em>' attribute feature.
@@ -15334,7 +15354,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE = eINSTANCE.getInternalServicePluginConfiguration_PublicProfile();
+		EAttribute INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE = eINSTANCE
+				.getInternalServicePluginConfiguration_PublicProfile();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceInterfaceImpl <em>Service Interface</em>}' class.
@@ -16560,7 +16581,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME = eINSTANCE.getModelCheckerInstance_ModelCheckerPluginClassName();
+		EAttribute MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME = eINSTANCE
+				.getModelCheckerInstance_ModelCheckerPluginClassName();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelCheckerPluginDescriptorImpl <em>Model Checker Plugin Descriptor</em>}' class.
@@ -16588,7 +16610,8 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getMessagingSerializerPluginConfiguration_UserSettings();
+		EReference MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
+				.getMessagingSerializerPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

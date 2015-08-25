@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.VersionImpl#getMajor <em>Major</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.VersionImpl#getMinor <em>Minor</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.VersionImpl#getSupportUrl <em>Support Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.VersionImpl#getSupportEmail <em>Support Email</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
