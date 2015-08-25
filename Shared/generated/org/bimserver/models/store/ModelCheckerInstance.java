@@ -25,6 +25,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ModelCheckerInstance#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ModelCheckerInstance#getDescription <em>Description</em>}</li>
@@ -33,7 +34,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ModelCheckerInstance#isValid <em>Valid</em>}</li>
  *   <li>{@link org.bimserver.models.store.ModelCheckerInstance#getModelCheckerPluginClassName <em>Model Checker Plugin Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getModelCheckerInstance()
  * @model

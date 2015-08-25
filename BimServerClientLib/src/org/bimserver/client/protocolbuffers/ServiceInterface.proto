@@ -761,9 +761,10 @@ message SProject {
 	repeated int64 revisions = 18;
 	optional int32 rid = 19;
 	optional string schema = 20;
-	repeated int64 services = 21;
-	optional SObjectState state = 22;
-	repeated int64 subProjects = 23;
+	optional bool sendEmailOnNewRevision = 21;
+	repeated int64 services = 22;
+	optional SObjectState state = 23;
+	repeated int64 subProjects = 24;
 }
 
 message GetAllNonAuthorizedProjectsOfUserResponse {

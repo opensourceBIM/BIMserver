@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ImmediateNotificationResultImpl#getResult <em>Result</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ImmediateNotificationResultImpl#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

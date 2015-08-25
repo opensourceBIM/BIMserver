@@ -443,7 +443,7 @@
 	</target>
 	<target name="SceneJS">
 		<mkdir dir="builds/scenejs" />
-		<javac destdir="builds/scenejs" debug="on" includeantruntime="false">
+		<javac destdir="builds/scenejs" debug="on" fork="true" includeantruntime="false">
 			<src path="../../SceneJS/src" />
 			<classpath>
 				<path>

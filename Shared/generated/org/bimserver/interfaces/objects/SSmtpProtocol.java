@@ -19,7 +19,8 @@ package org.bimserver.interfaces.objects;
 
 public enum SSmtpProtocol {
 	SMTP(0),
-	SMTPS(1);
+	SMTPS(1),
+	STARTTLS(2);
 	int ordinal;
 
 	SSmtpProtocol(int ordinal) {

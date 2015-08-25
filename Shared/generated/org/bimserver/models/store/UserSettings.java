@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.UserSettings#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getObjectIDMs <em>Object ID Ms</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.UserSettings#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getMessagingSerializerPlugins <em>Messaging Serializer Plugins</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getUserSettings()
  * @model

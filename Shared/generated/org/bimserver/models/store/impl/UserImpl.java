@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getPasswordHash <em>Password Hash</em>}</li>
@@ -60,7 +61,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getLogs <em>Logs</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

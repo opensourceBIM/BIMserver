@@ -39,7 +39,7 @@ function BimServerApi(baseUrl, notifier) {
 		SETDEFAULTMODELCOMPARE_DONE: "Default Model Compare successfully changed",
 		LOGIN_BUSY: "Trying to login",
 		CHANGEUSERTYPE_DONE: "Type of user successfully changed",
-		ADDUSER_DONE: "User successfully added",
+		ADDUSER_DONE: "User successfully added, you should receive a validation email shortly",
 		UPDATEINTERNALSERVICE_DONE: "Internal service successfully updated",
 		UPDATEMODELCOMPARE_DONE: "Model compare plugin successfully updated",
 		UPDATEMODELMERGER_DONE: "Model merger successfully updated",
@@ -71,7 +71,8 @@ function BimServerApi(baseUrl, notifier) {
 		GETPLUGINDESCRIPTOR_BUSY: "Getting plugin information",
 		GETUSERSETTINGS_BUSY: "Getting user settings",
 		GETALLQUERYENGINES_BUSY: "Getting query engines",
-		REGISTERNEWPROJECTHANDLER_BUSY: "Registering for updates on new projects"
+		REGISTERNEWPROJECTHANDLER_BUSY: "Registering for updates on new projects",
+		ADDUSER_BUSY: "Adding user..."
 	}
 
 	othis.token = null;
@@ -918,7 +919,7 @@ function Model(bimServerApi, poid, roid, schema) {
 						object[fieldName] = {_t: typeName, value: value};
 						othis.incrementRunningCalls("set" + fieldName.firstUpper() + "Wrapped");
 						othis.transactionSynchronizer.fetch(function(tid){
-							var type = othis.bimServerApi.schema[typeName];
+							var type = othis.bimServerApi.schemas[othis.schema][typeName];
 							var wrappedValueType = type.fields.wrappedValue;
 							if (wrappedValueType.type == "string") {
 								bimServerApi.call("Bimsie1LowLevelInterface", "setWrappedStringAttribute", {
@@ -1501,7 +1502,7 @@ function Model(bimServerApi, poid, roid, schema) {
 						bimServerApi.call("Bimsie1ServiceInterface", "downloadByTypes", {
 							roids: [othis.roid],
 							classNames: typesToLoad,
-							schema: "ifc2x3tc1",
+							schema: othis.schema,
 							includeAllSubtypes: false,
 							serializerOid: jsonSerializerOid,
 							useObjectIDM: false,

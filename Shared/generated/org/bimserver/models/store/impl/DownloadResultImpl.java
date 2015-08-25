@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.DownloadResultImpl#getProjectName <em>Project Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DownloadResultImpl#getRevisionNr <em>Revision Nr</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DownloadResultImpl#getFile <em>File</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
